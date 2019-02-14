@@ -43,6 +43,7 @@
 #include "jobs/ResizePartitionJob.h"
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
+#include "utils/CalamaresUtils.h"
 
 #include "Typedefs.h"
 #include "utils/Logger.h"
@@ -63,6 +64,38 @@
 #include <QProcess>
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrent>
+
+
+PartitionCoreModule::RefreshHelper::RefreshHelper(PartitionCoreModule* module)
+    : m_module( module )
+{
+}
+
+PartitionCoreModule::RefreshHelper::~RefreshHelper()
+{
+    m_module->refreshAfterModelChange();
+}
+
+class OperationHelper
+{
+public:
+    OperationHelper( PartitionModel* model, PartitionCoreModule* core )
+        : m_coreHelper( core )
+        , m_modelHelper( model )
+    {
+    }
+
+    OperationHelper( const OperationHelper& ) = delete;
+    OperationHelper& operator=( const OperationHelper& ) = delete;
+
+private:
+    // Keep these in order: first the model needs to finish,
+    // then refresh is called. Remember that destructors are
+    // called in *reverse* order of declaration in this class.
+    PartitionCoreModule::RefreshHelper m_coreHelper;
+    PartitionModel::ResetHelper m_modelHelper;
+} ;
+
 
 //- DeviceInfo ---------------------------------------------
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
@@ -242,13 +275,11 @@ PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::Table
         // keep previous changes
         info->forgetChanges();
 
-        PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
+        OperationHelper helper( partitionModelForDevice( device ), this );
         CreatePartitionTableJob* job = new CreatePartitionTableJob( device, type );
         job->updatePreview();
         info->jobs << Calamares::job_ptr( job );
     }
-
-    refresh();
 }
 
 void
@@ -259,7 +290,7 @@ PartitionCoreModule::createPartition( Device* device,
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
-    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
+    OperationHelper helper( partitionModelForDevice( device ), this );
     CreatePartitionJob* job = new CreatePartitionJob( device, partition );
     job->updatePreview();
 
@@ -271,8 +302,6 @@ PartitionCoreModule::createPartition( Device* device,
         deviceInfo->jobs << Calamares::job_ptr( fJob );
         PartitionInfo::setFlags( partition, flags );
     }
-
-    refresh();
 }
 
 void
@@ -301,7 +330,7 @@ PartitionCoreModule::createVolumeGroup( QString &vgName,
     m_deviceInfos << deviceInfo;
     deviceInfo->jobs << Calamares::job_ptr( job );
 
-    refresh();
+    refreshAfterModelChange();
 }
 
 void
@@ -314,7 +343,7 @@ PartitionCoreModule::resizeVolumeGroup( LvmDevice *device, QVector< const Partit
 
     deviceInfo->jobs << Calamares::job_ptr( job );
 
-    refresh();
+    refreshAfterModelChange();
 }
 
 void
@@ -330,7 +359,7 @@ PartitionCoreModule::deactivateVolumeGroup( LvmDevice *device )
     // DeactivateVolumeGroupJob needs to be immediately called
     job->exec();
 
-    refresh();
+    refreshAfterModelChange();
 }
 
 void
@@ -343,7 +372,7 @@ PartitionCoreModule::removeVolumeGroup( LvmDevice *device )
 
     deviceInfo->jobs << Calamares::job_ptr( job );
 
-    refresh();
+    refreshAfterModelChange();
 }
 
 void
@@ -352,7 +381,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
-    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
+    OperationHelper helper( partitionModelForDevice( device ), this );
 
     if ( partition->roles().has( PartitionRole::Extended ) )
     {
@@ -420,8 +449,6 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         job->updatePreview();
         jobs << Calamares::job_ptr( job );
     }
-
-    refresh();
 }
 
 void
@@ -429,12 +456,10 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
-    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
+    OperationHelper helper( partitionModelForDevice( device ), this );
 
     FormatPartitionJob* job = new FormatPartitionJob( device, partition );
     deviceInfo->jobs << Calamares::job_ptr( job );
-
-    refresh();
 }
 
 void
@@ -445,13 +470,11 @@ PartitionCoreModule::resizePartition( Device* device,
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
-    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
+    OperationHelper helper( partitionModelForDevice( device ), this );
 
     ResizePartitionJob* job = new ResizePartitionJob( device, partition, first, last );
     job->updatePreview();
     deviceInfo->jobs << Calamares::job_ptr( job );
-
-    refresh();
 }
 
 void
@@ -461,13 +484,11 @@ PartitionCoreModule::setPartitionFlags( Device* device,
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
-    PartitionModel::ResetHelper( partitionModelForDevice( device ) );
+    OperationHelper( partitionModelForDevice( device ), this );
 
     SetPartFlagsJob* job = new SetPartFlagsJob( device, partition, flags );
     deviceInfo->jobs << Calamares::job_ptr( job );
     PartitionInfo::setFlags( partition, flags );
-
-    refresh();
 }
 
 QList< Calamares::job_ptr >
@@ -489,16 +510,7 @@ PartitionCoreModule::jobs() const
         lst << info->jobs;
         devices << info->device.data();
     }
-    cDebug() << "Creating FillGlobalStorageJob with bootLoader path" << m_bootLoaderInstallPath;
     lst << Calamares::job_ptr( new FillGlobalStorageJob( devices, m_bootLoaderInstallPath ) );
-
-
-    QStringList jobsDebug;
-    foreach ( auto job, lst )
-        jobsDebug.append( job->prettyName() );
-
-    cDebug() << "PartitionCodeModule has been asked for jobs. About to return:"
-             << jobsDebug.join( "\n" );
 
     return lst;
 }
@@ -573,13 +585,11 @@ PartitionCoreModule::refreshPartition( Device* device, Partition* )
     // the loss of the current selection.
     auto model = partitionModelForDevice( device );
     Q_ASSERT( model );
-    PartitionModel::ResetHelper helper( model );
-
-    refresh();
+    OperationHelper helper( model, this );
 }
 
 void
-PartitionCoreModule::refresh()
+PartitionCoreModule::refreshAfterModelChange()
 {
     updateHasRootMountPoint();
     updateIsDirty();
@@ -665,7 +675,11 @@ PartitionCoreModule::scanForLVMPVs()
     // Update LVM::pvList
     LvmDevice::scanSystemLVM( physicalDevices );
 
+#ifdef WITH_KPMCOREGT33
+    for ( auto p : LVM::pvList::list() )
+#else
     for ( auto p : LVM::pvList )
+#endif
     {
         m_lvmPVs << p.partition().data();
 
@@ -748,6 +762,84 @@ PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 }
 
 void
+PartitionCoreModule::initLayout()
+{
+    m_partLayout = new PartitionLayout();
+
+    m_partLayout->addEntry( QString("/"), QString("100%") );
+}
+
+void
+PartitionCoreModule::initLayout( const QVariantList& config )
+{
+    QString sizeString;
+    QString minSizeString;
+
+    m_partLayout = new PartitionLayout();
+
+    for ( const auto& r : config )
+    {
+        QVariantMap pentry = r.toMap();
+
+        if ( pentry.contains("size") && CalamaresUtils::getString( pentry, "size" ).isEmpty() )
+            sizeString.setNum( CalamaresUtils::getInteger( pentry, "size", 0 ) );
+        else
+            sizeString = CalamaresUtils::getString( pentry, "size" );
+
+        if ( pentry.contains("minSize") && CalamaresUtils::getString( pentry, "minSize" ).isEmpty() )
+            minSizeString.setNum( CalamaresUtils::getInteger( pentry, "minSize", 0 ) );
+        else
+            minSizeString = CalamaresUtils::getString( pentry, "minSize" );
+
+        m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
+                                CalamaresUtils::getString( pentry, "mountPoint" ),
+                                CalamaresUtils::getString( pentry, "filesystem" ),
+                                sizeString,
+                                minSizeString
+                              );
+    }
+}
+
+void
+PartitionCoreModule::layoutApply( Device *dev,
+                                  qint64 firstSector,
+                                  qint64 lastSector,
+                                  QString luksPassphrase,
+                                  PartitionNode* parent,
+                                  const PartitionRole& role )
+{
+    bool isEfi = PartUtils::isEfiSystem();
+    QList< Partition* > partList = m_partLayout->execute( dev, firstSector, lastSector,
+                                                          luksPassphrase, parent, role
+                                                        );
+
+    foreach ( Partition *part, partList )
+    {
+        if ( part->mountPoint() == "/" )
+        {
+            createPartition( dev, part,
+                             part->activeFlags() | ( isEfi ? PartitionTable::FlagNone : PartitionTable::FlagBoot )
+                           );
+        }
+        else
+        {
+            createPartition( dev, part );
+        }
+    }
+}
+
+void
+PartitionCoreModule::layoutApply( Device *dev,
+                                  qint64 firstSector,
+                                  qint64 lastSector,
+                                  QString luksPassphrase )
+{
+    layoutApply( dev, firstSector, lastSector, luksPassphrase, dev->partitionTable(),
+                 PartitionRole( PartitionRole::Primary )
+               );
+}
+
+void
 PartitionCoreModule::revert()
 {
     QMutexLocker locker( &m_revertMutex );
@@ -788,16 +880,16 @@ PartitionCoreModule::revertAllDevices()
             }
         }
 
-        revertDevice( ( *it )->device.data() );
+        revertDevice( ( *it )->device.data(), false );
         ++it;
     }
 
-    refresh();
+    refreshAfterModelChange();
 }
 
 
 void
-PartitionCoreModule::revertDevice( Device* dev )
+PartitionCoreModule::revertDevice( Device* dev, bool individualRevert )
 {
     QMutexLocker locker( &m_revertMutex );
     DeviceInfo* devInfo = infoForDevice( dev );
@@ -823,7 +915,8 @@ PartitionCoreModule::revertDevice( Device* dev )
 
     m_bootLoaderModel->init( devices );
 
-    refresh();
+    if ( individualRevert )
+        refreshAfterModelChange();
     emit deviceReverted( newDev );
 }
 
@@ -839,7 +932,7 @@ PartitionCoreModule::asyncRevertDevice( Device* dev, std::function< void() > cal
         watcher->deleteLater();
     } );
 
-    QFuture< void > future = QtConcurrent::run( this, &PartitionCoreModule::revertDevice, dev );
+    QFuture< void > future = QtConcurrent::run( this, &PartitionCoreModule::revertDevice, dev, true );
     watcher->setFuture( future );
 }
 

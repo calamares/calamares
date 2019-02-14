@@ -185,26 +185,35 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
 
     if ( index.data( PartitionModel::IsPartitionNewRole ).toBool() )
     {
-        QString mountPoint = index.sibling( index.row(),
-                                            PartitionModel::MountPointColumn )
-                                  .data().toString();
-        if ( mountPoint == "/" )
-            firstLine = m_customNewRootLabel.isEmpty() ?
-                            tr( "Root" ) :
-                            m_customNewRootLabel;
-        else if ( mountPoint == "/home" )
-            firstLine = tr( "Home" );
-        else if ( mountPoint == "/boot" )
-            firstLine = tr( "Boot" );
-        else if ( mountPoint.contains( "/efi" ) &&
-                  index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::Fat32 )
-            firstLine = tr( "EFI system" );
-        else if ( index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::LinuxSwap )
-            firstLine = tr( "Swap" );
-        else if ( !mountPoint.isEmpty() )
-            firstLine = tr( "New partition for %1" ).arg( mountPoint );
+        QString label = index.data( PartitionModel::FileSystemLabelRole ).toString();
+
+        if ( !label.isEmpty() )
+        {
+            firstLine = label;
+        }
         else
-            firstLine = tr( "New partition" );
+        {
+            QString mountPoint = index.sibling( index.row(),
+                                                PartitionModel::MountPointColumn )
+                                      .data().toString();
+            if ( mountPoint == "/" )
+                firstLine = m_customNewRootLabel.isEmpty() ?
+                                tr( "Root" ) :
+                                m_customNewRootLabel;
+            else if ( mountPoint == "/home" )
+                firstLine = tr( "Home" );
+            else if ( mountPoint == "/boot" )
+                firstLine = tr( "Boot" );
+            else if ( mountPoint.contains( "/efi" ) &&
+                      index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::Fat32 )
+                firstLine = tr( "EFI system" );
+            else if ( index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::LinuxSwap )
+                firstLine = tr( "Swap" );
+            else if ( !mountPoint.isEmpty() )
+                firstLine = tr( "New partition for %1" ).arg( mountPoint );
+            else
+                firstLine = tr( "New partition" );
+        }
     }
     else if ( index.data( PartitionModel::OsproberNameRole ).toString().isEmpty() )
     {

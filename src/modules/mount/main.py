@@ -124,25 +124,24 @@ def run():
     """
     root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
     partitions = libcalamares.globalstorage.value("partitions")
-    extra_mounts = libcalamares.job.configuration["extraMounts"]
-    extra_mounts_efi = libcalamares.job.configuration["extraMountsEfi"]
+
+    # Guard against missing keys (generally a sign that the config file is bad)
+    extra_mounts = libcalamares.job.configuration.get("extraMounts") or []
+    extra_mounts_efi = libcalamares.job.configuration.get("extraMountsEfi") or []
+    if not extra_mounts and not extra_mounts_efi:
+        libcalamares.utils.warning("No extra mounts defined. Does mount.conf exist?")
 
     # Sort by mount points to ensure / is mounted before the rest
     partitions.sort(key=lambda x: x["mountPoint"])
     mount_partitions(root_mount_point, partitions)
     mount_partitions(root_mount_point, extra_mounts)
-    fw_type = libcalamares.globalstorage.value("firmwareType")
 
-    if fw_type == 'efi':
+    all_extra_mounts = extra_mounts
+    if libcalamares.globalstorage.value("firmwareType") == "efi":
         mount_partitions(root_mount_point, extra_mounts_efi)
+        all_extra_mounts.extend(extra_mounts_efi)
 
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
 
     # Remember the extra mounts for the unpackfs module
-    if fw_type == 'efi':
-        libcalamares.globalstorage.insert(
-            "extraMounts", extra_mounts + extra_mounts_efi)
-    else:
-        libcalamares.globalstorage.insert("extraMounts", extra_mounts)
-
-    return None
+    libcalamares.globalstorage.insert("extraMounts", all_extra_mounts)

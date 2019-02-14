@@ -3,20 +3,142 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Caio Jordão Carvalho <cjlcarvalho@live.com>, 2018
+# Guilherme <guimarcalsilva@gmail.com>, 2018
+# André Marcelo Alvarenga <alvarenga@kde.org>, 2019
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-18 07:46-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Caio Jordão Carvalho <cjlcarvalho@live.com>, 2018\n"
+"POT-Creation-Date: 2019-01-25 08:04-0500\n"
+"PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>, 2019\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/calamares/teams/20061/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/modules/displaymanager/main.py:380
+msgid "Cannot write KDM configuration file"
+msgstr "Não foi possível gravar o arquivo de configuração do KDM"
+
+#: src/modules/displaymanager/main.py:381
+msgid "KDM config file {!s} does not exist"
+msgstr "O arquivo de configuração {!s} do KDM não existe"
+
+#: src/modules/displaymanager/main.py:442
+msgid "Cannot write LXDM configuration file"
+msgstr "Não foi possível gravar o arquivo de configuração do LXDM"
+
+#: src/modules/displaymanager/main.py:443
+msgid "LXDM config file {!s} does not exist"
+msgstr "O arquivo de configuração {!s} do LXDM não existe"
+
+#: src/modules/displaymanager/main.py:517
+msgid "Cannot write LightDM configuration file"
+msgstr "Não foi possível gravar o arquivo de configuração do LightDM"
+
+#: src/modules/displaymanager/main.py:518
+msgid "LightDM config file {!s} does not exist"
+msgstr "O arquivo de configuração {!s} do LightDM não existe"
+
+#: src/modules/displaymanager/main.py:592
+msgid "Cannot configure LightDM"
+msgstr "Não é possível configurar o LightDM"
+
+#: src/modules/displaymanager/main.py:593
+msgid "No LightDM greeter installed."
+msgstr "Não há nenhuma tela de login do LightDM instalada."
+
+#: src/modules/displaymanager/main.py:624
+msgid "Cannot write SLIM configuration file"
+msgstr "Não foi possível gravar o arquivo de configuração do SLIM"
+
+#: src/modules/displaymanager/main.py:625
+msgid "SLIM config file {!s} does not exist"
+msgstr "O arquivo de configuração {!s} do SLIM não existe"
+
+#: src/modules/displaymanager/main.py:740
+#: src/modules/displaymanager/main.py:772
+msgid "No display managers selected for the displaymanager module."
+msgstr ""
+"Nenhum gerenciador de exibição selecionado para o módulo do displaymanager."
+
+#: src/modules/displaymanager/main.py:741
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+"A lista de displaymanagers está vazia ou indefinida no bothglobalstorage e "
+"no displaymanager.conf."
+
+#: src/modules/displaymanager/main.py:773
+msgid "The list is empty after checking for installed display managers."
+msgstr ""
+"A listá está vazia após verificar pelos gerenciadores de exibição "
+"instalados."
+
+#: src/modules/displaymanager/main.py:821
+msgid "Display manager configuration was incomplete"
+msgstr "A configuração do gerenciador de exibição está incompleta"
+
+#: src/modules/unpackfs/main.py:40
+msgid "Installing filesystems."
+msgstr "Instalando sistemas de arquivos."
+
+#: src/modules/unpackfs/main.py:153
+msgid "rsync failed with error code {}."
+msgstr "O rsync falhou com o código de erro {}."
+
+#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
+msgid "Failed to unpack image \"{}\""
+msgstr "Ocorreu uma falha ao descompactar a imagem \"{}\""
+
+#: src/modules/unpackfs/main.py:210
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Ocorreu uma falha ao localizar o unsquashfs, certifique-se de que o pacote "
+"squashfs-tools esteja instalado"
+
+#: src/modules/unpackfs/main.py:301
+msgid "No mount point for root partition"
+msgstr "Nenhum ponto de montagem para a partição root"
+
+#: src/modules/unpackfs/main.py:302
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "O globalstorage não contém a chave \"rootMountPoint\". Nada foi feito."
+
+#: src/modules/unpackfs/main.py:307
+msgid "Bad mount point for root partition"
+msgstr "Ponto de montagem incorreto para a partição root"
+
+#: src/modules/unpackfs/main.py:308
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "O rootMountPoint é \"{}\", mas ele não existe. Nada foi feito."
+
+#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
+#: src/modules/unpackfs/main.py:333
+msgid "Bad unsquash configuration"
+msgstr "Configuração incorreta do unsquash"
+
+#: src/modules/unpackfs/main.py:322
+msgid "The filesystem for \"{}\" ({}) is not supported"
+msgstr "O sistema de arquivos para \"{}\" ({}) não é suportado"
+
+#: src/modules/unpackfs/main.py:329
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "O sistema de arquivos de origem \"{}\" não existe"
+
+#: src/modules/unpackfs/main.py:334
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "A destinação \"{}\" no sistema de destino não é um diretório"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -29,6 +151,10 @@ msgstr "Tarefa modelo python."
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
 msgstr "Etapa modelo python {}"
+
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Instalando os dados."
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."

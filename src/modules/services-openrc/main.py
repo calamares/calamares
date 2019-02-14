@@ -6,7 +6,7 @@
 #   Copyright 2016, Artoo <artoo@manjaro.org>
 #   Copyright 2017, Philip Müller <philm@manjaro.org>
 #   Copyright 2018, Artoo <artoo@artixlinux.org>
-#   Copyright 2018, Adriaan de Groot <groot@kde.org>
+#   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,17 @@ import libcalamares
 
 from libcalamares.utils import target_env_call, warning
 from os.path import exists, join
+
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Configure OpenRC services")
 
 
 class OpenrcController:
@@ -69,24 +80,22 @@ class OpenrcController:
                 if exists(runlevel_path):
                     ec = target_env_call(["rc-update", state, name, runlevel])
                     if ec != 0:
+                        warning("Cannot {} service {} to {}".format(state, name, runlevel))
+                        warning("rc-update returned error code {!s}".format(ec))
                         if mandatory:
-                            return ("Cannot {} service {} to {}".format(state, name, runlevel),
-                                    "rc-update {} call in chroot returned error code {}".format(state, ec)
+                            return (_("Cannot {} service {} to {}").format(state, name, runlevel),
+                                    _("rc-update {} call in chroot returned error code {}").format(state, ec)
                                     )
-                        else:
-                            warning("Could not {} service {} in {}, error {!s}".format(state, name, runlevel, ec))
                 else:
+                    warning("Target runlevel {} does not exist for {}.".format(runlevel, name))
                     if mandatory:
-                        return ("Target runlevel {} does not exist for {}.".format(runlevel, name),
-                                "No {} found.".format(runlevel_path))
-                    else:
-                        warning("Target runlevel {} does not exist for {}.".format(runlevel, name))
+                        return (_("Target runlevel {} does not exist for {}.").format(runlevel, name),
+                                _("No {} found.").format(runlevel_path))
             else:
+                warning("Target service {} does not exist in {}.".format(name, self.initdDir))
                 if mandatory:
-                    return ("Target service {} does not exist.".format(name),
-                            "No {} found.".format(service_path))
-                else:
-                    warning("Target service {} does not exist in {}.".format(name, self.initdDir))
+                    return (_("Target service {} does not exist.").format(name),
+                            _("No {} found.").format(service_path))
 
 
     def run(self):

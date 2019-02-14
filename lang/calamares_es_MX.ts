@@ -173,106 +173,106 @@
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="279"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
         <source>&amp;Next</source>
         <translation>&amp;Siguiente</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="288"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="296"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="289"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="297"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Cancelar instalación sin cambiar el sistema.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="183"/>
         <source>Calamares Initialization Failed</source>
         <translation>La inicialización de Calamares ha fallado</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
         <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
         <translation>%1 no pudo ser instalado. Calamares no pudo cargar todos los módulos configurados. Este es un problema con la forma en que Calamares esta siendo usada por la distribución.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
         <translation>&lt;br/&gt;Los siguientes módulos no pudieron ser cargados:</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="281"/>
         <source>&amp;Install</source>
         <translation>&amp;Instalar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
         <source>Cancel installation?</source>
         <translation>¿Cancelar la instalación?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>¿Realmente desea cancelar el proceso de instalación actual?
 El instalador terminará y se perderán todos los cambios.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
         <source>&amp;Yes</source>
         <translation>&amp;Si</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
         <source>&amp;No</source>
         <translation>&amp;No</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="237"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="241"/>
         <source>Continue with setup?</source>
         <translation>¿Continuar con la instalación?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="242"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation> El instalador %1 va a realizar cambios en su disco para instalar %2.&lt;br/&gt;&lt;strong&gt;No podrá deshacer estos cambios.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="243"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="247"/>
         <source>&amp;Install now</source>
         <translation>&amp;Instalar ahora</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="244"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="248"/>
         <source>Go &amp;back</source>
         <translation>&amp;Regresar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="287"/>
         <source>&amp;Done</source>
         <translation>&amp;Hecho</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="284"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="288"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>Instalación completa. Cierre el instalador.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="164"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="161"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
         <source>Installation Failed</source>
         <translation>Instalación Fallida</translation>
     </message>
@@ -303,12 +303,12 @@ El instalador terminará y se perderán todos los cambios.</translation>
 <context>
     <name>CalamaresWindow</name>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="56"/>
         <source>%1 Installer</source>
         <translation>%1 Instalador</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="111"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="119"/>
         <source>Show debug information</source>
         <translation>Mostrar información de depuración</translation>
     </message>
@@ -349,110 +349,135 @@ El instalador terminará y se perderán todos los cambios.</translation>
         <translation>Formulario</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <source>After:</source>
         <translation>Después:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="235"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="324"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Particionado manual &lt;/strong&gt;&lt;br/&gt; Puede crear o cambiar el tamaño de las particiones usted mismo.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="998"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
         <source>Boot loader location:</source>
         <translation>Ubicación del cargador de arranque:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="960"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 será reducido a %2MB y una nueva partición %3MB will be created for %4.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="152"/>
         <source>Select storage de&amp;vice:</source>
         <translation>Seleccionar dispositivo de almacenamiento:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="924"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="988"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
         <source>Current:</source>
         <translation>Actual:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="795"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="813"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation>Reuse %1 como partición home para %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="925"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation> &lt;strong&gt;Seleccione una partición para reducir el tamaño, a continuación, arrastre la barra inferior para redimencinar&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1040"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation> &lt;strong&gt;Seleccione una partición para instalar&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1096"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1114"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>No se puede encontrar en el sistema una partición EFI. Por favor vuelva atrás y use el particionamiento manual para configurar %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1105"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1123"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>La partición EFI en %1 será usada para iniciar %2.
 </translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1113"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1131"/>
         <source>EFI system partition:</source>
         <translation>Partición de sistema EFI:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1200"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1249"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Este dispositivo de almacenamiento parece no tener un sistema operativo en el. ¿que le gustaría hacer?&lt;br/&gt; Usted podrá revisar y confirmar sus elecciones antes que cualquier cambio se realice al dispositivo de almacenamiento.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1242"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1288"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1254"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1291"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1337"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Borrar disco&lt;/strong&gt; &lt;br/&gt;Esto &lt;font color=&quot;red&quot;&gt;borrará&lt;/font&gt; todos los datos presentes actualmente en el dispositivo de almacenamiento seleccionado.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1232"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Este dispositivo de almacenamiento tiene %1 en el. ¿Que le gustaría hacer? &lt;br/&gt;Usted podrá revisar y confirmar sus elecciones antes de que cualquier cambio se realice al dispositivo de almacenamiento.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1209"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1238"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+        <source>No Swap</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+        <source>Reuse Swap</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+        <source>Swap (no Hibernate)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
+        <source>Swap (with Hibernate)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
+        <source>Swap to file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1287"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Instalar junto a&lt;/strong&gt; &lt;br/&gt;El instalador reducirá una partición con el fin de hacer espacio para %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1213"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1247"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1341"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Reemplazar una partición&lt;/strong&gt; &lt;br/&gt;Reemplaza una partición con %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1255"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Este dispositivo de almacenamiento ya tiene un sistema operativo en el. ¿Que le gustaría hacer?&lt;br/&gt; Usted podrá revisar y confirmar sus elecciones antes que cualquier cambio se realice al dispositivo de almacenamiento.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Este dispositivo de almacenamiento tiene múltiples sistemas operativos en el. ¿Que le gustaria hacer?&lt;br/&gt; Usted podrá revisar y confirmar sus elecciones antes que cualquier cambio se realice al dispositivo de almacenamiento.</translation>
     </message>
@@ -657,22 +682,22 @@ El instalador terminará y se perderán todos los cambios.</translation>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="45"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
         <source>Create new %1 partition table on %2.</source>
         <translation> Crear nueva tabla de partición %1 en %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="52"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation> Crear nueva tabla de particiones &lt;strong&gt;%1&lt;/strong&gt; en &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="64"/>
         <source>Creating new %1 partition table on %2.</source>
         <translation> Creando nueva tabla de particiones %1 en %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="72"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="82"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>El instalador falló al crear una tabla de partición en %1.</translation>
     </message>
@@ -713,6 +738,48 @@ El instalador terminará y se perderán todos los cambios.</translation>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
         <source>Cannot open groups file for reading.</source>
         <translation>No se puede abrir el archivo groups para lectura.</translation>
+    </message>
+</context>
+<context>
+    <name>CreateVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
+        <source>Create new volume group named %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
+        <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+        <source>Creating new volume group named %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
+        <source>The installer failed to create a volume group named &apos;%1&apos;.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DeactivateVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="34"/>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
+        <source>Deactivate volume group named %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="41"/>
+        <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="61"/>
+        <source>The installer failed to deactivate a volume group named %1.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -774,9 +841,14 @@ El instalador terminará y se perderán todos los cambios.</translation>
 <context>
     <name>DeviceModel</name>
     <message>
-        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="80"/>
+        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="83"/>
         <source>%1 - %2 (%3)</source>
         <translation>%1 - %2 (%3)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="89"/>
+        <source>%1 - (%2)</source>
+        <translation>%1 - (%2)</translation>
     </message>
 </context>
 <context>
@@ -894,37 +966,37 @@ El instalador terminará y se perderán todos los cambios.</translation>
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="123"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="132"/>
         <source>Set partition information</source>
         <translation>Fijar información de la partición. </translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="156"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
         <translation>Instalar %1 en &lt;strong&gt;nueva&lt;/strong&gt; %2 partición de sistema.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="151"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="160"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Configurar &lt;strong&gt;nueva&lt;/strong&gt; %2 partición con punto de montaje &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="159"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="168"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Instalar %2 en %3 partición del sistema &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="164"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="173"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>Configurar %3 partición &lt;strong&gt;%1&lt;/strong&gt; con punto de montaje &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="176"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="185"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Instalar el cargador de arranque en &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="195"/>
         <source>Setting up mount points.</source>
         <translation>Configurando puntos de montaje.</translation>
     </message>
@@ -1149,41 +1221,35 @@ El instalador terminará y se perderán todos los cambios.</translation>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="394"/>
         <source>The system language will be set to %1.</source>
         <translation>El lenguaje del sistema será establecido a %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="389"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="395"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>Los números y datos locales serán establecidos a %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Region:</source>
         <translation>Región:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="218"/>
         <source>Zone:</source>
         <translation>Zona:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="223"/>
         <source>&amp;Change...</source>
         <translation>&amp;Cambiar...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="398"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="402"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Definir la zona horaria como %1/%2.&lt;br/&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="480"/>
-        <source>%1 (%2)</source>
-        <extracomment>Language (Country)</extracomment>
-        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -1564,42 +1630,42 @@ El instalador terminará y se perderán todos los cambios.</translation>
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
         <source>Root</source>
         <translation>Root</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="204"/>
         <source>Home</source>
         <translation>Home</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="206"/>
         <source>Boot</source>
         <translation>Boot</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="209"/>
         <source>EFI system</source>
         <translation>Sistema EFI</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
         <source>Swap</source>
         <translation>Swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="213"/>
         <source>New partition for %1</source>
         <translation>Partición nueva para %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
         <source>New partition</source>
         <translation>Partición nueva</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="224"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="233"/>
         <source>%1  %2</source>
         <translation>%1 %2</translation>
     </message>
@@ -1677,22 +1743,42 @@ El instalador terminará y se perderán todos los cambios.</translation>
         <translation>&amp;Borrar</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="148"/>
-        <source>Install boot &amp;loader on:</source>
-        <translation>Instalar &amp;cargador de arranque en:</translation>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
+        <source>New Volume Group</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="171"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
+        <source>Resize Volume Group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
+        <source>Deactivate Volume Group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
+        <source>Remove Volume Group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
+        <source>I&amp;nstall boot loader on:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="218"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>¿Está seguro de querer crear una nueva tabla de particiones en %1?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="242"/>
         <source>Can not create new partition</source>
         <translation>No se puede crear nueva partición</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="243"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
         <translation>La tabla de partición en %1 ya tiene %2 particiones primarias, y no pueden agregarse mas. Favor remover una partición primaria y en cambio, agregue una partición extendida.</translation>
     </message>
@@ -1700,97 +1786,97 @@ El instalador terminará y se perderán todos los cambios.</translation>
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="71"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="74"/>
         <source>Gathering system information...</source>
         <translation>Obteniendo información del sistema...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="122"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="125"/>
         <source>Partitions</source>
         <translation>Particiones</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="159"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
         <translation> Instalar %1 &lt;strong&gt;junto con&lt;/strong&gt; otro sistema operativo.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="163"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="166"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
         <translation> &lt;strong&gt;Borrar&lt;/strong&gt; el disco e instalar %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
         <translation> &lt;strong&gt;Reemplazar&lt;/strong&gt; una parición con %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="172"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
         <translation> Particionamiento &lt;strong&gt;manual&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="185"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="188"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation> Instalar %1 &lt;strong&gt;junto con&lt;/strong&gt; otro sistema operativo en el disco &lt;strong&gt;%2&lt;/strong&gt;(%3).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="191"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
         <translation>&lt;strong&gt;Borrar&lt;/strong&gt; el disco &lt;strong&gt;%2&lt;strong&gt; (%3) e instalar %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="200"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
         <translation> &lt;strong&gt;Reemplazar&lt;/strong&gt; una parición en el disco &lt;strong&gt;%2&lt;/strong&gt; (%3) con %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="207"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
         <translation> Particionar &lt;strong&gt;manualmente&lt;/strong&gt; el disco &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="212"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="215"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
         <translation>Disco &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="243"/>
         <source>Current:</source>
         <translation>Actual:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="257"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="260"/>
         <source>After:</source>
         <translation>Después:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="400"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="407"/>
         <source>No EFI system partition configured</source>
         <translation>Sistema de partición EFI no configurada</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="408"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
         <translation>Un sistema de partición EFI es necesario para iniciar %1. &lt;br/&gt;&lt;br/&gt;Para configurar un sistema de partición EFI, Regrese y seleccione o cree un sistema de archivos FAT32 con la bandera &lt;strong&gt;esp&lt;/strong&gt; activada y el punto de montaje &lt;strong&gt;%2&lt;/strong&gt;. &lt;br/&gt;&lt;br/&gt;Puede continuar sin configurar una partición de sistema EFI, pero su sistema podría fallar al iniciar.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="414"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="421"/>
         <source>EFI system partition flag not set</source>
         <translation>Indicador de partición del sistema EFI no configurado</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="415"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="422"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
         <translation>Una partición del sistema EFI es necesaria para iniciar% 1. &lt;br/&gt;&lt;br/&gt;Una partición se configuró con el punto de montaje &lt;strong&gt;% 2&lt;/strong&gt;, pero su bandera &lt;strong&gt;esp&lt;/strong&gt; no está configurada. &lt;br/&gt;Para establecer el indicador, retroceda y edite la partición.&lt;br/&gt;&lt;br/&gt; Puede continuar sin configurar el indicador, pero su sistema puede fallar al iniciar.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="457"/>
         <source>Boot partition not encrypted</source>
         <translation>Partición de arranque no encriptada</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="451"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="458"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
         <translation>Se creó una partición de arranque separada junto con una partición raíz cifrada, pero la partición de arranque no está encriptada.&lt;br/&gt;&lt;br/&gt; Existen problemas de seguridad con este tipo de configuración, ya que los archivos importantes del sistema se guardan en una partición no encriptada. &lt;br/&gt;Puede continuar si lo desea, pero el desbloqueo del sistema de archivos ocurrirá más tarde durante el inicio del sistema. &lt;br/&gt;Para encriptar la partición de arranque, retroceda y vuelva a crearla, seleccionando &lt;strong&gt;Encriptar&lt;/strong&gt; en la ventana de creación de la partición.</translation>
     </message>
@@ -1838,17 +1924,17 @@ El instalador terminará y se perderán todos los cambios.</translation>
 <context>
     <name>PreserveFiles</name>
     <message>
-        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="83"/>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="85"/>
         <source>Saving files for later ...</source>
         <translation>Guardando archivos para más tarde ...</translation>
     </message>
     <message>
-        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="89"/>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="123"/>
         <source>No files configured to save for later.</source>
         <translation>No hay archivos configurados para guardar más tarde.</translation>
     </message>
     <message>
-        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="145"/>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="177"/>
         <source>Not all of the configured files could be preserved.</source>
         <translation>No todos los archivos configurados podrían conservarse.</translation>
     </message>
@@ -1959,6 +2045,31 @@ Salida
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
         <translation>Espacio no particionado o tabla de partición desconocida</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/CalamaresUtilsGui.cpp" line="269"/>
+        <source>%1 (%2)</source>
+        <comment>Language (Country)</comment>
+        <translation>%1 (%2)</translation>
+    </message>
+</context>
+<context>
+    <name>RemoveVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
+        <source>Remove Volume Group named %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="41"/>
+        <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
+        <source>The installer failed to remove a volume group named &apos;%1&apos;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2096,6 +2207,77 @@ Salida
     </message>
 </context>
 <context>
+    <name>ResizeFSJob</name>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="116"/>
+        <source>Resize Filesystem Job</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="224"/>
+        <source>Invalid configuration</source>
+        <translation>Configuración inválida</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="225"/>
+        <source>The file-system resize job has an invalid configuration and will not run.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="239"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="249"/>
+        <source>KPMCore not Available</source>
+        <translation>KPMCore no está disponible</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="240"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="250"/>
+        <source>Calamares cannot start KPMCore for the file-system resize job.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="258"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="267"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="280"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="289"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="306"/>
+        <source>Resize Failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="259"/>
+        <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="260"/>
+        <source>The device %1 could not be found in this system, and cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="268"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="281"/>
+        <source>The filesystem %1 cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="269"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="282"/>
+        <source>The device %1 cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="290"/>
+        <source>The filesystem %1 must be resized, but cannot.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="291"/>
+        <source>The device %1 must be resized, but cannot</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ResizePartitionJob</name>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="48"/>
@@ -2116,6 +2298,25 @@ Salida
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
         <translation>El instalador ha fallado al reducir la partición %1 en el disco &apos;%2&apos;.</translation>
+    </message>
+</context>
+<context>
+    <name>ResizeVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="55"/>
+        <source>Resize volume group named %1 from %2 to %3.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
+        <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
+        <source>The installer failed to resize a volume group named &apos;%1&apos;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2169,24 +2370,24 @@ Salida
         <translation>Establecer el modelo de teclado %1, a una disposición %2-%3</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="318"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="321"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
         <translation>No se ha podido guardar la configuración de teclado para la consola virtual.</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="319"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="323"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="329"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="326"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="332"/>
         <source>Failed to write to %1</source>
         <translation>No se ha podido escribir en %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="325"/>
         <source>Failed to write keyboard configuration for X11.</source>
         <translation>No se ha podido guardar la configuración del teclado de X11.</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="331"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
         <translation>Fallo al escribir la configuración del teclado en el directorio /etc/default existente.</translation>
     </message>
@@ -2269,7 +2470,7 @@ Salida
         <translation>Establecer indicadores &lt;strong&gt;%1&lt;/strong&gt; en nueva partición.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="144"/>
         <source>The installer failed to set flags on partition %1.</source>
         <translation>El instalador no pudo establecer indicadores en la partición% 1.</translation>
     </message>
@@ -2548,6 +2749,67 @@ Salida
     </message>
 </context>
 <context>
+    <name>VolumeGroupBaseDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
+        <source>VolumeGroupDialog</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
+        <source>List of Physical Volumes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="30"/>
+        <source>Volume Group Name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="43"/>
+        <source>Volume Group Type:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
+        <source>Physical Extent Size:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
+        <source> MiB</source>
+        <translation> MiB</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="82"/>
+        <source>Total Size:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="92"/>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="112"/>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="132"/>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="152"/>
+        <source>---</source>
+        <translation>---</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="102"/>
+        <source>Used Size:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="122"/>
+        <source>Total Sectors:</source>
+        <translation>Total de Sectores:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
+        <source>Quantity of LVs:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>WelcomePage</name>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
@@ -2600,7 +2862,7 @@ Salida
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;por %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Derechos de autor 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt; &lt;br/&gt; Derechos de autor 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt; Gracias a Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg y al &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;equipo de traductores Calamares&lt;/a&gt;. &lt;br/&gt;&lt;br/&gt; Desarrollo de &lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; patrocinado por &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="290"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
         <source>%1 support</source>
         <translation>%1 Soporte</translation>
     </message>

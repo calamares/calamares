@@ -126,7 +126,8 @@ class PackageManager(metaclass=abc.ABCMeta):
         """
         Install a package from a single entry in the install list.
         This can be either a single package name, or an object
-        with pre- and post-scripts.
+        with pre- and post-scripts. If @p packagedata is a dict,
+        it is assumed to follow the documented structure.
 
         @param packagedata: str|dict
         @param from_local: bool
@@ -137,6 +138,22 @@ class PackageManager(metaclass=abc.ABCMeta):
         else:
             self.run(packagedata["pre-script"])
             self.install([packagedata["package"]], from_local=from_local)
+            self.run(packagedata["post-script"])
+
+    def remove_package(self, packagedata):
+        """
+        Remove a package from a single entry in the remove list.
+        This can be either a single package name, or an object
+        with pre- and post-scripts. If @p packagedata is a dict,
+        it is assumed to follow the documented structure.
+
+        @param packagedata: str|dict
+        """
+        if isinstance(packagedata, str):
+            self.remove([packagedata])
+        else:
+            self.run(packagedata["pre-script"])
+            self.remove([packagedata["package"]])
             self.run(packagedata["post-script"])
 
 
@@ -440,19 +457,27 @@ def run_operations(pkgman, entry):
                     libcalamares.utils.warning(warn_text)
         elif key == "remove":
             _change_mode(REMOVE)
-            pkgman.remove(package_list)
+            if all([isinstance(x, str) for x in package_list]):
+                pkgman.remove(package_list)
+            else:
+                for package in package_list:
+                    pkgman.remove_package(package)
         elif key == "try_remove":
             _change_mode(REMOVE)
             for package in package_list:
                 try:
-                    pkgman.remove([package])
+                    pkgman.remove_package(package)
                 except subprocess.CalledProcessError:
                     warn_text = "Could not remove package "
-                    warn_text += package
+                    warn_text += str(package)
                     libcalamares.utils.warning(warn_text)
         elif key == "localInstall":
             _change_mode(INSTALL)
-            pkgman.install(package_list, from_local=True)
+            if all([isinstance(x, str) for x in package_list]):
+                pkgman.install(package_list, from_local=True)
+            else:
+                for package in package_list:
+                    pkgman.install_package(package, from_local=True)
 
         completed_packages += len(package_list)
         libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)

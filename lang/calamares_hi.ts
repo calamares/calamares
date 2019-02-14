@@ -173,106 +173,106 @@
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="279"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
         <source>&amp;Next</source>
         <translation>आगे (&amp;N)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="288"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="296"/>
         <source>&amp;Cancel</source>
         <translation>रद्द करें (&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="289"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="297"/>
         <source>Cancel installation without changing the system.</source>
         <translation>सिस्टम में बदलाव किये बिना इंस्टॉल रद्द करें।</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="183"/>
         <source>Calamares Initialization Failed</source>
         <translation>Calamares का आरंभीकरण विफल रहा</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
         <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
         <translation>%1 को इंस्टॉल नहीं किया जा सका। Calamares सारे विन्यस्त मापांकों को लोड करने में विफल रहा। इस समस्या का कारण लिनक्स-वितरण द्वारा Calamares के उपयोग-संबंधी कोई त्रुटि है।</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
         <translation>&lt;br/&gt;निम्नलिखित मापांक लोड नहीं हो सकें :</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="281"/>
         <source>&amp;Install</source>
         <translation>इंस्टॉल करें (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
         <source>Cancel installation?</source>
         <translation>इंस्टॉल रद्द करें?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>क्या आप वाकई वर्तमान इंस्टॉल प्रक्रिया रद्द करना चाहते हैं?
 इंस्टॉलर बंद हो जाएगा व सभी बदलाव नष्ट।</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
         <source>&amp;Yes</source>
         <translation>हाँ (&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
         <source>&amp;No</source>
         <translation>नहीं (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
         <source>&amp;Close</source>
         <translation>बंद करें (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="237"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="241"/>
         <source>Continue with setup?</source>
         <translation>सेटअप करना जारी रखें?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="242"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%2 इंस्टॉल करने के लिए %1 इंस्टॉलर आपकी डिस्क में बदलाव करने वाला है।&lt;br/&gt;&lt;strong&gt;आप इन बदलावों को पूर्ववत नहीं कर पाएंगे।&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="243"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="247"/>
         <source>&amp;Install now</source>
         <translation>अभी इंस्टॉल करें (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="244"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="248"/>
         <source>Go &amp;back</source>
         <translation>वापस जाएँ (&amp;b)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="287"/>
         <source>&amp;Done</source>
         <translation>पूर्ण हुआ (&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="284"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="288"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>इंस्टॉल पूर्ण हुआ। अब इंस्टॉलर को बंद करें।</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="164"/>
         <source>Error</source>
         <translation>त्रुटि</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="161"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
         <source>Installation Failed</source>
         <translation>इंस्टॉल विफल रहा।</translation>
     </message>
@@ -303,12 +303,12 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CalamaresWindow</name>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="56"/>
         <source>%1 Installer</source>
         <translation>%1 इंस्टॉलर</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="111"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="119"/>
         <source>Show debug information</source>
         <translation>डीबग संबंधी जानकारी दिखाएँ</translation>
     </message>
@@ -349,109 +349,134 @@ The installer will quit and all changes will be lost.</source>
         <translation>रूप</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <source>After:</source>
         <translation>बाद में:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="235"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="324"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;मैनुअल विभाजन&lt;/strong&gt;&lt;br/&gt; आप स्वयं भी विभाजन बना व उनका आकार बदल सकते है।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="998"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
         <source>Boot loader location:</source>
         <translation>बूट लोडर का स्थान:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="960"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 को छोटा करके %2MB किया जाएगा व %4 के लिए %3MB का एक नया विभाजन बनेगा।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="152"/>
         <source>Select storage de&amp;vice:</source>
         <translation>डिवाइस चुनें (&amp;v):</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="924"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="988"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
         <source>Current:</source>
         <translation>मौजूदा :</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="795"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="813"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation>%2 के होम विभाजन के लिए %1 को पुनः उपयोग करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="925"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;छोटा करने के लिए विभाजन चुनें, फिर नीचे bar से उसका आकर सेट करें&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1040"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;इंस्टॉल के लिए विभाजन चुनें&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1096"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1114"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>इस सिस्टम पर कहीं भी कोई EFI सिस्टम विभाजन नहीं मिला। कृपया वापस जाएँ व %1 को सेट करने के लिए मैनुअल रूप से विभाजन करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1105"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1123"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>%1 वाले EFI सिस्टम विभाजन का उपयोग %2 को शुरू करने के लिए किया जाएगा।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1113"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1131"/>
         <source>EFI system partition:</source>
         <translation>EFI सिस्टम विभाजन:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1200"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1249"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>इस डिवाइस पर लगता है कि कोई ऑपरेटिंग सिस्टम नहीं है। आप क्या करना चाहेंगे?&lt;br/&gt;आप डिवाइस में किसी भी बदलाव से पहले उसकी समीक्षा व पुष्टि कर सकेंगे।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1242"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1288"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1254"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1291"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1337"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;डिस्क का सारा डाटा हटाएँ&lt;/strong&gt;&lt;br/&gt;इससे चयनित डिवाइस पर मौजूद सारा डाटा &lt;font color=&quot;red&quot;&gt;हटा&lt;/font&gt;हो जाएगा।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1232"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>इस डिवाइस पर %1 है। आप क्या करना चाहेंगे?&lt;br/&gt;आप डिवाइस में किसी भी बदलाव से पहले उसकी समीक्षा व पुष्टि कर सकेंगे।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1209"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1238"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+        <source>No Swap</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+        <source>Reuse Swap</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+        <source>Swap (no Hibernate)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
+        <source>Swap (with Hibernate)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
+        <source>Swap to file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1287"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;साथ में इंस्टॉल करें&lt;/strong&gt;&lt;br/&gt;इंस्टॉलर %1 के लिए स्थान बनाने हेतु एक विभाजन को छोटा कर देगा।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1213"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1247"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1341"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;विभाजन को बदलें&lt;/strong&gt;&lt;br/&gt;एक विभाजन को %1 से बदलें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1255"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>इस डिवाइस पर पहले से एक ऑपरेटिंग सिस्टम है। आप क्या करना चाहेंगे?&lt;br/&gt;आप डिवाइस में किसी भी बदलाव से पहले उसकी समीक्षा व पुष्टि कर सकेंगे।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>इस डिवाइस पर एक से अधिक ऑपरेटिंग सिस्टम है। आप क्या करना चाहेंगे?&lt;br/&gt;आप डिवाइस में किसी भी बदलाव से पहले उसकी समीक्षा व पुष्टि कर सकेंगे।</translation>
     </message>
@@ -656,22 +681,22 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="45"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
         <source>Create new %1 partition table on %2.</source>
         <translation>%2 पर नई %1 विभाजन तालिका बनाएँ।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="52"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) पर नई &lt;strong&gt;%1&lt;/strong&gt; विभाजन तालिका बनाएँ।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="64"/>
         <source>Creating new %1 partition table on %2.</source>
         <translation>%2 पर नई %1 विभाजन तालिका बनाई जा रही है।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="72"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="82"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>इंस्टॉलर डिस्क &apos;%1&apos; पर विभाजन तालिका बनाने में विफल रहा।</translation>
     </message>
@@ -712,6 +737,48 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
         <source>Cannot open groups file for reading.</source>
         <translation>रीड हेतु groups फ़ाइल खोली नहीं जा सकती।</translation>
+    </message>
+</context>
+<context>
+    <name>CreateVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
+        <source>Create new volume group named %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
+        <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+        <source>Creating new volume group named %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
+        <source>The installer failed to create a volume group named &apos;%1&apos;.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DeactivateVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="34"/>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
+        <source>Deactivate volume group named %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="41"/>
+        <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="61"/>
+        <source>The installer failed to deactivate a volume group named %1.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -773,9 +840,14 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>DeviceModel</name>
     <message>
-        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="80"/>
+        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="83"/>
         <source>%1 - %2 (%3)</source>
         <translation>%1 - %2 (%3)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="89"/>
+        <source>%1 - (%2)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -893,37 +965,37 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="123"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="132"/>
         <source>Set partition information</source>
         <translation>विभाजन संबंधी जानकारी सेट करें</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="156"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
         <translation>&lt;strong&gt;नए&lt;/strong&gt; %2 सिस्टम विभाजन पर %1 इंस्टॉल करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="151"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="160"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>&lt;strong&gt;नया&lt;/strong&gt; %2 विभाजन माउंट पॉइंट &lt;strong&gt;%1&lt;/strong&gt; के साथ सेट करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="159"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="168"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>%3 सिस्टम विभाजन &lt;strong&gt;%1&lt;/strong&gt; पर %2 इंस्टॉल करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="164"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="173"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>%3 विभाजन &lt;strong&gt;%1&lt;/strong&gt; माउंट पॉइंट &lt;strong&gt;%2&lt;/strong&gt; के साथ सेट करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="176"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="185"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>बूट लोडर &lt;strong&gt;%1&lt;/strong&gt; पर इंस्टॉल करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="195"/>
         <source>Setting up mount points.</source>
         <translation>माउंट पॉइंट सेट किए जा रहे हैं।</translation>
     </message>
@@ -1148,41 +1220,35 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="394"/>
         <source>The system language will be set to %1.</source>
         <translation>सिस्टम भाषा %1 सेट की जाएगी।</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="389"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="395"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>संख्या व दिनांक स्थानिकी %1 सेट की जाएगी।</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Region:</source>
         <translation>क्षेत्र :</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="218"/>
         <source>Zone:</source>
         <translation>क्षेत्र :</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="223"/>
         <source>&amp;Change...</source>
         <translation>बदलें (&amp;C)...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="398"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="402"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>समय क्षेत्र %1%2 पर सेट करें।&lt;br/&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="480"/>
-        <source>%1 (%2)</source>
-        <extracomment>Language (Country)</extracomment>
-        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -1563,42 +1629,42 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
         <source>Root</source>
         <translation>रुट</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="204"/>
         <source>Home</source>
         <translation>होम</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="206"/>
         <source>Boot</source>
         <translation>बूट</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="209"/>
         <source>EFI system</source>
         <translation>EFI सिस्टम</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
         <source>Swap</source>
         <translation>स्वैप</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="213"/>
         <source>New partition for %1</source>
         <translation>%1 के लिए नया विभाजन</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
         <source>New partition</source>
         <translation>नया विभाजन</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="224"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="233"/>
         <source>%1  %2</source>
         <translation>%1 %2</translation>
     </message>
@@ -1676,22 +1742,42 @@ The installer will quit and all changes will be lost.</source>
         <translation>हटाएँ (D)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="148"/>
-        <source>Install boot &amp;loader on:</source>
-        <translation>बूट लोडर इंस्टॉल करें (&amp;l) :</translation>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
+        <source>New Volume Group</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="171"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
+        <source>Resize Volume Group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
+        <source>Deactivate Volume Group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
+        <source>Remove Volume Group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
+        <source>I&amp;nstall boot loader on:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="218"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>क्या आप वाकई %1 पर एक नई विभाजन तालिका बनाना चाहते हैं?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="242"/>
         <source>Can not create new partition</source>
         <translation>नया विभाजन नहीं बनाया जा सकता</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="243"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
         <translation type="unfinished"/>
     </message>
@@ -1699,97 +1785,97 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="71"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="74"/>
         <source>Gathering system information...</source>
         <translation>सिस्टम की जानकारी प्राप्त की जा रही है...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="122"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="125"/>
         <source>Partitions</source>
         <translation>विभाजन</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="159"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
         <translation>%1 को दूसरे ऑपरेटिंग सिस्टम &lt;strong&gt;के साथ&lt;/strong&gt; इंस्टॉल करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="163"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="166"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
         <translation>डिस्क का सारा डाटा&lt;strong&gt;हटाकर&lt;/strong&gt; कर %1 इंस्टॉल करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
         <translation>विभाजन को %1 से &lt;strong&gt;बदलें&lt;/strong&gt;।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="172"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
         <translation>&lt;strong&gt;मैनुअल&lt;/strong&gt; विभाजन।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="185"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="188"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation>डिस्क &lt;strong&gt;%2&lt;/strong&gt; (%3) पर %1 को दूसरे ऑपरेटिंग सिस्टम &lt;strong&gt;के साथ&lt;/strong&gt; इंस्टॉल करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="191"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
         <translation>डिस्क &lt;strong&gt;%2&lt;/strong&gt; (%3) &lt;strong&gt;erase&lt;/strong&gt; कर %1 इंस्टॉल करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="200"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
         <translation>डिस्क &lt;strong&gt;%2&lt;/strong&gt; (%3) के विभाजन को %1 से &lt;strong&gt;बदलें&lt;/strong&gt;।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="207"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
         <translation>डिस्क &lt;strong&gt;%1&lt;/strong&gt; (%2) पर &lt;strong&gt;मैनुअल&lt;/strong&gt; विभाजन।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="212"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="215"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
         <translation>डिस्क &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="243"/>
         <source>Current:</source>
         <translation>मौजूदा :</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="257"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="260"/>
         <source>After:</source>
         <translation>बाद में:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="400"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="407"/>
         <source>No EFI system partition configured</source>
         <translation>कोई EFI सिस्टम विभाजन विन्यस्त नहीं है</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="408"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
         <translation>%1 को शुरू करने हेतु EFI सिस्टम विभाजन ज़रूरी है।&lt;br/&gt;&lt;br/&gt;EFI सिस्टम विभाजन को विन्यस्त करने के लिए, वापस जाएँ और चुनें या बनाएँ एक FAT32 फ़ाइल सिस्टम जिस पर &lt;strong&gt;esp&lt;/strong&gt; flag चालू हो व माउंट पॉइंट &lt;strong&gt;%2&lt;/strong&gt;हो।&lt;br/&gt;&lt;br/&gt;आप बिना सेट भी आगे बढ़ सकते है पर सिस्टम चालू नहीं होगा।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="414"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="421"/>
         <source>EFI system partition flag not set</source>
         <translation>EFI सिस्टम विभाजन flag सेट नहीं है</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="415"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="422"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
         <translation>%1 को शुरू करने हेतु EFI सिस्टम विभाजन ज़रूरी है।&lt;br/&gt;&lt;br/&gt;विभाजन को माउंट पॉइंट &lt;strong&gt;%2&lt;/strong&gt; के साथ विन्यस्त किया गया परंतु उसका &lt;strong&gt;esp&lt;/strong&gt; flag सेट नहीं था।&lt;br/&gt; Flag सेट करने के लिए, वापस जाएँ और विभाजन को edit करें।&lt;br/&gt;&lt;br/&gt;आप बिना सेट भी आगे बढ़ सकते है पर सिस्टम चालू नहीं होगा।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="457"/>
         <source>Boot partition not encrypted</source>
         <translation>बूट विभाजन एन्क्रिप्टेड नहीं है</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="451"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="458"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
         <translation>एन्क्रिप्टेड रुट विभाजन के साथ एक अलग बूट विभाजन भी सेट किया गया था, पर बूट विभाजन एन्क्रिप्टेड नहीं था।&lt;br/&gt;&lt;br/&gt; इस तरह का सेटअप सुरक्षित नहीं होता क्योंकि सिस्टम फ़ाइल एन्क्रिप्टेड विभाजन पर होती हैं।&lt;br/&gt;आप चाहे तो जारी रख सकते है, पर फिर फ़ाइल सिस्टम बाद में सिस्टम स्टार्टअप के दौरान अनलॉक होगा।&lt;br/&gt; विभाजन को एन्क्रिप्ट करने के लिए वापस जाकर उसे दोबारा बनाएँ व विभाजन निर्माण विंडो में&lt;strong&gt;एन्क्रिप्ट&lt;/strong&gt; चुनें।</translation>
     </message>
@@ -1837,17 +1923,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>PreserveFiles</name>
     <message>
-        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="83"/>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="85"/>
         <source>Saving files for later ...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="89"/>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="123"/>
         <source>No files configured to save for later.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="145"/>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="177"/>
         <source>Not all of the configured files could be preserved.</source>
         <translation type="unfinished"/>
     </message>
@@ -1958,6 +2044,31 @@ Output:
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
         <translation>अविभाजित स्पेस या अज्ञात विभाजन तालिका</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/CalamaresUtilsGui.cpp" line="269"/>
+        <source>%1 (%2)</source>
+        <comment>Language (Country)</comment>
+        <translation>%1 (%2)</translation>
+    </message>
+</context>
+<context>
+    <name>RemoveVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
+        <source>Remove Volume Group named %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="41"/>
+        <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
+        <source>The installer failed to remove a volume group named &apos;%1&apos;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2094,6 +2205,77 @@ Output:
     </message>
 </context>
 <context>
+    <name>ResizeFSJob</name>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="116"/>
+        <source>Resize Filesystem Job</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="224"/>
+        <source>Invalid configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="225"/>
+        <source>The file-system resize job has an invalid configuration and will not run.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="239"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="249"/>
+        <source>KPMCore not Available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="240"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="250"/>
+        <source>Calamares cannot start KPMCore for the file-system resize job.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="258"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="267"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="280"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="289"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="306"/>
+        <source>Resize Failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="259"/>
+        <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="260"/>
+        <source>The device %1 could not be found in this system, and cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="268"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="281"/>
+        <source>The filesystem %1 cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="269"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="282"/>
+        <source>The device %1 cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="290"/>
+        <source>The filesystem %1 must be resized, but cannot.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="291"/>
+        <source>The device %1 must be resized, but cannot</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ResizePartitionJob</name>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="48"/>
@@ -2114,6 +2296,25 @@ Output:
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
         <translation>इंस्टॉलर डिस्क &apos;%2&apos; पर विभाजन %1 का आकर बदलने में विफल रहा।</translation>
+    </message>
+</context>
+<context>
+    <name>ResizeVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="55"/>
+        <source>Resize volume group named %1 from %2 to %3.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
+        <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
+        <source>The installer failed to resize a volume group named &apos;%1&apos;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2167,24 +2368,24 @@ Output:
         <translation>कुंजीपटल का मॉडल %1, अभिन्यास %2-%3 सेट करें।</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="318"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="321"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
         <translation>Virtual console हेतु कुंजीपटल की सेटिंग्स राइट करने में विफल रहा।</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="319"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="323"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="329"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="326"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="332"/>
         <source>Failed to write to %1</source>
         <translation>%1 पर राइट करने में विफल </translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="325"/>
         <source>Failed to write keyboard configuration for X11.</source>
         <translation>X11 हेतु कुंजीपटल की सेटिंग्स राइट करने में विफल रहा।</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="331"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
         <translation>मौजूदा /etc /default डायरेक्टरी में कुंजीपटल की सेटिंग्स write करने में विफल रहा।</translation>
     </message>
@@ -2267,7 +2468,7 @@ Output:
         <translation>नए विभाजन पर flag &lt;strong&gt;%1&lt;/strong&gt; सेट किए जा रहे हैं।</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="144"/>
         <source>The installer failed to set flags on partition %1.</source>
         <translation>इंस्टॉलर विभाजन %1 पर flag सेट करने में विफल रहा।</translation>
     </message>
@@ -2546,6 +2747,67 @@ Output:
     </message>
 </context>
 <context>
+    <name>VolumeGroupBaseDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
+        <source>VolumeGroupDialog</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
+        <source>List of Physical Volumes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="30"/>
+        <source>Volume Group Name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="43"/>
+        <source>Volume Group Type:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
+        <source>Physical Extent Size:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
+        <source> MiB</source>
+        <translation>MiB</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="82"/>
+        <source>Total Size:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="92"/>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="112"/>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="132"/>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="152"/>
+        <source>---</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="102"/>
+        <source>Used Size:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="122"/>
+        <source>Total Sectors:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
+        <source>Quantity of LVs:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>WelcomePage</name>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
@@ -2598,7 +2860,7 @@ Output:
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, रोहन गर्ग व &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares अनुवादक टीम&lt;/a&gt; का धन्यवाद।&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="290"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
         <source>%1 support</source>
         <translation>%1 सहायता</translation>
     </message>

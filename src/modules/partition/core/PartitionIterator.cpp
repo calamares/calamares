@@ -18,7 +18,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <core/PartitionIterator.h>
+#include "PartitionIterator.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>

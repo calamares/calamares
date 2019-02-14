@@ -26,7 +26,10 @@
 
 #include <PluginDllMacro.h>
 
+#include "core/PartitionActions.h"
+
 #include <QObject>
+#include <QSet>
 
 class ChoicePage;
 class PartitionPage;
@@ -81,6 +84,8 @@ private:
 
     QWidget*          m_waitingWidget;
     QFutureWatcher<void>* m_future;
+
+    QSet< PartitionActions::Choices::SwapChoice > m_swapChoices;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PartitionViewStepFactory )

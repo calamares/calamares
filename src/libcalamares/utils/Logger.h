@@ -89,6 +89,12 @@ namespace Logger
      */
     DLLEXPORT void setupLogLevel( unsigned int level );
 
+    /** @brief Return the configured log-level. */
+    DLLEXPORT unsigned int logLevel();
+
+    /** @brief Would the given @p level really be logged? */
+    DLLEXPORT bool logLevelEnabled( unsigned int level );
+
     /**
      * @brief Row-oriented formatted logging.
      *

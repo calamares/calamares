@@ -170,11 +170,7 @@ createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPc
 
     painter.setBrush( brush );
     painter.setPen( pen );
-    painter.drawRoundedRect( outerRect, qreal(frameWidthPct) * 100.0, qreal(frameWidthPct) * 100.0, Qt::RelativeSize );
-
-/*    painter.setBrush( Qt::transparent );
-    painter.setPen( Qt::white );
-    painter.drawRoundedRect( outerRect, frameWidthPct, frameWidthPct, Qt::RelativeSize ); */
+    painter.drawRoundedRect( outerRect, qreal( frameWidthPct ) * 100.0, qreal( frameWidthPct ) * 100.0, Qt::RelativeSize );
 
     return frame;
 }
@@ -246,7 +242,7 @@ setDefaultFontSize( int points )
 QSize
 defaultIconSize()
 {
-    const int w = int(defaultFontHeight() * 1.6);
+    const int w = int( defaultFontHeight() * 1.6 );
     return QSize( w, w );
 }
 
@@ -264,6 +260,45 @@ clearLayout( QLayout* layout )
 
         delete item;
     }
+}
+
+LocaleLabel::LocaleLabel( const QString& locale, LabelFormat format )
+    : m_locale( LocaleLabel::getLocale( locale ) )
+    , m_localeId( locale )
+{
+    QString longFormat = QObject::tr( "%1 (%2)", "Language (Country)" );
+
+    QString sortKey = QLocale::languageToString( m_locale.language() );
+    QString languageName = m_locale.nativeLanguageName();
+    QString countryName;
+
+    if ( languageName.isEmpty() )
+        languageName = QString( QLatin1Literal( "* %1 (%2)" ) ).arg( locale, sortKey );
+
+    bool needsCountryName = ( format == LabelFormat::AlwaysWithCountry ) ||
+        (locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
+
+    if ( needsCountryName )
+    {
+        sortKey.append( '+' );
+        sortKey.append( QLocale::countryToString( m_locale.country() ) );
+
+        countryName = m_locale.nativeCountryName();
+    }
+
+    m_sortKey = sortKey;
+    m_label = needsCountryName ? longFormat.arg( languageName ).arg( countryName ) : languageName;
+}
+
+QLocale LocaleLabel::getLocale( const QString& localeName )
+{
+    if ( localeName.contains( "@latin" ) )
+    {
+        QLocale loc( localeName );  // Ignores @latin
+        return QLocale( loc.language(), QLocale::Script::LatinScript, loc.country() );
+    }
+    else
+        return QLocale( localeName );
 }
 
 

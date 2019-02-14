@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,9 +26,11 @@
 #include <QWidget>
 
 #include "core/OsproberEntry.h"
+#include "core/PartitionActions.h"
 
 #include <QMutex>
 #include <QPointer>
+#include <QSet>
 
 class QBoxLayout;
 class QComboBox;
@@ -43,6 +46,7 @@ class DeviceInfoWidget;
 
 class Device;
 
+using SwapChoiceSet = QSet< PartitionActions::Choices::SwapChoice >;
 
 /**
  * @brief The ChoicePage class is the first page of the partitioning interface.
@@ -53,7 +57,7 @@ class ChoicePage : public QWidget, private Ui::ChoicePage
 {
     Q_OBJECT
 public:
-    enum Choice
+    enum InstallChoice
     {
         NoChoice,
         Alongside,
@@ -62,7 +66,7 @@ public:
         Manual
     };
 
-    explicit ChoicePage( QWidget* parent = nullptr );
+    explicit ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
     /**
@@ -84,7 +88,7 @@ public:
      * currently selected partitioning mode (with a PrettyRadioButton).
      * @return the enum Choice value.
      */
-    Choice currentChoice() const;
+    InstallChoice currentChoice() const;
 
     /**
      * @brief onLeave runs when control passes from this page to another one.
@@ -95,7 +99,10 @@ public:
      * @brief applyActionChoice reacts to a choice of partitioning mode.
      * @param choice the partitioning action choice.
      */
-    void applyActionChoice( ChoicePage::Choice choice );
+    void applyActionChoice( ChoicePage::InstallChoice choice );
+
+    int lastSelectedDeviceIndex();
+    void setLastSelectedDeviceIndex( int index );
 
 signals:
     void nextStatusChanged( bool );
@@ -109,6 +116,11 @@ private slots:
     void onEncryptWidgetStateChanged();
     void onHomeCheckBoxStateChanged();
 
+    /// @brief Calls applyActionChoice() as needed.
+    void onActionChanged();
+    /// @brief Calls onActionChanged() as needed.
+    void onEraseSwapChoiceChanged();
+
 private:
     void updateNextEnabled();
     void setupChoices();
@@ -121,18 +133,21 @@ private:
     void continueApplyDeviceChoice();  // .. called after scan
 
     void updateDeviceStatePreview();
-    void updateActionChoicePreview( ChoicePage::Choice choice );
+    void updateActionChoicePreview( ChoicePage::InstallChoice choice );
     void setupActions();
     OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;
     void doAlongsideApply();
     void setupEfiSystemPartitionSelector();
+
+    // Translations support
+    void updateSwapChoicesTr( QComboBox* box );
 
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
 
     QMutex m_previewsMutex;
 
-    Choice m_choice;
+    InstallChoice m_choice;
 
     bool m_isEfi;
     QComboBox* m_drivesCombo;
@@ -142,6 +157,7 @@ private:
     PrettyRadioButton* m_eraseButton;
     PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
+    QComboBox* m_eraseSwapChoiceComboBox;  // UI, see also m_eraseSwapChoice
 
     DeviceInfoWidget* m_deviceInfoWidget;
 
@@ -158,6 +174,10 @@ private:
 
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
+    SwapChoiceSet m_availableSwapChoices;  // What is available
+    PartitionActions::Choices::SwapChoice m_eraseSwapChoice;  // what is selected
+
+    bool m_allowManualPartitioning;
 
     QMutex m_coreMutex;
 };

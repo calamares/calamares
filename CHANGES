@@ -3,13 +3,115 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-= 3.2.2 (unreleased) =
+# 3.2.5 (unreleased) #
 
-== Core ==
+This release contains contributions from (alphabetically by first name):
 
- * Contributions from the following people (alphabetically by first name):
-   - artoo@cromnix.org
-   - Caio Carvalho
+## Core ##
+
+## Modules ##
+
+
+# 3.2.4 (2019-02-12) #
+
+This release contains contributions from (alphabetically by first name):
+ - Alf Gaida
+ - aliveafter1000
+ - Arnaud Ferraris
+ - Caio Carvalho
+ - Collabora LTD
+ - Gabriel Craciunescu
+ - Kevin Kofler
+ - Philip Mueller
+ - Scott Harvey
+
+## Core ##
+
+ * The Calamares application now recognizes the `-X` or `--xdg-config`
+   option, which adds XDG_DATA_DIRS to the places used to find QML
+   and branding directories, and XDG_CONFIG_DIRS to the places used
+   to find the global settings and module configurations. This allows
+   a more fine-grained, and more layered, approach to setting up
+   Calamares configurations (in particular, distro's can **add**
+   configuration files and give them priority, instead of **forking**
+   configuration files).
+ * The *branding* file now contains settings that control the size
+   and resize behavior of Calamares. See the branding file for
+   more documentation. In particular, the setting *windowExpanding*
+   can be set to *normal*, *fullscreen* or *noexpand*.
+ * The `settings.conf` file can now configure whether the *Cancel* button
+   is shown (this isn't a branding thing, because it's quite fundamental
+   to the workflow of the installer).
+
+## Modules ##
+
+ * The *partition* module supports RAID devices, but only when Calamares
+   is compiled with the newest KPMCore release (3.3.0).
+ * The calculation of required space -- including swap -- has been simplified,
+   and Calamares no longer reserves 2GiB of space in calculations for internal
+   use (this means that it no longer mysteriously drops swap when the disk
+   size is close to the required installation size).
+ * The name of the type of default filesystem (e.g. ext4 or btrfs) is now handled
+   case- and localization-insensitively. This means that *btrfs* is now always
+   an acceptable spelling.
+ * The currently-selected disk device is remembered between manual partitioning
+   and the partitioning-overview pages. (Thanks to Arnaud)
+ * *partition* There is new support for partitioning layout presets.
+   See `partition.conf` for documentation and details.
+ * The *keyboard* module now handles the (bogus) Austrian keymap for
+   the system console properly. (Thanks to Kevin)
+ * The *preservefiles* module now has a mechanism for setting the permissions
+   (and ownership) of preserved files. (Thanks to Scott)
+ * New module *fsresizer* can be used to resize filesystems. It is intended
+   for use in OEM installs where an image of fixed size is created,
+   and then sized to the actual SD card the user has used.
+ * The *mount* module now handles missing *extraMounts* and *extraMountsEfi*
+   keys gracefully (this is probably a misconfiguration, though, and gives a
+   warning).
+ * The *packages* module now supports pre- and post-script options
+   for all operations, not just during install (keep in mind that
+   these run as three separate shells, though).
+ * A new *rawfs* module supports straightforward copying of filesystems from
+   the installation media to the target stystem. This can be used, for instance,
+   for block-level-identical installations.
+
+
+# 3.2.3 (2019-01-09) #
+
+This release contains contributions from (alphabetically by first name):
+ - aliveafter1000
+
+## Core ##
+
+There are no core changes in this release.
+
+## Modules ##
+
+ * *partition* Fixed bug where, during detection of existing systems, the
+   existing system partitions may be mounted and then files deleted.
+   This is a **limited** version of the patch from aliveafter1000
+   that will be in 3.2.4, which tries harder to mount filesystems
+   read-only and unmodifiable.
+ * *locale* It was possible to set the installer and system language
+   (e.g. to German) while the global storage value for *locale*
+   remained set to English. Then no localization packages are installed
+   (see feature `${LOCALE}` in `packages.conf`). Reported downstream
+   in Netrunner.
+
+
+# 3.2.2 (2018-09-04) #
+
+This release contains contributions from (alphabetically by first name):
+ - Andrius Štikonas
+ - artoo@cromnix.org
+ - Caio Carvalho
+ - Harald Sitter
+ - Philip Müller
+ - Simon Quigley
+ - Walter Lapchynski
+
+## Core ##
+
  * Example configurations are **no longer installed** by default.
    The default setting for *INSTALL_CONFIG* has changed. Distributions
    are strongly encouraged to write their own configuration files and
@@ -24,7 +126,7 @@ website will have to do for older versions.
  * A new `ci/RELEASE.sh` script has been added to streamline releases;
    it is not guaranteed to work anywhere in particular though.
 
-== Modules ==
+## Modules ##
 
  * When multiple modules are mutually exclusive, or don't make sense
    to enable concurrectly, a new `USE_<foo>` framework has been added
@@ -45,8 +147,75 @@ website will have to do for older versions.
    a bad configuration). The configuration is a little more flexible
    because a service (or target) name can be used on its own with
    sensible defaults.
+ * The displaymanager module has been entirely revamped. A long-standing
+   bug which ignored the settings for default desktop has been fixed
+   (thanks to Walter Lapchynski). Translations have been added to the
+   error messages. Each DM now has an implementation class for doing
+   all the configuration steps it needs. This groups the code needed for
+   a specific DM (and presumably, per-distro) in one place.
+   Distro's are **strongly advised** to re-test their DM configuration
+   and installation with the revamped code.
 
-**3.2.1** (2018-06-25)
+# 3.2.1 (2018-06-25) #
 
+This release contains contributions from (alphabetically by first name):
+ - Bill Auguer
+ - Gabriel Craciunescu
+ - Phil Mueller
+ - Raul Rodrigo Segura
 
-**3.2.0** (2018-05-17)
+## Core ##
+
+ * Qt 5.7 is now the minimum required Qt version. Because KPMCore
+   (a fairly fundamental dependency) requires Qt 5.7, Calamares
+   has followed suit.
+ * New testing application `loadmodule` for loading and running a
+   single Calamares module.
+ * New translations Belarussian and Korean.
+ * Jobs can now be *emergency jobs* which run even after a failure.
+ * Improved debugging when modules fail to load.
+ * Bad configuration files will now cause the user-interface of
+   Calamares to display an error message, rather than silently
+   ignoring some configuration errors. This will certainly cause
+   problems for distributions with sloppy configurations.
+
+## Modules ##
+
+ * New module preservefiles, keeps (log) files around after install;
+   this duplicates functionality with the unmount module, but unmount
+   is very late, rather limited, and fragile.
+ * Interactiveterminal module now disables itself if build requirements
+   are not met, rather than blocking the build.
+ * Fixes in the timezone map data make the southern hemisphere more
+   usable and put Reykjavik in its place.
+ * The packages module can now update the target system if explicitly
+   told to do so.
+ * More paths and executables are configurable in the bootloader module.
+ * Distributions are advised to review the `users.conf` setup **again**,
+   as some changes in version 3.2.0 caused regressions downstream.
+ * Distributions are advised to review their `locale.gen` files
+   **again**. Previous changes were too restrictive, matching only
+   the specific format Chakra Linux uses. Calamares now preserves
+   all the comment-lines in the file and writes enabled locales
+   at the end, with a descriptive comment.
+
+# 3.2.0 (2018-05-17) #
+
+This release contains contributions from (alphabetically by first name):
+ - Alf Gaida
+ - AlmAck
+ - Caio Carvalho
+ - Frede H
+
+## Modules ##
+
+ * UI annoyances in the partitioning module were fixed; the
+   mount-point selector is now more obvious when no mount-point
+   has been chosen, and the mount-point and flags are preserved
+   when (re)editing partitions.
+ * The handling of `@@ROOT@@` substitution in shellprocesses was
+   backwards; this has been fixed (the substitution is made when
+   running in the **host**).
+ * The user shell is no longer hard-coded to `/bin/bash`,
+   but follows the default setting for useradd(8), e.g.
+   those set in `/etc/default/useradd`.

@@ -4,6 +4,8 @@
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Andrius Štikonas <andrius@stikonas.eu>
+ *   Copyright 2018, Caio Jordão Carvalho <caiojcarvalho@gmail.com>
+ *   Copyright 2019, Collabora Ltd
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -47,6 +49,9 @@
 // KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
+#ifdef WITH_KPMCOREGT33
+#include <kpmcore/core/softwareraid.h>
+#endif
 #include <kpmcore/ops/deactivatevolumegroupoperation.h>
 #include <kpmcore/ops/removevolumegroupoperation.h>
 
@@ -146,6 +151,7 @@ PartitionPage::updateButtons()
         bool isInVG = m_core->isInVG( partition );
 
         create = isFree;
+
         // Keep it simple for now: do not support editing extended partitions as
         // it does not work with our current edit implementation which is
         // actually remove + add. This would not work with extended partitions
@@ -159,9 +165,25 @@ PartitionPage::updateButtons()
 
     if ( m_ui->deviceComboBox->currentIndex() >= 0 )
     {
+        Device* device = nullptr;
         QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
-        if ( m_core->deviceModel()->deviceForIndex( deviceIndex )->type() != Device::Type::LVM_Device )
+        if ( deviceIndex.isValid() )
+            device = m_core->deviceModel()->deviceForIndex( deviceIndex );
+        if ( !device )
+            cWarning() << "Device for updateButtons is nullptr";
+        else if ( device->type() != Device::Type::LVM_Device )
+        {
             createTable = true;
+
+#ifdef WITH_KPMCOREGT33
+            if ( device->type() == Device::Type::SoftwareRAID_Device &&
+                 static_cast< SoftwareRAID* >(device)->status() == SoftwareRAID::Status::Inactive )
+            {
+                createTable = false;
+                create = false;
+            }
+#endif
+        }
         else
         {
             currentDeviceIsVG = true;
@@ -559,7 +581,7 @@ void
 PartitionPage::onPartitionModelReset()
 {
     m_ui->partitionTreeView->expandAll();
-    updateButtons();
+    // updateButtons();
     updateBootLoaderIndex();
 }
 
@@ -591,4 +613,16 @@ PartitionPage::getCurrentUsedMountpoints()
     }
 
     return mountPoints;
+}
+
+int
+PartitionPage::selectedDeviceIndex()
+{
+    return m_ui->deviceComboBox->currentIndex();
+}
+
+void
+PartitionPage::selectDeviceByIndex ( int index )
+{
+        m_ui->deviceComboBox->setCurrentIndex( index );
 }

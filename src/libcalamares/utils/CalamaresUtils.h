@@ -79,6 +79,16 @@ namespace CalamaresUtils
 
     DLLEXPORT void setQmlModulesDir( const QDir& dir );
 
+    /** @brief Setup extra config and data dirs from the XDG variables.
+     */
+    DLLEXPORT void setXdgDirs();
+    /** @brief Are any extra directories configured? */
+    DLLEXPORT bool haveExtraDirs();
+    /** @brief XDG_CONFIG_DIRS, each guaranteed to end with / */
+    DLLEXPORT QStringList extraConfigDirs();
+    /** @brief XDG_DATA_DIRS, each guaranteed to end with / */
+    DLLEXPORT QStringList extraDataDirs();
+
     /**
      * @brief removeDiacritics replaces letters with diacritics and ligatures with
      * alternative forms and digraphs.

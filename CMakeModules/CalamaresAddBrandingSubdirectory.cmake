@@ -79,10 +79,8 @@ function( calamares_add_branding NAME )
     endforeach()
 
     message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} branding component: ${BoldRed}${NAME}${ColorReset}" )
-    if( NOT CMAKE_BUILD_TYPE STREQUAL "Release" )
-        message( "   ${Green}TYPE:${ColorReset} branding component" )
-        message( "   ${Green}BRANDING_COMPONENT_DESTINATION:${ColorReset} ${BRANDING_COMPONENT_DESTINATION}" )
-    endif()
+    message( "   ${Green}TYPE:${ColorReset} branding component" )
+    message( "   ${Green}BRANDING_COMPONENT_DESTINATION:${ColorReset} ${BRANDING_COMPONENT_DESTINATION}" )
 endfunction()
 
 # Usage calamares_add_branding_translations( <name> [DIRECTORY <dir>])

@@ -20,6 +20,7 @@
 #ifndef PARTITIONCOREMODULE_H
 #define PARTITIONCOREMODULE_H
 
+#include "core/PartitionLayout.h"
 #include "core/PartitionModel.h"
 #include "Typedefs.h"
 
@@ -54,6 +55,25 @@ class PartitionCoreModule : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * This helper class calls refresh() on the module
+     * on destruction (nothing else). It is used as
+     * part of the model-consistency objects, along with
+     * PartitionModel::ResetHelper.
+     */
+    class RefreshHelper
+    {
+    public:
+        RefreshHelper( PartitionCoreModule* module );
+        ~RefreshHelper();
+
+        RefreshHelper( const RefreshHelper& ) = delete;
+        RefreshHelper& operator=( const RefreshHelper& ) = delete;
+
+    private:
+        PartitionCoreModule* m_module;
+    };
+
     /**
      * @brief The SummaryInfo struct is a wrapper for PartitionModel instances for
      * a given Device.
@@ -109,6 +129,12 @@ public:
 
     void createPartitionTable( Device* device, PartitionTable::TableType type );
 
+    /**
+     * @brief Add a job to do the actual partition-creation.
+     *
+     * If @p flags is not FlagNone, then the given flags are
+     * applied to the newly-created partition.
+     */
     void createPartition( Device* device, Partition* partition,
                           PartitionTable::Flags flags = PartitionTable::FlagNone );
 
@@ -129,6 +155,12 @@ public:
     void setPartitionFlags( Device* device, Partition* partition, PartitionTable::Flags flags );
 
     void setBootLoaderInstallPath( const QString& path );
+
+    void initLayout();
+    void initLayout( const QVariantList& config );
+
+    void layoutApply( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
+    void layoutApply( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase, PartitionNode* parent, const PartitionRole& role );
 
     /**
      * @brief jobs creates and returns a list of jobs which can then apply the changes
@@ -159,7 +191,12 @@ public:
 
     void revert();                      // full revert, thread safe, calls doInit
     void revertAllDevices();            // convenience function, calls revertDevice
-    void revertDevice( Device* dev );   // rescans a single Device and updates DeviceInfo
+    /** @brief rescans a single Device and updates DeviceInfo
+     *
+     * When @p individualRevert is true, calls refreshAfterModelChange(),
+     * used to reduce number of refreshes when calling revertAllDevices().
+     */
+    void revertDevice( Device* dev, bool individualRevert=true );
     void asyncRevertDevice( Device* dev, std::function< void() > callback ); //like revertDevice, but asynchronous
 
     void clearJobs();   // only clear jobs, the Device* states are preserved
@@ -192,7 +229,7 @@ Q_SIGNALS:
     void deviceReverted( Device* device );
 
 private:
-    void refresh();
+    void refreshAfterModelChange();
 
     /**
      * Owns the Device, PartitionModel and the jobs
@@ -221,6 +258,7 @@ private:
     bool m_hasRootMountPoint = false;
     bool m_isDirty = false;
     QString m_bootLoaderInstallPath;
+    PartitionLayout* m_partLayout;
 
     void doInit();
     void updateHasRootMountPoint();

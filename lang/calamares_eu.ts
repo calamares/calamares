@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="69"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>Sistema honen &lt;strong&gt;abio ingurunea&lt;/strong&gt;. &lt;br&gt;&lt;br&gt;X86 zaharrek &lt;strong&gt;BIOS&lt;/strong&gt; euskarria bakarrik daukate. &lt;br&gt;Sistema modernoek normalean &lt;strong&gt;EFI&lt;/strong&gt; darabilte, baina BIOS bezala ere agertu daitezke konpatibilitate moduan hasiz gero. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Sistema hau &lt;strong&gt;EFI&lt;/strong&gt; abio inguruneaz hasi da.&lt;br&gt;&lt;br&gt;EFI ingurunetik abiaraztea konfiguratzeko instalatzaile honek abio kargatzaile aplikazioa ezarri behar du, &lt;strong&gt;GRUB &lt;/strong&gt; bezalakoa edo &lt;strong&gt;systemd-abioa&lt;/strong&gt; &lt;strong&gt;EFI sistema partizio&lt;/strong&gt; batean. Hau automatikoa da, zuk partizioak eskuz egitea aukeratzen ez baduzu, eta kasu horretan zuk sortu edo aukeratu beharko duzu zure kabuz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="91"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Sistema hau &lt;strong&gt;BIOS&lt;/strong&gt; abio inguruneaz hasi da.&lt;br&gt;&lt;br&gt;BIOS ingurunetik abiaraztea konfiguratzeko instalatzaile honek abio kargatzaile aplikazioa ezarri behar du, &lt;strong&gt;GRUB&lt;/strong&gt; bezalakoa, partizioaren hasieran edo &lt;strong&gt;Master Boot Record&lt;/strong&gt; deritzonean partizio taularen hasieratik gertu (hobetsia). Hau automatikoa da, zuk partizioak eskuz egitea aukeratzen ez baduzu eta kasu horretan zuk sortu edo aukeratu beharko duzu zure kabuz.</translation>
     </message>
 </context>
 <context>
@@ -22,7 +22,7 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
         <source>Master Boot Record of %1</source>
-        <translation type="unfinished"/>
+        <translation>%1-(e)n Master Boot Record</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
@@ -50,7 +50,7 @@
     <message>
         <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="69"/>
         <source>Blank Page</source>
-        <translation type="unfinished"/>
+        <translation>Orri zuria</translation>
     </message>
 </context>
 <context>
@@ -58,12 +58,12 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>Biltegiratze globala</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
@@ -84,12 +84,12 @@
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="64"/>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="78"/>
         <source>none</source>
-        <translation type="unfinished"/>
+        <translation>Ezer ez</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
         <source>Interface:</source>
-        <translation type="unfinished"/>
+        <translation>Interfasea:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
@@ -99,7 +99,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="182"/>
         <source>Debug information</source>
-        <translation type="unfinished"/>
+        <translation>Arazte informazioa</translation>
     </message>
 </context>
 <context>
@@ -146,7 +146,7 @@
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="289"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
-        <translation type="unfinished"/>
+        <translation>%1 lanerako direktorioa %2 python lanak ezin du irakurri.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="299"/>
@@ -161,7 +161,7 @@
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="376"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Boost.Python errorea &quot;%1&quot; lanean.</translation>
     </message>
 </context>
 <context>
@@ -173,105 +173,106 @@
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="279"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
         <source>&amp;Next</source>
         <translation>&amp;Hurrengoa</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="288"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="296"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Utzi</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="289"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="297"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Instalazioa bertan behera utsi da sisteman aldaketarik gabe.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="183"/>
         <source>Calamares Initialization Failed</source>
-        <translation type="unfinished"/>
+        <translation>Calamares instalazioak huts egin du</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
         <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ezin da instalatu. Calamares ez da gai konfiguratutako modulu guztiak kargatzeko. Arazao hau banaketak Calamares erabiltzen duen eragatik da.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br/&gt; Ondorengo moduluak ezin izan dira kargatu:</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="281"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Instalatu</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
         <source>Cancel installation?</source>
         <translation>Bertan behera utzi instalazioa?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Ziur uneko instalazio prozesua bertan behera utzi nahi duzula?
+Instalatzailea irten egingo da eta aldaketa guztiak galduko dira.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
         <source>&amp;Yes</source>
         <translation>&amp;Bai</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
         <source>&amp;No</source>
         <translation>&amp;Ez</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
         <source>&amp;Close</source>
         <translation>&amp;Itxi</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="237"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="241"/>
         <source>Continue with setup?</source>
         <translation>Ezarpenarekin jarraitu?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="242"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>%1 instalatzailea zure diskoan aldaketak egitera doa %2 instalatzeko.&lt;br/&gt;&lt;strong&gt;Ezingo dituzu desegin aldaketa hauek.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="243"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="247"/>
         <source>&amp;Install now</source>
         <translation>&amp;Instalatu orain</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="244"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="248"/>
         <source>Go &amp;back</source>
         <translation>&amp;Atzera</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="287"/>
         <source>&amp;Done</source>
         <translation>E&amp;ginda</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="284"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="288"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>Instalazioa burutu da. Itxi instalatzailea.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="164"/>
         <source>Error</source>
         <translation>Akatsa</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="161"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
         <source>Installation Failed</source>
         <translation>Instalazioak huts egin du</translation>
     </message>
@@ -281,7 +282,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="270"/>
         <source>Unknown exception type</source>
-        <translation type="unfinished"/>
+        <translation>Salbuespen-mota ezezaguna</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="284"/>
@@ -302,14 +303,14 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CalamaresWindow</name>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="56"/>
         <source>%1 Installer</source>
         <translation>%1 Instalatzailea</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="111"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="119"/>
         <source>Show debug information</source>
-        <translation type="unfinished"/>
+        <translation>Erakutsi arazte informazioa</translation>
     </message>
 </context>
 <context>
@@ -317,17 +318,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Konputagailu honek ez dauzka gutxieneko eskakizunak %1 instalatzeko. &lt;br/&gt;Instalazioak ezin du jarraitu. &lt;a href=&quot;#details&quot;&gt;Xehetasunak...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Konputagailu honek ez du betetzen gomendatutako zenbait eskakizun %1 instalatzeko. &lt;br/&gt;Instalazioak jarraitu ahal du, baina zenbait ezaugarri desgaituko dira.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="151"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>Konputagailuan %2 ezartzeko programa honek hainbat galdera egingo dizkizu.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="174"/>
@@ -345,114 +346,139 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="128"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <source>After:</source>
         <translation>Ondoren:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="235"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="324"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Eskuz partizioak landu&lt;/strong&gt;&lt;br/&gt;Zure kasa sortu edo tamainaz alda dezakezu partizioak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="998"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
         <source>Boot loader location:</source>
         <translation>Abio kargatzaile kokapena:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="960"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2MB-ra txikituko da, eta %3MB-tako partizio berri bat sortuko da %4-(e)rako.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="152"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Aukeratu &amp;biltegiratze-gailua:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="924"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="988"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
         <source>Current:</source>
         <translation>Unekoa: </translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="795"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="813"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation>Berrerabili %1 home partizio bezala %2rentzat.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="925"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Aukeratu partizioa txikitzeko eta gero arrastatu azpiko-barra tamaina aldatzeko&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1040"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;aukeratu partizioa instalatzeko&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1096"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1114"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Ezin da inon aurkitu EFI sistemako partiziorik sistema honetan. Mesedez joan atzera eta erabili eskuz partizioak lantzea %1 ezartzeko.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1105"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1123"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>%1eko EFI partizio sistema erabiliko da abiarazteko %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1113"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1131"/>
         <source>EFI system partition:</source>
         <translation>EFI sistema-partizioa:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1200"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1249"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Biltegiratze-gailuak badirudi ez duela sistema eragilerik. Zer egin nahiko zenuke? &lt;br/&gt;Zure aukerak berrikusteko eta berresteko aukera izango duzu aldaketak gauzatu aurretik biltegiratze-gailuan</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1242"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1288"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1254"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1291"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1337"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Diskoa ezabatu&lt;/strong&gt;&lt;br/&gt;Honek orain dauden datu guztiak &lt;font color=&quot;red&quot;&gt;ezbatuko&lt;/font&gt; ditu biltegiratze-gailutik.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1232"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+        <translation>Biltegiratze-gailuak %1 dauka. Zer egin nahiko zenuke? &lt;br/&gt;Zure aukerak berrikusteko eta berresteko aukera izango duzu aldaketak gauzatu aurretik biltegiratze-gailuan</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+        <source>No Swap</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1209"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1238"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+        <source>Reuse Swap</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+        <source>Swap (no Hibernate)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
+        <source>Swap (with Hibernate)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
+        <source>Swap to file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1287"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Instalatu alboan&lt;/strong&gt;&lt;br/&gt;Instalatzaileak partizioa txikituko du lekua egiteko %1-(r)i.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1213"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1247"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1341"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Ordeztu partizioa&lt;/strong&gt;&lt;br/&gt;ordezkatu partizioa %1-(e)kin.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1255"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Biltegiragailu honetan badaude jadanik eragile sistema bat. Zer gustatuko litzaizuke egin?&lt;br/&gt;Biltegiragailuan aldaketarik egin baino lehen zure aukerak aztertu eta konfirmatu ahal izango duzu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Biltegiragailu honetan badaude jadanik eragile sistema batzuk. Zer gustatuko litzaizuke egin?&lt;br/&gt;Biltegiragailuan aldaketarik egin baino lehen zure aukerak aztertu eta konfirmatu ahal izango duzu.</translation>
     </message>
 </context>
 <context>
@@ -460,17 +486,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="46"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation type="unfinished"/>
+        <translation>Garbitu muntaketa puntuak partizioak egiteko %1 -(e)an.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="54"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
-        <translation type="unfinished"/>
+        <translation>Garbitzen muntaketa puntuak partizio eragiketak egiteko %1 -(e)an.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="191"/>
         <source>Cleared all mounts for %1</source>
-        <translation type="unfinished"/>
+        <translation>Muntaketa puntu guztiak garbitu dira %1 -(e)an</translation>
     </message>
 </context>
 <context>
@@ -478,22 +504,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="42"/>
         <source>Clear all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Garbitu aldi-baterako muntaketa puntu guztiak.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
         <source>Clearing all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Garbitzen aldi-baterako muntaketa puntu guztiak.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="60"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da aldi-baterako muntaketa puntu guztien zerrenda lortu.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="99"/>
         <source>Cleared all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Garbitu dira aldi-baterako muntaketa puntu guztiak.</translation>
     </message>
 </context>
 <context>
@@ -502,17 +528,17 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="127"/>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="138"/>
         <source>Could not run command.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da komandoa exekutatu.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="128"/>
         <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-        <translation type="unfinished"/>
+        <translation>Komandoa exekutatzen da ostalariaren inguruan eta erro bidea jakin behar da baina erroaren muntaketa punturik ez da zehaztu.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="139"/>
         <source>The command needs to know the user&apos;s name, but no username is defined.</source>
-        <translation type="unfinished"/>
+        <translation>Komandoak erabiltzailearen izena jakin behar du baina ez da zehaztu erabiltzaile-izenik.</translation>
     </message>
 </context>
 <context>
@@ -533,7 +559,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
         <source> MiB</source>
-        <translation type="unfinished"/>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
@@ -558,12 +584,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
         <source>LVM LV name</source>
-        <translation type="unfinished"/>
+        <translation>LVM LV izena</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Banderak:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="161"/>
@@ -573,12 +599,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Si&amp;ze:</source>
-        <translation>Ta&amp;maina:</translation>
+        <translation>&amp;Tamaina:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="72"/>
         <source>En&amp;crypt</source>
-        <translation type="unfinished"/>
+        <translation>En%kriptatu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="151"/>
@@ -598,7 +624,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="262"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>Muntatze-puntua erabiltzen. Mesedez aukeratu beste bat.</translation>
     </message>
 </context>
 <context>
@@ -606,22 +632,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="44"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation type="unfinished"/>
+        <translation>Sortu %2MB partizioa %4n (%3) %1 fitxategi sistemaz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="55"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Sortu &lt;strong&gt;%2MB&lt;/strong&gt; partizioa &lt;strong&gt;%4&lt;/strong&gt;n (%3) &lt;strong&gt;%1&lt;/strong&gt; fitxategi sistemaz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="67"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation type="unfinished"/>
+        <translation>%1 partizioa berria sortzen %2n.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Huts egin du instalatzaileak &apos;%1&apos; diskoan partizioa sortzen.</translation>
     </message>
 </context>
 <context>
@@ -634,17 +660,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
         <source>Creating a new partition table will delete all existing data on the disk.</source>
-        <translation type="unfinished"/>
+        <translation>Partizio taula berria sortzean diskoan dauden datu guztiak ezabatuko dira.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
         <source>What kind of partition table do you want to create?</source>
-        <translation type="unfinished"/>
+        <translation>Zein motatako partizio taula sortu nahi duzu?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="72"/>
         <source>Master Boot Record (MBR)</source>
-        <translation type="unfinished"/>
+        <translation>Master Boot Record (MBR)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="82"/>
@@ -655,24 +681,24 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="45"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Sortu %1 partizio taula berria %2n.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="52"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation type="unfinished"/>
+        <translation>Sortu &lt;strong&gt;%1&lt;/strong&gt; partizio taula berria &lt;strong&gt;%2&lt;/strong&gt;n (%3).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="64"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>%1 partizio taula berria %2n sortzen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="72"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="82"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation type="unfinished"/>
+        <translation>Huts egin du instalatzaileak &apos;%1&apos; diskoan partizioa taula sortzen.</translation>
     </message>
 </context>
 <context>
@@ -685,7 +711,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="58"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Sortu &lt;strong&gt;%1&lt;/strong&gt; erabiltzailea</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
@@ -714,6 +740,48 @@ The installer will quit and all changes will be lost.</source>
     </message>
 </context>
 <context>
+    <name>CreateVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
+        <source>Create new volume group named %1.</source>
+        <translation>Sortu bolumen talde berria %1 izenaz.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
+        <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Sortu bolumen talde berria&lt;strong&gt; %1&lt;/strong&gt; izenaz.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+        <source>Creating new volume group named %1.</source>
+        <translation>Bolumen talde berria sortzen %1 izenaz.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
+        <source>The installer failed to create a volume group named &apos;%1&apos;.</source>
+        <translation>Huts egin du instalatzaileak &apos;%1&apos; izeneko bolumen taldea sortzen.</translation>
+    </message>
+</context>
+<context>
+    <name>DeactivateVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="34"/>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
+        <source>Deactivate volume group named %1.</source>
+        <translation>Desaktibatu %1 izeneko bolumen taldea.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="41"/>
+        <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Desaktibatu &lt;strong&gt;%1&lt;/strong&gt; izeneko bolumen taldea.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="61"/>
+        <source>The installer failed to deactivate a volume group named %1.</source>
+        <translation>Huts egin du instalatzaileak &apos;%1&apos; izeneko bolumen taldea desaktibatzen.</translation>
+    </message>
+</context>
+<context>
     <name>DeletePartitionJob</name>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="40"/>
@@ -723,7 +791,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
         <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Ezabatu &lt;strong&gt;%1&lt;/strong&gt; partizioa.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="56"/>
@@ -733,7 +801,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="68"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Huts egin du instalatzaileak %1 partizioa ezabatzen.</translation>
     </message>
 </context>
 <context>
@@ -741,17 +809,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="150"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;partizio-taula&lt;/strong&gt; mota aukeratutako biltegiragailuan.&lt;br&gt;&lt;br&gt;Partizio-taula mota aldatzeko modu bakarra ezabatzea da eta berriro sortu partizio-taula zerotik, eta ekintza horrek biltegiragailuan dauden datu guztiak hondatuko ditu.&lt;br&gt;Instalatzaile honek egungo partizio-taula mantenduko du, besterik ez baduzu esplizituki aukeratzen.&lt;br&gt;Ez bazaude seguru horri buruz, sistema modernoetan GPT hobe da.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Gailuak &lt;strong&gt;%1&lt;/strong&gt; partizio taula dauka.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Hau &lt;strong&gt;begizta&lt;/strong&gt; gailu bat da. &lt;br&gt;&lt;br&gt;Partiziorik gabeko sasi-gailu bat fitxategiak eskuragarri jartzen dituena gailu bloke erara. Ezarpen mota honek normalean fitxategi-sistema bakarra dauka. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
@@ -772,9 +840,14 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>DeviceModel</name>
     <message>
-        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="80"/>
+        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="83"/>
         <source>%1 - %2 (%3)</source>
         <translation>%1 - %2 (%3)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="89"/>
+        <source>%1 - (%2)</source>
+        <translation>%1 - (%2)</translation>
     </message>
 </context>
 <context>
@@ -792,7 +865,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="149"/>
         <source>Failed to open %1</source>
-        <translation type="unfinished"/>
+        <translation>Huts egin du %1 irekitzean</translation>
     </message>
 </context>
 <context>
@@ -800,7 +873,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="47"/>
         <source>Dummy C++ Job</source>
-        <translation type="unfinished"/>
+        <translation>Dummy C++ lana</translation>
     </message>
 </context>
 <context>
@@ -808,7 +881,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="20"/>
         <source>Edit Existing Partition</source>
-        <translation type="unfinished"/>
+        <translation>Editatu badagoen partizioa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="50"/>
@@ -818,7 +891,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>&amp;Keep</source>
-        <translation type="unfinished"/>
+        <translation>M&amp;antendu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -843,7 +916,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
         <source> MiB</source>
-        <translation type="unfinished"/>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
@@ -853,12 +926,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="149"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Banderak:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="269"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>Muntatze-puntua erabiltzen. Mesedez aukeratu beste bat.</translation>
     </message>
 </context>
 <context>
@@ -866,63 +939,63 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
         <source>En&amp;crypt system</source>
-        <translation type="unfinished"/>
+        <translation>Sistema en%kriptatua</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="42"/>
         <source>Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitza</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="52"/>
         <source>Confirm passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Berretsi pasahitza</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="151"/>
         <source>Please enter the same passphrase in both boxes.</source>
-        <translation type="unfinished"/>
+        <translation>Mesedez sartu pasahitz berdina bi kutxatan.</translation>
     </message>
 </context>
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="123"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="132"/>
         <source>Set partition information</source>
         <translation>Ezarri partizioaren informazioa</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="156"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation type="unfinished"/>
+        <translation>Instalatu %1 sistemako %2 partizio &lt;strong&gt;berrian&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="151"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="160"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Ezarri %2 partizio &lt;strong&gt;berria&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; muntatze puntuarekin.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="159"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="168"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="164"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="173"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>Ezarri %3 partizioa &lt;strong&gt;%1&lt;/strong&gt; &lt;strong&gt;%2&lt;/strong&gt; muntatze puntuarekin.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="176"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="185"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Instalatu abio kargatzailea &lt;strong&gt;%1&lt;/strong&gt;-(e)n.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="195"/>
         <source>Setting up mount points.</source>
         <translation>Muntatze puntuak ezartzen.</translation>
     </message>
@@ -932,7 +1005,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
@@ -965,12 +1038,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="124"/>
         <source>Installation Complete</source>
-        <translation type="unfinished"/>
+        <translation>Instalazioa amaitua</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="125"/>
         <source>The installation of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>%1 instalazioa amaitu da.</translation>
     </message>
 </context>
 <context>
@@ -978,7 +1051,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="41"/>
         <source>Format partition %1 (file system: %2, size: %3 MB) on %4.</source>
-        <translation type="unfinished"/>
+        <translation>Formateatu %1 partizioa %4-(e)n (fitxategi sistema: %2, tamaina: %3 MB).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="52"/>
@@ -988,12 +1061,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
         <source>Formatting partition %1 with file system %2.</source>
-        <translation type="unfinished"/>
+        <translation>%1 partizioa formateatzen %2 sistemaz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="77"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Huts egin du instalatzaileak %1 partizioa sortzen &apos;%2&apos; diskoan.</translation>
     </message>
 </context>
 <context>
@@ -1006,7 +1079,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="54"/>
         <source>Please install KDE Konsole and try again!</source>
-        <translation type="unfinished"/>
+        <translation>Mesedez instalatu KDE kontsola eta saiatu berriz!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="116"/>
@@ -1019,7 +1092,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="45"/>
         <source>Script</source>
-        <translation type="unfinished"/>
+        <translation>Script</translation>
     </message>
 </context>
 <context>
@@ -1027,12 +1100,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="219"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Ezarri teklatu mota %1ra.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="221"/>
         <source>Set keyboard layout to %1/%2.</source>
-        <translation type="unfinished"/>
+        <translation>Ezarri teklatu diseinua %1%2ra.</translation>
     </message>
 </context>
 <context>
@@ -1063,7 +1136,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ados</translation>
     </message>
 </context>
 <context>
@@ -1071,7 +1144,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="89"/>
@@ -1133,7 +1206,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="203"/>
         <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;%1&quot;&gt;Ikusi lizentzia kontratua&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -1147,41 +1220,35 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="394"/>
         <source>The system language will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ezarriko da sistemako hizkuntza bezala.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="389"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="395"/>
         <source>The numbers and dates locale will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Zenbaki eta daten eskualdea %1-(e)ra ezarri da.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Region:</source>
         <translation>Eskualdea:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="218"/>
         <source>Zone:</source>
         <translation>Zonaldea:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="223"/>
         <source>&amp;Change...</source>
         <translation>&amp;Aldatu...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="398"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="402"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="480"/>
-        <source>%1 (%2)</source>
-        <extracomment>Language (Country)</extracomment>
-        <translation>%1 (%2)</translation>
+        <translation>Ordu-zonaldea %1%2-ra ezarri da.&lt;br/&gt;</translation>
     </message>
 </context>
 <context>
@@ -1207,7 +1274,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="65"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Deskribapena</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="86"/>
@@ -1225,7 +1292,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
         <source>Package selection</source>
-        <translation type="unfinished"/>
+        <translation>Pakete aukeraketa</translation>
     </message>
 </context>
 <context>
@@ -1233,17 +1300,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="63"/>
         <source>Password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitza laburregia da</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="85"/>
         <source>Password is too long</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitza luzeegia da</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
         <source>Password is too weak</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitza ahulegia da</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
@@ -1258,12 +1325,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
         <source>The password is the same as the old one</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitza aurreko zahar baten berdina da</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
         <source>The password is a palindrome</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitza palindromoa da</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
@@ -1273,7 +1340,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password is too similar to the old one</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitza aurreko zahar baten oso antzerakoa da</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
@@ -1293,52 +1360,52 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="179"/>
         <source>The password contains less than %1 digits</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitzak %1 baino zenbaki gutxiago ditu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
         <source>The password contains too few digits</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitzak zenbaki gutxiegi ditu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitzak %1 baino maiuskula gutxiago ditu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
         <source>The password contains too few uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitzak maiuskula gutxiegi ditu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
         <source>The password contains less than %1 lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitzak %1 baino minuskula gutxiago ditu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
         <source>The password contains too few lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitzak minuskula gutxiegi ditu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitzak alfabetokoak ez diren %1 baino karaktere gutxiago ditu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
         <source>The password contains too few non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitzak alfabetokoak ez diren karaktere gutxiegi ditu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
         <source>The password is shorter than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitza %1 karaktere baino motzagoa da.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
         <source>The password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Pasahitza motzegia da</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
@@ -1453,22 +1520,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
         <source>Opening the configuration file failed</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da konfigurazio fitxategia zabaldu.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
         <source>The configuration file is malformed</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurazio fitxategia ez dago ondo eginda.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>Fatal failure</source>
-        <translation type="unfinished"/>
+        <translation>Hutsegite larria</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Hutsegite ezezaguna</translation>
     </message>
 </context>
 <context>
@@ -1476,7 +1543,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
@@ -1494,7 +1561,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
@@ -1504,29 +1571,29 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
-        <translation type="unfinished"/>
+        <translation>Zein izen erabili nahi duzu saioa hastean?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
-        <translation type="unfinished"/>
+        <translation>Letra-mota zabalera: normala</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Ordenagailu hau pertsona batek baino gehiagok erabiltzen badu, instalazio ondoren hainbat kontu ezarri zenitzake.&lt;/small&gt; </translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
-        <translation type="unfinished"/>
+        <translation>Aukeratu pasahitza zure kontua babesteko.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Pasahitza berbera birritan sartu, idazketa akatsak ez dauden egiaztatzeko. Pasahitza on batek letrak, zenbakiak eta puntuazio sinboloak izan behar ditu, zortzi karaktere gutxienez izan behar ditu eta tarteka-marteka aldatu behar izango litzateke.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
@@ -1536,7 +1603,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Izen hau erakutsiko da sarean zure ordenagailua besteei erakustean.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
@@ -1556,50 +1623,50 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Sartu pasahitza birritan, honela tekleatze erroreak egiaztatzeko.&lt;/small&gt;</translation>
     </message>
 </context>
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
-        <source>Root</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
-        <source>Home</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
-        <source>Boot</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
+        <source>Root</source>
+        <translation>Root</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="204"/>
+        <source>Home</source>
+        <translation>Home</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="206"/>
+        <source>Boot</source>
+        <translation>Boot</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="209"/>
         <source>EFI system</source>
-        <translation type="unfinished"/>
+        <translation>EFI sistema</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
         <source>Swap</source>
-        <translation type="unfinished"/>
+        <translation>Swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="213"/>
         <source>New partition for %1</source>
-        <translation type="unfinished"/>
+        <translation>Partizio berri %1(e)ntzat</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
         <source>New partition</source>
         <translation>Partizio berria</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="224"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="233"/>
         <source>%1  %2</source>
-        <translation type="unfinished"/>
+        <translation>%1  %2</translation>
     </message>
 </context>
 <context>
@@ -1642,17 +1709,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Biltegiratze-gailua:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
         <source>&amp;Revert All Changes</source>
-        <translation type="unfinished"/>
+        <translation>Atze&amp;ra bota aldaketa guztiak:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="87"/>
@@ -1662,7 +1729,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
         <source>Cre&amp;ate</source>
-        <translation type="unfinished"/>
+        <translation>Sor&amp;tu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
@@ -1675,22 +1742,42 @@ The installer will quit and all changes will be lost.</source>
         <translation>E&amp;zabatu</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="148"/>
-        <source>Install boot &amp;loader on:</source>
-        <translation type="unfinished"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
+        <source>New Volume Group</source>
+        <translation>Bolumen Talde berria</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="171"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
+        <source>Resize Volume Group</source>
+        <translation>Bolumen Talde berriaren tamaina aldatu</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
+        <source>Deactivate Volume Group</source>
+        <translation>Bolumen Taldea desaktibatu</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
+        <source>Remove Volume Group</source>
+        <translation>Bolumen Taldea ezabatu</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
+        <source>I&amp;nstall boot loader on:</source>
+        <translation>Abio kargatzailea I&amp;nstalatu bertan:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="218"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
-        <translation type="unfinished"/>
+        <translation>Ziur al zaude partizio-taula berri bat %1-(e)an sortu nahi duzula?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="242"/>
         <source>Can not create new partition</source>
-        <translation type="unfinished"/>
+        <translation>Ezin da partizio berririk sortu</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="243"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
         <translation type="unfinished"/>
     </message>
@@ -1698,97 +1785,97 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="71"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="74"/>
         <source>Gathering system information...</source>
         <translation>Sistemaren informazioa eskuratzen...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="122"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="125"/>
         <source>Partitions</source>
         <translation>Partizioak</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="159"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="163"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="166"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="172"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="185"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="188"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="191"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="200"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="207"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="212"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="215"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="243"/>
         <source>Current:</source>
         <translation>Unekoa: </translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="257"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="260"/>
         <source>After:</source>
         <translation>Ondoren:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="400"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="407"/>
         <source>No EFI system partition configured</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="408"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="414"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="421"/>
         <source>EFI system partition flag not set</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="415"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="422"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="457"/>
         <source>Boot partition not encrypted</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="451"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="458"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
         <translation type="unfinished"/>
     </message>
@@ -1812,7 +1899,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="20"/>
@@ -1836,17 +1923,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>PreserveFiles</name>
     <message>
-        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="83"/>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="85"/>
         <source>Saving files for later ...</source>
-        <translation type="unfinished"/>
+        <translation>Fitxategiak geroko gordetzen...</translation>
     </message>
     <message>
-        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="89"/>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="123"/>
         <source>No files configured to save for later.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="145"/>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="177"/>
         <source>Not all of the configured files could be preserved.</source>
         <translation type="unfinished"/>
     </message>
@@ -1864,32 +1951,34 @@ There was no output from the command.</source>
         <source>
 Output:
 </source>
-        <translation type="unfinished"/>
+        <translation>
+Irteera:
+</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="275"/>
         <source>External command crashed.</source>
-        <translation type="unfinished"/>
+        <translation>Kanpo-komandoak huts egin du.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="276"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;%1&lt;/i&gt; komandoak huts egin du.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="281"/>
         <source>External command failed to start.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da %1 kanpo-komandoa abiarazi.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="282"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da &lt;i&gt;%1&lt;/i&gt; komandoa abiarazi.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="286"/>
         <source>Internal error when starting command.</source>
-        <translation type="unfinished"/>
+        <translation>Barne-akatsa komandoa abiarazterakoan.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="287"/>
@@ -1899,7 +1988,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="290"/>
         <source>External command failed to finish.</source>
-        <translation type="unfinished"/>
+        <translation>Kanpo-komandoa ez da bukatu.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="291"/>
@@ -1909,7 +1998,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="297"/>
         <source>External command finished with errors.</source>
-        <translation type="unfinished"/>
+        <translation>Kanpo-komandoak akatsekin bukatu da.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="298"/>
@@ -1922,7 +2011,7 @@ Output:
     <message>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="82"/>
         <source>Default Keyboard Model</source>
-        <translation type="unfinished"/>
+        <translation>Teklatu mota lehenetsia</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="127"/>
@@ -1933,26 +2022,51 @@ Output:
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>Ezezaguna</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="209"/>
         <source>extended</source>
-        <translation type="unfinished"/>
+        <translation>Hedatua</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="211"/>
         <source>unformatted</source>
-        <translation type="unfinished"/>
+        <translation>Formatugabea</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="213"/>
         <source>swap</source>
-        <translation type="unfinished"/>
+        <translation>swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/CalamaresUtilsGui.cpp" line="269"/>
+        <source>%1 (%2)</source>
+        <comment>Language (Country)</comment>
+        <translation>%1 (%2)</translation>
+    </message>
+</context>
+<context>
+    <name>RemoveVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
+        <source>Remove Volume Group named %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="41"/>
+        <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
+        <source>The installer failed to remove a volume group named &apos;%1&apos;.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1961,7 +2075,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
@@ -2081,11 +2195,82 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="155"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>Instalatzailea ez dabil exekutatzen administrari eskubideekin.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="163"/>
         <source>The screen is too small to display the installer.</source>
+        <translation>Pantaila txikiegia da instalatzailea erakusteko.</translation>
+    </message>
+</context>
+<context>
+    <name>ResizeFSJob</name>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="116"/>
+        <source>Resize Filesystem Job</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="224"/>
+        <source>Invalid configuration</source>
+        <translation>Konfigurazio baliogabea</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="225"/>
+        <source>The file-system resize job has an invalid configuration and will not run.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="239"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="249"/>
+        <source>KPMCore not Available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="240"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="250"/>
+        <source>Calamares cannot start KPMCore for the file-system resize job.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="258"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="267"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="280"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="289"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="306"/>
+        <source>Resize Failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="259"/>
+        <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="260"/>
+        <source>The device %1 could not be found in this system, and cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="268"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="281"/>
+        <source>The filesystem %1 cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="269"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="282"/>
+        <source>The device %1 cannot be resized.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="290"/>
+        <source>The filesystem %1 must be resized, but cannot.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="291"/>
+        <source>The device %1 must be resized, but cannot</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2094,7 +2279,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="48"/>
         <source>Resize partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Tamaina aldatu %1 partizioari.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="55"/>
@@ -2113,16 +2298,35 @@ Output:
     </message>
 </context>
 <context>
+    <name>ResizeVolumeGroupJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="55"/>
+        <source>Resize volume group named %1 from %2 to %3.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
+        <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
+        <source>The installer failed to resize a volume group named &apos;%1&apos;.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ScanningDialog</name>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Scanning storage devices...</source>
-        <translation type="unfinished"/>
+        <translation>Biltegiratze-gailuak eskaneatzen...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="85"/>
         <source>Partitioning</source>
-        <translation type="unfinished"/>
+        <translation>Partizioa(k) egiten</translation>
     </message>
 </context>
 <context>
@@ -2163,24 +2367,24 @@ Output:
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="318"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="321"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="319"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="323"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="329"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="326"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="332"/>
         <source>Failed to write to %1</source>
         <translation>Ezin izan da %1 partizioan idatzi</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="325"/>
         <source>Failed to write keyboard configuration for X11.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="331"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
         <translation type="unfinished"/>
     </message>
@@ -2263,7 +2467,7 @@ Output:
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="144"/>
         <source>The installer failed to set flags on partition %1.</source>
         <translation type="unfinished"/>
     </message>
@@ -2293,7 +2497,7 @@ Output:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="123"/>
         <source>Cannot disable root account.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin da desgaitu root kontua.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="124"/>
@@ -2341,7 +2545,7 @@ Output:
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot set timezone,</source>
-        <translation type="unfinished"/>
+        <translation>Ezin da ezarri ordu-zonaldea</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
@@ -2439,7 +2643,7 @@ Output:
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="24"/>
@@ -2463,7 +2667,7 @@ Output:
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="195"/>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="257"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
@@ -2496,7 +2700,7 @@ Output:
     <message>
         <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="59"/>
         <source>Feedback</source>
-        <translation type="unfinished"/>
+        <translation>Feedback</translation>
     </message>
 </context>
 <context>
@@ -2509,7 +2713,7 @@ Output:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="295"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Zure erabiltzaile-izena baliodun ez diren karaktereak ditu. Letra xeheak eta zenbakiak bakarrik onartzen dira.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
@@ -2524,7 +2728,7 @@ Output:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Zure ostalariak baliodun ez diren karaktereak ditu. Letrak, zenbakiak eta marratxoak bakarrik onartzen dira.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
@@ -2542,11 +2746,72 @@ Output:
     </message>
 </context>
 <context>
+    <name>VolumeGroupBaseDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
+        <source>VolumeGroupDialog</source>
+        <translation>BolumenTaldeElkarrizketa</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
+        <source>List of Physical Volumes</source>
+        <translation>Bolumen Fisikoen Zerrenda</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="30"/>
+        <source>Volume Group Name:</source>
+        <translation>Bolumen Taldearen Izena:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="43"/>
+        <source>Volume Group Type:</source>
+        <translation>Bolumen Talde Mota:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
+        <source>Physical Extent Size:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
+        <source> MiB</source>
+        <translation> MiB</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="82"/>
+        <source>Total Size:</source>
+        <translation>Tamaina guztira:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="92"/>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="112"/>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="132"/>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="152"/>
+        <source>---</source>
+        <translation>---</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="102"/>
+        <source>Used Size:</source>
+        <translation>Erabilitako tamaina:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="122"/>
+        <source>Total Sectors:</source>
+        <translation>Sektoreak guztira:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
+        <source>Quantity of LVs:</source>
+        <translation>LV kopurua:</translation>
+    </message>
+</context>
+<context>
     <name>WelcomePage</name>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
@@ -2594,7 +2859,7 @@ Output:
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="290"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
         <source>%1 support</source>
         <translation>%1 euskarria</translation>
     </message>

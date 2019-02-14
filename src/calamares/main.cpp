@@ -44,6 +44,8 @@ handle_args( CalamaresApplication& a )
                                           "Verbose output for debugging purposes (0-8).", "level" );
     QCommandLineOption configOption( QStringList{ "c", "config"},
                                      "Configuration directory to use, for testing purposes.", "config" );
+    QCommandLineOption xdgOption( QStringList{"X", "xdg-config"},
+                                  "Use XDG_{CONFIG,DATA}_DIRS as well." );
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Distribution-independent installer framework" );
@@ -53,6 +55,7 @@ handle_args( CalamaresApplication& a )
     parser.addOption( debugOption );
     parser.addOption( debugLevelOption );
     parser.addOption( configOption );
+    parser.addOption( xdgOption );
 
     parser.process( a );
 
@@ -67,11 +70,13 @@ handle_args( CalamaresApplication& a )
         if ( !ok || ( l < 0 ) )
             dlevel = Logger::LOGVERBOSE;
         else
-            dlevel = l;
+            dlevel = static_cast<unsigned int>( l );  // l >= 0
         Logger::setupLogLevel( dlevel );
     }
     if ( parser.isSet( configOption ) )
         CalamaresUtils::setAppDataDir( QDir( parser.value( configOption ) ) );
+    if ( parser.isSet( xdgOption ) )
+        CalamaresUtils::setXdgDirs();
 }
 
 int

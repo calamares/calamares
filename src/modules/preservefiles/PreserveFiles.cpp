@@ -18,6 +18,8 @@
 
 #include "PreserveFiles.h"
 
+#include "permissions.h"
+
 #include "CalamaresVersion.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -83,6 +85,38 @@ PreserveFiles::prettyName() const
     return tr( "Saving files for later ..." );
 }
 
+static bool
+copy_file( const QString& source, const QString& dest )
+{
+    QFile sourcef( source );
+    if ( !sourcef.open( QFile::ReadOnly ) )
+    {
+        cWarning() << "Could not read" << source;
+        return false;
+    }
+
+    QFile destf( dest );
+    if ( !destf.open( QFile::WriteOnly ) )
+    {
+        sourcef.close();
+        cWarning() << "Could not open" << destf.fileName() << "for writing; could not copy" << source;
+        return false;
+    }
+
+    QByteArray b;
+    do
+    {
+        b = sourcef.read( 1_MiB );
+        destf.write( b );
+    }
+    while ( b.count() > 0 );
+
+    sourcef.close();
+    destf.close();
+    
+    return true;
+}
+
 Calamares::JobResult PreserveFiles::exec()
 {
     if ( m_items.isEmpty() )
@@ -96,7 +130,8 @@ Calamares::JobResult PreserveFiles::exec()
     for ( const auto& it : m_items )
     {
         QString source = it.source;
-        QString dest = prefix + atReplacements( it.dest );
+        QString bare_dest = atReplacements( it.dest );
+        QString dest = prefix + bare_dest;
 
         if ( it.type == ItemType::Log )
             source = Logger::logFile();
@@ -111,32 +146,29 @@ Calamares::JobResult PreserveFiles::exec()
             cWarning() << "Skipping unnamed source file for" << dest;
         else
         {
-            QFile sourcef( source );
-            if ( !sourcef.open( QFile::ReadOnly ) )
+            if ( copy_file( source, dest ) )
             {
-                cWarning() << "Could not read" << source;
-                continue;
+                if ( it.perm.isValid() )
+                {
+                    auto s_p = CalamaresUtils::System::instance();
+                    
+                    int r;
+                    
+                    r = s_p->targetEnvCall( QStringList{ "chown", it.perm.username(), bare_dest } );
+                    if ( r )
+                        cWarning() << "Could not chown target" << bare_dest;
+                    
+                    r = s_p->targetEnvCall( QStringList{ "chgrp", it.perm.group(), bare_dest } );
+                    if ( r )
+                        cWarning() << "Could not chgrp target" << bare_dest;
+                        
+                    r = s_p->targetEnvCall( QStringList{ "chmod", it.perm.octal(), bare_dest } );
+                    if ( r )
+                        cWarning() << "Could not chmod target" << bare_dest;
+                }
+                
+                ++count;
             }
-
-            QFile destf( dest );
-            if ( !destf.open( QFile::WriteOnly ) )
-            {
-                sourcef.close();
-                cWarning() << "Could not open" << destf.fileName() << "for writing; could not copy" << source;
-                continue;
-            }
-
-            QByteArray b;
-            do
-            {
-                b = sourcef.read( 1_MiB );
-                destf.write( b );
-            }
-            while ( b.count() > 0 );
-
-            sourcef.close();
-            destf.close();
-            ++count;
         }
     }
 
@@ -160,6 +192,10 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
         return;
     }
 
+    QString defaultPermissions = configurationMap[ "perm" ].toString();
+    if ( defaultPermissions.isEmpty() )
+        defaultPermissions = QStringLiteral( "root:root:0400" );
+    
     QVariantList l = files.toList();
     unsigned int c = 0;
     for ( const auto& li : l )
@@ -168,7 +204,7 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
         {
             QString filename = li.toString();
             if ( !filename.isEmpty() )
-                m_items.append( Item{ filename, filename, ItemType::Path } );
+                m_items.append( Item{ filename, filename, Permissions( defaultPermissions ), ItemType::Path } );
             else
                 cDebug() << "Empty filename for preservefiles, item" << c;
         }
@@ -181,6 +217,9 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
                 ( from == "log" ) ? ItemType::Log :
                 ( from == "config" ) ? ItemType::Config :
                 ItemType::None;
+            QString perm = map[ "perm" ].toString();
+            if ( perm.isEmpty() )
+                perm = defaultPermissions;
 
             if ( dest.isEmpty() )
             {
@@ -192,7 +231,7 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
             }
             else
             {
-                m_items.append( Item{ QString(), dest, t } );
+                m_items.append( Item{ QString(), dest, Permissions( perm ), t } );
             }
         }
         else

@@ -35,6 +35,18 @@
 #include <QLabel>
 #include <QTreeView>
 
+static inline int
+windowDimensionToPixels( const Calamares::Branding::WindowDimension& u )
+{
+    if ( !u.isValid() )
+        return 0;
+    if ( u.unit() == Calamares::Branding::WindowDimensionUnit::Pixies )
+        return u.value();
+    if ( u.unit() == Calamares::Branding::WindowDimensionUnit::Fonties )
+        return u.value() * CalamaresUtils::defaultFontHeight();
+    return 0;
+}
+
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
     , m_debugWindow( nullptr )
@@ -45,24 +57,24 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
                         .arg( *Calamares::Branding::ProductName ) );
     )
 
+    const Calamares::Branding* const branding = Calamares::Branding::instance();
+
     using CalamaresUtils::windowMinimumHeight;
     using CalamaresUtils::windowMinimumWidth;
     using CalamaresUtils::windowPreferredHeight;
     using CalamaresUtils::windowPreferredWidth;
 
     QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
-
-    cDebug() << "Available size" << availableSize;
-
-    if ( ( availableSize.width() < windowPreferredWidth ) || ( availableSize.height() < windowPreferredHeight ) )
-        cDebug() << "  Small screen detected.";
     QSize minimumSize( qBound( windowMinimumWidth, availableSize.width(), windowPreferredWidth ),
                        qBound( windowMinimumHeight, availableSize.height(), windowPreferredHeight ) );
     setMinimumSize( minimumSize );
 
+    cDebug() << "Available desktop" << availableSize << "minimum size" << minimumSize;
 
-    int w = qBound( minimumSize.width(), CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
-    int h = qBound( minimumSize.height(),  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
+    auto brandingSizes = branding->windowSize();
+
+    int w = qBound( minimumSize.width(), windowDimensionToPixels( brandingSizes.first ), availableSize.width() );
+    int h = qBound( minimumSize.height(),  windowDimensionToPixels( brandingSizes.second ), availableSize.height() );
 
     cDebug() << "  Proposed window size:" << w << h;
     resize( w, h );
@@ -85,18 +97,14 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     {
         QPalette plt = sideBox->palette();
         sideBox->setAutoFillBackground( true );
-        plt.setColor( sideBox->backgroundRole(), Calamares::Branding::instance()->
-                      styleString( Calamares::Branding::SidebarBackground ) );
-        plt.setColor( sideBox->foregroundRole(), Calamares::Branding::instance()->
-                      styleString( Calamares::Branding::SidebarText ) );
+        plt.setColor( sideBox->backgroundRole(),branding->styleString( Calamares::Branding::SidebarBackground ) );
+        plt.setColor( sideBox->foregroundRole(), branding->styleString( Calamares::Branding::SidebarText ) );
         sideBox->setPalette( plt );
         logoLabel->setPalette( plt );
     }
     logoLabel->setAlignment( Qt::AlignCenter );
     logoLabel->setFixedSize( 80, 80 );
-    logoLabel->setPixmap( Calamares::Branding::instance()->
-                          image( Calamares::Branding::ProductLogo,
-                                 logoLabel->size() ) );
+    logoLabel->setPixmap( branding->image( Calamares::Branding::ProductLogo, logoLabel->size() ) );
     logoLayout->addWidget( logoLabel );
     logoLayout->addStretch();
 
@@ -139,7 +147,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     CalamaresUtils::unmarginLayout( mainLayout );
 
     m_viewManager = Calamares::ViewManager::instance( this );
-    connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
+    if ( branding->windowExpands() )
+        connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
 
     mainLayout->addWidget( m_viewManager->centralWidget() );
 }

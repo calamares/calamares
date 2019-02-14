@@ -16,12 +16,27 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+ * Tool to find differences between translations (can be used to help
+ * merging them into one). See usage string, below, for details.
+ */
+
 #include <QCoreApplication>
 #include <QDebug>
 #include <QFile>
 #include <QList>
 
 #include <QDomDocument>
+
+static const char usage[] = "Usage: txload <master> [<subsidiary> ...]\n"
+    "\n"
+    "Reads a .ts source file <master> and zero or more .ts <subsidiary>\n"
+    "files, and does a comparison between the translations. Source (English)\n"
+    "strings that are untranslated are flagged in each of the translation\n"
+    "files, while differences in the translations are themselves also shown.\n"
+    "\n"
+    "Outputs to stdout a human-readable list of differences between the\n"
+    "translations.\n";
 
 bool load_file(const char* filename, QDomDocument& doc)
 {
@@ -158,7 +173,10 @@ int main(int argc, char** argv)
     QCoreApplication a(argc, argv);
 
     if (argc < 2)
+    {
+        qWarning() << usage;
         return 1;
+    }
 
     QDomDocument doc("master");
     if ( !load_file(argv[1], doc) )

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,6 +30,18 @@ struct FstabEntry
     QString options;
     int dump;
     int pass;
+
+    /// Does this entry make sense and is it complete?
+    bool isValid() const; // implemented in Partutils.cpp
+
+    /** @brief Create an entry from a live of /etc/fstab
+     *
+     * Splits the given string (which ought to follow the format
+     * of /etc/fstab) and returns a corresponding Fstab entry.
+     * If the string isn't valid (e.g. comment-line, or broken
+     * fstab entry) then the entry that is returned is invalid.
+     */
+    static FstabEntry fromEtcFstab( const QString& ); // implemented in Partutils.cpp
 };
 
 typedef QList< FstabEntry > FstabEntryList;

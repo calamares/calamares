@@ -6,6 +6,7 @@
 #   Copyright 2016, Artoo <artoo@manjaro.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2018, Gabriel Craciunescu <crazy@frugalware.org>
+#   Copyright 2019, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -23,6 +24,16 @@
 import libcalamares
 
 from libcalamares.utils import debug, target_env_call
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Configure Plymouth theme")
 
 
 class PlymouthController:

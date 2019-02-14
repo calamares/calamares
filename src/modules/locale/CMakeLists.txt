@@ -1,9 +1,3 @@
-find_package(ECM ${ECM_VERSION} NO_MODULE)
-if( ECM_FOUND AND BUILD_TESTING )
-    include( ECMAddTests )
-    find_package( Qt5 COMPONENTS Core Test REQUIRED )
-endif()
-
 # When debugging the timezone widget, add this debugging definition
 # to have a debugging-friendly timezone widget, debug logging,
 # and no intrusive timezone-setting while clicking around.
@@ -59,6 +53,17 @@ if( ECM_FOUND AND BUILD_TESTING )
             ${YAMLCPP_LIBRARY}
     )
     set_target_properties( geoiptest PROPERTIES AUTOMOC TRUE )
+
+    ecm_add_test(
+            Tests.cpp
+            LocaleConfiguration.cpp
+        TEST_NAME
+            localetest
+        LINK_LIBRARIES
+            calamares
+            Qt5::Test
+    )
+    set_target_properties( localetest PROPERTIES AUTOMOC TRUE )
 endif()
 
 if( BUILD_TESTING )

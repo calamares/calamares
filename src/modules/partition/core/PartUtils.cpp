@@ -31,6 +31,7 @@
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 
+#include <utils/CalamaresUtilsSystem.h>
 #include <utils/Logger.h>
 #include <JobQueue.h>
 #include <GlobalStorage.h>
@@ -79,26 +80,47 @@ bool
 canBeResized( Partition* candidate )
 {
     if ( !candidate )
+    {
+        cDebug() << "Partition* is NULL";
         return false;
+    }
 
+    cDebug() << "Checking if" << candidate->partitionPath() << "can be resized.";
     if ( !candidate->fileSystem().supportGrow() ||
          !candidate->fileSystem().supportShrink() )
+    {
+        cDebug() << "  .. filesystem" << candidate->fileSystem().name()
+            << "does not support resize.";
         return false;
+    }
 
     if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
+    {
+        cDebug() << "  .. partition is free space";
         return false;
+    }
 
     if ( candidate->isMounted() )
+    {
+        cDebug() << "  .. partition is mounted";
         return false;
+    }
 
     if ( candidate->roles().has( PartitionRole::Primary ) )
     {
         PartitionTable* table = dynamic_cast< PartitionTable* >( candidate->parent() );
         if ( !table )
+        {
+            cDebug() << "  .. no partition table found";
             return false;
+        }
 
         if ( table->numPrimaries() >= table->maxPrimaries() )
+        {
+            cDebug() << "  .. partition table already has" 
+                << table->maxPrimaries() << "primary partitions.";
             return false;
+        }
     }
 
     bool ok = false;
@@ -135,11 +157,10 @@ bool
 canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 {
     //FIXME: check for max partitions count on DOS MBR
-    cDebug() << "checking if" << partitionPath << "can be resized.";
+    cDebug() << "Checking if" << partitionPath << "can be resized.";
     QString partitionWithOs = partitionPath;
     if ( partitionWithOs.startsWith( "/dev/" ) )
     {
-        cDebug() << partitionWithOs << "seems like a good path";
         DeviceModel* dm = core->deviceModel();
         for ( int i = 0; i < dm->rowCount(); ++i )
         {
@@ -147,10 +168,11 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
             Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, partitionWithOs );
             if ( candidate )
             {
-                cDebug() << "found Partition* for" << partitionWithOs;
+                cDebug() << "  .. found Partition* for" << partitionWithOs;
                 return canBeResized( candidate );
             }
         }
+        cDebug() << "  .. no Partition* found for" << partitionWithOs;
     }
 
     cDebug() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
@@ -161,42 +183,55 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 static FstabEntryList
 lookForFstabEntries( const QString& partitionPath )
 {
+    QStringList mountOptions{ "ro" };
+
+    auto r = CalamaresUtils::System::runCommand(
+        CalamaresUtils::System::RunLocation::RunInHost,
+        { "blkid", "-s", "TYPE", "-o", "value", partitionPath }
+    );
+    if ( r.getExitCode() )
+        cWarning() << "blkid on" << partitionPath << "failed.";
+    else
+    {
+        QString fstype = r.getOutput().trimmed();
+        if ( ( fstype == "ext3" ) || ( fstype == "ext4" ) )
+            mountOptions.append( "noload" );
+    }
+
+    cDebug() << "Checking device" << partitionPath 
+        << "for fstab (fs=" << r.getOutput() << ')';
+
     FstabEntryList fstabEntries;
     QTemporaryDir mountsDir;
+    mountsDir.setAutoRemove( false );
 
-    int exit = QProcess::execute( "mount", { partitionPath, mountsDir.path() } );
+    int exit = QProcess::execute( "mount", { "-o", mountOptions.join(','), partitionPath, mountsDir.path() } );
     if ( !exit ) // if all is well
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
+        
+        cDebug() << "  .. reading" << fstabFile.fileName();
+        
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
             const QStringList fstabLines = QString::fromLocal8Bit( fstabFile.readAll() )
                                      .split( '\n' );
 
             for ( const QString& rawLine : fstabLines )
-            {
-                QString line = rawLine.simplified();
-                if ( line.startsWith( '#' ) )
-                    continue;
-
-                QStringList splitLine = line.split( ' ' );
-                if ( splitLine.length() != 6 )
-                    continue;
-
-                fstabEntries.append( { splitLine.at( 0 ), // path, or UUID, or LABEL, etc.
-                                       splitLine.at( 1 ), // mount point
-                                       splitLine.at( 2 ), // fs type
-                                       splitLine.at( 3 ), // options
-                                       splitLine.at( 4 ).toInt(), //dump
-                                       splitLine.at( 5 ).toInt()  //pass
-                                     } );
-            }
-
+                fstabEntries.append( FstabEntry::fromEtcFstab( rawLine ) );
             fstabFile.close();
+            cDebug() << "  .. got" << fstabEntries.count() << "lines.";
+            std::remove_if( fstabEntries.begin(), fstabEntries.end(), [](const FstabEntry& x) { return !x.isValid(); } );
+            cDebug() << "  .. got" << fstabEntries.count() << "fstab entries.";
         }
+        else
+            cWarning() << "Could not read fstab from mounted fs";
 
-        QProcess::execute( "umount", { "-R", mountsDir.path() } );
+        if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) )
+            cWarning() << "Could not unmount" << mountsDir.path();
     }
+    else
+        cWarning() << "Could not mount existing fs";
 
     return fstabEntries;
 }
@@ -295,7 +330,6 @@ runOsprober( PartitionCoreModule* core )
                 osprober.readAllStandardOutput() ).trimmed() );
     }
 
-    QString osProberReport( "Osprober lines, clean:\n" );
     QStringList osproberCleanLines;
     OsproberEntryList osproberEntries;
     const auto lines = osproberOutput.split( '\n' );
@@ -327,8 +361,11 @@ runOsprober( PartitionCoreModule* core )
             osproberCleanLines.append( line );
         }
     }
-    osProberReport.append( osproberCleanLines.join( '\n' ) );
-    cDebug() << osProberReport;
+
+    if ( osproberCleanLines.count() > 0 )
+        cDebug() << "os-prober lines after cleanup:" << Logger::DebugList( osproberCleanLines );
+    else
+        cDebug() << "os-prober gave no output.";
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
 
@@ -372,3 +409,31 @@ isEfiBootable( const Partition* candidate )
 }
 
 }  // nmamespace PartUtils
+
+/* Implementation of methods for FstabEntry, from OsproberEntry.h */
+
+bool
+FstabEntry::isValid() const
+{
+    return !partitionNode.isEmpty() && !mountPoint.isEmpty() && !fsType.isEmpty();
+}
+
+FstabEntry
+FstabEntry::fromEtcFstab( const QString& rawLine )
+{
+    QString line = rawLine.simplified();
+    if ( line.startsWith( '#' ) )
+        return FstabEntry{ QString(), QString(), QString(), QString(), 0, 0 };
+
+    QStringList splitLine = line.split( ' ' );
+    if ( splitLine.length() != 6 )
+        return FstabEntry{ QString(), QString(), QString(), QString(), 0, 0 };
+
+    return FstabEntry{ splitLine.at( 0 ), // path, or UUID, or LABEL, etc.
+                       splitLine.at( 1 ), // mount point
+                       splitLine.at( 2 ), // fs type
+                       splitLine.at( 3 ), // options
+                       splitLine.at( 4 ).toInt(), //dump
+                       splitLine.at( 5 ).toInt()  //pass
+                       };
+ }

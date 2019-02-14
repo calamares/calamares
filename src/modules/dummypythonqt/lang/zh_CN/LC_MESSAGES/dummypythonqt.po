@@ -3,13 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# soenggam <senggemg@gmail.com>, 2017
+# Mingcong Bai <jeffbai@aosc.xyz>, 2017
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2018-10-05 11:34-0400\n"
+"PO-Revision-Date: 2016-12-16 12:18+0000\n"
 "Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>, 2017\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/calamares/teams/20061/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +28,7 @@ msgstr "按我按我！"
 
 #: src/modules/dummypythonqt/main.py:94
 msgid "A new QLabel."
-msgstr "一个平淡无奇的 QLabel。"
+msgstr "一个新的QLabel。"
 
 #: src/modules/dummypythonqt/main.py:97
 msgid "Dummy PythonQt ViewStep"

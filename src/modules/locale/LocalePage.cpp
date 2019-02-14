@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include "timezonewidget/timezonewidget.h"
 #include "SetTimezoneJob.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "GlobalStorage.h"
@@ -163,16 +164,17 @@ LocalePage::LocalePage( QWidget* parent )
     {
         LCLocaleDialog* dlg =
                 new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ?
-                                        guessLocaleConfiguration().lang :
-                                        m_selectedLocaleConfiguration.lang,
+                                        guessLocaleConfiguration().language() :
+                                        m_selectedLocaleConfiguration.language(),
                                     m_localeGenLines,
                                     this );
         dlg->exec();
         if ( dlg->result() == QDialog::Accepted &&
              !dlg->selectedLCLocale().isEmpty() )
         {
-            m_selectedLocaleConfiguration.lang = dlg->selectedLCLocale();
+            m_selectedLocaleConfiguration.setLanguage( dlg->selectedLCLocale() );
             m_selectedLocaleConfiguration.explicit_lang = true;
+            this->updateGlobalLocale();
             this->updateLocaleLabels();
         }
 
@@ -316,7 +318,7 @@ LocalePage::init( const QString& initialRegion,
         }
         else
         {
-            cDebug() << "Cannot open file" << localeGenPath
+            cWarning() << "Cannot open file" << localeGenPath
                      << ". Assuming the supported languages are already built into "
                         "the locale archive.";
             QProcess localeA;
@@ -383,12 +385,14 @@ LocalePage::init( const QString& initialRegion,
 
 std::pair< QString, QString > LocalePage::prettyLocaleStatus( const LocaleConfiguration& lc ) const
 {
+    using CalamaresUtils::LocaleLabel;
+
+    LocaleLabel lang( lc.language(), LocaleLabel::LabelFormat::AlwaysWithCountry );
+    LocaleLabel num( lc.lc_numeric, LocaleLabel::LabelFormat::AlwaysWithCountry );
+
     return std::make_pair< QString, QString >(
-        tr( "The system language will be set to %1." )
-            .arg( prettyLCLocale( lc.lang ) ),
-        tr( "The numbers and dates locale will be set to %1." )
-                            .arg( prettyLCLocale( lc.lc_numeric ) )
-                                             );
+        tr( "The system language will be set to %1." ).arg( lang.label() ),
+        tr( "The numbers and dates locale will be set to %1." ).arg( num.label() ) );
 }
 
 QString
@@ -440,7 +444,8 @@ LocalePage::onActivate()
          !m_selectedLocaleConfiguration.explicit_lang )
     {
         auto newLocale = guessLocaleConfiguration();
-        m_selectedLocaleConfiguration.lang = newLocale.lang;
+        m_selectedLocaleConfiguration.setLanguage( newLocale.language() );
+        updateGlobalLocale();
         updateLocaleLabels();
     }
 }
@@ -449,54 +454,39 @@ LocalePage::onActivate()
 LocaleConfiguration
 LocalePage::guessLocaleConfiguration() const
 {
-    QLocale myLocale;   // User-selected language
-
-    // If we cannot say anything about available locales
-    if ( m_localeGenLines.isEmpty() )
-    {
-        cWarning() << "guessLocaleConfiguration can't guess from an empty list.";
-        return LocaleConfiguration::createDefault();
-    }
-
-    QString myLanguageLocale = myLocale.name();
-    if ( myLanguageLocale.isEmpty() )
-        return LocaleConfiguration::createDefault();
-
-    return LocaleConfiguration::fromLanguageAndLocation( myLanguageLocale,
+    return LocaleConfiguration::fromLanguageAndLocation( QLocale().name(),
                                                          m_localeGenLines,
                                                          m_tzWidget->getCurrentLocation().country );
 }
 
 
-QString
-LocalePage::prettyLCLocale( const QString& lcLocale ) const
+void
+LocalePage::updateGlobalLocale()
 {
-    QString localeString = lcLocale;
-    if ( localeString.endsWith( " UTF-8" ) )
-        localeString.remove( " UTF-8" );
-
-    QLocale locale( localeString );
-    //: Language (Country)
-    return tr( "%1 (%2)" ).arg( QLocale::languageToString( locale.language() ) )
-                          .arg( QLocale::countryToString( locale.country() ) );
+    auto *gs = Calamares::JobQueue::instance()->globalStorage();
+    const QString bcp47 = m_selectedLocaleConfiguration.toBcp47();
+    gs->insert( "locale", bcp47 );
 }
+
 
 void
 LocalePage::updateGlobalStorage()
 {
-    LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
-    Calamares::JobQueue::instance()->globalStorage()
-            ->insert( "locationRegion", location.region );
-    Calamares::JobQueue::instance()->globalStorage()
-            ->insert( "locationZone", location.zone );
+    auto *gs = Calamares::JobQueue::instance()->globalStorage();
 
-    const QString bcp47 = m_selectedLocaleConfiguration.toBcp47();
-    Calamares::JobQueue::instance()->globalStorage()->insert( "locale", bcp47 );
+    LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
+    bool locationChanged = ( location.region != gs->value( "locationRegion" ) ) ||
+                           ( location.zone != gs->value( "locationZone" ) );
+
+    gs->insert( "locationRegion", location.region );
+    gs->insert( "locationZone", location.zone );
+
+    updateGlobalLocale();
 
     // If we're in chroot mode (normal install mode), then we immediately set the
     // timezone on the live system. When debugging timezones, don't bother.
 #ifndef DEBUG_TIMEZONES
-    if ( Calamares::Settings::instance()->doChroot() )
+    if ( locationChanged && Calamares::Settings::instance()->doChroot() )
     {
         QProcess::execute( "timedatectl",  // depends on systemd
                             { "set-timezone",
@@ -508,7 +498,7 @@ LocalePage::updateGlobalStorage()
     auto newLocale = guessLocaleConfiguration();
     if ( !m_selectedLocaleConfiguration.isEmpty() &&
          m_selectedLocaleConfiguration.explicit_lang )
-        newLocale.lang = m_selectedLocaleConfiguration.lang;
+        newLocale.setLanguage( m_selectedLocaleConfiguration.language() );
     if ( !m_selectedLocaleConfiguration.isEmpty() &&
          m_selectedLocaleConfiguration.explicit_lc )
     {

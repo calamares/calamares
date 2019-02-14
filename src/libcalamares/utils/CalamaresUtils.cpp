@@ -49,6 +49,9 @@ static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
 static QString s_translatorLocaleName;
 
+static bool s_haveExtraDirs = false;
+static QStringList s_extraConfigDirs;
+static QStringList s_extraDataDirs;
 
 static bool
 isWritableDir( const QDir& dir )
@@ -94,6 +97,46 @@ setAppDataDir( const QDir& dir )
     s_isAppDataDirOverridden = true;
 }
 
+/* Split $ENV{@p name} on :, append to @p l, making sure each ends in / */
+static void
+mungeEnvironment( QStringList& l, const char *name )
+{
+    for ( auto s : QString( qgetenv( name ) ).split(':') )
+        if ( s.endsWith( '/' ) )
+            l << s;
+        else
+            l << ( s + '/' );
+}
+
+void
+setXdgDirs()
+{
+    s_haveExtraDirs = true;
+    mungeEnvironment( s_extraConfigDirs, "XDG_CONFIG_DIRS" );
+    mungeEnvironment( s_extraDataDirs, "XDG_DATA_DIRS" );
+}
+
+QStringList
+extraConfigDirs()
+{
+    if ( s_haveExtraDirs )
+        return s_extraConfigDirs;
+    return QStringList();
+}
+
+QStringList
+extraDataDirs()
+{
+    if ( s_haveExtraDirs )
+        return s_extraDataDirs;
+    return QStringList();
+}
+
+bool
+haveExtraDirs()
+{
+    return s_haveExtraDirs && ( !s_extraConfigDirs.isEmpty() || !s_extraDataDirs.isEmpty() );
+}
 
 bool
 isAppDataDirOverridden()

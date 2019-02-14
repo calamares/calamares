@@ -3,6 +3,7 @@
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,6 +22,7 @@
 #include "gui/PartitionViewStep.h"
 
 #include "core/DeviceModel.h"
+#include "core/PartitionActions.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionModel.h"
 #include "core/KPMHelpers.h"
@@ -34,6 +36,7 @@
 #include "CalamaresVersion.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"
 #include "widgets/WaitingWidget.h"
 #include "GlobalStorage.h"
@@ -92,7 +95,7 @@ PartitionViewStep::continueLoading()
     Q_ASSERT( !m_manualPartitionPage );
 
     m_manualPartitionPage = new PartitionPage( m_core );
-    m_choicePage = new ChoicePage();
+    m_choicePage = new ChoicePage( m_swapChoices );
 
     m_choicePage->init( m_core );
 
@@ -140,7 +143,7 @@ PartitionViewStep::createSummaryWidget() const
     widget->setLayout( mainLayout );
     mainLayout->setMargin( 0 );
 
-    ChoicePage::Choice choice = m_choicePage->currentChoice();
+    ChoicePage::InstallChoice choice = m_choicePage->currentChoice();
 
     QFormLayout* formLayout = new QFormLayout( widget );
     const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;
@@ -287,6 +290,7 @@ PartitionViewStep::next()
         if ( m_choicePage->currentChoice() == ChoicePage::Manual )
         {
             m_widget->setCurrentWidget( m_manualPartitionPage );
+            m_manualPartitionPage->selectDeviceByIndex( m_choicePage->lastSelectedDeviceIndex() );
             if ( m_core->isDirty() )
                 m_manualPartitionPage->onRevertClicked();
         }
@@ -316,7 +320,10 @@ void
 PartitionViewStep::back()
 {
     if ( m_widget->currentWidget() != m_choicePage )
+    {
         m_widget->setCurrentWidget( m_choicePage );
+        m_choicePage->setLastSelectedDeviceIndex( m_manualPartitionPage->selectedDeviceIndex() );
+    }
 }
 
 
@@ -472,72 +479,160 @@ PartitionViewStep::onLeave()
 }
 
 
+static PartitionActions::Choices::SwapChoice
+nameToChoice( QString name, bool& ok )
+{
+    using namespace PartitionActions::Choices;
+
+    static const NamedEnumTable<SwapChoice> names {
+        { QStringLiteral( "none" ), SwapChoice::NoSwap },
+        { QStringLiteral( "small" ), SwapChoice::SmallSwap },
+        { QStringLiteral( "suspend" ), SwapChoice::FullSwap },
+        { QStringLiteral( "reuse" ), SwapChoice::ReuseSwap },
+        { QStringLiteral( "file" ), SwapChoice::SwapFile }
+    };
+
+    return names.find( name, ok );
+}
+
+/** @brief translate @p defaultFS into a recognized name
+ *
+ * Makes several attempts to translate the string into a
+ * name that KPMCore will recognize.
+ */
+static QString
+findFS( QString defaultFS )
+{
+    QStringList fsLanguage { QLatin1Literal( "C" ) };  // Required language list to turn off localization
+    if ( defaultFS.isEmpty() )
+    {
+        cWarning() << "Partition-module setting *defaultFileSystemType* is missing, using ext4";
+        defaultFS = QStringLiteral( "ext4" );
+    }
+    if ( FileSystem::typeForName( defaultFS, fsLanguage ) != FileSystem::Unknown )
+    {
+        cDebug() << "Partition-module setting *defaultFileSystemType*" << defaultFS;
+        return defaultFS;
+    }
+
+    // Second pass: try case-insensitive
+    const auto fstypes = FileSystem::types();
+    for ( FileSystem::Type t : fstypes )
+    {
+        if ( 0 == QString::compare( defaultFS, FileSystem::nameForType( t, fsLanguage ), Qt::CaseInsensitive ) )
+        {
+            defaultFS = FileSystem::nameForType( t, fsLanguage );
+            cWarning() << "Partition-module setting *defaultFileSystemType* changed" << defaultFS;
+            return defaultFS;
+        }
+    }
+
+    cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << defaultFS << ") using ext4.";
+    defaultFS = QStringLiteral( "ext4" );
+#ifdef DEBUG_FILESYSTEMS
+    // This bit is for distro's debugging their settings, and shows
+    // all the strings that KPMCore is matching against for FS type.
+    {
+        Logger::CDebug d;
+        using TR = Logger::DebugRow< int, QString >;
+        const auto fstypes = FileSystem::types();
+        d << "Available types (" << fstypes.count() << ')';
+        for ( FileSystem::Type t : fstypes )
+            d << TR( static_cast<int>( t ), FileSystem::nameForType( t, fsLanguage ) );
+    }
+#endif
+    return defaultFS;
+}
+
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     // Copy the efiSystemPartition setting to the global storage. It is needed not only in
     // the EraseDiskPage, but also in the bootloader configuration modules (grub, bootloader).
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( configurationMap.contains( "efiSystemPartition" ) &&
-            configurationMap.value( "efiSystemPartition" ).type() == QVariant::String &&
-            !configurationMap.value( "efiSystemPartition" ).toString().isEmpty() )
-        gs->insert( "efiSystemPartition", configurationMap.value( "efiSystemPartition" ).toString() );
-    else
-        gs->insert( "efiSystemPartition", QStringLiteral( "/boot/efi" ) );
+    QString efiSP = CalamaresUtils::getString( configurationMap, "efiSystemPartition" );
+    if ( efiSP.isEmpty() )
+        efiSP = QStringLiteral( "/boot/efi" );
+    gs->insert( "efiSystemPartition", efiSP );
 
-    if ( configurationMap.contains( "ensureSuspendToDisk" ) &&
-            configurationMap.value( "ensureSuspendToDisk" ).type() == QVariant::Bool )
-        gs->insert( "ensureSuspendToDisk", configurationMap.value( "ensureSuspendToDisk" ).toBool() );
-    else
-        gs->insert( "ensureSuspendToDisk", true );
+    // SWAP SETTINGS
+    //
+    // This is a bit convoluted because there's legacy settings to handle as well
+    // as the new-style list of choices, with mapping back-and-forth.
+    if ( configurationMap.contains( "userSwapChoices" ) &&
+        ( configurationMap.contains( "ensureSuspendToDisk" ) || configurationMap.contains( "neverCreateSwap" ) ) )
+        cError() << "Partition-module configuration mixes old- and new-style swap settings.";
 
-    if ( configurationMap.contains( "neverCreateSwap" ) &&
-            configurationMap.value( "neverCreateSwap" ).type() == QVariant::Bool )
-        gs->insert( "neverCreateSwap", configurationMap.value( "neverCreateSwap" ).toBool() );
-    else
-        gs->insert( "neverCreateSwap", false );
+    if ( configurationMap.contains( "ensureSuspendToDisk" ) )
+        cWarning() << "Partition-module setting *ensureSuspendToDisk* is deprecated.";
+    bool ensureSuspendToDisk = CalamaresUtils::getBool( configurationMap, "ensureSuspendToDisk", true );
 
-    if ( configurationMap.contains( "drawNestedPartitions" ) &&
-            configurationMap.value( "drawNestedPartitions" ).type() == QVariant::Bool )
+    if ( configurationMap.contains( "neverCreateSwap" ) )
+        cWarning() << "Partition-module setting *neverCreateSwap* is deprecated.";
+    bool neverCreateSwap = CalamaresUtils::getBool( configurationMap, "neverCreateSwap", false );
+
+    QSet< PartitionActions::Choices::SwapChoice > choices;  // Available swap choices
+    if ( configurationMap.contains( "userSwapChoices" ) )
     {
-        gs->insert( "drawNestedPartitions",
-                    configurationMap.value( "drawNestedPartitions", false ).toBool() );
-    }
-    else
-        gs->insert( "drawNestedPartitions", false );
+        // We've already warned about overlapping settings with the
+        // legacy *ensureSuspendToDisk* and *neverCreateSwap*.
+        QStringList l = configurationMap[ "userSwapChoices" ].toStringList();
 
-    if ( configurationMap.contains( "alwaysShowPartitionLabels" ) &&
-            configurationMap.value( "alwaysShowPartitionLabels" ).type() == QVariant::Bool )
-    {
-        gs->insert( "alwaysShowPartitionLabels",
-                    configurationMap.value( "alwaysShowPartitionLabels", true ).toBool() );
-    }
-    else
-        gs->insert( "alwaysShowPartitionLabels", true );
-
-    if ( configurationMap.contains( "defaultFileSystemType" ) &&
-            configurationMap.value( "defaultFileSystemType" ).type() == QVariant::String &&
-            !configurationMap.value( "defaultFileSystemType" ).toString().isEmpty() )
-    {
-        QString typeString = configurationMap.value( "defaultFileSystemType" ).toString();
-        gs->insert( "defaultFileSystemType", typeString );
-        if ( FileSystem::typeForName( typeString ) == FileSystem::Unknown )
+        for ( const auto& item : l )
         {
-            cWarning() << "bad default filesystem configuration for partition module. Reverting to ext4 as default.";
-            gs->insert( "defaultFileSystemType", "ext4" );
+            bool ok = false;
+            auto v = PartitionActions::Choices::nameToChoice( item, ok );
+            if ( ok )
+                choices.insert( v );
         }
-    }
-    else
-        gs->insert( "defaultFileSystemType", QStringLiteral( "ext4" ) );
 
-    if ( configurationMap.contains( "enableLuksAutomatedPartitioning" ) &&
-            configurationMap.value( "enableLuksAutomatedPartitioning" ).type() == QVariant::Bool )
-    {
-        gs->insert( "enableLuksAutomatedPartitioning",
-                    configurationMap.value( "enableLuksAutomatedPartitioning" ).toBool() );
+        if ( choices.isEmpty() )
+        {
+            cWarning() << "Partition-module configuration for *userSwapChoices* is empty:" << l;
+            choices.insert( PartitionActions::Choices::SwapChoice::FullSwap );
+        }
+
+        // suspend if it's one of the possible choices; suppress swap only if it's
+        // the **only** choice available.
+        ensureSuspendToDisk = choices.contains( PartitionActions::Choices::SwapChoice::FullSwap );
+        neverCreateSwap = ( choices.count() == 1 ) && choices.contains( PartitionActions::Choices::SwapChoice::NoSwap );
     }
     else
-        gs->insert( "enableLuksAutomatedPartitioning", true );
+    {
+        // Convert the legacy settings into a single setting for now.
+        if ( neverCreateSwap )
+            choices.insert( PartitionActions::Choices::SwapChoice::NoSwap );
+        else if ( ensureSuspendToDisk )
+            choices.insert( PartitionActions::Choices::SwapChoice::FullSwap );
+        else
+            choices.insert( PartitionActions::Choices::SwapChoice::SmallSwap );
+    }
+
+    // Not all are supported right now // FIXME
+    static const char unsupportedSetting[] = "Partition-module does not support *userSwapChoices* setting";
+
+#define COMPLAIN_UNSUPPORTED(x) \
+    if ( choices.contains( x ) ) \
+    { cWarning() << unsupportedSetting << PartitionActions::Choices::choiceToName( x ); choices.remove( x ); }
+
+    COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::SwapFile )
+    COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::ReuseSwap )
+#undef COMPLAIN_UNSUPPORTED
+
+    m_swapChoices = choices;
+
+    // These gs settings seem to be unused (in upstream Calamares) outside of
+    // the partition module itself.
+    gs->insert( "ensureSuspendToDisk", ensureSuspendToDisk );
+    gs->insert( "neverCreateSwap", neverCreateSwap );
+
+    // OTHER SETTINGS
+    //
+    gs->insert( "drawNestedPartitions", CalamaresUtils::getBool( configurationMap, "drawNestedPartitions", false ) );
+    gs->insert( "alwaysShowPartitionLabels", CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
+    gs->insert( "enableLuksAutomatedPartitioning", CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
+    gs->insert( "allowManualPartitioning", CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
+    gs->insert( "defaultFileSystemType", findFS( CalamaresUtils::getString( configurationMap, "defaultFileSystemType" ) ) );
 
 
     // Now that we have the config, we load the PartitionCoreModule in the background
@@ -555,6 +650,15 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future =
         QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
+
+    if ( configurationMap.contains( "partitionLayout" ) )
+    {
+        m_core->initLayout( configurationMap.values( "partitionLayout" ).at(0).toList() );
+    }
+    else
+    {
+        m_core->initLayout();
+    }
 }
 
 

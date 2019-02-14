@@ -132,6 +132,10 @@ SetPartFlagsJob::prettyStatusMessage() const
 Calamares::JobResult
 SetPartFlagsJob::exec()
 {
+    cDebug() << "Setting flags on" << m_device->deviceNode()
+        << "partition" << partition()->deviceNode()
+        << "to" << m_flags;
+
     Report report ( nullptr );
     SetPartFlagsOperation op( *m_device, *partition(), m_flags );
     op.setStatus( Operation::StatusRunning );

@@ -89,7 +89,7 @@ Partition* createNewPartition( PartitionNode* parent,
                                FileSystem::Type fsType,
                                qint64 firstSector,
                                qint64 lastSector,
-                               PartitionTable::Flags flags = PartitionTable::FlagNone );
+                               PartitionTable::Flags flags );
 
 Partition* createNewEncryptedPartition( PartitionNode* parent,
                                         const Device& device,
@@ -98,7 +98,7 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
                                         qint64 firstSector,
                                         qint64 lastSector,
                                         const QString& passphrase,
-                                        PartitionTable::Flags flags = PartitionTable::FlagNone );
+                                        PartitionTable::Flags flags );
 
 Partition* clonePartition( Device* device, Partition* partition );
 

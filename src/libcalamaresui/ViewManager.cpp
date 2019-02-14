@@ -95,6 +95,10 @@ ViewManager::ViewManager( QObject* parent )
              this, &ViewManager::onInstallationFailed );
     connect( JobQueue::instance(), &JobQueue::finished,
              this, &ViewManager::next );
+
+    if (Calamares::Settings::instance()->disableCancel())
+        m_quit->setVisible( false );
+
 }
 
 
@@ -191,7 +195,7 @@ ViewManager::onInitFailed( const QStringList& modules)
         detailString = details.join( QString() );
     }
 
-    insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ShortProductName ), detailString ) );
+    insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ProductName ), detailString ) );
 }
 
 ViewStepList
@@ -282,9 +286,13 @@ ViewManager::updateButtonLabels()
     {
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( tr( "The installation is complete. Close the installer." ) );
+        if (Calamares::Settings::instance()->disableCancel())
+            m_quit->setVisible( true );
     }
     else
     {
+        if (Calamares::Settings::instance()->disableCancel())
+            m_quit->setVisible( false );
         m_quit->setText( tr( "&Cancel" ) );
         m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
     }

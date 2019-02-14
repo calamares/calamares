@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -51,12 +52,17 @@ public:
 
 private:
     LocaleConfiguration guessLocaleConfiguration() const;
-    QString prettyLCLocale( const QString& localesMap ) const;
 
     // For the given locale config, return two strings describing
     // the settings for language and numbers.
     std::pair< QString, QString > prettyLocaleStatus( const LocaleConfiguration& ) const;
 
+    /** @brief Update the GS *locale* key with the selected system language.
+     *
+     * This uses whatever is set in m_selectedLocaleConfiguration as the language,
+     * and writes it to GS *locale* key (as a string, in BCP47 format).
+     */
+    void updateGlobalLocale();
     void updateGlobalStorage();
     void updateLocaleLabels();
 
