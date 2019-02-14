@@ -58,17 +58,16 @@ def systemctl(targets, command, suffix):
             )
 
         if ec != 0:
+            libcalamares.utils.warning(
+                "Cannot {} systemd {} {}".format(command, suffix, name)
+                )
+            libcalamares.utils.warning(
+                "systemctl {} call in chroot returned error code {}".format(command, ec)
+                )
             if mandatory:
-                return ("Cannot {} systemd {} {}".format(command, suffix, name),
-                        "systemctl {} call in chroot returned error code {}".format(command, ec)
+                return (_("Cannot {} systemd {} {}").format(command, suffix, name),
+                        _("systemctl {} call in chroot returned error code {}").format(command, ec)
                         )
-            else:
-                libcalamares.utils.warning(
-                    "Cannot {} systemd {} {}".format(command, suffix, name)
-                    )
-                libcalamares.utils.warning(
-                    "systemctl {} call in chroot returned error code {}".format(command, ec)
-                    )
     return None
 
 
@@ -103,6 +102,4 @@ def run():
     if r is not None:
         return r
 
-
-    # This could have just been return r
     return None
