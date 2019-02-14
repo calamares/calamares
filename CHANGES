@@ -3,6 +3,15 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.5 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+
+## Core ##
+
+## Modules ##
+
+
 # 3.2.4 (2019-02-12) #
 
 This release contains contributions from (alphabetically by first name):
@@ -65,6 +74,7 @@ This release contains contributions from (alphabetically by first name):
  * A new *rawfs* module supports straightforward copying of filesystems from
    the installation media to the target stystem. This can be used, for instance,
    for block-level-identical installations.
+
 
 # 3.2.3 (2019-01-09) #
 
