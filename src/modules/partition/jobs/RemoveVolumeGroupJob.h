@@ -25,6 +25,7 @@ class LvmDevice;
 
 class RemoveVolumeGroupJob : public Calamares::Job
 {
+    Q_OBJECT
 public:
     RemoveVolumeGroupJob( LvmDevice* device );
 

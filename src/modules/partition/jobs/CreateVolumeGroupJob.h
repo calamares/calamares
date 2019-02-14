@@ -27,6 +27,7 @@
 
 class CreateVolumeGroupJob : public Calamares::Job
 {
+    Q_OBJECT
 public:
     CreateVolumeGroupJob( QString& vgName, QVector< const Partition* > pvList, const qint32 peSize );
 

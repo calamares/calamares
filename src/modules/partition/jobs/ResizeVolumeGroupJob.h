@@ -28,6 +28,7 @@ class Partition;
 
 class ResizeVolumeGroupJob : public Calamares::Job
 {
+    Q_OBJECT
 public:
     ResizeVolumeGroupJob( LvmDevice* device, QVector< const Partition* >& partitionList );
 
