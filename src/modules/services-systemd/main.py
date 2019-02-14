@@ -6,7 +6,7 @@
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2018, Adriaan de Groot <groot@kde.org>
+#   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -22,6 +22,17 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
+
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Configure systemd services")
 
 
 def systemctl(targets, command, suffix):
@@ -47,17 +58,16 @@ def systemctl(targets, command, suffix):
             )
 
         if ec != 0:
+            libcalamares.utils.warning(
+                "Cannot {} systemd {} {}".format(command, suffix, name)
+                )
+            libcalamares.utils.warning(
+                "systemctl {} call in chroot returned error code {}".format(command, ec)
+                )
             if mandatory:
-                return ("Cannot {} systemd {} {}".format(command, suffix, name),
-                        "systemctl {} call in chroot returned error code {}".format(command, ec)
+                return (_("Cannot {} systemd {} {}").format(command, suffix, name),
+                        _("systemctl {} call in chroot returned error code {}").format(command, ec)
                         )
-            else:
-                libcalamares.utils.warning(
-                    "Cannot {} systemd {} {}".format(command, suffix, name)
-                    )
-                libcalamares.utils.warning(
-                    "systemctl {} call in chroot returned error code {}".format(command, ec)
-                    )
     return None
 
 
@@ -92,6 +102,4 @@ def run():
     if r is not None:
         return r
 
-
-    # This could have just been return r
     return None

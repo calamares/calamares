@@ -5,6 +5,7 @@
 #
 #   Copyright 2015, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017. Alf Gaida <agaida@siduction.org>
+#   Copyright 2019, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -21,6 +22,16 @@
 
 import subprocess
 import libcalamares
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Remove live user from target system")
 
 
 def run():
