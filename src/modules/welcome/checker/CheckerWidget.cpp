@@ -60,15 +60,15 @@ CheckerWidget::init( const Calamares::RequirementsList& checkEntries )
 
     for ( const auto& entry : checkEntries )
     {
-        if ( !entry.checked )
+        if ( !entry.satisfied )
         {
-            CheckItemWidget* ciw = new CheckItemWidget( entry.checked, entry.required );
+            CheckItemWidget* ciw = new CheckItemWidget( entry.satisfied, entry.mandatory );
             CALAMARES_RETRANSLATE( ciw->setText( entry.negatedText() ); )
             m_entriesLayout->addWidget( ciw );
             ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
             allChecked = false;
-            if ( entry.required )
+            if ( entry.mandatory )
             {
                 requirementsSatisfied = false;
             }
@@ -182,7 +182,7 @@ CheckerWidget::showDetailsDialog( const Calamares::RequirementsList& checkEntrie
         if ( entry.enumerationText().isEmpty() )
             continue;
 
-        CheckItemWidget* ciw = new CheckItemWidget( entry.checked, entry.required );
+        CheckItemWidget* ciw = new CheckItemWidget( entry.satisfied, entry.mandatory );
         CALAMARES_RETRANSLATE( ciw->setText( entry.enumerationText() ); )
         entriesLayout->addWidget( ciw );
         ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );

@@ -28,22 +28,30 @@ namespace Calamares
 
 /**
  * An indication of a requirement, which is checked in preparation
- * for system installation. An entry has a name and some explanation,
- * as well as three meaningful states:
- *  - checked = true, the requirement is met (green)
- *  - checked = false, the requirement is not met
- *      - required = false, warn about it (yellow), no failure
- *      - required = true, prohibit installation (red)
+ * for system installation. An entry has a name and some explanation functions
+ * (functions, because they need to respond to translations).
+ *
+ * A requirement can be *satisfied* or not.
+ * A requirement can be optional (i.e. a "good to have") or mandatory.
+ *
+ * Requirements which are not satisfied, and also mandatory, will prevent the
+ * installation from proceeding.
  */
 struct RequirementEntry
 {
+    using TextFunction = std::function< QString() >;
+
+    /// @brief name of this requirement; not shown to user and used as ID
     QString name;
-    std::function< QString() > enumerationText; //Partial string, inserted in a
-                                                //list of requirements to satisfy.
-    std::function< QString() > negatedText;     //Complete sentence about this requirement
-                                                //not having been met.
-    bool checked;
-    bool required;
+
+    /// @brief Description of this requirement, for use in user-visible lists
+    TextFunction enumerationText;
+
+    /// @brief User-visible string to show that the requirement is not met
+    std::function< QString() > negatedText;
+
+    bool satisfied;
+    bool mandatory;
 };
 
 using RequirementsList = QList< RequirementEntry >;

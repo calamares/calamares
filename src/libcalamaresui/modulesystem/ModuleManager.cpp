@@ -317,7 +317,7 @@ ModuleManager::checkRequirements()
 
         for (const auto& module : m_loadedModulesByInstanceKey )
         {
-            auto l = module->checkRequirements();
+            RequirementsList l = module->checkRequirements();
             if ( l.length() > 0 )
             {
                 cDebug() << "  .." << module->name() << l.length() << "requirements";
@@ -325,7 +325,7 @@ ModuleManager::checkRequirements()
             }
             for (const auto& r : l)
             {
-                if (r.required && !r.checked)
+                if ( r.mandatory && !r.satisfied )
                     acceptable = false;
             }
         }
