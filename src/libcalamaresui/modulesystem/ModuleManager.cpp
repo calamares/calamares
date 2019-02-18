@@ -320,13 +320,18 @@ ModuleManager::checkRequirements()
             RequirementsList l = module->checkRequirements();
             if ( l.length() > 0 )
             {
-                cDebug() << "  .." << module->name() << l.length() << "requirements";
+                cDebug() << "  .." << module->name() << "has" << l.length() << "requirements";
                 emit requirementsResult( l );
             }
+            int count = 0;
             for (const auto& r : l)
             {
                 if ( r.mandatory && !r.satisfied )
+                {
+                    cDebug() << "  .. requirement" << count << r.name << "is not satisfied.";
                     acceptable = false;
+                }
+                ++count;
             }
         }
 
