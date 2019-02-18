@@ -65,8 +65,24 @@ def systemctl(targets, command, suffix):
                 "systemctl {} call in chroot returned error code {}".format(command, ec)
                 )
             if mandatory:
-                return (_("Cannot {} systemd {} {}").format(command, suffix, name),
-                        _("systemctl {} call in chroot returned error code {}").format(command, ec)
+                title = _("Cannot modify service")
+                diagnostic = _("<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}.").format(arg=command, num=ec)
+
+                if command == "enable" and suffix == ".service":
+                    description = _("Cannot enable systemd service <code>{name!s}</code>.")
+                elif command == "enable" and suffix == ".target":
+                    description = _("Cannot enable systemd target <code>{name!s}</code>.")
+                elif command == "disable" and suffix == ".service":
+                    description = _("Cannot enable systemd service <code>{name!s}</code>.")
+                elif command == "disable" and suffix == ".target":
+                    description = _("Cannot disable systemd target <code>{name!s}</code>.")
+                elif command == "mask":
+                    description = _("Cannot mask systemd unit <code>{name!s}</code>.")
+                else:
+                    description = _("Unknown systemd commands <code>{command!s}</code> and <code>{suffix!s}</code> for unit {name!s}.")
+
+                return (title,
+                        description.format(name=name, command=command, suffix=suffix) + " " + diagnostic
                         )
     return None
 
