@@ -31,7 +31,7 @@ namespace Calamares
 {
 
 class Module;
-class RequirementEntry;  // from Requirement.h
+struct RequirementEntry;  // from Requirement.h
 
 /**
  * @brief The ModuleManager class is a singleton which manages Calamares modules.
