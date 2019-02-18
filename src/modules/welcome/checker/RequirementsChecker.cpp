@@ -60,9 +60,9 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
 {
 }
 
-Calamares::RequirementsList RequirementsChecker::checkRequirements(QWidget* some_widget)
+Calamares::RequirementsList RequirementsChecker::checkRequirements()
 {
-    QSize availableSize = qApp->desktop()->availableGeometry( some_widget ).size();
+    QSize availableSize = qApp->desktop()->availableGeometry().size();
 
     bool enoughStorage = false;
     bool enoughRam = false;

@@ -135,5 +135,5 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
 Calamares::RequirementsList WelcomeViewStep::checkRequirements()
 {
-    return m_requirementsChecker->checkRequirements( m_widget );
+    return m_requirementsChecker->checkRequirements();
 }

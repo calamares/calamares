@@ -33,7 +33,7 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap );
 
-    Calamares::RequirementsList checkRequirements( QWidget* some_widget );
+    Calamares::RequirementsList checkRequirements();
 
 private:
     QStringList m_entriesToCheck;
