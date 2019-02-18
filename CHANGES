@@ -11,6 +11,10 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ * Python modules: several modules have had translations added. This is
+   usually only visible when the module runs as part of the *exec* step,
+   when the module's *pretty name* is displayed. In addition, error
+   messages are now translated.
 
 # 3.2.4 (2019-02-12) #
 
