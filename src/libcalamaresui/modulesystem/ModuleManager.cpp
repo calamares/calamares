@@ -32,14 +32,9 @@
 #include <QDir>
 #include <QTimer>
 
-#define MODULE_CONFIG_FILENAME "module.desc"
-
 namespace Calamares
 {
-
-
 ModuleManager* ModuleManager::s_instance = nullptr;
-
 
 ModuleManager*
 ModuleManager::instance()
@@ -94,7 +89,7 @@ ModuleManager::doInit()
                 bool success = currentDir.cd( subdir );
                 if ( success )
                 {
-                    QFileInfo descriptorFileInfo( currentDir.absoluteFilePath( MODULE_CONFIG_FILENAME ) );
+                    QFileInfo descriptorFileInfo( currentDir.absoluteFilePath( QLatin1Literal( "module.desc") ) );
                     if ( ! ( descriptorFileInfo.exists() && descriptorFileInfo.isReadable() ) )
                     {
                         cDebug() << Q_FUNC_INFO << "unreadable file: "
