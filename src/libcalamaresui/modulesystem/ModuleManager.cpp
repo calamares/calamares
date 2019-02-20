@@ -21,10 +21,12 @@
 
 #include "ExecutionViewStep.h"
 #include "Module.h"
-#include "utils/Logger.h"
-#include "utils/YamlUtils.h"
+#include "RequirementsChecker.h"
 #include "Settings.h"
 #include "ViewManager.h"
+
+#include "utils/Logger.h"
+#include "utils/YamlUtils.h"
 
 #include <yaml-cpp/yaml.h>
 
@@ -306,32 +308,21 @@ void
 ModuleManager::checkRequirements()
 {
     cDebug() << "Checking module requirements ..";
-    QTimer::singleShot( 0, this, [ this ]()
+
+    QVector< Module* > modules( m_loadedModulesByInstanceKey.count() );
+    int count = 0;
+    for (const auto& module : m_loadedModulesByInstanceKey )
     {
-        bool acceptable = true;
+        modules[count++] = module;
+    }
 
-        for (const auto& module : m_loadedModulesByInstanceKey )
-        {
-            RequirementsList l = module->checkRequirements();
-            if ( l.length() > 0 )
-            {
-                cDebug() << "  .." << module->name() << "has" << l.length() << "requirements";
-                emit requirementsResult( l );
-            }
-            int count = 0;
-            for (const auto& r : l)
-            {
-                if ( r.mandatory && !r.satisfied )
-                {
-                    cDebug() << "  .. requirement" << count << r.name << "is not satisfied.";
-                    acceptable = false;
-                }
-                ++count;
-            }
-        }
+    RequirementsChecker *rq = new RequirementsChecker( modules, this );
+    connect( rq, &RequirementsChecker::requirementsResult, this, &ModuleManager::requirementsResult );
+    connect( rq, &RequirementsChecker::requirementsComplete, this, &ModuleManager::requirementsComplete );
+    connect( rq, &RequirementsChecker::done, rq, &RequirementsChecker::deleteLater );
+    connect( rq, &RequirementsChecker::requirementsProgress, this, &ModuleManager::requirementsProgress );
 
-        emit requirementsComplete( acceptable );
-    } );
+    QTimer::singleShot( 0, rq, &RequirementsChecker::run );
 }
 
 QStringList
