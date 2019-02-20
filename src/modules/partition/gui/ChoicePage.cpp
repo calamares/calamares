@@ -1248,7 +1248,7 @@ ChoicePage::setupActions()
         }
         if ( PartUtils::canBeReplaced( *it ) )
         {
-            cDebug() << ".. contains replacable" << it;
+            cDebug() << ".. contains replaceable" << it;
             atLeastOneCanBeReplaced = true;
         }
         if ( (*it)->isMounted() )
