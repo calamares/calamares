@@ -154,29 +154,29 @@ CreateUserJob::exec()
     useradd << "-c" << m_fullName;
     useradd << m_userName;
 
-    auto pres = CalamaresUtils::System::instance()->targetEnvCommand( useradd );
-    if ( pres.getExitCode() )
+    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( useradd );
+    if ( commandResult.getExitCode() )
     {
-        cError() << "useradd failed" << pres.getExitCode();
-        return pres.explainProcess( useradd, 10 /* bogus timeout */ );
+        cError() << "useradd failed" << commandResult.getExitCode();
+        return commandResult.explainProcess( useradd, 10 /* bogus timeout */ );
     }
 
-    pres = CalamaresUtils::System::instance()->targetEnvCommand(
+    commandResult = CalamaresUtils::System::instance()->targetEnvCommand(
         { "usermod", "-aG", defaultGroups, m_userName } );
-    if ( pres.getExitCode() )
+    if ( commandResult.getExitCode() )
     {
-        cError() << "usermod failed" << pres.getExitCode();
-        return pres.explainProcess( "usermod", 10 );
+        cError() << "usermod failed" << commandResult.getExitCode();
+        return commandResult.explainProcess( "usermod", 10 );
     }
 
     QString userGroup = QString( "%1:%2" ).arg( m_userName ).arg( m_userName );
     QString homeDir = QString( "/home/%1" ).arg( m_userName );
-    pres = CalamaresUtils::System::instance()->targetEnvCommand(
+    commandResult = CalamaresUtils::System::instance()->targetEnvCommand(
         { "chown", "-R", userGroup, homeDir } );
-    if ( pres.getExitCode() )
+    if ( commandResult.getExitCode() )
     {
-        cError() << "chown failed" << pres.getExitCode();
-        return pres.explainProcess( "chown", 10 );
+        cError() << "chown failed" << commandResult.getExitCode();
+        return commandResult.explainProcess( "chown", 10 );
     }
 
     return Calamares::JobResult::ok();
