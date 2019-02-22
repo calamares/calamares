@@ -45,18 +45,18 @@ getDefaultFileSystemType()
 
 PartitionLayout::PartitionLayout()
 {
-    defaultFsType = getDefaultFileSystemType();
+    m_defaultFsType = getDefaultFileSystemType();
 }
 
 PartitionLayout::PartitionLayout( PartitionLayout::PartitionEntry entry )
 {
-    defaultFsType = getDefaultFileSystemType();
-    partLayout.append( entry );
+    m_defaultFsType = getDefaultFileSystemType();
+    m_partLayout.append( entry );
 }
 
 PartitionLayout::PartitionLayout( const PartitionLayout& layout )
-    : partLayout( layout.partLayout )
-    , defaultFsType( layout.defaultFsType )
+    : m_partLayout( layout.m_partLayout )
+    , m_defaultFsType( layout.m_defaultFsType )
 {
 }
 
@@ -67,7 +67,7 @@ PartitionLayout::~PartitionLayout()
 void
 PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
 {
-    partLayout.append( entry );
+    m_partLayout.append( entry );
 }
 
 static double
@@ -133,9 +133,9 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
     PartitionLayout::PartitionEntry entry( size, min );
 
     entry.partMountPoint = mountPoint;
-    entry.partFileSystem = defaultFsType;
+    entry.partFileSystem = m_defaultFsType;
 
-    partLayout.append( entry );
+    m_partLayout.append( entry );
 }
 
 void
@@ -147,9 +147,9 @@ PartitionLayout::addEntry( const QString& label, const QString& mountPoint, cons
     entry.partMountPoint = mountPoint;
     entry.partFileSystem = FileSystem::typeForName( fs );
     if ( entry.partFileSystem == FileSystem::Unknown )
-        entry.partFileSystem = defaultFsType;
+        entry.partFileSystem = m_defaultFsType;
 
-    partLayout.append( entry );
+    m_partLayout.append( entry );
 }
 
 static qint64
@@ -195,7 +195,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
     // TODO: Refine partition sizes to make sure there is room for every partition
     // Use a default (200-500M ?) minimum size for partition without minSize
 
-    foreach( const PartitionLayout::PartitionEntry& part, partLayout )
+    foreach( const PartitionLayout::PartitionEntry& part, m_partLayout )
     {
         Partition *currentPartition = nullptr;
 
