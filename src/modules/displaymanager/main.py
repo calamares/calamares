@@ -768,11 +768,11 @@ def run():
                 displaymanagers.remove(dm)
 
     if not dm_impl:
-        return (
-            _("No display managers selected for the displaymanager module."),
-            _("The list is empty after checking for installed display managers.")
+        libcalamares.utils.warning(
+            "No display managers selected for the displaymanager module. "
+            "The list is empty after checking for installed display managers."
             )
-
+        return None
 
     # Pick up remaining settings
     if "defaultDesktopEnvironment" in libcalamares.job.configuration:
