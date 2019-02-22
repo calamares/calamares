@@ -22,6 +22,10 @@
 
 #include "OsproberEntry.h"
 
+// KPMcore
+#include <kpmcore/fs/filesystem.h>
+
+// Qt
 #include <QString>
 
 class PartitionCoreModule;
@@ -73,6 +77,15 @@ bool isEfiSystem();
  * the partition table layout, this may mean different flags.
  */
 bool isEfiBootable( const Partition* candidate );
+
+/** @brief translate @p fsName into a recognized name and type
+ *
+ * Makes several attempts to translate the string into a
+ * name that KPMCore will recognize.
+ * The corresponding filesystem type is stored in @p fsType, and
+ * its value is FileSystem::Unknown if @p fsName is not recognized.
+ */
+QString findFS( QString fsName, FileSystem::Type* fsType );
 }
 
 #endif // PARTUTILS_H

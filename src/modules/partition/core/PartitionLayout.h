@@ -24,6 +24,7 @@
 
 // KPMcore
 #include <kpmcore/core/partitiontable.h>
+#include <kpmcore/fs/filesystem.h>
 
 // Qt
 #include <QList>
@@ -48,7 +49,7 @@ public:
     {
         QString partLabel;
         QString partMountPoint;
-        int partFileSystem = 0;
+        FileSystem::Type partFileSystem = FileSystem::Unknown;
         double partSize = 0.0L;
         SizeUnit partSizeUnit = Percent;
         double partMinSize = 0.0L;
@@ -76,7 +77,8 @@ public:
     QList< Partition* > execute( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase, PartitionNode* parent, const PartitionRole& role );
 
 private:
-    QList< PartitionEntry > partLayout;
+    FileSystem::Type m_defaultFsType;
+    QList< PartitionEntry > m_partLayout;
 };
 
 #endif /* PARTITIONLAYOUT_H */

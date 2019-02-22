@@ -408,6 +408,56 @@ isEfiBootable( const Partition* candidate )
         flags.testFlag( PartitionTable::FlagBoot );
 }
 
+QString
+findFS( QString fsName, FileSystem::Type* fsType )
+{
+    QStringList fsLanguage { QLatin1Literal( "C" ) };  // Required language list to turn off localization
+    if ( fsName.isEmpty() )
+        fsName = QStringLiteral( "ext4" );
+
+    FileSystem::Type tmpType = FileSystem::typeForName( fsName, fsLanguage );
+    if ( tmpType != FileSystem::Unknown )
+    {
+        cDebug() << "Found filesystem" << fsName;
+        if ( fsType )
+            *fsType = tmpType;
+        return fsName;
+    }
+
+    // Second pass: try case-insensitive
+    const auto fstypes = FileSystem::types();
+    for ( FileSystem::Type t : fstypes )
+    {
+        if ( 0 == QString::compare( fsName, FileSystem::nameForType( t, fsLanguage ), Qt::CaseInsensitive ) )
+        {
+            QString fsRealName = FileSystem::nameForType( t, fsLanguage );
+            cDebug() << "Filesystem name" << fsName << "translated to" << fsRealName;
+            if ( fsType )
+                *fsType = t;
+            return fsRealName;
+        }
+    }
+
+    cDebug() << "Filesystem" << fsName << "not found, using ext4";
+    fsName = QStringLiteral( "ext4" );
+    // fsType can be used to check whether fsName was a valid filesystem.
+    if (fsType)
+        *fsType = FileSystem::Unknown;
+#ifdef DEBUG_FILESYSTEMS
+    // This bit is for distro's debugging their settings, and shows
+    // all the strings that KPMCore is matching against for FS type.
+    {
+        Logger::CDebug d;
+        using TR = Logger::DebugRow< int, QString >;
+        const auto fstypes = FileSystem::types();
+        d << "Available types (" << fstypes.count() << ')';
+        for ( FileSystem::Type t : fstypes )
+            d << TR( static_cast<int>( t ), FileSystem::nameForType( t, fsLanguage ) );
+    }
+#endif
+    return fsName;
+}
+
 }  // nmamespace PartUtils
 
 /* Implementation of methods for FstabEntry, from OsproberEntry.h */

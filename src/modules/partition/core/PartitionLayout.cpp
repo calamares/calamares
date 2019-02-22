@@ -18,27 +18,50 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
 #include "core/PartitionLayout.h"
 
 #include "core/KPMHelpers.h"
 #include "core/PartitionActions.h"
 #include "core/PartitionInfo.h"
+#include "core/PartUtils.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 
+static FileSystem::Type
+getDefaultFileSystemType()
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    FileSystem::Type defaultFS = FileSystem::Ext4;
+
+    if ( gs->contains( "defaultFileSystemType" ) )
+    {
+        PartUtils::findFS( gs->value( "defaultFileSystemType" ).toString(),  &defaultFS);
+        if ( defaultFS == FileSystem::Unknown )
+            defaultFS = FileSystem::Ext4;
+    }
+
+    return defaultFS;
+}
+
 PartitionLayout::PartitionLayout()
 {
+    m_defaultFsType = getDefaultFileSystemType();
 }
 
 PartitionLayout::PartitionLayout( PartitionLayout::PartitionEntry entry )
 {
-    partLayout.append( entry );
+    m_defaultFsType = getDefaultFileSystemType();
+    m_partLayout.append( entry );
 }
 
 PartitionLayout::PartitionLayout( const PartitionLayout& layout )
-    : partLayout( layout.partLayout )
+    : m_partLayout( layout.m_partLayout )
+    , m_defaultFsType( layout.m_defaultFsType )
 {
 }
 
@@ -49,7 +72,7 @@ PartitionLayout::~PartitionLayout()
 void
 PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
 {
-    partLayout.append( entry );
+    m_partLayout.append( entry );
 }
 
 static double
@@ -115,9 +138,9 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
     PartitionLayout::PartitionEntry entry( size, min );
 
     entry.partMountPoint = mountPoint;
-    entry.partFileSystem = FileSystem::Ext4;
+    entry.partFileSystem = m_defaultFsType;
 
-    partLayout.append( entry );
+    m_partLayout.append( entry );
 }
 
 void
@@ -127,9 +150,11 @@ PartitionLayout::addEntry( const QString& label, const QString& mountPoint, cons
 
     entry.partLabel = label;
     entry.partMountPoint = mountPoint;
-    entry.partFileSystem = FileSystem::typeForName( fs );
+    PartUtils::findFS( fs, &entry.partFileSystem );
+    if ( entry.partFileSystem == FileSystem::Unknown )
+        entry.partFileSystem = m_defaultFsType;
 
-    partLayout.append( entry );
+    m_partLayout.append( entry );
 }
 
 static qint64
@@ -175,7 +200,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
     // TODO: Refine partition sizes to make sure there is room for every partition
     // Use a default (200-500M ?) minimum size for partition without minSize
 
-    foreach( const PartitionLayout::PartitionEntry& part, partLayout )
+    foreach( const PartitionLayout::PartitionEntry& part, m_partLayout )
     {
         Partition *currentPartition = nullptr;
 
@@ -194,7 +219,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
                 parent,
                 *dev,
                 role,
-                static_cast<FileSystem::Type>(part.partFileSystem),
+                part.partFileSystem,
                 firstSector,
                 end,
                 PartitionTable::FlagNone
@@ -206,7 +231,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
                 parent,
                 *dev,
                 role,
-                static_cast<FileSystem::Type>(part.partFileSystem),
+                part.partFileSystem,
                 firstSector,
                 end,
                 luksPassphrase,
