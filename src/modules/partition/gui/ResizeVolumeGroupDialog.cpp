@@ -35,7 +35,7 @@ ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice *device,
     : VolumeGroupBaseDialog( device->name(), device->physicalVolumes(), parent )
     , m_selectedPVs( selectedPVs )
 {
-    setWindowTitle( "Resize Volume Group" );
+    setWindowTitle( tr( "Resize Volume Group" ) );
 
     for ( int i = 0; i < pvList()->count(); i++ )
         pvList()->item(i)->setCheckState( Qt::Checked );

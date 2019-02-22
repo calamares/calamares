@@ -34,7 +34,7 @@ CreateVolumeGroupDialog::CreateVolumeGroupDialog( QString& vgName,
     , m_selectedPVs( selectedPVs )
     , m_peSize( pSize )
 {
-    setWindowTitle( "Create Volume Group" );
+    setWindowTitle( tr( "Create Volume Group" ) );
 
     peSize()->setValue( pSize );
 
