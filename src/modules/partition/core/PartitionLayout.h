@@ -76,6 +76,7 @@ public:
     QList< Partition* > execute( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase, PartitionNode* parent, const PartitionRole& role );
 
 private:
+    int defaultFsType;
     QList< PartitionEntry > partLayout;
 };
 

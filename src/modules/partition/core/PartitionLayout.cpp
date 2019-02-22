@@ -18,6 +18,9 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
 #include "core/PartitionLayout.h"
 
 #include "core/KPMHelpers.h"
@@ -28,17 +31,32 @@
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 
+static int
+getDefaultFileSystemType()
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    int defaultFs = FileSystem::typeForName( gs->value( "defaultFileSystemType" ).toString() );
+
+    if ( defaultFs == FileSystem::Unknown )
+        defaultFs = FileSystem::Ext4;
+
+    return defaultFs;
+}
+
 PartitionLayout::PartitionLayout()
 {
+    defaultFsType = getDefaultFileSystemType();
 }
 
 PartitionLayout::PartitionLayout( PartitionLayout::PartitionEntry entry )
 {
+    defaultFsType = getDefaultFileSystemType();
     partLayout.append( entry );
 }
 
 PartitionLayout::PartitionLayout( const PartitionLayout& layout )
     : partLayout( layout.partLayout )
+    , defaultFsType( layout.defaultFsType )
 {
 }
 
@@ -115,7 +133,7 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
     PartitionLayout::PartitionEntry entry( size, min );
 
     entry.partMountPoint = mountPoint;
-    entry.partFileSystem = FileSystem::Ext4;
+    entry.partFileSystem = defaultFsType;
 
     partLayout.append( entry );
 }
@@ -128,6 +146,8 @@ PartitionLayout::addEntry( const QString& label, const QString& mountPoint, cons
     entry.partLabel = label;
     entry.partMountPoint = mountPoint;
     entry.partFileSystem = FileSystem::typeForName( fs );
+    if ( entry.partFileSystem == FileSystem::Unknown )
+        entry.partFileSystem = defaultFsType;
 
     partLayout.append( entry );
 }
