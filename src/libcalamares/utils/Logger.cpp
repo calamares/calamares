@@ -2,7 +2,7 @@
  *
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
  *   Copyright 2014,      Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -68,9 +68,9 @@ logLevel()
 }
 
 static void
-log( const char* msg, unsigned int debugLevel, bool toDisk = true )
+log( const char* msg, unsigned int debugLevel )
 {
-    if ( toDisk || debugLevel < s_threshold )
+    if ( true )
     {
         QMutexLocker lock( &s_mutex );
 
