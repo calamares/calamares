@@ -26,21 +26,26 @@
 #include "core/KPMHelpers.h"
 #include "core/PartitionActions.h"
 #include "core/PartitionInfo.h"
+#include "core/PartUtils.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 
-static int
+static FileSystem::Type
 getDefaultFileSystemType()
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    int defaultFs = FileSystem::typeForName( gs->value( "defaultFileSystemType" ).toString() );
+    FileSystem::Type defaultFS = FileSystem::Ext4;
 
-    if ( defaultFs == FileSystem::Unknown )
-        defaultFs = FileSystem::Ext4;
+    if ( gs->contains( "defaultFileSystemType" ) )
+    {
+        PartUtils::findFS( gs->value( "defaultFileSystemType" ).toString(),  &defaultFS);
+        if ( defaultFS == FileSystem::Unknown )
+            defaultFS = FileSystem::Ext4;
+    }
 
-    return defaultFs;
+    return defaultFS;
 }
 
 PartitionLayout::PartitionLayout()
@@ -145,7 +150,7 @@ PartitionLayout::addEntry( const QString& label, const QString& mountPoint, cons
 
     entry.partLabel = label;
     entry.partMountPoint = mountPoint;
-    entry.partFileSystem = FileSystem::typeForName( fs );
+    PartUtils::findFS( fs, &entry.partFileSystem );
     if ( entry.partFileSystem == FileSystem::Unknown )
         entry.partFileSystem = m_defaultFsType;
 
@@ -214,7 +219,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
                 parent,
                 *dev,
                 role,
-                static_cast<FileSystem::Type>(part.partFileSystem),
+                part.partFileSystem,
                 firstSector,
                 end,
                 PartitionTable::FlagNone
@@ -226,7 +231,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
                 parent,
                 *dev,
                 role,
-                static_cast<FileSystem::Type>(part.partFileSystem),
+                part.partFileSystem,
                 firstSector,
                 end,
                 luksPassphrase,
