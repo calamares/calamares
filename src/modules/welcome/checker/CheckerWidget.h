@@ -20,7 +20,6 @@
 #define CHECKERWIDGET_H
 
 #include "modulesystem/Requirement.h"
-#include "RequirementsChecker.h"
 
 #include <QBoxLayout>
 #include <QWidget>

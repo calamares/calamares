@@ -17,19 +17,19 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef REQUIREMENTSCHECKER_H
-#define REQUIREMENTSCHECKER_H
+#ifndef GENERALREQUIREMENTS_H
+#define GENERALREQUIREMENTS_H
 
 #include <QObject>
 #include <QStringList>
 
 #include "modulesystem/Requirement.h"
 
-class RequirementsChecker : public QObject
+class GeneralRequirements : public QObject
 {
     Q_OBJECT
 public:
-    explicit RequirementsChecker( QObject* parent = nullptr );
+    explicit GeneralRequirements( QObject* parent = nullptr );
 
     void setConfigurationMap( const QVariantMap& configurationMap );
 

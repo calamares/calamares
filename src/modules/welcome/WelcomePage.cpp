@@ -23,7 +23,6 @@
 #include "ui_WelcomePage.h"
 #include "CalamaresVersion.h"
 #include "checker/CheckerContainer.h"
-#include "checker/RequirementsChecker.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"

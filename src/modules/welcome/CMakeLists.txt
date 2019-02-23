@@ -18,7 +18,7 @@ set( CHECKER_SOURCES
     checker/CheckerContainer.cpp
     checker/CheckerWidget.cpp
     checker/CheckItemWidget.cpp
-    checker/RequirementsChecker.cpp
+    checker/GeneralRequirements.cpp
     ${PARTMAN_SRC}
 )
 

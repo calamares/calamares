@@ -30,7 +30,7 @@
 #include <QVariantMap>
 
 class WelcomePage;
-class RequirementsChecker;
+class GeneralRequirements;
 
 class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
 {
@@ -61,7 +61,7 @@ public:
 
 private:
     WelcomePage* m_widget;
-    RequirementsChecker* m_requirementsChecker;
+    GeneralRequirements* m_requirementsChecker;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )

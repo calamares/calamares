@@ -20,7 +20,7 @@
 #include "WelcomeViewStep.h"
 
 #include "WelcomePage.h"
-#include "checker/RequirementsChecker.h"
+#include "checker/GeneralRequirements.h"
 #include "utils/Logger.h"
 
 
@@ -30,7 +30,7 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeViewStepFactory, registerPlugin<Welc
 
 WelcomeViewStep::WelcomeViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_requirementsChecker( new RequirementsChecker( this ) )
+    , m_requirementsChecker( new GeneralRequirements( this ) )
 {
     emit nextStatusChanged( true );
     m_widget = new WelcomePage();

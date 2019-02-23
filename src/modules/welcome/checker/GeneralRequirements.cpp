@@ -18,7 +18,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "RequirementsChecker.h"
+#include "GeneralRequirements.h"
 
 #include "CheckerContainer.h"
 #include "partman_devices.h"
@@ -53,14 +53,14 @@
 
 #include <unistd.h> //geteuid
 
-RequirementsChecker::RequirementsChecker( QObject* parent )
+GeneralRequirements::GeneralRequirements( QObject* parent )
     : QObject( parent )
     , m_requiredStorageGB( -1 )
     , m_requiredRamGB( -1 )
 {
 }
 
-Calamares::RequirementsList RequirementsChecker::checkRequirements()
+Calamares::RequirementsList GeneralRequirements::checkRequirements()
 {
     QSize availableSize = qApp->desktop()->availableGeometry().size();
 
@@ -91,7 +91,7 @@ Calamares::RequirementsList RequirementsChecker::checkRequirements()
         isRoot = checkIsRoot();
 
     using TR = Logger::DebugRow<const char *, bool>;
-    cDebug() << "RequirementsChecker output:"
+    cDebug() << "GeneralRequirements output:"
                     << TR("enoughStorage", enoughStorage)
                     << TR("enoughRam", enoughRam)
                     << TR("hasPower", hasPower)
@@ -159,7 +159,7 @@ Calamares::RequirementsList RequirementsChecker::checkRequirements()
 
 
 void
-RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
+GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool incompleteConfiguration = false;
 
@@ -171,7 +171,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cWarning() << "RequirementsChecker entry 'check' is incomplete.";
+        cWarning() << "GeneralRequirements entry 'check' is incomplete.";
         incompleteConfiguration = true;
     }
 
@@ -183,14 +183,14 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cWarning() << "RequirementsChecker entry 'required' is incomplete.";
+        cWarning() << "GeneralRequirements entry 'required' is incomplete.";
         incompleteConfiguration = true;
     }
 
     // Help out with consistency, but don't fix
     for ( const auto& r : m_entriesToRequire )
         if ( !m_entriesToCheck.contains( r ) )
-            cWarning() << "RequirementsChecker requires" << r << "but does not check it.";
+            cWarning() << "GeneralRequirements requires" << r << "but does not check it.";
 
     if ( configurationMap.contains( "requiredStorage" ) &&
          ( configurationMap.value( "requiredStorage" ).type() == QVariant::Double ||
@@ -200,7 +200,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         m_requiredStorageGB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
         if ( !ok )
         {
-            cWarning() << "RequirementsChecker entry 'requiredStorage' is invalid.";
+            cWarning() << "GeneralRequirements entry 'requiredStorage' is invalid.";
             m_requiredStorageGB = 3.;
         }
 
@@ -208,7 +208,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cWarning() << "RequirementsChecker entry 'requiredStorage' is missing.";
+        cWarning() << "GeneralRequirements entry 'requiredStorage' is missing.";
         m_requiredStorageGB = 3.;
         incompleteConfiguration = true;
     }
@@ -221,14 +221,14 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         m_requiredRamGB = configurationMap.value( "requiredRam" ).toDouble( &ok );
         if ( !ok )
         {
-            cWarning() << "RequirementsChecker entry 'requiredRam' is invalid.";
+            cWarning() << "GeneralRequirements entry 'requiredRam' is invalid.";
             m_requiredRamGB = 1.;
             incompleteConfiguration = true;
         }
     }
     else
     {
-        cWarning() << "RequirementsChecker entry 'requiredRam' is missing.";
+        cWarning() << "GeneralRequirements entry 'requiredRam' is missing.";
         m_requiredRamGB = 1.;
         incompleteConfiguration = true;
     }
@@ -240,7 +240,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         if ( m_checkHasInternetUrl.isEmpty() ||
              !QUrl( m_checkHasInternetUrl ).isValid() )
         {
-            cWarning() << "RequirementsChecker entry 'internetCheckUrl' is invalid in welcome.conf" << m_checkHasInternetUrl
+            cWarning() << "GeneralRequirements entry 'internetCheckUrl' is invalid in welcome.conf" << m_checkHasInternetUrl
                      << "reverting to default (http://example.com).";
             m_checkHasInternetUrl = "http://example.com";
             incompleteConfiguration = true;
@@ -248,7 +248,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cWarning() << "RequirementsChecker entry 'internetCheckUrl' is undefined in welcome.conf,"
+        cWarning() << "GeneralRequirements entry 'internetCheckUrl' is undefined in welcome.conf,"
                     "reverting to default (http://example.com).";
 
         m_checkHasInternetUrl = "http://example.com";
@@ -257,17 +257,17 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( incompleteConfiguration )
     {
-        cWarning() << "RequirementsChecker configuration map:" << Logger::DebugMap( configurationMap );
+        cWarning() << "GeneralRequirements configuration map:" << Logger::DebugMap( configurationMap );
     }
 }
 
 
 bool
-RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
+GeneralRequirements::checkEnoughStorage( qint64 requiredSpace )
 {
 #ifdef WITHOUT_LIBPARTED
     Q_UNUSED( requiredSpace );
-    cWarning() << "RequirementsChecker is configured without libparted.";
+    cWarning() << "GeneralRequirements is configured without libparted.";
     return false;
 #else
     return check_big_enough( requiredSpace );
@@ -276,7 +276,7 @@ RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 
 
 bool
-RequirementsChecker::checkEnoughRam( qint64 requiredRam )
+GeneralRequirements::checkEnoughRam( qint64 requiredRam )
 {
     // Ignore the guesstimate-factor; we get an under-estimate
     // which is probably the usable RAM for programs.
@@ -286,7 +286,7 @@ RequirementsChecker::checkEnoughRam( qint64 requiredRam )
 
 
 bool
-RequirementsChecker::checkBatteryExists()
+GeneralRequirements::checkBatteryExists()
 {
     const QFileInfo basePath( "/sys/class/power_supply" );
 
@@ -312,7 +312,7 @@ RequirementsChecker::checkBatteryExists()
 
 
 bool
-RequirementsChecker::checkHasPower()
+GeneralRequirements::checkHasPower()
 {
     const QString UPOWER_SVC_NAME( "org.freedesktop.UPower" );
     const QString UPOWER_INTF_NAME( "org.freedesktop.UPower" );
@@ -343,7 +343,7 @@ RequirementsChecker::checkHasPower()
 
 
 bool
-RequirementsChecker::checkHasInternet()
+GeneralRequirements::checkHasInternet()
 {
     // default to true in the QNetworkAccessManager::UnknownAccessibility case
     QNetworkAccessManager qnam( this );
@@ -367,14 +367,14 @@ RequirementsChecker::checkHasInternet()
 
 
 bool
-RequirementsChecker::checkIsRoot()
+GeneralRequirements::checkIsRoot()
 {
     return !geteuid();
 }
 
 
 void
-RequirementsChecker::detectFirmwareType()
+GeneralRequirements::detectFirmwareType()
 {
     QString fwType = QFile::exists( "/sys/firmware/efi/efivars" ) ? "efi" : "bios";
     Calamares::JobQueue::instance()->globalStorage()->insert( "firmwareType", fwType );
