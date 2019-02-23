@@ -346,7 +346,7 @@ bool
 GeneralRequirements::checkHasInternet()
 {
     // default to true in the QNetworkAccessManager::UnknownAccessibility case
-    QNetworkAccessManager qnam( this );
+    QNetworkAccessManager qnam;
     bool hasInternet = qnam.networkAccessible() == QNetworkAccessManager::Accessible;
 
     if ( !hasInternet && qnam.networkAccessible() == QNetworkAccessManager::UnknownAccessibility )
