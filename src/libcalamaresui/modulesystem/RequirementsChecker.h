@@ -18,6 +18,7 @@
 #ifndef CALAMARES_REQUIREMENTSCHECKER_H
 #define CALAMARES_REQUIREMENTSCHECKER_H
 
+#include <QFutureWatcher>
 #include <QObject>
 #include <QVector>
 
@@ -44,6 +45,10 @@ public:
 public slots:
     void run();
 
+    void addCheckedRequirements( RequirementsList );
+
+    void finished();
+
 signals:
     /// @brief Human-readable progress message
     void requirementsProgress( const QString& );
@@ -59,6 +64,11 @@ signals:
 
 private:
     QVector< Module* > m_modules;
+
+    using Watcher = QFutureWatcher< void >;
+    QVector< Watcher* > m_watchers;
+
+    RequirementsList m_collectedRequirements;
 } ;
 
 }

@@ -23,15 +23,32 @@
 
 #include "utils/Logger.h"
 
+#include <algorithm>
+
+#include <QtConcurrent/QtConcurrent>
+#include <QFuture>
+#include <QFutureWatcher>
 #include <QTimer>
+
 
 namespace Calamares
 {
+
+void
+check( Module * const &m, RequirementsChecker *c )
+{
+    RequirementsList l = m->checkRequirements();
+    if ( l.count() > 0 )
+        c->addCheckedRequirements( l );
+    c->requirementsProgress( QObject::tr( "Requirements checking for module %1 is complete." ).arg( m->name() ) );
+}
 
 RequirementsChecker::RequirementsChecker( QVector< Module* > modules, QObject* parent )
     : QObject( parent )
     , m_modules( std::move( modules ) )
 {
+    m_watchers.reserve( m_modules.count() );
+    m_collectedRequirements.reserve( m_modules.count() );
 }
 
 RequirementsChecker::~RequirementsChecker()
@@ -41,19 +58,25 @@ RequirementsChecker::~RequirementsChecker()
 void
 RequirementsChecker::run()
 {
-    bool acceptable = true;
-
     for (const auto& module : m_modules )
     {
-        RequirementsList l = module->checkRequirements();
-        if ( l.length() > 0 )
-        {
-            cDebug() << "  .." << module->name() << "has" << l.length() << "requirements";
-            emit requirementsResult( l );
-        }
+        Watcher *watcher = new Watcher( this );
+        watcher->setFuture( QtConcurrent::run( check, module, this ) );
+        m_watchers.append( watcher );
+        connect( watcher, &Watcher::finished, this, &RequirementsChecker::finished );
+    }
+}
 
+void
+RequirementsChecker::finished()
+{
+    if ( std::all_of( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && w->isFinished(); } ) )
+    {
+        cDebug() << "All requirements have been checked.";
+
+        bool acceptable = true;
         int count = 0;
-        for (const auto& r : l)
+        for ( const auto& r : m_collectedRequirements )
         {
             if ( r.mandatory && !r.satisfied )
             {
@@ -62,12 +85,22 @@ RequirementsChecker::run()
             }
             ++count;
         }
+
+        emit requirementsComplete( acceptable );
+        QTimer::singleShot(0, this, &RequirementsChecker::done );
     }
-
-    emit requirementsComplete( acceptable );
-
-    QTimer::singleShot(0, this, &RequirementsChecker::done );
 }
 
+void
+RequirementsChecker::addCheckedRequirements( RequirementsList l )
+{
+    static QMutex addMutex;
+    {
+        QMutexLocker lock( &addMutex );
+        m_collectedRequirements.append( l );
+    }
+    cDebug() << "Added" << l.count() << "requirement results";
+    emit requirementsResult( l );
+}
 
 }
