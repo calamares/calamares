@@ -48,7 +48,7 @@ struct RequirementEntry
     TextFunction enumerationText;
 
     /// @brief User-visible string to show that the requirement is not met
-    std::function< QString() > negatedText;
+    TextFunction negatedText;
 
     bool satisfied;
     bool mandatory;
