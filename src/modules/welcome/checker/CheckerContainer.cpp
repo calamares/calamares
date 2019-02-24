@@ -54,7 +54,7 @@ void CheckerContainer::requirementsComplete( bool ok )
     m_checkerWidget->init( m_requirements );
     layout()->removeWidget( m_waitingWidget );
     m_waitingWidget->deleteLater();
-    m_waitingWidget = nullptr;  // Don't delete in constructor
+    m_waitingWidget = nullptr;  // Don't delete in destructor
     m_checkerWidget->setParent( this );
     layout()->addWidget( m_checkerWidget );
 
@@ -64,6 +64,12 @@ void CheckerContainer::requirementsComplete( bool ok )
 void CheckerContainer::requirementsChecked(const Calamares::RequirementsList& l)
 {
     m_requirements.append( l );
+}
+
+void CheckerContainer::requirementsProgress(const QString& message)
+{
+    if ( m_waitingWidget )
+        m_waitingWidget->setText( message );
 }
 
 bool CheckerContainer::verdict() const

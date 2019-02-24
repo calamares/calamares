@@ -48,6 +48,7 @@ WelcomePage::WelcomePage( QWidget* parent )
 {
     connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsResult, m_checkingWidget, &CheckerContainer::requirementsChecked );
     connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsComplete, m_checkingWidget, &CheckerContainer::requirementsComplete );
+    connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsProgress, m_checkingWidget, &CheckerContainer::requirementsProgress );
     ui->setupUi( this );
 
     ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() * 2 );

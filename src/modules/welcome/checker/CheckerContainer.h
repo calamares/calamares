@@ -51,6 +51,8 @@ public slots:
     /** @brief All the requirements are complete, switch to list view */
     void requirementsComplete( bool );
 
+    void requirementsProgress( const QString& message );
+
 protected:
     WaitingWidget *m_waitingWidget;
     CheckerWidget *m_checkerWidget;
