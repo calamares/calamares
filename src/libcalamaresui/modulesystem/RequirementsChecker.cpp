@@ -34,7 +34,26 @@
 namespace Calamares
 {
 
-void
+static void
+registerMetatypes()
+{
+    static bool done = false;
+
+    if ( !done )
+    {
+        qRegisterMetaType< RequirementEntry >( "RequirementEntry" );
+        // It's sensitive to the names of types in parameters; in particular
+        // althrough QList<RequirementEntry> is the same as RequirementsList,
+        // because we *name* the type as  RequirementsList in the parameters,
+        // we need to register that (as well). Here, be safe and register
+        // both names.
+        qRegisterMetaType< QList< RequirementEntry > >( "QList<RequirementEntry>" );
+        qRegisterMetaType< RequirementsList >( "RequirementsList" );
+        done = true;
+    }
+}
+
+static void
 check( Module * const &m, RequirementsChecker *c )
 {
     RequirementsList l = m->checkRequirements();
@@ -49,6 +68,8 @@ RequirementsChecker::RequirementsChecker( QVector< Module* > modules, QObject* p
 {
     m_watchers.reserve( m_modules.count() );
     m_collectedRequirements.reserve( m_modules.count() );
+
+    registerMetatypes();
 }
 
 RequirementsChecker::~RequirementsChecker()

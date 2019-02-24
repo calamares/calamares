@@ -19,6 +19,7 @@
 #define CALAMARES_REQUIREMENT_H
 
 #include <QList>
+#include <QMetaType>
 #include <QString>
 
 #include <functional>
@@ -57,4 +58,7 @@ struct RequirementEntry
 using RequirementsList = QList< RequirementEntry >;
 
 }  // namespace Calamares
+
+Q_DECLARE_METATYPE(Calamares::RequirementEntry)
+
 #endif
