@@ -92,6 +92,8 @@ RequirementsChecker::run()
         m_watchers.append( watcher );
         connect( watcher, &Watcher::finished, this, &RequirementsChecker::finished );
     }
+
+    QTimer::singleShot( 0, this, &RequirementsChecker::finished );
 }
 
 void
