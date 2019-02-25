@@ -39,6 +39,8 @@ public:
     void loadSelf() override;
     JobList jobs() const override;
 
+    RequirementsList checkRequirements() override;
+
 protected:
     void initFrom( const QVariantMap& moduleDescriptor ) override;
 

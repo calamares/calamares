@@ -22,10 +22,12 @@
 
 #include "ui_WelcomePage.h"
 #include "CalamaresVersion.h"
-#include "checker/RequirementsChecker.h"
+#include "checker/CheckerContainer.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
+
+#include "modulesystem/ModuleManager.h"
 #include "ViewManager.h"
 
 #include <QApplication>
@@ -39,11 +41,14 @@
 #include "Branding.h"
 
 
-WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* parent )
+WelcomePage::WelcomePage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::WelcomePage )
-    , m_requirementsChecker( requirementsChecker )
+    , m_checkingWidget( new CheckerContainer( this ) )
 {
+    connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsResult, m_checkingWidget, &CheckerContainer::requirementsChecked );
+    connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsComplete, m_checkingWidget, &CheckerContainer::requirementsComplete );
+    connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsProgress, m_checkingWidget, &CheckerContainer::requirementsProgress );
     ui->setupUi( this );
 
     ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() * 2 );
@@ -102,7 +107,7 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
         mb.exec();
     } );
 
-    ui->verticalLayout->insertWidget( 3, m_requirementsChecker->widget() );
+    ui->verticalLayout->insertWidget( 3, m_checkingWidget);
 }
 
 
@@ -276,4 +281,9 @@ WelcomePage::focusInEvent( QFocusEvent* e )
     if ( ui->languageWidget )
         ui->languageWidget->setFocus();
     e->accept();
+}
+
+bool WelcomePage::verdict() const
+{
+    return m_checkingWidget->verdict();
 }

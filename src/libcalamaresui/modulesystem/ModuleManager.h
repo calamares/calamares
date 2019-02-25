@@ -20,6 +20,7 @@
 #ifndef MODULELOADER_H
 #define MODULELOADER_H
 
+#include "Requirement.h"
 #include "Typedefs.h"
 
 #include <QObject>
@@ -30,6 +31,7 @@ namespace Calamares
 {
 
 class Module;
+struct RequirementEntry;  // from Requirement.h
 
 /**
  * @brief The ModuleManager class is a singleton which manages Calamares modules.
@@ -81,10 +83,20 @@ public:
      */
     void loadModules();
 
+    /**
+     * @brief Starts asynchronous requirements checking for each module.
+     * When this is done, the signal modulesChecked is emitted.
+     */
+    void checkRequirements();
+
 signals:
     void initDone();
     void modulesLoaded();  /// All of the modules were loaded successfully
     void modulesFailed( QStringList );   /// .. or not
+    // Below, see RequirementsChecker documentation
+    void requirementsComplete( bool );
+    void requirementsResult( RequirementsList );
+    void requirementsProgress( const QString& );
 
 private slots:
     void doInit();

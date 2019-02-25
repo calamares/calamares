@@ -20,9 +20,10 @@
 #include "WelcomeViewStep.h"
 
 #include "WelcomePage.h"
-#include "checker/RequirementsChecker.h"
-#include "utils/Logger.h"
+#include "checker/GeneralRequirements.h"
 
+#include "modulesystem/ModuleManager.h"
+#include "utils/Logger.h"
 
 #include <QVariant>
 
@@ -30,12 +31,10 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeViewStepFactory, registerPlugin<Welc
 
 WelcomeViewStep::WelcomeViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_requirementsChecker( new RequirementsChecker( this ) )
+    , m_requirementsChecker( new GeneralRequirements( this ) )
 {
-    emit nextStatusChanged( true );
-    m_widget = new WelcomePage( m_requirementsChecker );
-    connect( m_requirementsChecker, &RequirementsChecker::verdictChanged,
-             this, &WelcomeViewStep::nextStatusChanged );
+    connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsComplete, this, &WelcomeViewStep::nextStatusChanged );
+    m_widget = new WelcomePage();
 }
 
 
@@ -63,7 +62,7 @@ WelcomeViewStep::widget()
 bool
 WelcomeViewStep::isNextEnabled() const
 {
-    return m_requirementsChecker->verdict();
+    return m_widget->verdict();
 }
 
 
@@ -88,10 +87,10 @@ WelcomeViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 WelcomeViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return Calamares::JobList();
 }
 
 
@@ -123,3 +122,7 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                     "module configuration.";
 }
 
+Calamares::RequirementsList WelcomeViewStep::checkRequirements()
+{
+    return m_requirementsChecker->checkRequirements();
+}

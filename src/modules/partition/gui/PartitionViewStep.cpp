@@ -60,6 +60,8 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QFutureWatcher>
 
+#include <unistd.h>  // For sleep(3)
+
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_core( nullptr )
@@ -213,8 +215,8 @@ PartitionViewStep::createSummaryWidget() const
         else // multiple disk previews!
         {
             diskInfoLabel->setText( tr( "Disk <strong>%1</strong> (%2)" )
-                                        .arg( info.deviceNode )
-                                        .arg( info.deviceName ) );
+                                    .arg( info.deviceNode )
+                                    .arg( info.deviceName ) );
         }
         formLayout->addRow( diskInfoLabel );
 
@@ -223,9 +225,9 @@ PartitionViewStep::createSummaryWidget() const
         QVBoxLayout* field;
 
         PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
-                                                       value( "drawNestedPartitions" ).toBool() ?
-                                                           PartitionBarsView::DrawNestedPartitions :
-                                                           PartitionBarsView::NoNestedPartitions;
+                value( "drawNestedPartitions" ).toBool() ?
+                PartitionBarsView::DrawNestedPartitions :
+                PartitionBarsView::NoNestedPartitions;
         preview = new PartitionBarsView;
         preview->setNestedPartitionsMode( mode );
         previewLabels = new PartitionLabelsView;
@@ -263,7 +265,7 @@ PartitionViewStep::createSummaryWidget() const
     foreach ( const Calamares::job_ptr& job, jobs() )
     {
         if ( !job->prettyDescription().isEmpty() )
-        jobsLines.append( job->prettyDescription() );
+            jobsLines.append( job->prettyDescription() );
     }
     if ( !jobsLines.isEmpty() )
     {
@@ -343,8 +345,8 @@ PartitionViewStep::isAtEnd() const
     if ( m_choicePage == m_widget->currentWidget() )
     {
         if ( m_choicePage->currentChoice() == ChoicePage::Erase ||
-             m_choicePage->currentChoice() == ChoicePage::Replace ||
-             m_choicePage->currentChoice() == ChoicePage::Alongside )
+                m_choicePage->currentChoice() == ChoicePage::Replace ||
+                m_choicePage->currentChoice() == ChoicePage::Alongside )
             return true;
         return false;
     }
@@ -357,7 +359,7 @@ PartitionViewStep::onActivate()
 {
     // if we're coming back to PVS from the next VS
     if ( m_widget->currentWidget() == m_choicePage &&
-         m_choicePage->currentChoice() == ChoicePage::Alongside )
+            m_choicePage->currentChoice() == ChoicePage::Alongside )
     {
         m_choicePage->applyActionChoice( ChoicePage::Alongside );
 //        m_choicePage->reset();
@@ -380,7 +382,7 @@ PartitionViewStep::onLeave()
         if ( PartUtils::isEfiSystem() )
         {
             QString espMountPoint = Calamares::JobQueue::instance()->globalStorage()->
-                                        value( "efiSystemPartition").toString();
+                                    value( "efiSystemPartition" ).toString();
             Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
             QString message;
@@ -435,7 +437,7 @@ PartitionViewStep::onLeave()
             // If the root partition is encrypted, and there's a separate boot
             // partition which is not encrypted
             if ( root_p->fileSystem().type() == FileSystem::Luks &&
-                 boot_p->fileSystem().type() != FileSystem::Luks )
+                    boot_p->fileSystem().type() != FileSystem::Luks )
             {
                 message = tr( "Boot partition not encrypted" );
                 description = tr( "A separate boot partition was set up together with "
@@ -584,17 +586,18 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Now that we have the config, we load the PartitionCoreModule in the background
     // because it could take a while. Then when it's done, we can set up the widgets
     // and remove the spinner.
-    QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
-    connect( watcher, &QFutureWatcher< void >::finished,
-             this, [ this, watcher, choices ]
+    m_future = new QFutureWatcher< void >();
+    connect( m_future, &QFutureWatcher< void >::finished,
+             this, [ this ]
     {
         continueLoading();
-        watcher->deleteLater();
+        this->m_future->deleteLater();
+        this->m_future = nullptr;
     } );
 
     QFuture< void > future =
-            QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
-    watcher->setFuture( future );
+        QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
+    m_future->setFuture( future );
 
     if ( configurationMap.contains( "partitionLayout" ) )
     {
@@ -611,6 +614,25 @@ QList< Calamares::job_ptr >
 PartitionViewStep::jobs() const
 {
     return m_core->jobs();
+}
+
+Calamares::RequirementsList
+PartitionViewStep::checkRequirements()
+{
+    if ( m_future )
+        m_future->waitForFinished();
+
+    Calamares::RequirementsList l;
+    l.append(
+    {
+        QLatin1Literal( "partitions" ),
+        []{ return tr( "has at least one disk device available." ); },
+        []{ return tr( "There are no partitons to install on." ); },
+        m_core->deviceModel()->rowCount() > 0,  // satisfied
+        true    // required
+    } );
+
+    return l;
 }
 
 

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,6 +20,7 @@
 #ifndef CALAMARES_MODULE_H
 #define CALAMARES_MODULE_H
 
+#include "Requirement.h"
 #include "UiDllMacro.h"
 
 #include <Typedefs.h>
@@ -177,6 +179,11 @@ public:
      * @return the instance's configuration, already parsed from YAML into a variant map.
      */
     QVariantMap configurationMap();
+
+    /**
+     * @brief Check the requirements of this module.
+     */
+    virtual RequirementsList checkRequirements();
 
 protected:
     explicit Module();

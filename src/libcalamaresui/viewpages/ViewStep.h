@@ -22,6 +22,7 @@
 
 #include <QObject>
 
+#include "modulesystem/Requirement.h"
 #include "../UiDllMacro.h"
 #include "Typedefs.h"
 
@@ -117,6 +118,12 @@ public:
      */
     virtual void onLeave();
 
+    /**
+     * @brief Jobs needed to run this viewstep
+     *
+     * When a ViewStep is listed in the exec section, its jobs are executed instead.
+     * This function returns that list of jobs; an empty list is ok.
+     */
     virtual JobList jobs() const = 0;
 
     void setModuleInstanceKey( const QString& instanceKey );
@@ -127,7 +134,17 @@ public:
 
     virtual void setConfigurationMap( const QVariantMap& configurationMap );
 
+    /**
+     * @brief Can this module proceed, on this machine?
+     *
+     * This is called asynchronously at startup, and returns a list of
+     * the requirements that the module has checked, and their status.
+     * See Calamares::RequirementEntry for details.
+     */
+    virtual RequirementsList checkRequirements();
+
 signals:
+    /// @brief Tells the viewmanager to enable the *next* button according to @p status
     void nextStatusChanged( bool status );
 
     /* Emitted when the viewstep thinks it needs more space than is currently

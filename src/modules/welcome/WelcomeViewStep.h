@@ -21,6 +21,7 @@
 
 #include <QObject>
 
+#include <modulesystem/Requirement.h>
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
 
@@ -29,7 +30,7 @@
 #include <QVariantMap>
 
 class WelcomePage;
-class RequirementsChecker;
+class GeneralRequirements;
 
 class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
 {
@@ -49,14 +50,15 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+    Calamares::RequirementsList checkRequirements() override;
+
 private:
     WelcomePage* m_widget;
-
-    RequirementsChecker* m_requirementsChecker;
+    GeneralRequirements* m_requirementsChecker;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )

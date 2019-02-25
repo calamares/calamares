@@ -281,4 +281,10 @@ Module::initFrom( const QVariantMap& moduleDescriptor )
         m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
 }
 
+RequirementsList
+Module::checkRequirements()
+{
+    return RequirementsList();
+}
+
 } //ns
