@@ -292,20 +292,7 @@ PartitionViewStep::next()
             if ( m_core->isDirty() )
                 m_manualPartitionPage->onRevertClicked();
         }
-        else if ( m_choicePage->currentChoice() == ChoicePage::Erase )
-        {
-            return;
-        }
-        else if ( m_choicePage->currentChoice() == ChoicePage::Alongside )
-        {
-            return;
-        }
-        else if ( m_choicePage->currentChoice() == ChoicePage::Replace )
-        {
-            return;
-        }
         cDebug() << "Choice applied: " << m_choicePage->currentChoice();
-        return;
     }
 }
 
