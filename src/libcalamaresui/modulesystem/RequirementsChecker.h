@@ -79,6 +79,7 @@ private:
     RequirementsList m_collectedRequirements;
 
     QTimer *m_progressTimer;
+    unsigned m_progressTimeouts;
 } ;
 
 }

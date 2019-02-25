@@ -66,6 +66,7 @@ RequirementsChecker::RequirementsChecker( QVector< Module* > modules, QObject* p
     : QObject( parent )
     , m_modules( std::move( modules ) )
     , m_progressTimer( nullptr )
+    , m_progressTimeouts( 0 )
 {
     m_watchers.reserve( m_modules.count() );
     m_collectedRequirements.reserve( m_modules.count() );
@@ -135,9 +136,15 @@ RequirementsChecker::addCheckedRequirements( RequirementsList l )
 void
 RequirementsChecker::reportProgress()
 {
+    m_progressTimeouts++;
+
     auto remaining = std::count_if( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && !w->isFinished(); } );
     if ( remaining > 0 )
-        emit requirementsProgress( tr( "Waiting for %n module(s).", "", remaining ) );
+    {
+        QString waiting = tr( "Waiting for %n module(s).", "", remaining );
+        QString elapsed = tr( "(%n second(s))", "", m_progressTimeouts * m_progressTimer->interval() / 1000 );
+        emit requirementsProgress( waiting + QString( " " ) + elapsed );
+    }
     else
         emit requirementsProgress( tr( "System-requirements checking is complete." ) );
 }
