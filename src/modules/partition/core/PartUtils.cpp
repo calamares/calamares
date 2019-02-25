@@ -42,6 +42,25 @@
 namespace PartUtils
 {
 
+static QString
+convenienceName( const Partition* const candidate )
+{
+    if ( !candidate->mountPoint().isEmpty() )
+        return candidate->mountPoint();
+    if ( !candidate->partitionPath().isEmpty() )
+        return candidate->partitionPath();
+    if ( !candidate->devicePath().isEmpty() )
+        return candidate->devicePath();
+    if ( !candidate->deviceNode().isEmpty() )
+        return candidate->devicePath();
+
+    QString p;
+    QTextStream s( &p );
+    s << (void *)candidate;
+
+    return p;
+}
+
 bool
 canBeReplaced( Partition* candidate )
 {
@@ -63,12 +82,12 @@ canBeReplaced( Partition* candidate )
              << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
     cDebug() << "Storage capacity  B:" << availableStorageB
              << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
-             << "for" << candidate->partitionPath() << "   length:" << candidate->length();
+             << "for" << convenienceName( candidate ) << "   length:" << candidate->length();
 
     if ( ok &&
          availableStorageB > requiredStorageB )
     {
-        cDebug() << "Partition" << candidate->partitionPath() << "authorized for replace install.";
+        cDebug() << "Partition" << convenienceName( candidate ) << "authorized for replace install.";
 
         return true;
     }
@@ -85,7 +104,7 @@ canBeResized( Partition* candidate )
         return false;
     }
 
-    cDebug() << "Checking if" << candidate->partitionPath() << "can be resized.";
+    cDebug() << "Checking if" << convenienceName( candidate ) << "can be resized.";
     if ( !candidate->fileSystem().supportGrow() ||
          !candidate->fileSystem().supportShrink() )
     {
@@ -117,7 +136,7 @@ canBeResized( Partition* candidate )
 
         if ( table->numPrimaries() >= table->maxPrimaries() )
         {
-            cDebug() << "  .. partition table already has" 
+            cDebug() << "  .. partition table already has"
                 << table->maxPrimaries() << "primary partitions.";
             return false;
         }
@@ -139,13 +158,13 @@ canBeResized( Partition* candidate )
              << QString( "(%1GB)" ).arg( advisedStorageGB );
     cDebug() << "Available storage B:" << availableStorageB
              << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
-             << "for" << candidate->partitionPath() << "   length:" << candidate->length()
+             << "for" << convenienceName( candidate ) << "   length:" << candidate->length()
              << "   sectorsUsed:" << candidate->sectorsUsed() << "   fsType:" << candidate->fileSystem().name();
 
     if ( ok &&
          availableStorageB > advisedStorageB )
     {
-        cDebug() << "Partition" << candidate->partitionPath() << "authorized for resize + autopartition install.";
+        cDebug() << "Partition" << convenienceName( candidate ) << "authorized for resize + autopartition install.";
 
         return true;
     }
@@ -198,7 +217,7 @@ lookForFstabEntries( const QString& partitionPath )
             mountOptions.append( "noload" );
     }
 
-    cDebug() << "Checking device" << partitionPath 
+    cDebug() << "Checking device" << partitionPath
         << "for fstab (fs=" << r.getOutput() << ')';
 
     FstabEntryList fstabEntries;
@@ -209,9 +228,9 @@ lookForFstabEntries( const QString& partitionPath )
     if ( !exit ) // if all is well
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
-        
+
         cDebug() << "  .. reading" << fstabFile.fileName();
-        
+
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
             const QStringList fstabLines = QString::fromLocal8Bit( fstabFile.readAll() )
@@ -381,7 +400,7 @@ isEfiSystem()
 bool
 isEfiBootable( const Partition* candidate )
 {
-    cDebug() << "Check EFI bootable" << candidate->partitionPath() << candidate->devicePath();
+    cDebug() << "Check EFI bootable" << convenienceName( candidate ) << candidate->devicePath();
     cDebug() << " .. flags" << candidate->activeFlags();
 
     auto flags = PartitionInfo::flags( candidate );
