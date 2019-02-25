@@ -59,7 +59,7 @@ check( Module * const &m, RequirementsChecker *c )
     RequirementsList l = m->checkRequirements();
     if ( l.count() > 0 )
         c->addCheckedRequirements( l );
-    c->requirementsProgress( QObject::tr( "Requirements checking for module %1 is complete." ).arg( m->name() ) );
+    c->requirementsProgress( QObject::tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
 }
 
 RequirementsChecker::RequirementsChecker( QVector< Module* > modules, QObject* parent )
