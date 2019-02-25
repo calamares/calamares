@@ -65,6 +65,7 @@ check( Module * const &m, RequirementsChecker *c )
 RequirementsChecker::RequirementsChecker( QVector< Module* > modules, QObject* parent )
     : QObject( parent )
     , m_modules( std::move( modules ) )
+    , m_progressTimer( nullptr )
 {
     m_watchers.reserve( m_modules.count() );
     m_collectedRequirements.reserve( m_modules.count() );
@@ -79,6 +80,10 @@ RequirementsChecker::~RequirementsChecker()
 void
 RequirementsChecker::run()
 {
+    m_progressTimer = new QTimer( this );
+    connect( m_progressTimer, &QTimer::timeout, this, &RequirementsChecker::reportProgress );
+    m_progressTimer->start( 1200 );  // msec
+
     for (const auto& module : m_modules )
     {
         Watcher *watcher = new Watcher( this );
@@ -94,6 +99,9 @@ RequirementsChecker::finished()
     if ( std::all_of( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && w->isFinished(); } ) )
     {
         cDebug() << "All requirements have been checked.";
+
+        if ( m_progressTimer )
+            m_progressTimer->stop();
 
         bool acceptable = true;
         int count = 0;
@@ -122,6 +130,16 @@ RequirementsChecker::addCheckedRequirements( RequirementsList l )
     }
     cDebug() << "Added" << l.count() << "requirement results";
     emit requirementsResult( l );
+}
+
+void
+RequirementsChecker::reportProgress()
+{
+    auto remaining = std::count_if( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && !w->isFinished(); } );
+    if ( remaining > 0 )
+        emit requirementsProgress( tr( "Waiting for %n module(s).", "", remaining ) );
+    else
+        emit requirementsProgress( tr( "System-requirements checking is complete." ) );
 }
 
 }

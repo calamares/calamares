@@ -18,11 +18,13 @@
 #ifndef CALAMARES_REQUIREMENTSCHECKER_H
 #define CALAMARES_REQUIREMENTSCHECKER_H
 
+#include "Requirement.h"
+
 #include <QFutureWatcher>
 #include <QObject>
+#include <QTimer>
 #include <QVector>
 
-#include "Requirement.h"
 
 namespace Calamares
 {
@@ -43,11 +45,17 @@ public:
     virtual ~RequirementsChecker() override;
 
 public slots:
+    /// @brief Start checking all the requirements
     void run();
 
+    /// @brief Called when requirements are reported by a module
     void addCheckedRequirements( RequirementsList );
 
+    /// @brief Called when all requirements have been checked
     void finished();
+
+    /// @brief Called periodically while requirements are being checked
+    void reportProgress();
 
 signals:
     /// @brief Human-readable progress message
@@ -69,6 +77,8 @@ private:
     QVector< Watcher* > m_watchers;
 
     RequirementsList m_collectedRequirements;
+
+    QTimer *m_progressTimer;
 } ;
 
 }
