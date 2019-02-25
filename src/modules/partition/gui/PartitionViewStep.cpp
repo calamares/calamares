@@ -668,12 +668,11 @@ PartitionViewStep::jobs() const
     return m_core->jobs();
 }
 
-Calamares::RequirementsList PartitionViewStep::checkRequirements()
+Calamares::RequirementsList
+PartitionViewStep::checkRequirements()
 {
-    if (m_future)
+    if ( m_future )
         m_future->waitForFinished();
-
-    sleep(3);
 
     Calamares::RequirementsList l;
     l.append(
@@ -686,7 +685,6 @@ Calamares::RequirementsList PartitionViewStep::checkRequirements()
     } );
 
     return l;
-
 }
 
 
