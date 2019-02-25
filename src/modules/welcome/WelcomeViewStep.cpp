@@ -99,10 +99,10 @@ WelcomeViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 WelcomeViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return Calamares::JobList();
 }
 
 
