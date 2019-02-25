@@ -68,13 +68,39 @@ public:
     //TODO: we might want to make this a QSharedPointer
     virtual QWidget* widget() = 0;
 
-    virtual void next() = 0;
-    virtual void back() = 0;
+    /**
+     * @brief Multi-page support, go next
+     *
+     * Multi-page view steps need to manage the content visible in the widget
+     * themselves. This method is called when the user clicks the *next*
+     * button, and should switch to the next of the multiple-pages. It needs
+     * to be consistent with both isNextEnabled() and isAtEnd().
+     *
+     * In particular: when isAtEnd() returns false, next() is called when
+     * the user clicks the button and a new page should be shown by this
+     * view step. When isAtEnd() returns true, clicking the button will
+     * switch to the next view step in sequence, rather than a next page
+     * in the current view step.
+     */
+    virtual void next();
+    /// @brief Multi-page support, go back
+    virtual void back();
 
+    /// @brief Can the user click *next* with currently-filled-in data?
     virtual bool isNextEnabled() const = 0;
+    /// @brief Can the user click *previous* with currently-filled-in data?
     virtual bool isBackEnabled() const = 0;
 
+    /**
+     * @brief Multi-page support, switch to previous view step?
+     *
+     * For a multi-page view step, this indicates that the first (beginning)
+     * page is showing. Clicking *previous* when at the beginning of a view
+     * step, switches to the previous step, not the previous page of the
+     * current view step.
+     */
     virtual bool isAtBeginning() const = 0;
+    /// @brief Multi-page support, switch to next view step?
     virtual bool isAtEnd() const = 0;
 
     /**
@@ -103,7 +129,6 @@ public:
 
 signals:
     void nextStatusChanged( bool status );
-    void done();
 
     /* Emitted when the viewstep thinks it needs more space than is currently
      * available for display. @p enlarge is the requested additional space,

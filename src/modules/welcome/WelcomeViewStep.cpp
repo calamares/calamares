@@ -60,18 +60,6 @@ WelcomeViewStep::widget()
 }
 
 
-void
-WelcomeViewStep::next()
-{
-    emit done();
-}
-
-
-void
-WelcomeViewStep::back()
-{}
-
-
 bool
 WelcomeViewStep::isNextEnabled() const
 {

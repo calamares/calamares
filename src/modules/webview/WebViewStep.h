@@ -50,8 +50,6 @@ public:
 
     QWidget* widget() override;
 
-    void next() override;
-    void back() override;
     void onActivate() override;
 
     bool isNextEnabled() const override;

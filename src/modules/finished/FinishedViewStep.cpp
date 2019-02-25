@@ -67,18 +67,6 @@ FinishedViewStep::widget()
 }
 
 
-void
-FinishedViewStep::next()
-{
-    emit done();
-}
-
-
-void
-FinishedViewStep::back()
-{}
-
-
 bool
 FinishedViewStep::isNextEnabled() const
 {

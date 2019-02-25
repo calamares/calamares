@@ -59,18 +59,6 @@ LicenseViewStep::widget()
 }
 
 
-void
-LicenseViewStep::next()
-{
-    emit done();
-}
-
-
-void
-LicenseViewStep::back()
-{}
-
-
 bool
 LicenseViewStep::isNextEnabled() const
 {

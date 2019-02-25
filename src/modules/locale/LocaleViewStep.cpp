@@ -190,18 +190,6 @@ LocaleViewStep::widget()
 }
 
 
-void
-LocaleViewStep::next()
-{
-    emit done();
-}
-
-
-void
-LocaleViewStep::back()
-{}
-
-
 bool
 LocaleViewStep::isNextEnabled() const
 {

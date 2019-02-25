@@ -61,18 +61,6 @@ UsersViewStep::widget()
 }
 
 
-void
-UsersViewStep::next()
-{
-    emit done();
-}
-
-
-void
-UsersViewStep::back()
-{}
-
-
 bool
 UsersViewStep::isNextEnabled() const
 {

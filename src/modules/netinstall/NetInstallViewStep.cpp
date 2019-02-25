@@ -69,18 +69,6 @@ NetInstallViewStep::widget()
 }
 
 
-void
-NetInstallViewStep::next()
-{
-    emit done();
-}
-
-
-void
-NetInstallViewStep::back()
-{}
-
-
 bool
 NetInstallViewStep::isNextEnabled() const
 {

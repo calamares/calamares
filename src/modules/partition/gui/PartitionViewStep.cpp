@@ -292,25 +292,8 @@ PartitionViewStep::next()
             if ( m_core->isDirty() )
                 m_manualPartitionPage->onRevertClicked();
         }
-        else if ( m_choicePage->currentChoice() == ChoicePage::Erase )
-        {
-            emit done();
-            return;
-        }
-        else if ( m_choicePage->currentChoice() == ChoicePage::Alongside )
-        {
-            emit done();
-            return;
-        }
-        else if ( m_choicePage->currentChoice() == ChoicePage::Replace )
-        {
-            emit done();
-            return;
-        }
         cDebug() << "Choice applied: " << m_choicePage->currentChoice();
-        return;
     }
-    emit done();
 }
 
 

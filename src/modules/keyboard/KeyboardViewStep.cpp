@@ -65,19 +65,6 @@ KeyboardViewStep::widget()
 }
 
 
-void
-KeyboardViewStep::next()
-{
-    //TODO: actually save those settings somewhere
-    emit done();
-}
-
-
-void
-KeyboardViewStep::back()
-{}
-
-
 bool
 KeyboardViewStep::isNextEnabled() const
 {

@@ -51,18 +51,6 @@ SummaryViewStep::widget()
 }
 
 
-void
-SummaryViewStep::next()
-{
-    emit done();
-}
-
-
-void
-SummaryViewStep::back()
-{}
-
-
 bool
 SummaryViewStep::isNextEnabled() const
 {

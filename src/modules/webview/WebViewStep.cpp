@@ -72,18 +72,6 @@ WebViewStep::widget()
 }
 
 
-void
-WebViewStep::next()
-{
-    emit done();
-}
-
-
-void
-WebViewStep::back()
-{}
-
-
 bool
 WebViewStep::isNextEnabled() const
 {

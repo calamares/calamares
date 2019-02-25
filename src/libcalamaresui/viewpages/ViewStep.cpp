@@ -52,6 +52,14 @@ void
 ViewStep::onLeave()
 {}
 
+void
+ViewStep::next()
+{}
+
+void
+ViewStep::back()
+{}
+
 
 void
 ViewStep::setModuleInstanceKey( const QString& instanceKey )

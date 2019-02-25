@@ -53,18 +53,6 @@ InteractiveTerminalViewStep::widget()
 }
 
 
-void
-InteractiveTerminalViewStep::next()
-{
-    emit done();
-}
-
-
-void
-InteractiveTerminalViewStep::back()
-{}
-
-
 bool
 InteractiveTerminalViewStep::isNextEnabled() const
 {
