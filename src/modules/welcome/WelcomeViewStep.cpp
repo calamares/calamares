@@ -21,8 +21,9 @@
 
 #include "WelcomePage.h"
 #include "checker/GeneralRequirements.h"
-#include "utils/Logger.h"
 
+#include "modulesystem/ModuleManager.h"
+#include "utils/Logger.h"
 
 #include <QVariant>
 
@@ -32,6 +33,7 @@ WelcomeViewStep::WelcomeViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_requirementsChecker( new GeneralRequirements( this ) )
 {
+    connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsComplete, this, &WelcomeViewStep::nextStatusChanged );
     emit nextStatusChanged( true );
     m_widget = new WelcomePage();
 }
