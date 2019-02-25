@@ -188,13 +188,12 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
 #ifdef WITHOUT_LIBPARTED
-    if ( m_entriesToCheck.contains( "storage" ) )
-        cWarning() << "GeneralRequirements checks 'storage' but libparted is disabled.";
-    if ( m_entriesToRequire.contains( "storage" ) )
+    if ( m_entriesToCheck.contains( "storage" ) || m_entriesToRequire.contains( "storage" ) )
     {
         // Warn, but also drop the required bit because otherwise installation
         // will be impossible (because the check always returns false).
-        cWarning() << "GeneralRequirements requires 'storage' check but libparted is disabled.";
+        cWarning() << "GeneralRequirements checks 'storage' but libparted is disabled.";
+        m_entriesToCheck.removeAll( "storage" );
         m_entriesToRequire.removeAll( "storage" );
     }
 #endif
