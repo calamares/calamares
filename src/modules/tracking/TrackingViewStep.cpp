@@ -67,17 +67,6 @@ TrackingViewStep::widget()
 }
 
 
-void
-TrackingViewStep::next()
-{
-}
-
-
-void
-TrackingViewStep::back()
-{}
-
-
 bool
 TrackingViewStep::isNextEnabled() const
 {

@@ -53,17 +53,6 @@ InteractiveTerminalViewStep::widget()
 }
 
 
-void
-InteractiveTerminalViewStep::next()
-{
-}
-
-
-void
-InteractiveTerminalViewStep::back()
-{}
-
-
 bool
 InteractiveTerminalViewStep::isNextEnabled() const
 {

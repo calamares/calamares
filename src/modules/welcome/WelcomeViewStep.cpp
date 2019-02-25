@@ -60,17 +60,6 @@ WelcomeViewStep::widget()
 }
 
 
-void
-WelcomeViewStep::next()
-{
-}
-
-
-void
-WelcomeViewStep::back()
-{}
-
-
 bool
 WelcomeViewStep::isNextEnabled() const
 {

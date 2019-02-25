@@ -65,17 +65,6 @@ KeyboardViewStep::widget()
 }
 
 
-void
-KeyboardViewStep::next()
-{
-}
-
-
-void
-KeyboardViewStep::back()
-{}
-
-
 bool
 KeyboardViewStep::isNextEnabled() const
 {

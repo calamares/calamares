@@ -61,17 +61,6 @@ UsersViewStep::widget()
 }
 
 
-void
-UsersViewStep::next()
-{
-}
-
-
-void
-UsersViewStep::back()
-{}
-
-
 bool
 UsersViewStep::isNextEnabled() const
 {

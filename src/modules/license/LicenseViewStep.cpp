@@ -59,17 +59,6 @@ LicenseViewStep::widget()
 }
 
 
-void
-LicenseViewStep::next()
-{
-}
-
-
-void
-LicenseViewStep::back()
-{}
-
-
 bool
 LicenseViewStep::isNextEnabled() const
 {

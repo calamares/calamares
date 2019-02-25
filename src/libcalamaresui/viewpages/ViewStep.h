@@ -68,8 +68,8 @@ public:
     //TODO: we might want to make this a QSharedPointer
     virtual QWidget* widget() = 0;
 
-    virtual void next() = 0;
-    virtual void back() = 0;
+    virtual void next();
+    virtual void back();
 
     virtual bool isNextEnabled() const = 0;
     virtual bool isBackEnabled() const = 0;

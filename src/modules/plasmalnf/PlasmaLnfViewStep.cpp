@@ -76,17 +76,6 @@ PlasmaLnfViewStep::widget()
 }
 
 
-void
-PlasmaLnfViewStep::next()
-{
-}
-
-
-void
-PlasmaLnfViewStep::back()
-{}
-
-
 bool
 PlasmaLnfViewStep::isNextEnabled() const
 {
