@@ -103,7 +103,6 @@ public:
 
 signals:
     void nextStatusChanged( bool status );
-    void done();
 
     /* Emitted when the viewstep thinks it needs more space than is currently
      * available for display. @p enlarge is the requested additional space,

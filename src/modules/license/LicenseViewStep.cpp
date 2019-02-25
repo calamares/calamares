@@ -62,7 +62,6 @@ LicenseViewStep::widget()
 void
 LicenseViewStep::next()
 {
-    emit done();
 }
 
 

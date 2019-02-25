@@ -64,7 +64,6 @@ UsersViewStep::widget()
 void
 UsersViewStep::next()
 {
-    emit done();
 }
 
 

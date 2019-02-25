@@ -75,7 +75,6 @@ WebViewStep::widget()
 void
 WebViewStep::next()
 {
-    emit done();
 }
 
 

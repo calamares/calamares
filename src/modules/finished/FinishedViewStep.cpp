@@ -70,7 +70,6 @@ FinishedViewStep::widget()
 void
 FinishedViewStep::next()
 {
-    emit done();
 }
 
 

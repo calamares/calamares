@@ -193,7 +193,6 @@ LocaleViewStep::widget()
 void
 LocaleViewStep::next()
 {
-    emit done();
 }
 
 

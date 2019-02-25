@@ -54,7 +54,6 @@ SummaryViewStep::widget()
 void
 SummaryViewStep::next()
 {
-    emit done();
 }
 
 

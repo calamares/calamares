@@ -70,7 +70,6 @@ TrackingViewStep::widget()
 void
 TrackingViewStep::next()
 {
-    emit done();
 }
 
 

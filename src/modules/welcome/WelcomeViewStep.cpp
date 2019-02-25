@@ -63,7 +63,6 @@ WelcomeViewStep::widget()
 void
 WelcomeViewStep::next()
 {
-    emit done();
 }
 
 

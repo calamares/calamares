@@ -56,7 +56,6 @@ InteractiveTerminalViewStep::widget()
 void
 InteractiveTerminalViewStep::next()
 {
-    emit done();
 }
 
 

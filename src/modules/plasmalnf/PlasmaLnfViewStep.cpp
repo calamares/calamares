@@ -79,7 +79,6 @@ PlasmaLnfViewStep::widget()
 void
 PlasmaLnfViewStep::next()
 {
-    emit done();
 }
 
 

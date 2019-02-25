@@ -72,7 +72,6 @@ NetInstallViewStep::widget()
 void
 NetInstallViewStep::next()
 {
-    emit done();
 }
 
 
