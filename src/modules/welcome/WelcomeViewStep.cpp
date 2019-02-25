@@ -34,7 +34,6 @@ WelcomeViewStep::WelcomeViewStep( QObject* parent )
     , m_requirementsChecker( new GeneralRequirements( this ) )
 {
     connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsComplete, this, &WelcomeViewStep::nextStatusChanged );
-    emit nextStatusChanged( true );
     m_widget = new WelcomePage();
 }
 
