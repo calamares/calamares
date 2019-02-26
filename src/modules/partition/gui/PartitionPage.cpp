@@ -56,7 +56,6 @@
 #include <kpmcore/ops/removevolumegroupoperation.h>
 
 // Qt
-#include <QDebug>
 #include <QHeaderView>
 #include <QItemSelectionModel>
 #include <QMessageBox>
@@ -495,7 +494,7 @@ PartitionPage::updateBootLoaderInstallPath()
     QVariant var = m_ui->bootLoaderComboBox->currentData( BootLoaderModel::BootLoaderPathRole );
     if ( !var.isValid() )
         return;
-    qDebug() << "PartitionPage::updateBootLoaderInstallPath" << var.toString();
+    cDebug() << "PartitionPage::updateBootLoaderInstallPath" << var.toString();
     m_core->setBootLoaderInstallPath( var.toString() );
 }
 
@@ -503,6 +502,7 @@ void
 PartitionPage::updateSelectedBootLoaderIndex()
 {
     m_lastSelectedBootLoaderIndex = m_ui->bootLoaderComboBox->currentIndex();
+    cDebug() << "Selected bootloader index" << m_lastSelectedBootLoaderIndex;
 }
 
 void
