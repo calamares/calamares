@@ -45,14 +45,17 @@ struct RequirementEntry
     /// @brief name of this requirement; not shown to user and used as ID
     QString name;
 
-    /// @brief Description of this requirement, for use in user-visible lists
+    /// @brief Detailed description of this requirement, for use in user-visible lists
     TextFunction enumerationText;
 
-    /// @brief User-visible string to show that the requirement is not met
+    /// @brief User-visible string to show that the requirement is not met, short form
     TextFunction negatedText;
 
     bool satisfied;
     bool mandatory;
+
+    /// @brief Convenience to check if this entry should be shown in details dialog
+    bool hasDetails() const { return !enumerationText().isEmpty(); }
 };
 
 using RequirementsList = QList< RequirementEntry >;

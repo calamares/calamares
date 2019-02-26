@@ -179,7 +179,7 @@ ResultsListWidget::showDetailsDialog( const Calamares::RequirementsList& checkEn
 
     for ( const auto& entry : checkEntries )
     {
-        if ( entry.enumerationText().isEmpty() )
+        if ( !entry.hasDetails() )
             continue;
 
         ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
