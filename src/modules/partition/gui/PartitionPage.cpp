@@ -90,22 +90,9 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
 
     updateFromCurrentDevice();
 
-    connect( m_ui->deviceComboBox, &QComboBox::currentTextChanged,
-             [ this ]( const QString& /* text */ )
-    {
-        updateFromCurrentDevice();
-    } );
-    connect( m_ui->bootLoaderComboBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::activated),
-                [ this ]( const QString& /* text */ )
-    {
-        m_lastSelectedBootLoaderIndex = m_ui->bootLoaderComboBox->currentIndex();
-    } );
-
-    connect( m_ui->bootLoaderComboBox, &QComboBox::currentTextChanged,
-             [ this ]( const QString& /* text */ )
-    {
-        updateBootLoaderInstallPath();
-    } );
+    connect( m_ui->deviceComboBox, &QComboBox::currentTextChanged, this, &PartitionPage::updateFromCurrentDevice );
+    connect( m_ui->bootLoaderComboBox, QOverload<int>::of(&QComboBox::activated), this, &PartitionPage::updateSelectedBootLoaderIndex );
+    connect( m_ui->bootLoaderComboBox, &QComboBox::currentTextChanged, this, &PartitionPage::updateBootLoaderInstallPath );
 
     connect( m_core, &PartitionCoreModule::isDirtyChanged, m_ui->revertButton, &QWidget::setEnabled );
 
@@ -510,6 +497,12 @@ PartitionPage::updateBootLoaderInstallPath()
         return;
     qDebug() << "PartitionPage::updateBootLoaderInstallPath" << var.toString();
     m_core->setBootLoaderInstallPath( var.toString() );
+}
+
+void
+PartitionPage::updateSelectedBootLoaderIndex()
+{
+    m_lastSelectedBootLoaderIndex = m_ui->bootLoaderComboBox->currentIndex();
 }
 
 void
