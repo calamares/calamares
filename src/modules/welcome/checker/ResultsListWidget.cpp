@@ -17,9 +17,9 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CheckerWidget.h"
+#include "ResultsListWidget.h"
 
-#include "CheckItemWidget.h"
+#include "ResultWidget.h"
 
 #include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
@@ -33,7 +33,7 @@
 #include <QLabel>
 
 
-CheckerWidget::CheckerWidget( QWidget* parent )
+ResultsListWidget::ResultsListWidget( QWidget* parent )
     : QWidget( parent )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
@@ -53,7 +53,7 @@ CheckerWidget::CheckerWidget( QWidget* parent )
 
 
 void
-CheckerWidget::init( const Calamares::RequirementsList& checkEntries )
+ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
 {
     bool allChecked = true;
     bool requirementsSatisfied = true;
@@ -62,7 +62,7 @@ CheckerWidget::init( const Calamares::RequirementsList& checkEntries )
     {
         if ( !entry.satisfied )
         {
-            CheckItemWidget* ciw = new CheckItemWidget( entry.satisfied, entry.mandatory );
+            ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
             CALAMARES_RETRANSLATE( ciw->setText( entry.negatedText() ); )
             m_entriesLayout->addWidget( ciw );
             ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
@@ -162,7 +162,7 @@ CheckerWidget::init( const Calamares::RequirementsList& checkEntries )
 
 
 void
-CheckerWidget::showDetailsDialog( const Calamares::RequirementsList& checkEntries )
+ResultsListWidget::showDetailsDialog( const Calamares::RequirementsList& checkEntries )
 {
     QDialog* detailsDialog = new QDialog( this );
     QBoxLayout* mainLayout = new QVBoxLayout;
@@ -182,7 +182,7 @@ CheckerWidget::showDetailsDialog( const Calamares::RequirementsList& checkEntrie
         if ( entry.enumerationText().isEmpty() )
             continue;
 
-        CheckItemWidget* ciw = new CheckItemWidget( entry.satisfied, entry.mandatory );
+        ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
         CALAMARES_RETRANSLATE( ciw->setText( entry.enumerationText() ); )
         entriesLayout->addWidget( ciw );
         ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );

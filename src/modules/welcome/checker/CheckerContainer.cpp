@@ -22,7 +22,7 @@
 
 #include "CheckerContainer.h"
 
-#include "CheckerWidget.h"
+#include "ResultsListWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -59,7 +59,7 @@ void CheckerContainer::requirementsComplete( bool ok )
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;  // Don't delete in destructor
 
-    m_checkerWidget = new CheckerWidget( this );
+    m_checkerWidget = new ResultsListWidget( this );
     m_checkerWidget->init( m_requirements );
     layout()->addWidget( m_checkerWidget );
 

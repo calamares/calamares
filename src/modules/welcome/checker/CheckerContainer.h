@@ -27,7 +27,7 @@
 
 #include "modulesystem/Requirement.h"
 
-class CheckerWidget;
+class ResultsListWidget;
 class WaitingWidget;
 
 /**
@@ -55,7 +55,7 @@ public slots:
 
 protected:
     WaitingWidget *m_waitingWidget;
-    CheckerWidget *m_checkerWidget;
+    ResultsListWidget *m_checkerWidget;
 
     Calamares::RequirementsList m_requirements;
     bool m_verdict;

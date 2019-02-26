@@ -16,19 +16,19 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CHECKERWIDGET_H
-#define CHECKERWIDGET_H
+#ifndef CHECKER_RESULTSLISTWIDGET_H
+#define CHECKER_RESULTSLISTWIDGET_H
 
 #include "modulesystem/Requirement.h"
 
 #include <QBoxLayout>
 #include <QWidget>
 
-class CheckerWidget : public QWidget
+class ResultsListWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CheckerWidget( QWidget* parent = nullptr );
+    explicit ResultsListWidget( QWidget* parent = nullptr );
 
     void init( const Calamares::RequirementsList& checkEntries );
 
@@ -40,4 +40,4 @@ private:
     int m_paddingSize;
 };
 
-#endif // CHECKERWIDGET_H
+#endif // CHECKER_RESULTSLISTWIDGET_H

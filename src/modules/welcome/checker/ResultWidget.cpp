@@ -17,7 +17,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CheckItemWidget.h"
+#include "ResultWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -31,7 +31,7 @@ static inline void setCondition( QLabel* label, CalamaresUtils::ImageType t )
                                                     QSize( label->height(), label->height() ) ) );
 }
 
-CheckItemWidget::CheckItemWidget( bool checked,
+ResultWidget::ResultWidget( bool satisfied,
                                   bool required,
                                   QWidget* parent )
     : QWidget( parent )
@@ -46,8 +46,7 @@ CheckItemWidget::CheckItemWidget( bool checked,
     mainLayout->addWidget( m_textLabel );
     m_textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
-    if ( checked )
-        // Condition is satisfied
+    if ( satisfied )
         setCondition( m_iconLabel, CalamaresUtils::StatusOk );
     else
         if ( required )
@@ -58,7 +57,7 @@ CheckItemWidget::CheckItemWidget( bool checked,
 
 
 void
-CheckItemWidget::setText( const QString& text )
+ResultWidget::setText( const QString& text )
 {
     m_textLabel->setText( text );
 }
