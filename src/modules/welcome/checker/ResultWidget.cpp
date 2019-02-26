@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CheckItemWidget.h"
+#include "ResultWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -26,14 +26,15 @@
 
 static inline void setCondition( QLabel* label, CalamaresUtils::ImageType t )
 {
-    label->setPixmap( CalamaresUtils::defaultPixmap( t,
-                                                    CalamaresUtils::Original,
-                                                    QSize( label->height(), label->height() ) ) );
+    label->setPixmap(
+        CalamaresUtils::defaultPixmap( t,
+                                       CalamaresUtils::Original,
+                                       QSize( label->height(), label->height() ) ) );
 }
 
-CheckItemWidget::CheckItemWidget( bool checked,
-                                  bool required,
-                                  QWidget* parent )
+ResultWidget::ResultWidget( bool satisfied,
+                            bool required,
+                            QWidget* parent )
     : QWidget( parent )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
@@ -46,19 +47,17 @@ CheckItemWidget::CheckItemWidget( bool checked,
     mainLayout->addWidget( m_textLabel );
     m_textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
-    if ( checked )
-        // Condition is satisfied
+    if ( satisfied )
         setCondition( m_iconLabel, CalamaresUtils::StatusOk );
+    else if ( required )
+        setCondition( m_iconLabel, CalamaresUtils::StatusError );
     else
-        if ( required )
-            setCondition( m_iconLabel, CalamaresUtils::StatusError );
-        else
-            setCondition( m_iconLabel, CalamaresUtils::StatusWarning );
+        setCondition( m_iconLabel, CalamaresUtils::StatusWarning );
 }
 
 
 void
-CheckItemWidget::setText( const QString& text )
+ResultWidget::setText( const QString& text )
 {
     m_textLabel->setText( text );
 }
