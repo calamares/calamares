@@ -6,15 +6,28 @@ website will have to do for older versions.
 # 3.2.5 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Arnaud Ferraris
+ - Dan Simmons
 
 ## Core ##
 
+ * View modules (in C++) can now perform their own requirements-checking
+   to see if installation makes sense. This expands upon the existing
+   requirements checks in the welcome module (RAM, disk space, ..).
+   The checks have been made asynchronous, so that responsiveness during
+   requirements-checking is improved and the user has better feedback.
+
 ## Modules ##
 
+ * *Partition* module: it is now possible to build without libparted. Since
+   KPMCore may not need this library anymore, it is a dependency that will
+   be dropped as soon as it is feasible. Add `-DCMAKE_DISABLE_FIND_PACKAGE_LIBPARTED=ON`
+   to the CMake flags to do so.
  * Python modules: several modules have had translations added. This is
    usually only visible when the module runs as part of the *exec* step,
    when the module's *pretty name* is displayed. In addition, error
    messages are now translated.
+
 
 # 3.2.4 (2019-02-12) #
 
