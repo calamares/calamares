@@ -362,18 +362,18 @@ PartitionPage::onCreateClicked()
     if ( !checkCanCreate( model->device() ) )
         return;
 
-    QPointer< CreatePartitionDialog > dlg = new CreatePartitionDialog( model->device(),
-                                                                       partition->parent(),
-                                                                       nullptr,
-                                                                       getCurrentUsedMountpoints(),
-                                                                       this );
-    dlg->initFromFreeSpace( partition );
-    if ( dlg->exec() == QDialog::Accepted )
+    CreatePartitionDialog dlg(
+        model->device(),
+        partition->parent(),
+        nullptr,
+        getCurrentUsedMountpoints(),
+        this );
+    dlg.initFromFreeSpace( partition );
+    if ( dlg.exec() == QDialog::Accepted )
     {
-        Partition* newPart = dlg->createPartition();
-        m_core->createPartition( model->device(), newPart, dlg->newFlags() );
+        Partition* newPart = dlg.createPartition();
+        m_core->createPartition( model->device(), newPart, dlg.newFlags() );
     }
-    delete dlg;
 }
 
 void
