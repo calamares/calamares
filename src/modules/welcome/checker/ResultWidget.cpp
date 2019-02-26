@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,14 +26,15 @@
 
 static inline void setCondition( QLabel* label, CalamaresUtils::ImageType t )
 {
-    label->setPixmap( CalamaresUtils::defaultPixmap( t,
-                                                    CalamaresUtils::Original,
-                                                    QSize( label->height(), label->height() ) ) );
+    label->setPixmap(
+        CalamaresUtils::defaultPixmap( t,
+                                       CalamaresUtils::Original,
+                                       QSize( label->height(), label->height() ) ) );
 }
 
 ResultWidget::ResultWidget( bool satisfied,
-                                  bool required,
-                                  QWidget* parent )
+                            bool required,
+                            QWidget* parent )
     : QWidget( parent )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
@@ -48,11 +49,10 @@ ResultWidget::ResultWidget( bool satisfied,
 
     if ( satisfied )
         setCondition( m_iconLabel, CalamaresUtils::StatusOk );
+    else if ( required )
+        setCondition( m_iconLabel, CalamaresUtils::StatusError );
     else
-        if ( required )
-            setCondition( m_iconLabel, CalamaresUtils::StatusError );
-        else
-            setCondition( m_iconLabel, CalamaresUtils::StatusWarning );
+        setCondition( m_iconLabel, CalamaresUtils::StatusWarning );
 }
 
 

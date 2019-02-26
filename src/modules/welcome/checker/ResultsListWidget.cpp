@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -69,9 +69,7 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
 
             allChecked = false;
             if ( entry.mandatory )
-            {
                 requirementsSatisfied = false;
-            }
             ciw->setAutoFillBackground( true );
             QPalette pal( ciw->palette() );
             pal.setColor( QPalette::Background, Qt::white );
@@ -97,7 +95,7 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
                                         "requirements for installing %1.<br/>"
                                         "Installation cannot continue. "
                                         "<a href=\"#details\">Details...</a>" )
-                                        .arg( *Calamares::Branding::ShortVersionedName ) );
+                                    .arg( *Calamares::Branding::ShortVersionedName ) );
             )
             textLabel->setOpenExternalLinks( false );
             connect( textLabel, &QLabel::linkActivated,
@@ -114,7 +112,7 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
                                         "recommended requirements for installing %1.<br/>"
                                         "Installation can continue, but some features "
                                         "might be disabled." )
-                                        .arg( *Calamares::Branding::ShortVersionedName ) );
+                                    .arg( *Calamares::Branding::ShortVersionedName ) );
             )
         }
     }
@@ -122,16 +120,16 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
     if ( allChecked && requirementsSatisfied )
     {
         if ( !Calamares::Branding::instance()->
-             imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
+                imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
         {
             QPixmap theImage = QPixmap( Calamares::Branding::instance()->
-                               imagePath( Calamares::Branding::ProductWelcome ) );
+                                        imagePath( Calamares::Branding::ProductWelcome ) );
             if ( !theImage.isNull() )
             {
                 QLabel* imageLabel;
                 if ( Calamares::Branding::instance()->welcomeExpandingLogo() )
                 {
-                    FixedAspectRatioLabel *p = new FixedAspectRatioLabel;
+                    FixedAspectRatioLabel* p = new FixedAspectRatioLabel;
                     p->setPixmap( theImage );
                     imageLabel = p;
                 }
@@ -155,9 +153,7 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
         )
     }
     else
-    {
         m_mainLayout->addStretch();
-    }
 }
 
 
@@ -194,8 +190,8 @@ ResultsListWidget::showDetailsDialog( const Calamares::RequirementsList& checkEn
     }
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close,
-                                                        Qt::Horizontal,
-                                                        this );
+            Qt::Horizontal,
+            this );
     mainLayout->addWidget( buttonBox );
 
     detailsDialog->setModal( true );
