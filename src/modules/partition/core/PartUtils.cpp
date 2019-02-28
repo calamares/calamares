@@ -459,6 +459,33 @@ findFS( QString fsName, FileSystem::Type* fsType )
     return fsName;
 }
 
+static qint64
+sizeToBytes( double size, SizeUnit unit, qint64 totalSize )
+{
+    qint64 bytes;
+
+    switch ( unit )
+    {
+    case SizeUnit::Percent:
+        bytes = qint64( static_cast<double>( totalSize ) * size / 100.0L );
+        break;
+    case SizeUnit::KiB:
+        bytes = CalamaresUtils::KiBtoBytes(size);
+        break;
+    case SizeUnit::MiB:
+        bytes = CalamaresUtils::MiBtoBytes(size);
+        break;
+    case SizeUnit::GiB:
+        bytes = CalamaresUtils::GiBtoBytes(size);
+        break;
+    default:
+        bytes = size;
+        break;
+    }
+
+    return bytes;
+}
+
 double
 parseSizeString( const QString& sizeString, SizeUnit* unit )
 {
@@ -507,6 +534,13 @@ parseSizeString( const QString& sizeString, SizeUnit* unit )
     }
 
     return value;
+}
+
+qint64
+sizeToSectors( double size, SizeUnit unit, qint64 totalSectors, qint64 logicalSize )
+{
+    qint64 bytes = sizeToBytes( size, unit, totalSectors * logicalSize );
+    return bytesToSectors( static_cast<unsigned long long>( bytes ), logicalSize );
 }
 
 }  // nmamespace PartUtils

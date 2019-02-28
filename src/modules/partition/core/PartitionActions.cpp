@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -38,8 +39,6 @@
 
 namespace PartitionActions
 {
-using CalamaresUtils::GiBtoBytes;
-using CalamaresUtils::MiBtoBytes;
 using CalamaresUtils::operator""_GiB;
 using CalamaresUtils::operator""_MiB;
 
@@ -82,22 +81,6 @@ swapSuggestion( const qint64 availableSpaceB, Choices::SwapChoice swap )
     return suggestedSwapSizeB;
 }
 
-constexpr qint64
-alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
-{
-    qint64 blocks = bytes / blocksize;
-
-    if ( blocks * blocksize != bytes )
-        ++blocks;
-    return blocks * blocksize;
-}
-
-qint64
-bytesToSectors( qint64 bytes, qint64 blocksize )
-{
-    return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize), MiBtoBytes(1) ) / blocksize;
-}
-
 void
 doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionOptions o )
 {
@@ -117,11 +100,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     // Since sectors count from 0, if the space is 2048 sectors in size,
     // the first free sector has number 2048 (and there are 2048 sectors
     // before that one, numbered 0..2047).
-    qint64 firstFreeSector = bytesToSectors( empty_space_sizeB, dev->logicalSize() );
+    qint64 firstFreeSector = PartUtils::bytesToSectors( empty_space_sizeB, dev->logicalSize() );
 
     if ( isEfi )
     {
-        qint64 efiSectorCount = bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
+        qint64 efiSectorCount = PartUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
         Q_ASSERT( efiSectorCount > 0 );
 
         // Since sectors count from 0, and this partition is created starting

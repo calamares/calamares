@@ -22,6 +22,7 @@
 #define PARTUTILS_H
 
 #include "OsproberEntry.h"
+#include "utils/Units.h"
 
 // KPMcore
 #include <kpmcore/fs/filesystem.h>
@@ -34,6 +35,8 @@ class Partition;
 
 namespace PartUtils
 {
+using CalamaresUtils::MiBtoBytes;
+
 enum SizeUnit
 {
     Percent = 0,
@@ -103,6 +106,31 @@ QString findFS( QString fsName, FileSystem::Type* fsType );
  * @return the size value, as parsed from the input string.
  */
 double parseSizeString( const QString& sizeString, SizeUnit* unit );
+
+/**
+ * @brief Convert a partition size to a sectors count.
+ * @param size the partition size.
+ * @param unit the partition size unit.
+ * @param totalSectors the total number of sectors of the selected drive.
+ * @param logicalSize the sector size, in bytes.
+ * @return the number of sectors to be used for the given partition size.
+ */
+qint64 sizeToSectors( double size, SizeUnit unit, qint64 totalSectors, qint64 logicalSize );
+
+constexpr qint64 alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
+{
+    qint64 blocks = bytes / blocksize;
+
+    if ( blocks * blocksize != bytes )
+        ++blocks;
+    return blocks * blocksize;
+}
+
+constexpr qint64 bytesToSectors( qint64 bytes, qint64 blocksize )
+{
+    return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize), MiBtoBytes(1ULL) ) / blocksize;
+}
+
 }
 
 #endif // PARTUTILS_H

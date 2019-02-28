@@ -107,35 +107,6 @@ PartitionLayout::addEntry( const QString& label, const QString& mountPoint, cons
     m_partLayout.append( entry );
 }
 
-static qint64
-sizeToSectors( double size, PartitionLayout::SizeUnit unit, qint64 totalSize, qint64 logicalSize )
-{
-    qint64 sectors;
-    double tmp;
-
-    if ( unit == PartitionLayout::SizeUnit::Percent )
-    {
-        tmp = static_cast<double>( totalSize ) * size / 100;
-        sectors = static_cast<qint64>( tmp );
-    }
-    else
-    {
-        tmp = size;
-        if ( unit >= PartitionLayout::SizeUnit::KiB )
-            tmp *= 1024;
-        if ( unit >= PartitionLayout::SizeUnit::MiB )
-            tmp *= 1024;
-        if ( unit >= PartitionLayout::SizeUnit::GiB )
-            tmp *= 1024;
-
-        sectors = PartitionActions::bytesToSectors( static_cast<unsigned long long>( tmp ),
-                                                    logicalSize
-                                                  );
-    }
-
-    return sectors;
-}
-
 QList< Partition* >
 PartitionLayout::execute( Device *dev, qint64 firstSector,
                           qint64 lastSector, QString luksPassphrase,
@@ -155,8 +126,8 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
         Partition *currentPartition = nullptr;
 
         // Calculate partition size
-        size = sizeToSectors( part.partSize, part.partSizeUnit, totalSize, dev->logicalSize() );
-        minSize = sizeToSectors( part.partMinSize, part.partMinSizeUnit, totalSize, dev->logicalSize() );
+        size = PartUtils::sizeToSectors( part.partSize, part.partSizeUnit, totalSize, dev->logicalSize() );
+        minSize = PartUtils::sizeToSectors( part.partMinSize, part.partMinSizeUnit, totalSize, dev->logicalSize() );
         if ( size < minSize )
             size = minSize;
         if ( size > availableSize )
