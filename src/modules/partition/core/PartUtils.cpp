@@ -537,6 +537,15 @@ parseSizeString( const QString& sizeString, SizeUnit* unit )
 }
 
 qint64
+parseSizeString( const QString& sizeString, qint64 totalSize )
+{
+    SizeUnit unit;
+    double value = parseSizeString( sizeString, &unit );
+
+    return sizeToBytes( value, unit, totalSize );
+}
+
+qint64
 sizeToSectors( double size, SizeUnit unit, qint64 totalSectors, qint64 logicalSize )
 {
     qint64 bytes = sizeToBytes( size, unit, totalSectors * logicalSize );

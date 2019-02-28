@@ -108,6 +108,14 @@ QString findFS( QString fsName, FileSystem::Type* fsType );
 double parseSizeString( const QString& sizeString, SizeUnit* unit );
 
 /**
+ * @brief Parse a partition size string and return its value in bytes.
+ * @param sizeString the string to parse.
+ * @param totalSize the size of the selected drive (used when the size is expressed in %)
+ * @return the size value in bytes.
+ */
+qint64 parseSizeString( const QString& sizeString, qint64 totalSize );
+
+/**
  * @brief Convert a partition size to a sectors count.
  * @param size the partition size.
  * @param unit the partition size unit.

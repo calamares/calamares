@@ -29,6 +29,7 @@
 #include "utils/Units.h"
 #include "utils/NamedEnum.h"
 
+#include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
 
@@ -84,6 +85,7 @@ swapSuggestion( const qint64 availableSpaceB, Choices::SwapChoice swap )
 void
 doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionOptions o )
 {
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QString defaultFsType = o.defaultFsType;
     if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
         defaultFsType = "ext4";
@@ -92,10 +94,18 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
 
     // Partition sizes are expressed in MiB, should be multiples of
     // the logical sector size (usually 512B). EFI starts with 2MiB
-    // empty and a 300MiB EFI boot partition, while BIOS starts at
+    // empty and a EFI boot partition, while BIOS starts at
     // the 1MiB boundary (usually sector 2048).
-    int uefisys_part_sizeB = isEfi ? 300_MiB : 0_MiB;
     int empty_space_sizeB = isEfi ? 2_MiB : 1_MiB;
+    int uefisys_part_sizeB = 0_MiB;
+
+    if ( isEfi )
+    {
+        if ( gs->contains( "efiSystemPartitionSize" ) )
+            uefisys_part_sizeB = PartUtils::parseSizeString( gs->value( "efiSystemPartitionSize" ).toString(), dev->capacity() );
+        else
+            uefisys_part_sizeB = 300_MiB;
+    }
 
     // Since sectors count from 0, if the space is 2048 sectors in size,
     // the first free sector has number 2048 (and there are 2048 sectors
