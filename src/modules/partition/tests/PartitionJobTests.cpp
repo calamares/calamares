@@ -349,7 +349,8 @@ PartitionJobTests::testResizePartition()
 
     // Make the test data file smaller than the full size of the partition to
     // accomodate for the file system overhead
-    const QByteArray testData = generateTestData( CalamaresUtils::MiBtoBytes( qMin( oldSizeMB, newSizeMB ) ) * 3 / 4 );
+    const unsigned long long minSizeMB = qMin( oldSizeMB, newSizeMB );
+    const QByteArray testData = generateTestData( CalamaresUtils::MiBtoBytes( minSizeMB ) * 3 / 4 );
     const QString testName = "test.data";
 
     // Setup: create the test partition
