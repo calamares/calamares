@@ -2,6 +2,7 @@
  *
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,6 +22,7 @@
 #define PARTUTILS_H
 
 #include "OsproberEntry.h"
+#include "utils/Units.h"
 
 // KPMcore
 #include <kpmcore/fs/filesystem.h>
@@ -33,6 +35,16 @@ class Partition;
 
 namespace PartUtils
 {
+using CalamaresUtils::MiBtoBytes;
+
+enum SizeUnit
+{
+    Percent = 0,
+    Byte,
+    KiB,
+    MiB,
+    GiB
+};
 
 /**
  * @brief canBeReplaced checks whether the given Partition satisfies the criteria
@@ -86,6 +98,47 @@ bool isEfiBootable( const Partition* candidate );
  * its value is FileSystem::Unknown if @p fsName is not recognized.
  */
 QString findFS( QString fsName, FileSystem::Type* fsType );
+
+/**
+ * @brief Parse a partition size string and return its value and unit used.
+ * @param sizeString the string to parse.
+ * @param unit pointer to a SizeUnit variable for storing the parsed unit.
+ * @return the size value, as parsed from the input string.
+ */
+double parseSizeString( const QString& sizeString, SizeUnit* unit );
+
+/**
+ * @brief Parse a partition size string and return its value in bytes.
+ * @param sizeString the string to parse.
+ * @param totalSize the size of the selected drive (used when the size is expressed in %)
+ * @return the size value in bytes.
+ */
+qint64 parseSizeString( const QString& sizeString, qint64 totalSize );
+
+/**
+ * @brief Convert a partition size to a sectors count.
+ * @param size the partition size.
+ * @param unit the partition size unit.
+ * @param totalSectors the total number of sectors of the selected drive.
+ * @param logicalSize the sector size, in bytes.
+ * @return the number of sectors to be used for the given partition size.
+ */
+qint64 sizeToSectors( double size, SizeUnit unit, qint64 totalSectors, qint64 logicalSize );
+
+constexpr qint64 alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
+{
+    qint64 blocks = bytes / blocksize;
+
+    if ( blocks * blocksize != bytes )
+        ++blocks;
+    return blocks * blocksize;
+}
+
+constexpr qint64 bytesToSectors( qint64 bytes, qint64 blocksize )
+{
+    return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize), MiBtoBytes(1ULL) ) / blocksize;
+}
+
 }
 
 #endif // PARTUTILS_H

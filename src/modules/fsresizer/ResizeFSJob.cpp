@@ -80,7 +80,7 @@ ResizeFSJob::RelativeSize::apply( qint64 totalSectors, qint64 sectorSize )
     case unit_t::None:
         return -1;
     case unit_t::Absolute:
-        return CalamaresUtils::MiBtoBytes( value() ) / sectorSize;
+        return CalamaresUtils::MiBtoBytes( static_cast<unsigned long long>( value() ) ) / sectorSize;
     case unit_t::Percent:
         if ( value() == 100 )
             return totalSectors;  // Common-case, avoid futzing around
