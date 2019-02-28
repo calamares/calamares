@@ -2,6 +2,7 @@
  *
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -117,7 +118,7 @@ canBeResized( Partition* candidate )
 
         if ( table->numPrimaries() >= table->maxPrimaries() )
         {
-            cDebug() << "  .. partition table already has" 
+            cDebug() << "  .. partition table already has"
                 << table->maxPrimaries() << "primary partitions.";
             return false;
         }
@@ -198,7 +199,7 @@ lookForFstabEntries( const QString& partitionPath )
             mountOptions.append( "noload" );
     }
 
-    cDebug() << "Checking device" << partitionPath 
+    cDebug() << "Checking device" << partitionPath
         << "for fstab (fs=" << r.getOutput() << ')';
 
     FstabEntryList fstabEntries;
@@ -209,9 +210,9 @@ lookForFstabEntries( const QString& partitionPath )
     if ( !exit ) // if all is well
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
-        
+
         cDebug() << "  .. reading" << fstabFile.fileName();
-        
+
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
             const QStringList fstabLines = QString::fromLocal8Bit( fstabFile.readAll() )
@@ -456,6 +457,56 @@ findFS( QString fsName, FileSystem::Type* fsType )
     }
 #endif
     return fsName;
+}
+
+double
+parseSizeString( const QString& sizeString, SizeUnit* unit )
+{
+    double value;
+    bool ok;
+    QString valueString;
+    QString unitString;
+
+    QRegExp rx( "[KkMmGg%]" );
+    int pos = rx.indexIn( sizeString );
+    if (pos > 0)
+    {
+        valueString = sizeString.mid( 0, pos );
+        unitString = sizeString.mid( pos );
+    }
+    else
+        valueString = sizeString;
+
+    value = valueString.toDouble( &ok );
+    if ( !ok )
+    {
+        /*
+         * In case the conversion fails, a size of 100% allows a few cases to pass
+         * anyway (e.g. when it is the last partition of the layout)
+         */
+        *unit = SizeUnit::Percent;
+        return 100.0L;
+    }
+
+    if ( unitString.length() > 0 )
+    {
+        if ( unitString.at(0) == '%' )
+            *unit = SizeUnit::Percent;
+        else if ( unitString.at(0).toUpper() == 'K' )
+            *unit = SizeUnit::KiB;
+        else if ( unitString.at(0).toUpper() == 'M' )
+            *unit = SizeUnit::MiB;
+        else if ( unitString.at(0).toUpper() == 'G' )
+            *unit = SizeUnit::GiB;
+        else
+            *unit = SizeUnit::Byte;
+    }
+    else
+    {
+        *unit = SizeUnit::Byte;
+    }
+
+    return value;
 }
 
 }  // nmamespace PartUtils

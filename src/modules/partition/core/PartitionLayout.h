@@ -20,6 +20,8 @@
 #ifndef PARTITIONLAYOUT_H
 #define PARTITIONLAYOUT_H
 
+#include "core/PartUtils.h"
+
 #include "Typedefs.h"
 
 // KPMcore
@@ -36,24 +38,15 @@ class PartitionLayout
 {
 public:
 
-    enum SizeUnit
-    {
-        Percent = 0,
-        Byte,
-        KiB,
-        MiB,
-        GiB
-    };
-
     struct PartitionEntry
     {
         QString partLabel;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
         double partSize = 0.0L;
-        SizeUnit partSizeUnit = Percent;
+        PartUtils::SizeUnit partSizeUnit = PartUtils::SizeUnit::Percent;
         double partMinSize = 0.0L;
-        SizeUnit partMinSizeUnit = Percent;
+        PartUtils::SizeUnit partMinSizeUnit = PartUtils::SizeUnit::Percent;
 
         /// @brief All-zeroes PartitionEntry
         PartitionEntry() {};

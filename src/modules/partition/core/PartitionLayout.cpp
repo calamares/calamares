@@ -75,61 +75,11 @@ PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
     m_partLayout.append( entry );
 }
 
-static double
-parseSizeString( const QString& sizeString, PartitionLayout::SizeUnit* unit )
-{
-    double value;
-    bool ok;
-    QString valueString;
-    QString unitString;
-
-    QRegExp rx( "[KkMmGg%]" );
-    int pos = rx.indexIn( sizeString );
-    if (pos > 0)
-    {
-        valueString = sizeString.mid( 0, pos );
-        unitString = sizeString.mid( pos );
-    }
-    else
-        valueString = sizeString;
-
-    value = valueString.toDouble( &ok );
-    if ( !ok )
-    {
-        /*
-         * In case the conversion fails, a size of 100% allows a few cases to pass
-         * anyway (e.g. when it is the last partition of the layout)
-         */
-        *unit = PartitionLayout::SizeUnit::Percent;
-        return 100;
-    }
-
-    if ( unitString.length() > 0 )
-    {
-        if ( unitString.at(0) == '%' )
-            *unit = PartitionLayout::SizeUnit::Percent;
-        else if ( unitString.at(0).toUpper() == 'K' )
-            *unit = PartitionLayout::SizeUnit::KiB;
-        else if ( unitString.at(0).toUpper() == 'M' )
-            *unit = PartitionLayout::SizeUnit::MiB;
-        else if ( unitString.at(0).toUpper() == 'G' )
-            *unit = PartitionLayout::SizeUnit::GiB;
-        else
-            *unit = PartitionLayout::SizeUnit::Byte;
-    }
-    else
-    {
-        *unit = PartitionLayout::SizeUnit::Byte;
-    }
-
-    return value;
-}
-
 PartitionLayout::PartitionEntry::PartitionEntry(const QString& size, const QString& min)
 {
-    partSize = parseSizeString( size , &partSizeUnit );
+    partSize = PartUtils::parseSizeString( size , &partSizeUnit );
     if ( !min.isEmpty() )
-        partMinSize = parseSizeString( min , &partMinSizeUnit );
+        partMinSize = PartUtils::parseSizeString( min , &partMinSizeUnit );
 }
 
 void

@@ -2,6 +2,7 @@
  *
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -33,6 +34,14 @@ class Partition;
 
 namespace PartUtils
 {
+enum SizeUnit
+{
+    Percent = 0,
+    Byte,
+    KiB,
+    MiB,
+    GiB
+};
 
 /**
  * @brief canBeReplaced checks whether the given Partition satisfies the criteria
@@ -86,6 +95,14 @@ bool isEfiBootable( const Partition* candidate );
  * its value is FileSystem::Unknown if @p fsName is not recognized.
  */
 QString findFS( QString fsName, FileSystem::Type* fsType );
+
+/**
+ * @brief Parse a partition size string and return its value and unit used.
+ * @param sizeString the string to parse.
+ * @param unit pointer to a SizeUnit variable for storing the parsed unit.
+ * @return the size value, as parsed from the input string.
+ */
+double parseSizeString( const QString& sizeString, SizeUnit* unit );
 }
 
 #endif // PARTUTILS_H
