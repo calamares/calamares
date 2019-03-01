@@ -56,7 +56,6 @@
 #include <kpmcore/ops/removevolumegroupoperation.h>
 
 // Qt
-#include <QDebug>
 #include <QHeaderView>
 #include <QItemSelectionModel>
 #include <QMessageBox>
@@ -90,22 +89,9 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
 
     updateFromCurrentDevice();
 
-    connect( m_ui->deviceComboBox, &QComboBox::currentTextChanged,
-             [ this ]( const QString& /* text */ )
-    {
-        updateFromCurrentDevice();
-    } );
-    connect( m_ui->bootLoaderComboBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::activated),
-                [ this ]( const QString& /* text */ )
-    {
-        m_lastSelectedBootLoaderIndex = m_ui->bootLoaderComboBox->currentIndex();
-    } );
-
-    connect( m_ui->bootLoaderComboBox, &QComboBox::currentTextChanged,
-             [ this ]( const QString& /* text */ )
-    {
-        updateBootLoaderInstallPath();
-    } );
+    connect( m_ui->deviceComboBox, &QComboBox::currentTextChanged, this, &PartitionPage::updateFromCurrentDevice );
+    connect( m_ui->bootLoaderComboBox, QOverload<int>::of(&QComboBox::activated), this, &PartitionPage::updateSelectedBootLoaderIndex );
+    connect( m_ui->bootLoaderComboBox, &QComboBox::currentTextChanged, this, &PartitionPage::updateBootLoaderInstallPath );
 
     connect( m_core, &PartitionCoreModule::isDirtyChanged, m_ui->revertButton, &QWidget::setEnabled );
 
@@ -376,18 +362,18 @@ PartitionPage::onCreateClicked()
     if ( !checkCanCreate( model->device() ) )
         return;
 
-    QPointer< CreatePartitionDialog > dlg = new CreatePartitionDialog( model->device(),
-                                                                       partition->parent(),
-                                                                       nullptr,
-                                                                       getCurrentUsedMountpoints(),
-                                                                       this );
-    dlg->initFromFreeSpace( partition );
-    if ( dlg->exec() == QDialog::Accepted )
+    CreatePartitionDialog dlg(
+        model->device(),
+        partition->parent(),
+        nullptr,
+        getCurrentUsedMountpoints(),
+        this );
+    dlg.initFromFreeSpace( partition );
+    if ( dlg.exec() == QDialog::Accepted )
     {
-        Partition* newPart = dlg->createPartition();
-        m_core->createPartition( model->device(), newPart, dlg->newFlags() );
+        Partition* newPart = dlg.createPartition();
+        m_core->createPartition( model->device(), newPart, dlg.newFlags() );
     }
-    delete dlg;
 }
 
 void
@@ -508,8 +494,15 @@ PartitionPage::updateBootLoaderInstallPath()
     QVariant var = m_ui->bootLoaderComboBox->currentData( BootLoaderModel::BootLoaderPathRole );
     if ( !var.isValid() )
         return;
-    qDebug() << "PartitionPage::updateBootLoaderInstallPath" << var.toString();
+    cDebug() << "PartitionPage::updateBootLoaderInstallPath" << var.toString();
     m_core->setBootLoaderInstallPath( var.toString() );
+}
+
+void
+PartitionPage::updateSelectedBootLoaderIndex()
+{
+    m_lastSelectedBootLoaderIndex = m_ui->bootLoaderComboBox->currentIndex();
+    cDebug() << "Selected bootloader index" << m_lastSelectedBootLoaderIndex;
 }
 
 void
