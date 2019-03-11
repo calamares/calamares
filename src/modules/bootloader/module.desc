@@ -1,5 +1,8 @@
 ---
 type:       "job"
-name:       "bootloader"
 interface:  "python"
+name:       "bootloader"
 script:     "main.py"
+# The partition module sets up the EFI firmware type
+# global key, which is used to decide how to install.
+requiredModules: [ "partition" ]
