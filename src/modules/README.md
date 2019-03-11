@@ -50,6 +50,9 @@ Module descriptors **must** have the following keys:
 - *interface* (see below for the different interfaces; generally we
   refer to the kinds of modules by their interface)
 
+Module descriptors for Python and PythonQt modules **must** have the following key:
+- *script* (the name of the Python script to load, nearly always `main.py`)
+
 Module descriptors **may** have the following keys:
 - *requiredModules* (a list of modules which are required for this module
   to operate properly)
@@ -131,7 +134,7 @@ or the experimental pythonqt job- and viewmodule interfaces.
 To add a Python or process jobmodule, put it in a subdirectory and make sure
 it has a `module.desc`. It will be picked up automatically by our CMake magic.
 For all kinds of Python jobs, the key *script* must be set to the name of
-the main python file for the job. This is almost universally "main.py".
+the main python file for the job. This is almost universally `main.py`.
 
 `CMakeLists.txt` is *not* used for Python and process jobmodules.
 
