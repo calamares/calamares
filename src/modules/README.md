@@ -8,27 +8,28 @@ Each Calamares module lives in its own directory.
 
 All modules are installed in `$DESTDIR/lib/calamares/modules`.
 
-# Module types
-
-There are two types of Calamares module:
+There are two **types** of Calamares module:
 * viewmodule, for user-visible modules. These may be in C++, or PythonQt.
 * jobmodule, for not-user-visible modules. These may be done in C++,
   Python, or as external processes.
 
-# Module interfaces
+A viewmodule exposes a UI to the user. The PythonQt-based modules
+are considered experimental (and as of march 2019 may be on the
+way out again as never-used-much and PythonQt is not packaged
+on Debian anymore).
 
-There are three (four) interfaces for Calamares modules:
-* qtplugin,
+There are three (four) **interfaces** for Calamares modules:
+* qtplugin (viewmodules, jobmodules),
 * python (jobmodules only),
-* pythonqt (optional),
+* pythonqt (viewmodules, jobmodules, optional),
 * process (jobmodules only).
 
-# Module directory
+## Module directory
 
 Each Calamares module lives in its own directory. The contents
 of the directory depend on the interface and type of the module.
 
-## Module descriptor
+### Module descriptor
 
 A Calamares module must have a *module descriptor file*, named
 `module.desc`. For C++ (qtplugin) modules using CMake as a build-
@@ -49,24 +50,65 @@ Module descriptors **must** have the following keys:
 - *interface* (see below for the different interfaces; generally we
   refer to the kinds of modules by their interface)
 
+Module descriptors for Python and PythonQt modules **must** have the following key:
+- *script* (the name of the Python script to load, nearly always `main.py`)
+
 Module descriptors **may** have the following keys:
-- *required* **unimplemented** (a list of modules which are required for this module
+- *requiredModules* (a list of modules which are required for this module
   to operate properly)
 - *emergency* (a boolean value, set to true to mark the module
   as an emergency module)
 
-## Module-specific configuration
+### Required Modules
+
+A module may list zero (if it has no requirements) or more modules
+by name. As modules are loaded from the global sequence in `settings.conf`,
+each module is checked that all of the modules it requires are
+already loaded before it. This ensures that if a module needs
+another one to fill in globalstorage keys, that happens before
+it needs those keys.
+
+### Emergency Modules
+
+Only C++ modules and job modules may be emergency modules. If, during an
+*exec* step in the sequence, a module fails, installation as a whole fails
+and the install is aborted. If there are emergency modules in the **same**
+exec block, those will be executed before the installation is aborted.
+Non-emergency modules are not executed.
+
+If an emergency-module fails while processing emergency-modules for
+another failed module, that failure is ignored and emergency-module
+processing continues.
+
+Use the EMERGENCY keyword in the CMake description of a C++ module
+to generate a suitable `module.desc`.
+
+A module that is marked as an emergency module in its module.desc
+must **also** set the *emergency* key to *true* in its configuration file
+(see below). If it does not, the module is not considered to be an emergency
+module after all (this is so that you can have modules that have several
+instances, only some of which are actually needed for emergencies).
+
+### Module-specific configuration
 
 A Calamares module **may** read a module configuration file,
 named `<modulename>.conf`. If such a file is present in the
-module's directory, it is shipped as a *default* configuration file.
+module's directory, it can be shipped as a *default* configuration file.
+This only happens if the CMake-time option `INSTALL_CONFIG` is on.
+
+The sample configuration files may work and may be suitable for
+your distribution, but no guarantee is given about their stability
+beyond syntactic correctness.
+
 The module configuration file, if it exists, is a YAML 1.2 document
 which contains a YAML map of anything.
 
-All default module configuration files are installed in
+All sample module configuration files are installed in
 `$DESTDIR/share/calamares/modules` but can be overridden by
 files with the same name placed manually (or by the packager)
 in `/etc/calamares/modules`.
+
+
 
 ## C++ modules
 
@@ -79,6 +121,8 @@ To add a Qt plugin module, put it in a subdirectory and make sure it has
 a `CMakeLists.txt` with a `calamares_add_plugin` call. It will be picked
 up automatically by our CMake magic. The `module.desc` file is optional.
 
+
+
 ## Python modules
 
 Modules may use one of the python interfaces, which may be present
@@ -90,7 +134,7 @@ or the experimental pythonqt job- and viewmodule interfaces.
 To add a Python or process jobmodule, put it in a subdirectory and make sure
 it has a `module.desc`. It will be picked up automatically by our CMake magic.
 For all kinds of Python jobs, the key *script* must be set to the name of
-the main python file for the job. This is almost universally "main.py".
+the main python file for the job. This is almost universally `main.py`.
 
 `CMakeLists.txt` is *not* used for Python and process jobmodules.
 
@@ -113,6 +157,17 @@ function `run()` as entry point. The function `run()` must return `None` if
 everything went well, or a tuple `(str,str)` with an error message and
 description if something went wrong.
 
+### Python API
+
+**TODO:** this needs documentation
+
+
+
+## PythonQt modules
+
+The PythonQt modules are considered experimental and may be removed again
+due to low uptake. Their documentation is also almost completely lacking.
+
 ### PythonQt Jobmodule
 
 A PythonQt jobmodule implements the experimental Job interface by defining
@@ -123,31 +178,18 @@ a subclass of something.
 A PythonQt viewmodule implements the experimental View interface by defining
 a subclass of something.
 
+### Python API
+
+**TODO:** this needs documentation
+
+
+
 ## Process jobmodules
 
-A process jobmodule runs a (single) command. The interface is "process",
-while the module type must be "job" or "jobmodule".
+A process jobmodule runs a (single) command. The interface is *process*,
+while the module type must be *job* or *jobmodule*.
 
-The key *command* should have a string as value, which is passed to the
-shell -- remember to quote it properly.
-
-## Emergency Modules
-
-Only C++ modules and job modules may be emergency modules. If, during an
-*exec* step in the sequence, a module fails, installation as a whole fails
-and the install is aborted. If there are emergency modules in the **same**
-exec block, those will be executed before the installation is aborted.
-Non-emergency modules are not executed.
-
-If an emergency-module fails while processing emergency-modules for
-another failed module, that failure is ignored and emergency-module
-processing continues.
-
-Use the EMERGENCY keyword in the CMake description of a C++ module
-to generate a suitable `module.desc`.
-
-A module that is marked as an emergency module in its module.desc
-must **also** set the *emergency* key to *true* in its configuration file.
-If it does not, the module is not considered to be an emergency module
-after all (this is so that you can have modules that have several
-instances, only some of which are actually needed for emergencies.
+The module-descriptor key *command* should have a string as value, which is
+passed to the shell -- remember to quote it properly. It is generally
+recommended to use a *shellprocess* job module instead (less configuration,
+easier to have multiple instances).

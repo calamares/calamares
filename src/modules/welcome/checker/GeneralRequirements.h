@@ -45,7 +45,6 @@ private:
     bool checkHasPower();
     bool checkHasInternet();
     bool checkIsRoot();
-    void detectFirmwareType();
 
     qreal m_requiredStorageGB;
     qreal m_requiredRamGB;
