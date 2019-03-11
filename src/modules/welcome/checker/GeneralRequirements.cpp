@@ -382,11 +382,3 @@ GeneralRequirements::checkIsRoot()
 {
     return !geteuid();
 }
-
-
-void
-GeneralRequirements::detectFirmwareType()
-{
-    QString fwType = QFile::exists( "/sys/firmware/efi/efivars" ) ? "efi" : "bios";
-    Calamares::JobQueue::instance()->globalStorage()->insert( "firmwareType", fwType );
-}
