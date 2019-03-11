@@ -18,9 +18,9 @@ There are two types of Calamares module:
 # Module interfaces
 
 There are three (four) interfaces for Calamares modules:
-* qtplugin,
+* qtplugin (viewmodules, jobmodules),
 * python (jobmodules only),
-* pythonqt (optional),
+* pythonqt (viewmodules, jobmodules, optional),
 * process (jobmodules only).
 
 # Module directory
@@ -59,11 +59,17 @@ Module descriptors **may** have the following keys:
 
 A Calamares module **may** read a module configuration file,
 named `<modulename>.conf`. If such a file is present in the
-module's directory, it is shipped as a *default* configuration file.
+module's directory, it can be shipped as a *default* configuration file.
+This only happens if the CMake-time option `INSTALL_CONFIG` is on.
+
+The sample configuration files may work and may be suitable for
+your distribution, but no guarantee is given about their stability
+beyond syntactic correctness.
+
 The module configuration file, if it exists, is a YAML 1.2 document
 which contains a YAML map of anything.
 
-All default module configuration files are installed in
+All sample module configuration files are installed in
 `$DESTDIR/share/calamares/modules` but can be overridden by
 files with the same name placed manually (or by the packager)
 in `/etc/calamares/modules`.
@@ -129,7 +135,9 @@ A process jobmodule runs a (single) command. The interface is "process",
 while the module type must be "job" or "jobmodule".
 
 The key *command* should have a string as value, which is passed to the
-shell -- remember to quote it properly.
+shell -- remember to quote it properly. It is generally recommended to use
+a *shellprocess* job module instead (less configuration, easier to have
+multiple instances).
 
 ## Emergency Modules
 
