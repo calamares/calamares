@@ -8,6 +8,7 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Arnaud Ferraris
  - Dan Simmons
+ - Gabriel Craciunescu
 
 ## Core ##
 
@@ -19,6 +20,9 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ * *Bootloader* module: a serious bug introduced in 3.2.4 which prevents
+   succesful boot after installation on EFI machines, has been repaired.
+   (Thanks to Gabriel)
  * *Partition* module: it is now possible to build without libparted. Since
    KPMCore may not need this library anymore, it is a dependency that will
    be dropped as soon as it is feasible. Add `-DCMAKE_DISABLE_FIND_PACKAGE_LIBPARTED=ON`
