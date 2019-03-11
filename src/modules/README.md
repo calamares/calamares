@@ -51,10 +51,19 @@ Module descriptors **must** have the following keys:
   refer to the kinds of modules by their interface)
 
 Module descriptors **may** have the following keys:
-- *required* **unimplemented** (a list of modules which are required for this module
+- *requiredModules* (a list of modules which are required for this module
   to operate properly)
 - *emergency* (a boolean value, set to true to mark the module
   as an emergency module)
+
+### Required Modules
+
+A module may list zero (if it has no requirements) or more modules
+by name. As modules are loaded from the global sequence in `settings.conf`,
+each module is checked that all of the modules it requires are
+already loaded before it. This ensures that if a module needs
+another one to fill in globalstorage keys, that happens before
+it needs those keys.
 
 ### Emergency Modules
 
