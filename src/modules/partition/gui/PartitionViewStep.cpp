@@ -489,6 +489,11 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         efiSP = QStringLiteral( "/boot/efi" );
     gs->insert( "efiSystemPartition", efiSP );
 
+    // Set up firmwareType global storage entry. This is used, e.g. by the bootloader module.
+    QString firmwareType( PartUtils::isEfiSystem() ? QStringLiteral( "efi" ) : QStringLiteral( "bios" ) );
+    cDebug() << "Setting firmwareType to" << firmwareType;
+    gs->insert( "firmwareType", firmwareType );
+
     // Read and parse key efiSystemPartitionSize
     if ( configurationMap.contains( "efiSystemPartitionSize" ) )
     {
