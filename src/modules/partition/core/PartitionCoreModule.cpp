@@ -45,6 +45,9 @@
 #include "jobs/SetPartitionFlagsJob.h"
 #include "utils/CalamaresUtils.h"
 
+#ifdef DEBUG_PARTITION_LAME
+#include "JobExample.h"
+#endif
 #include "Typedefs.h"
 #include "utils/Logger.h"
 
@@ -496,6 +499,17 @@ PartitionCoreModule::jobs() const
 {
     QList< Calamares::job_ptr > lst;
     QList< Device* > devices;
+
+#ifdef DEBUG_PARTITION_UNSAFE
+#ifdef DEBUG_PARTITION_LAME
+    cDebug() << "Unsafe partitioning is enabled.";
+    cDebug() << ".. it has been lamed, and will fail.";
+    lst << Calamares::job_ptr( new Calamares::FailJob( QStringLiteral( "Partition" ) ) );
+#else
+    cWarning() << "Unsafe partitioning is enabled.";
+    cWarning() << ".. the unsafe actions will be executed.";
+#endif
+#endif
 
     lst << Calamares::job_ptr( new ClearTempMountsJob() );
 

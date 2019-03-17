@@ -111,6 +111,9 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
 
 #ifdef DEBUG_PARTITION_UNSAFE
     cWarning() << "Allowing unsafe partitioning choices." << devices.count() << "candidates.";
+#ifdef DEBUG_PARTITION_LAME
+    cDebug() << ".. it has been lamed, and will fail.";
+#endif
 #else
     cDebug() << "Removing unsuitable devices:" << devices.count() << "candidates.";
 
