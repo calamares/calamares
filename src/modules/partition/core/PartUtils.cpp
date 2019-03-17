@@ -43,7 +43,7 @@
 namespace PartUtils
 {
 
-static QString
+QString
 convenienceName( const Partition* const candidate )
 {
     if ( !candidate->mountPoint().isEmpty() )
