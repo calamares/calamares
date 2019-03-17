@@ -114,6 +114,7 @@ main( int argc, char* argv[] )
     }
     else
     {
+        // Here we have not yet set-up the logger system, so qDebug() is ok
         auto instancelist = guard.instances();
         qDebug() << "Calamares is already running, shutting down.";
         if ( instancelist.count() > 0 )
