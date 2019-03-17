@@ -19,26 +19,40 @@
 ###
 #
 # Support functions for building plugins.
-
+#
+# Usage:
+#
+# calamares_add_library(
+#   library-name
+#   EXPORT_MACRO macro-name
+#   TARGET_TYPE <STATIC|MODULE|...>
+#   EXPORT export-name
+#   VERSION version
+#   SOVERSION version
+#   INSTALL_BINDIR dir
+#   RESOURCES resource-file
+#   SOURCES source-file...
+#   UI ui-file...
+#   LINK_LIBRARIES lib...
+#   LINK_PRIVATE_LIBRARIES lib...
+#   COMPILE_DEFINITIONS def...
+#   [NO_INSTALL]
+#   [NO_VERSION]
+# )
+#
+# The COMPILE_DEFINITIONS are set on the resulting module with a suitable
+# flag (i.e. `-D`) so only state the name (optionally, also the value)
+# without a `-D` prefixed to it. Pass in a CMake list as needed.
 include( CMakeParseArguments )
 
 function(calamares_add_library)
     # parse arguments (name needs to be saved before passing ARGN into the macro)
     set(NAME ${ARGV0})
     set(options NO_INSTALL NO_VERSION)
-    set(oneValueArgs NAME TYPE EXPORT_MACRO TARGET TARGET_TYPE EXPORT VERSION SOVERSION INSTALL_BINDIR RESOURCES)
-    set(multiValueArgs SOURCES UI LINK_LIBRARIES LINK_PRIVATE_LIBRARIES COMPILE_DEFINITIONS QT5_MODULES)
+    set(oneValueArgs NAME EXPORT_MACRO TARGET_TYPE EXPORT VERSION SOVERSION INSTALL_BINDIR RESOURCES)
+    set(multiValueArgs SOURCES UI LINK_LIBRARIES LINK_PRIVATE_LIBRARIES COMPILE_DEFINITIONS)
     cmake_parse_arguments(LIBRARY "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
     set(LIBRARY_NAME ${NAME})
-
-
-#    message("*** Arguments for ${LIBRARY_NAME}")
-#    message("Sources: ${LIBRARY_SOURCES}")
-#    message("Link libraries: ${LIBRARY_LINK_LIBRARIES}")
-#    message("UI: ${LIBRARY_UI}")
-#    message("TARGET_TYPE: ${LIBRARY_TARGET_TYPE}")
-#    message("EXPORT_MACRO: ${LIBRARY_EXPORT_MACRO}")
-#    message("NO_INSTALL: ${LIBRARY_NO_INSTALL}")
 
     set(target ${LIBRARY_NAME})
 
@@ -76,13 +90,8 @@ function(calamares_add_library)
     endif()
 
     if(LIBRARY_COMPILE_DEFINITIONS)
-        # Dear CMake, i hate you! Sincerely, domme
-        # At least in CMake 2.8.8, you CANNOT set more than one COMPILE_DEFINITIONS value
-        # only takes the first one if called multiple times or bails out with wrong number of arguments
-        # when passing in a list, thus i redefine the export macro here in hope it won't mess up other targets
-        add_definitions( "-D${LIBRARY_EXPORT_MACRO}" )
-
-        set_target_properties(${target} PROPERTIES COMPILE_DEFINITIONS ${LIBRARY_COMPILE_DEFINITIONS})
+        set( _lib_definitions "${LIBRARY_EXPORT_MACRO}" ${LIBRARY_COMPILE_DEFINITIONS} )
+        set_target_properties(${target} PROPERTIES COMPILE_DEFINITIONS "${_lib_definitions}")
     endif()
 
     # add link targets
@@ -118,9 +127,6 @@ function(calamares_add_library)
     else()
         set(LIBRARY_INSTALL_LIBDIR "${LIBRARY_INSTALL_BINDIR}")
     endif()
-
-    #message("INSTALL_BINDIR: ${LIBRARY_INSTALL_BINDIR}")
-    #message("INSTALL_LIBDIR: ${LIBRARY_INSTALL_LIBDIR}")
 
     # make installation optional, maybe useful for dummy plugins one day
     if(NOT LIBRARY_NO_INSTALL)
