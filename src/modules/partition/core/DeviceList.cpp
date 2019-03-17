@@ -109,6 +109,9 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
     CoreBackend* backend = CoreBackendManager::self()->backend();
     DeviceList devices = backend->scanDevices( true );
 
+#ifdef DEBUG_PARTITION_UNSAFE
+    cWarning() << "Allowing unsafe partitioning choices." << devices.count() << "candidates.";
+#else
     cDebug() << "Removing unsuitable devices:" << devices.count() << "candidates.";
 
     // Remove the device which contains / from the list
@@ -142,6 +145,7 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
         }
         else
             ++it;
+#endif
 
     return devices;
 }
