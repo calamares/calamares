@@ -45,7 +45,6 @@ typedef QHash<QString, QString> UuidForPartitionHash;
 static UuidForPartitionHash
 findPartitionUuids( QList < Device* > devices )
 {
-    cDebug() << "Gathering UUIDs for partitions that exist now.";
     UuidForPartitionHash hash;
     foreach ( Device* device, devices )
     {
@@ -56,12 +55,11 @@ findPartitionUuids( QList < Device* > devices )
             QString path = p->partitionPath();
             QString uuid = p->fileSystem().readUUID( p->partitionPath() );
             hash.insert( path, uuid );
-            cDebug() << ".. added path=" << path << "UUID=" << uuid;
         }
     }
 
     if ( hash.isEmpty() )
-        cDebug() << ".. no UUIDs found.";
+        cDebug() << "No UUIDs found for existing partitions.";
     return hash;
 }
 
@@ -147,7 +145,6 @@ FillGlobalStorageJob::prettyDescription() const
             QString path = partitionMap.value( "device" ).toString();
             QString mountPoint = partitionMap.value( "mountPoint" ).toString();
             QString fsType = partitionMap.value( "fs" ).toString();
-            qDebug() << partitionMap.value( "uuid" ) << path << mountPoint << fsType;
             if ( mountPoint.isEmpty() || fsType.isEmpty() )
                 continue;
             if ( path.isEmpty() )
