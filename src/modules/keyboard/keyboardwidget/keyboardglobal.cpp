@@ -22,6 +22,8 @@
 
 #include "keyboardglobal.h"
 
+#include "utils/Logger.h"
+
 //###
 //### Public methods
 //###
@@ -52,7 +54,7 @@ QMap<QString, QString> KeyboardGlobal::parseKeyboardModels(QString filepath)
     fh.open(QIODevice::ReadOnly);
 
     if (!fh.isOpen()) {
-        qDebug() << "X11 Keyboard model definitions not found!";
+        cDebug() << "X11 Keyboard model definitions not found!";
         return models;
     }
 
@@ -100,7 +102,7 @@ QMap< QString, KeyboardGlobal::KeyboardInfo > KeyboardGlobal::parseKeyboardLayou
     fh.open(QIODevice::ReadOnly);
 
     if (!fh.isOpen()) {
-        qDebug() << "X11 Keyboard layout definitions not found!";
+        cDebug() << "X11 Keyboard layout definitions not found!";
         return layouts;
     }
 
