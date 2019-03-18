@@ -74,6 +74,46 @@ Settings::instance()
     return s_instance;
 }
 
+static void
+interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStringList& output )
+{
+    for ( const auto& path : rawPaths )
+    {
+        if ( path == "local" )
+        {
+            cDebug() << "module-search local";
+
+            // If we're running in debug mode, we assume we might also be
+            // running from the build dir, so we add a maximum priority
+            // module search path in the build dir.
+            if ( debugMode )
+            {
+                QString buildDirModules = QDir::current().absolutePath() +
+                                            QDir::separator() + "src" +
+                                            QDir::separator() + "modules";
+                if ( QDir( buildDirModules ).exists() )
+                    output.append( buildDirModules );
+            }
+
+            // Install path is set in CalamaresAddPlugin.cmake
+            output.append( CalamaresUtils::systemLibDir().absolutePath() +
+                                            QDir::separator() + "calamares" +
+                                            QDir::separator() + "modules" );
+        }
+        else
+        {
+            QDir d( path );
+            if ( d.exists() && d.isReadable() )
+            {
+                cDebug() << "module-search exists" << d.absolutePath();
+                output.append( d.absolutePath() );
+            }
+            else
+                cDebug() << "module-search non-existent" << path;
+        }
+    }
+}
+
 Settings::Settings( const QString& settingsFilePath,
                     bool debugMode,
                     QObject* parent )
@@ -94,36 +134,7 @@ Settings::Settings( const QString& settingsFilePath,
             YAML::Node config = YAML::Load( ba.constData() );
             Q_ASSERT( config.IsMap() );
 
-            QStringList rawPaths;
-            config[ "modules-search" ] >> rawPaths;
-            for ( int i = 0; i < rawPaths.length(); ++i )
-            {
-                if ( rawPaths[ i ] == "local" )
-                {
-                    // If we're running in debug mode, we assume we might also be
-                    // running from the build dir, so we add a maximum priority
-                    // module search path in the build dir.
-                    if ( debugMode )
-                    {
-                        QString buildDirModules = QDir::current().absolutePath() +
-                                                  QDir::separator() + "src" +
-                                                  QDir::separator() + "modules";
-                        if ( QDir( buildDirModules ).exists() )
-                            m_modulesSearchPaths.append( buildDirModules );
-                    }
-
-                    // Install path is set in CalamaresAddPlugin.cmake
-                    m_modulesSearchPaths.append( CalamaresUtils::systemLibDir().absolutePath() +
-                                                 QDir::separator() + "calamares" +
-                                                 QDir::separator() + "modules" );
-                }
-                else
-                {
-                    QDir path( rawPaths[ i ] );
-                    if ( path.exists() && path.isReadable() )
-                        m_modulesSearchPaths.append( path.absolutePath() );
-                }
-            }
+            interpretModulesSearch( debugMode, CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
 
             // Parse the custom instances section
             if ( config[ "instances" ] )
