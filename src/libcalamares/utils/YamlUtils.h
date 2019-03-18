@@ -32,6 +32,7 @@ class Node;
 class Exception;
 }
 
+/// @brief Appends all te elements of @p node to the string list @p v
 void operator>>( const YAML::Node& node, QStringList& v );
 
 namespace CalamaresUtils
@@ -50,6 +51,9 @@ QVariant yamlToVariant( const YAML::Node& node );
 QVariant yamlScalarToVariant( const YAML::Node& scalarNode );
 QVariant yamlSequenceToVariant( const YAML::Node& sequenceNode );
 QVariant yamlMapToVariant( const YAML::Node& mapNode );
+
+/// @brief Returns all the elements of @p listNode in a StringList
+QStringList yamlToStringList( const YAML::Node& listNode );
 
 /// @brief Save a @p map to @p filename as YAML
 bool saveYaml( const QString& filename, const QVariantMap& map );
