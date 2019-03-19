@@ -325,36 +325,47 @@ ModuleManager::checkRequirements()
     QTimer::singleShot( 0, rq, &RequirementsChecker::run );
 }
 
+static QStringList
+missingRequiredModules( const QStringList& required, const QMap< QString, QVariantMap >& available )
+{
+    QStringList l;
+    for( const QString& depName : required )
+    {
+        if ( !available.contains( depName ) )
+            l.append( depName );
+    }
+
+    return l;
+}
+
 QStringList
 ModuleManager::checkDependencies()
 {
     QStringList failed;
+    bool somethingWasRemovedBecauseOfUnmetDependencies = false;
 
     // This goes through the map of available modules, and deletes those whose
     // dependencies are not met, if any.
-    forever
+    do
     {
-        bool somethingWasRemovedBecauseOfUnmetDependencies = false;
+        somethingWasRemovedBecauseOfUnmetDependencies = false;
         for ( auto it = m_availableDescriptorsByModuleName.begin();
                 it != m_availableDescriptorsByModuleName.end(); ++it )
         {
-            foreach ( const QString& depName,
-                      it->value( "requiredModules" ).toStringList() )
+            QStringList unmet = missingRequiredModules( it->value( "requiredModules" ).toStringList(), m_availableDescriptorsByModuleName );
+
+            if ( unmet.count() > 0 )
             {
-                if ( !m_availableDescriptorsByModuleName.contains( depName ) )
-                {
-                    QString moduleName = it->value( "name" ).toString();
-                    somethingWasRemovedBecauseOfUnmetDependencies = true;
-                    m_availableDescriptorsByModuleName.erase( it );
-                    failed << moduleName;
-                    cWarning() << "Module" << moduleName << "has unknown requirement" << depName;
-                    break;
-                }
+                QString moduleName = it->value( "name" ).toString();
+                somethingWasRemovedBecauseOfUnmetDependencies = true;
+                m_availableDescriptorsByModuleName.erase( it );
+                failed << moduleName;
+                cWarning() << "Module" << moduleName << "has unknown requirements" << Logger::DebugList( unmet );
+                break;
             }
         }
-        if ( !somethingWasRemovedBecauseOfUnmetDependencies )
-            break;
     }
+    while( somethingWasRemovedBecauseOfUnmetDependencies );
 
     return failed;
 }
