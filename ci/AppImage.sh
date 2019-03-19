@@ -176,6 +176,7 @@ cat > "$IMAGE_DIR/usr/bin/calamares" <<"EOF"
 # Calamares proxy-script
 export XDG_DATA_DIRS="$APPDIR/usr/share/calamares:"
 export XDG_CONFIG_DIRS="$APPDIR/etc/calamares:$D/usr/share:"
+export PYTHONPATH=$APPDIR/usr/lib:
 cd "$APPDIR"
 exec "$APPDIR"/usr/bin/calamares.bin -X "$@"
 EOF
