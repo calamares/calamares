@@ -114,6 +114,72 @@ interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStri
     }
 }
 
+static void
+interpretInstances( const YAML::Node& node, Settings::InstanceDescriptionList& customInstances )
+{
+    // Parse the custom instances section
+    if ( node )
+    {
+        QVariant instancesV = CalamaresUtils::yamlToVariant( node ).toList();
+        if ( instancesV.type() == QVariant::List )
+        {
+            const auto instances = instancesV.toList();
+            for ( const QVariant& instancesVListItem : instances )
+            {
+                if ( instancesVListItem.type() != QVariant::Map )
+                    continue;
+                QVariantMap instancesVListItemMap =
+                        instancesVListItem.toMap();
+                Settings::InstanceDescription instanceMap;
+                for ( auto it = instancesVListItemMap.constBegin();
+                        it != instancesVListItemMap.constEnd(); ++it )
+                {
+                    if ( it.value().type() != QVariant::String )
+                        continue;
+                    instanceMap.insert( it.key(), it.value().toString() );
+                }
+                customInstances.append( instanceMap );
+            }
+        }
+    }
+}
+
+static void
+interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSequence )
+{
+    // Parse the modules sequence section
+    if ( node )
+    {
+        QVariant sequenceV = CalamaresUtils::yamlToVariant( node );
+        if ( !( sequenceV.type() == QVariant::List ) )
+            throw YAML::Exception( YAML::Mark(), "sequence key does not have a list-value" );
+
+        const auto sequence = sequenceV.toList();
+        for ( const QVariant& sequenceVListItem : sequence )
+        {
+            if ( sequenceVListItem.type() != QVariant::Map )
+                continue;
+            QString thisActionS = sequenceVListItem.toMap().firstKey();
+            ModuleAction thisAction;
+            if ( thisActionS == "show" )
+                thisAction = ModuleAction::Show;
+            else if ( thisActionS == "exec" )
+                thisAction = ModuleAction::Exec;
+            else
+                continue;
+
+            QStringList thisActionRoster = sequenceVListItem
+                                            .toMap()
+                                            .value( thisActionS )
+                                            .toStringList();
+            moduleSequence.append( qMakePair( thisAction,
+                                                    thisActionRoster ) );
+        }
+    }
+    else
+        throw YAML::Exception( YAML::Mark(), "sequence key is missing" );
+}
+
 Settings::Settings( const QString& settingsFilePath,
                     bool debugMode,
                     QObject* parent )
@@ -135,62 +201,8 @@ Settings::Settings( const QString& settingsFilePath,
             Q_ASSERT( config.IsMap() );
 
             interpretModulesSearch( debugMode, CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
-
-            // Parse the custom instances section
-            if ( config[ "instances" ] )
-            {
-                QVariant instancesV
-                        = CalamaresUtils::yamlToVariant( config[ "instances" ] ).toList();
-                if ( instancesV.type() == QVariant::List )
-                {
-                    const auto instances = instancesV.toList();
-                    for ( const QVariant& instancesVListItem : instances )
-                    {
-                        if ( instancesVListItem.type() != QVariant::Map )
-                            continue;
-                        QVariantMap instancesVListItemMap =
-                                instancesVListItem.toMap();
-                        QMap< QString, QString > instanceMap;
-                        for ( auto it = instancesVListItemMap.constBegin();
-                              it != instancesVListItemMap.constEnd(); ++it )
-                        {
-                            if ( it.value().type() != QVariant::String )
-                                continue;
-                            instanceMap.insert( it.key(), it.value().toString() );
-                        }
-                        m_customModuleInstances.append( instanceMap );
-                    }
-                }
-            }
-
-            // Parse the modules sequence section
-            Q_ASSERT( config[ "sequence" ] ); // It better exist!
-            {
-                QVariant sequenceV
-                        = CalamaresUtils::yamlToVariant( config[ "sequence" ] );
-                Q_ASSERT( sequenceV.type() == QVariant::List );
-                const auto sequence = sequenceV.toList();
-                for ( const QVariant& sequenceVListItem : sequence )
-                {
-                    if ( sequenceVListItem.type() != QVariant::Map )
-                        continue;
-                    QString thisActionS = sequenceVListItem.toMap().firstKey();
-                    ModuleAction thisAction;
-                    if ( thisActionS == "show" )
-                        thisAction = ModuleAction::Show;
-                    else if ( thisActionS == "exec" )
-                        thisAction = ModuleAction::Exec;
-                    else
-                        continue;
-
-                    QStringList thisActionRoster = sequenceVListItem
-                                                   .toMap()
-                                                   .value( thisActionS )
-                                                   .toStringList();
-                    m_modulesSequence.append( qMakePair( thisAction,
-                                                         thisActionRoster ) );
-                }
-            }
+            interpretInstances( config[ "instances" ], m_customModuleInstances );
+            interpretSequence( config[ "sequence" ], m_modulesSequence );
 
             m_brandingComponentName = requireString( config, "branding" );
             m_promptInstall = requireBool( config, "prompt-install", false );
