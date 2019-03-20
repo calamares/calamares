@@ -107,7 +107,11 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
     bool writableOnly = (which == DeviceType::WritableOnly);
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    DeviceList devices = backend->scanDevices( true );
+#ifdef WITH_KPMCOREGT33
+    DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag(0) );
+#else
+    DeviceList devices = backend->scanDevices( /* excludeReadOnly */ true );
+#endif
 
 #ifdef DEBUG_PARTITION_UNSAFE
     cWarning() << "Allowing unsafe partitioning choices." << devices.count() << "candidates.";
