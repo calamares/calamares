@@ -37,6 +37,7 @@
 #               [-C|--cmake-args <args>]
 #               [-c|--config-dir <dir>]
 #               [-s|--skip-build]
+#               [-p|--with-python]
 #
 # Multiple --cmake-args arguments will be collected together and passed to
 # CMake before building the application.
@@ -46,11 +47,23 @@
 # Use --config to copy a config-directory (with settings.conf and others)
 # into the resulting image,
 #
+# Option --skip-build assumes that there is an already-built Calamares
+# available in the AppImage build directory; use this when you are, e.g.
+# re-packaging the image with different configuration. Option --with-python
+# adds the Conda Python packaging ecosystem to the AppImage, which will make
+# it **more** portable by disconnecting from the system Python libraries.
+#
+# The build process for AppImage proceeds in a directory build-AppImage
+# that is created in the current directory.
+#
+# TODO: Conda / Python support doesn't work yet.
+#
 ### END USAGE
 
 TOOLS_DIR="."
 CMAKE_ARGS=""
-NO_SKIP_BUILD="true"
+DO_REBUILD="true"
+DO_CONDA="false"
 CONFIG_DIR=""
 while test "$#" -gt 0
 do
@@ -72,7 +85,10 @@ do
         shift
         ;;
     x--skip-build|x-s)
-        NO_SKIP_BUILD="false"
+        DO_REBUILD="false"
+        ;;
+    x--with-python|x-p)
+        DO_CONDA="true"
         ;;
     *)
         echo "! Unknown argument '$1'."
@@ -100,7 +116,10 @@ BUILD_DIR=build-AppImage
 test -d "$BUILD_DIR" || mkdir -p "$BUILD_DIR"
 test -d "$BUILD_DIR" || { echo "! Could not create $BUILD_DIR"; exit 1; }
 
-for tool in linuxdeploy-x86_64.AppImage linuxdeploy-plugin-qt-x86_64.AppImage linuxdeploy-plugin-conda.sh
+TOOLS_LIST="linuxdeploy-x86_64.AppImage linuxdeploy-plugin-qt-x86_64.AppImage"
+$DO_CONDA && TOOLS_LIST="$TOOLS_LIST linuxdeploy-plugin-conda.sh"
+
+for tool in $TOOLS_LIST
 do
     if test -x "$BUILD_DIR/$tool" ; then
         # This tool is ok
@@ -126,7 +145,7 @@ fi
 ### Clean up build-directory
 #
 rm -rf "$BUILD_DIR/AppDir"
-if $NO_SKIP_BUILD ; then
+if $DO_REBUILD ; then
     rm -rf "$BUILD_DIR/build"
     mkdir "$BUILD_DIR/build" || { echo "! Could not create $BUILD_DIR/build for the cmake-build."; exit 1; }
 else
@@ -136,26 +155,42 @@ fi
 mkdir "$BUILD_DIR/AppDir" || { echo "! Could not create $BUILD_DIR/AppDir for the AppImage install."; exit 1; }
 LOG_FILE="$BUILD_DIR/AppImage.log"
 rm -f "$LOG_FILE"
+echo "# Calamares build started" `date` > "$LOG_FILE"
+
+### Python Support
+#
+#
+if $DO_CONDA ; then
+    export CONDA_CHANNELS="conda-forge;anaconda"
+    export CONDA_PACKAGES="gettext;py-boost"
+
+    (
+        cd "$BUILD_DIR" &&
+        ./linuxdeploy-x86_64.AppImage --appdir=AppDir/ --plugin=conda
+    )
+
+    . "$BUILD_DIR/AppDir/usr/conda/bin/activate"
+fi
 
 ### Build Calamares
 #
-if $NO_SKIP_BUILD ; then
+if $DO_REBUILD ; then
     echo "# Running cmake ..."
     (
         cd "$BUILD_DIR/build" &&
         cmake "$SRC_DIR" -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib $CMAKE_ARGS
-    ) > "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not run CMake"; exit 1; }
+    ) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not run CMake"; exit 1; }
     echo "# Running make ..."
     (
         cd "$BUILD_DIR/build" &&
         make -j4
-    ) > "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not run make"; exit 1; }
+    ) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not run make"; exit 1; }
 fi
 echo "# Running make install ..."
 (
     cd "$BUILD_DIR/build" &&
     make install DESTDIR=../AppDir
-) > "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not run make install"; exit 1; }
+) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not run make install"; exit 1; }
 
 ### Modify installation
 #
@@ -218,7 +253,7 @@ echo "# Building AppImage"
     export LD_LIBRARY_PATH=AppDir/usr/lib  # RPATH isn't set in the executable
     cd "$BUILD_DIR" &&
     ./linuxdeploy-x86_64.AppImage --appdir=AppDir/ --plugin=qt --output=appimage
-) > "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not create image"; exit 1; }
+) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not create image"; exit 1; }
 
 exit 0
 ### Database for installation
