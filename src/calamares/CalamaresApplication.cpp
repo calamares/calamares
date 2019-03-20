@@ -263,7 +263,12 @@ CalamaresApplication::initSettings()
         ::exit( EXIT_FAILURE );
     }
 
-    new Calamares::Settings( settingsFile.absoluteFilePath(), isDebug(), this );
+    auto* settings = new Calamares::Settings( settingsFile.absoluteFilePath(), isDebug(), this );  // Creates singleton
+    if ( settings->modulesSequence().count() < 1 )
+    {
+        cError() << "FATAL: no sequence set.";
+        ::exit( EXIT_FAILURE );
+    }
 }
 
 

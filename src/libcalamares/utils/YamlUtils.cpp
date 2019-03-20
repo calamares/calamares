@@ -109,6 +109,14 @@ yamlMapToVariant( const YAML::Node& mapNode )
     return vm;
 }
 
+QStringList
+yamlToStringList(const YAML::Node& listNode)
+{
+    QStringList l;
+    listNode >> l;
+    return l;
+}
+
 
 void
 explainYamlException( const YAML::Exception& e, const QByteArray& yamlData, const char *label )

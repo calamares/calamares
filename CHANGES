@@ -17,6 +17,10 @@ This release contains contributions from (alphabetically by first name):
    requirements checks in the welcome module (RAM, disk space, ..).
    The checks have been made asynchronous, so that responsiveness during
    requirements-checking is improved and the user has better feedback.
+ * Support for building an AppImage of Calamares has been added to the
+   `ci/` directory. There are use-cases where a containerized build and
+   configuration make sense rather than having Calamares installed in the
+   host system. (Thanks to the AppImage team, Alexis)
 
 ## Modules ##
 

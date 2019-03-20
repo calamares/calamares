@@ -74,6 +74,112 @@ Settings::instance()
     return s_instance;
 }
 
+static void
+interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStringList& output )
+{
+    for ( const auto& path : rawPaths )
+    {
+        if ( path == "local" )
+        {
+            cDebug() << "module-search local";
+
+            // If we're running in debug mode, we assume we might also be
+            // running from the build dir, so we add a maximum priority
+            // module search path in the build dir.
+            if ( debugMode )
+            {
+                QString buildDirModules = QDir::current().absolutePath() +
+                                            QDir::separator() + "src" +
+                                            QDir::separator() + "modules";
+                if ( QDir( buildDirModules ).exists() )
+                    output.append( buildDirModules );
+            }
+
+            // Install path is set in CalamaresAddPlugin.cmake
+            output.append( CalamaresUtils::systemLibDir().absolutePath() +
+                                            QDir::separator() + "calamares" +
+                                            QDir::separator() + "modules" );
+        }
+        else
+        {
+            QDir d( path );
+            if ( d.exists() && d.isReadable() )
+            {
+                cDebug() << "module-search exists" << d.absolutePath();
+                output.append( d.absolutePath() );
+            }
+            else
+                cDebug() << "module-search non-existent" << path;
+        }
+    }
+}
+
+static void
+interpretInstances( const YAML::Node& node, Settings::InstanceDescriptionList& customInstances )
+{
+    // Parse the custom instances section
+    if ( node )
+    {
+        QVariant instancesV = CalamaresUtils::yamlToVariant( node ).toList();
+        if ( instancesV.type() == QVariant::List )
+        {
+            const auto instances = instancesV.toList();
+            for ( const QVariant& instancesVListItem : instances )
+            {
+                if ( instancesVListItem.type() != QVariant::Map )
+                    continue;
+                QVariantMap instancesVListItemMap =
+                        instancesVListItem.toMap();
+                Settings::InstanceDescription instanceMap;
+                for ( auto it = instancesVListItemMap.constBegin();
+                        it != instancesVListItemMap.constEnd(); ++it )
+                {
+                    if ( it.value().type() != QVariant::String )
+                        continue;
+                    instanceMap.insert( it.key(), it.value().toString() );
+                }
+                customInstances.append( instanceMap );
+            }
+        }
+    }
+}
+
+static void
+interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSequence )
+{
+    // Parse the modules sequence section
+    if ( node )
+    {
+        QVariant sequenceV = CalamaresUtils::yamlToVariant( node );
+        if ( !( sequenceV.type() == QVariant::List ) )
+            throw YAML::Exception( YAML::Mark(), "sequence key does not have a list-value" );
+
+        const auto sequence = sequenceV.toList();
+        for ( const QVariant& sequenceVListItem : sequence )
+        {
+            if ( sequenceVListItem.type() != QVariant::Map )
+                continue;
+            QString thisActionS = sequenceVListItem.toMap().firstKey();
+            ModuleAction thisAction;
+            if ( thisActionS == "show" )
+                thisAction = ModuleAction::Show;
+            else if ( thisActionS == "exec" )
+                thisAction = ModuleAction::Exec;
+            else
+                continue;
+
+            QStringList thisActionRoster = sequenceVListItem
+                                            .toMap()
+                                            .value( thisActionS )
+                                            .toStringList();
+            moduleSequence.append( qMakePair( thisAction,
+                                                    thisActionRoster ) );
+        }
+    }
+    else
+        throw YAML::Exception( YAML::Mark(), "sequence key is missing" );
+}
+
 Settings::Settings( const QString& settingsFilePath,
                     bool debugMode,
                     QObject* parent )
@@ -94,92 +200,9 @@ Settings::Settings( const QString& settingsFilePath,
             YAML::Node config = YAML::Load( ba.constData() );
             Q_ASSERT( config.IsMap() );
 
-            QStringList rawPaths;
-            config[ "modules-search" ] >> rawPaths;
-            for ( int i = 0; i < rawPaths.length(); ++i )
-            {
-                if ( rawPaths[ i ] == "local" )
-                {
-                    // If we're running in debug mode, we assume we might also be
-                    // running from the build dir, so we add a maximum priority
-                    // module search path in the build dir.
-                    if ( debugMode )
-                    {
-                        QString buildDirModules = QDir::current().absolutePath() +
-                                                  QDir::separator() + "src" +
-                                                  QDir::separator() + "modules";
-                        if ( QDir( buildDirModules ).exists() )
-                            m_modulesSearchPaths.append( buildDirModules );
-                    }
-
-                    // Install path is set in CalamaresAddPlugin.cmake
-                    m_modulesSearchPaths.append( CalamaresUtils::systemLibDir().absolutePath() +
-                                                 QDir::separator() + "calamares" +
-                                                 QDir::separator() + "modules" );
-                }
-                else
-                {
-                    QDir path( rawPaths[ i ] );
-                    if ( path.exists() && path.isReadable() )
-                        m_modulesSearchPaths.append( path.absolutePath() );
-                }
-            }
-
-            // Parse the custom instances section
-            if ( config[ "instances" ] )
-            {
-                QVariant instancesV
-                        = CalamaresUtils::yamlToVariant( config[ "instances" ] ).toList();
-                if ( instancesV.type() == QVariant::List )
-                {
-                    const auto instances = instancesV.toList();
-                    for ( const QVariant& instancesVListItem : instances )
-                    {
-                        if ( instancesVListItem.type() != QVariant::Map )
-                            continue;
-                        QVariantMap instancesVListItemMap =
-                                instancesVListItem.toMap();
-                        QMap< QString, QString > instanceMap;
-                        for ( auto it = instancesVListItemMap.constBegin();
-                              it != instancesVListItemMap.constEnd(); ++it )
-                        {
-                            if ( it.value().type() != QVariant::String )
-                                continue;
-                            instanceMap.insert( it.key(), it.value().toString() );
-                        }
-                        m_customModuleInstances.append( instanceMap );
-                    }
-                }
-            }
-
-            // Parse the modules sequence section
-            Q_ASSERT( config[ "sequence" ] ); // It better exist!
-            {
-                QVariant sequenceV
-                        = CalamaresUtils::yamlToVariant( config[ "sequence" ] );
-                Q_ASSERT( sequenceV.type() == QVariant::List );
-                const auto sequence = sequenceV.toList();
-                for ( const QVariant& sequenceVListItem : sequence )
-                {
-                    if ( sequenceVListItem.type() != QVariant::Map )
-                        continue;
-                    QString thisActionS = sequenceVListItem.toMap().firstKey();
-                    ModuleAction thisAction;
-                    if ( thisActionS == "show" )
-                        thisAction = ModuleAction::Show;
-                    else if ( thisActionS == "exec" )
-                        thisAction = ModuleAction::Exec;
-                    else
-                        continue;
-
-                    QStringList thisActionRoster = sequenceVListItem
-                                                   .toMap()
-                                                   .value( thisActionS )
-                                                   .toStringList();
-                    m_modulesSequence.append( qMakePair( thisAction,
-                                                         thisActionRoster ) );
-                }
-            }
+            interpretModulesSearch( debugMode, CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
+            interpretInstances( config[ "instances" ], m_customModuleInstances );
+            interpretSequence( config[ "sequence" ], m_modulesSequence );
 
             m_brandingComponentName = requireString( config, "branding" );
             m_promptInstall = requireBool( config, "prompt-install", false );
