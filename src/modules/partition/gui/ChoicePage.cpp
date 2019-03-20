@@ -1359,6 +1359,16 @@ ChoicePage::setupActions()
         )
     }
 
+#ifdef DEBUG_PARTITION_UNSAFE
+#ifdef DEBUG_PARTITION_LAME
+    // If things can't be broken, allow all the buttons
+    atLeastOneCanBeReplaced = true;
+    atLeastOneCanBeResized = true;
+    atLeastOneIsMounted = false;
+    isInactiveRAID = false;
+#endif
+#endif
+
     if ( atLeastOneCanBeReplaced )
         m_replaceButton->show();
     else

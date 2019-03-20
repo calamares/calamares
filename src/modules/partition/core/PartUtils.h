@@ -47,6 +47,15 @@ enum SizeUnit
 };
 
 /**
+ * @brief Provides a nice human-readable name for @p candidate
+ *
+ * The most-specific human-readable name for the partition @p candidate
+ * is returned (e.g. device name, or partition path). In the worst
+ * case, a string representation of (void *)candidate is returned.
+ */
+QString convenienceName( const Partition* const candidate );
+
+/**
  * @brief canBeReplaced checks whether the given Partition satisfies the criteria
  * for replacing it with the new OS.
  * @param candidate the candidate partition to replace.

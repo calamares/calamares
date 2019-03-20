@@ -24,6 +24,9 @@
 #
 #   SKIP_MODULES    : a space or semicolon-separated list of directory names
 #                     under src/modules that should not be built.
+#   USE_<foo>       : fills in SKIP_MODULES for modules called <foo>-<something>
+#   BUILD_<foo>     : choose additional things to build
+#   DEBUG_<foo>     : special developer flags for debugging
 #
 # Example usage:
 #
@@ -62,7 +65,8 @@ option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 # all the implementations are enabled (this just means they are
 # **available** to `settings.conf`, not that they are used).
 #
-# Currently, no USE_<foo> variables exist.
+# Currently, only USE_services is in use (to pick only one of the two
+# modules, systemd or openrc).
 set( USE_services "" CACHE STRING "Select the services module to use" )
 
 ### Calamares application info

@@ -20,6 +20,7 @@
 #ifndef PARTITIONCOREMODULE_H
 #define PARTITIONCOREMODULE_H
 
+#include "core/KPMHelpers.h"
 #include "core/PartitionLayout.h"
 #include "core/PartitionModel.h"
 #include "Typedefs.h"
@@ -136,7 +137,7 @@ public:
      * applied to the newly-created partition.
      */
     void createPartition( Device* device, Partition* partition,
-                          PartitionTable::Flags flags = PartitionTable::FlagNone );
+                          PartitionTable::Flags flags = KPM_PARTITION_FLAG(None) );
 
     void createVolumeGroup( QString &vgName, QVector< const Partition* > pvList, qint32 peSize );
 

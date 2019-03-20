@@ -45,6 +45,9 @@
 #include "jobs/SetPartitionFlagsJob.h"
 #include "utils/CalamaresUtils.h"
 
+#ifdef DEBUG_PARTITION_LAME
+#include "JobExample.h"
+#endif
 #include "Typedefs.h"
 #include "utils/Logger.h"
 
@@ -296,7 +299,7 @@ PartitionCoreModule::createPartition( Device* device,
 
     deviceInfo->jobs << Calamares::job_ptr( job );
 
-    if ( flags != PartitionTable::FlagNone )
+    if ( flags != KPM_PARTITION_FLAG(None) )
     {
         SetPartFlagsJob* fJob = new SetPartFlagsJob( device, partition, flags );
         deviceInfo->jobs << Calamares::job_ptr( fJob );
@@ -398,7 +401,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     }
 
     QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
-    if ( partition->state() == Partition::StateNew )
+    if ( partition->state() == KPM_PARTITION_STATE(New) )
     {
         // First remove matching SetPartFlagsJobs
         for ( auto it = jobs.begin(); it != jobs.end(); )
@@ -496,6 +499,17 @@ PartitionCoreModule::jobs() const
 {
     QList< Calamares::job_ptr > lst;
     QList< Device* > devices;
+
+#ifdef DEBUG_PARTITION_UNSAFE
+#ifdef DEBUG_PARTITION_LAME
+    cDebug() << "Unsafe partitioning is enabled.";
+    cDebug() << ".. it has been lamed, and will fail.";
+    lst << Calamares::job_ptr( new Calamares::FailJob( QStringLiteral( "Partition" ) ) );
+#else
+    cWarning() << "Unsafe partitioning is enabled.";
+    cWarning() << ".. the unsafe actions will be executed.";
+#endif
+#endif
 
     lst << Calamares::job_ptr( new ClearTempMountsJob() );
 
@@ -818,7 +832,7 @@ PartitionCoreModule::layoutApply( Device *dev,
         if ( part->mountPoint() == "/" )
         {
             createPartition( dev, part,
-                             part->activeFlags() | ( isEfi ? PartitionTable::FlagNone : PartitionTable::FlagBoot )
+                             part->activeFlags() | ( isEfi ? KPM_PARTITION_FLAG(None) : KPM_PARTITION_FLAG(Boot) )
                            );
         }
         else

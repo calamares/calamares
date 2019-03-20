@@ -43,7 +43,7 @@
 namespace PartUtils
 {
 
-static QString
+QString
 convenienceName( const Partition* const candidate )
 {
     if ( !candidate->mountPoint().isEmpty() )
@@ -407,7 +407,7 @@ isEfiBootable( const Partition* candidate )
     auto flags = PartitionInfo::flags( candidate );
 
     /* If bit 17 is set, old-style Esp flag, it's OK */
-    if ( flags.testFlag( PartitionTable::FlagEsp ) )
+    if ( flags.testFlag( KPM_PARTITION_FLAG_ESP ) )
         return true;
 
     /* Otherwise, if it's a GPT table, Boot (bit 0) is the same as Esp */
@@ -425,7 +425,7 @@ isEfiBootable( const Partition* candidate )
     const PartitionTable* table = dynamic_cast<const PartitionTable*>( root );
     cDebug() << "  .. partition table" << (void *)table << "type" << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
     return table && ( table->type() == PartitionTable::TableType::gpt ) &&
-        flags.testFlag( PartitionTable::FlagBoot );
+        flags.testFlag( KPM_PARTITION_FLAG(Boot) );
 }
 
 QString

@@ -107,8 +107,18 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
     bool writableOnly = (which == DeviceType::WritableOnly);
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    DeviceList devices = backend->scanDevices( true );
+#ifdef WITH_KPMCOREGT33
+    DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag(0) );
+#else
+    DeviceList devices = backend->scanDevices( /* excludeReadOnly */ true );
+#endif
 
+#ifdef DEBUG_PARTITION_UNSAFE
+    cWarning() << "Allowing unsafe partitioning choices." << devices.count() << "candidates.";
+#ifdef DEBUG_PARTITION_LAME
+    cDebug() << ".. it has been lamed, and will fail.";
+#endif
+#else
     cDebug() << "Removing unsuitable devices:" << devices.count() << "candidates.";
 
     // Remove the device which contains / from the list
@@ -142,6 +152,7 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
         }
         else
             ++it;
+#endif
 
     return devices;
 }

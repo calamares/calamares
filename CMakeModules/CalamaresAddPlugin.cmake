@@ -40,6 +40,10 @@
 #   [SHARED_LIB]
 #   [EMERGENCY]
 # )
+#
+# The COMPILE_DEFINITIONS are set on the resulting module with a suitable
+# flag (i.e. `-D`) so only state the name (optionally, also the value)
+# without a `-D` prefixed to it.
 
 include( CMakeParseArguments )
 include( CalamaresAddLibrary  )

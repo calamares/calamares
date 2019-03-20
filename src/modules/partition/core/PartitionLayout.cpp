@@ -143,7 +143,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
                 part.partFileSystem,
                 firstSector,
                 end,
-                PartitionTable::FlagNone
+                KPM_PARTITION_FLAG(None)
             );
         }
         else
@@ -156,7 +156,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
                 firstSector,
                 end,
                 luksPassphrase,
-                PartitionTable::FlagNone
+                KPM_PARTITION_FLAG(None)
             );
         }
         PartitionInfo::setFormat( currentPartition, true );
