@@ -407,7 +407,7 @@ isEfiBootable( const Partition* candidate )
     auto flags = PartitionInfo::flags( candidate );
 
     /* If bit 17 is set, old-style Esp flag, it's OK */
-    if ( flags.testFlag( PartitionTable::FlagEsp ) )
+    if ( flags.testFlag( KPM_PARTITION_FLAG_ESP ) )
         return true;
 
     /* Otherwise, if it's a GPT table, Boot (bit 0) is the same as Esp */

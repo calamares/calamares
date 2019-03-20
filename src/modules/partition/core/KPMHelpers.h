@@ -36,9 +36,11 @@ class PartitionRole;
 #ifdef WITH_KPMCOREGT33
 #define KPM_PARTITION_FLAG(x) PartitionTable::Flag::x
 #define KPM_PARTITION_STATE(x) Partition::State::x
+#define KPM_PARTITION_FLAG_ESP PartitionTable::Flag::Boot
 #else
 #define KPM_PARTITION_FLAG(x) PartitionTable::Flag##x
 #define KPM_PARTITION_STATE(x) Partition::State##x
+#define KPM_PARTITION_FLAG_ESP PartitionTable::FlagEsp
 #endif
 
 /**

@@ -133,7 +133,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         );
         PartitionInfo::setFormat( efiPartition, true );
         PartitionInfo::setMountPoint( efiPartition, o.efiPartitionMountPoint );
-        core->createPartition( dev, efiPartition, PartitionTable::FlagEsp );
+        core->createPartition( dev, efiPartition, KPM_PARTITION_FLAG_ESP );
         firstFreeSector = lastSector + 1;
     }
     else
