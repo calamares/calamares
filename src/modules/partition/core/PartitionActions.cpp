@@ -129,7 +129,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
             FileSystem::Fat32,
             firstFreeSector,
             lastSector,
-            PartitionTable::FlagNone
+            KPM_PARTITION_FLAG(None)
         );
         PartitionInfo::setFormat( efiPartition, true );
         PartitionInfo::setMountPoint( efiPartition, o.efiPartitionMountPoint );
@@ -178,7 +178,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
                 FileSystem::LinuxSwap,
                 lastSectorForRoot + 1,
                 dev->totalLogical() - 1,
-                PartitionTable::FlagNone
+                KPM_PARTITION_FLAG(None)
             );
         }
         else
@@ -191,7 +191,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
                 lastSectorForRoot + 1,
                 dev->totalLogical() - 1,
                 o.luksPassphrase,
-                PartitionTable::FlagNone
+                KPM_PARTITION_FLAG(None)
             );
         }
         PartitionInfo::setFormat( swapPartition, true );

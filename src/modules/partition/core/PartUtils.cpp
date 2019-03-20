@@ -425,7 +425,7 @@ isEfiBootable( const Partition* candidate )
     const PartitionTable* table = dynamic_cast<const PartitionTable*>( root );
     cDebug() << "  .. partition table" << (void *)table << "type" << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
     return table && ( table->type() == PartitionTable::TableType::gpt ) &&
-        flags.testFlag( PartitionTable::FlagBoot );
+        flags.testFlag( KPM_PARTITION_FLAG(Boot) );
 }
 
 QString

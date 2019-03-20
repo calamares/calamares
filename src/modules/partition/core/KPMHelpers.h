@@ -33,6 +33,14 @@ class Partition;
 class PartitionNode;
 class PartitionRole;
 
+#ifdef WITH_KPMCOREGT33
+#define KPM_PARTITION_FLAG(x) PartitionTable::Flag::x
+#define KPM_PARTITION_STATE(x) Partition::State::x
+#else
+#define KPM_PARTITION_FLAG(x) PartitionTable::Flag##x
+#define KPM_PARTITION_STATE(x) Partition::State##x
+#endif
+
 /**
  * Helper functions to manipulate partitions
  */

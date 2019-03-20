@@ -299,7 +299,7 @@ PartitionCoreModule::createPartition( Device* device,
 
     deviceInfo->jobs << Calamares::job_ptr( job );
 
-    if ( flags != PartitionTable::FlagNone )
+    if ( flags != KPM_PARTITION_FLAG(None) )
     {
         SetPartFlagsJob* fJob = new SetPartFlagsJob( device, partition, flags );
         deviceInfo->jobs << Calamares::job_ptr( fJob );
@@ -401,7 +401,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     }
 
     QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
-    if ( partition->state() == Partition::StateNew )
+    if ( partition->state() == KPM_PARTITION_STATE(New) )
     {
         // First remove matching SetPartFlagsJobs
         for ( auto it = jobs.begin(); it != jobs.end(); )
@@ -832,7 +832,7 @@ PartitionCoreModule::layoutApply( Device *dev,
         if ( part->mountPoint() == "/" )
         {
             createPartition( dev, part,
-                             part->activeFlags() | ( isEfi ? PartitionTable::FlagNone : PartitionTable::FlagBoot )
+                             part->activeFlags() | ( isEfi ? KPM_PARTITION_FLAG(None) : KPM_PARTITION_FLAG(Boot) )
                            );
         }
         else

@@ -154,7 +154,7 @@ ReplaceWidget::onPartitionSelected()
 
         Partition* partition = model->partitionForIndex( m_ui->partitionTreeView->currentIndex() );
         if ( !partition ||
-             partition->state() != Partition::StateNone )
+             partition->state() != KPM_PARTITION_STATE(None) )
         {
             updateStatus( CalamaresUtils::Fail,
                           tr( "The selected item does not appear to be a valid partition." ) );
