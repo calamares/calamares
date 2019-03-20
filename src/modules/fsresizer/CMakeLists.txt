@@ -6,6 +6,10 @@ if ( KPMcore_FOUND )
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     include_directories( ${PROJECT_BINARY_DIR}/src/libcalamares )
 
+    if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
+        add_definitions(-DWITH_KPMCOREGT33) # kpmcore greater than 3.3
+    endif()
+
     # The PartitionIterator is a small class, and it's easiest -- but also a
     # gross hack -- to just compile it again from the partition module tree.
     calamares_add_plugin( fsresizer
