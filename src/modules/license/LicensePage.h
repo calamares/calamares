@@ -30,9 +30,10 @@ namespace Ui
 class LicensePage;
 }
 
-struct LicenseEntry
+class LicenseEntry
 {
-    enum Type
+public:
+    enum class Type
     {
         Software = 0,
         Driver,

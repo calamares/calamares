@@ -121,17 +121,17 @@ LicenseViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
             QString entryType = entryMap.value( "type", "software" ).toString();
             if ( entryType == "driver" )
-                entry.type =    LicenseEntry::Driver;
+                entry.type =    LicenseEntry::Type::Driver;
             else if ( entryType == "gpudriver" )
-                entry.type =    LicenseEntry::GpuDriver;
+                entry.type =    LicenseEntry::Type::GpuDriver;
             else if ( entryType == "browserplugin" )
-                entry.type =    LicenseEntry::BrowserPlugin;
+                entry.type =    LicenseEntry::Type::BrowserPlugin;
             else if ( entryType == "codec" )
-                entry.type =    LicenseEntry::Codec;
+                entry.type =    LicenseEntry::Type::Codec;
             else if ( entryType == "package" )
-                entry.type =    LicenseEntry::Package;
+                entry.type =    LicenseEntry::Type::Package;
             else
-                entry.type =    LicenseEntry::Software;
+                entry.type =    LicenseEntry::Type::Software;
 
             entriesList.append( entry );
         }

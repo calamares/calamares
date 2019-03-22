@@ -154,39 +154,39 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
         QString productDescription;
         switch ( entry.type )
         {
-        case LicenseEntry::Driver:
+        case LicenseEntry::Type::Driver:
             //: %1 is an untranslatable product name, example: Creative Audigy driver
             productDescription = tr( "<strong>%1 driver</strong><br/>"
                                      "by %2" )
                                  .arg( entry.prettyName )
                                  .arg( entry.prettyVendor );
             break;
-        case LicenseEntry::GpuDriver:
+        case LicenseEntry::Type::GpuDriver:
             //: %1 is usually a vendor name, example: Nvidia graphics driver
             productDescription = tr( "<strong>%1 graphics driver</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
                                  .arg( entry.prettyName )
                                  .arg( entry.prettyVendor );
             break;
-        case LicenseEntry::BrowserPlugin:
+        case LicenseEntry::Type::BrowserPlugin:
             productDescription = tr( "<strong>%1 browser plugin</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
                                  .arg( entry.prettyName )
                                  .arg( entry.prettyVendor );
             break;
-        case LicenseEntry::Codec:
+        case LicenseEntry::Type::Codec:
             productDescription = tr( "<strong>%1 codec</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
                                  .arg( entry.prettyName )
                                  .arg( entry.prettyVendor );
             break;
-        case LicenseEntry::Package:
+        case LicenseEntry::Type::Package:
             productDescription = tr( "<strong>%1 package</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
                                  .arg( entry.prettyName )
                                  .arg( entry.prettyVendor );
             break;
-        case LicenseEntry::Software:
+        case LicenseEntry::Type::Software:
             productDescription = tr( "<strong>%1</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
                                  .arg( entry.prettyName )
