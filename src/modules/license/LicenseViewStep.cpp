@@ -106,34 +106,9 @@ LicenseViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             if ( entryV.type() != QVariant::Map )
                 continue;
 
-            QVariantMap entryMap = entryV.toMap();
-            if ( !entryMap.contains( "id" ) ||
-                 !entryMap.contains( "name" ) ||
-                 !entryMap.contains( "url" ) )
-                continue;
-
-            LicenseEntry entry;
-            entry.id =          entryMap[ "id" ].toString();
-            entry.prettyName =  entryMap[ "name" ].toString();
-            entry.prettyVendor =entryMap.value( "vendor" ).toString();
-            entry.url =         QUrl( entryMap[ "url" ].toString() );
-            entry.required =    entryMap.value( "required", QVariant( false ) ).toBool();
-
-            QString entryType = entryMap.value( "type", "software" ).toString();
-            if ( entryType == "driver" )
-                entry.type =    LicenseEntry::Type::Driver;
-            else if ( entryType == "gpudriver" )
-                entry.type =    LicenseEntry::Type::GpuDriver;
-            else if ( entryType == "browserplugin" )
-                entry.type =    LicenseEntry::Type::BrowserPlugin;
-            else if ( entryType == "codec" )
-                entry.type =    LicenseEntry::Type::Codec;
-            else if ( entryType == "package" )
-                entry.type =    LicenseEntry::Type::Package;
-            else
-                entry.type =    LicenseEntry::Type::Software;
-
-            entriesList.append( entry );
+            LicenseEntry entry( entryV.toMap() );
+            if ( entry.isValid() )
+                entriesList.append( entry );
         }
     }
 

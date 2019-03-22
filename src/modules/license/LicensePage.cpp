@@ -25,6 +25,7 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
+#include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
 #include "ViewManager.h"
@@ -36,6 +37,33 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QMessageBox>
+
+LicenseEntry::LicenseEntry(const QVariantMap& conf)
+{
+    if ( !conf.contains( "id" ) || !conf.contains( "name" ) || !conf.contains( "url" ) )
+        return;
+
+    id = conf[ "id" ].toString();
+    prettyName = conf[ "name" ].toString();
+    prettyVendor = conf.value( "vendor" ).toString();
+    url = QUrl( conf[ "url" ].toString() );
+
+    required = CalamaresUtils::getBool( conf, "required", false );
+
+    QString entryType = conf.value( "type", "software" ).toString();
+    if ( entryType == "driver" )
+        type =    LicenseEntry::Type::Driver;
+    else if ( entryType == "gpudriver" )
+        type =    LicenseEntry::Type::GpuDriver;
+    else if ( entryType == "browserplugin" )
+        type =    LicenseEntry::Type::BrowserPlugin;
+    else if ( entryType == "codec" )
+        type =    LicenseEntry::Type::Codec;
+    else if ( entryType == "package" )
+        type =    LicenseEntry::Type::Package;
+    else
+        type =    LicenseEntry::Type::Software;
+}
 
 LicensePage::LicensePage(QWidget *parent)
     : QWidget( parent )

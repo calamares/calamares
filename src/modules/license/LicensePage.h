@@ -43,6 +43,11 @@ public:
         Package
     };
 
+    LicenseEntry( const QVariantMap& conf );
+    LicenseEntry( const LicenseEntry& ) = default;
+
+    bool isValid() const { return !id.isEmpty(); }
+
     QString id;
     QString prettyName;
     QString prettyVendor;
