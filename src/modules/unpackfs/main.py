@@ -136,10 +136,10 @@ def file_copy(source, dest, progress_cb):
 
             # I guess we're updating every 100 files...
             if num_files_copied % 100 == 0:
-                progress_cb(num_files_copied)
+                progress_cb(num_files_copied, num_files_total_local)
 
     process.wait()
-    progress_cb(num_files_copied)  # Push towards 100%
+    progress_cb(num_files_copied, num_files_total_local)  # Push towards 100%
 
     # 23 is the return code rsync returns if it cannot write extended
     # attributes (with -X) because the target file system does not support it,
@@ -177,14 +177,19 @@ class UnpackOperation:
         """
         progress = float(0)
 
+        done = 0
+        total = 0
+        complete = 0
         for entry in self.entries:
             if entry.total == 0:
                 continue
+            total += entry.total
+            done += entry.copied
+            if entry.total == entry.copied:
+                complete += 1
 
-            partialprogress = 0.05  # Having a total !=0 gives 5%
-
-            partialprogress += 0.95 * (entry.copied / float(entry.total))
-            progress += partialprogress / len(self.entries)
+        if done > 0 and total > 0:
+            progress = 0.05 + (0.90 * done / total) + (0.05 * complete / len(self.entries))
 
         job.setprogress(progress)
 
@@ -263,12 +268,13 @@ class UnpackOperation:
         :param imgmountdir:
         :return:
         """
-        def progress_cb(copied):
+        def progress_cb(copied, total):
             """ Copies file to given destination target.
 
             :param copied:
             """
             entry.copied = copied
+            entry.total = total
             self.report_progress()
 
         try:
