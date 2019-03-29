@@ -223,9 +223,12 @@ test -x "$IMAGE_DIR/usr/bin/calamares" || { echo "! Does not seem to have proxy 
 PLUGIN_DIR=$( qmake  -query QT_INSTALL_PLUGINS )
 for plugin in \
     libpmsfdiskbackendplugin.so \
-    libpmdummybackendplugin.so
+    libpmdummybackendplugin.so \
+    libpmlibpartedbackendplugin.so
 do
-    cp "$PLUGIN_DIR/$plugin" "$IMAGE_DIR/usr/lib" || { echo "! Could not copy plugin $plugin"; exit 1; }
+    # Warning, but not fatal: generally you only have two out of three available
+    # depending on the KPMCore version.
+    cp "$PLUGIN_DIR/$plugin" "$IMAGE_DIR/usr/lib" 2> /dev/null || { echo "! Could not copy KPMCore plugin $plugin"; }
 done
 
 # Install configuration files
@@ -254,6 +257,9 @@ echo "# Building AppImage"
     cd "$BUILD_DIR" &&
     ./linuxdeploy-x86_64.AppImage --appdir=AppDir/ --plugin=qt --output=appimage
 ) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not create image"; exit 1; }
+
+echo "# Calamares-x86_64.AppImage created in $BUILD_DIR"
+echo "# .. log file at $LOG_FILE"
 
 exit 0
 ### Database for installation
