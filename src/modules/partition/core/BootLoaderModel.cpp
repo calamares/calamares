@@ -119,12 +119,12 @@ BootLoaderModel::data( const QModelIndex& index, int role ) const
 {
     if ( role == Qt::DisplayRole )
     {
-        if ( QStandardItemModel::data( index, BootLoaderModel::BootLoaderPathRole ).toString().isEmpty() )
-            return QStandardItemModel::data( index, Qt::DisplayRole ).toString();
+        QString displayRole = QStandardItemModel::data( index, Qt::DisplayRole ).toString();
+        QString pathRole = QStandardItemModel::data( index, BootLoaderModel::BootLoaderPathRole ).toString();
+        if ( pathRole.isEmpty() )
+            return displayRole;
 
-        return tr( "%1 (%2)" )
-                .arg( QStandardItemModel::data( index, Qt::DisplayRole ).toString() )
-                .arg( QStandardItemModel::data( index, BootLoaderModel::BootLoaderPathRole ).toString() );
+        return tr( "%1 (%2)" ).arg( displayRole, pathRole );
     }
     return QStandardItemModel::data( index, role );
 }
