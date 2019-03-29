@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-25 08:04-0500\n"
+"POT-Creation-Date: 2019-02-22 07:09-0500\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2019\n"
 "Language-Team: Turkish (Turkey) (https://www.transifex.com/calamares/teams/20061/tr_TR/)\n"
@@ -20,6 +20,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr_TR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "Systemd hizmetlerini yapılandır"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "Hizmet değiştirilemiyor"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> chroot çağrısında hata kodu döndürüldü "
+"{num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Systemd hizmeti etkinleştirilemiyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Systemd hedefi etkinleştirilemiyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Systemd hedefi devre dışı bırakılamıyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Systemd birimi maskeleyemiyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Bilinmeyen sistem komutları <code>{command!s}</code> ve "
+"<code>{suffix!s}</code>  {name!s} birimi için."
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Dosya sistemlerini ayırın."
+
+#: src/modules/unpackfs/main.py:40
+msgid "Installing filesystems."
+msgstr "Dosya sistemi yükleniyor."
+
+#: src/modules/unpackfs/main.py:153
+msgid "rsync failed with error code {}."
+msgstr "rsync {} hata koduyla başarısız oldu."
+
+#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
+msgid "Failed to unpack image \"{}\""
+msgstr "\"{}\" kurulum medyası aktarılamadı"
+
+#: src/modules/unpackfs/main.py:210
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Unsquashfs bulunamadı, squashfs-tools paketinin kurulu olduğundan emin olun."
+
+#: src/modules/unpackfs/main.py:301
+msgid "No mount point for root partition"
+msgstr "kök disk bölümü için bağlama noktası yok"
+
+#: src/modules/unpackfs/main.py:302
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr ""
+"globalstorage bir \"rootMountPoint\" anahtarı içermiyor, hiçbirşey yapılmadı"
+
+#: src/modules/unpackfs/main.py:307
+msgid "Bad mount point for root partition"
+msgstr "Kök disk bölümü için hatalı bağlama noktası"
+
+#: src/modules/unpackfs/main.py:308
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint \"{}\", mevcut değil, hiçbirşey yapılmadı"
+
+#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
+#: src/modules/unpackfs/main.py:333
+msgid "Bad unsquash configuration"
+msgstr "Unsquash yapılandırma sorunlu"
+
+#: src/modules/unpackfs/main.py:322
+msgid "The filesystem for \"{}\" ({}) is not supported"
+msgstr "\"{}\" ({}) Dosya sistemi desteklenmiyor"
+
+#: src/modules/unpackfs/main.py:329
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "\"{}\" Kaynak dosya sistemi mevcut değil"
+
+#: src/modules/unpackfs/main.py:334
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Hedef sistemdeki \"{}\" hedefi bir dizin değil"
 
 #: src/modules/displaymanager/main.py:380
 msgid "Cannot write KDM configuration file"
@@ -82,76 +180,62 @@ msgstr "Kurulu ekran yöneticilerini kontrol ettikten sonra liste boş."
 msgid "Display manager configuration was incomplete"
 msgstr "Ekran yöneticisi yapılandırma işi tamamlanamadı"
 
-#: src/modules/unpackfs/main.py:40
-msgid "Installing filesystems."
-msgstr "Dosya sistemi yükleniyor."
-
-#: src/modules/unpackfs/main.py:153
-msgid "rsync failed with error code {}."
-msgstr "rsync {} hata koduyla başarısız oldu."
-
-#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
-msgid "Failed to unpack image \"{}\""
-msgstr "\"{}\" kurulum medyası aktarılamadı"
-
-#: src/modules/unpackfs/main.py:210
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Unsquashfs bulunamadı, squashfs-tools paketinin kurulu olduğundan emin olun."
-
-#: src/modules/unpackfs/main.py:301
-msgid "No mount point for root partition"
-msgstr "kök disk bölümü için bağlama noktası yok"
-
-#: src/modules/unpackfs/main.py:302
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
-"globalstorage bir \"rootMountPoint\" anahtarı içermiyor, hiçbirşey yapılmadı"
-
-#: src/modules/unpackfs/main.py:307
-msgid "Bad mount point for root partition"
-msgstr "Kök disk bölümü için hatalı bağlama noktası"
-
-#: src/modules/unpackfs/main.py:308
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint \"{}\", mevcut değil, hiçbirşey yapılmadı"
-
-#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
-#: src/modules/unpackfs/main.py:333
-msgid "Bad unsquash configuration"
-msgstr "Unsquash yapılandırma sorunlu"
-
-#: src/modules/unpackfs/main.py:322
-msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr "\"{}\" ({}) Dosya sistemi desteklenmiyor"
-
-#: src/modules/unpackfs/main.py:329
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "\"{}\" Kaynak dosya sistemi mevcut değil"
-
-#: src/modules/unpackfs/main.py:334
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Hedef sistemdeki \"{}\" hedefi bir dizin değil"
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "Dosya sistemlerini ayırın."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Dummy python job."
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr "Dummy python step {}"
-
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
 msgstr "Veri yükleniyor."
 
-#: src/modules/machineid/main.py:35
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr " OpenRC hizmetlerini yapılandır"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "{name!s} hizmeti, {level!s} çalışma düzeyine ekleyemiyor."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "{name!s} hizmeti {level!s} çalışma düzeyinden kaldırılamıyor."
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Çalışma düzeyinde {level!s} hizmetinde {name!s} servisi için bilinmeyen "
+"hizmet eylemi <code>{arg!s}</code>."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+" <code>rc-update {arg!s}</code> çağrısında chroot, {num!s} hata kodunu "
+"döndürdü."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "Hedef çalışma seviyesi mevcut değil"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "Runlevel  {level!s} yolu, mevcut olmayan <code>{path!s}</code> 'dir."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "Hedef servisi mevcut değil"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "{name!s} hizmetinin yolu, bulunmayan <code>{path!s}</code>."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Plymouth temasını yapılandır"
+
+#: src/modules/machineid/main.py:36
 msgid "Generate machine-id."
 msgstr "Makine kimliği oluştur."
 
@@ -177,3 +261,15 @@ msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "%(num)d paket kaldırılıyor."
 msgstr[1] "%(num)d paket kaldırılıyor."
+
+#: src/modules/removeuser/main.py:34
+msgid "Remove live user from target system"
+msgstr "Liveuser kullanıcısını hedef sistemden kaldırın"
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Dummy python job."
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "Dummy python step {}"

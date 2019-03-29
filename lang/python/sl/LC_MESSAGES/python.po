@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-25 08:04-0500\n"
+"POT-Creation-Date: 2019-02-22 07:09-0500\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Language-Team: Slovenian (https://www.transifex.com/calamares/teams/20061/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr ""
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr ""
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr ""
+
+#: src/modules/unpackfs/main.py:40
+msgid "Installing filesystems."
+msgstr ""
+
+#: src/modules/unpackfs/main.py:153
+msgid "rsync failed with error code {}."
+msgstr ""
+
+#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
+msgid "Failed to unpack image \"{}\""
+msgstr ""
+
+#: src/modules/unpackfs/main.py:210
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:301
+msgid "No mount point for root partition"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:302
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:307
+msgid "Bad mount point for root partition"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:308
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
+#: src/modules/unpackfs/main.py:333
+msgid "Bad unsquash configuration"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:322
+msgid "The filesystem for \"{}\" ({}) is not supported"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:329
+msgid "The source filesystem \"{}\" does not exist"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:334
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr ""
 
 #: src/modules/displaymanager/main.py:380
 msgid "Cannot write KDM configuration file"
@@ -76,74 +168,58 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:40
-msgid "Installing filesystems."
-msgstr ""
-
-#: src/modules/unpackfs/main.py:153
-msgid "rsync failed with error code {}."
-msgstr ""
-
-#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
-msgid "Failed to unpack image \"{}\""
-msgstr ""
-
-#: src/modules/unpackfs/main.py:210
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:301
-msgid "No mount point for root partition"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:302
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:307
-msgid "Bad mount point for root partition"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:308
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
-#: src/modules/unpackfs/main.py:333
-msgid "Bad unsquash configuration"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:322
-msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:329
-msgid "The source filesystem \"{}\" does not exist"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:334
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr ""
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr ""
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr ""
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr ""
-
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
 msgstr ""
 
-#: src/modules/machineid/main.py:35
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr ""
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr ""
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr ""
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr ""
+
+#: src/modules/machineid/main.py:36
 msgid "Generate machine-id."
 msgstr ""
 
@@ -173,3 +249,15 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
+
+#: src/modules/removeuser/main.py:34
+msgid "Remove live user from target system"
+msgstr ""
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr ""
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr ""

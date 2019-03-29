@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-25 08:04-0500\n"
+"POT-Creation-Date: 2019-02-22 07:09-0500\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2019\n"
 "Language-Team: Catalan (https://www.transifex.com/calamares/teams/20061/ca/)\n"
@@ -20,6 +20,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "Configura els serveis de systemd"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "No es pot modificar el servei."
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"La crida de <code>systemctl {arg!s}</code> a chroot ha retornat el codi "
+"d'error {num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "No es pot habilitar el servei de systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "No es pot habilitar la destinació de systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "No es pot inhabilitar la destinació de systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "No es pot emmascarar la unitat de systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Ordres desconegudes de systemd: <code>{command!s}</code> i "
+"<code>{suffix!s}</code>, per a la unitat {name!s}."
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Desmunta els sistemes de fitxers."
+
+#: src/modules/unpackfs/main.py:40
+msgid "Installing filesystems."
+msgstr "S'instal·len sistemes de fitxers."
+
+#: src/modules/unpackfs/main.py:153
+msgid "rsync failed with error code {}."
+msgstr "Ha fallat rsync amb el codi d'error {}."
+
+#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
+msgid "Failed to unpack image \"{}\""
+msgstr "Ha fallat desempaquetar la imatge \"{}\"."
+
+#: src/modules/unpackfs/main.py:210
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Ha fallat trobar unsquashfs, assegureu-vos que tingueu el paquet squashfs-"
+"tools instal·lat."
+
+#: src/modules/unpackfs/main.py:301
+msgid "No mount point for root partition"
+msgstr "No hi ha punt de muntatge per a la partició d'arrel."
+
+#: src/modules/unpackfs/main.py:302
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage no conté cap clau \"rootMountPoint\". No es fa res."
+
+#: src/modules/unpackfs/main.py:307
+msgid "Bad mount point for root partition"
+msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
+
+#: src/modules/unpackfs/main.py:308
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
+
+#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
+#: src/modules/unpackfs/main.py:333
+msgid "Bad unsquash configuration"
+msgstr "Configuració incorrecta d'unsquash."
+
+#: src/modules/unpackfs/main.py:322
+msgid "The filesystem for \"{}\" ({}) is not supported"
+msgstr "El sistema de fitxers per a \"{}\" ({}) no s'admet."
+
+#: src/modules/unpackfs/main.py:329
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "El sistema de fitxers font \"{}\" no existeix."
+
+#: src/modules/unpackfs/main.py:334
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
 
 #: src/modules/displaymanager/main.py:380
 msgid "Cannot write KDM configuration file"
@@ -85,83 +183,73 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "La configuració del gestor de pantalla no era completa."
 
-#: src/modules/unpackfs/main.py:40
-msgid "Installing filesystems."
-msgstr "Instal·lant sistemes de fitxers."
-
-#: src/modules/unpackfs/main.py:153
-msgid "rsync failed with error code {}."
-msgstr "Ha fallat rsync amb el codi d'error {}."
-
-#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
-msgid "Failed to unpack image \"{}\""
-msgstr "Ha fallat desempaquetar la imatge \"{}\"."
-
-#: src/modules/unpackfs/main.py:210
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Ha fallat trobar unsquashfs, assegureu-vos que tingueu el paquet squashfs-"
-"tools instal·lat."
-
-#: src/modules/unpackfs/main.py:301
-msgid "No mount point for root partition"
-msgstr "No hi ha punt de muntatge per a la partició d'arrel."
-
-#: src/modules/unpackfs/main.py:302
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage no conté cap clau \"rootMountPoint\". No es fa res."
-
-#: src/modules/unpackfs/main.py:307
-msgid "Bad mount point for root partition"
-msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
-
-#: src/modules/unpackfs/main.py:308
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
-
-#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
-#: src/modules/unpackfs/main.py:333
-msgid "Bad unsquash configuration"
-msgstr "Configuració incorrecta d'unsquash"
-
-#: src/modules/unpackfs/main.py:322
-msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr "El sistema de fitxers per a \"{}\" ({}) no s'admet."
-
-#: src/modules/unpackfs/main.py:329
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "El sistema de fitxers font \"{}\" no existeix."
-
-#: src/modules/unpackfs/main.py:334
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "Desmunta els sistemes de fitxers."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Tasca de python fictícia."
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr "Pas de python fitctici {}"
-
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr "Instal·lant dades."
+msgstr "S'instal·len dades."
 
-#: src/modules/machineid/main.py:35
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "Configura els serveis d'OpenRC"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "No es pot afegir el servei {name!s} al nivell d'execució {level!s}."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr ""
+"No es pot suprimir el servei {name!s} del nivell d'execució {level!s}."
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Servei - acció desconeguda <code>{arg!s}</code> per al servei {name!s} al "
+"nivell d'execució {level!s}."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"La crida de <code>rc-update {arg!s}</code> a chroot ha retornat el codi "
+"d'error {num!s}."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "El nivell d'execució de destinació no existeix."
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"El camí per al nivell d'execució {level!s} és <code>{path!s}</code>, però no"
+" existeix."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "El servei de destinació no existeix."
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"El camí per al servei {name!s} és <code>{path!s}</code>, però no existeix."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Configura el tema del Plymouth"
+
+#: src/modules/machineid/main.py:36
 msgid "Generate machine-id."
 msgstr "Generació de l'id. de la màquina."
 
 #: src/modules/packages/main.py:62
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Processant paquets (%(count)d / %(total)d)"
+msgstr "Es processen paquets (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
@@ -171,12 +259,24 @@ msgstr "Instal·la els paquets."
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] "Instal·lant un paquet."
-msgstr[1] "Instal·lant %(num)d paquets."
+msgstr[0] "S'instal·la un paquet."
+msgstr[1] "S'instal·len %(num)d paquets."
 
 #: src/modules/packages/main.py:70
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] "Eliminant un paquet."
-msgstr[1] "Suprimint %(num)d paquets."
+msgstr[0] "Se suprimeix un paquet."
+msgstr[1] "Se suprimeixen %(num)d paquets."
+
+#: src/modules/removeuser/main.py:34
+msgid "Remove live user from target system"
+msgstr "Suprimeix l'usuari de la sessió autònoma del sistema de destinació"
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Tasca de python fictícia."
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "Pas de python fitctici {}"

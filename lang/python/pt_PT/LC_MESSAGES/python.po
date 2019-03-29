@@ -5,23 +5,121 @@
 # 
 # Translators:
 # Nuno Amorim <inovaty@gmail.com>, 2018
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2018
 # Ricardo Simões <xmcorporation@gmail.com>, 2019
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-25 08:04-0500\n"
+"POT-Creation-Date: 2019-02-22 07:09-0500\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Ricardo Simões <xmcorporation@gmail.com>, 2019\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2019\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/calamares/teams/20061/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "Configurar serviços systemd"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "Não é possível modificar serviço"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> chamar pelo chroot retornou com código de "
+"erro {num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Não é possível ativar o serviço systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Não é possível ativar o destino do systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Não é possível desativar o destino do systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Não é possível mascarar a unidade do systemd <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Comandos do systemd desconhecidos <code>{command!s}</code> e "
+"<code>{suffix!s}</code> por unidade {name!s}."
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Desmontar sistemas de ficheiro."
+
+#: src/modules/unpackfs/main.py:40
+msgid "Installing filesystems."
+msgstr "A instalar sistemas de ficheiros."
+
+#: src/modules/unpackfs/main.py:153
+msgid "rsync failed with error code {}."
+msgstr "rsync falhou com código de erro {}."
+
+#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
+msgid "Failed to unpack image \"{}\""
+msgstr "Falha ao descompactar imagem \"{}\""
+
+#: src/modules/unpackfs/main.py:210
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Falha ao procurar unsquashfs, certifique-se que tem o pacote squashfs-tools "
+"instalado"
+
+#: src/modules/unpackfs/main.py:301
+msgid "No mount point for root partition"
+msgstr "Nenhum ponto de montagem para a partição root"
+
+#: src/modules/unpackfs/main.py:302
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage não contém um \"rootMountPoint\" chave, nada a fazer"
+
+#: src/modules/unpackfs/main.py:307
+msgid "Bad mount point for root partition"
+msgstr "Ponto de montagem mau para partição root"
+
+#: src/modules/unpackfs/main.py:308
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint é \"{}\", que não existe, nada a fazer"
+
+#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
+#: src/modules/unpackfs/main.py:333
+msgid "Bad unsquash configuration"
+msgstr "Má configuração unsquash"
+
+#: src/modules/unpackfs/main.py:322
+msgid "The filesystem for \"{}\" ({}) is not supported"
+msgstr "O sistema de ficheiros \"{}\" ({}) não é suportado"
+
+#: src/modules/unpackfs/main.py:329
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "O sistema de ficheiros fonte \"{}\" não existe"
+
+#: src/modules/unpackfs/main.py:334
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "O destino \"{}\" no sistema alvo não é uma diretoria"
 
 #: src/modules/displaymanager/main.py:380
 msgid "Cannot write KDM configuration file"
@@ -86,76 +184,67 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "A configuração do gestor de exibição estava incompleta"
 
-#: src/modules/unpackfs/main.py:40
-msgid "Installing filesystems."
-msgstr "A instalar sistemas de ficheiros."
-
-#: src/modules/unpackfs/main.py:153
-msgid "rsync failed with error code {}."
-msgstr "rsync falhou com código de erro {}."
-
-#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
-msgid "Failed to unpack image \"{}\""
-msgstr "Falha ao descompactar imagem \"{}\""
-
-#: src/modules/unpackfs/main.py:210
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Falha ao procurar unsquashfs, certifique-se que tem o pacote squashfs-tools "
-"instalado"
-
-#: src/modules/unpackfs/main.py:301
-msgid "No mount point for root partition"
-msgstr "Nenhum ponto de montagem para a partição root"
-
-#: src/modules/unpackfs/main.py:302
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage não contém um \"rootMountPoint\" chave, nada a fazer"
-
-#: src/modules/unpackfs/main.py:307
-msgid "Bad mount point for root partition"
-msgstr "Ponto de montagem mau para partição root"
-
-#: src/modules/unpackfs/main.py:308
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint é \"{}\", que não existe, nada a fazer"
-
-#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
-#: src/modules/unpackfs/main.py:333
-msgid "Bad unsquash configuration"
-msgstr "Má configuração unsquash"
-
-#: src/modules/unpackfs/main.py:322
-msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr "O sistema de ficheiros \"{}\" ({}) não é suportado"
-
-#: src/modules/unpackfs/main.py:329
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "O sistema de ficheiros fonte \"{}\" não existe"
-
-#: src/modules/unpackfs/main.py:334
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "O destino \"{}\" no sistema alvo não é uma diretoria"
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "Desmontar sistemas de ficheiro."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Tarefa Dummy python."
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr "Passo Dummy python {}"
-
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
 msgstr "A instalar dados."
 
-#: src/modules/machineid/main.py:35
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "Configurar serviços OpenRC"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr ""
+"Não é possível adicionar o serviço {name!s} ao nível de execução {level!s}."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr ""
+"Não é possível remover o serviço {name!s} do nível de execução {level!s}."
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Serviço de ação desconhecido <code>{arg!s}</code> para serviço {name!s} em "
+"nível de execução {level!s}."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>rc-update {arg!s}</code> chamar pelo chroot retornou com código de "
+"erro {num!s}."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "O nível de execução do destino não existe"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"O caminho para o nível de execução {level!s} é <code>{path!s}</code>, que "
+"não existe."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "O serviço do destino não existe"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"O caminho para o serviço {name!s} é <code>{path!s}</code>, que não existe."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Configurar tema do Plymouth"
+
+#: src/modules/machineid/main.py:36
 msgid "Generate machine-id."
 msgstr "Gerar id-máquina"
 
@@ -181,3 +270,15 @@ msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "A remover um pacote."
 msgstr[1] "A remover %(num)d pacotes."
+
+#: src/modules/removeuser/main.py:34
+msgid "Remove live user from target system"
+msgstr "Remover utilizador ativo do sistema de destino"
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Tarefa Dummy python."
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "Passo Dummy python {}"
