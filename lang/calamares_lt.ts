@@ -354,17 +354,17 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Po:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="324"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="330"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Rankinis skaidymas&lt;/strong&gt;&lt;br/&gt;Galite patys kurti ar keisti skaidinių dydžius.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1031"/>
         <source>Boot loader location:</source>
         <translation>Paleidyklės vieta:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="960"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="975"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 bus sumažintas iki %2MB ir naujas %3MB skaidinys bus sukurtas sistemai %4.</translation>
     </message>
@@ -375,108 +375,108 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="988"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1003"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1082"/>
         <source>Current:</source>
         <translation>Dabartinis:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="813"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation>Pakartotinai naudoti %1 kaip namų skaidinį, skirtą %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Pasirinkite, kurį skaidinį sumažinti, o tuomet vilkite juostą, kad pakeistumėte skaidinio dydį&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Pasirinkite kuriame skaidinyje įdiegti&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1114"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Šioje sistemoje niekur nepavyko rasti EFI skaidinio. Prašome grįžti ir naudoti rankinį skaidymą, kad nustatytumėte %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1123"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>%2 paleidimui bus naudojamas EFI sistemos skaidinys, esantis ties %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1131"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
         <source>EFI system partition:</source>
         <translation>EFI sistemos skaidinys:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1249"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Atrodo, kad šiame įrenginyje nėra operacinės sistemos. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1254"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1291"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1337"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1270"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1331"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1357"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Ištrinti diską&lt;/strong&gt;&lt;br/&gt;Tai &lt;font color=&quot;red&quot;&gt;ištrins&lt;/font&gt; visus, pasirinktame atminties įrenginyje, esančius duomenis.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Šiame atminties įrenginyje jau yra %1. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1486"/>
         <source>No Swap</source>
         <translation>Be sukeitimų skaidinio</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
         <source>Reuse Swap</source>
         <translation>Iš naujo naudoti sukeitimų skaidinį</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1494"/>
         <source>Swap (no Hibernate)</source>
         <translation>Sukeitimų skaidinys (be užmigdymo)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1497"/>
         <source>Swap (with Hibernate)</source>
         <translation>Sukeitimų skaidinys (su užmigdymu)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1500"/>
         <source>Swap to file</source>
         <translation>Sukeitimų failas</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1287"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1274"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Įdiegti šalia&lt;/strong&gt;&lt;br/&gt;Diegimo programa sumažins skaidinį, kad atlaisvintų vietą sistemai %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1341"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1278"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1335"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1361"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Pakeisti skaidinį&lt;/strong&gt;&lt;br/&gt;Pakeičia skaidinį ir įrašo %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1322"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Šiame atminties įrenginyje jau yra operacinė sistema. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1348"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Šiame atminties įrenginyje jau yra kelios operacinės sistemos. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
@@ -737,6 +737,14 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
         <source>Cannot open groups file for reading.</source>
         <translation>Nepavyko skaitymui atverti grupių failo.</translation>
+    </message>
+</context>
+<context>
+    <name>CreateVolumeGroupDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="37"/>
+        <source>Create Volume Group</source>
+        <translation>Sukurti tomų grupę</translation>
     </message>
 </context>
 <context>
@@ -1576,7 +1584,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="598"/>
         <source>font-weight: normal</source>
         <translation>šrifto ryškumas: normalus</translation>
     </message>
@@ -1606,22 +1614,22 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>&lt;small&gt;Šis vardas bus naudojamas, jeigu padarysite savo kompiuterį matomą kitiems naudotojams tinkle.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="466"/>
         <source>Log in automatically without asking for the password.</source>
         <translation>Prisijungti automatiškai, neklausiant slaptažodžio.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="473"/>
         <source>Use the same password for the administrator account.</source>
         <translation>Naudoti tokį patį slaptažodį administratoriaus paskyrai.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="496"/>
         <source>Choose a password for the administrator account.</source>
         <translation>Pasirinkite slaptažodį administratoriaus paskyrai.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="601"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Norint įsitikinti, kad rašydami slaptažodį nesuklydote, įrašykite tą patį slaptažodį du kartus.&lt;/small&gt;</translation>
     </message>
@@ -1767,17 +1775,17 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Į&amp;diegti paleidyklę skaidinyje:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="222"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Ar tikrai %1 norite sukurti naują skaidinių lentelę?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="242"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="246"/>
         <source>Can not create new partition</source>
         <translation>Nepavyksta sukurti naują skaidinį</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="243"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="247"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
         <translation>Skaidinių lentelėje ties %1 jau yra %2 pirminiai skaidiniai ir daugiau nebegali būti pridėta. Pašalinkite vieną pirminį skaidinį ir vietoj jo, pridėkite išplėstą skaidinį.</translation>
     </message>
@@ -2051,6 +2059,11 @@ Išvestis:
         <comment>Language (Country)</comment>
         <translation>%1 (%2)</translation>
     </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
+        <source>(no mount point)</source>
+        <translation>(nėra prijungimo taško)</translation>
+    </message>
 </context>
 <context>
     <name>RemoveVolumeGroupJob</name>
@@ -2296,6 +2309,14 @@ Išvestis:
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
         <translation>Diegimo programai nepavyko pakeisti skaidinio %1 dydį diske &apos;%2&apos;.</translation>
+    </message>
+</context>
+<context>
+    <name>ResizeVolumeGroupDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="38"/>
+        <source>Resize Volume Group</source>
+        <translation>Keisti tomų grupės dydį</translation>
     </message>
 </context>
 <context>
@@ -2707,33 +2728,33 @@ Išvestis:
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="289"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="296"/>
         <source>Your username is too long.</source>
         <translation>Jūsų naudotojo vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="295"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="302"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Jūsų naudotojo varde yra neleistinų simbolių. Leidžiamos tik mažosios raidės ir skaičiai.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
         <source>Your hostname is too short.</source>
         <translation>Jūsų kompiuterio vardas yra pernelyg trumpas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="339"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="346"/>
         <source>Your hostname is too long.</source>
         <translation>Jūsų kompiuterio vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="352"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Jūsų kompiuterio varde yra neleistinų simbolių. Kompiuterio varde gali būti tik raidės, skaičiai ir brūkšniai.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="417"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="380"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="424"/>
         <source>Your passwords do not match!</source>
         <translation>Jūsų slaptažodžiai nesutampa!</translation>
     </message>
@@ -2750,8 +2771,8 @@ Išvestis:
     <name>VolumeGroupBaseDialog</name>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
-        <source>VolumeGroupDialog</source>
-        <translation>Tomų grupės dialogas</translation>
+        <source>Create Volume Group</source>
+        <translation>Sukurti tomų grupę</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>

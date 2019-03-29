@@ -354,17 +354,17 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Après:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="324"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="330"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Partitionnement manuel&lt;/strong&gt;&lt;br/&gt;Vous pouvez créer ou redimensionner vous-même des partitions.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1031"/>
         <source>Boot loader location:</source>
         <translation>Emplacement du chargeur de démarrage:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="960"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="975"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 va être réduit à %2Mo et une nouvelle partition de %3Mo va être créée pour %4.</translation>
     </message>
@@ -375,108 +375,108 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="988"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1003"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1082"/>
         <source>Current:</source>
         <translation>Actuel :</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="813"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation>Réutiliser %1 comme partition home pour %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Sélectionnez une partition à réduire, puis faites glisser la barre du bas pour redimensionner&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Sélectionner une partition pour l&apos;installation&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1114"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Une partition système EFI n&apos;a pas pu être trouvée sur ce système. Veuillez retourner à l&apos;étape précédente et sélectionner le partitionnement manuel pour configurer %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1123"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>La partition système EFI sur %1 va être utilisée pour démarrer %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1131"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
         <source>EFI system partition:</source>
         <translation>Partition système EFI :</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1249"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Ce périphérique de stockage ne semble pas contenir de système d&apos;exploitation. Que souhaitez-vous faire ?&lt;br/&gt;Vous pourrez relire et confirmer vos choix avant que les modifications soient effectuées sur le périphérique de stockage.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1254"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1291"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1337"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1270"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1331"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1357"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Effacer le disque&lt;/strong&gt;&lt;br/&gt;Ceci va &lt;font color=&quot;red&quot;&gt;effacer&lt;/font&gt; toutes les données actuellement présentes sur le périphérique de stockage sélectionné.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Ce périphérique de stockage contient %1. Que souhaitez-vous faire ?&lt;br/&gt;Vous pourrez relire et confirmer vos choix avant que les modifications soient effectuées sur le périphérique de stockage.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1486"/>
         <source>No Swap</source>
         <translation>Aucun Swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
         <source>Reuse Swap</source>
         <translation>Réutiliser le Swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1494"/>
         <source>Swap (no Hibernate)</source>
         <translation>Swap (sans hibernation)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1497"/>
         <source>Swap (with Hibernate)</source>
         <translation>Swap (avec hibernation)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1500"/>
         <source>Swap to file</source>
         <translation>Swap dans un fichier</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1287"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1274"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Installer à côté&lt;/strong&gt;&lt;br/&gt;L&apos;installateur va réduire une partition pour faire de la place pour %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1341"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1278"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1335"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1361"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Remplacer une partition&lt;/strong&gt;&lt;br&gt;Remplace une partition par %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1322"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Ce périphérique de stockage contient déjà un système d&apos;exploitation. Que souhaitez-vous faire ?&lt;br/&gt;Vous pourrez relire et confirmer vos choix avant que les modifications soient effectuées sur le périphérique de stockage.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1348"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Ce péiphérique de stockage contient déjà plusieurs systèmes d&apos;exploitation. Que souhaitez-vous faire ?&lt;br/&gt;Vous pourrez relire et confirmer vos choix avant que les modifications soient effectuées sur le périphérique de stockage.</translation>
     </message>
@@ -737,6 +737,14 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
         <source>Cannot open groups file for reading.</source>
         <translation>Impossible d&apos;ouvrir le fichier groups en lecture.</translation>
+    </message>
+</context>
+<context>
+    <name>CreateVolumeGroupDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="37"/>
+        <source>Create Volume Group</source>
+        <translation>Créer le Groupe de Volumes</translation>
     </message>
 </context>
 <context>
@@ -1576,7 +1584,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="598"/>
         <source>font-weight: normal</source>
         <translation>style de police : normal</translation>
     </message>
@@ -1606,22 +1614,22 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>&lt;small&gt;Ce nom sera utilisé pour rendre l&apos;ordinateur visible des autres sur le réseau.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="466"/>
         <source>Log in automatically without asking for the password.</source>
         <translation>Démarrer la session sans demander de mot de passe.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="473"/>
         <source>Use the same password for the administrator account.</source>
         <translation>Utiliser le même mot de passe pour le compte administrateur.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="496"/>
         <source>Choose a password for the administrator account.</source>
         <translation>Choisir un mot de passe pour le compte administrateur.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="601"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Veuillez entrer le même mot de passe deux fois, afin de vérifier qu&apos;ils n&apos;y ait pas d&apos;erreur de frappe.&lt;/small&gt;</translation>
     </message>
@@ -1767,17 +1775,17 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Installer le chargeur de démarrage sur : </translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="222"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Êtes-vous sûr de vouloir créer une nouvelle table de partitionnement sur %1 ?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="242"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="246"/>
         <source>Can not create new partition</source>
         <translation>Impossible de créer une nouvelle partition</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="243"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="247"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
         <translation>La table de partition sur %1 contient déjà %2 partitions primaires, et aucune supplémentaire ne peut être ajoutée. Veuillez supprimer une partition primaire et créer une partition étendue à la place.</translation>
     </message>
@@ -2052,6 +2060,11 @@ Sortie
         <comment>Language (Country)</comment>
         <translation>%1 (%2)</translation>
     </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
+        <source>(no mount point)</source>
+        <translation>(aucun point de montage)</translation>
+    </message>
 </context>
 <context>
     <name>RemoveVolumeGroupJob</name>
@@ -2297,6 +2310,14 @@ Sortie
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
         <translation>Le programme d&apos;installation n&apos;a pas pu redimensionner la partition %1 sur le disque &apos;%2&apos;.</translation>
+    </message>
+</context>
+<context>
+    <name>ResizeVolumeGroupDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="38"/>
+        <source>Resize Volume Group</source>
+        <translation>Redimensionner le Groupe de Volumes</translation>
     </message>
 </context>
 <context>
@@ -2708,33 +2729,33 @@ Sortie
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="289"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="296"/>
         <source>Your username is too long.</source>
         <translation>Votre nom d&apos;utilisateur est trop long.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="295"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="302"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Votre nom d&apos;utilisateur contient des caractères invalides. Seuls les lettres minuscules et les chiffres sont autorisés.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
         <source>Your hostname is too short.</source>
         <translation>Le nom d&apos;hôte est trop petit.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="339"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="346"/>
         <source>Your hostname is too long.</source>
         <translation>Le nom d&apos;hôte est trop long.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="352"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Le nom d&apos;hôte contient des caractères invalides. Seules les lettres, nombres et tirets sont autorisés.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="417"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="380"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="424"/>
         <source>Your passwords do not match!</source>
         <translation>Vos mots de passe ne correspondent pas !</translation>
     </message>
@@ -2751,8 +2772,8 @@ Sortie
     <name>VolumeGroupBaseDialog</name>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
-        <source>VolumeGroupDialog</source>
-        <translation>VolumeGroupDialog</translation>
+        <source>Create Volume Group</source>
+        <translation>Créer le Groupe de Volumes</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>

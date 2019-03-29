@@ -354,17 +354,17 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <translation>Efter:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="324"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="330"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Manuel partitionering&lt;/strong&gt;&lt;br/&gt;Du kan selv oprette og ændre størrelse på partitioner.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1031"/>
         <source>Boot loader location:</source>
         <translation>Placering af bootloader:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="960"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="975"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 vil blive skrumpet til %2 MB og en ny %3 MB partition vil blive oprettet for %4.</translation>
     </message>
@@ -375,108 +375,108 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="988"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1003"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1082"/>
         <source>Current:</source>
         <translation>Nuværende:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="813"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation>Genbrug %1 som hjemmepartition til %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Vælg en partition der skal mindskes, træk herefter den nederste bjælke for at ændre størrelsen&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Vælg en partition at installere på&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1114"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>En EFI-partition blev ikke fundet på systemet. Gå venligst tilbage og brug manuel partitionering til at opsætte %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1123"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>EFI-systempartitionen ved %1 vil blive brugt til at starte %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1131"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
         <source>EFI system partition:</source>
         <translation>EFI-systempartition:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1249"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Lagerenheden ser ikke ud til at indeholde et styresystem. Hvad ønsker du at gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1254"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1291"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1337"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1270"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1331"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1357"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Slet disk&lt;/strong&gt;&lt;br/&gt;Det vil &lt;font color=&quot;red&quot;&gt;slette&lt;/font&gt; alt data på den valgte lagerenhed.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Lagerenheden har %1 på sig. Hvad ønsker du at gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før det sker ændringer til lagerenheden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1486"/>
         <source>No Swap</source>
         <translation>Ingen swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
         <source>Reuse Swap</source>
         <translation>Genbrug swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1494"/>
         <source>Swap (no Hibernate)</source>
         <translation>Swap (ingen dvale)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1497"/>
         <source>Swap (with Hibernate)</source>
         <translation>Swap (med dvale)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1500"/>
         <source>Swap to file</source>
         <translation>Swap til fil</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1287"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1274"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Installér ved siden af&lt;/strong&gt;&lt;br/&gt;Installationsprogrammet vil mindske en partition for at gøre plads til %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1341"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1278"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1335"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1361"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Erstat en partition&lt;/strong&gt;&lt;br/&gt;Erstatter en partition med %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1322"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Lagerenheden indeholder allerede et styresystem. Hvad ønsker du at gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1348"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Lagerenheden indeholder flere styresystemer. Hvad ønsker du at gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
     </message>
@@ -737,6 +737,14 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
         <source>Cannot open groups file for reading.</source>
         <translation>Kan ikke åbne gruppernes fil til læsning.</translation>
+    </message>
+</context>
+<context>
+    <name>CreateVolumeGroupDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="37"/>
+        <source>Create Volume Group</source>
+        <translation>Opret diskområdegruppe</translation>
     </message>
 </context>
 <context>
@@ -1576,7 +1584,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="598"/>
         <source>font-weight: normal</source>
         <translation>font-weight: normal</translation>
     </message>
@@ -1606,22 +1614,22 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <translation>&lt;small&gt;Navnet bruges, hvis du gør computeren synlig for andre på et netværk.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="466"/>
         <source>Log in automatically without asking for the password.</source>
         <translation>Log ind automatisk uden at spørge efter adgangskoden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="473"/>
         <source>Use the same password for the administrator account.</source>
         <translation>Brug den samme adgangskode til administratorkontoen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="496"/>
         <source>Choose a password for the administrator account.</source>
         <translation>Vælg en adgangskode til administratorkontoen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="601"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Skriv den samme adgangskode to gange, så det kan blive tjekket for skrivefejl.&lt;/small&gt;</translation>
     </message>
@@ -1767,17 +1775,17 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <translation>I&amp;nstallér bootloader på:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="222"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Er du sikker på, at du vil oprette en ny partitionstabel på %1?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="242"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="246"/>
         <source>Can not create new partition</source>
         <translation>Kan ikke oprette ny partition</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="243"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="247"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
         <translation>Partitionstabellen på %1 har allerede %2 primære partitioner, og der kan ikke tilføjes flere. Fjern venligst en primær partition og tilføj i stedet en udvidet partition.</translation>
     </message>
@@ -2051,6 +2059,11 @@ Output:
         <comment>Language (Country)</comment>
         <translation>%1 (%2)</translation>
     </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
+        <source>(no mount point)</source>
+        <translation>(intet monteringspunkt)</translation>
+    </message>
 </context>
 <context>
     <name>RemoveVolumeGroupJob</name>
@@ -2296,6 +2309,14 @@ Output:
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
         <translation>Installationsprogrammet kunne ikke ændre størrelse på partition %1 på disk &apos;%2&apos;.</translation>
+    </message>
+</context>
+<context>
+    <name>ResizeVolumeGroupDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="38"/>
+        <source>Resize Volume Group</source>
+        <translation>Ændr størrelse på diskområdegruppe</translation>
     </message>
 </context>
 <context>
@@ -2707,33 +2728,33 @@ Output:
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="289"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="296"/>
         <source>Your username is too long.</source>
         <translation>Dit brugernavn er for langt.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="295"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="302"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Dit brugernavn indeholder ugyldige tegn. Kun små bogstaver og tal er tilladt.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
         <source>Your hostname is too short.</source>
         <translation>Dit værtsnavn er for kort.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="339"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="346"/>
         <source>Your hostname is too long.</source>
         <translation>Dit værtsnavn er for langt.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="352"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Dit værtsnavn indeholder ugyldige tegn. Kun bogstaver, tal og tankestreger er tilladt.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="417"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="380"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="424"/>
         <source>Your passwords do not match!</source>
         <translation>Dine adgangskoder er ikke ens!</translation>
     </message>
@@ -2750,8 +2771,8 @@ Output:
     <name>VolumeGroupBaseDialog</name>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
-        <source>VolumeGroupDialog</source>
-        <translation>Diskområdegruppe-dialog</translation>
+        <source>Create Volume Group</source>
+        <translation>Opret diskområdegruppe</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>

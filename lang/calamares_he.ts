@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="69"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation>&lt;strong&gt;תצורת האתחול&lt;/strong&gt; של מערכת זו. &lt;br&gt;&lt;br&gt; מערכות x86 ישנות יותר תומכות אך ורק ב־&lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt; מערכות חדשות משתמשות בדרך כלל ב־&lt;strong&gt;EFI&lt;/strong&gt;, אך עשוית להופיע כ־BIOS אם הן מופעלות במצב תאימות לאחור.</translation>
+        <translation>&lt;strong&gt;סביבת האתחול&lt;/strong&gt; של מערכת זו. &lt;br&gt;&lt;br&gt; מערכות x86 ישנות יותר תומכות אך ורק ב־&lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt; מערכות חדשות משתמשות בדרך כלל ב־&lt;strong&gt;EFI&lt;/strong&gt;, אך עשוית להופיע כ־BIOS אם הן מופעלות במצב תאימות לאחור.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
         <source>Interface:</source>
-        <translation>ממשק:</translation>
+        <translation>מנשק:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
@@ -354,17 +354,17 @@ The installer will quit and all changes will be lost.</source>
         <translation>לאחר:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="324"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="330"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;הגדרת מחיצות באופן ידני&lt;/strong&gt;&lt;br/&gt;ניתן ליצור או לשנות את גודל המחיצות בעצמך.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1031"/>
         <source>Boot loader location:</source>
         <translation>מיקום מנהל אתחול המערכת:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="960"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="975"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 תוקטן לכדי %2 מ״ב ותיווצר מחיצה חדשה בגודל %3 מ״ב עבור %4.</translation>
     </message>
@@ -375,108 +375,108 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="988"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1003"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1082"/>
         <source>Current:</source>
         <translation>נוכחי:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="813"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation>להשתמש ב־%1 כמחיצת הבית (home) עבור %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;ראשית יש לבחור מחיצה לכיווץ, לאחר מכן לגרור את הסרגל התחתון כדי לשנות את גודלה&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;נא לבחור מחיצה כדי להתקין עליה&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1114"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>במערכת זו לא נמצאה מחיצת מערכת EFI. נא לחזור ולהשתמש ביצירת מחיצות באופן ידני כדי להגדיר את %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1123"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>מחיצת מערכת ה־EFI שב־%1 תשמש עבור טעינת %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1131"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
         <source>EFI system partition:</source>
         <translation>מחיצת מערכת EFI:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1249"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>לא נמצאה מערכת הפעלה על התקן אחסון זה. מה ברצונך לעשות?&lt;br/&gt; ניתן לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1254"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1291"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1337"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1270"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1331"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1357"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;מחיקת כונן&lt;/strong&gt;&lt;br/&gt; פעולה זו &lt;font color=&quot;red&quot;&gt;תמחק&lt;/font&gt; את כל המידע השמור על התקן האחסון הנבחר.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>בהתקן אחסון זה נמצאה %1. מה ברצונך לעשות?&lt;br/&gt; ניתן לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1486"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>בלי החלפה</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>שימוש מחדש בהחלפה</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1494"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>החלפה (ללא תרדמת)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1497"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>החלפה (עם תרדמת)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1500"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>החלפה לקובץ</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1287"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1333"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1274"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;התקנה לצד&lt;/strong&gt;&lt;br/&gt; אשף ההתקנה יכווץ מחיצה כדי לפנות מקום לטובת %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1296"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1341"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1278"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1335"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1361"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;החלפת מחיצה&lt;/strong&gt;&lt;br/&gt; ביצוע החלפה של המחיצה ב־%1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1322"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>כבר קיימת מערכת הפעלה על התקן האחסון הזה. כיצד להמשיך?&lt;br/&gt; ניתן לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1348"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>ישנן מגוון מערכות הפעלה על התקן אחסון זה. איך להמשיך? &lt;br/&gt;ניתן לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
@@ -740,26 +740,34 @@ The installer will quit and all changes will be lost.</source>
     </message>
 </context>
 <context>
+    <name>CreateVolumeGroupDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="37"/>
+        <source>Create Volume Group</source>
+        <translation>יצירת קבוצת כרכים</translation>
+    </message>
+</context>
+<context>
     <name>CreateVolumeGroupJob</name>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
         <source>Create new volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>יצירת קבוצת כרכים חדשה בשם %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
         <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>יצירת קבוצת כרכים חדשה בשם &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
         <source>Creating new volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>נוצרת קבוצת כרכים חדשה בשם %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
         <source>The installer failed to create a volume group named &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>אשף ההתקנה נכשל ביצירת קבוצת כרכים בשם ‚%1’.</translation>
     </message>
 </context>
 <context>
@@ -768,17 +776,17 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="34"/>
         <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
         <source>Deactivate volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>השבתת קבוצת כרכים בשם %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="41"/>
         <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>השבתת קבוצת כרכים בשם &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="61"/>
         <source>The installer failed to deactivate a volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>אשף ההתקנה נכשל בהשבתת קבוצת כרכים בשם %1.</translation>
     </message>
 </context>
 <context>
@@ -847,7 +855,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/core/DeviceModel.cpp" line="89"/>
         <source>%1 - (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 - (%2)</translation>
     </message>
 </context>
 <context>
@@ -1576,7 +1584,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="598"/>
         <source>font-weight: normal</source>
         <translation>font-weight: normal</translation>
     </message>
@@ -1606,22 +1614,22 @@ The installer will quit and all changes will be lost.</source>
         <translation>&lt;small&gt;בשם זה ייעשה שימוש לטובת זיהוי מול מחשבים אחרים ברשת במידת הצורך.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="466"/>
         <source>Log in automatically without asking for the password.</source>
         <translation>כניסה אוטומטית מבלי לבקש ססמה.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="473"/>
         <source>Use the same password for the administrator account.</source>
         <translation>להשתמש באותה הססמה עבור חשבון המנהל.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="496"/>
         <source>Choose a password for the administrator account.</source>
         <translation>בחירת ססמה עבור חשבון המנהל.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="601"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;עליך להקליד את אותה הססמה פעמיים כדי לאפשר זיהוי של שגיאות הקלדה.&lt;/small&gt;</translation>
     </message>
@@ -1744,40 +1752,40 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
         <source>New Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>קבוצת כרכים חדשה</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
         <source>Resize Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>שינוי גודל קבוצת כרכים</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
         <source>Deactivate Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>השבתת קבוצת כרכים</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
         <source>Remove Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>הסרת קבוצת כרכים</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
         <source>I&amp;nstall boot loader on:</source>
-        <translation type="unfinished"/>
+        <translation>הת&amp;קנת מנהל אתחול על:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="222"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>ליצור טבלת מחיצות חדשה על %1?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="242"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="246"/>
         <source>Can not create new partition</source>
         <translation>לא ניתן ליצור מחיצה חדשה</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="243"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="247"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
         <translation>לטבלת המחיצות על %1 כבר יש %2 מחיצות עיקריות ואי אפשר להוסיף עוד כאלה. נא להסיר מחיצה עיקרית אחת ולהוסיף מחיצה מורחבת במקום.</translation>
     </message>
@@ -2051,6 +2059,11 @@ Output:
         <comment>Language (Country)</comment>
         <translation>%1 (%2)</translation>
     </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
+        <source>(no mount point)</source>
+        <translation>(אין נקודת עגינה)</translation>
+    </message>
 </context>
 <context>
     <name>RemoveVolumeGroupJob</name>
@@ -2058,17 +2071,17 @@ Output:
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
         <source>Remove Volume Group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>הסרת קבוצת כרכים בשם %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="41"/>
         <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>הסרת קבוצת כרכים בשם &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
         <source>The installer failed to remove a volume group named &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>אשף ההתקנה נכשל בהסרת קבוצת כרכים בשם ‚%1’.</translation>
     </message>
 </context>
 <context>
@@ -2209,29 +2222,29 @@ Output:
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="116"/>
         <source>Resize Filesystem Job</source>
-        <translation type="unfinished"/>
+        <translation>משימת שינוי גודל מערכת קבצים</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="224"/>
         <source>Invalid configuration</source>
-        <translation type="unfinished"/>
+        <translation>תצורה שגויה</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="225"/>
         <source>The file-system resize job has an invalid configuration and will not run.</source>
-        <translation type="unfinished"/>
+        <translation>למשימת שינוי גודל מערכת הקבצים יש תצורה שגויה והיא לא תפעל.</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="239"/>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="249"/>
         <source>KPMCore not Available</source>
-        <translation type="unfinished"/>
+        <translation>KPMCore לא זמין</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="240"/>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="250"/>
         <source>Calamares cannot start KPMCore for the file-system resize job.</source>
-        <translation type="unfinished"/>
+        <translation>ל־Calamares אין אפשרות להתחיל את KPMCore עבור משימת שינוי גודל מערכת הקבצים.</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="258"/>
@@ -2240,39 +2253,39 @@ Output:
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="289"/>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="306"/>
         <source>Resize Failed</source>
-        <translation type="unfinished"/>
+        <translation>שינוי הגודל נכשל</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="259"/>
         <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
-        <translation type="unfinished"/>
+        <translation>לא הייתה אפשרות למצוא את מערכת הקבצים %1 במערכת הזו, לכן לא ניתן לשנות את גודלה.</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="260"/>
         <source>The device %1 could not be found in this system, and cannot be resized.</source>
-        <translation type="unfinished"/>
+        <translation>לא הייתה אפשרות למצוא את ההתקן %1 במערכת הזו, לכן לא ניתן לשנות את גודלו.</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="268"/>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="281"/>
         <source>The filesystem %1 cannot be resized.</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן לשנות את גודל מערכת הקבצים %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="269"/>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="282"/>
         <source>The device %1 cannot be resized.</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן לשנות את גודל ההתקן %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="290"/>
         <source>The filesystem %1 must be resized, but cannot.</source>
-        <translation type="unfinished"/>
+        <translation>חובה לשנות את גודל מערכת הקבצים %1, אך לא ניתן.</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="291"/>
         <source>The device %1 must be resized, but cannot</source>
-        <translation type="unfinished"/>
+        <translation>חובה לשנות את גודל ההתקן %1, אך לא ניתן.</translation>
     </message>
 </context>
 <context>
@@ -2299,22 +2312,30 @@ Output:
     </message>
 </context>
 <context>
+    <name>ResizeVolumeGroupDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="38"/>
+        <source>Resize Volume Group</source>
+        <translation>שינוי גודל קבוצת כרכים</translation>
+    </message>
+</context>
+<context>
     <name>ResizeVolumeGroupJob</name>
     <message>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="55"/>
         <source>Resize volume group named %1 from %2 to %3.</source>
-        <translation type="unfinished"/>
+        <translation>שינוי גודל קבוצת כרכים בשם %1 מ־%2 ל־%3.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
         <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>שינוי גודל קבוצת כרכים בשם &lt;strong&gt;%1&lt;/strong&gt; מ־&lt;strong&gt;%2&lt;/strong&gt; ל־&lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
         <source>The installer failed to resize a volume group named &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>אשף ההתקנה נכשל בשינוי גודל קבוצת הכרכים בשם ‚%1’.</translation>
     </message>
 </context>
 <context>
@@ -2707,33 +2728,33 @@ Output:
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="289"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="296"/>
         <source>Your username is too long.</source>
         <translation>שם המשתמש ארוך מדי.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="295"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="302"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>שם המחשב מכיל תווים בלתי תקינים. מותר להשתמש אך ורק באותיות ובמספרים.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
         <source>Your hostname is too short.</source>
         <translation>שם המחשב קצר מדי.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="339"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="346"/>
         <source>Your hostname is too long.</source>
         <translation>שם המחשב ארוך מדי.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="352"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>שם המחשב מכיל תווים בלתי תקינים. מותר להשתמש אך ורק באותיות, במספרים ובמקפים.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="417"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="380"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="424"/>
         <source>Your passwords do not match!</source>
         <translation>הססמאות לא תואמות!</translation>
     </message>
@@ -2750,28 +2771,28 @@ Output:
     <name>VolumeGroupBaseDialog</name>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
-        <source>VolumeGroupDialog</source>
-        <translation type="unfinished"/>
+        <source>Create Volume Group</source>
+        <translation>יצירת קבוצת כרכים</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
         <source>List of Physical Volumes</source>
-        <translation type="unfinished"/>
+        <translation>רשימת כרכים פיזיים</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="30"/>
         <source>Volume Group Name:</source>
-        <translation type="unfinished"/>
+        <translation>שם קבוצת כרכים:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="43"/>
         <source>Volume Group Type:</source>
-        <translation type="unfinished"/>
+        <translation>סוג קבוצת כרכים:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
         <source>Physical Extent Size:</source>
-        <translation type="unfinished"/>
+        <translation>גודל משטח פיזי:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
@@ -2781,7 +2802,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="82"/>
         <source>Total Size:</source>
-        <translation type="unfinished"/>
+        <translation>גודל כולל:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="92"/>
@@ -2789,22 +2810,22 @@ Output:
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="132"/>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="152"/>
         <source>---</source>
-        <translation type="unfinished"/>
+        <translation>---</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="102"/>
         <source>Used Size:</source>
-        <translation type="unfinished"/>
+        <translation>גודל מנוצל:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="122"/>
         <source>Total Sectors:</source>
-        <translation type="unfinished"/>
+        <translation>סך כל המקטעים:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
         <source>Quantity of LVs:</source>
-        <translation type="unfinished"/>
+        <translation>כמות הכרכים הלוגיים:</translation>
     </message>
 </context>
 <context>
