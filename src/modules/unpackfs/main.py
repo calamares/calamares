@@ -37,7 +37,7 @@ _ = gettext.translation("calamares-python",
                         fallback=True).gettext
 
 def pretty_name():
-    return _("Installing filesystems.")
+    return _("Filling up filesystems.")
 
 
 class UnpackEntry:
@@ -99,7 +99,10 @@ def file_copy(source, dest, progress_cb):
     # `source` *must* end with '/' otherwise a directory named after the source
     # will be created in `dest`: ie if `source` is "/foo/bar" and `dest` is
     # "/dest", then files will be copied in "/dest/bar".
-    source += "/"
+    if not source.endswith("/"):
+        source += "/"
+
+    num_files_copied = 0  # Gets updated through rsync output
 
     args = ['rsync', '-aHAXr']
     args.extend(list_excludes(dest))
@@ -109,19 +112,20 @@ def file_copy(source, dest, progress_cb):
         )
 
     for line in iter(process.stdout.readline, b''):
-        # small comment on this regexp.
-        # rsync outputs three parameters in the progress.
-        # xfer#x => i try to interpret it as 'file copy try no. x'
-        # to-check=x/y, where:
-        #  - x = number of files yet to be checked
-        #  - y = currently calculated total number of files.
-        # but if you're copying directory with some links in it, the xfer#
+        # rsync outputs progress in parentheses. Each line will have an
+        # xfer and a chk item (either ir-chk or to-chk) as follows:
+        #
+        # - xfer#x => Interpret it as 'file copy try no. x'
+        # - ir-chk=x/y, where:
+        #     - x = number of files yet to be checked
+        #     - y = currently calculated total number of files.
+        # - to-chk=x/y, which is similar and happens once the ir-chk
+        #   phase (collecting total files) is over.
+        #
+        # If you're copying directory with some links in it, the xfer#
         # might not be a reliable counter (for one increase of xfer, many
         # files may be created).
-        # In case of manjaro, we pre-compute the total number of files.
-        # therefore we can easily subtract x from y in order to get real files
-        # copied / processed count.
-        m = re.findall(r'xfr#(\d+), ir-chk=(\d+)/(\d+)', line.decode())
+        m = re.findall(r'xfr#(\d+), ..-chk=(\d+)/(\d+)', line.decode())
 
         if m:
             # we've got a percentage update
@@ -132,9 +136,10 @@ def file_copy(source, dest, progress_cb):
 
             # I guess we're updating every 100 files...
             if num_files_copied % 100 == 0:
-                progress_cb(num_files_copied)
+                progress_cb(num_files_copied, num_files_total_local)
 
     process.wait()
+    progress_cb(num_files_copied, num_files_total_local)  # Push towards 100%
 
     # 23 is the return code rsync returns if it cannot write extended
     # attributes (with -X) because the target file system does not support it,
@@ -149,7 +154,7 @@ def file_copy(source, dest, progress_cb):
     # https://bugzilla.redhat.com/show_bug.cgi?id=868755#c50
     # for the same issue in Anaconda, which uses a similar workaround.
     if process.returncode != 0 and process.returncode != 23:
-        utils.warn("rsync failed with error code {}.".format(process.returncode))
+        utils.warning("rsync failed with error code {}.".format(process.returncode))
         return _("rsync failed with error code {}.").format(process.returncode)
 
     return None
@@ -172,14 +177,19 @@ class UnpackOperation:
         """
         progress = float(0)
 
+        done = 0
+        total = 0
+        complete = 0
         for entry in self.entries:
             if entry.total == 0:
                 continue
+            total += entry.total
+            done += entry.copied
+            if entry.total == entry.copied:
+                complete += 1
 
-            partialprogress = 0.05  # Having a total !=0 gives 5%
-
-            partialprogress += 0.95 * (entry.copied / float(entry.total))
-            progress += partialprogress / len(self.entries)
+        if done > 0 and total > 0:
+            progress = 0.05 + (0.90 * done / total) + (0.05 * complete / len(self.entries))
 
         job.setprogress(progress)
 
@@ -258,12 +268,14 @@ class UnpackOperation:
         :param imgmountdir:
         :return:
         """
-        def progress_cb(copied):
+        def progress_cb(copied, total):
             """ Copies file to given destination target.
 
             :param copied:
             """
             entry.copied = copied
+            if total > entry.total:
+                entry.total = total
             self.report_progress()
 
         try:

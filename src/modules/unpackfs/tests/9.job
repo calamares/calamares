@@ -1,0 +1,6 @@
+# This test uses a small destination FS, to make rsync fail
+---
+unpack:
+   - source: .
+     sourcefs: ext4
+     destination: smalldest

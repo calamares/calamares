@@ -7,8 +7,20 @@ mkdir /tmp/unpackfs-test-run-rootdir3
 # For test 7
 mkdir /tmp/unpackfs-test-run-rootdir3/realdest
 
+# For test 9
+mkdir /tmp/unpackfs-test-run-rootdir3/smalldest
+if test 0 = $( id -u ) ; then
+    mount -t tmpfs -o size=32M tmpfs /tmp/unpackfs-test-run-rootdir3/smalldest
+    dd if=/dev/zero of=/tmp/unpackfs-test-run-rootdir3/smalldest/bogus.zero bs=1M count=1
+fi
+
 # Run tests
 sh "$SRCDIR/../testpythonrun.sh" unpackfs
+
+# Cleanup test 9
+if test 0 = $( id -u ) ; then
+    umount /tmp/unpackfs-test-run-rootdir3/smalldest
+fi
 
 # Cleanup test 7
 rm -rf /tmp/unpackfs-test-run-rootdir3/realdest

@@ -1,0 +1,3 @@
+# This test uses a small destination FS, to make rsync fail
+---
+rootMountPoint: /tmp/unpackfs-test-run-rootdir3/
