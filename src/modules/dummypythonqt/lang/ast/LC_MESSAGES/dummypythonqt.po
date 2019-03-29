@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-05 11:34-0400\n"
+"POT-Creation-Date: 2019-02-22 07:09-0500\n"
 "PO-Revision-Date: 2016-12-16 12:18+0000\n"
 "Last-Translator: enolp <enolp@softastur.org>, 2019\n"
 "Language-Team: Asturian (https://www.transifex.com/calamares/teams/20061/ast/)\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: src/modules/dummypythonqt/main.py:84
 msgid "Click me!"
-msgstr "¡Fai clic en min!"
+msgstr "¡Cálcame!"
 
 #: src/modules/dummypythonqt/main.py:94
 msgid "A new QLabel."
@@ -31,7 +31,7 @@ msgstr "Una QLabel nueva."
 
 #: src/modules/dummypythonqt/main.py:97
 msgid "Dummy PythonQt ViewStep"
-msgstr "ViewStep maniquín en PythonQT"
+msgstr "ViewStep maniquín en PythonQt"
 
 #: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"

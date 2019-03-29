@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Teo Mrnjavac <teo@kde.org>, 2016
-# Saverio <saverio.brancaccio@gmail.com>, 2017
+# Saverio <saverio.brancaccio@gmail.com>, 2018
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-05 11:34-0400\n"
+"POT-Creation-Date: 2019-02-22 07:09-0500\n"
 "PO-Revision-Date: 2016-12-16 12:18+0000\n"
-"Last-Translator: Saverio <saverio.brancaccio@gmail.com>, 2017\n"
+"Last-Translator: Saverio <saverio.brancaccio@gmail.com>, 2018\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/calamares/teams/20061/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
