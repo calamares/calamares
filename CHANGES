@@ -27,13 +27,15 @@ This release contains contributions from (alphabetically by first name):
  * *Bootloader* module: a serious bug introduced in 3.2.4 which prevents
    succesful boot after installation on EFI machines, has been repaired.
    (Thanks to Gabriel)
+ * *Displaymanager* module: it is no longer a fatal error to not have any
+   display-managers.
  * *Partition* module: it is now possible to build without libparted. Since
    KPMCore may not need this library anymore, it is a dependency that will
    be dropped as soon as it is feasible. Add `-DCMAKE_DISABLE_FIND_PACKAGE_LIBPARTED=ON`
    to the CMake flags to do so.
  * Python modules: several modules have had translations added. This is
    usually only visible when the module runs as part of the *exec* step,
-   when the module's *pretty name* is displayed. In addition, error
+   when the module's *pretty name* is displayed. In addition, some error
    messages are now translated.
 
 
