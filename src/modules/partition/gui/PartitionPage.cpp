@@ -79,6 +79,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
                     value( "alwaysShowPartitionLabels" ).toBool() );
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
     m_ui->bootLoaderComboBox->setModel( m_core->bootLoaderModel() );
+    connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset, this, &PartitionPage::restoreSelectedBootLoader );
     PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
                                                    value( "drawNestedPartitions" ).toBool() ?
                                                        PartitionBarsView::DrawNestedPartitions :
@@ -504,6 +505,12 @@ PartitionPage::updateSelectedBootLoaderIndex()
     m_lastSelectedBootLoaderIndex = m_ui->bootLoaderComboBox->currentIndex();
     cDebug() << "Selected bootloader index" << m_lastSelectedBootLoaderIndex;
 }
+
+void
+PartitionPage::restoreSelectedBootLoader()
+{
+}
+
 
 void
 PartitionPage::updateFromCurrentDevice()
