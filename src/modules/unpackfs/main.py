@@ -110,17 +110,17 @@ def file_copy(source, dest, progress_cb):
 
     for line in iter(process.stdout.readline, b''):
         # small comment on this regexp.
-        # rsync outputs three parameters in the progress.
-        # xfer#x => i try to interpret it as 'file copy try no. x'
-        # to-check=x/y, where:
-        #  - x = number of files yet to be checked
-        #  - y = currently calculated total number of files.
-        # but if you're copying directory with some links in it, the xfer#
+        # rsync outputs three items in the progress (in parentheses)
+        # - xfer#x => Interpret it as 'file copy try no. x'
+        # - ir-chk=x/y, where:
+        #     - x = number of files yet to be checked
+        #     - y = currently calculated total number of files.
+        # - to-chk=x/y, which is similar but seems to only be emitted when
+        #   progress is short; these are ignored.
+        #
+        # If you're copying directory with some links in it, the xfer#
         # might not be a reliable counter (for one increase of xfer, many
         # files may be created).
-        # In case of manjaro, we pre-compute the total number of files.
-        # therefore we can easily subtract x from y in order to get real files
-        # copied / processed count.
         m = re.findall(r'xfr#(\d+), ir-chk=(\d+)/(\d+)', line.decode())
 
         if m:
