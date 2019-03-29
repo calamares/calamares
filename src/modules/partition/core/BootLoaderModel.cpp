@@ -67,6 +67,8 @@ BootLoaderModel::createMbrItems()
 void
 BootLoaderModel::update()
 {
+    beginResetModel();
+    blockSignals( true );
     clear();
     createMbrItems();
 
@@ -111,6 +113,8 @@ BootLoaderModel::update()
             createBootLoaderItem( tr( "Do not install a boot loader" ), QString(), false )
         );
     }
+    blockSignals( false );
+    endResetModel();
 }
 
 
