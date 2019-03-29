@@ -37,7 +37,7 @@ _ = gettext.translation("calamares-python",
                         fallback=True).gettext
 
 def pretty_name():
-    return _("Installing filesystems.")
+    return _("Filling up filesystems.")
 
 
 class UnpackEntry:
