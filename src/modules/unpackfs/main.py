@@ -274,7 +274,8 @@ class UnpackOperation:
             :param copied:
             """
             entry.copied = copied
-            entry.total = total
+            if total > entry.total:
+                entry.total = total
             self.report_progress()
 
         try:
