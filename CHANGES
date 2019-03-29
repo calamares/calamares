@@ -39,6 +39,7 @@ This release contains contributions from (alphabetically by first name):
    usually only visible when the module runs as part of the *exec* step,
    when the module's *pretty name* is displayed. In addition, some error
    messages are now translated.
+ * *UnpackFS* module: improved progress reporting and tests.
 
 
 # 3.2.4 (2019-02-12) #
