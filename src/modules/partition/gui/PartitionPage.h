@@ -57,6 +57,8 @@ private slots:
     void updateBootLoaderInstallPath();
     /// @brief Explicitly selected boot loader path
     void updateSelectedBootLoaderIndex();
+    /// @brief After boot loader model changes, try to preserve previously set value
+    void restoreSelectedBootLoader();
 
 private:
     QScopedPointer< Ui_PartitionPage > m_ui;

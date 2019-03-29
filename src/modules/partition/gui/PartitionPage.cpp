@@ -79,6 +79,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
                     value( "alwaysShowPartitionLabels" ).toBool() );
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
     m_ui->bootLoaderComboBox->setModel( m_core->bootLoaderModel() );
+    connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset, this, &PartitionPage::restoreSelectedBootLoader );
     PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
                                                    value( "drawNestedPartitions" ).toBool() ?
                                                        PartitionBarsView::DrawNestedPartitions :
@@ -504,6 +505,47 @@ PartitionPage::updateSelectedBootLoaderIndex()
     m_lastSelectedBootLoaderIndex = m_ui->bootLoaderComboBox->currentIndex();
     cDebug() << "Selected bootloader index" << m_lastSelectedBootLoaderIndex;
 }
+
+int
+findBootloader( const QAbstractItemModel* model, const QString& path )
+{
+    for ( int i = 0; i < model->rowCount(); ++i)
+    {
+        const auto index = model->index( i, 0, QModelIndex() );
+        cDebug() << i << model->itemData( index );
+        QVariant var = model->data( index, BootLoaderModel::BootLoaderPathRole );
+        if ( var.isValid() && var.toString() == path )
+            return i;
+    }
+
+    return -1;
+}
+
+void
+PartitionPage::restoreSelectedBootLoader()
+{
+    const auto* model = m_ui->bootLoaderComboBox->model();
+    if ( model->rowCount() < 1 )
+    {
+        cDebug() << "No items in BootLoaderModel";
+        return;
+    }
+
+    int r = -1;
+    if ( m_core->bootLoaderInstallPath().isEmpty() )
+    {
+        m_ui->bootLoaderComboBox->setCurrentIndex( 0 );
+    }
+    else if ( (r = findBootloader( model, m_core->bootLoaderInstallPath() )) >= 0 )
+    {
+        m_ui->bootLoaderComboBox->setCurrentIndex( r );
+    }
+    else
+    {
+        m_ui->bootLoaderComboBox->setCurrentIndex( 0 );
+    }
+}
+
 
 void
 PartitionPage::updateFromCurrentDevice()

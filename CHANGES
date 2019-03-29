@@ -31,8 +31,10 @@ This release contains contributions from (alphabetically by first name):
    display-managers.
  * *Partition* module: it is now possible to build without libparted. Since
    KPMCore may not need this library anymore, it is a dependency that will
-   be dropped as soon as it is feasible. Add `-DCMAKE_DISABLE_FIND_PACKAGE_LIBPARTED=ON`
-   to the CMake flags to do so.
+   be dropped as soon as it is feasible. Add this to the CMake flags:
+   `-DCMAKE_DISABLE_FIND_PACKAGE_LIBPARTED=ON`
+ * *Partition* module: the location that is selected for the bootloader,
+   no longer changes when a new partition is created. #1098
  * Python modules: several modules have had translations added. This is
    usually only visible when the module runs as part of the *exec* step,
    when the module's *pretty name* is displayed. In addition, some error
