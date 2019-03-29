@@ -102,6 +102,8 @@ def file_copy(source, dest, progress_cb):
     if not source.endswith("/"):
         source += "/"
 
+    num_files_copied = 0  # Gets updated through rsync output
+
     args = ['rsync', '-aHAXr']
     args.extend(list_excludes(dest))
     args.extend(['--progress', source, dest])
@@ -137,6 +139,7 @@ def file_copy(source, dest, progress_cb):
                 progress_cb(num_files_copied)
 
     process.wait()
+    progress_cb(num_files_copied)  # Push towards 100%
 
     # 23 is the return code rsync returns if it cannot write extended
     # attributes (with -X) because the target file system does not support it,
