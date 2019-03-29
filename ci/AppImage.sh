@@ -136,9 +136,7 @@ do
     fi
 done
 
-if test -z "$CONFIG_DIR" ; then
-    echo "# Using basic settings.conf"
-else
+if test -n "$CONFIG_DIR" ; then
     test -f "$CONFIG_DIR/settings.conf" || { echo "! No settings.conf in $CONFIG_DIR"; exit 1; }
 fi
 
@@ -155,7 +153,8 @@ fi
 mkdir "$BUILD_DIR/AppDir" || { echo "! Could not create $BUILD_DIR/AppDir for the AppImage install."; exit 1; }
 LOG_FILE="$BUILD_DIR/AppImage.log"
 rm -f "$LOG_FILE"
-echo "# Calamares build started" `date` > "$LOG_FILE"
+{ echo "# Calamares build started" `date` ; echo "# .. build directory $BUILD_DIR"; echo "# .. log file $LOG_FILE"; } > "$LOG_FILE"
+cat "$LOG_FILE"
 
 ### Python Support
 #
@@ -258,7 +257,7 @@ echo "# Building AppImage"
     ./linuxdeploy-x86_64.AppImage --appdir=AppDir/ --plugin=qt --output=appimage
 ) >> "$LOG_FILE" 2>&1 || { tail -10 "$LOG_FILE" ; echo "! Could not create image"; exit 1; }
 
-echo "# Calamares-x86_64.AppImage created in $BUILD_DIR"
+echo "# Created in $BUILD_DIR/Calamares-x86_64.AppImage"
 echo "# .. log file at $LOG_FILE"
 
 exit 0
