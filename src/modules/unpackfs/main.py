@@ -109,19 +109,20 @@ def file_copy(source, dest, progress_cb):
         )
 
     for line in iter(process.stdout.readline, b''):
-        # small comment on this regexp.
-        # rsync outputs three items in the progress (in parentheses)
+        # rsync outputs progress in parentheses. Each line will have an
+        # xfer and a chk item (either ir-chk or to-chk) as follows:
+        #
         # - xfer#x => Interpret it as 'file copy try no. x'
         # - ir-chk=x/y, where:
         #     - x = number of files yet to be checked
         #     - y = currently calculated total number of files.
-        # - to-chk=x/y, which is similar but seems to only be emitted when
-        #   progress is short; these are ignored.
+        # - to-chk=x/y, which is similar and happens once the ir-chk
+        #   phase (collecting total files) is over.
         #
         # If you're copying directory with some links in it, the xfer#
         # might not be a reliable counter (for one increase of xfer, many
         # files may be created).
-        m = re.findall(r'xfr#(\d+), ir-chk=(\d+)/(\d+)', line.decode())
+        m = re.findall(r'xfr#(\d+), ..-chk=(\d+)/(\d+)', line.decode())
 
         if m:
             # we've got a percentage update
