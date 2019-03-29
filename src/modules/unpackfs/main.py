@@ -99,7 +99,8 @@ def file_copy(source, dest, progress_cb):
     # `source` *must* end with '/' otherwise a directory named after the source
     # will be created in `dest`: ie if `source` is "/foo/bar" and `dest` is
     # "/dest", then files will be copied in "/dest/bar".
-    source += "/"
+    if not source.endswith("/"):
+        source += "/"
 
     args = ['rsync', '-aHAXr']
     args.extend(list_excludes(dest))
