@@ -512,7 +512,7 @@ findBootloader( const QAbstractItemModel* model, const QString& path )
     for ( int i = 0; i < model->rowCount(); ++i)
     {
         const auto index = model->index( i, 0, QModelIndex() );
-        cDebug() << i << model->itemData( index );
+        cDebug() << "FindBootLoader" << i << index.isValid() << model->itemData( index );
         QVariant var = model->data( index, BootLoaderModel::BootLoaderPathRole );
         if ( var.isValid() && var.toString() == path )
             return i;
