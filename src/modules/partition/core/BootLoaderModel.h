@@ -19,8 +19,9 @@
 #ifndef BOOTLOADERMODEL_H
 #define BOOTLOADERMODEL_H
 
-#include <QStandardItemModel>
 #include <QList>
+#include <QMutex>
+#include <QStandardItemModel>
 
 class Device;
 
@@ -51,10 +52,14 @@ public:
 
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
+    using DeviceList = QList< Device* >;
+
 private:
-    QList< Device* > m_devices;
+    DeviceList m_devices;
+    mutable QMutex m_lock;
 
     void createMbrItems();
+    void updateInternal();
 };
 
 #endif /* BOOTLOADERMODEL_H */

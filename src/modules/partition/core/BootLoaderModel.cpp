@@ -69,6 +69,16 @@ BootLoaderModel::update()
 {
     beginResetModel();
     blockSignals( true );
+    updateInternal();
+    blockSignals( false );
+    endResetModel();
+}
+
+
+void
+BootLoaderModel::updateInternal()
+{
+    QMutexLocker lock(&m_lock);
     clear();
     createMbrItems();
 
@@ -113,14 +123,13 @@ BootLoaderModel::update()
             createBootLoaderItem( tr( "Do not install a boot loader" ), QString(), false )
         );
     }
-    blockSignals( false );
-    endResetModel();
 }
 
 
 QVariant
 BootLoaderModel::data( const QModelIndex& index, int role ) const
 {
+    QMutexLocker lock(&m_lock);
     if ( role == Qt::DisplayRole )
     {
         QString displayRole = QStandardItemModel::data( index, Qt::DisplayRole ).toString();
