@@ -40,11 +40,16 @@
 PartitionModel::ResetHelper::ResetHelper( PartitionModel* model )
     : m_model( model )
 {
+    m_model->m_lock.lock();
     m_model->beginResetModel();
 }
 
 PartitionModel::ResetHelper::~ResetHelper()
 {
+    // We need to unlock the mutex before emitting the reset signal,
+    // because the reset will cause clients to start looking at the
+    // (new) data.
+    m_model->m_lock.unlock();
     m_model->endResetModel();
 }
 
@@ -58,6 +63,7 @@ PartitionModel::PartitionModel( QObject* parent )
 void
 PartitionModel::init( Device* device , const OsproberEntryList& osproberEntries )
 {
+    QMutexLocker lock(&m_lock);
     beginResetModel();
     m_device = device;
     m_osproberEntries = osproberEntries;
@@ -271,6 +277,7 @@ PartitionModel::headerData( int section, Qt::Orientation orientation, int role )
 Partition*
 PartitionModel::partitionForIndex( const QModelIndex& index ) const
 {
+    QMutexLocker lock(&m_lock);
     if ( !index.isValid() )
         return nullptr;
     return reinterpret_cast< Partition* >( index.internalPointer() );

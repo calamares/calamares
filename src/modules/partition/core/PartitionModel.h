@@ -23,6 +23,7 @@
 
 // Qt
 #include <QAbstractItemModel>
+#include <QMutex>
 
 class Device;
 class Partition;
@@ -115,8 +116,11 @@ public:
     void update();
 
 private:
+    friend class ResetHelper;
+
     Device* m_device;
     OsproberEntryList m_osproberEntries;
+    mutable QMutex m_lock;
 };
 
 #endif /* PARTITIONMODEL_H */
