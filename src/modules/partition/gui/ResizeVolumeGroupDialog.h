@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2018, Caio Jordão Carvalho <caiojcarvalho@gmail.com>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,15 +27,17 @@ class LvmDevice;
 class ResizeVolumeGroupDialog : public VolumeGroupBaseDialog
 {
 public:
+    using PartitionVector = QVector< const Partition* >;
+
     ResizeVolumeGroupDialog( LvmDevice *device,
-                             QVector< const Partition* > availablePVs,
-                             QVector< const Partition* >& selectedPVs,
+                             const PartitionVector& availablePVs,
+                             PartitionVector& selectedPVs,
                              QWidget* parent );
 
     void accept() override;
 
 private:
-    QVector< const Partition* >& m_selectedPVs;
+    PartitionVector& m_selectedPVs;
 };
 
 #endif // RESIZEVOLUMEGROUPDIALOG_H
