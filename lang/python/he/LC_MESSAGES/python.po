@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-22 07:09-0500\n"
+"POT-Creation-Date: 2019-03-29 15:54-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2019\n"
 "Language-Team: Hebrew (https://www.transifex.com/calamares/teams/20061/he/)\n"
@@ -44,21 +44,23 @@ msgstr "לא ניתן להפעיל את השירות הבא של systemd:‏ <co
 
 #: src/modules/services-systemd/main.py:74
 msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr ""
+msgstr "לא ניתן להפעיל את היעד של systemd בשם <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:78
 msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr ""
+msgstr "לא ניתן להשבית את היעד של systemd בשם  <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:80
 msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr ""
+msgstr "לא ניתן למסך את היחידה של systemd בשם  <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:82
 msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
+"פקודות לא ידועות של systemd‏ <code>{command!s}</code> "
+"ו־<code>{suffix!s}</code> עבור היחידה {name!s}."
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -66,164 +68,166 @@ msgstr "ניתוק עיגון מערכות קבצים."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Installing filesystems."
-msgstr ""
+msgstr "מערכות הקבצים מותקנות."
 
 #: src/modules/unpackfs/main.py:153
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "rsync נכשל עם קוד השגיאה {}."
 
 #: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "פריסת התמונה „{}” נכשלה"
 
 #: src/modules/unpackfs/main.py:210
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
-msgstr ""
+msgstr "איתור unsquashfs לא צלח, נא לוודא שהחבילה squashfs-tools מותקנת"
 
 #: src/modules/unpackfs/main.py:301
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "אין נקודת עגינה למחיצת העל"
 
 #: src/modules/unpackfs/main.py:302
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
+msgstr "ב־globalstorage אין את המפתח „rootMountPoint”, לא תתבצע אף פעולה"
 
 #: src/modules/unpackfs/main.py:307
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "נקודת העגינה של מחיצת השורה שגויה"
 
 #: src/modules/unpackfs/main.py:308
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
+msgstr "rootMountPoint מוגדרת בתור „{}”, שאינו קיים, לא תתבצע אף פעולה"
 
 #: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
 #: src/modules/unpackfs/main.py:333
 msgid "Bad unsquash configuration"
-msgstr ""
+msgstr "תצורת unsquash שגויה"
 
 #: src/modules/unpackfs/main.py:322
 msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr ""
+msgstr "מערכת הקבצים עבור „{}” ‏({}) אינה נתמכת"
 
 #: src/modules/unpackfs/main.py:329
 msgid "The source filesystem \"{}\" does not exist"
-msgstr ""
+msgstr "מערכת הקבצים במקור „{}” אינה קיימת"
 
 #: src/modules/unpackfs/main.py:334
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr ""
+msgstr "היעד „{}” במערכת הקבצים המיועדת אינו תיקייה"
 
 #: src/modules/displaymanager/main.py:380
 msgid "Cannot write KDM configuration file"
-msgstr ""
+msgstr "לא ניתן לכתוב את קובץ התצורה של KDM"
 
 #: src/modules/displaymanager/main.py:381
 msgid "KDM config file {!s} does not exist"
-msgstr ""
+msgstr "קובץ התצורה של KDM ‏{!s} אינו קיים"
 
 #: src/modules/displaymanager/main.py:442
 msgid "Cannot write LXDM configuration file"
-msgstr ""
+msgstr "לא ניתן לכתוב את קובץ התצורה של LXDM"
 
 #: src/modules/displaymanager/main.py:443
 msgid "LXDM config file {!s} does not exist"
-msgstr ""
+msgstr "קובץ התצורה של LXDM ‏{!s} אינו קיים"
 
 #: src/modules/displaymanager/main.py:517
 msgid "Cannot write LightDM configuration file"
-msgstr ""
+msgstr "לא ניתן לכתוב את קובץ התצורה של LightDM"
 
 #: src/modules/displaymanager/main.py:518
 msgid "LightDM config file {!s} does not exist"
-msgstr ""
+msgstr "קובץ התצורה של LightDM ‏{!s} אינו קיים"
 
 #: src/modules/displaymanager/main.py:592
 msgid "Cannot configure LightDM"
-msgstr ""
+msgstr "לא ניתן להגדיר את LightDM"
 
 #: src/modules/displaymanager/main.py:593
 msgid "No LightDM greeter installed."
-msgstr ""
+msgstr "לא מותקן מקבל פנים מסוג LightDM."
 
 #: src/modules/displaymanager/main.py:624
 msgid "Cannot write SLIM configuration file"
-msgstr ""
+msgstr "לא ניתן לכתוב קובץ תצורה של SLIM."
 
 #: src/modules/displaymanager/main.py:625
 msgid "SLIM config file {!s} does not exist"
-msgstr ""
+msgstr "קובץ התצורה {!s} של SLIM אינו קיים"
 
 #: src/modules/displaymanager/main.py:740
-#: src/modules/displaymanager/main.py:772
 msgid "No display managers selected for the displaymanager module."
-msgstr ""
+msgstr "לא נבחרו מנהלי תצוגה למודול displaymanager."
 
 #: src/modules/displaymanager/main.py:741
 msgid ""
 "The displaymanagers list is empty or undefined in bothglobalstorage and "
 "displaymanager.conf."
 msgstr ""
-
-#: src/modules/displaymanager/main.py:773
-msgid "The list is empty after checking for installed display managers."
-msgstr ""
+"הרשימה של מנהלי התצוגה ריקה או שאינה מוגדרת תחת bothglobalstorage "
+"ו־displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:821
 msgid "Display manager configuration was incomplete"
-msgstr ""
+msgstr "תצורת מנהל התצוגה אינה שלמה"
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr ""
+msgstr "הנתונים מותקנים."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
-msgstr ""
+msgstr "הגדרת שירותי OpenRC"
 
 #: src/modules/services-openrc/main.py:66
 msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr ""
+msgstr "לא ניתן להוסיף את השירות {name!s} לשכבת ההפעלה {level!s}."
 
 #: src/modules/services-openrc/main.py:68
 msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr ""
+msgstr "לא ניתן להסיר את השירות {name!s} משכבת ההפעלה {level!s}."
 
 #: src/modules/services-openrc/main.py:70
 msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+"service-action‏ (פעולת שירות) <code>{arg!s}</code> בלתי ידועה עבור השירות "
+"{name!s} בשכבת ההפעלה {level!s}."
 
 #: src/modules/services-openrc/main.py:103
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"הקריאה <code>rc-update {arg!s}</code> במצב chroot החזירה את קוד השגיאה "
+"{num!s}."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target runlevel does not exist"
-msgstr ""
+msgstr "יעד שכבת ההפעלה אינו קיים"
 
 #: src/modules/services-openrc/main.py:111
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"הנתיב לשכבת ההפעלה {level!s} הוא <code>{path!s}</code> ונתיב זה אינו קיים."
 
 #: src/modules/services-openrc/main.py:119
 msgid "Target service does not exist"
-msgstr ""
+msgstr "שירות היעד אינו קיים"
 
 #: src/modules/services-openrc/main.py:120
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
-msgstr ""
+msgstr "הנתיב לשירות {name!s} הוא <code>{path!s}</code>, שאינו קיים."
 
 #: src/modules/plymouthcfg/main.py:36
 msgid "Configure Plymouth theme"
-msgstr ""
+msgstr "הגדרת ערכת עיצוב של Plymouth"
 
 #: src/modules/machineid/main.py:36
 msgid "Generate machine-id."
@@ -258,7 +262,7 @@ msgstr[3] "מתבצעת הסרה של %(num)d חבילות."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
-msgstr ""
+msgstr "הסרת משתמש חי ממערכת היעד"
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-22 07:09-0500\n"
+"POT-Creation-Date: 2019-03-29 15:54-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>, 2018\n"
 "Language-Team: Hungarian (https://www.transifex.com/calamares/teams/20061/hu/)\n"
@@ -156,7 +156,6 @@ msgid "SLIM config file {!s} does not exist"
 msgstr "A(z) {!s} SLIM konfigurációs fájl nem létezik"
 
 #: src/modules/displaymanager/main.py:740
-#: src/modules/displaymanager/main.py:772
 msgid "No display managers selected for the displaymanager module."
 msgstr "Nincs kijelzőkezelő kiválasztva a kijelzőkezelő modulhoz."
 
@@ -167,10 +166,6 @@ msgid ""
 msgstr ""
 "A kijelzőkezelők listája üres vagy nincs megadva a bothglobalstorage-ben  és"
 " a displaymanager.conf fájlban."
-
-#: src/modules/displaymanager/main.py:773
-msgid "The list is empty after checking for installed display managers."
-msgstr "A lista üres a telepített kijelzőkezelők ellenőrzése után."
 
 #: src/modules/displaymanager/main.py:821
 msgid "Display manager configuration was incomplete"

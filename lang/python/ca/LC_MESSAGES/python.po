@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-22 07:09-0500\n"
+"POT-Creation-Date: 2019-03-29 15:54-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2019\n"
 "Language-Team: Catalan (https://www.transifex.com/calamares/teams/20061/ca/)\n"
@@ -160,7 +160,6 @@ msgid "SLIM config file {!s} does not exist"
 msgstr "El fitxer de configuració de l'SLIM {!s} no existeix."
 
 #: src/modules/displaymanager/main.py:740
-#: src/modules/displaymanager/main.py:772
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "No hi ha cap gestor de pantalla seleccionat per al mòdul displaymanager."
@@ -172,12 +171,6 @@ msgid ""
 msgstr ""
 "La llista de gestors de pantalla és buida o no definida a bothglobalstorage "
 "i displaymanager.conf."
-
-#: src/modules/displaymanager/main.py:773
-msgid "The list is empty after checking for installed display managers."
-msgstr ""
-"La llista és buida, després de comprovar si hi ha gestors de pantalla "
-"instal·lats."
 
 #: src/modules/displaymanager/main.py:821
 msgid "Display manager configuration was incomplete"

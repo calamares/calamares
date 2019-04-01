@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-22 07:09-0500\n"
+"POT-Creation-Date: 2019-03-29 15:54-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>, 2019\n"
 "Language-Team: Albanian (https://www.transifex.com/calamares/teams/20061/sq/)\n"
@@ -160,7 +160,6 @@ msgid "SLIM config file {!s} does not exist"
 msgstr "S’ekziston kartelë formësimi SLIM {!s}"
 
 #: src/modules/displaymanager/main.py:740
-#: src/modules/displaymanager/main.py:772
 msgid "No display managers selected for the displaymanager module."
 msgstr "S’janë përzgjedhur përgjegjës ekrani për modulin displaymanager."
 
@@ -171,11 +170,6 @@ msgid ""
 msgstr ""
 "Lista displaymanagers është e zbrazët ose e papërcaktuar si te "
 "globalstorage, ashtu edhe te displaymanager.conf."
-
-#: src/modules/displaymanager/main.py:773
-msgid "The list is empty after checking for installed display managers."
-msgstr ""
-"Lista është e zbrazët pas kërkimit për përgjegjës ekrani të instaluar."
 
 #: src/modules/displaymanager/main.py:821
 msgid "Display manager configuration was incomplete"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-22 07:09-0500\n"
+"POT-Creation-Date: 2019-03-29 15:54-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,7 +156,6 @@ msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM config file {!s} does not exist"
 
 #: src/modules/displaymanager/main.py:740
-#: src/modules/displaymanager/main.py:772
 msgid "No display managers selected for the displaymanager module."
 msgstr "No display managers selected for the displaymanager module."
 
@@ -167,10 +166,6 @@ msgid ""
 msgstr ""
 "The displaymanagers list is empty or undefined in bothglobalstorage and "
 "displaymanager.conf."
-
-#: src/modules/displaymanager/main.py:773
-msgid "The list is empty after checking for installed display managers."
-msgstr "The list is empty after checking for installed display managers."
 
 #: src/modules/displaymanager/main.py:821
 msgid "Display manager configuration was incomplete"
