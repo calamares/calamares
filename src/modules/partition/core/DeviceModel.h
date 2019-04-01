@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -36,11 +36,13 @@ public:
     DeviceModel( QObject* parent = nullptr );
     ~DeviceModel() override;
 
+    using DeviceList = QList< Device* >;
+
     /**
      * Init the model with the list of devices. Does *not* take ownership of the
      * devices.
      */
-    void init( const QList< Device* >& devices );
+    void init( const DeviceList& devices );
 
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
@@ -54,7 +56,7 @@ public:
     void removeDevice( Device* device );
 
 private:
-    QList< Device* > m_devices;
+    DeviceList m_devices;
 };
 
 #endif /* DEVICEMODEL_H */
