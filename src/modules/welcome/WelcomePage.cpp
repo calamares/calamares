@@ -28,6 +28,7 @@
 #include "utils/Retranslator.h"
 
 #include "modulesystem/ModuleManager.h"
+#include "Settings.h"
 #include "ViewManager.h"
 
 #include <QApplication>
@@ -62,8 +63,18 @@ WelcomePage::WelcomePage( QWidget* parent )
         << *Calamares::Branding::VersionedName;
 
     CALAMARES_RETRANSLATE(
-        ui->mainText->setText( (Calamares::Branding::instance()->welcomeStyleCalamares() ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" ) : tr( "<h1>Welcome to the %1 installer.</h1>" ))
-                                .arg( *Calamares::Branding::VersionedName ) );
+        QString message;
+
+        if ( Calamares::Settings::instance()->isSetupMode() )
+            message = Calamares::Branding::instance()->welcomeStyleCalamares()
+                ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
+                : tr( "<h1>Welcome to %1 setup.</h1>" );
+        else
+            message = Calamares::Branding::instance()->welcomeStyleCalamares()
+                ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
+                : tr( "<h1>Welcome to the %1 installer.</h1>" );
+
+        ui->mainText->setText( message.arg( *Calamares::Branding::VersionedName ) );
         ui->retranslateUi( this );
     )
 
@@ -74,9 +85,11 @@ WelcomePage::WelcomePage( QWidget* parent )
     connect( ui->aboutButton, &QPushButton::clicked,
              this, [ this ]
     {
+        QString title = Calamares::Settings::instance()->isSetupMode()
+            ? tr( "About %1 setup" )
+            : tr( "About %1 installer" );
         QMessageBox mb( QMessageBox::Information,
-                        tr( "About %1 installer" )
-                            .arg( CALAMARES_APPLICATION_NAME ),
+                        title.arg( CALAMARES_APPLICATION_NAME ),
                         tr(
                             "<h1>%1</h1><br/>"
                             "<strong>%2<br/>"
