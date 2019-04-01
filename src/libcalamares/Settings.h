@@ -65,7 +65,7 @@ public:
      * NOTE: it's a synonym for !doChroot() for now, but may become
      *       an independent setting.
      */
-    bool isSetupMode() const { return !doChroot(); }
+    bool isSetupMode() const { return m_isSetupMode; }
 
     bool disableCancel() const;
 
@@ -81,6 +81,7 @@ private:
 
     bool m_debug;
     bool m_doChroot;
+    bool m_isSetupMode;
     bool m_promptInstall;
     bool m_disableCancel;
 };
