@@ -60,8 +60,6 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QFutureWatcher>
 
-#include <unistd.h>  // For sleep(3)
-
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_core( nullptr )
