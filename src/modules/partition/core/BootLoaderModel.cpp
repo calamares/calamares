@@ -47,9 +47,15 @@ BootLoaderModel::~BootLoaderModel()
 void
 BootLoaderModel::init( const QList< Device* >& devices )
 {
+    beginResetModel();
+    blockSignals( true );
+
     m_devices = devices;
     clear();
     createMbrItems();
+
+    blockSignals( false );
+    endResetModel();
 }
 
 void
