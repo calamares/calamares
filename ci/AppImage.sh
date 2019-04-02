@@ -2,7 +2,7 @@
 #
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-# Copyright 2019 Adriaan de Groot <adridg@FreeBSD.org>
+# Copyright 2019 Adriaan de Groot <groot@kde.org>
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -56,7 +56,11 @@
 # The build process for AppImage proceeds in a directory build-AppImage
 # that is created in the current directory.
 #
-# TODO: Conda / Python support doesn't work yet.
+# The resulting AppImage has XDG_* enabled, and appends the in-image
+# directories to the current environment. You can set XDG_* in the
+# current environment to use other configurations and data, e.g. the
+# data in the current live environment. Or leave it unset, to try
+# Calamares with only the configuration contained in the AppImage.
 #
 ### END USAGE
 
@@ -207,10 +211,13 @@ mv "$IMAGE_DIR/usr/bin/calamares" "$IMAGE_DIR/usr/bin/calamares.bin"
 cat > "$IMAGE_DIR/usr/bin/calamares" <<"EOF"
 #! /bin/sh
 #
-# Calamares proxy-script
-export XDG_DATA_DIRS="$APPDIR/usr/share/calamares:"
-export XDG_CONFIG_DIRS="$APPDIR/etc/calamares:$D/usr/share:"
-export PYTHONPATH=$APPDIR/usr/lib:
+# Calamares proxy-script. Runs Calamares with XDG support enabled,
+# and in-image XDG dirs set up so that compiled-in configuration can be used.
+test -n "${XDG_DATA_DIRS}" && XDG_DATA_DIRS="${XDG_DATA_DIRS}:"
+test -n "${XDG_CONFIG_DIRS}" $$ XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}:"
+export XDG_DATA_DIRS="${XDG_DATA_DIRS}${APPDIR}/usr/share/"
+export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS}${APPDIR}/etc/:${APPDIR}/usr/share/"
+export PYTHONPATH="${APPDIR}/usr/lib:"
 cd "$APPDIR"
 exec "$APPDIR"/usr/bin/calamares.bin -X "$@"
 EOF

@@ -99,21 +99,32 @@ setAppDataDir( const QDir& dir )
 
 /* Split $ENV{@p name} on :, append to @p l, making sure each ends in / */
 static void
-mungeEnvironment( QStringList& l, const char *name )
+mungeEnvironment( QStringList& l, const char* name, const char* defaultDirs )
 {
-    for ( auto s : QString( qgetenv( name ) ).split(':') )
+    static const QString calamaresSubdir = QStringLiteral( "calamares/" );
+
+    QStringList dirs = QString( qgetenv( name ) ).split( ':' );
+    if ( dirs.isEmpty() )
+        dirs = QString( defaultDirs ).split( ':' );
+
+    for ( auto s : dirs )
+    {
+        if ( s.isEmpty() )
+            continue;
         if ( s.endsWith( '/' ) )
-            l << s;
+            l << ( s + calamaresSubdir ) << s;
         else
-            l << ( s + '/' );
+            l << ( s + '/' + calamaresSubdir ) << ( s + '/' );
+    }
 }
 
 void
 setXdgDirs()
 {
-    s_haveExtraDirs = true;
-    mungeEnvironment( s_extraConfigDirs, "XDG_CONFIG_DIRS" );
-    mungeEnvironment( s_extraDataDirs, "XDG_DATA_DIRS" );
+    mungeEnvironment( s_extraConfigDirs, "XDG_CONFIG_DIRS", "/etc/xdg" );
+    mungeEnvironment( s_extraDataDirs, "XDG_DATA_DIRS", "/usr/local/share/:/usr/share/" );
+
+    s_haveExtraDirs = !( s_extraConfigDirs.isEmpty() && s_extraDataDirs.isEmpty() );
 }
 
 QStringList
