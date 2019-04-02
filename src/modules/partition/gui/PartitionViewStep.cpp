@@ -311,10 +311,10 @@ PartitionViewStep::back()
 bool
 PartitionViewStep::isNextEnabled() const
 {
-    if ( m_choicePage && m_choicePage == m_widget->currentWidget() )
+    if ( m_choicePage && m_widget->currentWidget() == m_choicePage )
         return m_choicePage->isNextEnabled();
 
-    if ( m_manualPartitionPage && m_manualPartitionPage == m_widget->currentWidget() )
+    if ( m_manualPartitionPage && m_widget->currentWidget() == m_manualPartitionPage )
         return m_core->hasRootMountPoint();
 
     return false;
@@ -331,7 +331,7 @@ PartitionViewStep::isBackEnabled() const
 bool
 PartitionViewStep::isAtBeginning() const
 {
-    if ( m_widget->currentWidget() == m_manualPartitionPage )
+    if ( m_widget->currentWidget() != m_choicePage )
         return false;
     return true;
 }
@@ -340,7 +340,7 @@ PartitionViewStep::isAtBeginning() const
 bool
 PartitionViewStep::isAtEnd() const
 {
-    if ( m_choicePage == m_widget->currentWidget() )
+    if ( m_widget->currentWidget() == m_choicePage )
     {
         if ( m_choicePage->currentChoice() == ChoicePage::Erase ||
                 m_choicePage->currentChoice() == ChoicePage::Replace ||
