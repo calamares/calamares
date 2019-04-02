@@ -90,15 +90,16 @@ void
 PartitionViewStep::continueLoading()
 {
     Q_ASSERT( !m_choicePage );
-    Q_ASSERT( !m_manualPartitionPage );
-
-    m_manualPartitionPage = new PartitionPage( m_core );
     m_choicePage = new ChoicePage( m_swapChoices );
-
     m_choicePage->init( m_core );
-
     m_widget->addWidget( m_choicePage );
-    m_widget->addWidget( m_manualPartitionPage );
+
+    // Instantiate the manual partitioning page as needed.
+    //
+    Q_ASSERT( !m_manualPartitionPage );
+    // m_manualPartitionPage = new PartitionPage( m_core );
+    // m_widget->addWidget( m_manualPartitionPage );
+
     m_widget->removeWidget( m_waitingWidget );
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;
@@ -287,6 +288,12 @@ PartitionViewStep::next()
     {
         if ( m_choicePage->currentChoice() == ChoicePage::Manual )
         {
+            if ( !m_manualPartitionPage )
+            {
+                m_manualPartitionPage = new PartitionPage( m_core );
+                m_widget->addWidget( m_manualPartitionPage );
+            }
+
             m_widget->setCurrentWidget( m_manualPartitionPage );
             m_manualPartitionPage->selectDeviceByIndex( m_choicePage->lastSelectedDeviceIndex() );
             if ( m_core->isDirty() )
@@ -304,6 +311,12 @@ PartitionViewStep::back()
     {
         m_widget->setCurrentWidget( m_choicePage );
         m_choicePage->setLastSelectedDeviceIndex( m_manualPartitionPage->selectedDeviceIndex() );
+
+        if ( m_manualPartitionPage )
+        {
+            m_manualPartitionPage->deleteLater();
+            m_manualPartitionPage = nullptr;
+        }
     }
 }
 
