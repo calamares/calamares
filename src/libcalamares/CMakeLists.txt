@@ -1,5 +1,3 @@
-project( libcalamares CXX )
-
 add_definitions(
     ${QT_DEFINITIONS}
     -DQT_SHARED

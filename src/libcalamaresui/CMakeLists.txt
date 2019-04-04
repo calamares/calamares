@@ -1,5 +1,3 @@
-project( libcalamaresui CXX )
-
 set( calamaresui_SOURCES
     modulesystem/CppJobModule.cpp
     modulesystem/Module.cpp
