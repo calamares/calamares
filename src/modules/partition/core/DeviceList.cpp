@@ -116,7 +116,7 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
 #ifdef DEBUG_PARTITION_UNSAFE
     cWarning() << "Allowing unsafe partitioning choices." << devices.count() << "candidates.";
 #ifdef DEBUG_PARTITION_LAME
-    cDebug() << ".. it has been lamed, and will fail.";
+    cDebug() << Logger::SubEntry() << "it has been lamed, and will fail.";
 #endif
 #else
     cDebug() << "Removing unsuitable devices:" << devices.count() << "candidates.";
@@ -125,29 +125,29 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
     for ( DeviceList::iterator it = devices.begin(); it != devices.end(); )
         if ( !( *it ) )
         {
-            cDebug() << "  .. Skipping nullptr device";
+            cDebug() << Logger::SubEntry() << "Skipping nullptr device";
             it = erase( devices, it);
         }
         else if ( ( *it )->deviceNode().startsWith( "/dev/zram" )
         )
         {
-            cDebug() << "  .. Removing zram" << it;
+            cDebug() << Logger::SubEntry() << "Removing zram" << it;
             it = erase( devices, it );
 
         }
         else if ( writableOnly && hasRootPartition( *it ) )
         {
-            cDebug() << "  .. Removing device with root filesystem (/) on it" << it;
+            cDebug() << Logger::SubEntry() << "Removing device with root filesystem (/) on it" << it;
             it = erase( devices, it );
         }
         else if ( writableOnly && isIso9660( *it ) )
         {
-            cDebug() << "  .. Removing device with iso9660 filesystem (probably a CD) on it" << it;
+            cDebug() << Logger::SubEntry() << "Removing device with iso9660 filesystem (probably a CD) on it" << it;
             it = erase( devices, it );
         }
         else if ( (minimumSize >= 0) && !( (*it)->capacity() > minimumSize ) )
         {
-            cDebug() << "  .. Removing too-small" << it;
+            cDebug() << Logger::SubEntry() << "Removing too-small" << it;
             it = erase( devices, it );
         }
         else
