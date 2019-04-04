@@ -44,7 +44,7 @@ requireString( const YAML::Node& config, const char* key )
         return QString::fromStdString( v.as< std::string >() );
     else
     {
-        cWarning() << "Required settings.conf key" << key << "is missing.";
+        cWarning() << Logger::SubEntry() << "Required settings.conf key" << key << "is missing.";
         return QString();
     }
 }
@@ -58,7 +58,7 @@ requireBool( const YAML::Node& config, const char* key, bool d )
         return v.as< bool >();
     else
     {
-        cWarning() << "Required settings.conf key" << key << "is missing.";
+        cWarning() << Logger::SubEntry() << "Required settings.conf key" << key << "is missing.";
         return d;
     }
 }
@@ -106,7 +106,7 @@ interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStri
                 output.append( d.absolutePath() );
             }
             else
-                cDebug() << " .. module-search entry non-existent" << path;
+                cDebug() << Logger::SubEntry() << "module-search entry non-existent" << path;
         }
     }
 }
