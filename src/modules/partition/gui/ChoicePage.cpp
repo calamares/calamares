@@ -1248,7 +1248,6 @@ ChoicePage::setupActions()
         }
         if ( (*it)->isMounted() )
         {
-            cDebug() << Logger::SubEntry() << "contains mounted (un-eraseable)" << it;
             atLeastOneIsMounted = true;
         }
     }
