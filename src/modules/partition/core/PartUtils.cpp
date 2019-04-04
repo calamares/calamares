@@ -109,20 +109,20 @@ canBeResized( Partition* candidate )
     if ( !candidate->fileSystem().supportGrow() ||
          !candidate->fileSystem().supportShrink() )
     {
-        cDebug() << "  .. filesystem" << candidate->fileSystem().name()
+        cDebug() << Logger::SubEntry() << "NO, filesystem" << candidate->fileSystem().name()
             << "does not support resize.";
         return false;
     }
 
     if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
     {
-        cDebug() << "  .. partition is free space";
+        cDebug() << Logger::SubEntry() << "NO, partition is free space";
         return false;
     }
 
     if ( candidate->isMounted() )
     {
-        cDebug() << "  .. partition is mounted";
+        cDebug() << Logger::SubEntry() << "NO, partition is mounted";
         return false;
     }
 
@@ -131,13 +131,13 @@ canBeResized( Partition* candidate )
         PartitionTable* table = dynamic_cast< PartitionTable* >( candidate->parent() );
         if ( !table )
         {
-            cDebug() << "  .. no partition table found";
+            cDebug() << Logger::SubEntry() << "NO, no partition table found";
             return false;
         }
 
         if ( table->numPrimaries() >= table->maxPrimaries() )
         {
-            cDebug() << "  .. partition table already has"
+            cDebug() << Logger::SubEntry() << "NO, partition table already has"
                 << table->maxPrimaries() << "primary partitions.";
             return false;
         }
@@ -148,19 +148,11 @@ canBeResized( Partition* candidate )
                                     ->globalStorage()
                                     ->value( "requiredStorageGB" )
                                     .toDouble( &ok );
+    // We require a little more for partitioning overhead and swap file
     double advisedStorageGB = requiredStorageGB + 0.5 + 2.0;
-
     qint64 availableStorageB = candidate->available();
 
-    // We require a little more for partitioning overhead and swap file
-    // TODO: maybe make this configurable?
-    qint64 advisedStorageB = advisedStorageGB * 1024 * 1024 * 1024;
-    cDebug() << "Required  storage B:" << advisedStorageB
-             << QString( "(%1GB)" ).arg( advisedStorageGB );
-    cDebug() << "Available storage B:" << availableStorageB
-             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
-             << "for" << convenienceName( candidate ) << "   length:" << candidate->length()
-             << "   sectorsUsed:" << candidate->sectorsUsed() << "   fsType:" << candidate->fileSystem().name();
+    qint64 advisedStorageB = CalamaresUtils::GiBtoBytes( advisedStorageGB );
 
     if ( ok &&
          availableStorageB > advisedStorageB )
@@ -169,14 +161,29 @@ canBeResized( Partition* candidate )
 
         return true;
     }
-    return false;
+    else if ( ok )
+    {
+        auto deb = cDebug();
+        deb << Logger::SubEntry() << "NO, insufficient storage";
+        deb << Logger::Continuation() << "Required  storage B:" << advisedStorageB
+                << QString( "(%1GB)" ).arg( advisedStorageGB );
+        deb << Logger::Continuation() << "Available storage B:" << availableStorageB
+                << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
+                << "for" << convenienceName( candidate ) << "   length:" << candidate->length()
+                << "   sectorsUsed:" << candidate->sectorsUsed() << "   fsType:" << candidate->fileSystem().name();
+        return false;
+    }
+    else
+    {
+        cDebug() << Logger::SubEntry() << "NO, requiredStorageGB is not set correctly.";
+        return false;
+    }
 }
 
 
 bool
 canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 {
-    //FIXME: check for max partitions count on DOS MBR
     cDebug() << "Checking if" << partitionPath << "can be resized.";
     QString partitionWithOs = partitionPath;
     if ( partitionWithOs.startsWith( "/dev/" ) )
@@ -188,14 +195,13 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
             Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, partitionWithOs );
             if ( candidate )
             {
-                cDebug() << "  .. found Partition* for" << partitionWithOs;
                 return canBeResized( candidate );
             }
         }
-        cDebug() << "  .. no Partition* found for" << partitionWithOs;
+        cDebug() << Logger::SubEntry() << "no Partition* found for" << partitionWithOs;
     }
 
-    cDebug() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
+    cDebug() << Logger::SubEntry() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
     return false;
 }
 
