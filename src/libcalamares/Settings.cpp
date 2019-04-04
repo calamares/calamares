@@ -81,8 +81,6 @@ interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStri
     {
         if ( path == "local" )
         {
-            cDebug() << "module-search local";
-
             // If we're running in debug mode, we assume we might also be
             // running from the build dir, so we add a maximum priority
             // module search path in the build dir.
@@ -105,11 +103,10 @@ interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStri
             QDir d( path );
             if ( d.exists() && d.isReadable() )
             {
-                cDebug() << "module-search exists" << d.absolutePath();
                 output.append( d.absolutePath() );
             }
             else
-                cDebug() << "module-search non-existent" << path;
+                cDebug() << " .. module-search entry non-existent" << path;
         }
     }
 }
