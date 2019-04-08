@@ -92,7 +92,7 @@
        <item>
         <widget class="QCheckBox" name="restartCheckBox">
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot; font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;Restart checkbox tooltip&gt;</string>
          </property>
          <property name="text">
           <string>&amp;Restart now</string>
