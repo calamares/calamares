@@ -75,17 +75,19 @@ PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
     m_partLayout.append( entry );
 }
 
-PartitionLayout::PartitionEntry::PartitionEntry(const QString& size, const QString& min)
+PartitionLayout::PartitionEntry::PartitionEntry( const QString& size, const QString& min, const QString& max )
 {
     partSize = PartUtils::parseSizeString( size , &partSizeUnit );
     if ( !min.isEmpty() )
         partMinSize = PartUtils::parseSizeString( min , &partMinSizeUnit );
+    if ( !max.isEmpty() )
+        partMaxSize = PartUtils::parseSizeString( max , &partMaxSizeUnit );
 }
 
 void
-PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const QString& min )
+PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const QString& min, const QString& max )
 {
-    PartitionLayout::PartitionEntry entry( size, min );
+    PartitionLayout::PartitionEntry entry( size, min, max );
 
     entry.partMountPoint = mountPoint;
     entry.partFileSystem = m_defaultFsType;
@@ -94,9 +96,9 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
 }
 
 void
-PartitionLayout::addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min )
+PartitionLayout::addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min, const QString& max )
 {
-    PartitionLayout::PartitionEntry entry( size, min );
+    PartitionLayout::PartitionEntry entry( size, min, max );
 
     entry.partLabel = label;
     entry.partMountPoint = mountPoint;
@@ -114,7 +116,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
                           const PartitionRole& role )
 {
     QList< Partition* > partList;
-    qint64 size, minSize, end;
+    qint64 size, minSize, maxSize, end;
     qint64 totalSize = lastSector - firstSector + 1;
     qint64 availableSize = totalSize;
 
@@ -128,8 +130,11 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
         // Calculate partition size
         size = PartUtils::sizeToSectors( part.partSize, part.partSizeUnit, totalSize, dev->logicalSize() );
         minSize = PartUtils::sizeToSectors( part.partMinSize, part.partMinSizeUnit, totalSize, dev->logicalSize() );
+        maxSize = PartUtils::sizeToSectors( part.partMaxSize, part.partMaxSizeUnit, totalSize, dev->logicalSize() );
         if ( size < minSize )
             size = minSize;
+        if ( size > maxSize )
+            size = maxSize;
         if ( size > availableSize )
             size = availableSize;
         end = firstSector + size - 1;
