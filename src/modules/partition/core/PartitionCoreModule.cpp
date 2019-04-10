@@ -55,6 +55,7 @@
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/core/volumemanagerdevice.h>
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/fs/filesystemfactory.h>
@@ -686,12 +687,13 @@ PartitionCoreModule::scanForLVMPVs()
         }
     }
 
-    // Update LVM::pvList
-    LvmDevice::scanSystemLVM( physicalDevices );
-
 #ifdef WITH_KPMCOREGT33
+    VolumeManagerDevice::scanDevices( physicalDevices );
+
     for ( auto p : LVM::pvList::list() )
 #else
+    LvmDevice::scanSystemLVM( physicalDevices );
+
     for ( auto p : LVM::pvList )
 #endif
     {
