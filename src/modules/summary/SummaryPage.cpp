@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,6 +26,7 @@
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "Settings.h"
 #include "ViewManager.h"
 
 #include <QBoxLayout>
@@ -46,8 +48,12 @@ SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
 
     QLabel* headerLabel = new QLabel( this );
     CALAMARES_RETRANSLATE(
-        headerLabel->setText( tr( "This is an overview of what will happen once you start "
-                                  "the install procedure." ) );
+        if ( Calamares::Settings::instance()->isSetupMode() )
+            headerLabel->setText( tr( "This is an overview of what will happen once you start "
+                                      "the setup procedure." ) );
+        else
+            headerLabel->setText( tr( "This is an overview of what will happen once you start "
+                                      "the install procedure." ) );
     )
     layout->addWidget( headerLabel );
     layout->addWidget( m_scrollArea );

@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -53,8 +54,10 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     , m_viewManager( nullptr )
 {
     CALAMARES_RETRANSLATE(
-        setWindowTitle( tr( "%1 Installer" )
-                        .arg( *Calamares::Branding::ProductName ) );
+        setWindowTitle( Calamares::Settings::instance()->isSetupMode()
+                            ? tr( "%1 Setup Program" ).arg( *Calamares::Branding::ProductName )
+                            : tr( "%1 Installer" ).arg( *Calamares::Branding::ProductName )
+                         );
     )
 
     const Calamares::Branding* const branding = Calamares::Branding::instance();

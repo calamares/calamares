@@ -197,7 +197,7 @@
       <string notr="true">font-weight: normal</string>
      </property>
      <property name="text">
-      <string>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</string>
+      <string>&lt;Username extra label 2 text&gt;</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

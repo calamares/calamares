@@ -3,6 +3,7 @@
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -30,7 +31,7 @@
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Units.h"
-
+#include "Settings.h"
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -141,7 +142,9 @@ Calamares::RequirementsList GeneralRequirements::checkRequirements()
             checkEntries.append( {
                 entry,
                 [this]{ return QString(); }, //we hide it
-                [this]{ return tr( "The installer is not running with administrator rights." ); },
+                [this]{ return Calamares::Settings::instance()->isSetupMode()
+                            ? tr( "The setup program is not running with administrator rights." )
+                            : tr( "The installer is not running with administrator rights." ); },
                 isRoot,
                 m_entriesToRequire.contains( entry )
             } );
@@ -149,7 +152,9 @@ Calamares::RequirementsList GeneralRequirements::checkRequirements()
             checkEntries.append( {
                 entry,
                 [this]{ return QString(); }, // we hide it
-                [this]{ return tr( "The screen is too small to display the installer." ); },
+                [this]{ return Calamares::Settings::instance()->isSetupMode()
+                            ? tr( "The screen is too small to display the setup program." )
+                            : tr( "The screen is too small to display the installer." ); },
                 enoughScreen,
                 false
             } );
