@@ -62,7 +62,7 @@ isWritableDir( const QDir& dir )
     {
         if ( !dir.mkpath( "." ) )
         {
-            cerr << "warning: failed to create " << qPrintable( path ) << endl;
+            cerr << "warning: failed to create " << qPrintable( path ) << '\n';
             return false;
         }
         return true;
