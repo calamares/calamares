@@ -66,7 +66,7 @@ struct NamedEnumTable
     {
         ok = false;
 
-        for ( const auto p : table )
+        for ( const auto& p : table )
             if ( 0 == QString::compare( s, p.first, Qt::CaseInsensitive ) )
             {
                 ok = true;
@@ -87,7 +87,7 @@ struct NamedEnumTable
     {
         ok = false;
 
-        for ( const auto p : table )
+        for ( const auto &p : table )
             if ( s == p.second)
             {
                 ok = true;
