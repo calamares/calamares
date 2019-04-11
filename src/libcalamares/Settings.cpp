@@ -35,7 +35,7 @@ hasValue( const YAML::Node& v )
     return v.IsDefined() && !v.IsNull();
 }
 
-/** Helper function to grab a QString out of the config, and to warn if not present. */
+/** @brief Helper function to grab a QString out of the config, and to warn if not present. */
 static QString
 requireString( const YAML::Node& config, const char* key )
 {
@@ -49,7 +49,7 @@ requireString( const YAML::Node& config, const char* key )
     }
 }
 
-/** Helper function to grab a bool out of the config, and to warn if not present. */
+/** @brief Helper function to grab a bool out of the config, and to warn if not present. */
 static bool
 requireBool( const YAML::Node& config, const char* key, bool d )
 {
@@ -204,6 +204,7 @@ Settings::Settings( const QString& settingsFilePath,
             m_brandingComponentName = requireString( config, "branding" );
             m_promptInstall = requireBool( config, "prompt-install", false );
             m_doChroot = !requireBool( config, "dont-chroot", false );
+            m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
             m_disableCancel = requireBool( config, "disable-cancel", false );
         }
         catch ( YAML::Exception& e )

@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -31,6 +32,7 @@
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
+#include "Settings.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -106,7 +108,21 @@ UsersPage::UsersPage( QWidget* parent )
     ui->hostname_extra_label_2->setMaximumWidth( 3 * boxWidth );
     ui->password_extra_label_3->setMaximumWidth( 3 * boxWidth );
 
-    CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
+    CALAMARES_RETRANSLATE(
+        ui->retranslateUi( this );
+        if ( Calamares::Settings::instance()->isSetupMode() )
+        {
+            ui->username_extra_label_2->setText( tr( "<small>If more than one person will "
+                                                     "use this computer, you can create multiple "
+                                                     "accounts after setup.</small>" ) );
+        }
+        else
+        {
+            ui->username_extra_label_2->setText( tr( "<small>If more than one person will "
+                                                     "use this computer, you can create multiple "
+                                                     "accounts after installation.</small>" ) );
+        }
+    )
 }
 
 

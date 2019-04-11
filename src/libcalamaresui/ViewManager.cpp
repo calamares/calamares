@@ -74,7 +74,10 @@ ViewManager::ViewManager( QObject* parent )
         m_back->setText( tr( "&Back" ) );
         m_next->setText( tr( "&Next" ) );
         m_quit->setText( tr( "&Cancel" ) );
-        m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
+        QString tooltip = Calamares::Settings::instance()->isSetupMode()
+            ? tr( "Cancel setup without changing the system." )
+            : tr( "Cancel installation without changing the system." );
+        m_quit->setToolTip( tooltip );
     )
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
@@ -159,10 +162,13 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     cDebug() << "- message:" << message;
     cDebug() << "- details:" << details;
 
+    QString heading = Calamares::Settings::instance()->isSetupMode()
+        ? tr( "Setup Failed" )
+        : tr( "Installation Failed" );
     QMessageBox* msgBox = new QMessageBox();
     msgBox->setIcon( QMessageBox::Critical );
     msgBox->setWindowTitle( tr( "Error" ) );
-    msgBox->setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
+    msgBox->setText( "<strong>" + heading + "</strong>" );
     msgBox->setStandardButtons( QMessageBox::Close );
     msgBox->button( QMessageBox::Close )->setText( tr( "&Close" ) );
 
@@ -180,6 +186,8 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
 void
 ViewManager::onInitFailed( const QStringList& modules)
 {
+    // Because this means the installer / setup program is broken by the distributor,
+    // don't bother being precise about installer / setup wording.
     QString title( tr( "Calamares Initialization Failed" ) );
     QString description( tr( "%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution." ) );
     QString detailString;
@@ -236,15 +244,25 @@ ViewManager::next()
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
         if ( Calamares::Settings::instance()->showPromptBeforeExecution() && stepNextWillExecute( m_steps, m_currentStep ) )
         {
+            QString title = Calamares::Settings::instance()->isSetupMode()
+                ? tr( "Continue with setup?" )
+                : tr( "Continue with installation?" );
+            QString question = Calamares::Settings::instance()->isSetupMode()
+                ? tr( "The %1 setup program is about to make changes to your "
+                      "disk in order to set up %2.<br/><strong>You will not be able "
+                      "to undo these changes.</strong>" )
+                : tr( "The %1 installer is about to make changes to your "
+                      "disk in order to install %2.<br/><strong>You will not be able "
+                      "to undo these changes.</strong>" );
+            QString confirm = Calamares::Settings::instance()->isSetupMode()
+                ? tr( "&Set up now" )
+                : tr( "&Install now" );
+
             int reply =
                 QMessageBox::question( m_widget,
-                                       tr( "Continue with setup?" ),
-                                       tr( "The %1 installer is about to make changes to your "
-                                           "disk in order to install %2.<br/><strong>You will not be able "
-                                           "to undo these changes.</strong>" )
-                                       .arg( *Calamares::Branding::ShortProductName )
-                                       .arg( *Calamares::Branding::ShortVersionedName ),
-                                       tr( "&Install now" ),
+                                       title,
+                                       question.arg( *Calamares::Branding::ShortProductName, *Calamares::Branding::ShortVersionedName ),
+                                       confirm,
                                        tr( "Go &back" ),
                                        QString(),
                                        0,
@@ -277,15 +295,25 @@ ViewManager::next()
 void
 ViewManager::updateButtonLabels()
 {
+    QString next = Calamares::Settings::instance()->isSetupMode()
+        ? tr( "&Set up" )
+        : tr( "&Install" );
+    QString complete = Calamares::Settings::instance()->isSetupMode()
+        ? tr( "Setup is complete. Close the setup program." )
+        : tr( "The installation is complete. Close the installer." );
+    QString quit = Calamares::Settings::instance()->isSetupMode()
+        ? tr( "Cancel setup without changing the system." )
+        : tr( "Cancel installation without changing the system." );
+
     if ( stepNextWillExecute( m_steps, m_currentStep ) )
-        m_next->setText( tr( "&Install" ) );
+        m_next->setText( next );
     else
         m_next->setText( tr( "&Next" ) );
 
     if ( m_currentStep == m_steps.count() -1 && m_steps.last()->isAtEnd() )
     {
         m_quit->setText( tr( "&Done" ) );
-        m_quit->setToolTip( tr( "The installation is complete. Close the installer." ) );
+        m_quit->setToolTip( complete );
         if (Calamares::Settings::instance()->disableCancel())
             m_quit->setVisible( true );
     }
@@ -294,7 +322,7 @@ ViewManager::updateButtonLabels()
         if (Calamares::Settings::instance()->disableCancel())
             m_quit->setVisible( false );
         m_quit->setText( tr( "&Cancel" ) );
-        m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
+        m_quit->setToolTip( quit );
     }
 }
 
@@ -329,10 +357,17 @@ bool ViewManager::confirmCancelInstallation()
     if ( !( m_currentStep == m_steps.count() -1 &&
             m_steps.last()->isAtEnd() ) )
     {
+        QString title = Calamares::Settings::instance()->isSetupMode()
+            ? tr( "Cancel setup?" )
+            : tr( "Cancel installation?" );
+        QString question = Calamares::Settings::instance()->isSetupMode()
+            ? tr( "Do you really want to cancel the current setup process?\n"
+                  "The setup program will quit and all changes will be lost." )
+            : tr( "Do you really want to cancel the current install process?\n"
+                  "The installer will quit and all changes will be lost." );
         QMessageBox mb( QMessageBox::Question,
-                        tr( "Cancel installation?" ),
-                        tr( "Do you really want to cancel the current install process?\n"
-                            "The installer will quit and all changes will be lost." ),
+                        title,
+                        question,
                         QMessageBox::Yes | QMessageBox::No,
                         m_widget );
         mb.setDefaultButton( QMessageBox::No );

@@ -22,6 +22,7 @@
 #include "ResultWidget.h"
 
 #include "Branding.h"
+#include "Settings.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
 #include "widgets/FixedAspectRatioLabel.h"
@@ -91,11 +92,16 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
         if ( !requirementsSatisfied )
         {
             CALAMARES_RETRANSLATE(
-                textLabel->setText( tr( "This computer does not satisfy the minimum "
-                                        "requirements for installing %1.<br/>"
-                                        "Installation cannot continue. "
-                                        "<a href=\"#details\">Details...</a>" )
-                                    .arg( *Calamares::Branding::ShortVersionedName ) );
+                QString message = Calamares::Settings::instance()->isSetupMode()
+                    ? tr( "This computer does not satisfy the minimum "
+                          "requirements for setting up %1.<br/>"
+                          "Setup cannot continue. "
+                          "<a href=\"#details\">Details...</a>" )
+                    : tr( "This computer does not satisfy the minimum "
+                          "requirements for installing %1.<br/>"
+                          "Installation cannot continue. "
+                          "<a href=\"#details\">Details...</a>" );
+                textLabel->setText( message.arg( *Calamares::Branding::ShortVersionedName ) );
             )
             textLabel->setOpenExternalLinks( false );
             connect( textLabel, &QLabel::linkActivated,
@@ -108,11 +114,16 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
         else
         {
             CALAMARES_RETRANSLATE(
-                textLabel->setText( tr( "This computer does not satisfy some of the "
-                                        "recommended requirements for installing %1.<br/>"
-                                        "Installation can continue, but some features "
-                                        "might be disabled." )
-                                    .arg( *Calamares::Branding::ShortVersionedName ) );
+                QString message = Calamares::Settings::instance()->isSetupMode()
+                    ? tr( "This computer does not satisfy some of the "
+                          "recommended requirements for setting up %1.<br/>"
+                          "Setup can continue, but some features "
+                          "might be disabled." )
+                    : tr( "This computer does not satisfy some of the "
+                          "recommended requirements for installing %1.<br/>"
+                          "Installation can continue, but some features "
+                          "might be disabled." );
+                textLabel->setText( message.arg( *Calamares::Branding::ShortVersionedName ) );
             )
         }
     }
