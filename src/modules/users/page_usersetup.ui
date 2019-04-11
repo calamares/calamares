@@ -197,7 +197,7 @@
       <string notr="true">font-weight: normal</string>
      </property>
      <property name="text">
-      <string>&lt;Username extra label 2 text&gt;</string>
+      <string notr="true">&lt;Username extra label 2 text&gt;</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
