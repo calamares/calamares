@@ -353,7 +353,7 @@ Branding::initSimpleSettings( const YAML::Node& doc )
 }
 
 
-void
+[[noreturn]] void
 Branding::bail( const QString& message )
 {
     cError() << "FATAL in"

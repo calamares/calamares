@@ -132,7 +132,7 @@ private:
     static const QStringList s_imageEntryStrings;
     static const QStringList s_styleEntryStrings;
 
-    void bail( const QString& message );
+    [[noreturn]] void bail( const QString& message );
 
     QString m_descriptorPath;
     QString m_componentName;
