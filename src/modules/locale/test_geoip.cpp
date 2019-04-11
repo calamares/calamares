@@ -54,8 +54,8 @@ int main(int argc, char** argv)
     QByteArray ba;
     while( !std::cin.eof() ) {
         char arr[1024];
-        std::cin.read(arr,sizeof(arr));
-        int s = std::cin.gcount();
+        std::cin.read(arr, sizeof(arr));
+        int s = static_cast<int>( std::cin.gcount() );
         ba.append(arr, s);
     }
 
