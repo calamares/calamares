@@ -80,15 +80,23 @@ DeviceModel::data( const QModelIndex& index, int role ) const
         else
         {
             if ( device->logicalSize() >= 0 && device->totalLogical() >= 0 )
+            {
+                //: device[name] - size[number] (device-node[name])
                 return tr( "%1 - %2 (%3)" )
                        .arg( device->name() )
                        .arg( KFormat().formatByteSize( device->capacity() ) )
                        .arg( device->deviceNode() );
-            // Newly LVM VGs don't have capacity property yet (i.e. always has 1B capacity), so don't show it for a while
+            }
             else
+            {
+                // Newly LVM VGs don't have capacity property yet (i.e.
+                // always has 1B capacity), so don't show it for a while.
+                //
+                //: device[name] - (device-node[name])
                 return tr( "%1 - (%2)" )
                         .arg( device->name() )
                         .arg( device->deviceNode() );
+            }
          }
     case Qt::DecorationRole:
         return CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionDisk,

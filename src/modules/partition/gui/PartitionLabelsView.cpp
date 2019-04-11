@@ -230,6 +230,7 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
                                     PartitionModel::SizeColumn )
                           .data().toString();
     else
+        //: size[number]  filesystem[name]
         secondLine = tr( "%1  %2" )
                      .arg( index.sibling( index.row(),
                                           PartitionModel::SizeColumn )

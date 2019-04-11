@@ -120,7 +120,7 @@ margin-left: 2em;</string>
          </sizepolicy>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -130,7 +130,7 @@ margin-left: 2em;</string>
       <item>
        <widget class="QToolButton" name="installPolicyButton">
         <property name="text">
-         <string>...</string>
+         <string notr="true">...</string>
         </property>
         <property name="icon">
          <iconset resource="page_trackingstep.qrc">
@@ -182,7 +182,7 @@ margin-left: 2em;</string>
          </sizepolicy>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -192,7 +192,7 @@ margin-left: 2em;</string>
       <item>
        <widget class="QToolButton" name="machinePolicyButton">
         <property name="text">
-         <string>...</string>
+         <string notr="true">...</string>
         </property>
         <property name="icon">
          <iconset resource="page_trackingstep.qrc">
@@ -244,7 +244,7 @@ margin-left: 2em;</string>
          </sizepolicy>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -254,7 +254,7 @@ margin-left: 2em;</string>
       <item>
        <widget class="QToolButton" name="userPolicyButton">
         <property name="text">
-         <string>...</string>
+         <string notr="true">...</string>
         </property>
         <property name="icon">
          <iconset resource="page_trackingstep.qrc">
