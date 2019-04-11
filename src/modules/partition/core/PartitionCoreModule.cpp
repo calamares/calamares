@@ -788,6 +788,7 @@ PartitionCoreModule::initLayout( const QVariantList& config )
 {
     QString sizeString;
     QString minSizeString;
+    QString maxSizeString;
 
     m_partLayout = new PartitionLayout();
 
@@ -805,11 +806,17 @@ PartitionCoreModule::initLayout( const QVariantList& config )
         else
             minSizeString = CalamaresUtils::getString( pentry, "minSize" );
 
+        if ( pentry.contains("maxSize") && CalamaresUtils::getString( pentry, "maxSize" ).isEmpty() )
+            maxSizeString.setNum( CalamaresUtils::getInteger( pentry, "maxSize", 100 ) );
+        else
+            maxSizeString = CalamaresUtils::getString( pentry, "maxSize" );
+
         m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
                                 CalamaresUtils::getString( pentry, "mountPoint" ),
                                 CalamaresUtils::getString( pentry, "filesystem" ),
                                 sizeString,
-                                minSizeString
+                                minSizeString,
+                                maxSizeString
                               );
     }
 }
