@@ -193,28 +193,28 @@ static const char continuation[] = "\n    ";
 static const char subentry[] = " .. ";
 
 QDebug&
-operator<<( QDebug& s, Continuation c )
+operator<<( QDebug& s, Continuation )
 {
     s << continuation;
     return s;
 }
 
 QDebug&
-operator<<( QDebug& s, SubEntry l )
+operator<<( QDebug& s, SubEntry )
 {
     s << subentry;
     return s;
 }
 
 CDebug&
-operator<<( CDebug&& s, Continuation c )
+operator<<( CDebug&& s, Continuation )
 {
     s << continuation;
     return s;
 }
 
 CDebug&
-operator<<( CDebug&& s, SubEntry l )
+operator<<( CDebug&& s, SubEntry )
 {
     s << subentry;
     return s;
