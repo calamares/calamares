@@ -89,8 +89,11 @@ public:
     class WindowDimension : public NamedSuffix<WindowDimensionUnit, WindowDimensionUnit::None>
     {
     public:
-        using NamedSuffix::NamedSuffix;
+        static  const NamedEnumTable< WindowDimensionUnit >& suffixes();
         bool isValid() const;
+
+        using NamedSuffix::NamedSuffix;
+        WindowDimension( const QString& s ) : NamedSuffix( suffixes(), s ) {}
     } ;
 
     static Branding* instance();
