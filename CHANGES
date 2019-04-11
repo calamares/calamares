@@ -30,6 +30,8 @@ This release contains contributions from (alphabetically by first name):
    `ci/` directory. There are use-cases where a containerized build and
    configuration make sense rather than having Calamares installed in the
    host system. (Thanks to the AppImage team, Alexis)
+ * OEM mode (phase-1) now correctly refers to Calamares as a "Setup Program"
+   rather than an installer. #1100 (Thanks to Arnaud)
 
 ## Modules ##
 
@@ -48,7 +50,7 @@ This release contains contributions from (alphabetically by first name):
    usually only visible when the module runs as part of the *exec* step,
    when the module's *pretty name* is displayed. In addition, some error
    messages are now translated.
- * *UnpackFS* module: improved progress reporting and tests.
+ * *UnpackFS* module: improved progress reporting and tests. #565
 
 
 # 3.2.4 (2019-02-12) #
