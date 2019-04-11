@@ -45,21 +45,21 @@ static CommandLine get_variant_object( const QVariantMap& m )
 static CommandList_t get_variant_stringlist( const QVariantList& l )
 {
     CommandList_t retl;
-    unsigned int c = 0;
+    unsigned int count = 0;
     for ( const auto& v : l )
     {
         if ( v.type() == QVariant::String )
             retl.append( CommandLine( v.toString(), CommandLine::TimeoutNotSet ) );
         else if ( v.type() == QVariant::Map )
         {
-            auto c( get_variant_object( v.toMap() ) );
-            if ( c.isValid() )
-                retl.append( c );
+            auto command( get_variant_object( v.toMap() ) );
+            if ( command.isValid() )
+                retl.append( command );
             // Otherwise warning is already given
         }
         else
-            cWarning() << "Bad CommandList element" << c << v.type() << v;
-        ++c;
+            cWarning() << "Bad CommandList element" << count << v.type() << v;
+        ++count;
     }
     return retl;
 }

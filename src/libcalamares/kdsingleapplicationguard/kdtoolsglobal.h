@@ -1,5 +1,5 @@
-#ifndef __KDTOOLS_KDTOOLSGLOBAL_H__
-#define __KDTOOLS_KDTOOLSGLOBAL_H__
+#ifndef KDTOOLS_KDTOOLSGLOBAL_H
+#define KDTOOLS_KDTOOLSGLOBAL_H
 
 #include <QtCore/QtGlobal>
 
@@ -110,5 +110,5 @@ private:                                                                \
     void init(bool)
 
 
-#endif /* __KDTOOLS_KDTOOLSGLOBAL_H__ */
+#endif /* KDTOOLS_KDTOOLSGLOBAL_H */
 

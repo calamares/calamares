@@ -13,7 +13,7 @@
 class QJsonTreeItem
 {
 public:
-    QJsonTreeItem(QJsonTreeItem * parent = 0);
+    QJsonTreeItem(QJsonTreeItem * parent = nullptr);
     ~QJsonTreeItem();
     void appendChild(QJsonTreeItem * item);
     QJsonTreeItem *child(int row);
@@ -28,7 +28,7 @@ public:
     QJsonValue::Type type() const;
 
 
-    static QJsonTreeItem* load(const QJsonValue& value, QJsonTreeItem * parent = 0);
+    static QJsonTreeItem* load(const QJsonValue& value, QJsonTreeItem * parent = nullptr);
 
 protected:
 

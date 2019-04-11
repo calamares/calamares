@@ -78,8 +78,8 @@ const QStringList Branding::s_styleEntryStrings =
     "sidebarTextHighlight"
 };
 
-static const NamedEnumTable<Branding::WindowDimensionUnit>&
-windowDimensions()
+const NamedEnumTable<Branding::WindowDimensionUnit>&
+Branding::WindowDimension::suffixes()
 {
     using Unit = Branding::WindowDimensionUnit;
     static const NamedEnumTable<Unit> names{
@@ -323,11 +323,6 @@ Branding::initSimpleSettings( const YAML::Node& doc )
         { QStringLiteral( "fullscreen" ), WindowExpansion::Fullscreen },
         { QStringLiteral( "noexpand" ), WindowExpansion::Fixed }
     };
-    static const NamedEnumTable< WindowDimensionUnit > dimensionNames{
-        { QStringLiteral( "px" ), WindowDimensionUnit::Pixies },
-        { QStringLiteral( "em" ), WindowDimensionUnit::Fonties }
-    };
-
     bool ok = false;
 
     m_welcomeStyleCalamares = doc[ "welcomeStyleCalamares" ].as< bool >( false );
@@ -342,8 +337,8 @@ Branding::initSimpleSettings( const YAML::Node& doc )
         auto l = windowSize.split( ',' );
         if ( l.count() == 2 )
         {
-            m_windowWidth = WindowDimension( dimensionNames, l[0] );
-            m_windowHeight = WindowDimension( dimensionNames, l[1] );
+            m_windowWidth = WindowDimension( l[0] );
+            m_windowHeight = WindowDimension( l[1] );
         }
     }
     if ( !m_windowWidth.isValid() )
@@ -353,7 +348,7 @@ Branding::initSimpleSettings( const YAML::Node& doc )
 }
 
 
-void
+[[noreturn]] void
 Branding::bail( const QString& message )
 {
     cError() << "FATAL in"

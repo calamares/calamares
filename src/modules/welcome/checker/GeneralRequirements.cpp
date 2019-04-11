@@ -105,44 +105,40 @@ Calamares::RequirementsList GeneralRequirements::checkRequirements()
         if ( entry == "storage" )
             checkEntries.append( {
                 entry,
-                [this]{ return tr( "has at least %1 GB available drive space" )
-                    .arg( m_requiredStorageGB ); },
-                [this]{ return tr( "There is not enough drive space. At least %1 GB is required." )
-                    .arg( m_requiredStorageGB ); },
+                [req=m_requiredStorageGB]{ return tr( "has at least %1 GB available drive space" ).arg( req ); },
+                [req=m_requiredStorageGB]{ return tr( "There is not enough drive space. At least %1 GB is required." ).arg( req ); },
                 enoughStorage,
                 m_entriesToRequire.contains( entry )
             } );
         else if ( entry == "ram" )
             checkEntries.append( {
                 entry,
-                [this]{ return tr( "has at least %1 GB working memory" )
-                    .arg( m_requiredRamGB ); },
-                [this]{ return tr( "The system does not have enough working memory. At least %1 GB is required." )
-                    .arg( m_requiredRamGB ); },
+                [req=m_requiredRamGB]{ return tr( "has at least %1 GB working memory" ).arg( req ); },
+                [req=m_requiredRamGB]{ return tr( "The system does not have enough working memory. At least %1 GB is required." ).arg( req ); },
                 enoughRam,
                 m_entriesToRequire.contains( entry )
             } );
         else if ( entry == "power" )
             checkEntries.append( {
                 entry,
-                [this]{ return tr( "is plugged in to a power source" ); },
-                [this]{ return tr( "The system is not plugged in to a power source." ); },
+                []{ return tr( "is plugged in to a power source" ); },
+                []{ return tr( "The system is not plugged in to a power source." ); },
                 hasPower,
                 m_entriesToRequire.contains( entry )
             } );
         else if ( entry == "internet" )
             checkEntries.append( {
                 entry,
-                [this]{ return tr( "is connected to the Internet" ); },
-                [this]{ return tr( "The system is not connected to the Internet." ); },
+                []{ return tr( "is connected to the Internet" ); },
+                []{ return tr( "The system is not connected to the Internet." ); },
                 hasInternet,
                 m_entriesToRequire.contains( entry )
             } );
         else if ( entry == "root" )
             checkEntries.append( {
                 entry,
-                [this]{ return QString(); }, //we hide it
-                [this]{ return Calamares::Settings::instance()->isSetupMode()
+                []{ return QString(); }, //we hide it
+                []{ return Calamares::Settings::instance()->isSetupMode()
                             ? tr( "The setup program is not running with administrator rights." )
                             : tr( "The installer is not running with administrator rights." ); },
                 isRoot,
@@ -151,8 +147,8 @@ Calamares::RequirementsList GeneralRequirements::checkRequirements()
         else if ( entry == "screen" )
             checkEntries.append( {
                 entry,
-                [this]{ return QString(); }, // we hide it
-                [this]{ return Calamares::Settings::instance()->isSetupMode()
+                []{ return QString(); }, // we hide it
+                []{ return Calamares::Settings::instance()->isSetupMode()
                             ? tr( "The screen is too small to display the setup program." )
                             : tr( "The screen is too small to display the installer." ); },
                 enoughScreen,
