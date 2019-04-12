@@ -55,6 +55,7 @@
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/core/volumemanagerdevice.h>
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/fs/filesystemfactory.h>
@@ -550,26 +551,22 @@ PartitionCoreModule::lvmPVs() const
 bool
 PartitionCoreModule::hasVGwithThisName( const QString& name ) const
 {
-    for ( DeviceInfo* d : m_deviceInfos )
-        if ( dynamic_cast<LvmDevice*>(d->device.data()) &&
-             d->device.data()->name() == name)
-            return true;
+    auto condition = [ name ]( DeviceInfo* d ) {
+        return dynamic_cast<LvmDevice*>(d->device.data()) && d->device.data()->name() == name;
+    };
 
-    return false;
+    return std::find_if( m_deviceInfos.begin(), m_deviceInfos.end(), condition ) != m_deviceInfos.end();
 }
 
 bool
 PartitionCoreModule::isInVG( const Partition *partition ) const
 {
-    for ( DeviceInfo* d : m_deviceInfos )
-    {
-        LvmDevice* vg = dynamic_cast<LvmDevice*>( d->device.data() );
+    auto condition = [ partition ]( DeviceInfo* d ) {
+        LvmDevice* vg = dynamic_cast<LvmDevice*>( d->device.data());
+        return vg && vg->physicalVolumes().contains( partition );
+    };
 
-        if ( vg && vg->physicalVolumes().contains( partition ))
-            return true;
-    }
-
-    return false;
+    return std::find_if( m_deviceInfos.begin(), m_deviceInfos.end(), condition ) != m_deviceInfos.end();
 }
 
 void
@@ -686,12 +683,13 @@ PartitionCoreModule::scanForLVMPVs()
         }
     }
 
-    // Update LVM::pvList
-    LvmDevice::scanSystemLVM( physicalDevices );
-
 #ifdef WITH_KPMCOREGT33
+    VolumeManagerDevice::scanDevices( physicalDevices );
+
     for ( auto p : LVM::pvList::list() )
 #else
+    LvmDevice::scanSystemLVM( physicalDevices );
+
     for ( auto p : LVM::pvList )
 #endif
     {
