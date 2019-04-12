@@ -51,7 +51,7 @@
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
-#ifdef WITH_KPMCOREGT33
+#ifdef WITH_KPMCORE4API
 #include <kpmcore/core/softwareraid.h>
 #endif
 
@@ -1224,7 +1224,7 @@ ChoicePage::setupActions()
     bool atLeastOneIsMounted = false;  // Suppress 'erase' if so
     bool isInactiveRAID = false;
 
-#ifdef WITH_KPMCOREGT33
+#ifdef WITH_KPMCORE4API
     if ( currentDevice->type() == Device::Type::SoftwareRAID_Device &&
          static_cast< SoftwareRAID* >(currentDevice)->status() == SoftwareRAID::Status::Inactive )
     {
