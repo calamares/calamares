@@ -33,7 +33,7 @@ class Partition;
 class PartitionNode;
 class PartitionRole;
 
-#ifdef WITH_KPMCOREGT33
+#ifdef WITH_KPMCORE331API
 #define KPM_PARTITION_FLAG(x) PartitionTable::Flag::x
 #define KPM_PARTITION_STATE(x) Partition::State::x
 #define KPM_PARTITION_FLAG_ESP PartitionTable::Flag::Boot

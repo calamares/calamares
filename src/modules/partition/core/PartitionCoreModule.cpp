@@ -683,14 +683,17 @@ PartitionCoreModule::scanForLVMPVs()
         }
     }
 
-#ifdef WITH_KPMCOREGT33
+#if defined( WITH_KPMCORE4API )
     VolumeManagerDevice::scanDevices( physicalDevices );
-
+    for ( auto p : LVM::pvList::list() )
+#else
+#if defined( WITH_KPMCORE331API )
+    LvmDevice::scanSystemLVM( physicalDevices );
     for ( auto p : LVM::pvList::list() )
 #else
     LvmDevice::scanSystemLVM( physicalDevices );
-
     for ( auto p : LVM::pvList )
+#endif
 #endif
     {
         m_lvmPVs << p.partition().data();
@@ -724,7 +727,7 @@ PartitionCoreModule::scanForLVMPVs()
                     if ( innerFS && innerFS->type() == FileSystem::Type::Lvm2_PV )
                         m_lvmPVs << p;
                 }
-#ifdef WITH_KPMCOREGT33
+#ifdef WITH_KPMCORE4API
                 else if ( p->fileSystem().type() == FileSystem::Type::Luks2 )
                 {
                     // Encrypted LVM PVs

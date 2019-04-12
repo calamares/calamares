@@ -32,4 +32,5 @@ if( ECM_FOUND AND BUILD_TESTING )
     )
 
     set_target_properties( partitionjobtests PROPERTIES AUTOMOC TRUE )
+    target_compile_definitions( partitionjobtests PRIVATE ${_partition_defs} )
 endif()
