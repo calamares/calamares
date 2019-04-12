@@ -2,12 +2,14 @@ find_package( KPMcore 3.3 )
 find_package( Qt5 REQUIRED DBus )  # Needed for KPMCore
 find_package( KF5 REQUIRED I18n WidgetsAddons )  # Needed for KPMCore
 
+set( _partition_defs "" )
+
 if ( KPMcore_FOUND )
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     include_directories( ${PROJECT_BINARY_DIR}/src/libcalamares )
 
-    if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
-        add_definitions(-DWITH_KPMCOREGT33) # kpmcore greater than 3.3
+    if ( KPMcore_VERSION VERSION_GREATER "3.90")
+        list( APPEND _partition_defs WITH_KPMCORE4API) # kpmcore 4 with new API
     endif()
 
     # The PartitionIterator is a small class, and it's easiest -- but also a
@@ -21,6 +23,7 @@ if ( KPMcore_FOUND )
         LINK_PRIVATE_LIBRARIES
             kpmcore
             calamares
+        COMPILE_DEFINITIONS ${_partition_defs}
         SHARED_LIB
     )
 

@@ -27,8 +27,8 @@ set_package_properties(
 )
 
 if ( KPMcore_FOUND )
-    if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
-        add_definitions(-DWITH_KPMCOREGT33) # kpmcore greater than 3.3
+    if ( KPMcore_VERSION VERSION_GREATER "3.90")
+        list( APPEND _partition_defs WITH_KPMCORE4API) # kpmcore 4 with new API
     endif()
 
     include_directories( ${KPMCORE_INCLUDE_DIR} )
