@@ -683,14 +683,17 @@ PartitionCoreModule::scanForLVMPVs()
         }
     }
 
-#ifdef WITH_KPMCORE4API
+#if defined( WITH_KPMCORE4API )
     VolumeManagerDevice::scanDevices( physicalDevices );
-
+    for ( auto p : LVM::pvList::list() )
+#else
+#if defined( WITH_KPMCORE331API )
+    LvmDevice::scanSystemLVM( physicalDevices );
     for ( auto p : LVM::pvList::list() )
 #else
     LvmDevice::scanSystemLVM( physicalDevices );
-
     for ( auto p : LVM::pvList )
+#endif
 #endif
     {
         m_lvmPVs << p.partition().data();
