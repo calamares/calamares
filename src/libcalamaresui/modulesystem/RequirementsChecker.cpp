@@ -112,7 +112,7 @@ RequirementsChecker::finished()
         {
             if ( r.mandatory && !r.satisfied )
             {
-                cDebug() << "  .. requirement" << count << r.name << "is not satisfied.";
+                cDebug() << Logger::SubEntry << "requirement" << count << r.name << "is not satisfied.";
                 acceptable = false;
             }
             ++count;
