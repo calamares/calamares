@@ -169,8 +169,8 @@ canBeResized( Partition* candidate )
                 << QString( "(%1GB)" ).arg( advisedStorageGB );
         deb << Logger::Continuation << "Available storage B:" << availableStorageB
                 << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
-                << "for" << convenienceName( candidate ) << "   length:" << candidate->length()
-                << "   sectorsUsed:" << candidate->sectorsUsed() << "   fsType:" << candidate->fileSystem().name();
+                << "for" << convenienceName( candidate ) << "length:" << candidate->length()
+                << "sectorsUsed:" << candidate->sectorsUsed() << "fsType:" << candidate->fileSystem().name();
         return false;
     }
     else
