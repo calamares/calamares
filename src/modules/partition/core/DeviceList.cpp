@@ -54,17 +54,22 @@ hasRootPartition( Device* device )
 }
 
 static bool
-isIso9660( const Device* device )
+blkIdCheckIso9660( const QString& path )
 {
-    QString path = device->deviceNode();
-    if ( path.isEmpty() )
-        return false;
-
     QProcess blkid;
     blkid.start( "blkid", { path } );
     blkid.waitForFinished();
     QString output = QString::fromLocal8Bit( blkid.readAllStandardOutput() );
-    if ( output.contains( "iso9660" ) )
+    return output.contains( "iso9660" );
+}
+
+static bool
+isIso9660( const Device* device )
+{
+    const QString path = device->deviceNode();
+    if ( path.isEmpty() )
+        return false;
+    if ( blkIdCheckIso9660( path ) )
         return true;
 
     if ( device->partitionTable() &&
@@ -72,11 +77,7 @@ isIso9660( const Device* device )
     {
         for ( const Partition* partition : device->partitionTable()->children() )
         {
-            path = partition->partitionPath();
-            blkid.start( "blkid", { path } );
-            blkid.waitForFinished();
-            QString output = QString::fromLocal8Bit( blkid.readAllStandardOutput() );
-            if ( output.contains( "iso9660" ) )
+            if ( blkIdCheckIso9660( partition->partitionPath() ) )
                 return true;
         }
     }
