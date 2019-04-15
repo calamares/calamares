@@ -14,7 +14,6 @@ set( calamaresui_SOURCES
     utils/qjsonmodel.cpp
     utils/qjsonitem.cpp
 
-    viewpages/AbstractPage.cpp
     viewpages/BlankViewStep.cpp
     viewpages/ViewStep.cpp
 
