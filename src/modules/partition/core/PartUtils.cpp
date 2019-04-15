@@ -163,7 +163,7 @@ canBeResized( Partition* candidate )
     }
     else if ( ok )
     {
-        auto deb = cDebug();
+        Logger::CDebug deb;
         deb << Logger::SubEntry << "NO, insufficient storage";
         deb << Logger::Continuation << "Required  storage B:" << advisedStorageB
                 << QString( "(%1GB)" ).arg( advisedStorageGB );
