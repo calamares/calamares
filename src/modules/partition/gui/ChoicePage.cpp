@@ -1238,12 +1238,12 @@ ChoicePage::setupActions()
     {
         if ( PartUtils::canBeResized( *it ) )
         {
-            cDebug() << Logger::SubEntry() << "contains resizable" << it;
+            cDebug() << Logger::SubEntry << "contains resizable" << it;
             atLeastOneCanBeResized = true;
         }
         if ( PartUtils::canBeReplaced( *it ) )
         {
-            cDebug() << Logger::SubEntry() << "contains replaceable" << it;
+            cDebug() << Logger::SubEntry << "contains replaceable" << it;
             atLeastOneCanBeReplaced = true;
         }
         if ( (*it)->isMounted() )

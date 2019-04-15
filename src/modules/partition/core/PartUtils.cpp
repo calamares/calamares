@@ -109,20 +109,20 @@ canBeResized( Partition* candidate )
     if ( !candidate->fileSystem().supportGrow() ||
          !candidate->fileSystem().supportShrink() )
     {
-        cDebug() << Logger::SubEntry() << "NO, filesystem" << candidate->fileSystem().name()
+        cDebug() << Logger::SubEntry << "NO, filesystem" << candidate->fileSystem().name()
             << "does not support resize.";
         return false;
     }
 
     if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
     {
-        cDebug() << Logger::SubEntry() << "NO, partition is free space";
+        cDebug() << Logger::SubEntry << "NO, partition is free space";
         return false;
     }
 
     if ( candidate->isMounted() )
     {
-        cDebug() << Logger::SubEntry() << "NO, partition is mounted";
+        cDebug() << Logger::SubEntry << "NO, partition is mounted";
         return false;
     }
 
@@ -131,13 +131,13 @@ canBeResized( Partition* candidate )
         PartitionTable* table = dynamic_cast< PartitionTable* >( candidate->parent() );
         if ( !table )
         {
-            cDebug() << Logger::SubEntry() << "NO, no partition table found";
+            cDebug() << Logger::SubEntry << "NO, no partition table found";
             return false;
         }
 
         if ( table->numPrimaries() >= table->maxPrimaries() )
         {
-            cDebug() << Logger::SubEntry() << "NO, partition table already has"
+            cDebug() << Logger::SubEntry << "NO, partition table already has"
                 << table->maxPrimaries() << "primary partitions.";
             return false;
         }
@@ -164,10 +164,10 @@ canBeResized( Partition* candidate )
     else if ( ok )
     {
         auto deb = cDebug();
-        deb << Logger::SubEntry() << "NO, insufficient storage";
-        deb << Logger::Continuation() << "Required  storage B:" << advisedStorageB
+        deb << Logger::SubEntry << "NO, insufficient storage";
+        deb << Logger::Continuation << "Required  storage B:" << advisedStorageB
                 << QString( "(%1GB)" ).arg( advisedStorageGB );
-        deb << Logger::Continuation() << "Available storage B:" << availableStorageB
+        deb << Logger::Continuation << "Available storage B:" << availableStorageB
                 << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
                 << "for" << convenienceName( candidate ) << "   length:" << candidate->length()
                 << "   sectorsUsed:" << candidate->sectorsUsed() << "   fsType:" << candidate->fileSystem().name();
@@ -175,7 +175,7 @@ canBeResized( Partition* candidate )
     }
     else
     {
-        cDebug() << Logger::SubEntry() << "NO, requiredStorageGB is not set correctly.";
+        cDebug() << Logger::SubEntry << "NO, requiredStorageGB is not set correctly.";
         return false;
     }
 }
@@ -198,10 +198,10 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
                 return canBeResized( candidate );
             }
         }
-        cDebug() << Logger::SubEntry() << "no Partition* found for" << partitionWithOs;
+        cDebug() << Logger::SubEntry << "no Partition* found for" << partitionWithOs;
     }
 
-    cDebug() << Logger::SubEntry() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
+    cDebug() << Logger::SubEntry << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
     return false;
 }
 

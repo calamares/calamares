@@ -27,25 +27,8 @@
 
 namespace Logger
 {
-    /** @brief tag-class used for continuing debug-output on the next line
-    *
-    * A continuation starts a new debug-log line, without the timestamp and
-    * other leading information. Used when dumping tables and lists. Represented
-    * in the log by a newline and four spaces.
-    */
-    struct Continuation
-    {
-    } ;
-
-    /** @brief tag-class used to indicate a log line is a sub-entry
-     *
-     * Sub-entries indicate additional information that isn't a continuation
-     * of the previous line, or sub-steps of something that has already been logged.
-     * Represented in the log as space dot dot space.
-     */
-    struct SubEntry
-    {
-    } ;
+    DLLEXPORT extern const char Continuation[];
+    DLLEXPORT extern const char SubEntry[];
 
     enum
     {
@@ -113,13 +96,6 @@ namespace Logger
     /** @brief Would the given @p level really be logged? */
     DLLEXPORT bool logLevelEnabled( unsigned int level );
 
-    /// @brief Output a continuation
-    DLLEXPORT CDebug& operator <<( CDebug&& s, Continuation c );
-    DLLEXPORT QDebug& operator <<( QDebug& s, Continuation c );
-    /// @brief Output a subentry marker
-    DLLEXPORT CDebug& operator <<( CDebug&& s, SubEntry level );
-    DLLEXPORT QDebug& operator <<( QDebug& s, SubEntry level );
-
     /**
      * @brief Row-oriented formatted logging.
      *
@@ -186,7 +162,7 @@ namespace Logger
     inline QDebug&
     operator <<( QDebug& s, const DebugRow<T, U>& t )
     {
-        s << Continuation() << t.first << ':' << ' ' << t.second;
+        s << Continuation << t.first << ':' << ' ' << t.second;
         return s;
     }
 
@@ -195,7 +171,7 @@ namespace Logger
     operator <<( QDebug& s, const DebugList& c )
     {
         for( const auto& i : c.list )
-            s << Continuation() << i;
+            s << Continuation << i;
         return s;
     }
 
@@ -207,7 +183,7 @@ namespace Logger
     operator <<( QDebug& s, const DebugMap& t )
     {
         for ( auto it = t.map.constBegin(); it != t.map.constEnd(); ++it )
-            s << Continuation() << it.key().toUtf8().constData() << ':' << ' ' << toString( it.value() ).toUtf8().constData();
+            s << Continuation << it.key().toUtf8().constData() << ':' << ' ' << toString( it.value() ).toUtf8().constData();
         return s;
     }
 }
