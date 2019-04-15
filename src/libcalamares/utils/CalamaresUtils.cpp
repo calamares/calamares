@@ -228,11 +228,11 @@ installTranslator( const QLocale& locale,
                                    "_",
                                    brandingTranslationsDir.absolutePath() ) )
             {
-                cDebug() << " .. Branding using locale:" << localeName;
+                cDebug() << Logger::SubEntry << "Branding using locale:" << localeName;
             }
             else
             {
-                cDebug() << " .. Branding using default, system locale not found:" << localeName;
+                cDebug() << Logger::SubEntry << "Branding using default, system locale not found:" << localeName;
                 translator->load( brandingTranslationsPrefix + "en" );
             }
 
@@ -251,11 +251,11 @@ installTranslator( const QLocale& locale,
     translator = new QTranslator( parent );
     if ( translator->load( QString( ":/lang/calamares_" ) + localeName ) )
     {
-        cDebug() << " .. Calamares using locale:" << localeName;
+        cDebug() << Logger::SubEntry << "Calamares using locale:" << localeName;
     }
     else
     {
-        cDebug() << " .. Calamares using default, system locale not found:" << localeName;
+        cDebug() << Logger::SubEntry << "Calamares using default, system locale not found:" << localeName;
         translator->load( QString( ":/lang/calamares_en" ) );
     }
 
