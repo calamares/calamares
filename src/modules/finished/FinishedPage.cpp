@@ -54,8 +54,7 @@ FinishedPage::FinishedPage( QWidget* parent )
             ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
                                        "%1 has been set up on your computer.<br/>"
                                        "You may now start using your new system." )
-                                   .arg( *Calamares::Branding::VersionedName )
-                                   .arg( *Calamares::Branding::ProductName ) );
+                                   .arg( *Calamares::Branding::VersionedName ) );
             ui->restartCheckBox->setToolTip( tr ( "<html><head/><body>"
                                                   "<p>When this box is checked, your system will "
                                                   "restart immediately when you click on "
@@ -68,8 +67,7 @@ FinishedPage::FinishedPage( QWidget* parent )
                                        "%1 has been installed on your computer.<br/>"
                                        "You may now restart into your new system, or continue "
                                        "using the %2 Live environment." )
-                                   .arg( *Calamares::Branding::VersionedName )
-                                   .arg( *Calamares::Branding::ProductName ) );
+                                   .arg( *Calamares::Branding::VersionedName, *Calamares::Branding::ProductName ) );
             ui->restartCheckBox->setToolTip( tr ( "<html><head/><body>"
                                                   "<p>When this box is checked, your system will "
                                                   "restart immediately when you click on "
