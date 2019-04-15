@@ -60,8 +60,8 @@ PartitionLayout::PartitionLayout( PartitionLayout::PartitionEntry entry )
 }
 
 PartitionLayout::PartitionLayout( const PartitionLayout& layout )
-    : m_partLayout( layout.m_partLayout )
-    , m_defaultFsType( layout.m_defaultFsType )
+    : m_defaultFsType( layout.m_defaultFsType )
+    , m_partLayout( layout.m_partLayout )
 {
 }
 

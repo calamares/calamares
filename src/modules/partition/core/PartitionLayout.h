@@ -51,7 +51,7 @@ public:
         PartUtils::SizeUnit partMaxSizeUnit = PartUtils::SizeUnit::Percent;
 
         /// @brief All-zeroes PartitionEntry
-        PartitionEntry() {};
+        PartitionEntry() {}
         /// @brief Parse @p size, @p min and @p max to their respective member variables
         PartitionEntry( const QString& size, const QString& min, const QString& max );
     };
