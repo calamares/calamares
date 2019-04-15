@@ -254,14 +254,14 @@ KeyboardPage::guessLayout( const QStringList& langParts )
     bool foundCountryPart = false;
     for ( auto countryPart = langParts.rbegin(); !foundCountryPart && countryPart != langParts.rend(); ++countryPart )
     {
-        cDebug() << "   .. looking for locale part" << *countryPart;
+        cDebug() << Logger::SubEntry << "looking for locale part" << *countryPart;
         for ( int i = 0; i < klm->rowCount(); ++i )
         {
             QModelIndex idx = klm->index( i );
             QString name = idx.isValid() ? idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() : QString();
             if ( idx.isValid() && ( name.compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
             {
-                cDebug() << "   .. matched" << name;
+                cDebug() << Logger::SubEntry << "matched" << name;
                 ui->listLayout->setCurrentIndex( idx );
                 foundCountryPart = true;
                 break;
@@ -279,7 +279,7 @@ KeyboardPage::guessLayout( const QStringList& langParts )
                     if ( variantdata && (variantdata->data.compare( *countryPart, Qt::CaseInsensitive ) == 0) )
                     {
                         ui->listVariant->setCurrentItem( variantdata );
-                        cDebug() << " .. matched variant" << variantdata->data << ' ' << variantdata->text();
+                        cDebug() << Logger::SubEntry << "matched variant" << variantdata->data << ' ' << variantdata->text();
                     }
                 }
             }
@@ -361,7 +361,7 @@ KeyboardPage::onActivate()
         if ( specialCaseMap.contains( lang_s ) )
         {
             QString newLang = QString::fromStdString( specialCaseMap.value( lang_s ) );
-            cDebug() << " .. special case language" << lang << "becomes" << newLang;
+            cDebug() << Logger::SubEntry << "special case language" << lang << "becomes" << newLang;
             lang = newLang;
         }
     }
@@ -372,7 +372,7 @@ KeyboardPage::onActivate()
         // Note that this his string is not fit for display purposes!
         // It doesn't come from QLocale::nativeCountryName.
         QString country = QLocale::countryToString( QLocale( lang ).country() );
-        cDebug() << " .. extracted country" << country << "::" << langParts;
+        cDebug() << Logger::SubEntry << "extracted country" << country << "::" << langParts;
 
         guessLayout( langParts );
     }

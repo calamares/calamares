@@ -140,7 +140,7 @@ bool matchLocale( QComboBox& list, QLocale& matchFound, std::function<bool(const
         if ( predicate(thisLocale) )
         {
             list.setCurrentIndex( i );
-            cDebug() << " .. Matched locale " << thisLocale.name();
+            cDebug() << Logger::SubEntry << "Matched locale " << thisLocale.name();
             matchFound = thisLocale;
             return true;
         }

@@ -285,11 +285,11 @@ gettext_path()
             QDir ldir( localedir );
             if ( ldir.cd( lang ) )
             {
-                cDebug() << " .. Found" << lang << "in" << ldir.canonicalPath();
+                cDebug() << Logger::SubEntry << "Found" << lang << "in" << ldir.canonicalPath();
                 return bp::object( localedir.toStdString() );
             }
         }
-    cDebug() << " .. No translation found for languages" << candidateLanguages;
+    cDebug() << Logger::SubEntry << "No translation found for languages" << candidateLanguages;
     return bp::object();  // None
 }
 

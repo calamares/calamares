@@ -236,7 +236,7 @@ lookForFstabEntries( const QString& partitionPath )
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
 
-        cDebug() << "  .. reading" << fstabFile.fileName();
+        cDebug() << Logger::SubEntry << "reading" << fstabFile.fileName();
 
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
@@ -246,9 +246,9 @@ lookForFstabEntries( const QString& partitionPath )
             for ( const QString& rawLine : fstabLines )
                 fstabEntries.append( FstabEntry::fromEtcFstab( rawLine ) );
             fstabFile.close();
-            cDebug() << "  .. got" << fstabEntries.count() << "lines.";
+            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "lines.";
             std::remove_if( fstabEntries.begin(), fstabEntries.end(), [](const FstabEntry& x) { return !x.isValid(); } );
-            cDebug() << "  .. got" << fstabEntries.count() << "fstab entries.";
+            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "fstab entries.";
         }
         else
             cWarning() << "Could not read fstab from mounted fs";
@@ -408,7 +408,7 @@ bool
 isEfiBootable( const Partition* candidate )
 {
     cDebug() << "Check EFI bootable" << convenienceName( candidate ) << candidate->devicePath();
-    cDebug() << " .. flags" << candidate->activeFlags();
+    cDebug() << Logger::SubEntry << "flags" << candidate->activeFlags();
 
     auto flags = PartitionInfo::flags( candidate );
 
@@ -421,7 +421,7 @@ isEfiBootable( const Partition* candidate )
     while ( root && !root->isRoot() )
     {
         root = root->parent();
-        cDebug() << " .. moved towards root" << (void *)root;
+        cDebug() << Logger::SubEntry << "moved towards root" << (void *)root;
     }
 
     // Strange case: no root found, no partition table node?
@@ -429,7 +429,7 @@ isEfiBootable( const Partition* candidate )
         return false;
 
     const PartitionTable* table = dynamic_cast<const PartitionTable*>( root );
-    cDebug() << "  .. partition table" << (void *)table << "type" << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
+    cDebug() << Logger::SubEntry << "partition table" << (void *)table << "type" << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
     return table && ( table->type() == PartitionTable::TableType::gpt ) &&
         flags.testFlag( KPM_PARTITION_FLAG(Boot) );
 }

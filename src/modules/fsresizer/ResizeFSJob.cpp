@@ -134,11 +134,11 @@ ResizeFSJob::findPartition( CoreBackend* backend )
         cDebug() << "ResizeFSJob found" << ( *dev_it )->deviceNode();
         for ( auto part_it = PartitionIterator::begin( *dev_it ); part_it != PartitionIterator::end( *dev_it ); ++part_it )
         {
-            cDebug() << ".." << ( *part_it )->mountPoint() << "on" << ( *part_it )->deviceNode();
+            cDebug() << Logger::SubEntry <<  ( *part_it )->mountPoint() << "on" << ( *part_it )->deviceNode();
             if ( ( !m_fsname.isEmpty() && ( *part_it )->mountPoint() == m_fsname ) ||
                     ( !m_devicename.isEmpty() && ( *part_it )->deviceNode() == m_devicename ) )
             {
-                cDebug() << ".. matched configuration dev=" << m_devicename << "fs=" << m_fsname;
+                cDebug() << Logger::SubEntry << "matched configuration dev=" << m_devicename << "fs=" << m_fsname;
                 return PartitionMatch( *dev_it, *part_it );
             }
         }
@@ -182,13 +182,13 @@ ResizeFSJob::findGrownEnd( ResizeFSJob::PartitionMatch m )
         }
         if ( ( *part_it )->roles().has( PartitionRole::Unallocated ) )
         {
-            cDebug() << ".. ignoring unallocated" << next_start << '-' << next_end;
+            cDebug() << Logger::SubEntry << "ignoring unallocated" << next_start << '-' << next_end;
             continue;
         }
-        cDebug() << ".. comparing" << next_start << '-' << next_end;
+        cDebug() << Logger::SubEntry << "comparing" << next_start << '-' << next_end;
         if ( ( next_start > last_currently ) && ( next_start < last_available ) )
         {
-            cDebug() << "  .. shrunk last available to" << next_start;
+            cDebug() << Logger::SubEntry << "shrunk last available to" << next_start;
             last_available = next_start - 1;  // Before that one starts
         }
     }
@@ -205,7 +205,7 @@ ResizeFSJob::findGrownEnd( ResizeFSJob::PartitionMatch m )
         qint64 required = m_atleast.apply( m.first );
         if ( expand < required )
         {
-            cDebug() << ".. need to expand by" << required << "but only" << expand << "is available.";
+            cDebug() << Logger::SubEntry << "need to expand by" << required << "but only" << expand << "is available.";
             return 0;
         }
     }
@@ -213,7 +213,7 @@ ResizeFSJob::findGrownEnd( ResizeFSJob::PartitionMatch m )
     qint64 wanted = m_size.apply( expand, m.first->logicalSize() );
     if ( wanted < expand )
     {
-        cDebug() << ".. only growing by" << wanted << "instead of full" << expand;
+        cDebug() << Logger::SubEntry << "only growing by" << wanted << "instead of full" << expand;
         last_available -= ( expand - wanted );
     }
 

@@ -95,8 +95,8 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
 
 #ifdef DEBUG_TIMEZONES
     cDebug() << "Setting location" << location.region << location.zone << location.country;
-    cDebug() << " .. long" << location.longitude << "lat" << location.latitude;
-    cDebug() << " .. x" << pos.x() << "y" << pos.y();
+    cDebug() << Logger::SubEntry << "longitude" << location.longitude << "latitude" << location.latitude;
+    cDebug() << Logger::SubEntry << "pixel x" << pos.x() << "pixel y" << pos.y();
 
     bool found = false;
 #endif
@@ -116,10 +116,10 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
             {
                 currentZoneImage = zone;
                 found = true;
-                cDebug() << " .. First zone found" << i << zone.text( ZONE_NAME );
+                cDebug() << Logger::SubEntry << "First zone found" << i << zone.text( ZONE_NAME );
             }
             else
-                cDebug() << " .. Also in zone" << i << zone.text( ZONE_NAME );
+                cDebug() << Logger::SubEntry << "Also in zone" << i << zone.text( ZONE_NAME );
 #else
             currentZoneImage = zone;
             break;

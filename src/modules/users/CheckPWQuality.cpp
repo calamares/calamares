@@ -55,7 +55,7 @@ DEFINE_CHECK_FUNC( minLength )
         minLength = value.toInt();
     if ( minLength > 0 )
     {
-        cDebug() << " .. minLength set to" << minLength;
+        cDebug() << Logger::SubEntry << "minLength set to" << minLength;
         checks.push_back(
             PasswordCheck(
                 []()
@@ -77,7 +77,7 @@ DEFINE_CHECK_FUNC( maxLength )
         maxLength = value.toInt();
     if ( maxLength > 0 )
     {
-        cDebug() << " .. maxLength set to" << maxLength;
+        cDebug() << Logger::SubEntry << "maxLength set to" << maxLength;
         checks.push_back(
             PasswordCheck(
                 []()
@@ -94,7 +94,7 @@ DEFINE_CHECK_FUNC( maxLength )
 
 #ifdef HAVE_LIBPWQUALITY
 /* NOTE:
- * 
+ *
  * The munge*() functions are here because libpwquality uses void* to
  * represent user-data in callbacks and as a general "pass some parameter"
  * type. These need to be munged to the right C++ type.
@@ -313,7 +313,7 @@ DEFINE_CHECK_FUNC( libpwquality )
                 cWarning() << "unrecognized libpwquality setting" << option;
             else
             {
-                cDebug() << " .. libpwquality setting" << option;
+                cDebug() << Logger::SubEntry << "libpwquality setting" << option;
                 ++requirement_count;
             }
         }

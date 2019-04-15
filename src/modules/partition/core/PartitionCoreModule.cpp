@@ -173,7 +173,7 @@ PartitionCoreModule::doInit()
         m_deviceInfos << deviceInfo;
         cDebug() << device->deviceNode() << device->capacity() << device->name() << device->prettyName();
     }
-    cDebug() << ".." << devices.count() << "devices detected.";
+    cDebug() << Logger::SubEntry << devices.count() << "devices detected.";
     m_deviceModel->init( devices );
 
     // The following PartUtils::runOsprober call in turn calls PartUtils::canBeResized,
@@ -504,11 +504,11 @@ PartitionCoreModule::jobs() const
 #ifdef DEBUG_PARTITION_UNSAFE
 #ifdef DEBUG_PARTITION_LAME
     cDebug() << "Unsafe partitioning is enabled.";
-    cDebug() << ".. it has been lamed, and will fail.";
+    cDebug() << Logger::SubEntry << "it has been lamed, and will fail.";
     lst << Calamares::job_ptr( new Calamares::FailJob( QStringLiteral( "Partition" ) ) );
 #else
     cWarning() << "Unsafe partitioning is enabled.";
-    cWarning() << ".. the unsafe actions will be executed.";
+    cWarning() << Logger::SubEntry << "the unsafe actions will be executed.";
 #endif
 #endif
 

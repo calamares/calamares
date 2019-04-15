@@ -79,7 +79,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     int w = qBound( minimumSize.width(), windowDimensionToPixels( brandingSizes.first ), availableSize.width() );
     int h = qBound( minimumSize.height(),  windowDimensionToPixels( brandingSizes.second ), availableSize.height() );
 
-    cDebug() << "  Proposed window size:" << w << h;
+    cDebug() << Logger::SubEntry << "Proposed window size:" << w << h;
     resize( w, h );
 
     QBoxLayout* mainLayout = new QHBoxLayout;
