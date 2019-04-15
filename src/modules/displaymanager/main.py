@@ -487,31 +487,45 @@ class DMlightdm(DisplayManager):
             self.root_mount_point, "etc/lightdm/lightdm.conf"
             )
         text = []
+        addseat = False
+        loopcount = 0
 
         if os.path.exists(lightdm_conf_path):
             with open(lightdm_conf_path, 'r') as lightdm_conf:
                 text = lightdm_conf.readlines()
+                # Check to make sure [SeatDefaults] or [Seat:*] is in the config,
+                # otherwise we'll risk malforming the config
+                if not '[SeatDefaults]' in text and not '[Seat:*]' in text:
+                    addseat = True
 
             with open(lightdm_conf_path, 'w') as lightdm_conf:
+                if addseat:
+                    # Append Seat line to start of file rather than leaving it without one
+                    # This keeps the config from being malformed for LightDM
+                    text = ["[Seat:*]\n"] + text
+                loopcount = 0
                 for line in text:
                     if 'autologin-user=' in line:
                         if do_autologin:
                             line = "autologin-user={!s}\n".format(username)
                         else:
                             line = "#autologin-user=\n"
+                        text[loopcount] = line
+                    loopcount += 1
 
-                    lightdm_conf.write(line)
+                lightdm_conf.write("".join(text))
+                loopcount = 0
         else:
             try:
                 # Create a new lightdm.conf file; this is documented to be
-                # read last, after aeverything in lightdm.conf.d/
+                # read last, after everything in lightdm.conf.d/
                 with open(lightdm_conf_path, 'w') as lightdm_conf:
                     if do_autologin:
                         lightdm_conf.write(
-                            "autologin-user={!s}\n".format(username))
+                            "[Seat:*]\nautologin-user={!s}\n".format(username))
                     else:
                         lightdm_conf.write(
-                            "#autologin-user=\n")
+                            "[Seat:*]\n#autologin-user=\n")
             except FileNotFoundError:
                 return (
                     _("Cannot write LightDM configuration file"),
