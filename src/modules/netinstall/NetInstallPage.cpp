@@ -81,8 +81,8 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     if ( reply->error() != QNetworkReply::NoError )
     {
         cWarning() << "unable to fetch netinstall package lists.";
-        cDebug() << "  ..Netinstall reply error: " << reply->error();
-        cDebug() << "  ..Request for url: " << reply->url().toString() << " failed with: " << reply->errorString();
+        cDebug() << Logger::SubEntry << "Netinstall reply error: " << reply->error();
+        cDebug() << Logger::SubEntry << "Request for url: " << reply->url().toString() << " failed with: " << reply->errorString();
         ui->netinst_status->setText( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
         emit checkReady( !m_required );
         return;
@@ -91,8 +91,8 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     if ( !readGroups( reply->readAll() ) )
     {
         cWarning() << "netinstall groups data was received, but invalid.";
-        cDebug() << "  ..Url:     " <<  reply->url().toString();
-        cDebug() << "  ..Headers: " <<  reply->rawHeaderList();
+        cDebug() << Logger::SubEntry << "Url:     " <<  reply->url().toString();
+        cDebug() << Logger::SubEntry << "Headers: " <<  reply->rawHeaderList();
         ui->netinst_status->setText( tr( "Network Installation. (Disabled: Received invalid groups data)" ) );
         reply->deleteLater();
         emit checkReady( !m_required );
