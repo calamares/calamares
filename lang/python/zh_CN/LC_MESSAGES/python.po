@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-29 15:54-0400\n"
+"POT-Creation-Date: 2019-04-15 07:27-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: leonfeng <chaofeng111@qq.com>, 2018\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/calamares/teams/20061/zh_CN/)\n"
@@ -65,53 +65,53 @@ msgid "Unmount file systems."
 msgstr "卸载文件系统。"
 
 #: src/modules/unpackfs/main.py:40
-msgid "Installing filesystems."
+msgid "Filling up filesystems."
 msgstr ""
 
-#: src/modules/unpackfs/main.py:153
+#: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."
 msgstr ""
 
-#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
+#: src/modules/unpackfs/main.py:219 src/modules/unpackfs/main.py:237
 msgid "Failed to unpack image \"{}\""
 msgstr ""
 
-#: src/modules/unpackfs/main.py:210
+#: src/modules/unpackfs/main.py:220
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:301
+#: src/modules/unpackfs/main.py:313
 msgid "No mount point for root partition"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:302
+#: src/modules/unpackfs/main.py:314
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:307
+#: src/modules/unpackfs/main.py:319
 msgid "Bad mount point for root partition"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:308
+#: src/modules/unpackfs/main.py:320
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
-#: src/modules/unpackfs/main.py:333
+#: src/modules/unpackfs/main.py:333 src/modules/unpackfs/main.py:340
+#: src/modules/unpackfs/main.py:345
 msgid "Bad unsquash configuration"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:322
+#: src/modules/unpackfs/main.py:334
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:329
+#: src/modules/unpackfs/main.py:341
 msgid "The source filesystem \"{}\" does not exist"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:334
+#: src/modules/unpackfs/main.py:346
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr ""
 
