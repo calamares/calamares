@@ -189,36 +189,8 @@ CDebug::~CDebug()
 {
 }
 
-static const char continuation[] = "\n    ";
-static const char subentry[] = " .. ";
-
-QDebug&
-operator<<( QDebug& s, Continuation )
-{
-    s << continuation;
-    return s;
-}
-
-QDebug&
-operator<<( QDebug& s, SubEntry )
-{
-    s << subentry;
-    return s;
-}
-
-CDebug&
-operator<<( CDebug&& s, Continuation )
-{
-    s << continuation;
-    return s;
-}
-
-CDebug&
-operator<<( CDebug&& s, SubEntry )
-{
-    s << subentry;
-    return s;
-}
+const char Continuation[] = "\n    ";
+const char SubEntry[] = " .. ";
 
 QString toString( const QVariant& v )
 {
