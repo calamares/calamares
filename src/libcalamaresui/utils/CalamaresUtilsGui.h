@@ -154,11 +154,7 @@ public:
      */
     bool operator <( const LocaleLabel& other ) const
     {
-        if ( isEnglish() )
-            return !other.isEnglish();
-        if ( other.isEnglish() )
-            return false;
-        return m_sortKey < other.m_sortKey;
+        return m_localeId < other.m_localeId;
     }
 
     /** @brief Is this locale English?
