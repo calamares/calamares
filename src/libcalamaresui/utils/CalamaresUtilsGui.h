@@ -172,6 +172,12 @@ public:
     {
         return m_label;
     }
+    /** @brief Get the *English* human-readable name for this locale. */
+    QString englishLabel() const
+    {
+        return m_englishLabel;
+    }
+
     /** @brief Get the Qt locale. */
     QLocale locale() const
     {
@@ -188,8 +194,8 @@ public:
 protected:
     QLocale m_locale;
     QString m_localeId;  // the locale identifier, e.g. "en_GB"
-    QString m_sortKey;  // the English name of the locale
     QString m_label;  // the native name of the locale
+    QString m_englishLabel;
 } ;
 
 

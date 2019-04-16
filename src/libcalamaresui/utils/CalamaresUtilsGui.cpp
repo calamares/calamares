@@ -269,26 +269,20 @@ LocaleLabel::LocaleLabel( const QString& locale, LabelFormat format )
     //: language[name] (country[name])
     QString longFormat = QObject::tr( "%1 (%2)" );
 
-    QString sortKey = QLocale::languageToString( m_locale.language() );
     QString languageName = m_locale.nativeLanguageName();
+    QString englishName = m_locale.languageToString( m_locale.language() );
     QString countryName;
 
     if ( languageName.isEmpty() )
-        languageName = QString( QLatin1Literal( "* %1 (%2)" ) ).arg( locale, sortKey );
+        languageName = QString( QLatin1Literal( "* %1 (%2)" ) ).arg( locale, englishName );
 
     bool needsCountryName = ( format == LabelFormat::AlwaysWithCountry ) ||
         (locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
 
     if ( needsCountryName )
-    {
-        sortKey.append( '+' );
-        sortKey.append( QLocale::countryToString( m_locale.country() ) );
-
         countryName = m_locale.nativeCountryName();
-    }
-
-    m_sortKey = sortKey;
     m_label = needsCountryName ? longFormat.arg( languageName ).arg( countryName ) : languageName;
+    m_englishLabel = englishName;
 }
 
 QLocale LocaleLabel::getLocale( const QString& localeName )
