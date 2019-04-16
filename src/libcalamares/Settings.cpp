@@ -1,5 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
+ *   Copyright 2019, Dominic Hayes <ferenosdev@outlook.com>
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
