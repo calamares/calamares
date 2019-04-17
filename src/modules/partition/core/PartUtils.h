@@ -23,6 +23,7 @@
 
 #include "OsproberEntry.h"
 #include "utils/Units.h"
+#include "utils/NamedSuffix.h"
 
 // KPMcore
 #include <kpmcore/fs/filesystem.h>
@@ -37,14 +38,76 @@ namespace PartUtils
 {
 using CalamaresUtils::MiBtoBytes;
 
-enum SizeUnit
+enum class SizeUnit
 {
-    Percent = 0,
+    None,
+    Percent,
     Byte,
     KiB,
     MiB,
     GiB
 };
+
+/** @brief Partition size expressions
+ *
+ * Sizes can be specified in bytes, KiB, MiB, GiB or percent (of
+ * the available drive space are on). This class handles parsing
+ * of such strings from the config file.
+ */
+class PartSize : public NamedSuffix<SizeUnit, SizeUnit::None>
+{
+public:
+    PartSize() : NamedSuffix() { };
+    PartSize( int v, unit_t u ) : NamedSuffix( v, u ) { };
+    PartSize( const QString& );
+
+    bool isValid() const
+    {
+        return ( unit() != SizeUnit::None ) && ( value() > 0 );
+    }
+
+    bool operator< ( const PartSize& other ) const;
+    bool operator> ( const PartSize& other ) const;
+    bool operator== ( const PartSize& other ) const;
+
+    /** @brief Convert the size to the number of sectors @p totalSectors .
+     *
+     * Each sector has size @p sectorSize, for converting sizes in Bytes,
+     * KiB, MiB or GiB to sector counts.
+     *
+     * @return  the number of sectors needed, or -1 for invalid sizes.
+     */
+    qint64 toSectors( qint64 totalSectors, qint64 sectorSize ) const;
+
+    /** @brief Convert the size to bytes.
+     *
+     * The device's sectors count @p totalSectors and sector size
+     * @p sectoreSize are used to calculated the total size, which
+     * is then used to calculate the size when using Percent.
+     *
+     * @return  the size in bytes, or -1 for invalid sizes.
+     */
+    qint64 toBytes( qint64 totalSectors, qint64 sectorSize ) const;
+
+    /** @brief Convert the size to bytes.
+     *
+     * Total size @p totalBytes is needed for sizes in Percent. This
+     * parameter is unused in any other case.
+     *
+     * @return  the size in bytes, or -1 for invalid sizes.
+     */
+    qint64 toBytes( qint64 totalBytes ) const;
+
+    /** @brief Convert the size to bytes.
+     *
+     * This method is only valid for sizes in Bytes, KiB, MiB or GiB.
+     * It will return -1 in any other case.
+     *
+     * @return  the size in bytes, or -1 if it cannot be calculated.
+     */
+    qint64 toBytes() const;
+};
+
 
 /**
  * @brief Provides a nice human-readable name for @p candidate
