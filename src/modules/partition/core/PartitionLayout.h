@@ -43,14 +43,22 @@ public:
         QString partLabel;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
-        PartUtils::PartSize partSize = PartUtils::PartSize(0, PartUtils::SizeUnit::Percent);
-        PartUtils::PartSize partMinSize = PartUtils::PartSize(0, PartUtils::SizeUnit::Percent);
-        PartUtils::PartSize partMaxSize = PartUtils::PartSize(100, PartUtils::SizeUnit::Percent);
+        PartUtils::PartSize partSize;
+        PartUtils::PartSize partMinSize;
+        PartUtils::PartSize partMaxSize;
 
         /// @brief All-zeroes PartitionEntry
         PartitionEntry() {}
         /// @brief Parse @p size, @p min and @p max to their respective member variables
         PartitionEntry( const QString& size, const QString& min, const QString& max );
+
+        bool isValid() const
+        {
+            if ( !partSize.isValid() ||
+                 ( partMinSize.isValid() && partMaxSize.isValid() && partMinSize > partMaxSize ) )
+                return false;
+            return true;
+        }
     };
 
     PartitionLayout();
@@ -58,9 +66,9 @@ public:
     PartitionLayout( const PartitionLayout& layout );
     ~PartitionLayout();
 
-    void addEntry( PartitionEntry entry );
-    void addEntry( const QString& mountPoint, const QString& size, const QString& min = QString(), const QString& max = QString() );
-    void addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min = QString(), const QString& max = QString() );
+    bool addEntry( PartitionEntry entry );
+    bool addEntry( const QString& mountPoint, const QString& size, const QString& min = QString(), const QString& max = QString() );
+    bool addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min = QString(), const QString& max = QString() );
 
     /**
      * @brief Apply the current partition layout to the selected drive space.
