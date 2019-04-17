@@ -92,7 +92,7 @@ BOOST_PYTHON_MODULE( libcalamares )
     bp::object utilsModule( bp::handle<>( bp::borrowed( PyImport_AddModule( "libcalamares.utils" ) ) ) );
     bp::scope().attr( "utils" ) = utilsModule;
     bp::scope utilsScope = utilsModule;
-    Q_UNUSED( utilsScope );
+    Q_UNUSED( utilsScope )
 
     bp::def(
         "debug",

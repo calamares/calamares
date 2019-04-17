@@ -46,7 +46,7 @@ void
 ViewStepItem::appendChild( ProgressTreeItem* item )
 {
     Q_ASSERT( false );
-    Q_UNUSED( item );
+    Q_UNUSED( item )
 }
 
 

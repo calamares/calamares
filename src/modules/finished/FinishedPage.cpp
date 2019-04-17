@@ -125,7 +125,7 @@ FinishedPage::focusInEvent( QFocusEvent* e )
 void
 FinishedPage::onInstallationFailed( const QString& message, const QString& details )
 {
-    Q_UNUSED( details );
+    Q_UNUSED( details )
     if ( Calamares::Settings::instance()->isSetupMode() )
         ui->mainText->setText( tr( "<h1>Setup Failed</h1><br/>"
                                    "%1 has not been set up on your computer.<br/>"

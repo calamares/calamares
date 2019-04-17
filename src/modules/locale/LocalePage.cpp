@@ -101,7 +101,7 @@ LocalePage::LocalePage( QWidget* parent )
              static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
              [this]( int currentIndex )
     {
-        Q_UNUSED( currentIndex );
+        Q_UNUSED( currentIndex )
         QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
         if ( !regions.contains( m_regionCombo->currentData().toString() ) )
             return;

@@ -436,7 +436,7 @@ void
 KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current,
         const QModelIndex& previous )
 {
-    Q_UNUSED( previous );
+    Q_UNUSED( previous )
     if ( !current.isValid() )
         return;
 
@@ -457,7 +457,7 @@ static inline QStringList xkbmap_args( QStringList&& r, const QString& layout, c
 void
 KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
 {
-    Q_UNUSED( previous );
+    Q_UNUSED( previous )
 
     QPersistentModelIndex layoutIndex = ui->listLayout->currentIndex();
     LayoutItem* variantItem = dynamic_cast< LayoutItem* >( current );
