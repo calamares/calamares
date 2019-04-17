@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Collabora Ltd
+ *   Copyright 2018-2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -43,12 +43,9 @@ public:
         QString partLabel;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
-        double partSize = 0.0L;
-        PartUtils::SizeUnit partSizeUnit = PartUtils::SizeUnit::Percent;
-        double partMinSize = 0.0L;
-        PartUtils::SizeUnit partMinSizeUnit = PartUtils::SizeUnit::Percent;
-        double partMaxSize = 100.0L;
-        PartUtils::SizeUnit partMaxSizeUnit = PartUtils::SizeUnit::Percent;
+        PartUtils::PartSize partSize = PartUtils::PartSize(0, PartUtils::SizeUnit::Percent);
+        PartUtils::PartSize partMinSize = PartUtils::PartSize(0, PartUtils::SizeUnit::Percent);
+        PartUtils::PartSize partMaxSize = PartUtils::PartSize(100, PartUtils::SizeUnit::Percent);
 
         /// @brief All-zeroes PartitionEntry
         PartitionEntry() {}

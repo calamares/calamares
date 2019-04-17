@@ -2,7 +2,7 @@
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
- *   Copyright 2018, Collabora Ltd
+ *   Copyright 2018-2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -77,11 +77,11 @@ PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
 
 PartitionLayout::PartitionEntry::PartitionEntry( const QString& size, const QString& min, const QString& max )
 {
-    partSize = PartUtils::parseSizeString( size , &partSizeUnit );
+    partSize = PartUtils::PartSize( size );
     if ( !min.isEmpty() )
-        partMinSize = PartUtils::parseSizeString( min , &partMinSizeUnit );
+        partMinSize = PartUtils::PartSize( min );
     if ( !max.isEmpty() )
-        partMaxSize = PartUtils::parseSizeString( max , &partMaxSizeUnit );
+        partMaxSize = PartUtils::PartSize( max );
 }
 
 void
@@ -128,9 +128,9 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
         Partition *currentPartition = nullptr;
 
         // Calculate partition size
-        size = PartUtils::sizeToSectors( part.partSize, part.partSizeUnit, totalSize, dev->logicalSize() );
-        minSize = PartUtils::sizeToSectors( part.partMinSize, part.partMinSizeUnit, totalSize, dev->logicalSize() );
-        maxSize = PartUtils::sizeToSectors( part.partMaxSize, part.partMaxSizeUnit, totalSize, dev->logicalSize() );
+        size = part.partSize.toSectors( totalSize, dev->logicalSize() );
+        minSize = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
+        maxSize = part.partMaxSize.toSectors( totalSize, dev->logicalSize() );
         if ( size < minSize )
             size = minSize;
         if ( size > maxSize )
