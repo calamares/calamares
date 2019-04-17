@@ -36,8 +36,6 @@
 #include "PythonQtViewModule.h"
 #endif
 
-#include <yaml-cpp/yaml.h>
-
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
