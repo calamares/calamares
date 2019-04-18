@@ -38,10 +38,10 @@ set( final_src ${calamaresSources} ${calamaresRc} ${trans_outfile} )
 add_executable( calamares_bin ${final_src} )
 set_target_properties(calamares_bin
     PROPERTIES
-        AUTOMOC TRUE
         ENABLE_EXPORTS TRUE
         RUNTIME_OUTPUT_NAME calamares
 )
+calamares_automoc( calamares_bin )
 
 if( WITH_KF5Crash )
     set( LINK_LIBRARIES

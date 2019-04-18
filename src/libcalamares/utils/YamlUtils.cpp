@@ -20,8 +20,6 @@
 
 #include "utils/Logger.h"
 
-#include <yaml-cpp/yaml.h>
-
 #include <QByteArray>
 #include <QFile>
 #include <QFileInfo>

@@ -540,7 +540,7 @@ void
 ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
                                       const QModelIndex& previous )
 {
-    Q_UNUSED( previous );
+    Q_UNUSED( previous )
     if ( !current.isValid() )
         return;
 
@@ -718,7 +718,7 @@ void
 ChoicePage::onPartitionToReplaceSelected( const QModelIndex& current,
                                           const QModelIndex& previous )
 {
-    Q_UNUSED( previous );
+    Q_UNUSED( previous )
     if ( !current.isValid() )
         return;
 

@@ -1,5 +1,5 @@
-#ifndef KDTOOLSCORE__PIMPL_PTR_H
-#define KDTOOLSCORE__PIMPL_PTR_H
+#ifndef KDTOOLSCORE_PIMPL_PTR_H
+#define KDTOOLSCORE_PIMPL_PTR_H
 
 #include "kdtoolsglobal.h"
 
@@ -40,5 +40,5 @@ namespace kdtools {
 } // namespace kdtools
 #endif
 
-#endif /* KDTOOLSCORE__PIMPL_PTR_H */
+#endif /* KDTOOLSCORE_PIMPL_PTR_H */
 

@@ -87,8 +87,7 @@ LicensePage::LicensePage(QWidget *parent)
 
     CALAMARES_RETRANSLATE(
         ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) );
-    );
-
+    )
 }
 
 

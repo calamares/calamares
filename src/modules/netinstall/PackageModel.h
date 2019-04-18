@@ -27,7 +27,10 @@
 #include <QObject>
 #include <QString>
 
-#include <yaml-cpp/yaml.h>
+namespace YAML
+{
+    class Node;
+}
 
 class PackageModel : public QAbstractItemModel
 {

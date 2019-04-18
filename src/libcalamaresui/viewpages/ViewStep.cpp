@@ -71,7 +71,7 @@ ViewStep::setModuleInstanceKey( const QString& instanceKey )
 void
 ViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    Q_UNUSED( configurationMap );
+    Q_UNUSED( configurationMap )
 }
 
 

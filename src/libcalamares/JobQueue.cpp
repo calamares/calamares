@@ -35,7 +35,6 @@ namespace Calamares
 
 class JobThread : public QThread
 {
-    Q_OBJECT
 public:
     JobThread( JobQueue* queue )
         : QThread( queue )
@@ -44,6 +43,8 @@ public:
     {
     }
 
+    virtual ~JobThread() override;
+    
     void setJobs( const JobList& jobs )
     {
         m_jobs = jobs;
@@ -122,6 +123,10 @@ private:
     }
 };
 
+JobThread::~JobThread()
+{
+}
+
 
 JobQueue* JobQueue::s_instance = nullptr;
 
@@ -184,5 +189,3 @@ JobQueue::enqueue( const JobList& jobs )
 }
 
 } // namespace Calamares
-
-#include "JobQueue.moc"

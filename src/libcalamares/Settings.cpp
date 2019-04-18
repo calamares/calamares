@@ -27,8 +27,6 @@
 #include <QFile>
 #include <QPair>
 
-#include <yaml-cpp/yaml.h>
-
 static bool
 hasValue( const YAML::Node& v )
 {

@@ -26,8 +26,6 @@
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
 
-#include <yaml-cpp/yaml.h>
-
 #include <QtTest/QtTest>
 
 #include <QFileInfo>

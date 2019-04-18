@@ -26,11 +26,21 @@
 class QByteArray;
 class QFileInfo;
 
-namespace YAML
-{
-class Node;
-class Exception;
-}
+// The yaml-cpp headers are not C++11 warning-proof, especially
+// with picky compilers like Clang 8. Since we use Clang for the
+// find-all-the-warnings case, switch those warnings off for
+// the we-can't-change-them system headers.
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
+#pragma clang diagnostic ignored "-Wshadow"
+#endif
+
+#include <yaml-cpp/yaml.h>
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 
 /// @brief Appends all te elements of @p node to the string list @p v
 void operator>>( const YAML::Node& node, QStringList& v );

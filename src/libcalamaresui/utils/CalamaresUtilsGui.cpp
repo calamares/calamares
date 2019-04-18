@@ -40,7 +40,7 @@ static int s_defaultFontHeight = 0;
 QPixmap
 defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 {
-    Q_UNUSED( mode );
+    Q_UNUSED( mode )
     QPixmap pixmap;
 
     switch ( type )
