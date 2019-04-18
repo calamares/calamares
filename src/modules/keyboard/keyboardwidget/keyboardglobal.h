@@ -35,8 +35,6 @@
 #include <QRegExp>
 #include <QDebug>
 
-#define XKB_FILE "/usr/share/X11/xkb/rules/base.lst"
-
 class KeyboardGlobal
 {
 public:

@@ -24,18 +24,24 @@
 
 #include "utils/Logger.h"
 
+#ifdef Q_OS_FREEBSD
+static const char XKB_FILE[] = "/usr/local/share/X11/xkb/rules/base.lst";
+#else
+static const char XKB_FILE[] = "/usr/share/X11/xkb/rules/base.lst";
+#endif
+
 //###
 //### Public methods
 //###
 
 
 QMap<QString, KeyboardGlobal::KeyboardInfo> KeyboardGlobal::getKeyboardLayouts() {
-    return parseKeyboardLayouts(XKB_FILE);
+    return parseKeyboardLayouts( XKB_FILE );
 }
 
 
 QMap<QString, QString> KeyboardGlobal::getKeyboardModels() {
-    return parseKeyboardModels(XKB_FILE);
+    return parseKeyboardModels( XKB_FILE );
 }
 
 
