@@ -31,6 +31,27 @@ static const char XKB_FILE[] = "/usr/local/share/X11/xkb/rules/base.lst";
 static const char XKB_FILE[] = "/usr/share/X11/xkb/rules/base.lst";
 #endif
 
+// The xkb rules file is made of several "sections". Each section
+// starts with a line "! <sectionname>". The static methods here
+// handle individual sections.
+
+/** @brief Scans a file for a named section
+ * 
+ * Reads from @p fh incrementally until it finds a section named @p name
+ * or hits end-of-file. Returns true if the section is found. The
+ * @p name must include the "! " section marker as well.
+ */
+static bool findSection( QFile& fh, const char* name )
+{
+    while ( !fh.atEnd() )
+    {
+        QByteArray line = fh.readLine();
+        if ( line.startsWith( name ) )
+            return true;
+    }
+    return false;
+}
+
 //### Source by Georg Grabler <ggrabler@gmail.com> ###//
 static KeyboardGlobal::ModelsMap parseKeyboardModels(const char* filepath)
 {
@@ -44,18 +65,14 @@ static KeyboardGlobal::ModelsMap parseKeyboardModels(const char* filepath)
         return models;
     }
 
-    bool modelsFound = false;
+    bool modelsFound = findSection( fh, "! model" );
     // read the file until the end or until we break the loop
-    while (!fh.atEnd()) {
+    while (modelsFound && !fh.atEnd()) {
         QByteArray line = fh.readLine();
 
-        // check if we start with the model section in the file
-        if (!modelsFound && line.startsWith("! model"))
-            modelsFound = true;
-        else if (modelsFound && line.startsWith ("!"))
+        // check if we start a new section
+        if ( line.startsWith( '!' ) )
             break;
-        else if (!modelsFound)
-            continue;
 
         // here we are in the model section, otherwhise we would continue or break
         QRegExp rx;
@@ -91,18 +108,13 @@ KeyboardGlobal::LayoutsMap parseKeyboardLayouts(const char* filepath)
         return layouts;
     }
 
-    bool layoutsFound = false;
+    bool layoutsFound = findSection( fh, "! layout" );
     // read the file until the end or we break the loop
-    while (!fh.atEnd()) {
+    while ( layoutsFound && !fh.atEnd() ) {
         QByteArray line = fh.readLine();
 
-        // find the layout section otherwhise continue. If the layout section is at it's end, break the loop
-        if (!layoutsFound && line.startsWith("! layout"))
-            layoutsFound = true;
-        else if (layoutsFound && line.startsWith ("!"))
+        if ( line.startsWith( '!' ) )
             break;
-        else if (!layoutsFound)
-            continue;
 
         QRegExp rx;
         rx.setPattern("^\\s+(\\S+)\\s+(\\w.*)\n$");
@@ -121,19 +133,13 @@ KeyboardGlobal::LayoutsMap parseKeyboardLayouts(const char* filepath)
 
     //### Get Variants ###//
 
-    bool variantsFound = false;
+    bool variantsFound = findSection( fh, "! variant" );
     // read the file until the end or until we break
-    while (!fh.atEnd()) {
+    while (variantsFound && !fh.atEnd() ) {
         QByteArray line = fh.readLine();
 
-        // continue until we found the variant section. If found, read until the next section is found
-        if (!variantsFound && line.startsWith("! variant")) {
-            variantsFound = true;
-            continue;
-        } else if (variantsFound && line.startsWith ("!"))
+        if ( line.startsWith( '!' ) )
             break;
-        else if (!variantsFound)
-            continue;
 
         QRegExp rx;
         rx.setPattern("^\\s+(\\S+)\\s+(\\S+): (\\w.*)\n$");
