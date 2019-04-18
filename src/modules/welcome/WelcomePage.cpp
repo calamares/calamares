@@ -2,7 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2015,      Anke Boersma <demm@kaosx.us>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,15 +21,17 @@
 #include "WelcomePage.h"
 
 #include "ui_WelcomePage.h"
-#include "CalamaresVersion.h"
+#include "LocaleModel.h"
 #include "checker/CheckerContainer.h"
+
+#include "Branding.h"
+#include "CalamaresVersion.h"
+#include "Settings.h"
+#include "ViewManager.h"
+#include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
-
-#include "modulesystem/ModuleManager.h"
-#include "Settings.h"
-#include "ViewManager.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -39,13 +41,11 @@
 #include <QComboBox>
 #include <QMessageBox>
 
-#include "Branding.h"
-
-
 WelcomePage::WelcomePage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::WelcomePage )
     , m_checkingWidget( new CheckerContainer( this ) )
+    , m_languages( nullptr )
 {
     connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsResult, m_checkingWidget, &CheckerContainer::requirementsChecked );
     connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsComplete, m_checkingWidget, &CheckerContainer::requirementsComplete );
@@ -156,21 +156,8 @@ WelcomePage::initLanguages()
     ui->languageWidget->clear();
     ui->languageWidget->setInsertPolicy( QComboBox::InsertAtBottom );
 
-    {
-        std::list< CalamaresUtils::LocaleLabel > localeList;
-        const auto locales = QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';');
-        for ( const QString& locale : locales )
-        {
-            localeList.emplace_back( locale );
-        }
-
-        localeList.sort(); // According to the sortkey, which is english
-
-        for ( const auto& locale : localeList )
-        {
-            ui->languageWidget->addItem( locale.label(), locale.locale() );
-        }
-    }
+    m_languages = new LocaleModel( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
+    ui->languageWidget->setModel( m_languages );
 
     // Find the best initial translation
     QLocale defaultLocale = QLocale( QLocale::system().name() );
