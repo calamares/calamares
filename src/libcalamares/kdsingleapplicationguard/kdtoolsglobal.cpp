@@ -27,7 +27,7 @@ static Version kdParseQtVersion( const char * const version ) {
     return result;
 }
 
-bool _kdCheckQtVersion_impl( int major, int minor, int patchlevel ) {
+bool _kdCheckQtVersion_impl( unsigned int major, unsigned int minor, unsigned int patchlevel ) {
     static const Version actual = kdParseQtVersion( qVersion() ); // do this only once each run...
     const Version requested = { { static_cast< unsigned char >( major ),
                                   static_cast< unsigned char >( minor ),
