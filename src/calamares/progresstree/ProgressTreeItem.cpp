@@ -84,9 +84,7 @@ ProgressTreeRoot::ProgressTreeRoot()
 
 
 QVariant
-ProgressTreeRoot::data( int role ) const
+ProgressTreeRoot::data( int ) const
 {
-    if ( role == ProgressTreeModel::ProgressTreeItemRole )
-        return this;
     return QVariant();
 }

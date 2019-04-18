@@ -53,8 +53,6 @@ ViewStepItem::appendChild( ProgressTreeItem* item )
 QVariant
 ViewStepItem::data( int role ) const
 {
-    if ( role == ProgressTreeModel::ProgressTreeItemRole )
-        return this;
     if ( role == Qt::DisplayRole )
     {
         return m_step ? m_step->prettyName()
