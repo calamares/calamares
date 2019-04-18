@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -30,31 +31,10 @@ static const char XKB_FILE[] = "/usr/local/share/X11/xkb/rules/base.lst";
 static const char XKB_FILE[] = "/usr/share/X11/xkb/rules/base.lst";
 #endif
 
-//###
-//### Public methods
-//###
-
-
-QMap<QString, KeyboardGlobal::KeyboardInfo> KeyboardGlobal::getKeyboardLayouts() {
-    return parseKeyboardLayouts( XKB_FILE );
-}
-
-
-QMap<QString, QString> KeyboardGlobal::getKeyboardModels() {
-    return parseKeyboardModels( XKB_FILE );
-}
-
-
-
-//###
-//### Private methods
-//###
-
-
 //### Source by Georg Grabler <ggrabler@gmail.com> ###//
-QMap<QString, QString> KeyboardGlobal::parseKeyboardModels(QString filepath)
+static KeyboardGlobal::ModelsMap parseKeyboardModels(const char* filepath)
 {
-    QMap<QString, QString> models;
+    KeyboardGlobal::ModelsMap models;
 
     QFile fh(filepath);
     fh.open(QIODevice::ReadOnly);
@@ -97,10 +77,9 @@ QMap<QString, QString> KeyboardGlobal::parseKeyboardModels(QString filepath)
 }
 
 
-
-QMap< QString, KeyboardGlobal::KeyboardInfo > KeyboardGlobal::parseKeyboardLayouts(QString filepath)
+KeyboardGlobal::LayoutsMap parseKeyboardLayouts(const char* filepath)
 {
-    QMap< QString, KeyboardInfo >  layouts;
+    KeyboardGlobal::LayoutsMap layouts;
 
     //### Get Layouts ###//
 
@@ -130,7 +109,7 @@ QMap< QString, KeyboardGlobal::KeyboardInfo > KeyboardGlobal::parseKeyboardLayou
 
         // insert into the layout map
         if (rx.indexIn(line) != -1) {
-            KeyboardInfo info;
+            KeyboardGlobal::KeyboardInfo info;
             info.description = rx.cap(2);
             info.variants.insert(QObject::tr("Default"), "");
             layouts.insert(rx.cap(1), info);
@@ -166,7 +145,7 @@ QMap< QString, KeyboardGlobal::KeyboardInfo > KeyboardGlobal::parseKeyboardLayou
                 layouts.find(rx.cap(2)).value().variants.insert(rx.cap(3), rx.cap(1));
             } else {
                 // create a new map in the multimap - the value was not found.
-                KeyboardInfo info;
+                KeyboardGlobal::KeyboardInfo info;
                 info.description = rx.cap(2);
                 info.variants.insert(QObject::tr("Default"), "");
                 info.variants.insert(rx.cap(3), rx.cap(1));
@@ -177,3 +156,14 @@ QMap< QString, KeyboardGlobal::KeyboardInfo > KeyboardGlobal::parseKeyboardLayou
 
     return layouts;
 }
+
+
+KeyboardGlobal::LayoutsMap KeyboardGlobal::getKeyboardLayouts() {
+    return parseKeyboardLayouts( XKB_FILE );
+}
+
+
+KeyboardGlobal::ModelsMap KeyboardGlobal::getKeyboardModels() {
+    return parseKeyboardModels( XKB_FILE );
+}
+

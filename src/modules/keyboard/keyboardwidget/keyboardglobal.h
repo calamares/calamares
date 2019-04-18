@@ -44,14 +44,10 @@ public:
     };
 
     using LayoutsMap = QMap< QString, KeyboardInfo >;
+    using ModelsMap = QMap< QString, QString >;
 
     static LayoutsMap getKeyboardLayouts();
-    static QMap< QString, QString > getKeyboardModels();
-
-
-private:
-    static QMap< QString, QString > parseKeyboardModels(QString filepath);
-    static LayoutsMap parseKeyboardLayouts(QString filepath);
+    static ModelsMap getKeyboardModels();
 };
 
 #endif // KEYBOARDGLOBAL_H
