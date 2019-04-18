@@ -21,5 +21,5 @@ if( ECM_FOUND AND BUILD_TESTING )
             Qt5::Core
             Qt5::Test
     )
-    set_target_properties( contextualprocesstest PROPERTIES AUTOMOC TRUE )
+    calamares_automoc( contextualprocesstest )
 endif()
