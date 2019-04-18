@@ -4,6 +4,7 @@
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Caio Carvalho <caiojcarvalho@gmail.com>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -797,6 +798,16 @@ PartitionCoreModule::initLayout( const QVariantList& config )
     {
         QVariantMap pentry = r.toMap();
 
+        if ( !pentry.contains( "name" ) || !pentry.contains( "mountPoint" ) ||
+             !pentry.contains( "filesystem" ) || !pentry.contains( "size" ) )
+        {
+            cError() << "Partition layout entry #" << config.indexOf(r)
+                << "lacks mandatory attributes, switching to default layout.";
+            delete( m_partLayout );
+            initLayout();
+            break;
+        }
+
         if ( pentry.contains("size") && CalamaresUtils::getString( pentry, "size" ).isEmpty() )
             sizeString.setNum( CalamaresUtils::getInteger( pentry, "size", 0 ) );
         else
@@ -808,17 +819,24 @@ PartitionCoreModule::initLayout( const QVariantList& config )
             minSizeString = CalamaresUtils::getString( pentry, "minSize" );
 
         if ( pentry.contains("maxSize") && CalamaresUtils::getString( pentry, "maxSize" ).isEmpty() )
-            maxSizeString.setNum( CalamaresUtils::getInteger( pentry, "maxSize", 100 ) );
+            maxSizeString.setNum( CalamaresUtils::getInteger( pentry, "maxSize", 0 ) );
         else
             maxSizeString = CalamaresUtils::getString( pentry, "maxSize" );
 
-        m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
-                                CalamaresUtils::getString( pentry, "mountPoint" ),
-                                CalamaresUtils::getString( pentry, "filesystem" ),
-                                sizeString,
-                                minSizeString,
-                                maxSizeString
-                              );
+        if ( !m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
+                                      CalamaresUtils::getString( pentry, "mountPoint" ),
+                                      CalamaresUtils::getString( pentry, "filesystem" ),
+                                      sizeString,
+                                      minSizeString,
+                                      maxSizeString
+                                    ) )
+        {
+            cError() << "Partition layout entry #" << config.indexOf(r)
+                << "is invalid, switching to default layout.";
+            delete( m_partLayout );
+            initLayout();
+            break;
+        }
     }
 }
 

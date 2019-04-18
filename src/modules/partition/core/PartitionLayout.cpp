@@ -2,7 +2,7 @@
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
- *   Copyright 2018, Collabora Ltd
+ *   Copyright 2018-2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+
+#include "utils/Logger.h"
 
 #include "core/PartitionLayout.h"
 
@@ -69,36 +71,66 @@ PartitionLayout::~PartitionLayout()
 {
 }
 
-void
+bool
 PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
 {
+    if ( !entry.isValid() )
+    {
+        cError() << "Partition size is invalid or has min size > max size";
+        return false;
+    }
+
     m_partLayout.append( entry );
+
+    return true;
 }
 
 PartitionLayout::PartitionEntry::PartitionEntry( const QString& size, const QString& min, const QString& max )
 {
-    partSize = PartUtils::parseSizeString( size , &partSizeUnit );
-    if ( !min.isEmpty() )
-        partMinSize = PartUtils::parseSizeString( min , &partMinSizeUnit );
-    if ( !max.isEmpty() )
-        partMaxSize = PartUtils::parseSizeString( max , &partMaxSizeUnit );
+    partSize = PartUtils::PartSize( size );
+    partMinSize = PartUtils::PartSize( min );
+    partMaxSize = PartUtils::PartSize( max );
 }
 
-void
+bool
 PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const QString& min, const QString& max )
 {
     PartitionLayout::PartitionEntry entry( size, min, max );
+
+    if ( !entry.isValid() )
+    {
+        cError() << "Partition size" << size << "is invalid or" << min << ">" << max;
+        return false;
+    }
+    if ( mountPoint.isEmpty() || !mountPoint.startsWith( QString( "/" ) ) )
+    {
+        cError() << "Partition mount point" << mountPoint << "is invalid";
+        return false;
+    }
 
     entry.partMountPoint = mountPoint;
     entry.partFileSystem = m_defaultFsType;
 
     m_partLayout.append( entry );
+
+    return true;
 }
 
-void
+bool
 PartitionLayout::addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min, const QString& max )
 {
     PartitionLayout::PartitionEntry entry( size, min, max );
+
+    if ( !entry.isValid() )
+    {
+        cError() << "Partition size" << size << "is invalid or" << min << ">" << max;
+        return false;
+    }
+    if ( mountPoint.isEmpty() || !mountPoint.startsWith( QString( "/" ) ) )
+    {
+        cError() << "Partition mount point" << mountPoint << "is invalid";
+        return false;
+    }
 
     entry.partLabel = label;
     entry.partMountPoint = mountPoint;
@@ -107,6 +139,8 @@ PartitionLayout::addEntry( const QString& label, const QString& mountPoint, cons
         entry.partFileSystem = m_defaultFsType;
 
     m_partLayout.append( entry );
+
+    return true;
 }
 
 QList< Partition* >
@@ -128,9 +162,36 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
         Partition *currentPartition = nullptr;
 
         // Calculate partition size
-        size = PartUtils::sizeToSectors( part.partSize, part.partSizeUnit, totalSize, dev->logicalSize() );
-        minSize = PartUtils::sizeToSectors( part.partMinSize, part.partMinSizeUnit, totalSize, dev->logicalSize() );
-        maxSize = PartUtils::sizeToSectors( part.partMaxSize, part.partMaxSizeUnit, totalSize, dev->logicalSize() );
+        if ( part.partSize.isValid() )
+        {
+            size = part.partSize.toSectors( totalSize, dev->logicalSize() );
+        }
+        else
+        {
+            cWarning() << "Partition" << part.partMountPoint << "size ("
+                << size <<  "sectors) is invalid, skipping...";
+            continue;
+        }
+
+        if ( part.partMinSize.isValid() )
+            minSize = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
+        else
+            minSize = 0;
+
+        if ( part.partMaxSize.isValid() )
+            maxSize = part.partMaxSize.toSectors( totalSize, dev->logicalSize() );
+        else
+            maxSize = availableSize;
+
+        // Make sure we never go under minSize once converted to sectors
+        if ( maxSize < minSize )
+        {
+            cWarning() << "Partition" << part.partMountPoint << "max size (" << maxSize
+                <<  "sectors) is < min size (" << minSize << "sectors), using min size";
+            maxSize = minSize;
+        }
+
+        // Adjust partition size based on user-defined boundaries and available space
         if ( size < minSize )
             size = minSize;
         if ( size > maxSize )
