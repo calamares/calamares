@@ -446,9 +446,9 @@ KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current,
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p layout and @p variant.
  */
-static inline QStringList xkbmap_args( QStringList&& r, const QString& layout, const QString& variant )
+static inline QStringList xkbmap_args( const QString& layout, const QString& variant )
 {
-    r << "-layout" << layout;
+    QStringList r{ "-layout", layout };
     if ( !variant.isEmpty() )
         r << "-variant" << variant;
     return r;
@@ -483,7 +483,7 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
     connect( &m_setxkbmapTimer, &QTimer::timeout,
              this, [=]
     {
-        QProcess::execute( "setxkbmap", xkbmap_args( QStringList(), layout, variant ) );
+        QProcess::execute( "setxkbmap", xkbmap_args( layout, variant ) );
         cDebug() << "xkbmap selection changed to: " << layout << '-' << variant;
         m_setxkbmapTimer.disconnect( this );
     } );
