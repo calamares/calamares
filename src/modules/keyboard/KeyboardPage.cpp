@@ -216,12 +216,12 @@ QString
 KeyboardPage::prettyStatus() const
 {
     QString status;
-    status += tr( "Set keyboard model to %1.<br/>" )
-              .arg( ui->comboBoxModel->currentText() );
-    status += tr( "Set keyboard layout to %1/%2." )
-              .arg( ui->listLayout->currentIndex().data().toString() )
-              .arg( ui->listVariant->currentItem()->text() );
-
+    status += tr( "Set keyboard model to %1.<br/>" ).arg( ui->comboBoxModel->currentText() );
+              
+    QString layout = ui->listLayout->currentIndex().data().toString();
+    QString variant = ui->listVariant->currentItem() ? ui->listVariant->currentItem()->text() : QString( "<default>" );
+    status += tr( "Set keyboard layout to %1/%2." ).arg( layout, variant );
+    
     return status;
 }
 
