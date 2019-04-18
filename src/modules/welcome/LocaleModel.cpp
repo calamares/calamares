@@ -18,6 +18,19 @@
 
 #include "LocaleModel.h"
 
+LocaleModel::LocaleModel(const QStringList& locales, QObject* parent)
+    : QAbstractTableModel( parent )
+{
+    m_locales.reserve( locales.count() );
+
+    for ( const auto& l : locales )
+        m_locales.emplace_back( l );
+}
+
+LocaleModel::~LocaleModel()
+{
+}
+
 int
 LocaleModel::columnCount( const QModelIndex& ) const
 {

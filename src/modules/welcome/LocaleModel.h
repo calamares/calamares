@@ -25,7 +25,7 @@
 
 #include "utils/CalamaresUtilsGui.h"
 
-class LocaleModel : public QAbstractItemModel
+class LocaleModel : public QAbstractTableModel
 {
 public:
     LocaleModel( const QStringList& locales, QObject* parent = nullptr );
