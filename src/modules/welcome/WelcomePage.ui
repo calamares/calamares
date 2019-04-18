@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="toolTip">
+   <string>Select language</string>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
@@ -46,7 +49,7 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1,2,1,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0,2,0">
        <item>
         <spacer name="horizontalSpacer_3">
          <property name="orientation">
@@ -64,21 +67,15 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="label">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+        <widget class="QLabel" name="label_2">
+         <property name="toolTip">
+          <string>Select language</string>
          </property>
          <property name="text">
-          <string>&amp;Language:</string>
+          <string/>
          </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-         <property name="buddy">
-          <cstring>languageWidget</cstring>
+         <property name="pixmap">
+          <pixmap resource="welcome.qrc">:/welcome/language-icon-48px.png</pixmap>
          </property>
         </widget>
        </item>
@@ -91,19 +88,6 @@
           </sizepolicy>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_5">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item>
         <spacer name="horizontalSpacer_4">
@@ -217,6 +201,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="welcome.qrc"/>
+ </resources>
  <connections/>
 </ui>
