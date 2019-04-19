@@ -177,7 +177,7 @@ WelcomePage::initLanguages()
              this,
              [&]( int newIndex )
              {
-                 QLocale selectedLocale = ui->languageWidget->itemData( newIndex, Qt::UserRole ).toLocale();
+                 const auto& selectedLocale = m_languages->locale( newIndex ).locale();
                  cDebug() << "Selected locale" << selectedLocale;
 
                  QLocale::setDefault( selectedLocale );
