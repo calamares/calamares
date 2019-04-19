@@ -23,7 +23,7 @@
 #include <QVector>
 
 
-#include "utils/CalamaresUtilsGui.h"
+#include "utils/LocaleLabel.h"
 
 class LocaleModel : public QAbstractTableModel
 {
