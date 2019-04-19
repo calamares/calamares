@@ -440,15 +440,9 @@ def run():
         return None
 
     partitions = libcalamares.globalstorage.value("partitions")
-
     if fw_type == "efi":
-        esp_found = False
-
-        for partition in partitions:
-            if (partition["mountPoint"] ==
-                    libcalamares.globalstorage.value("efiSystemPartition")):
-                esp_found = True
-
+        efi_system_partition = libcalamares.globalstorage.value("efiSystemPartition")
+        esp_found = [ p for p in partitions if p["mountPoint"] == efi_system_partition ]
         if not esp_found:
             return None
 
