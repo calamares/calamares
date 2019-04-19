@@ -137,13 +137,13 @@ WelcomePage::initLanguages()
     // Find the best initial translation
     QLocale defaultLocale = QLocale( QLocale::system().name() );
 
-    cDebug() << "Matching exact locale" << defaultLocale;
+    cDebug() << "Matching locale" << defaultLocale;
     int matchedLocaleIndex = m_languages->find(
         [&](const QLocale& x){ return x.language() == defaultLocale.language() && x.country() == defaultLocale.country(); } );
 
     if ( matchedLocaleIndex < 0 )
     {
-        cDebug() << "Matching approximate locale" << defaultLocale.language();
+        cDebug() << Logger::SubEntry << "Matching approximate locale" << defaultLocale.language();
 
         matchedLocaleIndex = m_languages->find(
             [&](const QLocale& x){ return x.language() == defaultLocale.language(); } );
@@ -153,7 +153,7 @@ WelcomePage::initLanguages()
     {
         QLocale en_us( QLocale::English, QLocale::UnitedStates );
 
-        cDebug() << "Matching English (US)";
+        cDebug() << Logger::SubEntry << "Matching English (US)";
         matchedLocaleIndex = m_languages->find( en_us );
 
         // Now, if it matched, because we didn't match the system locale, switch to the one found
@@ -162,9 +162,13 @@ WelcomePage::initLanguages()
     }
 
     if ( matchedLocaleIndex >= 0 )
-        CalamaresUtils::installTranslator( m_languages->locale( matchedLocaleIndex ).name(),
-                                           Calamares::Branding::instance()->translationsPathPrefix(),
-                                           qApp );
+    {
+        QString name = m_languages->locale( matchedLocaleIndex ).name();
+        cDebug() << Logger::SubEntry << "Matched with index" << matchedLocaleIndex << name;
+        
+        CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsPathPrefix(), qApp );
+        ui->languageWidget->setCurrentIndex( matchedLocaleIndex );
+    }
     else
         cWarning() << "No available translation matched" << defaultLocale;
 
