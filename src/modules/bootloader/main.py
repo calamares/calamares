@@ -11,7 +11,7 @@
 #   Copyright 2015-2018, Philip Mueller <philm@manjaro.org>
 #   Copyright 2016-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+#   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
 #   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
 #   Copyright 2017, Ben Green <Bezzy1999@hotmail.com>
 #
@@ -35,6 +35,17 @@ import subprocess
 import libcalamares
 
 from libcalamares.utils import check_target_env_call
+
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Install bootloader.")
 
 
 def get_uuid():
