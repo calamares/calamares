@@ -15,11 +15,17 @@ This release contains contributions from (alphabetically by first name):
 # 3.2.6 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Arnaud Ferraris
 
 ## Core ##
 
+ * Under-the-hood code cleanups in lots of parts of the core. Calamares now
+   builds without warnings when Clang 8 is used.
+
 ## Modules ##
 
+ * *Partition* module has additional checks for validity partition layouts.
+   (Thanks to Arnaud)
  * *Welcome* module has improved usability: a standard icon
    alongside the *Language* label, for improved recognition,
    and improved language-list display and sorting. #1107
