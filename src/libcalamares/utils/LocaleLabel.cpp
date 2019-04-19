@@ -26,7 +26,7 @@ LocaleLabel::LocaleLabel()
     : m_locale( QLocale() )
 {
     m_localeId = m_locale.name();
-    
+
     setLabels( QString(), LabelFormat::IfNeededWithCountry );
 }
 
@@ -55,8 +55,8 @@ LocaleLabel::setLabels( const QString& locale, LabelFormat format )
 
     if ( needsCountryName )
         countryName = m_locale.nativeCountryName();
-    m_label = needsCountryName ? longFormat.arg( languageName ).arg( countryName ) : languageName;
-    m_englishLabel = englishName;
+    m_label = needsCountryName ? longFormat.arg( languageName, countryName ) : languageName;
+    m_englishLabel = needsCountryName ? longFormat.arg( englishName, QLocale::countryToString( m_locale.country() ) ) : englishName;
 }
 
 QLocale LocaleLabel::getLocale( const QString& localeName )
