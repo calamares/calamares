@@ -140,6 +140,9 @@ public:
     /** @brief Formatting option for label -- add (country) to label. */
     enum class LabelFormat { AlwaysWithCountry, IfNeededWithCountry } ;
 
+    /** @brief Empty locale. This uses the system-default locale. */
+    LocaleLabel();
+    
     /** @brief Construct from a locale name.
      *
      * The @p localeName should be one that Qt recognizes, e.g. en_US or ar_EY.
@@ -192,6 +195,8 @@ public:
     static QLocale getLocale( const QString& localeName );
 
 protected:
+    void setLabels( const QString& name, LabelFormat format );
+    
     QLocale m_locale;
     QString m_localeId;  // the locale identifier, e.g. "en_GB"
     QString m_label;  // the native name of the locale

@@ -262,9 +262,23 @@ clearLayout( QLayout* layout )
     }
 }
 
+LocaleLabel::LocaleLabel()
+    : m_locale( QLocale() )
+{
+    m_localeId = m_locale.name();
+    
+    setLabels( QString(), LabelFormat::IfNeededWithCountry );
+}
+
 LocaleLabel::LocaleLabel( const QString& locale, LabelFormat format )
     : m_locale( LocaleLabel::getLocale( locale ) )
     , m_localeId( locale )
+{
+    setLabels( locale, format );
+}
+
+void
+LocaleLabel::setLabels( const QString& locale, LabelFormat format )
 {
     //: language[name] (country[name])
     QString longFormat = QObject::tr( "%1 (%2)" );
@@ -274,7 +288,7 @@ LocaleLabel::LocaleLabel( const QString& locale, LabelFormat format )
     QString countryName;
 
     if ( languageName.isEmpty() )
-        languageName = QString( QLatin1Literal( "* %1 (%2)" ) ).arg( locale, englishName );
+        languageName = QString( "* %1 (%2)" ).arg( locale, englishName );
 
     bool needsCountryName = ( format == LabelFormat::AlwaysWithCountry ) ||
         (locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
