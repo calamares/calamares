@@ -435,8 +435,8 @@ def run():
 
     fw_type = libcalamares.globalstorage.value("firmwareType")
 
-    if (libcalamares.globalstorage.value("bootLoader") is None
-            and fw_type != "efi"):
+    if (libcalamares.globalstorage.value("bootLoader") is None and fw_type != "efi"):
+        libcalamares.utils.warning( "Non-EFI system, and no bootloader is set." )
         return None
 
     partitions = libcalamares.globalstorage.value("partitions")
@@ -444,6 +444,7 @@ def run():
         efi_system_partition = libcalamares.globalstorage.value("efiSystemPartition")
         esp_found = [ p for p in partitions if p["mountPoint"] == efi_system_partition ]
         if not esp_found:
+            libcalamares.utils.warning( "EFI system, but nothing mounted on {!s}".format(efi_system_partition) )
             return None
 
     prepare_bootloader(fw_type)
