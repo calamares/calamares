@@ -21,10 +21,11 @@
 LocaleModel::LocaleModel(const QStringList& locales, QObject* parent)
     : QAbstractTableModel( parent )
 {
+    Q_ASSERT( locales.count() > 0 );
     m_locales.reserve( locales.count() );
 
     for ( const auto& l : locales )
-        m_locales.emplace_back( l );
+        m_locales.push_back( CalamaresUtils::LocaleLabel( l ) );
 }
 
 LocaleModel::~LocaleModel()
@@ -40,7 +41,7 @@ LocaleModel::columnCount( const QModelIndex& ) const
 int
 LocaleModel::rowCount( const QModelIndex& ) const
 {
-    return m_locales.size();
+    return m_locales.count();
 }
 
 QVariant
@@ -62,4 +63,34 @@ LocaleModel::data( const QModelIndex& index, int role ) const
         default:
             return QVariant();
     }
+}
+
+const CalamaresUtils::LocaleLabel& 
+LocaleModel::locale(int row)
+{
+    if ( ( row < 0 ) || ( row >= m_locales.count() ) )
+    {
+        for ( const auto& l : m_locales )
+            if ( l.isEnglish() )
+                return l;
+        return m_locales[0];
+    }
+    return m_locales[row];
+}
+
+int 
+LocaleModel::find(std::function<bool (const LocaleLabel &)> predicate) const
+{
+    for ( int row = 0; row < m_locales.count() ; ++row )
+    {
+        if ( predicate( m_locales[row] ) )
+            return row;
+    }
+    return -1;
+}
+
+int 
+LocaleModel::find(std::function<bool (const QLocale &)> predicate) const
+{
+    return find( [&]( const LocaleLabel& l ){ return predicate( l.locale() ); } );
 }
