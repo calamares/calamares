@@ -2,7 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2015,      Anke Boersma <demm@kaosx.us>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,31 +21,32 @@
 #include "WelcomePage.h"
 
 #include "ui_WelcomePage.h"
-#include "CalamaresVersion.h"
+#include "LocaleModel.h"
 #include "checker/CheckerContainer.h"
-#include "utils/Logger.h"
-#include "utils/CalamaresUtilsGui.h"
-#include "utils/Retranslator.h"
 
-#include "modulesystem/ModuleManager.h"
+#include "Branding.h"
+#include "CalamaresVersion.h"
 #include "Settings.h"
 #include "ViewManager.h"
+#include "modulesystem/ModuleManager.h"
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/LocaleLabel.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
 
 #include <QApplication>
 #include <QBoxLayout>
+#include <QComboBox>
 #include <QDesktopServices>
 #include <QFocusEvent>
 #include <QLabel>
-#include <QComboBox>
 #include <QMessageBox>
-
-#include "Branding.h"
-
 
 WelcomePage::WelcomePage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::WelcomePage )
     , m_checkingWidget( new CheckerContainer( this ) )
+    , m_languages( nullptr )
 {
     connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsResult, m_checkingWidget, &CheckerContainer::requirementsChecked );
     connect( Calamares::ModuleManager::instance(), &Calamares::ModuleManager::requirementsComplete, m_checkingWidget, &CheckerContainer::requirementsComplete );
@@ -123,32 +124,6 @@ WelcomePage::WelcomePage( QWidget* parent )
 }
 
 
-/** @brief Match the combobox of languages with a predicate
- *
- * Scans the entries in the @p list (actually a ComboBox) and if one
- * matches the given @p predicate, returns true and sets @p matchFound
- * to the locale that matched.
- *
- * If none match, returns false and leaves @p matchFound unchanged.
- */
-static
-bool matchLocale( QComboBox& list, QLocale& matchFound, std::function<bool(const QLocale&)> predicate)
-{
-    for (int i = 0; i < list.count(); i++)
-    {
-        QLocale thisLocale = list.itemData( i, Qt::UserRole ).toLocale();
-        if ( predicate(thisLocale) )
-        {
-            list.setCurrentIndex( i );
-            cDebug() << Logger::SubEntry << "Matched locale " << thisLocale.name();
-            matchFound = thisLocale;
-            return true;
-        }
-    }
-
-    return false;
-}
-
 void
 WelcomePage::initLanguages()
 {
@@ -156,58 +131,45 @@ WelcomePage::initLanguages()
     ui->languageWidget->clear();
     ui->languageWidget->setInsertPolicy( QComboBox::InsertAtBottom );
 
-    {
-        std::list< CalamaresUtils::LocaleLabel > localeList;
-        const auto locales = QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';');
-        for ( const QString& locale : locales )
-        {
-            localeList.emplace_back( locale );
-        }
-
-        localeList.sort(); // According to the sortkey, which is english
-
-        for ( const auto& locale : localeList )
-        {
-            ui->languageWidget->addItem( locale.label(), locale.locale() );
-        }
-    }
+    m_languages = new LocaleModel( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
+    ui->languageWidget->setModel( m_languages );
+    ui->languageWidget->setItemDelegate( new LocaleTwoColumnDelegate( ui->languageWidget ) );
 
     // Find the best initial translation
     QLocale defaultLocale = QLocale( QLocale::system().name() );
-    QLocale matchedLocale;
 
-    cDebug() << "Matching exact locale" << defaultLocale;
-    bool isTranslationAvailable =
-        matchLocale( *(ui->languageWidget), matchedLocale,
-                      [&](const QLocale& x){ return x.language() == defaultLocale.language() && x.country() == defaultLocale.country(); } );
+    cDebug() << "Matching locale" << defaultLocale;
+    int matchedLocaleIndex = m_languages->find(
+        [&](const QLocale& x){ return x.language() == defaultLocale.language() && x.country() == defaultLocale.country(); } );
 
-    if ( !isTranslationAvailable )
+    if ( matchedLocaleIndex < 0 )
     {
-        cDebug() << "Matching approximate locale" << defaultLocale.language();
+        cDebug() << Logger::SubEntry << "Matching approximate locale" << defaultLocale.language();
 
-        isTranslationAvailable =
-            matchLocale( *(ui->languageWidget), matchedLocale,
-                          [&](const QLocale& x){ return x.language() == defaultLocale.language(); } ) ;
+        matchedLocaleIndex = m_languages->find(
+            [&](const QLocale& x){ return x.language() == defaultLocale.language(); } );
     }
 
-    if ( !isTranslationAvailable )
+    if ( matchedLocaleIndex < 0 )
     {
         QLocale en_us( QLocale::English, QLocale::UnitedStates );
 
-        cDebug() << "Matching English (US)";
-        isTranslationAvailable =
-            matchLocale( *(ui->languageWidget), matchedLocale,
-                          [&](const QLocale& x){ return x == en_us; } );
+        cDebug() << Logger::SubEntry << "Matching English (US)";
+        matchedLocaleIndex = m_languages->find( en_us );
 
         // Now, if it matched, because we didn't match the system locale, switch to the one found
-        if ( isTranslationAvailable )
-            QLocale::setDefault( matchedLocale );
+        if ( matchedLocaleIndex >= 0 )
+            QLocale::setDefault( m_languages->locale( matchedLocaleIndex ).locale() );
     }
 
-    if ( isTranslationAvailable )
-        CalamaresUtils::installTranslator( matchedLocale.name(),
-                                           Calamares::Branding::instance()->translationsPathPrefix(),
-                                           qApp );
+    if ( matchedLocaleIndex >= 0 )
+    {
+        QString name = m_languages->locale( matchedLocaleIndex ).name();
+        cDebug() << Logger::SubEntry << "Matched with index" << matchedLocaleIndex << name;
+
+        CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsPathPrefix(), qApp );
+        ui->languageWidget->setCurrentIndex( matchedLocaleIndex );
+    }
     else
         cWarning() << "No available translation matched" << defaultLocale;
 
@@ -216,7 +178,7 @@ WelcomePage::initLanguages()
              this,
              [&]( int newIndex )
              {
-                 QLocale selectedLocale = ui->languageWidget->itemData( newIndex, Qt::UserRole ).toLocale();
+                 const auto& selectedLocale = m_languages->locale( newIndex ).locale();
                  cDebug() << "Selected locale" << selectedLocale;
 
                  QLocale::setDefault( selectedLocale );

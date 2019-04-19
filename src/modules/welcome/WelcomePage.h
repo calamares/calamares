@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,6 +28,7 @@ class WelcomePage;
 }
 
 class CheckerContainer;
+class LocaleModel;
 
 class WelcomePage : public QWidget
 {
@@ -34,19 +36,24 @@ class WelcomePage : public QWidget
 public:
     explicit WelcomePage( QWidget* parent = nullptr );
 
+    /// @brief Configure the buttons for URLs from the branding configuration
     void setUpLinks( bool showSupportUrl,
                      bool showKnownIssuesUrl,
                      bool showReleaseNotesUrl );
 
+    /// @brief Results of requirements checking
     bool verdict() const;
 
 protected:
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
 
 private:
+    /// @brief Fill the list of languages with the available translations
     void initLanguages();
+
     Ui::WelcomePage* ui;
     CheckerContainer* m_checkingWidget;
+    LocaleModel *m_languages;
 };
 
 #endif // WELCOMEPAGE_H

@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="welcome">
+    <file>language-icon-128px.png</file>
+    <file>language-icon-48px.png</file>
+  </qresource>
+</RCC>

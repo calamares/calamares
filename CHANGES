@@ -20,6 +20,10 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ * *Welcome* module has improved usability: a standard icon
+   alongside the *Language* label, for improved recognition,
+   and improved language-list display and sorting. #1107
+
 
 # 3.2.5 (2019-04-15) #
 
