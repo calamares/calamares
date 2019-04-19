@@ -36,10 +36,10 @@
 
 #include <QApplication>
 #include <QBoxLayout>
+#include <QComboBox>
 #include <QDesktopServices>
 #include <QFocusEvent>
 #include <QLabel>
-#include <QComboBox>
 #include <QMessageBox>
 
 WelcomePage::WelcomePage( QWidget* parent )
@@ -133,6 +133,7 @@ WelcomePage::initLanguages()
 
     m_languages = new LocaleModel( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
     ui->languageWidget->setModel( m_languages );
+    ui->languageWidget->setItemDelegate( new LocaleTwoColumnDelegate( ui->languageWidget ) );
 
     // Find the best initial translation
     QLocale defaultLocale = QLocale( QLocale::system().name() );
@@ -165,7 +166,7 @@ WelcomePage::initLanguages()
     {
         QString name = m_languages->locale( matchedLocaleIndex ).name();
         cDebug() << Logger::SubEntry << "Matched with index" << matchedLocaleIndex << name;
-        
+
         CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsPathPrefix(), qApp );
         ui->languageWidget->setCurrentIndex( matchedLocaleIndex );
     }

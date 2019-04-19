@@ -41,18 +41,18 @@ LocaleModel::rowCount( const QModelIndex& ) const
 QVariant
 LocaleModel::data( const QModelIndex& index, int role ) const
 {
-    if ( role != Qt::DisplayRole )
+    if ( ( role != LabelRole ) && ( role != EnglishLabelRole ) )
         return QVariant();
 
     if ( !index.isValid() )
         return QVariant();
 
     const auto& locale = m_locales.at( index.row() );
-    switch ( index.column() )
+    switch ( role )
     {
-    case 0:
+    case LabelRole:
         return locale.label();
-    case 1:
+    case EnglishLabelRole:
         return locale.englishLabel();
     default:
         return QVariant();
@@ -99,4 +99,11 @@ LocaleModel::find( const QLocale& locale ) const
     {
         return locale == l.locale();
     } );
+}
+
+void
+LocaleTwoColumnDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    QStyledItemDelegate::paint( painter, option, index );
+    option.widget->style()->drawItemText( painter, option.rect, Qt::AlignRight | Qt::AlignVCenter, option.palette, false, index.data( LocaleModel::EnglishLabelRole ).toString() );
 }

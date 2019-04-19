@@ -16,9 +16,9 @@ include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
 set( CHECKER_SOURCES
     checker/CheckerContainer.cpp
+    checker/GeneralRequirements.cpp
     checker/ResultWidget.cpp
     checker/ResultsListWidget.cpp
-    checker/GeneralRequirements.cpp
     ${PARTMAN_SRC}
 )
 

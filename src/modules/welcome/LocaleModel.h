@@ -20,8 +20,8 @@
 #define WELCOME_LOCALEMODEL_H
 
 #include <QAbstractListModel>
+#include <QStyledItemDelegate>
 #include <QVector>
-
 
 #include "utils/LocaleLabel.h"
 
@@ -29,6 +29,12 @@ class LocaleModel : public QAbstractListModel
 {
 public:
     using LocaleLabel = CalamaresUtils::LocaleLabel;
+
+    enum
+    {
+        LabelRole = Qt::DisplayRole,
+        EnglishLabelRole = Qt::UserRole + 1
+    };
 
     LocaleModel( const QStringList& locales, QObject* parent = nullptr );
     virtual ~LocaleModel() override;
@@ -54,6 +60,14 @@ public:
 
 private:
     QVector< LocaleLabel > m_locales;
+} ;
+
+class LocaleTwoColumnDelegate : public QStyledItemDelegate
+{
+public:
+    using QStyledItemDelegate::QStyledItemDelegate;
+
+    void paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const override;
 } ;
 
 #endif
