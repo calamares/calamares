@@ -187,6 +187,11 @@ public:
         return m_locale;
     }
 
+    QString LocaleLabel::name() const
+    {
+        return m_locale.name();
+    }
+
     /** @brief Get a Qt locale for the given @p localeName
      *
      * This special-cases `sr@latin`, which is used as a translation
