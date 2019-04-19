@@ -29,7 +29,7 @@ class LocaleModel : public QAbstractTableModel
 {
 public:
     using LocaleLabel = CalamaresUtils::LocaleLabel;
-    
+
     LocaleModel( const QStringList& locales, QObject* parent = nullptr );
     virtual ~LocaleModel() override;
 
@@ -39,18 +39,19 @@ public:
     QVariant data( const QModelIndex& index, int role ) const override;
 
     /** @brief Gets locale information for entry #n
-     * 
+     *
      * This is the backing data for the model; if @p row is out-of-range,
      * returns a reference to en_US.
      */
     const LocaleLabel& locale( int row );
-    
+
     /** @brief Searches for an item that matches @p predicate
-     * 
+     *
      * Returns the row number of the first match, or -1 if there isn't one.
      */
-    int find( std::function<bool(const QLocale&)> predicate) const;
-    int find( std::function<bool(const LocaleLabel&)> predicate) const;
+    int find( std::function<bool( const QLocale& )> predicate ) const;
+    int find( std::function<bool( const LocaleLabel& )> predicate ) const;
+    int find( const QLocale& ) const;
 
 private:
     QVector< LocaleLabel > m_locales;

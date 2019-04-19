@@ -18,7 +18,7 @@
 
 #include "LocaleModel.h"
 
-LocaleModel::LocaleModel(const QStringList& locales, QObject* parent)
+LocaleModel::LocaleModel( const QStringList& locales, QObject* parent )
     : QAbstractTableModel( parent )
 {
     Q_ASSERT( locales.count() > 0 );
@@ -56,17 +56,17 @@ LocaleModel::data( const QModelIndex& index, int role ) const
     const auto& locale = m_locales.at( index.row() );
     switch ( index.column() )
     {
-        case 0:
-            return locale.label();
-        case 1:
-            return locale.englishLabel();
-        default:
-            return QVariant();
+    case 0:
+        return locale.label();
+    case 1:
+        return locale.englishLabel();
+    default:
+        return QVariant();
     }
 }
 
-const CalamaresUtils::LocaleLabel& 
-LocaleModel::locale(int row)
+const CalamaresUtils::LocaleLabel&
+LocaleModel::locale( int row )
 {
     if ( ( row < 0 ) || ( row >= m_locales.count() ) )
     {
@@ -78,8 +78,8 @@ LocaleModel::locale(int row)
     return m_locales[row];
 }
 
-int 
-LocaleModel::find(std::function<bool (const LocaleLabel &)> predicate) const
+int
+LocaleModel::find( std::function<bool ( const LocaleLabel& )> predicate ) const
 {
     for ( int row = 0; row < m_locales.count() ; ++row )
     {
@@ -89,8 +89,20 @@ LocaleModel::find(std::function<bool (const LocaleLabel &)> predicate) const
     return -1;
 }
 
-int 
-LocaleModel::find(std::function<bool (const QLocale &)> predicate) const
+int
+LocaleModel::find( std::function<bool ( const QLocale& )> predicate ) const
 {
-    return find( [&]( const LocaleLabel& l ){ return predicate( l.locale() ); } );
+    return find( [&]( const LocaleLabel& l )
+    {
+        return predicate( l.locale() );
+    } );
+}
+
+int
+LocaleModel::find( const QLocale& locale ) const
+{
+    return find( [&]( const LocaleLabel& l )
+    {
+        return locale == l.locale();
+    } );
 }
