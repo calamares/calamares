@@ -19,13 +19,13 @@
 #ifndef WELCOME_LOCALEMODEL_H
 #define WELCOME_LOCALEMODEL_H
 
-#include <QAbstractTableModel>
+#include <QAbstractListModel>
 #include <QVector>
 
 
 #include "utils/LocaleLabel.h"
 
-class LocaleModel : public QAbstractTableModel
+class LocaleModel : public QAbstractListModel
 {
 public:
     using LocaleLabel = CalamaresUtils::LocaleLabel;
@@ -34,7 +34,6 @@ public:
     virtual ~LocaleModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
-    int columnCount( const QModelIndex& parent ) const override;
 
     QVariant data( const QModelIndex& index, int role ) const override;
 

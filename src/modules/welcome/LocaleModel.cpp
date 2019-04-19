@@ -19,7 +19,7 @@
 #include "LocaleModel.h"
 
 LocaleModel::LocaleModel( const QStringList& locales, QObject* parent )
-    : QAbstractTableModel( parent )
+    : QAbstractListModel( parent )
 {
     Q_ASSERT( locales.count() > 0 );
     m_locales.reserve( locales.count() );
@@ -30,12 +30,6 @@ LocaleModel::LocaleModel( const QStringList& locales, QObject* parent )
 
 LocaleModel::~LocaleModel()
 {
-}
-
-int
-LocaleModel::columnCount( const QModelIndex& ) const
-{
-    return 2;
 }
 
 int
