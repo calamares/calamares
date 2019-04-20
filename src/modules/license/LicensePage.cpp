@@ -41,6 +41,8 @@
 #include <QComboBox>
 #include <QMessageBox>
 
+#include <algorithm>
+
 const NamedEnumTable< LicenseEntry::Type >&
 LicenseEntry::typeNames()
 {
@@ -134,15 +136,7 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
 {
     CalamaresUtils::clearLayout( ui->licenseEntriesLayout );
 
-    bool required = false;
-    for ( const LicenseEntry& entry : entriesList )
-    {
-        if ( entry.m_required )
-        {
-            required = true;
-            break;
-        }
-    }
+    const bool required = std::any_of( entriesList.cbegin(), entriesList.cend(), []( const LicenseEntry& e ){ return e.m_required; });
 
     m_isNextEnabled = !required;
     nextStatusChanged( m_isNextEnabled );

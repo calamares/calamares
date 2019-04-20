@@ -51,6 +51,7 @@ struct LicenseEntry
     LicenseEntry( const LicenseEntry& ) = default;
 
     bool isValid() const { return !m_id.isEmpty(); }
+    bool isRequired() const { return m_required; }
 
     QString m_id;
     QString m_prettyName;
