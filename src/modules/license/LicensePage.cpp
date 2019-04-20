@@ -41,8 +41,8 @@
 #include <QComboBox>
 #include <QMessageBox>
 
-static const NamedEnumTable< LicenseEntry::Type >&
-typeNames()
+const NamedEnumTable< LicenseEntry::Type >&
+LicenseEntry::typeNames()
 {
     static const NamedEnumTable< LicenseEntry::Type > names{
         { QStringLiteral( "software" ), LicenseEntry::Type::Software},
@@ -61,15 +61,18 @@ LicenseEntry::LicenseEntry(const QVariantMap& conf)
     if ( !conf.contains( "id" ) || !conf.contains( "name" ) || !conf.contains( "url" ) )
         return;
 
-    id = conf[ "id" ].toString();
-    prettyName = conf[ "name" ].toString();
-    prettyVendor = conf.value( "vendor" ).toString();
-    url = QUrl( conf[ "url" ].toString() );
+    m_id = conf[ "id" ].toString();
+    m_prettyName = conf[ "name" ].toString();
+    m_prettyVendor = conf.value( "vendor" ).toString();
+    m_url = QUrl( conf[ "url" ].toString() );
 
-    required = CalamaresUtils::getBool( conf, "required", false );
+    m_required = CalamaresUtils::getBool( conf, "required", false );
 
     bool ok = false;
-    type = typeNames().find( conf.value( "type", "software" ).toString(), ok );
+    QString typeString = conf.value( "type", "software" ).toString();
+    m_type = typeNames().find( typeString, ok );
+    if ( !ok )
+        cWarning() << "License entry" << m_id << "has unknown type" << typeString << "(using 'software')";
 }
 
 LicensePage::LicensePage(QWidget *parent)
@@ -134,7 +137,7 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
     bool required = false;
     for ( const LicenseEntry& entry : entriesList )
     {
-        if ( entry.required )
+        if ( entry.m_required )
         {
             required = true;
             break;
@@ -187,45 +190,45 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
         label->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Minimum );
 
         QString productDescription;
-        switch ( entry.type )
+        switch ( entry.m_type )
         {
         case LicenseEntry::Type::Driver:
             //: %1 is an untranslatable product name, example: Creative Audigy driver
             productDescription = tr( "<strong>%1 driver</strong><br/>"
                                      "by %2" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
+                                 .arg( entry.m_prettyName )
+                                 .arg( entry.m_prettyVendor );
             break;
         case LicenseEntry::Type::GpuDriver:
             //: %1 is usually a vendor name, example: Nvidia graphics driver
             productDescription = tr( "<strong>%1 graphics driver</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
+                                 .arg( entry.m_prettyName )
+                                 .arg( entry.m_prettyVendor );
             break;
         case LicenseEntry::Type::BrowserPlugin:
             productDescription = tr( "<strong>%1 browser plugin</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
+                                 .arg( entry.m_prettyName )
+                                 .arg( entry.m_prettyVendor );
             break;
         case LicenseEntry::Type::Codec:
             productDescription = tr( "<strong>%1 codec</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
+                                 .arg( entry.m_prettyName )
+                                 .arg( entry.m_prettyVendor );
             break;
         case LicenseEntry::Type::Package:
             productDescription = tr( "<strong>%1 package</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
+                                 .arg( entry.m_prettyName )
+                                 .arg( entry.m_prettyVendor );
             break;
         case LicenseEntry::Type::Software:
             productDescription = tr( "<strong>%1</strong><br/>"
                                      "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
+                                 .arg( entry.m_prettyName )
+                                 .arg( entry.m_prettyVendor );
         }
         label->setText( productDescription );
 
@@ -235,7 +238,7 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
         viewLicenseLabel->setOpenExternalLinks( true );
         viewLicenseLabel->setAlignment( Qt::AlignVCenter | Qt::AlignRight );
         viewLicenseLabel->setText( tr( "<a href=\"%1\">view license agreement</a>" )
-                                   .arg( entry.url.toString() ) );
+                                   .arg( entry.m_url.toString() ) );
 
         ui->licenseEntriesLayout->addWidget( widget );
     }

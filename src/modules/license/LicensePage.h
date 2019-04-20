@@ -22,6 +22,8 @@
 #ifndef LICENSEPAGE_H
 #define LICENSEPAGE_H
 
+#include "utils/NamedEnum.h"
+
 #include <QWidget>
 #include <QUrl>
 
@@ -30,9 +32,8 @@ namespace Ui
 class LicensePage;
 }
 
-class LicenseEntry
+struct LicenseEntry
 {
-public:
     enum class Type
     {
         Software = 0,
@@ -43,17 +44,20 @@ public:
         Package
     };
 
+    /// @brief Lookup table for the enums
+    const NamedEnumTable< Type >& typeNames();
+
     LicenseEntry( const QVariantMap& conf );
     LicenseEntry( const LicenseEntry& ) = default;
 
-    bool isValid() const { return !id.isEmpty(); }
+    bool isValid() const { return !m_id.isEmpty(); }
 
-    QString id;
-    QString prettyName;
-    QString prettyVendor;
-    Type type;
-    QUrl url;
-    bool required;
+    QString m_id;
+    QString m_prettyName;
+    QString m_prettyVendor;
+    Type m_type;
+    QUrl m_url;
+    bool m_required;
 };
 
 class LicensePage : public QWidget
