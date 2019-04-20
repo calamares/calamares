@@ -5,6 +5,7 @@
 #
 #   Copyright 2016, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
+#   Copyright 2019, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -21,6 +22,17 @@
 
 import libcalamares
 import os.path
+
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Configuring encrypted swap.")
 
 
 def write_openswap_conf(partitions, root_mount_point, openswap_conf_path):
@@ -80,6 +92,4 @@ def run():
 
     openswap_conf_path = openswap_conf_path.lstrip('/')
 
-    return write_openswap_conf(
-        partitions, root_mount_point, openswap_conf_path
-        )
+    return write_openswap_conf(partitions, root_mount_point, openswap_conf_path)
