@@ -24,6 +24,7 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ * All of the Python-based modules now have translations enabled.
  * *Partition* module has additional checks for validity partition layouts.
    (Thanks to Arnaud)
  * *Welcome* module has improved usability: a standard icon
