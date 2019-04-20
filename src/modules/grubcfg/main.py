@@ -6,7 +6,7 @@
 #   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2017, Adriaan de Groot <groot@kde.org>
+#   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
 #   Copyright 2017-2018, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
@@ -25,6 +25,16 @@
 import libcalamares
 import os
 import re
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Configure GRUB.")
 
 
 def modify_grub_default(partitions, root_mount_point, distributor):

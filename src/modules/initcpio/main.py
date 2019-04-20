@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
+#   Copyright 2019, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -20,6 +21,16 @@
 
 import libcalamares
 from libcalamares.utils import check_target_env_call
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Creating initramfs with mkinitcpio.")
 
 
 def run_mkinitcpio():
