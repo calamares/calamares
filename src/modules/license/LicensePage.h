@@ -70,13 +70,31 @@ public:
     void setEntries( const QList< LicenseEntry >& entriesList );
 
     bool isNextEnabled() const;
+
+public slots:
+    /** @brief Check if the user can continue
+     *
+     * The user can continue if
+     *  - none of the licenses are required, or
+     *  - the user has ticked the "OK" box.
+     * This function calls updateGlobalStorage() as needed, and updates
+     * the appearance of the page as needed. @p checked indicates whether
+     * the checkbox has been ticked or not.
+     */
+    void checkAcceptance( bool checked );
+
 signals:
     void nextStatusChanged( bool status );
 
 private:
-    Ui::LicensePage* ui;
+    /** @brief Update the global storage "licenseAgree" key. */
+    void updateGlobalStorage( bool v );
 
     bool m_isNextEnabled;
+    bool m_allLicensesOptional;  //< all the licenses passed to setEntries are not-required
+
+    Ui::LicensePage* ui;
+
 };
 
 #endif //LICENSEPAGE_H

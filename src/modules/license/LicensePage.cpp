@@ -106,24 +106,9 @@ LicensePage::LicensePage(QWidget *parent)
                                     "padding: 2px; }" );
     ui->acceptFrame->layout()->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
 
-    connect( ui->acceptCheckBox, &QCheckBox::toggled,
-             this, [ this ]( bool checked )
-    {
-        Calamares::JobQueue::instance()->globalStorage()->insert( "licenseAgree", checked );
-        m_isNextEnabled = checked;
-        if ( !checked )
-        {
-            ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
-                                            "background-color: #fff8f8;"
-                                            "border-radius: 4px;"
-                                            "padding: 2px; }" );
-        }
-        else
-        {
-            ui->acceptFrame->setStyleSheet( "#acceptFrame { padding: 3px }" );
-        }
-        emit nextStatusChanged( checked );
-    } );
+    updateGlobalStorage( false );  // Have not agreed yet
+
+    connect( ui->acceptCheckBox, &QCheckBox::toggled, this, &LicensePage::checkAcceptance );
 
     CALAMARES_RETRANSLATE(
         ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) );
@@ -137,9 +122,12 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
     CalamaresUtils::clearLayout( ui->licenseEntriesLayout );
 
     const bool required = std::any_of( entriesList.cbegin(), entriesList.cend(), []( const LicenseEntry& e ){ return e.m_required; });
+    if ( entriesList.isEmpty() )
+        m_allLicensesOptional = true;
+    else
+        m_allLicensesOptional = !required;
 
-    m_isNextEnabled = !required;
-    nextStatusChanged( m_isNextEnabled );
+    checkAcceptance( false );
 
     CALAMARES_RETRANSLATE(
         if ( required )
@@ -244,4 +232,29 @@ bool
 LicensePage::isNextEnabled() const
 {
     return m_isNextEnabled;
+}
+
+void
+LicensePage::updateGlobalStorage( bool v )
+{
+    Calamares::JobQueue::instance()->globalStorage()->insert( "licenseAgree", v );
+}
+
+void LicensePage::checkAcceptance( bool checked )
+{
+    updateGlobalStorage( checked );
+
+    m_isNextEnabled = checked || m_allLicensesOptional;
+    if ( !m_isNextEnabled )
+    {
+        ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
+                                        "background-color: #fff8f8;"
+                                        "border-radius: 4px;"
+                                        "padding: 2px; }" );
+    }
+    else
+    {
+        ui->acceptFrame->setStyleSheet( "#acceptFrame { padding: 3px }" );
+    }
+    emit nextStatusChanged( checked );
 }
