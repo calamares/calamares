@@ -70,7 +70,7 @@ msgstr "Dateisysteme aushängen."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Auffüllen von Dateisystemen."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."

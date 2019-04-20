@@ -67,7 +67,7 @@ msgstr "파일 시스템 마운트를 해제합니다."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "파일 시스템을 채우는 중."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."

@@ -68,7 +68,7 @@ msgstr "ניתוק עיגון מערכות קבצים."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "מערכות הקבצים מתמלאות."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."

@@ -68,7 +68,7 @@ msgstr "Odmontiraj datotečne sustave."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Popunjavanje datotečnih sustava."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."
