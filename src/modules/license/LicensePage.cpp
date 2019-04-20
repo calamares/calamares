@@ -22,13 +22,16 @@
 #include "LicensePage.h"
 
 #include "ui_LicensePage.h"
+
 #include "JobQueue.h"
 #include "GlobalStorage.h"
-#include "utils/Logger.h"
+#include "ViewManager.h"
+
 #include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"
-#include "ViewManager.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -37,6 +40,21 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QMessageBox>
+
+static const NamedEnumTable< LicenseEntry::Type >&
+typeNames()
+{
+    static const NamedEnumTable< LicenseEntry::Type > names{
+        { QStringLiteral( "software" ), LicenseEntry::Type::Software},
+        { QStringLiteral( "driver" ), LicenseEntry::Type::Driver },
+        { QStringLiteral( "gpudriver" ), LicenseEntry::Type::GpuDriver },
+        { QStringLiteral( "browserplugin" ), LicenseEntry::Type::BrowserPlugin},
+        { QStringLiteral( "codec" ), LicenseEntry::Type::Codec },
+        { QStringLiteral( "package" ), LicenseEntry::Type::Package }
+    };
+
+    return names;
+}
 
 LicenseEntry::LicenseEntry(const QVariantMap& conf)
 {
@@ -50,19 +68,8 @@ LicenseEntry::LicenseEntry(const QVariantMap& conf)
 
     required = CalamaresUtils::getBool( conf, "required", false );
 
-    QString entryType = conf.value( "type", "software" ).toString();
-    if ( entryType == "driver" )
-        type =    LicenseEntry::Type::Driver;
-    else if ( entryType == "gpudriver" )
-        type =    LicenseEntry::Type::GpuDriver;
-    else if ( entryType == "browserplugin" )
-        type =    LicenseEntry::Type::BrowserPlugin;
-    else if ( entryType == "codec" )
-        type =    LicenseEntry::Type::Codec;
-    else if ( entryType == "package" )
-        type =    LicenseEntry::Type::Package;
-    else
-        type =    LicenseEntry::Type::Software;
+    bool ok = false;
+    type = typeNames().find( conf.value( "type", "software" ).toString(), ok );
 }
 
 LicensePage::LicensePage(QWidget *parent)
