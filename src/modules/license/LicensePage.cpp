@@ -121,6 +121,8 @@ void
 LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
 {
     CalamaresUtils::clearLayout( ui->licenseEntriesLayout );
+    m_entries.clear();
+    m_entries.reserve( entriesList.count() );
 
     const bool required = std::any_of( entriesList.cbegin(), entriesList.cend(), []( const LicenseEntry& e ){ return e.m_required; });
     if ( entriesList.isEmpty() )
@@ -153,11 +155,16 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
                 "be installed, and open source alternatives will be used instead." ) );
         }
         ui->retranslateUi( this );
+
+        for ( const auto& w : m_entries )
+            w->retranslateUi();
     )
 
     for ( const LicenseEntry& entry : entriesList )
     {
-        ui->licenseEntriesLayout->addWidget( new LicenseWidget( entry ) );
+        LicenseWidget* w = new LicenseWidget( entry );
+        ui->licenseEntriesLayout->addWidget( w );
+        m_entries.append( w );
     }
     ui->licenseEntriesLayout->addStretch();
 }

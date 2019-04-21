@@ -33,7 +33,11 @@ public:
     LicenseWidget( LicenseEntry e, QWidget* parent = nullptr );
     virtual ~LicenseWidget() override;
 
+    void retranslateUi();
+
 private:
     LicenseEntry m_entry;
+    QLabel *m_label;
+    QLabel *m_viewLicenseLabel;
 } ;
 #endif

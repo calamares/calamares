@@ -32,6 +32,8 @@ namespace Ui
 class LicensePage;
 }
 
+class LicenseWidget;
+
 struct LicenseEntry
 {
     enum class Type
@@ -94,7 +96,7 @@ private:
     bool m_allLicensesOptional;  //< all the licenses passed to setEntries are not-required
 
     Ui::LicensePage* ui;
-
+    QList< LicenseWidget* > m_entries;
 };
 
 #endif //LICENSEPAGE_H
