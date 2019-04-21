@@ -207,7 +207,7 @@ Settings::Settings( const QString& settingsFilePath,
             m_doChroot = !requireBool( config, "dont-chroot", false );
             m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
             m_disableCancel = requireBool( config, "disable-cancel", false );
-            m_dontCancel = requireBool( config, "dont-cancel", false );
+            m_dontCancel = requireBool( config, "disable-cancel-during-exec", false );
         }
         catch ( YAML::Exception& e )
         {

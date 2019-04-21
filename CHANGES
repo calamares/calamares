@@ -22,7 +22,9 @@ This release contains contributions from (alphabetically by first name):
 
  * Under-the-hood code cleanups in lots of parts of the core. Calamares now
    builds without warnings when Clang 8 is used.
-
+ * A new *disable-cancel-during-exec* setting provides more fine-grained
+   control than *disable-cancel* (which hides the button entirely).
+   
 ## Modules ##
 
  * All of the Python-based modules now have translations enabled.

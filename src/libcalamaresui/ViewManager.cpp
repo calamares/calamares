@@ -103,7 +103,6 @@ ViewManager::ViewManager( QObject* parent )
 
     if (Calamares::Settings::instance()->disableCancel())
         m_quit->setVisible( false );
-
 }
 
 
@@ -241,22 +240,24 @@ ViewManager::next()
     bool executing = false;
     if ( step->isAtEnd() )
     {
+        const auto const* settings = Calamares::Settings::instance();
+        
         // Special case when the user clicks next on the very last page in a view phase
         // and right before switching to an execution phase.
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
-        if ( Calamares::Settings::instance()->showPromptBeforeExecution() && stepNextWillExecute( m_steps, m_currentStep ) )
+        if ( settings->showPromptBeforeExecution() && stepNextWillExecute( m_steps, m_currentStep ) )
         {
-            QString title = Calamares::Settings::instance()->isSetupMode()
+            QString title = settings->isSetupMode()
                 ? tr( "Continue with setup?" )
                 : tr( "Continue with installation?" );
-            QString question = Calamares::Settings::instance()->isSetupMode()
+            QString question = settings->isSetupMode()
                 ? tr( "The %1 setup program is about to make changes to your "
                       "disk in order to set up %2.<br/><strong>You will not be able "
                       "to undo these changes.</strong>" )
                 : tr( "The %1 installer is about to make changes to your "
                       "disk in order to install %2.<br/><strong>You will not be able "
                       "to undo these changes.</strong>" );
-            QString confirm = Calamares::Settings::instance()->isSetupMode()
+            QString confirm = settings->isSetupMode()
                 ? tr( "&Set up now" )
                 : tr( "&Install now" );
 
@@ -283,9 +284,12 @@ ViewManager::next()
         {
             m_back->setEnabled( false );
             m_next->setEnabled( false );
-            if (Calamares::Settings::instance()->dontCancel())
-                m_quit->setEnabled( false );
+            // Enabled if there's nothing blocking it during exec
+            m_quit->setEnabled( !( settings->dontCancel() || settings->disableCancel() ) );
         }
+        else
+            // Enabled unless it's also hidden
+            m_quit->setEnabled( !settings->disableCancel() );
     }
     else
         step->next();
@@ -318,13 +322,16 @@ ViewManager::updateButtonLabels()
     {
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( complete );
-        if (Calamares::Settings::instance()->disableCancel())
-            m_quit->setVisible( true );
+        m_quit->setVisible( true );  // At end, always visible and enabled.
+        m_quit->setEnabled( true );
     }
     else
     {
-        if (Calamares::Settings::instance()->disableCancel())
+        if ( Calamares::Settings::instance()->disableCancel() )
+        {
             m_quit->setVisible( false );
+            m_quit->setEnabled( false );  // Can't be triggered through DBUS
+        }
         m_quit->setText( tr( "&Cancel" ) );
         m_quit->setToolTip( quit );
     }
