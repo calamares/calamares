@@ -98,9 +98,9 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
 QVariant
 ProgressTreeModel::headerData( int section, Qt::Orientation orientation, int role ) const
 {
-    Q_UNUSED( section );
-    Q_UNUSED( orientation );
-    Q_UNUSED( role );
+    Q_UNUSED( section )
+    Q_UNUSED( orientation )
+    Q_UNUSED( role )
 
     return QVariant();
 }

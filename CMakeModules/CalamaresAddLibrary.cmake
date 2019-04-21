@@ -44,6 +44,7 @@
 # flag (i.e. `-D`) so only state the name (optionally, also the value)
 # without a `-D` prefixed to it. Pass in a CMake list as needed.
 include( CMakeParseArguments )
+include( CalamaresAutomoc )
 
 function(calamares_add_library)
     # parse arguments (name needs to be saved before passing ARGN into the macro)
@@ -81,10 +82,8 @@ function(calamares_add_library)
         add_library(${target} SHARED ${LIBRARY_SOURCES})
     endif()
 
-    # definitions - can this be moved into set_target_properties below?
-    add_definitions(${QT_DEFINITIONS})
-    set_target_properties(${target} PROPERTIES AUTOMOC TRUE)
-
+    calamares_automoc(${target})
+    
     if(LIBRARY_EXPORT_MACRO)
         set_target_properties(${target} PROPERTIES COMPILE_DEFINITIONS ${LIBRARY_EXPORT_MACRO})
     endif()

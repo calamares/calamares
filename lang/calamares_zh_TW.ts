@@ -226,7 +226,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="78"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="305"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>取消安裝，不更改系統。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="166"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>設定失敗</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="191"/>
@@ -257,22 +257,22 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="249"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>繼續安裝？</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="251"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>%1 設定程式將在您的磁碟上做出變更以設定 %2。&lt;br/&gt;&lt;strong&gt;您將無法復原這些變更。&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="258"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>現在進行設定 (&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="299"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>設定 (&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
@@ -282,12 +282,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="302"/>
         <source>Setup is complete. Close the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>設定完成。關閉設定程式。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>取消設定？</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
@@ -298,7 +298,8 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="364"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>您真的想要取消目前的設定程序嗎？
+設定程式將會結束，所有變更都將會遺失。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="366"/>
@@ -391,7 +392,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="58"/>
         <source>%1 Setup Program</source>
-        <translation type="unfinished"/>
+        <translation>%1 設定程式</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="59"/>
@@ -1091,7 +1092,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
         <source>&lt;Restart checkbox tooltip&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1101,12 +1102,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;都完成了。&lt;/h1&gt;&lt;br/&gt;%1 已經在您的電腦上設定好了。&lt;br/&gt;您現在可能會想要開始使用您的新系統。</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="59"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;當這個勾選框被選取時，您的系統將會在按下&lt;span style=&quot;font-style:italic;&quot;&gt;完成&lt;/span&gt;或關閉設定程式時立刻重新啟動。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="67"/>
@@ -1116,12 +1117,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="73"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;當這個勾選框被選取時，您的系統將會在按下&lt;span style=&quot;font-style:italic;&quot;&gt;完成&lt;/span&gt;或關閉安裝程式時立刻重新啟動。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="132"/>
         <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;設定失敗&lt;/h1&gt;&lt;br/&gt;%1 並未在您的電腦設定好。&lt;br/&gt;錯誤訊息為：%2。</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="138"/>
@@ -1139,7 +1140,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="115"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>設定完成</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="116"/>
@@ -1149,7 +1150,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>%1 的設定完成。</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="119"/>
@@ -1225,7 +1226,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="142"/>
         <source>The setup program is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>設定程式並未以管理員權限執行。</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="143"/>
@@ -1235,7 +1236,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="152"/>
         <source>The screen is too small to display the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>螢幕太小了，沒辦法顯示設定程式。</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="153"/>
@@ -2077,7 +2078,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="70"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-        <translation type="unfinished"/>
+        <translation>請為 KDE Plasma 桌面選擇外觀與感覺。您也可以跳過此步驟並在系統設定好之後再設定。在外觀與感覺小節點按將會給您特定外觀與感覺的即時預覽。</translation>
     </message>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="76"/>
@@ -2455,7 +2456,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>此電腦未滿足安裝 %1 的最低配備。&lt;br/&gt;設定無法繼續。&lt;a href=&quot;#details&quot;&gt;詳細資訊...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
@@ -2465,7 +2466,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
         <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>此電腦未滿足一些安裝 %1 的推薦需求。&lt;br/&gt;設定可以繼續，但部份功能可能會被停用。</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
@@ -2747,7 +2748,7 @@ Output:
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="52"/>
         <source>This is an overview of what will happen once you start the setup procedure.</source>
-        <translation type="unfinished"/>
+        <translation>這是您開始安裝後所會發生的事的概覽。</translation>
     </message>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="55"/>
@@ -2871,12 +2872,12 @@ Output:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="115"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;如果將會有多於一人使用這臺電腦，您可以在安裝後設定多個帳號。&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="121"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;如果將會有多於一人使用這臺電腦，您可以在安裝後設定多個帳號。&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="312"/>
@@ -3016,17 +3017,17 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
         <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;歡迎使用 %1 的 Calamares 安裝程式。&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="71"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;歡迎使用 %1 安裝程式。&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="89"/>
         <source>About %1 setup</source>
-        <translation type="unfinished"/>
+        <translation>關於 %1 安裝程式</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="90"/>

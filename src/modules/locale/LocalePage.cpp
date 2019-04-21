@@ -19,22 +19,24 @@
 
 #include "LocalePage.h"
 
-#include "timezonewidget/timezonewidget.h"
 #include "SetTimezoneJob.h"
-#include "utils/CalamaresUtilsGui.h"
-#include "utils/Logger.h"
-#include "utils/Retranslator.h"
+#include "timezonewidget/timezonewidget.h"
+
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "LCLocaleDialog.h"
 #include "Settings.h"
+
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/LocaleLabel.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
 
 #include <QBoxLayout>
 #include <QComboBox>
 #include <QLabel>
 #include <QPushButton>
 #include <QProcess>
-
 
 LocalePage::LocalePage( QWidget* parent )
     : QWidget( parent )
@@ -101,7 +103,7 @@ LocalePage::LocalePage( QWidget* parent )
              static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
              [this]( int currentIndex )
     {
-        Q_UNUSED( currentIndex );
+        Q_UNUSED( currentIndex )
         QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
         if ( !regions.contains( m_regionCombo->currentData().toString() ) )
             return;

@@ -64,10 +64,10 @@ namespace Choices
         quint64 requiredSpaceB;  // estimated required space for root partition
         SwapChoice swap;
 
-        AutoPartitionOptions( const QString& fs, const QString& luks, const QString& efi, qint64 r, SwapChoice s )
+        AutoPartitionOptions( const QString& fs, const QString& luks, const QString& efi, qint64 requiredBytes, SwapChoice s )
             : ReplacePartitionOptions( fs, luks )
             , efiPartitionMountPoint( efi )
-            , requiredSpaceB( r > 0 ? r : 0 )
+            , requiredSpaceB( requiredBytes > 0 ? static_cast<quint64>( requiredBytes ) : 0 )
             , swap( s )
         {
         }

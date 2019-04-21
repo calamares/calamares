@@ -226,7 +226,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="78"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="305"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>ביטול ההתקנה ללא שינוי המערכת.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="166"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>ההתקנה נכשלה</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="191"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="249"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>להמשיך בהתקנה?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="251"/>
@@ -282,12 +282,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="302"/>
         <source>Setup is complete. Close the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>ההתקנה הושלמה. נא לסגור את תכנית ההתקנה.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>לבטל את ההתקנה?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
@@ -298,7 +298,8 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="364"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>לבטל את תהליך ההתקנה הנוכחי?
+תכנית ההתקנה תצא וכל השינויים יאבדו.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="366"/>
@@ -391,7 +392,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="58"/>
         <source>%1 Setup Program</source>
-        <translation type="unfinished"/>
+        <translation>תכנית התקנת %1</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="59"/>

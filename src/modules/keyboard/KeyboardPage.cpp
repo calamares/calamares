@@ -216,12 +216,12 @@ QString
 KeyboardPage::prettyStatus() const
 {
     QString status;
-    status += tr( "Set keyboard model to %1.<br/>" )
-              .arg( ui->comboBoxModel->currentText() );
-    status += tr( "Set keyboard layout to %1/%2." )
-              .arg( ui->listLayout->currentIndex().data().toString() )
-              .arg( ui->listVariant->currentItem()->text() );
-
+    status += tr( "Set keyboard model to %1.<br/>" ).arg( ui->comboBoxModel->currentText() );
+              
+    QString layout = ui->listLayout->currentIndex().data().toString();
+    QString variant = ui->listVariant->currentItem() ? ui->listVariant->currentItem()->text() : QString( "<default>" );
+    status += tr( "Set keyboard layout to %1/%2." ).arg( layout, variant );
+    
     return status;
 }
 
@@ -436,7 +436,7 @@ void
 KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current,
         const QModelIndex& previous )
 {
-    Q_UNUSED( previous );
+    Q_UNUSED( previous )
     if ( !current.isValid() )
         return;
 
@@ -446,9 +446,9 @@ KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current,
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p layout and @p variant.
  */
-static inline QStringList xkbmap_args( QStringList&& r, const QString& layout, const QString& variant )
+static inline QStringList xkbmap_args( const QString& layout, const QString& variant )
 {
-    r << "-layout" << layout;
+    QStringList r{ "-layout", layout };
     if ( !variant.isEmpty() )
         r << "-variant" << variant;
     return r;
@@ -457,7 +457,7 @@ static inline QStringList xkbmap_args( QStringList&& r, const QString& layout, c
 void
 KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
 {
-    Q_UNUSED( previous );
+    Q_UNUSED( previous )
 
     QPersistentModelIndex layoutIndex = ui->listLayout->currentIndex();
     LayoutItem* variantItem = dynamic_cast< LayoutItem* >( current );
@@ -483,7 +483,7 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
     connect( &m_setxkbmapTimer, &QTimer::timeout,
              this, [=]
     {
-        QProcess::execute( "setxkbmap", xkbmap_args( QStringList(), layout, variant ) );
+        QProcess::execute( "setxkbmap", xkbmap_args( layout, variant ) );
         cDebug() << "xkbmap selection changed to: " << layout << '-' << variant;
         m_setxkbmapTimer.disconnect( this );
     } );

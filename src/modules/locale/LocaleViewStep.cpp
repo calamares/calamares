@@ -42,8 +42,6 @@
 #include <QNetworkReply>
 #include <QtConcurrent/QtConcurrentRun>
 
-#include <yaml-cpp/yaml.h>
-
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleViewStepFactory, registerPlugin<LocaleViewStep>(); )
 

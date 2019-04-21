@@ -51,5 +51,5 @@ if( ECM_FOUND AND BUILD_TESTING )
             Qt5::Test
             ${CRYPT_LIBRARIES}
     )
-    set_target_properties( passwordtest PROPERTIES AUTOMOC TRUE )
+    calamares_automoc( passwordtest )
 endif()

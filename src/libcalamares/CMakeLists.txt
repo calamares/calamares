@@ -23,6 +23,7 @@ set( utilsSources
     utils/CalamaresUtils.cpp
     utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
+    utils/LocaleLabel.cpp
     utils/Logger.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
@@ -84,10 +85,10 @@ endif()
 add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} )
 set_target_properties( calamares
     PROPERTIES
-        AUTOMOC TRUE
         VERSION ${CALAMARES_VERSION_SHORT}
         SOVERSION ${CALAMARES_VERSION_SHORT}
 )
+calamares_automoc( calamares )
 
 target_link_libraries( calamares
     LINK_PRIVATE
@@ -114,7 +115,7 @@ if ( ECM_FOUND AND BUILD_TESTING )
             Qt5::Core
             Qt5::Test
     )
-    set_target_properties( libcalamarestest PROPERTIES AUTOMOC TRUE )
+    calamares_automoc( libcalamarestest )
 endif()
 
 # Make symlink lib/calamares/libcalamares.so to lib/libcalamares.so.VERSION so

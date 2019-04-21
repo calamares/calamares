@@ -43,6 +43,216 @@
 namespace PartUtils
 {
 
+static const NamedEnumTable<SizeUnit>&
+unitSuffixes()
+{
+    static const NamedEnumTable<SizeUnit> names{
+        { QStringLiteral( "%" ), SizeUnit::Percent },
+        { QStringLiteral( "B" ), SizeUnit::Byte },
+        { QStringLiteral( "K" ), SizeUnit::KiB },
+        { QStringLiteral( "M" ), SizeUnit::MiB },
+        { QStringLiteral( "G" ), SizeUnit::GiB }
+    };
+
+    return names;
+}
+
+PartSize::PartSize( const QString& s )
+    : NamedSuffix( unitSuffixes(), s )
+{
+    if ( ( unit() == SizeUnit::Percent ) && ( value() > 100 || value() < 0 ) )
+    {
+        cDebug() << "Percent value" << value() << "is not valid.";
+        m_value = 0;
+    }
+
+    if ( m_unit == SizeUnit::None )
+    {
+        m_value = s.toInt();
+        if ( m_value > 0 )
+            m_unit = SizeUnit::Byte;
+    }
+
+    if ( m_value <= 0 )
+    {
+        m_value = 0;
+        m_unit = SizeUnit::None;
+    }
+}
+
+qint64
+PartSize::toSectors( qint64 totalSectors, qint64 sectorSize ) const
+{
+    if ( !isValid() )
+        return -1;
+    if ( totalSectors < 1 || sectorSize < 1 )
+        return -1;
+
+    switch ( m_unit )
+    {
+    case unit_t::None:
+        return -1;
+    case unit_t::Percent:
+        if ( value() == 100 )
+            return totalSectors;  // Common-case, avoid futzing around
+        else
+            return totalSectors * value() / 100;
+    case unit_t::Byte:
+    case unit_t::KiB:
+    case unit_t::MiB:
+    case unit_t::GiB:
+        return bytesToSectors ( toBytes(), sectorSize );
+    }
+
+    return -1;
+}
+
+qint64
+PartSize::toBytes( qint64 totalSectors, qint64 sectorSize ) const
+{
+    if ( !isValid() )
+        return -1;
+
+    switch ( m_unit )
+    {
+    case unit_t::None:
+        return -1;
+    case unit_t::Percent:
+        if ( totalSectors < 1 || sectorSize < 1 )
+            return -1;
+        if ( value() == 100 )
+            return totalSectors * sectorSize;  // Common-case, avoid futzing around
+        else
+            return totalSectors * value() / 100;
+    case unit_t::Byte:
+    case unit_t::KiB:
+    case unit_t::MiB:
+    case unit_t::GiB:
+        return toBytes();
+    }
+
+    // notreached
+    return -1;
+}
+
+qint64
+PartSize::toBytes( qint64 totalBytes ) const
+{
+    if ( !isValid() )
+        return -1;
+
+    switch ( m_unit )
+    {
+    case unit_t::None:
+        return -1;
+    case unit_t::Percent:
+        if ( totalBytes < 1 )
+            return -1;
+        if ( value() == 100 )
+            return totalBytes;  // Common-case, avoid futzing around
+        else
+            return totalBytes * value() / 100;
+    case unit_t::Byte:
+    case unit_t::KiB:
+    case unit_t::MiB:
+    case unit_t::GiB:
+        return toBytes();
+    }
+
+    // notreached
+    return -1;
+}
+
+qint64
+PartSize::toBytes() const
+{
+    if ( !isValid() )
+        return -1;
+
+    switch ( m_unit )
+    {
+    case unit_t::Byte:
+        return value();
+    case unit_t::KiB:
+        return CalamaresUtils::KiBtoBytes( static_cast<unsigned long long>( value() ) );
+    case unit_t::MiB:
+        return CalamaresUtils::MiBtoBytes( static_cast<unsigned long long>( value() ) );
+    case unit_t::GiB:
+        return CalamaresUtils::GiBtoBytes( static_cast<unsigned long long>( value() ) );
+    default:
+        break;
+    }
+
+    // Reached only when unit is Percent or None
+    return -1;
+}
+
+bool
+PartSize::operator< ( const PartSize& other ) const
+{
+    if ( ( m_unit == SizeUnit::None || other.m_unit == SizeUnit::None ) ||
+         ( m_unit == SizeUnit::Percent && other.m_unit != SizeUnit::Percent ) ||
+         ( m_unit != SizeUnit::Percent && other.m_unit == SizeUnit::Percent ) )
+        return false;
+
+    switch ( m_unit )
+    {
+    case SizeUnit::Percent:
+        return ( m_value < other.m_value );
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
+        return ( toBytes() < other.toBytes () );
+    }
+
+    return false;
+}
+
+bool
+PartSize::operator> ( const PartSize& other ) const
+{
+    if ( ( m_unit == SizeUnit::None || other.m_unit == SizeUnit::None ) ||
+         ( m_unit == SizeUnit::Percent && other.m_unit != SizeUnit::Percent ) ||
+         ( m_unit != SizeUnit::Percent && other.m_unit == SizeUnit::Percent ) )
+        return false;
+
+    switch ( m_unit )
+    {
+    case SizeUnit::Percent:
+        return ( m_value > other.m_value );
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
+        return ( toBytes() > other.toBytes () );
+    }
+
+    return false;
+}
+
+bool
+PartSize::operator== ( const PartSize& other ) const
+{
+    if ( ( m_unit == SizeUnit::None || other.m_unit == SizeUnit::None ) ||
+         ( m_unit == SizeUnit::Percent && other.m_unit != SizeUnit::Percent ) ||
+         ( m_unit != SizeUnit::Percent && other.m_unit == SizeUnit::Percent ) )
+        return false;
+
+    switch ( m_unit )
+    {
+    case SizeUnit::Percent:
+        return ( m_value == other.m_value );
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
+        return ( toBytes() == other.toBytes () );
+    }
+
+    return false;
+}
+
 QString
 convenienceName( const Partition* const candidate )
 {
@@ -163,14 +373,14 @@ canBeResized( Partition* candidate )
     }
     else if ( ok )
     {
-        auto deb = cDebug();
+        Logger::CDebug deb;
         deb << Logger::SubEntry << "NO, insufficient storage";
         deb << Logger::Continuation << "Required  storage B:" << advisedStorageB
                 << QString( "(%1GB)" ).arg( advisedStorageGB );
         deb << Logger::Continuation << "Available storage B:" << availableStorageB
                 << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
-                << "for" << convenienceName( candidate ) << "   length:" << candidate->length()
-                << "   sectorsUsed:" << candidate->sectorsUsed() << "   fsType:" << candidate->fileSystem().name();
+                << "for" << convenienceName( candidate ) << "length:" << candidate->length()
+                << "sectorsUsed:" << candidate->sectorsUsed() << "fsType:" << candidate->fileSystem().name();
         return false;
     }
     else
@@ -482,99 +692,6 @@ findFS( QString fsName, FileSystem::Type* fsType )
     }
 #endif
     return fsName;
-}
-
-static qint64
-sizeToBytes( double size, SizeUnit unit, qint64 totalSize )
-{
-    qint64 bytes;
-
-    switch ( unit )
-    {
-    case SizeUnit::Percent:
-        bytes = qint64( static_cast<double>( totalSize ) * size / 100.0L );
-        break;
-    case SizeUnit::KiB:
-        bytes = CalamaresUtils::KiBtoBytes(size);
-        break;
-    case SizeUnit::MiB:
-        bytes = CalamaresUtils::MiBtoBytes(size);
-        break;
-    case SizeUnit::GiB:
-        bytes = CalamaresUtils::GiBtoBytes(size);
-        break;
-    default:
-        bytes = size;
-        break;
-    }
-
-    return bytes;
-}
-
-double
-parseSizeString( const QString& sizeString, SizeUnit* unit )
-{
-    double value;
-    bool ok;
-    QString valueString;
-    QString unitString;
-
-    QRegExp rx( "[KkMmGg%]" );
-    int pos = rx.indexIn( sizeString );
-    if (pos > 0)
-    {
-        valueString = sizeString.mid( 0, pos );
-        unitString = sizeString.mid( pos );
-    }
-    else
-        valueString = sizeString;
-
-    value = valueString.toDouble( &ok );
-    if ( !ok )
-    {
-        /*
-         * In case the conversion fails, a size of 100% allows a few cases to pass
-         * anyway (e.g. when it is the last partition of the layout)
-         */
-        *unit = SizeUnit::Percent;
-        return 100.0L;
-    }
-
-    if ( unitString.length() > 0 )
-    {
-        if ( unitString.at(0) == '%' )
-            *unit = SizeUnit::Percent;
-        else if ( unitString.at(0).toUpper() == 'K' )
-            *unit = SizeUnit::KiB;
-        else if ( unitString.at(0).toUpper() == 'M' )
-            *unit = SizeUnit::MiB;
-        else if ( unitString.at(0).toUpper() == 'G' )
-            *unit = SizeUnit::GiB;
-        else
-            *unit = SizeUnit::Byte;
-    }
-    else
-    {
-        *unit = SizeUnit::Byte;
-    }
-
-    return value;
-}
-
-qint64
-parseSizeString( const QString& sizeString, qint64 totalSize )
-{
-    SizeUnit unit;
-    double value = parseSizeString( sizeString, &unit );
-
-    return sizeToBytes( value, unit, totalSize );
-}
-
-qint64
-sizeToSectors( double size, SizeUnit unit, qint64 totalSectors, qint64 logicalSize )
-{
-    qint64 bytes = sizeToBytes( size, unit, totalSectors * logicalSize );
-    return bytesToSectors( static_cast<unsigned long long>( bytes ), logicalSize );
 }
 
 }  // nmamespace PartUtils

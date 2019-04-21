@@ -226,7 +226,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="78"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="305"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Zrušenie inštalácie bez zmien v systéme.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="166"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>Inštalácia zlyhala</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="191"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="249"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>Pokračovať v inštalácii?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="251"/>
@@ -287,7 +287,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>Zrušiť inštaláciu?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
@@ -298,7 +298,8 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="364"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Naozaj chcete zrušiť aktuálny priebeh inštalácie?
+Inštalačný program bude ukončený a zmeny budú stratené.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="366"/>
@@ -1139,7 +1140,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="115"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>Inštalácia dokončená</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="116"/>
@@ -1149,7 +1150,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>Inštalácia distribúcie %1 je dokončená.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="119"/>

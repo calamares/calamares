@@ -278,7 +278,7 @@ bool
 GeneralRequirements::checkEnoughStorage( qint64 requiredSpace )
 {
 #ifdef WITHOUT_LIBPARTED
-    Q_UNUSED( requiredSpace );
+    Q_UNUSED( requiredSpace )
     cWarning() << "GeneralRequirements is configured without libparted.";
     return false;
 #else

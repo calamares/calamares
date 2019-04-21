@@ -257,12 +257,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="249"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>¿Siguir cola instalación?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="251"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>El programa d&apos;instalación de %1 ta a piques de facer cambeos nel discu pa configurar %2.&lt;br/&gt;&lt;strong&gt;Nun vas ser a desfacer estos cambeos.&lt;strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="258"/>
@@ -298,7 +298,8 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="364"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>¿De xuru que quies encaboxar el procesu actual de configuración?
+El programa de configuración va colar y van perdese tolos cambeos.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="366"/>
@@ -1091,7 +1092,7 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
         <source>&lt;Restart checkbox tooltip&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1139,7 +1140,7 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="115"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>Configuración completada</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="116"/>
@@ -1149,7 +1150,7 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>La configuración de %1 ta completada.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="119"/>
@@ -1235,7 +1236,7 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="152"/>
         <source>The screen is too small to display the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>La pantalla ye mui pequeña como p&apos;amosar el programa de configuración.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="153"/>
@@ -2455,7 +2456,7 @@ Salida:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Esti ordenador nun satisfaz dalgún de los requirimientos mínimos pa configurar %1.&lt;br/&gt;La configuración nun pue siguir. &lt;a href=&quot;#details&quot;&gt;Detalles...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
@@ -2465,7 +2466,7 @@ Salida:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
         <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Esti ordenador nun satisfaz dalgún de los requirimientos aconseyaos pa configurar %1.&lt;br/&gt;La configuración pue siguir pero dalgunes carauterístiques podríen desactivase.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
@@ -2871,12 +2872,12 @@ Salida:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="115"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Si va usar l&apos;ordenador más d&apos;una persona, pues crear más cuentes tres la configuración.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="121"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Si va usar l&apos;ordenador más d&apos;una persona, pues crear más cuentes tres la instalación.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="312"/>
@@ -3016,17 +3017,17 @@ Salida:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
         <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Afáyate nel programa de configuración de Calamares pa %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="71"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Afáyate na configuración de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="89"/>
         <source>About %1 setup</source>
-        <translation type="unfinished"/>
+        <translation>Tocante a la configuración de %1</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="90"/>

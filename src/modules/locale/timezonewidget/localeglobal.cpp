@@ -148,18 +148,18 @@ LocaleGlobal::initLocations() {
             continue;
 
         Location location;
-        QStringList timezone = list.at(2).split('/', QString::SkipEmptyParts);
+        QStringList timezoneParts = list.at(2).split('/', QString::SkipEmptyParts);
         int cooSplitPos = QString(list.at(1)).remove(0, 1).indexOf(QRegExp("[-+]")) + 1;
 
-        if (timezone.size() < 2)
+        if (timezoneParts.size() < 2)
             continue;
 
         QString countryCode = list.at(0).trimmed();
         if (countryCode.size() != 2)
             continue;
 
-        location.region = timezone.takeFirst();
-        location.zone = timezone.join( '/' );
+        location.region = timezoneParts.takeFirst();
+        location.zone = timezoneParts.join( '/' );
         location.latitude = getRightGeoLocation(list.at(1).mid(0, cooSplitPos));
         location.longitude = getRightGeoLocation(list.at(1).mid(cooSplitPos));
         location.country = countryCode;

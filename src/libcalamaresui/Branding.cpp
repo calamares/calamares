@@ -32,9 +32,6 @@
 #include <QPixmap>
 #include <QVariantMap>
 
-#include <yaml-cpp/yaml.h>
-
-
 namespace Calamares
 {
 

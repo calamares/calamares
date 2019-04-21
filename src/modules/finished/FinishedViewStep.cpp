@@ -148,8 +148,8 @@ FinishedViewStep::jobs() const
 void
 FinishedViewStep::onInstallationFailed( const QString& message, const QString& details )
 {
-    Q_UNUSED( message );
-    Q_UNUSED( details );
+    Q_UNUSED( message )
+    Q_UNUSED( details )
     installFailed = true;
 }
 

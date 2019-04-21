@@ -99,11 +99,9 @@ log( const char* msg, unsigned int debugLevel )
 
 
 static void
-CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg )
+CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& msg )
 {
     static QMutex s_mutex;
-
-    Q_UNUSED( context );
 
     QByteArray ba = msg.toUtf8();
     const char* message = ba.constData();

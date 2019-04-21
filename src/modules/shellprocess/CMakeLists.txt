@@ -20,5 +20,5 @@ if( ECM_FOUND AND BUILD_TESTING )
             Qt5::Core
             Qt5::Test
     )
-    set_target_properties( shellprocesstest PROPERTIES AUTOMOC TRUE )
+    calamares_automoc( shellprocesstest )
 endif()

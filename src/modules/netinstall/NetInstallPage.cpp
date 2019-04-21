@@ -36,8 +36,6 @@
 
 #include <QHeaderView>
 
-#include <yaml-cpp/yaml.h>
-
 using CalamaresUtils::yamlToVariant;
 
 NetInstallPage::NetInstallPage( QWidget* parent )

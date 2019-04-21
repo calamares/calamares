@@ -3,17 +3,39 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.6 (unreleased) #
+# 3.2.7 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - Dominic Hayes (feren)
 
 ## Core ##
 
 ## Modules ##
 
 
-# 3.2.5 (unreleased) #
+# 3.2.6 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - Arnaud Ferraris
+ - Dominic Hayes (feren)
+
+## Core ##
+
+ * Under-the-hood code cleanups in lots of parts of the core. Calamares now
+   builds without warnings when Clang 8 is used.
+
+## Modules ##
+
+ * All of the Python-based modules now have translations enabled.
+ * *Displaymanager* module has improved support for LightDM configuration.
+   (Thanks to Dominic, FerenOS)
+ * *Partition* module has additional checks for validity partition layouts.
+   (Thanks to Arnaud)
+ * *Welcome* module has improved usability: a standard icon
+   alongside the *Language* label, for improved recognition,
+   and improved language-list display and sorting. #1107
+
+
+# 3.2.5 (2019-04-15) #
 
 This release contains contributions from (alphabetically by first name):
  - Arnaud Ferraris
@@ -60,7 +82,7 @@ This release contains contributions from (alphabetically by first name):
  - Alf Gaida
  - aliveafter1000
  - Arnaud Ferraris
- - Caio Carvalho
+ - Caio Jordão Carvalho
  - Collabora LTD
  - Gabriel Craciunescu
  - Kevin Kofler
@@ -146,7 +168,7 @@ There are no core changes in this release.
 This release contains contributions from (alphabetically by first name):
  - Andrius Štikonas
  - artoo@cromnix.org
- - Caio Carvalho
+ - Caio Jordão Carvalho
  - Harald Sitter
  - Philip Müller
  - Simon Quigley
@@ -246,7 +268,7 @@ This release contains contributions from (alphabetically by first name):
 This release contains contributions from (alphabetically by first name):
  - Alf Gaida
  - AlmAck
- - Caio Carvalho
+ - Caio Jordão Carvalho
  - Frede H
 
 ## Modules ##

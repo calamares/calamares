@@ -16,9 +16,9 @@ include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
 set( CHECKER_SOURCES
     checker/CheckerContainer.cpp
+    checker/GeneralRequirements.cpp
     checker/ResultWidget.cpp
     checker/ResultsListWidget.cpp
-    checker/GeneralRequirements.cpp
     ${PARTMAN_SRC}
 )
 
@@ -27,10 +27,13 @@ calamares_add_plugin( welcome
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         ${CHECKER_SOURCES}
+        LocaleModel.cpp
         WelcomeViewStep.cpp
         WelcomePage.cpp
     UI
         WelcomePage.ui
+    RESOURCES
+        welcome.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
         ${CHECKER_LINK_LIBRARIES}

@@ -66,7 +66,7 @@ msgstr "解除掛載檔案系統。"
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "填滿檔案系統。"
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."

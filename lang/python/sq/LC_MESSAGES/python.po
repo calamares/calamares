@@ -68,7 +68,7 @@ msgstr "Çmontoni sisteme kartelash."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Po mbushen sisteme kartelash."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."

@@ -65,7 +65,7 @@ PartitionModel::init( Device* device , const OsproberEntryList& osproberEntries 
 }
 
 int
-PartitionModel::columnCount( const QModelIndex& parent ) const
+PartitionModel::columnCount( const QModelIndex& ) const
 {
     return ColumnCount;
 }
@@ -247,7 +247,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
 }
 
 QVariant
-PartitionModel::headerData( int section, Qt::Orientation orientation, int role ) const
+PartitionModel::headerData( int section, Qt::Orientation, int role ) const
 {
     if ( role != Qt::DisplayRole )
         return QVariant();

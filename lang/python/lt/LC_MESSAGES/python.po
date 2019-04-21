@@ -68,7 +68,7 @@ msgstr "Atjungti failų sistemas."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Užpildomos failų sistemos."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."

@@ -34,7 +34,7 @@ public:
     explicit KDSingleApplicationGuard( QObject * parent=nullptr );
     explicit KDSingleApplicationGuard( Policy policy, QObject * parent=nullptr );
     explicit KDSingleApplicationGuard( const QStringList & arguments, QObject * parent=nullptr );
-    explicit KDSingleApplicationGuard( const QStringList & arguments, Policy policy, QObject * parent=0 );
+    explicit KDSingleApplicationGuard( const QStringList & arguments, Policy policy, QObject * parent=nullptr );
     ~KDSingleApplicationGuard();
 
     bool isOperational() const;

@@ -5,7 +5,7 @@
 #
 #   Copyright 2016, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2017, Adriaan de Groot <groot@kde.org>
+#   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -21,8 +21,18 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
-
 from libcalamares.utils import check_target_env_call
+
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Configuring LUKS key file.")
 
 
 def run():
@@ -54,10 +64,10 @@ def run():
         return None
 
     if not luks_root_passphrase:
+        libcalamares.utils.debug("No LUKS passphrase, root {!s}".format(luks_root_device))
         return (
-            "Encrypted rootfs setup error",
-            "Rootfs partition {!s} is LUKS but no passphrase found."
-            .format(luks_root_device))
+            _("Encrypted rootfs setup error"),
+            _("Rootfs partition {!s} is LUKS but no passphrase found.").format(luks_root_device))
 
     # Generate random keyfile
     check_target_env_call(["dd",

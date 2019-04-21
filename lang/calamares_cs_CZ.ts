@@ -226,7 +226,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="78"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="305"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Zrušit nastavení bez změny v systému.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="166"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení se nezdařilo</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="191"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="249"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>Pokračovat v instalaci?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="251"/>
@@ -267,12 +267,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="258"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>Na&amp;stavit nyní</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="299"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>Na&amp;stavit</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
@@ -282,12 +282,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="302"/>
         <source>Setup is complete. Close the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení je dokončeno. Ukončete nastavovací program.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>Zrušit nastavování?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
@@ -1091,7 +1091,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
         <source>&lt;Restart checkbox tooltip&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1139,7 +1139,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="115"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení dokončeno</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="116"/>
@@ -1149,7 +1149,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení %1 je dokončeno.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="119"/>
@@ -1225,7 +1225,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="142"/>
         <source>The setup program is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>Nastavovací program není spuštěn s právy správce systému.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="143"/>
@@ -1235,7 +1235,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="152"/>
         <source>The screen is too small to display the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>Rozlišení obrazovky je příliš malé pro zobrazení nastavovacího programu.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="153"/>
@@ -3026,7 +3026,7 @@ Výstup:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="89"/>
         <source>About %1 setup</source>
-        <translation type="unfinished"/>
+        <translation>O nastavování %1</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="90"/>
