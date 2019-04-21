@@ -54,6 +54,7 @@ struct LicenseEntry
 
     bool isValid() const { return !m_id.isEmpty(); }
     bool isRequired() const { return m_required; }
+    bool isLocal() const;
 
     QString m_id;
     QString m_prettyName;

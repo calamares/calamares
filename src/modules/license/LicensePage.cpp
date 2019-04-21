@@ -78,6 +78,14 @@ LicenseEntry::LicenseEntry(const QVariantMap& conf)
         cWarning() << "License entry" << m_id << "has unknown type" << typeString << "(using 'software')";
 }
 
+bool
+LicenseEntry::isLocal() const
+{
+    return ( m_url.scheme() == "file" ) &&
+        ( []( const QString&& r ){ return r.endsWith( ".html" ) || r.endsWith( ".txt" ); }( m_url.toString() ) );
+}
+
+
 LicensePage::LicensePage(QWidget *parent)
     : QWidget( parent )
     , ui( new Ui::LicensePage )

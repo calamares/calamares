@@ -23,6 +23,7 @@
 
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QToolButton>
 
 
 LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
@@ -30,6 +31,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     , m_entry( std::move( entry ) )
     , m_label( new QLabel( this ) )
     , m_viewLicenseLabel( new QLabel( this ) )
+    , m_expandLicenseButton( nullptr )
 {
     QPalette pal( palette() );
     pal.setColor( QPalette::Background, palette().background().color().lighter( 108 ) );
@@ -47,9 +49,20 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     wiLayout->addWidget( m_label );
 
     m_viewLicenseLabel->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
-    m_viewLicenseLabel->setOpenExternalLinks( true );
     m_viewLicenseLabel->setAlignment( Qt::AlignVCenter | Qt::AlignRight );
     wiLayout->addWidget( m_viewLicenseLabel );
+
+    if ( m_entry.isLocal() )
+    {
+        m_expandLicenseButton = new QToolButton( this );
+        m_expandLicenseButton->setArrowType( Qt::DownArrow );
+        wiLayout->addWidget( m_expandLicenseButton );
+
+        connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
+    }
+    else
+        m_viewLicenseLabel->setOpenExternalLinks( true );
+
 
     retranslateUi();
 }
@@ -103,6 +116,39 @@ void LicenseWidget::retranslateUi()
     }
     m_label->setText( productDescription );
 
-    m_viewLicenseLabel->setText( tr( "<a href=\"%1\">view license agreement</a>" )
+    if ( m_entry.isLocal() )
+    {
+        m_viewLicenseLabel->setText( tr( "Show license agreement" ) );
+        updateExpandToolTip();
+    }
+    else
+        m_viewLicenseLabel->setText( tr( "<a href=\"%1\">view license agreement</a>" )
                                 .arg( m_entry.m_url.toString() ) );
+}
+
+void
+LicenseWidget::expandClicked()
+{
+    if ( m_expandLicenseButton->arrowType() == Qt::DownArrow )
+    {
+        m_expandLicenseButton->setArrowType( Qt::UpArrow );
+    }
+    else
+    {
+        m_expandLicenseButton->setArrowType( Qt::DownArrow );
+    }
+    updateExpandToolTip();
+}
+
+void
+LicenseWidget::updateExpandToolTip()
+{
+    if ( !m_expandLicenseButton )
+        return;
+
+    m_expandLicenseButton->setToolTip(
+        ( m_expandLicenseButton->arrowType() == Qt::DownArrow )
+        ? tr( "Show complete license text" )
+        : tr( "Hide license text" )
+        ) ;
 }

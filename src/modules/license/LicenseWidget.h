@@ -27,6 +27,8 @@
 #include <QLabel>
 #include <QWidget>
 
+class QToolButton;
+
 class LicenseWidget : public QWidget
 {
 public:
@@ -36,8 +38,12 @@ public:
     void retranslateUi();
 
 private:
+    void expandClicked();
+    void updateExpandToolTip();
+
     LicenseEntry m_entry;
-    QLabel *m_label;
-    QLabel *m_viewLicenseLabel;
+    QLabel* m_label;
+    QLabel* m_viewLicenseLabel;
+    QToolButton* m_expandLicenseButton;
 } ;
 #endif
