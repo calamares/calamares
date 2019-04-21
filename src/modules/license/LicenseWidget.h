@@ -22,4 +22,18 @@
 #ifndef LICENSE_LICENSEWIDGET_H
 #define LICENSE_LICENSEWIDGET_H
 
+#include "LicensePage.h"
+
+#include <QLabel>
+#include <QWidget>
+
+class LicenseWidget : public QWidget
+{
+public:
+    LicenseWidget( LicenseEntry e, QWidget* parent = nullptr );
+    virtual ~LicenseWidget() override;
+
+private:
+    LicenseEntry m_entry;
+} ;
 #endif
