@@ -240,7 +240,7 @@ ViewManager::next()
     bool executing = false;
     if ( step->isAtEnd() )
     {
-        const auto const* settings = Calamares::Settings::instance();
+        const auto* const settings = Calamares::Settings::instance();
         
         // Special case when the user clicks next on the very last page in a view phase
         // and right before switching to an execution phase.
