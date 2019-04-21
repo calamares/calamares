@@ -69,8 +69,9 @@ public:
      */
     bool isSetupMode() const { return m_isSetupMode; }
 
+    /** @brief Global setting of disable-cancel: can't cancel ever. */
     bool disableCancel() const;
-    
+    /** @brief Temporary setting of disable-cancel: can't cancel during exec. */
     bool dontCancel() const;
 
 private:
