@@ -21,11 +21,30 @@
 
 #include "LicenseWidget.h"
 
+#include "utils/Logger.h"
+
 #include <QDesktopServices>
+#include <QFile>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QToolButton>
+#include <QVBoxLayout>
 
+static QString
+loadLocalFile( const QUrl& u )
+{
+    if ( !u.isLocalFile() )
+        return QString();
+
+    QFile file( u.path() );
+    if ( !file.open(QIODevice::ReadOnly | QIODevice::Text) )
+    {
+        cWarning() << "Could not load license file" << u;
+        return QString();
+    }
+
+    return file.readAll();
+}
 
 LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     : QWidget( parent )
@@ -33,6 +52,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     , m_label( new QLabel( this ) )
     , m_viewLicenseLabel( new QLabel( this ) )
     , m_expandLicenseButton( nullptr )
+    , m_fullText( nullptr )
 {
     QPalette pal( palette() );
     pal.setColor( QPalette::Background, palette().background().color().lighter( 108 ) );
@@ -43,7 +63,6 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     setContentsMargins( 4, 4, 4, 4 );
 
     QHBoxLayout* wiLayout = new QHBoxLayout;
-    setLayout( wiLayout );
 
     m_label->setWordWrap( true );
     m_label->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Minimum );
@@ -55,11 +74,21 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
 
     if ( m_entry.isLocal() )
     {
+        QVBoxLayout* vLayout = new QVBoxLayout;
+
         m_expandLicenseButton = new QToolButton( this );
-        m_expandLicenseButton->setArrowType( Qt::DownArrow );
+        m_expandLicenseButton->setArrowType( Qt::UpArrow );
         wiLayout->addWidget( m_expandLicenseButton );
 
         connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
+
+        vLayout->addLayout( wiLayout );
+        m_fullText = new QLabel( this );
+        m_fullText->setText( loadLocalFile( m_entry.m_url ) );
+        m_fullText->hide();
+
+        vLayout->addWidget( m_fullText );
+        setLayout( vLayout );
     }
     else
     {
@@ -71,6 +100,8 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
         // Normally setOpenExternalLinks( true ) would do, but we need the
         // open code anyway for the toolbutton, let's share it.
         connect( m_viewLicenseLabel, &QLabel::linkActivated, this, &LicenseWidget::viewClicked );
+
+        setLayout( wiLayout );  // Only the horizontal layout needed
     }
 
     retranslateUi();
@@ -146,6 +177,11 @@ LicenseWidget::expandClicked()
     {
         m_expandLicenseButton->setArrowType( Qt::DownArrow );
     }
+
+    // Show/hide based on the new arrow direction.
+    if ( m_fullText )
+        m_fullText->setHidden( m_expandLicenseButton->arrowType() == Qt::UpArrow );
+
     updateExpandToolTip();
 }
 
@@ -156,7 +192,7 @@ LicenseWidget::updateExpandToolTip()
         return;
 
     m_expandLicenseButton->setToolTip(
-        ( m_expandLicenseButton->arrowType() == Qt::DownArrow )
+        ( m_expandLicenseButton->arrowType() == Qt::UpArrow )
         ? tr( "Show complete license text" )
         : tr( "Hide license text" )
         ) ;

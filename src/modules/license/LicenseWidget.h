@@ -46,5 +46,6 @@ private:
     QLabel* m_label;
     QLabel* m_viewLicenseLabel;
     QToolButton* m_expandLicenseButton;
+    QLabel* m_fullText;
 } ;
 #endif
