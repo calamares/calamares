@@ -21,6 +21,7 @@
 
 #include "LicenseWidget.h"
 
+#include <QDesktopServices>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QToolButton>
@@ -61,8 +62,16 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
         connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
     }
     else
-        m_viewLicenseLabel->setOpenExternalLinks( true );
+    {
+        auto* button = new QToolButton( this );
+        button->setArrowType( Qt::RightArrow );
+        wiLayout->addWidget( button );
 
+        connect( button, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
+        // Normally setOpenExternalLinks( true ) would do, but we need the
+        // open code anyway for the toolbutton, let's share it.
+        connect( m_viewLicenseLabel, &QLabel::linkActivated, this, &LicenseWidget::viewClicked );
+    }
 
     retranslateUi();
 }
@@ -122,7 +131,7 @@ void LicenseWidget::retranslateUi()
         updateExpandToolTip();
     }
     else
-        m_viewLicenseLabel->setText( tr( "<a href=\"%1\">view license agreement</a>" )
+        m_viewLicenseLabel->setText( tr( "<a href=\"%1\">View license agreement</a>" )
                                 .arg( m_entry.m_url.toString() ) );
 }
 
@@ -151,4 +160,10 @@ LicenseWidget::updateExpandToolTip()
         ? tr( "Show complete license text" )
         : tr( "Hide license text" )
         ) ;
+}
+
+void
+LicenseWidget::viewClicked()
+{
+    QDesktopServices::openUrl( m_entry.m_url );
 }
