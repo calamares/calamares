@@ -81,7 +81,7 @@ LicenseEntry::LicenseEntry(const QVariantMap& conf)
 bool
 LicenseEntry::isLocal() const
 {
-    return ( m_url.scheme() == "file" ) &&
+    return m_url.isLocalFile() &&
         ( []( const QString&& r ){ return r.endsWith( ".html" ) || r.endsWith( ".txt" ); }( m_url.toString() ) );
 }
 
