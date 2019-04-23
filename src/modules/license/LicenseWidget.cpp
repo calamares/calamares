@@ -43,7 +43,7 @@ loadLocalFile( const QUrl& u )
         return QString();
     }
 
-    return file.readAll();
+    return QString( "\n" ) + file.readAll();
 }
 
 LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
@@ -86,6 +86,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
         m_fullText = new QLabel( this );
         m_fullText->setText( loadLocalFile( m_entry.m_url ) );
         m_fullText->hide();
+        m_fullText->setStyleSheet( "border-top: 1px solid black; margin-top: 1em; padding-top: 1em;" );
 
         vLayout->addWidget( m_fullText );
         setLayout( vLayout );
