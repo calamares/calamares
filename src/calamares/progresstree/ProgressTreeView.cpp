@@ -35,6 +35,7 @@ ProgressTreeView::ProgressTreeView( QWidget* parent )
 {
     s_instance = this; //FIXME: should assert when s_instance gets written and it wasn't nullptr
 
+    this->setObjectName("sidebarMenuApp");
     setFrameShape( QFrame::NoFrame );
     setContentsMargins( 0, 0, 0, 0 );
 

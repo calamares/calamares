@@ -167,7 +167,7 @@ WelcomePage::initLanguages()
         QString name = m_languages->locale( matchedLocaleIndex ).name();
         cDebug() << Logger::SubEntry << "Matched with index" << matchedLocaleIndex << name;
 
-        CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsPathPrefix(), qApp );
+        CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsDirectory(), qApp );
         ui->languageWidget->setCurrentIndex( matchedLocaleIndex );
     }
     else
@@ -183,7 +183,7 @@ WelcomePage::initLanguages()
 
                  QLocale::setDefault( selectedLocale );
                  CalamaresUtils::installTranslator( selectedLocale,
-                                                    Calamares::Branding::instance()->translationsPathPrefix(),
+                                                    Calamares::Branding::instance()->translationsDirectory(),
                                                     qApp );
              } );
 }

@@ -57,6 +57,7 @@ PartitionBarsView::PartitionBarsView( QWidget* parent )
     , canBeSelected( []( const QModelIndex& ) { return true; } )
     , m_hoveredIndex( QModelIndex() )
 {
+    this->setObjectName("partitionBarView");
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
     setSelectionBehavior( QAbstractItemView::SelectRows );

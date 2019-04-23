@@ -61,7 +61,7 @@ PartitionLabelsView::PartitionLabelsView( QWidget* parent )
     setFrameStyle( QFrame::NoFrame );
     setSelectionBehavior( QAbstractItemView::SelectRows );
     setSelectionMode( QAbstractItemView::SingleSelection );
-
+    this->setObjectName("partitionLabel");
     // Debug
     connect( this, &PartitionLabelsView::clicked,
              this, [=]( const QModelIndex& index )

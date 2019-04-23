@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, Raul Rodrigo Segura (raurodse)
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -91,7 +92,6 @@ Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
     : QObject( parent )
     , m_descriptorPath( brandingFilePath )
-    , m_componentName()
     , m_welcomeStyleCalamares( false )
     , m_welcomeExpandingLogo( true )
 {
@@ -198,6 +198,16 @@ Branding::Branding( const QString& brandingFilePath,
         m_translationsPathPrefix.append( QString( "%1calamares-%2" )
                                             .arg( QDir::separator() )
                                             .arg( m_componentName ) );
+
+        QFileInfo importQSSPath( componentDir.filePath( "stylesheet.qss" ) );
+        if ( importQSSPath.exists() && importQSSPath.isReadable() )
+        {
+            QFile stylesheetFile( importQSSPath.filePath() );
+            stylesheetFile.open( QFile::ReadOnly );
+            m_stylesheet = stylesheetFile.readAll();
+        }
+        else
+            cWarning() << "the branding component" << componentDir.absolutePath() << "does not ship stylesheet.qss.";
     }
     else
     {
@@ -217,31 +227,10 @@ Branding::Branding( const QString& brandingFilePath,
 
 
 QString
-Branding::descriptorPath() const
-{
-    return m_descriptorPath;
-}
-
-
-QString
-Branding::componentName() const
-{
-    return m_componentName;
-}
-
-
-QString
 Branding::componentDirectory() const
 {
     QFileInfo fi ( m_descriptorPath );
     return fi.absoluteDir().absolutePath();
-}
-
-
-QString
-Branding::translationsPathPrefix() const
-{
-    return m_translationsPathPrefix;
 }
 
 
@@ -280,12 +269,6 @@ Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
     return pixmap;
 }
 
-
-QString
-Branding::slideshowPath() const
-{
-    return m_slideshowPath;
-}
 
 void
 Branding::setGlobals( GlobalStorage* globalStorage ) const

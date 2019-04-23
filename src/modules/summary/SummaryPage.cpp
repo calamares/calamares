@@ -42,6 +42,9 @@ SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
     , m_scrollArea( new QScrollArea( this ) )
 {
     Q_UNUSED( parent )
+
+    this->setObjectName("summaryStep");
+
     Q_ASSERT( m_thisViewStep );
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->setContentsMargins( 0, 0, 0, 0 );

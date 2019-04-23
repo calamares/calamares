@@ -17,6 +17,7 @@ This release contains contributions from (alphabetically by first name):
 This release contains contributions from (alphabetically by first name):
  - Arnaud Ferraris
  - Dominic Hayes (feren)
+ - Raul Rodrigo Segura (raurodse)
 
 ## Core ##
 
@@ -24,7 +25,9 @@ This release contains contributions from (alphabetically by first name):
    builds without warnings when Clang 8 is used.
  * A new *disable-cancel-during-exec* setting provides more fine-grained
    control than *disable-cancel* (which hides the button entirely).
-   
+ * A branding module can now also cause a stylesheet to be loaded, which
+   will be applied to the widgets inside Calamares. (Thanks to Raul)
+
 ## Modules ##
 
  * All of the Python-based modules now have translations enabled.
