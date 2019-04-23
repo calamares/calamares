@@ -57,6 +57,8 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     QPalette pal( palette() );
     pal.setColor( QPalette::Background, palette().background().color().lighter( 108 ) );
 
+    setObjectName( "licenseItem" );
+
     setAutoFillBackground( true );
     setPalette( pal );
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -87,6 +89,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
         m_fullText->setText( loadLocalFile( m_entry.m_url ) );
         m_fullText->hide();
         m_fullText->setStyleSheet( "border-top: 1px solid black; margin-top: 1em; padding-top: 1em;" );
+        m_fullText->setObjectName( "licenseItemFullText" );
 
         vLayout->addWidget( m_fullText );
         setLayout( vLayout );
