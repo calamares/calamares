@@ -74,14 +74,13 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     m_viewLicenseLabel->setAlignment( Qt::AlignVCenter | Qt::AlignRight );
     wiLayout->addWidget( m_viewLicenseLabel );
 
+    m_expandLicenseButton = new QToolButton( this );
+    wiLayout->addWidget( m_expandLicenseButton );
     if ( m_entry.isLocal() )
     {
         QVBoxLayout* vLayout = new QVBoxLayout;
 
-        m_expandLicenseButton = new QToolButton( this );
         m_expandLicenseButton->setArrowType( Qt::UpArrow );
-        wiLayout->addWidget( m_expandLicenseButton );
-
         connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
 
         vLayout->addLayout( wiLayout );
@@ -96,11 +95,9 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     }
     else
     {
-        auto* button = new QToolButton( this );
-        button->setArrowType( Qt::RightArrow );
-        wiLayout->addWidget( button );
+        m_expandLicenseButton->setArrowType( Qt::RightArrow );
+        connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
 
-        connect( button, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
         // Normally setOpenExternalLinks( true ) would do, but we need the
         // open code anyway for the toolbutton, let's share it.
         connect( m_viewLicenseLabel, &QLabel::linkActivated, this, &LicenseWidget::viewClicked );
@@ -159,15 +156,7 @@ void LicenseWidget::retranslateUi()
                                 .arg( m_entry.m_prettyVendor );
     }
     m_label->setText( productDescription );
-
-    if ( m_entry.isLocal() )
-    {
-        m_viewLicenseLabel->setText( tr( "Show license agreement" ) );
-        updateExpandToolTip();
-    }
-    else
-        m_viewLicenseLabel->setText( tr( "<a href=\"%1\">View license agreement</a>" )
-                                .arg( m_entry.m_url.toString() ) );
+    updateExpandToolTip();
 }
 
 void
@@ -189,17 +178,30 @@ LicenseWidget::expandClicked()
     updateExpandToolTip();
 }
 
+/** @brief Called on retranslate and when button state changes. */
 void
 LicenseWidget::updateExpandToolTip()
 {
-    if ( !m_expandLicenseButton )
-        return;
+    if ( m_entry.isLocal() )
+    {
+        const bool isNowCollapsed = m_expandLicenseButton->arrowType() == Qt::UpArrow;
 
-    m_expandLicenseButton->setToolTip(
-        ( m_expandLicenseButton->arrowType() == Qt::UpArrow )
-        ? tr( "Show complete license text" )
-        : tr( "Hide license text" )
-        ) ;
+        m_expandLicenseButton->setToolTip(
+            isNowCollapsed
+            ? tr( "Shows the complete license text" )
+            : tr( "Hide license text" )
+            ) ;
+        m_viewLicenseLabel->setText(
+            isNowCollapsed
+            ? tr( "Show license agreement" )
+            : tr( "Hide license agreement" ) );
+    }
+    else
+    {
+        m_expandLicenseButton->setToolTip( tr( "Opens the license agreement in a browser window." ) );
+        m_viewLicenseLabel->setText( tr( "<a href=\"%1\">View license agreement</a>" )
+                                .arg( m_entry.m_url.toString() ) );
+    }
 }
 
 void
