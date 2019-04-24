@@ -19,12 +19,13 @@
 
 #include "ProgressTreeDelegate.h"
 
-#include "../CalamaresApplication.h"
-#include "../CalamaresWindow.h"
-#include "ViewStepItem.h"
+#include "Branding.h"
+#include "CalamaresApplication.h"
+#include "CalamaresWindow.h"
 #include "ProgressTreeModel.h"
 #include "ViewManager.h"
-#include "Branding.h"
+#include "ViewStepItem.h"
+
 #include "utils/CalamaresUtilsGui.h"
 
 #include <QAbstractItemView>

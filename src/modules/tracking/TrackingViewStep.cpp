@@ -126,7 +126,7 @@ TrackingViewStep::jobs() const
             .replace( "$MEMORY",  memory )
             .replace( "$DISK", disk );
 
-        cDebug() << "  .. install-tracking URL" << installUrl;
+        cDebug() << Logger::SubEntry << "install-tracking URL" << installUrl;
 
         l.append( Calamares::job_ptr( new TrackingInstallJob( installUrl ) ) );
     }

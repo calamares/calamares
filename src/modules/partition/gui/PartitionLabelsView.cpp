@@ -61,7 +61,7 @@ PartitionLabelsView::PartitionLabelsView( QWidget* parent )
     setFrameStyle( QFrame::NoFrame );
     setSelectionBehavior( QAbstractItemView::SelectRows );
     setSelectionMode( QAbstractItemView::SingleSelection );
-
+    this->setObjectName("partitionLabel");
     // Debug
     connect( this, &PartitionLabelsView::clicked,
              this, [=]( const QModelIndex& index )
@@ -100,7 +100,7 @@ PartitionLabelsView::sizeHint() const
 void
 PartitionLabelsView::paintEvent( QPaintEvent* event )
 {
-    Q_UNUSED( event );
+    Q_UNUSED( event )
 
     QPainter painter( viewport() );
     painter.fillRect( rect(), palette().window() );
@@ -230,6 +230,7 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
                                     PartitionModel::SizeColumn )
                           .data().toString();
     else
+        //: size[number]  filesystem[name]
         secondLine = tr( "%1  %2" )
                      .arg( index.sibling( index.row(),
                                           PartitionModel::SizeColumn )
@@ -477,7 +478,7 @@ PartitionLabelsView::visualRect( const QModelIndex& idx ) const
 QRegion
 PartitionLabelsView::visualRegionForSelection( const QItemSelection& selection ) const
 {
-    Q_UNUSED( selection );
+    Q_UNUSED( selection )
 
     return QRegion();
 }
@@ -542,8 +543,8 @@ PartitionLabelsView::setExtendedPartitionHidden( bool hidden )
 QModelIndex
 PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
 {
-    Q_UNUSED( cursorAction );
-    Q_UNUSED( modifiers );
+    Q_UNUSED( cursorAction )
+    Q_UNUSED( modifiers )
 
     return QModelIndex();
 }
@@ -552,7 +553,7 @@ PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifier
 bool
 PartitionLabelsView::isIndexHidden( const QModelIndex& index ) const
 {
-    Q_UNUSED( index );
+    Q_UNUSED( index )
 
     return false;
 }
@@ -597,7 +598,7 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
 void
 PartitionLabelsView::leaveEvent( QEvent* event )
 {
-    Q_UNUSED( event );
+    Q_UNUSED( event )
 
     QGuiApplication::restoreOverrideCursor();
     if ( m_hoveredIndex.isValid() )

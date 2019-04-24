@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -30,6 +31,7 @@
 
 #include <QString>
 
+#include <vector>
 #include <type_traits>
 #include <initializer_list>
 
@@ -66,7 +68,7 @@ struct NamedEnumTable
     {
         ok = false;
 
-        for ( const auto p : table )
+        for ( const auto& p : table )
             if ( 0 == QString::compare( s, p.first, Qt::CaseInsensitive ) )
             {
                 ok = true;
@@ -87,7 +89,7 @@ struct NamedEnumTable
     {
         ok = false;
 
-        for ( const auto p : table )
+        for ( const auto &p : table )
             if ( s == p.second)
             {
                 ok = true;

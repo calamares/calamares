@@ -6,6 +6,7 @@
 #   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaid@siduction.org>
+#   Copyright 2019, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -22,6 +23,17 @@
 
 import libcalamares
 from libcalamares.utils import target_env_call
+
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Creating initramfs with dracut.")
 
 
 def run_dracut():
@@ -43,5 +55,5 @@ def run():
     return_code = run_dracut()
 
     if return_code != 0:
-        return ("Failed to run dracut on the target",
-                "The exit code was {}".format(return_code))
+        return ( _("Failed to run dracut on the target"),
+                 _("The exit code was {}").format(return_code) )

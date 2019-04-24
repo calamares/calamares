@@ -1,5 +1,5 @@
-#ifndef __KDTOOLS_KDTOOLSGLOBAL_H__
-#define __KDTOOLS_KDTOOLSGLOBAL_H__
+#ifndef KDTOOLS_KDTOOLSGLOBAL_H
+#define KDTOOLS_KDTOOLSGLOBAL_H
 
 #include <QtCore/QtGlobal>
 
@@ -78,7 +78,7 @@ inline T & __kdtools__dereference_for_methodcall( T * o ) {
 
 #define KDAB_SET_OBJECT_NAME( x ) __kdtools__dereference_for_methodcall( x ).setObjectName( QLatin1String( #x ) )
 
-KDTOOLSCORE_EXPORT bool _kdCheckQtVersion_impl( int major, int minor=0, int patchlevel=0 );
+KDTOOLSCORE_EXPORT bool _kdCheckQtVersion_impl( unsigned int major, unsigned int minor=0, unsigned int patchlevel=0 );
 static inline bool kdCheckQtVersion( unsigned int major, unsigned int minor=0, unsigned int patchlevel=0 ) {
     return (major<<16|minor<<8|patchlevel) <= static_cast<unsigned int>(QT_VERSION)
 	|| _kdCheckQtVersion_impl( major, minor, patchlevel );
@@ -110,5 +110,5 @@ private:                                                                \
     void init(bool)
 
 
-#endif /* __KDTOOLS_KDTOOLSGLOBAL_H__ */
+#endif /* KDTOOLS_KDTOOLSGLOBAL_H */
 

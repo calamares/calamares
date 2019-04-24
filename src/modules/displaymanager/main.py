@@ -3,6 +3,7 @@
 #
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
+#   Copyright 2019 Dominic Hayes <ferenosdev@outlook.com>
 #   Copyright 2014-2018, Philip Müller <philm@manjaro.org>
 #   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
@@ -487,12 +488,21 @@ class DMlightdm(DisplayManager):
             self.root_mount_point, "etc/lightdm/lightdm.conf"
             )
         text = []
+        addseat = False
+        loopcount = 0
 
         if os.path.exists(lightdm_conf_path):
             with open(lightdm_conf_path, 'r') as lightdm_conf:
                 text = lightdm_conf.readlines()
+                # Check to make sure [SeatDefaults] or [Seat:*] is in the config,
+                # otherwise we'll risk malforming the config
+                addseat = '[SeatDefaults]' not in text and '[Seat:*]' not in text
 
             with open(lightdm_conf_path, 'w') as lightdm_conf:
+                if addseat:
+                    # Prepend Seat line to start of file rather than leaving it without one
+                    # This keeps the config from being malformed for LightDM
+                    text = ["[Seat:*]\n"] + text
                 for line in text:
                     if 'autologin-user=' in line:
                         if do_autologin:
@@ -504,14 +514,14 @@ class DMlightdm(DisplayManager):
         else:
             try:
                 # Create a new lightdm.conf file; this is documented to be
-                # read last, after aeverything in lightdm.conf.d/
+                # read last, after everything in lightdm.conf.d/
                 with open(lightdm_conf_path, 'w') as lightdm_conf:
                     if do_autologin:
                         lightdm_conf.write(
-                            "autologin-user={!s}\n".format(username))
+                            "[Seat:*]\nautologin-user={!s}\n".format(username))
                     else:
                         lightdm_conf.write(
-                            "#autologin-user=\n")
+                            "[Seat:*]\n#autologin-user=\n")
             except FileNotFoundError:
                 return (
                     _("Cannot write LightDM configuration file"),

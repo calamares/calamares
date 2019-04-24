@@ -1,5 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
+ *   Copyright 2019, Dominic Hayes <ferenosdev@outlook.com>
+ *   Copyright 2019, Gabriel Craciunescu <crazy@frugalware.org>
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
@@ -27,15 +29,13 @@
 #include <QFile>
 #include <QPair>
 
-#include <yaml-cpp/yaml.h>
-
 static bool
 hasValue( const YAML::Node& v )
 {
     return v.IsDefined() && !v.IsNull();
 }
 
-/** Helper function to grab a QString out of the config, and to warn if not present. */
+/** @brief Helper function to grab a QString out of the config, and to warn if not present. */
 static QString
 requireString( const YAML::Node& config, const char* key )
 {
@@ -44,12 +44,12 @@ requireString( const YAML::Node& config, const char* key )
         return QString::fromStdString( v.as< std::string >() );
     else
     {
-        cWarning() << "Required settings.conf key" << key << "is missing.";
+        cWarning() << Logger::SubEntry << "Required settings.conf key" << key << "is missing.";
         return QString();
     }
 }
 
-/** Helper function to grab a bool out of the config, and to warn if not present. */
+/** @brief Helper function to grab a bool out of the config, and to warn if not present. */
 static bool
 requireBool( const YAML::Node& config, const char* key, bool d )
 {
@@ -58,7 +58,7 @@ requireBool( const YAML::Node& config, const char* key, bool d )
         return v.as< bool >();
     else
     {
-        cWarning() << "Required settings.conf key" << key << "is missing.";
+        cWarning() << Logger::SubEntry << "Required settings.conf key" << key << "is missing.";
         return d;
     }
 }
@@ -81,8 +81,6 @@ interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStri
     {
         if ( path == "local" )
         {
-            cDebug() << "module-search local";
-
             // If we're running in debug mode, we assume we might also be
             // running from the build dir, so we add a maximum priority
             // module search path in the build dir.
@@ -105,11 +103,10 @@ interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStri
             QDir d( path );
             if ( d.exists() && d.isReadable() )
             {
-                cDebug() << "module-search exists" << d.absolutePath();
                 output.append( d.absolutePath() );
             }
             else
-                cDebug() << "module-search non-existent" << path;
+                cDebug() << Logger::SubEntry << "module-search entry non-existent" << path;
         }
     }
 }
@@ -188,6 +185,7 @@ Settings::Settings( const QString& settingsFilePath,
     , m_doChroot( true )
     , m_promptInstall( false )
     , m_disableCancel( false )
+    , m_dontCancel( false )
 {
     cDebug() << "Using Calamares settings file at" << settingsFilePath;
     QFile file( settingsFilePath );
@@ -207,7 +205,9 @@ Settings::Settings( const QString& settingsFilePath,
             m_brandingComponentName = requireString( config, "branding" );
             m_promptInstall = requireBool( config, "prompt-install", false );
             m_doChroot = !requireBool( config, "dont-chroot", false );
+            m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
             m_disableCancel = requireBool( config, "disable-cancel", false );
+            m_dontCancel = requireBool( config, "disable-cancel-during-exec", false );
         }
         catch ( YAML::Exception& e )
         {
@@ -274,6 +274,12 @@ bool
 Settings::disableCancel() const
 {
     return m_disableCancel;
+}
+    
+bool
+Settings::dontCancel() const
+{
+    return m_dontCancel;
 }
 
 

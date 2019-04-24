@@ -286,7 +286,7 @@ PartitionSplitterWidget::minimumSizeHint() const
 void
 PartitionSplitterWidget::paintEvent( QPaintEvent* event )
 {
-    Q_UNUSED( event );
+    Q_UNUSED( event )
 
     QPainter painter( this );
     painter.fillRect( rect(), palette().window() );
@@ -401,7 +401,7 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
 void
 PartitionSplitterWidget::mouseReleaseEvent( QMouseEvent* event )
 {
-    Q_UNUSED( event );
+    Q_UNUSED( event )
 
     m_resizing = false;
 }

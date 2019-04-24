@@ -38,6 +38,41 @@
 #include <sys/sysctl.h>
 #endif
 
+/** @brief When logging commands, don't log everything.
+ *
+ * The command-line arguments to some commands may contain the
+ * encrypted password set by the user. Don't log that password,
+ * since the log may get posted to bug reports, or stored in
+ * the target system.
+ */
+struct RedactedList
+{
+    RedactedList( const QStringList& l )
+        : list(l)
+    {
+    }
+
+    const QStringList& list;
+} ;
+
+QDebug&
+operator<<( QDebug& s, const RedactedList& l )
+{
+    // Special case logging: don't log the (encrypted) password.
+    if ( l.list.contains( "usermod" ) )
+    {
+        for ( const auto& item : l.list )
+            if ( item.startsWith( "$6$" ) )
+                s << "<password>";
+            else
+                s << item;
+    }
+    else
+        s << l.list;
+
+    return s;
+}
+
 namespace CalamaresUtils
 {
 
@@ -65,7 +100,7 @@ System::instance()
     if ( !s_instance )
     {
         cError() << "No Calamares system-object has been created.";
-        cError() << " .. using a bogus instance instead.";
+        cError() << Logger::SubEntry << "using a bogus instance instead.";
         return new System( true, nullptr );
     }
     return s_instance;
@@ -158,7 +193,7 @@ System::runCommand(
             return -3;
     }
 
-    cDebug() << "Running" << program << arguments;
+    cDebug() << "Running" << program << RedactedList( arguments );
     process.start();
     if ( !process.waitForStarted() )
     {
@@ -191,7 +226,7 @@ System::runCommand(
     cDebug() << "Finished. Exit code:" << r;
     if ( ( r != 0 ) || Calamares::Settings::instance()->debugMode() )
     {
-        cDebug() << "Target cmd:" << args;
+        cDebug() << "Target cmd:" << RedactedList( args );
         cDebug().noquote().nospace() << "Target output:\n" << output;
     }
     return ProcessResult(r, output);

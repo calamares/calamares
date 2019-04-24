@@ -473,22 +473,6 @@ PartitionViewStep::onLeave()
 }
 
 
-static PartitionActions::Choices::SwapChoice
-nameToChoice( QString name, bool& ok )
-{
-    using namespace PartitionActions::Choices;
-
-    static const NamedEnumTable<SwapChoice> names {
-        { QStringLiteral( "none" ), SwapChoice::NoSwap },
-        { QStringLiteral( "small" ), SwapChoice::SmallSwap },
-        { QStringLiteral( "suspend" ), SwapChoice::FullSwap },
-        { QStringLiteral( "reuse" ), SwapChoice::ReuseSwap },
-        { QStringLiteral( "file" ), SwapChoice::SwapFile }
-    };
-
-    return names.find( name, ok );
-}
-
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {

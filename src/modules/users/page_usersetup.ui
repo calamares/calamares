@@ -197,7 +197,7 @@
       <string notr="true">font-weight: normal</string>
      </property>
      <property name="text">
-      <string>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</string>
+      <string notr="true">&lt;Username extra label 2 text&gt;</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -303,7 +303,7 @@
    <item>
     <widget class="QLabel" name="hostname_extra_label_2">
      <property name="styleSheet">
-      <string>font-weight: normal</string>
+      <string notr="true">font-weight: normal</string>
      </property>
      <property name="text">
       <string>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</string>
@@ -434,7 +434,7 @@
    <item>
     <widget class="QLabel" name="password_extra_label_3">
      <property name="styleSheet">
-      <string>font-weight: normal</string>
+      <string notr="true">font-weight: normal</string>
      </property>
      <property name="text">
       <string>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</string>
@@ -595,7 +595,7 @@
    <item>
     <widget class="QLabel" name="labelExtraRootPassword">
      <property name="styleSheet">
-      <string>font-weight: normal</string>
+      <string notr="true">font-weight: normal</string>
      </property>
      <property name="text">
       <string>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</string>

@@ -2,7 +2,7 @@
  *
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
  *   Copyright 2014,      Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,7 +27,8 @@
 
 namespace Logger
 {
-    extern const char* continuation;
+    DLLEXPORT extern const char Continuation[];
+    DLLEXPORT extern const char SubEntry[];
 
     enum
     {
@@ -161,7 +162,7 @@ namespace Logger
     inline QDebug&
     operator <<( QDebug& s, const DebugRow<T, U>& t )
     {
-        s << continuation << t.first << ':' << ' ' << t.second;
+        s << Continuation << t.first << ':' << ' ' << t.second;
         return s;
     }
 
@@ -170,7 +171,7 @@ namespace Logger
     operator <<( QDebug& s, const DebugList& c )
     {
         for( const auto& i : c.list )
-            s << continuation << i;
+            s << Continuation << i;
         return s;
     }
 
@@ -182,7 +183,7 @@ namespace Logger
     operator <<( QDebug& s, const DebugMap& t )
     {
         for ( auto it = t.map.constBegin(); it != t.map.constEnd(); ++it )
-            s << continuation << it.key().toUtf8().constData() << ':' << ' ' << toString( it.value() ).toUtf8().constData();
+            s << Continuation << it.key().toUtf8().constData() << ':' << ' ' << toString( it.value() ).toUtf8().constData();
         return s;
     }
 }

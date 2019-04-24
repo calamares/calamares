@@ -4,6 +4,7 @@
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Caio Carvalho <caiojcarvalho@gmail.com>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -55,6 +56,7 @@
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/core/volumemanagerdevice.h>
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/fs/filesystemfactory.h>
@@ -172,7 +174,7 @@ PartitionCoreModule::doInit()
         m_deviceInfos << deviceInfo;
         cDebug() << device->deviceNode() << device->capacity() << device->name() << device->prettyName();
     }
-    cDebug() << ".." << devices.count() << "devices detected.";
+    cDebug() << Logger::SubEntry << devices.count() << "devices detected.";
     m_deviceModel->init( devices );
 
     // The following PartUtils::runOsprober call in turn calls PartUtils::canBeResized,
@@ -503,11 +505,11 @@ PartitionCoreModule::jobs() const
 #ifdef DEBUG_PARTITION_UNSAFE
 #ifdef DEBUG_PARTITION_LAME
     cDebug() << "Unsafe partitioning is enabled.";
-    cDebug() << ".. it has been lamed, and will fail.";
+    cDebug() << Logger::SubEntry << "it has been lamed, and will fail.";
     lst << Calamares::job_ptr( new Calamares::FailJob( QStringLiteral( "Partition" ) ) );
 #else
     cWarning() << "Unsafe partitioning is enabled.";
-    cWarning() << ".. the unsafe actions will be executed.";
+    cWarning() << Logger::SubEntry << "the unsafe actions will be executed.";
 #endif
 #endif
 
@@ -550,26 +552,22 @@ PartitionCoreModule::lvmPVs() const
 bool
 PartitionCoreModule::hasVGwithThisName( const QString& name ) const
 {
-    for ( DeviceInfo* d : m_deviceInfos )
-        if ( dynamic_cast<LvmDevice*>(d->device.data()) &&
-             d->device.data()->name() == name)
-            return true;
+    auto condition = [ name ]( DeviceInfo* d ) {
+        return dynamic_cast<LvmDevice*>(d->device.data()) && d->device.data()->name() == name;
+    };
 
-    return false;
+    return std::find_if( m_deviceInfos.begin(), m_deviceInfos.end(), condition ) != m_deviceInfos.end();
 }
 
 bool
 PartitionCoreModule::isInVG( const Partition *partition ) const
 {
-    for ( DeviceInfo* d : m_deviceInfos )
-    {
-        LvmDevice* vg = dynamic_cast<LvmDevice*>( d->device.data() );
+    auto condition = [ partition ]( DeviceInfo* d ) {
+        LvmDevice* vg = dynamic_cast<LvmDevice*>( d->device.data());
+        return vg && vg->physicalVolumes().contains( partition );
+    };
 
-        if ( vg && vg->physicalVolumes().contains( partition ))
-            return true;
-    }
-
-    return false;
+    return std::find_if( m_deviceInfos.begin(), m_deviceInfos.end(), condition ) != m_deviceInfos.end();
 }
 
 void
@@ -686,13 +684,17 @@ PartitionCoreModule::scanForLVMPVs()
         }
     }
 
-    // Update LVM::pvList
-    LvmDevice::scanSystemLVM( physicalDevices );
-
-#ifdef WITH_KPMCOREGT33
+#if defined( WITH_KPMCORE4API )
+    VolumeManagerDevice::scanDevices( physicalDevices );
     for ( auto p : LVM::pvList::list() )
 #else
+#if defined( WITH_KPMCORE331API )
+    LvmDevice::scanSystemLVM( physicalDevices );
+    for ( auto p : LVM::pvList::list() )
+#else
+    LvmDevice::scanSystemLVM( physicalDevices );
     for ( auto p : LVM::pvList )
+#endif
 #endif
     {
         m_lvmPVs << p.partition().data();
@@ -726,7 +728,7 @@ PartitionCoreModule::scanForLVMPVs()
                     if ( innerFS && innerFS->type() == FileSystem::Type::Lvm2_PV )
                         m_lvmPVs << p;
                 }
-#ifdef WITH_KPMCOREGT33
+#ifdef WITH_KPMCORE4API
                 else if ( p->fileSystem().type() == FileSystem::Type::Luks2 )
                 {
                     // Encrypted LVM PVs
@@ -788,12 +790,23 @@ PartitionCoreModule::initLayout( const QVariantList& config )
 {
     QString sizeString;
     QString minSizeString;
+    QString maxSizeString;
 
     m_partLayout = new PartitionLayout();
 
     for ( const auto& r : config )
     {
         QVariantMap pentry = r.toMap();
+
+        if ( !pentry.contains( "name" ) || !pentry.contains( "mountPoint" ) ||
+             !pentry.contains( "filesystem" ) || !pentry.contains( "size" ) )
+        {
+            cError() << "Partition layout entry #" << config.indexOf(r)
+                << "lacks mandatory attributes, switching to default layout.";
+            delete( m_partLayout );
+            initLayout();
+            break;
+        }
 
         if ( pentry.contains("size") && CalamaresUtils::getString( pentry, "size" ).isEmpty() )
             sizeString.setNum( CalamaresUtils::getInteger( pentry, "size", 0 ) );
@@ -805,12 +818,25 @@ PartitionCoreModule::initLayout( const QVariantList& config )
         else
             minSizeString = CalamaresUtils::getString( pentry, "minSize" );
 
-        m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
-                                CalamaresUtils::getString( pentry, "mountPoint" ),
-                                CalamaresUtils::getString( pentry, "filesystem" ),
-                                sizeString,
-                                minSizeString
-                              );
+        if ( pentry.contains("maxSize") && CalamaresUtils::getString( pentry, "maxSize" ).isEmpty() )
+            maxSizeString.setNum( CalamaresUtils::getInteger( pentry, "maxSize", 0 ) );
+        else
+            maxSizeString = CalamaresUtils::getString( pentry, "maxSize" );
+
+        if ( !m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
+                                      CalamaresUtils::getString( pentry, "mountPoint" ),
+                                      CalamaresUtils::getString( pentry, "filesystem" ),
+                                      sizeString,
+                                      minSizeString,
+                                      maxSizeString
+                                    ) )
+        {
+            cError() << "Partition layout entry #" << config.indexOf(r)
+                << "is invalid, switching to default layout.";
+            delete( m_partLayout );
+            initLayout();
+            break;
+        }
     }
 }
 

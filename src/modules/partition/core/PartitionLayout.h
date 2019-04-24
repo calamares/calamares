@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Collabora Ltd
+ *   Copyright 2018-2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -43,15 +43,22 @@ public:
         QString partLabel;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
-        double partSize = 0.0L;
-        PartUtils::SizeUnit partSizeUnit = PartUtils::SizeUnit::Percent;
-        double partMinSize = 0.0L;
-        PartUtils::SizeUnit partMinSizeUnit = PartUtils::SizeUnit::Percent;
+        PartUtils::PartSize partSize;
+        PartUtils::PartSize partMinSize;
+        PartUtils::PartSize partMaxSize;
 
         /// @brief All-zeroes PartitionEntry
-        PartitionEntry() {};
-        /// @brief Parse @p size and @p min to their respective member variables
-        PartitionEntry( const QString& size, const QString& min );
+        PartitionEntry() {}
+        /// @brief Parse @p size, @p min and @p max to their respective member variables
+        PartitionEntry( const QString& size, const QString& min, const QString& max );
+
+        bool isValid() const
+        {
+            if ( !partSize.isValid() ||
+                 ( partMinSize.isValid() && partMaxSize.isValid() && partMinSize > partMaxSize ) )
+                return false;
+            return true;
+        }
     };
 
     PartitionLayout();
@@ -59,9 +66,9 @@ public:
     PartitionLayout( const PartitionLayout& layout );
     ~PartitionLayout();
 
-    void addEntry( PartitionEntry entry );
-    void addEntry( const QString& mountPoint, const QString& size, const QString& min = QString() );
-    void addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min = QString() );
+    bool addEntry( PartitionEntry entry );
+    bool addEntry( const QString& mountPoint, const QString& size, const QString& min = QString(), const QString& max = QString() );
+    bool addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min = QString(), const QString& max = QString() );
 
     /**
      * @brief Apply the current partition layout to the selected drive space.

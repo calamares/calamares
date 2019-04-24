@@ -21,12 +21,12 @@
  * shipped with each module for correctness -- well, for parseability.
  */
 
+#include "utils/YamlUtils.h"
+
 #include <unistd.h>
 #include <stdlib.h>
 
 #include <iostream>
-
-#include <yaml-cpp/yaml.h>
 
 #include <QFile>
 #include <QByteArray>

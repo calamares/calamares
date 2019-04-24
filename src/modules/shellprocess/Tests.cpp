@@ -26,8 +26,6 @@
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
 
-#include <yaml-cpp/yaml.h>
-
 #include <QtTest/QtTest>
 
 #include <QFileInfo>
@@ -176,9 +174,9 @@ script:
 )" ) ).toMap().value( "script" );
 
     if ( !Calamares::JobQueue::instance() )
-        (void *)new Calamares::JobQueue( nullptr );
+        (void)new Calamares::JobQueue( nullptr );
     if ( !Calamares::Settings::instance() )
-        (void *)new Calamares::Settings( QString(), true );
+        (void)new Calamares::Settings( QString(), true );
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QVERIFY( gs != nullptr );

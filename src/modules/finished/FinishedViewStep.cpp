@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,6 +30,7 @@
 #include <QVariantMap>
 
 #include "Branding.h"
+#include "Settings.h"
 
 FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -109,8 +111,12 @@ FinishedViewStep::sendNotification()
                                           QString( "Calamares" ),
                                           QVariant( 0U ),
                                           QString( "calamares" ),
-                                          tr( "Installation Complete" ),
-                                          tr( "The installation of %1 is complete." ).arg( *Calamares::Branding::VersionedName ),
+                                          Calamares::Settings::instance()->isSetupMode()
+                                              ? tr( "Setup Complete" )
+                                              : tr( "Installation Complete" ),
+                                          Calamares::Settings::instance()->isSetupMode()
+                                              ? tr( "The setup of %1 is complete." ).arg( *Calamares::Branding::VersionedName )
+                                              : tr( "The installation of %1 is complete." ).arg( *Calamares::Branding::VersionedName ),
                                           QStringList(),
                                           QVariantMap(),
                                           QVariant( 0 )
@@ -142,8 +148,8 @@ FinishedViewStep::jobs() const
 void
 FinishedViewStep::onInstallationFailed( const QString& message, const QString& details )
 {
-    Q_UNUSED( message );
-    Q_UNUSED( details );
+    Q_UNUSED( message )
+    Q_UNUSED( details )
     installFailed = true;
 }
 

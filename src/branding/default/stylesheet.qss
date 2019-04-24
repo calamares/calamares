@@ -1,0 +1,33 @@
+/*
+
+A branding component can ship a stylesheet (like this one)
+which is applied to parts of the Calamares user-interface.
+In principle, all parts can be styled through CSS.
+Missing parts should be filed as issues.
+
+The IDs are based on the object names in the C++ code.
+*/
+
+/* Main application window.
+
+#mainApp { }
+#logoApp { }
+#sidebarApp { }
+#sidebarMenuApp { }
+*/
+
+/* Partitioning module.
+
+#bootInfoIcon { }
+#bootInfoLable { }
+#deviceInfoIcon { }
+#defineInfoLabel { }
+#scrollAreaWidgetContents { }
+#partitionBarView { }
+*/
+
+/* Licensing module.
+
+#licenseItem {  }
+#licenseItemFullText {  }
+*/

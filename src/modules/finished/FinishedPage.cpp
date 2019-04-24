@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -33,7 +34,7 @@
 #include <QProcess>
 
 #include "Branding.h"
-
+#include "Settings.h"
 
 FinishedPage::FinishedPage( QWidget* parent )
     : QWidget( parent )
@@ -48,12 +49,31 @@ FinishedPage::FinishedPage( QWidget* parent )
 
     CALAMARES_RETRANSLATE(
         ui->retranslateUi( this );
-        ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
-                                   "%1 has been installed on your computer.<br/>"
-                                   "You may now restart into your new system, or continue "
-                                   "using the %2 Live environment." )
-                               .arg( *Calamares::Branding::VersionedName )
-                               .arg( *Calamares::Branding::ProductName ) );
+        if ( Calamares::Settings::instance()->isSetupMode() )
+        {
+            ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
+                                       "%1 has been set up on your computer.<br/>"
+                                       "You may now start using your new system." )
+                                   .arg( *Calamares::Branding::VersionedName ) );
+            ui->restartCheckBox->setToolTip( tr ( "<html><head/><body>"
+                                                  "<p>When this box is checked, your system will "
+                                                  "restart immediately when you click on "
+                                                  "<span style=\"font-style:italic;\">Done</span> "
+                                                  "or close the setup program.</p></body></html>" ) );
+       }
+       else
+       {
+            ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
+                                       "%1 has been installed on your computer.<br/>"
+                                       "You may now restart into your new system, or continue "
+                                       "using the %2 Live environment." )
+                                   .arg( *Calamares::Branding::VersionedName, *Calamares::Branding::ProductName ) );
+            ui->restartCheckBox->setToolTip( tr ( "<html><head/><body>"
+                                                  "<p>When this box is checked, your system will "
+                                                  "restart immediately when you click on "
+                                                  "<span style=\"font-style:italic;\">Done</span> "
+                                                  "or close the installer.</p></body></html>" ) );
+       }
     )
 }
 
@@ -105,11 +125,18 @@ FinishedPage::focusInEvent( QFocusEvent* e )
 void
 FinishedPage::onInstallationFailed( const QString& message, const QString& details )
 {
-    Q_UNUSED( details );
-    ui->mainText->setText( tr( "<h1>Installation Failed</h1><br/>"
-                               "%1 has not been installed on your computer.<br/>"
-                               "The error message was: %2." )
-                           .arg( *Calamares::Branding::VersionedName )
-                           .arg( message ) );
+    Q_UNUSED( details )
+    if ( Calamares::Settings::instance()->isSetupMode() )
+        ui->mainText->setText( tr( "<h1>Setup Failed</h1><br/>"
+                                   "%1 has not been set up on your computer.<br/>"
+                                   "The error message was: %2." )
+                               .arg( *Calamares::Branding::VersionedName )
+                               .arg( message ) );
+    else
+        ui->mainText->setText( tr( "<h1>Installation Failed</h1><br/>"
+                                   "%1 has not been installed on your computer.<br/>"
+                                   "The error message was: %2." )
+                               .arg( *Calamares::Branding::VersionedName )
+                               .arg( message ) );
     setRestartNowEnabled( false );
 }

@@ -22,12 +22,17 @@
 #include "LicensePage.h"
 
 #include "ui_LicensePage.h"
+#include "LicenseWidget.h"
+
 #include "JobQueue.h"
 #include "GlobalStorage.h"
-#include "utils/Logger.h"
-#include "utils/CalamaresUtilsGui.h"
-#include "utils/Retranslator.h"
 #include "ViewManager.h"
+
+#include "utils/CalamaresUtils.h"
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "utils/NamedEnum.h"
+#include "utils/Retranslator.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -36,6 +41,49 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QMessageBox>
+
+#include <algorithm>
+
+const NamedEnumTable< LicenseEntry::Type >&
+LicenseEntry::typeNames()
+{
+    static const NamedEnumTable< LicenseEntry::Type > names{
+        { QStringLiteral( "software" ), LicenseEntry::Type::Software},
+        { QStringLiteral( "driver" ), LicenseEntry::Type::Driver },
+        { QStringLiteral( "gpudriver" ), LicenseEntry::Type::GpuDriver },
+        { QStringLiteral( "browserplugin" ), LicenseEntry::Type::BrowserPlugin},
+        { QStringLiteral( "codec" ), LicenseEntry::Type::Codec },
+        { QStringLiteral( "package" ), LicenseEntry::Type::Package }
+    };
+
+    return names;
+}
+
+LicenseEntry::LicenseEntry(const QVariantMap& conf)
+{
+    if ( !conf.contains( "id" ) || !conf.contains( "name" ) || !conf.contains( "url" ) )
+        return;
+
+    m_id = conf[ "id" ].toString();
+    m_prettyName = conf[ "name" ].toString();
+    m_prettyVendor = conf.value( "vendor" ).toString();
+    m_url = QUrl( conf[ "url" ].toString() );
+
+    m_required = CalamaresUtils::getBool( conf, "required", false );
+
+    bool ok = false;
+    QString typeString = conf.value( "type", "software" ).toString();
+    m_type = typeNames().find( typeString, ok );
+    if ( !ok )
+        cWarning() << "License entry" << m_id << "has unknown type" << typeString << "(using 'software')";
+}
+
+bool
+LicenseEntry::isLocal() const
+{
+    return m_url.isLocalFile();
+}
+
 
 LicensePage::LicensePage(QWidget *parent)
     : QWidget( parent )
@@ -66,29 +114,13 @@ LicensePage::LicensePage(QWidget *parent)
                                     "padding: 2px; }" );
     ui->acceptFrame->layout()->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
 
-    connect( ui->acceptCheckBox, &QCheckBox::toggled,
-             this, [ this ]( bool checked )
-    {
-        Calamares::JobQueue::instance()->globalStorage()->insert( "licenseAgree", checked );
-        m_isNextEnabled = checked;
-        if ( !checked )
-        {
-            ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
-                                            "background-color: #fff8f8;"
-                                            "border-radius: 4px;"
-                                            "padding: 2px; }" );
-        }
-        else
-        {
-            ui->acceptFrame->setStyleSheet( "#acceptFrame { padding: 3px }" );
-        }
-        emit nextStatusChanged( checked );
-    } );
+    updateGlobalStorage( false );  // Have not agreed yet
+
+    connect( ui->acceptCheckBox, &QCheckBox::toggled, this, &LicensePage::checkAcceptance );
 
     CALAMARES_RETRANSLATE(
         ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) );
-    );
-
+    )
 }
 
 
@@ -96,19 +128,16 @@ void
 LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
 {
     CalamaresUtils::clearLayout( ui->licenseEntriesLayout );
+    m_entries.clear();
+    m_entries.reserve( entriesList.count() );
 
-    bool required = false;
-    for ( const LicenseEntry& entry : entriesList )
-    {
-        if ( entry.required )
-        {
-            required = true;
-            break;
-        }
-    }
+    const bool required = std::any_of( entriesList.cbegin(), entriesList.cend(), []( const LicenseEntry& e ){ return e.m_required; });
+    if ( entriesList.isEmpty() )
+        m_allLicensesOptional = true;
+    else
+        m_allLicensesOptional = !required;
 
-    m_isNextEnabled = !required;
-    nextStatusChanged( m_isNextEnabled );
+    checkAcceptance( false );
 
     CALAMARES_RETRANSLATE(
         if ( required )
@@ -133,77 +162,16 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
                 "be installed, and open source alternatives will be used instead." ) );
         }
         ui->retranslateUi( this );
+
+        for ( const auto& w : m_entries )
+            w->retranslateUi();
     )
 
     for ( const LicenseEntry& entry : entriesList )
     {
-        QWidget* widget = new QWidget( this );
-        QPalette pal( palette() );
-        pal.setColor( QPalette::Background, palette().background().color().lighter( 108 ) );
-        widget->setAutoFillBackground( true );
-        widget->setPalette( pal );
-        widget->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
-        widget->setContentsMargins( 4, 4, 4, 4 );
-
-        QHBoxLayout* wiLayout = new QHBoxLayout;
-        widget->setLayout( wiLayout );
-        QLabel* label = new QLabel( widget );
-        label->setWordWrap( true );
-        wiLayout->addWidget( label );
-        label->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Minimum );
-
-        QString productDescription;
-        switch ( entry.type )
-        {
-        case LicenseEntry::Driver:
-            //: %1 is an untranslatable product name, example: Creative Audigy driver
-            productDescription = tr( "<strong>%1 driver</strong><br/>"
-                                     "by %2" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
-            break;
-        case LicenseEntry::GpuDriver:
-            //: %1 is usually a vendor name, example: Nvidia graphics driver
-            productDescription = tr( "<strong>%1 graphics driver</strong><br/>"
-                                     "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
-            break;
-        case LicenseEntry::BrowserPlugin:
-            productDescription = tr( "<strong>%1 browser plugin</strong><br/>"
-                                     "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
-            break;
-        case LicenseEntry::Codec:
-            productDescription = tr( "<strong>%1 codec</strong><br/>"
-                                     "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
-            break;
-        case LicenseEntry::Package:
-            productDescription = tr( "<strong>%1 package</strong><br/>"
-                                     "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
-            break;
-        case LicenseEntry::Software:
-            productDescription = tr( "<strong>%1</strong><br/>"
-                                     "<font color=\"Grey\">by %2</font>" )
-                                 .arg( entry.prettyName )
-                                 .arg( entry.prettyVendor );
-        }
-        label->setText( productDescription );
-
-        QLabel* viewLicenseLabel = new QLabel( widget );
-        wiLayout->addWidget( viewLicenseLabel );
-        viewLicenseLabel->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
-        viewLicenseLabel->setOpenExternalLinks( true );
-        viewLicenseLabel->setAlignment( Qt::AlignVCenter | Qt::AlignRight );
-        viewLicenseLabel->setText( tr( "<a href=\"%1\">view license agreement</a>" )
-                                   .arg( entry.url.toString() ) );
-
-        ui->licenseEntriesLayout->addWidget( widget );
+        LicenseWidget* w = new LicenseWidget( entry );
+        ui->licenseEntriesLayout->addWidget( w );
+        m_entries.append( w );
     }
     ui->licenseEntriesLayout->addStretch();
 }
@@ -213,4 +181,29 @@ bool
 LicensePage::isNextEnabled() const
 {
     return m_isNextEnabled;
+}
+
+void
+LicensePage::updateGlobalStorage( bool v )
+{
+    Calamares::JobQueue::instance()->globalStorage()->insert( "licenseAgree", v );
+}
+
+void LicensePage::checkAcceptance( bool checked )
+{
+    updateGlobalStorage( checked );
+
+    m_isNextEnabled = checked || m_allLicensesOptional;
+    if ( !m_isNextEnabled )
+    {
+        ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
+                                        "background-color: #fff8f8;"
+                                        "border-radius: 4px;"
+                                        "padding: 2px; }" );
+    }
+    else
+    {
+        ui->acceptFrame->setStyleSheet( "#acceptFrame { padding: 3px }" );
+    }
+    emit nextStatusChanged( checked );
 }

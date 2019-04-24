@@ -40,7 +40,7 @@ static int s_defaultFontHeight = 0;
 QPixmap
 defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 {
-    Q_UNUSED( mode );
+    Q_UNUSED( mode )
     QPixmap pixmap;
 
     switch ( type )
@@ -262,44 +262,4 @@ clearLayout( QLayout* layout )
     }
 }
 
-LocaleLabel::LocaleLabel( const QString& locale, LabelFormat format )
-    : m_locale( LocaleLabel::getLocale( locale ) )
-    , m_localeId( locale )
-{
-    QString longFormat = QObject::tr( "%1 (%2)", "Language (Country)" );
-
-    QString sortKey = QLocale::languageToString( m_locale.language() );
-    QString languageName = m_locale.nativeLanguageName();
-    QString countryName;
-
-    if ( languageName.isEmpty() )
-        languageName = QString( QLatin1Literal( "* %1 (%2)" ) ).arg( locale, sortKey );
-
-    bool needsCountryName = ( format == LabelFormat::AlwaysWithCountry ) ||
-        (locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
-
-    if ( needsCountryName )
-    {
-        sortKey.append( '+' );
-        sortKey.append( QLocale::countryToString( m_locale.country() ) );
-
-        countryName = m_locale.nativeCountryName();
-    }
-
-    m_sortKey = sortKey;
-    m_label = needsCountryName ? longFormat.arg( languageName ).arg( countryName ) : languageName;
-}
-
-QLocale LocaleLabel::getLocale( const QString& localeName )
-{
-    if ( localeName.contains( "@latin" ) )
-    {
-        QLocale loc( localeName );  // Ignores @latin
-        return QLocale( loc.language(), QLocale::Script::LatinScript, loc.country() );
-    }
-    else
-        return QLocale( localeName );
-}
-
-
-}
+}  // namespace

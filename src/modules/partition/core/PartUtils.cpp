@@ -43,6 +43,216 @@
 namespace PartUtils
 {
 
+static const NamedEnumTable<SizeUnit>&
+unitSuffixes()
+{
+    static const NamedEnumTable<SizeUnit> names{
+        { QStringLiteral( "%" ), SizeUnit::Percent },
+        { QStringLiteral( "B" ), SizeUnit::Byte },
+        { QStringLiteral( "K" ), SizeUnit::KiB },
+        { QStringLiteral( "M" ), SizeUnit::MiB },
+        { QStringLiteral( "G" ), SizeUnit::GiB }
+    };
+
+    return names;
+}
+
+PartSize::PartSize( const QString& s )
+    : NamedSuffix( unitSuffixes(), s )
+{
+    if ( ( unit() == SizeUnit::Percent ) && ( value() > 100 || value() < 0 ) )
+    {
+        cDebug() << "Percent value" << value() << "is not valid.";
+        m_value = 0;
+    }
+
+    if ( m_unit == SizeUnit::None )
+    {
+        m_value = s.toInt();
+        if ( m_value > 0 )
+            m_unit = SizeUnit::Byte;
+    }
+
+    if ( m_value <= 0 )
+    {
+        m_value = 0;
+        m_unit = SizeUnit::None;
+    }
+}
+
+qint64
+PartSize::toSectors( qint64 totalSectors, qint64 sectorSize ) const
+{
+    if ( !isValid() )
+        return -1;
+    if ( totalSectors < 1 || sectorSize < 1 )
+        return -1;
+
+    switch ( m_unit )
+    {
+    case unit_t::None:
+        return -1;
+    case unit_t::Percent:
+        if ( value() == 100 )
+            return totalSectors;  // Common-case, avoid futzing around
+        else
+            return totalSectors * value() / 100;
+    case unit_t::Byte:
+    case unit_t::KiB:
+    case unit_t::MiB:
+    case unit_t::GiB:
+        return bytesToSectors ( toBytes(), sectorSize );
+    }
+
+    return -1;
+}
+
+qint64
+PartSize::toBytes( qint64 totalSectors, qint64 sectorSize ) const
+{
+    if ( !isValid() )
+        return -1;
+
+    switch ( m_unit )
+    {
+    case unit_t::None:
+        return -1;
+    case unit_t::Percent:
+        if ( totalSectors < 1 || sectorSize < 1 )
+            return -1;
+        if ( value() == 100 )
+            return totalSectors * sectorSize;  // Common-case, avoid futzing around
+        else
+            return totalSectors * value() / 100;
+    case unit_t::Byte:
+    case unit_t::KiB:
+    case unit_t::MiB:
+    case unit_t::GiB:
+        return toBytes();
+    }
+
+    // notreached
+    return -1;
+}
+
+qint64
+PartSize::toBytes( qint64 totalBytes ) const
+{
+    if ( !isValid() )
+        return -1;
+
+    switch ( m_unit )
+    {
+    case unit_t::None:
+        return -1;
+    case unit_t::Percent:
+        if ( totalBytes < 1 )
+            return -1;
+        if ( value() == 100 )
+            return totalBytes;  // Common-case, avoid futzing around
+        else
+            return totalBytes * value() / 100;
+    case unit_t::Byte:
+    case unit_t::KiB:
+    case unit_t::MiB:
+    case unit_t::GiB:
+        return toBytes();
+    }
+
+    // notreached
+    return -1;
+}
+
+qint64
+PartSize::toBytes() const
+{
+    if ( !isValid() )
+        return -1;
+
+    switch ( m_unit )
+    {
+    case unit_t::Byte:
+        return value();
+    case unit_t::KiB:
+        return CalamaresUtils::KiBtoBytes( static_cast<unsigned long long>( value() ) );
+    case unit_t::MiB:
+        return CalamaresUtils::MiBtoBytes( static_cast<unsigned long long>( value() ) );
+    case unit_t::GiB:
+        return CalamaresUtils::GiBtoBytes( static_cast<unsigned long long>( value() ) );
+    default:
+        break;
+    }
+
+    // Reached only when unit is Percent or None
+    return -1;
+}
+
+bool
+PartSize::operator< ( const PartSize& other ) const
+{
+    if ( ( m_unit == SizeUnit::None || other.m_unit == SizeUnit::None ) ||
+         ( m_unit == SizeUnit::Percent && other.m_unit != SizeUnit::Percent ) ||
+         ( m_unit != SizeUnit::Percent && other.m_unit == SizeUnit::Percent ) )
+        return false;
+
+    switch ( m_unit )
+    {
+    case SizeUnit::Percent:
+        return ( m_value < other.m_value );
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
+        return ( toBytes() < other.toBytes () );
+    }
+
+    return false;
+}
+
+bool
+PartSize::operator> ( const PartSize& other ) const
+{
+    if ( ( m_unit == SizeUnit::None || other.m_unit == SizeUnit::None ) ||
+         ( m_unit == SizeUnit::Percent && other.m_unit != SizeUnit::Percent ) ||
+         ( m_unit != SizeUnit::Percent && other.m_unit == SizeUnit::Percent ) )
+        return false;
+
+    switch ( m_unit )
+    {
+    case SizeUnit::Percent:
+        return ( m_value > other.m_value );
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
+        return ( toBytes() > other.toBytes () );
+    }
+
+    return false;
+}
+
+bool
+PartSize::operator== ( const PartSize& other ) const
+{
+    if ( ( m_unit == SizeUnit::None || other.m_unit == SizeUnit::None ) ||
+         ( m_unit == SizeUnit::Percent && other.m_unit != SizeUnit::Percent ) ||
+         ( m_unit != SizeUnit::Percent && other.m_unit == SizeUnit::Percent ) )
+        return false;
+
+    switch ( m_unit )
+    {
+    case SizeUnit::Percent:
+        return ( m_value == other.m_value );
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
+        return ( toBytes() == other.toBytes () );
+    }
+
+    return false;
+}
+
 QString
 convenienceName( const Partition* const candidate )
 {
@@ -109,20 +319,20 @@ canBeResized( Partition* candidate )
     if ( !candidate->fileSystem().supportGrow() ||
          !candidate->fileSystem().supportShrink() )
     {
-        cDebug() << "  .. filesystem" << candidate->fileSystem().name()
+        cDebug() << Logger::SubEntry << "NO, filesystem" << candidate->fileSystem().name()
             << "does not support resize.";
         return false;
     }
 
     if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
     {
-        cDebug() << "  .. partition is free space";
+        cDebug() << Logger::SubEntry << "NO, partition is free space";
         return false;
     }
 
     if ( candidate->isMounted() )
     {
-        cDebug() << "  .. partition is mounted";
+        cDebug() << Logger::SubEntry << "NO, partition is mounted";
         return false;
     }
 
@@ -131,13 +341,13 @@ canBeResized( Partition* candidate )
         PartitionTable* table = dynamic_cast< PartitionTable* >( candidate->parent() );
         if ( !table )
         {
-            cDebug() << "  .. no partition table found";
+            cDebug() << Logger::SubEntry << "NO, no partition table found";
             return false;
         }
 
         if ( table->numPrimaries() >= table->maxPrimaries() )
         {
-            cDebug() << "  .. partition table already has"
+            cDebug() << Logger::SubEntry << "NO, partition table already has"
                 << table->maxPrimaries() << "primary partitions.";
             return false;
         }
@@ -148,19 +358,11 @@ canBeResized( Partition* candidate )
                                     ->globalStorage()
                                     ->value( "requiredStorageGB" )
                                     .toDouble( &ok );
+    // We require a little more for partitioning overhead and swap file
     double advisedStorageGB = requiredStorageGB + 0.5 + 2.0;
-
     qint64 availableStorageB = candidate->available();
 
-    // We require a little more for partitioning overhead and swap file
-    // TODO: maybe make this configurable?
-    qint64 advisedStorageB = advisedStorageGB * 1024 * 1024 * 1024;
-    cDebug() << "Required  storage B:" << advisedStorageB
-             << QString( "(%1GB)" ).arg( advisedStorageGB );
-    cDebug() << "Available storage B:" << availableStorageB
-             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
-             << "for" << convenienceName( candidate ) << "   length:" << candidate->length()
-             << "   sectorsUsed:" << candidate->sectorsUsed() << "   fsType:" << candidate->fileSystem().name();
+    qint64 advisedStorageB = CalamaresUtils::GiBtoBytes( advisedStorageGB );
 
     if ( ok &&
          availableStorageB > advisedStorageB )
@@ -169,14 +371,29 @@ canBeResized( Partition* candidate )
 
         return true;
     }
-    return false;
+    else if ( ok )
+    {
+        Logger::CDebug deb;
+        deb << Logger::SubEntry << "NO, insufficient storage";
+        deb << Logger::Continuation << "Required  storage B:" << advisedStorageB
+                << QString( "(%1GB)" ).arg( advisedStorageGB );
+        deb << Logger::Continuation << "Available storage B:" << availableStorageB
+                << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
+                << "for" << convenienceName( candidate ) << "length:" << candidate->length()
+                << "sectorsUsed:" << candidate->sectorsUsed() << "fsType:" << candidate->fileSystem().name();
+        return false;
+    }
+    else
+    {
+        cDebug() << Logger::SubEntry << "NO, requiredStorageGB is not set correctly.";
+        return false;
+    }
 }
 
 
 bool
 canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 {
-    //FIXME: check for max partitions count on DOS MBR
     cDebug() << "Checking if" << partitionPath << "can be resized.";
     QString partitionWithOs = partitionPath;
     if ( partitionWithOs.startsWith( "/dev/" ) )
@@ -188,14 +405,13 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
             Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, partitionWithOs );
             if ( candidate )
             {
-                cDebug() << "  .. found Partition* for" << partitionWithOs;
                 return canBeResized( candidate );
             }
         }
-        cDebug() << "  .. no Partition* found for" << partitionWithOs;
+        cDebug() << Logger::SubEntry << "no Partition* found for" << partitionWithOs;
     }
 
-    cDebug() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
+    cDebug() << Logger::SubEntry << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
     return false;
 }
 
@@ -230,7 +446,7 @@ lookForFstabEntries( const QString& partitionPath )
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
 
-        cDebug() << "  .. reading" << fstabFile.fileName();
+        cDebug() << Logger::SubEntry << "reading" << fstabFile.fileName();
 
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
@@ -240,9 +456,9 @@ lookForFstabEntries( const QString& partitionPath )
             for ( const QString& rawLine : fstabLines )
                 fstabEntries.append( FstabEntry::fromEtcFstab( rawLine ) );
             fstabFile.close();
-            cDebug() << "  .. got" << fstabEntries.count() << "lines.";
+            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "lines.";
             std::remove_if( fstabEntries.begin(), fstabEntries.end(), [](const FstabEntry& x) { return !x.isValid(); } );
-            cDebug() << "  .. got" << fstabEntries.count() << "fstab entries.";
+            cDebug() << Logger::SubEntry << "got" << fstabEntries.count() << "fstab entries.";
         }
         else
             cWarning() << "Could not read fstab from mounted fs";
@@ -402,7 +618,7 @@ bool
 isEfiBootable( const Partition* candidate )
 {
     cDebug() << "Check EFI bootable" << convenienceName( candidate ) << candidate->devicePath();
-    cDebug() << " .. flags" << candidate->activeFlags();
+    cDebug() << Logger::SubEntry << "flags" << candidate->activeFlags();
 
     auto flags = PartitionInfo::flags( candidate );
 
@@ -415,7 +631,7 @@ isEfiBootable( const Partition* candidate )
     while ( root && !root->isRoot() )
     {
         root = root->parent();
-        cDebug() << " .. moved towards root" << (void *)root;
+        cDebug() << Logger::SubEntry << "moved towards root" << (void *)root;
     }
 
     // Strange case: no root found, no partition table node?
@@ -423,7 +639,7 @@ isEfiBootable( const Partition* candidate )
         return false;
 
     const PartitionTable* table = dynamic_cast<const PartitionTable*>( root );
-    cDebug() << "  .. partition table" << (void *)table << "type" << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
+    cDebug() << Logger::SubEntry << "partition table" << (void *)table << "type" << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
     return table && ( table->type() == PartitionTable::TableType::gpt ) &&
         flags.testFlag( KPM_PARTITION_FLAG(Boot) );
 }
@@ -476,99 +692,6 @@ findFS( QString fsName, FileSystem::Type* fsType )
     }
 #endif
     return fsName;
-}
-
-static qint64
-sizeToBytes( double size, SizeUnit unit, qint64 totalSize )
-{
-    qint64 bytes;
-
-    switch ( unit )
-    {
-    case SizeUnit::Percent:
-        bytes = qint64( static_cast<double>( totalSize ) * size / 100.0L );
-        break;
-    case SizeUnit::KiB:
-        bytes = CalamaresUtils::KiBtoBytes(size);
-        break;
-    case SizeUnit::MiB:
-        bytes = CalamaresUtils::MiBtoBytes(size);
-        break;
-    case SizeUnit::GiB:
-        bytes = CalamaresUtils::GiBtoBytes(size);
-        break;
-    default:
-        bytes = size;
-        break;
-    }
-
-    return bytes;
-}
-
-double
-parseSizeString( const QString& sizeString, SizeUnit* unit )
-{
-    double value;
-    bool ok;
-    QString valueString;
-    QString unitString;
-
-    QRegExp rx( "[KkMmGg%]" );
-    int pos = rx.indexIn( sizeString );
-    if (pos > 0)
-    {
-        valueString = sizeString.mid( 0, pos );
-        unitString = sizeString.mid( pos );
-    }
-    else
-        valueString = sizeString;
-
-    value = valueString.toDouble( &ok );
-    if ( !ok )
-    {
-        /*
-         * In case the conversion fails, a size of 100% allows a few cases to pass
-         * anyway (e.g. when it is the last partition of the layout)
-         */
-        *unit = SizeUnit::Percent;
-        return 100.0L;
-    }
-
-    if ( unitString.length() > 0 )
-    {
-        if ( unitString.at(0) == '%' )
-            *unit = SizeUnit::Percent;
-        else if ( unitString.at(0).toUpper() == 'K' )
-            *unit = SizeUnit::KiB;
-        else if ( unitString.at(0).toUpper() == 'M' )
-            *unit = SizeUnit::MiB;
-        else if ( unitString.at(0).toUpper() == 'G' )
-            *unit = SizeUnit::GiB;
-        else
-            *unit = SizeUnit::Byte;
-    }
-    else
-    {
-        *unit = SizeUnit::Byte;
-    }
-
-    return value;
-}
-
-qint64
-parseSizeString( const QString& sizeString, qint64 totalSize )
-{
-    SizeUnit unit;
-    double value = parseSizeString( sizeString, &unit );
-
-    return sizeToBytes( value, unit, totalSize );
-}
-
-qint64
-sizeToSectors( double size, SizeUnit unit, qint64 totalSectors, qint64 logicalSize )
-{
-    qint64 bytes = sizeToBytes( size, unit, totalSectors * logicalSize );
-    return bytesToSectors( static_cast<unsigned long long>( bytes ), logicalSize );
 }
 
 }  // nmamespace PartUtils

@@ -1,5 +1,5 @@
-#ifndef __KDTOOLSCORE__PIMPL_PTR_H__
-#define __KDTOOLSCORE__PIMPL_PTR_H__
+#ifndef KDTOOLSCORE_PIMPL_PTR_H
+#define KDTOOLSCORE_PIMPL_PTR_H
 
 #include "kdtoolsglobal.h"
 
@@ -14,7 +14,7 @@ namespace kdtools {
     public:
         pimpl_ptr() : d( new T ) {}
         explicit pimpl_ptr( T * t ) : d( t ) {}
-        ~pimpl_ptr() { delete d; d = 0; }
+        ~pimpl_ptr() { delete d; d = nullptr; }
 
         T * get() { return d; }
         const T * get() const { return d; }
@@ -40,5 +40,5 @@ namespace kdtools {
 } // namespace kdtools
 #endif
 
-#endif /* __KDTOOLSCORE__PIMPL_PTR_H__ */
+#endif /* KDTOOLSCORE_PIMPL_PTR_H */
 

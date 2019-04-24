@@ -15,30 +15,52 @@
 #   - pulling translations
 #   - updating the language list
 #   - switching to the right branch
+#
+# You can influence the script a little with environment variables:
+#   - BUILD_DEFAULT set to false to avoid first build with gcc
+#   - BUILD_CLANG   set to false to avoid second build with clang
+#   - BUILD_ONLY    set to true to break after building
 
 test -d .git || { echo "Not at top-level." ; exit 1 ; }
 test -d src/modules || { echo "No src/modules." ; exit 1 ; }
 
 which cmake > /dev/null 2>&1 || { echo "No cmake(1) available." ; exit 1 ; }
 
-### Build with default compiler
+test -z "$BUILD_DEFAULT" && BUILD_DEFAULT=true
+test -z "$BUILD_CLANG" && BUILD_CLANG=true
+test -z "$BUILD_ONLY" && BUILD_ONLY=false
+
+### Setup
 #
 #
 BUILDDIR=$(mktemp -d --suffix=-build --tmpdir=.)
-rm -rf "$BUILDDIR"
-mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
-( cd "$BUILDDIR" && cmake .. && make -j4 ) || { echo "Could not perform test-build." ; exit 1 ; }
-( cd "$BUILDDIR" && make test ) || { echo "Tests failed." ; exit 1 ; }
+
+### Build with default compiler
+#
+#
+if test "x$BUILD_DEFAULT" = "xtrue" ; then
+    rm -rf "$BUILDDIR"
+    mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
+    ( cd "$BUILDDIR" && cmake .. && make -j4 ) || { echo "Could not perform test-build." ; exit 1 ; }
+    ( cd "$BUILDDIR" && make test ) || { echo "Tests failed." ; exit 1 ; }
+fi
 
 ### Build with clang
 #
 #
-if which clang++ > /dev/null 2>&1 ; then
-    # Do build again with clang
-    rm -rf "$BUILDDIR"
-    mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
-    ( cd "$BUILDDIR" && CC=clang CXX=clang++ cmake .. && make -j4 ) || { echo "Could not perform test-build." ; exit 1 ; }
-    ( cd "$BUILDDIR" && make test ) || { echo "Tests failed." ; exit 1 ; }
+if test "x$BUILD_CLANG" = "xtrue" ; then
+    if which clang++ > /dev/null 2>&1 ; then
+        # Do build again with clang
+        rm -rf "$BUILDDIR"
+        mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
+        ( cd "$BUILDDIR" && CC=clang CXX=clang++ cmake .. && make -j4 ) || { echo "Could not perform test-build." ; exit 1 ; }
+        ( cd "$BUILDDIR" && make test ) || { echo "Tests failed." ; exit 1 ; }
+    fi
+fi
+
+if test "x$BUILD_ONLY" = "xtrue" ; then
+    echo "Builds completed, release stopped."
+    exit 1
 fi
 
 ### Get version number for this release

@@ -269,7 +269,7 @@ protected:
     template<class impl, class ParentType>
     static QObject* createInstance( QWidget* parentWidget, QObject* parent )
     {
-        Q_UNUSED( parentWidget );
+        Q_UNUSED( parentWidget )
         ParentType* p = nullptr;
         if ( parent )
         {

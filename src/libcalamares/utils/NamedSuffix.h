@@ -72,7 +72,7 @@ public:
     NamedSuffix( const NamedEnumTable<T>& table, const QString& s )
         : NamedSuffix()
     {
-        for( const auto suffix : table.table )
+        for( const auto& suffix : table.table )
             if ( s.endsWith( suffix.first ) )
             {
                 m_value = s.left( s.length() - suffix.first.length() ).toInt();

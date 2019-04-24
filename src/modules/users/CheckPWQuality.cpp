@@ -55,7 +55,7 @@ DEFINE_CHECK_FUNC( minLength )
         minLength = value.toInt();
     if ( minLength > 0 )
     {
-        cDebug() << " .. minLength set to" << minLength;
+        cDebug() << Logger::SubEntry << "minLength set to" << minLength;
         checks.push_back(
             PasswordCheck(
                 []()
@@ -77,7 +77,7 @@ DEFINE_CHECK_FUNC( maxLength )
         maxLength = value.toInt();
     if ( maxLength > 0 )
     {
-        cDebug() << " .. maxLength set to" << maxLength;
+        cDebug() << Logger::SubEntry << "maxLength set to" << maxLength;
         checks.push_back(
             PasswordCheck(
                 []()
@@ -93,6 +93,25 @@ DEFINE_CHECK_FUNC( maxLength )
 }
 
 #ifdef HAVE_LIBPWQUALITY
+/* NOTE:
+ *
+ * The munge*() functions are here because libpwquality uses void* to
+ * represent user-data in callbacks and as a general "pass some parameter"
+ * type. These need to be munged to the right C++ type.
+ */
+
+/// @brief Handle libpwquality using void* to represent a long
+static inline long mungeLong( void* p )
+{
+    return static_cast<long>( reinterpret_cast<intptr_t>( p ) );
+}
+
+/// @brief Handle libpwquality using void* to represent a char*
+static inline const char* mungeString( void* p )
+{
+    return reinterpret_cast<const char*>( p );
+}
+
 /**
  * Class that acts as a RAII placeholder for pwquality_settings_t pointers.
  * Gets a new pointer and ensures it is deleted only once; provides
@@ -111,7 +130,6 @@ public:
 
     ~PWSettingsHolder()
     {
-        cDebug() << "Freeing PWQ@" << ( void* )m_settings;
         pwquality_free_settings( m_settings );
     }
 
@@ -155,7 +173,7 @@ public:
         case PWQ_ERROR_MEM_ALLOC:
             if ( auxerror )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Memory allocation error when setting '%1'" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Memory allocation error when setting '%1'" ).arg( mungeString( auxerror ) );
                 free( auxerror );
                 return s;
             }
@@ -176,41 +194,41 @@ public:
             return QCoreApplication::translate( "PWQ", "The password contains forbidden words in some form" );
         case PWQ_ERROR_MIN_DIGITS:
             if ( auxerror )
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 digits" ).arg( ( long )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 digits" ).arg( mungeLong( auxerror ) );
             return QCoreApplication::translate( "PWQ", "The password contains too few digits" );
         case PWQ_ERROR_MIN_UPPERS:
             if ( auxerror )
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 uppercase letters" ).arg( ( long )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 uppercase letters" ).arg( mungeLong( auxerror ) );
             return QCoreApplication::translate( "PWQ", "The password contains too few uppercase letters" );
         case PWQ_ERROR_MIN_LOWERS:
             if ( auxerror )
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 lowercase letters" ).arg( ( long )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 lowercase letters" ).arg( mungeLong( auxerror ) );
             return QCoreApplication::translate( "PWQ", "The password contains too few lowercase letters" );
         case PWQ_ERROR_MIN_OTHERS:
             if ( auxerror )
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 non-alphanumeric characters" ).arg( ( long )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 non-alphanumeric characters" ).arg( mungeLong( auxerror ) );
             return QCoreApplication::translate( "PWQ", "The password contains too few non-alphanumeric characters" );
         case PWQ_ERROR_MIN_LENGTH:
             if ( auxerror )
-                return QCoreApplication::translate( "PWQ", "The password is shorter than %1 characters" ).arg( ( long )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password is shorter than %1 characters" ).arg( mungeLong( auxerror ) );
             return QCoreApplication::translate( "PWQ", "The password is too short" );
         case PWQ_ERROR_ROTATED:
             return QCoreApplication::translate( "PWQ", "The password is just rotated old one" );
         case PWQ_ERROR_MIN_CLASSES:
             if ( auxerror )
-                return QCoreApplication::translate( "PWQ", "The password contains less than %1 character classes" ).arg( ( long )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 character classes" ).arg( mungeLong( auxerror ) );
             return QCoreApplication::translate( "PWQ", "The password does not contain enough character classes" );
         case PWQ_ERROR_MAX_CONSECUTIVE:
             if ( auxerror )
-                return QCoreApplication::translate( "PWQ", "The password contains more than %1 same characters consecutively" ).arg( ( long )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password contains more than %1 same characters consecutively" ).arg( mungeLong( auxerror ) );
             return QCoreApplication::translate( "PWQ", "The password contains too many same characters consecutively" );
         case PWQ_ERROR_MAX_CLASS_REPEAT:
             if ( auxerror )
-                return QCoreApplication::translate( "PWQ", "The password contains more than %1 characters of the same class consecutively" ).arg( ( long )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password contains more than %1 characters of the same class consecutively" ).arg( mungeLong( auxerror ) );
             return QCoreApplication::translate( "PWQ", "The password contains too many characters of the same class consecutively" );
         case PWQ_ERROR_MAX_SEQUENCE:
             if ( auxerror )
-                return QCoreApplication::translate( "PWQ", "The password contains monotonic sequence longer than %1 characters" ).arg( ( long )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password contains monotonic sequence longer than %1 characters" ).arg( mungeLong( auxerror ) );
             return QCoreApplication::translate( "PWQ", "The password contains too long of a monotonic character sequence" );
         case PWQ_ERROR_EMPTY_PASSWORD:
             return QCoreApplication::translate( "PWQ", "No password supplied" );
@@ -222,13 +240,13 @@ public:
             if ( auxerror )
             {
                 /* Here the string comes from cracklib, don't free? */
-                return QCoreApplication::translate( "PWQ", "The password fails the dictionary check - %1" ).arg( ( const char* )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password fails the dictionary check - %1" ).arg( mungeString( auxerror ) );
             }
             return QCoreApplication::translate( "PWQ", "The password fails the dictionary check" );
         case PWQ_ERROR_UNKNOWN_SETTING:
             if ( auxerror )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Unknown setting - %1" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Unknown setting - %1" ).arg( mungeString( auxerror ) );
                 free( auxerror );
                 return s;
             }
@@ -236,7 +254,7 @@ public:
         case PWQ_ERROR_INTEGER:
             if ( auxerror )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Bad integer value of setting - %1" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Bad integer value of setting - %1" ).arg( mungeString( auxerror ) );
                 free( auxerror );
                 return s;
             }
@@ -244,7 +262,7 @@ public:
         case PWQ_ERROR_NON_INT_SETTING:
             if ( auxerror )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Setting %1 is not of integer type" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Setting %1 is not of integer type" ).arg( mungeString( auxerror ) );
                 free( auxerror );
                 return s;
             }
@@ -252,7 +270,7 @@ public:
         case PWQ_ERROR_NON_STR_SETTING:
             if ( auxerror )
             {
-                QString s = QCoreApplication::translate( "PWQ", "Setting %1 is not of string type" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Setting %1 is not of string type" ).arg( mungeString( auxerror ) );
                 free( auxerror );
                 return s;
             }
@@ -295,7 +313,7 @@ DEFINE_CHECK_FUNC( libpwquality )
                 cWarning() << "unrecognized libpwquality setting" << option;
             else
             {
-                cDebug() << " .. libpwquality setting" << option;
+                cDebug() << Logger::SubEntry << "libpwquality setting" << option;
                 ++requirement_count;
             }
         }

@@ -62,7 +62,7 @@ isWritableDir( const QDir& dir )
     {
         if ( !dir.mkpath( "." ) )
         {
-            cerr << "warning: failed to create " << qPrintable( path ) << endl;
+            cerr << "warning: failed to create " << qPrintable( path ) << '\n';
             return false;
         }
         return true;
@@ -99,21 +99,32 @@ setAppDataDir( const QDir& dir )
 
 /* Split $ENV{@p name} on :, append to @p l, making sure each ends in / */
 static void
-mungeEnvironment( QStringList& l, const char *name )
+mungeEnvironment( QStringList& l, const char* name, const char* defaultDirs )
 {
-    for ( auto s : QString( qgetenv( name ) ).split(':') )
+    static const QString calamaresSubdir = QStringLiteral( "calamares/" );
+
+    QStringList dirs = QString( qgetenv( name ) ).split( ':' );
+    if ( dirs.isEmpty() )
+        dirs = QString( defaultDirs ).split( ':' );
+
+    for ( auto s : dirs )
+    {
+        if ( s.isEmpty() )
+            continue;
         if ( s.endsWith( '/' ) )
-            l << s;
+            l << ( s + calamaresSubdir ) << s;
         else
-            l << ( s + '/' );
+            l << ( s + '/' + calamaresSubdir ) << ( s + '/' );
+    }
 }
 
 void
 setXdgDirs()
 {
-    s_haveExtraDirs = true;
-    mungeEnvironment( s_extraConfigDirs, "XDG_CONFIG_DIRS" );
-    mungeEnvironment( s_extraDataDirs, "XDG_DATA_DIRS" );
+    mungeEnvironment( s_extraConfigDirs, "XDG_CONFIG_DIRS", "/etc/xdg" );
+    mungeEnvironment( s_extraDataDirs, "XDG_DATA_DIRS", "/usr/local/share/:/usr/share/" );
+
+    s_haveExtraDirs = !( s_extraConfigDirs.isEmpty() && s_extraDataDirs.isEmpty() );
 }
 
 QStringList
@@ -217,11 +228,11 @@ installTranslator( const QLocale& locale,
                                    "_",
                                    brandingTranslationsDir.absolutePath() ) )
             {
-                cDebug() << " .. Branding using locale:" << localeName;
+                cDebug() << Logger::SubEntry << "Branding using locale:" << localeName;
             }
             else
             {
-                cDebug() << " .. Branding using default, system locale not found:" << localeName;
+                cDebug() << Logger::SubEntry << "Branding using default, system locale not found:" << localeName;
                 translator->load( brandingTranslationsPrefix + "en" );
             }
 
@@ -240,11 +251,11 @@ installTranslator( const QLocale& locale,
     translator = new QTranslator( parent );
     if ( translator->load( QString( ":/lang/calamares_" ) + localeName ) )
     {
-        cDebug() << " .. Calamares using locale:" << localeName;
+        cDebug() << Logger::SubEntry << "Calamares using locale:" << localeName;
     }
     else
     {
-        cDebug() << " .. Calamares using default, system locale not found:" << localeName;
+        cDebug() << Logger::SubEntry << "Calamares using default, system locale not found:" << localeName;
         translator->load( QString( ":/lang/calamares_en" ) );
     }
 

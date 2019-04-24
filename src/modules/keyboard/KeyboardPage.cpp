@@ -216,12 +216,12 @@ QString
 KeyboardPage::prettyStatus() const
 {
     QString status;
-    status += tr( "Set keyboard model to %1.<br/>" )
-              .arg( ui->comboBoxModel->currentText() );
-    status += tr( "Set keyboard layout to %1/%2." )
-              .arg( ui->listLayout->currentIndex().data().toString() )
-              .arg( ui->listVariant->currentItem()->text() );
-
+    status += tr( "Set keyboard model to %1.<br/>" ).arg( ui->comboBoxModel->currentText() );
+              
+    QString layout = ui->listLayout->currentIndex().data().toString();
+    QString variant = ui->listVariant->currentItem() ? ui->listVariant->currentItem()->text() : QString( "<default>" );
+    status += tr( "Set keyboard layout to %1/%2." ).arg( layout, variant );
+    
     return status;
 }
 
@@ -254,14 +254,14 @@ KeyboardPage::guessLayout( const QStringList& langParts )
     bool foundCountryPart = false;
     for ( auto countryPart = langParts.rbegin(); !foundCountryPart && countryPart != langParts.rend(); ++countryPart )
     {
-        cDebug() << "   .. looking for locale part" << *countryPart;
+        cDebug() << Logger::SubEntry << "looking for locale part" << *countryPart;
         for ( int i = 0; i < klm->rowCount(); ++i )
         {
             QModelIndex idx = klm->index( i );
             QString name = idx.isValid() ? idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() : QString();
             if ( idx.isValid() && ( name.compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
             {
-                cDebug() << "   .. matched" << name;
+                cDebug() << Logger::SubEntry << "matched" << name;
                 ui->listLayout->setCurrentIndex( idx );
                 foundCountryPart = true;
                 break;
@@ -279,7 +279,7 @@ KeyboardPage::guessLayout( const QStringList& langParts )
                     if ( variantdata && (variantdata->data.compare( *countryPart, Qt::CaseInsensitive ) == 0) )
                     {
                         ui->listVariant->setCurrentItem( variantdata );
-                        cDebug() << " .. matched variant" << variantdata->data << ' ' << variantdata->text();
+                        cDebug() << Logger::SubEntry << "matched variant" << variantdata->data << ' ' << variantdata->text();
                     }
                 }
             }
@@ -361,7 +361,7 @@ KeyboardPage::onActivate()
         if ( specialCaseMap.contains( lang_s ) )
         {
             QString newLang = QString::fromStdString( specialCaseMap.value( lang_s ) );
-            cDebug() << " .. special case language" << lang << "becomes" << newLang;
+            cDebug() << Logger::SubEntry << "special case language" << lang << "becomes" << newLang;
             lang = newLang;
         }
     }
@@ -372,7 +372,7 @@ KeyboardPage::onActivate()
         // Note that this his string is not fit for display purposes!
         // It doesn't come from QLocale::nativeCountryName.
         QString country = QLocale::countryToString( QLocale( lang ).country() );
-        cDebug() << " .. extracted country" << country << "::" << langParts;
+        cDebug() << Logger::SubEntry << "extracted country" << country << "::" << langParts;
 
         guessLayout( langParts );
     }
@@ -436,7 +436,7 @@ void
 KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current,
         const QModelIndex& previous )
 {
-    Q_UNUSED( previous );
+    Q_UNUSED( previous )
     if ( !current.isValid() )
         return;
 
@@ -446,9 +446,9 @@ KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current,
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p layout and @p variant.
  */
-static inline QStringList xkbmap_args( QStringList&& r, const QString& layout, const QString& variant )
+static inline QStringList xkbmap_args( const QString& layout, const QString& variant )
 {
-    r << "-layout" << layout;
+    QStringList r{ "-layout", layout };
     if ( !variant.isEmpty() )
         r << "-variant" << variant;
     return r;
@@ -457,7 +457,7 @@ static inline QStringList xkbmap_args( QStringList&& r, const QString& layout, c
 void
 KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
 {
-    Q_UNUSED( previous );
+    Q_UNUSED( previous )
 
     QPersistentModelIndex layoutIndex = ui->listLayout->currentIndex();
     LayoutItem* variantItem = dynamic_cast< LayoutItem* >( current );
@@ -483,7 +483,7 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
     connect( &m_setxkbmapTimer, &QTimer::timeout,
              this, [=]
     {
-        QProcess::execute( "setxkbmap", xkbmap_args( QStringList(), layout, variant ) );
+        QProcess::execute( "setxkbmap", xkbmap_args( layout, variant ) );
         cDebug() << "xkbmap selection changed to: " << layout << '-' << variant;
         m_setxkbmapTimer.disconnect( this );
     } );

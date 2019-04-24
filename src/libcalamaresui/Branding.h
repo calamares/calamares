@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, Raul Rodrigo Segura (raurodse)
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -89,8 +90,11 @@ public:
     class WindowDimension : public NamedSuffix<WindowDimensionUnit, WindowDimensionUnit::None>
     {
     public:
-        using NamedSuffix::NamedSuffix;
+        static  const NamedEnumTable< WindowDimensionUnit >& suffixes();
         bool isValid() const;
+
+        using NamedSuffix::NamedSuffix;
+        WindowDimension( const QString& s ) : NamedSuffix( suffixes(), s ) {}
     } ;
 
     static Branding* instance();
@@ -98,16 +102,30 @@ public:
     explicit Branding( const QString& brandingFilePath,
                        QObject* parent = nullptr );
 
-    QString descriptorPath() const;
-    QString componentName() const;
+    /** @brief Complete path of the branding descriptor file. */
+    QString descriptorPath() const { return m_descriptorPath; }
+    /** @brief The component name found in the descriptor file.
+     *
+     * The component name always matches the last directory name in the path.
+     */
+    QString componentName() const { return m_componentName; }
+    /** @brief The directory holding all of the branding assets. */
     QString componentDirectory() const;
-    QString translationsPathPrefix() const;
+    /** @brief The directory where branding translations live.
+     *
+     * This is componentDir + "/lang".
+     */
+    QString translationsDirectory() const { return m_translationsPathPrefix; }
+
+    /** @brief Path to the slideshow QML file, if any. */
+    QString slideshowPath() const { return m_slideshowPath; }
 
     QString string( Branding::StringEntry stringEntry ) const;
     QString styleString( Branding::StyleEntry styleEntry ) const;
     QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
-    QString slideshowPath() const;
+    /** @brief Stylesheet to apply for this branding. May be empty. */
+    QString stylesheet() const { return m_stylesheet; }
 
     bool welcomeStyleCalamares() const { return m_welcomeStyleCalamares; }
     bool welcomeExpandingLogo() const { return m_welcomeExpandingLogo; }
@@ -132,7 +150,7 @@ private:
     static const QStringList s_imageEntryStrings;
     static const QStringList s_styleEntryStrings;
 
-    void bail( const QString& message );
+    [[noreturn]] void bail( const QString& message );
 
     QString m_descriptorPath;
     QString m_componentName;
@@ -141,6 +159,7 @@ private:
     QMap< QString, QString > m_style;
     QString m_slideshowPath;
     QString m_translationsPathPrefix;
+    QString m_stylesheet;  // Text from file
 
     /** @brief Initialize the simple settings below */
     void initSimpleSettings( const YAML::Node& doc );

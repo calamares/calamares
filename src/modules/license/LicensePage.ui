@@ -46,7 +46,31 @@
       </spacer>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="licenseEntriesLayout"/>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOn</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>765</width>
+          <height>94</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="licenseEntriesLayout"/>
+       </widget>
+      </widget>
      </item>
      <item>
       <spacer name="verticalSpacer_2">

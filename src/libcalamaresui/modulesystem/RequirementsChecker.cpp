@@ -112,7 +112,7 @@ RequirementsChecker::finished()
         {
             if ( r.mandatory && !r.satisfied )
             {
-                cDebug() << "  .. requirement" << count << r.name << "is not satisfied.";
+                cDebug() << Logger::SubEntry << "requirement" << count << r.name << "is not satisfied.";
                 acceptable = false;
             }
             ++count;
@@ -143,8 +143,9 @@ RequirementsChecker::reportProgress()
     auto remaining = std::count_if( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && !w->isFinished(); } );
     if ( remaining > 0 )
     {
+        unsigned int posInterval = ( m_progressTimer->interval() < 0 ) ? 1000 : uint( m_progressTimer->interval() );
         QString waiting = tr( "Waiting for %n module(s).", "", remaining );
-        QString elapsed = tr( "(%n second(s))", "", m_progressTimeouts * m_progressTimer->interval() / 1000 );
+        QString elapsed = tr( "(%n second(s))", "", m_progressTimeouts * posInterval / 1000 );
         emit requirementsProgress( waiting + QString( " " ) + elapsed );
     }
     else

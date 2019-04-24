@@ -55,16 +55,10 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     setApplicationName( QStringLiteral( CALAMARES_APPLICATION_NAME ) );
     setApplicationVersion( QStringLiteral( CALAMARES_VERSION ) );
 
-    cDebug() << "Calamares version:" << CALAMARES_VERSION;
-
     CalamaresUtils::installTranslator( QLocale::system(), QString(), this );
 
     QFont f = font();
-
-    cDebug() << "Default font size" << f.pointSize() << ';' << f.pixelSize() << "px";
     CalamaresUtils::setDefaultFontSize( f.pointSize() );
-
-    cDebug() << "Available languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' );
 }
 
 
@@ -72,6 +66,8 @@ void
 CalamaresApplication::init()
 {
     Logger::setupLogfile();
+    cDebug() << "Calamares version:" << CALAMARES_VERSION;
+    cDebug() << "        languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
 
     setQuitOnLastWindowClosed( false );
 

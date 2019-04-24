@@ -1,5 +1,5 @@
-#ifndef __KDTOOLSCORE_KDSINGLEAPPLICATIONGUARD_H__
-#define __KDTOOLSCORE_KDSINGLEAPPLICATIONGUARD_H__
+#ifndef KDTOOLSCORE_KDSINGLEAPPLICATIONGUARD_H
+#define KDTOOLSCORE_KDSINGLEAPPLICATIONGUARD_H
 
 #include <QtCore/QObject>
 
@@ -31,10 +31,10 @@ public:
         AutoKillOtherInstances = 1
     };
 
-    explicit KDSingleApplicationGuard( QObject * parent=0 );
-    explicit KDSingleApplicationGuard( Policy policy, QObject * parent=0 );
-    explicit KDSingleApplicationGuard( const QStringList & arguments, QObject * parent=0 );
-    explicit KDSingleApplicationGuard( const QStringList & arguments, Policy policy, QObject * parent=0 );
+    explicit KDSingleApplicationGuard( QObject * parent=nullptr );
+    explicit KDSingleApplicationGuard( Policy policy, QObject * parent=nullptr );
+    explicit KDSingleApplicationGuard( const QStringList & arguments, QObject * parent=nullptr );
+    explicit KDSingleApplicationGuard( const QStringList & arguments, Policy policy, QObject * parent=nullptr );
     ~KDSingleApplicationGuard();
 
     bool isOperational() const;
@@ -138,4 +138,4 @@ QT_END_NAMESPACE
 
 #endif // QT_NO_SHAREDMEMORY
 
-#endif /* __KDTOOLSCORE_KDSINGLEAPPLICATIONGUARD_H__ */
+#endif /* KDTOOLSCORE_KDSINGLEAPPLICATIONGUARD_H */

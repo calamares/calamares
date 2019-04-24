@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="69"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation>&lt;strong&gt;Zaváděcí prostředí&lt;/strong&gt; tohoto systému.&lt;br&gt;&lt;br&gt;Starší x86 systémy podporují pouze &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderní systémy obvykle používají &lt;strong&gt;EFI&lt;/strong&gt;, ale pokud jsou spuštěné v režimu kompatibility, mohou se zobrazovat jako BIOS.</translation>
+        <translation>&lt;strong&gt;Zaváděcí prostředí&lt;/strong&gt; tohoto systému.&lt;br&gt;&lt;br&gt;Starší x86 systémy podporují pouze &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderní systémy obvykle používají &lt;strong&gt;UEFI&lt;/strong&gt;, ale pokud jsou spuštěné v režimu kompatibility, mohou se zobrazovat jako BIOS.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
@@ -22,25 +22,25 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
         <source>Master Boot Record of %1</source>
-        <translation>Hlavní zaváděcí záznam (MBR) %1</translation>
+        <translation>Hlavní zaváděcí záznam (MBR) na %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="78"/>
         <source>Boot Partition</source>
         <translation>Zaváděcí oddíl</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="81"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="83"/>
         <source>System Partition</source>
         <translation>Systémový oddíl</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="113"/>
         <source>Do not install a boot loader</source>
         <translation>Neinstalovat zavaděč systému</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="125"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="131"/>
         <source>%1 (%2)</source>
         <translation>%1 (%2)</translation>
     </message>
@@ -111,11 +111,32 @@
     </message>
 </context>
 <context>
+    <name>Calamares::FailJob</name>
+    <message>
+        <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
+        <source>Job failed (%1)</source>
+        <translation>Úloha se nezdařila (%1)</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
+        <source>Programmed job failure was explicitly requested.</source>
+        <translation>Byl výslovně vyžádán nezdar naprogramované úlohy.</translation>
+    </message>
+</context>
+<context>
     <name>Calamares::JobThread</name>
     <message>
-        <location filename="../src/libcalamares/JobQueue.cpp" line="101"/>
+        <location filename="../src/libcalamares/JobQueue.cpp" line="102"/>
         <source>Done</source>
         <translation>Hotovo</translation>
+    </message>
+</context>
+<context>
+    <name>Calamares::NamedJob</name>
+    <message>
+        <location filename="../src/libcalamares/JobExample.cpp" line="27"/>
+        <source>Example job (%1)</source>
+        <translation>Úloha pro ukázku (%1)</translation>
     </message>
 </context>
 <context>
@@ -156,12 +177,30 @@
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="300"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
-        <translation>Hlavní soubor %1 pro Python úlohu %2 se nedaří otevřít pro čtení..</translation>
+        <translation>Hlavní soubor s python skriptem %1 pro úlohu %2 se nedaří otevřít pro čtení..</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="376"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Boost.Python chyba ve skriptu „%1“.</translation>
+    </message>
+</context>
+<context>
+    <name>Calamares::RequirementsChecker</name>
+    <message numerus="yes">
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="147"/>
+        <source>Waiting for %n module(s).</source>
+        <translation><numerusform>Čeká se na %n modul</numerusform><numerusform>Čeká se na %n moduly</numerusform><numerusform>Čeká se na %n modulů</numerusform><numerusform>Čeká se na %n moduly</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="148"/>
+        <source>(%n second(s))</source>
+        <translation><numerusform>(%n sekundu)</numerusform><numerusform>(%n sekundy)</numerusform><numerusform>(%n sekund)</numerusform><numerusform>(%n sekundy)</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="152"/>
+        <source>System-requirements checking is complete.</source>
+        <translation>Kontrola požadavků na systém dokončena.</translation>
     </message>
 </context>
 <context>
@@ -173,106 +212,154 @@
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="311"/>
         <source>&amp;Next</source>
         <translation>&amp;Další</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="296"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="324"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Storno</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="297"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="78"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="305"/>
+        <source>Cancel setup without changing the system.</source>
+        <translation>Zrušit nastavení bez změny v systému.</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="306"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Zrušení instalace bez provedení změn systému.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="183"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="166"/>
+        <source>Setup Failed</source>
+        <translation>Nastavení se nezdařilo</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="191"/>
         <source>Calamares Initialization Failed</source>
         <translation>Inicializace Calamares se nezdařila</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
         <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-        <translation>%1 nemůže být nainstalováno. Calamares nebylo schopné načíst všechny nastavené moduly. Toto je problém způsobu použití Calamares ve vámi používané distribuci.</translation>
+        <translation>%1 nemůže být nainstalováno. Calamares se nepodařilo načíst všechny nastavené moduly. Toto je problém způsobu použití Calamares ve vámi používané distribuci.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
         <translation>&lt;br/&gt; Následující moduly se nepodařilo načíst:</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="281"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="249"/>
+        <source>Continue with installation?</source>
+        <translation>Pokračovat v instalaci?</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="251"/>
+        <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
+        <translation>Instalátor %1 provede změny na datovém úložišti, aby bylo nainstalováno %2.&lt;br/&gt;&lt;strong&gt;Změny nebude možné vrátit zpět.&lt;/strong&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="258"/>
+        <source>&amp;Set up now</source>
+        <translation>Na&amp;stavit nyní</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="299"/>
+        <source>&amp;Set up</source>
+        <translation>Na&amp;stavit</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
         <source>&amp;Install</source>
         <translation>Na&amp;instalovat</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="302"/>
+        <source>Setup is complete. Close the setup program.</source>
+        <translation>Nastavení je dokončeno. Ukončete nastavovací program.</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
+        <source>Cancel setup?</source>
+        <translation>Zrušit nastavování?</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
         <source>Cancel installation?</source>
         <translation>Přerušit instalaci?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
-        <source>Do you really want to cancel the current install process?
-The installer will quit and all changes will be lost.</source>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="364"/>
+        <source>Do you really want to cancel the current setup process?
+The setup program will quit and all changes will be lost.</source>
         <translation>Opravdu chcete přerušit instalaci?
 Instalační program bude ukončen a všechny změny ztraceny.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="366"/>
+        <source>Do you really want to cancel the current install process?
+The installer will quit and all changes will be lost.</source>
+        <translation>Opravdu chcete instalaci přerušit?
+Instalační program bude ukončen a všechny změny ztraceny.</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="374"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ano</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="375"/>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="241"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="248"/>
         <source>Continue with setup?</source>
         <translation>Pokračovat s instalací?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="242"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="254"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>Instalátor %1 provede změny na datovém úložišti, aby bylo nainstalováno %2.&lt;br/&gt;&lt;strong&gt;Změny nebude možné vrátit zpět.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="247"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="259"/>
         <source>&amp;Install now</source>
         <translation>&amp;Spustit instalaci</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="248"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="266"/>
         <source>Go &amp;back</source>
         <translation>Jít &amp;zpět</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="287"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="315"/>
         <source>&amp;Done</source>
         <translation>&amp;Hotovo</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="288"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="303"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>Instalace je dokončena. Ukončete instalátor.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="164"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
         <source>Installation Failed</source>
         <translation>Instalace se nezdařila</translation>
     </message>
@@ -303,42 +390,27 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>CalamaresWindow</name>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="56"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="58"/>
+        <source>%1 Setup Program</source>
+        <translation>Instalátor %1</translation>
+    </message>
+    <message>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="59"/>
         <source>%1 Installer</source>
         <translation>%1 instalátor</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="119"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="122"/>
         <source>Show debug information</source>
         <translation>Zobrazit ladící informace</translation>
     </message>
 </context>
 <context>
-    <name>CheckerWidget</name>
+    <name>CheckerContainer</name>
     <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="96"/>
-        <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation>Počítač nesplňuje minimální požadavky pro instalaci %1.&lt;br/&gt;Instalace nemůže pokračovat &lt;a href=&quot;#details&quot;&gt;Podrobnosti…&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
-        <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation>Počítač nesplňuje některé doporučené požadavky pro instalaci %1.&lt;br/&gt;Instalace může pokračovat, ale některé funkce mohou být vypnuty.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="151"/>
-        <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>Tento program vám položí několik dotazů, aby na základě odpovědí příslušně nainstaloval %2 na váš počítač.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="174"/>
-        <source>For best results, please ensure that this computer:</source>
-        <translation>Nejlepších výsledků se dosáhne, pokud tento počítač bude:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="202"/>
-        <source>System requirements</source>
-        <translation>Požadavky na systém</translation>
+        <location filename="../src/modules/welcome/checker/CheckerContainer.cpp" line="45"/>
+        <source>Gathering system information...</source>
+        <translation>Shromažďování informací o systému…</translation>
     </message>
 </context>
 <context>
@@ -356,15 +428,15 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="330"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation>&lt;strong&gt;Ruční rozdělení datového úložiště&lt;/strong&gt;&lt;br/&gt;Oddíly si můžete vytvořit nebo zvětšit/zmenšit stávající sami.</translation>
+        <translation>&lt;strong&gt;Ruční rozdělení datového úložiště&lt;/strong&gt;&lt;br/&gt;Sami si můžete vytvořit vytvořit nebo zvětšit/zmenšit oddíly.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1031"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1026"/>
         <source>Boot loader location:</source>
-        <translation>Umístění zaváděcího oddílu:</translation>
+        <translation>Umístění zavaděče:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="975"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 bude zmenšen na %2MB a nový %3MB oddíl pro %4 bude vytvořen.</translation>
     </message>
@@ -375,11 +447,11 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1003"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1082"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="998"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
         <source>Current:</source>
-        <translation>Aktuální:</translation>
+        <translation>Stávající:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
@@ -387,96 +459,96 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Zrecyklovat %1 na oddíl pro domovské složky %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="953"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Vyberte oddíl, který chcete zmenšit, poté posouváním na spodní liště změňte jeho velikost.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1068"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Vyberte oddíl na který nainstalovat&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1124"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Nebyl nalezen žádný EFI systémový oddíl. Vraťte se zpět a nastavte %1 pomocí ručního rozdělení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>Pro zavedení %2 se využije EFI systémový oddíl %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1141"/>
         <source>EFI system partition:</source>
         <translation>EFI systémový oddíl:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1259"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Zdá se, že na tomto úložném zařízení není žádný operační systém. Jak chcete postupovat?&lt;br/&gt;Než budou provedeny jakékoli změny na úložných zařízeních, bude zobrazen jejich přehled a budete požádáni o jejich potvrzení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1270"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1331"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1357"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1302"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-        <translation>&lt;strong&gt;Vymazat datové úložiště&lt;/strong&gt;&lt;br/&gt;Touto volbou budou &lt;font color=&quot;red&quot;&gt;smazána&lt;/font&gt; všechna data, která se nyní nachází na vybraném úložišti.</translation>
+        <translation>&lt;strong&gt;Vymazat datové úložiště&lt;/strong&gt;&lt;br/&gt;Touto volbou budou &lt;font color=&quot;red&quot;&gt;smazána&lt;/font&gt; všechna data, která se na něm nyní nacházejí.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Na tomto úložném zařízení bylo nalezeno %1. Jak chcete postupovat?&lt;br/&gt;Než budou provedeny jakékoli změny na úložných zařízeních, bude zobrazen jejich přehled a budete požádáni o jejich potvrzení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1486"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1496"/>
         <source>No Swap</source>
         <translation>Žádný odkládací prostor (swap)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1491"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1501"/>
         <source>Reuse Swap</source>
         <translation>Použít existující odkládací prostor</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1494"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1504"/>
         <source>Swap (no Hibernate)</source>
         <translation>Odkládací prostor (bez uspávání na disk)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1497"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1507"/>
         <source>Swap (with Hibernate)</source>
         <translation>Odkládací prostor (s uspáváním na disk)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1500"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1510"/>
         <source>Swap to file</source>
         <translation>Odkládat do souboru</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1274"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1304"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1321"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Nainstalovat vedle&lt;/strong&gt;&lt;br/&gt;Instalátor zmenší oddíl a vytvoří místo pro %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1278"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1335"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1361"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1272"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1329"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1355"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Nahradit oddíl&lt;/strong&gt;&lt;br/&gt;Původní oddíl bude nahrazen %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1322"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1316"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Na tomto úložném zařízení se už nachází operační systém. Jak chcete postupovat?&lt;br/&gt;Než budou provedeny jakékoli změny na úložných zařízeních, bude zobrazen jejich přehled a budete požádáni o jejich potvrzení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1348"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1342"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Na tomto úložném zařízení se už nachází několik operačních systémů. Jak chcete postupovat?&lt;br/&gt;Než budou provedeny jakékoli změny na úložných zařízeních, bude zobrazen jejich přehled změn a budete požádáni o jejich potvrzení.</translation>
     </message>
@@ -514,7 +586,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="60"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation>Nepodařilo se zjistit dočasné přípojné body.</translation>
+        <translation>Nepodařilo získat seznam dočasných přípojných bodů.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="99"/>
@@ -647,7 +719,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation>Instalátoru se nepodařilo vytvořit oddílu na datovém úložišti „%1“.</translation>
+        <translation>Instalátoru se nepodařilo vytvořit oddíl na datovém úložišti „%1“.</translation>
     </message>
 </context>
 <context>
@@ -721,12 +793,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
         <source>Sudoers dir is not writable.</source>
-        <translation>Nepodařilo se zapsat do složky sudoers.d.</translation>
+        <translation>Nedaří se zapsat do složky sudoers.d.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
         <source>Cannot create sudoers file for writing.</source>
-        <translation>Nepodařilo se vytvořit soubor pro sudoers do kterého je třeba zapsat.</translation>
+        <translation>Nepodařilo se vytvořit soubor pro sudoers tak, aby do něj šlo zapsat.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="93"/>
@@ -837,7 +909,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation>&lt;br&gt;&lt;br&gt;Tohle je doporučený typ tabulky oddílů pro moderní systémy, které se spouští pomocí &lt;strong&gt;EFI&lt;/strong&gt; zaváděcího prostředí.</translation>
+        <translation>&lt;br&gt;&lt;br&gt;Toto je doporučený typ tabulky oddílů pro moderní systémy, které se spouští pomocí &lt;strong&gt;UEFI&lt;/strong&gt; zaváděcího prostředí.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
@@ -848,13 +920,15 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>DeviceModel</name>
     <message>
-        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="83"/>
+        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="85"/>
         <source>%1 - %2 (%3)</source>
+        <extracomment>device[name] - size[number] (device-node[name])</extracomment>
         <translation>%1 – %2 (%3)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="89"/>
+        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="96"/>
         <source>%1 - (%2)</source>
+        <extracomment>device[name] - (device-node[name])</extracomment>
         <translation>%1 – (%2)</translation>
     </message>
 </context>
@@ -881,7 +955,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="47"/>
         <source>Dummy C++ Job</source>
-        <translation>Slepá úloha C++</translation>
+        <translation>Výplňová úloha C++</translation>
     </message>
 </context>
 <context>
@@ -973,37 +1047,37 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="132"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="130"/>
         <source>Set partition information</source>
         <translation>Nastavit informace o oddílu</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="156"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="153"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
         <translation>Nainstalovat %1 na &lt;strong&gt;nový&lt;/strong&gt; %2 systémový oddíl.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="160"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="157"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Nastavit &lt;strong&gt;nový&lt;/strong&gt; %2 oddíl s přípojným bodem &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="168"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="165"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Nainstalovat %2 na %3 systémový oddíl &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="173"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="170"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>Nastavit %3 oddíl &lt;strong&gt;%1&lt;/strong&gt; s přípojným bodem &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="185"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="182"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Nainstalovat zavaděč do &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="195"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="192"/>
         <source>Setting up mount points.</source>
         <translation>Nastavují se přípojné body.</translation>
     </message>
@@ -1017,8 +1091,8 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot; font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Když je tato kolonka zaškrtnutá, systém se restartuje jakmile kliknete na &lt;span style=&quot; font-style:italic;&quot;&gt;Hotovo&lt;/span&gt; nebo zavřete instalátor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;Restart checkbox tooltip&gt;</source>
+        <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1026,30 +1100,60 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>&amp;Restartovat nyní</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedPage.cpp" line="51"/>
-        <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
+        <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
         <translation>&lt;h1&gt;Instalace je u konce.&lt;/h1&gt;&lt;br/&gt;%1 byl nainstalován na váš počítač.&lt;br/&gt;Nyní ho můžete restartovat a přejít do čerstvě nainstalovaného systému, nebo můžete pokračovat v práci ve stávajícím prostředím %2, spuštěným z instalačního média.</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedPage.cpp" line="109"/>
-        <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Když je tato kolonka zaškrtnutá, systém se restartuje jakmile kliknete na &lt;span style=&quot;font-style:italic;&quot;&gt;Hotovo&lt;/span&gt; nebo zavřete instalátor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="66"/>
+        <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
+        <translation>&lt;h1&gt;Instalace je u konce.&lt;/h1&gt;&lt;br/&gt;%1 bylo nainstalováno na váš počítač.&lt;br/&gt;Nyní ho můžete restartovat a přejít do čerstvě nainstalovaného systému, nebo můžete pokračovat v práci ve stávajícím prostředím %2, spuštěným z instalačního média.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="71"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Když je tato kolonka zaškrtnutá, systém se restartuje jakmile kliknete na &lt;span style=&quot;font-style:italic;&quot;&gt;Hotovo&lt;/span&gt; nebo zavřete instalátor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="130"/>
+        <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
         <translation>&lt;h1&gt;Instalace se nezdařila&lt;/h1&gt;&lt;br/&gt;%1 nebyl instalován na váš počítač.&lt;br/&gt;Hlášení o chybě: %2.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="136"/>
+        <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
+        <translation>&lt;h1&gt;Instalace se nezdařila&lt;/h1&gt;&lt;br/&gt;%1 nebylo nainstalováno na váš počítač.&lt;br/&gt;Hlášení o chybě: %2.</translation>
     </message>
 </context>
 <context>
     <name>FinishedViewStep</name>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="59"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="61"/>
         <source>Finish</source>
         <translation>Dokončit</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="124"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="115"/>
+        <source>Setup Complete</source>
+        <translation>Nastavení dokončeno</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="116"/>
         <source>Installation Complete</source>
         <translation>Instalace dokončena</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="125"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
+        <source>The setup of %1 is complete.</source>
+        <translation>Nastavení %1 je dokončeno.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="119"/>
         <source>The installation of %1 is complete.</source>
         <translation>Instalace %1 je dokončena.</translation>
     </message>
@@ -1075,6 +1179,69 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="77"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
         <translation>Instalátoru se nepodařilo vytvořit souborový systém na oddílu %1 jednotky datového úložiště „%2“.</translation>
+    </message>
+</context>
+<context>
+    <name>GeneralRequirements</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="108"/>
+        <source>has at least %1 GB available drive space</source>
+        <translation>má minimálně %1 GB dostupného místa na jednotce</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="109"/>
+        <source>There is not enough drive space. At least %1 GB is required.</source>
+        <translation>Nedostatek místa na úložišti. Je potřeba nejméně %1 GB.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="116"/>
+        <source>has at least %1 GB working memory</source>
+        <translation>má alespoň %1 GB operační paměti</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="117"/>
+        <source>The system does not have enough working memory. At least %1 GB is required.</source>
+        <translation>Systém nemá dostatek operační paměti. Je potřeba nejméně %1 GB.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="124"/>
+        <source>is plugged in to a power source</source>
+        <translation>je připojený ke zdroji napájení</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="125"/>
+        <source>The system is not plugged in to a power source.</source>
+        <translation>Systém není připojen ke zdroji napájení.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="132"/>
+        <source>is connected to the Internet</source>
+        <translation>je připojený k Internetu</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="133"/>
+        <source>The system is not connected to the Internet.</source>
+        <translation>Systém není připojený k Internetu.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="142"/>
+        <source>The setup program is not running with administrator rights.</source>
+        <translation>Nastavovací program není spuštěn s právy správce systému.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="143"/>
+        <source>The installer is not running with administrator rights.</source>
+        <translation>Instalační program není spuštěn s právy správce systému.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="152"/>
+        <source>The screen is too small to display the setup program.</source>
+        <translation>Rozlišení obrazovky je příliš malé pro zobrazení nastavovacího programu.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="153"/>
+        <source>The screen is too small to display the installer.</source>
+        <translation>Rozlišení obrazovky je příliš malé pro zobrazení instalátoru.</translation>
     </message>
 </context>
 <context>
@@ -1111,7 +1278,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Nastavit model klávesnice na %1.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="221"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="223"/>
         <source>Set keyboard layout to %1/%2.</source>
         <translation>Nastavit rozložení klávesnice na %1/%2.</translation>
     </message>
@@ -1160,59 +1327,59 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Souhlasím s výše uvedenými podmínkami.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="116"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
         <translation>&lt;h1&gt;Licenční ujednání&lt;/h1&gt;Tato instalace nainstaluje také proprietární software, který podléhá licenčním podmínkám.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="119"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
         <translation>Projděte si výše uvedené „licenční smlouvy s koncovým uživatelem“ (EULA).&lt;br/&gt; Pokud s podmínkami v nich nesouhlasíte, ukončete instalační proces.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="125"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-        <translation>&lt;h1&gt;Licenční ujednání&lt;/h1&gt;Tato instalace může nainstalovat také proprietární software, který podléhá licenčním podmínkám, ale který poskytuje některé další funkce a zlepšuje uživatelskou přivětivost.</translation>
+        <translation>&lt;h1&gt;Licenční ujednání&lt;/h1&gt;Tento instalační postup může nainstalovat také proprietární software, který podléhá licenčním podmínkám, ale který poskytuje některé další funkce a zlepšuje uživatelskou přivětivost.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="130"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
         <translation>Projděte si výše uvedené „licenční smlouvy s koncovým uživatelem“ (EULA).&lt;br/&gt; Pokud s podmínkami v nich nesouhlasíte, místo proprietárního software budou použity open source alternativy.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="160"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
         <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
         <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
         <translation>&lt;strong&gt;%1 ovladač&lt;/strong&gt;&lt;br/&gt;od %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="167"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="166"/>
         <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
         <translation>&lt;strong&gt;%1 ovladač grafiky&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="173"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="172"/>
         <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;%1 doplněk prohlížeče&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="179"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="178"/>
         <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;%1 kodek&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="185"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="184"/>
         <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;%1 balíček&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="191"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="190"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="203"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="202"/>
         <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;%1&quot;&gt;zobrazit licenční ujednání&lt;/a&gt;</translation>
     </message>
@@ -1228,33 +1395,33 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="394"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="396"/>
         <source>The system language will be set to %1.</source>
         <translation>Jazyk systému bude nastaven na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="395"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="397"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>Formát zobrazení čísel, data a času bude nastaven dle národního prostředí %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="219"/>
         <source>Region:</source>
         <translation>Oblast:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="218"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
         <source>Zone:</source>
         <translation>Pásmo:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="223"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="224"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="225"/>
         <source>&amp;Change...</source>
         <translation>&amp;Změnit…</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="402"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="404"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Nastavit časové pásmo na %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -1262,12 +1429,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="60"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="58"/>
         <source>Loading location data...</source>
         <translation>Načítání informací o poloze…</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="175"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="173"/>
         <source>Location</source>
         <translation>Poloha</translation>
     </message>
@@ -1275,22 +1442,22 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="64"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
         <source>Name</source>
         <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="65"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="63"/>
         <source>Description</source>
         <translation>Popis</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="86"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="84"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Síťová instalace. (Vypnuto: Nedaří se stáhnout seznamy balíčků – zkontrolujte připojení k síti)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="96"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="94"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
         <translation>Síťová instalace. (Vypnuto: Obdrženy neplatné údaje skupin)</translation>
     </message>
@@ -1316,232 +1483,232 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Heslo je příliš dlouhé</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="169"/>
         <source>Password is too weak</source>
         <translation>Heslo je příliš slabé</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
         <translation>Chyba přidělování paměti při nastavování „%1“</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
         <source>Memory allocation error</source>
         <translation>Chyba při přidělování paměti</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="182"/>
         <source>The password is the same as the old one</source>
         <translation>Heslo je stejné jako to přechozí</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
         <source>The password is a palindrome</source>
         <translation>Heslo je palindrom (je stejné i pozpátku)</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="186"/>
         <source>The password differs with case changes only</source>
         <translation>Heslo se liší pouze změnou velikosti písmen</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
         <source>The password is too similar to the old one</source>
         <translation>Heslo je příliš podobné tomu předchozímu</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
         <source>The password contains the user name in some form</source>
         <translation>Heslo obsahuje nějakou formou uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
         <source>The password contains words from the real name of the user in some form</source>
         <translation>Heslo obsahuje obsahuje nějakou formou slova ze jména uživatele</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="194"/>
         <source>The password contains forbidden words in some form</source>
         <translation>Heslo obsahuje nějakou formou slova, která není možné použít</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="179"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
         <source>The password contains less than %1 digits</source>
         <translation>Heslo obsahuje méně než %1 číslic</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
         <source>The password contains too few digits</source>
         <translation>Heslo obsahuje příliš málo číslic</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
         <source>The password contains less than %1 uppercase letters</source>
         <translation>Heslo obsahuje méně než %1 velkých písmen</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
         <source>The password contains too few uppercase letters</source>
         <translation>Heslo obsahuje příliš málo velkých písmen</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
         <source>The password contains less than %1 lowercase letters</source>
         <translation>Heslo obsahuje méně než %1 malých písmen</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
         <source>The password contains too few lowercase letters</source>
         <translation>Heslo obsahuje příliš málo malých písmen</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
         <translation>Heslo obsahuje méně než %1 speciálních znaků</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
         <source>The password contains too few non-alphanumeric characters</source>
         <translation>Heslo obsahuje příliš málo speciálních znaků</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
         <source>The password is shorter than %1 characters</source>
         <translation>Heslo je kratší než %1 znaků</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
         <source>The password is too short</source>
         <translation>Heslo je příliš krátké</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
         <source>The password is just rotated old one</source>
         <translation>Heslo je jen některé z předchozích</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
         <source>The password contains less than %1 character classes</source>
         <translation>Heslo obsahuje méně než %1 druhů znaků</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
         <source>The password does not contain enough character classes</source>
         <translation>Heslo není tvořeno dostatečným počtem druhů znaků</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="223"/>
         <source>The password contains more than %1 same characters consecutively</source>
         <translation>Heslo obsahuje více než %1 stejných znaků za sebou</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
         <source>The password contains too many same characters consecutively</source>
         <translation>Heslo obsahuje příliš mnoho stejných znaků za sebou</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
         <translation>Heslo obsahuje více než %1 znaků ze stejné třídy za sebou</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
         <source>The password contains too many characters of the same class consecutively</source>
-        <translation>Heslo obsahuje příliš mnoho znaků ze stejné třídy za sebou</translation>
+        <translation>Heslo obsahuje příliš mnoho znaků stejného druhu za sebou</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
         <translation>Heslo obsahuje monotónní posloupnost delší než %1 znaků</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
         <source>The password contains too long of a monotonic character sequence</source>
         <translation>Heslo obsahuje příliš dlouhou monotónní posloupnost</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
         <source>No password supplied</source>
         <translation>Nebylo zadáno žádné heslo</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="236"/>
         <source>Cannot obtain random numbers from the RNG device</source>
         <translation>Nedaří se získat náhodná čísla ze zařízení generátoru náhodných čísel (RNG)</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
         <source>Password generation failed - required entropy too low for settings</source>
         <translation>Vytvoření hesla se nezdařilo – úroveň nahodilosti je příliš nízká</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
         <source>The password fails the dictionary check - %1</source>
         <translation>Heslo je slovníkové – %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="245"/>
         <source>The password fails the dictionary check</source>
         <translation>Heslo je slovníkové</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
         <source>Unknown setting - %1</source>
         <translation>Neznámé nastavení – %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="253"/>
         <source>Unknown setting</source>
         <translation>Neznámé nastavení</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="257"/>
         <source>Bad integer value of setting - %1</source>
         <translation>Chybná celočíselná hodnota nastavení – %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
         <source>Bad integer value</source>
         <translation>Chybná celočíselná hodnota</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>Setting %1 is not of integer type</source>
         <translation>Nastavení %1 není typu celé číslo</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
         <source>Setting is not of integer type</source>
         <translation>Nastavení není typu celé číslo</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="273"/>
         <source>Setting %1 is not of string type</source>
         <translation>Nastavení %1 není typu řetězec</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="277"/>
         <source>Setting is not of string type</source>
         <translation>Nastavení není typu řetězec</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
         <source>Opening the configuration file failed</source>
         <translation>Nepodařilo se otevřít soubor s nastaveními</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="281"/>
         <source>The configuration file is malformed</source>
         <translation>Soubor s nastaveními nemá správný formát</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
         <source>Fatal failure</source>
         <translation>Fatální nezdar</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="285"/>
         <source>Unknown error</source>
         <translation>Neznámá chyba</translation>
     </message>
@@ -1561,7 +1728,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
         <source>Type here to test your keyboard</source>
-        <translation>Klávesnici vyzkoušejte psaním sem</translation>
+        <translation>Klávesnici vyzkoušíte psaním sem</translation>
     </message>
 </context>
 <context>
@@ -1582,18 +1749,6 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Jaké jméno chcete používat pro přihlašování do systému?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="598"/>
-        <source>font-weight: normal</source>
-        <translation>šířka písma: normální</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
-        <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Pokud bude tento počítač používat více lidí, můžete přidat uživatelské účty po dokončení instalace.&lt;/small&gt;</translation>
-    </message>
-    <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
         <translation>Zvolte si heslo pro ochranu svého účtu.</translation>
@@ -1601,7 +1756,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Zadejte heslo dvakrát stejně pro kontrolu překlepů. Dobré heslo se bude skládat z písmen, čísel a interpunkce a mělo by být alespoň osm znaků dlouhé. Heslo byste měli pravidelně měnit.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Zadání hesla zopakujte i do kontrolní kolonky, abyste měli jistotu, že jste napsali, co zamýšleli (že nedošlo k překlepu). Dobré heslo se bude skládat z písmen, číslic a interpunkce a mělo by být alespoň osm znaků dlouhé. Heslo byste také měli pravidelně měnit (prevence škod z jeho případného prozrazení).&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
@@ -1611,12 +1766,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Pod tímto názvem se bude počítač zobrazovat ostatním počítačům v síti.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Pod tímto názvem se bude počítač případně zobrazovat ostatním počítačům v síti.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="466"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation>Po spuštění systému se přihlásit automaticky bez hesla.</translation>
+        <translation>Při spouštění systému se přihlašovat automaticky (bez zadávání hesla).</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="473"/>
@@ -1631,7 +1786,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="601"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Vložte stejné heslo dvakrát pro kontrolu překlepů.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Zadání hesla zopakujte i do kontrolní kolonky, abyste měli jistotu, že jste napsali, co zamýšleli (že nedošlo k překlepu).&lt;/small&gt;</translation>
     </message>
 </context>
 <context>
@@ -1672,8 +1827,9 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Nový oddíl</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="233"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="234"/>
         <source>%1  %2</source>
+        <extracomment>size[number] filesystem[name]</extracomment>
         <translation>%1 %2</translation>
     </message>
 </context>
@@ -1775,17 +1931,17 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Zavaděč systému &amp;nainstalovat na:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="222"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="209"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Opravdu chcete na %1 vytvořit novou tabulku oddílů?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="246"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="233"/>
         <source>Can not create new partition</source>
-        <translation>Nevytvářet nový oddíl</translation>
+        <translation>Nedaří se vytvořit nový oddíl</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="247"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="234"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
         <translation>Tabulka oddílů na %1 už obsahuje %2 hlavních oddílů a proto už není možné přidat další. Odeberte jeden z hlavních oddílů a namísto něj vytvořte rozšířený oddíl.</translation>
     </message>
@@ -1793,99 +1949,109 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="74"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="76"/>
         <source>Gathering system information...</source>
         <translation>Shromažďování informací o systému…</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="125"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="127"/>
         <source>Partitions</source>
         <translation>Oddíly</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="164"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
         <translation>Nainstalovat %1 &lt;strong&gt;vedle&lt;/strong&gt; dalšího operačního systému.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="166"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="168"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
         <translation>&lt;strong&gt;Smazat&lt;/strong&gt; obsah jednotky a nainstalovat %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="172"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
         <translation>&lt;strong&gt;Nahradit&lt;/strong&gt; oddíl %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
-        <translation>&lt;strong&gt;Ruční&lt;/strong&gt; dělení jednotky.</translation>
+        <translation>&lt;strong&gt;Ruční&lt;/strong&gt; dělení úložiště.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="188"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="190"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation>Nainstalovat %1 &lt;strong&gt;vedle&lt;/strong&gt; dalšího operačního systému na disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
         <translation>&lt;strong&gt;Vymazat&lt;/strong&gt; obsah jednotky &lt;strong&gt;%2&lt;/strong&gt; (%3) a nainstalovat %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="200"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="202"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
         <translation>&lt;strong&gt;Nahradit&lt;/strong&gt; oddíl na jednotce &lt;strong&gt;%2&lt;/strong&gt; (%3) %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
         <translation>&lt;strong&gt;Ruční&lt;/strong&gt; dělení jednotky &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="215"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="217"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
         <translation>Jednotka &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="243"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="245"/>
         <source>Current:</source>
         <translation>Stávající:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="260"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="262"/>
         <source>After:</source>
         <translation>Potom:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="407"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="392"/>
         <source>No EFI system partition configured</source>
         <translation>Není nastavený žádný EFI systémový oddíl</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="408"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="393"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
         <translation>Pro spuštění %1 je potřeba EFI systémový oddíl.&lt;br/&gt;&lt;br/&gt;Pro nastavení EFI systémového oddílu se vraťte zpět a vyberte nebo vytvořte oddíl typu FAT32 s příznakem &lt;strong&gt;esp&lt;/strong&gt; a přípojným bodem &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Je možné pokračovat bez nastavení EFI systémového oddílu, ale systém nemusí jít spustit.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="421"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="406"/>
         <source>EFI system partition flag not set</source>
         <translation>Příznak EFI systémového oddílu není nastavený</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="422"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="407"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
         <translation>Pro spuštění %1 je potřeba EFI systémový oddíl.&lt;br/&gt;&lt;br/&gt;Byl nastaven oddíl s přípojným bodem &lt;strong&gt;%2&lt;/strong&gt; ale nemá nastaven příznak &lt;strong&gt;esp&lt;/strong&gt;.&lt;br/&gt;Pro nastavení příznaku se vraťte zpět a upravte oddíl.&lt;br/&gt;&lt;br/&gt;Je možné pokračovat bez nastavení příznaku, ale systém nemusí jít spustit.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="457"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
         <source>Boot partition not encrypted</source>
         <translation>Zaváděcí oddíl není šifrován</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="458"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="443"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
         <translation>Kromě šifrovaného kořenového oddílu byl vytvořen i nešifrovaný oddíl zavaděče.&lt;br/&gt;&lt;br/&gt;To by mohl být bezpečnostní problém, protože na nešifrovaném oddílu jsou důležité soubory systému.&lt;br/&gt;Pokud chcete, můžete pokračovat, ale odemykání souborového systému bude probíhat později při startu systému.&lt;br/&gt;Pro zašifrování oddílu zavaděče se vraťte a vytvořte ho vybráním možnosti &lt;strong&gt;Šifrovat&lt;/strong&gt; v okně při vytváření oddílu.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="624"/>
+        <source>has at least one disk device available.</source>
+        <translation>má k dispozici alespoň jedno zařízení pro ukládání dat.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="625"/>
+        <source>There are no partitons to install on.</source>
+        <translation>Nejsou zde žádné oddíly na které by se dalo nainstalovat.</translation>
     </message>
 </context>
 <context>
@@ -1910,12 +2076,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="20"/>
-        <source>Placeholder</source>
-        <translation>Výplň</translation>
+        <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="70"/>
+        <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
+        <translation>Zvolte vzhled a chování KDE Plasma desktopu. Tento krok je také možné přeskočit a nastavit až po instalaci systému. Kliknutí na výběr vyvolá zobrazení náhledu daného vzhledu a chování.</translation>
     </message>
     <message>
-        <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
+        <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="76"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
         <translation>Zvolte vzhled a chování KDE Plasma desktopu. Tento krok je také možné přeskočit a nastavit až po instalaci systému. Kliknutí na výběr vyvolá zobrazení náhledu daného vzhledu a chování.</translation>
     </message>
@@ -1949,14 +2115,14 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>ProcessResult</name>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="271"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="306"/>
         <source>
 There was no output from the command.</source>
         <translation>
 Příkaz neposkytl žádný výstup.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="272"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="307"/>
         <source>
 Output:
 </source>
@@ -1965,52 +2131,52 @@ Výstup:
 </translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="275"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="310"/>
         <source>External command crashed.</source>
         <translation>Vnější příkaz byl neočekávaně ukončen.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="276"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="311"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
         <translation>Příkaz &lt;i&gt;%1&lt;/i&gt; byl neočekávaně ukončen.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="281"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="316"/>
         <source>External command failed to start.</source>
         <translation>Vnější příkaz se nepodařilo spustit.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="282"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="317"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
         <translation>Příkaz &lt;i&gt;%1&lt;/i&gt; se nepodařilo spustit.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="286"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="321"/>
         <source>Internal error when starting command.</source>
         <translation>Vnitřní chyba při spouštění příkazu.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="287"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="322"/>
         <source>Bad parameters for process job call.</source>
-        <translation>Chybné parametry volání úlohy procesu..</translation>
+        <translation>Chybné parametry volání úlohy procesu.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="290"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="325"/>
         <source>External command failed to finish.</source>
         <translation>Vnější příkaz se nepodařilo dokončit.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="291"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="326"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
         <translation>Příkaz &lt;i&gt;%1&lt;/i&gt; se nepodařilo dokončit do %2 sekund.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="297"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="332"/>
         <source>External command finished with errors.</source>
         <translation>Vnější příkaz skončil s chybami.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="298"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="333"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
         <translation>Příkaz &lt;i&gt;%1&lt;/i&gt; skončil s návratovým kódem %2.</translation>
     </message>
@@ -2018,13 +2184,13 @@ Výstup:
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="82"/>
+        <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
         <source>Default Keyboard Model</source>
         <translation>Výchozí model klávesnice</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="127"/>
-        <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="163"/>
+        <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
+        <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
         <source>Default</source>
         <translation>Výchozí</translation>
     </message>
@@ -2054,15 +2220,20 @@ Výstup:
         <translation>Nerozdělené prázné místo nebo neznámá tabulka oddílů</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/utils/CalamaresUtilsGui.cpp" line="269"/>
-        <source>%1 (%2)</source>
-        <comment>Language (Country)</comment>
-        <translation>%1 (%2)</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
         <source>(no mount point)</source>
         <translation>(žádný přípojný bod)</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="62"/>
+        <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
+        <translation>Kontrola požadavků pro modul &lt;i&gt;%1&lt;/i&gt; dokončena.</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamares/utils/LocaleLabel.cpp" line="44"/>
+        <source>%1 (%2)</source>
+        <extracomment>language[name] (country[name])</extracomment>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -2099,17 +2270,17 @@ Výstup:
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="160"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation>Vybraná položka není platným oddílem.</translation>
+        <translation>Vybraná položka se nezdá být platným oddílem.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="168"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation>%1 nemůže být instalován na místo bez oddílu. Prosím vyberte existující oddíl.</translation>
+        <translation>%1 nemůže být instalován na místo bez oddílu. Vyberte existující oddíl.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="178"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation>%1 nemůže být instalován na rozšířený oddíl. Prosím vyberte existující primární nebo logický oddíl.</translation>
+        <translation>%1 nemůže být instalován na rozšířený oddíl. Vyberte existující primární nebo logický oddíl.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="188"/>
@@ -2160,64 +2331,6 @@ Výstup:
     </message>
 </context>
 <context>
-    <name>RequirementsChecker</name>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="68"/>
-        <source>Gathering system information...</source>
-        <translation>Shromažďování informací o systému…</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
-        <source>has at least %1 GB available drive space</source>
-        <translation>má minimálně %1 GB dostupného místa na jednotce</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
-        <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation>Nedostatek místa na úložišti. Je potřeba nejméně %1 GB.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
-        <source>has at least %1 GB working memory</source>
-        <translation>má alespoň %1 GB operační paměti</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
-        <source>The system does not have enough working memory. At least %1 GB is required.</source>
-        <translation>Systém nemá dostatek operační paměti. Je potřeba nejméně %1 GB.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="138"/>
-        <source>is plugged in to a power source</source>
-        <translation>je připojený ke zdroji napájení</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
-        <source>The system is not plugged in to a power source.</source>
-        <translation>Systém není připojen ke zdroji napájení.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="146"/>
-        <source>is connected to the Internet</source>
-        <translation>je připojený k Internetu</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="147"/>
-        <source>The system is not connected to the Internet.</source>
-        <translation>Systém není připojený k Internetu.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="155"/>
-        <source>The installer is not running with administrator rights.</source>
-        <translation>Instalační program není spuštěn s právy správce systému.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="163"/>
-        <source>The screen is too small to display the installer.</source>
-        <translation>Rozlišení obrazovky je příliš malé pro zobrazení instalátoru.</translation>
-    </message>
-</context>
-<context>
     <name>ResizeFSJob</name>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="116"/>
@@ -2225,65 +2338,65 @@ Výstup:
         <translation>Úloha změny velikosti souborového systému</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="224"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="229"/>
         <source>Invalid configuration</source>
         <translation>Neplatné nastavení</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="225"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="230"/>
         <source>The file-system resize job has an invalid configuration and will not run.</source>
         <translation>Úloha změny velikosti souborového systému nemá platné nastavení a nebude spuštěna.</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="239"/>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="249"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="244"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="254"/>
         <source>KPMCore not Available</source>
         <translation>KPMCore není k dispozici</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="240"/>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="250"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="245"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="255"/>
         <source>Calamares cannot start KPMCore for the file-system resize job.</source>
         <translation>Kalamares nemůže spustit KPMCore pro úlohu změny velikosti souborového systému.</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="258"/>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="267"/>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="280"/>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="289"/>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="306"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="263"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="272"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="285"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="294"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="311"/>
         <source>Resize Failed</source>
         <translation>Změna velikosti se nezdařila</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="259"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="264"/>
         <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
         <translation>Souborový systém %1 nebyl na tomto systému nalezen a jeho velikost proto nemůže být změněna.</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="260"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="265"/>
         <source>The device %1 could not be found in this system, and cannot be resized.</source>
         <translation>Zařízení %1 nebylo na tomto systému nalezeno a proto nemůže být jeho velikost změněna.</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="268"/>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="281"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="273"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="286"/>
         <source>The filesystem %1 cannot be resized.</source>
         <translation>Velikost souborového systému %1 není možné změnit.</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="269"/>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="282"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="274"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="287"/>
         <source>The device %1 cannot be resized.</source>
         <translation>Velikost zařízení %1 nelze měnit.</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="290"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="295"/>
         <source>The filesystem %1 must be resized, but cannot.</source>
         <translation>Velikost souborového systému %1 je třeba změnit, ale není to možné.</translation>
     </message>
     <message>
-        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="291"/>
+        <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="296"/>
         <source>The device %1 must be resized, but cannot</source>
         <translation>Velikost zařízení %1 je třeba změnit, ale není to možné</translation>
     </message>
@@ -2308,7 +2421,7 @@ Výstup:
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Instalátoru se nezdařilo změnit velikost oddílu %1 na jednotce „%2“.</translation>
+        <translation>Instalátoru se nepodařilo změnit velikost oddílu %1 na jednotce „%2“.</translation>
     </message>
 </context>
 <context>
@@ -2336,6 +2449,44 @@ Výstup:
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
         <source>The installer failed to resize a volume group named &apos;%1&apos;.</source>
         <translation>Instalátoru se nepodařilo změnit velikost skupiny svazků zvanou „%1“.</translation>
+    </message>
+</context>
+<context>
+    <name>ResultsListWidget</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
+        <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
+        <translation>Počítač nesplňuje minimální požadavky pro instalaci %1.&lt;br/&gt;Instalace nemůže pokračovat &lt;a href=&quot;#details&quot;&gt;Podrobnosti…&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
+        <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
+        <translation>Počítač nesplňuje minimální požadavky pro instalaci %1.&lt;br/&gt;Instalace nemůže pokračovat &lt;a href=&quot;#details&quot;&gt;Podrobnosti…&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
+        <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
+        <translation>Počítač nesplňuje některé doporučené požadavky pro instalaci %1.&lt;br/&gt;Instalace může pokračovat, ale některé funkce mohou být vypnuty.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
+        <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+        <translation>Počítač nesplňuje některé doporučené požadavky pro instalaci %1.&lt;br/&gt;Instalace může pokračovat, ale některé funkce mohou být vypnuty.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="160"/>
+        <source>This program will ask you some questions and set up %2 on your computer.</source>
+        <translation>Tento program vám položí několik dotazů, aby na základě odpovědí příslušně nainstaloval %2 na váš počítač.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="181"/>
+        <source>For best results, please ensure that this computer:</source>
+        <translation>Nejlepších výsledků se dosáhne, pokud tento počítač bude:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="209"/>
+        <source>System requirements</source>
+        <translation>Požadavky na systém</translation>
     </message>
 </context>
 <context>
@@ -2519,7 +2670,7 @@ Výstup:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="123"/>
         <source>Cannot disable root account.</source>
-        <translation>Nelze zakázat účet správce systému (root).</translation>
+        <translation>Nedaří se zakázat účet správce systému (root).</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="124"/>
@@ -2557,7 +2708,7 @@ Výstup:
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone.</source>
-        <translation>Nelze nastavit časovou zónu.</translation>
+        <translation>Časovou zónu se nedaří nastavit.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
@@ -2567,7 +2718,7 @@ Výstup:
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot set timezone,</source>
-        <translation>Nelze nastavit časovou zónu, </translation>
+        <translation>Nedaří se nastavit časovou zónu, </translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
@@ -2595,7 +2746,12 @@ Výstup:
 <context>
     <name>SummaryPage</name>
     <message>
-        <location filename="../src/modules/summary/SummaryPage.cpp" line="49"/>
+        <location filename="../src/modules/summary/SummaryPage.cpp" line="52"/>
+        <source>This is an overview of what will happen once you start the setup procedure.</source>
+        <translation>Toto je přehled událostí které nastanou po spuštění instalačního procesu.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/summary/SummaryPage.cpp" line="55"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
         <translation>Toto je přehled událostí které nastanou po spuštění instalačního procesu.</translation>
     </message>
@@ -2678,20 +2834,6 @@ Výstup:
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nastavením tohoto nebudete posílat &lt;span style=&quot; font-weight:600;&quot;&gt;žádné vůbec žádné informace&lt;/span&gt; o vaší instalaci.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/tracking/page_trackingstep.ui" line="123"/>
-        <location filename="../src/modules/tracking/page_trackingstep.ui" line="185"/>
-        <location filename="../src/modules/tracking/page_trackingstep.ui" line="247"/>
-        <source>TextLabel</source>
-        <translation>TextovýPopisek</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/tracking/page_trackingstep.ui" line="133"/>
-        <location filename="../src/modules/tracking/page_trackingstep.ui" line="195"/>
-        <location filename="../src/modules/tracking/page_trackingstep.ui" line="257"/>
-        <source>...</source>
-        <translation>…</translation>
-    </message>
-    <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;placeholder&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Click here for more information about user feedback&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;placeholder&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Kliknutím sem se dozvíte více o zpětné vazbě od uživatelů&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -2728,33 +2870,43 @@ Výstup:
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="296"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="115"/>
+        <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
+        <translation>&lt;small&gt;Pokud bude tento počítač používat více lidí, můžete přidat uživatelské účty po dokončení instalace.&lt;/small&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="121"/>
+        <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
+        <translation>&lt;small&gt;Pokud bude tento počítač používat více lidí, můžete přidat uživatelské účty po dokončení instalace.&lt;/small&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="312"/>
         <source>Your username is too long.</source>
         <translation>Vaše uživatelské jméno je příliš dlouhé.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="302"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation>Vaše uživatelské jméno obsahuje neplatné znaky. Jsou povolena pouze malá písmena a (arabské) číslice.</translation>
+        <translation>Vaše uživatelské jméno obsahuje neplatné znaky. Je možné použít pouze malá písmena a číslice.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="356"/>
         <source>Your hostname is too short.</source>
         <translation>Název stroje je příliš krátký.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="346"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="362"/>
         <source>Your hostname is too long.</source>
         <translation>Název stroje je příliš dlouhý.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="352"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="368"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>Název stroje obsahuje neplatné znaky. Jsou povoleny pouze písmena, číslice a spojovníky.</translation>
+        <translation>Název stroje obsahuje neplatné znaky. Je možné použít pouze písmena, číslice a spojovníky.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="380"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="424"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="396"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="440"/>
         <source>Your passwords do not match!</source>
         <translation>Zadání hesla se neshodují!</translation>
     </message>
@@ -2805,14 +2957,6 @@ Výstup:
         <translation>Celková velikost:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="92"/>
-        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="112"/>
-        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="132"/>
-        <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="152"/>
-        <source>---</source>
-        <translation>---</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="102"/>
         <source>Used Size:</source>
         <translation>Využitá velikost:</translation>
@@ -2836,52 +2980,68 @@ Výstup:
         <translation>Formulář</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
-        <source>&amp;Language:</source>
-        <translation>&amp;Jazyk:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="160"/>
         <source>&amp;Release notes</source>
         <translation>&amp;Poznámky k vydání</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="150"/>
         <source>&amp;Known issues</source>
         <translation>&amp;Známé problémy</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="17"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="72"/>
+        <source>Select language</source>
+        <translation>Vyberte jazyk</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
         <source>&amp;Support</source>
         <translation>&amp;Podpora</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="146"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
         <source>&amp;About</source>
         <translation>&amp;O projektu</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="76"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Vítejte v instalačním programu %1.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Vítejte v instalátoru %1.&lt;/h1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="75"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
         <translation>&lt;h1&gt;Vítejte v Calamares,  instalačním programu (nejen) pro %1.&lt;/h1&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="73"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="71"/>
+        <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
+        <translation>&lt;h1&gt;Vítejte v Calamares,  instalačním programu (nejen) pro %1.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
+        <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
+        <translation>&lt;h1&gt;Vítejte v instalátoru pro %1.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="90"/>
+        <source>About %1 setup</source>
+        <translation>O nastavování %1</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="91"/>
         <source>About %1 installer</source>
-        <translation>O instalačním programu %1.</translation>
+        <translation>O instalátoru %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="75"/>
-        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg a &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;tým překledatelů Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; vývoj je sponzorován &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; – Liberating Software.</translation>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="94"/>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href=&quot;https://calamares.io/team/&quot;&gt;the Calamares team&lt;/a&gt; and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Poděkování &lt;a href=&quot;https://calamares.io/team/&quot;&gt;týmu Calamares&lt;/a&gt; a &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;týmu překladatelů Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; vývoj je sponzorován &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; – Liberating Software.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="201"/>
         <source>%1 support</source>
         <translation>%1 podpora</translation>
     </message>
@@ -2889,7 +3049,7 @@ Výstup:
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="52"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
         <translation>Vítejte</translation>
     </message>

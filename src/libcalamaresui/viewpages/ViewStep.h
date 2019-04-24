@@ -21,10 +21,12 @@
 #define VIEWSTEP_H
 
 #include <QObject>
+#include <QSize>
+
+#include "Typedefs.h"
+#include "UiDllMacro.h"
 
 #include "modulesystem/Requirement.h"
-#include "../UiDllMacro.h"
-#include "Typedefs.h"
 
 namespace Calamares
 {

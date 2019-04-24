@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-22 07:09-0500\n"
+"POT-Creation-Date: 2019-04-20 08:50-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>, 2019\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/calamares/teams/20061/zh_TW/)\n"
@@ -20,6 +20,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "設定 GRUB。"
+
+#: src/modules/mount/main.py:36
+msgid "Mounting partitions."
+msgstr "正在掛載分割區。"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -65,53 +73,53 @@ msgid "Unmount file systems."
 msgstr "解除掛載檔案系統。"
 
 #: src/modules/unpackfs/main.py:40
-msgid "Installing filesystems."
-msgstr "正在安裝檔案系統。"
+msgid "Filling up filesystems."
+msgstr "填滿檔案系統。"
 
-#: src/modules/unpackfs/main.py:153
+#: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."
 msgstr "rsync 失敗，錯誤碼 {} 。"
 
-#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
+#: src/modules/unpackfs/main.py:219 src/modules/unpackfs/main.py:237
 msgid "Failed to unpack image \"{}\""
 msgstr "無法解開映像檔 \"{}\""
 
-#: src/modules/unpackfs/main.py:210
+#: src/modules/unpackfs/main.py:220
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr "找不到 unsquashfs，請確定您已安裝 squashfs-tools 軟體包"
 
-#: src/modules/unpackfs/main.py:301
+#: src/modules/unpackfs/main.py:313
 msgid "No mount point for root partition"
 msgstr "沒有 root 分割區的掛載點"
 
-#: src/modules/unpackfs/main.py:302
+#: src/modules/unpackfs/main.py:314
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr "globalstorage 不包含 \"rootMountPoint\" 鍵，不做任何事"
 
-#: src/modules/unpackfs/main.py:307
+#: src/modules/unpackfs/main.py:319
 msgid "Bad mount point for root partition"
 msgstr "root 分割區掛載點錯誤"
 
-#: src/modules/unpackfs/main.py:308
+#: src/modules/unpackfs/main.py:320
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr "rootMountPoint 為 \"{}\"，其不存在，不做任何事"
 
-#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
-#: src/modules/unpackfs/main.py:333
+#: src/modules/unpackfs/main.py:333 src/modules/unpackfs/main.py:340
+#: src/modules/unpackfs/main.py:345
 msgid "Bad unsquash configuration"
 msgstr "錯誤的 unsquash 設定"
 
-#: src/modules/unpackfs/main.py:322
+#: src/modules/unpackfs/main.py:334
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr "不支援 \"{}\" ({}) 的檔案系統"
 
-#: src/modules/unpackfs/main.py:329
+#: src/modules/unpackfs/main.py:341
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "來源檔案系統 \"{}\" 不存在"
 
-#: src/modules/unpackfs/main.py:334
+#: src/modules/unpackfs/main.py:346
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "目標系統中的目的地 \"{}\" 不是目錄"
 
@@ -156,7 +164,6 @@ msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM 設定檔 {!s} 不存在"
 
 #: src/modules/displaymanager/main.py:740
-#: src/modules/displaymanager/main.py:772
 msgid "No display managers selected for the displaymanager module."
 msgstr "未在顯示管理器模組中選取顯示管理器。"
 
@@ -166,13 +173,21 @@ msgid ""
 "displaymanager.conf."
 msgstr "顯示管理器清單為空或在全域儲存與 displaymanager.conf 中皆未定義。"
 
-#: src/modules/displaymanager/main.py:773
-msgid "The list is empty after checking for installed display managers."
-msgstr "在檢查已安裝的顯示管理器後，清單為空。"
-
 #: src/modules/displaymanager/main.py:821
 msgid "Display manager configuration was incomplete"
 msgstr "顯示管理器設定不完整"
+
+#: src/modules/initcpiocfg/main.py:36
+msgid "Configuring mkinitcpio."
+msgstr "正在設定 mkinitcpio。"
+
+#: src/modules/initcpio/main.py:33
+msgid "Creating initramfs with mkinitcpio."
+msgstr "正在使用 mkinitcpio 建立 initramfs。"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "正在設定已加密的 swap。"
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -250,9 +265,61 @@ msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "正在移除 %(num)d 軟體包。"
 
+#: src/modules/bootloader/main.py:48
+msgid "Install bootloader."
+msgstr "安裝開機載入程式。"
+
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
 msgstr "從目標系統移除 live 使用者"
+
+#: src/modules/initramfs/main.py:35
+msgid "Creating initramfs."
+msgstr "正在建立 initramfs。"
+
+#: src/modules/initramfs/main.py:49
+msgid "Failed to run update-initramfs on the target"
+msgstr "在目標上執行 update-initramfs 失敗"
+
+#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "結束碼為 {}"
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "正在設定硬體時鐘。"
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "正在使用 dracut 建立 initramfs。"
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "在目標上執行 dracut 失敗"
+
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "正在設定 initramfs。"
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "正在設定 OpenRC dmcrypt 服務。"
+
+#: src/modules/luksbootkeyfile/main.py:35
+msgid "Configuring LUKS key file."
+msgstr "正在設定 LUKS 金鑰檔案。"
+
+#: src/modules/luksbootkeyfile/main.py:69
+msgid "Encrypted rootfs setup error"
+msgstr "已加密的 rootfs 設定錯誤"
+
+#: src/modules/luksbootkeyfile/main.py:70
+msgid "Rootfs partition {!s} is LUKS but no passphrase found."
+msgstr "Rootfs 分割區 {!s} 是 LUKS 但找不到通關密語。"
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "正在寫入 fstab。"
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -261,3 +328,11 @@ msgstr "假的 python 工作。"
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
 msgstr "假的 python step {}"
+
+#: src/modules/localecfg/main.py:37
+msgid "Configuring locales."
+msgstr "正在設定語系。"
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "正在儲存網路設定。"

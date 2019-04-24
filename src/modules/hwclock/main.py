@@ -7,6 +7,7 @@
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2017-2018, Gabriel Craciunescu <crazy@frugalware.org>
+#   Copyright 2019, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -22,6 +23,17 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Setting hardware clock.")
+
 
 def run():
     """

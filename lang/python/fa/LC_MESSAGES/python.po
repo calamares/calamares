@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-22 07:09-0500\n"
+"POT-Creation-Date: 2019-04-20 08:50-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Language-Team: Persian (https://www.transifex.com/calamares/teams/20061/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr ""
+
+#: src/modules/mount/main.py:36
+msgid "Mounting partitions."
+msgstr ""
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -59,53 +67,53 @@ msgid "Unmount file systems."
 msgstr ""
 
 #: src/modules/unpackfs/main.py:40
-msgid "Installing filesystems."
+msgid "Filling up filesystems."
 msgstr ""
 
-#: src/modules/unpackfs/main.py:153
+#: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."
 msgstr ""
 
-#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
+#: src/modules/unpackfs/main.py:219 src/modules/unpackfs/main.py:237
 msgid "Failed to unpack image \"{}\""
 msgstr ""
 
-#: src/modules/unpackfs/main.py:210
+#: src/modules/unpackfs/main.py:220
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:301
+#: src/modules/unpackfs/main.py:313
 msgid "No mount point for root partition"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:302
+#: src/modules/unpackfs/main.py:314
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:307
+#: src/modules/unpackfs/main.py:319
 msgid "Bad mount point for root partition"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:308
+#: src/modules/unpackfs/main.py:320
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
-#: src/modules/unpackfs/main.py:333
+#: src/modules/unpackfs/main.py:333 src/modules/unpackfs/main.py:340
+#: src/modules/unpackfs/main.py:345
 msgid "Bad unsquash configuration"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:322
+#: src/modules/unpackfs/main.py:334
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:329
+#: src/modules/unpackfs/main.py:341
 msgid "The source filesystem \"{}\" does not exist"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:334
+#: src/modules/unpackfs/main.py:346
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr ""
 
@@ -150,7 +158,6 @@ msgid "SLIM config file {!s} does not exist"
 msgstr ""
 
 #: src/modules/displaymanager/main.py:740
-#: src/modules/displaymanager/main.py:772
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 
@@ -160,12 +167,20 @@ msgid ""
 "displaymanager.conf."
 msgstr ""
 
-#: src/modules/displaymanager/main.py:773
-msgid "The list is empty after checking for installed display managers."
-msgstr ""
-
 #: src/modules/displaymanager/main.py:821
 msgid "Display manager configuration was incomplete"
+msgstr ""
+
+#: src/modules/initcpiocfg/main.py:36
+msgid "Configuring mkinitcpio."
+msgstr ""
+
+#: src/modules/initcpio/main.py:33
+msgid "Creating initramfs with mkinitcpio."
+msgstr ""
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
 msgstr ""
 
 #: src/modules/rawfs/main.py:35
@@ -246,8 +261,60 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] ""
 msgstr[1] ""
 
+#: src/modules/bootloader/main.py:48
+msgid "Install bootloader."
+msgstr ""
+
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
+msgstr ""
+
+#: src/modules/initramfs/main.py:35
+msgid "Creating initramfs."
+msgstr ""
+
+#: src/modules/initramfs/main.py:49
+msgid "Failed to run update-initramfs on the target"
+msgstr ""
+
+#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr ""
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr ""
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr ""
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr ""
+
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr ""
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr ""
+
+#: src/modules/luksbootkeyfile/main.py:35
+msgid "Configuring LUKS key file."
+msgstr ""
+
+#: src/modules/luksbootkeyfile/main.py:69
+msgid "Encrypted rootfs setup error"
+msgstr ""
+
+#: src/modules/luksbootkeyfile/main.py:70
+msgid "Rootfs partition {!s} is LUKS but no passphrase found."
+msgstr ""
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
 msgstr ""
 
 #: src/modules/dummypython/main.py:44
@@ -256,4 +323,12 @@ msgstr ""
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
+msgstr ""
+
+#: src/modules/localecfg/main.py:37
+msgid "Configuring locales."
+msgstr ""
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
 msgstr ""
