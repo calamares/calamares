@@ -33,6 +33,9 @@ This release contains contributions from (alphabetically by first name):
  * All of the Python-based modules now have translations enabled.
  * *Displaymanager* module has improved support for LightDM configuration.
    (Thanks to Dominic, FerenOS)
+ * *License* module can now display local files inline, and scrolls to
+   allow longer lists of licenses (or to support long license texts
+   displayed inline).
  * *Partition* module has additional checks for validity partition layouts.
    (Thanks to Arnaud)
  * *Welcome* module has improved usability: a standard icon

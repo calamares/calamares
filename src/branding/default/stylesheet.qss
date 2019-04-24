@@ -26,4 +26,8 @@ The IDs are based on the object names in the C++ code.
 #partitionBarView { }
 */
 
+/* Licensing module.
 
+#licenseItem {  }
+#licenseItemFullText {  }
+*/
