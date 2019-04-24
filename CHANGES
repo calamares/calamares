@@ -24,20 +24,21 @@ This release contains contributions from (alphabetically by first name):
  * Under-the-hood code cleanups in lots of parts of the core. Calamares now
    builds without warnings when Clang 8 is used.
  * A new *disable-cancel-during-exec* setting provides more fine-grained
-   control than *disable-cancel* (which hides the button entirely).
+   control than *disable-cancel*, which hides the button entirely.
+   #1122 (Thanks to Dominic, FerenOS)
  * A branding module can now also cause a stylesheet to be loaded, which
-   will be applied to the widgets inside Calamares. (Thanks to Raul)
+   will be applied to the widgets inside Calamares. #961 (Thanks to Raul)
 
 ## Modules ##
 
- * All of the Python-based modules now have translations enabled.
+ * All of the Python-based modules now have translations enabled. #991
  * *Displaymanager* module has improved support for LightDM configuration.
-   (Thanks to Dominic, FerenOS)
+   #1123 (Thanks to Dominic, FerenOS)
  * *License* module can now display local files inline, and scrolls to
-   allow longer lists of licenses (or to support long license texts
-   displayed inline).
+   allow longer lists of licenses and to support long license texts
+   displayed inline. #1124 #1125 #1052
  * *Partition* module has additional checks for validity partition layouts.
-   (Thanks to Arnaud)
+   #1127 (Thanks to Arnaud)
  * *Welcome* module has improved usability: a standard icon
    alongside the *Language* label, for improved recognition,
    and improved language-list display and sorting. #1107
