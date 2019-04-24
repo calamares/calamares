@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -22,12 +22,14 @@
 
 #include "SummaryViewStep.h"
 
+#include "Branding.h"
 #include "ExecutionViewStep.h"
-#include "utils/Retranslator.h"
-#include "utils/CalamaresUtilsGui.h"
-#include "utils/Logger.h"
 #include "Settings.h"
 #include "ViewManager.h"
+
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -62,7 +64,10 @@ SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
     layout->addWidget( m_scrollArea );
     m_scrollArea->setWidgetResizable( true );
     m_scrollArea->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
-    m_scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAsNeeded );
+    // If Calamares will grow, then only show scrollbar when it's needed
+    // (e.g. when the screen is full).
+    m_scrollArea->setVerticalScrollBarPolicy(
+        Calamares::Branding::instance()->windowExpands() ? Qt::ScrollBarAsNeeded : Qt::ScrollBarAlwaysOn );
     m_scrollArea->setFrameStyle( QFrame::NoFrame );
     m_scrollArea->setContentsMargins( 0, 0, 0, 0 );
 }
