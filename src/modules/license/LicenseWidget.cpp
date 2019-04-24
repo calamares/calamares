@@ -39,7 +39,7 @@ loadLocalFile( const QUrl& u )
     QFile file( u.path() );
     if ( !file.open(QIODevice::ReadOnly | QIODevice::Text) )
     {
-        cWarning() << "Could not load license file" << u;
+        cWarning() << "Could not load license file" << u.path();
         return QString();
     }
 
