@@ -9,24 +9,32 @@
 # Aestan <anthony.margerand@protonmail.com>, 2018
 # Jeremy Gourmel <jgourmel@free.fr>, 2018
 # Aurnytoraink <wiiu3dsxl13127@gmail.com>, 2018
-# Florian B <florianb3522@gmail.com>, 2018
 # Doryan R, 2019
 # Seboss666 <sebastien_verdet@seboss666.info>, 2019
+# Florian B <florianb3522@gmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 07:27-0400\n"
+"POT-Creation-Date: 2019-04-20 08:50-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Seboss666 <sebastien_verdet@seboss666.info>, 2019\n"
+"Last-Translator: Florian B <florianb3522@gmail.com>, 2019\n"
 "Language-Team: French (https://www.transifex.com/calamares/teams/20061/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Configuration du GRUB."
+
+#: src/modules/mount/main.py:36
+msgid "Mounting partitions."
+msgstr "Montage des partitions."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -75,7 +83,7 @@ msgstr "Démonter les systèmes de fichiers"
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Remplir les systèmes de fichiers."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."
@@ -184,6 +192,18 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "La configuration du gestionnaire d'affichage était incomplète"
 
+#: src/modules/initcpiocfg/main.py:36
+msgid "Configuring mkinitcpio."
+msgstr "Configuration de mkinitcpio."
+
+#: src/modules/initcpio/main.py:33
+msgid "Creating initramfs with mkinitcpio."
+msgstr "Création de l'initramfs avec mkinitcpio."
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "Configuration du swap chiffrée."
+
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
 msgstr "Installation de données."
@@ -270,9 +290,61 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "Suppression d'un paquet."
 msgstr[1] "Suppression de %(num)d paquets."
 
+#: src/modules/bootloader/main.py:48
+msgid "Install bootloader."
+msgstr "Installation du bootloader."
+
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
 msgstr "Supprimer l'utilisateur live du système cible"
+
+#: src/modules/initramfs/main.py:35
+msgid "Creating initramfs."
+msgstr "création du initramfs"
+
+#: src/modules/initramfs/main.py:49
+msgid "Failed to run update-initramfs on the target"
+msgstr "Erreur d'exécution de update-initramfs sur la cible."
+
+#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "Le code de sortie était {}"
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "Configuration de l'horloge matériel."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "Configuration du initramfs avec dracut."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "Erreur d'exécution de dracut sur la cible."
+
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "Configuration du initramfs."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Configuration du service OpenRC dmcrypt."
+
+#: src/modules/luksbootkeyfile/main.py:35
+msgid "Configuring LUKS key file."
+msgstr "Configuration de la clé de fichier LUKS."
+
+#: src/modules/luksbootkeyfile/main.py:69
+msgid "Encrypted rootfs setup error"
+msgstr "Erreur du chiffrement du setup rootfs"
+
+#: src/modules/luksbootkeyfile/main.py:70
+msgid "Rootfs partition {!s} is LUKS but no passphrase found."
+msgstr ""
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Écriture du fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -281,3 +353,11 @@ msgstr "Tâche factice python"
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
 msgstr "Étape factice python {}"
+
+#: src/modules/localecfg/main.py:37
+msgid "Configuring locales."
+msgstr "Configuration des locales."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Sauvegarde des configuration réseau."

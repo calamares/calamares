@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 07:27-0400\n"
+"POT-Creation-Date: 2019-04-20 08:50-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>, 2019\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/calamares/teams/20061/zh_TW/)\n"
@@ -20,6 +20,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "設定 GRUB。"
+
+#: src/modules/mount/main.py:36
+msgid "Mounting partitions."
+msgstr "正在掛載分割區。"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -169,6 +177,18 @@ msgstr "顯示管理器清單為空或在全域儲存與 displaymanager.conf 中
 msgid "Display manager configuration was incomplete"
 msgstr "顯示管理器設定不完整"
 
+#: src/modules/initcpiocfg/main.py:36
+msgid "Configuring mkinitcpio."
+msgstr "正在設定 mkinitcpio。"
+
+#: src/modules/initcpio/main.py:33
+msgid "Creating initramfs with mkinitcpio."
+msgstr "正在使用 mkinitcpio 建立 initramfs。"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "正在設定已加密的 swap。"
+
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
 msgstr "正在安裝資料。"
@@ -245,9 +265,61 @@ msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "正在移除 %(num)d 軟體包。"
 
+#: src/modules/bootloader/main.py:48
+msgid "Install bootloader."
+msgstr "安裝開機載入程式。"
+
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
 msgstr "從目標系統移除 live 使用者"
+
+#: src/modules/initramfs/main.py:35
+msgid "Creating initramfs."
+msgstr "正在建立 initramfs。"
+
+#: src/modules/initramfs/main.py:49
+msgid "Failed to run update-initramfs on the target"
+msgstr "在目標上執行 update-initramfs 失敗"
+
+#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "結束碼為 {}"
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "正在設定硬體時鐘。"
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "正在使用 dracut 建立 initramfs。"
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "在目標上執行 dracut 失敗"
+
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "正在設定 initramfs。"
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "正在設定 OpenRC dmcrypt 服務。"
+
+#: src/modules/luksbootkeyfile/main.py:35
+msgid "Configuring LUKS key file."
+msgstr "正在設定 LUKS 金鑰檔案。"
+
+#: src/modules/luksbootkeyfile/main.py:69
+msgid "Encrypted rootfs setup error"
+msgstr "已加密的 rootfs 設定錯誤"
+
+#: src/modules/luksbootkeyfile/main.py:70
+msgid "Rootfs partition {!s} is LUKS but no passphrase found."
+msgstr "Rootfs 分割區 {!s} 是 LUKS 但找不到通關密語。"
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "正在寫入 fstab。"
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -256,3 +328,11 @@ msgstr "假的 python 工作。"
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
 msgstr "假的 python step {}"
+
+#: src/modules/localecfg/main.py:37
+msgid "Configuring locales."
+msgstr "正在設定語系。"
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "正在儲存網路設定。"

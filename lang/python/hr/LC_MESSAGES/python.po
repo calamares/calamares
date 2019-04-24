@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 07:27-0400\n"
+"POT-Creation-Date: 2019-04-20 08:50-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>, 2019\n"
 "Language-Team: Croatian (https://www.transifex.com/calamares/teams/20061/hr/)\n"
@@ -20,6 +20,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Konfigurirajte GRUB."
+
+#: src/modules/mount/main.py:36
+msgid "Mounting partitions."
+msgstr "Montiranje particija."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -175,6 +183,18 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Konfiguracija upravitelja zaslona nije bila potpuna"
 
+#: src/modules/initcpiocfg/main.py:36
+msgid "Configuring mkinitcpio."
+msgstr "Konfiguriranje mkinitcpio."
+
+#: src/modules/initcpio/main.py:33
+msgid "Creating initramfs with mkinitcpio."
+msgstr "Stvaranje initramfs s mkinitcpio."
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "Konfiguriranje šifriranog swapa."
+
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
 msgstr "Instaliranje podataka."
@@ -262,9 +282,61 @@ msgstr[0] "Uklanjam paket."
 msgstr[1] "Uklanjam %(num)d pakete."
 msgstr[2] "Uklanjam %(num)d pakete."
 
+#: src/modules/bootloader/main.py:48
+msgid "Install bootloader."
+msgstr "Instalirajte bootloader."
+
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
 msgstr "Uklonite live korisnika iz ciljnog sustava"
+
+#: src/modules/initramfs/main.py:35
+msgid "Creating initramfs."
+msgstr "Stvaranje initramfs."
+
+#: src/modules/initramfs/main.py:49
+msgid "Failed to run update-initramfs on the target"
+msgstr "Pokretanje ažuriranja-initramfs na ciljanom sustavu nije uspjelo"
+
+#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "Izlazni kod bio je {}"
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "Postavljanje hardverskog sata."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "Stvaranje initramfs s dracut."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "Nije uspjelo pokretanje dracuta na ciljanom sustavu"
+
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "Konfiguriranje initramfs."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Konfiguriranje servisa OpenRC dmcrypt."
+
+#: src/modules/luksbootkeyfile/main.py:35
+msgid "Configuring LUKS key file."
+msgstr "Konfiguriranje LUKS ključne datoteke."
+
+#: src/modules/luksbootkeyfile/main.py:69
+msgid "Encrypted rootfs setup error"
+msgstr "Pogreška postavljanja šifriranog rootfs-a"
+
+#: src/modules/luksbootkeyfile/main.py:70
+msgid "Rootfs partition {!s} is LUKS but no passphrase found."
+msgstr "Rootfs particija {!s} je LUKS, ali nije pronađena zaporka."
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Zapisujem fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -273,3 +345,11 @@ msgstr "Testni python posao."
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
 msgstr "Testni python korak {}"
+
+#: src/modules/localecfg/main.py:37
+msgid "Configuring locales."
+msgstr "Konfiguriranje lokalizacije."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Spremanje mrežne konfiguracije."

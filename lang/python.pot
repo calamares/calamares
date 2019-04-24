@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 07:27-0400\n"
+"POT-Creation-Date: 2019-04-20 08:50-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Configure GRUB."
+
+#: src/modules/mount/main.py:36
+msgid "Mounting partitions."
+msgstr "Mounting partitions."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -171,6 +179,18 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Display manager configuration was incomplete"
 
+#: src/modules/initcpiocfg/main.py:36
+msgid "Configuring mkinitcpio."
+msgstr "Configuring mkinitcpio."
+
+#: src/modules/initcpio/main.py:33
+msgid "Creating initramfs with mkinitcpio."
+msgstr "Creating initramfs with mkinitcpio."
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "Configuring encrypted swap."
+
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
 msgstr "Installing data."
@@ -256,9 +276,61 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "Removing one package."
 msgstr[1] "Removing %(num)d packages."
 
+#: src/modules/bootloader/main.py:48
+msgid "Install bootloader."
+msgstr "Install bootloader."
+
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
 msgstr "Remove live user from target system"
+
+#: src/modules/initramfs/main.py:35
+msgid "Creating initramfs."
+msgstr "Creating initramfs."
+
+#: src/modules/initramfs/main.py:49
+msgid "Failed to run update-initramfs on the target"
+msgstr "Failed to run update-initramfs on the target"
+
+#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "The exit code was {}"
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "Setting hardware clock."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "Creating initramfs with dracut."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "Failed to run dracut on the target"
+
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "Configuring initramfs."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Configuring OpenRC dmcrypt service."
+
+#: src/modules/luksbootkeyfile/main.py:35
+msgid "Configuring LUKS key file."
+msgstr "Configuring LUKS key file."
+
+#: src/modules/luksbootkeyfile/main.py:69
+msgid "Encrypted rootfs setup error"
+msgstr "Encrypted rootfs setup error"
+
+#: src/modules/luksbootkeyfile/main.py:70
+msgid "Rootfs partition {!s} is LUKS but no passphrase found."
+msgstr "Rootfs partition {!s} is LUKS but no passphrase found."
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Writing fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -267,3 +339,11 @@ msgstr "Dummy python job."
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
 msgstr "Dummy python step {}"
+
+#: src/modules/localecfg/main.py:37
+msgid "Configuring locales."
+msgstr "Configuring locales."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Saving network configuration."
