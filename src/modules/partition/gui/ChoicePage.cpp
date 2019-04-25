@@ -1228,7 +1228,7 @@ ChoicePage::setupActions()
     if ( currentDevice->type() == Device::Type::SoftwareRAID_Device &&
          static_cast< SoftwareRAID* >(currentDevice)->status() == SoftwareRAID::Status::Inactive )
     {
-        cDebug() << Logger::SubEntry() << "part of an inactive RAID device";
+        cDebug() << Logger::SubEntry << "part of an inactive RAID device";
         isInactiveRAID = true;
     }
 #endif
