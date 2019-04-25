@@ -51,6 +51,7 @@ struct LicenseEntry
 
     LicenseEntry( const QVariantMap& conf );
     LicenseEntry( const LicenseEntry& ) = default;
+    LicenseEntry& operator=( const LicenseEntry& ) = default;
 
     bool isValid() const { return !m_id.isEmpty(); }
     bool isRequired() const { return m_required; }
@@ -94,7 +95,7 @@ private:
     void updateGlobalStorage( bool v );
 
     bool m_isNextEnabled;
-    bool m_allLicensesOptional;  //< all the licenses passed to setEntries are not-required
+    bool m_allLicensesOptional;  ///< @brief all the licenses passed to setEntries are not-required
 
     Ui::LicensePage* ui;
     QList< LicenseWidget* > m_entries;

@@ -87,8 +87,9 @@ LicenseEntry::isLocal() const
 
 LicensePage::LicensePage(QWidget *parent)
     : QWidget( parent )
-    , ui( new Ui::LicensePage )
     , m_isNextEnabled( false )
+    , m_allLicensesOptional( false )
+    , ui( new Ui::LicensePage )
 {
     ui->setupUi( this );
 
