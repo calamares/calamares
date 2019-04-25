@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-20 08:50-0400\n"
+"POT-Creation-Date: 2019-04-24 12:03-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Takefumi Nagata, 2019\n"
 "Language-Team: Japanese (https://www.transifex.com/calamares/teams/20061/ja/)\n"
@@ -123,57 +123,57 @@ msgstr "ソースファイルシステム  \"{}\" は存在しません"
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "ターゲットシステムの宛先 \"{}\" はディレクトリではありません"
 
-#: src/modules/displaymanager/main.py:380
+#: src/modules/displaymanager/main.py:381
 msgid "Cannot write KDM configuration file"
 msgstr "KDMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:381
+#: src/modules/displaymanager/main.py:382
 msgid "KDM config file {!s} does not exist"
 msgstr "KDM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:442
+#: src/modules/displaymanager/main.py:443
 msgid "Cannot write LXDM configuration file"
 msgstr "LXDMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:443
+#: src/modules/displaymanager/main.py:444
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:517
+#: src/modules/displaymanager/main.py:527
 msgid "Cannot write LightDM configuration file"
 msgstr "LightDMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:518
+#: src/modules/displaymanager/main.py:528
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:592
+#: src/modules/displaymanager/main.py:602
 msgid "Cannot configure LightDM"
 msgstr "LightDMの設定ができません"
 
-#: src/modules/displaymanager/main.py:593
+#: src/modules/displaymanager/main.py:603
 msgid "No LightDM greeter installed."
 msgstr "LightDM greeter がインストールされていません。"
 
-#: src/modules/displaymanager/main.py:624
+#: src/modules/displaymanager/main.py:634
 msgid "Cannot write SLIM configuration file"
 msgstr "SLIMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:625
+#: src/modules/displaymanager/main.py:635
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:740
+#: src/modules/displaymanager/main.py:750
 msgid "No display managers selected for the displaymanager module."
 msgstr "ディスプレイマネージャが選択されていません。"
 
-#: src/modules/displaymanager/main.py:741
+#: src/modules/displaymanager/main.py:751
 msgid ""
 "The displaymanagers list is empty or undefined in bothglobalstorage and "
 "displaymanager.conf."
 msgstr "ディスプレイマネージャのリストが bothglobalstorage 及び displaymanager.conf 内で空白か未定義です。"
 
-#: src/modules/displaymanager/main.py:821
+#: src/modules/displaymanager/main.py:831
 msgid "Display manager configuration was incomplete"
 msgstr "ディスプレイマネージャの設定が不完全です"
 

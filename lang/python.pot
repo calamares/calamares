@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-20 08:50-0400\n"
+"POT-Creation-Date: 2019-04-24 12:03-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,51 +123,51 @@ msgstr "The source filesystem \"{}\" does not exist"
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "The destination \"{}\" in the target system is not a directory"
 
-#: src/modules/displaymanager/main.py:380
+#: src/modules/displaymanager/main.py:381
 msgid "Cannot write KDM configuration file"
 msgstr "Cannot write KDM configuration file"
 
-#: src/modules/displaymanager/main.py:381
+#: src/modules/displaymanager/main.py:382
 msgid "KDM config file {!s} does not exist"
 msgstr "KDM config file {!s} does not exist"
 
-#: src/modules/displaymanager/main.py:442
+#: src/modules/displaymanager/main.py:443
 msgid "Cannot write LXDM configuration file"
 msgstr "Cannot write LXDM configuration file"
 
-#: src/modules/displaymanager/main.py:443
+#: src/modules/displaymanager/main.py:444
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM config file {!s} does not exist"
 
-#: src/modules/displaymanager/main.py:517
+#: src/modules/displaymanager/main.py:527
 msgid "Cannot write LightDM configuration file"
 msgstr "Cannot write LightDM configuration file"
 
-#: src/modules/displaymanager/main.py:518
+#: src/modules/displaymanager/main.py:528
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM config file {!s} does not exist"
 
-#: src/modules/displaymanager/main.py:592
+#: src/modules/displaymanager/main.py:602
 msgid "Cannot configure LightDM"
 msgstr "Cannot configure LightDM"
 
-#: src/modules/displaymanager/main.py:593
+#: src/modules/displaymanager/main.py:603
 msgid "No LightDM greeter installed."
 msgstr "No LightDM greeter installed."
 
-#: src/modules/displaymanager/main.py:624
+#: src/modules/displaymanager/main.py:634
 msgid "Cannot write SLIM configuration file"
 msgstr "Cannot write SLIM configuration file"
 
-#: src/modules/displaymanager/main.py:625
+#: src/modules/displaymanager/main.py:635
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM config file {!s} does not exist"
 
-#: src/modules/displaymanager/main.py:740
+#: src/modules/displaymanager/main.py:750
 msgid "No display managers selected for the displaymanager module."
 msgstr "No display managers selected for the displaymanager module."
 
-#: src/modules/displaymanager/main.py:741
+#: src/modules/displaymanager/main.py:751
 msgid ""
 "The displaymanagers list is empty or undefined in bothglobalstorage and "
 "displaymanager.conf."
@@ -175,7 +175,7 @@ msgstr ""
 "The displaymanagers list is empty or undefined in bothglobalstorage and "
 "displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:821
+#: src/modules/displaymanager/main.py:831
 msgid "Display manager configuration was incomplete"
 msgstr "Display manager configuration was incomplete"
 

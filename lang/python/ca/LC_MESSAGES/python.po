@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-20 08:50-0400\n"
+"POT-Creation-Date: 2019-04-24 12:03-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2019\n"
 "Language-Team: Catalan (https://www.transifex.com/calamares/teams/20061/ca/)\n"
@@ -23,11 +23,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "Configura el GRUB."
 
 #: src/modules/mount/main.py:36
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Es munten les particions."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -76,7 +76,7 @@ msgstr "Desmunta els sistemes de fitxers."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "S'omplen els sistemes de fitxers."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."
@@ -127,52 +127,52 @@ msgstr "El sistema de fitxers font \"{}\" no existeix."
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
 
-#: src/modules/displaymanager/main.py:380
+#: src/modules/displaymanager/main.py:381
 msgid "Cannot write KDM configuration file"
 msgstr "No es pot escriure el fitxer de configuració del KDM."
 
-#: src/modules/displaymanager/main.py:381
+#: src/modules/displaymanager/main.py:382
 msgid "KDM config file {!s} does not exist"
 msgstr "El fitxer de configuració del KDM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:442
+#: src/modules/displaymanager/main.py:443
 msgid "Cannot write LXDM configuration file"
 msgstr "No es pot escriure el fitxer de configuració de l'LXDM."
 
-#: src/modules/displaymanager/main.py:443
+#: src/modules/displaymanager/main.py:444
 msgid "LXDM config file {!s} does not exist"
 msgstr "El fitxer de configuració de l'LXDM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:517
+#: src/modules/displaymanager/main.py:527
 msgid "Cannot write LightDM configuration file"
 msgstr "No es pot escriure el fitxer de configuració del LightDM."
 
-#: src/modules/displaymanager/main.py:518
+#: src/modules/displaymanager/main.py:528
 msgid "LightDM config file {!s} does not exist"
 msgstr "El fitxer de configuració del LightDM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:592
+#: src/modules/displaymanager/main.py:602
 msgid "Cannot configure LightDM"
 msgstr "No es pot configurar el LightDM."
 
-#: src/modules/displaymanager/main.py:593
+#: src/modules/displaymanager/main.py:603
 msgid "No LightDM greeter installed."
 msgstr "No hi ha benvinguda instal·lada per al LightDM."
 
-#: src/modules/displaymanager/main.py:624
+#: src/modules/displaymanager/main.py:634
 msgid "Cannot write SLIM configuration file"
 msgstr "No es pot escriure el fitxer de configuració de l'SLIM."
 
-#: src/modules/displaymanager/main.py:625
+#: src/modules/displaymanager/main.py:635
 msgid "SLIM config file {!s} does not exist"
 msgstr "El fitxer de configuració de l'SLIM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:740
+#: src/modules/displaymanager/main.py:750
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "No hi ha cap gestor de pantalla seleccionat per al mòdul displaymanager."
 
-#: src/modules/displaymanager/main.py:741
+#: src/modules/displaymanager/main.py:751
 msgid ""
 "The displaymanagers list is empty or undefined in bothglobalstorage and "
 "displaymanager.conf."
@@ -180,21 +180,21 @@ msgstr ""
 "La llista de gestors de pantalla és buida o no definida a bothglobalstorage "
 "i displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:821
+#: src/modules/displaymanager/main.py:831
 msgid "Display manager configuration was incomplete"
 msgstr "La configuració del gestor de pantalla no era completa."
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Es configura mkinitcpio."
 
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
-msgstr ""
+msgstr "Es creen initramfs amb mkinitcpio."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "Es configura l'intercanvi encriptat."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -284,7 +284,7 @@ msgstr[1] "Se suprimeixen %(num)d paquets."
 
 #: src/modules/bootloader/main.py:48
 msgid "Install bootloader."
-msgstr ""
+msgstr "S'instal·la el carregador d'arrencada."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
@@ -292,51 +292,52 @@ msgstr "Suprimeix l'usuari de la sessió autònoma del sistema de destinació"
 
 #: src/modules/initramfs/main.py:35
 msgid "Creating initramfs."
-msgstr ""
+msgstr "Es creen initramfs."
 
 #: src/modules/initramfs/main.py:49
 msgid "Failed to run update-initramfs on the target"
-msgstr ""
+msgstr "Ha fallat executar update-initramfs a la destinació."
 
 #: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "El codi de sortida ha estat {}"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "S'estableix el rellotge del maquinari."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "Es creen initramfs amb dracut."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "Ha fallat executar dracut a la destinació."
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "Es configuren initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "Es configura el sevei OpenRC dmcrypt."
 
 #: src/modules/luksbootkeyfile/main.py:35
 msgid "Configuring LUKS key file."
-msgstr ""
+msgstr "Es configura el fitxer de clau LUKS."
 
 #: src/modules/luksbootkeyfile/main.py:69
 msgid "Encrypted rootfs setup error"
-msgstr ""
+msgstr "Error de configuració de rootfs encriptat."
 
 #: src/modules/luksbootkeyfile/main.py:70
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
 msgstr ""
+"La partició de rootfs {!s} és LUKS però no se n'ha trobat cap contrasenya."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "S'escriu fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -348,8 +349,8 @@ msgstr "Pas de python fitctici {}"
 
 #: src/modules/localecfg/main.py:37
 msgid "Configuring locales."
-msgstr ""
+msgstr "Es configuren les llengües."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Es desa la configuració de la xarxa."
