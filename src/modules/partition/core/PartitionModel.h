@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 
 // Qt
 #include <QAbstractItemModel>
+#include <QMutex>
 
 class Device;
 class Partition;
@@ -115,8 +116,11 @@ public:
     void update();
 
 private:
+    friend class ResetHelper;
+
     Device* m_device;
     OsproberEntryList m_osproberEntries;
+    mutable QMutex m_lock;
 };
 
 #endif /* PARTITIONMODEL_H */

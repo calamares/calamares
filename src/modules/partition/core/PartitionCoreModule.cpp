@@ -2,7 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Caio Carvalho <caiojcarvalho@gmail.com>
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *

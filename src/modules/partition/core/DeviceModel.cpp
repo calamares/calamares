@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -35,6 +36,15 @@
 // STL
 #include <algorithm>
 
+static void
+sortDevices( DeviceModel::DeviceList& l )
+{
+   std::sort( l.begin(), l.end(), []( const Device* dev1, const Device* dev2 )
+    {
+        return dev1->deviceNode() < dev2->deviceNode();
+    } );
+}
+
 DeviceModel::DeviceModel( QObject* parent )
     : QAbstractListModel( parent )
 {
@@ -45,14 +55,11 @@ DeviceModel::~DeviceModel()
 }
 
 void
-DeviceModel::init( const QList< Device* >& devices )
+DeviceModel::init( const DeviceList& devices )
 {
     beginResetModel();
     m_devices = devices;
-    std::sort( m_devices.begin(), m_devices.end(), []( const Device* dev1, const Device* dev2 )
-    {
-        return dev1->deviceNode() < dev2->deviceNode();
-    } );
+    sortDevices( m_devices );
     endResetModel();
 }
 
@@ -138,13 +145,8 @@ void
 DeviceModel::addDevice( Device *device )
 {
     beginResetModel();
-
     m_devices << device;
-    std::sort( m_devices.begin(), m_devices.end(), []( const Device* dev1, const Device* dev2 )
-    {
-        return dev1->deviceNode() < dev2->deviceNode();
-    } );
-
+    sortDevices( m_devices );
     endResetModel();
 }
 
@@ -152,12 +154,7 @@ void
 DeviceModel::removeDevice( Device *device )
 {
     beginResetModel();
-
     m_devices.removeAll( device );
-    std::sort( m_devices.begin(), m_devices.end(), []( const Device* dev1, const Device* dev2 )
-    {
-        return dev1->deviceNode() < dev2->deviceNode();
-    } );
-
+    sortDevices( m_devices );
     endResetModel();
 }

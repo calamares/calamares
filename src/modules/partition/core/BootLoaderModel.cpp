@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -46,9 +47,15 @@ BootLoaderModel::~BootLoaderModel()
 void
 BootLoaderModel::init( const QList< Device* >& devices )
 {
+    beginResetModel();
+    blockSignals( true );
+
     m_devices = devices;
     clear();
     createMbrItems();
+
+    blockSignals( false );
+    endResetModel();
 }
 
 void
@@ -69,6 +76,16 @@ BootLoaderModel::update()
 {
     beginResetModel();
     blockSignals( true );
+    updateInternal();
+    blockSignals( false );
+    endResetModel();
+}
+
+
+void
+BootLoaderModel::updateInternal()
+{
+    QMutexLocker lock(&m_lock);
     clear();
     createMbrItems();
 
@@ -113,14 +130,13 @@ BootLoaderModel::update()
             createBootLoaderItem( tr( "Do not install a boot loader" ), QString(), false )
         );
     }
-    blockSignals( false );
-    endResetModel();
 }
 
 
 QVariant
 BootLoaderModel::data( const QModelIndex& index, int role ) const
 {
+    QMutexLocker lock(&m_lock);
     if ( role == Qt::DisplayRole )
     {
         QString displayRole = QStandardItemModel::data( index, Qt::DisplayRole ).toString();

@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,8 +20,9 @@
 #ifndef BOOTLOADERMODEL_H
 #define BOOTLOADERMODEL_H
 
-#include <QStandardItemModel>
 #include <QList>
+#include <QMutex>
+#include <QStandardItemModel>
 
 class Device;
 
@@ -51,10 +53,14 @@ public:
 
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
+    using DeviceList = QList< Device* >;
+
 private:
-    QList< Device* > m_devices;
+    DeviceList m_devices;
+    mutable QMutex m_lock;
 
     void createMbrItems();
+    void updateInternal();
 };
 
 #endif /* BOOTLOADERMODEL_H */
