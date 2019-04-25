@@ -57,8 +57,8 @@ enum class SizeUnit
 class PartSize : public NamedSuffix<SizeUnit, SizeUnit::None>
 {
 public:
-    PartSize() : NamedSuffix() { };
-    PartSize( int v, unit_t u ) : NamedSuffix( v, u ) { };
+    PartSize() : NamedSuffix() { }
+    PartSize( int v, unit_t u ) : NamedSuffix( v, u ) { }
     PartSize( const QString& );
 
     bool isValid() const
