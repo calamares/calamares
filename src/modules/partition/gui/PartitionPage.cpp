@@ -207,6 +207,11 @@ PartitionPage::onNewPartitionTableClicked()
     Ui_CreatePartitionTableDialog ui;
     ui.setupUi( dlg.data() );
     QString areYouSure = tr( "Are you sure you want to create a new partition table on %1?" ).arg( device->name() );
+    if ( PartUtils::isEfiSystem() )
+        ui.gptRadioButton->setChecked( true );
+    else
+        ui.mbrRadioButton->setChecked( true );
+
     ui.areYouSureLabel->setText( areYouSure );
     if ( dlg->exec() == QDialog::Accepted )
     {
