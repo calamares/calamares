@@ -223,7 +223,7 @@ main( int argc, char* argv[] )
         Calamares::JobResult r = p->exec();
         if ( !r )
         {
-            cDebug() << "Job #" << count << "failed"
+            cError() << "Job #" << count << "failed"
                 << TR( "summary", r.message() )
                 << TR( "details", r.details() );
         }
