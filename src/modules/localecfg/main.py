@@ -26,6 +26,8 @@ import os
 import re
 import shutil
 
+import libcalamares
+
 import gettext
 _ = gettext.translation("calamares-python",
                         localedir=libcalamares.utils.gettext_path(),
