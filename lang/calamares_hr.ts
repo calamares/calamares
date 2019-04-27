@@ -1392,32 +1392,32 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="191"/>
         <source>Shows the complete license text</source>
-        <translation type="unfinished"/>
+        <translation>Prikazuje cijeli tekst licence</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="192"/>
         <source>Hide license text</source>
-        <translation type="unfinished"/>
+        <translation>Sakrij tekst licence</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="196"/>
         <source>Show license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Prikaži licencni ugovor</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="197"/>
         <source>Hide license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Sakrij licencni ugovor</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="201"/>
         <source>Opens the license agreement in a browser window.</source>
-        <translation type="unfinished"/>
+        <translation>Otvara ugovor o licenci u prozoru preglednika.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="202"/>
         <source>&lt;a href=&quot;%1&quot;&gt;View license agreement&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;%1&quot;&gt;Pogledajte ugovor o licenci&lt;/a&gt;</translation>
     </message>
 </context>
 <context>

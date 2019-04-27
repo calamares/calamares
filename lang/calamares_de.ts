@@ -1392,32 +1392,32 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="191"/>
         <source>Shows the complete license text</source>
-        <translation type="unfinished"/>
+        <translation>Zeigt den vollständigen Lizenztext an.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="192"/>
         <source>Hide license text</source>
-        <translation type="unfinished"/>
+        <translation>Lizenztext ausblenden</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="196"/>
         <source>Show license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Lizenzvereinbarung anzeigen</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="197"/>
         <source>Hide license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Lizenzvereinbarung ausblenden</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="201"/>
         <source>Opens the license agreement in a browser window.</source>
-        <translation type="unfinished"/>
+        <translation>Öffnet die Lizenzvereinbarung in einem Browserfenster.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="202"/>
         <source>&lt;a href=&quot;%1&quot;&gt;View license agreement&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;%1&quot;&gt;Lizenzvereinbarung anzeigen&lt;/a&gt;</translation>
     </message>
 </context>
 <context>

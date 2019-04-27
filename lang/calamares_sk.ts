@@ -1397,7 +1397,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="192"/>
         <source>Hide license text</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="196"/>

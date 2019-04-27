@@ -226,7 +226,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="313"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Sistemi değiştirmeden kurulumu iptal edin.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="81"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>Kurulum Başarısız</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
@@ -257,22 +257,22 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>Kuruluma devam edilsin mi?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="254"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>%1 sistem kurulum uygulaması,%2 ayarlamak için diskinizde değişiklik yapmak üzere. &lt;br/&gt;&lt;strong&gt;Bu değişiklikleri geri alamayacaksınız.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Şimdi kur</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="307"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kur</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="308"/>
@@ -282,12 +282,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
         <source>Setup is complete. Close the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>Kurulum tamamlandı. Kurulum programını kapatın.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="372"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>Kurulum iptal edilsin mi?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="373"/>
@@ -298,7 +298,8 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="375"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Mevcut kurulum işlemini gerçekten iptal etmek istiyor musunuz?
+Kurulum uygulaması sonlandırılacak ve tüm değişiklikler kaybedilecek.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="377"/>
@@ -391,7 +392,7 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="61"/>
         <source>%1 Setup Program</source>
-        <translation type="unfinished"/>
+        <translation>%1 Kurulum Uygulaması</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="62"/>
@@ -1092,7 +1093,7 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
         <source>&lt;Restart checkbox tooltip&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1102,12 +1103,12 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Kurulum Tamamlandı.&lt;/h1&gt;&lt;br/&gt;%1 bilgisayarınıza kuruldu.&lt;br/&gt;Şimdi yeni kurduğunuz işletim sistemini kullanabilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu kutucuk işaretlenerek &lt;span style=&quot;font-style:italic;&quot;&gt;Tamam&lt;/span&gt; butonu tıklandığında ya da kurulum uygulaması kapatıldığında bilgisayarınız yeniden başlatılacaktır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="66"/>
@@ -1117,12 +1118,12 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="71"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu kutucuk işaretlenerek &lt;span style=&quot;font-style:italic;&quot;&gt;Tamam&lt;/span&gt; butonu tıklandığında ya da sistem yükleyici kapatıldığında bilgisayarınız yeniden başlatılacaktır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="130"/>
         <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Kurulum Başarısız&lt;/h1&gt;&lt;br/&gt;%1 bilgisayarınıza kurulamadı.&lt;br/&gt;Hata mesajı: %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="136"/>
@@ -1140,7 +1141,7 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="115"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>Kurulum Tamanlandı</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="116"/>
@@ -1150,7 +1151,7 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>%1 kurulumu tamamlandı.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="119"/>
@@ -1227,7 +1228,7 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="142"/>
         <source>The setup program is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>Kurulum uygulaması yönetici haklarıyla çalışmıyor.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="143"/>
@@ -1237,7 +1238,7 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="152"/>
         <source>The screen is too small to display the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>Kurulum uygulamasını görüntülemek için ekran çok küçük.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="153"/>
@@ -1393,32 +1394,32 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="191"/>
         <source>Shows the complete license text</source>
-        <translation type="unfinished"/>
+        <translation>Tüm lisans metnini göster</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="192"/>
         <source>Hide license text</source>
-        <translation type="unfinished"/>
+        <translation>Lisans metnini gizle</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="196"/>
         <source>Show license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Lisans sözleşmesini göster</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="197"/>
         <source>Hide license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Lisans sözleşmesini gizle</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="201"/>
         <source>Opens the license agreement in a browser window.</source>
-        <translation type="unfinished"/>
+        <translation>Lisans sözleşmesini bir tarayıcı penceresinde aç.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="202"/>
         <source>&lt;a href=&quot;%1&quot;&gt;View license agreement&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;%1&quot;&gt;Lisans sözleşmesini görüntüle&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -2108,7 +2109,7 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="70"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen KDE Plazma Masaüstü için temalardan Bak ve Hisset bölümünü seçin. Ayrıca bu adımı atlayabilir ve sistem ayarlandıktan sonra bak ve hisset tema yapılandırabilirsiniz. Bir bak ve hisset seçeneğine tıklarsanız size canlı bir önizleme gösterilecektir.</translation>
     </message>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="76"/>
@@ -2486,7 +2487,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Bu bilgisayar %1 kurulumu için minimum gereksinimleri karşılamıyor.&lt;br/&gt;Kurulum devam etmeyecek. &lt;a href=&quot;#details&quot;&gt;Detaylar...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
@@ -2497,7 +2498,7 @@ Kurulum devam edemiyor. &lt;a href=&quot;#detaylar&quot;&gt;Detaylar...&lt;/a&gt
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
         <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Bu bilgisayar %1 kurulumu için önerilen gereksinimlerin bazılarına uymuyor. Kurulum devam edebilirsiniz ancak bazı özellikler devre dışı bırakılabilir.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
@@ -2780,7 +2781,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="55"/>
         <source>This is an overview of what will happen once you start the setup procedure.</source>
-        <translation type="unfinished"/>
+        <translation>Bu, kurulum prosedürü başlatıldıktan sonra ne gibi değişiklikler dair olacağına genel bir bakış.</translation>
     </message>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="58"/>
@@ -2904,12 +2905,12 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="115"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Bu bilgisayarı birden fazla kişi kullanacaksa, kurulumdan sonra birden fazla kullanıcı hesabı oluşturabilirsiniz.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="121"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Bu bilgisayarı birden fazla kişi kullanacaksa, yükleme bittikten sonra birden fazla kullanıcı hesabı oluşturabilirsiniz.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="312"/>
@@ -3025,7 +3026,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <location filename="../src/modules/welcome/WelcomePage.ui" line="17"/>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="72"/>
         <source>Select language</source>
-        <translation type="unfinished"/>
+        <translation>Dil seçin</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3050,17 +3051,17 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="71"/>
         <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1 için Calamares sistem kurulum uygulamasına hoş geldiniz.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1 Kurulumuna Hoşgeldiniz.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="90"/>
         <source>About %1 setup</source>
-        <translation type="unfinished"/>
+        <translation>%1 kurulum hakkında</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="91"/>
