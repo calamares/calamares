@@ -44,7 +44,7 @@ def run():
                                    "-t"])
 
     if return_code != 0:
-        libcalamares.utils.debug("update-initramfs returned {}".format(return_code)
+        libcalamares.utils.debug("update-initramfs returned {}".format(return_code))
         return (
             _("Failed to run update-initramfs on the target"),
             _("The exit code was {}").format(return_code)
