@@ -23,11 +23,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "GRUB'u yapılandır."
 
 #: src/modules/mount/main.py:36
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Disk bölümleri bağlanıyor."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -76,7 +76,7 @@ msgstr "Dosya sistemlerini ayırın."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Dosya sistemini genişlet."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."
@@ -185,15 +185,15 @@ msgstr "Ekran yöneticisi yapılandırma işi tamamlanamadı"
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Mkinitcpio yapılandırılıyor."
 
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
-msgstr ""
+msgstr "Mkinitcpio ile initramfs oluşturuluyor."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "Şifreli takas alanı yapılandırılıyor."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -279,7 +279,7 @@ msgstr[1] "%(num)d paket kaldırılıyor."
 
 #: src/modules/bootloader/main.py:48
 msgid "Install bootloader."
-msgstr ""
+msgstr "Önyükleyici kur."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
@@ -287,51 +287,51 @@ msgstr "Liveuser kullanıcısını hedef sistemden kaldırın"
 
 #: src/modules/initramfs/main.py:35
 msgid "Creating initramfs."
-msgstr ""
+msgstr "Initramfs oluşturuluyor."
 
 #: src/modules/initramfs/main.py:49
 msgid "Failed to run update-initramfs on the target"
-msgstr ""
+msgstr "update-initramfs hedefte çalıştırılamadı"
 
 #: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "Çıkış kodu {} idi"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "Donanım saati ayarlanıyor."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "Dracut ile initramfs oluşturuluyor."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "Hedef üzerinde dracut çalıştırılamadı"
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "Initramfs yapılandırılıyor."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "OpenRC dmcrypt servisi yapılandırılıyor."
 
 #: src/modules/luksbootkeyfile/main.py:35
 msgid "Configuring LUKS key file."
-msgstr ""
+msgstr "LUKS anahtar dosyası yapılandırılıyor."
 
 #: src/modules/luksbootkeyfile/main.py:69
 msgid "Encrypted rootfs setup error"
-msgstr ""
+msgstr "Şifrelenmiş rootfs kurulum hatası"
 
 #: src/modules/luksbootkeyfile/main.py:70
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
-msgstr ""
+msgstr "Rootfs disk bölümü {!s} LUKS, fakat parola bulunamadı."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "Fstab dosyasına yazılıyor."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -343,8 +343,8 @@ msgstr "Dummy python step {}"
 
 #: src/modules/localecfg/main.py:37
 msgid "Configuring locales."
-msgstr ""
+msgstr "Sistem yereli yapılandırılıyor."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Ağ yapılandırması kaydediliyor."
