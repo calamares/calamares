@@ -3,13 +3,11 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.7 (unreleased) #
+# 3.2.7 (2019-04-27) #
 
-This release contains contributions from (alphabetically by first name):
-
-## Core ##
-
-## Modules ##
+This is a **hotfix** release for regressions introduced in the
+Python modules. The *localecfg* module was unusable because of
+a missing `import`.
 
 
 # 3.2.6 (2019-04-25) #
