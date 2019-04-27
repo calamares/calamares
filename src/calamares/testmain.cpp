@@ -216,6 +216,7 @@ main( int argc, char* argv[] )
 
     cDebug() << "Job outputs:";
     Calamares::JobList jobList = m->jobs();
+    unsigned int failure_count = 0;
     unsigned int count = 1;
     for ( const auto& p : jobList )
     {
@@ -226,9 +227,10 @@ main( int argc, char* argv[] )
             cError() << "Job #" << count << "failed"
                 << TR( "summary", r.message() )
                 << TR( "details", r.details() );
+            ++failure_count;
         }
         ++count;
     }
 
-    return 0;
+    return failure_count ? 1 : 0;
 }
