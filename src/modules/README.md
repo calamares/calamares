@@ -112,6 +112,9 @@ in `/etc/calamares/modules`.
 
 ## C++ modules
 
+> Type: viewmodule, jobmodule
+> Interface: qtplugin
+
 Currently the recommended way to write a module which exposes one or more
 installer pages (viewmodule) is through a C++ and Qt plugin. Viewmodules must
 implement `Calamares::ViewStep`. They can also implement `Calamares::Job`
@@ -152,6 +155,9 @@ fakes a limited Calamares Python environment for running a single jobmodule.
 
 ### Python Jobmodule
 
+> Type: jobmodule
+> Interface: python
+
 A Python jobmodule is a Python program which imports libcalamares and has a
 function `run()` as entry point. The function `run()` must return `None` if
 everything went well, or a tuple `(str,str)` with an error message and
@@ -164,6 +170,9 @@ description if something went wrong.
 
 
 ## PythonQt modules
+
+> Type: viewmodule, jobmodule
+> Interface: pythonqt
 
 The PythonQt modules are considered experimental and may be removed again
 due to low uptake. Their documentation is also almost completely lacking.
@@ -185,6 +194,9 @@ a subclass of something.
 
 
 ## Process jobmodules
+
+> Type: jobmodule
+> Interface: process
 
 A process jobmodule runs a (single) command. The interface is *process*,
 while the module type must be *job* or *jobmodule*.
