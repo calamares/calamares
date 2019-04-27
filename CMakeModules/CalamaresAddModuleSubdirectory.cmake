@@ -148,4 +148,16 @@ function( calamares_add_module_subdirectory )
             math( EXPR _count "${_count} + 1" )
         endforeach()
     endif()
+
+    # Check that the module can be loaded. Since this calls exec(), the module
+    # may try to do things to the running system. Needs work to make that a
+    # safe thing to do.
+    #
+    # if ( BUILD_TESTING )
+    #     add_test(
+    #         NAME load-${SUBDIRECTORY}
+    #         COMMAND loadmodule ${SUBDIRECTORY}
+    #         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    #         )
+    # endif()
 endfunction()
