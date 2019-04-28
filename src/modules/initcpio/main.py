@@ -32,18 +32,19 @@ _ = gettext.translation("calamares-python",
 def pretty_name():
     return _("Creating initramfs with mkinitcpio.")
 
-
-def run_mkinitcpio():
-    """ Runs mkinitcpio with given kernel profile """
-    kernel = libcalamares.job.configuration['kernel']
-    check_target_env_call(['mkinitcpio', '-p', kernel])
-
-
 def run():
     """ Calls routine to create kernel initramfs image.
 
     :return:
     """
-    run_mkinitcpio()
+    from subprocess import CalledProcessError
+
+    kernel = libcalamares.job.configuration['kernel']
+    try:
+        check_target_env_call(['mkinitcpio', '-p', kernel])
+    except CalledProcessError as e:
+        libcalamares.utils.warning(str(e))
+        return ( _( "Process Failed" ),
+                 _( "Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was <pre>{!s}</pre>." ).format( e.returncode, e.cmd ) )
 
     return None

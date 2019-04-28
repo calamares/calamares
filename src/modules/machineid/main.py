@@ -43,6 +43,12 @@ def run():
     :return:
     """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+
+    if root_mount_point is None:
+        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
+        return (_("Configuration Error"),
+                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("machineid"))
+
     enable_systemd = libcalamares.job.configuration["systemd"]
     enable_dbus = libcalamares.job.configuration["dbus"]
     enable_symlink = libcalamares.job.configuration["symlink"]

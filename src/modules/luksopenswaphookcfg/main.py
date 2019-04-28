@@ -90,6 +90,15 @@ def run():
     openswap_conf_path = libcalamares.job.configuration["configFilePath"]
     partitions = libcalamares.globalstorage.value("partitions")
 
+    if not partitions:
+        libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
+        return (_("Configuration Error"),
+                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("luksopenswaphookcfg"))
+    if not root_mount_point:
+        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
+        return (_("Configuration Error"),
+                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("luksopenswaphookcfg"))
+
     openswap_conf_path = openswap_conf_path.lstrip('/')
 
     return write_openswap_conf(partitions, root_mount_point, openswap_conf_path)

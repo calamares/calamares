@@ -138,6 +138,12 @@ def run():
         }
 
     install_path = libcalamares.globalstorage.value("rootMountPoint")
+
+    if install_path is None:
+        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(install_path))
+        return (_("Configuration Error"),
+                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("localecfg"))
+
     target_locale_gen = "{!s}/etc/locale.gen".format(install_path)
     target_locale_gen_bak = target_locale_gen + ".bak"
     target_locale_conf_path = "{!s}/etc/locale.conf".format(install_path)
