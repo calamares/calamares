@@ -166,6 +166,11 @@ def run():
     filesystems = list()
     partitions = libcalamares.globalstorage.value("partitions")
 
+    if not partitions:
+        libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
+        return (_("Configuration Error"),
+                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("rawfs"))
+
     for partition in partitions:
         if partition["mountPoint"]:
             for src in libcalamares.job.configuration["targets"]:
