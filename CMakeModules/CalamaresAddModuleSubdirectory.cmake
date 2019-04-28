@@ -64,22 +64,31 @@ function( calamares_add_module_subdirectory )
         set( MODULE_DESTINATION ${MODULES_DIR}/${SUBDIRECTORY} )
 
         # Read module.desc, check that the interface type is supported.
+        #
+        # _mod_enabled boolean if the module should be built (only if the interface is supported)
+        # _mod_reason is a human-readable explanation why it isn't built
+        # _mod_testing boolean if the module should be added to the loadmodule tests
         file(STRINGS "${_mod_dir}/module.desc" MODULE_INTERFACE REGEX "^interface")
         if ( MODULE_INTERFACE MATCHES "pythonqt" )
             set( _mod_enabled ${WITH_PYTHONQT} )
             set( _mod_reason "No PythonQt support" )
+            set( _mod_testing OFF )
         elseif ( MODULE_INTERFACE MATCHES "python" )
             set( _mod_enabled ${WITH_PYTHON} )
             set( _mod_reason "No Python support" )
+            set( _mod_testing ON )  # Will check syntax and imports, at least
         elseif ( MODULE_INTERFACE MATCHES "qtplugin" )
             set( _mod_enabled OFF )
             set( _mod_reason "C++ modules must have a CMakeLists.txt instead" )
+            set( _mod_testing OFF )
         elseif ( MODULE_INTERFACE MATCHES "process" )
             set( _mod_enabled ON )
             set( _mod_reason "" )
+            set( _mod_testing OFF )
         else()
             set( _mod_enabled OFF )
             set( _mod_reason "Unknown module interface '${MODULE_INTERFACE}'" )
+            set( _mod_testing OFF )
         endif()
 
         if ( _mod_enabled )
@@ -153,11 +162,11 @@ function( calamares_add_module_subdirectory )
     # may try to do things to the running system. Needs work to make that a
     # safe thing to do.
     #
-    # if ( BUILD_TESTING )
-    #     add_test(
-    #         NAME load-${SUBDIRECTORY}
-    #         COMMAND loadmodule ${SUBDIRECTORY}
-    #         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    #         )
-    # endif()
+    if ( BUILD_TESTING AND _mod_enabled AND _mod_testing )
+        add_test(
+            NAME load-${SUBDIRECTORY}
+            COMMAND loadmodule ${SUBDIRECTORY}
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+            )
+    endif()
 endfunction()

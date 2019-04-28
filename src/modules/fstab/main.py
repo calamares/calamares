@@ -306,6 +306,16 @@ def run():
     conf = libcalamares.job.configuration
     partitions = global_storage.value("partitions")
     root_mount_point = global_storage.value("rootMountPoint")
+
+    if not partitions:
+        libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
+        return (_("Configuration Error"),
+                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("fstab"))
+    if not root_mount_point:
+        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
+        return (_("Configuration Error"),
+                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("fstab"))
+
     mount_options = conf["mountOptions"]
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
     crypttab_options = conf.get("crypttabOptions", "luks")

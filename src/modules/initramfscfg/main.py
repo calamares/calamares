@@ -88,6 +88,16 @@ def run():
     """
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+
+    if not partitions:
+        libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
+        return (_("Configuration Error"),
+                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("initramfscfg"))
+    if not root_mount_point:
+        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
+        return (_("Configuration Error"),
+                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("initramfscfg"))
+
     copy_initramfs_hooks(partitions, root_mount_point)
 
     return None

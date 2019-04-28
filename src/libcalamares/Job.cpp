@@ -21,16 +21,16 @@
 namespace Calamares
 {
 
-JobResult::JobResult( JobResult&& rhs ) :
-      m_ok( rhs.m_ok )
-    , m_message( std::move( rhs.m_message ) )
+JobResult::JobResult( JobResult&& rhs )
+    : m_message( std::move( rhs.m_message ) )
     , m_details( std::move( rhs.m_details ) )
+    , m_number( rhs.m_number )
 {
 }
 
 JobResult::operator bool() const
 {
-    return m_ok;
+    return m_number == 0;
 }
 
 
@@ -64,21 +64,26 @@ JobResult::setDetails( const QString& details )
 JobResult
 JobResult::ok()
 {
-    return JobResult( true, QString(), QString() );
+    return JobResult( QString(), QString(), NoError );
 }
 
 
 JobResult
 JobResult::error( const QString& message, const QString& details )
 {
-    return JobResult( false, message, details );
+    return JobResult( message, details, GenericError );
 }
 
+JobResult
+JobResult::internalError( const QString& message, const QString& details, int number )
+{
+    return JobResult( message, details, number ? number : GenericError );
+}
 
-JobResult::JobResult( bool ok, const QString& message, const QString& details )
-    : m_ok( ok )
-    , m_message( message )
+JobResult::JobResult( const QString& message, const QString& details, int number )
+    : m_message( message )
     , m_details( details )
+    , m_number( number )
 {}
 
 

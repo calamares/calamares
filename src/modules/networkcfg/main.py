@@ -41,8 +41,13 @@ def run():
     """
     Setup network configuration
     """
-
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+
+    if root_mount_point is None:
+        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
+        return (_("Configuration Error"),
+                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("networkcfg"))
+
     source_nm = "/etc/NetworkManager/system-connections/"
     target_nm = os.path.join(
         root_mount_point, "etc/NetworkManager/system-connections/"

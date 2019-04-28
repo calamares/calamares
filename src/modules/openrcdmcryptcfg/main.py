@@ -73,6 +73,15 @@ def run():
     dmcrypt_conf_path = libcalamares.job.configuration["configFilePath"]
     partitions = libcalamares.globalstorage.value("partitions")
 
+    if not partitions:
+        libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
+        return (_("Configuration Error"),
+                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("openrcdmcryptcfg"))
+    if not root_mount_point:
+        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
+        return (_("Configuration Error"),
+                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("openrcdmcryptcfg"))
+
     dmcrypt_conf_path = dmcrypt_conf_path.lstrip('/')
 
     return write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path)

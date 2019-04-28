@@ -36,7 +36,7 @@ public:
                                 const QString& message,
                                 const QString& details )
         : QObject( nullptr )
-        , Calamares::JobResult( ok, message, details )
+        , Calamares::JobResult( message, details, ok ? 0 : Calamares::JobResult::GenericError )
     {}
 };
 
