@@ -71,7 +71,7 @@ JobResult::ok()
 JobResult
 JobResult::error( const QString& message, const QString& details )
 {
-    return JobResult( message, details, -1 );
+    return JobResult( message, details, GenericError );
 }
 
 JobResult

@@ -29,6 +29,13 @@ namespace Calamares {
 class DLLEXPORT JobResult
 {
 public:
+    /** @brief Distinguish classes of errors
+     *
+     * All "ok result" have errorCode 0 (NoError).
+     * Errors returned from job execution have values < 0.
+     * Errors before job execution, or not returned by the job execution
+     * itself, have values > 0.
+     */
     enum
     {
         NoError = 0,
@@ -48,6 +55,8 @@ public:
 
     virtual QString details() const;
     virtual void setDetails( const QString& details );
+
+    int errorCode() const { return m_number; }
 
     /// @brief an "ok status" result
     static JobResult ok();

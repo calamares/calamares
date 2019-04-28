@@ -227,7 +227,8 @@ main( int argc, char* argv[] )
             cError() << "Job #" << count << "failed"
                 << TR( "summary", r.message() )
                 << TR( "details", r.details() );
-            ++failure_count;
+            if ( r.errorCode() > 0 )
+                ++failure_count;
         }
         ++count;
     }
