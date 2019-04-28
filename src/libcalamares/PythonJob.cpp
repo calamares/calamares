@@ -373,8 +373,10 @@ PythonJob::exec()
         }
         bp::handle_exception();
         PyErr_Clear();
-        return JobResult::error( tr( "Boost.Python error in job \"%1\"." ).arg( prettyName() ),
-                                 msg );
+        return JobResult::internalError(
+                    tr( "Boost.Python error in job \"%1\"." ).arg( prettyName() ),
+                    msg,
+                    JobResult::PythonUncaughtException );
     }
 }
 

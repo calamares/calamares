@@ -29,6 +29,13 @@ namespace Calamares {
 class DLLEXPORT JobResult
 {
 public:
+    enum
+    {
+        NoError = 0,
+        GenericError = -1,
+        PythonUncaughtException = 1
+    } ;
+
     JobResult( const JobResult& rhs ) = delete;
     JobResult( JobResult&& rhs );
 
@@ -42,17 +49,20 @@ public:
     virtual QString details() const;
     virtual void setDetails( const QString& details );
 
+    /// @brief an "ok status" result
     static JobResult ok();
-
+    /// @brief an "error" result resulting from the execution of the job
     static JobResult error( const QString& message, const QString& details = QString() );
+    /// @brief an "internal error" meaning the job itself has a problem (usually for python)
+    static JobResult internalError( const QString&, const QString& details, int errorCode );
 
 protected:
-    explicit JobResult( bool ok, const QString& message, const QString& details );
+    explicit JobResult( const QString& message, const QString& details, int errorCode );
 
 private:
-    bool m_ok;
     QString m_message;
     QString m_details;
+    int m_number;
 };
 
 class DLLEXPORT Job : public QObject
