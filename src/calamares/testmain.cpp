@@ -23,7 +23,7 @@
  */
 
 #include "utils/Logger.h"
-#include "utils/YamlUtils.h"
+#include "utils/Yaml.h"
 #include "modulesystem/Module.h"
 
 #include "GlobalStorage.h"

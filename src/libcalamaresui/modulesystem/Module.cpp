@@ -23,7 +23,7 @@
 #include "CppJobModule.h"
 #include "ViewModule.h"
 #include "utils/CalamaresUtils.h"
-#include "utils/YamlUtils.h"
+#include "utils/Yaml.h"
 #include "utils/Logger.h"
 #include "Settings.h"
 #include "CalamaresConfig.h"

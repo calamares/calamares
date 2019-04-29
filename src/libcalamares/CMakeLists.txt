@@ -28,7 +28,7 @@ set( utilsSources
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
     utils/Variant.cpp
-    utils/YamlUtils.cpp
+    utils/Yaml.cpp
 )
 set( kdsagSources
     kdsingleapplicationguard/kdsingleapplicationguard.cpp

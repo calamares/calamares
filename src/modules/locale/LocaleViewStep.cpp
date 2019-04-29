@@ -34,7 +34,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
-#include "utils/YamlUtils.h"
+#include "utils/Yaml.h"
 
 #include <QBoxLayout>
 #include <QLabel>

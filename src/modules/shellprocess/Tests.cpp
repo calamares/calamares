@@ -24,7 +24,7 @@
 
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
-#include "utils/YamlUtils.h"
+#include "utils/Yaml.h"
 
 #include <QtTest/QtTest>
 

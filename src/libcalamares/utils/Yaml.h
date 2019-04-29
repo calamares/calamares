@@ -17,8 +17,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef YAMLUTILS_H
-#define YAMLUTILS_H
+#ifndef UTILS_YAML_H
+#define UTILS_YAML_H
 
 #include <QStringList>
 #include <QVariant>
@@ -77,6 +77,6 @@ void explainYamlException( const YAML::Exception& e, const QByteArray& data, con
 void explainYamlException( const YAML::Exception& e, const QByteArray& data, const QString& label );
 void explainYamlException( const YAML::Exception& e, const QByteArray& data );
 
-} //ns
+}  // namespace
 
-#endif // YAMLUTILS_H
+#endif
