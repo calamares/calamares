@@ -226,7 +226,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="313"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Cancelar configuração sem alterar o sistema.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="81"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>A Configuração Falhou</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
@@ -257,22 +257,22 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>Continuar com a instalação?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="254"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>O programa de configuração %1 está prestes a fazer mudanças no seu disco de modo a configurar %2.&lt;br/&gt;&lt;strong&gt;Você não será capaz de desfazer estas mudanças.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Configurar agora</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="307"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Configurar</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="308"/>
@@ -282,12 +282,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
         <source>Setup is complete. Close the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>A configuração está completa. Feche o programa de configuração.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="372"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>Cancelar a configuração?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="373"/>
@@ -298,7 +298,8 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="375"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Você realmente quer cancelar o processo atual de configuração?
+O programa de configuração será fechado e todas as mudanças serão perdidas.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="377"/>
@@ -391,7 +392,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="61"/>
         <source>%1 Setup Program</source>
-        <translation type="unfinished"/>
+        <translation>Programa de configuração %1</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="62"/>
@@ -1101,12 +1102,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Tudo concluído.&lt;/h1&gt;&lt;br/&gt;%1 foi configurado no seu computador.&lt;br/&gt;Agora você pode começar a usar seu novo sistema.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quando essa caixa for marcada, seu sistema irá reiniciar imediatamente quando você clicar em &lt;span style=&quot;font-style:italic;&quot;&gt;Concluído&lt;/span&gt; ou fechar o programa de configuração.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="66"/>
@@ -1116,12 +1117,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="71"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quando essa caixa for marcada, seu sistema irá reiniciar imediatamente quando você clicar em &lt;span style=&quot;font-style:italic;&quot;&gt;Concluído&lt;/span&gt; ou fechar o instalador.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="130"/>
         <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;A configuração falhou&lt;/h1&gt;&lt;br/&gt;%1 não foi configurado no seu computador.&lt;br/&gt;A mensagem de erro foi: %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="136"/>
@@ -1139,7 +1140,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="115"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>Configuração Concluída</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="116"/>
@@ -1149,7 +1150,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>A configuração de %1 está concluída.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="119"/>
@@ -1225,7 +1226,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="142"/>
         <source>The setup program is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>O programa de configuração não está sendo executado com direitos de administrador.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="143"/>
@@ -1235,7 +1236,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="152"/>
         <source>The screen is too small to display the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>A tela é muito pequena para exibir o programa de configuração.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="153"/>
@@ -1391,32 +1392,32 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="191"/>
         <source>Shows the complete license text</source>
-        <translation type="unfinished"/>
+        <translation>Mostra o texto de licença completo</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="192"/>
         <source>Hide license text</source>
-        <translation type="unfinished"/>
+        <translation>Esconder texto de licença</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="196"/>
         <source>Show license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar termos de licença</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="197"/>
         <source>Hide license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Esconder termos de licença</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="201"/>
         <source>Opens the license agreement in a browser window.</source>
-        <translation type="unfinished"/>
+        <translation>Abre os termos de licença na janela do navegador.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="202"/>
         <source>&lt;a href=&quot;%1&quot;&gt;View license agreement&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;%1&quot;&gt;Ver termos de licença&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -2105,7 +2106,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="70"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor escolha um tema para a área de trabalho KDE Plasma. Você também pode pular esta etapa e escolher um tema quando o sistema estiver configurado. Clicar em uma seleção de tema irá mostrar-lhe uma previsão dele em tempo real.</translation>
     </message>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="76"/>
@@ -2483,7 +2484,7 @@ Saída:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Este computador não satisfaz os requerimentos mínimos para configurar %1.&lt;br/&gt;A configuração não pode continuar. &lt;a href=&quot;#details&quot;&gt;Detalhes...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
@@ -2493,7 +2494,7 @@ Saída:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
         <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Este computador não satisfaz alguns dos requerimentos recomendados para configurar %1.&lt;br/&gt;A configuração pode continuar, mas algumas funções podem ser desativadas.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
@@ -2775,7 +2776,7 @@ Saída:
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="55"/>
         <source>This is an overview of what will happen once you start the setup procedure.</source>
-        <translation type="unfinished"/>
+        <translation>Esta é uma visão geral do que acontecerá quando você iniciar o procedimento de configuração.</translation>
     </message>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="58"/>
@@ -2899,12 +2900,12 @@ Saída:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="115"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Se mais de uma pessoa for utilizar este computador, você poderá criar múltiplas contas após terminar a configuração.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="121"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Se mais de uma pessoa for utilizar este computador, você poderá criar múltiplas contas após terminar de instalar.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="312"/>
@@ -3045,17 +3046,17 @@ Saída:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="71"/>
         <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Bem-vindo ao programa de configuração Calamares para %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Bem-vindo à configuração de %1&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="90"/>
         <source>About %1 setup</source>
-        <translation type="unfinished"/>
+        <translation>Sobre a configuração de %1</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="91"/>
