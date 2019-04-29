@@ -37,6 +37,7 @@ public:
     virtual ~OEMViewStep() override;
 
     QString prettyName() const override;
+    QString prettyStatus() const override;
 
     QWidget* widget() override;
 

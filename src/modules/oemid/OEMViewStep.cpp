@@ -113,6 +113,12 @@ QString OEMViewStep::prettyName() const
     return tr( "OEM Configuration" );
 }
 
+QString OEMViewStep::prettyStatus() const
+{
+    return tr( "Set the OEM Batch Identifier to <code>%1</code>." ).arg( m_user_batchIdentifier );
+}
+
+
 QWidget * OEMViewStep::widget()
 {
     if (!m_widget)
