@@ -17,8 +17,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBCALAMARES_UTILS_UNITS_H
-#define LIBCALAMARES_UTILS_UNITS_H
+#ifndef UTILS_UNITS_H
+#define UTILS_UNITS_H
 
 #include <QtCore/QIntegerForSize>
 

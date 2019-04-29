@@ -21,8 +21,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESPLUGINFACTORY_H
-#define CALAMARESPLUGINFACTORY_H
+#ifndef UTILS_PLUGINFACTORY_H
+#define UTILS_PLUGINFACTORY_H
 
 #include "DllMacro.h"
 
@@ -311,8 +311,8 @@ inline T* PluginFactory::create( const QString& keyword, QObject* parent )
     return t;
 }
 
-}
+}  // namespace
 
 Q_DECLARE_INTERFACE( Calamares::PluginFactory, CalamaresPluginFactory_iid )
 
-#endif // CALAMARESPLUGINFACTORY_H
+#endif

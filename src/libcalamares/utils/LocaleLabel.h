@@ -17,8 +17,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBCALAMARES_LOCALELABEL_H
-#define LIBCALAMARES_LOCALELABEL_H
+#ifndef UTILS_LOCALELABEL_H
+#define UTILS_LOCALELABEL_H
 
 #include <QLocale>
 #include <QString>
@@ -41,7 +41,7 @@ public:
 
     /** @brief Empty locale. This uses the system-default locale. */
     LocaleLabel();
-    
+
     /** @brief Construct from a locale name.
      *
      * The @p localeName should be one that Qt recognizes, e.g. en_US or ar_EY.
@@ -100,7 +100,7 @@ public:
 
 protected:
     void setLabels( const QString& name, LabelFormat format );
-    
+
     QLocale m_locale;
     QString m_localeId;  // the locale identifier, e.g. "en_GB"
     QString m_label;  // the native name of the locale
@@ -108,6 +108,6 @@ protected:
 } ;
 
 
-}  // namespace CalamaresUtils
+}  // namespace
 
-#endif // LIBCALAMARES_LOCALELABEL_H
+#endif

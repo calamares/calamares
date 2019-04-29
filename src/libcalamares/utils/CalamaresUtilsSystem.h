@@ -16,8 +16,8 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef CALAMARESUTILSSYSTEM_H
-#define CALAMARESUTILSSYSTEM_H
+#ifndef UTILS_CALAMARESUTILSSYSTEM_H
+#define UTILS_CALAMARESUTILSSYSTEM_H
 
 #include "DllMacro.h"
 
@@ -235,6 +235,6 @@ private:
     bool m_doChroot;
 };
 
-}
+}  // namespace
 
-#endif // CALAMARESUTILSSYSTEM_H
+#endif

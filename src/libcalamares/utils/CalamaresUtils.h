@@ -22,8 +22,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESUTILS_H
-#define CALAMARESUTILS_H
+#ifndef UTILS_CALAMARESUTILS_H
+#define UTILS_CALAMARESUTILS_H
 
 #include "DllMacro.h"
 
@@ -108,6 +108,6 @@ namespace CalamaresUtils
      * @brief crash makes Calamares crash immediately.
      */
     DLLEXPORT void crash();
-}
+}  // namespace
 
-#endif // CALAMARESUTILS_H
+#endif

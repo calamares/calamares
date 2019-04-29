@@ -16,8 +16,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESUTILS_RETRANSLATOR_H
-#define CALAMARESUTILS_RETRANSLATOR_H
+#ifndef UTILS_RETRANSLATOR_H
+#define UTILS_RETRANSLATOR_H
 
 #include <QList>
 #include <QObject>
@@ -48,11 +48,11 @@ private:
 };
 
 
-} // namespace CalamaresUtils
+}  // namespace
 
 #define CALAMARES_RETRANSLATE(body) \
     CalamaresUtils::Retranslator::attachRetranslator( this, [=] { body } );
 #define CALAMARES_RETRANSLATE_WIDGET(widget,body) \
     CalamaresUtils::Retranslator::attachRetranslator( widget, [=] { body } );
 
-#endif // CALAMARESUTILS_RETRANSLATOR_H
+#endif

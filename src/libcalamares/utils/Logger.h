@@ -18,8 +18,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARES_LOGGER_H
-#define CALAMARES_LOGGER_H
+#ifndef UTILS_LOGGER_H
+#define UTILS_LOGGER_H
 
 #include <QDebug>
 
@@ -186,10 +186,10 @@ namespace Logger
             s << Continuation << it.key().toUtf8().constData() << ':' << ' ' << toString( it.value() ).toUtf8().constData();
         return s;
     }
-}
+}  // namespace
 
 #define cDebug Logger::CDebug
 #define cWarning() Logger::CDebug(Logger::LOGWARNING)
 #define cError() Logger::CDebug(Logger::LOGERROR)
 
-#endif // CALAMARES_LOGGER_H
+#endif

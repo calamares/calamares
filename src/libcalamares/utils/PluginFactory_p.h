@@ -20,8 +20,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESPLUGINFACTORY_P_H
-#define CALAMARESPLUGINFACTORY_P_H
+#ifndef UTILS_PLUGINFACTORY_P_H
+#define UTILS_PLUGINFACTORY_P_H
 
 #include "PluginFactory.h"
 
@@ -49,6 +49,6 @@ protected:
     PluginFactory *q_ptr;
 };
 
-}
+}  // namespace
 
-#endif // CALAMARESPLUGINFACTORY_P_H
+#endif
