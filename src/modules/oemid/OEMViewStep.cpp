@@ -20,6 +20,7 @@
 
 #include "ui_OEMPage.h"
 
+#include "utils/Retranslator.h"
 #include "utils/Variant.h"
 
 #include <QDate>
@@ -34,6 +35,10 @@ public:
         , m_ui( new Ui_OEMPage() )
     {
         m_ui->setupUi( this );
+
+        CALAMARES_RETRANSLATE(
+            m_ui->retranslateUi( this );
+        )
     }
 
     Ui_OEMPage* m_ui;
@@ -92,11 +97,15 @@ void OEMViewStep::onActivate()
     if ( !m_visited && m_widget )
         m_widget->m_ui->batchIdentifier->setText( m_user_batchIdentifier );
     m_visited = true;
+
+    ViewStep::onActivate();
 }
 
 void OEMViewStep::onLeave()
 {
     m_user_batchIdentifier = m_widget->m_ui->batchIdentifier->text();
+
+    ViewStep::onLeave();
 }
 
 QString OEMViewStep::prettyName() const
