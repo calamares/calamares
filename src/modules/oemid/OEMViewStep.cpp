@@ -20,11 +20,13 @@
 
 #include "utils/Variant.h"
 
+#include <QDate>
 #include <QLabel>
 
 OEMViewStep::OEMViewStep(QObject* parent)
     : Calamares::ViewStep( parent )
     , m_widget( nullptr )
+    , m_visited( false )
 {
 }
 
@@ -52,6 +54,33 @@ bool OEMViewStep::isAtEnd() const
     return true;
 }
 
+static QString substitute( QString s )
+{
+    QString t_date = QStringLiteral( "@@DATE@@" );
+    if ( s.contains( t_date ) )
+    {
+        auto date = QDate::currentDate();
+        s = s.replace( t_date, date.toString( Qt::ISODate ));
+    }
+
+    return s;
+}
+
+void OEMViewStep::onActivate()
+{
+    if ( !m_visited && m_user_batchIdentifier.isEmpty() )
+    {
+        m_user_batchIdentifier = substitute( m_conf_batchIdentifier );
+        // m_widget->setIdentifier( m_user_batchIdentifier );
+    }
+    m_visited = true;
+}
+
+void OEMViewStep::onLeave()
+{
+    // m_user_batchIdentifier = m_widget->identifier();
+}
+
 QString OEMViewStep::prettyName() const
 {
     return tr( "OEM Configuration" );
@@ -69,7 +98,7 @@ Calamares::JobList OEMViewStep::jobs() const
 
 void OEMViewStep::setConfigurationMap(const QVariantMap& configurationMap)
 {
-    m_batch = CalamaresUtils::getString( configurationMap, "batch-identifier" );
+    m_conf_batchIdentifier = CalamaresUtils::getString( configurationMap, "batch-identifier" );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( OEMViewStepFactory, registerPlugin<OEMViewStep>(); )

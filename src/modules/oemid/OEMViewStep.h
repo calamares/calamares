@@ -46,13 +46,18 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
+    void onActivate() override;
+    void onLeave() override;
+
     Calamares::JobList jobs() const override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    QString m_batch;
+    QString m_conf_batchIdentifier;
+    QString m_user_batchIdentifier;
     OEMPage* m_widget;
+    bool m_visited;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( OEMViewStepFactory )
