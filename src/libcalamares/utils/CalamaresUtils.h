@@ -29,8 +29,6 @@
 
 #include <QLocale>
 
-#define RESPATH ":/data/"
-
 class QDir;
 class QObject;
 
