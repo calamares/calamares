@@ -25,6 +25,7 @@
 
 class IDJob : public Calamares::Job
 {
+    Q_OBJECT
 public:
     explicit IDJob( const QString& id, QObject* parent = nullptr );
 
@@ -32,6 +33,8 @@ public:
     virtual Calamares::JobResult exec() override;
 
 private:
+    Calamares::JobResult writeId( const QString&, const QString&, const QString& );
+
     QString m_batchIdentifier;
 } ;
 
