@@ -3,6 +3,8 @@ calamares_add_plugin( oemid
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         OEMViewStep.cpp
+    UI
+        OEMPage.ui
     LINK_PRIVATE_LIBRARIES
         calamaresui
         Qt5::Widgets

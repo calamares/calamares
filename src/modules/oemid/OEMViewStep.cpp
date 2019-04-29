@@ -18,10 +18,27 @@
 
 #include "OEMViewStep.h"
 
+#include "ui_OEMPage.h"
+
 #include "utils/Variant.h"
 
 #include <QDate>
 #include <QLabel>
+#include <QWidget>
+
+class OEMPage : public QWidget
+{
+public:
+    OEMPage()
+        : QWidget( nullptr )
+        , m_ui( new Ui_OEMPage() )
+    {
+        m_ui->setupUi( this );
+    }
+
+    Ui_OEMPage* m_ui;
+} ;
+
 
 OEMViewStep::OEMViewStep(QObject* parent)
     : Calamares::ViewStep( parent )
@@ -32,6 +49,8 @@ OEMViewStep::OEMViewStep(QObject* parent)
 
 OEMViewStep::~OEMViewStep()
 {
+    if ( m_widget && m_widget->parent() == nullptr )
+        m_widget->deleteLater();
 }
 
 bool OEMViewStep::isBackEnabled() const
@@ -68,17 +87,16 @@ static QString substitute( QString s )
 
 void OEMViewStep::onActivate()
 {
-    if ( !m_visited && m_user_batchIdentifier.isEmpty() )
-    {
-        m_user_batchIdentifier = substitute( m_conf_batchIdentifier );
-        // m_widget->setIdentifier( m_user_batchIdentifier );
-    }
+    if ( !m_widget )
+        (void) widget();
+    if ( !m_visited && m_widget )
+        m_widget->m_ui->batchIdentifier->setText( m_user_batchIdentifier );
     m_visited = true;
 }
 
 void OEMViewStep::onLeave()
 {
-    // m_user_batchIdentifier = m_widget->identifier();
+    m_user_batchIdentifier = m_widget->m_ui->batchIdentifier->text();
 }
 
 QString OEMViewStep::prettyName() const
@@ -88,7 +106,9 @@ QString OEMViewStep::prettyName() const
 
 QWidget * OEMViewStep::widget()
 {
-    return nullptr; // m_widget;
+    if (!m_widget)
+        m_widget = new OEMPage;
+    return m_widget;
 }
 
 Calamares::JobList OEMViewStep::jobs() const
@@ -99,6 +119,7 @@ Calamares::JobList OEMViewStep::jobs() const
 void OEMViewStep::setConfigurationMap(const QVariantMap& configurationMap)
 {
     m_conf_batchIdentifier = CalamaresUtils::getString( configurationMap, "batch-identifier" );
+    m_user_batchIdentifier = substitute( m_conf_batchIdentifier );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( OEMViewStepFactory, registerPlugin<OEMViewStep>(); )
