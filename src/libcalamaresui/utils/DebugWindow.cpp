@@ -37,6 +37,17 @@
 #include <QStringListModel>
 #include <QTreeView>
 
+/**
+ * @brief crash makes Calamares crash immediately.
+ */
+static void
+crash()
+{
+    volatile int* a = nullptr;
+    *a = 1;
+}
+
+
 namespace Calamares {
 
 DebugWindow::DebugWindow()
@@ -172,10 +183,7 @@ DebugWindow::DebugWindow()
         }
     } );
 
-    connect( crashButton, &QPushButton::clicked,
-             this, [] {
-        CalamaresUtils::crash();
-    } );
+    connect( crashButton, &QPushButton::clicked, this, [] { ::crash(); } );
 
     CALAMARES_RETRANSLATE(
         retranslateUi( this );

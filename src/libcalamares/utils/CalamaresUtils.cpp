@@ -120,12 +120,4 @@ obscure( const QString& string )
     return result;
 }
 
-
-void
-crash()
-{
-    volatile int* a = nullptr;
-    *a = 1;
-}
-
 }

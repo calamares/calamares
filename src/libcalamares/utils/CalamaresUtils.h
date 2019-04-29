@@ -51,11 +51,6 @@ namespace CalamaresUtils
      * @return the obfuscated string.
      */
     DLLEXPORT QString obscure( const QString& string );
-
-    /**
-     * @brief crash makes Calamares crash immediately.
-     */
-    DLLEXPORT void crash();
 }  // namespace
 
 #endif
