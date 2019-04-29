@@ -24,11 +24,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "Configurar GRUB."
 
 #: src/modules/mount/main.py:36
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Montando partições."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -77,7 +77,7 @@ msgstr "Desmontar os sistemas de arquivos."
 
 #: src/modules/unpackfs/main.py:40
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Preenchendo sistemas de arquivos."
 
 #: src/modules/unpackfs/main.py:158
 msgid "rsync failed with error code {}."
@@ -187,15 +187,15 @@ msgstr "A configuração do gerenciador de exibição está incompleta"
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Configurando mkinitcpio."
 
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
-msgstr ""
+msgstr "Criando initramfs com mkinitcpio."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "Configurando swap encriptada."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -287,7 +287,7 @@ msgstr[1] "Removendo %(num)d pacotes."
 
 #: src/modules/bootloader/main.py:48
 msgid "Install bootloader."
-msgstr ""
+msgstr "Instalar bootloader."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
@@ -295,51 +295,51 @@ msgstr "Remover usuário live do sistema de destino"
 
 #: src/modules/initramfs/main.py:35
 msgid "Creating initramfs."
-msgstr ""
+msgstr "Criando initramfs."
 
 #: src/modules/initramfs/main.py:49
 msgid "Failed to run update-initramfs on the target"
-msgstr ""
+msgstr "Erro ao executar update-initramfs no alvo"
 
 #: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "O código de saída foi {}"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "Configurando relógio de hardware."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "Criando initramfs com dracut."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "Erro ao executar dracut no alvo"
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "Configurando initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "Configurando serviço dmcrypt do OpenRC."
 
 #: src/modules/luksbootkeyfile/main.py:35
 msgid "Configuring LUKS key file."
-msgstr ""
+msgstr "Configurando o arquivo de chave do LUKS."
 
 #: src/modules/luksbootkeyfile/main.py:69
 msgid "Encrypted rootfs setup error"
-msgstr ""
+msgstr "Erro de configuração de rootfs encriptado"
 
 #: src/modules/luksbootkeyfile/main.py:70
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
-msgstr ""
+msgstr "A partição Rootfs {!s} é LUKS mas nenhuma frase-chave foi encontrada."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "Escrevendo fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -351,8 +351,8 @@ msgstr "Etapa modelo python {}"
 
 #: src/modules/localecfg/main.py:37
 msgid "Configuring locales."
-msgstr ""
+msgstr "Configurando locais."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Salvando configuração de rede."
