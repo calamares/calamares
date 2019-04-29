@@ -23,6 +23,7 @@ set( utilsSources
     utils/CalamaresUtils.cpp
     utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
+    utils/Dirs.cpp
     utils/LocaleLabel.cpp
     utils/Logger.cpp
     utils/PluginFactory.cpp
