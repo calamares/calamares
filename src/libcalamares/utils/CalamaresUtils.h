@@ -38,18 +38,6 @@ class QObject;
 namespace CalamaresUtils
 {
     /**
-     * @brief installTranslator changes the application language.
-     * @param locale the new locale.
-     * @param brandingTranslationsPrefix the branding path prefix, from Calamares::Branding.
-     * @param parent the parent QObject.
-     */
-    DLLEXPORT void installTranslator( const QLocale& locale,
-                                      const QString& brandingTranslationsPrefix,
-                                      QObject* parent );
-
-    DLLEXPORT QString translatorLocaleName();
-
-    /**
      * @brief removeDiacritics replaces letters with diacritics and ligatures with
      * alternative forms and digraphs.
      * @param string the string to transform.

@@ -30,6 +30,7 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 #include "JobQueue.h"
 #include "Branding.h"
 #include "Settings.h"
