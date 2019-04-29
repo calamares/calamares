@@ -20,6 +20,8 @@
 
 #include "ui_OEMPage.h"
 
+#include "IDJob.h"
+
 #include "utils/Retranslator.h"
 #include "utils/Variant.h"
 
@@ -128,7 +130,7 @@ QWidget * OEMViewStep::widget()
 
 Calamares::JobList OEMViewStep::jobs() const
 {
-    return Calamares::JobList();
+    return Calamares::JobList() << Calamares::job_ptr( new IDJob( m_user_batchIdentifier ) );
 }
 
 void OEMViewStep::setConfigurationMap(const QVariantMap& configurationMap)

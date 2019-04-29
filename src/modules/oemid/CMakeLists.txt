@@ -2,6 +2,7 @@ calamares_add_plugin( oemid
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
+        IDJob.cpp
         OEMViewStep.cpp
     UI
         OEMPage.ui
