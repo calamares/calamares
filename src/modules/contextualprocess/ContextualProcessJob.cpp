@@ -26,9 +26,9 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
-#include "utils/CalamaresUtils.h"
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 struct ValueCheck : public QPair<QString, CalamaresUtils::CommandList*>
 {

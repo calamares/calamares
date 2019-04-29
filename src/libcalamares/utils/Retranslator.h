@@ -16,18 +16,33 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESUTILS_RETRANSLATOR_H
-#define CALAMARESUTILS_RETRANSLATOR_H
+#ifndef UTILS_RETRANSLATOR_H
+#define UTILS_RETRANSLATOR_H
+
+#include "DllMacro.h"
 
 #include <QList>
 #include <QObject>
+#include <QString>
 
 #include <functional>
 
 class QEvent;
+class QLocale;
 
 namespace CalamaresUtils
 {
+    /**
+     * @brief installTranslator changes the application language.
+     * @param locale the new locale.
+     * @param brandingTranslationsPrefix the branding path prefix, from Calamares::Branding.
+     * @param parent the parent QObject.
+     */
+    DLLEXPORT void installTranslator( const QLocale& locale,
+                                      const QString& brandingTranslationsPrefix,
+                                      QObject* parent );
+
+    DLLEXPORT QString translatorLocaleName();
 
 class Retranslator : public QObject
 {
@@ -48,11 +63,11 @@ private:
 };
 
 
-} // namespace CalamaresUtils
+}  // namespace
 
 #define CALAMARES_RETRANSLATE(body) \
     CalamaresUtils::Retranslator::attachRetranslator( this, [=] { body } );
 #define CALAMARES_RETRANSLATE_WIDGET(widget,body) \
     CalamaresUtils::Retranslator::attachRetranslator( widget, [=] { body } );
 
-#endif // CALAMARESUTILS_RETRANSLATOR_H
+#endif

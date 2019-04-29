@@ -26,8 +26,8 @@
  * in printing integer (underlying) values of an enum.
  */
 
-#ifndef LIBCALAMARES_NAMEDENUM_H
-#define LIBCALAMARES_NAMEDENUM_H
+#ifndef UTILS_NAMEDENUM_H
+#define UTILS_NAMEDENUM_H
 
 #include <QString>
 
@@ -107,6 +107,5 @@ constexpr typename std::underlying_type<E>::type smash( const E e )
 {
     return static_cast<typename std::underlying_type<E>::type>( e );
 }
-
 
 #endif

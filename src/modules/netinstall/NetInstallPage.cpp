@@ -28,7 +28,7 @@
 
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
-#include "utils/YamlUtils.h"
+#include "utils/Yaml.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>

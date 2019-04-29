@@ -16,8 +16,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef COMMANDLIST_H
-#define COMMANDLIST_H
+#ifndef UTILS_COMMANDLIST_H
+#define UTILS_COMMANDLIST_H
 
 #include "Job.h"
 
@@ -110,4 +110,4 @@ private:
 } ;
 
 }  // namespace
-#endif // COMMANDLIST_H
+#endif

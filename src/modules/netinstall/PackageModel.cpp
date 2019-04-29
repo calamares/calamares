@@ -19,7 +19,7 @@
 
 #include "PackageModel.h"
 
-#include "utils/YamlUtils.h"
+#include "utils/Yaml.h"
 
 PackageModel::PackageModel( const YAML::Node& data, QObject* parent ) :
     QAbstractItemModel( parent ),

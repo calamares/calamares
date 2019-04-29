@@ -22,7 +22,7 @@
 #include "PythonHelper.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsSystem.h"
-#include "utils/CalamaresUtils.h"
+#include "utils/String.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"

@@ -36,8 +36,8 @@
  * } ;
  */
 
-#ifndef LIBCALAMARES_NAMEDSUFFIX_H
-#define LIBCALAMARES_NAMEDSUFFIX_H
+#ifndef UTILS_NAMEDSUFFIX_H
+#define UTILS_NAMEDSUFFIX_H
 
 #include "NamedEnum.h"
 
@@ -103,6 +103,5 @@ protected:
     int m_value;
     unit_t m_unit;
 };
-
 
 #endif

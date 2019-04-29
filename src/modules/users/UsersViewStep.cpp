@@ -22,8 +22,9 @@
 
 #include "UsersPage.h"
 
-#include "utils/CalamaresUtils.h"
+// #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"

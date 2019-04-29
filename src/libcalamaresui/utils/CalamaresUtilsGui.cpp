@@ -29,6 +29,8 @@
 #include <QPen>
 #include <QWidget>
 
+#define RESPATH ":/data/"
+
 namespace CalamaresUtils
 {
 

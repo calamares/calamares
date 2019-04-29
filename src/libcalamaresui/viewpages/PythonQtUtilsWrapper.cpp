@@ -19,8 +19,8 @@
 #include "PythonQtUtilsWrapper.h"
 
 #include "utils/CalamaresUtilsSystem.h"
-#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
+#include "utils/String.h"
 
 #include <PythonQt.h>
 

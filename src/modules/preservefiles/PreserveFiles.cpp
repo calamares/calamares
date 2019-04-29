@@ -24,7 +24,6 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
-#include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
@@ -113,7 +112,7 @@ copy_file( const QString& source, const QString& dest )
 
     sourcef.close();
     destf.close();
-    
+
     return true;
 }
 
@@ -151,22 +150,22 @@ Calamares::JobResult PreserveFiles::exec()
                 if ( it.perm.isValid() )
                 {
                     auto s_p = CalamaresUtils::System::instance();
-                    
+
                     int r;
-                    
+
                     r = s_p->targetEnvCall( QStringList{ "chown", it.perm.username(), bare_dest } );
                     if ( r )
                         cWarning() << "Could not chown target" << bare_dest;
-                    
+
                     r = s_p->targetEnvCall( QStringList{ "chgrp", it.perm.group(), bare_dest } );
                     if ( r )
                         cWarning() << "Could not chgrp target" << bare_dest;
-                        
+
                     r = s_p->targetEnvCall( QStringList{ "chmod", it.perm.octal(), bare_dest } );
                     if ( r )
                         cWarning() << "Could not chmod target" << bare_dest;
                 }
-                
+
                 ++count;
             }
         }
@@ -195,7 +194,7 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
     QString defaultPermissions = configurationMap[ "perm" ].toString();
     if ( defaultPermissions.isEmpty() )
         defaultPermissions = QStringLiteral( "root:root:0400" );
-    
+
     QVariantList l = files.toList();
     unsigned int c = 0;
     for ( const auto& li : l )

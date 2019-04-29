@@ -22,7 +22,7 @@
 
 #include "CalamaresConfig.h"
 #include "kdsingleapplicationguard/kdsingleapplicationguard.h"
-#include "utils/CalamaresUtils.h"
+#include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "CalamaresConfig.h"
 

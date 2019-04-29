@@ -19,9 +19,9 @@
 
 #include "GeoIPJSON.h"
 
-#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
-#include "utils/YamlUtils.h"
+#include "utils/Variant.h"
+#include "utils/Yaml.h"
 
 #include <QByteArray>
 

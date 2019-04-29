@@ -23,16 +23,21 @@
  */
 
 #include "UsersPage.h"
+
 #include "ui_page_usersetup.h"
+
 #include "CreateUserJob.h"
 #include "SetPasswordJob.h"
 #include "SetHostNameJob.h"
-#include "JobQueue.h"
+
 #include "GlobalStorage.h"
-#include "utils/Logger.h"
-#include "utils/CalamaresUtilsGui.h"
-#include "utils/Retranslator.h"
+#include "JobQueue.h"
 #include "Settings.h"
+
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
+#include "utils/String.h"
 
 #include <QBoxLayout>
 #include <QLabel>

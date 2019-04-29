@@ -30,7 +30,7 @@
 #include <QTime>
 #include <QVariant>
 
-#include "utils/CalamaresUtils.h"
+#include "utils/Dirs.h"
 #include "CalamaresVersion.h"
 
 #define LOGFILE_SIZE 1024 * 256

@@ -21,9 +21,10 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-#include "utils/CalamaresUtils.h"
+// #include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 #include <QCoreApplication>
 #include <QVariantList>

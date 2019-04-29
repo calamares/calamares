@@ -26,10 +26,9 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
-#include "utils/CalamaresUtils.h"
-#include "utils/CalamaresUtilsSystem.h"
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 ShellProcessJob::ShellProcessJob( QObject* parent )
     : Calamares::CppJob( parent )

@@ -20,14 +20,16 @@ set( libSources
     Settings.cpp
 )
 set( utilsSources
-    utils/CalamaresUtils.cpp
     utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
+    utils/Dirs.cpp
     utils/LocaleLabel.cpp
     utils/Logger.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
-    utils/YamlUtils.cpp
+    utils/String.cpp
+    utils/Variant.cpp
+    utils/Yaml.cpp
 )
 set( kdsagSources
     kdsingleapplicationguard/kdsingleapplicationguard.cpp

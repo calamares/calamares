@@ -1,0 +1,194 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *
+ *   Originally from Tomahawk, portions:
+ *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
+ *   Copyright 2010-2011, Leo Franchi <lfranchi@kde.org>
+ *   Copyright 2010-2012, Jeff Mitchell <jeff@tomahawk-player.org>
+ *
+ *   Calamares is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Calamares is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "Dirs.h"
+
+#include "CalamaresConfig.h"
+#include "Logger.h"
+
+#include <QCoreApplication>
+#include <QDebug>
+#include <QDir>
+#include <QLocale>
+#include <QStandardPaths>
+#include <QTranslator>
+
+#include <iostream>
+
+using std::cerr;
+
+namespace CalamaresUtils
+{
+
+static QDir s_appDataDir( CMAKE_INSTALL_FULL_DATADIR );
+static QDir s_qmlModulesDir( QString( CMAKE_INSTALL_FULL_DATADIR ) + "/qml" );
+static bool s_isAppDataDirOverridden = false;
+
+static bool s_haveExtraDirs = false;
+static QStringList s_extraConfigDirs;
+static QStringList s_extraDataDirs;
+
+static bool
+isWritableDir( const QDir& dir )
+{
+    // We log with cerr here because we might be looking for the log dir
+    QString path = dir.absolutePath();
+    if ( !dir.exists() )
+    {
+        if ( !dir.mkpath( "." ) )
+        {
+            cerr << "warning: failed to create " << qPrintable( path ) << '\n';
+            return false;
+        }
+        return true;
+    }
+
+    QFileInfo info( path );
+    if ( !info.isDir() )
+    {
+        cerr << "warning: " << qPrintable( path ) << " is not a dir\n";
+        return false;
+    }
+    if ( !info.isWritable() )
+    {
+        cerr << "warning: " << qPrintable( path ) << " is not writable\n";
+        return false;
+    }
+    return true;
+}
+
+
+QDir
+qmlModulesDir()
+{
+    return s_qmlModulesDir;
+}
+
+
+void
+setAppDataDir( const QDir& dir )
+{
+    s_appDataDir = dir;
+    s_isAppDataDirOverridden = true;
+}
+
+/* Split $ENV{@p name} on :, append to @p l, making sure each ends in / */
+static void
+mungeEnvironment( QStringList& l, const char* name, const char* defaultDirs )
+{
+    static const QString calamaresSubdir = QStringLiteral( "calamares/" );
+
+    QStringList dirs = QString( qgetenv( name ) ).split( ':' );
+    if ( dirs.isEmpty() )
+        dirs = QString( defaultDirs ).split( ':' );
+
+    for ( auto s : dirs )
+    {
+        if ( s.isEmpty() )
+            continue;
+        if ( s.endsWith( '/' ) )
+            l << ( s + calamaresSubdir ) << s;
+        else
+            l << ( s + '/' + calamaresSubdir ) << ( s + '/' );
+    }
+}
+
+void
+setXdgDirs()
+{
+    mungeEnvironment( s_extraConfigDirs, "XDG_CONFIG_DIRS", "/etc/xdg" );
+    mungeEnvironment( s_extraDataDirs, "XDG_DATA_DIRS", "/usr/local/share/:/usr/share/" );
+
+    s_haveExtraDirs = !( s_extraConfigDirs.isEmpty() && s_extraDataDirs.isEmpty() );
+}
+
+QStringList
+extraConfigDirs()
+{
+    if ( s_haveExtraDirs )
+        return s_extraConfigDirs;
+    return QStringList();
+}
+
+QStringList
+extraDataDirs()
+{
+    if ( s_haveExtraDirs )
+        return s_extraDataDirs;
+    return QStringList();
+}
+
+bool
+haveExtraDirs()
+{
+    return s_haveExtraDirs && ( !s_extraConfigDirs.isEmpty() || !s_extraDataDirs.isEmpty() );
+}
+
+bool
+isAppDataDirOverridden()
+{
+    return s_isAppDataDirOverridden;
+}
+
+
+QDir
+appDataDir()
+{
+    return s_appDataDir;
+}
+
+
+QDir
+systemLibDir()
+{
+    QDir path( CMAKE_INSTALL_FULL_LIBDIR );
+    return path;
+}
+
+
+QDir
+appLogDir()
+{
+    QString path = QStandardPaths::writableLocation( QStandardPaths::CacheLocation );
+    QDir dir( path );
+    if ( isWritableDir( dir ) )
+        return dir;
+
+    cerr << "warning: Could not find a standard writable location for log dir, falling back to $HOME\n";
+    dir = QDir::home();
+    if ( isWritableDir( dir ) )
+        return dir;
+
+    cerr << "warning: Found no writable location for log dir, falling back to the temp dir\n";
+    return QDir::temp();
+}
+
+
+void
+setQmlModulesDir( const QDir& dir )
+{
+    s_qmlModulesDir = dir;
+}
+
+}  // namespace

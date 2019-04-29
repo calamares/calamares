@@ -21,9 +21,10 @@
 
 #include "Settings.h"
 
-#include "utils/CalamaresUtils.h"
+// #include "utils/CalamaresUtils.h"
+#include "utils/Dirs.h"
 #include "utils/Logger.h"
-#include "utils/YamlUtils.h"
+#include "utils/Yaml.h"
 
 #include <QDir>
 #include <QFile>
@@ -275,7 +276,7 @@ Settings::disableCancel() const
 {
     return m_disableCancel;
 }
-    
+
 bool
 Settings::dontCancel() const
 {

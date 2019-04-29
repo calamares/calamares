@@ -21,7 +21,7 @@
  * shipped with each module for correctness -- well, for parseability.
  */
 
-#include "utils/YamlUtils.h"
+#include "utils/Yaml.h"
 
 #include <unistd.h>
 #include <stdlib.h>

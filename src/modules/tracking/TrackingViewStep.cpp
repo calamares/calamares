@@ -16,15 +16,17 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "JobQueue.h"
-#include "GlobalStorage.h"
-#include "utils/Logger.h"
-#include "utils/CalamaresUtils.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "TrackingViewStep.h"
 
 #include "TrackingJobs.h"
 #include "TrackingPage.h"
-#include "TrackingViewStep.h"
+
+#include "JobQueue.h"
+#include "GlobalStorage.h"
+
+#include "utils/Logger.h"
+#include "utils/CalamaresUtilsSystem.h"
+#include "utils/Variant.h"
 
 #include <QDesktopServices>
 #include <QVariantMap>

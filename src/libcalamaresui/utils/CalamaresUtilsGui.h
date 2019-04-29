@@ -20,7 +20,6 @@
 #ifndef CALAMARESUTILSGUI_H
 #define CALAMARESUTILSGUI_H
 
-#include "utils/CalamaresUtils.h"
 #include "UiDllMacro.h"
 
 #include <QObject>

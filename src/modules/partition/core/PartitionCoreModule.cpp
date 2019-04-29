@@ -44,7 +44,8 @@
 #include "jobs/ResizePartitionJob.h"
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
-#include "utils/CalamaresUtils.h"
+
+#include "utils/Variant.h"
 
 #ifdef DEBUG_PARTITION_LAME
 #include "JobExample.h"

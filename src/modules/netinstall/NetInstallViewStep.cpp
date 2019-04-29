@@ -23,8 +23,8 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
-#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 #include "NetInstallPage.h"
 

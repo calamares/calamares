@@ -28,11 +28,11 @@
 #include "GlobalStorage.h"
 #include "ViewManager.h"
 
-#include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"
+#include "utils/Variant.h"
 
 #include <QApplication>
 #include <QBoxLayout>
