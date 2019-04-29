@@ -28,6 +28,7 @@
 #include "modulesystem/ModuleManager.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "JobQueue.h"
 #include "Branding.h"

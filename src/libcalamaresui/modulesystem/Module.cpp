@@ -19,14 +19,15 @@
 
 #include "Module.h"
 
-#include "ProcessJobModule.h"
-#include "CppJobModule.h"
-#include "ViewModule.h"
-#include "utils/CalamaresUtils.h"
-#include "utils/Yaml.h"
-#include "utils/Logger.h"
-#include "Settings.h"
 #include "CalamaresConfig.h"
+#include "CppJobModule.h"
+#include "ProcessJobModule.h"
+#include "Settings.h"
+#include "ViewModule.h"
+
+#include "utils/Dirs.h"
+#include "utils/Logger.h"
+#include "utils/Yaml.h"
 
 #ifdef WITH_PYTHON
 #include "PythonJobModule.h"

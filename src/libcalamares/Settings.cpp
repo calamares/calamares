@@ -21,7 +21,8 @@
 
 #include "Settings.h"
 
-#include "utils/CalamaresUtils.h"
+// #include "utils/CalamaresUtils.h"
+#include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
 
@@ -275,7 +276,7 @@ Settings::disableCancel() const
 {
     return m_disableCancel;
 }
-    
+
 bool
 Settings::dontCancel() const
 {
