@@ -9,12 +9,17 @@ This release contains contributions from (alphabetically by first name):
 
 ## Core ##
 
+ - *libcalamares* (accidentally) linked with Qt's GUI libraries when
+   PythonQt was found. This led to the odd situation where the non-GUI
+   Calamares library depends on a bunch of GUI libraries.
+
 ## Modules ##
 
  - All Python modules now bail out gracefully on (at least some) bad
    configurations, rather than raising an exception. The pre-release
    scripts now test for exceptions to avoid shipping modules with
    ImportError or SyntaxError results.
+
 
 # 3.2.7 (2019-04-27) #
 
