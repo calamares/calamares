@@ -5,6 +5,10 @@ website will have to do for older versions.
 
 # 3.2.8 (unreleased) #
 
+This is a **source-incompatible** release of Calamares. Include files
+have been shuffled around, so third-party C++ modules will need
+adjustment to the changed names.
+
 This release contains contributions from (alphabetically by first name):
 
 ## Core ##
@@ -12,6 +16,11 @@ This release contains contributions from (alphabetically by first name):
  - *libcalamares* (accidentally) linked with Qt's GUI libraries when
    PythonQt was found. This led to the odd situation where the non-GUI
    Calamares library depends on a bunch of GUI libraries.
+ - *libcalamares* The `utils/` subdirectory has been hugely refactored,
+   with functionality split out into separate files. C++ modules will
+   need to have their `#include` names updated. Basically, users of
+   `utils/CalamaresUtils.h` will need to include the header file for
+   the functionality that is actually used.
 
 ## Modules ##
 
