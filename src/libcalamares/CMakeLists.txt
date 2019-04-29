@@ -27,6 +27,7 @@ set( utilsSources
     utils/Logger.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
+    utils/Variant.cpp
     utils/YamlUtils.cpp
 )
 set( kdsagSources
