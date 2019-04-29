@@ -33,9 +33,9 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
-#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
+#include "utils/Variant.h"
 
 #include "modules/partition/core/PartitionIterator.h"
 

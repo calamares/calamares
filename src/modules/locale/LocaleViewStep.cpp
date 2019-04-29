@@ -31,9 +31,9 @@
 #include "timezonewidget/localeglobal.h"
 #include "widgets/WaitingWidget.h"
 
-#include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 #include "utils/YamlUtils.h"
 
 #include <QBoxLayout>

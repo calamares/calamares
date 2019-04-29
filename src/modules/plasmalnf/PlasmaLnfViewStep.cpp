@@ -21,8 +21,8 @@
 #include "PlasmaLnfPage.h"
 #include "ThemeInfo.h"
 
-#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 #include <QProcess>
 #include <QVariantMap>
