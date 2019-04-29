@@ -20,7 +20,6 @@ set( libSources
     Settings.cpp
 )
 set( utilsSources
-    utils/CalamaresUtils.cpp
     utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
     utils/Dirs.cpp
@@ -28,6 +27,7 @@ set( utilsSources
     utils/Logger.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
+    utils/String.cpp
     utils/Variant.cpp
     utils/Yaml.cpp
 )

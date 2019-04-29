@@ -22,14 +22,16 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CalamaresUtils.h"
+#include "String.h"
+
+#include <QStringList>
 
 namespace CalamaresUtils
 {
 QString
 removeDiacritics( const QString& string )
 {
-    const QString diacriticLetters = QString::fromUtf8(
+    static const QString diacriticLetters = QString::fromUtf8(
         "ŠŒŽšœžŸ¥µÀ"
         "ÁÂÃÄÅÆÇÈÉÊ"
         "ËÌÍÎÏÐÑÒÓÔ"
@@ -46,7 +48,7 @@ removeDiacritics( const QString& string )
         "ŕĄąĘęŁłŃńŚ"
         "śŹźŻż"
     );
-    const QStringList noDiacriticLetters = {
+    static const QStringList noDiacriticLetters = {
         "S", "OE", "Z", "s", "oe", "z", "Y", "Y", "u", "A",
         "A", "A", "A", "A", "AA", "AE", "C", "E", "E", "E",
         "E", "I", "I", "I", "I", "D", "N", "O", "O", "O",

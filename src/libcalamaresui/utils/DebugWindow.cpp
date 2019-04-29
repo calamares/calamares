@@ -17,7 +17,6 @@
  */
 
 #include "DebugWindow.h"
-#include "utils/CalamaresUtils.h"
 #include "utils/Retranslator.h"
 #include "utils/qjsonmodel.h"
 #include "JobQueue.h"

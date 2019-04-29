@@ -22,15 +22,12 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef UTILS_CALAMARESUTILS_H
-#define UTILS_CALAMARESUTILS_H
+#ifndef UTILS_STRING_H
+#define UTILS_STRING_H
 
 #include "DllMacro.h"
 
-#include <QLocale>
-
-class QDir;
-class QObject;
+#include <QString>
 
 /**
  * @brief The CalamaresUtils namespace contains utility functions.

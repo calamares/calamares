@@ -21,7 +21,6 @@
 #include "Branding.h"
 
 #include "GlobalStorage.h"
-#include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/ImageRegistry.h"
 #include "utils/Logger.h"
