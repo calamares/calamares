@@ -1,5 +1,3 @@
-project( calamares )
-
 add_definitions( -DUIDLLEXPORT_PRO )
 
 if( NOT CMAKE_BUILD_TYPE STREQUAL "Release" )
@@ -26,8 +24,6 @@ include_directories(
     ../libcalamares
     ../libcalamaresui
 )
-
-include( GNUInstallDirs )
 
 # Translations
 include( CalamaresAddTranslations )
