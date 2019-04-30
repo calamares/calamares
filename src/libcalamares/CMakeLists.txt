@@ -69,7 +69,20 @@ if( WITH_PYTHON )
     )
 endif()
 
-add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} )
+set( geoipSources
+    geoip/GeoIP.cpp
+    geoip/GeoIPJSON.cpp
+)
+set( geoip_libs )
+
+find_package(Qt5 COMPONENTS Xml)
+if( Qt5Xml_FOUND )
+    list( APPEND geoipSources geoip/GeoIPXML.cpp )
+    list( APPEND geoip_libs Qt5::Network Qt5::Xml )
+    add_definitions( -DHAVE_XML )
+endif()
+
+add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} ${geoipSources} )
 set_target_properties( calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
@@ -82,6 +95,7 @@ target_link_libraries( calamares
         ${OPTIONAL_PRIVATE_LIBRARIES}
     LINK_PUBLIC
         ${YAMLCPP_LIBRARY}
+        ${geoip_libs}
         Qt5::Core
 )
 
@@ -103,6 +117,24 @@ if ( ECM_FOUND AND BUILD_TESTING )
             Qt5::Test
     )
     calamares_automoc( libcalamarestest )
+
+    ecm_add_test(
+            geoip/GeoIPTests.cpp
+            ${geoip_src}
+        TEST_NAME
+            geoiptest
+        LINK_LIBRARIES
+            calamares
+            Qt5::Test
+            ${YAMLCPP_LIBRARY}
+    )
+    calamares_automoc( geoiptest )
+endif()
+
+if( BUILD_TESTING )
+    add_executable( test_geoip geoip/test_geoip.cpp ${geoip_src} )
+    target_link_libraries( test_geoip calamares Qt5::Network ${YAMLCPP_LIBRARY} )
+    calamares_automoc( test_geoip )
 endif()
 
 # Make symlink lib/calamares/libcalamares.so to lib/libcalamares.so.VERSION so
