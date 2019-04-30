@@ -15,11 +15,6 @@ endif()
 
 find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 
-include(KDEInstallDirs)
-include(GenerateExportHeader)
-find_package( Qt5 REQUIRED DBus )
-find_package( KF5 REQUIRED Config CoreAddons I18n WidgetsAddons )
-
 find_package( KPMcore 3.3 )
 set_package_properties(
     KPMcore PROPERTIES
@@ -27,6 +22,9 @@ set_package_properties(
 )
 
 if ( KPMcore_FOUND )
+    find_package( Qt5 REQUIRED DBus )
+    find_package( KF5 REQUIRED Config CoreAddons I18n WidgetsAddons )
+
     if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
         list( APPEND _partition_defs WITH_KPMCORE331API) # kpmcore > 3.3.0 with deprecations
     endif()

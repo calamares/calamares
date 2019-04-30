@@ -1,10 +1,11 @@
 find_package( KPMcore 3.3 )
-find_package( Qt5 REQUIRED DBus )  # Needed for KPMCore
-find_package( KF5 REQUIRED I18n WidgetsAddons )  # Needed for KPMCore
 
 set( _partition_defs "" )
 
 if ( KPMcore_FOUND )
+    find_package( Qt5 REQUIRED DBus )  # Needed for KPMCore
+    find_package( KF5 REQUIRED I18n WidgetsAddons )  # Needed for KPMCore
+
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     include_directories( ${PROJECT_BINARY_DIR}/src/libcalamares )
 

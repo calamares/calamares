@@ -269,6 +269,7 @@ if( ECM_FOUND )
         find_package( Qt5 COMPONENTS Test REQUIRED )
         include( ECMAddTests )
     endif()
+    include(KDEInstallDirs)
 endif()
 
 find_package( KF5 COMPONENTS CoreAddons Crash )
