@@ -28,7 +28,7 @@
 
 #include "geoip/GeoIP.h"
 #include "geoip/GeoIPJSON.h"
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
 #include "geoip/GeoIPXML.h"
 #endif
 
@@ -129,7 +129,7 @@ LocaleViewStep::fetchGeoIpTimezone()
     {
         handler = new GeoIPJSON( m_geoipSelector );
     }
-#if defined(HAVE_XML)
+#if defined(QT_XML_LIB)
     else if ( m_geoipStyle == "xml" )
     {
         handler = new GeoIPXML( m_geoipSelector );

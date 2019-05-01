@@ -79,7 +79,6 @@ find_package(Qt5 COMPONENTS Xml)
 if( Qt5Xml_FOUND )
     list( APPEND geoipSources geoip/GeoIPXML.cpp )
     list( APPEND geoip_libs Qt5::Network Qt5::Xml )
-    add_definitions( -DHAVE_XML )
 endif()
 
 add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} ${geoipSources} )

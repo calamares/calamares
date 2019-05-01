@@ -19,7 +19,7 @@
 #include "GeoIPTests.h"
 
 #include "GeoIPJSON.h"
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
 #include "GeoIPXML.h"
 #endif
 
@@ -118,7 +118,7 @@ static const char xml_data_ubiquity[] =
 void
 GeoIPTests::testXML()
 {
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     GeoIPXML handler;
     auto tz = handler.processReply( xml_data_ubiquity );
 
@@ -133,7 +133,7 @@ GeoIPTests::testXML2()
     static const char data[] =
         "<Response><TimeZone>America/North Dakota/Beulah</TimeZone></Response>";  // With a space!
 
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     GeoIPXML handler;
     auto tz = handler.processReply( data );
 
@@ -145,7 +145,7 @@ GeoIPTests::testXML2()
 
 void GeoIPTests::testXMLalt()
 {
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     GeoIPXML handler( "ZT" );
 
     auto tz = handler.processReply( "<A><B/><C><ZT>Moon/Dark_side</ZT></C></A>" );
@@ -157,7 +157,7 @@ void GeoIPTests::testXMLalt()
 void
 GeoIPTests::testXMLbad()
 {
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     GeoIPXML handler;
     auto tz = handler.processReply( "{time_zone: \"Europe/Paris\"}" );
     QCOMPARE( tz.first, QString() );
@@ -249,7 +249,7 @@ void GeoIPTests::testGet()
 
     CHECK_GET( JSON, QStringLiteral("Location.TimeZone"), "https://geoip.kde.org/debug" )  // 2-level JSON
 
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     CHECK_GET( XML, QString(), "http://geoip.ubuntu.com/lookup" )  // Ubiquity's XML format
     CHECK_GET( XML, QString(),  "https://geoip.kde.org/v1/ubiquity" )  // Temporary KDE service
 #endif
