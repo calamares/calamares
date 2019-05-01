@@ -19,17 +19,18 @@
 
 #include "LocaleViewStep.h"
 
-#include "GeoIP.h"
-#include "GeoIPJSON.h"
-#ifdef HAVE_XML
-#include "GeoIPXML.h"
-#endif
-#include "GlobalStorage.h"
-#include "JobQueue.h"
 #include "LocalePage.h"
-
 #include "timezonewidget/localeglobal.h"
 #include "widgets/WaitingWidget.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
+#include "geoip/GeoIP.h"
+#include "geoip/GeoIPJSON.h"
+#ifdef HAVE_XML
+#include "geoip/GeoIPXML.h"
+#endif
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
