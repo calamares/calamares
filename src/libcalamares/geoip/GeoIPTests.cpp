@@ -249,11 +249,8 @@ void GeoIPTests::testGet()
     // the TZ data is the same as the default_tz; this is fragile if the
     // services don't agree on the location of where the test is run.
     CHECK_GET( JSON, QString(), "https://geoip.kde.org/v1/calamares" )     // Check it's consistent
-    CHECK_GET( JSON, QString(), "http://freegeoip.net/json/" )             // Original FreeGeoIP service
     CHECK_GET( JSON, QStringLiteral("timezone"), "https://ipapi.co/json" )  // Different JSON
     CHECK_GET( JSON, QStringLiteral("timezone"), "http://ip-api.com/json" )
-
-    CHECK_GET( JSON, QStringLiteral("location.time_zone"), "http://geoip.nekudo.com/api/" )  // 2-level JSON
 
     CHECK_GET( JSON, QStringLiteral("Location.TimeZone"), "https://geoip.kde.org/debug" )  // 2-level JSON
 
