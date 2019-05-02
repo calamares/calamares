@@ -115,7 +115,7 @@
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
         <source>Job failed (%1)</source>
-        <translation type="unfinished"/>
+        <translation>ジョブに失敗 (%1)</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="27"/>
         <source>Example job (%1)</source>
-        <translation type="unfinished"/>
+        <translation>ジョブの例 (%1)</translation>
     </message>
 </context>
 <context>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="152"/>
         <source>System-requirements checking is complete.</source>
-        <translation type="unfinished"/>
+        <translation>要求されるシステムの確認を終了しました。</translation>
     </message>
 </context>
 <context>
@@ -226,7 +226,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="313"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>システムを変更することなくセットアップを中断します。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="81"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>セットアップに失敗しました。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
@@ -257,22 +257,22 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>インストールを続行しますか?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="254"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>%1 のセットアッププログラムは %2 のセットアップのためディスクの内容を変更します。&lt;br/&gt;&lt;strong&gt;これらの変更は取り消しできません。&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>セットアップ中（&amp;S）</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="307"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>セットアップ （&amp;S）</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="308"/>
@@ -282,12 +282,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
         <source>Setup is complete. Close the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>セットアップが完了しました。プログラムを閉じます。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="372"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>セットアップを中止しますか？</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="373"/>
@@ -298,7 +298,8 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="375"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>本当に現在のセットアップのプロセルを中止しますか？
+すべての変更が取り消されます。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="377"/>
@@ -391,7 +392,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="61"/>
         <source>%1 Setup Program</source>
-        <translation type="unfinished"/>
+        <translation>%1 セットアッププログラム</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="62"/>
@@ -815,7 +816,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="37"/>
         <source>Create Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>ボリュームグループの作成</translation>
     </message>
 </context>
 <context>
@@ -1091,7 +1092,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
         <source>&lt;Restart checkbox tooltip&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1101,12 +1102,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;すべて完了しました。&lt;/h1&gt;&lt;br/&gt;%1 はコンピュータにセットアップされました。&lt;br/&gt;今から新しいシステムを開始することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;このボックスをチェックすると、 &lt;span style=&quot;font-style:italic;&quot;&gt;実行&lt;/span&gt;をクリックするかプログラムを閉じると直ちにシステムが再起動します。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="66"/>
@@ -1116,12 +1117,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="71"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;このボックスをチェックすると、 &lt;span style=&quot;font-style:italic;&quot;&gt;実行&lt;/span&gt;をクリックするかインストーラーを閉じると直ちにシステムが再起動します。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="130"/>
         <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;セットアップに失敗しました。&lt;/h1&gt;&lt;br/&gt;%1 はコンピュータにセットアップされていません。&lt;br/&gt;エラーメッセージは次のとおりです: %2</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="136"/>
@@ -1139,7 +1140,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="115"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>セットアップが完了しました</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="116"/>
@@ -1150,7 +1151,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>%1 のセットアップが完了しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="119"/>
@@ -1226,7 +1227,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="142"/>
         <source>The setup program is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>セットアッププログラムは管理者権限で実行されていません。</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="143"/>
@@ -2952,7 +2953,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
         <source>Create Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>ボリュームグループの作成</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
