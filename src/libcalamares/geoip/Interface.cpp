@@ -16,24 +16,24 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GeoIP.h"
+#include "Interface.h"
 
 #include "utils/Logger.h"
 
-namespace CalamaresUtils
+namespace CalamaresUtils::GeoIP
 {
 
-GeoIP::GeoIP(const QString& e)
+Interface::Interface(const QString& e)
     : m_element( e )
 {
 }
 
-GeoIP::~GeoIP()
+Interface::~Interface()
 {
 }
 
-GeoIP::RegionZonePair
-GeoIP::splitTZString( const QString& tz )
+RegionZonePair
+splitTZString( const QString& tz )
 {
     QString timezoneString( tz );
     timezoneString.remove( '\\' );

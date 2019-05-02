@@ -19,9 +19,9 @@
 #ifndef GEOIP_GEOIPJSON_H
 #define GEOIP_GEOIPJSON_H
 
-#include "GeoIP.h"
+#include "Interface.h"
 
-namespace CalamaresUtils
+namespace CalamaresUtils::GeoIP
 {
 /** @brief GeoIP lookup for services that return JSON.
  *
@@ -29,8 +29,10 @@ namespace CalamaresUtils
  * (e.g. using the FreeGeoIP.net service), or similar.
  *
  * The data is assumed to be in JSON format with a time_zone attribute.
+ *
+ * @note This class is an implementation detail.
  */
-class GeoIPJSON : public GeoIP
+class GeoIPJSON : public Interface
 {
 public:
     /** @brief Configure the attribute name which is selected.

@@ -16,25 +16,25 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GeoIPHandler.h"
+#include "Handler.h"
 
-namespace CalamaresUtils
+namespace CalamaresUtils::GeoIP
 {
 
-GeoIPHandler::GeoIPHandler()
+Handler::Handler()
 {
 }
 
 bool
-GeoIPHandler::isValid() const
+Handler::isValid() const
 {
     return false;
 }
 
-GeoIP::RegionZonePair
-GeoIPHandler::query() const
+RegionZonePair
+Handler::query() const
 {
-    return GeoIP::RegionZonePair();
+    return RegionZonePair();
 }
 
 }  // namespace

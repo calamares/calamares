@@ -16,12 +16,13 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEOIP_GEOIPHANDLER_H
-#define GEOIP_GEOIPHANDLER_H
+#ifndef GEOIP_HANDLER_H
+#define GEOIP_HANDLER_H
 
-#include "GeoIP.h"
+#include "Interface.h"
 
-namespace CalamaresUtils
+namespace CalamaresUtils {}
+namespace CalamaresUtils::GeoIP
 {
 
 /** @brief Handle one complete GeoIP lookup.
@@ -31,13 +32,13 @@ namespace CalamaresUtils
  * synchronous API and will return an invalid zone pair on
  * error or if the configuration is not understood/
  */
-class GeoIPHandler
+class DLLEXPORT Handler
 {
 public:
     /** @brief An unconfigured handler; this always returns errors. */
-    GeoIPHandler();
+    Handler();
 
-    GeoIP::RegionZonePair query() const;
+    RegionZonePair query() const;
 
     bool isValid() const;
 };

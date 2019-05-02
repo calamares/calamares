@@ -28,9 +28,7 @@
 #endif
 
 using std::cerr;
-using CalamaresUtils::GeoIP;
-using CalamaresUtils::GeoIPJSON;
-using CalamaresUtils::GeoIPXML;
+using namespace CalamaresUtils::GeoIP;
 
 int main(int argc, char** argv)
 {
@@ -40,7 +38,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    GeoIP* handler = nullptr;
+    Interface* handler = nullptr;
     if ( QStringLiteral( "json" ) == argv[1] )
         handler = new GeoIPJSON;
 #ifdef QT_XML_LIB

@@ -26,7 +26,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-#include "geoip/GeoIP.h"
+#include "geoip/Interface.h"
 #include "geoip/GeoIPJSON.h"
 #ifdef QT_XML_LIB
 #include "geoip/GeoIPXML.h"
@@ -117,14 +117,10 @@ LocaleViewStep::setUpPage()
 void
 LocaleViewStep::fetchGeoIpTimezone()
 {
-    using CalamaresUtils::GeoIP;
-    using CalamaresUtils::GeoIPJSON;
-#if defined(QT_XML_LIB)
-    using CalamaresUtils::GeoIPXML;
-#endif
+    using namespace CalamaresUtils::GeoIP;
 
     QString actualUrl( m_geoipUrl );
-    GeoIP *handler = nullptr;
+    Interface* handler = nullptr;
 
     if ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" )
     {

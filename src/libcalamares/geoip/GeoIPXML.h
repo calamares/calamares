@@ -19,9 +19,9 @@
 #ifndef GEOIP_GEOIPXML_H
 #define GEOIP_GEOIPXML_H
 
-#include "GeoIP.h"
+#include "Interface.h"
 
-namespace CalamaresUtils
+namespace CalamaresUtils::GeoIP
 {
 /** @brief GeoIP lookup with XML data
  *
@@ -29,8 +29,10 @@ namespace CalamaresUtils
  *      <Response><TimeZone></TimeZone></Response>
  * element, which contains the text (string) for the region/zone. This
  * format is  expected by, e.g. the Ubiquity installer.
+ *
+ * @note This class is an implementation detail.
  */
-class GeoIPXML : public GeoIP
+class GeoIPXML : public Interface
 {
 public:
     /** @brief Configure the element tag which is selected.

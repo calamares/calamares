@@ -16,8 +16,10 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEOIP_GEOIP_H
-#define GEOIP_GEOIP_H
+#ifndef GEOIP_INTERFACE_H
+#define GEOIP_INTERFACE_H
+
+#include "DllMacro.h"
 
 #include <QPair>
 #include <QString>
@@ -25,8 +27,41 @@
 
 class QByteArray;
 
-namespace CalamaresUtils
+namespace CalamaresUtils {}
+namespace CalamaresUtils::GeoIP
 {
+/** @brief A Region, Zone pair of strings
+ *
+ * A GeoIP lookup returns a timezone, which is represented as a Region,
+ * Zone pair of strings (e.g. "Europe" and "Amsterdam"). Generally,
+ * pasting the strings back together with a "/" is the right thing to
+ * do. The Zone **may** contain a "/" (e.g. "Kentucky/Monticello").
+ */
+class DLLEXPORT RegionZonePair : public QPair<QString, QString>
+{
+public:
+    /** @brief Construct from an existing pair. */
+    explicit RegionZonePair( const QPair& p ) : QPair(p) { }
+    /** @brief Construct from two strings, like qMakePair(). */
+    RegionZonePair( const QString& region, const QString& zone ) : QPair( region, zone ) { }
+    /** @brief An invalid zone pair (empty strings). */
+    RegionZonePair() : QPair( QString(), QString() ) { }
+
+    bool isValid() const { return !first.isEmpty(); }
+} ;
+
+/** @brief Splits a region/zone string into a pair.
+ *
+ * Cleans up the string by removing backslashes (\\)
+ * since some providers return silly-escaped names. Replaces
+ * spaces with _ since some providers return human-readable names.
+ * Splits on the first / in the resulting string, or returns a
+ * pair of empty QStrings if it can't. (e.g. America/North Dakota/Beulah
+ * will return "America", "North_Dakota/Beulah").
+ */
+DLLEXPORT RegionZonePair
+splitTZString( const QString& s );
+
 /**
  * @brief Interface for GeoIP retrievers.
  *
@@ -34,30 +69,10 @@ namespace CalamaresUtils
  * and can handle the data returned from its interpretation of that
  * configured URL, returning a region and zone.
  */
-class GeoIP
+class DLLEXPORT Interface
 {
 public:
-    /** @brief A Region, Zone pair of strings
-     *
-     * A GeoIP lookup returns a timezone, which is represented as a Region,
-     * Zone pair of strings (e.g. "Europe" and "Amsterdam"). Generally,
-     * pasting the strings back together with a "/" is the right thing to
-     * do. The Zone **may** contain a "/" (e.g. "Kentucky/Monticello").
-     */
-    class RegionZonePair : public QPair<QString, QString>
-    {
-    public:
-        /** @brief Construct from an existing pair. */
-        explicit RegionZonePair( const QPair& p ) : QPair(p) { }
-        /** @brief Construct from two strings, like qMakePair(). */
-        RegionZonePair( const QString& region, const QString& zone ) : QPair( region, zone ) { }
-        /** @brief An invalid zone pair (empty strings). */
-        RegionZonePair() : QPair( QString(), QString() ) { }
-
-        bool isValid() const { return !first.isEmpty(); }
-    } ;
-
-    virtual ~GeoIP();
+    virtual ~Interface();
 
     /** @brief Handle a (successful) request by interpreting the data.
      *
@@ -70,19 +85,8 @@ public:
      */
     virtual RegionZonePair processReply( const QByteArray& ) = 0;
 
-    /** @brief Splits a region/zone string into a pair.
-     *
-     * Cleans up the string by removing backslashes (\\)
-     * since some providers return silly-escaped names. Replaces
-     * spaces with _ since some providers return human-readable names.
-     * Splits on the first / in the resulting string, or returns a
-     * pair of empty QStrings if it can't. (e.g. America/North Dakota/Beulah
-     * will return "America", "North_Dakota/Beulah").
-     */
-    static RegionZonePair splitTZString( const QString& s );
-
 protected:
-    GeoIP( const QString& e = QString() );
+    Interface( const QString& e = QString() );
 
     QString m_element;  // string for selecting from data
 } ;

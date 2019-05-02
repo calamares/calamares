@@ -70,19 +70,19 @@ if( WITH_PYTHON )
 endif()
 
 set( geoipSources
-    geoip/GeoIP.cpp
-    geoip/GeoIPHandler.cpp
-    geoip/GeoIPJSON.cpp
+    geoip/Interface.cpp
+    geoip/Handler.cpp
 )
+set( geoipImplementations geoip/GeoIPJSON.cpp )
 set( geoip_libs )
 
 find_package(Qt5 COMPONENTS Xml)
 if( Qt5Xml_FOUND )
-    list( APPEND geoipSources geoip/GeoIPXML.cpp )
+    list( APPEND geoipImplementations geoip/GeoIPXML.cpp )
     list( APPEND geoip_libs Qt5::Network Qt5::Xml )
 endif()
 
-add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} ${geoipSources} )
+add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} ${geoipSources} ${geoipImplementations} )
 set_target_properties( calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}

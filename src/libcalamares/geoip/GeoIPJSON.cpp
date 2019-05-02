@@ -25,11 +25,11 @@
 
 #include <QByteArray>
 
-namespace CalamaresUtils
+namespace CalamaresUtils::GeoIP
 {
 
 GeoIPJSON::GeoIPJSON(const QString& attribute)
-    : GeoIP( attribute.isEmpty() ? QStringLiteral( "time_zone" ) : attribute )
+    : Interface( attribute.isEmpty() ? QStringLiteral( "time_zone" ) : attribute )
 {
 }
 

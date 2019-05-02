@@ -31,9 +31,7 @@
 
 QTEST_GUILESS_MAIN( GeoIPTests )
 
-using CalamaresUtils::GeoIP;
-using CalamaresUtils::GeoIPJSON;
-using CalamaresUtils::GeoIPXML;
+using namespace CalamaresUtils::GeoIP;
 
 GeoIPTests::GeoIPTests()
 {
@@ -176,24 +174,25 @@ GeoIPTests::testXMLbad()
 
 void GeoIPTests::testSplitTZ()
 {
-    auto tz = GeoIP::splitTZString( QStringLiteral("Moon/Dark_side") );
+    using namespace CalamaresUtils::GeoIP;
+    auto tz = splitTZString( QStringLiteral("Moon/Dark_side") );
     QCOMPARE( tz.first, QStringLiteral("Moon") );
     QCOMPARE( tz.second, QStringLiteral("Dark_side") );
 
     // Some providers return weirdly escaped data
-    tz = GeoIP::splitTZString( QStringLiteral("America\\/NewYork") );
+    tz = splitTZString( QStringLiteral("America\\/NewYork") );
     QCOMPARE( tz.first, QStringLiteral("America") );
     QCOMPARE( tz.second, QStringLiteral("NewYork") );  // That's not actually the zone name
 
     // Check that bogus data fails
-    tz = GeoIP::splitTZString( QString() );
+    tz = splitTZString( QString() );
     QCOMPARE( tz.first, QString() );
 
-    tz = GeoIP::splitTZString( QStringLiteral("America.NewYork") );
+    tz = splitTZString( QStringLiteral("America.NewYork") );
     QCOMPARE( tz.first, QString() );
 
     // Check that three-level is split properly and space is replaced
-    tz = GeoIP::splitTZString( QStringLiteral("America/North Dakota/Beulah") );
+    tz = splitTZString( QStringLiteral("America/North Dakota/Beulah") );
     QCOMPARE( tz.first, QStringLiteral("America") );
     QCOMPARE( tz.second, QStringLiteral("North_Dakota/Beulah") );
 }

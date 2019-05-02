@@ -23,11 +23,11 @@
 #include <QNetworkReply>
 #include <QtXml/QDomDocument>
 
-namespace CalamaresUtils
+namespace CalamaresUtils::GeoIP
 {
 
 GeoIPXML::GeoIPXML( const QString& element )
-    : GeoIP( element.isEmpty() ? QStringLiteral( "TimeZone" ) : element )
+    : Interface( element.isEmpty() ? QStringLiteral( "TimeZone" ) : element )
 {
 }
 
