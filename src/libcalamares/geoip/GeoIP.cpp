@@ -45,10 +45,10 @@ GeoIP::splitTZString( const QString& tz )
         cDebug() << "GeoIP reporting" << timezoneString;
         QString region = tzParts.takeFirst();
         QString zone = tzParts.join( '/' );
-        return qMakePair( region, zone );
+        return RegionZonePair( region, zone );
     }
 
-    return qMakePair( QString(), QString() );
+    return RegionZonePair( QString(), QString() );
 }
 
 }  // namespace

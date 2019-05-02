@@ -73,7 +73,7 @@ GeoIPJSON::processReply( const QByteArray& data )
         CalamaresUtils::explainYamlException( e, data, "GeoIP data");
     }
 
-    return qMakePair( QString(), QString() );
+    return RegionZonePair( QString(), QString() );
 }
 
 }  // namespace

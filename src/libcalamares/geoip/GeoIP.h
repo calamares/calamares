@@ -37,7 +37,25 @@ namespace CalamaresUtils
 class GeoIP
 {
 public:
-    using RegionZonePair = QPair<QString, QString>;
+    /** @brief A Region, Zone pair of strings
+     *
+     * A GeoIP lookup returns a timezone, which is represented as a Region,
+     * Zone pair of strings (e.g. "Europe" and "Amsterdam"). Generally,
+     * pasting the strings back together with a "/" is the right thing to
+     * do. The Zone **may** contain a "/" (e.g. "Kentucky/Monticello").
+     */
+    class RegionZonePair : public QPair<QString, QString>
+    {
+    public:
+        /** @brief Construct from an existing pair. */
+        explicit RegionZonePair( const QPair& p ) : QPair(p) { }
+        /** @brief Construct from two strings, like qMakePair(). */
+        RegionZonePair( const QString& region, const QString& zone ) : QPair( region, zone ) { }
+        /** @brief An invalid zone pair (empty strings). */
+        RegionZonePair() : QPair( QString(), QString() ) { }
+
+        bool isValid() const { return !first.isEmpty(); }
+    } ;
 
     virtual ~GeoIP();
 

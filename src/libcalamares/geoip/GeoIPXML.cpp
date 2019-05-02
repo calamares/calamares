@@ -52,14 +52,14 @@ GeoIPXML::processReply( const QByteArray& data )
 
         // None of them valid
         cWarning() << "GeopIP XML had no recognizable timezone";
-        return qMakePair( QString(), QString() );
+        return RegionZonePair( QString(), QString() );
     }
     else
     {
         cWarning() << "GeoIP XML data error:" << domError << "(line" << errorLine << errorColumn << ')';
     }
 
-    return qMakePair( QString(), QString() );
+    return RegionZonePair( QString(), QString() );
 }
 
 }  // namespace
