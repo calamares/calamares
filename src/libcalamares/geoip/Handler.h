@@ -21,6 +21,9 @@
 
 #include "Interface.h"
 
+#include <QString>
+#include <QVariantMap>
+
 namespace CalamaresUtils {}
 namespace CalamaresUtils::GeoIP
 {
@@ -37,10 +40,36 @@ class DLLEXPORT Handler
 public:
     /** @brief An unconfigured handler; this always returns errors. */
     Handler();
+    /** @brief A handler for a specific GeoIP source.
+     *
+     * The @p implementation name selects an implementation; currently JSON and XML
+     * are supported. The @p url is retrieved by query() and then the @p selector
+     * is used to select something from the data returned by the @url.
+     */
+    Handler( const QString& implementation, const QString& url, const QString& selector );
+    /** @brief A handler for a specific GeoIP source.
+     *
+     * This is like the 3-QString Handler constructor, except the strings
+     * are extracted from the map, which is typically part of the configuration
+     * of a Calamares module. The strings are fetched from these keys:
+     *  - implementation from "style" or "geoipStyle" (if the first does not exist)
+     *  - url from "url" or "geoipUrl" (if the first does not exist)
+     *  - selector from "selector" or "geoipSelector" (if the first does not exist)
+     * Unlike the 3-QString Handler constructor, this also understands implementations
+     * "legacy" and blank, which are interpreted as "JSON", except that the url is extended
+     * by "/json/" before fetching.
+     */
+    Handler( const QVariantMap& config );
+
+    ~Handler();
 
     RegionZonePair query() const;
 
     bool isValid() const;
+
+private:
+    Interface* m_interface;
+    const QString m_url;
 };
 
 }  // namespace

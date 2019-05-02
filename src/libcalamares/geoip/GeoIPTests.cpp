@@ -22,6 +22,7 @@
 #ifdef QT_XML_LIB
 #include "GeoIPXML.h"
 #endif
+#include "Handler.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -219,14 +220,18 @@ synchronous_get( const char* urlstring )
 #define CHECK_GET(t, selector, url) \
     { \
         auto tz = GeoIP##t( selector ).processReply( synchronous_get( url ) ); \
+        qDebug() << tz; \
         QCOMPARE( default_tz, tz ); \
+        auto tz2 = CalamaresUtils::GeoIP::Handler( ""#t, url, selector ).query(); \
+        qDebug() << tz2; \
+        QCOMPARE( default_tz, tz2 ); \
     }
 
 void GeoIPTests::testGet()
 {
     if ( !QProcessEnvironment::systemEnvironment().contains( QStringLiteral("TEST_HTTP_GET") ) )
     {
-        qDebug() << "Skipping HTTP GET tests";
+        qDebug() << "Skipping HTTP GET tests, set TEST_HTTP_GET environment variable to enable";
         return;
     }
 
