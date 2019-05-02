@@ -71,6 +71,7 @@ endif()
 
 set( geoipSources
     geoip/GeoIP.cpp
+    geoip/GeoIPHandler.cpp
     geoip/GeoIPJSON.cpp
 )
 set( geoip_libs )
