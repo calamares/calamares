@@ -29,26 +29,29 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 
+#include <memory>
+
 namespace CalamaresUtils::GeoIP
 {
 
 Handler::Handler()
-    : m_interface( nullptr )
+    : m_type( Type::None )
 {
 }
 
 Handler::Handler( const QString& implementation, const QString& url, const QString& selector )
-    : m_interface( nullptr )
+    : m_type( Type::None )
     , m_url( url )
 {
     if ( implementation.compare( "json", Qt::CaseInsensitive ) == 0 )
     {
-        m_interface = new GeoIPJSON( selector );
+
+        m_type = Type::JSON;
     }
 #if defined(QT_XML_LIB)
     else if ( implementation.compare( "xml", Qt::CaseInsensitive ) == 0 )
     {
-        m_interface = new GeoIPXML( selector );
+        m_type = Type::XML;
     }
 #endif
     else
@@ -59,13 +62,6 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
 
 Handler::~Handler()
 {
-    delete m_interface;
-}
-
-bool
-Handler::isValid() const
-{
-    return m_interface;
 }
 
 static QByteArray
@@ -84,14 +80,44 @@ synchronous_get( const QString& urlstring )
     return reply->readAll();
 }
 
+static std::unique_ptr< Interface >
+create_interface( Handler::Type t, const QString& selector )
+{
+    switch( t )
+    {
+        case Handler::Type::None:
+            return nullptr;
+        case Handler::Type::JSON:
+            return std::make_unique< GeoIPJSON >( selector );
+        case Handler::Type::XML:
+#if defined(QT_XML_LIB)
+            return std::make_unique< GeoIPXML >( selector );
+#else
+            return nullptr;
+#endif
+        default:  // there are no others
+            return nullptr;
+    }
+}
 
 RegionZonePair
-Handler::query() const
+Handler::get() const
 {
     if ( !isValid() )
         return RegionZonePair();
 
-    return m_interface->processReply( synchronous_get( m_url ) );
+    const auto interface = create_interface( m_type, m_selector );
+    if ( !interface )
+        return RegionZonePair();
+
+    return interface->processReply( synchronous_get( m_url ) );
 }
+
+/*
+QFuture< RegionZonePair >
+Handler::query() const
+{
+}
+*/
 
 }  // namespace

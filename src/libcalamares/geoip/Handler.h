@@ -21,6 +21,7 @@
 
 #include "Interface.h"
 
+#include <QtConcurrent/QtConcurrentRun>
 #include <QString>
 #include <QVariantMap>
 
@@ -31,13 +32,21 @@ namespace CalamaresUtils::GeoIP
 /** @brief Handle one complete GeoIP lookup.
  *
  * This class handles one complete GeoIP lookup. Create it with
- * suitable configuration values, then call lookup(). This is a
+ * suitable configuration values, then call get(). This is a
  * synchronous API and will return an invalid zone pair on
- * error or if the configuration is not understood/
+ * error or if the configuration is not understood. For an
+ * async API, use query().
  */
 class DLLEXPORT Handler
 {
 public:
+    enum class Type
+    {
+        None,
+        JSON,
+        XML
+    } ;
+
     /** @brief An unconfigured handler; this always returns errors. */
     Handler();
     /** @brief A handler for a specific GeoIP source.
@@ -63,13 +72,27 @@ public:
 
     ~Handler();
 
-    RegionZonePair query() const;
+    /** @brief Synchronously get the GeoIP result.
+     *
+     * If the Handler is valid, then do the actual fetching and interpretation
+     * of data and return the result. An invalid Handler will return an
+     * invalid (empty) result.
+     */
+    RegionZonePair get() const;
 
-    bool isValid() const;
+    /** @brief Asynchronously get the GeoIP result.
+     *
+     * See get() for the return value.
+     */
+    QFuture< RegionZonePair > query() const;
+
+    bool isValid() const { return m_type != Type::None; }
+    Type type() const { return m_type; }
 
 private:
-    Interface* m_interface;
+    Type m_type;
     const QString m_url;
+    const QString m_selector;
 };
 
 }  // namespace

@@ -222,7 +222,7 @@ synchronous_get( const char* urlstring )
         auto tz = GeoIP##t( selector ).processReply( synchronous_get( url ) ); \
         qDebug() << tz; \
         QCOMPARE( default_tz, tz ); \
-        auto tz2 = CalamaresUtils::GeoIP::Handler( ""#t, url, selector ).query(); \
+        auto tz2 = CalamaresUtils::GeoIP::Handler( ""#t, url, selector ).get(); \
         qDebug() << tz2; \
         QCOMPARE( default_tz, tz2 ); \
     }
