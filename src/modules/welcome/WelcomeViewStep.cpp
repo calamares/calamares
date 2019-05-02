@@ -24,6 +24,7 @@
 
 #include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 #include <QVariant>
 
@@ -97,18 +98,9 @@ WelcomeViewStep::jobs() const
 void
 WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    bool showSupportUrl =
-        configurationMap.contains( "showSupportUrl" ) &&
-        configurationMap.value( "showSupportUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showSupportUrl" ).toBool();
-    bool showKnownIssuesUrl =
-        configurationMap.contains( "showKnownIssuesUrl" ) &&
-        configurationMap.value( "showKnownIssuesUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showKnownIssuesUrl" ).toBool();
-    bool showReleaseNotesUrl =
-        configurationMap.contains( "showReleaseNotesUrl" ) &&
-        configurationMap.value( "showReleaseNotesUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showReleaseNotesUrl" ).toBool();
+    bool showSupportUrl = CalamaresUtils::getBool( configurationMap, "showSupportUrl", false );
+    bool showKnownIssuesUrl = CalamaresUtils::getBool( configurationMap, "showKnownIssuesUrl", false );
+    bool showReleaseNotesUrl = CalamaresUtils::getBool( configurationMap, "showReleaseNotesUrl", false );
 
     m_widget->setUpLinks( showSupportUrl,
                           showKnownIssuesUrl,
