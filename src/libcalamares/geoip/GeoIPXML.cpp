@@ -23,6 +23,9 @@
 #include <QNetworkReply>
 #include <QtXml/QDomDocument>
 
+namespace CalamaresUtils
+{
+
 GeoIPXML::GeoIPXML( const QString& element )
     : GeoIP( element.isEmpty() ? QStringLiteral( "TimeZone" ) : element )
 {
@@ -58,3 +61,5 @@ GeoIPXML::processReply( const QByteArray& data )
 
     return qMakePair( QString(), QString() );
 }
+
+}  // namespace

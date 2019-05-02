@@ -25,6 +25,9 @@
 
 #include <QByteArray>
 
+namespace CalamaresUtils
+{
+
 GeoIPJSON::GeoIPJSON(const QString& attribute)
     : GeoIP( attribute.isEmpty() ? QStringLiteral( "time_zone" ) : attribute )
 {
@@ -72,3 +75,5 @@ GeoIPJSON::processReply( const QByteArray& data )
 
     return qMakePair( QString(), QString() );
 }
+
+}  // namespace

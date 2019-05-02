@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,8 +16,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEOIP_H
-#define GEOIP_H
+#ifndef GEOIP_GEOIP_H
+#define GEOIP_GEOIP_H
 
 #include <QPair>
 #include <QString>
@@ -25,6 +25,8 @@
 
 class QByteArray;
 
+namespace CalamaresUtils
+{
 /**
  * @brief Interface for GeoIP retrievers.
  *
@@ -67,4 +69,5 @@ protected:
     QString m_element;  // string for selecting from data
 } ;
 
+}  // namespace
 #endif

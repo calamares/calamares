@@ -31,6 +31,10 @@
 
 QTEST_GUILESS_MAIN( GeoIPTests )
 
+using CalamaresUtils::GeoIP;
+using CalamaresUtils::GeoIPJSON;
+using CalamaresUtils::GeoIPXML;
+
 GeoIPTests::GeoIPTests()
 {
 }

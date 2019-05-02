@@ -20,6 +20,9 @@
 
 #include "utils/Logger.h"
 
+namespace CalamaresUtils
+{
+
 GeoIP::GeoIP(const QString& e)
     : m_element( e )
 {
@@ -47,3 +50,5 @@ GeoIP::splitTZString( const QString& tz )
 
     return qMakePair( QString(), QString() );
 }
+
+}  // namespace

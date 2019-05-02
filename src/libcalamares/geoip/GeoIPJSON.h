@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,11 +16,13 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEOIPJSON_H
-#define GEOIPJSON_H
+#ifndef GEOIP_GEOIPJSON_H
+#define GEOIP_GEOIPJSON_H
 
 #include "GeoIP.h"
 
+namespace CalamaresUtils
+{
 /** @brief GeoIP lookup for services that return JSON.
  *
  * This is the original implementation of GeoIP lookup,
@@ -41,4 +43,5 @@ public:
     virtual RegionZonePair processReply( const QByteArray& );
 } ;
 
+}  // namespace
 #endif

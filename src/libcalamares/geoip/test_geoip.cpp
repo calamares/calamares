@@ -28,6 +28,9 @@
 #endif
 
 using std::cerr;
+using CalamaresUtils::GeoIP;
+using CalamaresUtils::GeoIPJSON;
+using CalamaresUtils::GeoIPXML;
 
 int main(int argc, char** argv)
 {

@@ -117,6 +117,12 @@ LocaleViewStep::setUpPage()
 void
 LocaleViewStep::fetchGeoIpTimezone()
 {
+    using CalamaresUtils::GeoIP;
+    using CalamaresUtils::GeoIPJSON;
+#if defined(QT_XML_LIB)
+    using CalamaresUtils::GeoIPXML;
+#endif
+
     QString actualUrl( m_geoipUrl );
     GeoIP *handler = nullptr;
 
