@@ -100,24 +100,36 @@ create_interface( Handler::Type t, const QString& selector )
     }
 }
 
+static RegionZonePair
+do_query( Handler::Type type, const QString& url, const QString& selector )
+{
+    const auto interface = create_interface( type, selector );
+    if ( !interface )
+        return RegionZonePair();
+
+    return interface->processReply( synchronous_get( url ) );
+}
+
 RegionZonePair
 Handler::get() const
 {
     if ( !isValid() )
         return RegionZonePair();
-
-    const auto interface = create_interface( m_type, m_selector );
-    if ( !interface )
-        return RegionZonePair();
-
-    return interface->processReply( synchronous_get( m_url ) );
+    return do_query( m_type, m_url, m_selector );
 }
 
-/*
+
 QFuture< RegionZonePair >
 Handler::query() const
 {
+    Handler::Type type = m_type;
+    QString url = m_url;
+    QString selector = m_selector;
+
+    return QtConcurrent::run( [=]
+        {
+            return do_query( type, url, selector );
+        } );
 }
-*/
 
 }  // namespace
