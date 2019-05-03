@@ -24,6 +24,11 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ - *locale* module GeoIP configuration has a new preferred format.
+   See `locale.conf` for details. The old configuration is still
+   supported but will be phased out before 3.3.0 -- in particular,
+   support for "legacy" format will be removed, since that was a
+   crutch for the disappearance of one GeoIP provider in 2018.
  - *oemid* is a new module for configuring OEM phase-0 (image pre-mastering,
    or pre-deployment) things. It has limited functionality at the moment,
    writing only a single batch-identifier file.

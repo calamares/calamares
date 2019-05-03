@@ -225,14 +225,28 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( m_localeGenPath.isEmpty() )
         m_localeGenPath = QStringLiteral( "/etc/locale.gen" );
 
-    // Optional
-    m_geoipUrl = CalamaresUtils::getString( configurationMap, "geoipUrl" );
-    m_geoipStyle = CalamaresUtils::getString( configurationMap, "geoipStyle" );
-    m_geoipSelector = CalamaresUtils::getString( configurationMap, "geoipSelector" );
-
-    if ( !m_geoipUrl.isEmpty() && ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" ) )
+    bool ok = false;
+    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    if ( ok )
     {
-        m_geoipStyle = "json";
-        m_geoipUrl.append( "/json/" );
+        m_geoipUrl = CalamaresUtils::getString( geoip, "url" );
+        m_geoipStyle = CalamaresUtils::getString( geoip, "style" );
+        m_geoipSelector = CalamaresUtils::getString( geoip, "selector" );
+    }
+    else
+    {
+        // Optional
+        m_geoipUrl = CalamaresUtils::getString( configurationMap, "geoipUrl" );
+        m_geoipStyle = CalamaresUtils::getString( configurationMap, "geoipStyle" );
+        m_geoipSelector = CalamaresUtils::getString( configurationMap, "geoipSelector" );
+
+        if ( !m_geoipUrl.isEmpty() && ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" ) )
+        {
+            m_geoipStyle = "json";
+            m_geoipUrl.append( "/json/" );
+        }
+
+        if ( !m_geoipUrl.isEmpty() )
+            cWarning() << "Legacy-style GeoIP configuration is deprecated. Use geoip: map.";
     }
 }
