@@ -64,9 +64,6 @@ public:
      *  - implementation from "style" or "geoipStyle" (if the first does not exist)
      *  - url from "url" or "geoipUrl" (if the first does not exist)
      *  - selector from "selector" or "geoipSelector" (if the first does not exist)
-     * Unlike the 3-QString Handler constructor, this also understands implementations
-     * "legacy" and blank, which are interpreted as "JSON", except that the url is extended
-     * by "/json/" before fetching.
      */
     Handler( const QVariantMap& config );
 
