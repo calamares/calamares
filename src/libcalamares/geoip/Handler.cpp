@@ -24,12 +24,27 @@
 #endif
 
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 
 #include <QEventLoop>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 
 #include <memory>
+
+static const NamedEnumTable< CalamaresUtils::GeoIP::Handler::Type >&
+handlerTypes()
+{
+    using Type = CalamaresUtils::GeoIP::Handler::Type;
+
+    static const NamedEnumTable<Type> names{
+        { QStringLiteral( "none" ), Type::None},
+        { QStringLiteral( "json" ), Type::JSON},
+        { QStringLiteral( "xml" ), Type::XML}
+    };
+
+    return names;
+}
 
 namespace CalamaresUtils::GeoIP
 {
@@ -43,18 +58,16 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
     : m_type( Type::None )
     , m_url( url )
 {
-    if ( implementation.compare( "json", Qt::CaseInsensitive ) == 0 )
+    bool ok = false;
+    m_type = handlerTypes().find( implementation, ok );
+#if !defined(QT_XML_LIB)
+    if ( m_type == Type::XML )
     {
-
-        m_type = Type::JSON;
-    }
-#if defined(QT_XML_LIB)
-    else if ( implementation.compare( "xml", Qt::CaseInsensitive ) == 0 )
-    {
-        m_type = Type::XML;
+        m_type = Type::None;
+        cWarning() << "GeoIP style XML is not supported in this version of Calamares.";
     }
 #endif
-    else
+    if ( !ok )
     {
         cWarning() << "GeoIP Style" << implementation << "is not recognized.";
     }
