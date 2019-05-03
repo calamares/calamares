@@ -61,9 +61,9 @@ public:
      * This is like the 3-QString Handler constructor, except the strings
      * are extracted from the map, which is typically part of the configuration
      * of a Calamares module. The strings are fetched from these keys:
-     *  - implementation from "style" or "geoipStyle" (if the first does not exist)
-     *  - url from "url" or "geoipUrl" (if the first does not exist)
-     *  - selector from "selector" or "geoipSelector" (if the first does not exist)
+     *  - implementation from "style"
+     *  - url from "url"
+     *  - selector from "selector"
      */
     Handler( const QVariantMap& config );
 

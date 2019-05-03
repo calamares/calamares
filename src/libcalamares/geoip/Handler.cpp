@@ -74,19 +74,10 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
     }
 }
 
-static QString
-getMapAlternates( const QVariantMap& config, const QString& key1, const QString& key2 )
-{
-    QString r = CalamaresUtils::getString( config, key1 );
-    if ( r.isEmpty() )
-        r = CalamaresUtils::getString( config, key2 );
-    return r;
-}
-
 Handler::Handler( const QVariantMap& config )
-    : Handler( getMapAlternates( config, QStringLiteral( "style" ), QStringLiteral( "geoipStyle" ) ),
-               getMapAlternates( config, QStringLiteral( "url" ), QStringLiteral( "geoipUrl" ) ),
-               getMapAlternates( config, QStringLiteral( "selector" ), QStringLiteral( "geoipSelector" ) ) )
+    : Handler( CalamaresUtils::getString( config, QStringLiteral( "style" ) ),
+               CalamaresUtils::getString( config, QStringLiteral( "url" ) ),
+               CalamaresUtils::getString( config, QStringLiteral( "selector" ) ) )
 {
 }
 
