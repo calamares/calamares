@@ -56,16 +56,6 @@ public:
      * is used to select something from the data returned by the @url.
      */
     Handler( const QString& implementation, const QString& url, const QString& selector );
-    /** @brief A handler for a specific GeoIP source.
-     *
-     * This is like the 3-QString Handler constructor, except the strings
-     * are extracted from the map, which is typically part of the configuration
-     * of a Calamares module. The strings are fetched from these keys:
-     *  - implementation from "style"
-     *  - url from "url"
-     *  - selector from "selector"
-     */
-    Handler( const QVariantMap& config );
 
     ~Handler();
 

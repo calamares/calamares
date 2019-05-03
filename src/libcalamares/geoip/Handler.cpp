@@ -74,13 +74,6 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
     }
 }
 
-Handler::Handler( const QVariantMap& config )
-    : Handler( CalamaresUtils::getString( config, QStringLiteral( "style" ) ),
-               CalamaresUtils::getString( config, QStringLiteral( "url" ) ),
-               CalamaresUtils::getString( config, QStringLiteral( "selector" ) ) )
-{
-}
-
 Handler::~Handler()
 {
 }
