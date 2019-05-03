@@ -40,7 +40,8 @@ public:
     {
         NoError = 0,
         GenericError = -1,
-        PythonUncaughtException = 1
+        PythonUncaughtException = 1,
+        InvalidConfiguration = 2
     } ;
 
     JobResult( const JobResult& rhs ) = delete;

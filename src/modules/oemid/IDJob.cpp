@@ -82,13 +82,12 @@ Calamares::JobResult IDJob::exec()
     QString targetFile = QStringLiteral( "oem-id" );
     QString rootMount = gs->value( "rootMountPoint" ).toString();
 
-    static const char noRoot[] = "No rootMountPoint is set.";
-    static const char yesRoot[] = "rootMountPoint is set:";
-
-    QString targetPath;
-
+    // Don't bother translating internal errors
     if ( rootMount.isEmpty() && Calamares::Settings::instance()->doChroot() )
-        cWarning() << Logger::SubEntry << noRoot;
-
+        return Calamares::JobResult::internalError(
+            "OEM Batch Identifier",
+            "No rootMountPoint is set, but a chroot is required. "
+            "Is there a module before oemid that sets up the partitions?",
+            Calamares::JobResult::InvalidConfiguration );
     return writeId( Calamares::Settings::instance()->doChroot() ? rootMount + targetDir : targetDir, targetFile, m_batchIdentifier );
 }
