@@ -25,9 +25,12 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ - *finished* has a new mechanism for configuring the behavior of the
+   *restart now* button. The old-style boolean configuration is still
+   supported but generates a warning. #1138
  - *oemid* is a new module for configuring OEM phase-0 (image pre-mastering,
    or pre-deployment) things. It has limited functionality at the moment,
-   writing only a single batch-identifier file.
+   writing only a single batch-identifier file. #943
  - All Python modules now bail out gracefully on (at least some) bad
    configurations, rather than raising an exception. The pre-release
    scripts now test for exceptions to avoid shipping modules with
