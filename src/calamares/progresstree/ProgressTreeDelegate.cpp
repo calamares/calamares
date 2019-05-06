@@ -113,5 +113,5 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
     }
 
     painter->fillRect( option.rect, painter->brush().color() );
-    painter->drawText( textRect, index.data().toString() );
+    painter->drawText( textRect, Qt::AlignHCenter | Qt::AlignVCenter | Qt::TextSingleLine, index.data().toString() );
 }
