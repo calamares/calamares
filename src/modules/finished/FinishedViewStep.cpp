@@ -189,6 +189,13 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         else
             mode = restartNowChecked ? RestartMode::UserChecked : RestartMode::UserUnchecked;
     }
+    else
+    {
+        bool ok = false;
+        mode = modeNames().find( restartMode, ok );
+        if ( !ok )
+            cWarning() << "Configuring the finished module with bad restartNowMode" << restartMode;
+    }
 
     m_widget->setRestart( mode );
 
