@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,28 +18,18 @@
  */
 
 #include "ProgressTreeDelegate.h"
+#include "ProgressTreeModel.h"
 
 #include "Branding.h"
 #include "CalamaresApplication.h"
 #include "CalamaresWindow.h"
-#include "ProgressTreeModel.h"
-#include "ViewManager.h"
-#include "ViewStepItem.h"
 
 #include "utils/CalamaresUtilsGui.h"
 
-#include <QAbstractItemView>
 #include <QPainter>
 
 static constexpr int const item_margin = 8;
 static inline int item_fontsize() { return CalamaresUtils::defaultFontSize() + 4; }
-
-ProgressTreeDelegate::ProgressTreeDelegate( QAbstractItemView* parent )
-    : QStyledItemDelegate( parent )
-    , m_parent( parent )
-{
-}
-
 
 QSize
 ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option,
@@ -104,7 +94,7 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
         QString textHighlight = Calamares::Branding::instance()->
                            styleString( Calamares::Branding::SidebarTextHighlight );
         if ( textHighlight.isEmpty() )
-            painter->setBrush( APP->mainWindow()->palette().background() );
+            painter->setBrush( CalamaresApplication::instance()->mainWindow()->palette().background() );
         else
             painter->setBrush( QColor( textHighlight ) );
     }
