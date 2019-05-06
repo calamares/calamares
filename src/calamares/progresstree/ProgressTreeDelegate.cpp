@@ -31,8 +31,8 @@
 #include <QAbstractItemView>
 #include <QPainter>
 
-#define ITEM_MARGIN 12
-#define VS_FONTSIZE CalamaresUtils::defaultFontSize() + 4
+static constexpr int const item_margin = 8;
+static inline int item_fontsize() { return CalamaresUtils::defaultFontSize() + 4; }
 
 ProgressTreeDelegate::ProgressTreeDelegate( QAbstractItemView* parent )
     : QStyledItemDelegate( parent )
@@ -50,11 +50,11 @@ ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option,
 
     QFont font = qApp->font();
 
-    font.setPointSize( VS_FONTSIZE );
+    font.setPointSize( item_fontsize() );
     QFontMetrics fm( font );
     int height = fm.height();
 
-    height += 2*ITEM_MARGIN; //margin
+    height += 2 * item_margin;
 
     return QSize( option.rect.width(), height );
 }
@@ -88,12 +88,9 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
                                      const QStyleOptionViewItem& option,
                                      const QModelIndex& index ) const
 {
-    QRect textRect = option.rect.adjusted( ITEM_MARGIN,
-                                           ITEM_MARGIN,
-                                           ITEM_MARGIN,
-                                           ITEM_MARGIN );
+    QRect textRect = option.rect.adjusted( item_margin, item_margin, -item_margin, -item_margin );
     QFont font = qApp->font();
-    font.setPointSize( VS_FONTSIZE );
+    font.setPointSize( item_fontsize() );
     font.setBold( false );
     painter->setFont( font );
 
