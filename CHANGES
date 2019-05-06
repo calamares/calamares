@@ -10,6 +10,7 @@ have been shuffled around, so third-party C++ modules will need
 adjustment to the changed names.
 
 This release contains contributions from (alphabetically by first name):
+ - Kevin Kofler
 
 ## Core ##
 
