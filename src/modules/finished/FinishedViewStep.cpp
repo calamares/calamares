@@ -123,10 +123,10 @@ FinishedViewStep::sendNotification()
                                           QVariant( 0 )
                                         );
         if ( !r.isValid() )
-            cDebug() << "Could not call notify for end of installation." << r.error();
+            cWarning() << "Could not call org.freedesktop.Notifications.Notify at end of installation." << r.error();
     }
     else
-        cDebug() << "Could not get dbus interface for notifications." << notify.lastError();
+        cWarning() << "Could not get dbus interface for notifications at end of installation." << notify.lastError();
 }
 
 
