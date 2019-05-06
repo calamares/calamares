@@ -109,6 +109,32 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
             painter->setBrush( QColor( textHighlight ) );
     }
 
-    painter->fillRect( option.rect, painter->brush().color() );
-    painter->drawText( textRect, Qt::AlignHCenter | Qt::AlignVCenter | Qt::TextSingleLine, index.data().toString() );
+
+    // Draw the text at least once. If it doesn't fit, then shrink the font
+    // being used by 1 pt on each iteration, up to a maximum of maximumShrink
+    // times. On each loop, we'll have to blank out the rectangle again, so this
+    // is an expensive (in terms of drawing operations) thing to do.
+    //
+    // (The loop uses <= because the counter is incremented at the start).
+    static constexpr int const maximumShrink = 4;
+    int shrinkSteps = 0;
+    do
+    {
+        painter->fillRect( option.rect, painter->brush().color() );
+        shrinkSteps++;
+
+        QRectF boundingBox;
+        painter->drawText( textRect, Qt::AlignHCenter | Qt::AlignVCenter | Qt::TextSingleLine, index.data().toString(), &boundingBox );
+
+        // The extra check here is to avoid the changing-font-size if we're not going to use
+        // it in the next iteration of the loop anyway.
+        if ( ( shrinkSteps <= maximumShrink ) && (boundingBox.width() > textRect.width() ) )
+        {
+            font.setPointSize( item_fontsize() - shrinkSteps );
+            painter->setFont( font );
+        }
+        else
+            break;  // It fits
+    }
+    while ( shrinkSteps <= maximumShrink );
 }
