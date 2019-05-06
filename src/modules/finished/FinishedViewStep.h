@@ -34,6 +34,14 @@ class PLUGINDLLEXPORT FinishedViewStep : public Calamares::ViewStep
     Q_OBJECT
 
 public:
+    enum class RestartMode
+    {
+        Never=0,         ///< @brief Don't show button, just exit
+        UserUnchecked,   ///< @brief Show button, starts unchecked
+        UserChecked,     ///< @brief Show button, starts checked
+        Always           ///< @brief Show button, can't change, checked
+    };
+
     explicit FinishedViewStep( QObject* parent = nullptr );
     virtual ~FinishedViewStep() override;
 

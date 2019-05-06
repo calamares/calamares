@@ -20,9 +20,13 @@
 
 #include "FinishedViewStep.h"
 #include "FinishedPage.h"
+
+#include "Branding.h"
 #include "JobQueue.h"
+#include "Settings.h"
 
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Variant.h"
 
 #include <QtDBus/QDBusConnection>
@@ -30,8 +34,20 @@
 #include <QtDBus/QDBusReply>
 #include <QVariantMap>
 
-#include "Branding.h"
-#include "Settings.h"
+static const NamedEnumTable< FinishedViewStep::RestartMode >&
+modeNames()
+{
+    using Mode = FinishedViewStep::RestartMode;
+
+    static const NamedEnumTable< Mode > names{
+        { QStringLiteral( "never" ), Mode::Never },
+        { QStringLiteral( "user-unchecked" ), Mode::UserUnchecked },
+        { QStringLiteral( "user-checked" ), Mode::UserChecked },
+        { QStringLiteral( "always" ), Mode::Always }
+    } ;
+
+    return names;
+}
 
 FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -157,13 +173,26 @@ FinishedViewStep::onInstallationFailed( const QString& message, const QString& d
 void
 FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    bool restartNowEnabled = CalamaresUtils::getBool( configurationMap, "restartNowEnabled", false );
-    m_widget->setRestartNowEnabled( restartNowEnabled );
+    RestartMode mode = RestartMode::Never;
 
-    bool restartNowChecked = restartNowEnabled && CalamaresUtils::getBool( configurationMap, "restartNowChecked", false );
-    m_widget->setRestartNowChecked( restartNowChecked );
+    QString restartMode = CalamaresUtils::getString( configurationMap, "restartNowMode" );
+    if ( restartMode.isEmpty() )
+    {
+        if ( configurationMap.contains( "restartNowEnabled" ) )
+            cWarning() << "Configuring the finished module with deprecated restartNowEnabled settings";
 
-    if ( restartNowEnabled )
+        bool restartNowEnabled = CalamaresUtils::getBool( configurationMap, "restartNowEnabled", false );
+        bool restartNowChecked = CalamaresUtils::getBool( configurationMap, "restartNowChecked", false );
+
+        if ( !restartNowEnabled )
+            mode = RestartMode::Never;
+        else
+            mode = restartNowChecked ? RestartMode::UserChecked : RestartMode::UserUnchecked;
+    }
+
+    m_widget->setRestart( mode );
+
+    if ( mode != RestartMode::Never )
     {
         QString restartNowCommand = CalamaresUtils::getString( configurationMap, "restartNowCommand" );
         if ( restartNowCommand.isEmpty() )

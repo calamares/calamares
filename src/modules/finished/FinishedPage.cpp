@@ -79,16 +79,13 @@ FinishedPage::FinishedPage( QWidget* parent )
 
 
 void
-FinishedPage::setRestartNowEnabled( bool enabled )
+FinishedPage::setRestart( FinishedViewStep::RestartMode mode )
 {
-    ui->restartCheckBox->setVisible( enabled );
-}
+    using Mode = FinishedViewStep::RestartMode;
 
-
-void
-FinishedPage::setRestartNowChecked( bool checked )
-{
-    ui->restartCheckBox->setChecked( checked );
+    ui->restartCheckBox->setVisible( mode != Mode::Never );
+    ui->restartCheckBox->setEnabled( mode != Mode::Always );
+    ui->restartCheckBox->setChecked( ( mode == Mode::Always ) || ( mode == Mode::UserChecked ) );
 }
 
 
@@ -138,5 +135,5 @@ FinishedPage::onInstallationFailed( const QString& message, const QString& detai
                                    "The error message was: %2." )
                                .arg( *Calamares::Branding::VersionedName )
                                .arg( message ) );
-    setRestartNowEnabled( false );
+    setRestart( FinishedViewStep::RestartMode::Never );
 }
