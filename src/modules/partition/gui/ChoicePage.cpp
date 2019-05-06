@@ -462,7 +462,7 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
                 gs->value( "defaultFileSystemType" ).toString(),
                 m_encryptWidget->passphrase(),
                 gs->value( "efiSystemPartition" ).toString(),
-                CalamaresUtils::GiBtoBytes( gs->value( "requiredStorageGB" ).toDouble() ),
+                CalamaresUtils::GiBtoBytes( gs->value( "requiredStorageGiB" ).toDouble() ),
                 m_eraseSwapChoice
             };
 
@@ -560,7 +560,7 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
 
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
-                                    ->value( "requiredStorageGB" )
+                                    ->value( "requiredStorageGiB" )
                                     .toDouble();
 
     // TODO: make this consistent

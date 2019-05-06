@@ -216,7 +216,7 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
             m_requiredStorageGiB = 3.;
         }
 
-        Calamares::JobQueue::instance()->globalStorage()->insert( "requiredStorageGB", m_requiredStorageGiB );
+        Calamares::JobQueue::instance()->globalStorage()->insert( "requiredStorageGiB", m_requiredStorageGiB );
     }
     else
     {
