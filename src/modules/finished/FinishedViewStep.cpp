@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "JobQueue.h"
 
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusInterface>
@@ -156,28 +157,21 @@ FinishedViewStep::onInstallationFailed( const QString& message, const QString& d
 void
 FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "restartNowEnabled" ) &&
-            configurationMap.value( "restartNowEnabled" ).type() == QVariant::Bool )
+    bool restartNowEnabled = CalamaresUtils::getBool( configurationMap, "restartNowEnabled", false );
+    m_widget->setRestartNowEnabled( restartNowEnabled );
+
+    bool restartNowChecked = restartNowEnabled && CalamaresUtils::getBool( configurationMap, "restartNowChecked", false );
+    m_widget->setRestartNowChecked( restartNowChecked );
+
+    if ( restartNowEnabled )
     {
-        bool restartNowEnabled = configurationMap.value( "restartNowEnabled" ).toBool();
-
-        m_widget->setRestartNowEnabled( restartNowEnabled );
-        if ( restartNowEnabled )
-        {
-            if ( configurationMap.contains( "restartNowChecked" ) &&
-                    configurationMap.value( "restartNowChecked" ).type() == QVariant::Bool )
-                m_widget->setRestartNowChecked( configurationMap.value( "restartNowChecked" ).toBool() );
-
-            if ( configurationMap.contains( "restartNowCommand" ) &&
-                    configurationMap.value( "restartNowCommand" ).type() == QVariant::String )
-                m_widget->setRestartNowCommand( configurationMap.value( "restartNowCommand" ).toString() );
-            else
-                m_widget->setRestartNowCommand( "shutdown -r now" );
-        }
+        QString restartNowCommand = CalamaresUtils::getString( configurationMap, "restartNowCommand" );
+        if ( restartNowCommand.isEmpty() )
+            restartNowCommand = QStringLiteral( "shutdown -r now" );
+        m_widget->setRestartNowCommand( restartNowCommand );
     }
-    if ( configurationMap.contains( "notifyOnFinished" ) &&
-            configurationMap.value( "notifyOnFinished" ).type() == QVariant::Bool )
-        m_notifyOnFinished = configurationMap.value( "notifyOnFinished" ).toBool();
+
+    m_notifyOnFinished = CalamaresUtils::getBool( configurationMap, "notifyOnFinished", false );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( FinishedViewStepFactory, registerPlugin<FinishedViewStep>(); )
