@@ -98,16 +98,16 @@ DebugWindow::DebugWindow()
 #ifdef WITH_PYTHONQT
     QPushButton* pythonConsoleButton = new QPushButton;
     pythonConsoleButton->setText( "Attach Python console" );
-    modulesVerticalLayout->insertWidget( 1, pythonConsoleButton );
+    m_ui->modulesVerticalLayout->insertWidget( 1, pythonConsoleButton );
     pythonConsoleButton->hide();
 
     QObject::connect( pythonConsoleButton, &QPushButton::clicked,
                       this, [ this, moduleConfigModel ]
     {
-        QString moduleName = modulesListView->currentIndex().data().toString();
+        QString moduleName = m_ui->modulesListView->currentIndex().data().toString();
         Module* module = ModuleManager::instance()->moduleInstance( moduleName );
-        if ( module->interface() != Module::PythonQtInterface ||
-             module->type() != Module::View )
+        if ( module->interface() != Module::Interface::PythonQt ||
+             module->type() != Module::Type::View )
             return;
 
         for ( ViewStep* step : ViewManager::instance()->viewSteps() )
@@ -180,8 +180,8 @@ DebugWindow::DebugWindow()
             m_ui->moduleInterfaceLabel->setText( module->interfaceString() );
 #ifdef WITH_PYTHONQT
             pythonConsoleButton->setVisible(
-                        module->interface() == Module::PythonQtInterface &&
-                        module->type() == Module::View );
+                        module->interface() == Module::Interface::PythonQt &&
+                        module->type() == Module::Type::View );
 #endif
         }
     } );
