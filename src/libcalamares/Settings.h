@@ -23,7 +23,7 @@
 #define SETTINGS_H
 
 #include "DllMacro.h"
-#include "Typedefs.h"
+#include "modulesystem/Actions.h"
 
 #include <QObject>
 #include <QStringList>
@@ -41,7 +41,6 @@ public:
                        QObject* parent = nullptr );
 
     static Settings* instance();
-    //TODO: load from YAML then emit ready
 
     QStringList modulesSearchPaths() const;
 
