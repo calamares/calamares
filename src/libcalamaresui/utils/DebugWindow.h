@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,13 +20,18 @@
 #ifndef CALAMARES_DEBUGWINDOW_H
 #define CALAMARES_DEBUGWINDOW_H
 
-#include "ui_DebugWindow.h"
-
 #include <QWidget>
+
 
 namespace Calamares {
 
-class DebugWindow : public QWidget, private Ui::DebugWindow
+// From the .ui file
+namespace Ui
+{
+    class DebugWindow;
+}
+
+class DebugWindow : public QWidget
 {
     Q_OBJECT
 
@@ -38,8 +44,10 @@ signals:
 protected:
     void closeEvent( QCloseEvent* e ) override;
 
+private:
+    Ui::DebugWindow *m_ui;
 };
 
 
-} // namespace Calamares
-#endif // CALAMARES_DEBUGWINDOW_H
+}  // namespace
+#endif
