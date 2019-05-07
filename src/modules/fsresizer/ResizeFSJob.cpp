@@ -37,7 +37,8 @@
 #include "utils/Units.h"
 #include "utils/Variant.h"
 
-#include "modules/partition/core/PartitionIterator.h"
+// From partition module
+#include "core/PartitionIterator.h"
 
 
 static const NamedEnumTable<ResizeFSJob::RelativeUnit>&
