@@ -22,7 +22,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 #include "Typedefs.h"
 
 #include <QObject>
@@ -32,7 +32,7 @@
 namespace Calamares
 {
 
-class UIDLLEXPORT Settings : public QObject
+class DLLEXPORT Settings : public QObject
 {
     Q_OBJECT
 public:
