@@ -54,7 +54,7 @@ public:
      * A job module is a single Calamares job.
      * A view module has a UI (one or more view pages) and zero-to-many jobs.
      */
-    enum Type
+    enum class Type
     {
         Job,
         View
@@ -65,12 +65,12 @@ public:
      * talks to Calamares.
      * Not all Type-Interface associations are valid.
      */
-    enum Interface
+    enum class Interface
     {
-        QtPluginInterface,
-        PythonInterface,
-        ProcessInterface,
-        PythonQtInterface
+        QtPlugin, // Jobs or Views
+        Python,   // Jobs only
+        Process,  // Deprecated interface
+        PythonQt  // Views only, available as enum even if PythonQt isn't used
     };
 
     /**

@@ -34,14 +34,14 @@ namespace Calamares
 Module::Type
 ViewModule::type() const
 {
-    return View;
+    return Module::Type::View;
 }
 
 
 Module::Interface
 ViewModule::interface() const
 {
-    return QtPluginInterface;
+    return Module::Interface::QtPlugin;
 }
 
 
