@@ -19,7 +19,7 @@
 #ifndef SUMMARYPAGE_H
 #define SUMMARYPAGE_H
 
-#include "Typedefs.h"
+#include "viewpages/ViewStep.h"
 
 #include <QWidget>
 

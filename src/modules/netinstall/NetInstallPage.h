@@ -23,7 +23,6 @@
 
 #include "PackageModel.h"
 #include "PackageTreeItem.h"
-#include "Typedefs.h"
 
 #include <QAbstractButton>
 #include <QNetworkAccessManager>

@@ -20,10 +20,9 @@
 #ifndef CALAMARES_MODULE_H
 #define CALAMARES_MODULE_H
 
+#include "Job.h"
 #include "Requirement.h"
 #include "UiDllMacro.h"
-
-#include <Typedefs.h>
 
 #include <QStringList>
 #include <QVariant>

@@ -20,10 +20,11 @@
 #ifndef VIEWSTEP_H
 #define VIEWSTEP_H
 
+#include <QList>
 #include <QObject>
 #include <QSize>
 
-#include "Typedefs.h"
+#include "Job.h"
 #include "UiDllMacro.h"
 
 #include "modulesystem/Requirement.h"
@@ -159,6 +160,7 @@ protected:
     QString m_instanceKey;
 };
 
+using ViewStepList = QList< ViewStep* >;
 }
 
 #endif // VIEWSTEP_H

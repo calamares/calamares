@@ -21,7 +21,6 @@
 #define MODULELOADER_H
 
 #include "Requirement.h"
-#include "Typedefs.h"
 
 #include <QObject>
 #include <QStringList>
