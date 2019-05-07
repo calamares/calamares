@@ -65,9 +65,6 @@ ViewModule::loadSelf()
         }
     }
 
-    // TODO: allow internal view steps to be created here; they would
-    //       have to be linked into the main application somehow.
-
     // If any method created the view step, use it now.
     if ( m_viewStep )
     {
