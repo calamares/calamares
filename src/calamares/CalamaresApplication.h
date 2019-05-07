@@ -20,8 +20,6 @@
 #ifndef CALAMARESAPPLICATION_H
 #define CALAMARESAPPLICATION_H
 
-#include "Typedefs.h"
-
 #include <QApplication>
 
 class CalamaresWindow;

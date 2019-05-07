@@ -22,8 +22,6 @@
 
 #include "core/PartUtils.h"
 
-#include "Typedefs.h"
-
 // KPMcore
 #include <kpmcore/core/partitiontable.h>
 #include <kpmcore/fs/filesystem.h>

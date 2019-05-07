@@ -4,6 +4,12 @@
 # in this list.
 set( LIST_SKIPPED_MODULES "" )
 
+include_directories(
+    ${CMAKE_SOURCE_DIR}/src/libcalamares
+    ${CMAKE_BINARY_DIR}/src/libcalamares
+    ${CMAKE_SOURCE_DIR}/src/libcalamaresui
+)
+
 if( BUILD_TESTING )
     add_executable( test_conf test_conf.cpp )
     target_link_libraries( test_conf ${YAMLCPP_LIBRARY} Qt5::Core )

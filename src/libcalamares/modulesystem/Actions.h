@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,28 +17,18 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TYPEDEFS_H
-#define TYPEDEFS_H
-
-#include <QList>
-#include <QSharedPointer>
+#ifndef MODULESYSTEM_ACTIONS_H
+#define MODULESYSTEM_ACTIONS_H
 
 namespace Calamares
 {
-class Job;
 
-typedef QSharedPointer< Job > job_ptr;
-using JobList = QList< job_ptr >;
-
-enum ModuleAction : char
+enum class ModuleAction : char
 {
     Show,
     Exec
 };
 
-class ViewStep;
-typedef QList< ViewStep* > ViewStepList;
+}  // namespace
 
-} //ns
-
-#endif // TYPEDEFS_H
+#endif

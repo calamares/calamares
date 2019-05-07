@@ -21,19 +21,14 @@
 #define VIEWMANAGER_H
 
 #include "UiDllMacro.h"
-#include "Typedefs.h"
+#include "viewpages/ViewStep.h"
 
 #include <QList>
 #include <QPushButton>
 #include <QStackedWidget>
 
-
 namespace Calamares
 {
-
-class ViewStep;
-class ExecutionViewStep;
-
 /**
  * @brief The ViewManager class handles progression through view pages.
  * @note Singleton object, only use through ViewManager::instance().

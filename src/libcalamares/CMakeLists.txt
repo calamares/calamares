@@ -1,3 +1,6 @@
+# libcalamares is the non-GUI part of Calamares, which includes handling
+# translations, configurations, logging, utilities, global storage, and (non-GUI) jobs.
+
 add_definitions(
     ${QT_DEFINITIONS}
     -DQT_SHARED

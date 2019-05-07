@@ -34,14 +34,14 @@ namespace Calamares
 Module::Type
 ViewModule::type() const
 {
-    return View;
+    return Module::Type::View;
 }
 
 
 Module::Interface
 ViewModule::interface() const
 {
-    return QtPluginInterface;
+    return Module::Interface::QtPlugin;
 }
 
 
@@ -64,9 +64,6 @@ ViewModule::loadSelf()
             return;
         }
     }
-
-    // TODO: allow internal view steps to be created here; they would
-    //       have to be linked into the main application somehow.
 
     // If any method created the view step, use it now.
     if ( m_viewStep )

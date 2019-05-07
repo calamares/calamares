@@ -29,14 +29,14 @@ namespace Calamares
 Module::Type
 ProcessJobModule::type() const
 {
-    return Job;
+    return Module::Type::Job;
 }
 
 
 Module::Interface
 ProcessJobModule::interface() const
 {
-    return ProcessInterface;
+    return Module::Interface::Process;
 }
 
 

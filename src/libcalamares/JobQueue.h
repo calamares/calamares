@@ -20,7 +20,7 @@
 #define CALAMARES_JOBQUEUE_H
 
 #include "DllMacro.h"
-#include "Typedefs.h"
+#include "Job.h"
 
 #include <QObject>
 

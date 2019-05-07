@@ -24,13 +24,11 @@
 #ifndef KEYBOARDPAGE_H
 #define KEYBOARDPAGE_H
 
-#include "keyboardwidget/keyboardglobal.h"
-
-#include "Typedefs.h"
+#include "Job.h"
 
 #include <QListWidgetItem>
-#include <QWidget>
 #include <QTimer>
+#include <QWidget>
 
 namespace Ui
 {
@@ -50,7 +48,7 @@ public:
 
     QString prettyStatus() const;
 
-    QList< Calamares::job_ptr > createJobs( const QString& xOrgConfFileName,
+    Calamares::JobList createJobs( const QString& xOrgConfFileName,
                                             const QString& convertedKeymapPath,
                                             bool writeEtcDefaultKeyboard );
 

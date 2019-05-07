@@ -30,14 +30,14 @@ namespace Calamares
 Module::Type
 PythonJobModule::type() const
 {
-    return Job;
+    return Module::Type::Job;
 }
 
 
 Module::Interface
 PythonJobModule::interface() const
 {
-    return PythonInterface;
+    return Module::Interface::Python;
 }
 
 
