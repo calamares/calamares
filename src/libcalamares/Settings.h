@@ -62,9 +62,6 @@ public:
      *
      * This influences user-visible strings, for instance using the
      * word "setup" instead of "install" where relevant.
-     *
-     * NOTE: it's a synonym for !doChroot() for now, but may become
-     *       an independent setting.
      */
     bool isSetupMode() const { return m_isSetupMode; }
 
