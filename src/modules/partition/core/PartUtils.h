@@ -99,16 +99,6 @@ bool isEfiBootable( const Partition* candidate );
  */
 QString findFS( QString fsName, FileSystem::Type* fsType );
 
-/**
- * @brief Convert a partition size to a sectors count.
- * @param size the partition size.
- * @param unit the partition size unit.
- * @param totalSectors the total number of sectors of the selected drive.
- * @param logicalSize the sector size, in bytes.
- * @return the number of sectors to be used for the given partition size.
- */
-qint64 sizeToSectors( double size, SizeUnit unit, qint64 totalSectors, qint64 logicalSize );
-
 }
 
 #endif // PARTUTILS_H
