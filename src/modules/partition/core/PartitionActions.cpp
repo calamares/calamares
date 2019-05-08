@@ -103,7 +103,8 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     {
         if ( gs->contains( "efiSystemPartitionSize" ) )
         {
-            PartUtils::PartSize part_size = PartUtils::PartSize( gs->value( "efiSystemPartitionSize" ).toString() );
+            Calamares::PartitionSize part_size = Calamares::PartitionSize(
+                    gs->value( "efiSystemPartitionSize" ).toString() );
             uefisys_part_sizeB = part_size.toBytes( dev->capacity() );
         }
         else
