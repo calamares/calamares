@@ -22,6 +22,9 @@ set( libSources
     ProcessJob.cpp
     Settings.cpp
 )
+set( partSources
+    partition/PartitionSize.cpp
+)
 set( utilsSources
     utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
@@ -72,7 +75,7 @@ if( WITH_PYTHON )
     )
 endif()
 
-add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} )
+add_library( calamares SHARED ${libSources} ${kdsagSources} ${partSources} ${utilsSources} )
 set_target_properties( calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
