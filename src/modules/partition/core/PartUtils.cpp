@@ -101,7 +101,7 @@ PartSize::toSectors( qint64 totalSectors, qint64 sectorSize ) const
     case unit_t::KiB:
     case unit_t::MiB:
     case unit_t::GiB:
-        return bytesToSectors ( toBytes(), sectorSize );
+        return CalamaresUtils::bytesToSectors ( toBytes(), sectorSize );
     }
 
     return -1;

@@ -115,11 +115,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     // Since sectors count from 0, if the space is 2048 sectors in size,
     // the first free sector has number 2048 (and there are 2048 sectors
     // before that one, numbered 0..2047).
-    qint64 firstFreeSector = PartUtils::bytesToSectors( empty_space_sizeB, dev->logicalSize() );
+    qint64 firstFreeSector = CalamaresUtils::bytesToSectors( empty_space_sizeB, dev->logicalSize() );
 
     if ( isEfi )
     {
-        qint64 efiSectorCount = PartUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
+        qint64 efiSectorCount = CalamaresUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
         Q_ASSERT( efiSectorCount > 0 );
 
         // Since sectors count from 0, and this partition is created starting

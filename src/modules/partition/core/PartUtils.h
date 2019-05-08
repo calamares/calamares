@@ -181,20 +181,6 @@ QString findFS( QString fsName, FileSystem::Type* fsType );
  */
 qint64 sizeToSectors( double size, SizeUnit unit, qint64 totalSectors, qint64 logicalSize );
 
-constexpr qint64 alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
-{
-    qint64 blocks = bytes / blocksize;
-
-    if ( blocks * blocksize != bytes )
-        ++blocks;
-    return blocks * blocksize;
-}
-
-constexpr qint64 bytesToSectors( qint64 bytes, qint64 blocksize )
-{
-    return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize), MiBtoBytes(1ULL) ) / blocksize;
-}
-
 }
 
 #endif // PARTUTILS_H
