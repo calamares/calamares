@@ -57,8 +57,8 @@ void FSResizerTests::testConfigurationRobust()
     j.setConfigurationMap( QVariantMap() );
     QVERIFY( j.m_fsname.isEmpty() );
     QVERIFY( j.m_devicename.isEmpty() );
-    QCOMPARE( j.m_size.unit(), ResizeFSJob::RelativeUnit::None );
-    QCOMPARE( j.m_atleast.unit(), ResizeFSJob::RelativeUnit::None );
+    QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::None );
+    QCOMPARE( j.m_atleast.unit(), Calamares::SizeUnit::None );
 
     // Config is missing fs and dev, so it isn't valid
     YAML::Node doc0 = YAML::Load( R"(---
@@ -68,8 +68,8 @@ atleast: 600MiB
     j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
     QVERIFY( j.m_fsname.isEmpty() );
     QVERIFY( j.m_devicename.isEmpty() );
-    QCOMPARE( j.m_size.unit(), ResizeFSJob::RelativeUnit::None );
-    QCOMPARE( j.m_atleast.unit(), ResizeFSJob::RelativeUnit::None );
+    QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::None );
+    QCOMPARE( j.m_atleast.unit(), Calamares::SizeUnit::None );
     QCOMPARE( j.m_size.value(), 0 );
     QCOMPARE( j.m_atleast.value(), 0 );
 }
@@ -87,8 +87,8 @@ atleast: 600MiB
     j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
     QVERIFY( !j.m_fsname.isEmpty() );
     QVERIFY( j.m_devicename.isEmpty() );
-    QCOMPARE( j.m_size.unit(), ResizeFSJob::RelativeUnit::Percent );
-    QCOMPARE( j.m_atleast.unit(), ResizeFSJob::RelativeUnit::Absolute );
+    QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::Percent );
+    QCOMPARE( j.m_atleast.unit(), Calamares::SizeUnit::Percent );
     QCOMPARE( j.m_size.value(), 100 );
     QCOMPARE( j.m_atleast.value(), 600 );
 
@@ -102,8 +102,8 @@ atleast: 127 %
     j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
     QVERIFY( !j.m_fsname.isEmpty() );
     QVERIFY( !j.m_devicename.isEmpty() );
-    QCOMPARE( j.m_size.unit(), ResizeFSJob::RelativeUnit::Absolute );
-    QCOMPARE( j.m_atleast.unit(), ResizeFSJob::RelativeUnit::None );
+    QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::Percent );
+    QCOMPARE( j.m_atleast.unit(), Calamares::SizeUnit::None );
     QCOMPARE( j.m_size.value(), 72 );
     QCOMPARE( j.m_atleast.value(), 0 );
 
@@ -117,8 +117,8 @@ size: 71MiB
     j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
     QVERIFY( !j.m_fsname.isEmpty() );
     QVERIFY( j.m_devicename.isEmpty() );
-    QCOMPARE( j.m_size.unit(), ResizeFSJob::RelativeUnit::Absolute );
-    QCOMPARE( j.m_atleast.unit(), ResizeFSJob::RelativeUnit::None );
+    QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::Percent );
+    QCOMPARE( j.m_atleast.unit(), Calamares::SizeUnit::None );
     QCOMPARE( j.m_size.value(), 71 );
     QCOMPARE( j.m_atleast.value(), 0 );
 }

@@ -78,5 +78,19 @@ constexpr int BytesToMiB( qint64 b )
     return int( b / 1024 / 1024 );
 }
 
+constexpr qint64 alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
+{
+    qint64 blocks = bytes / blocksize;
+
+    if ( blocks * blocksize != bytes )
+        ++blocks;
+    return blocks * blocksize;
+}
+
+constexpr qint64 bytesToSectors( qint64 bytes, qint64 blocksize )
+{
+    return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize), MiBtoBytes(1ULL) ) / blocksize;
+}
+
 }  // namespace
 #endif
