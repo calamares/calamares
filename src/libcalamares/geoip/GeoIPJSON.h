@@ -42,7 +42,8 @@ public:
      */
     explicit GeoIPJSON( const QString& attribute = QString() );
 
-    virtual RegionZonePair processReply( const QByteArray& );
+    virtual RegionZonePair processReply( const QByteArray& ) override;
+    virtual QString rawReply(const QByteArray & ) override;
 } ;
 
 }  // namespace

@@ -66,12 +66,18 @@ public:
      * invalid (empty) result.
      */
     RegionZonePair get() const;
+    /// @brief Like get, but don't interpret the contents
+    QString getRaw() const;
 
     /** @brief Asynchronously get the GeoIP result.
      *
      * See get() for the return value.
      */
     QFuture< RegionZonePair > query() const;
+    /// @brief Like query, but don't interpret the contents
+    QFuture< QString > queryRaw() const;
+
+
 
     bool isValid() const { return m_type != Type::None; }
     Type type() const { return m_type; }

@@ -31,35 +31,60 @@ GeoIPXML::GeoIPXML( const QString& element )
 {
 }
 
-GeoIP::RegionZonePair
-GeoIPXML::processReply( const QByteArray& data )
+static QStringList
+getElementTexts( const QByteArray& data, const QString& tag )
 {
+    QStringList elements;
+
     QString domError;
     int errorLine, errorColumn;
 
     QDomDocument doc;
     if ( doc.setContent( data, false, &domError, &errorLine, &errorColumn ) )
     {
-        const auto tzElements = doc.elementsByTagName( m_element );
+        const auto tzElements = doc.elementsByTagName( tag );
         cDebug() << "GeoIP found" << tzElements.length() << "elements";
         for ( int it = 0; it < tzElements.length(); ++it )
         {
             auto e = tzElements.at(it).toElement();
-            auto tz = splitTZString( e.text() );
-            if ( !tz.first.isEmpty() )
-                return tz;
+            auto e_text = e.text();
+            if ( !e_text.isEmpty() )
+                elements.append( e_text );
         }
-
-        // None of them valid
-        cWarning() << "GeopIP XML had no recognizable timezone";
-        return RegionZonePair( QString(), QString() );
     }
     else
     {
         cWarning() << "GeoIP XML data error:" << domError << "(line" << errorLine << errorColumn << ')';
     }
 
-    return RegionZonePair( QString(), QString() );
+    if ( elements.count() < 1 )
+        cWarning() << "GeopIP XML had no non-empty elements" << tag;
+
+    return elements;
+}
+
+
+QString
+GeoIPXML::rawReply( const QByteArray& data )
+{
+    for ( const auto& e : getElementTexts( data, m_element ) )
+        if ( !e.isEmpty() )
+            return e;
+
+    return QString();
+}
+
+GeoIP::RegionZonePair
+GeoIPXML::processReply( const QByteArray& data )
+{
+    for ( const auto& e : getElementTexts( data, m_element ) )
+    {
+        auto tz = splitTZString( e );
+        if ( !tz.first.isEmpty() )
+            return tz;
+    }
+
+    return RegionZonePair();
 }
 
 }  // namespace

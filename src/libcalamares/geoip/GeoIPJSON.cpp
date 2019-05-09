@@ -33,6 +33,12 @@ GeoIPJSON::GeoIPJSON(const QString& attribute)
 {
 }
 
+/** @brief Indexes into a map @m by selectors @p l
+ *
+ * Each element of @p l is an index into map @m or a sub-map thereof,
+ * so that "foo.bar.baz" looks up "baz" in the sub-map "bar" of sub-map
+ * "foo" of @p m, like a regular JSON lookup would.
+ */
 static QString
 selectMap( const QVariantMap& m, const QStringList& l, int index)
 {
@@ -51,8 +57,8 @@ selectMap( const QVariantMap& m, const QStringList& l, int index)
     }
 }
 
-GeoIP::RegionZonePair
-GeoIPJSON::processReply( const QByteArray& data )
+QString
+GeoIPJSON::rawReply( const QByteArray& data )
 {
     try
     {
@@ -63,7 +69,7 @@ GeoIPJSON::processReply( const QByteArray& data )
             var.isValid() &&
             var.type() == QVariant::Map )
         {
-            return splitTZString( selectMap( var.toMap(), m_element.split('.'), 0 ) );
+            return selectMap( var.toMap(), m_element.split('.'), 0 );
         }
         else
             cWarning() << "Invalid YAML data for GeoIPJSON";
@@ -73,7 +79,15 @@ GeoIPJSON::processReply( const QByteArray& data )
         CalamaresUtils::explainYamlException( e, data, "GeoIP data");
     }
 
-    return RegionZonePair( QString(), QString() );
+    return QString();
 }
+
+GeoIP::RegionZonePair
+GeoIPJSON::processReply( const QByteArray& data )
+{
+    return splitTZString( rawReply( data ) );
+}
+
+
 
 }  // namespace

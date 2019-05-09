@@ -85,6 +85,9 @@ public:
      */
     virtual RegionZonePair processReply( const QByteArray& ) = 0;
 
+    /** @brief Get the raw reply data. */
+    virtual QString rawReply( const QByteArray& ) = 0;
+
 protected:
     Interface( const QString& e = QString() );
 
