@@ -15,6 +15,9 @@ This release contains contributions from (alphabetically by first name):
 
 ## Core ##
 
+ - All user-visible texts referring to "MB" and "GB" now use the standard
+   "MiB" and "GiB" wording, which matches what we were actually calculating
+   with (i.e. 2^20 and 2^30 respectively). #1129
  - The side-pane, which shows the list of steps that will be executed,
    now tries to fit the text (name of each module) into the available space
    by shrinking the font as needed. #1137
