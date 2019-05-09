@@ -49,7 +49,7 @@ SetPartFlagsJob::prettyName() const
         return tr( "Set flags on partition %1." ).arg( partition()->partitionPath() );
 
     if ( !partition()->fileSystem().name().isEmpty() )
-        return tr( "Set flags on %1MB %2 partition." )
+        return tr( "Set flags on %1MiB %2 partition." )
                .arg( BytesToMiB( partition()->capacity() ) )
                .arg( partition()->fileSystem().name() );
 
@@ -68,7 +68,7 @@ SetPartFlagsJob::prettyDescription() const
                    .arg( partition()->partitionPath() );
 
         if ( !partition()->fileSystem().name().isEmpty() )
-            return tr( "Clear flags on %1MB <strong>%2</strong> partition." )
+            return tr( "Clear flags on %1MiB <strong>%2</strong> partition." )
                    .arg( BytesToMiB( partition()->capacity() ) )
                    .arg( partition()->fileSystem().name() );
 
@@ -82,7 +82,7 @@ SetPartFlagsJob::prettyDescription() const
                .arg( flagsList.join( ", " ) );
 
     if ( !partition()->fileSystem().name().isEmpty() )
-        return tr( "Flag %1MB <strong>%2</strong> partition as "
+        return tr( "Flag %1MiB <strong>%2</strong> partition as "
                    "<strong>%3</strong>." )
                .arg( BytesToMiB( partition()->capacity() ) )
                .arg( partition()->fileSystem().name() )
@@ -104,7 +104,7 @@ SetPartFlagsJob::prettyStatusMessage() const
                    .arg( partition()->partitionPath() );
 
         if ( !partition()->fileSystem().name().isEmpty() )
-            return tr( "Clearing flags on %1MB <strong>%2</strong> partition." )
+            return tr( "Clearing flags on %1MiB <strong>%2</strong> partition." )
                    .arg( BytesToMiB( partition()->capacity() ) )
                    .arg( partition()->fileSystem().name() );
 
@@ -119,7 +119,7 @@ SetPartFlagsJob::prettyStatusMessage() const
 
     if ( !partition()->fileSystem().name().isEmpty() )
         return tr( "Setting flags <strong>%3</strong> on "
-                   "%1MB <strong>%2</strong> partition." )
+                   "%1MiB <strong>%2</strong> partition." )
                .arg( BytesToMiB( partition()->capacity() ) )
                .arg( partition()->fileSystem().name() )
                .arg( flagsList.join( ", " ) );
