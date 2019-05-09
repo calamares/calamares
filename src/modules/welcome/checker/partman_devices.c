@@ -66,7 +66,7 @@ is_cdrom(const char *path)
     int fd;
 
     fd = open(path, O_RDONLY | O_NONBLOCK);
-    ioctl(fd, CDIOCCAPABILITY, NULL);   
+    ioctl(fd, CDIOCCAPABILITY, NULL);
     close(fd);
 
     if (errno != EBADF && errno != ENOTTY)
@@ -120,7 +120,7 @@ check_big_enough(long long required_space)
     for (dev = NULL; NULL != (dev = ped_device_get_next(dev));)
     {
         long long dev_size = process_device(dev);
-        if (dev_size > required_space)
+        if (dev_size >= required_space)
         {
             big_enough = true;
             break;

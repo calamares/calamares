@@ -143,7 +143,7 @@ ReplaceWidget::onPartitionSelected()
     bool ok = false;
     double requiredSpaceB = Calamares::JobQueue::instance()
                             ->globalStorage()
-                            ->value( "requiredStorageGB" )
+                            ->value( "requiredStorageGiB" )
                             .toDouble( &ok ) * 1024 * 1024 * 1024;
 
     PartitionModel* model = qobject_cast< PartitionModel* >( m_ui->partitionTreeView->model() );

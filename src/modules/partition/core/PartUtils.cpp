@@ -74,7 +74,7 @@ canBeReplaced( Partition* candidate )
     bool ok = false;
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
-                                    ->value( "requiredStorageGB" )
+                                    ->value( "requiredStorageGiB" )
                                     .toDouble( &ok );
 
     qint64 availableStorageB = candidate->capacity();
@@ -146,7 +146,7 @@ canBeResized( Partition* candidate )
     bool ok = false;
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
-                                    ->value( "requiredStorageGB" )
+                                    ->value( "requiredStorageGiB" )
                                     .toDouble( &ok );
     // We require a little more for partitioning overhead and swap file
     double advisedStorageGB = requiredStorageGB + 0.5 + 2.0;

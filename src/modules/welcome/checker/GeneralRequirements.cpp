@@ -56,8 +56,8 @@
 
 GeneralRequirements::GeneralRequirements( QObject* parent )
     : QObject( parent )
-    , m_requiredStorageGB( -1 )
-    , m_requiredRamGB( -1 )
+    , m_requiredStorageGiB( -1 )
+    , m_requiredRamGiB( -1 )
 {
 }
 
@@ -72,12 +72,12 @@ Calamares::RequirementsList GeneralRequirements::checkRequirements()
     bool isRoot = false;
     bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
 
-    qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGB);
+    qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGiB);
     cDebug() << "Need at least storage bytes:" << requiredStorageB;
     if ( m_entriesToCheck.contains( "storage" ) )
         enoughStorage = checkEnoughStorage( requiredStorageB );
 
-    qint64 requiredRamB = CalamaresUtils::GiBtoBytes(m_requiredRamGB);
+    qint64 requiredRamB = CalamaresUtils::GiBtoBytes(m_requiredRamGiB);
     cDebug() << "Need at least ram bytes:" << requiredRamB;
     if ( m_entriesToCheck.contains( "ram" ) )
         enoughRam = checkEnoughRam( requiredRamB );
@@ -105,16 +105,16 @@ Calamares::RequirementsList GeneralRequirements::checkRequirements()
         if ( entry == "storage" )
             checkEntries.append( {
                 entry,
-                [req=m_requiredStorageGB]{ return tr( "has at least %1 GB available drive space" ).arg( req ); },
-                [req=m_requiredStorageGB]{ return tr( "There is not enough drive space. At least %1 GB is required." ).arg( req ); },
+                [req=m_requiredStorageGiB]{ return tr( "has at least %1 GiB available drive space" ).arg( req ); },
+                [req=m_requiredStorageGiB]{ return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req ); },
                 enoughStorage,
                 m_entriesToRequire.contains( entry )
             } );
         else if ( entry == "ram" )
             checkEntries.append( {
                 entry,
-                [req=m_requiredRamGB]{ return tr( "has at least %1 GB working memory" ).arg( req ); },
-                [req=m_requiredRamGB]{ return tr( "The system does not have enough working memory. At least %1 GB is required." ).arg( req ); },
+                [req=m_requiredRamGiB]{ return tr( "has at least %1 GiB working memory" ).arg( req ); },
+                [req=m_requiredRamGiB]{ return tr( "The system does not have enough working memory. At least %1 GiB is required." ).arg( req ); },
                 enoughRam,
                 m_entriesToRequire.contains( entry )
             } );
@@ -209,19 +209,19 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
            configurationMap.value( "requiredStorage" ).type() == QVariant::Int ) )
     {
         bool ok = false;
-        m_requiredStorageGB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
+        m_requiredStorageGiB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
         if ( !ok )
         {
             cWarning() << "GeneralRequirements entry 'requiredStorage' is invalid.";
-            m_requiredStorageGB = 3.;
+            m_requiredStorageGiB = 3.;
         }
 
-        Calamares::JobQueue::instance()->globalStorage()->insert( "requiredStorageGB", m_requiredStorageGB );
+        Calamares::JobQueue::instance()->globalStorage()->insert( "requiredStorageGiB", m_requiredStorageGiB );
     }
     else
     {
         cWarning() << "GeneralRequirements entry 'requiredStorage' is missing.";
-        m_requiredStorageGB = 3.;
+        m_requiredStorageGiB = 3.;
         incompleteConfiguration = true;
     }
 
@@ -230,18 +230,18 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
            configurationMap.value( "requiredRam" ).type() == QVariant::Int ) )
     {
         bool ok = false;
-        m_requiredRamGB = configurationMap.value( "requiredRam" ).toDouble( &ok );
+        m_requiredRamGiB = configurationMap.value( "requiredRam" ).toDouble( &ok );
         if ( !ok )
         {
             cWarning() << "GeneralRequirements entry 'requiredRam' is invalid.";
-            m_requiredRamGB = 1.;
+            m_requiredRamGiB = 1.;
             incompleteConfiguration = true;
         }
     }
     else
     {
         cWarning() << "GeneralRequirements entry 'requiredRam' is missing.";
-        m_requiredRamGB = 1.;
+        m_requiredRamGiB = 1.;
         incompleteConfiguration = true;
     }
 
