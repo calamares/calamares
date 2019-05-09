@@ -19,11 +19,12 @@
 
 #include "PartitionLabelsView.h"
 
-#include <core/PartitionModel.h>
-#include <core/ColorUtils.h>
+#include "core/PartitionModel.h"
+#include "core/ColorUtils.h"
 
-#include <utils/CalamaresUtilsGui.h>
-#include <utils/Logger.h>
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "utils/Units.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/fs/filesystem.h>
@@ -35,6 +36,7 @@
 #include <QMouseEvent>
 #include <QPainter>
 
+using CalamaresUtils::operator""_MiB;
 
 static const int LAYOUT_MARGIN = 4;
 static const int LABEL_PARTITION_SQUARE_MARGIN =
@@ -62,12 +64,6 @@ PartitionLabelsView::PartitionLabelsView( QWidget* parent )
     setSelectionBehavior( QAbstractItemView::SelectRows );
     setSelectionMode( QAbstractItemView::SingleSelection );
     this->setObjectName("partitionLabel");
-    // Debug
-    connect( this, &PartitionLabelsView::clicked,
-             this, [=]( const QModelIndex& index )
-    {
-        cDebug() << "Clicked row" << index.row();
-    } );
     setMouseTracking( true );
 }
 
@@ -162,8 +158,8 @@ PartitionLabelsView::getIndexesToDraw( const QModelIndex& parent ) const
 
         //HACK: horrible special casing follows.
         //      To save vertical space, we choose to hide short instances of free space.
-        //      Arbitrary limit: 10MB.
-        const qint64 maxHiddenB = 10000000;
+        //      Arbitrary limit: 10MiB.
+        const qint64 maxHiddenB = 10_MiB;
         if ( index.data( PartitionModel::IsFreeSpaceRole ).toBool() &&
              index.data( PartitionModel::SizeRole ).toLongLong() <  maxHiddenB )
             continue;
