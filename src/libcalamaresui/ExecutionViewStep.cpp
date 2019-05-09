@@ -78,7 +78,9 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
 QString
 ExecutionViewStep::prettyName() const
 {
-    return tr( "Install" );
+    return Calamares::Settings::instance()->isSetupMode()
+        ? tr( "Set up" )
+        : tr( "Install" );
 }
 
 
