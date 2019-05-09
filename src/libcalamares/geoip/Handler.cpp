@@ -124,6 +124,16 @@ do_query( Handler::Type type, const QString& url, const QString& selector )
     return interface->processReply( synchronous_get( url ) );
 }
 
+static QString
+do_raw_query( Handler::Type type, const QString& url, const QString& selector )
+{
+    const auto interface = create_interface( type, selector );
+    if ( !interface )
+        return QString();
+
+    return interface->rawReply( synchronous_get( url ) );
+}
+
 RegionZonePair
 Handler::get() const
 {
@@ -145,5 +155,28 @@ Handler::query() const
             return do_query( type, url, selector );
         } );
 }
+
+QString
+Handler::getRaw() const
+{
+    if ( !isValid() )
+        return QString();
+    return do_raw_query( m_type, m_url, m_selector );
+}
+
+
+QFuture< QString >
+Handler::queryRaw() const
+{
+    Handler::Type type = m_type;
+    QString url = m_url;
+    QString selector = m_selector;
+
+    return QtConcurrent::run( [=]
+        {
+            return do_raw_query( type, url, selector );
+        } );
+}
+
 
 }  // namespace

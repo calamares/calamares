@@ -77,8 +77,6 @@ public:
     /// @brief Like query, but don't interpret the contents
     QFuture< QString > queryRaw() const;
 
-
-
     bool isValid() const { return m_type != Type::None; }
     Type type() const { return m_type; }
 
