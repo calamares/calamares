@@ -22,10 +22,12 @@
 #include "WelcomePage.h"
 #include "checker/GeneralRequirements.h"
 
+#include "geoip/Handler.h"
 #include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+#include <QFutureWatcher>
 #include <QVariant>
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeViewStepFactory, registerPlugin<WelcomeViewStep>(); )
@@ -112,6 +114,26 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     else
         cWarning() << "no valid requirements map found in welcome "
                     "module configuration.";
+
+    bool ok = false;
+    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    if ( ok )
+    {
+        using FWString = QFutureWatcher< QString >;
+
+        auto* handler = new CalamaresUtils::GeoIP::Handler(
+            CalamaresUtils::getString( geoip, "style" ),
+            CalamaresUtils::getString( geoip, "url" ),
+            CalamaresUtils::getString( geoip, "selector" ) );
+        auto* future = new FWString();
+        connect( future, &FWString::finished, [f=future, h=handler]()
+        {
+            cDebug() << "GeoIP result for welcome=" << f->future().result();
+            f->deleteLater();
+            delete h;
+        } );
+        future->setFuture( handler->queryRaw() );
+    }
 }
 
 Calamares::RequirementsList WelcomeViewStep::checkRequirements()
