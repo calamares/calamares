@@ -58,6 +58,7 @@ Handler::Handler()
 Handler::Handler( const QString& implementation, const QString& url, const QString& selector )
     : m_type( Type::None )
     , m_url( url )
+    , m_selector( selector )
 {
     bool ok = false;
     m_type = handlerTypes().find( implementation, ok );
