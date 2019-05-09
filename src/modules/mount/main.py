@@ -22,6 +22,7 @@
 
 import tempfile
 import subprocess
+import os
 
 import libcalamares
 
@@ -48,7 +49,15 @@ def mount_partitions(root_mount_point, partitions):
             continue
         # Create mount point with `+` rather than `os.path.join()` because
         # `partition["mountPoint"]` starts with a '/'.
-        mount_point = root_mount_point + partition["mountPoint"]
+        raw_mount_point = partition["mountPoint"]
+        mount_point = root_mount_point + raw_mount_point
+
+        # Ensure that the created directory has the correct SELinux context on
+        # SELinux-enabled systems.
+        os.makedirs(mount_point, exist_ok=True)
+        subprocess.call(['chcon', '--reference=' + raw_mount_point,
+                         mount_point])
+
         fstype = partition.get("fs", "").lower()
 
         if fstype == "fat16" or fstype == "fat32":
