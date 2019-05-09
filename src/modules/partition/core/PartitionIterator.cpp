@@ -98,7 +98,7 @@ PartitionIterator::begin( PartitionTable* table )
 {
     auto it = PartitionIterator( table );
     QList< Partition* > children = table->children();
-    // Does not usually happen, but it did happen on a 10MB disk with an MBR
+    // Does not usually happen, but it did happen on a tiny (10MiB) disk with an MBR
     // partition table.
     if ( children.isEmpty() )
         return it;
