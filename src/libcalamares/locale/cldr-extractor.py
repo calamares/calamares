@@ -251,7 +251,6 @@ def make_identifier(classname):
         else:
             identifier.append(c)
             
-    identifier.append("_table")
     return "".join(identifier)
         
         
@@ -260,17 +259,27 @@ def export_class(cls, data):
     Given a @p cls and a list of @p data objects from that class,
     print (to stdout) a C++ file for that data.
     """
+    identifier = make_identifier(cls.cpp_classname)
+    
     with open("{!s}_p.cpp".format(cls.cpp_classname), "wt", encoding="UTF-8") as f:
         f.write(cpp_header_comment)
         f.write(cls.cpp_declaration)
-        f.write("\nstatic const {!s} {!s}[] = {!s}\n".format(
+        f.write("\nstatic constexpr int const {!s}_size = {!s};\n".format(
+            identifier,
+            len(data)))
+        f.write("\nstatic const {!s} {!s}_table[] = {!s}\n".format(
             cls.cpp_classname,
-            make_identifier(cls.cpp_classname),
+            identifier,
             "{"))
         for d in data:
             f.write(str(d))
             f.write("\n")
         f.write("};\n\n");
+        f.write("static_assert( (sizeof({!s}_table) / sizeof({!s})) == {!s}_size, \"Table size mismatch for {!s}\" );\n\n".format(
+            identifier,
+            cls.cpp_classname,
+            identifier,
+            cls.cpp_classname))
         f.write(cpp_footer_comment)
     
     
