@@ -20,6 +20,9 @@
 #ifndef WELCOMEPAGE_H
 #define WELCOMEPAGE_H
 
+#include "locale/LabelModel.h"
+
+#include <QStyledItemDelegate>
 #include <QWidget>
 
 namespace Ui
@@ -28,7 +31,6 @@ class WelcomePage;
 }
 
 class CheckerContainer;
-class LocaleModel;
 
 class WelcomePage : public QWidget
 {
@@ -44,6 +46,8 @@ public:
     /// @brief Results of requirements checking
     bool verdict() const;
 
+    /// @brief Change the language from an external source.
+    void externallySelectedLanguage( int row );
 protected:
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
 
@@ -53,7 +57,19 @@ private:
 
     Ui::WelcomePage* ui;
     CheckerContainer* m_checkingWidget;
-    LocaleModel *m_languages;
+    CalamaresUtils::Locale::LabelModel *m_languages;
 };
+
+/** @brief Delegate to display language information in two columns.
+ *
+ * Displays the native language name and the English language name.
+ */
+class LocaleTwoColumnDelegate : public QStyledItemDelegate
+{
+public:
+    using QStyledItemDelegate::QStyledItemDelegate;
+
+    void paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const override;
+} ;
 
 #endif // WELCOMEPAGE_H

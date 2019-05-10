@@ -8,16 +8,6 @@ endif()
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
-set( geoip_src GeoIP.cpp GeoIPJSON.cpp )
-set( geoip_libs )
-
-find_package(Qt5 COMPONENTS Xml)
-if( Qt5Xml_FOUND )
-    list( APPEND geoip_src GeoIPXML.cpp )
-    list( APPEND geoip_libs Qt5::Xml )
-    add_definitions( -DHAVE_XML )
-endif()
-
 calamares_add_plugin( locale
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -43,20 +33,6 @@ calamares_add_plugin( locale
 
 if( ECM_FOUND AND BUILD_TESTING )
     ecm_add_test(
-            GeoIPTests.cpp
-            ${geoip_src}
-        TEST_NAME
-            geoiptest
-        LINK_LIBRARIES
-            calamaresui
-            Qt5::Network
-            Qt5::Test
-            ${geoip_libs}
-            ${YAMLCPP_LIBRARY}
-    )
-    calamares_automoc( geoiptest )
-
-    ecm_add_test(
             Tests.cpp
             LocaleConfiguration.cpp
         TEST_NAME
@@ -66,10 +42,4 @@ if( ECM_FOUND AND BUILD_TESTING )
             Qt5::Test
     )
     calamares_automoc( localetest )
-endif()
-
-if( BUILD_TESTING )
-    add_executable( test_geoip test_geoip.cpp ${geoip_src} )
-    target_link_libraries( test_geoip calamaresui Qt5::Network ${geoip_libs} ${YAMLCPP_LIBRARY} )
-    calamares_automoc( test_geoip )
 endif()

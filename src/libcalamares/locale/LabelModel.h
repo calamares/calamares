@@ -16,28 +16,31 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WELCOME_LOCALEMODEL_H
-#define WELCOME_LOCALEMODEL_H
+#ifndef LOCALE_LABELMODEL_H
+#define LOCALE_LABELMODEL_H
+
+#include "DllMacro.h"
+#include "Label.h"
 
 #include <QAbstractListModel>
-#include <QStyledItemDelegate>
 #include <QVector>
 
-#include "utils/LocaleLabel.h"
 
-class LocaleModel : public QAbstractListModel
+namespace CalamaresUtils {}
+namespace CalamaresUtils::Locale
+{
+
+class DLLEXPORT LabelModel : public QAbstractListModel
 {
 public:
-    using LocaleLabel = CalamaresUtils::LocaleLabel;
-
     enum
     {
         LabelRole = Qt::DisplayRole,
         EnglishLabelRole = Qt::UserRole + 1
     };
 
-    LocaleModel( const QStringList& locales, QObject* parent = nullptr );
-    virtual ~LocaleModel() override;
+    LabelModel( const QStringList& locales, QObject* parent = nullptr );
+    virtual ~LabelModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
 
@@ -48,26 +51,34 @@ public:
      * This is the backing data for the model; if @p row is out-of-range,
      * returns a reference to en_US.
      */
-    const LocaleLabel& locale( int row );
+    const Label& locale( int row ) const;
 
     /** @brief Searches for an item that matches @p predicate
      *
      * Returns the row number of the first match, or -1 if there isn't one.
      */
     int find( std::function<bool( const QLocale& )> predicate ) const;
-    int find( std::function<bool( const LocaleLabel& )> predicate ) const;
+    int find( std::function<bool( const Label& )> predicate ) const;
+    /// @brief Looks for an item using the same locale, -1 if there isn't one
     int find( const QLocale& ) const;
+    /// @brief Looks for an item that best matches the 2-letter country code
+    int find( const QString& countryCode ) const;
 
 private:
-    QVector< LocaleLabel > m_locales;
+    QVector< Label > m_locales;
 } ;
 
-class LocaleTwoColumnDelegate : public QStyledItemDelegate
-{
-public:
-    using QStyledItemDelegate::QStyledItemDelegate;
+/** @brief Returns a model with all available translations.
+ *
+ * The translations are set when Calamares is compiled; the list
+ * is provided by CMake via the CALAMARES_TRANSLATION_LANGUAGES
+ * #define.
+ *
+ * This model is a singleton and can be shared.
+ *
+ * NOTE: While the model is not typed const, it should be. Do not modify.
+ */
+DLLEXPORT LabelModel* const availableTranslations();
 
-    void paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const override;
-} ;
-
+}  // namespace
 #endif

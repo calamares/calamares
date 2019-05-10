@@ -23,11 +23,12 @@
 #include <iostream>
 
 #include "GeoIPJSON.h"
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
 #include "GeoIPXML.h"
 #endif
 
 using std::cerr;
+using namespace CalamaresUtils::GeoIP;
 
 int main(int argc, char** argv)
 {
@@ -37,10 +38,10 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    GeoIP* handler = nullptr;
+    Interface* handler = nullptr;
     if ( QStringLiteral( "json" ) == argv[1] )
         handler = new GeoIPJSON;
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     else if ( QStringLiteral( "xml" ) == argv[1] )
         handler = new GeoIPXML;
 #endif

@@ -22,9 +22,13 @@
 #include "WelcomePage.h"
 #include "checker/GeneralRequirements.h"
 
+#include "geoip/Handler.h"
+#include "locale/Lookup.h"
 #include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
+#include <QFutureWatcher>
 #include <QVariant>
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeViewStepFactory, registerPlugin<WelcomeViewStep>(); )
@@ -97,18 +101,9 @@ WelcomeViewStep::jobs() const
 void
 WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    bool showSupportUrl =
-        configurationMap.contains( "showSupportUrl" ) &&
-        configurationMap.value( "showSupportUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showSupportUrl" ).toBool();
-    bool showKnownIssuesUrl =
-        configurationMap.contains( "showKnownIssuesUrl" ) &&
-        configurationMap.value( "showKnownIssuesUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showKnownIssuesUrl" ).toBool();
-    bool showReleaseNotesUrl =
-        configurationMap.contains( "showReleaseNotesUrl" ) &&
-        configurationMap.value( "showReleaseNotesUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showReleaseNotesUrl" ).toBool();
+    bool showSupportUrl = CalamaresUtils::getBool( configurationMap, "showSupportUrl", false );
+    bool showKnownIssuesUrl = CalamaresUtils::getBool( configurationMap, "showKnownIssuesUrl", false );
+    bool showReleaseNotesUrl = CalamaresUtils::getBool( configurationMap, "showReleaseNotesUrl", false );
 
     m_widget->setUpLinks( showSupportUrl,
                           showKnownIssuesUrl,
@@ -120,9 +115,57 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     else
         cWarning() << "no valid requirements map found in welcome "
                     "module configuration.";
+
+    bool ok = false;
+    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    if ( ok )
+    {
+        using FWString = QFutureWatcher< QString >;
+
+        auto* handler = new CalamaresUtils::GeoIP::Handler(
+            CalamaresUtils::getString( geoip, "style" ),
+            CalamaresUtils::getString( geoip, "url" ),
+            CalamaresUtils::getString( geoip, "selector" ) );
+        auto* future = new FWString();
+        connect( future, &FWString::finished, [view=this, f=future, h=handler]()
+        {
+            QString countryResult = f->future().result();
+            cDebug() << "GeoIP result for welcome=" << countryResult;
+            view->setCountry( countryResult );
+            f->deleteLater();
+            delete h;
+        } );
+        future->setFuture( handler->queryRaw() );
+    }
 }
 
-Calamares::RequirementsList WelcomeViewStep::checkRequirements()
+Calamares::RequirementsList
+WelcomeViewStep::checkRequirements()
 {
     return m_requirementsChecker->checkRequirements();
+}
+
+void
+WelcomeViewStep::setCountry( const QString& countryCode )
+{
+    if ( countryCode.length() != 2 )
+    {
+        cDebug() << "Unusable country code" << countryCode;
+        return;
+    }
+
+    auto c_l = CalamaresUtils::Locale::countryData( countryCode );
+    if ( c_l.first == QLocale::Country::AnyCountry )
+    {
+        cDebug() << "Unusable country code" << countryCode;
+        return;
+    }
+    else
+    {
+        int r = CalamaresUtils::Locale::availableTranslations()->find( countryCode );
+        if ( r < 0 )
+            cDebug() << "Unusable country code" << countryCode << "(no suitable translation)";
+        if ( ( r >= 0 ) && m_widget )
+            m_widget->externallySelectedLanguage( r );
+    }
 }

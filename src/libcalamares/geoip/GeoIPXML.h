@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,19 +16,23 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEOIPXML_H
-#define GEOIPXML_H
+#ifndef GEOIP_GEOIPXML_H
+#define GEOIP_GEOIPXML_H
 
-#include "GeoIP.h"
+#include "Interface.h"
 
+namespace CalamaresUtils::GeoIP
+{
 /** @brief GeoIP lookup with XML data
  *
  * The data is assumed to be in XML format with a
  *      <Response><TimeZone></TimeZone></Response>
  * element, which contains the text (string) for the region/zone. This
  * format is  expected by, e.g. the Ubiquity installer.
+ *
+ * @note This class is an implementation detail.
  */
-class GeoIPXML : public GeoIP
+class GeoIPXML : public Interface
 {
 public:
     /** @brief Configure the element tag which is selected.
@@ -38,7 +42,9 @@ public:
      */
     explicit GeoIPXML( const QString& element = QString() );
 
-    virtual RegionZonePair processReply( const QByteArray& );
+    virtual RegionZonePair processReply( const QByteArray& ) override;
+    virtual QString rawReply(const QByteArray & ) override;
 } ;
 
+}  // namespace
 #endif

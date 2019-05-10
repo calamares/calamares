@@ -19,17 +19,14 @@
 
 #include "LocaleViewStep.h"
 
-#include "GeoIP.h"
-#include "GeoIPJSON.h"
-#ifdef HAVE_XML
-#include "GeoIPXML.h"
-#endif
-#include "GlobalStorage.h"
-#include "JobQueue.h"
 #include "LocalePage.h"
-
 #include "timezonewidget/localeglobal.h"
 #include "widgets/WaitingWidget.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
+#include "geoip/Handler.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -116,54 +113,16 @@ LocaleViewStep::setUpPage()
 void
 LocaleViewStep::fetchGeoIpTimezone()
 {
-    QString actualUrl( m_geoipUrl );
-    GeoIP *handler = nullptr;
-
-    if ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" )
+    CalamaresUtils::GeoIP::Handler h( m_geoipStyle, m_geoipUrl, m_geoipSelector );
+    if ( h.isValid() )
     {
-        actualUrl.append( "/json/" );
-        handler = new GeoIPJSON( m_geoipSelector );
+        m_startingTimezone = h.get();
+        if ( !m_startingTimezone.isValid() )
+            cWarning() << "GeoIP lookup at" << m_geoipUrl << "failed.";
     }
-    else if ( m_geoipStyle == "json" )
-    {
-        handler = new GeoIPJSON( m_geoipSelector );
-    }
-#if defined(HAVE_XML)
-    else if ( m_geoipStyle == "xml" )
-    {
-        handler = new GeoIPXML( m_geoipSelector );
-    }
-#endif
     else
-    {
         cWarning() << "GeoIP Style" << m_geoipStyle << "is not recognized.";
-        setUpPage();
-        return;
-    }
-    cDebug() << "Fetching GeoIP data from" << actualUrl;
-
-    QNetworkAccessManager *manager = new QNetworkAccessManager( this );
-    connect( manager, &QNetworkAccessManager::finished,
-            [=]( QNetworkReply* reply )
-    {
-        if ( reply->error() == QNetworkReply::NoError )
-        {
-            auto tz = handler->processReply( reply->readAll() );
-            if ( !tz.first.isEmpty() )
-                m_startingTimezone = tz;
-            else
-                cWarning() << "GeoIP lookup at" << reply->url() << "failed.";
-        }
-        delete handler;
-        reply->deleteLater();
-        manager->deleteLater();
-        setUpPage();
-    } );
-
-    QNetworkRequest request;
-    request.setUrl( QUrl::fromUserInput( actualUrl ) );
-    request.setAttribute( QNetworkRequest::FollowRedirectsAttribute, true );
-    manager->get( request );
+    setUpPage();
 }
 
 
@@ -251,35 +210,43 @@ LocaleViewStep::onLeave()
 void
 LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "region" ) &&
-         configurationMap.value( "region" ).type() == QVariant::String &&
-         !configurationMap.value( "region" ).toString().isEmpty() &&
-         configurationMap.contains( "zone" ) &&
-         configurationMap.value( "zone" ).type() == QVariant::String &&
-         !configurationMap.value( "zone" ).toString().isEmpty() )
+    QString region = CalamaresUtils::getString( configurationMap, "region" );
+    QString zone = CalamaresUtils::getString( configurationMap, "zone" );
+    if ( !region.isEmpty() && !zone.isEmpty() )
     {
-        m_startingTimezone = qMakePair( configurationMap.value( "region" ).toString(),
-                                        configurationMap.value( "zone" ).toString() );
+        m_startingTimezone = CalamaresUtils::GeoIP::RegionZonePair( region, zone );
     }
     else
     {
-        m_startingTimezone = qMakePair( QStringLiteral( "America" ),
-                                        QStringLiteral( "New_York" ) );
+        m_startingTimezone = CalamaresUtils::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
     }
 
-    if ( configurationMap.contains( "localeGenPath" ) &&
-         configurationMap.value( "localeGenPath" ).type() == QVariant::String &&
-         !configurationMap.value( "localeGenPath" ).toString().isEmpty() )
-    {
-        m_localeGenPath = configurationMap.value( "localeGenPath" ).toString();
-    }
-    else
-    {
+    m_localeGenPath = CalamaresUtils::getString( configurationMap, "localeGenPath" );
+    if ( m_localeGenPath.isEmpty() )
         m_localeGenPath = QStringLiteral( "/etc/locale.gen" );
-    }
 
-    // Optional
-    m_geoipUrl = CalamaresUtils::getString( configurationMap, "geoipUrl" );
-    m_geoipStyle = CalamaresUtils::getString( configurationMap, "geoipStyle" );
-    m_geoipSelector = CalamaresUtils::getString( configurationMap, "geoipSelector" );
+    bool ok = false;
+    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    if ( ok )
+    {
+        m_geoipUrl = CalamaresUtils::getString( geoip, "url" );
+        m_geoipStyle = CalamaresUtils::getString( geoip, "style" );
+        m_geoipSelector = CalamaresUtils::getString( geoip, "selector" );
+    }
+    else
+    {
+        // Optional
+        m_geoipUrl = CalamaresUtils::getString( configurationMap, "geoipUrl" );
+        m_geoipStyle = CalamaresUtils::getString( configurationMap, "geoipStyle" );
+        m_geoipSelector = CalamaresUtils::getString( configurationMap, "geoipSelector" );
+
+        if ( !m_geoipUrl.isEmpty() && ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" ) )
+        {
+            m_geoipStyle = "json";
+            m_geoipUrl.append( "/json/" );
+        }
+
+        if ( !m_geoipUrl.isEmpty() )
+            cWarning() << "Legacy-style GeoIP configuration is deprecated. Use geoip: map.";
+    }
 }

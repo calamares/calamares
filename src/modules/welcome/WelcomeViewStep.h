@@ -54,6 +54,13 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+    /** @brief Sets the country that Calamares is running in.
+     *
+     * This (ideally) sets up language and locale settings that are right for
+     * the given 2-letter country code.
+     */
+    void setCountry( const QString& );
+
     Calamares::RequirementsList checkRequirements() override;
 
 private:

@@ -19,9 +19,10 @@
 #include "GeoIPTests.h"
 
 #include "GeoIPJSON.h"
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
 #include "GeoIPXML.h"
 #endif
+#include "Handler.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -30,6 +31,8 @@
 #include <QtTest/QtTest>
 
 QTEST_GUILESS_MAIN( GeoIPTests )
+
+using namespace CalamaresUtils::GeoIP;
 
 GeoIPTests::GeoIPTests()
 {
@@ -118,7 +121,7 @@ static const char xml_data_ubiquity[] =
 void
 GeoIPTests::testXML()
 {
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     GeoIPXML handler;
     auto tz = handler.processReply( xml_data_ubiquity );
 
@@ -133,7 +136,7 @@ GeoIPTests::testXML2()
     static const char data[] =
         "<Response><TimeZone>America/North Dakota/Beulah</TimeZone></Response>";  // With a space!
 
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     GeoIPXML handler;
     auto tz = handler.processReply( data );
 
@@ -145,7 +148,7 @@ GeoIPTests::testXML2()
 
 void GeoIPTests::testXMLalt()
 {
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     GeoIPXML handler( "ZT" );
 
     auto tz = handler.processReply( "<A><B/><C><ZT>Moon/Dark_side</ZT></C></A>" );
@@ -157,7 +160,7 @@ void GeoIPTests::testXMLalt()
 void
 GeoIPTests::testXMLbad()
 {
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     GeoIPXML handler;
     auto tz = handler.processReply( "{time_zone: \"Europe/Paris\"}" );
     QCOMPARE( tz.first, QString() );
@@ -172,24 +175,25 @@ GeoIPTests::testXMLbad()
 
 void GeoIPTests::testSplitTZ()
 {
-    auto tz = GeoIP::splitTZString( QStringLiteral("Moon/Dark_side") );
+    using namespace CalamaresUtils::GeoIP;
+    auto tz = splitTZString( QStringLiteral("Moon/Dark_side") );
     QCOMPARE( tz.first, QStringLiteral("Moon") );
     QCOMPARE( tz.second, QStringLiteral("Dark_side") );
 
     // Some providers return weirdly escaped data
-    tz = GeoIP::splitTZString( QStringLiteral("America\\/NewYork") );
+    tz = splitTZString( QStringLiteral("America\\/NewYork") );
     QCOMPARE( tz.first, QStringLiteral("America") );
     QCOMPARE( tz.second, QStringLiteral("NewYork") );  // That's not actually the zone name
 
     // Check that bogus data fails
-    tz = GeoIP::splitTZString( QString() );
+    tz = splitTZString( QString() );
     QCOMPARE( tz.first, QString() );
 
-    tz = GeoIP::splitTZString( QStringLiteral("America.NewYork") );
+    tz = splitTZString( QStringLiteral("America.NewYork") );
     QCOMPARE( tz.first, QString() );
 
     // Check that three-level is split properly and space is replaced
-    tz = GeoIP::splitTZString( QStringLiteral("America/North Dakota/Beulah") );
+    tz = splitTZString( QStringLiteral("America/North Dakota/Beulah") );
     QCOMPARE( tz.first, QStringLiteral("America") );
     QCOMPARE( tz.second, QStringLiteral("North_Dakota/Beulah") );
 }
@@ -216,14 +220,18 @@ synchronous_get( const char* urlstring )
 #define CHECK_GET(t, selector, url) \
     { \
         auto tz = GeoIP##t( selector ).processReply( synchronous_get( url ) ); \
+        qDebug() << tz; \
         QCOMPARE( default_tz, tz ); \
+        auto tz2 = CalamaresUtils::GeoIP::Handler( ""#t, url, selector ).get(); \
+        qDebug() << tz2; \
+        QCOMPARE( default_tz, tz2 ); \
     }
 
 void GeoIPTests::testGet()
 {
     if ( !QProcessEnvironment::systemEnvironment().contains( QStringLiteral("TEST_HTTP_GET") ) )
     {
-        qDebug() << "Skipping HTTP GET tests";
+        qDebug() << "Skipping HTTP GET tests, set TEST_HTTP_GET environment variable to enable";
         return;
     }
 
@@ -241,15 +249,12 @@ void GeoIPTests::testGet()
     // the TZ data is the same as the default_tz; this is fragile if the
     // services don't agree on the location of where the test is run.
     CHECK_GET( JSON, QString(), "https://geoip.kde.org/v1/calamares" )     // Check it's consistent
-    CHECK_GET( JSON, QString(), "http://freegeoip.net/json/" )             // Original FreeGeoIP service
     CHECK_GET( JSON, QStringLiteral("timezone"), "https://ipapi.co/json" )  // Different JSON
     CHECK_GET( JSON, QStringLiteral("timezone"), "http://ip-api.com/json" )
 
-    CHECK_GET( JSON, QStringLiteral("location.time_zone"), "http://geoip.nekudo.com/api/" )  // 2-level JSON
-
     CHECK_GET( JSON, QStringLiteral("Location.TimeZone"), "https://geoip.kde.org/debug" )  // 2-level JSON
 
-#ifdef HAVE_XML
+#ifdef QT_XML_LIB
     CHECK_GET( XML, QString(), "http://geoip.ubuntu.com/lookup" )  // Ubiquity's XML format
     CHECK_GET( XML, QString(),  "https://geoip.kde.org/v1/ubiquity" )  // Temporary KDE service
 #endif

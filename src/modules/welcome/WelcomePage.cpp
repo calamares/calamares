@@ -21,16 +21,16 @@
 #include "WelcomePage.h"
 
 #include "ui_WelcomePage.h"
-#include "LocaleModel.h"
 #include "checker/CheckerContainer.h"
 
 #include "Branding.h"
 #include "CalamaresVersion.h"
 #include "Settings.h"
 #include "ViewManager.h"
+
+#include "locale/LabelModel.h"
 #include "modulesystem/ModuleManager.h"
 #include "utils/CalamaresUtilsGui.h"
-#include "utils/LocaleLabel.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
@@ -131,7 +131,7 @@ WelcomePage::initLanguages()
     ui->languageWidget->clear();
     ui->languageWidget->setInsertPolicy( QComboBox::InsertAtBottom );
 
-    m_languages = new LocaleModel( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
+    m_languages = CalamaresUtils::Locale::availableTranslations();
     ui->languageWidget->setModel( m_languages );
     ui->languageWidget->setItemDelegate( new LocaleTwoColumnDelegate( ui->languageWidget ) );
 
@@ -257,7 +257,23 @@ WelcomePage::focusInEvent( QFocusEvent* e )
     e->accept();
 }
 
-bool WelcomePage::verdict() const
+bool
+WelcomePage::verdict() const
 {
     return m_checkingWidget->verdict();
+}
+
+void
+WelcomePage::externallySelectedLanguage( int row )
+{
+    if ( ( row >= 0 ) && ( row < ui->languageWidget->count() ) )
+        ui->languageWidget->setCurrentIndex( row );
+}
+
+
+void
+LocaleTwoColumnDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    QStyledItemDelegate::paint( painter, option, index );
+    option.widget->style()->drawItemText( painter, option.rect, Qt::AlignRight | Qt::AlignVCenter, option.palette, false, index.data( CalamaresUtils::Locale::LabelModel::EnglishLabelRole ).toString() );
 }

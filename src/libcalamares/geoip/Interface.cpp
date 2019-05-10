@@ -16,29 +16,39 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEOIPJSON_H
-#define GEOIPJSON_H
+#include "Interface.h"
 
-#include "GeoIP.h"
+#include "utils/Logger.h"
 
-/** @brief GeoIP lookup for services that return JSON.
- *
- * This is the original implementation of GeoIP lookup,
- * (e.g. using the FreeGeoIP.net service), or similar.
- *
- * The data is assumed to be in JSON format with a time_zone attribute.
- */
-class GeoIPJSON : public GeoIP
+namespace CalamaresUtils::GeoIP
 {
-public:
-    /** @brief Configure the attribute name which is selected.
-     *
-     * If an empty string is passed in (not a valid attribute name),
-     * then "time_zone" is used.
-     */
-    explicit GeoIPJSON( const QString& attribute = QString() );
 
-    virtual RegionZonePair processReply( const QByteArray& );
-} ;
+Interface::Interface(const QString& e)
+    : m_element( e )
+{
+}
 
-#endif
+Interface::~Interface()
+{
+}
+
+RegionZonePair
+splitTZString( const QString& tz )
+{
+    QString timezoneString( tz );
+    timezoneString.remove( '\\' );
+    timezoneString.replace( ' ', '_' );
+
+    QStringList tzParts = timezoneString.split( '/', QString::SkipEmptyParts );
+    if ( tzParts.size() >= 2 )
+    {
+        cDebug() << "GeoIP reporting" << timezoneString;
+        QString region = tzParts.takeFirst();
+        QString zone = tzParts.join( '/' );
+        return RegionZonePair( region, zone );
+    }
+
+    return RegionZonePair( QString(), QString() );
+}
+
+}  // namespace
