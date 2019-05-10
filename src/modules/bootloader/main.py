@@ -43,6 +43,9 @@ _ = gettext.translation("calamares-python",
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
+# This is the sanitizer used all over to tidy up filenames
+# to make identifiers (or to clean up names to make filenames).
+file_name_sanitizer = str.maketrans(" /()", "_-__")
 
 def pretty_name():
     return _("Install bootloader.")
@@ -211,7 +214,6 @@ def efi_label():
         branding = libcalamares.globalstorage.value("branding")
         efi_bootloader_id = branding["bootloaderEntryName"]
 
-    file_name_sanitizer = str.maketrans(" /", "_-")
     return efi_bootloader_id.translate(file_name_sanitizer)
 
 
@@ -238,7 +240,6 @@ def install_systemd_boot(efi_directory):
     install_efi_directory = install_path + efi_directory
     uuid = get_uuid()
     distribution = get_bootloader_entry_name()
-    file_name_sanitizer = str.maketrans(" /", "_-")
     distribution_translated = distribution.translate(file_name_sanitizer)
     loader_path = os.path.join(install_efi_directory,
                                "loader",
@@ -365,24 +366,24 @@ def install_secureboot(efi_directory):
     # of that tuple.
     efi_drive = subprocess.check_output([
         libcalamares.job.configuration["grubProbe"],
-        "-t", "drive", "--device-map=", install_efi_directory])
+        "-t", "drive", "--device-map=", install_efi_directory]).decode("ascii")
     efi_disk = subprocess.check_output([
         libcalamares.job.configuration["grubProbe"],
-        "-t", "disk", "--device-map=", install_efi_directory])
+        "-t", "disk", "--device-map=", install_efi_directory]).decode("ascii")
 
     efi_drive_partition = efi_drive.replace("(","").replace(")","").split(",")[1]
     # Get the first run of digits from the partition
-    efi_partititon_number = None
+    efi_partition_number = None
     c = 0
     start = None
     while c < len(efi_drive_partition):
         if efi_drive_partition[c].isdigit() and start is None:
             start = c
         if not efi_drive_partition[c].isdigit() and start is not None:
-            efi_drive_number = efi_drive_partition[start:c]
+            efi_partition_number = efi_drive_partition[start:c]
             break
         c += 1
-    if efi_partititon_number is None:
+    if efi_partition_number is None:
         raise ValueError("No partition number found for %s" % install_efi_directory)
 
     subprocess.call([
@@ -391,7 +392,7 @@ def install_secureboot(efi_directory):
         "-w",
         "-L", efi_bootloader_id,
         "-d", efi_disk,
-        "-p", efi_partititon_number,
+        "-p", efi_partition_number,
         "-l", install_efi_directory + "/" + install_efi_bin])
 
 
