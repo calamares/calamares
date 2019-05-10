@@ -14,6 +14,7 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )
 
 set( OPTIONAL_PRIVATE_LIBRARIES "" )
+set( OPTIONAL_PUBLIC_LIBRARIES "" )
 
 set( libSources
     CppJob.cpp
@@ -92,7 +93,7 @@ endif()
 find_package(Qt5 COMPONENTS Xml)
 if( Qt5Xml_FOUND )
     list( APPEND libSources geoip/GeoIPXML.cpp )
-    list( APPEND OPTIONAL_PRIVATE_LIBRARIES Qt5::Network Qt5::Xml )
+    list( APPEND OPTIONAL_PUBLIC_LIBRARIES Qt5::Network Qt5::Xml )
 endif()
 
 ### LIBRARY
@@ -112,6 +113,7 @@ target_link_libraries( calamares
     LINK_PUBLIC
         ${YAMLCPP_LIBRARY}
         Qt5::Core
+        ${OPTIONAL_PUBLIC_LIBRARIES}
 )
 
 install( TARGETS calamares
