@@ -18,7 +18,7 @@
 
 #include "Lookup.h"
 
-// No data yet
+#include "CountryData_p.cpp"
 
 namespace Calamares
 {
