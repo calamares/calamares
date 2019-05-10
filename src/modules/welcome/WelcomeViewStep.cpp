@@ -23,6 +23,7 @@
 #include "checker/GeneralRequirements.h"
 
 #include "geoip/Handler.h"
+#include "locale/Lookup.h"
 #include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
@@ -153,5 +154,12 @@ WelcomeViewStep::setCountry( const QString& countryCode )
         return;
     }
 
-    cDebug() << "TODO: update country" << countryCode;
+    auto c_l = Calamares::countryData( countryCode );
+    if ( c_l.first == QLocale::Country::AnyCountry )
+    {
+        cDebug() << "Unusable country code" << countryCode;
+        return;
+    }
+    else
+        cDebug() << "Would like to select" << c_l;
 }
