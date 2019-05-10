@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 12:03-0400\n"
+"POT-Creation-Date: 2019-05-02 16:52-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Xosé, 2018\n"
 "Language-Team: Galician (https://www.transifex.com/calamares/teams/20061/gl/)\n"
@@ -27,6 +27,26 @@ msgstr ""
 
 #: src/modules/mount/main.py:36
 msgid "Mounting partitions."
+msgstr ""
+
+#: src/modules/mount/main.py:140 src/modules/initcpiocfg/main.py:187
+#: src/modules/initcpiocfg/main.py:191
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
+#: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82
+#: src/modules/luksbootkeyfile/main.py:51 src/modules/fstab/main.py:312
+#: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
+msgid "Configuration Error"
+msgstr ""
+
+#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:188
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr ""
 
 #: src/modules/services-systemd/main.py:35
@@ -182,8 +202,26 @@ msgstr "A configuración do xestor de pantalla foi incompleta"
 msgid "Configuring mkinitcpio."
 msgstr ""
 
+#: src/modules/initcpiocfg/main.py:192
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/machineid/main.py:50 src/modules/initramfscfg/main.py:99
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:317
+#: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
+msgstr ""
+
+#: src/modules/initcpio/main.py:47
+msgid "Process Failed"
+msgstr ""
+
+#: src/modules/initcpio/main.py:48
+msgid ""
+"Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
+"<pre>{!s}</pre>."
 msgstr ""
 
 #: src/modules/luksopenswaphookcfg/main.py:35
@@ -312,11 +350,11 @@ msgstr ""
 msgid "Configuring LUKS key file."
 msgstr ""
 
-#: src/modules/luksbootkeyfile/main.py:69
+#: src/modules/luksbootkeyfile/main.py:74
 msgid "Encrypted rootfs setup error"
 msgstr ""
 
-#: src/modules/luksbootkeyfile/main.py:70
+#: src/modules/luksbootkeyfile/main.py:75
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
 msgstr ""
 
@@ -332,7 +370,7 @@ msgstr "Tarefa parva de python."
 msgid "Dummy python step {}"
 msgstr "Paso parvo de python {}"
 
-#: src/modules/localecfg/main.py:37
+#: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
 msgstr ""
 

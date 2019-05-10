@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 12:03-0400\n"
+"POT-Creation-Date: 2019-05-02 16:52-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>, 2019\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/calamares/teams/20061/zh_TW/)\n"
@@ -28,6 +28,26 @@ msgstr "設定 GRUB。"
 #: src/modules/mount/main.py:36
 msgid "Mounting partitions."
 msgstr "正在掛載分割區。"
+
+#: src/modules/mount/main.py:140 src/modules/initcpiocfg/main.py:187
+#: src/modules/initcpiocfg/main.py:191
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
+#: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82
+#: src/modules/luksbootkeyfile/main.py:51 src/modules/fstab/main.py:312
+#: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
+msgid "Configuration Error"
+msgstr "設定錯誤"
+
+#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:188
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "沒有分割區被定義為 <pre>{!s}</pre> 以供使用。"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -181,9 +201,27 @@ msgstr "顯示管理器設定不完整"
 msgid "Configuring mkinitcpio."
 msgstr "正在設定 mkinitcpio。"
 
+#: src/modules/initcpiocfg/main.py:192
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/machineid/main.py:50 src/modules/initramfscfg/main.py:99
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:317
+#: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "沒有給定的根掛載點 <pre>{!s}</pre> 以供使用。"
+
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
 msgstr "正在使用 mkinitcpio 建立 initramfs。"
+
+#: src/modules/initcpio/main.py:47
+msgid "Process Failed"
+msgstr "處理失敗"
+
+#: src/modules/initcpio/main.py:48
+msgid ""
+"Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
+"<pre>{!s}</pre>."
+msgstr "處理程序 <pre>mkinitcpio</pre> 帶著錯誤代碼 {!s} 失敗。指令為 <pre>{!s}</pre>。"
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
@@ -309,11 +347,11 @@ msgstr "正在設定 OpenRC dmcrypt 服務。"
 msgid "Configuring LUKS key file."
 msgstr "正在設定 LUKS 金鑰檔案。"
 
-#: src/modules/luksbootkeyfile/main.py:69
+#: src/modules/luksbootkeyfile/main.py:74
 msgid "Encrypted rootfs setup error"
 msgstr "已加密的 rootfs 設定錯誤"
 
-#: src/modules/luksbootkeyfile/main.py:70
+#: src/modules/luksbootkeyfile/main.py:75
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
 msgstr "Rootfs 分割區 {!s} 是 LUKS 但找不到通關密語。"
 
@@ -329,7 +367,7 @@ msgstr "假的 python 工作。"
 msgid "Dummy python step {}"
 msgstr "假的 python step {}"
 
-#: src/modules/localecfg/main.py:37
+#: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
 msgstr "正在設定語系。"
 

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 12:03-0400\n"
+"POT-Creation-Date: 2019-05-02 16:52-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>, 2019\n"
 "Language-Team: Croatian (https://www.transifex.com/calamares/teams/20061/hr/)\n"
@@ -28,6 +28,26 @@ msgstr "Konfigurirajte GRUB."
 #: src/modules/mount/main.py:36
 msgid "Mounting partitions."
 msgstr "Montiranje particija."
+
+#: src/modules/mount/main.py:140 src/modules/initcpiocfg/main.py:187
+#: src/modules/initcpiocfg/main.py:191
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
+#: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82
+#: src/modules/luksbootkeyfile/main.py:51 src/modules/fstab/main.py:312
+#: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
+msgid "Configuration Error"
+msgstr "Greška konfiguracije"
+
+#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:188
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Nema definiranih particija za <pre>{!s}</pre> korištenje."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -187,9 +207,30 @@ msgstr "Konfiguracija upravitelja zaslona nije bila potpuna"
 msgid "Configuring mkinitcpio."
 msgstr "Konfiguriranje mkinitcpio."
 
+#: src/modules/initcpiocfg/main.py:192
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/machineid/main.py:50 src/modules/initramfscfg/main.py:99
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:317
+#: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Nijedna root točka montiranja nije definirana za <pre>{!s}</pre> korištenje."
+
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
 msgstr "Stvaranje initramfs s mkinitcpio."
+
+#: src/modules/initcpio/main.py:47
+msgid "Process Failed"
+msgstr "Proces nije uspio"
+
+#: src/modules/initcpio/main.py:48
+msgid ""
+"Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
+"<pre>{!s}</pre>."
+msgstr ""
+"Proces <pre>mkinitcpio</pre> nije uspio s kodom pogreške {!s}. Naredba je "
+"bila <pre>{!s}</pre>."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
@@ -326,11 +367,11 @@ msgstr "Konfiguriranje servisa OpenRC dmcrypt."
 msgid "Configuring LUKS key file."
 msgstr "Konfiguriranje LUKS ključne datoteke."
 
-#: src/modules/luksbootkeyfile/main.py:69
+#: src/modules/luksbootkeyfile/main.py:74
 msgid "Encrypted rootfs setup error"
 msgstr "Pogreška postavljanja šifriranog rootfs-a"
 
-#: src/modules/luksbootkeyfile/main.py:70
+#: src/modules/luksbootkeyfile/main.py:75
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
 msgstr "Rootfs particija {!s} je LUKS, ali nije pronađena zaporka."
 
@@ -346,7 +387,7 @@ msgstr "Testni python posao."
 msgid "Dummy python step {}"
 msgstr "Testni python korak {}"
 
-#: src/modules/localecfg/main.py:37
+#: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
 msgstr "Konfiguriranje lokalizacije."
 

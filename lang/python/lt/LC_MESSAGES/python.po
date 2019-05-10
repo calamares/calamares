@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-24 12:03-0400\n"
+"POT-Creation-Date: 2019-05-02 16:52-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Moo, 2019\n"
 "Language-Team: Lithuanian (https://www.transifex.com/calamares/teams/20061/lt/)\n"
@@ -28,6 +28,26 @@ msgstr "Konfigūruoti GRUB."
 #: src/modules/mount/main.py:36
 msgid "Mounting partitions."
 msgstr "Prijungiami skaidiniai."
+
+#: src/modules/mount/main.py:140 src/modules/initcpiocfg/main.py:187
+#: src/modules/initcpiocfg/main.py:191
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
+#: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82
+#: src/modules/luksbootkeyfile/main.py:51 src/modules/fstab/main.py:312
+#: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
+msgid "Configuration Error"
+msgstr "Konfigūracijos klaida"
+
+#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:188
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Nėra apibrėžta jokių skaidinių, skirtų <pre>{!s}</pre> naudojimui."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -187,9 +207,31 @@ msgstr "Ekranų tvarkytuvės konfigūracija yra nepilna"
 msgid "Configuring mkinitcpio."
 msgstr "Konfigūruojama mkinitcpio."
 
+#: src/modules/initcpiocfg/main.py:192
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/machineid/main.py:50 src/modules/initramfscfg/main.py:99
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:317
+#: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Nėra nurodyta jokių šaknies prijungimo taškų, skirtų <pre>{!s}</pre> "
+"naudojimui."
+
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
 msgstr "Sukuriama initramfs naudojant mkinitcpio."
+
+#: src/modules/initcpio/main.py:47
+msgid "Process Failed"
+msgstr "Procesas patyrė nesėkmę"
+
+#: src/modules/initcpio/main.py:48
+msgid ""
+"Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
+"<pre>{!s}</pre>."
+msgstr ""
+"Procesas <pre>mkinitcpio</pre> patyrė nesėkmę su klaidos kodu {!s}. Komanda "
+"buvo <pre>{!s}</pre>."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
@@ -328,11 +370,11 @@ msgstr "Konfigūruojama OpenRC dmcrypt tarnyba."
 msgid "Configuring LUKS key file."
 msgstr "Konfigūruojamas LUKS raktų failas."
 
-#: src/modules/luksbootkeyfile/main.py:69
+#: src/modules/luksbootkeyfile/main.py:74
 msgid "Encrypted rootfs setup error"
 msgstr "Šifruoto rootfs sąrankos klaida"
 
-#: src/modules/luksbootkeyfile/main.py:70
+#: src/modules/luksbootkeyfile/main.py:75
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
 msgstr "Rootfs skaidinys {!s} yra LUKS, tačiau nerasta jokios slaptafrazės."
 
@@ -348,7 +390,7 @@ msgstr "Fiktyvi python užduotis."
 msgid "Dummy python step {}"
 msgstr "Fiktyvus python žingsnis {}"
 
-#: src/modules/localecfg/main.py:37
+#: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
 msgstr "Konfigūruojamos lokalės."
 
