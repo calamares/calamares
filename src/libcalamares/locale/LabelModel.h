@@ -51,7 +51,7 @@ public:
      * This is the backing data for the model; if @p row is out-of-range,
      * returns a reference to en_US.
      */
-    const Label& locale( int row );
+    const Label& locale( int row ) const;
 
     /** @brief Searches for an item that matches @p predicate
      *

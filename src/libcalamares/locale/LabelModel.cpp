@@ -63,7 +63,7 @@ LabelModel::data( const QModelIndex& index, int role ) const
 }
 
 const Label&
-LabelModel::locale( int row )
+LabelModel::locale( int row ) const
 {
     if ( ( row < 0 ) || ( row >= m_locales.count() ) )
     {
