@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.8 (unreleased) #
+# 3.2.8 (2019-05-10) #
 
 This is a **source-incompatible** release of Calamares. Include files
 have been shuffled around, so third-party C++ modules will need
