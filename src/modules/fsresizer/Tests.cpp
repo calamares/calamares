@@ -88,7 +88,7 @@ atleast: 600MiB
     QVERIFY( !j.m_fsname.isEmpty() );
     QVERIFY( j.m_devicename.isEmpty() );
     QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::Percent );
-    QCOMPARE( j.m_atleast.unit(), Calamares::SizeUnit::Percent );
+    QCOMPARE( j.m_atleast.unit(), Calamares::SizeUnit::MiB );
     QCOMPARE( j.m_size.value(), 100 );
     QCOMPARE( j.m_atleast.value(), 600 );
 
@@ -102,7 +102,7 @@ atleast: 127 %
     j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
     QVERIFY( !j.m_fsname.isEmpty() );
     QVERIFY( !j.m_devicename.isEmpty() );
-    QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::Percent );
+    QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::MiB );
     QCOMPARE( j.m_atleast.unit(), Calamares::SizeUnit::None );
     QCOMPARE( j.m_size.value(), 72 );
     QCOMPARE( j.m_atleast.value(), 0 );
@@ -117,7 +117,7 @@ size: 71MiB
     j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
     QVERIFY( !j.m_fsname.isEmpty() );
     QVERIFY( j.m_devicename.isEmpty() );
-    QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::Percent );
+    QCOMPARE( j.m_size.unit(), Calamares::SizeUnit::MiB );
     QCOMPARE( j.m_atleast.unit(), Calamares::SizeUnit::None );
     QCOMPARE( j.m_size.value(), 71 );
     QCOMPARE( j.m_atleast.value(), 0 );
