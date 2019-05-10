@@ -462,7 +462,7 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
                 gs->value( "defaultFileSystemType" ).toString(),
                 m_encryptWidget->passphrase(),
                 gs->value( "efiSystemPartition" ).toString(),
-                CalamaresUtils::GiBtoBytes( gs->value( "requiredStorageGB" ).toDouble() ),
+                CalamaresUtils::GiBtoBytes( gs->value( "requiredStorageGiB" ).toDouble() ),
                 m_eraseSwapChoice
             };
 
@@ -560,11 +560,10 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
 
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
-                                    ->value( "requiredStorageGB" )
+                                    ->value( "requiredStorageGiB" )
                                     .toDouble();
 
-    // TODO: make this consistent
-    qint64 requiredStorageB = qRound64( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
+    qint64 requiredStorageB = CalamaresUtils::GiBtoBytes( requiredStorageGB + 0.1 + 2.0 );
 
     m_afterPartitionSplitterWidget->setSplitPartition(
                 part->partitionPath(),
@@ -967,11 +966,11 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
                                                 qint64 sizeNext )
             {
                 Q_UNUSED( path )
-                sizeLabel->setText( tr( "%1 will be shrunk to %2MB and a new "
-                                        "%3MB partition will be created for %4." )
+                sizeLabel->setText( tr( "%1 will be shrunk to %2MiB and a new "
+                                        "%3MiB partition will be created for %4." )
                                     .arg( m_beforePartitionBarsView->selectionModel()->currentIndex().data().toString() )
-                                    .arg( size / ( 1024 * 1024 ) )
-                                    .arg( sizeNext / ( 1024 * 1024 ) )
+                                    .arg( CalamaresUtils::BytesToMiB( size ) )
+                                    .arg( CalamaresUtils::BytesToMiB( sizeNext ) )
                                     .arg( *Calamares::Branding::ShortProductName ) );
             } );
 

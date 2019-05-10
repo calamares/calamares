@@ -46,8 +46,8 @@ private:
     bool checkHasInternet();
     bool checkIsRoot();
 
-    qreal m_requiredStorageGB;
-    qreal m_requiredRamGB;
+    qreal m_requiredStorageGiB;
+    qreal m_requiredRamGiB;
     QString m_checkHasInternetUrl;
 };
 

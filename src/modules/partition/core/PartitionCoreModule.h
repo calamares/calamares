@@ -24,7 +24,8 @@
 #include "core/KPMHelpers.h"
 #include "core/PartitionLayout.h"
 #include "core/PartitionModel.h"
-#include "Typedefs.h"
+
+#include "Job.h"
 
 // KPMcore
 #include <kpmcore/core/lvmdevice.h>
@@ -172,7 +173,7 @@ public:
      * requested by the user.
      * @return a list of jobs.
      */
-    QList< Calamares::job_ptr > jobs() const;
+    Calamares::JobList jobs() const;
 
     bool hasRootMountPoint() const;
 

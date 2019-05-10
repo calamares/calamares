@@ -37,66 +37,9 @@
 #include "utils/Units.h"
 #include "utils/Variant.h"
 
-#include "modules/partition/core/PartitionIterator.h"
+// From partition module
+#include "core/PartitionIterator.h"
 
-
-static const NamedEnumTable<ResizeFSJob::RelativeUnit>&
-unitSuffixes()
-{
-    using Unit = ResizeFSJob::RelativeUnit;
-
-    static const NamedEnumTable<Unit> names{
-        { QStringLiteral( "%" ), Unit::Percent },
-        { QStringLiteral( "MiB" ), Unit::Absolute }
-    };
-
-    return names;
-}
-
-ResizeFSJob::RelativeSize::RelativeSize( const QString& s )
-    : NamedSuffix( unitSuffixes(), s )
-{
-    if ( ( unit() == RelativeUnit::Percent ) && ( value() > 100 ) )
-    {
-        cDebug() << "Percent value" << value() << "is not valid.";
-        m_value = 0;
-        m_unit = RelativeUnit::None;
-    }
-
-    if ( !m_value )
-        m_unit = RelativeUnit::None;
-}
-
-qint64
-ResizeFSJob::RelativeSize::apply( qint64 totalSectors, qint64 sectorSize )
-{
-    if ( !isValid() )
-        return -1;
-    if ( sectorSize < 1 )
-        return -1;
-
-    switch ( m_unit )
-    {
-    case unit_t::None:
-        return -1;
-    case unit_t::Absolute:
-        return CalamaresUtils::MiBtoBytes( static_cast<unsigned long long>( value() ) ) / sectorSize;
-    case unit_t::Percent:
-        if ( value() == 100 )
-            return totalSectors;  // Common-case, avoid futzing around
-        else
-            return totalSectors * value() / 100;
-    }
-
-    // notreached
-    return -1;
-}
-
-qint64
-ResizeFSJob::RelativeSize::apply( Device* d )
-{
-    return apply( d->totalLogical(), d->logicalSize() );
-}
 
 ResizeFSJob::ResizeFSJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -202,7 +145,7 @@ ResizeFSJob::findGrownEnd( ResizeFSJob::PartitionMatch m )
     qint64 expand = last_available - last_currently;  // number of sectors
     if ( m_atleast.isValid() )
     {
-        qint64 required = m_atleast.apply( m.first );
+        qint64 required = m_atleast.toSectors( m.first->totalLogical(), m.first->logicalSize() );
         if ( expand < required )
         {
             cDebug() << Logger::SubEntry << "need to expand by" << required << "but only" << expand << "is available.";
@@ -210,7 +153,7 @@ ResizeFSJob::findGrownEnd( ResizeFSJob::PartitionMatch m )
         }
     }
 
-    qint64 wanted = m_size.apply( expand, m.first->logicalSize() );
+    qint64 wanted = m_size.toSectors( expand, m.first->logicalSize() );
     if ( wanted < expand )
     {
         cDebug() << Logger::SubEntry << "only growing by" << wanted << "instead of full" << expand;
@@ -329,8 +272,8 @@ ResizeFSJob::setConfigurationMap( const QVariantMap& configurationMap )
         return;
     }
 
-    m_size = RelativeSize( configurationMap["size"].toString() );
-    m_atleast = RelativeSize( configurationMap["atleast"].toString() );
+    m_size = Calamares::PartitionSize( configurationMap["size"].toString() );
+    m_atleast = Calamares::PartitionSize( configurationMap["atleast"].toString() );
 
     m_required = CalamaresUtils::getBool( configurationMap, "required", false );
 }

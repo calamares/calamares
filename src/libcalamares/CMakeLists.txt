@@ -1,3 +1,6 @@
+# libcalamares is the non-GUI part of Calamares, which includes handling
+# translations, configurations, logging, utilities, global storage, and (non-GUI) jobs.
+
 add_definitions(
     ${QT_DEFINITIONS}
     -DQT_SHARED
@@ -10,6 +13,8 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )
 
+set( OPTIONAL_PRIVATE_LIBRARIES "" )
+
 set( libSources
     CppJob.cpp
     GlobalStorage.cpp
@@ -18,8 +23,19 @@ set( libSources
     JobQueue.cpp
     ProcessJob.cpp
     Settings.cpp
-)
-set( utilsSources
+
+    # GeoIP services
+    geoip/Interface.cpp
+    geoip/GeoIPJSON.cpp
+    geoip/Handler.cpp
+
+    # Locale-data service
+    locale/Lookup.cpp
+
+    # Partition service
+    partition/PartitionSize.cpp
+
+    # Utility service
     utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
     utils/Dirs.cpp
@@ -45,9 +61,11 @@ include_directories(
     ${YAMLCPP_INCLUDE_DIR}
 )
 
+### OPTIONAL Python support
+#
+#
 if( WITH_PYTHON )
-    set( libSources
-        ${libSources}
+    list( APPEND libSources
         PythonHelper.cpp
         PythonJob.cpp
         PythonJobApi.cpp
@@ -62,27 +80,25 @@ if( WITH_PYTHON )
     include_directories(${Boost_INCLUDE_DIRS})
     link_directories(${Boost_LIBRARY_DIRS})
 
-    set( OPTIONAL_PRIVATE_LIBRARIES
-        ${OPTIONAL_PRIVATE_LIBRARIES}
+    list( APPEND OPTIONAL_PRIVATE_LIBRARIES
         ${PYTHON_LIBRARIES}
         ${Boost_LIBRARIES}
     )
 endif()
 
-set( geoipSources
-    geoip/Interface.cpp
-    geoip/Handler.cpp
-)
-set( geoipImplementations geoip/GeoIPJSON.cpp )
-set( geoip_libs )
-
+### OPTIONAL GeoIP XML support
+#
+#
 find_package(Qt5 COMPONENTS Xml)
 if( Qt5Xml_FOUND )
-    list( APPEND geoipImplementations geoip/GeoIPXML.cpp )
-    list( APPEND geoip_libs Qt5::Network Qt5::Xml )
+    list( APPEND libSources geoip/GeoIPXML.cpp )
+    list( APPEND OPTIONAL_PRIVATE_LIBRARIES Qt5::Network Qt5::Xml )
 endif()
 
-add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} ${geoipSources} ${geoipImplementations} )
+### LIBRARY
+#
+#
+add_library( calamares SHARED ${libSources} ${kdsagSources} )
 set_target_properties( calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
@@ -95,7 +111,6 @@ target_link_libraries( calamares
         ${OPTIONAL_PRIVATE_LIBRARIES}
     LINK_PUBLIC
         ${YAMLCPP_LIBRARY}
-        ${geoip_libs}
         Qt5::Core
 )
 
@@ -106,6 +121,26 @@ install( TARGETS calamares
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
+# Make symlink lib/calamares/libcalamares.so to lib/libcalamares.so.VERSION so
+# lib/calamares can be used as module path for the Python interpreter.
+install( CODE "
+    file( MAKE_DIRECTORY \"\$ENV{DESTDIR}/${CMAKE_INSTALL_FULL_LIBDIR}/calamares\" )
+    execute_process( COMMAND \"${CMAKE_COMMAND}\" -E create_symlink ../libcalamares.so.${CALAMARES_VERSION_SHORT} libcalamares.so WORKING_DIRECTORY \"\$ENV{DESTDIR}/${CMAKE_INSTALL_FULL_LIBDIR}/calamares\" )
+")
+
+# Install header files
+file( GLOB rootHeaders "*.h" )
+file( GLOB kdsingleapplicationguardHeaders "kdsingleapplicationguard/*.h" )
+file( GLOB utilsHeaders "utils/*.h" )
+
+install( FILES ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h DESTINATION include/libcalamares )
+install( FILES ${rootHeaders}                       DESTINATION include/libcalamares )
+install( FILES ${kdsingleapplicationguardHeaders}   DESTINATION include/libcalamares/kdsingleapplicationguard )
+install( FILES ${utilsHeaders}                      DESTINATION include/libcalamares/utils )
+
+### TESTING
+#
+#
 if ( ECM_FOUND AND BUILD_TESTING )
     ecm_add_test(
             Tests.cpp
@@ -136,20 +171,3 @@ if( BUILD_TESTING )
     target_link_libraries( test_geoip calamares Qt5::Network ${YAMLCPP_LIBRARY} )
     calamares_automoc( test_geoip )
 endif()
-
-# Make symlink lib/calamares/libcalamares.so to lib/libcalamares.so.VERSION so
-# lib/calamares can be used as module path for the Python interpreter.
-install( CODE "
-    file( MAKE_DIRECTORY \"\$ENV{DESTDIR}/${CMAKE_INSTALL_FULL_LIBDIR}/calamares\" )
-    execute_process( COMMAND \"${CMAKE_COMMAND}\" -E create_symlink ../libcalamares.so.${CALAMARES_VERSION_SHORT} libcalamares.so WORKING_DIRECTORY \"\$ENV{DESTDIR}/${CMAKE_INSTALL_FULL_LIBDIR}/calamares\" )
-")
-
-# Install header files
-file( GLOB rootHeaders "*.h" )
-file( GLOB kdsingleapplicationguardHeaders "kdsingleapplicationguard/*.h" )
-file( GLOB utilsHeaders "utils/*.h" )
-
-install( FILES ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h DESTINATION include/libcalamares )
-install( FILES ${rootHeaders}                       DESTINATION include/libcalamares )
-install( FILES ${kdsingleapplicationguardHeaders}   DESTINATION include/libcalamares/kdsingleapplicationguard )
-install( FILES ${utilsHeaders}                      DESTINATION include/libcalamares/utils )

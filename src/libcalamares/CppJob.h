@@ -24,7 +24,6 @@
 #include <QVariant>
 
 #include "DllMacro.h"
-#include "Typedefs.h"
 #include "Job.h"
 
 namespace Calamares

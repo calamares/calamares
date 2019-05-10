@@ -20,9 +20,10 @@
 #define CALAMARES_JOB_H
 
 #include "DllMacro.h"
-#include "Typedefs.h"
 
+#include <QList>
 #include <QObject>
+#include <QSharedPointer>
 
 namespace Calamares {
 
@@ -40,7 +41,8 @@ public:
     {
         NoError = 0,
         GenericError = -1,
-        PythonUncaughtException = 1
+        PythonUncaughtException = 1,
+        InvalidConfiguration = 2
     } ;
 
     JobResult( const JobResult& rhs ) = delete;
@@ -95,6 +97,9 @@ signals:
 private:
     bool m_emergency = false;
 };
+
+using job_ptr = QSharedPointer< Job >;
+using JobList = QList< job_ptr >;
 
 } // namespace Calamares
 

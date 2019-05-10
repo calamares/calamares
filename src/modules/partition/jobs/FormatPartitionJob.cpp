@@ -38,7 +38,7 @@ FormatPartitionJob::FormatPartitionJob( Device* device, Partition* partition )
 QString
 FormatPartitionJob::prettyName() const
 {
-    return tr( "Format partition %1 (file system: %2, size: %3 MB) on %4." )
+    return tr( "Format partition %1 (file system: %2, size: %3 MiB) on %4." )
            .arg( m_partition->partitionPath() )
            .arg( m_partition->fileSystem().name() )
            .arg( m_partition->capacity() / 1024 / 1024 )
@@ -49,7 +49,7 @@ FormatPartitionJob::prettyName() const
 QString
 FormatPartitionJob::prettyDescription() const
 {
-    return tr( "Format <strong>%3MB</strong> partition <strong>%1</strong> with "
+    return tr( "Format <strong>%3MiB</strong> partition <strong>%1</strong> with "
                "file system <strong>%2</strong>." )
            .arg( m_partition->partitionPath() )
            .arg( m_partition->fileSystem().name() )

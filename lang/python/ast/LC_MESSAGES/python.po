@@ -182,7 +182,7 @@ msgstr "La configuración del xestor de pantalles nun se completó"
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Configurando mkinitcpio."
 
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
@@ -190,7 +190,7 @@ msgstr ""
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "Configurando l'intercambéu cifráu."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -289,11 +289,11 @@ msgstr ""
 
 #: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "El códigu de salida foi {}"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "Configurando'l reló de hardware."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
@@ -337,7 +337,7 @@ msgstr "Pasu maniquín {} en Python"
 
 #: src/modules/localecfg/main.py:37
 msgid "Configuring locales."
-msgstr ""
+msgstr "Configurando locales."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."

@@ -72,6 +72,7 @@ private:
     bool m_mounted;
 };
 
+/// @brief Generate random data of given @p size as a QByteArray
 static QByteArray
 generateTestData( qint64 size )
 {
@@ -321,10 +322,10 @@ PartitionJobTests::testCreatePartitionExtended()
 void
 PartitionJobTests::testResizePartition_data()
 {
-    QTest::addColumn< int >( "oldStartMB" );
-    QTest::addColumn< int >( "oldSizeMB" );
-    QTest::addColumn< int >( "newStartMB" );
-    QTest::addColumn< int >( "newSizeMB" );
+    QTest::addColumn< int >( "oldStartMiB" );
+    QTest::addColumn< int >( "oldSizeMiB" );
+    QTest::addColumn< int >( "newStartMiB" );
+    QTest::addColumn< int >( "newSizeMiB" );
 
     QTest::newRow("grow")      << 10 << 50 << 10 << 70;
     QTest::newRow("shrink")    << 10 << 70 << 10 << 50;
@@ -335,22 +336,22 @@ PartitionJobTests::testResizePartition_data()
 void
 PartitionJobTests::testResizePartition()
 {
-    QFETCH( int, oldStartMB );
-    QFETCH( int, oldSizeMB );
-    QFETCH( int, newStartMB );
-    QFETCH( int, newSizeMB );
+    QFETCH( int, oldStartMiB );
+    QFETCH( int, oldSizeMiB );
+    QFETCH( int, newStartMiB );
+    QFETCH( int, newSizeMiB );
 
-    const qint64 sectorForMB = 1_MiB / m_device->logicalSize();
+    const qint64 sectorsPerMiB = 1_MiB / m_device->logicalSize();
 
-    qint64 oldFirst = sectorForMB * oldStartMB;
-    qint64 oldLast  = oldFirst + sectorForMB * oldSizeMB - 1;
-    qint64 newFirst = sectorForMB * newStartMB;
-    qint64 newLast  = newFirst + sectorForMB * newSizeMB - 1;
+    qint64 oldFirst = sectorsPerMiB * oldStartMiB;
+    qint64 oldLast  = oldFirst + sectorsPerMiB * oldSizeMiB - 1;
+    qint64 newFirst = sectorsPerMiB * newStartMiB;
+    qint64 newLast  = newFirst + sectorsPerMiB * newSizeMiB - 1;
 
     // Make the test data file smaller than the full size of the partition to
     // accomodate for the file system overhead
-    const unsigned long long minSizeMB = qMin( oldSizeMB, newSizeMB );
-    const QByteArray testData = generateTestData( CalamaresUtils::MiBtoBytes( minSizeMB ) * 3 / 4 );
+    const unsigned long long minSizeMiB = qMin( oldSizeMiB, newSizeMiB );
+    const QByteArray testData = generateTestData( CalamaresUtils::MiBtoBytes( minSizeMiB ) * 3 / 4 );
     const QString testName = "test.data";
 
     // Setup: create the test partition

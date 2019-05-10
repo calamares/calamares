@@ -21,7 +21,6 @@
 
 #include "Settings.h"
 
-// #include "utils/CalamaresUtils.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"

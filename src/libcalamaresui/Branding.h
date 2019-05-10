@@ -22,7 +22,6 @@
 #define BRANDING_H
 
 #include "UiDllMacro.h"
-#include "Typedefs.h"
 
 #include "utils/NamedSuffix.h"
 

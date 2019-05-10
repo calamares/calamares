@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Kevin Kofler <kevin.kofler@chello.at>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -258,7 +259,11 @@ ClearMountsJob::getCryptoDevices() const
     QProcess process;
     for ( const QFileInfo &fi : fiList )
     {
-        if ( fi.baseName() == "control" )
+        QString baseName = fi.baseName();
+        // Fedora live images use /dev/mapper/live-* internally. We must not
+        // unmount those devices, because they are used by the live image and
+        // because we need /dev/mapper/live-base in the unpackfs module.
+        if ( baseName == "control" || baseName.startsWith( "live-" ) )
             continue;
         list.append( fi.absoluteFilePath() );
     }

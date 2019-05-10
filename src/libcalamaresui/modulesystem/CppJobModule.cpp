@@ -33,14 +33,14 @@ namespace Calamares
 Module::Type
 CppJobModule::type() const
 {
-    return Job;
+    return Module::Type::Job;
 }
 
 
 Module::Interface
 CppJobModule::interface() const
 {
-    return QtPluginInterface;
+    return Module::Interface::QtPlugin;
 }
 
 

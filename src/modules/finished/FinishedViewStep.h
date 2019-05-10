@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,15 +17,15 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef FINISHEDPAGEPLUGIN_H
-#define FINISHEDPAGEPLUGIN_H
+#ifndef FINISHEDVIEWSTEP_H
+#define FINISHEDVIEWSTEP_H
 
 #include <QObject>
 
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
-#include <PluginDllMacro.h>
+#include "PluginDllMacro.h"
 
 class FinishedPage;
 
@@ -33,6 +34,14 @@ class PLUGINDLLEXPORT FinishedViewStep : public Calamares::ViewStep
     Q_OBJECT
 
 public:
+    enum class RestartMode
+    {
+        Never=0,         ///< @brief Don't show button, just exit
+        UserUnchecked,   ///< @brief Show button, starts unchecked
+        UserChecked,     ///< @brief Show button, starts checked
+        Always           ///< @brief Show button, can't change, checked
+    };
+
     explicit FinishedViewStep( QObject* parent = nullptr );
     virtual ~FinishedViewStep() override;
 
@@ -70,4 +79,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( FinishedViewStepFactory )
 
-#endif // FINISHEDPAGEPLUGIN_H
+#endif

@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -20,17 +20,34 @@
 
 #include "FinishedViewStep.h"
 #include "FinishedPage.h"
+
+#include "Branding.h"
 #include "JobQueue.h"
+#include "Settings.h"
 
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
+#include "utils/Variant.h"
 
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusReply>
 #include <QVariantMap>
 
-#include "Branding.h"
-#include "Settings.h"
+static const NamedEnumTable< FinishedViewStep::RestartMode >&
+modeNames()
+{
+    using Mode = FinishedViewStep::RestartMode;
+
+    static const NamedEnumTable< Mode > names{
+        { QStringLiteral( "never" ), Mode::Never },
+        { QStringLiteral( "user-unchecked" ), Mode::UserUnchecked },
+        { QStringLiteral( "user-checked" ), Mode::UserChecked },
+        { QStringLiteral( "always" ), Mode::Always }
+    } ;
+
+    return names;
+}
 
 FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -122,10 +139,10 @@ FinishedViewStep::sendNotification()
                                           QVariant( 0 )
                                         );
         if ( !r.isValid() )
-            cDebug() << "Could not call notify for end of installation." << r.error();
+            cWarning() << "Could not call org.freedesktop.Notifications.Notify at end of installation." << r.error();
     }
     else
-        cDebug() << "Could not get dbus interface for notifications." << notify.lastError();
+        cWarning() << "Could not get dbus interface for notifications at end of installation." << notify.lastError();
 }
 
 
@@ -156,28 +173,41 @@ FinishedViewStep::onInstallationFailed( const QString& message, const QString& d
 void
 FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "restartNowEnabled" ) &&
-            configurationMap.value( "restartNowEnabled" ).type() == QVariant::Bool )
+    RestartMode mode = RestartMode::Never;
+
+    QString restartMode = CalamaresUtils::getString( configurationMap, "restartNowMode" );
+    if ( restartMode.isEmpty() )
     {
-        bool restartNowEnabled = configurationMap.value( "restartNowEnabled" ).toBool();
+        if ( configurationMap.contains( "restartNowEnabled" ) )
+            cWarning() << "Configuring the finished module with deprecated restartNowEnabled settings";
 
-        m_widget->setRestartNowEnabled( restartNowEnabled );
-        if ( restartNowEnabled )
-        {
-            if ( configurationMap.contains( "restartNowChecked" ) &&
-                    configurationMap.value( "restartNowChecked" ).type() == QVariant::Bool )
-                m_widget->setRestartNowChecked( configurationMap.value( "restartNowChecked" ).toBool() );
+        bool restartNowEnabled = CalamaresUtils::getBool( configurationMap, "restartNowEnabled", false );
+        bool restartNowChecked = CalamaresUtils::getBool( configurationMap, "restartNowChecked", false );
 
-            if ( configurationMap.contains( "restartNowCommand" ) &&
-                    configurationMap.value( "restartNowCommand" ).type() == QVariant::String )
-                m_widget->setRestartNowCommand( configurationMap.value( "restartNowCommand" ).toString() );
-            else
-                m_widget->setRestartNowCommand( "shutdown -r now" );
-        }
+        if ( !restartNowEnabled )
+            mode = RestartMode::Never;
+        else
+            mode = restartNowChecked ? RestartMode::UserChecked : RestartMode::UserUnchecked;
     }
-    if ( configurationMap.contains( "notifyOnFinished" ) &&
-            configurationMap.value( "notifyOnFinished" ).type() == QVariant::Bool )
-        m_notifyOnFinished = configurationMap.value( "notifyOnFinished" ).toBool();
+    else
+    {
+        bool ok = false;
+        mode = modeNames().find( restartMode, ok );
+        if ( !ok )
+            cWarning() << "Configuring the finished module with bad restartNowMode" << restartMode;
+    }
+
+    m_widget->setRestart( mode );
+
+    if ( mode != RestartMode::Never )
+    {
+        QString restartNowCommand = CalamaresUtils::getString( configurationMap, "restartNowCommand" );
+        if ( restartNowCommand.isEmpty() )
+            restartNowCommand = QStringLiteral( "shutdown -r now" );
+        m_widget->setRestartNowCommand( restartNowCommand );
+    }
+
+    m_notifyOnFinished = CalamaresUtils::getBool( configurationMap, "notifyOnFinished", false );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( FinishedViewStepFactory, registerPlugin<FinishedViewStep>(); )

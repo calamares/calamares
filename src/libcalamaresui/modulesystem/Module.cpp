@@ -235,9 +235,9 @@ Module::typeString() const
 {
     switch ( type() )
     {
-    case Job:
+        case Type::Job:
         return "Job Module";
-    case View:
+    case Type::View:
         return "View Module";
     }
     return QString();
@@ -249,13 +249,13 @@ Module::interfaceString() const
 {
     switch ( interface() )
     {
-    case ProcessInterface:
+        case Interface::Process:
         return "External process";
-    case PythonInterface:
+    case Interface::Python:
         return "Python (Boost.Python)";
-    case PythonQtInterface:
+    case Interface::PythonQt:
         return "Python (experimental)";
-    case QtPluginInterface:
+    case Interface::QtPlugin:
         return "Qt Plugin";
     }
     return QString();

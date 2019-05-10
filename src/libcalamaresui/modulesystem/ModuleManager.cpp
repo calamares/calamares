@@ -277,7 +277,7 @@ ModuleManager::loadModules()
 
                 // At this point we most certainly have a pointer to a loaded module in
                 // thisModule. We now need to enqueue jobs info into an EVS.
-                if ( currentAction == Calamares::Exec )
+                if ( currentAction == ModuleAction::Exec )
                 {
                     ExecutionViewStep* evs =
                         qobject_cast< ExecutionViewStep* >(

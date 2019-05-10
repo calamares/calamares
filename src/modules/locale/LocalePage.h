@@ -20,9 +20,8 @@
 #ifndef LOCALEPAGE_H
 #define LOCALEPAGE_H
 
-#include "Typedefs.h"
-
 #include "LocaleConfiguration.h"
+#include "Job.h"
 
 #include <QWidget>
 
@@ -44,7 +43,7 @@ public:
 
     QString prettyStatus() const;
 
-    QList< Calamares::job_ptr > createJobs();
+    Calamares::JobList createJobs();
 
     QMap< QString, QString > localesMap();
 

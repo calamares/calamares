@@ -20,9 +20,9 @@
 #ifndef PARTITIONLAYOUT_H
 #define PARTITIONLAYOUT_H
 
-#include "core/PartUtils.h"
+#include "partition/PartitionSize.h"
 
-#include "Typedefs.h"
+#include "core/PartUtils.h"
 
 // KPMcore
 #include <kpmcore/core/partitiontable.h>
@@ -43,9 +43,9 @@ public:
         QString partLabel;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
-        PartUtils::PartSize partSize;
-        PartUtils::PartSize partMinSize;
-        PartUtils::PartSize partMaxSize;
+        Calamares::PartitionSize partSize;
+        Calamares::PartitionSize partMinSize;
+        Calamares::PartitionSize partMaxSize;
 
         /// @brief All-zeroes PartitionEntry
         PartitionEntry() {}

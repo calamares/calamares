@@ -10,9 +10,17 @@ have been shuffled around, so third-party C++ modules will need
 adjustment to the changed names.
 
 This release contains contributions from (alphabetically by first name):
+ - Arnaud Ferraris
+ - Kevin Kofler
 
 ## Core ##
 
+ - All user-visible texts referring to "MB" and "GB" now use the standard
+   "MiB" and "GiB" wording, which matches what we were actually calculating
+   with (i.e. 2^20 and 2^30 respectively). #1129
+ - The side-pane, which shows the list of steps that will be executed,
+   now tries to fit the text (name of each module) into the available space
+   by shrinking the font as needed. #1137
  - *libcalamares* (accidentally) linked with Qt's GUI libraries when
    PythonQt was found. This led to the odd situation where the non-GUI
    Calamares library depends on a bunch of GUI libraries.
@@ -24,6 +32,9 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ - *finished* has a new mechanism for configuring the behavior of the
+   *restart now* button. The old-style boolean configuration is still
+   supported but generates a warning. #1138
  - *locale* module GeoIP configuration has a new preferred format.
    See `locale.conf` for details. The old configuration is still
    supported but will be phased out before 3.3.0 -- in particular,
@@ -31,7 +42,7 @@ This release contains contributions from (alphabetically by first name):
    crutch for the disappearance of one GeoIP provider in 2018.
  - *oemid* is a new module for configuring OEM phase-0 (image pre-mastering,
    or pre-deployment) things. It has limited functionality at the moment,
-   writing only a single batch-identifier file.
+   writing only a single batch-identifier file. #943
  - All Python modules now bail out gracefully on (at least some) bad
    configurations, rather than raising an exception. The pre-release
    scripts now test for exceptions to avoid shipping modules with

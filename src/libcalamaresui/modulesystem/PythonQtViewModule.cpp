@@ -46,14 +46,14 @@ namespace Calamares
 Module::Type
 PythonQtViewModule::type() const
 {
-    return View;
+    return Module::Type::View;
 }
 
 
 Module::Interface
 PythonQtViewModule::interface() const
 {
-    return PythonQtInterface;
+    return Module::Interface::PythonQt;
 }
 
 

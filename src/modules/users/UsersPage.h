@@ -24,9 +24,8 @@
 #ifndef USERSPAGE_H
 #define USERSPAGE_H
 
-#include "Typedefs.h"
-
 #include "CheckPWQuality.h"
+#include "Job.h"
 
 #include <QWidget>
 
@@ -44,7 +43,7 @@ public:
 
     bool isReady();
 
-    QList< Calamares::job_ptr > createJobs( const QStringList& defaultGroupsList );
+    Calamares::JobList createJobs( const QStringList& defaultGroupsList );
 
     void onActivate();
 
