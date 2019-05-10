@@ -92,6 +92,18 @@ public:
         return m_locale.name();
     }
 
+    /// @brief Convenience accessor to the language part of the locale
+    QLocale::Language language() const
+    {
+        return m_locale.language();
+    }
+
+    /// @brief Convenience accessor to the country part (if any) of the locale
+    QLocale::Country country() const
+    {
+        return m_locale.country();
+    }
+
     /** @brief Get a Qt locale for the given @p localeName
      *
      * This special-cases `sr@latin`, which is used as a translation

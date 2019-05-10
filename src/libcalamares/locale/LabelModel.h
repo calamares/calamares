@@ -59,7 +59,10 @@ public:
      */
     int find( std::function<bool( const QLocale& )> predicate ) const;
     int find( std::function<bool( const Label& )> predicate ) const;
+    /// @brief Looks for an item using the same locale, -1 if there isn't one
     int find( const QLocale& ) const;
+    /// @brief Looks for an item that best matches the 2-letter country code
+    int find( const QString& countryCode ) const;
 
 private:
     QVector< Label > m_locales;
