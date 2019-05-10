@@ -43,6 +43,10 @@ This release contains contributions from (alphabetically by first name):
  - *oemid* is a new module for configuring OEM phase-0 (image pre-mastering,
    or pre-deployment) things. It has limited functionality at the moment,
    writing only a single batch-identifier file. #943
+ - *welcome* can now do GeoIP lookups as well (but be careful with the
+   configuration, since you need a GeoIP that provides country information,
+   not just timezones). This will let Calamares select a starting language
+   that matches where it is -- which might not be useful at all. #934
  - All Python modules now bail out gracefully on (at least some) bad
    configurations, rather than raising an exception. The pre-release
    scripts now test for exceptions to avoid shipping modules with
