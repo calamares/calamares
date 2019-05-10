@@ -1,30 +1,67 @@
 #! /usr/bin/env python3
 #
+#  === This file is part of Calamares - <https://github.com/calamares> ===
+#
 # Python3 script to scrape some data out of ICU CLDR supplemental data.
 #
-# To use this script, you must have downloaded the CLDR data, e.g.
-# http://unicode.org/Public/cldr/35.1/, and extracted the zip file.
-# Run the script from **inside** the common/ durectory that is created
-# (or fix the hard-coded path).
+### BEGIN LICENSES
 #
-# The script tries to print C++ code that compiles; if there are encoding
-# problems, it will print some kind of representation of the problematic
-# lines.
+# Copyright 2019 Adriaan de Groot <groot@kde.org>
 #
-# To avoid having to cross-reference multiple XML files, the script
-# cheats: it reads the comments as well to get names. So it looks for
-# pairs of lines like this:
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
 #
-#    <likelySubtag from="und_BQ" to="pap_Latn_BQ"/>
-#    <!--{ ?; ?; Caribbean Netherlands } => { Papiamento; Latin; Caribbean Netherlands }-->
+#   1. Redistributions of source code must retain the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice, this list of conditions and the following disclaimer in the
+#      documentation and/or other materials provided with the distribution.
 #
-# It extracts the 2-character country code "BQ" from the sub-tag, and
-# parses the comment to get a language and country name (instead of looking up
-# "pap" and "BQ" in other tables). This may be considered a hack.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
 #
-# A large collection of exceptions can be found in the two *_mapper tables,
-# which massage the CLDR names to Qt enum values.
+### END LICENSES
+ 
+### BEGIN USAGE
+#
+"""
+Python3 script to scrape some data out of ICU CLDR supplemental data.
 
+To use this script, you must have downloaded the CLDR data, e.g.
+http://unicode.org/Public/cldr/35.1/, and extracted the zip file.
+Run the script from **inside** the common/ durectory that is created
+(or fix the hard-coded path).
+
+The script tries to print C++ code that compiles; if there are encoding
+problems, it will print some kind of representation of the problematic
+lines.
+
+To avoid having to cross-reference multiple XML files, the script
+cheats: it reads the comments as well to get names. So it looks for
+pairs of lines like this:
+
+   <likelySubtag from="und_BQ" to="pap_Latn_BQ"/>
+   <!--{ ?; ?; Caribbean Netherlands } => { Papiamento; Latin; Caribbean Netherlands }-->
+
+It extracts the 2-character country code "BQ" from the sub-tag, and
+parses the comment to get a language and country name (instead of looking up
+"pap" and "BQ" in other tables). This may be considered a hack.
+
+A large collection of exceptions can be found in the two *_mapper tables,
+which massage the CLDR names to Qt enum values.
+"""
+#
+### END USAGE
 
 import sys
 
@@ -64,9 +101,64 @@ country_mapper = {
     "Eurozone" : "AnyCountry",  # Not likely for GeoIP
     "Caribbean Netherlands" : "Bonaire",  # Bonaire, Saba, St.Eustatius
     }
+
+class CountryData:
+    def __init__(self, country_code, language_name, country_name):
+        """
+        Takes a 2-letter country name, and enum names from
+        QLocale::Language and QLocale::Country. An empty
+        @p country code is acceptable, for the terminating
+        entry in the data array (and yields a 0,0 code).
+        """
+        if country_code:
+            assert len(country_code) == 2
+            self.country_code = country_code
+            self.language_enum = language_name
+            self.country_enum = country_name
+        else:
+            self.country_code = ""
+            self.language_enum = "AnyLanguage"
+            self.country_enum = "AnyCountry"
     
-def extricate(l1, l2):
-    if '"und_' not in l1:
+    def __str__(self):
+        if self.country_code:
+            char0 = "'{!s}'".format(self.country_code[0])
+            char1 = "'{!s}'".format(self.country_code[1])
+        else:
+            char0 = "0"
+            char1 = "0"
+            
+        return "{!s} QLocale::Language::{!s}, QLocale::Country::{!s}, {!s}, {!s} {!s},".format(
+            "{",
+            self.language_enum, 
+            self.country_enum,
+            char0, 
+            char1,
+            "}")
+
+    # Must match type name below
+    cpp_classname = "CountryData"
+    
+    # Must match the output format of __str__ above
+    cpp_declaration = """
+struct CountryData
+{
+    QLocale::Language l;
+    QLocale::Country c;
+    char cc1;
+    char cc2;
+};
+"""
+
+
+def extricate_subtags(l1, l2):
+    """
+    Given two lines @p l1 and @p l2 which are the <likelySubtag> element-line
+    and the comment-line underneath it, return a CountryData for them,
+    or None if the two lines are not relevant (e.g. not the right subtag from,
+    or 3-letter country codes.
+    """
+    if 'from="und_' not in l1:
         return
     if '{ ?; ?;' not in l2:
         return
@@ -94,47 +186,93 @@ def extricate(l1, l2):
     l2_country = country_mapper.get(l2_country, l2_country)
     l2_country = l2_country.replace(" ", "").replace("-", "").replace(".","").replace("&","And")
       
-    # There shouldn't be any UTF-8 left in there.
-    try:
-        print("{!s} QLocale::Language::{!s}, QLocale::Country::{!s}, '{!s}', '{!s}' {!s},".format(
-            "{",
-            l2_language, 
-            l2_country,
-            l1_code[0], 
-            l1_code[1],
-            "}"))
-    except UnicodeEncodeError:
-        print(list(map(lambda x : '?' if x > 128 else chr(x), map(lambda x:ord(x), l2_country))))
-        raise
+    return CountryData(l1_code, l2_language, l2_country)
 
-print("""// Generated from CLDR data
-#include <QLocale>
-struct CountryData
-{
-    QLocale::Language l;
-    QLocale::Country c;
-    char cc1;
-    char cc2;
-};
 
-static const CountryData countryMap[] = {
-""")
+def read_subtags_file():
+    """
+    Returns a list of CountryData objects from the likelySubtags file.
+    """
+    data = []
 
-with open("supplemental/likelySubtags.xml", "rt", encoding="UTF-8") as f:
-    l1 = "a line"
-    while l1:
-        l1 = f.readline()
-        if '<likelySubtag from="und_' not in l1:
-            continue
-        l2 = f.readline()
+    with open("supplemental/likelySubtags.xml", "rt", encoding="UTF-8") as f:
+        l1 = "a line"
+        while l1:
+            l1 = f.readline()
+            if '<likelySubtag from="und_' not in l1:
+                continue
+            l2 = f.readline()
 
-        if l1:
-            assert "likelySubtag" in l1, l1;
-            assert "<!--" in l2, l2;
-            
-            extricate(l1, l2)
-        
-print("""{ QLocale::Language::AnyLanguage, QLocale::Country::AnyCountry, 0, 0 } // Terminator
-};
+            if l1:
+                assert "likelySubtag" in l1, l1;
+                assert "<!--" in l2, l2;
+                
+                data.append(extricate_subtags(l1, l2))
+
+    data.append(CountryData("", None, None))
+    return [c for c in data if c is not None]
+
+
+cpp_header_comment = """/*   GENERATED FILE DO NOT EDIT
+*
+*  === This file is part of Calamares - <https://github.com/calamares> ===
+*
+* This file is derived from CLDR data from Unicode, Inc. Applicable terms:
+*
+* A. Unicode Copyright
+*    1. Copyright © 1991-2019 Unicode, Inc. All rights reserved.
+* B. Definitions
+*    Unicode Data Files ("DATA FILES") include all data files under the directories:
+*    https://www.unicode.org/Public/
+* C. Terms of Use
+*    2. Any person is hereby authorized, without fee, to view, use, reproduce, 
+*       and distribute all documents and files, subject to the Terms and 
+*       Conditions herein.
+*/
+
+// BEGIN Generated from CLDR data
+
+"""
+
+cpp_footer_comment = """
 // END Generated from CLDR data
-""")
+"""
+
+
+def make_identifier(classname):
+    """
+    Given a class name (e.g. CountryData) return an identifer
+    for the data-table for that class.
+    """
+    identifier = [ classname[0].lower() ]
+    for c in classname[1:]:
+        if c.isupper():
+            identifier.extend(["_", c.lower()])
+        else:
+            identifier.append(c)
+            
+    identifier.append("_table")
+    return "".join(identifier)
+        
+        
+def export_class(cls, data):
+    """
+    Given a @p cls and a list of @p data objects from that class,
+    print (to stdout) a C++ file for that data.
+    """
+    with open("{!s}_p.cpp".format(cls.cpp_classname), "wt", encoding="UTF-8") as f:
+        f.write(cpp_header_comment)
+        f.write(cls.cpp_declaration)
+        f.write("\nstatic const {!s} {!s}[] = {!s}\n".format(
+            cls.cpp_classname,
+            make_identifier(cls.cpp_classname),
+            "{"))
+        for d in data:
+            f.write(str(d))
+            f.write("\n")
+        f.write("};\n\n");
+        f.write(cpp_footer_comment)
+    
+    
+if __name__ == "__main__":
+    export_class(CountryData, read_subtags_file())
