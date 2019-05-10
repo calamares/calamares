@@ -126,9 +126,11 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             CalamaresUtils::getString( geoip, "url" ),
             CalamaresUtils::getString( geoip, "selector" ) );
         auto* future = new FWString();
-        connect( future, &FWString::finished, [f=future, h=handler]()
+        connect( future, &FWString::finished, [view=this, f=future, h=handler]()
         {
-            cDebug() << "GeoIP result for welcome=" << f->future().result();
+            QString countryResult = f->future().result();
+            cDebug() << "GeoIP result for welcome=" << countryResult;
+            view->setCountry( countryResult );
             f->deleteLater();
             delete h;
         } );
@@ -136,7 +138,20 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 }
 
-Calamares::RequirementsList WelcomeViewStep::checkRequirements()
+Calamares::RequirementsList
+WelcomeViewStep::checkRequirements()
 {
     return m_requirementsChecker->checkRequirements();
+}
+
+void
+WelcomeViewStep::setCountry( const QString& countryCode )
+{
+    if ( countryCode.length() != 2 )
+    {
+        cDebug() << "Unusable country code" << countryCode;
+        return;
+    }
+
+    cDebug() << "TODO: update country" << countryCode;
 }
