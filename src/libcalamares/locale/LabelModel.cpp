@@ -16,30 +16,33 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "LocaleModel.h"
+#include "LabelModel.h"
 
-LocaleModel::LocaleModel( const QStringList& locales, QObject* parent )
+namespace CalamaresUtils::Locale
+{
+
+LabelModel::LabelModel( const QStringList& locales, QObject* parent )
     : QAbstractListModel( parent )
 {
     Q_ASSERT( locales.count() > 0 );
     m_locales.reserve( locales.count() );
 
     for ( const auto& l : locales )
-        m_locales.push_back( CalamaresUtils::LocaleLabel( l ) );
+        m_locales.push_back( Label( l ) );
 }
 
-LocaleModel::~LocaleModel()
+LabelModel::~LabelModel()
 {
 }
 
 int
-LocaleModel::rowCount( const QModelIndex& ) const
+LabelModel::rowCount( const QModelIndex& ) const
 {
     return m_locales.count();
 }
 
 QVariant
-LocaleModel::data( const QModelIndex& index, int role ) const
+LabelModel::data( const QModelIndex& index, int role ) const
 {
     if ( ( role != LabelRole ) && ( role != EnglishLabelRole ) )
         return QVariant();
@@ -59,8 +62,8 @@ LocaleModel::data( const QModelIndex& index, int role ) const
     }
 }
 
-const CalamaresUtils::LocaleLabel&
-LocaleModel::locale( int row )
+const Label&
+LabelModel::locale( int row )
 {
     if ( ( row < 0 ) || ( row >= m_locales.count() ) )
     {
@@ -73,7 +76,7 @@ LocaleModel::locale( int row )
 }
 
 int
-LocaleModel::find( std::function<bool ( const LocaleLabel& )> predicate ) const
+LabelModel::find( std::function<bool ( const Label& )> predicate ) const
 {
     for ( int row = 0; row < m_locales.count() ; ++row )
     {
@@ -84,26 +87,21 @@ LocaleModel::find( std::function<bool ( const LocaleLabel& )> predicate ) const
 }
 
 int
-LocaleModel::find( std::function<bool ( const QLocale& )> predicate ) const
+LabelModel::find( std::function<bool ( const QLocale& )> predicate ) const
 {
-    return find( [&]( const LocaleLabel& l )
+    return find( [&]( const Label& l )
     {
         return predicate( l.locale() );
     } );
 }
 
 int
-LocaleModel::find( const QLocale& locale ) const
+LabelModel::find( const QLocale& locale ) const
 {
-    return find( [&]( const LocaleLabel& l )
+    return find( [&]( const Label& l )
     {
         return locale == l.locale();
     } );
 }
 
-void
-LocaleTwoColumnDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
-{
-    QStyledItemDelegate::paint( painter, option, index );
-    option.widget->style()->drawItemText( painter, option.rect, Qt::AlignRight | Qt::AlignVCenter, option.palette, false, index.data( LocaleModel::EnglishLabelRole ).toString() );
-}
+}  // namespace

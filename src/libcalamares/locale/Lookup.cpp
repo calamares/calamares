@@ -20,7 +20,7 @@
 
 #include "CountryData_p.cpp"
 
-namespace Calamares
+namespace CalamaresUtils::Locale
 {
 
 struct TwoChar
@@ -35,7 +35,7 @@ struct TwoChar
             cc2 = code[1].toLatin1();
         }
     }
-    
+
     char cc1;
     char cc2;
 };
@@ -44,7 +44,7 @@ static const CountryData* lookup( TwoChar c )
 {
     if ( !c.cc1 )
         return nullptr;
-    
+
     const CountryData* p = std::find_if(country_data_table, country_data_table + country_data_size,
         [c=c]( const CountryData& d ){ return (d.cc1 == c.cc1) && (d.cc2 == c.cc2); }
     );
@@ -52,7 +52,7 @@ static const CountryData* lookup( TwoChar c )
         return nullptr;
     return p;
 }
-    
+
 QLocale::Country countryForCode(const QString& code)
 {
     const CountryData* p = lookup( TwoChar( code ) );

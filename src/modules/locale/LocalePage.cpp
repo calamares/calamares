@@ -27,8 +27,8 @@
 #include "LCLocaleDialog.h"
 #include "Settings.h"
 
+#include "locale/Label.h"
 #include "utils/CalamaresUtilsGui.h"
-#include "utils/LocaleLabel.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
@@ -387,10 +387,10 @@ LocalePage::init( const QString& initialRegion,
 
 std::pair< QString, QString > LocalePage::prettyLocaleStatus( const LocaleConfiguration& lc ) const
 {
-    using CalamaresUtils::LocaleLabel;
+    using CalamaresUtils::Locale::Label;
 
-    LocaleLabel lang( lc.language(), LocaleLabel::LabelFormat::AlwaysWithCountry );
-    LocaleLabel num( lc.lc_numeric, LocaleLabel::LabelFormat::AlwaysWithCountry );
+    Label lang( lc.language(), Label::LabelFormat::AlwaysWithCountry );
+    Label num( lc.lc_numeric, Label::LabelFormat::AlwaysWithCountry );
 
     return std::make_pair< QString, QString >(
         tr( "The system language will be set to %1." ).arg( lang.label() ),

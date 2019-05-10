@@ -27,7 +27,6 @@ calamares_add_plugin( welcome
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         ${CHECKER_SOURCES}
-        LocaleModel.cpp
         WelcomeViewStep.cpp
         WelcomePage.cpp
     UI

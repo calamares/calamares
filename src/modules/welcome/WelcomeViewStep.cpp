@@ -154,7 +154,7 @@ WelcomeViewStep::setCountry( const QString& countryCode )
         return;
     }
 
-    auto c_l = Calamares::countryData( countryCode );
+    auto c_l = CalamaresUtils::Locale::countryData( countryCode );
     if ( c_l.first == QLocale::Country::AnyCountry )
     {
         cDebug() << "Unusable country code" << countryCode;

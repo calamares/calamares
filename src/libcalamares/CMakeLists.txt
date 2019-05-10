@@ -31,6 +31,8 @@ set( libSources
     geoip/Handler.cpp
 
     # Locale-data service
+    locale/Label.cpp
+    locale/LabelModel.cpp
     locale/Lookup.cpp
 
     # Partition service
@@ -40,7 +42,6 @@ set( libSources
     utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
     utils/Dirs.cpp
-    utils/LocaleLabel.cpp
     utils/Logger.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
