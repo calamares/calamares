@@ -366,10 +366,10 @@ def install_secureboot(efi_directory):
     # of that tuple.
     efi_drive = subprocess.check_output([
         libcalamares.job.configuration["grubProbe"],
-        "-t", "drive", "--device-map=", install_efi_directory])
+        "-t", "drive", "--device-map=", install_efi_directory]).decode("ascii")
     efi_disk = subprocess.check_output([
         libcalamares.job.configuration["grubProbe"],
-        "-t", "disk", "--device-map=", install_efi_directory])
+        "-t", "disk", "--device-map=", install_efi_directory]).decode("ascii")
 
     efi_drive_partition = efi_drive.replace("(","").replace(")","").split(",")[1]
     # Get the first run of digits from the partition
