@@ -21,11 +21,14 @@ set( libSources
     JobQueue.cpp
     ProcessJob.cpp
     Settings.cpp
-)
-set( partSources
+    
+    # Locale-data service
+    locale/Lookup.cpp
+    
+    # Partition service
     partition/PartitionSize.cpp
-)
-set( utilsSources
+
+    # Utility service
     utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
     utils/Dirs.cpp
@@ -75,7 +78,7 @@ if( WITH_PYTHON )
     )
 endif()
 
-add_library( calamares SHARED ${libSources} ${kdsagSources} ${partSources} ${utilsSources} )
+add_library( calamares SHARED ${libSources} ${kdsagSources} )
 set_target_properties( calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
