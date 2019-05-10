@@ -46,6 +46,8 @@ public:
     /// @brief Results of requirements checking
     bool verdict() const;
 
+    /// @brief Change the language from an external source.
+    void externallySelectedLanguage( int row );
 protected:
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
 

@@ -257,9 +257,17 @@ WelcomePage::focusInEvent( QFocusEvent* e )
     e->accept();
 }
 
-bool WelcomePage::verdict() const
+bool
+WelcomePage::verdict() const
 {
     return m_checkingWidget->verdict();
+}
+
+void
+WelcomePage::externallySelectedLanguage( int row )
+{
+    if ( ( row >= 0 ) && ( row < ui->languageWidget->count() ) )
+        ui->languageWidget->setCurrentIndex( row );
 }
 
 

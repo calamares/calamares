@@ -161,5 +161,11 @@ WelcomeViewStep::setCountry( const QString& countryCode )
         return;
     }
     else
-        cDebug() << "Would like to select" << c_l;
+    {
+        int r = CalamaresUtils::Locale::availableTranslations()->find( countryCode );
+        if ( r < 0 )
+            cDebug() << "Unusable country code" << countryCode << "(no suitable translation)";
+        if ( ( r >= 0 ) && m_widget )
+            m_widget->externallySelectedLanguage( r );
+    }
 }
