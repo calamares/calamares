@@ -43,6 +43,9 @@ _ = gettext.translation("calamares-python",
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
+# This is the sanitizer used all over to tidy up filenames
+# to make identifiers (or to clean up names to make filenames).
+file_name_sanitizer = str.maketrans(" /()", "_-__")
 
 def pretty_name():
     return _("Install bootloader.")
@@ -211,7 +214,6 @@ def efi_label():
         branding = libcalamares.globalstorage.value("branding")
         efi_bootloader_id = branding["bootloaderEntryName"]
 
-    file_name_sanitizer = str.maketrans(" /", "_-")
     return efi_bootloader_id.translate(file_name_sanitizer)
 
 
@@ -238,7 +240,6 @@ def install_systemd_boot(efi_directory):
     install_efi_directory = install_path + efi_directory
     uuid = get_uuid()
     distribution = get_bootloader_entry_name()
-    file_name_sanitizer = str.maketrans(" /", "_-")
     distribution_translated = distribution.translate(file_name_sanitizer)
     loader_path = os.path.join(install_efi_directory,
                                "loader",
