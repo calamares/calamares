@@ -30,7 +30,7 @@ namespace CalamaresUtils {}
 namespace CalamaresUtils::Locale
 {
 
-DLLEXPORT class LabelModel : public QAbstractListModel
+class DLLEXPORT LabelModel : public QAbstractListModel
 {
 public:
     enum
@@ -64,6 +64,18 @@ public:
 private:
     QVector< Label > m_locales;
 } ;
+
+/** @brief Returns a model with all available translations.
+ *
+ * The translations are set when Calamares is compiled; the list
+ * is provided by CMake via the CALAMARES_TRANSLATION_LANGUAGES
+ * #define.
+ *
+ * This model is a singleton and can be shared.
+ *
+ * NOTE: While the model is not typed const, it should be. Do not modify.
+ */
+DLLEXPORT LabelModel* const availableTranslations();
 
 }  // namespace
 #endif

@@ -131,7 +131,7 @@ WelcomePage::initLanguages()
     ui->languageWidget->clear();
     ui->languageWidget->setInsertPolicy( QComboBox::InsertAtBottom );
 
-    m_languages = new CalamaresUtils::Locale::LabelModel( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
+    m_languages = CalamaresUtils::Locale::availableTranslations();
     ui->languageWidget->setModel( m_languages );
     ui->languageWidget->setItemDelegate( new LocaleTwoColumnDelegate( ui->languageWidget ) );
 

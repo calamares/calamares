@@ -18,6 +18,8 @@
 
 #include "LabelModel.h"
 
+#include "CalamaresVersion.h"  // For the list of translations
+
 namespace CalamaresUtils::Locale
 {
 
@@ -102,6 +104,12 @@ LabelModel::find( const QLocale& locale ) const
     {
         return locale == l.locale();
     } );
+}
+
+LabelModel* const availableTranslations()
+{
+    static LabelModel model( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
+    return &model;
 }
 
 }  // namespace
