@@ -358,7 +358,8 @@ ModuleManager::checkDependencies()
                 somethingWasRemovedBecauseOfUnmetDependencies = true;
                 m_availableDescriptorsByModuleName.erase( it );
                 failed << moduleName;
-                cWarning() << "Module" << moduleName << "has unknown requirements" << Logger::DebugList( unmet );
+                cWarning() << "Module" << moduleName << "requires modules" << Logger::DebugList( unmet );
+                cWarning() << Logger::SubEntry << "but these are not available (listed in settings, or installed)."; 
                 break;
             }
         }
