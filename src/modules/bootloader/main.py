@@ -7,7 +7,7 @@
 #   Copyright 2014, Anke Boersma <demm@kaosx.us>
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
 #   Copyright 2014, Benjamin Vaudour <benjamin.vaudour@yahoo.fr>
-#   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
+#   Copyright 2014-2019, Kevin Kofler <kevin.kofler@chello.at>
 #   Copyright 2015-2018, Philip Mueller <philm@manjaro.org>
 #   Copyright 2016-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
@@ -339,8 +339,8 @@ def install_grub(efi_directory, fw_type):
                                "--force",
                                boot_loader["installPath"]])
 
-    # The file specified in grubCfg should already be filled out
-    # by the grubcfg job module.
+    # The input file /etc/default/grub should already be filled out by the
+    # grubcfg job module.
     check_target_env_call([libcalamares.job.configuration["grubMkconfig"],
                            "-o", libcalamares.job.configuration["grubCfg"]])
 
@@ -394,6 +394,12 @@ def install_secureboot(efi_directory):
         "-d", efi_disk,
         "-p", efi_partition_number,
         "-l", install_efi_directory + "/" + install_efi_bin])
+
+    # The input file /etc/default/grub should already be filled out by the
+    # grubcfg job module.
+    check_target_env_call([libcalamares.job.configuration["grubMkconfig"],
+                           "-o", os.path.join(efi_directory, "EFI",
+                                              efi_bootloader_id, "grub.cfg")])
 
 
 def vfat_correct_case(parent, name):
