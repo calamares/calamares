@@ -49,7 +49,7 @@ class PartitionSize : public NamedSuffix<SizeUnit, SizeUnit::None>
 {
 public:
     PartitionSize() : NamedSuffix() { }
-    PartitionSize( int v, unit_t u ) : NamedSuffix( v, u ) { }
+    PartitionSize( int v, SizeUnit u ) : NamedSuffix( v, u ) { }
     PartitionSize( const QString& );
 
     bool isValid() const
