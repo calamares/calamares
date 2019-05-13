@@ -211,6 +211,7 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
 
     set( CALAMARES_AUTOMOC_OPTIONS "-butils/moc-warnings.h" )
+    set( CALAMARES_AUTOUIC_OPTIONS --include utils/moc-warnings.h )
 else()
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--no-undefined" )
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )

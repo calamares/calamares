@@ -61,11 +61,6 @@ function(calamares_add_library)
     include_directories(${CMAKE_CURRENT_LIST_DIR})
     include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-    if(LIBRARY_UI)
-        qt5_wrap_ui(LIBRARY_UI_SOURCES ${LIBRARY_UI})
-        list(APPEND LIBRARY_SOURCES ${LIBRARY_UI_SOURCES})
-    endif()
-
     # add resources from current dir
     if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/${LIBRARY_RESOURCES}")
         qt5_add_resources(LIBRARY_RC_SOURCES "${LIBRARY_RESOURCES}")
@@ -83,7 +78,10 @@ function(calamares_add_library)
     endif()
 
     calamares_automoc(${target})
-    
+    if(LIBRARY_UI)
+        calamares_autouic(${target} ${LIBRARY_UI})
+    endif()
+
     if(LIBRARY_EXPORT_MACRO)
         set_target_properties(${target} PROPERTIES COMPILE_DEFINITIONS ${LIBRARY_EXPORT_MACRO})
     endif()
