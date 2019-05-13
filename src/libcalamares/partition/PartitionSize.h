@@ -92,7 +92,8 @@ public:
     /** @brief Convert the size to bytes.
      *
      * This method is only valid for sizes in Bytes, KiB, MiB or GiB.
-     * It will return -1 in any other case.
+     * It will return -1 in any other case. Note that 0KiB and 0MiB and
+     * 0GiB are considered **invalid** sizes and return -1.
      *
      * @return  the size in bytes, or -1 if it cannot be calculated.
      */

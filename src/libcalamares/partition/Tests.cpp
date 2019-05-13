@@ -105,33 +105,33 @@ PartitionSizeTests::testUnitNormalisation_data()
 {
     QTest::addColumn<Calamares::SizeUnit>("u1");
     QTest::addColumn<int>("v");
-    QTest::addColumn<int>("bytes");
+    QTest::addColumn<long>("bytes");
     
     using Calamares::SizeUnit;
     
-    QTest::newRow("none") << SizeUnit::None << 16 << -1;
-    QTest::newRow("none") << SizeUnit::None << 0 << -1;
-    QTest::newRow("none") << SizeUnit::None << -2 << -1;
+    QTest::newRow("none") << SizeUnit::None << 16 << -1L;
+    QTest::newRow("none") << SizeUnit::None << 0 << -1L;
+    QTest::newRow("none") << SizeUnit::None << -2 << -1L;
     
-    QTest::newRow("percent") << SizeUnit::Percent << 0 << -1;
-    QTest::newRow("percent") << SizeUnit::Percent << 16 << -1;
-    QTest::newRow("percent") << SizeUnit::Percent << -2 << -1;
+    QTest::newRow("percent") << SizeUnit::Percent << 0 << -1L;
+    QTest::newRow("percent") << SizeUnit::Percent << 16 << -1L;
+    QTest::newRow("percent") << SizeUnit::Percent << -2 << -1L;
     
-    QTest::newRow("KiB") << SizeUnit::KiB << 0 << 0;
-    QTest::newRow("KiB") << SizeUnit::KiB << 1 << 1024;
-    QTest::newRow("KiB") << SizeUnit::KiB << 1000 << 1024000;
-    QTest::newRow("KiB") << SizeUnit::KiB << 1024 << 1024 * 1024;
-    QTest::newRow("KiB") << SizeUnit::KiB << -2 << -1;
+    QTest::newRow("KiB") << SizeUnit::KiB << 0 << -1L;
+    QTest::newRow("KiB") << SizeUnit::KiB << 1 << 1024L;
+    QTest::newRow("KiB") << SizeUnit::KiB << 1000 << 1024000L;
+    QTest::newRow("KiB") << SizeUnit::KiB << 1024 << 1024 * 1024L;
+    QTest::newRow("KiB") << SizeUnit::KiB << -2 << -1L;
 
-    QTest::newRow("MiB") << SizeUnit::MiB << 0 << 0;
-    QTest::newRow("MiB") << SizeUnit::MiB << 1 << 1024 * 1024;
-    QTest::newRow("MiB") << SizeUnit::MiB << 1000 << 1024 * 1024000;
-    QTest::newRow("MiB") << SizeUnit::MiB << 1024 << 1024 * 1024 * 1024;
-    QTest::newRow("MiB") << SizeUnit::MiB << -2 << -1;
+    QTest::newRow("MiB") << SizeUnit::MiB << 0 << -1L;
+    QTest::newRow("MiB") << SizeUnit::MiB << 1 << 1024 * 1024L;
+    QTest::newRow("MiB") << SizeUnit::MiB << 1000 << 1024 * 1024000L;
+    QTest::newRow("MiB") << SizeUnit::MiB << 1024 << 1024 * 1024 * 1024L;
+    QTest::newRow("MiB") << SizeUnit::MiB << -2 << -1L;
 
-    QTest::newRow("GiB") << SizeUnit::GiB << 0 << 0;
-    QTest::newRow("GiB") << SizeUnit::GiB << 1 << 1024 * 1024 * 1024;
-    QTest::newRow("GiB") << SizeUnit::GiB << 2 << 2 * 1024 * 1024 * 1024;
+    QTest::newRow("GiB") << SizeUnit::GiB << 0 << -1L;
+    QTest::newRow("GiB") << SizeUnit::GiB << 1 << 1024 * 1024 * 1024L;
+    QTest::newRow("GiB") << SizeUnit::GiB << 2 << 2048 * 1024 * 1024L;
 }
 
 void 
@@ -139,7 +139,7 @@ PartitionSizeTests::testUnitNormalisation()
 {
     QFETCH( Calamares::SizeUnit, u1 );
     QFETCH( int, v );
-    QFETCH( int, bytes );
+    QFETCH( long, bytes );
     
     QCOMPARE( Calamares::PartitionSize( v, u1 ).toBytes(), static_cast<qint64>( bytes ) );
 }
