@@ -43,8 +43,14 @@ public:
         )
     }
 
+    virtual ~OEMPage() override;
+    
     Ui_OEMPage* m_ui;
 } ;
+
+OEMPage::~OEMPage()
+{
+}
 
 
 OEMViewStep::OEMViewStep(QObject* parent)
