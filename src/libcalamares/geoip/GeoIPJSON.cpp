@@ -25,7 +25,9 @@
 
 #include <QByteArray>
 
-namespace CalamaresUtils::GeoIP
+namespace CalamaresUtils
+{
+namespace GeoIP
 {
 
 GeoIPJSON::GeoIPJSON(const QString& attribute)
@@ -88,6 +90,5 @@ GeoIPJSON::processReply( const QByteArray& data )
     return splitTZString( rawReply( data ) );
 }
 
-
-
+}
 }  // namespace

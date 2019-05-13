@@ -27,8 +27,9 @@
 
 class QByteArray;
 
-namespace CalamaresUtils {}
-namespace CalamaresUtils::GeoIP
+namespace CalamaresUtils 
+{
+namespace GeoIP
 {
 /** @brief A Region, Zone pair of strings
  *
@@ -94,5 +95,6 @@ protected:
     QString m_element;  // string for selecting from data
 } ;
 
+}
 }  // namespace
 #endif

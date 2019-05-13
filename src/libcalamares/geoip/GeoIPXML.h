@@ -21,7 +21,9 @@
 
 #include "Interface.h"
 
-namespace CalamaresUtils::GeoIP
+namespace CalamaresUtils
+{
+namespace GeoIP
 {
 /** @brief GeoIP lookup with XML data
  *
@@ -46,5 +48,6 @@ public:
     virtual QString rawReply(const QByteArray & ) override;
 } ;
 
+}
 }  // namespace
 #endif

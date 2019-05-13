@@ -25,8 +25,9 @@
 #include <QString>
 #include <QVariantMap>
 
-namespace CalamaresUtils {}
-namespace CalamaresUtils::GeoIP
+namespace CalamaresUtils 
+{
+namespace GeoIP
 {
 
 /** @brief Handle one complete GeoIP lookup.
@@ -86,6 +87,7 @@ private:
     const QString m_selector;
 };
 
+}
 }  // namespace
 #endif
 

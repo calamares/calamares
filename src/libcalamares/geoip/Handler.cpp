@@ -47,7 +47,9 @@ handlerTypes()
     return names;
 }
 
-namespace CalamaresUtils::GeoIP
+namespace CalamaresUtils
+{
+namespace GeoIP
 {
 
 Handler::Handler()
@@ -179,5 +181,5 @@ Handler::queryRaw() const
         } );
 }
 
-
+}
 }  // namespace
