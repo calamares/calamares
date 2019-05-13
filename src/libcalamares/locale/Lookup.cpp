@@ -20,7 +20,9 @@
 
 #include "CountryData_p.cpp"
 
-namespace CalamaresUtils::Locale
+namespace CalamaresUtils
+{
+namespace Locale
 {
 
 struct TwoChar
@@ -87,4 +89,5 @@ QLocale::Language languageForCountry(QLocale::Country country)
     return p->l;
 }
 
+}
 }  // namespace

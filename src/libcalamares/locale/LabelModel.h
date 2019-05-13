@@ -26,8 +26,9 @@
 #include <QVector>
 
 
-namespace CalamaresUtils {}
-namespace CalamaresUtils::Locale
+namespace CalamaresUtils 
+{
+namespace Locale
 {
 
 class DLLEXPORT LabelModel : public QAbstractListModel
@@ -78,7 +79,7 @@ private:
  *
  * NOTE: While the model is not typed const, it should be. Do not modify.
  */
-DLLEXPORT LabelModel* const availableTranslations();
-
+DLLEXPORT LabelModel* availableTranslations();
+}
 }  // namespace
 #endif
