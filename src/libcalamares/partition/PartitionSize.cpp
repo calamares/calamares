@@ -176,6 +176,8 @@ PartitionSize::operator< ( const PartitionSize& other ) const
 
     switch ( m_unit )
     {
+    case SizeUnit::None:
+        return false;
     case SizeUnit::Percent:
         return ( m_value < other.m_value );
     case SizeUnit::Byte:
@@ -184,8 +186,6 @@ PartitionSize::operator< ( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() < other.toBytes () );
     }
-
-    return false;
 }
 
 bool
@@ -196,6 +196,8 @@ PartitionSize::operator> ( const PartitionSize& other ) const
 
     switch ( m_unit )
     {
+    case SizeUnit::None:
+        return false;
     case SizeUnit::Percent:
         return ( m_value > other.m_value );
     case SizeUnit::Byte:
@@ -204,8 +206,6 @@ PartitionSize::operator> ( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() > other.toBytes () );
     }
-
-    return false;
 }
 
 bool
@@ -216,6 +216,8 @@ PartitionSize::operator== ( const PartitionSize& other ) const
 
     switch ( m_unit )
     {
+    case SizeUnit::None:
+        return false;
     case SizeUnit::Percent:
         return ( m_value == other.m_value );
     case SizeUnit::Byte:
@@ -224,8 +226,6 @@ PartitionSize::operator== ( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() == other.toBytes () );
     }
-
-    return false;
 }
 
 } // namespace Calamares
