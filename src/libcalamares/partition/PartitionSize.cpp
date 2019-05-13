@@ -153,6 +153,9 @@ PartitionSize::toBytes() const
 
     switch ( m_unit )
     {
+    case unit_t::None:
+    case unit_t::Percent:
+        return -1;
     case unit_t::Byte:
         return value();
     case unit_t::KiB:
@@ -161,12 +164,7 @@ PartitionSize::toBytes() const
         return CalamaresUtils::MiBtoBytes( static_cast<unsigned long long>( value() ) );
     case unit_t::GiB:
         return CalamaresUtils::GiBtoBytes( static_cast<unsigned long long>( value() ) );
-    default:
-        break;
     }
-
-    // Reached only when unit is Percent or None
-    return -1;
 }
 
 bool
