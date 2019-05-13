@@ -166,6 +166,7 @@ PartitionSize::toBytes() const
     case SizeUnit::GiB:
         return CalamaresUtils::GiBtoBytes( static_cast<unsigned long long>( value() ) );
     }
+    NOTREACHED return -1;
 }
 
 bool
@@ -186,6 +187,7 @@ PartitionSize::operator< ( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() < other.toBytes () );
     }
+    NOTREACHED return false;
 }
 
 bool
@@ -206,6 +208,7 @@ PartitionSize::operator> ( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() > other.toBytes () );
     }
+    NOTREACHED return false;
 }
 
 bool
@@ -226,6 +229,7 @@ PartitionSize::operator== ( const PartitionSize& other ) const
     case SizeUnit::GiB:
         return ( toBytes() == other.toBytes () );
     }
+    NOTREACHED return false;
 }
 
 } // namespace Calamares

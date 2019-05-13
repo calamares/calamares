@@ -113,6 +113,7 @@ create_interface( Handler::Type t, const QString& selector )
             return nullptr;
 #endif
     }
+    NOTREACHED return nullptr;
 }
 
 static RegionZonePair
