@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -96,6 +97,20 @@ public:
      * @return  the size in bytes, or -1 if it cannot be calculated.
      */
     qint64 toBytes() const;
+    
+    /** @brief Are the units comparable?
+     * 
+     * None units cannot be compared with anything. Percentages can
+     * be compared with each other, and all the explicit sizes (KiB, ...)
+     * can be compared with each other.
+     */
+    static constexpr bool unitsComparable( const SizeUnit u1, const SizeUnit u2 )
+    {
+        return !( ( u1 == SizeUnit::None    || u2 == SizeUnit::None    ) ||
+                  ( u1 == SizeUnit::Percent && u2 != SizeUnit::Percent ) ||
+                  ( u1 != SizeUnit::Percent && u2 == SizeUnit::Percent ) );
+    }
+
 };
 
 } // namespace Calamares
