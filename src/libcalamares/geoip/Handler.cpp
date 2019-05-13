@@ -112,8 +112,6 @@ create_interface( Handler::Type t, const QString& selector )
 #else
             return nullptr;
 #endif
-        default:  // there are no others
-            return nullptr;
     }
 }
 
