@@ -21,7 +21,9 @@
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
-namespace Calamares
+namespace CalamaresUtils
+{
+namespace Partition
 {
 
 static const NamedEnumTable<SizeUnit>&
@@ -232,4 +234,5 @@ PartitionSize::operator== ( const PartitionSize& other ) const
     NOTREACHED return false;
 }
 
-} // namespace Calamares
+}
+}  // namespace

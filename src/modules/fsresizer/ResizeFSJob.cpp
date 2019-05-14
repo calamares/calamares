@@ -272,8 +272,8 @@ ResizeFSJob::setConfigurationMap( const QVariantMap& configurationMap )
         return;
     }
 
-    m_size = Calamares::PartitionSize( configurationMap["size"].toString() );
-    m_atleast = Calamares::PartitionSize( configurationMap["atleast"].toString() );
+    m_size = PartitionSize( configurationMap["size"].toString() );
+    m_atleast = PartitionSize( configurationMap["atleast"].toString() );
 
     m_required = CalamaresUtils::getBool( configurationMap, "required", false );
 }

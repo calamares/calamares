@@ -86,10 +86,10 @@ PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
 }
 
 PartitionLayout::PartitionEntry::PartitionEntry( const QString& size, const QString& min, const QString& max )
+    : partSize( size )
+    , partMinSize( min )
+    , partMaxSize( max )
 {
-    partSize = Calamares::PartitionSize( size );
-    partMinSize = Calamares::PartitionSize( min );
-    partMaxSize = Calamares::PartitionSize( max );
 }
 
 bool

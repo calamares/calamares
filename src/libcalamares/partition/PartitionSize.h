@@ -26,7 +26,9 @@
 // Qt
 #include <QString>
 
-namespace Calamares
+namespace CalamaresUtils
+{
+namespace Partition
 {
 
 enum class SizeUnit
@@ -98,9 +100,9 @@ public:
      * @return  the size in bytes, or -1 if it cannot be calculated.
      */
     qint64 toBytes() const;
-    
+
     /** @brief Are the units comparable?
-     * 
+     *
      * None units cannot be compared with anything. Percentages can
      * be compared with each other, and all the explicit sizes (KiB, ...)
      * can be compared with each other.
@@ -114,6 +116,7 @@ public:
 
 };
 
-} // namespace Calamares
+}
+}  // namespace
 
 #endif // PARTITION_PARTITIONSIZE_H
