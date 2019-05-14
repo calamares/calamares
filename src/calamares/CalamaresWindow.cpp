@@ -56,6 +56,10 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     , m_debugWindow( nullptr )
     , m_viewManager( nullptr )
 {
+    // If we can never cancel, don't show the window-close button
+    if ( Calamares::Settings::instance()->disableCancel() )
+        setWindowFlag( Qt::WindowCloseButtonHint, false );
+        
     CALAMARES_RETRANSLATE(
         setWindowTitle( Calamares::Settings::instance()->isSetupMode()
                             ? tr( "%1 Setup Program" ).arg( *Calamares::Branding::ProductName )
@@ -161,7 +165,15 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     m_viewManager = Calamares::ViewManager::instance( this );
     if ( branding->windowExpands() )
         connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
-
+    // NOTE: Although the ViewManager has a signal cancelEnabled() that
+    //       signals when the state of the cancel button changes (in
+    //       particular, to disable cancel during the exec phase),
+    //       we don't connect to it here. Changing the window flag
+    //       for the close button causes uncomfortable window flashing
+    //       and requires an extra show() (at least with KWin/X11) which
+    //       is too annoying. Instead, leave it up to ignoring-the-quit-
+    //       event, which is also the ViewManager's responsibility.
+    
     mainLayout->addWidget( m_viewManager->centralWidget() );
     setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }

@@ -227,10 +227,18 @@ ViewManager::currentStepIndex() const
     return m_currentStep;
 }
 
+/** @brief Is the given step at @p index an execution step?
+ * 
+ * Returns true if the step is an execution step, false otherwise.
+ * Also returns false if the @p index is out of range.
+ */
 static inline bool
-stepNextWillExecute(const ViewStepList& steps, int index)
+stepIsExecute( const ViewStepList& steps, int index )
 {
-    return ( index + 1 < steps.count() ) && qobject_cast< ExecutionViewStep* >( steps.at( index + 1 ) );
+    return 
+        ( 0 <= index ) &&
+        ( index < steps.count() ) && 
+        ( qobject_cast< ExecutionViewStep* >( steps.at( index ) ) != nullptr );
 }
 
 void
@@ -245,7 +253,7 @@ ViewManager::next()
         // Special case when the user clicks next on the very last page in a view phase
         // and right before switching to an execution phase.
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
-        if ( settings->showPromptBeforeExecution() && stepNextWillExecute( m_steps, m_currentStep ) )
+        if ( settings->showPromptBeforeExecution() && stepIsExecute( m_steps, m_currentStep+1 ) )
         {
             QString title = settings->isSetupMode()
                 ? tr( "Continue with setup?" )
@@ -280,16 +288,7 @@ ViewManager::next()
         m_steps.at( m_currentStep )->onActivate();
         executing = qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep ) ) != nullptr;
         emit currentStepChanged();
-        if ( executing )
-        {
-            m_back->setEnabled( false );
-            m_next->setEnabled( false );
-            // Enabled if there's nothing blocking it during exec
-            m_quit->setEnabled( !( settings->dontCancel() || settings->disableCancel() ) );
-        }
-        else
-            // Enabled unless it's also hidden
-            m_quit->setEnabled( !settings->disableCancel() );
+        updateCancelEnabled( !settings->disableCancel() && !(executing && settings->dontCancel() ) );
     }
     else
         step->next();
@@ -303,17 +302,20 @@ ViewManager::next()
 void
 ViewManager::updateButtonLabels()
 {
-    QString next = Calamares::Settings::instance()->isSetupMode()
+    const auto* const settings = Calamares::Settings::instance();
+    
+    QString next = settings->isSetupMode()
         ? tr( "&Set up" )
         : tr( "&Install" );
-    QString complete = Calamares::Settings::instance()->isSetupMode()
+    QString complete = settings->isSetupMode()
         ? tr( "Setup is complete. Close the setup program." )
         : tr( "The installation is complete. Close the installer." );
-    QString quit = Calamares::Settings::instance()->isSetupMode()
+    QString quit = settings->isSetupMode()
         ? tr( "Cancel setup without changing the system." )
         : tr( "Cancel installation without changing the system." );
 
-    if ( stepNextWillExecute( m_steps, m_currentStep ) )
+    // If we're going into the execution step / install phase, other message
+    if ( stepIsExecute( m_steps, m_currentStep+1 ) )
         m_next->setText( next );
     else
         m_next->setText( tr( "&Next" ) );
@@ -323,15 +325,14 @@ ViewManager::updateButtonLabels()
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( complete );
         m_quit->setVisible( true );  // At end, always visible and enabled.
-        m_quit->setEnabled( true );
+        updateCancelEnabled( true );
     }
     else
     {
-        if ( Calamares::Settings::instance()->disableCancel() )
-        {
-            m_quit->setVisible( false );
-            m_quit->setEnabled( false );  // Can't be triggered through DBUS
-        }
+        if ( settings->disableCancel() )
+            m_quit->setVisible( false );  // In case we went back from final
+        updateCancelEnabled( !settings->disableCancel() && !( stepIsExecute( m_steps, m_currentStep ) && settings->dontCancel() ) );
+        
         m_quit->setText( tr( "&Cancel" ) );
         m_quit->setToolTip( quit );
     }
@@ -364,14 +365,21 @@ ViewManager::back()
 
 bool ViewManager::confirmCancelInstallation()
 {
+    const auto* const settings = Calamares::Settings::instance();
+    
+    if ( settings->disableCancel() )
+        return false;
+    if ( settings->dontCancel() && stepIsExecute( m_steps, m_currentStep ) )
+        return false;
+    
     // If it's NOT the last page of the last step, we ask for confirmation
     if ( !( m_currentStep == m_steps.count() -1 &&
             m_steps.last()->isAtEnd() ) )
     {
-        QString title = Calamares::Settings::instance()->isSetupMode()
+        QString title = settings->isSetupMode()
             ? tr( "Cancel setup?" )
             : tr( "Cancel installation?" );
-        QString question = Calamares::Settings::instance()->isSetupMode()
+        QString question = settings->isSetupMode()
             ? tr( "Do you really want to cancel the current setup process?\n"
                   "The setup program will quit and all changes will be lost." )
             : tr( "Do you really want to cancel the current install process?\n"
@@ -389,6 +397,13 @@ bool ViewManager::confirmCancelInstallation()
     }
     else // Means we're at the end, no need to confirm.
         return true;
+}
+
+void
+ViewManager::updateCancelEnabled( bool enabled )
+{
+    m_quit->setEnabled( enabled );
+    emit cancelEnabled( enabled );
 }
 
 }  // namespace
