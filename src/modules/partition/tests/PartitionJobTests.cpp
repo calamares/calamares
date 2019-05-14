@@ -130,6 +130,11 @@ QueueRunner::QueueRunner( JobQueue* queue )
     connect( m_queue, &JobQueue::failed, this, &QueueRunner::onFailed );
 }
 
+QueueRunner::~QueueRunner()
+{
+    // Nothing to do. We don't own the queue, and disconnect happens automatically
+}
+
 bool
 QueueRunner::run()
 {

@@ -36,6 +36,7 @@ class QueueRunner : public QObject
 {
 public:
     QueueRunner( Calamares::JobQueue* queue );
+    virtual ~QueueRunner() override;
 
     /**
      * Synchronously runs the queue. Returns true on success
