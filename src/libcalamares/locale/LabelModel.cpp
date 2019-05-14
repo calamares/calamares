@@ -22,7 +22,9 @@
 
 #include "CalamaresVersion.h"  // For the list of translations
 
-namespace CalamaresUtils::Locale
+namespace CalamaresUtils
+{
+namespace Locale
 {
 
 LabelModel::LabelModel( const QStringList& locales, QObject* parent )
@@ -121,10 +123,11 @@ LabelModel::find( const QString& countryCode ) const
     return find( [&]( const Label& l ){ return l.language() == c_l.second; } );
 }
 
-LabelModel* const availableTranslations()
+LabelModel* availableTranslations()
 {
     static LabelModel model( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
     return &model;
 }
 
+}
 }  // namespace

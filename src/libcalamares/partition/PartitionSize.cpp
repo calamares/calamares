@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -42,23 +43,23 @@ unitSuffixes()
 PartitionSize::PartitionSize( const QString& s )
     : NamedSuffix( unitSuffixes(), s )
 {
-    if ( ( unit() == unit_t::Percent ) && ( value() > 100 || value() < 0 ) )
+    if ( ( unit() == SizeUnit::Percent ) && ( value() > 100 || value() < 0 ) )
     {
         cDebug() << "Percent value" << value() << "is not valid.";
         m_value = 0;
     }
 
-    if ( m_unit == unit_t::None )
+    if ( m_unit == SizeUnit::None )
     {
         m_value = s.toInt();
         if ( m_value > 0 )
-            m_unit = unit_t::Byte;
+            m_unit = SizeUnit::Byte;
     }
 
     if ( m_value <= 0 )
     {
         m_value = 0;
-        m_unit = unit_t::None;
+        m_unit = SizeUnit::None;
     }
 }
 
@@ -72,17 +73,17 @@ PartitionSize::toSectors( qint64 totalSectors, qint64 sectorSize ) const
 
     switch ( m_unit )
     {
-    case unit_t::None:
+    case SizeUnit::None:
         return -1;
-    case unit_t::Percent:
+    case SizeUnit::Percent:
         if ( value() == 100 )
             return totalSectors;  // Common-case, avoid futzing around
         else
             return totalSectors * value() / 100;
-    case unit_t::Byte:
-    case unit_t::KiB:
-    case unit_t::MiB:
-    case unit_t::GiB:
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
         return CalamaresUtils::bytesToSectors ( toBytes(), sectorSize );
     }
 
@@ -97,19 +98,19 @@ PartitionSize::toBytes( qint64 totalSectors, qint64 sectorSize ) const
 
     switch ( m_unit )
     {
-    case unit_t::None:
+    case SizeUnit::None:
         return -1;
-    case unit_t::Percent:
+    case SizeUnit::Percent:
         if ( totalSectors < 1 || sectorSize < 1 )
             return -1;
         if ( value() == 100 )
             return totalSectors * sectorSize;  // Common-case, avoid futzing around
         else
             return totalSectors * value() / 100;
-    case unit_t::Byte:
-    case unit_t::KiB:
-    case unit_t::MiB:
-    case unit_t::GiB:
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
         return toBytes();
     }
 
@@ -125,19 +126,19 @@ PartitionSize::toBytes( qint64 totalBytes ) const
 
     switch ( m_unit )
     {
-    case unit_t::None:
+    case SizeUnit::None:
         return -1;
-    case unit_t::Percent:
+    case SizeUnit::Percent:
         if ( totalBytes < 1 )
             return -1;
         if ( value() == 100 )
             return totalBytes;  // Common-case, avoid futzing around
         else
             return totalBytes * value() / 100;
-    case unit_t::Byte:
-    case unit_t::KiB:
-    case unit_t::MiB:
-    case unit_t::GiB:
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
         return toBytes();
     }
 
@@ -153,86 +154,82 @@ PartitionSize::toBytes() const
 
     switch ( m_unit )
     {
-    case unit_t::Byte:
+    case SizeUnit::None:
+    case SizeUnit::Percent:
+        return -1;
+    case SizeUnit::Byte:
         return value();
-    case unit_t::KiB:
+    case SizeUnit::KiB:
         return CalamaresUtils::KiBtoBytes( static_cast<unsigned long long>( value() ) );
-    case unit_t::MiB:
+    case SizeUnit::MiB:
         return CalamaresUtils::MiBtoBytes( static_cast<unsigned long long>( value() ) );
-    case unit_t::GiB:
+    case SizeUnit::GiB:
         return CalamaresUtils::GiBtoBytes( static_cast<unsigned long long>( value() ) );
-    default:
-        break;
     }
-
-    // Reached only when unit is Percent or None
-    return -1;
+    NOTREACHED return -1;
 }
 
 bool
 PartitionSize::operator< ( const PartitionSize& other ) const
 {
-    if ( ( m_unit == unit_t::None    || other.m_unit == unit_t::None    ) ||
-         ( m_unit == unit_t::Percent && other.m_unit != unit_t::Percent ) ||
-         ( m_unit != unit_t::Percent && other.m_unit == unit_t::Percent ) )
+    if ( !unitsComparable( m_unit, other.m_unit ) )
         return false;
 
     switch ( m_unit )
     {
-    case unit_t::Percent:
+    case SizeUnit::None:
+        return false;
+    case SizeUnit::Percent:
         return ( m_value < other.m_value );
-    case unit_t::Byte:
-    case unit_t::KiB:
-    case unit_t::MiB:
-    case unit_t::GiB:
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
         return ( toBytes() < other.toBytes () );
     }
-
-    return false;
+    NOTREACHED return false;
 }
 
 bool
 PartitionSize::operator> ( const PartitionSize& other ) const
 {
-    if ( ( m_unit == unit_t::None    || other.m_unit == unit_t::None    ) ||
-         ( m_unit == unit_t::Percent && other.m_unit != unit_t::Percent ) ||
-         ( m_unit != unit_t::Percent && other.m_unit == unit_t::Percent ) )
+    if ( !unitsComparable( m_unit, other.m_unit ) )
         return false;
 
     switch ( m_unit )
     {
-    case unit_t::Percent:
+    case SizeUnit::None:
+        return false;
+    case SizeUnit::Percent:
         return ( m_value > other.m_value );
-    case unit_t::Byte:
-    case unit_t::KiB:
-    case unit_t::MiB:
-    case unit_t::GiB:
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
         return ( toBytes() > other.toBytes () );
     }
-
-    return false;
+    NOTREACHED return false;
 }
 
 bool
 PartitionSize::operator== ( const PartitionSize& other ) const
 {
-    if ( ( m_unit == unit_t::None    || other.m_unit == unit_t::None    ) ||
-         ( m_unit == unit_t::Percent && other.m_unit != unit_t::Percent ) ||
-         ( m_unit != unit_t::Percent && other.m_unit == unit_t::Percent ) )
+    if ( !unitsComparable( m_unit, other.m_unit ) )
         return false;
 
     switch ( m_unit )
     {
-    case unit_t::Percent:
+    case SizeUnit::None:
+        return false;
+    case SizeUnit::Percent:
         return ( m_value == other.m_value );
-    case unit_t::Byte:
-    case unit_t::KiB:
-    case unit_t::MiB:
-    case unit_t::GiB:
+    case SizeUnit::Byte:
+    case SizeUnit::KiB:
+    case SizeUnit::MiB:
+    case SizeUnit::GiB:
         return ( toBytes() == other.toBytes () );
     }
-
-    return false;
+    NOTREACHED return false;
 }
 
 } // namespace Calamares

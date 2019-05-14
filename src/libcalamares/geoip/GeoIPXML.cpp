@@ -23,7 +23,9 @@
 #include <QNetworkReply>
 #include <QtXml/QDomDocument>
 
-namespace CalamaresUtils::GeoIP
+namespace CalamaresUtils
+{
+namespace GeoIP
 {
 
 GeoIPXML::GeoIPXML( const QString& element )
@@ -87,4 +89,5 @@ GeoIPXML::processReply( const QByteArray& data )
     return RegionZonePair();
 }
 
+}
 }  // namespace

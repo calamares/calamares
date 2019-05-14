@@ -23,8 +23,9 @@
 #include <QLocale>
 #include <QString>
 
-namespace CalamaresUtils {}
-namespace CalamaresUtils::Locale
+namespace CalamaresUtils 
+{
+namespace Locale
 {
 
 /**
@@ -120,7 +121,7 @@ protected:
     QString m_englishLabel;
 } ;
 
-
+}
 }  // namespace
 
 #endif

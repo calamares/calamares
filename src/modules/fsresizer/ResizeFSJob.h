@@ -54,6 +54,21 @@ public:
                m_size.isValid();
     }
 
+    QString name() const
+    {
+        return m_fsname.isEmpty() ? m_devicename : m_fsname;
+    }
+
+    Calamares::PartitionSize size() const
+    {
+        return m_size;
+    }
+
+    Calamares::PartitionSize minimumSize() const
+    {
+        return m_atleast;
+    }
+
 private:
     Calamares::PartitionSize m_size;
     Calamares::PartitionSize m_atleast;

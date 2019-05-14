@@ -167,6 +167,16 @@ if ( ECM_FOUND AND BUILD_TESTING )
             ${YAMLCPP_LIBRARY}
     )
     calamares_automoc( geoiptest )
+    
+    ecm_add_test(
+            partition/Tests.cpp
+        TEST_NAME
+            libcalamarespartitiontest
+        LINK_LIBRARIES
+            calamares  
+            Qt5::Test
+    )
+    calamares_automoc( libcalamarespartitiontest )
 endif()
 
 if( BUILD_TESTING )

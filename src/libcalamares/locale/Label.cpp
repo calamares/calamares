@@ -19,7 +19,9 @@
 
 #include "Label.h"
 
-namespace CalamaresUtils::Locale
+namespace CalamaresUtils
+{
+namespace Locale
 {
 
 Label::Label()
@@ -70,4 +72,5 @@ QLocale Label::getLocale( const QString& localeName )
         return QLocale( localeName );
 }
 
+}
 }  // namespace

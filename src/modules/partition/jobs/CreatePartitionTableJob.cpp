@@ -68,7 +68,7 @@ CreatePartitionTableJob::prettyStatusMessage() const
 
 
 static inline QDebug&
-operator <<( QDebug& s, PartitionIterator& it )
+operator <<( QDebug&& s, PartitionIterator& it )
 {
     s << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
     return s;
@@ -89,7 +89,7 @@ CreatePartitionTableJob::exec()
     {
         for ( auto it = PartitionIterator::begin( table );
             it != PartitionIterator::end( table ); ++it )
-            cDebug() << *it;
+            cDebug() << it;
 
         QProcess lsblk;
         lsblk.setProgram( "lsblk" );

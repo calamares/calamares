@@ -20,7 +20,9 @@
 
 #include "utils/Logger.h"
 
-namespace CalamaresUtils::GeoIP
+namespace CalamaresUtils
+{
+namespace GeoIP
 {
 
 Interface::Interface(const QString& e)
@@ -51,4 +53,5 @@ splitTZString( const QString& tz )
     return RegionZonePair( QString(), QString() );
 }
 
+}
 }  // namespace

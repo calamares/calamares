@@ -193,6 +193,7 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     )
         string( APPEND CMAKE_CXX_FLAGS " ${CLANG_WARNINGS}" )
     endforeach()
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='//'" )
 
     # Third-party code where we don't care so much about compiler warnings
     # (because it's uncomfortable to patch) get different flags; use
@@ -211,12 +212,15 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
 
     set( CALAMARES_AUTOMOC_OPTIONS "-butils/moc-warnings.h" )
+    set( CALAMARES_AUTOUIC_OPTIONS --include utils/moc-warnings.h )
 else()
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--no-undefined" )
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
 
     set( SUPPRESS_3RDPARTY_WARNINGS "" )
     set( SUPPRESS_BOOST_WARNINGS "" )
+
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='__builtin_unreachable();'" )
 endif()
 
 # Use mark_thirdparty_code() to reduce warnings from the compiler

@@ -77,7 +77,7 @@ static QByteArray
 generateTestData( qint64 size )
 {
     QByteArray ba;
-    ba.resize( size );
+    ba.resize( static_cast<int>( size ) );
     // Fill the array explicitly to keep Valgrind happy
     for ( auto it = ba.data() ; it < ba.data() + size ; ++it )
     {
@@ -130,6 +130,11 @@ QueueRunner::QueueRunner( JobQueue* queue )
     connect( m_queue, &JobQueue::failed, this, &QueueRunner::onFailed );
 }
 
+QueueRunner::~QueueRunner()
+{
+    // Nothing to do. We don't own the queue, and disconnect happens automatically
+}
+
 bool
 QueueRunner::run()
 {
@@ -167,7 +172,8 @@ PartitionJobTests::initTestCase()
     QString devicePath = qgetenv( "CALAMARES_TEST_DISK" );
     if ( devicePath.isEmpty() )
     {
-        QSKIP( "Skipping test, CALAMARES_TEST_DISK is not set. It should point to a disk which can be safely formatted" );
+        // The 0 is to keep the macro parameters happy
+        QSKIP( "Skipping test, CALAMARES_TEST_DISK is not set. It should point to a disk which can be safely formatted", 0 );
     }
 
     QVERIFY( KPMHelpers::initKPMcore() );
@@ -322,10 +328,10 @@ PartitionJobTests::testCreatePartitionExtended()
 void
 PartitionJobTests::testResizePartition_data()
 {
-    QTest::addColumn< int >( "oldStartMiB" );
-    QTest::addColumn< int >( "oldSizeMiB" );
-    QTest::addColumn< int >( "newStartMiB" );
-    QTest::addColumn< int >( "newSizeMiB" );
+    QTest::addColumn< unsigned int >( "oldStartMiB" );
+    QTest::addColumn< unsigned int >( "oldSizeMiB" );
+    QTest::addColumn< unsigned int >( "newStartMiB" );
+    QTest::addColumn< unsigned int >( "newSizeMiB" );
 
     QTest::newRow("grow")      << 10 << 50 << 10 << 70;
     QTest::newRow("shrink")    << 10 << 70 << 10 << 50;
@@ -336,10 +342,10 @@ PartitionJobTests::testResizePartition_data()
 void
 PartitionJobTests::testResizePartition()
 {
-    QFETCH( int, oldStartMiB );
-    QFETCH( int, oldSizeMiB );
-    QFETCH( int, newStartMiB );
-    QFETCH( int, newSizeMiB );
+    QFETCH( unsigned int, oldStartMiB );
+    QFETCH( unsigned int, oldSizeMiB );
+    QFETCH( unsigned int, newStartMiB );
+    QFETCH( unsigned int, newSizeMiB );
 
     const qint64 sectorsPerMiB = 1_MiB / m_device->logicalSize();
 

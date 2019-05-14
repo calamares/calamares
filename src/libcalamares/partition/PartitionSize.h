@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -48,7 +49,7 @@ class PartitionSize : public NamedSuffix<SizeUnit, SizeUnit::None>
 {
 public:
     PartitionSize() : NamedSuffix() { }
-    PartitionSize( int v, unit_t u ) : NamedSuffix( v, u ) { }
+    PartitionSize( int v, SizeUnit u ) : NamedSuffix( v, u ) { }
     PartitionSize( const QString& );
 
     bool isValid() const
@@ -91,11 +92,26 @@ public:
     /** @brief Convert the size to bytes.
      *
      * This method is only valid for sizes in Bytes, KiB, MiB or GiB.
-     * It will return -1 in any other case.
+     * It will return -1 in any other case. Note that 0KiB and 0MiB and
+     * 0GiB are considered **invalid** sizes and return -1.
      *
      * @return  the size in bytes, or -1 if it cannot be calculated.
      */
     qint64 toBytes() const;
+    
+    /** @brief Are the units comparable?
+     * 
+     * None units cannot be compared with anything. Percentages can
+     * be compared with each other, and all the explicit sizes (KiB, ...)
+     * can be compared with each other.
+     */
+    static constexpr bool unitsComparable( const SizeUnit u1, const SizeUnit u2 )
+    {
+        return !( ( u1 == SizeUnit::None    || u2 == SizeUnit::None    ) ||
+                  ( u1 == SizeUnit::Percent && u2 != SizeUnit::Percent ) ||
+                  ( u1 != SizeUnit::Percent && u2 == SizeUnit::Percent ) );
+    }
+
 };
 
 } // namespace Calamares

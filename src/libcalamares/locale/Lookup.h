@@ -24,8 +24,9 @@
 #include <QLocale>
 #include <QPair>
 
-namespace CalamaresUtils {}
-namespace CalamaresUtils::Locale
+namespace CalamaresUtils 
+{
+namespace Locale
 {
     /* All the functions in this file do lookups of locale data
      * based on CLDR tables; these are lookups that you can't (easily)
@@ -48,6 +49,7 @@ namespace CalamaresUtils::Locale
     DLLEXPORT QPair< QLocale::Country, QLocale::Language > countryData( const QString& code );
     /// @brief Get a likely locale for a 2-letter country code
     DLLEXPORT QLocale countryLocale( const QString& code );
+} 
 }  // namespace
 
 #endif
