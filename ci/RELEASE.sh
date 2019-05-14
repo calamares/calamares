@@ -41,8 +41,8 @@ BUILDDIR=$(mktemp -d --suffix=-build --tmpdir=.)
 if test "x$BUILD_DEFAULT" = "xtrue" ; then
     rm -rf "$BUILDDIR"
     mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
-    ( cd "$BUILDDIR" && cmake .. && make -j4 ) || { echo "Could not perform test-build." ; exit 1 ; }
-    ( cd "$BUILDDIR" && make test ) || { echo "Tests failed." ; exit 1 ; }
+    ( cd "$BUILDDIR" && cmake .. && make -j4 ) || { echo "Could not perform test-build in $BUILDDIR." ; exit 1 ; }
+    ( cd "$BUILDDIR" && make test ) || { echo "Tests failed in $BUILDDIR." ; exit 1 ; }
 fi
 
 ### Build with clang
@@ -53,13 +53,13 @@ if test "x$BUILD_CLANG" = "xtrue" ; then
         # Do build again with clang
         rm -rf "$BUILDDIR"
         mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
-        ( cd "$BUILDDIR" && CC=clang CXX=clang++ cmake .. && make -j4 ) || { echo "Could not perform test-build." ; exit 1 ; }
-        ( cd "$BUILDDIR" && make test ) || { echo "Tests failed." ; exit 1 ; }
+        ( cd "$BUILDDIR" && CC=clang CXX=clang++ cmake .. && make -j4 ) || { echo "Could not perform test-build in $BUILDDIR." ; exit 1 ; }
+        ( cd "$BUILDDIR" && make test ) || { echo "Tests failed in $BUILDDIR." ; exit 1 ; }
     fi
 fi
 
 if test "x$BUILD_ONLY" = "xtrue" ; then
-    echo "Builds completed, release stopped."
+    echo "Builds completed, release stopped. Build remains in $BUILDDIR."
     exit 1
 fi
 
