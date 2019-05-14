@@ -150,7 +150,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
                           const PartitionRole& role )
 {
     QList< Partition* > partList;
-    qint64 size, minSize, maxSize, end;
+    qint64 minSize, maxSize, end;
     qint64 totalSize = lastSector - firstSector + 1;
     qint64 availableSize = totalSize;
 
@@ -161,6 +161,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
     {
         Partition *currentPartition = nullptr;
 
+        qint64 size = -1;
         // Calculate partition size
         if ( part.partSize.isValid() )
         {
