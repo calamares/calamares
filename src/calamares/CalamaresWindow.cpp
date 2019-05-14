@@ -56,6 +56,10 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     , m_debugWindow( nullptr )
     , m_viewManager( nullptr )
 {
+    // If we can never cancel, don't show the window-close button
+    if ( Calamares::Settings::instance()->disableCancel() )
+        setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
+        
     CALAMARES_RETRANSLATE(
         setWindowTitle( Calamares::Settings::instance()->isSetupMode()
                             ? tr( "%1 Setup Program" ).arg( *Calamares::Branding::ProductName )
