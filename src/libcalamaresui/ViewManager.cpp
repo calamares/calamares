@@ -288,12 +288,7 @@ ViewManager::next()
         m_steps.at( m_currentStep )->onActivate();
         executing = qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep ) ) != nullptr;
         emit currentStepChanged();
-        if ( executing )
-            // Enabled if there's nothing blocking it during exec
-            m_quit->setEnabled( !( settings->dontCancel() || settings->disableCancel() ) );
-        else
-            // Enabled unless it's also hidden
-            m_quit->setEnabled( !settings->disableCancel() );
+        updateCancelEnabled( !settings->disableCancel() && !(executing && settings->dontCancel() ) );
     }
     else
         step->next();
@@ -307,13 +302,15 @@ ViewManager::next()
 void
 ViewManager::updateButtonLabels()
 {
-    QString next = Calamares::Settings::instance()->isSetupMode()
+    const auto* const settings = Calamares::Settings::instance();
+    
+    QString next = settings->isSetupMode()
         ? tr( "&Set up" )
         : tr( "&Install" );
-    QString complete = Calamares::Settings::instance()->isSetupMode()
+    QString complete = settings->isSetupMode()
         ? tr( "Setup is complete. Close the setup program." )
         : tr( "The installation is complete. Close the installer." );
-    QString quit = Calamares::Settings::instance()->isSetupMode()
+    QString quit = settings->isSetupMode()
         ? tr( "Cancel setup without changing the system." )
         : tr( "Cancel installation without changing the system." );
 
@@ -328,15 +325,14 @@ ViewManager::updateButtonLabels()
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( complete );
         m_quit->setVisible( true );  // At end, always visible and enabled.
-        m_quit->setEnabled( true );
+        updateCancelEnabled( true );
     }
     else
     {
-        if ( Calamares::Settings::instance()->disableCancel() )
-        {
-            m_quit->setVisible( false );
-            m_quit->setEnabled( false );  // Can't be triggered through DBUS
-        }
+        if ( settings->disableCancel() )
+            m_quit->setVisible( false );  // In case we went back from final
+        updateCancelEnabled( !settings->disableCancel() && !( stepIsExecute( m_steps, m_currentStep ) && settings->dontCancel() ) );
+        
         m_quit->setText( tr( "&Cancel" ) );
         m_quit->setToolTip( quit );
     }
@@ -401,6 +397,13 @@ bool ViewManager::confirmCancelInstallation()
     }
     else // Means we're at the end, no need to confirm.
         return true;
+}
+
+void
+ViewManager::updateCancelEnabled( bool enabled )
+{
+    m_quit->setEnabled( enabled );
+    emit cancelEnabled( enabled );
 }
 
 }  // namespace

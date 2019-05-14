@@ -121,6 +121,7 @@ public slots:
 signals:
     void currentStepChanged();
     void enlarge( QSize enlarge ) const;  // See ViewStep::enlarge()
+    void cancelEnabled( bool enabled ) const;
 
 private:
     explicit ViewManager( QObject* parent = nullptr );
@@ -128,7 +129,8 @@ private:
 
     void insertViewStep( int before, ViewStep* step );
     void updateButtonLabels();
-
+    void updateCancelEnabled( bool enabled );
+    
     static ViewManager* s_instance;
 
     ViewStepList m_steps;
