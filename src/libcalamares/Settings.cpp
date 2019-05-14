@@ -185,7 +185,7 @@ Settings::Settings( const QString& settingsFilePath,
     , m_doChroot( true )
     , m_promptInstall( false )
     , m_disableCancel( false )
-    , m_dontCancel( false )
+    , m_disableCancelDuringExec( false )
 {
     cDebug() << "Using Calamares settings file at" << settingsFilePath;
     QFile file( settingsFilePath );
@@ -207,7 +207,7 @@ Settings::Settings( const QString& settingsFilePath,
             m_doChroot = !requireBool( config, "dont-chroot", false );
             m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
             m_disableCancel = requireBool( config, "disable-cancel", false );
-            m_dontCancel = requireBool( config, "disable-cancel-during-exec", false );
+            m_disableCancelDuringExec = requireBool( config, "disable-cancel-during-exec", false );
         }
         catch ( YAML::Exception& e )
         {
@@ -277,9 +277,9 @@ Settings::disableCancel() const
 }
 
 bool
-Settings::dontCancel() const
+Settings::disableCancelDuringExec() const
 {
-    return m_dontCancel;
+    return m_disableCancelDuringExec;
 }
 
 

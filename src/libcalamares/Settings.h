@@ -68,7 +68,7 @@ public:
     /** @brief Global setting of disable-cancel: can't cancel ever. */
     bool disableCancel() const;
     /** @brief Temporary setting of disable-cancel: can't cancel during exec. */
-    bool dontCancel() const;
+    bool disableCancelDuringExec() const;
 
 private:
     static Settings* s_instance;
@@ -85,7 +85,7 @@ private:
     bool m_isSetupMode;
     bool m_promptInstall;
     bool m_disableCancel;
-    bool m_dontCancel;
+    bool m_disableCancelDuringExec;
 };
 
 }

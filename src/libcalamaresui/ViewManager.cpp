@@ -288,7 +288,7 @@ ViewManager::next()
         m_steps.at( m_currentStep )->onActivate();
         executing = qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep ) ) != nullptr;
         emit currentStepChanged();
-        updateCancelEnabled( !settings->disableCancel() && !(executing && settings->dontCancel() ) );
+        updateCancelEnabled( !settings->disableCancel() && !(executing && settings->disableCancelDuringExec() ) );
     }
     else
         step->next();
@@ -331,7 +331,7 @@ ViewManager::updateButtonLabels()
     {
         if ( settings->disableCancel() )
             m_quit->setVisible( false );  // In case we went back from final
-        updateCancelEnabled( !settings->disableCancel() && !( stepIsExecute( m_steps, m_currentStep ) && settings->dontCancel() ) );
+        updateCancelEnabled( !settings->disableCancel() && !( stepIsExecute( m_steps, m_currentStep ) && settings->disableCancelDuringExec() ) );
         
         m_quit->setText( tr( "&Cancel" ) );
         m_quit->setToolTip( quit );
@@ -369,7 +369,7 @@ bool ViewManager::confirmCancelInstallation()
     
     if ( settings->disableCancel() )
         return false;
-    if ( settings->dontCancel() && stepIsExecute( m_steps, m_currentStep ) )
+    if ( settings->disableCancelDuringExec() && stepIsExecute( m_steps, m_currentStep ) )
         return false;
     
     // If it's NOT the last page of the last step, we ask for confirmation
