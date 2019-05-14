@@ -137,9 +137,9 @@ VolumeGroupBaseDialog::updateTotalSize()
 void
 VolumeGroupBaseDialog::updateTotalSectors()
 {
-    qint32 totalSectors = 0;
+    qint64 totalSectors = 0;
 
-    qint32 extentSize = ui->peSize->value() * Capacity::unitFactor(Capacity::Unit::Byte, Capacity::Unit::MiB);
+    qint64 extentSize = ui->peSize->value() * Capacity::unitFactor(Capacity::Unit::Byte, Capacity::Unit::MiB);
 
     if ( extentSize > 0 )
         totalSectors = m_totalSizeValue / extentSize;

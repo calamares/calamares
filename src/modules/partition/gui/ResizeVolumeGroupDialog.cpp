@@ -44,7 +44,7 @@ ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice *device,
     for ( const Partition* p : availablePVs )
         pvList()->addItem( new ListPhysicalVolumeWidgetItem( p, false ) );
 
-    peSize()->setValue( device->peSize() / Capacity::unitFactor(Capacity::Unit::Byte, Capacity::Unit::MiB) );
+    peSize()->setValue( static_cast<int>( device->peSize() / Capacity::unitFactor(Capacity::Unit::Byte, Capacity::Unit::MiB) ) );
 
     vgName()->setEnabled( false );
     peSize()->setEnabled( false );
