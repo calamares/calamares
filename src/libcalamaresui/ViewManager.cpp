@@ -281,12 +281,8 @@ ViewManager::next()
         executing = qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep ) ) != nullptr;
         emit currentStepChanged();
         if ( executing )
-        {
-            m_back->setEnabled( false );
-            m_next->setEnabled( false );
             // Enabled if there's nothing blocking it during exec
             m_quit->setEnabled( !( settings->dontCancel() || settings->disableCancel() ) );
-        }
         else
             // Enabled unless it's also hidden
             m_quit->setEnabled( !settings->disableCancel() );
