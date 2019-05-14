@@ -227,10 +227,18 @@ ViewManager::currentStepIndex() const
     return m_currentStep;
 }
 
+/** @brief Is the given step at @p index an execution step?
+ * 
+ * Returns true if the step is an execution step, false otherwise.
+ * Also returns false if the @p index is out of range.
+ */
 static inline bool
-stepNextWillExecute(const ViewStepList& steps, int index)
+stepIsExecute( const ViewStepList& steps, int index )
 {
-    return ( index + 1 < steps.count() ) && qobject_cast< ExecutionViewStep* >( steps.at( index + 1 ) );
+    return 
+        ( 0 <= index ) &&
+        ( index < steps.count() ) && 
+        ( qobject_cast< ExecutionViewStep* >( steps.at( index ) ) != nullptr );
 }
 
 void
@@ -245,7 +253,7 @@ ViewManager::next()
         // Special case when the user clicks next on the very last page in a view phase
         // and right before switching to an execution phase.
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
-        if ( settings->showPromptBeforeExecution() && stepNextWillExecute( m_steps, m_currentStep ) )
+        if ( settings->showPromptBeforeExecution() && stepIsExecute( m_steps, m_currentStep+1 ) )
         {
             QString title = settings->isSetupMode()
                 ? tr( "Continue with setup?" )
@@ -309,7 +317,8 @@ ViewManager::updateButtonLabels()
         ? tr( "Cancel setup without changing the system." )
         : tr( "Cancel installation without changing the system." );
 
-    if ( stepNextWillExecute( m_steps, m_currentStep ) )
+    // If we're going into the execution step / install phase, other message
+    if ( stepIsExecute( m_steps, m_currentStep+1 ) )
         m_next->setText( next );
     else
         m_next->setText( tr( "&Next" ) );
