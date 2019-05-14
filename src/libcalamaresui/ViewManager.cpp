@@ -373,6 +373,8 @@ bool ViewManager::confirmCancelInstallation()
     
     if ( settings->disableCancel() )
         return false;
+    if ( settings->dontCancel() && stepIsExecute( m_steps, m_currentStep ) )
+        return false;
     
     // If it's NOT the last page of the last step, we ask for confirmation
     if ( !( m_currentStep == m_steps.count() -1 &&
