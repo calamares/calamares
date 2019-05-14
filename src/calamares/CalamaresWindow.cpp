@@ -58,7 +58,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 {
     // If we can never cancel, don't show the window-close button
     if ( Calamares::Settings::instance()->disableCancel() )
-        setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
+        setWindowFlag( Qt::WindowCloseButtonHint, false );
         
     CALAMARES_RETRANSLATE(
         setWindowTitle( Calamares::Settings::instance()->isSetupMode()
