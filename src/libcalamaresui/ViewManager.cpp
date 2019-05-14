@@ -364,14 +364,19 @@ ViewManager::back()
 
 bool ViewManager::confirmCancelInstallation()
 {
+    const auto* const settings = Calamares::Settings::instance();
+    
+    if ( settings->disableCancel() )
+        return false;
+    
     // If it's NOT the last page of the last step, we ask for confirmation
     if ( !( m_currentStep == m_steps.count() -1 &&
             m_steps.last()->isAtEnd() ) )
     {
-        QString title = Calamares::Settings::instance()->isSetupMode()
+        QString title = settings->isSetupMode()
             ? tr( "Cancel setup?" )
             : tr( "Cancel installation?" );
-        QString question = Calamares::Settings::instance()->isSetupMode()
+        QString question = settings->isSetupMode()
             ? tr( "Do you really want to cancel the current setup process?\n"
                   "The setup program will quit and all changes will be lost." )
             : tr( "Do you really want to cancel the current install process?\n"
