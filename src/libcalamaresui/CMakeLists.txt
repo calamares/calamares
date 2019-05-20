@@ -64,8 +64,7 @@ if( WITH_PYTHONQT )
         viewpages/PythonQtGlobalStorageWrapper.cpp
         viewpages/PythonQtUtilsWrapper.cpp
     )
-    set( OPTIONAL_PRIVATE_LIBRARIES
-        ${OPTIONAL_PRIVATE_LIBRARIES}
+    set( OPTIONAL_PYTHON_LIBRARIES
         ${PYTHON_LIBRARIES}
         ${PYTHONQT_LIBRARIES}
     )
@@ -76,7 +75,7 @@ calamares_add_library( calamaresui
     UI ${calamaresui_UI}
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_PRIVATE_LIBRARIES
-        ${OPTIONAL_PRIVATE_LIBRARIES}
+        ${OPTIONAL_PYTHON_LIBRARIES}
     LINK_LIBRARIES
         Qt5::Svg
         Qt5::QuickWidgets
