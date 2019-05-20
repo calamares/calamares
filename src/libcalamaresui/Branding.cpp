@@ -110,28 +110,6 @@ loadStrings( QMap<QString, QString>& map, const QVariantMap& config, const std::
  * documentation for details.
  */
 
-/** @brief Load the @p map of image-filepaths from @p config
- *
- * Paths are translated relative to componentDir, and must exist.
- * All paths are transformed to absolute paths before putting
- * them in the map.
- */
-static void
-loadImages(QMap<QString, QString>& map, const QVariantMap& config)
-{
-    map.clear();
-    for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
-    {
-        QString pathString = it.value().toString();
-        QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
-        if ( !imageFi.exists() )
-            bail( QString( "Image file %1 does not exist." )
-                    .arg( imageFi.absoluteFilePath() ) );
-
-        map.insert( it.key(), imageFi.absoluteFilePath() );
-    }
-}
-
 Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
     : QObject( parent )
@@ -170,7 +148,15 @@ Branding::Branding( const QString& brandingFilePath,
 
             if ( !doc[ "images" ].IsMap() )
                 bail( "Syntax error in images map." );
-            loadImages( m_images, CalamaresUtils::yamlMapToVariant( doc[ "images" ] ).toMap() );
+            loadStrings( m_images, CalamaresUtils::yamlMapToVariant( doc[ "images" ] ).toMap(),
+                [&]( const QString& s ) -> QString
+                {
+                    QFileInfo imageFi( componentDir.absoluteFilePath( s ) );
+                    if ( !imageFi.exists() )
+                        bail( QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
+                    return  imageFi.absoluteFilePath();
+                }
+            );
 
             if ( !doc[ "style" ].IsMap() )
                 bail( "Syntax error in style map." );
