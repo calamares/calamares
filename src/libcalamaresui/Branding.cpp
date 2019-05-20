@@ -153,27 +153,28 @@ Branding::Branding( const QString& brandingFilePath,
 
 #ifdef WITH_KOSRelease
             KOSRelease relInfo;
-            QHash<QString, QString> relMap;
-            relMap << "NAME" << relInfo.name()
-                << "VERSION" << relInfo.version()
-                << "ID" << relInfo.id()
-                << "ID_LIKE" << relInfo.idLike()
-                << "VERSION_CODENAME" << relInfo.versionCodename()
-                << "VERSION_ID" << relInfo.versionId()
-                << "PRETTY_NAME" << relInfo.prettyName()
-                << "HOME_URL" << relInfo.homeUrl()
-                << "DOCUMENTATION_URL" << relInfo.documentationUrl()
-                << "SUPPORT_URL" << relInfo.supportUrl()
-                << "BUG_REPORT_URL" << relInfo.bugReportUrl()
-                << "PRIVACY_POLICY_URL" << relInfo.privacyPolicyUrl()
-                << "BUILD_ID" << relInfo.buildId()
-                << "VARIANT" << relInfo.variant()
-                << "VARIANT_ID" << relInfo.variantId()
-                << "LOGO" << relInfo.logo();
-
-
+    
+            QHash< QString, QString > relMap{
+                std::initializer_list< std::pair< QString, QString > > {
+                { QStringLiteral( "NAME" ), relInfo.name() },
+                { QStringLiteral( "VERSION" ), relInfo.version() },
+                { QStringLiteral( "ID" ), relInfo.id() },
+                { QStringLiteral( "ID_LIKE" ), relInfo.idLike().join( ' ' ) },
+                { QStringLiteral( "VERSION_CODENAME" ), relInfo.versionCodename() },
+                { QStringLiteral( "VERSION_ID" ), relInfo.versionId() },
+                { QStringLiteral( "PRETTY_NAME" ), relInfo.prettyName() },
+                { QStringLiteral( "HOME_URL" ), relInfo.homeUrl() },
+                { QStringLiteral( "DOCUMENTATION_URL" ), relInfo.documentationUrl() },
+                { QStringLiteral( "SUPPORT_URL" ), relInfo.supportUrl() },
+                { QStringLiteral( "BUG_REPORT_URL" ), relInfo.bugReportUrl() },
+                { QStringLiteral( "PRIVACY_POLICY_URL" ), relInfo.privacyPolicyUrl() },
+                { QStringLiteral( "BUILD_ID" ), relInfo.buildId() },
+                { QStringLiteral( "VARIANT" ), relInfo.variant() },
+                { QStringLiteral( "VARIANT_ID" ), relInfo.variantId() },
+                { QStringLiteral( "LOGO" ), relInfo.logo() }
+            } };
             loadStrings( m_strings, doc, "strings",
-                [&]( const QString& s ) -> QString { return KMacroExpander::expandMacros{ s, relMap, '@' ); }
+                [&]( const QString& s ) -> QString { return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '@' ) ); }
                 );
 #else
             // No support for substituting in os-release values.
