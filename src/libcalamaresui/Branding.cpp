@@ -87,6 +87,52 @@ Branding::WindowDimension::suffixes()
     return names;
 }
 
+/** @brief Load the @p map with strings from @p config
+ *
+ * If os-release is supported (with KF5 CoreAddons >= 5.58) then
+ * special substitutions can be done as well. See the branding
+ * documentation for details.
+ */
+static void
+loadStrings(QMap<QString, QString>& map, const QVariantMap& config)
+{
+    map.clear();
+    for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
+        map.insert( it.key(), it.value().toString() );
+}
+
+/** @brief Load the @p map of image-filepaths from @p config
+ *
+ * Paths are translated relative to componentDir, and must exist.
+ * All paths are transformed to absolute paths before putting
+ * them in the map.
+ */
+static void
+loadImages(QMap<QString, QString>& map, const QVariantMap& config)
+{
+    map.clear();
+    for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
+    {
+        QString pathString = it.value().toString();
+        QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
+        if ( !imageFi.exists() )
+            bail( QString( "Image file %1 does not exist." )
+                    .arg( imageFi.absoluteFilePath() ) );
+
+        map.insert( it.key(), imageFi.absoluteFilePath() );
+    }
+}
+
+/** @brief Load the @p map with stylesheet-strings from @p config.
+ */
+static void
+loadStyles(QMap<QString, QString>& map, const QVariantMap& config)
+{
+    map.clear();
+    for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
+        map.insert( it.key(), it.value().toString() );
+}
+
 Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
     : QObject( parent )
@@ -120,29 +166,15 @@ Branding::Branding( const QString& brandingFilePath,
 
             if ( !doc[ "strings" ].IsMap() )
                 bail( "Syntax error in strings map." );
-
-            QVariantMap strings =
-                CalamaresUtils::yamlMapToVariant( doc[ "strings" ] ).toMap();
-            m_strings.clear();
-            for ( auto it = strings.constBegin(); it != strings.constEnd(); ++it )
-                m_strings.insert( it.key(), it.value().toString() );
+            loadStrings( m_strings, CalamaresUtils::yamlMapToVariant( doc[ "strings" ] ).toMap() );
 
             if ( !doc[ "images" ].IsMap() )
                 bail( "Syntax error in images map." );
+            loadImages( m_images, CalamaresUtils::yamlMapToVariant( doc[ "images" ] ).toMap() );
 
-            QVariantMap images =
-                CalamaresUtils::yamlMapToVariant( doc[ "images" ] ).toMap();
-            m_images.clear();
-            for ( auto it = images.constBegin(); it != images.constEnd(); ++it )
-            {
-                QString pathString = it.value().toString();
-                QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
-                if ( !imageFi.exists() )
-                    bail( QString( "Image file %1 does not exist." )
-                            .arg( imageFi.absoluteFilePath() ) );
-
-                m_images.insert( it.key(), imageFi.absoluteFilePath() );
-            }
+            if ( !doc[ "style" ].IsMap() )
+                bail( "Syntax error in style map." );
+            loadStyles( m_style, CalamaresUtils::yamlMapToVariant( doc[ "style" ] ).toMap() );
 
             if ( doc[ "slideshow" ].IsSequence() )
             {
@@ -174,16 +206,6 @@ Branding::Branding( const QString& brandingFilePath,
             }
             else
                 bail( "Syntax error in slideshow sequence." );
-
-            if ( !doc[ "style" ].IsMap() )
-                bail( "Syntax error in style map." );
-
-            QVariantMap style =
-                CalamaresUtils::yamlMapToVariant( doc[ "style" ] ).toMap();
-            m_style.clear();
-            for ( auto it = style.constBegin(); it != style.constEnd(); ++it )
-                m_style.insert( it.key(), it.value().toString() );
-
         }
         catch ( YAML::Exception& e )
         {
