@@ -12,6 +12,9 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ - *branding* now supports os-release variables in the *strings* section,
+   which allows re-using (at runtime) information set in /etc/os-release .
+   This requires KDE Frameworks 5.58. #1150
 
 # 3.2.8 (2019-05-10) #
 
