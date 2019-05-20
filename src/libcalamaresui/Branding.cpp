@@ -32,6 +32,8 @@
 #include <QPixmap>
 #include <QVariantMap>
 
+#include <functional>
+
 namespace Calamares
 {
 
@@ -89,17 +91,24 @@ Branding::WindowDimension::suffixes()
 
 /** @brief Load the @p map with strings from @p config
  *
+ * Each key-value pair from @p config is inserted into the @p map,
+ * but the value is first transformed by the @p transform function,
+ * which may change strings.
+ */
+static void
+loadStrings( QMap<QString, QString>& map, const QVariantMap& config, const std::function< QString(const QString&) >& transform )
+{
+    map.clear();
+    for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
+        map.insert( it.key(), transform( it.value().toString() ) );
+}
+
+/** @brief Load the @p map with strings from @p config
+ *
  * If os-release is supported (with KF5 CoreAddons >= 5.58) then
  * special substitutions can be done as well. See the branding
  * documentation for details.
  */
-static void
-loadStrings(QMap<QString, QString>& map, const QVariantMap& config)
-{
-    map.clear();
-    for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
-        map.insert( it.key(), it.value().toString() );
-}
 
 /** @brief Load the @p map of image-filepaths from @p config
  *
@@ -121,16 +130,6 @@ loadImages(QMap<QString, QString>& map, const QVariantMap& config)
 
         map.insert( it.key(), imageFi.absoluteFilePath() );
     }
-}
-
-/** @brief Load the @p map with stylesheet-strings from @p config.
- */
-static void
-loadStyles(QMap<QString, QString>& map, const QVariantMap& config)
-{
-    map.clear();
-    for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
-        map.insert( it.key(), it.value().toString() );
 }
 
 Branding::Branding( const QString& brandingFilePath,
@@ -166,7 +165,8 @@ Branding::Branding( const QString& brandingFilePath,
 
             if ( !doc[ "strings" ].IsMap() )
                 bail( "Syntax error in strings map." );
-            loadStrings( m_strings, CalamaresUtils::yamlMapToVariant( doc[ "strings" ] ).toMap() );
+            loadStrings( m_strings, CalamaresUtils::yamlMapToVariant( doc[ "strings" ] ).toMap(),
+                []( const QString& s ) -> QString { return s; } );
 
             if ( !doc[ "images" ].IsMap() )
                 bail( "Syntax error in images map." );
@@ -174,7 +174,8 @@ Branding::Branding( const QString& brandingFilePath,
 
             if ( !doc[ "style" ].IsMap() )
                 bail( "Syntax error in style map." );
-            loadStyles( m_style, CalamaresUtils::yamlMapToVariant( doc[ "style" ] ).toMap() );
+            loadStrings( m_style, CalamaresUtils::yamlMapToVariant( doc[ "style" ] ).toMap(),
+                []( const QString& s ) -> QString { return s; } );
 
             if ( doc[ "slideshow" ].IsSequence() )
             {
