@@ -34,6 +34,11 @@
 
 #include <functional>
 
+#ifdef WITH_KOSRelease
+#include <KMacroExpander>
+#include <KOSRelease>
+#endif
+
 namespace Calamares
 {
 
@@ -146,9 +151,36 @@ Branding::Branding( const QString& brandingFilePath,
 
             initSimpleSettings( doc );
 
+#ifdef WITH_KOSRelease
+            KOSRelease relInfo;
+            QHash<QString, QString> relMap;
+            relMap << "NAME" << relInfo.name()
+                << "VERSION" << relInfo.version()
+                << "ID" << relInfo.id()
+                << "ID_LIKE" << relInfo.idLike()
+                << "VERSION_CODENAME" << relInfo.versionCodename()
+                << "VERSION_ID" << relInfo.versionId()
+                << "PRETTY_NAME" << relInfo.prettyName()
+                << "HOME_URL" << relInfo.homeUrl()
+                << "DOCUMENTATION_URL" << relInfo.documentationUrl()
+                << "SUPPORT_URL" << relInfo.supportUrl()
+                << "BUG_REPORT_URL" << relInfo.bugReportUrl()
+                << "PRIVACY_POLICY_URL" << relInfo.privacyPolicyUrl()
+                << "BUILD_ID" << relInfo.buildId()
+                << "VARIANT" << relInfo.variant()
+                << "VARIANT_ID" << relInfo.variantId()
+                << "LOGO" << relInfo.logo();
+
+
+            loadStrings( m_strings, doc, "strings",
+                [&]( const QString& s ) -> QString { return KMacroExpander::expandMacros{ s, relMap, '@' ); }
+                );
+#else
+            // No support for substituting in os-release values.
             loadStrings( m_strings, doc, "strings",
                 []( const QString& s ) -> QString { return s; }
                 );
+#endif
             loadStrings( m_images, doc, "images",
                 [&]( const QString& s ) -> QString
                 {
