@@ -197,6 +197,7 @@ Branding::Branding( const QString& brandingFilePath,
         catch ( YAML::Exception& e )
         {
             CalamaresUtils::explainYamlException( e, ba, file.fileName() );
+            bail( e.what() );
         }
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
