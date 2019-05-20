@@ -83,3 +83,8 @@ calamares_add_library( calamaresui
     EXPORT CalamaresLibraryDepends
     VERSION ${CALAMARES_VERSION_SHORT}
 )
+
+find_package( KF5CoreAddons 5.58 QUIET )  # If it's really new
+if ( KF5CoreAddons_FOUND )
+    target_compile_definitions( calamaresui PRIVATE WITH_KOSRelease )
+endif()
