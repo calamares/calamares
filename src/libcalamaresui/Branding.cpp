@@ -89,15 +89,20 @@ Branding::WindowDimension::suffixes()
     return names;
 }
 
-/** @brief Load the @p map with strings from @p config
+/** @brief Load the @p map with strings from @p doc
  *
- * Each key-value pair from @p config is inserted into the @p map,
- * but the value is first transformed by the @p transform function,
- * which may change strings.
+ * Each key-value pair from the sub-map in @p doc identified by @p key
+ * is inserted into the @p map, but the value is first transformed by
+ * the @p transform function, which may change strings.
  */
 static void
-loadStrings( QMap<QString, QString>& map, const QVariantMap& config, const std::function< QString(const QString&) >& transform )
+loadStrings( QMap<QString, QString>& map, const YAML::Node& doc, const std::string& key, const std::function< QString(const QString&) >& transform )
 {
+    if ( !doc[ key ].IsMap() )
+        throw YAML::Exception( YAML::Mark(), std::string("Branding configuration is not a map: ") + key );
+
+    const auto& config = CalamaresUtils::yamlMapToVariant( doc[ key ] ).toMap();
+
     map.clear();
     for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
         map.insert( it.key(), transform( it.value().toString() ) );
@@ -141,14 +146,10 @@ Branding::Branding( const QString& brandingFilePath,
 
             initSimpleSettings( doc );
 
-            if ( !doc[ "strings" ].IsMap() )
-                bail( "Syntax error in strings map." );
-            loadStrings( m_strings, CalamaresUtils::yamlMapToVariant( doc[ "strings" ] ).toMap(),
-                []( const QString& s ) -> QString { return s; } );
-
-            if ( !doc[ "images" ].IsMap() )
-                bail( "Syntax error in images map." );
-            loadStrings( m_images, CalamaresUtils::yamlMapToVariant( doc[ "images" ] ).toMap(),
+            loadStrings( m_strings, doc, "strings",
+                []( const QString& s ) -> QString { return s; }
+                );
+            loadStrings( m_images, doc, "images",
                 [&]( const QString& s ) -> QString
                 {
                     QFileInfo imageFi( componentDir.absoluteFilePath( s ) );
@@ -156,12 +157,10 @@ Branding::Branding( const QString& brandingFilePath,
                         bail( QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
                     return  imageFi.absoluteFilePath();
                 }
-            );
-
-            if ( !doc[ "style" ].IsMap() )
-                bail( "Syntax error in style map." );
-            loadStrings( m_style, CalamaresUtils::yamlMapToVariant( doc[ "style" ] ).toMap(),
-                []( const QString& s ) -> QString { return s; } );
+                );
+            loadStrings( m_style, doc, "style",
+                []( const QString& s ) -> QString { return s; }
+                );
 
             if ( doc[ "slideshow" ].IsSequence() )
             {
