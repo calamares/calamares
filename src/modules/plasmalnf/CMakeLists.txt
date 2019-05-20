@@ -21,14 +21,6 @@ set_package_properties(
 )
 
 if ( KF5Plasma_FOUND AND KF5Package_FOUND )
-    if ( KF5Config_FOUND )
-        set( option_kf5 Config )
-        set( option_defs WITH_KCONFIG )
-        # set( option_libs KF5::Config )  # Not needed anyway
-    endif()
-
-    find_package( KF5 ${lnf_ver} REQUIRED CoreAddons Plasma Package ${option_kf5} )
-
     calamares_add_plugin( plasmalnf
         TYPE viewmodule
         EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -45,11 +37,13 @@ if ( KF5Plasma_FOUND AND KF5Package_FOUND )
             page_plasmalnf.ui
         LINK_PRIVATE_LIBRARIES
             calamaresui
-            ${option_libs}
             KF5::Package
             KF5::Plasma
         SHARED_LIB
     )
+    if ( KF5Config_FOUND )
+        target_compile_definitions(calamares_viewmodule_plasmalnf PRIVATE WITH_KCONFIG)
+    endif()
 else()
     calamares_skip_module( "plasmalnf (missing requirements)" )
 endif()
