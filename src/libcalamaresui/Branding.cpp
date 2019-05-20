@@ -32,6 +32,13 @@
 #include <QPixmap>
 #include <QVariantMap>
 
+#include <functional>
+
+#ifdef WITH_KOSRelease
+#include <KMacroExpander>
+#include <KOSRelease>
+#endif
+
 namespace Calamares
 {
 
@@ -87,6 +94,32 @@ Branding::WindowDimension::suffixes()
     return names;
 }
 
+/** @brief Load the @p map with strings from @p doc
+ *
+ * Each key-value pair from the sub-map in @p doc identified by @p key
+ * is inserted into the @p map, but the value is first transformed by
+ * the @p transform function, which may change strings.
+ */
+static void
+loadStrings( QMap<QString, QString>& map, const YAML::Node& doc, const std::string& key, const std::function< QString(const QString&) >& transform )
+{
+    if ( !doc[ key ].IsMap() )
+        throw YAML::Exception( YAML::Mark(), std::string("Branding configuration is not a map: ") + key );
+
+    const auto& config = CalamaresUtils::yamlMapToVariant( doc[ key ] ).toMap();
+
+    map.clear();
+    for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
+        map.insert( it.key(), transform( it.value().toString() ) );
+}
+
+/** @brief Load the @p map with strings from @p config
+ *
+ * If os-release is supported (with KF5 CoreAddons >= 5.58) then
+ * special substitutions can be done as well. See the branding
+ * documentation for details.
+ */
+
 Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
     : QObject( parent )
@@ -118,31 +151,49 @@ Branding::Branding( const QString& brandingFilePath,
 
             initSimpleSettings( doc );
 
-            if ( !doc[ "strings" ].IsMap() )
-                bail( "Syntax error in strings map." );
-
-            QVariantMap strings =
-                CalamaresUtils::yamlMapToVariant( doc[ "strings" ] ).toMap();
-            m_strings.clear();
-            for ( auto it = strings.constBegin(); it != strings.constEnd(); ++it )
-                m_strings.insert( it.key(), it.value().toString() );
-
-            if ( !doc[ "images" ].IsMap() )
-                bail( "Syntax error in images map." );
-
-            QVariantMap images =
-                CalamaresUtils::yamlMapToVariant( doc[ "images" ] ).toMap();
-            m_images.clear();
-            for ( auto it = images.constBegin(); it != images.constEnd(); ++it )
-            {
-                QString pathString = it.value().toString();
-                QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
-                if ( !imageFi.exists() )
-                    bail( QString( "Image file %1 does not exist." )
-                            .arg( imageFi.absoluteFilePath() ) );
-
-                m_images.insert( it.key(), imageFi.absoluteFilePath() );
-            }
+#ifdef WITH_KOSRelease
+            KOSRelease relInfo;
+    
+            QHash< QString, QString > relMap{
+                std::initializer_list< std::pair< QString, QString > > {
+                { QStringLiteral( "NAME" ), relInfo.name() },
+                { QStringLiteral( "VERSION" ), relInfo.version() },
+                { QStringLiteral( "ID" ), relInfo.id() },
+                { QStringLiteral( "ID_LIKE" ), relInfo.idLike().join( ' ' ) },
+                { QStringLiteral( "VERSION_CODENAME" ), relInfo.versionCodename() },
+                { QStringLiteral( "VERSION_ID" ), relInfo.versionId() },
+                { QStringLiteral( "PRETTY_NAME" ), relInfo.prettyName() },
+                { QStringLiteral( "HOME_URL" ), relInfo.homeUrl() },
+                { QStringLiteral( "DOCUMENTATION_URL" ), relInfo.documentationUrl() },
+                { QStringLiteral( "SUPPORT_URL" ), relInfo.supportUrl() },
+                { QStringLiteral( "BUG_REPORT_URL" ), relInfo.bugReportUrl() },
+                { QStringLiteral( "PRIVACY_POLICY_URL" ), relInfo.privacyPolicyUrl() },
+                { QStringLiteral( "BUILD_ID" ), relInfo.buildId() },
+                { QStringLiteral( "VARIANT" ), relInfo.variant() },
+                { QStringLiteral( "VARIANT_ID" ), relInfo.variantId() },
+                { QStringLiteral( "LOGO" ), relInfo.logo() }
+            } };
+            loadStrings( m_strings, doc, "strings",
+                [&]( const QString& s ) -> QString { return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '@' ) ); }
+                );
+#else
+            // No support for substituting in os-release values.
+            loadStrings( m_strings, doc, "strings",
+                []( const QString& s ) -> QString { return s; }
+                );
+#endif
+            loadStrings( m_images, doc, "images",
+                [&]( const QString& s ) -> QString
+                {
+                    QFileInfo imageFi( componentDir.absoluteFilePath( s ) );
+                    if ( !imageFi.exists() )
+                        bail( QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
+                    return  imageFi.absoluteFilePath();
+                }
+                );
+            loadStrings( m_style, doc, "style",
+                []( const QString& s ) -> QString { return s; }
+                );
 
             if ( doc[ "slideshow" ].IsSequence() )
             {
@@ -174,20 +225,11 @@ Branding::Branding( const QString& brandingFilePath,
             }
             else
                 bail( "Syntax error in slideshow sequence." );
-
-            if ( !doc[ "style" ].IsMap() )
-                bail( "Syntax error in style map." );
-
-            QVariantMap style =
-                CalamaresUtils::yamlMapToVariant( doc[ "style" ] ).toMap();
-            m_style.clear();
-            for ( auto it = style.constBegin(); it != style.constEnd(); ++it )
-                m_style.insert( it.key(), it.value().toString() );
-
         }
         catch ( YAML::Exception& e )
         {
             CalamaresUtils::explainYamlException( e, ba, file.fileName() );
+            bail( e.what() );
         }
 
         QDir translationsDir( componentDir.filePath( "lang" ) );

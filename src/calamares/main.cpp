@@ -26,7 +26,7 @@
 #include "utils/Logger.h"
 #include "CalamaresConfig.h"
 
-#ifdef WITH_KCRASH
+#ifdef WITH_KF5Crash
 #include <KF5/KCrash/KCrash>
 #include <KF5/KCoreAddons/KAboutData>
 #endif
@@ -84,7 +84,7 @@ main( int argc, char* argv[] )
 {
     CalamaresApplication a( argc, argv );
 
-#ifdef WITH_KCRASH
+#ifdef WITH_KF5Crash
     KAboutData aboutData( "calamares",
                           "Calamares",
                           a.applicationVersion(),
