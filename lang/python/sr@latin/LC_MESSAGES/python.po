@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-02 16:52-0400\n"
+"POT-Creation-Date: 2019-05-10 19:18-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Language-Team: Serbian (Latin) (https://www.transifex.com/calamares/teams/20061/sr@latin/)\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "Configure GRUB."
 msgstr ""
 
-#: src/modules/mount/main.py:36
+#: src/modules/mount/main.py:38
 msgid "Mounting partitions."
 msgstr ""
 
-#: src/modules/mount/main.py:140 src/modules/initcpiocfg/main.py:187
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:187
 #: src/modules/initcpiocfg/main.py:191
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Configuration Error"
 msgstr ""
 
-#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:188
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
@@ -86,54 +86,54 @@ msgstr ""
 msgid "Unmount file systems."
 msgstr ""
 
-#: src/modules/unpackfs/main.py:40
+#: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
 msgstr ""
 
-#: src/modules/unpackfs/main.py:158
+#: src/modules/unpackfs/main.py:159
 msgid "rsync failed with error code {}."
 msgstr ""
 
-#: src/modules/unpackfs/main.py:219 src/modules/unpackfs/main.py:237
+#: src/modules/unpackfs/main.py:220 src/modules/unpackfs/main.py:238
 msgid "Failed to unpack image \"{}\""
 msgstr ""
 
-#: src/modules/unpackfs/main.py:220
+#: src/modules/unpackfs/main.py:221
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:313
+#: src/modules/unpackfs/main.py:320
 msgid "No mount point for root partition"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:314
+#: src/modules/unpackfs/main.py:321
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:319
+#: src/modules/unpackfs/main.py:326
 msgid "Bad mount point for root partition"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:320
+#: src/modules/unpackfs/main.py:327
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:333 src/modules/unpackfs/main.py:340
-#: src/modules/unpackfs/main.py:345
+#: src/modules/unpackfs/main.py:340 src/modules/unpackfs/main.py:347
+#: src/modules/unpackfs/main.py:352
 msgid "Bad unsquash configuration"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:334
+#: src/modules/unpackfs/main.py:341
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:341
+#: src/modules/unpackfs/main.py:348
 msgid "The source filesystem \"{}\" does not exist"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:346
+#: src/modules/unpackfs/main.py:353
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr ""
 
@@ -301,7 +301,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/modules/bootloader/main.py:48
+#: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
 msgstr ""
 

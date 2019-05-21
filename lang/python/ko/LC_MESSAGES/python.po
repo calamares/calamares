@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-02 16:52-0400\n"
+"POT-Creation-Date: 2019-05-10 19:18-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: 이정희 <daemul72@gmail.com>, 2019\n"
 "Language-Team: Korean (https://www.transifex.com/calamares/teams/20061/ko/)\n"
@@ -24,13 +24,13 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "GRUB 구성"
 
-#: src/modules/mount/main.py:36
+#: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "파티션 마운트 중."
 
-#: src/modules/mount/main.py:140 src/modules/initcpiocfg/main.py:187
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:187
 #: src/modules/initcpiocfg/main.py:191
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
@@ -41,14 +41,14 @@ msgstr ""
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
-msgstr ""
+msgstr "구성 오류"
 
-#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:188
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "사용할 <pre>{!s}</pre>에 대해 정의된 파티션이 없음."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -93,54 +93,54 @@ msgstr ""
 msgid "Unmount file systems."
 msgstr "파일 시스템 마운트를 해제합니다."
 
-#: src/modules/unpackfs/main.py:40
+#: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
 msgstr "파일 시스템을 채우는 중."
 
-#: src/modules/unpackfs/main.py:158
+#: src/modules/unpackfs/main.py:159
 msgid "rsync failed with error code {}."
 msgstr "rsync가 {} 오류 코드로 실패했습니다."
 
-#: src/modules/unpackfs/main.py:219 src/modules/unpackfs/main.py:237
+#: src/modules/unpackfs/main.py:220 src/modules/unpackfs/main.py:238
 msgid "Failed to unpack image \"{}\""
 msgstr "\"{}\" 이미지의 압축을 풀지 못했습니다."
 
-#: src/modules/unpackfs/main.py:220
+#: src/modules/unpackfs/main.py:221
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr "unsquashfs를 찾지 못했습니다. squashfs-tools 패키지가 설치되어 있는지 확인하십시오."
 
-#: src/modules/unpackfs/main.py:313
+#: src/modules/unpackfs/main.py:320
 msgid "No mount point for root partition"
 msgstr "루트 파티션에 대한 마운트 위치 없음"
 
-#: src/modules/unpackfs/main.py:314
+#: src/modules/unpackfs/main.py:321
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr "globalstorage에는 \"rootMountPoint \" 키가 포함되어 있지 않으며 아무 작업도 수행하지 않습니다."
 
-#: src/modules/unpackfs/main.py:319
+#: src/modules/unpackfs/main.py:326
 msgid "Bad mount point for root partition"
 msgstr "루트 파티션에 대한 잘못된 마운트 위치"
 
-#: src/modules/unpackfs/main.py:320
+#: src/modules/unpackfs/main.py:327
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr "rootMountPoint는 \"{}\"이고, 존재하지 않으며, 아무 작업도 수행하지 않습니다."
 
-#: src/modules/unpackfs/main.py:333 src/modules/unpackfs/main.py:340
-#: src/modules/unpackfs/main.py:345
+#: src/modules/unpackfs/main.py:340 src/modules/unpackfs/main.py:347
+#: src/modules/unpackfs/main.py:352
 msgid "Bad unsquash configuration"
 msgstr "잘못된 unsquash 구성"
 
-#: src/modules/unpackfs/main.py:334
+#: src/modules/unpackfs/main.py:341
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr "\"{}\" ({})의 파일시스템은 지원되지 않습니다."
 
-#: src/modules/unpackfs/main.py:341
+#: src/modules/unpackfs/main.py:348
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "\"{}\" 소스 파일시스템은 존재하지 않습니다."
 
-#: src/modules/unpackfs/main.py:346
+#: src/modules/unpackfs/main.py:353
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "대상 시스템의 \"{}\" 목적지가 디렉토리가 아닙니다."
 
@@ -201,7 +201,7 @@ msgstr "디스플레이 관리자 구성이 완료되지 않았습니다."
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "mkinitcpio 구성 중."
 
 #: src/modules/initcpiocfg/main.py:192
 #: src/modules/luksopenswaphookcfg/main.py:100
@@ -209,25 +209,27 @@ msgstr ""
 #: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:317
 #: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "<pre>{!s}</pre>에서 사용할 루트 마운트 지점이 제공되지 않음."
 
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
-msgstr ""
+msgstr "mkinitcpio를 사용하여 initramfs 만드는 중."
 
 #: src/modules/initcpio/main.py:47
 msgid "Process Failed"
-msgstr ""
+msgstr "프로세스 실패"
 
 #: src/modules/initcpio/main.py:48
 msgid ""
 "Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
 "<pre>{!s}</pre>."
 msgstr ""
+"오류 코드 {!s}이(가) 포함된 프로세스 <pre>mkinitcpio</pre>가 실패했습니다. 명령은 "
+"<pre>{!s}</pre>입니다"
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "암호화된 스왑 구성 중."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -307,9 +309,9 @@ msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "%(num)d개의 패키지들을 제거하는 중입니다."
 
-#: src/modules/bootloader/main.py:48
+#: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr ""
+msgstr "부트로더 설치."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
@@ -317,51 +319,51 @@ msgstr "대상 시스템에서 라이브 사용자 제거"
 
 #: src/modules/initramfs/main.py:35
 msgid "Creating initramfs."
-msgstr ""
+msgstr "initramfs를 만드는 중."
 
 #: src/modules/initramfs/main.py:49
 msgid "Failed to run update-initramfs on the target"
-msgstr ""
+msgstr "대상에서 update-initramfs 실행 실패"
 
 #: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "종료 코드 {}"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "하드웨어 클럭 설정 중."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "dracut을 사용하여 initramfs 만들기."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "대상에서 dracut을 실행하지 못함"
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "initramfs 구성 중."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "OpenRC dmcrypt 서비스 구성 중."
 
 #: src/modules/luksbootkeyfile/main.py:35
 msgid "Configuring LUKS key file."
-msgstr ""
+msgstr "LUKS 키 파일 구성 중."
 
 #: src/modules/luksbootkeyfile/main.py:74
 msgid "Encrypted rootfs setup error"
-msgstr ""
+msgstr "암호화된 rootfs 설정 오류"
 
 #: src/modules/luksbootkeyfile/main.py:75
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
-msgstr ""
+msgstr "Rootfs 파티션 {!s}은(는) LUKS이지만 암호구문을 찾을 수 없음."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "fstab 쓰기."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -373,8 +375,8 @@ msgstr "더미 파이썬 단계 {}"
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr ""
+msgstr "로컬 구성 중."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "네트워크 구성 저장 중."

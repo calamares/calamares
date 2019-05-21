@@ -7,15 +7,16 @@
 # Adriaan de Groot <groot@kde.org>, 2018
 # Balázs Meskó <meskobalazs@gmail.com>, 2018
 # miku84, 2019
+# Lajos Pasztor <mrlajos@gmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-02 16:52-0400\n"
+"POT-Creation-Date: 2019-05-10 19:18-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: miku84, 2019\n"
+"Last-Translator: Lajos Pasztor <mrlajos@gmail.com>, 2019\n"
 "Language-Team: Hungarian (https://www.transifex.com/calamares/teams/20061/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,13 +26,13 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "GRUB konfigurálása."
 
-#: src/modules/mount/main.py:36
+#: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Partíciók csatolása."
 
-#: src/modules/mount/main.py:140 src/modules/initcpiocfg/main.py:187
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:187
 #: src/modules/initcpiocfg/main.py:191
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
@@ -42,14 +43,14 @@ msgstr ""
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
-msgstr ""
+msgstr "Konfigurációs hiba"
 
-#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:188
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nincsenek partíciók meghatározva a <pre>{!s}</pre> használatához."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -64,82 +65,89 @@ msgstr "a szolgáltatást nem lehet módosítani"
 msgid ""
 "<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"<code>systemctl {arg!s}</code> hívás a chroot-ban hibakódot okozott {num!s}."
 
 #: src/modules/services-systemd/main.py:72
 #: src/modules/services-systemd/main.py:76
 msgid "Cannot enable systemd service <code>{name!s}</code>."
 msgstr ""
+"Nem sikerült a systemd szolgáltatást engedélyezni: <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:74
 msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr ""
+msgstr "Nem sikerült a systemd célt engedélyezni: <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:78
 msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr ""
+msgstr "Nem sikerült a systemd cél <code>{name!s}</code> letiltása."
 
 #: src/modules/services-systemd/main.py:80
 msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr ""
+msgstr "Nem maszkolható systemd egység: <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:82
 msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
+"Ismeretlen systemd parancsok <code>{command!s}</code> és "
+"<code>{suffix!s}</code> a {name!s} egységhez. "
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "Fájlrendszerek leválasztása."
 
-#: src/modules/unpackfs/main.py:40
+#: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
 msgstr "Fájlrendszerek betöltése."
 
-#: src/modules/unpackfs/main.py:158
+#: src/modules/unpackfs/main.py:159
 msgid "rsync failed with error code {}."
 msgstr "az rsync elhalt a(z) {} hibakóddal"
 
-#: src/modules/unpackfs/main.py:219 src/modules/unpackfs/main.py:237
+#: src/modules/unpackfs/main.py:220 src/modules/unpackfs/main.py:238
 msgid "Failed to unpack image \"{}\""
 msgstr "\"{}\" kép kicsomagolása nem sikerült"
 
-#: src/modules/unpackfs/main.py:220
+#: src/modules/unpackfs/main.py:221
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
+"unsquashfs nem található, győződj meg róla a squashfs-tools csomag telepítve"
+" van."
 
-#: src/modules/unpackfs/main.py:313
+#: src/modules/unpackfs/main.py:320
 msgid "No mount point for root partition"
 msgstr "Nincs betöltési pont a root partíciónál"
 
-#: src/modules/unpackfs/main.py:314
+#: src/modules/unpackfs/main.py:321
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
+"globalstorage nem tartalmaz \"rootMountPoint\" kulcsot, semmi nem történik"
 
-#: src/modules/unpackfs/main.py:319
+#: src/modules/unpackfs/main.py:326
 msgid "Bad mount point for root partition"
 msgstr "Rossz betöltési pont a root partíciónál"
 
-#: src/modules/unpackfs/main.py:320
+#: src/modules/unpackfs/main.py:327
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
+msgstr "rootMountPoint is \"{}\", ami nem létezik, semmi nem történik"
 
-#: src/modules/unpackfs/main.py:333 src/modules/unpackfs/main.py:340
-#: src/modules/unpackfs/main.py:345
+#: src/modules/unpackfs/main.py:340 src/modules/unpackfs/main.py:347
+#: src/modules/unpackfs/main.py:352
 msgid "Bad unsquash configuration"
-msgstr ""
+msgstr "Rossz unsquash konfiguráció"
 
-#: src/modules/unpackfs/main.py:334
+#: src/modules/unpackfs/main.py:341
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr "A(z) ({}) fájlrendszer nem támogatott a következőhöz: \"{}\""
 
-#: src/modules/unpackfs/main.py:341
+#: src/modules/unpackfs/main.py:348
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "A forrás fájlrendszer \"{}\" nem létezik"
 
-#: src/modules/unpackfs/main.py:346
+#: src/modules/unpackfs/main.py:353
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Az elérés \"{}\" nem létező könyvtár a cél rendszerben"
 
@@ -201,7 +209,7 @@ msgstr "A kijelzőkezelő konfigurációja hiányos volt"
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "mkinitcpio konfigurálása."
 
 #: src/modules/initcpiocfg/main.py:192
 #: src/modules/luksopenswaphookcfg/main.py:100
@@ -209,25 +217,27 @@ msgstr ""
 #: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:317
 #: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nincs root csatolási pont megadva a <pre>{!s}</pre> használatához."
 
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
-msgstr ""
+msgstr "initramfs létrehozása mkinitcpio utasítással."
 
 #: src/modules/initcpio/main.py:47
 msgid "Process Failed"
-msgstr ""
+msgstr "Folyamat elhalt"
 
 #: src/modules/initcpio/main.py:48
 msgid ""
 "Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
 "<pre>{!s}</pre>."
 msgstr ""
+"<pre>mkinitcpio</pre> folyamat elhalt, hibakód  {!s}. A parancs "
+"<pre>{!s}</pre> volt."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "Titkosított swap konfigurálása."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -239,7 +249,7 @@ msgstr "OpenRC szolgáltatások beállítása"
 
 #: src/modules/services-openrc/main.py:66
 msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr ""
+msgstr "Nem lehet  {name!s} szolgáltatást hozzáadni a run-level {level!s}."
 
 #: src/modules/services-openrc/main.py:68
 msgid "Cannot remove service {name!s} from run-level {level!s}."
@@ -250,11 +260,14 @@ msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+"Ismeretlen service-action <code>{arg!s}</code> a szolgáltatáshoz {name!s} in"
+" run-level {level!s}."
 
 #: src/modules/services-openrc/main.py:103
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"<code>rc-update {arg!s}</code> hívás a chroot-ban hibakódot adott: {num!s}."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target runlevel does not exist"
@@ -265,6 +278,8 @@ msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"A futási-szint elérési útja {level!s} ami <code>{path!s}</code>, nem "
+"létezik."
 
 #: src/modules/services-openrc/main.py:119
 msgid "Target service does not exist"
@@ -275,6 +290,7 @@ msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
+"A szolgáltatás {name!s} elérési útja <code>{path!s}</code>, nem létezik."
 
 #: src/modules/plymouthcfg/main.py:36
 msgid "Configure Plymouth theme"
@@ -307,9 +323,9 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "Egy csomag eltávolítása."
 msgstr[1] "%(num)d csomag eltávolítása."
 
-#: src/modules/bootloader/main.py:48
+#: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr ""
+msgstr "Rendszerbetöltő telepítése."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
@@ -317,51 +333,51 @@ msgstr "Éles felhasználó eltávolítása a cél rendszerből"
 
 #: src/modules/initramfs/main.py:35
 msgid "Creating initramfs."
-msgstr ""
+msgstr "initramfs létrehozása."
 
 #: src/modules/initramfs/main.py:49
 msgid "Failed to run update-initramfs on the target"
-msgstr ""
+msgstr "Nem sikerült futtatni update-initramfs a célon."
 
 #: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "A kilépési kód {} volt."
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "Rendszeridő beállítása."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "initramfs létrehozása ezzel: dracut."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "dracut futtatása nem sikerült a célon."
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "initramfs konfigurálása."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "OpenRC dmcrypt szolgáltatás konfigurálása."
 
 #: src/modules/luksbootkeyfile/main.py:35
 msgid "Configuring LUKS key file."
-msgstr ""
+msgstr "LUKS kulcs fájl konfigurálása."
 
 #: src/modules/luksbootkeyfile/main.py:74
 msgid "Encrypted rootfs setup error"
-msgstr ""
+msgstr "Titkosított rootfs telepítési hiba"
 
 #: src/modules/luksbootkeyfile/main.py:75
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
-msgstr ""
+msgstr "A rootfs partíció {!s} az LUKS de nem található a jelszó."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "fstab írása."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -373,8 +389,8 @@ msgstr "Hamis {}. Python lépés"
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr ""
+msgstr "nyelvi értékek konfigurálása."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Hálózati konfiguráció mentése."
