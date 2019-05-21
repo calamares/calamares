@@ -59,7 +59,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     // If we can never cancel, don't show the window-close button
     if ( Calamares::Settings::instance()->disableCancel() )
         setWindowFlag( Qt::WindowCloseButtonHint, false );
-        
+
     CALAMARES_RETRANSLATE(
         setWindowTitle( Calamares::Settings::instance()->isSetupMode()
                             ? tr( "%1 Setup Program" ).arg( *Calamares::Branding::ProductName )
@@ -74,6 +74,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     using CalamaresUtils::windowPreferredHeight;
     using CalamaresUtils::windowPreferredWidth;
 
+    // Needs to match what's checked in DebugWindow
     this->setObjectName("mainApp");
 
     QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
@@ -173,7 +174,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     //       and requires an extra show() (at least with KWin/X11) which
     //       is too annoying. Instead, leave it up to ignoring-the-quit-
     //       event, which is also the ViewManager's responsibility.
-    
+
     mainLayout->addWidget( m_viewManager->centralWidget() );
     setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }

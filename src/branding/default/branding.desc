@@ -1,3 +1,9 @@
+# Product branding information. This influences some global
+# user-visible aspects of Calamares, such as the product
+# name, window behavior, and the slideshow during installation.
+#
+# Additional styling can be done using the stylesheet.qss
+# file, also in the branding directory.
 ---
 componentName:  default
 
@@ -94,6 +100,9 @@ slideshow:               "show.qml"
 #    Optional, and defaults to the application palette.
 #  - sidebarSelect is the text color of the selected step.
 #
+# These colors can **also** be set through the stylesheet, if the
+# branding component also ships a stylesheet.qss. Then they are
+# the corresponding CSS attributes of #sidebarApp.
 style:
    sidebarBackground:    "#292F34"
    sidebarText:          "#FFFFFF"

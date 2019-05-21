@@ -25,3 +25,5 @@ foreach( SUBDIRECTORY ${SUBDIRECTORIES} )
 
     endif()
 endforeach()
+
+message( "" )

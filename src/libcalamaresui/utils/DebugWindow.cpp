@@ -20,13 +20,17 @@
 #include "DebugWindow.h"
 #include "ui_DebugWindow.h"
 
-#include "utils/Retranslator.h"
-#include "utils/qjsonmodel.h"
-#include "JobQueue.h"
-#include "Job.h"
-#include "GlobalStorage.h"
-#include "modulesystem/ModuleManager.h"
+#include "Branding.h"
 #include "modulesystem/Module.h"
+#include "modulesystem/ModuleManager.h"
+#include "utils/qjsonmodel.h"
+
+#include "GlobalStorage.h"
+#include "Job.h"
+#include "JobQueue.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
+
 
 #ifdef WITH_PYTHONQT
 #include <gui/PythonQtScriptingConsole.h>
@@ -49,6 +53,20 @@ crash()
     *a = 1;
 }
 
+/// @brief Print out the widget tree (names) in indented form.
+static void dumpWidgetTree( QDebug& deb, const QWidget* widget, int depth )
+{
+    if ( !widget )
+        return;
+
+    deb << Logger::Continuation;
+    for (int i = 0; i < depth; ++i )
+        deb << ' ';
+    deb << widget->objectName();
+
+    for ( const auto* w : widget->findChildren<QWidget*>( QString(), Qt::FindDirectChildrenOnly ) )
+        dumpWidgetTree( deb, w, depth+1 );
+}
 
 namespace Calamares {
 
@@ -186,7 +204,29 @@ DebugWindow::DebugWindow()
         }
     } );
 
+    // Tools page
     connect( m_ui->crashButton, &QPushButton::clicked, this, [] { ::crash(); } );
+    connect( m_ui->reloadStylesheetButton, &QPushButton::clicked,
+             []()
+             {
+                 for ( auto* w : qApp->topLevelWidgets() )
+                 {
+                     // Needs to match what's set in CalamaresWindow
+                     if ( w->objectName() == QStringLiteral( "mainApp" ) )
+                     {
+                         w->setStyleSheet( Calamares::Branding::instance()->stylesheet() );
+                     }
+                 }
+             });
+    connect( m_ui->widgetTreeButton, &QPushButton::clicked,
+             []()
+             {
+                 for ( auto* w : qApp->topLevelWidgets() )
+                 {
+                     auto deb = cDebug();
+                     dumpWidgetTree( deb, w, 0 );
+                 }
+             });
 
     CALAMARES_RETRANSLATE(
         m_ui->retranslateUi( this );

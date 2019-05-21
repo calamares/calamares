@@ -101,6 +101,20 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="reloadStylesheetButton">
+         <property name="text">
+          <string>Reload Stylesheet</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="widgetTreeButton">
+         <property name="text">
+          <string>Widget Tree</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
