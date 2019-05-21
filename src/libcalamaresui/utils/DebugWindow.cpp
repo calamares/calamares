@@ -21,15 +21,16 @@
 #include "ui_DebugWindow.h"
 
 #include "Branding.h"
-#include "utils/Retranslator.h"
-#include "utils/qjsonmodel.h"
-#include "utils/Logger.h"
-
-#include "JobQueue.h"
-#include "Job.h"
-#include "GlobalStorage.h"
-#include "modulesystem/ModuleManager.h"
 #include "modulesystem/Module.h"
+#include "modulesystem/ModuleManager.h"
+#include "utils/qjsonmodel.h"
+
+#include "GlobalStorage.h"
+#include "Job.h"
+#include "JobQueue.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
+
 
 #ifdef WITH_PYTHONQT
 #include <gui/PythonQtScriptingConsole.h>
