@@ -20,8 +20,10 @@
 #include "DebugWindow.h"
 #include "ui_DebugWindow.h"
 
+#include "Branding.h"
 #include "utils/Retranslator.h"
 #include "utils/qjsonmodel.h"
+
 #include "JobQueue.h"
 #include "Job.h"
 #include "GlobalStorage.h"
@@ -186,7 +188,20 @@ DebugWindow::DebugWindow()
         }
     } );
 
+    // Tools page
     connect( m_ui->crashButton, &QPushButton::clicked, this, [] { ::crash(); } );
+    connect( m_ui->reloadStylesheetButton, &QPushButton::clicked,
+             []()
+             {
+                 for ( auto* w : qApp->topLevelWidgets() )
+                 {
+                     // Needs to match what's set in CalamaresWindow
+                     if ( w->objectName() == QStringLiteral( "mainApp" ) )
+                     {
+                         w->setStyleSheet( Calamares::Branding::instance()->stylesheet() );
+                     }
+                 }
+             });
 
     CALAMARES_RETRANSLATE(
         m_ui->retranslateUi( this );
