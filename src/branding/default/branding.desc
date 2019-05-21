@@ -83,6 +83,8 @@ strings:
 #       any size and proportion, and will be scaled to fit inside
 #       the window. Use `welcomeExpandingLogo` to make it non-scaled.
 #       Recommended size is 320x150.
+#
+# These strings can also use substitutions from os-release (see above).
 images:
     productLogo:         "squid.png"
     productIcon:         "squid.png"
