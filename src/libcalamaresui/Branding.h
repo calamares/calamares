@@ -123,8 +123,13 @@ public:
     QString styleString( Branding::StyleEntry styleEntry ) const;
     QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
-    /** @brief Stylesheet to apply for this branding. May be empty. */
-    QString stylesheet() const { return m_stylesheet; }
+    /** @brief Stylesheet to apply for this branding. May be empty.
+     *
+     * The file is loaded every time this function is called, so
+     * it may be quite expensive -- although normally it will be
+     * called only once, on startup. (Or from the debug window)
+     */
+    QString stylesheet() const;
 
     bool welcomeStyleCalamares() const { return m_welcomeStyleCalamares; }
     bool welcomeExpandingLogo() const { return m_welcomeExpandingLogo; }
@@ -151,14 +156,13 @@ private:
 
     [[noreturn]] void bail( const QString& message );
 
-    QString m_descriptorPath;
-    QString m_componentName;
+    QString m_descriptorPath;  // Path to descriptor (e.g. "/etc/calamares/default/branding.desc")
+    QString m_componentName;  // Matches last part of full path to containing directory
     QMap< QString, QString > m_strings;
     QMap< QString, QString > m_images;
     QMap< QString, QString > m_style;
     QString m_slideshowPath;
     QString m_translationsPathPrefix;
-    QString m_stylesheet;  // Text from file
 
     /** @brief Initialize the simple settings below */
     void initSimpleSettings( const YAML::Node& doc );

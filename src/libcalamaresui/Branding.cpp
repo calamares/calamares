@@ -153,7 +153,7 @@ Branding::Branding( const QString& brandingFilePath,
 
 #ifdef WITH_KOSRelease
             KOSRelease relInfo;
-    
+
             QHash< QString, QString > relMap{
                 std::initializer_list< std::pair< QString, QString > > {
                 { QStringLiteral( "NAME" ), relInfo.name() },
@@ -239,16 +239,6 @@ Branding::Branding( const QString& brandingFilePath,
         m_translationsPathPrefix.append( QString( "%1calamares-%2" )
                                             .arg( QDir::separator() )
                                             .arg( m_componentName ) );
-
-        QFileInfo importQSSPath( componentDir.filePath( "stylesheet.qss" ) );
-        if ( importQSSPath.exists() && importQSSPath.isReadable() )
-        {
-            QFile stylesheetFile( importQSSPath.filePath() );
-            stylesheetFile.open( QFile::ReadOnly );
-            m_stylesheet = stylesheetFile.readAll();
-        }
-        else
-            cWarning() << "the branding component" << componentDir.absolutePath() << "does not ship stylesheet.qss.";
     }
     else
     {
@@ -310,6 +300,21 @@ Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
     return pixmap;
 }
 
+QString
+Branding::stylesheet() const
+{
+    QFileInfo fi( m_descriptorPath );
+    QFileInfo importQSSPath( fi.absoluteDir().filePath( "stylesheet.qss" ) );
+    if ( importQSSPath.exists() && importQSSPath.isReadable() )
+    {
+        QFile stylesheetFile( importQSSPath.filePath() );
+        stylesheetFile.open( QFile::ReadOnly );
+        return stylesheetFile.readAll();
+    }
+    else
+        cWarning() << "The branding component" << fi.absoluteDir().absolutePath() << "does not ship stylesheet.qss.";
+    return QString();
+}
 
 void
 Branding::setGlobals( GlobalStorage* globalStorage ) const
