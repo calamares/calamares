@@ -23,6 +23,7 @@
 #include "Branding.h"
 #include "utils/Retranslator.h"
 #include "utils/qjsonmodel.h"
+#include "utils/Logger.h"
 
 #include "JobQueue.h"
 #include "Job.h"
@@ -51,6 +52,20 @@ crash()
     *a = 1;
 }
 
+/// @brief Print out the widget tree (names) in indented form.
+static void dumpWidgetTree( QDebug& deb, const QWidget* widget, int depth )
+{
+    if ( !widget )
+        return;
+
+    deb << Logger::Continuation;
+    for (int i = 0; i < depth; ++i )
+        deb << ' ';
+    deb << widget->objectName();
+
+    for ( const auto* w : widget->findChildren<QWidget*>( QString(), Qt::FindDirectChildrenOnly ) )
+        dumpWidgetTree( deb, w, depth+1 );
+}
 
 namespace Calamares {
 
@@ -200,6 +215,15 @@ DebugWindow::DebugWindow()
                      {
                          w->setStyleSheet( Calamares::Branding::instance()->stylesheet() );
                      }
+                 }
+             });
+    connect( m_ui->widgetTreeButton, &QPushButton::clicked,
+             []()
+             {
+                 for ( auto* w : qApp->topLevelWidgets() )
+                 {
+                     auto deb = cDebug();
+                     dumpWidgetTree( deb, w, 0 );
                  }
              });
 
