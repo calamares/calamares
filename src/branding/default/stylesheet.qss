@@ -6,6 +6,14 @@ In principle, all parts can be styled through CSS.
 Missing parts should be filed as issues.
 
 The IDs are based on the object names in the C++ code.
+
+Documentation for styling Qt Widgets through a stylesheet
+can be found at
+    https://doc.qt.io/qt-5/stylesheet-examples.html
+In Calamares, styling widget classes is supported (e.g.
+using `QComboBox` as a selector). You can also use specific
+object names (ids), which you can find through debugging tools.
+
 */
 
 /* Main application window.
