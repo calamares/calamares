@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Marcin Mikołajczak <me@m4sk.in>, 2016
+# Marcin Mikołajczak <me@mkljczk.pl>, 2016
 # Piotr Strębski <strebski@gmail.com>, 2017
 # 
 #, fuzzy
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-05 11:34-0400\n"
+"POT-Creation-Date: 2019-05-10 19:18-0400\n"
 "PO-Revision-Date: 2016-12-16 12:18+0000\n"
 "Last-Translator: Piotr Strębski <strebski@gmail.com>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/calamares/teams/20061/pl/)\n"
