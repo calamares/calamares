@@ -132,6 +132,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     if ( Calamares::Settings::instance()->debugMode() )
     {
         QPushButton* debugWindowBtn = new QPushButton;
+        debugWindowBtn->setObjectName( "debugButton" );
         CALAMARES_RETRANSLATE(
             debugWindowBtn->setText( tr( "Show debug information" ) );
         )
