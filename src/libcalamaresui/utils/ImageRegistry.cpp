@@ -61,9 +61,9 @@ ImageRegistry::cacheKey( const QSize& size, float opacity, QColor tint )
 QPixmap
 ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode, float opacity, QColor tint )
 {
+    Q_ASSERT( !(size.width() < 0 || size.height() < 0) );
     if ( size.width() < 0 || size.height() < 0 )
     {
-        Q_ASSERT( false );
         return QPixmap();
     }
 
@@ -159,15 +159,9 @@ ImageRegistry::putInCache( const QString& image, const QSize& size, CalamaresUti
     if ( s_cache.contains( image ) )
     {
         subcache = s_cache.value( image );
-
         if ( subcache.contains( mode ) )
         {
             subsubcache = subcache.value( mode );
-
-/*            if ( subsubcache.contains( size.width() * size.height() ) )
-            {
-                Q_ASSERT( false );
-            }*/
         }
     }
 
