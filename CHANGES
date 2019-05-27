@@ -15,6 +15,10 @@ This release contains contributions from (alphabetically by first name):
  - *branding* now supports os-release variables in the *strings* section,
    which allows re-using (at runtime) information set in /etc/os-release .
    This requires KDE Frameworks 5.58. #1150
+ - *branding* allows the use of FreeDesktop.org icon names for the
+   *productLogo* and *productIcon* keys. If a file is named there, then
+   the file is used, and otherwise the icon is looked up in the current
+   theme.
 
 # 3.2.8 (2019-05-10) #
 
