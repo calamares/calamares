@@ -99,12 +99,15 @@ RequirementsChecker::run()
 void
 RequirementsChecker::finished()
 {
-    if ( std::all_of( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && w->isFinished(); } ) )
+    if ( m_progressTimer && std::all_of( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && w->isFinished(); } ) )
     {
         cDebug() << "All requirements have been checked.";
-
         if ( m_progressTimer )
+        {
             m_progressTimer->stop();
+            delete m_progressTimer;
+            m_progressTimer = nullptr;
+        }
 
         bool acceptable = true;
         int count = 0;
