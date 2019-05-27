@@ -99,6 +99,9 @@ RequirementsChecker::run()
 void
 RequirementsChecker::finished()
 {
+    static QMutex finishedMutex;
+    QMutexLocker lock( &finishedMutex );
+
     if ( m_progressTimer && std::all_of( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && w->isFinished(); } ) )
     {
         cDebug() << "All requirements have been checked.";
