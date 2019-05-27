@@ -290,7 +290,7 @@ class PMPacman(PackageManager):
         check_target_env_call(["pacman", "-Sy"])
 
     def update_system(self):
-        check_target_env_call(["pacman", "-Su"])
+        check_target_env_call(["pacman", "-Su", "--noconfirm"])
 
 
 class PMPortage(PackageManager):
