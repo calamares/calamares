@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Raul Rodrigo Segura (raurodse)
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QIcon>
 #include <QPixmap>
 #include <QVariantMap>
 
@@ -185,9 +186,16 @@ Branding::Branding( const QString& brandingFilePath,
             loadStrings( m_images, doc, "images",
                 [&]( const QString& s ) -> QString
                 {
-                    QFileInfo imageFi( componentDir.absoluteFilePath( expand( s ) ) );
+                    const QString imageName( expand( s ) );
+                    QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
                     if ( !imageFi.exists() )
-                        bail( QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
+                    {
+                        const auto icon = QIcon::fromTheme( imageName );
+                        // Not found, bail out with the filename used
+                        if ( icon.isNull() )
+                            bail( QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
+                        return imageName;  // Not turned into a path
+                    }
                     return  imageFi.absoluteFilePath();
                 }
                 );
@@ -289,15 +297,21 @@ Branding::imagePath( Branding::ImageEntry imageEntry ) const
 QPixmap
 Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
 {
-    QPixmap pixmap =
-        ImageRegistry::instance()->pixmap( imagePath( imageEntry ), size );
-
-    if ( pixmap.isNull() )
+    const auto path = imagePath( imageEntry );
+    if ( path.contains( '/' ) )
     {
-        Q_ASSERT( false );
-        return QPixmap();
+        QPixmap pixmap = ImageRegistry::instance()->pixmap( path, size );
+
+        Q_ASSERT( !pixmap.isNull() );
+        return pixmap;
     }
-    return pixmap;
+    else
+    {
+        auto icon = QIcon::fromTheme(path);
+
+        Q_ASSERT( !icon.isNull() );
+        return icon.pixmap( size );
+    }
 }
 
 QString
