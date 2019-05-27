@@ -297,15 +297,21 @@ Branding::imagePath( Branding::ImageEntry imageEntry ) const
 QPixmap
 Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
 {
-    QPixmap pixmap =
-        ImageRegistry::instance()->pixmap( imagePath( imageEntry ), size );
-
-    if ( pixmap.isNull() )
+    const auto path = imagePath( imageEntry );
+    if ( path.contains( '/' ) )
     {
-        Q_ASSERT( false );
-        return QPixmap();
+        QPixmap pixmap = ImageRegistry::instance()->pixmap( path, size );
+
+        Q_ASSERT( !pixmap.isNull() );
+        return pixmap;
     }
-    return pixmap;
+    else
+    {
+        auto icon = QIcon::fromTheme(path);
+
+        Q_ASSERT( !icon.isNull() );
+        return icon.pixmap( size );
+    }
 }
 
 QString
