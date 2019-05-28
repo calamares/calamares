@@ -10,6 +10,9 @@ This release contains contributions from (alphabetically by first name):
 
 ## Core ##
 
+No user- or deployer-visible changes. Bugfixing as usual, see the
+milestone for details.
+
 ## Modules ##
 
  - *branding* now supports os-release variables in the *strings* section,
@@ -19,6 +22,7 @@ This release contains contributions from (alphabetically by first name):
    *productLogo* and *productIcon* keys. If a file is named there, then
    the file is used, and otherwise the icon is looked up in the current
    theme.
+
 
 # 3.2.8 (2019-05-10) #
 
