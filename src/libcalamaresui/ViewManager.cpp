@@ -228,16 +228,16 @@ ViewManager::currentStepIndex() const
 }
 
 /** @brief Is the given step at @p index an execution step?
- * 
+ *
  * Returns true if the step is an execution step, false otherwise.
  * Also returns false if the @p index is out of range.
  */
 static inline bool
 stepIsExecute( const ViewStepList& steps, int index )
 {
-    return 
+    return
         ( 0 <= index ) &&
-        ( index < steps.count() ) && 
+        ( index < steps.count() ) &&
         ( qobject_cast< ExecutionViewStep* >( steps.at( index ) ) != nullptr );
 }
 
@@ -249,7 +249,7 @@ ViewManager::next()
     if ( step->isAtEnd() )
     {
         const auto* const settings = Calamares::Settings::instance();
-        
+
         // Special case when the user clicks next on the very last page in a view phase
         // and right before switching to an execution phase.
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
@@ -303,7 +303,7 @@ void
 ViewManager::updateButtonLabels()
 {
     const auto* const settings = Calamares::Settings::instance();
-    
+
     QString next = settings->isSetupMode()
         ? tr( "&Set up" )
         : tr( "&Install" );
@@ -332,7 +332,7 @@ ViewManager::updateButtonLabels()
         if ( settings->disableCancel() )
             m_quit->setVisible( false );  // In case we went back from final
         updateCancelEnabled( !settings->disableCancel() && !( stepIsExecute( m_steps, m_currentStep ) && settings->disableCancelDuringExec() ) );
-        
+
         m_quit->setText( tr( "&Cancel" ) );
         m_quit->setToolTip( quit );
     }
@@ -366,37 +366,36 @@ ViewManager::back()
 bool ViewManager::confirmCancelInstallation()
 {
     const auto* const settings = Calamares::Settings::instance();
-    
+
+    // When we're at the very end, then it's always OK to exit.
+    if ( m_currentStep == m_steps.count() -1 && m_steps.last()->isAtEnd() )
+        return true;
+
+    // Not at the very end, cancel/quit might be disabled
     if ( settings->disableCancel() )
         return false;
     if ( settings->disableCancelDuringExec() && stepIsExecute( m_steps, m_currentStep ) )
         return false;
-    
-    // If it's NOT the last page of the last step, we ask for confirmation
-    if ( !( m_currentStep == m_steps.count() -1 &&
-            m_steps.last()->isAtEnd() ) )
-    {
-        QString title = settings->isSetupMode()
-            ? tr( "Cancel setup?" )
-            : tr( "Cancel installation?" );
-        QString question = settings->isSetupMode()
-            ? tr( "Do you really want to cancel the current setup process?\n"
-                  "The setup program will quit and all changes will be lost." )
-            : tr( "Do you really want to cancel the current install process?\n"
-                  "The installer will quit and all changes will be lost." );
-        QMessageBox mb( QMessageBox::Question,
-                        title,
-                        question,
-                        QMessageBox::Yes | QMessageBox::No,
-                        m_widget );
-        mb.setDefaultButton( QMessageBox::No );
-        mb.button( QMessageBox::Yes )->setText( tr( "&Yes" ) );
-        mb.button( QMessageBox::No )->setText( tr( "&No" ) );
-        int response = mb.exec();
-        return response == QMessageBox::Yes;
-    }
-    else // Means we're at the end, no need to confirm.
-        return true;
+
+    // Otherwise, confirm cancel/quit.
+    QString title = settings->isSetupMode()
+        ? tr( "Cancel setup?" )
+        : tr( "Cancel installation?" );
+    QString question = settings->isSetupMode()
+        ? tr( "Do you really want to cancel the current setup process?\n"
+                "The setup program will quit and all changes will be lost." )
+        : tr( "Do you really want to cancel the current install process?\n"
+                "The installer will quit and all changes will be lost." );
+    QMessageBox mb( QMessageBox::Question,
+                    title,
+                    question,
+                    QMessageBox::Yes | QMessageBox::No,
+                    m_widget );
+    mb.setDefaultButton( QMessageBox::No );
+    mb.button( QMessageBox::Yes )->setText( tr( "&Yes" ) );
+    mb.button( QMessageBox::No )->setText( tr( "&No" ) );
+    int response = mb.exec();
+    return response == QMessageBox::Yes;
 }
 
 void
