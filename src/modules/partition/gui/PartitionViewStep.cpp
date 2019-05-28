@@ -638,7 +638,11 @@ PartitionViewStep::checkRequirements()
         []{ return tr( "has at least one disk device available." ); },
         []{ return tr( "There are no partitons to install on." ); },
         m_core->deviceModel()->rowCount() > 0,  // satisfied
-        true    // required
+#ifdef DEBUG_PARTITION_UNSAFE
+             false  // optional
+#else
+             true   // required
+#endif
     } );
 
     return l;
