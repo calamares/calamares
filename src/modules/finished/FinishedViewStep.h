@@ -41,6 +41,8 @@ public:
         UserChecked,     ///< @brief Show button, starts checked
         Always           ///< @brief Show button, can't change, checked
     };
+    /// @brief Returns the config-name of the given restart-mode @p m
+    static QString modeName( RestartMode m );
 
     explicit FinishedViewStep( QObject* parent = nullptr );
     virtual ~FinishedViewStep() override;
@@ -57,7 +59,7 @@ public:
 
     void onActivate() override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 

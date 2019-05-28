@@ -49,9 +49,8 @@ protected:
 private:
     Ui::FinishedPage* ui;
 
+    FinishedViewStep::RestartMode m_mode;
     QString m_restartNowCommand;
-
-    bool m_restartSetUp;
 };
 
 #endif // FINISHEDPAGE_H
