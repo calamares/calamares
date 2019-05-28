@@ -346,7 +346,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="269"/>
         <source>Go &amp;back</source>
-        <translation>Vés &amp;enrere</translation>
+        <translation>Ves &amp;enrere</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="323"/>

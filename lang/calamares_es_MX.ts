@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="82"/>
         <source>Set up</source>
-        <translation type="unfinished"/>
+        <translation>Preparar</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="83"/>
@@ -120,12 +120,12 @@
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
         <source>Job failed (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Trabajo fallido (%1)</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
         <source>Programmed job failure was explicitly requested.</source>
-        <translation type="unfinished"/>
+        <translation>Falla del trabajo programado fue solicitado explícitamente.</translation>
     </message>
 </context>
 <context>
@@ -141,7 +141,7 @@
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="27"/>
         <source>Example job (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Trabajo de ejemplo. (%1)</translation>
     </message>
 </context>
 <context>
@@ -205,7 +205,7 @@
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="152"/>
         <source>System-requirements checking is complete.</source>
-        <translation type="unfinished"/>
+        <translation>Chequeo de requerimientos del sistema completado.</translation>
     </message>
 </context>
 <context>
@@ -231,7 +231,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="313"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Cancelar la configuración sin cambiar el sistema.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="81"/>
@@ -242,7 +242,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>Fallo en la configuración.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
@@ -262,22 +262,22 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>¿Continuar con la instalación?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="254"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>El  %1 programa de instalación esta a punto de realizar cambios a su disco con el fin de establecer %2.&lt;br/&gt;&lt;strong&gt;Usted no podrá deshacer estos cambios.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Configurar ahora</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="307"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Configurar</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="308"/>
@@ -287,12 +287,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
         <source>Setup is complete. Close the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>Configuración completa. Cierre el programa de instalación.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="372"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>¿Cancelar la configuración?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="373"/>
@@ -303,7 +303,8 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="375"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>¿Realmente desea cancelar el actual proceso de configuración?
+El programa de instalación se cerrará y todos los cambios se perderán.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="377"/>
@@ -396,7 +397,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="61"/>
         <source>%1 Setup Program</source>
-        <translation type="unfinished"/>
+        <translation>%1 Programa de instalación</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="62"/>
@@ -465,7 +466,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="969"/>
         <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 será reducido a %2MiB y una nueva %3MiB partición se creará para %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
@@ -509,27 +510,27 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1495"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>Sin Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1500"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Reutilizar Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1503"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (sin hibernación)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1506"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (con hibernación)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1509"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>Swap a archivo</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1267"/>
@@ -709,12 +710,12 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="44"/>
         <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-        <translation type="unfinished"/>
+        <translation>Crear nueva %2MiB partición en %4 (%3) con el sistema de archivos %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="55"/>
         <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Crear nueva&lt;strong&gt;%2MiB&lt;/strong&gt; partición en&lt;strong&gt;%2MiB&lt;/strong&gt; (%3) con el sistema de archivos &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="67"/>
@@ -821,7 +822,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="37"/>
         <source>Create Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Crear Grupo de Volumen</translation>
     </message>
 </context>
 <context>
@@ -829,22 +830,22 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
         <source>Create new volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>Crear nuevo grupo de volumen llamado %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
         <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Crear nuevo grupo de volumen llamado &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
         <source>Creating new volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>Creando nuevo grupo de volumen llamado %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
         <source>The installer failed to create a volume group named &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>El instalador no pudo crear un grupo de volumen llamado &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -2839,7 +2840,7 @@ Salida
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="57"/>
         <source>This is an overview of what will happen once you start the setup procedure.</source>
-        <translation type="unfinished"/>
+        <translation>Esta es una descripción general de lo que sucederá una vez que comience el procedimiento de configuración.</translation>
     </message>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="60"/>
@@ -2963,12 +2964,12 @@ Salida
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="120"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Si más de una persona usará esta computadora, puede crear múltiples cuentas después de la configuración&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="126"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Si más de una persona usará esta computadora, puede crear varias cuentas después de la instalación.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="317"/>
@@ -3015,27 +3016,27 @@ Salida
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
         <source>Create Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Crear Grupo de Volumen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
         <source>List of Physical Volumes</source>
-        <translation type="unfinished"/>
+        <translation>Lista de volúmenes físicos</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="30"/>
         <source>Volume Group Name:</source>
-        <translation type="unfinished"/>
+        <translation>Nombre de Grupo de volumen:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="43"/>
         <source>Volume Group Type:</source>
-        <translation type="unfinished"/>
+        <translation>Tipo de Grupo de volumen:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
         <source>Physical Extent Size:</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño de la extensión física:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
@@ -3045,12 +3046,12 @@ Salida
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="82"/>
         <source>Total Size:</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño total:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="102"/>
         <source>Used Size:</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño usado:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="122"/>
@@ -3060,7 +3061,7 @@ Salida
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
         <source>Quantity of LVs:</source>
-        <translation type="unfinished"/>
+        <translation>Cantidad de LVs:</translation>
     </message>
 </context>
 <context>
@@ -3084,7 +3085,7 @@ Salida
         <location filename="../src/modules/welcome/WelcomePage.ui" line="17"/>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="72"/>
         <source>Select language</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione el idioma</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3109,17 +3110,17 @@ Salida
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="71"/>
         <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Bienvenido al programa de instalación Calamares para %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Bienvenido a la configuración %1&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="90"/>
         <source>About %1 setup</source>
-        <translation type="unfinished"/>
+        <translation>Acerca de la configuración %1</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="91"/>
