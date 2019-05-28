@@ -210,4 +210,11 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_notifyOnFinished = CalamaresUtils::getBool( configurationMap, "notifyOnFinished", false );
 }
 
+QString FinishedViewStep::modeName(FinishedViewStep::RestartMode m)
+{
+    bool ok = false;
+    return modeNames().find( m, ok );  // May be QString()
+}
+
+
 CALAMARES_PLUGIN_FACTORY_DEFINITION( FinishedViewStepFactory, registerPlugin<FinishedViewStep>(); )

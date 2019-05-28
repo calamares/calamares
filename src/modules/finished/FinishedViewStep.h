@@ -41,6 +41,8 @@ public:
         UserChecked,     ///< @brief Show button, starts checked
         Always           ///< @brief Show button, can't change, checked
     };
+    /// @brief Returns the config-name of the given restart-mode @p m
+    static QString modeName( RestartMode m );
 
     explicit FinishedViewStep( QObject* parent = nullptr );
     virtual ~FinishedViewStep() override;
