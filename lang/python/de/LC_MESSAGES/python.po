@@ -42,7 +42,7 @@ msgstr "Partitionen mounten."
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
-msgstr ""
+msgstr "Konfigurationsfehler"
 
 #: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
@@ -50,6 +50,7 @@ msgstr ""
 #: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr ""
+"Es sind keine Partitionen für <pre>{!s}</pre> zur Verwendung definiert."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -216,6 +217,7 @@ msgstr "mkinitcpio konfigurieren."
 #: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
+"Es ist kein Root-Mount-Punkt für <pre>{!s}</pre> zur Verwendung angegeben."
 
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
@@ -223,13 +225,15 @@ msgstr "Erstelle initramfs mit mkinitcpio."
 
 #: src/modules/initcpio/main.py:47
 msgid "Process Failed"
-msgstr ""
+msgstr "Prozess fehlgeschlagen"
 
 #: src/modules/initcpio/main.py:48
 msgid ""
 "Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
 "<pre>{!s}</pre>."
 msgstr ""
+"Der Prozess <pre>mkinitcpio</pre> ist mit dem Fehlercode {!s} "
+"fehlgeschlagen. Der Befehl war <pre>{!s}</pre>."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
