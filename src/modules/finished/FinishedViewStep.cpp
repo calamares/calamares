@@ -156,10 +156,10 @@ FinishedViewStep::onActivate()
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 FinishedViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return Calamares::JobList();
 }
 
 void
