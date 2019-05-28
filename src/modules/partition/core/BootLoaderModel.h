@@ -25,6 +25,7 @@
 #include <QStandardItemModel>
 
 class Device;
+class QComboBox;
 
 /**
  * This model contains one entry for each device MBR plus one entry for the
@@ -63,4 +64,20 @@ private:
     void updateInternal();
 };
 
+namespace Calamares
+{
+    /** @brief Returns the row number of boot-loader @p path (e.g. /dev/sda)
+     *
+     * Assuming the @p model is a BootLoaderModel, will return a row number
+     * in the model. Returns -1 otherwise.
+     */
+    int findBootloader( const QAbstractItemModel* model, const QString& path );
+
+    /** @brief Tries to set @p path as selected item in @p combo
+     *
+     * Matches a boot-loader install path (e.g. /dev/sda) with a model
+     * row and sets that as the current row.
+     */
+    void restoreSelectedBootLoader( QComboBox& combo, const QString& path );
+}  // namespace
 #endif /* BOOTLOADERMODEL_H */
