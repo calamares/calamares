@@ -1025,6 +1025,12 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
                 eraseBootloaderLabel->setText( tr( "Boot loader location:" ) );
 
                 m_bootloaderComboBox = createBootloaderComboBox( eraseWidget );
+                connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset,
+                         [ this ]()
+                         {
+                             Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
+                         }
+                );
                 connect( m_core, &PartitionCoreModule::deviceReverted,
                          this, [ this ]( Device* dev )
                 {
