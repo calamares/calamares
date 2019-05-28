@@ -619,7 +619,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 PartitionViewStep::jobs() const
 {
     return m_core->jobs();

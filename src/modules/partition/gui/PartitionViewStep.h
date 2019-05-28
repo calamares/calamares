@@ -69,7 +69,7 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     Calamares::RequirementsList checkRequirements() override;
 
