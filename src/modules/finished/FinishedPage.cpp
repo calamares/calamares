@@ -99,7 +99,9 @@ FinishedPage::setRestartNowCommand( const QString& command )
 void
 FinishedPage::setUpRestart()
 {
-    cDebug() << "FinishedPage::setUpRestart()";
+    cDebug() << "FinishedPage::setUpRestart(), Quit button"
+        << "setup=" << m_restartSetUp
+        << "command=" << m_restartNowCommand;
     if ( !m_restartSetUp )
     {
         connect( qApp, &QApplication::aboutToQuit,
