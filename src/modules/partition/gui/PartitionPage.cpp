@@ -219,7 +219,7 @@ PartitionPage::onNewPartitionTableClicked()
         m_core->createPartitionTable( device, type );
     }
     delete dlg;
-    // PartionModelReset isn't emmited after createPartitionTable, so we have to manually update
+    // PartionModelReset isn't emitted after createPartitionTable, so we have to manually update
     // the bootLoader index after the reset.
     updateBootLoaderIndex();
 }
