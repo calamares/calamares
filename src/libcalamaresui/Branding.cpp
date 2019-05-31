@@ -129,15 +129,15 @@ Branding::Branding( const QString& brandingFilePath,
     , m_welcomeExpandingLogo( true )
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
+
+    QDir componentDir( componentDirectory() );
+    if ( !componentDir.exists() )
+        bail( "Bad component directory path." );
+
     QFile file( brandingFilePath );
     if ( file.exists() && file.open( QFile::ReadOnly | QFile::Text ) )
     {
         QByteArray ba = file.readAll();
-
-        QFileInfo fi ( m_descriptorPath );
-        QDir componentDir = fi.absoluteDir();
-        if ( !componentDir.exists() )
-            bail( "Bad component directory path." );
 
         try
         {
@@ -146,7 +146,7 @@ Branding::Branding( const QString& brandingFilePath,
 
             m_componentName = QString::fromStdString( doc[ "componentName" ]
                                                       .as< std::string >() );
-            if ( m_componentName != QFileInfo( m_descriptorPath ).absoluteDir().dirName() )
+            if ( m_componentName != componentDir.dirName() )
                 bail( "The branding component name should match the name of the "
                       "component directory." );
 
@@ -186,6 +186,7 @@ Branding::Branding( const QString& brandingFilePath,
             loadStrings( m_images, doc, "images",
                 [&]( const QString& s ) -> QString
                 {
+                    // See also image()
                     const QString imageName( expand( s ) );
                     QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
                     if ( !imageFi.exists() )
@@ -312,6 +313,22 @@ Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
         Q_ASSERT( !icon.isNull() );
         return icon.pixmap( size );
     }
+}
+
+QPixmap
+Branding::image(const QString& imageName, const QSize& size) const
+{
+    QDir componentDir( componentDirectory() );
+    QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
+    if ( !imageFi.exists() )
+    {
+        const auto icon = QIcon::fromTheme( imageName );
+        // Not found, bail out with the filename used
+        if ( icon.isNull() )
+            return QPixmap();
+        return icon.pixmap( size );
+    }
+    return ImageRegistry::instance()->pixmap( imageFi.absoluteFilePath(), size );
 }
 
 QString

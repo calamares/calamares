@@ -24,9 +24,11 @@
 
 #include "geoip/Handler.h"
 #include "locale/Lookup.h"
-#include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
+
+#include "Branding.h"
+#include "modulesystem/ModuleManager.h"
 
 #include <QFutureWatcher>
 #include <QVariant>
@@ -136,6 +138,15 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             delete h;
         } );
         future->setFuture( handler->queryRaw() );
+    }
+
+
+    QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
+    if ( !language.isEmpty() )
+    {
+        auto icon = Calamares::Branding::instance()->image( language, QSize( 48, 48 ) );
+        if ( !icon.isNull() )
+            m_widget->setLanguageIcon( icon );
     }
 }
 
