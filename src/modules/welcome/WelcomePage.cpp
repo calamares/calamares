@@ -271,9 +271,9 @@ WelcomePage::externallySelectedLanguage( int row )
 }
 
 void
-WelcomePage::setLanguageIcon( QIcon i )
+WelcomePage::setLanguageIcon( QPixmap i )
 {
-    ui->languageIcon->setPixmap( i.pixmap(48) );
+    ui->languageIcon->setPixmap( i );
 }
 
 

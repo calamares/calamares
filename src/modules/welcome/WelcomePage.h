@@ -43,7 +43,7 @@ public:
                      bool showKnownIssuesUrl,
                      bool showReleaseNotesUrl );
     /// @brief Set international language-selector icon
-    void setLanguageIcon( QIcon );
+    void setLanguageIcon( QPixmap );
 
     /// @brief Results of requirements checking
     bool verdict() const;
