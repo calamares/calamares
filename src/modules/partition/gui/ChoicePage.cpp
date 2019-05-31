@@ -960,19 +960,18 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
             QLabel* sizeLabel = new QLabel( m_previewAfterFrame );
             layout->addWidget( sizeLabel );
             sizeLabel->setWordWrap( true );
-            connect( m_afterPartitionSplitterWidget, &PartitionSplitterWidget::partitionResized,
-                     this, [ this, sizeLabel ]( const QString& path,
-                                                qint64 size,
-                                                qint64 sizeNext )
-            {
-                Q_UNUSED( path )
-                sizeLabel->setText( tr( "%1 will be shrunk to %2MiB and a new "
-                                        "%3MiB partition will be created for %4." )
-                                    .arg( m_beforePartitionBarsView->selectionModel()->currentIndex().data().toString() )
-                                    .arg( CalamaresUtils::BytesToMiB( size ) )
-                                    .arg( CalamaresUtils::BytesToMiB( sizeNext ) )
-                                    .arg( *Calamares::Branding::ShortProductName ) );
-            } );
+            connect( m_afterPartitionSplitterWidget, &PartitionSplitterWidget::partitionResized, this,
+                [ this, sizeLabel ]( const QString& path, qint64 size, qint64 sizeNext )
+                {
+                    Q_UNUSED( path )
+                    sizeLabel->setText( tr( "%1 will be shrunk to %2MiB and a new "
+                                            "%3MiB partition will be created for %4." )
+                                        .arg( m_beforePartitionBarsView->selectionModel()->currentIndex().data().toString() )
+                                        .arg( CalamaresUtils::BytesToMiB( size ) )
+                                        .arg( CalamaresUtils::BytesToMiB( sizeNext ) )
+                                        .arg( *Calamares::Branding::ShortProductName ) );
+                }
+            );
 
             m_previewAfterFrame->show();
             m_previewAfterLabel->show();
@@ -1025,18 +1024,25 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
                 eraseBootloaderLabel->setText( tr( "Boot loader location:" ) );
 
                 m_bootloaderComboBox = createBootloaderComboBox( eraseWidget );
-                connect( m_core, &PartitionCoreModule::deviceReverted,
-                         this, [ this ]( Device* dev )
-                {
-                    Q_UNUSED( dev )
-                    if ( !m_bootloaderComboBox.isNull() )
+                connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset,
+                    [ this ]()
                     {
-                        if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
-                            m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
-
-                        m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
+                        if ( !m_bootloaderComboBox.isNull() )
+                            Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
                     }
-                }, Qt::QueuedConnection );
+                );
+                connect( m_core, &PartitionCoreModule::deviceReverted, this,
+                    [ this ]( Device* dev )
+                    {
+                        Q_UNUSED( dev )
+                        if ( !m_bootloaderComboBox.isNull() )
+                        {
+                            if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
+                                m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
+
+                            m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
+                        }
+                    }, Qt::QueuedConnection );
                 // ^ Must be Queued so it's sure to run when the widget is already visible.
 
                 eraseLayout->addWidget( m_bootloaderComboBox );

@@ -247,7 +247,7 @@ private:
         QScopedPointer< Device > device;
         QScopedPointer< PartitionModel > partitionModel;
         const QScopedPointer< Device > immutableDevice;
-        QList< Calamares::job_ptr > jobs;
+        Calamares::JobList jobs;
 
         // To check if LVM VGs are deactivated
         bool isAvailable;

@@ -402,7 +402,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
             deletePartition( device, childPartition );
     }
 
-    QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
+    Calamares::JobList& jobs = deviceInfo->jobs;
     if ( partition->state() == KPM_PARTITION_STATE(New) )
     {
         // First remove matching SetPartFlagsJobs
@@ -496,10 +496,10 @@ PartitionCoreModule::setPartitionFlags( Device* device,
     PartitionInfo::setFlags( partition, flags );
 }
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 PartitionCoreModule::jobs() const
 {
-    QList< Calamares::job_ptr > lst;
+    Calamares::JobList lst;
     QList< Device* > devices;
 
 #ifdef DEBUG_PARTITION_UNSAFE
@@ -947,12 +947,7 @@ PartitionCoreModule::revertDevice( Device* dev, bool individualRevert )
     QList< Device* > devices;
     for ( DeviceInfo* const info : m_deviceInfos )
     {
-        // device is a QScopedPointer
-        if ( !info || info->device.isNull() )
-            continue;
-        if ( info->device->type() != Device::Type::Disk_Device )
-            continue;
-        else
+        if ( info && !info->device.isNull() && info->device->type() == Device::Type::Disk_Device )
             devices.append( info->device.data() );
     }
 

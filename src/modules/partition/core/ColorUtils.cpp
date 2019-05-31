@@ -22,6 +22,8 @@
 #include "core/KPMHelpers.h"
 #include "core/PartitionIterator.h"
 
+#include "utils/Logger.h"
+
 // KPMcore
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/luks.h>
@@ -81,6 +83,12 @@ _findRootForPartition( PartitionNode* partition )
 QColor
 colorForPartition( Partition* partition )
 {
+    if ( !partition )
+    {
+        cWarning() << "NULL partition";
+        return FREE_SPACE_COLOR;
+    }
+
     if ( KPMHelpers::isPartitionFreeSpace( partition ) )
         return FREE_SPACE_COLOR;
     if ( partition->roles().has( PartitionRole::Extended ) )
