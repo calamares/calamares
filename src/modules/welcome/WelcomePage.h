@@ -42,6 +42,8 @@ public:
     void setUpLinks( bool showSupportUrl,
                      bool showKnownIssuesUrl,
                      bool showReleaseNotesUrl );
+    /// @brief Set international language-selector icon
+    void setLanguageIcon( QIcon );
 
     /// @brief Results of requirements checking
     bool verdict() const;

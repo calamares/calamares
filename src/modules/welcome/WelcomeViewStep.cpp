@@ -137,6 +137,15 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         } );
         future->setFuture( handler->queryRaw() );
     }
+
+
+    QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
+    if ( !language.isEmpty() )
+    {
+        auto icon = QIcon::fromTheme( language );
+        if ( !icon.isNull() )
+            m_widget->setLanguageIcon( icon );
+    }
 }
 
 Calamares::RequirementsList

@@ -270,6 +270,12 @@ WelcomePage::externallySelectedLanguage( int row )
         ui->languageWidget->setCurrentIndex( row );
 }
 
+void
+WelcomePage::setLanguageIcon( QIcon i )
+{
+    ui->languageIcon->setPixmap( i.pixmap(48) );
+}
+
 
 void
 LocaleTwoColumnDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
