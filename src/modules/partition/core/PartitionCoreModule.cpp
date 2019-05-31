@@ -947,12 +947,7 @@ PartitionCoreModule::revertDevice( Device* dev, bool individualRevert )
     QList< Device* > devices;
     for ( DeviceInfo* const info : m_deviceInfos )
     {
-        // device is a QScopedPointer
-        if ( !info || info->device.isNull() )
-            continue;
-        if ( info->device->type() != Device::Type::Disk_Device )
-            continue;
-        else
+        if ( info && !info->device.isNull() && info->device->type() == Device::Type::Disk_Device )
             devices.append( info->device.data() );
     }
 
