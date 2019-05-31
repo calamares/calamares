@@ -94,6 +94,10 @@ BootLoaderModel::updateInternal()
     clear();
     createMbrItems();
 
+    // An empty model is possible if you don't havee permissions: don't crash though.
+    if ( rowCount() < 1 )
+        return;
+
     QString partitionText;
     Partition* partition = KPMHelpers::findPartitionByMountPoint( m_devices, "/boot" );
     if ( partition )
