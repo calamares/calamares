@@ -60,6 +60,8 @@ some PEP8 guidelines.
 * Function and class definitions have their braces on separate lines.
 * A function implementation's return type is on its own line.
 * `CamelCase.{cpp,h}` style file names.
+* Lambdas are preferrably indented to a 4-space tab, even when passed as an
+  argument to functions.
 
 Example:
 ```
