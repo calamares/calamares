@@ -129,15 +129,15 @@ Branding::Branding( const QString& brandingFilePath,
     , m_welcomeExpandingLogo( true )
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
+
+    QDir componentDir( componentDirectory() );
+    if ( !componentDir.exists() )
+        bail( "Bad component directory path." );
+
     QFile file( brandingFilePath );
     if ( file.exists() && file.open( QFile::ReadOnly | QFile::Text ) )
     {
         QByteArray ba = file.readAll();
-
-        QFileInfo fi ( m_descriptorPath );
-        QDir componentDir = fi.absoluteDir();
-        if ( !componentDir.exists() )
-            bail( "Bad component directory path." );
 
         try
         {
@@ -146,7 +146,7 @@ Branding::Branding( const QString& brandingFilePath,
 
             m_componentName = QString::fromStdString( doc[ "componentName" ]
                                                       .as< std::string >() );
-            if ( m_componentName != QFileInfo( m_descriptorPath ).absoluteDir().dirName() )
+            if ( m_componentName != componentDir.dirName() )
                 bail( "The branding component name should match the name of the "
                       "component directory." );
 
