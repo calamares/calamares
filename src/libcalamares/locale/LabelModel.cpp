@@ -125,8 +125,8 @@ LabelModel::find( const QString& countryCode ) const
 
 LabelModel* availableTranslations()
 {
-    static LabelModel model( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
-    return &model;
+    static LabelModel* model = new LabelModel( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
+    return model;
 }
 
 }
