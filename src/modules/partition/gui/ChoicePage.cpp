@@ -1027,7 +1027,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
                 connect( m_core->bootLoaderModel(), &QAbstractItemModel::modelReset,
                     [ this ]()
                     {
-                        Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
+                        if ( !m_bootloaderComboBox.isNull() )
+                            Calamares::restoreSelectedBootLoader( *m_bootloaderComboBox, m_core->bootLoaderInstallPath() );
                     }
                 );
                 connect( m_core, &PartitionCoreModule::deviceReverted, this,
