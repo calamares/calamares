@@ -186,6 +186,7 @@ Branding::Branding( const QString& brandingFilePath,
             loadStrings( m_images, doc, "images",
                 [&]( const QString& s ) -> QString
                 {
+                    // See also image()
                     const QString imageName( expand( s ) );
                     QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
                     if ( !imageFi.exists() )
@@ -312,6 +313,22 @@ Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
         Q_ASSERT( !icon.isNull() );
         return icon.pixmap( size );
     }
+}
+
+QPixmap
+Branding::image(const QString& imageName, const QSize& size) const
+{
+    QDir componentDir( componentDirectory() );
+    QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
+    if ( !imageFi.exists() )
+    {
+        const auto icon = QIcon::fromTheme( imageName );
+        // Not found, bail out with the filename used
+        if ( icon.isNull() )
+            return QPixmap();
+        return icon.pixmap( size );
+    }
+    return ImageRegistry::instance()->pixmap( imageFi.absoluteFilePath(), size );
 }
 
 QString
