@@ -22,6 +22,8 @@ milestone for details.
    *productLogo* and *productIcon* keys. If a file is named there, then
    the file is used, and otherwise the icon is looked up in the current
    theme.
+ - *welcome* allows a custom image path or icon name to be set for the
+   language-selection drop-down (instead of the international standard one).
 
 
 # 3.2.8 (2019-05-10) #
