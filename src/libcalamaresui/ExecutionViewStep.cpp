@@ -36,10 +36,9 @@
 #include <QDir>
 #include <QLabel>
 #include <QProgressBar>
-#include <QVBoxLayout>
-#include <QtQuickWidgets/QQuickWidget>
 #include <QQmlEngine>
-
+#include <QQuickWidget>
+#include <QVBoxLayout>
 
 namespace Calamares
 {
@@ -54,21 +53,21 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     QVBoxLayout* innerLayout = new QVBoxLayout;
 
-    m_slideShow = new QQuickWidget;
-    layout->addWidget( m_slideShow );
+    m_qmlShow = new QQuickWidget;
+    layout->addWidget( m_qmlShow );
     CalamaresUtils::unmarginLayout( layout );
 
     layout->addLayout( innerLayout );
-    m_slideShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-    m_slideShow->setResizeMode( QQuickWidget::SizeRootObjectToView );
+    m_qmlShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    m_qmlShow->setResizeMode( QQuickWidget::SizeRootObjectToView );
 
-    m_slideShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
+    m_qmlShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
 
     innerLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
     innerLayout->addWidget( m_progressBar );
     innerLayout->addWidget( m_label );
 
-    cDebug() << "QML import paths:" << Logger::DebugList( m_slideShow->engine()->importPathList() );
+    cDebug() << "QML import paths:" << Logger::DebugList( m_qmlShow->engine()->importPathList() );
 
     connect( JobQueue::instance(), &JobQueue::progress,
              this, &ExecutionViewStep::updateFromJobQueue );
@@ -136,16 +135,14 @@ ExecutionViewStep::onActivate()
 {
     CALAMARES_RETRANSLATE_WIDGET( m_widget,
         if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
-            m_slideShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
+            m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
                                                          ->slideshowPath() ) );
     )
-
 
     JobQueue* queue = JobQueue::instance();
     foreach ( const QString& instanceKey, m_jobInstanceKeys )
     {
-        Calamares::Module* module = Calamares::ModuleManager::instance()
-                                    ->moduleInstance( instanceKey );
+        Calamares::Module* module = Calamares::ModuleManager::instance()->moduleInstance( instanceKey );
         if ( module )
         {
             auto jl = module->jobs();

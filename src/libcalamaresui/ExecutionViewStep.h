@@ -60,7 +60,7 @@ private:
     QWidget* m_widget;
     QProgressBar* m_progressBar;
     QLabel* m_label;
-    QQuickWidget* m_slideShow;
+    QQuickWidget* m_qmlShow;
 
     QStringList m_jobInstanceKeys;
 
