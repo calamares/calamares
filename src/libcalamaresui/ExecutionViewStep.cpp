@@ -46,22 +46,23 @@ namespace Calamares
 ExecutionViewStep::ExecutionViewStep( QObject* parent )
     : ViewStep( parent )
     , m_widget( new QWidget )
+    , m_progressBar( new QProgressBar )
+    , m_label( new QLabel )
+    , m_qmlShow( new QQuickWidget )
+    , m_qmlShowLoaded( false )
 {
-    m_progressBar = new QProgressBar;
-    m_progressBar->setMaximum( 10000 );
-    m_label = new QLabel;
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     QVBoxLayout* innerLayout = new QVBoxLayout;
 
-    m_qmlShow = new QQuickWidget;
-    layout->addWidget( m_qmlShow );
-    CalamaresUtils::unmarginLayout( layout );
+    m_progressBar->setMaximum( 10000 );
 
-    layout->addLayout( innerLayout );
     m_qmlShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     m_qmlShow->setResizeMode( QQuickWidget::SizeRootObjectToView );
-
     m_qmlShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
+
+    layout->addWidget( m_qmlShow );
+    CalamaresUtils::unmarginLayout( layout );
+    layout->addLayout( innerLayout );
 
     innerLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
     innerLayout->addWidget( m_progressBar );
@@ -69,8 +70,12 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
 
     cDebug() << "QML import paths:" << Logger::DebugList( m_qmlShow->engine()->importPathList() );
 
-    connect( JobQueue::instance(), &JobQueue::progress,
-             this, &ExecutionViewStep::updateFromJobQueue );
+    connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
+
+    CALAMARES_RETRANSLATE_WIDGET( m_widget,
+        if ( m_qmlShowLoaded )
+            m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
+    )
 }
 
 
@@ -133,11 +138,11 @@ ExecutionViewStep::isAtEnd() const
 void
 ExecutionViewStep::onActivate()
 {
-    CALAMARES_RETRANSLATE_WIDGET( m_widget,
-        if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
-            m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
-                                                         ->slideshowPath() ) );
-    )
+    if ( !m_qmlShowLoaded && !Calamares::Branding::instance()->slideshowPath().isEmpty() )
+    {
+        m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
+        m_qmlShowLoaded = true;
+    }
 
     JobQueue* queue = JobQueue::instance();
     foreach ( const QString& instanceKey, m_jobInstanceKeys )

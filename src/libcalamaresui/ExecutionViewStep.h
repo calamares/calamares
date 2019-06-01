@@ -61,6 +61,7 @@ private:
     QProgressBar* m_progressBar;
     QLabel* m_label;
     QQuickWidget* m_qmlShow;
+    bool m_qmlShowLoaded;
 
     QStringList m_jobInstanceKeys;
 
