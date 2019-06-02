@@ -38,6 +38,7 @@
 #include <QProgressBar>
 #include <QQmlComponent>
 #include <QQmlEngine>
+#include <QQuickItem>
 #include <QQuickWidget>
 #include <QVBoxLayout>
 
@@ -150,9 +151,18 @@ ExecutionViewStep::onActivate()
     loadQml();
     if ( m_qmlComponent )
     {
-        m_qmlObject = m_qmlComponent->create();
-        cDebug() << "Created QML object" << (void *)m_qmlObject << m_qmlObject->objectName();
-        cDebug() << "Show root" << m_qmlShow->rootObject() << "context" << m_qmlShow->rootContext();
+        auto* rootItem = m_qmlShow->quickWindow()->contentItem();
+        rootItem->setSize( m_qmlShow->size() );
+
+        QObject* o = m_qmlComponent->create();
+        m_qmlObject = qobject_cast< QQuickItem* >( o );
+        if ( !m_qmlObject )
+            delete o;
+        else
+        {
+            m_qmlObject->setParentItem( rootItem );
+            m_qmlObject->setSize( m_qmlShow->size() );
+        }
     }
 
     JobQueue* queue = JobQueue::instance();

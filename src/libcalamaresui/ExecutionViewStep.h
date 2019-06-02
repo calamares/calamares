@@ -27,8 +27,9 @@
 class QLabel;
 class QObject;
 class QProgressBar;
-class QQuickWidget;
 class QQmlComponent;
+class QQuickItem;
+class QQuickWidget;
 
 namespace Calamares
 {
@@ -65,7 +66,7 @@ private:
     QLabel* m_label;
     QQuickWidget* m_qmlShow;
     QQmlComponent* m_qmlComponent;
-    QObject* m_qmlObject;  //< The actual show
+    QQuickItem* m_qmlObject;  //< The actual show
 
     QStringList m_jobInstanceKeys;
 
