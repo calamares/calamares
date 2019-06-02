@@ -24,12 +24,17 @@ Presentation
 {
     id: presentation
 
+    function nextSlide() {
+        console.log("Next slide");
+        presentation.goToNextSlide();
+    }
+
     Timer {
         id: advanceTimer
         interval: 5000
         running: false
         repeat: true
-        onTriggered: presentation.goToNextSlide()
+        onTriggered: nextSlide()
     }
 
     Slide {
