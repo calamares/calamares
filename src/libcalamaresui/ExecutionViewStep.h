@@ -65,6 +65,7 @@ private:
 
     QStringList m_jobInstanceKeys;
 
+    void loadQml();  //< Loads the slideshow QML (from branding)
     void updateFromJobQueue( qreal percent, const QString& message );
 };
 

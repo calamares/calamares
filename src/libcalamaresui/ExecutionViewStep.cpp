@@ -69,6 +69,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     innerLayout->addWidget( m_label );
 
     cDebug() << "QML import paths:" << Logger::DebugList( m_qmlShow->engine()->importPathList() );
+    loadQml();
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
 
@@ -134,15 +135,20 @@ ExecutionViewStep::isAtEnd() const
     return true;
 }
 
-
 void
-ExecutionViewStep::onActivate()
+ExecutionViewStep::loadQml()
 {
     if ( !m_qmlShowLoaded && !Calamares::Branding::instance()->slideshowPath().isEmpty() )
     {
         m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
         m_qmlShowLoaded = true;
     }
+}
+
+void
+ExecutionViewStep::onActivate()
+{
+    loadQml();
 
     JobQueue* queue = JobQueue::instance();
     foreach ( const QString& instanceKey, m_jobInstanceKeys )
