@@ -36,6 +36,7 @@
 #include <QDir>
 #include <QLabel>
 #include <QProgressBar>
+#include <QQmlComponent>
 #include <QQmlEngine>
 #include <QQuickWidget>
 #include <QVBoxLayout>
@@ -49,7 +50,8 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     , m_progressBar( new QProgressBar )
     , m_label( new QLabel )
     , m_qmlShow( new QQuickWidget )
-    , m_qmlShowLoaded( false )
+    , m_qmlComponent( nullptr )
+    , m_qmlObject( nullptr )
 {
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     QVBoxLayout* innerLayout = new QVBoxLayout;
@@ -72,11 +74,6 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     loadQml();
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
-
-    CALAMARES_RETRANSLATE_WIDGET( m_widget,
-        if ( m_qmlShowLoaded )
-            m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
-    )
 }
 
 
@@ -138,10 +135,12 @@ ExecutionViewStep::isAtEnd() const
 void
 ExecutionViewStep::loadQml()
 {
-    if ( !m_qmlShowLoaded && !Calamares::Branding::instance()->slideshowPath().isEmpty() )
+    if ( !m_qmlComponent && !Calamares::Branding::instance()->slideshowPath().isEmpty() )
     {
-        m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
-        m_qmlShowLoaded = true;
+        m_qmlComponent = new QQmlComponent( m_qmlShow->engine(),
+                                            QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ),
+                                            QQmlComponent::CompilationMode::Asynchronous
+                                          );
     }
 }
 
@@ -149,6 +148,12 @@ void
 ExecutionViewStep::onActivate()
 {
     loadQml();
+    if ( m_qmlComponent )
+    {
+        m_qmlObject = m_qmlComponent->create();
+        cDebug() << "Created QML object" << (void *)m_qmlObject << m_qmlObject->objectName();
+        cDebug() << "Show root" << m_qmlShow->rootObject() << "context" << m_qmlShow->rootContext();
+    }
 
     JobQueue* queue = JobQueue::instance();
     foreach ( const QString& instanceKey, m_jobInstanceKeys )
@@ -189,6 +194,13 @@ ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 {
     m_progressBar->setValue( int( percent * m_progressBar->maximum() ) );
     m_label->setText( message );
+}
+
+void
+ExecutionViewStep::onLeave()
+{
+    delete m_qmlObject;
+    m_qmlObject = nullptr;
 }
 
 } // namespace

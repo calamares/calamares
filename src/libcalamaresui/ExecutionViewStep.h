@@ -25,8 +25,10 @@
 #include <QStringList>
 
 class QLabel;
+class QObject;
 class QProgressBar;
 class QQuickWidget;
+class QQmlComponent;
 
 namespace Calamares
 {
@@ -51,6 +53,7 @@ public:
     bool isAtEnd() const override;
 
     void onActivate() override;
+    void onLeave() override;
 
     JobList jobs() const override;
 
@@ -61,7 +64,8 @@ private:
     QProgressBar* m_progressBar;
     QLabel* m_label;
     QQuickWidget* m_qmlShow;
-    bool m_qmlShowLoaded;
+    QQmlComponent* m_qmlComponent;
+    QObject* m_qmlObject;  //< The actual show
 
     QStringList m_jobInstanceKeys;
 
