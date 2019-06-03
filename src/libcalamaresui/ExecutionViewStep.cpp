@@ -151,17 +151,17 @@ ExecutionViewStep::onActivate()
     loadQml();
     if ( m_qmlComponent )
     {
-        auto* rootItem = m_qmlShow->quickWindow()->contentItem();
-        rootItem->setSize( m_qmlShow->size() );
-
         QObject* o = m_qmlComponent->create();
         m_qmlObject = qobject_cast< QQuickItem* >( o );
         if ( !m_qmlObject )
             delete o;
         else
         {
-            m_qmlObject->setParentItem( rootItem );
-            m_qmlObject->setSize( m_qmlShow->size() );
+            // setContent() is public API, but not documented publicly.
+            // It is marked \internal in the Qt sources, but does exactly
+            // what is needed: sets up visual parent by replacing the root
+            // item, and handling resizes.
+            m_qmlShow->setContent( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ), m_qmlComponent, m_qmlObject );
         }
     }
 
