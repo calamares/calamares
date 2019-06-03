@@ -11,7 +11,9 @@ This release contains contributions from (alphabetically by first name):
 ## Core ##
 
 No user- or deployer-visible changes. Bugfixing as usual, see the
-milestone for details.
+milestone for details. The slideshow used during installation is now
+loaded asynchronously, which may improve the transition speed to the
+installation slideshow (#1152).
 
 ## Modules ##
 
