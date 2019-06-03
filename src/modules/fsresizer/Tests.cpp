@@ -83,13 +83,14 @@ size: 100%
 atleast: 600MiB
 )" );
     j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
-    QVERIFY( j.name().isEmpty() );
+    QVERIFY( !j.name().isEmpty() );
+    QCOMPARE( j.name(), QString("/") );
     QCOMPARE( j.size().unit(), SizeUnit::Percent );
     QCOMPARE( j.minimumSize().unit(), SizeUnit::MiB );
     QCOMPARE( j.size().value(), 100 );
     QCOMPARE( j.minimumSize().value(), 600 );
 
-    // Silly config
+    // Silly config has bad atleast value
     doc0 = YAML::Load( R"(---
 fs: /
 dev: /dev/m00
@@ -98,12 +99,27 @@ atleast: 127 %
 )" );
     j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
     QVERIFY( !j.name().isEmpty() );
+    QCOMPARE( j.name(), QString("/") );
     QCOMPARE( j.size().unit(), SizeUnit::MiB );
     QCOMPARE( j.minimumSize().unit(), SizeUnit::None );
     QCOMPARE( j.size().value(), 72 );
     QCOMPARE( j.minimumSize().value(), 0 );
 
-    // Silly config
+    // Silly config has bad atleast value
+    doc0 = YAML::Load( R"(---
+dev: /dev/m00
+size: 72  MiB
+atleast: 127 %
+)" );
+    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
+    QVERIFY( !j.name().isEmpty() );
+    QCOMPARE( j.name(), QString("/dev/m00") );
+    QCOMPARE( j.size().unit(), SizeUnit::MiB );
+    QCOMPARE( j.minimumSize().unit(), SizeUnit::None );
+    QCOMPARE( j.size().value(), 72 );
+    QCOMPARE( j.minimumSize().value(), 0 );
+
+    // Normal config
     doc0 = YAML::Load( R"(---
 fs: /
 # dev: /dev/m00
@@ -111,7 +127,8 @@ size: 71MiB
 # atleast: 127%
 )" );
     j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
-    QVERIFY( j.name().isEmpty() );
+    QVERIFY( !j.name().isEmpty() );
+    QCOMPARE( j.name(), QString("/") );
     QCOMPARE( j.size().unit(), SizeUnit::MiB );
     QCOMPARE( j.minimumSize().unit(), SizeUnit::None );
     QCOMPARE( j.size().value(), 71 );
