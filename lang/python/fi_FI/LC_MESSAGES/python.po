@@ -88,25 +88,27 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "Irrota tiedostojärjestelmät käytöstä."
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Paikannetaan tiedostojärjestelmiä."
 
 #: src/modules/unpackfs/main.py:159
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "rsync epäonnistui virhekoodilla {}."
 
 #: src/modules/unpackfs/main.py:220 src/modules/unpackfs/main.py:238
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "Kuvan purkaminen epäonnistui \"{}\""
 
 #: src/modules/unpackfs/main.py:221
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
+"Ei löytynyt unsquashfs, varmista, että sinulla on squashfs-tools paketti "
+"asennettuna"
 
 #: src/modules/unpackfs/main.py:320
 msgid "No mount point for root partition"
