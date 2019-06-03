@@ -40,7 +40,7 @@ project( CALAMARES
     VERSION 3.2.9
     LANGUAGES C CXX )
 
-set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
+set( CALAMARES_VERSION_RC 0 )  # Set to 0 during release cycle, 1 during development
 
 ### OPTIONS
 #
@@ -104,12 +104,12 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #       checks for new languages and misspelled ones are done (that is,
 #       copy these four lines to four backup lines, add "p", and then update
 #       the original four lines with the current translations).
-set( _tx_complete ast ca cs_CZ da de fr hr ja lt pl pt_BR pt_PT
-    tr_TR zh_TW )
-set( _tx_good bg en_GB es es_MX et gl he hi hu id it_IT ro ru sk sq
-    zh_CN )
-set( _tx_ok ar el es_PR eu fi_FI is ko mr nb nl sl sr
-    sr@latin sv th uk )
+set( _tx_complete ca cs_CZ da de fr he hr hu ko lt pt_BR sq tr_TR
+    zh_TW )
+set( _tx_good ast en_GB es es_MX et gl id it_IT ja nl pl pt_PT ro
+    ru sk zh_CN )
+set( _tx_ok ar bg el es_PR eu fi_FI hi is mr nb sl sr sr@latin sv
+    th uk )
 set( _tx_bad be eo fa fr_CH gu kk kn lo mk ne_NP ur uz )
 
 
