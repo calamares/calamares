@@ -148,20 +148,23 @@ canBeResized( Partition* candidate )
                                     ->globalStorage()
                                     ->value( "requiredStorageGiB" )
                                     .toDouble( &ok );
+    if ( !ok )
+    {
+        cDebug() << Logger::SubEntry << "NO, requiredStorageGiB is not set correctly.";
+        return false;
+    }
+
     // We require a little more for partitioning overhead and swap file
     double advisedStorageGB = requiredStorageGB + 0.5 + 2.0;
     qint64 availableStorageB = candidate->available();
-
     qint64 advisedStorageB = CalamaresUtils::GiBtoBytes( advisedStorageGB );
 
-    if ( ok &&
-         availableStorageB > advisedStorageB )
+    if ( availableStorageB > advisedStorageB )
     {
         cDebug() << "Partition" << convenienceName( candidate ) << "authorized for resize + autopartition install.";
-
         return true;
     }
-    else if ( ok )
+    else
     {
         Logger::CDebug deb;
         deb << Logger::SubEntry << "NO, insufficient storage";
@@ -171,11 +174,6 @@ canBeResized( Partition* candidate )
                 << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
                 << "for" << convenienceName( candidate ) << "length:" << candidate->length()
                 << "sectorsUsed:" << candidate->sectorsUsed() << "fsType:" << candidate->fileSystem().name();
-        return false;
-    }
-    else
-    {
-        cDebug() << Logger::SubEntry << "NO, requiredStorageGB is not set correctly.";
         return false;
     }
 }
