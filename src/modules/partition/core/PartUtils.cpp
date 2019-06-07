@@ -62,6 +62,13 @@ convenienceName( const Partition* const candidate )
     return p;
 }
 
+/** @brief Get the globalStorage setting for required space. */
+static double
+getRequiredStorageGiB( bool& ok )
+{
+    return Calamares::JobQueue::instance()->globalStorage()->value( "requiredStorageGiB" ).toDouble( &ok );
+}
+
 bool
 canBeReplaced( Partition* candidate )
 {
@@ -72,10 +79,7 @@ canBeReplaced( Partition* candidate )
         return false;
 
     bool ok = false;
-    double requiredStorageGB = Calamares::JobQueue::instance()
-                                    ->globalStorage()
-                                    ->value( "requiredStorageGiB" )
-                                    .toDouble( &ok );
+    double requiredStorageGB = getRequiredStorageGiB( ok );
 
     qint64 availableStorageB = candidate->capacity();
     qint64 requiredStorageB = ( requiredStorageGB + 0.5 ) * 1024 * 1024 * 1024;
@@ -144,10 +148,7 @@ canBeResized( Partition* candidate )
     }
 
     bool ok = false;
-    double requiredStorageGB = Calamares::JobQueue::instance()
-                                    ->globalStorage()
-                                    ->value( "requiredStorageGiB" )
-                                    .toDouble( &ok );
+    double requiredStorageGB = getRequiredStorageGiB( ok );
     if ( !ok )
     {
         cDebug() << Logger::SubEntry << "NO, requiredStorageGiB is not set correctly.";
