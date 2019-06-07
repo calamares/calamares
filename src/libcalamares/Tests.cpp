@@ -132,5 +132,29 @@ LibCalamaresTests::testCommands()
     QVERIFY( tf.open() );
     QVERIFY( !tf.fileName().isEmpty() );
 
-    QVERIFY( r.getOutput().contains( tf.fileName() ) );
+    QFileInfo tfn( tf.fileName() );
+    QVERIFY( !r.getOutput().contains( tfn.fileName() ) );
+
+    // Run ls again, now that the file exists
+    r = System::runCommand(
+        System::RunLocation::RunInHost,
+        { "/bin/ls", "/tmp" }
+        );
+    QVERIFY( r.getOutput().contains( tfn.fileName() ) );
+
+    // .. and without a working directory set, assume builddir != /tmp
+    r = System::runCommand(
+        System::RunLocation::RunInHost,
+        { "/bin/ls" }
+        );
+    QVERIFY( !r.getOutput().contains( tfn.fileName() ) );
+
+    r = System::runCommand(
+        System::RunLocation::RunInHost,
+        { "/bin/ls" },
+        "/tmp"
+        );
+    QVERIFY( r.getOutput().contains( tfn.fileName() ) );
+
+
 }
