@@ -63,7 +63,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>Globaali-tallennus</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
@@ -1392,63 +1392,63 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="122"/>
         <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
         <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 ajuri&lt;/strong&gt;&lt;br/&gt;- %2</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="129"/>
         <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 näytönohjaimet&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;- %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="135"/>
         <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 selaimen laajennus&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;- %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="141"/>
         <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 kodekki&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;- %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="147"/>
         <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 paketti&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;- %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="153"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;- %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="191"/>
         <source>Shows the complete license text</source>
-        <translation type="unfinished"/>
+        <translation>Näyttää täydellisen lisenssin tekstin</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="192"/>
         <source>Hide license text</source>
-        <translation type="unfinished"/>
+        <translation>Piilota lisenssin teksti</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="196"/>
         <source>Show license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Näytä lisenssisopimus</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="197"/>
         <source>Hide license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Piilota lisenssisopimus</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="201"/>
         <source>Opens the license agreement in a browser window.</source>
-        <translation type="unfinished"/>
+        <translation>Avaa lisenssisopimus selaimessa.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="202"/>
         <source>&lt;a href=&quot;%1&quot;&gt;View license agreement&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;%1&quot;&gt;Näytä lisenssisopimus&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -1456,12 +1456,12 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="396"/>
         <source>The system language will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Järjestelmän kielen asetuksena on %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="397"/>
         <source>The numbers and dates locale will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Numerot ja päivämäärät, paikallinen asetus on %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="219"/>
@@ -1513,12 +1513,12 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="84"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-        <translation type="unfinished"/>
+        <translation>Verkkoasennus. (Ei käytössä: Pakettiluetteloita ei voi hakea, tarkista verkkoyhteys)</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="94"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
-        <translation type="unfinished"/>
+        <translation>Verkkoasennus. (Ei käytössä: Vastaanotettiin virheellisiä ryhmän tietoja)</translation>
     </message>
 </context>
 <context>
@@ -1534,17 +1534,17 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/oemid/OEMPage.ui" line="28"/>
         <source>Ba&amp;tch:</source>
-        <translation type="unfinished"/>
+        <translation>Ba&amp;tch:</translation>
     </message>
     <message>
         <location filename="../src/modules/oemid/OEMPage.ui" line="38"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a batch-identifier here. This will be stored in the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Syötä erän tunniste tähän. Tämä tallennetaan kohdejärjestelmään.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/oemid/OEMPage.ui" line="48"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM Configuration&lt;/h1&gt;&lt;p&gt;Calamares will use OEM settings while configuring the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM asetukset&lt;/h1&gt;&lt;p&gt;Calamares käyttää OEM-asetuksia määritettäessä kohdejärjestelmää.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -1557,7 +1557,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/oemid/OEMViewStep.cpp" line="120"/>
         <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Aseta OEM valmistajan erän tunnus &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1580,92 +1580,92 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Muistin varausvirhe asetettaessa &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
         <source>Memory allocation error</source>
-        <translation type="unfinished"/>
+        <translation>Muistin varausvirhe</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="182"/>
         <source>The password is the same as the old one</source>
-        <translation type="unfinished"/>
+        <translation>Salasana on sama kuin vanha</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
         <source>The password is a palindrome</source>
-        <translation type="unfinished"/>
+        <translation>Salasana on palindromi</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="186"/>
         <source>The password differs with case changes only</source>
-        <translation type="unfinished"/>
+        <translation>Salasana eroaa vain vähäisin muutoksin</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
         <source>The password is too similar to the old one</source>
-        <translation type="unfinished"/>
+        <translation>Salasana on liian samanlainen kuin vanha</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
         <source>The password contains the user name in some form</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää jonkin käyttäjänimen</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
         <source>The password contains words from the real name of the user in some form</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää sanoja käyttäjän todellisesta nimestä jossain muodossa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="194"/>
         <source>The password contains forbidden words in some form</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää kiellettyjä sanoja</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
         <source>The password contains less than %1 digits</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää vähemmän kuin %1 numeroa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
         <source>The password contains too few digits</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää liian vähän numeroita</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
         <source>The password contains less than %1 uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää vähemmän kuin %1 isoja kirjaimia</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
         <source>The password contains too few uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää liian vähän isoja kirjaimia</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
         <source>The password contains less than %1 lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää vähemmän kuin %1 pieniä kirjaimia</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
         <source>The password contains too few lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää liian vähän pieniä kirjaimia</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <translation>Salasanassa on vähemmän kuin %1 erikoismerkkiä</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
         <source>The password contains too few non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää liian vähän erikoismerkkejä</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
         <source>The password is shorter than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>Salasana on lyhyempi kuin %1 merkkiä</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
@@ -1675,47 +1675,47 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
         <source>The password is just rotated old one</source>
-        <translation type="unfinished"/>
+        <translation>Salasana on vain vanhan pyöritystä</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
         <source>The password contains less than %1 character classes</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää vähemmän kuin %1 merkkiluokkaa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
         <source>The password does not contain enough character classes</source>
-        <translation type="unfinished"/>
+        <translation>Salasana ei sisällä tarpeeksi merkkiluokkia</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="223"/>
         <source>The password contains more than %1 same characters consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää enemmän kuin %1 samaa merkkiä peräkkäin</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
         <source>The password contains too many same characters consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää liian monta samaa merkkiä peräkkäin</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää enemmän kuin %1 merkkiä samasta luokasta peräkkäin</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
         <source>The password contains too many characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää liian monta saman luokan merkkiä peräkkäin</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>Salasana sisältää monotonisen merkkijonon, joka on pidempi kuin %1 merkkiä</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
         <source>The password contains too long of a monotonic character sequence</source>
-        <translation type="unfinished"/>
+        <translation>Salasanassa on liian pitkä monotoninen merkkijono</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
@@ -1725,72 +1725,72 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="236"/>
         <source>Cannot obtain random numbers from the RNG device</source>
-        <translation type="unfinished"/>
+        <translation>Satunnaislukuja ei voi saada RNG-laitteesta</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
         <source>Password generation failed - required entropy too low for settings</source>
-        <translation type="unfinished"/>
+        <translation>Salasanojen luonti epäonnistui - pakollinen vähimmäistaso liian alhainen asetuksia varten</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
         <source>The password fails the dictionary check - %1</source>
-        <translation type="unfinished"/>
+        <translation>Salasana epäonnistui sanaston tarkistuksessa -%1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="245"/>
         <source>The password fails the dictionary check</source>
-        <translation type="unfinished"/>
+        <translation>Salasana epäonnistui sanaston tarkistuksessa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
         <source>Unknown setting - %1</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon asetus - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="253"/>
         <source>Unknown setting</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon asetus</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="257"/>
         <source>Bad integer value of setting - %1</source>
-        <translation type="unfinished"/>
+        <translation>Asetuksen virheellinen kokonaisluku - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
         <source>Bad integer value</source>
-        <translation type="unfinished"/>
+        <translation>Virheellinen kokonaisluku</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>Setting %1 is not of integer type</source>
-        <translation type="unfinished"/>
+        <translation>Asetus %1 ei ole kokonaisluku</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
         <source>Setting is not of integer type</source>
-        <translation type="unfinished"/>
+        <translation>Asetus ei ole kokonaisluku</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="273"/>
         <source>Setting %1 is not of string type</source>
-        <translation type="unfinished"/>
+        <translation>Asetus %1 ei ole merkkijono</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="277"/>
         <source>Setting is not of string type</source>
-        <translation type="unfinished"/>
+        <translation>Asetus ei ole merkkijono</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
         <source>Opening the configuration file failed</source>
-        <translation type="unfinished"/>
+        <translation>Määritystiedoston avaaminen epäonnistui</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="281"/>
         <source>The configuration file is malformed</source>
-        <translation type="unfinished"/>
+        <translation>Määritystiedosto on väärin muotoiltu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
@@ -1861,12 +1861,12 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="466"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation type="unfinished"/>
+        <translation>Kirjaudu automaattisesti ilman salasanaa.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="473"/>
         <source>Use the same password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Käytä pääkäyttäjän tilillä samaa salasanaa.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="496"/>
@@ -1968,7 +1968,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Tallennus&amp;laite:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -1983,7 +1983,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
         <source>Cre&amp;ate</source>
-        <translation type="unfinished"/>
+        <translation>Luo&amp;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
@@ -1998,27 +1998,27 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
         <source>New Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Uusi aseman ryhmä</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
         <source>Resize Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Muuta kokoa aseman-ryhmässä</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
         <source>Deactivate Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Poista asemaryhmä käytöstä</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
         <source>Remove Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Poista asemaryhmä</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
         <source>I&amp;nstall boot loader on:</source>
-        <translation type="unfinished"/>
+        <translation>A&amp;senna käynnistyslatain:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="209"/>
@@ -2028,12 +2028,12 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="238"/>
         <source>Can not create new partition</source>
-        <translation type="unfinished"/>
+        <translation>Ei voi luoda uutta osiota</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="239"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-        <translation type="unfinished"/>
+        <translation>%1 osio-taulukossa on jo %2 ensisijaista osiota, eikä sitä voi lisätä. Poista yksi ensisijainen osio ja lisää laajennettu osio.</translation>
     </message>
 </context>
 <context>
@@ -2518,7 +2518,7 @@ Ulostulo:
     <message>
         <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="39"/>
         <source>Resize Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Muuta kokoa aseman-ryhmässä</translation>
     </message>
 </context>
 <context>
