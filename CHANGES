@@ -14,6 +14,10 @@ This release contains contributions from (alphabetically by first name):
    the UI opportunities it offers, so begin the process of deprecating
    and removing that. Sometime in the future, QML pages will fill the
    gap for easily-prototyped-yet-slick UI elements.
+ - A crash when no *finished* page (or rather, no page at all) is
+   configured after the last *exec* section of the sequence has been
+   solved. The *finished* page can be left out (but then you don't get
+   the restart-now functionality).
 
 ## Modules ##
 
