@@ -120,7 +120,7 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:326
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "Huono kiinnityspiste root-osioon"
 
 #: src/modules/unpackfs/main.py:327
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
@@ -129,7 +129,7 @@ msgstr ""
 #: src/modules/unpackfs/main.py:340 src/modules/unpackfs/main.py:347
 #: src/modules/unpackfs/main.py:352
 msgid "Bad unsquash configuration"
-msgstr ""
+msgstr "Huono epäpuhdas kokoonpano"
 
 #: src/modules/unpackfs/main.py:341
 msgid "The filesystem for \"{}\" ({}) is not supported"
@@ -169,19 +169,19 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:602
 msgid "Cannot configure LightDM"
-msgstr ""
+msgstr "LightDM määritysvirhe"
 
 #: src/modules/displaymanager/main.py:603
 msgid "No LightDM greeter installed."
-msgstr ""
+msgstr "LightDM ei ole asennettu."
 
 #: src/modules/displaymanager/main.py:634
 msgid "Cannot write SLIM configuration file"
-msgstr ""
+msgstr "SLIM-määritystiedostoa ei voi kirjoittaa"
 
 #: src/modules/displaymanager/main.py:635
 msgid "SLIM config file {!s} does not exist"
-msgstr ""
+msgstr "SLIM-määritystiedostoa {!s} ei ole olemassa"
 
 #: src/modules/displaymanager/main.py:750
 msgid "No display managers selected for the displaymanager module."
@@ -195,11 +195,11 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:831
 msgid "Display manager configuration was incomplete"
-msgstr ""
+msgstr "Näytönhallinnan kokoonpano oli puutteellinen"
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Määritetään mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:192
 #: src/modules/luksopenswaphookcfg/main.py:100
@@ -215,7 +215,7 @@ msgstr ""
 
 #: src/modules/initcpio/main.py:47
 msgid "Process Failed"
-msgstr ""
+msgstr "Prosessi epäonnistui"
 
 #: src/modules/initcpio/main.py:48
 msgid ""
@@ -229,7 +229,7 @@ msgstr ""
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr ""
+msgstr "Asennetaan tietoja."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
