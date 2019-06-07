@@ -202,8 +202,10 @@ System::runCommand(
         if ( QDir( workingPath ).exists() )
             process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
         else
+        {
             cWarning() << "Invalid working directory:" << workingPath;
             return ProcessResult::Code::NoWorkingDirectory;
+        }
     }
 
     cDebug() << "Running" << program << RedactedList( arguments );
