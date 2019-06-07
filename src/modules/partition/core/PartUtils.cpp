@@ -148,7 +148,7 @@ canBeResized( Partition* candidate )
     }
 
     bool ok = false;
-    double requiredStorageGB = getRequiredStorageGiB( ok );
+    double requiredStorageGiB = getRequiredStorageGiB( ok );
     if ( !ok )
     {
         cDebug() << Logger::SubEntry << "NO, requiredStorageGiB is not set correctly.";
@@ -156,9 +156,9 @@ canBeResized( Partition* candidate )
     }
 
     // We require a little more for partitioning overhead and swap file
-    double advisedStorageGB = requiredStorageGB + 0.5 + 2.0;
+    double advisedStorageGiB = requiredStorageGiB + 0.5 + 2.0;
     qint64 availableStorageB = candidate->available();
-    qint64 advisedStorageB = CalamaresUtils::GiBtoBytes( advisedStorageGB );
+    qint64 advisedStorageB = CalamaresUtils::GiBtoBytes( advisedStorageGiB );
 
     if ( availableStorageB > advisedStorageB )
     {
@@ -170,9 +170,9 @@ canBeResized( Partition* candidate )
         Logger::CDebug deb;
         deb << Logger::SubEntry << "NO, insufficient storage";
         deb << Logger::Continuation << "Required  storage B:" << advisedStorageB
-                << QString( "(%1GB)" ).arg( advisedStorageGB );
+                << QString( "(%1GiB)" ).arg( advisedStorageGiB );
         deb << Logger::Continuation << "Available storage B:" << availableStorageB
-                << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
+                << QString( "(%1GiB)" ).arg( CalamaresUtils::BytesToGiB( availableStorageB ) )
                 << "for" << convenienceName( candidate ) << "length:" << candidate->length()
                 << "sectorsUsed:" << candidate->sectorsUsed() << "fsType:" << candidate->fileSystem().name();
         return false;
