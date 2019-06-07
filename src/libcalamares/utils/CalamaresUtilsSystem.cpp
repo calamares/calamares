@@ -114,14 +114,14 @@ System::mount( const QString& devicePath,
        const QString& options )
 {
     if ( devicePath.isEmpty() || mountPoint.isEmpty() )
-        return -3;
+        return static_cast<int>(ProcessResult::Code::NoWorkingDirectory);
 
     QDir mountPointDir( mountPoint );
     if ( !mountPointDir.exists() )
     {
         bool ok = mountPointDir.mkpath( mountPoint );
         if ( !ok )
-            return -3;
+            return static_cast<int>(ProcessResult::Code::NoWorkingDirectory);
     }
 
     QString program( "mount" );
@@ -147,14 +147,14 @@ System::runCommand(
     QString output;
 
     if ( !Calamares::JobQueue::instance() )
-        return -3;
+        return ProcessResult::Code::NoWorkingDirectory;
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( ( location == System::RunLocation::RunInTarget ) &&
          ( !gs || !gs->contains( "rootMountPoint" ) ) )
     {
         cWarning() << "No rootMountPoint in global storage";
-        return -3;
+        return ProcessResult::Code::NoWorkingDirectory;
     }
 
     QProcess process;
@@ -167,7 +167,7 @@ System::runCommand(
         if ( !QDir( destDir ).exists() )
         {
             cWarning() << "rootMountPoint points to a dir which does not exist";
-            return -3;
+            return ProcessResult::Code::NoWorkingDirectory;
         }
 
         program = "chroot";
@@ -190,7 +190,7 @@ System::runCommand(
             process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
         else
             cWarning() << "Invalid working directory:" << workingPath;
-            return -3;
+            return ProcessResult::Code::NoWorkingDirectory;
     }
 
     cDebug() << "Running" << program << RedactedList( arguments );
@@ -198,7 +198,7 @@ System::runCommand(
     if ( !process.waitForStarted() )
     {
         cWarning() << "Process failed to start" << process.error();
-        return -2;
+        return ProcessResult::Code::FailedToStart;
     }
 
     if ( !stdInput.isEmpty() )
@@ -211,7 +211,7 @@ System::runCommand(
     {
         cWarning().noquote().nospace() << "Timed out. Output so far:\n" <<
             process.readAllStandardOutput();
-        return -4;
+        return ProcessResult::Code::TimedOut;
     }
 
     output.append( QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed() );
@@ -219,7 +219,7 @@ System::runCommand(
     if ( process.exitStatus() == QProcess::CrashExit )
     {
         cWarning().noquote().nospace() << "Process crashed. Output so far:\n" << output;
-        return -1;
+        return ProcessResult::Code::Crashed;
     }
 
     auto r = process.exitCode();
@@ -306,22 +306,22 @@ ProcessResult::explainProcess( int ec, const QString& command, const QString& ou
         ? QCoreApplication::translate( "ProcessResult", "\nThere was no output from the command.")
         : (QCoreApplication::translate( "ProcessResult", "\nOutput:\n") + output);
 
-    if ( ec == -1 ) //Crash!
+    if ( ec == static_cast<int>(ProcessResult::Code::Crashed) ) //Crash!
         return JobResult::error( QCoreApplication::translate( "ProcessResult", "External command crashed." ),
                                  QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> crashed." )
                                         .arg( command )
                                         + outputMessage );
 
-    if ( ec == -2 )
+    if ( ec == static_cast<int>(ProcessResult::Code::FailedToStart) )
         return JobResult::error( QCoreApplication::translate( "ProcessResult", "External command failed to start." ),
                                  QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> failed to start." )
                                     .arg( command ) );
 
-    if ( ec == -3 )
+    if ( ec == static_cast<int>(ProcessResult::Code::NoWorkingDirectory) )
         return JobResult::error( QCoreApplication::translate( "ProcessResult", "Internal error when starting command." ),
                                  QCoreApplication::translate( "ProcessResult", "Bad parameters for process job call." ) );
 
-    if ( ec == -4 )
+    if ( ec == static_cast<int>(ProcessResult::Code::TimedOut) )
         return JobResult::error( QCoreApplication::translate( "ProcessResult", "External command failed to finish." ),
                                  QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> failed to finish in %2 seconds." )
                                     .arg( command )

@@ -32,8 +32,16 @@ namespace CalamaresUtils
 class ProcessResult : public QPair< int, QString >
 {
 public:
+    enum class Code : int
+    {
+        Crashed = -1,        // Must match special return values from QProcess
+        FailedToStart = -2,  // Must match special return values from QProcess
+        NoWorkingDirectory = -3,
+        TimedOut = -4
+    } ;
+
     /** @brief Implicit one-argument constructor has no output, only a return code */
-    ProcessResult( int r ) : QPair< int, QString >( r, QString() ) {}
+    ProcessResult( Code r ) : QPair< int, QString >( static_cast<int>(r), QString() ) {}
     ProcessResult( int r, QString s ) : QPair< int, QString >( r, s ) {}
 
     int getExitCode() const { return first; }
@@ -93,9 +101,9 @@ public:
       * @param filesystemName the name of the filesystem (optional).
       * @param options any additional options as passed to mount -o (optional).
       * @returns the program's exit code, or:
-      *             -1 = QProcess crash
-      *             -2 = QProcess cannot start
-      *             -3 = bad arguments
+      *             Crashed = QProcess crash
+      *             FailedToStart = QProcess cannot start
+      *             NoWorkingDirectory = bad arguments
       */
     DLLEXPORT int mount( const QString& devicePath,
                          const QString& mountPoint,
@@ -120,10 +128,10 @@ public:
       *
       * @returns the program's exit code and its output (if any). Special
       *     exit codes (which will never have any output) are:
-      *             -1 = QProcess crash
-      *             -2 = QProcess cannot start
-      *             -3 = bad arguments
-      *             -4 = QProcess timeout
+      *             Crashed = QProcess crash
+      *             FailedToStart = QProcess cannot start
+      *             NoWorkingDirectory = bad arguments
+      *             TimedOut = QProcess timeout
       */
     static DLLEXPORT ProcessResult runCommand(
         RunLocation location,
