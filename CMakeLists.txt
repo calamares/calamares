@@ -48,7 +48,7 @@ option( INSTALL_CONFIG "Install configuration files" OFF )
 option( INSTALL_POLKIT "Install Polkit configuration" ON )
 option( BUILD_TESTING "Build the testing tree." ON )
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." ON )
+option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 
 

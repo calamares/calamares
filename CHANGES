@@ -9,6 +9,12 @@ This release contains contributions from (alphabetically by first name):
 
 ## Core ##
 
+ - With this release, option *WITH_PYTHONQT* changes default to **off**.
+   There does not seem to be any serious use of the PythonQt API and
+   the UI opportunities it offers, so begin the process of deprecating
+   and removing that. Sometime in the future, QML pages will fill the
+   gap for easily-prototyped-yet-slick UI elements.
+
 ## Modules ##
 
 
