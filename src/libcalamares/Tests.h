@@ -34,6 +34,8 @@ private Q_SLOTS:
 
     void testLoadSaveYaml();  // Just settings.conf
     void testLoadSaveYamlExtended();  // Do a find() in the src dir
+
+    void testCommands();
 };
 
 #endif

@@ -44,7 +44,7 @@ public:
     }
 
     virtual ~JobThread() override;
-    
+
     void setJobs( const JobList& jobs )
     {
         m_jobs = jobs;
@@ -157,6 +157,14 @@ JobQueue::JobQueue( QObject* parent )
 
 JobQueue::~JobQueue()
 {
+    if ( m_thread->isRunning() )
+    {
+        m_thread->terminate();
+        if ( !m_thread->wait(300) )
+            cError() << "Could not terminate job thread (expect a crash now).";
+        delete m_thread;
+    }
+
     delete m_storage;
 }
 
