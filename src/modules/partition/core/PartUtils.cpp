@@ -73,30 +73,44 @@ bool
 canBeReplaced( Partition* candidate )
 {
     if ( !candidate )
+    {
+        cDebug() << "Partition* is NULL";
         return false;
+    }
 
+    cDebug() << "Checking if" << convenienceName( candidate ) << "can be replaced.";
     if ( candidate->isMounted() )
+    {
+        cDebug() << Logger::SubEntry << "NO, it is mounted.";
         return false;
+    }
 
     bool ok = false;
-    double requiredStorageGB = getRequiredStorageGiB( ok );
+    double requiredStorageGiB = getRequiredStorageGiB( ok );
+    if ( !ok )
+    {
+        cDebug() << Logger::SubEntry << "NO, requiredStorageGiB is not set correctly.";
+        return false;
+    }
 
     qint64 availableStorageB = candidate->capacity();
-    qint64 requiredStorageB = ( requiredStorageGB + 0.5 ) * 1024 * 1024 * 1024;
-    cDebug() << "Required  storage B:" << requiredStorageB
-             << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
-    cDebug() << "Storage capacity  B:" << availableStorageB
-             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
-             << "for" << convenienceName( candidate ) << "   length:" << candidate->length();
+    qint64 requiredStorageB = CalamaresUtils::GiBtoBytes( requiredStorageGiB + 0.5 );
 
-    if ( ok &&
-         availableStorageB > requiredStorageB )
+    if ( availableStorageB > requiredStorageB )
     {
         cDebug() << "Partition" << convenienceName( candidate ) << "authorized for replace install.";
-
         return true;
     }
-    return false;
+    else
+    {
+        Logger::CDebug deb;
+        deb << Logger::SubEntry << "NO, insufficient storage";
+        deb << Logger::Continuation << "Required  storage B:" << requiredStorageB
+                << QString( "(%1GiB)" ).arg( requiredStorageGiB );
+        deb << Logger::Continuation << "Available storage B:" << availableStorageB
+                << QString( "(%1GiB)" ).arg( CalamaresUtils::BytesToGiB( availableStorageB ) );
+        return false;
+    }
 }
 
 
