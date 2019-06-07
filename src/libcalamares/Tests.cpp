@@ -18,8 +18,11 @@
 
 #include "Tests.h"
 
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
+
+#include <QTemporaryFile>
 
 #include <QtTest/QtTest>
 
@@ -112,4 +115,22 @@ LibCalamaresTests::testLoadSaveYamlExtended()
         QCOMPARE( map, othermap );
     }
     QFile::remove( "out.yaml" );
+}
+
+void
+LibCalamaresTests::testCommands()
+{
+    using CalamaresUtils::System;
+    auto r = System::runCommand(
+        System::RunLocation::RunInHost,
+        { "/bin/ls", "/tmp" }
+        );
+
+    QVERIFY( r.getExitCode() == 0 );
+
+    QTemporaryFile tf( "/tmp/calamares-test-XXXXXX" );
+    QVERIFY( tf.open() );
+    QVERIFY( !tf.fileName().isEmpty() );
+
+    QVERIFY( r.getOutput().contains( tf.fileName() ) );
 }
