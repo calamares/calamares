@@ -156,13 +156,8 @@ System::runCommand(
 {
     QString output;
 
-    if ( !Calamares::JobQueue::instance() )
-    {
-        cError() << "No JobQueue";
-        return ProcessResult::Code::NoWorkingDirectory;
-    }
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
 
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( ( location == System::RunLocation::RunInTarget ) &&
          ( !gs || !gs->contains( "rootMountPoint" ) ) )
     {
@@ -239,7 +234,8 @@ System::runCommand(
 
     auto r = process.exitCode();
     cDebug() << "Finished. Exit code:" << r;
-    if ( ( r != 0 ) || Calamares::Settings::instance()->debugMode() )
+    bool showDebug = ( !Calamares::Settings::instance() ) || ( Calamares::Settings::instance()->debugMode() );
+    if ( ( r != 0 ) || showDebug )
     {
         cDebug() << "Target cmd:" << RedactedList( args );
         cDebug().noquote().nospace() << "Target output:\n" << output;
