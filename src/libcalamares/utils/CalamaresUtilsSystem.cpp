@@ -214,8 +214,8 @@ System::runCommand(
     if ( !stdInput.isEmpty() )
     {
         process.write( stdInput.toLocal8Bit() );
-        process.closeWriteChannel();
     }
+    process.closeWriteChannel();
 
     if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
     {
