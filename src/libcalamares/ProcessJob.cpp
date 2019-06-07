@@ -48,10 +48,8 @@ ProcessJob::~ProcessJob()
 QString
 ProcessJob::prettyName() const
 {
-    //TODO: show something more meaningful
-    return tr( "Run command %1 %2" )
-            .arg( m_command )
-            .arg( m_runInChroot ? "in chroot." : " ." );
+    return ( m_runInChroot ? tr( "Run command '%1' in target system." ) : tr( " Run command '%1'." ) )
+            .arg( m_command );
 }
 
 
