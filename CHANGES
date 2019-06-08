@@ -21,6 +21,10 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ - *partition* Now has its own setting for *requiredStorage*, duplicating
+   the same setting in the *welcome* module. This is useful for
+   configurations where no *welcome* module is used, but a minimum
+   size must be checked anyway. #1169
 
 
 # 3.2.9 (2019-06-03) #
