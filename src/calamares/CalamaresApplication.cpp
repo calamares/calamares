@@ -16,7 +16,6 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#include <QDesktopWidget>
 #include "CalamaresApplication.h"
 
 #include "CalamaresConfig.h"
@@ -37,6 +36,7 @@
 #include "viewpages/ViewStep.h"
 #include "ViewManager.h"
 
+#include <QDesktopWidget>
 #include <QDir>
 #include <QFileInfo>
 
@@ -90,16 +90,8 @@ CalamaresApplication::init()
 
 CalamaresApplication::~CalamaresApplication()
 {
-    cDebug( Logger::LOGVERBOSE ) << "Shutting down Calamares...";
-
-//    if ( JobQueue::instance() )
-//        JobQueue::instance()->stop();
-
-//    delete m_mainwindow;
-
-//    delete JobQueue::instance();
-
-    cDebug( Logger::LOGVERBOSE ) << "Finished shutdown.";
+    cLog( Logger::LOGVERBOSE ) << "Shutting down Calamares...";
+    cLog( Logger::LOGVERBOSE ) << Logger::SubEntry << "Finished shutdown.";
 }
 
 
