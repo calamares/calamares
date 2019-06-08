@@ -17,7 +17,7 @@ This release contains contributions from (alphabetically by first name):
  - A crash when no *finished* page (or rather, no page at all) is
    configured after the last *exec* section of the sequence has been
    solved. The *finished* page can be left out (but then you don't get
-   the restart-now functionality).
+   the restart-now functionality). #1168
 
 ## Modules ##
 
