@@ -372,6 +372,14 @@ PartitionViewStep::isAtEnd() const
 void
 PartitionViewStep::onActivate()
 {
+    // If there's no setting (e.g. from the welcome page) for required storage
+    // then use ours, if it was set.
+    auto* gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    if ( m_requiredStorageGiB >= 0.0 && gs && !gs->contains( "requiredStorageGiB" ) )
+    {
+        gs->insert( "requiredStorageGiB", m_requiredStorageGiB );
+    }
+
     // if we're coming back to PVS from the next VS
     if ( m_widget->currentWidget() == m_choicePage &&
             m_choicePage->currentChoice() == ChoicePage::Alongside )
