@@ -69,6 +69,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     , m_widget( new QStackedWidget() )
     , m_choicePage( nullptr )
     , m_manualPartitionPage( nullptr )
+    , m_requiredStorageGiB( 0.0 )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
 
@@ -563,6 +564,9 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 #undef COMPLAIN_UNSUPPORTED
 
     m_swapChoices = choices;
+
+    // Settings that overlap with the Welcome module
+    m_requiredStorageGiB = CalamaresUtils::getDouble( configurationMap, "requiredStorage", -1.0 );
 
     // These gs settings seem to be unused (in upstream Calamares) outside of
     // the partition module itself.
