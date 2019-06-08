@@ -62,37 +62,55 @@ convenienceName( const Partition* const candidate )
     return p;
 }
 
+/** @brief Get the globalStorage setting for required space. */
+static double
+getRequiredStorageGiB( bool& ok )
+{
+    return Calamares::JobQueue::instance()->globalStorage()->value( "requiredStorageGiB" ).toDouble( &ok );
+}
+
 bool
 canBeReplaced( Partition* candidate )
 {
     if ( !candidate )
+    {
+        cDebug() << "Partition* is NULL";
         return false;
+    }
 
+    cDebug() << "Checking if" << convenienceName( candidate ) << "can be replaced.";
     if ( candidate->isMounted() )
+    {
+        cDebug() << Logger::SubEntry << "NO, it is mounted.";
         return false;
+    }
 
     bool ok = false;
-    double requiredStorageGB = Calamares::JobQueue::instance()
-                                    ->globalStorage()
-                                    ->value( "requiredStorageGiB" )
-                                    .toDouble( &ok );
+    double requiredStorageGiB = getRequiredStorageGiB( ok );
+    if ( !ok )
+    {
+        cDebug() << Logger::SubEntry << "NO, requiredStorageGiB is not set correctly.";
+        return false;
+    }
 
     qint64 availableStorageB = candidate->capacity();
-    qint64 requiredStorageB = ( requiredStorageGB + 0.5 ) * 1024 * 1024 * 1024;
-    cDebug() << "Required  storage B:" << requiredStorageB
-             << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
-    cDebug() << "Storage capacity  B:" << availableStorageB
-             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
-             << "for" << convenienceName( candidate ) << "   length:" << candidate->length();
+    qint64 requiredStorageB = CalamaresUtils::GiBtoBytes( requiredStorageGiB + 0.5 );
 
-    if ( ok &&
-         availableStorageB > requiredStorageB )
+    if ( availableStorageB > requiredStorageB )
     {
         cDebug() << "Partition" << convenienceName( candidate ) << "authorized for replace install.";
-
         return true;
     }
-    return false;
+    else
+    {
+        Logger::CDebug deb;
+        deb << Logger::SubEntry << "NO, insufficient storage";
+        deb << Logger::Continuation << "Required  storage B:" << requiredStorageB
+                << QString( "(%1GiB)" ).arg( requiredStorageGiB );
+        deb << Logger::Continuation << "Available storage B:" << availableStorageB
+                << QString( "(%1GiB)" ).arg( CalamaresUtils::BytesToGiB( availableStorageB ) );
+        return false;
+    }
 }
 
 
@@ -144,38 +162,33 @@ canBeResized( Partition* candidate )
     }
 
     bool ok = false;
-    double requiredStorageGB = Calamares::JobQueue::instance()
-                                    ->globalStorage()
-                                    ->value( "requiredStorageGiB" )
-                                    .toDouble( &ok );
+    double requiredStorageGiB = getRequiredStorageGiB( ok );
+    if ( !ok )
+    {
+        cDebug() << Logger::SubEntry << "NO, requiredStorageGiB is not set correctly.";
+        return false;
+    }
+
     // We require a little more for partitioning overhead and swap file
-    double advisedStorageGB = requiredStorageGB + 0.5 + 2.0;
+    double advisedStorageGiB = requiredStorageGiB + 0.5 + 2.0;
     qint64 availableStorageB = candidate->available();
+    qint64 advisedStorageB = CalamaresUtils::GiBtoBytes( advisedStorageGiB );
 
-    qint64 advisedStorageB = CalamaresUtils::GiBtoBytes( advisedStorageGB );
-
-    if ( ok &&
-         availableStorageB > advisedStorageB )
+    if ( availableStorageB > advisedStorageB )
     {
         cDebug() << "Partition" << convenienceName( candidate ) << "authorized for resize + autopartition install.";
-
         return true;
     }
-    else if ( ok )
+    else
     {
         Logger::CDebug deb;
         deb << Logger::SubEntry << "NO, insufficient storage";
         deb << Logger::Continuation << "Required  storage B:" << advisedStorageB
-                << QString( "(%1GB)" ).arg( advisedStorageGB );
+                << QString( "(%1GiB)" ).arg( advisedStorageGiB );
         deb << Logger::Continuation << "Available storage B:" << availableStorageB
-                << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
+                << QString( "(%1GiB)" ).arg( CalamaresUtils::BytesToGiB( availableStorageB ) )
                 << "for" << convenienceName( candidate ) << "length:" << candidate->length()
                 << "sectorsUsed:" << candidate->sectorsUsed() << "fsType:" << candidate->fileSystem().name();
-        return false;
-    }
-    else
-    {
-        cDebug() << Logger::SubEntry << "NO, requiredStorageGB is not set correctly.";
         return false;
     }
 }

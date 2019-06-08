@@ -69,6 +69,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     , m_widget( new QStackedWidget() )
     , m_choicePage( nullptr )
     , m_manualPartitionPage( nullptr )
+    , m_requiredStorageGiB( 0.0 )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
 
@@ -371,6 +372,14 @@ PartitionViewStep::isAtEnd() const
 void
 PartitionViewStep::onActivate()
 {
+    // If there's no setting (e.g. from the welcome page) for required storage
+    // then use ours, if it was set.
+    auto* gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    if ( m_requiredStorageGiB >= 0.0 && gs && !gs->contains( "requiredStorageGiB" ) )
+    {
+        gs->insert( "requiredStorageGiB", m_requiredStorageGiB );
+    }
+
     // if we're coming back to PVS from the next VS
     if ( m_widget->currentWidget() == m_choicePage &&
             m_choicePage->currentChoice() == ChoicePage::Alongside )
@@ -563,6 +572,9 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 #undef COMPLAIN_UNSUPPORTED
 
     m_swapChoices = choices;
+
+    // Settings that overlap with the Welcome module
+    m_requiredStorageGiB = CalamaresUtils::getDouble( configurationMap, "requiredStorage", -1.0 );
 
     // These gs settings seem to be unused (in upstream Calamares) outside of
     // the partition module itself.
