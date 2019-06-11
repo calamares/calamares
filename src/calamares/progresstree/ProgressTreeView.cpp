@@ -19,8 +19,9 @@
 #include "ProgressTreeView.h"
 
 #include "ProgressTreeDelegate.h"
-#include "ViewManager.h"
+
 #include "Branding.h"
+#include "ViewManager.h"
 
 ProgressTreeView* ProgressTreeView::s_instance = nullptr;
 
@@ -33,9 +34,9 @@ ProgressTreeView::instance()
 ProgressTreeView::ProgressTreeView( QWidget* parent )
     : QTreeView( parent )
 {
-    s_instance = this; //FIXME: should assert when s_instance gets written and it wasn't nullptr
+    s_instance = this;  //FIXME: should assert when s_instance gets written and it wasn't nullptr
 
-    this->setObjectName("sidebarMenuApp");
+    this->setObjectName( "sidebarMenuApp" );
     setFrameShape( QFrame::NoFrame );
     setContentsMargins( 0, 0, 0, 0 );
 
@@ -55,31 +56,29 @@ ProgressTreeView::ProgressTreeView( QWidget* parent )
     setItemDelegate( m_delegate );
 
     QPalette plt = palette();
-    plt.setColor( QPalette::Base, Calamares::Branding::instance()->
-        styleString( Calamares::Branding::SidebarBackground ) );
+    plt.setColor( QPalette::Base,
+                  Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarBackground ) );
     setPalette( plt );
 }
 
 
-ProgressTreeView::~ProgressTreeView()
-{
-}
+ProgressTreeView::~ProgressTreeView() {}
 
 
 void
 ProgressTreeView::setModel( QAbstractItemModel* model )
 {
     if ( ProgressTreeView::model() )
+    {
         return;
+    }
 
     QTreeView::setModel( model );
     expandAll();
 
     connect( Calamares::ViewManager::instance(),
              &Calamares::ViewManager::currentStepChanged,
-             this, [this]()
-    {
-        viewport()->update();
-    },
-    Qt::UniqueConnection );
+             this,
+             [this]() { viewport()->update(); },
+             Qt::UniqueConnection );
 }

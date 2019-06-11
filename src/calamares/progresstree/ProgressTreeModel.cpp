@@ -19,7 +19,8 @@
 
 #include "ProgressTreeModel.h"
 
-#include "progresstree/ViewStepItem.h"
+#include "ViewStepItem.h"
+
 #include "ViewManager.h"
 
 ProgressTreeModel::ProgressTreeModel( QObject* parent )
@@ -40,7 +41,9 @@ Qt::ItemFlags
 ProgressTreeModel::flags( const QModelIndex& index ) const
 {
     if ( !index.isValid() )
+    {
         return Qt::ItemFlags();
+    }
 
     return Qt::ItemIsEnabled;
 }
@@ -50,20 +53,30 @@ QModelIndex
 ProgressTreeModel::index( int row, int column, const QModelIndex& parent ) const
 {
     if ( !hasIndex( row, column, parent ) )
+    {
         return QModelIndex();
+    }
 
     ProgressTreeItem* parentItem;
 
     if ( !parent.isValid() )
+    {
         parentItem = m_rootItem;
+    }
     else
+    {
         parentItem = static_cast< ProgressTreeItem* >( parent.internalPointer() );
+    }
 
     ProgressTreeItem* childItem = parentItem->child( row );
     if ( childItem )
+    {
         return createIndex( row, column, childItem );
+    }
     else
+    {
         return QModelIndex();
+    }
 }
 
 
@@ -71,13 +84,17 @@ QModelIndex
 ProgressTreeModel::parent( const QModelIndex& index ) const
 {
     if ( !index.isValid() )
+    {
         return QModelIndex();
+    }
 
     ProgressTreeItem* childItem = static_cast< ProgressTreeItem* >( index.internalPointer() );
     ProgressTreeItem* parentItem = childItem->parent();
 
     if ( parentItem == m_rootItem )
+    {
         return QModelIndex();
+    }
 
     return createIndex( parentItem->row(), 0, parentItem );
 }
@@ -87,7 +104,9 @@ QVariant
 ProgressTreeModel::data( const QModelIndex& index, int role ) const
 {
     if ( !index.isValid() )
+    {
         return QVariant();
+    }
 
     ProgressTreeItem* item = static_cast< ProgressTreeItem* >( index.internalPointer() );
 
@@ -111,12 +130,18 @@ ProgressTreeModel::rowCount( const QModelIndex& parent ) const
 {
     ProgressTreeItem* parentItem;
     if ( parent.column() > 0 )
+    {
         return 0;
+    }
 
     if ( !parent.isValid() )
+    {
         parentItem = m_rootItem;
+    }
     else
+    {
         parentItem = static_cast< ProgressTreeItem* >( parent.internalPointer() );
+    }
 
     return parentItem->childCount();
 }
@@ -126,9 +151,13 @@ int
 ProgressTreeModel::columnCount( const QModelIndex& parent ) const
 {
     if ( parent.isValid() )
+    {
         return static_cast< ProgressTreeItem* >( parent.internalPointer() )->columnCount();
+    }
     else
+    {
         return m_rootItem->columnCount();
+    }
 }
 
 
@@ -152,7 +181,9 @@ QModelIndex
 ProgressTreeModel::indexFromItem( ProgressTreeItem* item )
 {
     if ( !item || !item->parent() )
+    {
         return QModelIndex();
+    }
 
     // Reconstructs a QModelIndex from a ProgressTreeItem that is somewhere in the tree.
     // Traverses the item to the root node, then rebuilds the qmodelindices from there
@@ -172,10 +203,13 @@ ProgressTreeModel::indexFromItem( ProgressTreeItem* item )
      **/
     QList< int > childIndexList;
     ProgressTreeItem* curItem = item;
-    while ( curItem != m_rootItem ) {
-        int row  = curItem->row(); //relative to its parent
-        if ( row < 0 ) // something went wrong, bail
+    while ( curItem != m_rootItem )
+    {
+        int row = curItem->row();  //relative to its parent
+        if ( row < 0 )  // something went wrong, bail
+        {
             return QModelIndex();
+        }
 
         childIndexList << row;
 
@@ -184,7 +218,7 @@ ProgressTreeModel::indexFromItem( ProgressTreeItem* item )
 
     // Now we rebuild the QModelIndex we need
     QModelIndex idx;
-    for ( int i = childIndexList.size() - 1; i >= 0 ; i-- )
+    for ( int i = childIndexList.size() - 1; i >= 0; i-- )
     {
         idx = index( childIndexList[ i ], 0, idx );
     }

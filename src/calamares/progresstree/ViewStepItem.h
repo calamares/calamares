@@ -37,8 +37,7 @@ public:
                            std::function< const Calamares::ViewStep*() > accessor,
                            ProgressTreeItem* parent = nullptr );
 
-    explicit ViewStepItem( const Calamares::ViewStep* step,
-                           ProgressTreeItem* parent = nullptr );
+    explicit ViewStepItem( const Calamares::ViewStep* step, ProgressTreeItem* parent = nullptr );
 
     void appendChild( ProgressTreeItem* item ) override;
 
