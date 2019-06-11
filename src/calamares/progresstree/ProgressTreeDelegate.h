@@ -45,4 +45,4 @@ private:
                         const QModelIndex& index ) const;
 };
 
-#endif // PROGRESSTREEDELEGATE_H
+#endif  // PROGRESSTREEDELEGATE_H

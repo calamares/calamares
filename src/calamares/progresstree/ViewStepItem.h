@@ -51,4 +51,4 @@ private:
 };
 
 
-#endif // VIEWSTEPITEM_H
+#endif  // VIEWSTEPITEM_H

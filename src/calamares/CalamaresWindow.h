@@ -55,4 +55,4 @@ private:
     Calamares::ViewManager* m_viewManager;
 };
 
-#endif //CALAMARESWINDOW_H
+#endif // CALAMARESWINDOW_H
