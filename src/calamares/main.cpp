@@ -24,11 +24,10 @@
 #include "kdsingleapplicationguard/kdsingleapplicationguard.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
-#include "CalamaresConfig.h"
 
 #ifdef WITH_KF5Crash
-#include <KF5/KCrash/KCrash>
 #include <KF5/KCoreAddons/KAboutData>
+#include <KF5/KCrash/KCrash>
 #endif
 
 #include <QCommandLineParser>
@@ -38,14 +37,13 @@
 static void
 handle_args( CalamaresApplication& a )
 {
-    QCommandLineOption debugOption( QStringList{ "d", "debug"},
+    QCommandLineOption debugOption( QStringList { "d", "debug" },
                                     "Also look in current directory for configuration. Implies -D8." );
-    QCommandLineOption debugLevelOption( QStringLiteral("D"),
-                                          "Verbose output for debugging purposes (0-8).", "level" );
-    QCommandLineOption configOption( QStringList{ "c", "config"},
-                                     "Configuration directory to use, for testing purposes.", "config" );
-    QCommandLineOption xdgOption( QStringList{"X", "xdg-config"},
-                                  "Use XDG_{CONFIG,DATA}_DIRS as well." );
+    QCommandLineOption debugLevelOption(
+        QStringLiteral( "D" ), "Verbose output for debugging purposes (0-8).", "level" );
+    QCommandLineOption configOption(
+        QStringList { "c", "config" }, "Configuration directory to use, for testing purposes.", "config" );
+    QCommandLineOption xdgOption( QStringList { "X", "xdg-config" }, "Use XDG_{CONFIG,DATA}_DIRS as well." );
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Distribution-independent installer framework" );
@@ -61,22 +59,32 @@ handle_args( CalamaresApplication& a )
 
     a.setDebug( parser.isSet( debugOption ) );
     if ( parser.isSet( debugOption ) )
+    {
         Logger::setupLogLevel( Logger::LOGVERBOSE );
+    }
     else if ( parser.isSet( debugLevelOption ) )
     {
         bool ok = true;
         int l = parser.value( debugLevelOption ).toInt( &ok );
         unsigned int dlevel = 0;
         if ( !ok || ( l < 0 ) )
+        {
             dlevel = Logger::LOGVERBOSE;
+        }
         else
-            dlevel = static_cast<unsigned int>( l );  // l >= 0
+        {
+            dlevel = static_cast< unsigned int >( l );  // l >= 0
+        }
         Logger::setupLogLevel( dlevel );
     }
     if ( parser.isSet( configOption ) )
+    {
         CalamaresUtils::setAppDataDir( QDir( parser.value( configOption ) ) );
+    }
     if ( parser.isSet( xdgOption ) )
+    {
         CalamaresUtils::setXdgDirs();
+    }
 }
 
 int
@@ -118,9 +126,13 @@ main( int argc, char* argv[] )
         auto instancelist = guard.instances();
         qDebug() << "Calamares is already running, shutting down.";
         if ( instancelist.count() > 0 )
+        {
             qDebug() << "Other running Calamares instances:";
+        }
         for ( const auto& i : instancelist )
+        {
             qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
+        }
     }
 
     return returnCode;

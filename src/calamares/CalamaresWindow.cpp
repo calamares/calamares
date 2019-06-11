@@ -21,33 +21,39 @@
 
 #include "CalamaresWindow.h"
 
+#include "Branding.h"
+#include "Settings.h"
 #include "ViewManager.h"
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
-#include "utils/Logger.h"
 #include "utils/DebugWindow.h"
+#include "utils/Logger.h"
 #include "utils/Retranslator.h"
-#include "Settings.h"
-#include "Branding.h"
 
 #include <QApplication>
 #include <QBoxLayout>
 #include <QCloseEvent>
 #include <QDesktopWidget>
-#include <QLabel>
-#include <QTreeView>
 #include <QFile>
 #include <QFileInfo>
+#include <QLabel>
+#include <QTreeView>
 
 static inline int
 windowDimensionToPixels( const Calamares::Branding::WindowDimension& u )
 {
     if ( !u.isValid() )
+    {
         return 0;
+    }
     if ( u.unit() == Calamares::Branding::WindowDimensionUnit::Pixies )
+    {
         return u.value();
+    }
     if ( u.unit() == Calamares::Branding::WindowDimensionUnit::Fonties )
+    {
         return u.value() * CalamaresUtils::defaultFontHeight();
+    }
     return 0;
 }
 
@@ -58,14 +64,13 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 {
     // If we can never cancel, don't show the window-close button
     if ( Calamares::Settings::instance()->disableCancel() )
+    {
         setWindowFlag( Qt::WindowCloseButtonHint, false );
+    }
 
-    CALAMARES_RETRANSLATE(
-        setWindowTitle( Calamares::Settings::instance()->isSetupMode()
-                            ? tr( "%1 Setup Program" ).arg( *Calamares::Branding::ProductName )
-                            : tr( "%1 Installer" ).arg( *Calamares::Branding::ProductName )
-                         );
-    )
+    CALAMARES_RETRANSLATE( setWindowTitle( Calamares::Settings::instance()->isSetupMode()
+                                               ? tr( "%1 Setup Program" ).arg( *Calamares::Branding::ProductName )
+                                               : tr( "%1 Installer" ).arg( *Calamares::Branding::ProductName ) ); )
 
     const Calamares::Branding* const branding = Calamares::Branding::instance();
 
@@ -75,7 +80,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     using CalamaresUtils::windowPreferredWidth;
 
     // Needs to match what's checked in DebugWindow
-    this->setObjectName("mainApp");
+    this->setObjectName( "mainApp" );
 
     QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
     QSize minimumSize( qBound( windowMinimumWidth, availableSize.width(), windowPreferredWidth ),
@@ -87,7 +92,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     auto brandingSizes = branding->windowSize();
 
     int w = qBound( minimumSize.width(), windowDimensionToPixels( brandingSizes.first ), availableSize.width() );
-    int h = qBound( minimumSize.height(),  windowDimensionToPixels( brandingSizes.second ), availableSize.height() );
+    int h = qBound( minimumSize.height(), windowDimensionToPixels( brandingSizes.second ), availableSize.height() );
 
     cDebug() << Logger::SubEntry << "Proposed window size:" << w << h;
     resize( w, h );
@@ -96,25 +101,26 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     setLayout( mainLayout );
 
     QWidget* sideBox = new QWidget( this );
-    sideBox->setObjectName("sidebarApp");
+    sideBox->setObjectName( "sidebarApp" );
     mainLayout->addWidget( sideBox );
 
     QBoxLayout* sideLayout = new QVBoxLayout;
     sideBox->setLayout( sideLayout );
     // Set this attribute into qss file
-    sideBox->setFixedWidth( qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+    sideBox->setFixedWidth(
+        qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
     sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     QHBoxLayout* logoLayout = new QHBoxLayout;
     sideLayout->addLayout( logoLayout );
     logoLayout->addStretch();
     QLabel* logoLabel = new QLabel( sideBox );
-    logoLabel->setObjectName("logoApp");
+    logoLabel->setObjectName( "logoApp" );
     //Define all values into qss file
     {
         QPalette plt = sideBox->palette();
         sideBox->setAutoFillBackground( true );
-        plt.setColor( sideBox->backgroundRole(),branding->styleString( Calamares::Branding::SidebarBackground ) );
+        plt.setColor( sideBox->backgroundRole(), branding->styleString( Calamares::Branding::SidebarBackground ) );
         plt.setColor( sideBox->foregroundRole(), branding->styleString( Calamares::Branding::SidebarText ) );
         sideBox->setPalette( plt );
         logoLabel->setPalette( plt );
@@ -133,22 +139,16 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     {
         QPushButton* debugWindowBtn = new QPushButton;
         debugWindowBtn->setObjectName( "debugButton" );
-        CALAMARES_RETRANSLATE(
-            debugWindowBtn->setText( tr( "Show debug information" ) );
-        )
+        CALAMARES_RETRANSLATE( debugWindowBtn->setText( tr( "Show debug information" ) ); )
         sideLayout->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
-        connect( debugWindowBtn, &QPushButton::clicked,
-                 this, [ = ]( bool checked )
-        {
+        connect( debugWindowBtn, &QPushButton::clicked, this, [=]( bool checked ) {
             if ( checked )
             {
                 m_debugWindow = new Calamares::DebugWindow();
                 m_debugWindow->show();
-                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed,
-                         this, [ = ]()
-                {
+                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [=]() {
                     m_debugWindow->deleteLater();
                     debugWindowBtn->setChecked( false );
                 } );
@@ -156,7 +156,9 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
             else
             {
                 if ( m_debugWindow )
+                {
                     m_debugWindow->deleteLater();
+                }
             }
         } );
     }
@@ -166,7 +168,9 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     m_viewManager = Calamares::ViewManager::instance( this );
     if ( branding->windowExpands() )
+    {
         connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
+    }
     // NOTE: Although the ViewManager has a signal cancelEnabled() that
     //       signals when the state of the cancel button changes (in
     //       particular, to disable cancel during the exec phase),
@@ -201,5 +205,7 @@ CalamaresWindow::closeEvent( QCloseEvent* event )
         qApp->quit();
     }
     else
+    {
         event->ignore();
+    }
 }
