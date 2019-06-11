@@ -56,7 +56,7 @@ some PEP8 guidelines.
 * For pointer and reference variable declarations, put a space before the variable name
   and no space between the type and the `*` or `&`, e.g. `int* p`.
 * `for`, `if`, `else`, `while` and similar statements put the braces on the next line,
-  if the following block is more than one statement. Use no braces for single statements.
+  if the following block is more than one statement. Always use braces.
 * Function and class definitions have their braces on separate lines.
 * A function implementation's return type is on its own line.
 * `CamelCase.{cpp,h}` style file names.
@@ -86,9 +86,13 @@ MyClass::myMethod( QStringList list, const QString& name )
 }
 ```
 
-You can use the `ci/calamaresstyle` script to run
-[astyle](http://astyle.sf.net) on your code and have it formatted the right
-way.
+You can use `clang-format` (version 7) to have Calamares sources formatted
+the right way. There is a `.clang-format` file that specifies the details.
+In general:
+```
+    $ clang-format-7 -i -style=file <files>
+```
+`
 
 **NOTE:** An .editorconfig file is included to assist with formatting. In
 order to take advantage of this functionality you will need to acquire the
