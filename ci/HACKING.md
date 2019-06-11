@@ -184,14 +184,18 @@ connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, [this]
 Debugging
 ---------
 Use `cDebug()` and `cLog()` from `utils/Logger.h`. You can pass a debug-level to
-either macro (1 is debugging, higher is less important). Use `cLog()` for warning
-messages. It is recommended to add *WARNING* as the first part of a warning
-message.
+either macro (6 is debugging, higher is less important). Use `cWarning()` for warning
+messages (equivalent to level 2) and `cError()` for errors (level 1). Warnings
+and errors will add relevant text automatically. See `libcalamares/utils/Logger.h`
+for details.
 
 For log messages that are continued across multiple calls to `cDebug()`,
 in particular listing things, conventional formatting is as follows:
 * End the first debug message with ` ..`
-* Indent following lines with `  ..`
+* Start the next debug message by outputting `Logger::SubEntry`
+
+For single-outputs that need to be split across multiplt lines,
+output `Logger::Continuation`.
 
 
 Commit Messages
