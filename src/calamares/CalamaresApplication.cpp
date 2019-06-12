@@ -89,8 +89,8 @@ CalamaresApplication::init()
 
 CalamaresApplication::~CalamaresApplication()
 {
-    cLog( Logger::LOGVERBOSE ) << "Shutting down Calamares...";
-    cLog( Logger::LOGVERBOSE ) << Logger::SubEntry << "Finished shutdown.";
+    cDebug( Logger::LOGVERBOSE ) << "Shutting down Calamares...";
+    cDebug( Logger::LOGVERBOSE ) << Logger::SubEntry << "Finished shutdown.";
 }
 
 
