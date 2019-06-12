@@ -29,17 +29,17 @@ ViewStepItem::ViewStepItem( std::function< QString() > prettyName,
                             std::function< const Calamares::ViewStep*() > accessor,
                             ProgressTreeItem* parent )
     : ProgressTreeItem( parent )
+    , m_accessor( accessor )
+    , m_prettyName( prettyName )
     , m_step( nullptr )
 {
-    m_prettyName = prettyName;
-    m_accessor = accessor;
 }
 
 
 ViewStepItem::ViewStepItem( const Calamares::ViewStep* step, ProgressTreeItem* parent )
     : ProgressTreeItem( parent )
+    , m_step( step )
 {
-    m_step = step;
 }
 
 void

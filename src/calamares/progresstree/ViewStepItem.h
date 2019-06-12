@@ -44,9 +44,9 @@ public:
     QVariant data( int role ) const override;
 
 private:
-    std::function< const Calamares::ViewStep*() > m_accessor;
-    std::function< QString() > m_prettyName;
-    const Calamares::ViewStep* m_step;
+    const std::function< const Calamares::ViewStep*() > m_accessor;
+    const std::function< QString() > m_prettyName;
+    const Calamares::ViewStep* const m_step;
 };
 
 
