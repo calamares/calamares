@@ -31,7 +31,6 @@
 
 // CalaPM
 #include <backend/corebackend.h>
-#include <backend/corebackendmanager.h>
 #include <fs/filesystemfactory.h>
 
 // Qt
@@ -198,8 +197,7 @@ void
 PartitionJobTests::refreshDevice()
 {
     QString devicePath = qgetenv( "CALAMARES_TEST_DISK" );
-    CoreBackend* backend = CoreBackendManager::self()->backend();
-    m_device.reset( backend->scanDevice( devicePath ) );
+    m_device.reset( kpmcore->backend()->scanDevice( devicePath ) );
     QVERIFY( !m_device.isNull() );
 }
 

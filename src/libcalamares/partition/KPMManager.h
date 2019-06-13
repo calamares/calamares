@@ -50,6 +50,10 @@ public:
 
     /// @brief Is KPMCore loaded correctly?
     operator bool() const;
+
+    /// @brief Gets the KPMCore backend (e.g. CoreBackendManager::self()->backend() )
+    CoreBackend* backend() const;
+
 private:
     std::shared_ptr< InternalManager > m_d;
 };

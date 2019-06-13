@@ -115,6 +115,12 @@ KPMManager::operator bool() const
     return s_kpm_loaded;
 }
 
+CoreBackend*
+KPMManager::backend() const
+{
+    return s_kpm_loaded ? CoreBackendManager::self()->backend() : nullptr;
+}
+
 
 }  // namespace Partition
 }  // namespace CalamaresUtils
