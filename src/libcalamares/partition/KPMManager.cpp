@@ -44,7 +44,6 @@ static bool s_kpm_loaded = false;
 static bool s_loaded = false;
 static std::shared_ptr< InternalManager > s_backend;
 
-
 InternalManager::InternalManager()
 {
     Q_ASSERT( !s_loaded );
@@ -99,6 +98,12 @@ KPMManager::KPMManager()
 }
 
 KPMManager::~KPMManager() {}
+
+KPMManager::operator bool() const
+{
+    return s_kpm_loaded;
+}
+
 
 }  // namespace Partition
 }  // namespace CalamaresUtils

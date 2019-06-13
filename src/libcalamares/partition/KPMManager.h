@@ -48,8 +48,11 @@ public:
     KPMManager();
     ~KPMManager();
 
+    /// @brief Is KPMCore loaded correctly?
+    operator bool() const;
 private:
     std::shared_ptr< InternalManager > m_d;
+
 };
 
 }  // namespace Partition
