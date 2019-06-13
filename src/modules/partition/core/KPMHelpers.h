@@ -92,7 +92,6 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
 
 Partition* clonePartition( Device* device, Partition* partition );
 
-QString prettyNameForFileSystemType( FileSystem::Type t );
 }
 
 #endif /* KPMHELPERS_H */

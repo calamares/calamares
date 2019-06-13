@@ -23,6 +23,7 @@
 #include "core/PartitionInfo.h"
 #include "core/KPMHelpers.h"
 
+#include "partition/FileSystem.h"
 #include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 
@@ -155,7 +156,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             }
         }
         if ( col == FileSystemColumn )
-            return KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
+            return CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         if ( col == MountPointColumn )
             return PartitionInfo::mountPoint( partition );
         if ( col == SizeColumn )
@@ -186,7 +187,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
                         : partition->partitionPath();
             }
         }
-        QString prettyFileSystem = KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
+        QString prettyFileSystem = CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
         QString prettySize = KFormat().formatByteSize( size );
         return QVariant(name + " " + prettyFileSystem + " " + prettySize);
