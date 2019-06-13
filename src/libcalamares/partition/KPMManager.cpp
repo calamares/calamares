@@ -20,6 +20,7 @@
 
 #include "utils/Logger.h"
 
+#include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #if defined( WITH_KPMCORE4API )
 #include <kpmcore/util/externalcommand.h>
@@ -41,16 +42,23 @@ public:
 };
 
 static bool s_kpm_loaded = false;
-static bool s_loaded = false;
-static std::shared_ptr< InternalManager > s_backend;
+
+/*
+ * We have one living InternalManager object at a time.
+ * It is managed by shared_ptr<>s help by KPMManager
+ * objects, but since we can create KPMManager objects
+ * independent of each other, all of which share ownership
+ * of the same InternalManager, hang on to one extra reference
+ * to the InternalManager so we can hand it out in getInternal().
+ */
+static std::weak_ptr< InternalManager > s_backend;
 
 InternalManager::InternalManager()
 {
-    Q_ASSERT( !s_loaded );
-    s_loaded = true;
-    s_backend.reset( this );
-
     cDebug() << "KPMCore backend starting ..";
+
+    Q_ASSERT( s_backend.expired() );
+
     if ( !s_kpm_loaded )
     {
         QByteArray backendName = qgetenv( "KPMCORE_BACKEND" );
@@ -61,6 +69,8 @@ InternalManager::InternalManager()
         }
         else
         {
+            auto* backend_p = CoreBackendManager::self()->backend();
+            cDebug() << Logger::SubEntry << "Backend @" << (void *)backend_p << backend_p->id() << backend_p->version();
             s_kpm_loaded = true;
         }
     }
@@ -69,8 +79,6 @@ InternalManager::InternalManager()
 InternalManager::~InternalManager()
 {
     cDebug() << "Cleaning up KPMCore backend ..";
-
-    s_loaded = false;
 
 #if defined( WITH_KPMCORE4API )
     auto backend_p = CoreBackendManager::self()->backend();
@@ -84,12 +92,15 @@ InternalManager::~InternalManager()
 std::shared_ptr< InternalManager >
 getInternal()
 {
+    cDebug() << "KPMCore internal" << s_backend.use_count();
 
-    if ( !s_loaded )
+    if ( s_backend.expired() )
     {
-        return std::make_shared< InternalManager >();
+        auto p = std::make_shared< InternalManager >();
+        s_backend = p;
+        return p;
     }
-    return s_backend;
+    return s_backend.lock();
 }
 
 KPMManager::KPMManager()

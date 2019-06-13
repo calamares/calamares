@@ -52,7 +52,6 @@ public:
     operator bool() const;
 private:
     std::shared_ptr< InternalManager > m_d;
-
 };
 
 }  // namespace Partition
