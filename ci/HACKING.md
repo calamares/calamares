@@ -183,8 +183,8 @@ connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, [this]
 
 Debugging
 ---------
-Use `cDebug()` and `cLog()` from `utils/Logger.h`. You can pass a debug-level to
-either macro (6 is debugging, higher is less important). Use `cWarning()` for warning
+Use `cDebug()` from `utils/Logger.h`. You can pass a debug-level to the
+macro (6 is debugging, higher is less important). Use `cWarning()` for warning
 messages (equivalent to level 2) and `cError()` for errors (level 1). Warnings
 and errors will add relevant text automatically. See `libcalamares/utils/Logger.h`
 for details.
