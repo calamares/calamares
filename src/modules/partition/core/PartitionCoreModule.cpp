@@ -147,7 +147,7 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     , m_deviceModel( new DeviceModel( this ) )
     , m_bootLoaderModel( new BootLoaderModel( this ) )
 {
-    if ( !KPMHelpers::initKPMcore() )
+    if ( !m_kpmcore )
         qFatal( "Failed to initialize KPMcore backend" );
 }
 

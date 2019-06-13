@@ -19,7 +19,9 @@
 
 #include <PartitionJobTests.h>
 
+#include "partition/KPMManager.h"
 #include "partition/PartitionQuery.h"
+#include "utils/Logger.h"
 #include "utils/Units.h"
 
 #include <jobs/CreatePartitionJob.h>
@@ -163,6 +165,8 @@ QueueRunner::onFailed( const QString& message, const QString& details )
     QFAIL( qPrintable( msg ) );
 }
 
+CalamaresUtils::Partition::KPMManager* kpmcore = nullptr;
+
 //- PartitionJobTests ------------------------------------------------------------------
 PartitionJobTests::PartitionJobTests()
     : m_runner( &m_queue )
@@ -178,10 +182,16 @@ PartitionJobTests::initTestCase()
         QSKIP( "Skipping test, CALAMARES_TEST_DISK is not set. It should point to a disk which can be safely formatted", 0 );
     }
 
-    QVERIFY( KPMHelpers::initKPMcore() );
+    kpmcore = new CalamaresUtils::Partition::KPMManager();
     FileSystemFactory::init();
 
     refreshDevice();
+}
+
+void
+PartitionJobTests::cleanupTestCase()
+{
+    delete kpmcore;
 }
 
 void

@@ -26,6 +26,7 @@
 #include "core/PartitionModel.h"
 
 #include "Job.h"
+#include "partition/KPMManager.h"
 
 // KPMcore
 #include <kpmcore/core/lvmdevice.h>
@@ -235,6 +236,8 @@ Q_SIGNALS:
     void deviceReverted( Device* device );
 
 private:
+    CalamaresUtils::Partition::KPMManager m_kpmcore;
+
     void refreshAfterModelChange();
 
     /**

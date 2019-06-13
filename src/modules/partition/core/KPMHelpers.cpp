@@ -37,25 +37,6 @@ using CalamaresUtils::Partition::PartitionIterator;
 namespace KPMHelpers
 {
 
-static bool s_KPMcoreInited = false;
-
-bool
-initKPMcore()
-{
-    if ( s_KPMcoreInited )
-        return true;
-
-    QByteArray backendName = qgetenv( "KPMCORE_BACKEND" );
-    if ( !CoreBackendManager::self()->load( backendName.isEmpty() ? CoreBackendManager::defaultBackendName() : backendName ) )
-    {
-        cWarning() << "Failed to load backend plugin" << backendName;
-        return false;
-    }
-    s_KPMcoreInited = true;
-    return true;
-}
-
-
 Partition*
 findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint )
 {
