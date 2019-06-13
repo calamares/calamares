@@ -20,8 +20,8 @@
 #ifndef PARTITION_PARTITIONSIZE_H
 #define PARTITION_PARTITIONSIZE_H
 
-#include "utils/Units.h"
 #include "utils/NamedSuffix.h"
+#include "utils/Units.h"
 
 // Qt
 #include <QString>
@@ -47,21 +47,28 @@ enum class SizeUnit
  * the available drive space are on). This class handles parsing
  * of such strings from the config file.
  */
-class PartitionSize : public NamedSuffix<SizeUnit, SizeUnit::None>
+class PartitionSize : public NamedSuffix< SizeUnit, SizeUnit::None >
 {
 public:
-    PartitionSize() : NamedSuffix() { }
-    PartitionSize( int v, SizeUnit u ) : NamedSuffix( v, u ) { }
+    PartitionSize()
+        : NamedSuffix()
+    {
+    }
+    PartitionSize( int v, SizeUnit u )
+        : NamedSuffix( v, u )
+    {
+    }
     PartitionSize( const QString& );
 
-    bool isValid() const
+    bool
+    isValid() const
     {
         return ( unit() != SizeUnit::None ) && ( value() > 0 );
     }
 
-    bool operator< ( const PartitionSize& other ) const;
-    bool operator> ( const PartitionSize& other ) const;
-    bool operator== ( const PartitionSize& other ) const;
+    bool operator<( const PartitionSize& other ) const;
+    bool operator>( const PartitionSize& other ) const;
+    bool operator==( const PartitionSize& other ) const;
 
     /** @brief Convert the size to the number of sectors @p totalSectors .
      *
@@ -107,16 +114,16 @@ public:
      * be compared with each other, and all the explicit sizes (KiB, ...)
      * can be compared with each other.
      */
-    static constexpr bool unitsComparable( const SizeUnit u1, const SizeUnit u2 )
+    static constexpr bool
+    unitsComparable( const SizeUnit u1, const SizeUnit u2 )
     {
-        return !( ( u1 == SizeUnit::None    || u2 == SizeUnit::None    ) ||
-                  ( u1 == SizeUnit::Percent && u2 != SizeUnit::Percent ) ||
-                  ( u1 != SizeUnit::Percent && u2 == SizeUnit::Percent ) );
+        return !( ( u1 == SizeUnit::None || u2 == SizeUnit::None )
+                  || ( u1 == SizeUnit::Percent && u2 != SizeUnit::Percent )
+                  || ( u1 != SizeUnit::Percent && u2 == SizeUnit::Percent ) );
     }
-
 };
 
-}
-}  // namespace
+}  // namespace Partition
+}  // namespace CalamaresUtils
 
-#endif // PARTITION_PARTITIONSIZE_H
+#endif  // PARTITION_PARTITIONSIZE_H
