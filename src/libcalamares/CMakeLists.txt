@@ -117,6 +117,7 @@ if ( KPMcore_FOUND )
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     list( APPEND libSources
         partition/FileSystem.cpp
+        partition/KPMManager.cpp
         partition/PartitionIterator.cpp
         partition/PartitionQuery.cpp
     )
