@@ -44,25 +44,23 @@ namespace Partition
 class PartitionIterator
 {
 public:
-    using Partition = ::Partition;
-
-    Partition* operator*() const;
+    ::Partition* operator*() const;
 
     void operator++();
 
     bool operator==( const PartitionIterator& other ) const;
     bool operator!=( const PartitionIterator& other ) const;
 
-    static PartitionIterator begin( Device* device );
-    static PartitionIterator begin( PartitionTable* table );
-    static PartitionIterator end( Device* device );
-    static PartitionIterator end( PartitionTable* table );
+    static PartitionIterator begin( ::Device* device );
+    static PartitionIterator begin( ::PartitionTable* table );
+    static PartitionIterator end( ::Device* device );
+    static PartitionIterator end( ::PartitionTable* table );
 
 private:
-    PartitionIterator( PartitionTable* table );
+    PartitionIterator( ::PartitionTable* table );
 
-    PartitionTable* m_table;
-    Partition* m_current = nullptr;
+    ::PartitionTable* m_table;
+    ::Partition* m_current = nullptr;
 };
 
 }  // namespace Partition
