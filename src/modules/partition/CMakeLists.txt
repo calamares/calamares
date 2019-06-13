@@ -25,11 +25,10 @@ if ( KPMcore_FOUND )
     find_package( Qt5 REQUIRED DBus )
     find_package( KF5 REQUIRED Config CoreAddons I18n WidgetsAddons )
 
-    if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
-        list( APPEND _partition_defs WITH_KPMCORE331API) # kpmcore > 3.3.0 with deprecations
-    endif()
-    if ( KPMcore_VERSION VERSION_GREATER "3.90")
-        list( APPEND _partition_defs WITH_KPMCORE4API) # kpmcore 4 with new API
+    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0" )
+        list( APPEND _partition_defs WITH_KPMCORE4API ) # kpmcore 4 with new API
+    elseif( KPMcore_VERSION VERSION_GREATER "3.3.70" )
+        message( FATAL_ERROR "KPMCore beta versions are not supported" )
     endif()
 
     include_directories( ${KPMCORE_INCLUDE_DIR} )
