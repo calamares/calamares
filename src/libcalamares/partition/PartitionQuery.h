@@ -20,8 +20,6 @@
 #ifndef PARTITION_PARTITIONQUERY_H
 #define PARTITION_PARTITIONQUERY_H
 
-#include <kpmcore/fs/filesystem.h>
-
 #include <QList>
 
 #include <functional>
