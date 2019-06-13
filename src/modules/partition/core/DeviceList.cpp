@@ -109,7 +109,7 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
     bool writableOnly = (which == DeviceType::WritableOnly);
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
-#ifdef WITH_KPMCORE331API
+#if defined( WITH_KPMCORE4API )
     DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag(0) );
 #else
     DeviceList devices = backend->scanDevices( /* excludeReadOnly */ true );

@@ -61,7 +61,7 @@ ResizeFSJob::PartitionMatch
 ResizeFSJob::findPartition( CoreBackend* backend )
 {
     using DeviceList = QList< Device* >;
-#ifdef WITH_KPMCORE331API
+#if defined( WITH_KPMCORE4API )
     DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag(0) );
 #else
     DeviceList devices = backend->scanDevices( /* excludeReadOnly */ true );
