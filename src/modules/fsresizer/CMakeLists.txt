@@ -21,7 +21,6 @@ if ( KPMcore_FOUND )
         EXPORT_MACRO PLUGINDLLEXPORT_PRO
         SOURCES
             ResizeFSJob.cpp
-            ${PROJECT_SOURCE_DIR}/src/modules/partition/core/PartitionIterator.cpp
         LINK_PRIVATE_LIBRARIES
             kpmcore
             calamares

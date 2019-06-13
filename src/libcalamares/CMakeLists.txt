@@ -97,6 +97,30 @@ if( Qt5Xml_FOUND )
     list( APPEND OPTIONAL_PUBLIC_LIBRARIES Qt5::Network Qt5::Xml )
 endif()
 
+### OPTIONAL KPMcore support
+#
+#
+find_package( KPMcore 3.3 )
+set_package_properties(
+    KPMcore PROPERTIES
+    PURPOSE "For partitioning service"
+)
+
+if ( KPMcore_FOUND )
+    find_package( Qt5 REQUIRED DBus )  # Needed for KPMCore
+    find_package( KF5 REQUIRED I18n WidgetsAddons )  # Needed for KPMCore
+
+    if( KPMcore_VERSION VERSION_GREATER "3.3.70" AND KPMcore_VERSION VERSION_LESS "4.0" )
+        message( FATAL_ERROR "KPMCore beta versions are not supported" )
+    endif()
+
+    include_directories( ${KPMCORE_INCLUDE_DIR} )
+    list( APPEND libSources
+        partition/PartitionIterator.cpp
+    )
+    list( APPEND OPTIONAL_PRIVATE_LIBRARIES kpmcore )
+endif()
+
 ### LIBRARY
 #
 #
@@ -167,13 +191,13 @@ if ( ECM_FOUND AND BUILD_TESTING )
             ${YAMLCPP_LIBRARY}
     )
     calamares_automoc( geoiptest )
-    
+
     ecm_add_test(
             partition/Tests.cpp
         TEST_NAME
             libcalamarespartitiontest
         LINK_LIBRARIES
-            calamares  
+            calamares
             Qt5::Test
     )
     calamares_automoc( libcalamarespartitiontest )
