@@ -19,7 +19,7 @@ FixNamespaceComments: 'true'
 IncludeBlocks: Preserve
 IndentWidth: '4'
 MaxEmptyLinesToKeep: '2'
-NamespaceIndentation: Inner
+NamespaceIndentation: None
 PointerAlignment: Left
 ReflowComments: 'false'
 SortIncludes: 'true'
