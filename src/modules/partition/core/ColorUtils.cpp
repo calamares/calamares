@@ -20,8 +20,8 @@
 #include "core/ColorUtils.h"
 
 #include "core/KPMHelpers.h"
-#include "core/PartitionIterator.h"
 
+#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
 // KPMcore
@@ -31,6 +31,8 @@
 // Qt
 #include <QColor>
 #include <QMap>
+
+using CalamaresUtils::Partition::PartitionIterator;
 
 static const int NUM_PARTITION_COLORS = 5;
 static const int NUM_NEW_PARTITION_COLORS = 4;

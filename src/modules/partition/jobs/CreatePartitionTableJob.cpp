@@ -20,8 +20,7 @@
 
 #include "jobs/CreatePartitionTableJob.h"
 
-#include "core/PartitionIterator.h"
-
+#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
 // KPMcore
@@ -34,6 +33,8 @@
 
 // Qt
 #include <QProcess>
+
+using CalamaresUtils::Partition::PartitionIterator;
 
 CreatePartitionTableJob::CreatePartitionTableJob( Device* device, PartitionTable::TableType type )
     : m_device( device )

@@ -23,10 +23,12 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
 #include "core/KPMHelpers.h"
-#include "Branding.h"
+
+#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
+
+#include "Branding.h"
 
 // KPMcore
 #include <core/device.h>
@@ -39,6 +41,8 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
+
+using CalamaresUtils::Partition::PartitionIterator;
 
 typedef QHash<QString, QString> UuidForPartitionHash;
 

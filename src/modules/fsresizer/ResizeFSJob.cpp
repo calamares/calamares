@@ -18,6 +18,14 @@
 
 #include "ResizeFSJob.h"
 
+#include "CalamaresVersion.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "partition/PartitionIterator.h"
+#include "utils/Logger.h"
+#include "utils/Units.h"
+#include "utils/Variant.h"
+
 #include <QProcess>
 #include <QDateTime>
 #include <QThread>
@@ -29,17 +37,7 @@
 #include <kpmcore/ops/resizeoperation.h>
 #include <kpmcore/util/report.h>
 
-#include "CalamaresVersion.h"
-#include "JobQueue.h"
-#include "GlobalStorage.h"
-
-#include "utils/Logger.h"
-#include "utils/Units.h"
-#include "utils/Variant.h"
-
-// From partition module
-#include "core/PartitionIterator.h"
-
+using CalamaresUtils::Partition::PartitionIterator;
 
 ResizeFSJob::ResizeFSJob( QObject* parent )
     : Calamares::CppJob( parent )

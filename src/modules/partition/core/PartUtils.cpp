@@ -25,17 +25,18 @@
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "partition/PartitionIterator.h"
+#include "utils/CalamaresUtilsSystem.h"
+#include "utils/Logger.h"
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 
-#include <utils/CalamaresUtilsSystem.h>
-#include <utils/Logger.h>
-#include <JobQueue.h>
-#include <GlobalStorage.h>
 
 #include <QProcess>
 #include <QTemporaryDir>

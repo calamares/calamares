@@ -21,7 +21,9 @@
 #include "core/KPMHelpers.h"
 
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
+
+#include "partition/PartitionIterator.h"
+#include "utils/Logger.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -30,10 +32,7 @@
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/fs/luks.h>
 
-#include "utils/Logger.h"
-
-#include <QDebug>
-
+using CalamaresUtils::Partition::PartitionIterator;
 
 namespace KPMHelpers
 {

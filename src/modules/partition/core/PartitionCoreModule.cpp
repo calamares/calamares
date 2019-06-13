@@ -27,7 +27,6 @@
 #include "core/DeviceList.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
 #include "core/PartitionModel.h"
 #include "core/KPMHelpers.h"
 #include "core/PartUtils.h"
@@ -45,12 +44,12 @@
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
 
-#include "utils/Variant.h"
-
 #ifdef DEBUG_PARTITION_LAME
 #include "JobExample.h"
 #endif
+#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -70,6 +69,7 @@
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrent>
 
+using CalamaresUtils::Partition::PartitionIterator;
 
 PartitionCoreModule::RefreshHelper::RefreshHelper(PartitionCoreModule* module)
     : m_module( module )

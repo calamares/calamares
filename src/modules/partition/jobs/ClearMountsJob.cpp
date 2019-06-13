@@ -21,7 +21,8 @@
 #include "ClearMountsJob.h"
 
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
+
+#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
 // KPMcore
@@ -33,6 +34,7 @@
 #include <QProcess>
 #include <QStringList>
 
+using CalamaresUtils::Partition::PartitionIterator;
 
 ClearMountsJob::ClearMountsJob( Device* device )
     : Calamares::Job()
