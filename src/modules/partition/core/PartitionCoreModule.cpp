@@ -48,6 +48,7 @@
 #include "JobExample.h"
 #endif
 #include "partition/PartitionIterator.h"
+#include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
@@ -70,6 +71,8 @@
 #include <QtConcurrent/QtConcurrent>
 
 using CalamaresUtils::Partition::PartitionIterator;
+using CalamaresUtils::Partition::isPartitionFreeSpace;
+using CalamaresUtils::Partition::isPartitionNew;
 
 PartitionCoreModule::RefreshHelper::RefreshHelper(PartitionCoreModule* module)
     : m_module( module )
@@ -395,7 +398,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         // deleting them, so let's play it safe and keep our own list.
         QList< Partition* > lst;
         for ( auto childPartition : partition->children() )
-            if ( !KPMHelpers::isPartitionFreeSpace( childPartition ) )
+            if ( !isPartitionFreeSpace( childPartition ) )
                 lst << childPartition;
 
         for ( auto childPartition : lst )
@@ -653,7 +656,7 @@ PartitionCoreModule::scanForEfiSystemPartitions()
     }
 
     QList< Partition* > efiSystemPartitions =
-        KPMHelpers::findPartitions( devices, PartUtils::isEfiBootable );
+        CalamaresUtils::Partition::findPartitions( devices, PartUtils::isEfiBootable );
 
     if ( efiSystemPartitions.isEmpty() )
         cWarning() << "system is EFI but no EFI system partitions found.";

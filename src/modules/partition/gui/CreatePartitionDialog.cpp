@@ -31,9 +31,10 @@
 
 #include "ui_CreatePartitionDialog.h"
 
-#include "utils/Logger.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/PartitionQuery.h"
+#include "utils/Logger.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -272,7 +273,7 @@ CreatePartitionDialog::checkMountPointSelection()
 void
 CreatePartitionDialog::initPartResizerWidget( Partition* partition )
 {
-    QColor color = KPMHelpers::isPartitionFreeSpace( partition )
+    QColor color = CalamaresUtils::Partition::isPartitionFreeSpace( partition )
                    ? ColorUtils::colorForPartitionInFreeSpace( partition )
                    : ColorUtils::colorForPartition( partition );
     m_partitionSizeController->init( m_device, partition, color );

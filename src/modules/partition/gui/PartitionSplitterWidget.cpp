@@ -21,8 +21,9 @@
 #include "core/ColorUtils.h"
 #include "core/KPMHelpers.h"
 
-#include "utils/Logger.h"
 #include "partition/PartitionIterator.h"
+#include "partition/PartitionQuery.h"
+#include "utils/Logger.h"
 
 #include "utils/CalamaresUtilsGui.h"
 
@@ -69,7 +70,7 @@ PartitionSplitterWidget::init( Device* dev, bool drawNestedPartitions )
         PartitionSplitterItem newItem = {
             ( *it )->partitionPath(),
             ColorUtils::colorForPartition( *it ),
-            KPMHelpers::isPartitionFreeSpace( *it ),
+            CalamaresUtils::Partition::isPartitionFreeSpace( *it ),
             ( *it )->capacity(),
             PartitionSplitterItem::Normal,
             {}

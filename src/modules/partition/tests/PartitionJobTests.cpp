@@ -19,6 +19,7 @@
 
 #include <PartitionJobTests.h>
 
+#include "partition/PartitionQuery.h"
 #include "utils/Units.h"
 
 #include <jobs/CreatePartitionJob.h>
@@ -40,6 +41,7 @@ QTEST_GUILESS_MAIN( PartitionJobTests )
 
 using namespace Calamares;
 using CalamaresUtils::operator""_MiB;
+using CalamaresUtils::Partition::isPartitionFreeSpace;
 
 class PartitionMounter
 {
@@ -115,7 +117,7 @@ static Partition*
 firstFreePartition( PartitionNode* parent )
 {
     for( auto child : parent->children() )
-        if ( KPMHelpers::isPartitionFreeSpace( child ) )
+        if ( isPartitionFreeSpace( child ) )
             return child;
     return nullptr;
 }

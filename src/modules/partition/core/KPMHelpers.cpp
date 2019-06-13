@@ -56,20 +56,6 @@ initKPMcore()
 }
 
 
-bool
-isPartitionFreeSpace( Partition* partition )
-{
-    return partition->roles().has( PartitionRole::Unallocated );
-}
-
-
-bool
-isPartitionNew( Partition* partition )
-{
-    return partition->state() == KPM_PARTITION_STATE(New);
-}
-
-
 Partition*
 findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint )
 {
@@ -78,33 +64,6 @@ findPartitionByMountPoint( const QList< Device* >& devices, const QString& mount
             if ( PartitionInfo::mountPoint( *it ) == mountPoint )
                 return *it;
     return nullptr;
-}
-
-
-Partition*
-findPartitionByPath( const QList< Device* >& devices, const QString& path )
-{
-    if ( path.simplified().isEmpty() )
-        return nullptr;
-
-    for ( auto device : devices )
-        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
-            if ( ( *it )->partitionPath() == path.simplified() )
-                return *it;
-    return nullptr;
-}
-
-
-QList< Partition* >
-findPartitions( const QList< Device* >& devices,
-                std::function< bool ( Partition* ) > criterionFunction )
-{
-    QList< Partition* > results;
-    for ( auto device : devices )
-        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
-            if ( criterionFunction( *it ) )
-                results.append( *it );
-    return results;
 }
 
 

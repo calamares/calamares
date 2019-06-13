@@ -22,6 +22,7 @@
 #include "core/KPMHelpers.h"
 
 #include "partition/PartitionIterator.h"
+#include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 
 // KPMcore
@@ -33,6 +34,8 @@
 #include <QMap>
 
 using CalamaresUtils::Partition::PartitionIterator;
+using CalamaresUtils::Partition::isPartitionFreeSpace;
+using CalamaresUtils::Partition::isPartitionNew;
 
 static const int NUM_PARTITION_COLORS = 5;
 static const int NUM_NEW_PARTITION_COLORS = 4;
@@ -91,7 +94,7 @@ colorForPartition( Partition* partition )
         return FREE_SPACE_COLOR;
     }
 
-    if ( KPMHelpers::isPartitionFreeSpace( partition ) )
+    if ( isPartitionFreeSpace( partition ) )
         return FREE_SPACE_COLOR;
     if ( partition->roles().has( PartitionRole::Extended ) )
         return EXTENDED_COLOR;
@@ -126,16 +129,16 @@ colorForPartition( Partition* partition )
         Partition* child = *it;
         if ( child == partition )
             break;
-        if ( !KPMHelpers::isPartitionFreeSpace( child ) &&
+        if ( !isPartitionFreeSpace( child ) &&
              !child->hasChildren() )
         {
-            if ( KPMHelpers::isPartitionNew( child ) )
+            if ( isPartitionNew( child ) )
                 ++newColorIdx;
             ++colorIdx;
         }
     }
 
-    if ( KPMHelpers::isPartitionNew( partition ) )
+    if ( isPartitionNew( partition ) )
         return NEW_PARTITION_COLORS[ newColorIdx % NUM_NEW_PARTITION_COLORS ];
 
     if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
@@ -172,9 +175,9 @@ colorForPartitionInFreeSpace( Partition* partition )
         Partition* child = *it;
         if ( child == partition )
             break;
-        if ( !KPMHelpers::isPartitionFreeSpace( child ) &&
+        if ( !isPartitionFreeSpace( child ) &&
              !child->hasChildren() &&
-             KPMHelpers::isPartitionNew( child ) )
+             isPartitionNew( child ) )
             ++newColorIdx;
     }
     return NEW_PARTITION_COLORS[ newColorIdx % NUM_NEW_PARTITION_COLORS ];
