@@ -58,8 +58,10 @@ findPartitionByCurrentMountPoint( const QList< Device* >& devices, const QString
 {
     for ( auto device : devices )
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
-            if ( (*it)->mountPoint() == mountPoint )
+            if ( ( *it )->mountPoint() == mountPoint )
+            {
                 return *it;
+            }
     return nullptr;
 }
 
@@ -68,28 +70,33 @@ Partition*
 findPartitionByPath( const QList< Device* >& devices, const QString& path )
 {
     if ( path.simplified().isEmpty() )
+    {
         return nullptr;
+    }
 
     for ( auto device : devices )
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
             if ( ( *it )->partitionPath() == path.simplified() )
+            {
                 return *it;
+            }
     return nullptr;
 }
 
 
 QList< Partition* >
-findPartitions( const QList< Device* >& devices,
-                std::function< bool ( Partition* ) > criterionFunction )
+findPartitions( const QList< Device* >& devices, std::function< bool( Partition* ) > criterionFunction )
 {
     QList< Partition* > results;
     for ( auto device : devices )
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
             if ( criterionFunction( *it ) )
+            {
                 results.append( *it );
+            }
     return results;
 }
 
 
-}
-} // namespace
+}  // namespace Partition
+}  // namespace CalamaresUtils

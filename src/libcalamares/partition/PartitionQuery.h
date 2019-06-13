@@ -33,38 +33,42 @@ namespace CalamaresUtils
 {
 namespace Partition
 {
+
+using ::Device;
+using ::Partition;
+
 /** @brief Is this a free-space area? */
-bool isPartitionFreeSpace( ::Partition* );
+bool isPartitionFreeSpace( Partition* );
 
 /** @brief Is this partition newly-to-be-created?
  *
  * Returns true if the partition is planned to be created by the installer as
  * opposed to already existing on the disk.
  */
-bool isPartitionNew( ::Partition* );
+bool isPartitionNew( Partition* );
 
 /**
  * Iterates on all devices and return the first partition which is (already)
  * mounted on @p mountPoint.
  */
-::Partition* findPartitionByCurrentMountPoint( const QList< ::Device* >& devices, const QString& mountPoint );
+Partition* findPartitionByCurrentMountPoint( const QList< Device* >& devices, const QString& mountPoint );
 
 // TODO: add this distinction
-// ::Partition* findPartitionByIntendedMountPoint( const QList< ::Device* >& devices, const QString& mountPoint );
+// Partition* findPartitionByIntendedMountPoint( const QList< Device* >& devices, const QString& mountPoint );
 
 /**
  * Iterates on all devices and partitions and returns a pointer to the Partition object
  * for the given path, or nullptr if a Partition for the given path cannot be found.
  */
-::Partition* findPartitionByPath( const QList< ::Device* >& devices, const QString& path );
+Partition* findPartitionByPath( const QList< Device* >& devices, const QString& path );
 
 /**
  * Iterates on all devices and partitions and returns a list of pointers to the Partition
  * objects that satisfy the conditions defined in the criterion function.
  */
-QList< ::Partition* > findPartitions( const QList< ::Device* >& devices,
-                                    std::function< bool ( ::Partition* ) > criterionFunction );
-}
-}
+QList< Partition* > findPartitions( const QList< Device* >& devices,
+                                    std::function< bool( Partition* ) > criterionFunction );
+}  // namespace Partition
+}  // namespace CalamaresUtils
 
 #endif  // PARTITION_PARTITIONQUERY_H
