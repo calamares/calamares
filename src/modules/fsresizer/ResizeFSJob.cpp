@@ -58,13 +58,13 @@ ResizeFSJob::prettyName() const
 }
 
 ResizeFSJob::PartitionMatch
-ResizeFSJob::findPartition( CoreBackend* backend )
+ResizeFSJob::findPartition()
 {
     using DeviceList = QList< Device* >;
 #if defined( WITH_KPMCORE4API )
-    DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag(0) );
+    DeviceList devices = m_kpmcore.backend()->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag(0) );
 #else
-    DeviceList devices = backend->scanDevices( /* excludeReadOnly */ true );
+    DeviceList devices = m_kpmcore.backend()->scanDevices( /* excludeReadOnly */ true );
 #endif
 
     cDebug() << "ResizeFSJob found" << devices.count() << "devices.";
@@ -170,35 +170,17 @@ ResizeFSJob::exec()
             tr( "Invalid configuration" ),
             tr( "The file-system resize job has an invalid configuration and will not run." ) );
 
-    // Get KPMCore
-    auto backend_p = CoreBackendManager::self()->backend();
-    if ( backend_p )
-        cDebug() << "KPMCore backend @" << ( void* )backend_p << backend_p->id() << backend_p->version();
-    else
-    {
-        cDebug() << "No KPMCore backend loaded yet";
-        QByteArray backendName = qgetenv( "KPMCORE_BACKEND" );
-        if ( !CoreBackendManager::self()->load( backendName.isEmpty() ? CoreBackendManager::defaultBackendName() : backendName ) )
-        {
-            cWarning() << "Could not load KPMCore backend.";
-            return Calamares::JobResult::error(
-                tr( "KPMCore not Available" ),
-                tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
-        }
-
-        backend_p = CoreBackendManager::self()->backend();
-    }
-    if ( !backend_p )
+    if ( !m_kpmcore)
     {
         cWarning() << "Could not load KPMCore backend (2).";
         return Calamares::JobResult::error(
             tr( "KPMCore not Available" ),
             tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
     }
-    backend_p->initFSSupport();  // Might not be enough, see below
+    m_kpmcore.backend()->initFSSupport();  // Might not be enough, see below
 
     // Now get the partition and FS we want to work on
-    PartitionMatch m = findPartition( backend_p );
+    PartitionMatch m = findPartition();
     if ( !m.first || !m.second )
         return Calamares::JobResult::error(
             tr( "Resize Failed" ),
