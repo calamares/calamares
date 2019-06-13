@@ -33,16 +33,11 @@ public:
     using QStyledItemDelegate::QStyledItemDelegate;
 
 protected:
-    QSize sizeHint( const QStyleOptionViewItem& option,
-                    const QModelIndex& index ) const override;
-    void paint( QPainter* painter,
-                const QStyleOptionViewItem& option,
-                const QModelIndex& index ) const override;
+    QSize sizeHint( const QStyleOptionViewItem& option, const QModelIndex& index ) const override;
+    void paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const override;
 
 private:
-    void paintViewStep( QPainter* painter,
-                        const QStyleOptionViewItem& option,
-                        const QModelIndex& index ) const;
+    void paintViewStep( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const;
 };
 
-#endif // PROGRESSTREEDELEGATE_H
+#endif  // PROGRESSTREEDELEGATE_H

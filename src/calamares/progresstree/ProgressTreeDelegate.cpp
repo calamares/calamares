@@ -20,23 +20,28 @@
 #include "ProgressTreeDelegate.h"
 #include "ProgressTreeModel.h"
 
-#include "Branding.h"
 #include "CalamaresApplication.h"
 #include "CalamaresWindow.h"
 
+#include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
 
 #include <QPainter>
 
 static constexpr int const item_margin = 8;
-static inline int item_fontsize() { return CalamaresUtils::defaultFontSize() + 4; }
+static inline int
+item_fontsize()
+{
+    return CalamaresUtils::defaultFontSize() + 4;
+}
 
 QSize
-ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option,
-                                const QModelIndex& index ) const
+ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option, const QModelIndex& index ) const
 {
     if ( !index.isValid() )
+    {
         return option.rect.size();
+    }
 
     QFont font = qApp->font();
 
@@ -51,9 +56,7 @@ ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option,
 
 
 void
-ProgressTreeDelegate::paint( QPainter* painter,
-                             const QStyleOptionViewItem& option,
-                             const QModelIndex& index) const
+ProgressTreeDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index ) const
 {
     QStyleOptionViewItem opt = option;
 
@@ -62,10 +65,9 @@ ProgressTreeDelegate::paint( QPainter* painter,
     initStyleOption( &opt, index );
     opt.text.clear();
 
-    painter->setBrush( QColor( Calamares::Branding::instance()->
-        styleString( Calamares::Branding::SidebarBackground ) ) );
-    painter->setPen( QColor( Calamares::Branding::instance()->
-        styleString( Calamares::Branding::SidebarText ) ) );
+    painter->setBrush(
+        QColor( Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarBackground ) ) );
+    painter->setPen( QColor( Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarText ) ) );
 
     paintViewStep( painter, opt, index );
 
@@ -89,14 +91,17 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
 
     if ( isCurrent )
     {
-        painter->setPen( Calamares::Branding::instance()->
-                         styleString( Calamares::Branding::SidebarTextSelect ) );
-        QString textHighlight = Calamares::Branding::instance()->
-                           styleString( Calamares::Branding::SidebarTextHighlight );
+        painter->setPen( Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarTextSelect ) );
+        QString textHighlight
+            = Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarTextHighlight );
         if ( textHighlight.isEmpty() )
+        {
             painter->setBrush( CalamaresApplication::instance()->mainWindow()->palette().background() );
+        }
         else
+        {
             painter->setBrush( QColor( textHighlight ) );
+        }
     }
 
 
@@ -114,17 +119,19 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
         shrinkSteps++;
 
         QRectF boundingBox;
-        painter->drawText( textRect, Qt::AlignHCenter | Qt::AlignVCenter | Qt::TextSingleLine, index.data().toString(), &boundingBox );
+        painter->drawText(
+            textRect, Qt::AlignHCenter | Qt::AlignVCenter | Qt::TextSingleLine, index.data().toString(), &boundingBox );
 
         // The extra check here is to avoid the changing-font-size if we're not going to use
         // it in the next iteration of the loop anyway.
-        if ( ( shrinkSteps <= maximumShrink ) && (boundingBox.width() > textRect.width() ) )
+        if ( ( shrinkSteps <= maximumShrink ) && ( boundingBox.width() > textRect.width() ) )
         {
             font.setPointSize( item_fontsize() - shrinkSteps );
             painter->setFont( font );
         }
         else
+        {
             break;  // It fits
-    }
-    while ( shrinkSteps <= maximumShrink );
+        }
+    } while ( shrinkSteps <= maximumShrink );
 }

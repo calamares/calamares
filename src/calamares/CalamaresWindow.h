@@ -27,7 +27,7 @@ namespace Calamares
 {
 class DebugWindow;
 class ViewManager;
-}
+}  // namespace Calamares
 
 /**
  * @brief The CalamaresWindow class represents the main window of the Calamares UI.
@@ -55,4 +55,4 @@ private:
     Calamares::ViewManager* m_viewManager;
 };
 
-#endif //CALAMARESWINDOW_H
+#endif  // CALAMARESWINDOW_H

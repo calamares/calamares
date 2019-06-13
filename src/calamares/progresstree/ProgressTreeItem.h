@@ -57,4 +57,4 @@ public:
     virtual QVariant data( int role ) const;
 };
 
-#endif // PROGRESSTREEITEM_H
+#endif  // PROGRESSTREEITEM_H

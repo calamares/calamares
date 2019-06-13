@@ -48,4 +48,4 @@ private:
     ProgressTreeDelegate* m_delegate;
 };
 
-#endif // PROGRESSTREEVIEW_H
+#endif  // PROGRESSTREEVIEW_H

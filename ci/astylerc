@@ -5,7 +5,7 @@ indent=spaces=4
 
 # Brackets
 style=break
-remove-brackets # Remove brackets on single-line `if` and `for` (requires astyle 2.04)
+add-brackets
 
 # Spaces
 pad-paren-in
