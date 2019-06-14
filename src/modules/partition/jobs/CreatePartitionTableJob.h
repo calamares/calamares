@@ -20,7 +20,7 @@
 #ifndef CREATEPARTITIONTABLEJOB_H
 #define CREATEPARTITIONTABLEJOB_H
 
-#include <Job.h>
+#include "Job.h"
 
 // KPMcore
 #include <kpmcore/core/partitiontable.h>

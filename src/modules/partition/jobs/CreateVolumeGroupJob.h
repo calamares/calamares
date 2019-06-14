@@ -19,7 +19,7 @@
 #ifndef CREATEVOLUMEGROUPJOB_H
 #define CREATEVOLUMEGROUPJOB_H
 
-#include <Job.h>
+#include "Job.h"
 
 #include <kpmcore/core/partition.h>
 

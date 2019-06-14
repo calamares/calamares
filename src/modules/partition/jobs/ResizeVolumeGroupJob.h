@@ -19,7 +19,7 @@
 #ifndef RESIZEVOLUMEGROUPJOB_H
 #define RESIZEVOLUMEGROUPJOB_H
 
-#include <Job.h>
+#include "Job.h"
 
 #include <QVector>
 

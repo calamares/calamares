@@ -19,7 +19,7 @@
 #ifndef REMOVEVOLUMEGROUPJOB_H
 #define REMOVEVOLUMEGROUPJOB_H
 
-#include <Job.h>
+#include "Job.h"
 
 class LvmDevice;
 
