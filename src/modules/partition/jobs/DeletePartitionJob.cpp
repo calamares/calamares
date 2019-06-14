@@ -21,12 +21,12 @@
 #include "jobs/DeletePartitionJob.h"
 
 // KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/partitiontable.h>
-#include <fs/filesystem.h>
-#include <ops/deleteoperation.h>
-#include <util/report.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/core/partitiontable.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/ops/deleteoperation.h>
+#include <kpmcore/util/report.h>
 
 DeletePartitionJob::DeletePartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )

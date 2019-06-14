@@ -31,10 +31,10 @@
 #include "Branding.h"
 
 // KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystem.h>
-#include <fs/luks.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/fs/luks.h>
 
 // Qt
 #include <QDebug>

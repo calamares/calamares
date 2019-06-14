@@ -25,11 +25,11 @@
 #include "utils/Units.h"
 
 // KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystem.h>
-#include <ops/setpartflagsoperation.h>
-#include <util/report.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/ops/setpartflagsoperation.h>
+#include <kpmcore/util/report.h>
 
 using CalamaresUtils::BytesToMiB;
 

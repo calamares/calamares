@@ -24,12 +24,12 @@
 #include "utils/Logger.h"
 
 // KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/partitiontable.h>
-#include <fs/filesystem.h>
-#include <ops/createpartitiontableoperation.h>
-#include <util/report.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/core/partitiontable.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/ops/createpartitiontableoperation.h>
+#include <kpmcore/util/report.h>
 
 // Qt
 #include <QProcess>
