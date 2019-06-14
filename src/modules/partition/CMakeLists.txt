@@ -18,7 +18,7 @@ find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 find_package( KPMcore 3.3 )
 set_package_properties(
     KPMcore PROPERTIES
-    PURPOSE "For partitioning module"
+    PURPOSE "For partition module"
 )
 
 if ( KPMcore_FOUND )
@@ -28,7 +28,7 @@ if ( KPMcore_FOUND )
     if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0" )
         list( APPEND _partition_defs WITH_KPMCORE4API ) # kpmcore 4 with new API
     elseif( KPMcore_VERSION VERSION_GREATER "3.3.70" )
-        message( FATAL_ERROR "KPMCore beta versions are not supported" )
+        message( FATAL_ERROR "KPMCore beta versions ${KPMcore_VERSION} are not supported" )
     endif()
 
     include_directories( ${KPMCORE_INCLUDE_DIR} )
