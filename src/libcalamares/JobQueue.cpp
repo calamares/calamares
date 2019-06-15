@@ -46,10 +46,10 @@ public:
 
     virtual ~JobThread() override;
 
-    void setJobs( const JobList& jobs )
+    void setJobs( JobList&& jobs )
     {
         m_jobs = jobs;
-        m_jobCount = jobs.size();
+        m_jobCount = jobs.count();
     }
 
     void run() override
@@ -59,16 +59,18 @@ public:
         QString details;
 
         m_jobIndex = 0;
-        for( auto job : m_jobs )
+        while ( !m_jobs.isEmpty() )
         {
+            auto job = m_jobs.takeFirst();
             if ( anyFailed && !job->isEmergency() )
             {
                 cDebug() << "Skipping non-emergency job" << job->prettyName();
+                job.clear();
                 continue;
             }
 
             emitProgress();
-            cDebug() << "Starting" << ( anyFailed ? "EMERGENCY JOB" : "job" ) << job->prettyName();
+            cDebug() << "Starting" << ( anyFailed ? "EMERGENCY JOB" : "job" ) << job->prettyName() << " (there are" << m_jobs.count() << " left)";
             connect( job.data(), &Job::progress, this, &JobThread::emitProgress );
             JobResult result = job->exec();
             if ( !anyFailed && !result )
@@ -79,6 +81,7 @@ public:
             }
             if ( !anyFailed )
                 ++m_jobIndex;
+            job.clear();
         }
         if ( anyFailed )
             emitFailed( message, details );
@@ -178,7 +181,7 @@ void
 JobQueue::start()
 {
     Q_ASSERT( !m_thread->isRunning() );
-    m_thread->setJobs( m_jobs );
+    m_thread->setJobs( std::move( m_jobs ) );
     m_jobs.clear();
     m_thread->start();
 }
