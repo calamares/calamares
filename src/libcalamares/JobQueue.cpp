@@ -40,6 +40,7 @@ public:
         : QThread( queue )
         , m_queue( queue )
         , m_jobIndex( 0 )
+        , m_jobCount( 0 )
     {
     }
 
@@ -48,6 +49,7 @@ public:
     void setJobs( const JobList& jobs )
     {
         m_jobs = jobs;
+        m_jobCount = jobs.size();
     }
 
     void run() override
@@ -89,6 +91,7 @@ private:
     JobList m_jobs;
     JobQueue* m_queue;
     int m_jobIndex;
+    int m_jobCount;
 
     void emitProgress( qreal jobPercent = 0 )
     {
@@ -96,12 +99,14 @@ private:
         // percentage computations.
         jobPercent = qBound( qreal( 0 ), jobPercent, qreal( 1 ) );
 
-        int jobCount = m_jobs.size();
-        QString message = m_jobIndex < jobCount
+        QString message = m_jobIndex < m_jobCount
             ? m_jobs.at( m_jobIndex )->prettyStatusMessage()
             : tr( "Done" );
 
-        qreal percent = ( m_jobIndex + jobPercent ) / qreal( jobCount );
+        // Gives a result in the range [ m_jobIndex .. m_jobIndex + 1.0 ] / jobCount,
+        // so when first job (index 0) completes, we're at 1/jobCount of the work
+        // (and the last job has index jobCount-1, so jobCount-1 + 1.0 / jobCount, or 100%)
+        qreal percent = ( m_jobIndex + jobPercent ) / qreal( m_jobCount );
 
         QMetaObject::invokeMethod( m_queue, "progress", Qt::QueuedConnection,
             Q_ARG( qreal, percent ),
