@@ -70,7 +70,7 @@ InternalManager::InternalManager()
         else
         {
             auto* backend_p = CoreBackendManager::self()->backend();
-            cDebug() << Logger::SubEntry << "Backend @" << (void *)backend_p << backend_p->id() << backend_p->version();
+            cDebug() << Logger::SubEntry << "Backend @" << (void*)backend_p << backend_p->id() << backend_p->version();
             s_kpm_loaded = true;
         }
     }
@@ -92,8 +92,6 @@ InternalManager::~InternalManager()
 std::shared_ptr< InternalManager >
 getInternal()
 {
-    cDebug() << "KPMCore internal" << s_backend.use_count();
-
     if ( s_backend.expired() )
     {
         auto p = std::make_shared< InternalManager >();
@@ -106,9 +104,13 @@ getInternal()
 KPMManager::KPMManager()
     : m_d( getInternal() )
 {
+    cDebug() << "KPMManager" << s_backend.use_count() << "created.";
 }
 
-KPMManager::~KPMManager() {}
+KPMManager::~KPMManager()
+{
+    cDebug() << "KPMManager" << s_backend.use_count() << "being destroyed.";
+}
 
 KPMManager::operator bool() const
 {
