@@ -160,10 +160,40 @@ ExecutionViewStep::loadQml()
     }
 }
 
+/** @brief Calls the QML method @p method()
+ *
+ * Pass in only the name of the method (e.g. onActivate). This function
+ * checks if the method exists (with no arguments) before trying to
+ * call it, so that no warnings are printed due to missing methods.
+ *
+ * If there is a return value from the QML method, it is logged (but not otherwise used).
+ */
+void
+callQMLFunction( QQuickItem* qmlObject, const char* method )
+{
+    QByteArray methodSignature( method );
+    methodSignature.append( "()" );
+
+    if ( qmlObject && qmlObject->metaObject()->indexOfMethod( methodSignature )  >= 0 )
+    {
+        QVariant returnValue;
+        QMetaObject::invokeMethod( qmlObject, method, Q_RETURN_ARG( QVariant, returnValue ) );
+        if ( !returnValue.isNull() )
+        {
+            cDebug() << "QML" << methodSignature << "returned" << returnValue;
+        }
+    }
+    else if ( qmlObject )
+    {
+        cDebug() << "QML" << methodSignature << "is missing.";
+    }
+}
+
 void
 ExecutionViewStep::onActivate()
 {
     loadQml();
+    callQMLFunction( m_qmlObject, "onActivate" );
 
     JobQueue* queue = JobQueue::instance();
     foreach ( const QString& instanceKey, m_jobInstanceKeys )
@@ -209,6 +239,7 @@ ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 void
 ExecutionViewStep::onLeave()
 {
+    callQMLFunction( m_qmlObject, "onLeave" );
     delete m_qmlObject;
     m_qmlObject = nullptr;
 }
