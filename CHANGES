@@ -7,6 +7,10 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
 
+Distributions are **advised** to check the slideshow they use for the
+installation step; changes in loading and translation mechanisms may
+require changes in the slideshow.
+
 ## Core ##
 
  - With this release, option *WITH_PYTHONQT* changes default to **off**.
@@ -18,6 +22,14 @@ This release contains contributions from (alphabetically by first name):
    configured after the last *exec* section of the sequence has been
    solved. The *finished* page can be left out (but then you don't get
    the restart-now functionality). #1168
+ - The *slideshow* which is run during installation is now loaded on
+   startup (while requirements checking is being done). This should
+   improve responsiveness when the slideshow starts. If the slideshow
+   has methods `onActivate()` and `onLeave()` those will be called
+   when the installation step is activated (e.g. the installation
+   starts and the slideshow becomes visible) or is finished (and the
+   slideshow becomes hidden).
+ - The example slideshow now starts its timers when it becomes visible.
 
 ## Modules ##
 

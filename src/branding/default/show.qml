@@ -68,5 +68,8 @@ Presentation
         centeredText: "This is a third Slide element."
     }
 
-    Component.onCompleted: advanceTimer.running = true
+    function onActivate() {
+        presentation.currentSlide = 0;
+        advanceTimer.running = true
+    }
 }
