@@ -37,18 +37,17 @@ public:
                            std::function< const Calamares::ViewStep*() > accessor,
                            ProgressTreeItem* parent = nullptr );
 
-    explicit ViewStepItem( const Calamares::ViewStep* step,
-                           ProgressTreeItem* parent = nullptr );
+    explicit ViewStepItem( const Calamares::ViewStep* step, ProgressTreeItem* parent = nullptr );
 
     void appendChild( ProgressTreeItem* item ) override;
 
     QVariant data( int role ) const override;
 
 private:
-    std::function< const Calamares::ViewStep*() > m_accessor;
-    std::function< QString() > m_prettyName;
-    const Calamares::ViewStep* m_step;
+    const std::function< const Calamares::ViewStep*() > m_accessor;
+    const std::function< QString() > m_prettyName;
+    const Calamares::ViewStep* const m_step;
 };
 
 
-#endif // VIEWSTEPITEM_H
+#endif  // VIEWSTEPITEM_H

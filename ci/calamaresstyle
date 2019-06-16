@@ -1,6 +1,42 @@
 #!/bin/sh
+#
 # Calls astyle with settings matching Calamares coding style
-# Requires astyle >= 2.04
+# Requires astyle >= 2.04 and clang-format-7
+#
+# You can pass in directory names, in which case the files
+# in that directory (NOT below it) are processed.
+#
 set -e
 
-astyle --options=$(dirname $0)/astylerc "$@"
+AS=$( which astyle )
+CF=$( which clang-format-7 )
+
+test -n "$AS" || { echo "! No astyle found in PATH"; exit 1 ; }
+test -n "$CF" || { echo "! No clang-format-7 found in PATH"; exit 1 ; }
+test -x "$AS" || { echo "! $AS is not executable."; exit 1 ; }
+test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
+
+any_dirs=no
+for d in "$@"
+do
+	test -d "$d" && any_dirs=yes
+done
+
+style_some()
+{
+	$AS --options=$(dirname $0)/astylerc --quiet "$@"
+	$CF -i -style=file "$@"
+}
+
+if test "x$any_dirs" = "xyes" ; then
+	for d in "$@"
+	do
+		if test -d "$@"  ; then
+			style_some $( find "$d" -maxdepth 1 -type f -name '*.cpp' -o -name '*.h' )
+		else
+			style_some "$d"
+		fi
+	done
+else
+	style_some "$@"
+fi

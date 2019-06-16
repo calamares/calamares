@@ -347,7 +347,7 @@ msgstr ""
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "Configurando'l serviciu dmcrypt d'OpenRC."
 
 #: src/modules/luksbootkeyfile/main.py:35
 msgid "Configuring LUKS key file."

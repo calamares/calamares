@@ -57,4 +57,4 @@ private:
     ProgressTreeRoot* m_rootItem;
 };
 
-#endif // PROGRESSTREEMODEL_H
+#endif  // PROGRESSTREEMODEL_H

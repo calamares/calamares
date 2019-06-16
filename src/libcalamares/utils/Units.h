@@ -78,6 +78,11 @@ constexpr int BytesToMiB( qint64 b )
     return int( b / 1024 / 1024 );
 }
 
+constexpr int BytesToGiB( qint64 b )
+{
+    return int( b / 1024 / 1024 / 1024 );
+}
+
 constexpr qint64 alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
 {
     qint64 blocks = bytes / blocksize;

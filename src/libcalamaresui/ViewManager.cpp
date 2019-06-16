@@ -283,18 +283,35 @@ ViewManager::next()
         }
 
         m_currentStep++;
-        m_stack->setCurrentIndex( m_currentStep );
+
+        m_stack->setCurrentIndex( m_currentStep );  // Does nothing if out of range
         step->onLeave();
-        m_steps.at( m_currentStep )->onActivate();
-        executing = qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep ) ) != nullptr;
-        emit currentStepChanged();
+
+        if ( m_currentStep < m_steps.count() )
+        {
+            m_steps.at( m_currentStep )->onActivate();
+            executing = qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep ) ) != nullptr;
+            emit currentStepChanged();
+        }
+        else
+        {
+            // Reached the end in a weird state (e.g. no finished step after an exec)
+            executing = false;
+            m_next->setEnabled( false );
+            m_back->setEnabled( false );
+        }
         updateCancelEnabled( !settings->disableCancel() && !(executing && settings->disableCancelDuringExec() ) );
     }
     else
+    {
         step->next();
+    }
 
-    m_next->setEnabled( !executing && m_steps.at( m_currentStep )->isNextEnabled() );
-    m_back->setEnabled( !executing && m_steps.at( m_currentStep )->isBackEnabled() );
+    if ( m_currentStep < m_steps.count() )
+    {
+        m_next->setEnabled( !executing && m_steps.at( m_currentStep )->isNextEnabled() );
+        m_back->setEnabled( !executing && m_steps.at( m_currentStep )->isBackEnabled() );
+    }
 
     updateButtonLabels();
 }
@@ -320,7 +337,7 @@ ViewManager::updateButtonLabels()
     else
         m_next->setText( tr( "&Next" ) );
 
-    if ( m_currentStep == m_steps.count() -1 && m_steps.last()->isAtEnd() )
+    if ( isAtVeryEnd() )
     {
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( complete );
@@ -368,7 +385,7 @@ bool ViewManager::confirmCancelInstallation()
     const auto* const settings = Calamares::Settings::instance();
 
     // When we're at the very end, then it's always OK to exit.
-    if ( m_currentStep == m_steps.count() -1 && m_steps.last()->isAtEnd() )
+    if ( isAtVeryEnd() )
         return true;
 
     // Not at the very end, cancel/quit might be disabled

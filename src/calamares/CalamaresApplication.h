@@ -82,4 +82,4 @@ private:
     bool m_debugMode;
 };
 
-#endif //CALAMARESAPPLICATION_H
+#endif  // CALAMARESAPPLICATION_H
