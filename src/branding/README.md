@@ -20,7 +20,9 @@ so that it can be run directly from the build directory for testing purposes:
  - `default/` is a sample brand for the Generic Linux distribution. It uses
    the default Calamares icons and a as start-page splash it provides a
    tag-cloud view of languages. The slideshow is a basic one with a few
-   slides of text and a single image. No translations are provided.
+   slides of text and a single image. Translations (done by hand, not via
+   the usual mechanism of Calamares translations) in English, Arabic, Dutch
+   and French are available.
 
 Since the slideshow can be **any** QML, it is limited only by your designers
 imagination and your QML experience. For straightforward presentations,
@@ -36,6 +38,9 @@ be placed in a subdirectory `lang/` of the branding component directory.
 Qt translation files are supported (`.ts` sources which get compiled into
 `.qm`). Inside the `lang` subdirectory all translation files must be named
 according to the scheme `calamares-<component name>_<language>.ts`.
+
+The example branding component, called *default*, therefore has translation
+files names `calamares-default_nl.ts` (similar for other languages than Dutch).
 
 Text in your `show.qml` (or whatever *slideshow* is set to in the descriptor
 file) should be enclosed in this form for translations
@@ -83,7 +88,8 @@ Generally, you will add a few presentation-level elements first,
 then slides.
  - For visible navigation arrows, add elements of class *ForwardButton* and
    *BackwardButton*. Set the *source* property of each to a suitable
-   image. See the `fancy/` example. It is recommended to turn off other
+   image. See the `fancy/` example in the external branding-examples
+   repository. It is recommended to turn off other
    kinds of navigation when visible navigation is used.
  - To indicate where the user is, add an element of class *SlideCounter*.
    This indicates in "n / total" form where the user is in the slideshow.
