@@ -61,11 +61,11 @@ Presentation
     }
 
     Slide {
-        centeredText: "This is a second Slide element."
+        centeredText: qsTr("This is a second Slide element.")
     }
 
     Slide {
-        centeredText: "This is a third Slide element."
+        centeredText: qsTr("This is a third Slide element.")
     }
 
     Component.onCompleted: {
