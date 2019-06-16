@@ -143,12 +143,6 @@ ExecutionViewStep::loadQml()
                                             QQmlComponent::CompilationMode::Asynchronous
                                           );
     }
-}
-
-void
-ExecutionViewStep::onActivate()
-{
-    loadQml();
     if ( m_qmlComponent )
     {
         QObject* o = m_qmlComponent->create();
@@ -164,6 +158,12 @@ ExecutionViewStep::onActivate()
             m_qmlShow->setContent( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ), m_qmlComponent, m_qmlObject );
         }
     }
+}
+
+void
+ExecutionViewStep::onActivate()
+{
+    loadQml();
 
     JobQueue* queue = JobQueue::instance();
     foreach ( const QString& instanceKey, m_jobInstanceKeys )
