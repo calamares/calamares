@@ -108,6 +108,7 @@ function( calamares_add_branding_translations NAME )
     if ( BRANDING_TRANSLATION_FILES )
         qt5_add_translation( QM_FILES ${BRANDING_TRANSLATION_FILES} )
         add_custom_target( branding-translation-${NAME} ALL DEPENDS ${QM_FILES}
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/lang/
             COMMAND ${CMAKE_COMMAND} -E copy ${QM_FILES} ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/lang/
         )
         install( FILES ${QM_FILES} DESTINATION ${BRANDING_COMPONENT_DESTINATION}/lang/ )
