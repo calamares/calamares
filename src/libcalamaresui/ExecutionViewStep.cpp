@@ -108,6 +108,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     }
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
+    CALAMARES_RETRANSLATE( m_qmlShow->engine()->retranslate(); )
 }
 
 
