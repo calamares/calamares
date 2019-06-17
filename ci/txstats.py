@@ -14,8 +14,8 @@ def get_tx_credentials():
     txconfig_name = os.path.expanduser("~/.transifexrc")
     try:
         with open(txconfig_name, "r") as f:
-            parser = configparser.SafeConfigParser()
-            parser.readfp(f)
+            parser = configparser.ConfigParser()
+            parser.read_file(f)
 
             return parser.get("https://www.transifex.com", "password")
     except IOError as e:
