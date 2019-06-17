@@ -22,6 +22,7 @@
 
 import gettext
 import libcalamares
+from libcalamares.utils import check_target_env_call
 from subprocess import CalledProcessError
 from subprocess import check_call
 
