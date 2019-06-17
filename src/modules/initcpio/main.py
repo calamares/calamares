@@ -1,4 +1,4 @@
-/usr/bin/env python3
+#/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # === This file is part of Calamares - <https://github.com/calamares> ===
@@ -22,37 +22,35 @@
 
 import gettext
 import libcalamares
-import subprocess
+from libcalamares.job import configuration
+from lincalamares.globalstorage import value
+from subprocess import CalledProcessError
+from subprocess import check_call
 
-
-#from libcalamares.utils import check_target_env_call
-#from libcalamares.utils import *
-
-#import gettext
 _ = gettext.translation("calamares-python",
-                        localedir=libcalamares.utils.gettext_path(),
+                        localedir=libcalamares.utils.gettext_path(), 
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
 
 def pretty_name():
-    return _("Creating initramfs based on archiso with mkinitcpio.")
+    return _("Creating initramfs based with mkinitcpio.")
 
 def run():
     """ Calls routine to create kernel initramfs image.
 
     :return:
     """
- #   from subprocess import CalledProcessError
+    print("image_source=", configuration["image_source"])
 
-    print("image_source=", libcalamares.job.configuration['image_source'])
+    check_call(["cp",
+                "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz",
+                value("rootMoountPoint") + "/boot/vmlinuz-linux"])
 
-    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
-    subprocess.check_call(["cp", "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz", root_mount_point + "/boot/vmlinuz-linux"])
-
-    kernel = libcalamares.job.configuration['kernel']
     try:
-        check_target_env_call(['mkinitcpio', '-p', kernel])
+        check_target_env_call(["mkinitcpio",
+                               "-p",
+                               configuration["kernel"]])
     except CalledProcessError as e:
         libcalamares.utils.warning(str(e))
         return ( _( "Process Failed" ),
