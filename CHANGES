@@ -22,14 +22,12 @@ require changes in the slideshow.
    configured after the last *exec* section of the sequence has been
    solved. The *finished* page can be left out (but then you don't get
    the restart-now functionality). #1168
- - The *slideshow* which is run during installation is now loaded on
-   startup (while requirements checking is being done). This should
-   improve responsiveness when the slideshow starts. If the slideshow
-   has methods `onActivate()` and `onLeave()` those will be called
-   when the installation step is activated (e.g. the installation
-   starts and the slideshow becomes visible) or is finished (and the
-   slideshow becomes hidden).
- - The example slideshow now starts its timers when it becomes visible.
+ - The *slideshow* which is run during installation now has API versions.
+   API version 1 (the default) runs as before, where the slideshow is loaded
+   when the installation starts. API version 2 loads the slideshow on
+   Calamares startup, thus improving responsiveness. Documentation
+   in `src/branding/README.md`. #1152
+ - The example slideshow now uses API version 2.
 
 ## Modules ##
 
