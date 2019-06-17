@@ -22,8 +22,6 @@
 
 import gettext
 import libcalamares
-from libcalamares.job import configuration
-from lincalamares.globalstorage import value
 from subprocess import CalledProcessError
 from subprocess import check_call
 
@@ -41,16 +39,16 @@ def run():
 
     :return:
     """
-    print("image_source=", configuration["image_source"])
+    print("image_source=", libcalamares.job.configuration["image_source"])
 
     check_call(["cp",
                 "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz",
-                value("rootMoountPoint") + "/boot/vmlinuz-linux"])
+                libcalamares.globalstorage.value("rootMoountPoint") + "/boot/vmlinuz-linux"])
 
     try:
         check_target_env_call(["mkinitcpio",
                                "-p",
-                               configuration["kernel"]])
+                               libcalamares.job.configuration["kernel"]])
     except CalledProcessError as e:
         libcalamares.utils.warning(str(e))
         return ( _( "Process Failed" ),
