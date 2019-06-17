@@ -60,6 +60,9 @@ public:
 
     void appendJobModuleInstanceKey( const QString& instanceKey );
 
+public slots:
+    void loadQmlV2Complete();
+
 private:
     QWidget* m_widget;
     QProgressBar* m_progressBar;
@@ -70,7 +73,7 @@ private:
 
     QStringList m_jobInstanceKeys;
 
-    void loadQml();  //< Loads the slideshow QML (from branding)
+    void loadQmlV2();  //< Loads the slideshow QML (from branding) for API version 2
     void updateFromJobQueue( qreal percent, const QString& message );
 };
 

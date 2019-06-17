@@ -42,6 +42,35 @@
 #include <QQuickWidget>
 #include <QVBoxLayout>
 
+/** @brief Calls the QML method @p method()
+ *
+ * Pass in only the name of the method (e.g. onActivate). This function
+ * checks if the method exists (with no arguments) before trying to
+ * call it, so that no warnings are printed due to missing methods.
+ *
+ * If there is a return value from the QML method, it is logged (but not otherwise used).
+ */
+static void
+callQMLFunction( QQuickItem* qmlObject, const char* method )
+{
+    QByteArray methodSignature( method );
+    methodSignature.append( "()" );
+
+    if ( qmlObject && qmlObject->metaObject()->indexOfMethod( methodSignature )  >= 0 )
+    {
+        QVariant returnValue;
+        QMetaObject::invokeMethod( qmlObject, method, Q_RETURN_ARG( QVariant, returnValue ) );
+        if ( !returnValue.isNull() )
+        {
+            cDebug() << "QML" << methodSignature << "returned" << returnValue;
+        }
+    }
+    else if ( qmlObject )
+    {
+        cDebug() << "QML" << methodSignature << "is missing.";
+    }
+}
+
 namespace Calamares
 {
 
@@ -74,8 +103,8 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     cDebug() << "QML import paths:" << Logger::DebugList( m_qmlShow->engine()->importPathList() );
     if ( Branding::instance()->slideshowAPI() == 2 )
     {
-        cDebug() << "QML load on startup.";
-        loadQml();
+        cDebug() << "QML load on startup, API 2.";
+        loadQmlV2();
     }
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
@@ -138,7 +167,7 @@ ExecutionViewStep::isAtEnd() const
 }
 
 void
-ExecutionViewStep::loadQml()
+ExecutionViewStep::loadQmlV2()
 {
     if ( !m_qmlComponent && !Calamares::Branding::instance()->slideshowPath().isEmpty() )
     {
@@ -146,9 +175,19 @@ ExecutionViewStep::loadQml()
                                             QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ),
                                             QQmlComponent::CompilationMode::Asynchronous
                                           );
+        connect( m_qmlComponent, &QQmlComponent::statusChanged, this, &ExecutionViewStep::loadQmlV2Complete );
     }
-    if ( m_qmlComponent && !m_qmlObject )
+}
+
+void
+ExecutionViewStep::loadQmlV2Complete()
+{
+    if ( m_qmlComponent && m_qmlComponent->isReady() && !m_qmlObject )
     {
+        cDebug() << "QML loading complete, API 2";
+        // Don't do this again
+        disconnect( m_qmlComponent, &QQmlComponent::statusChanged, this, &ExecutionViewStep::loadQmlV2Complete );
+
         QObject* o = m_qmlComponent->create();
         m_qmlObject = qobject_cast< QQuickItem* >( o );
         if ( !m_qmlObject )
@@ -160,36 +199,13 @@ ExecutionViewStep::loadQml()
             // what is needed: sets up visual parent by replacing the root
             // item, and handling resizes.
             m_qmlShow->setContent( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ), m_qmlComponent, m_qmlObject );
+            if ( ViewManager::instance()->currentStep() == this )
+            {
+                // We're alreay visible! Must have been slow QML loading, and we
+                // passed onActivate already.
+                callQMLFunction( m_qmlObject, "onActivate" );
+            }
         }
-    }
-}
-
-/** @brief Calls the QML method @p method()
- *
- * Pass in only the name of the method (e.g. onActivate). This function
- * checks if the method exists (with no arguments) before trying to
- * call it, so that no warnings are printed due to missing methods.
- *
- * If there is a return value from the QML method, it is logged (but not otherwise used).
- */
-void
-callQMLFunction( QQuickItem* qmlObject, const char* method )
-{
-    QByteArray methodSignature( method );
-    methodSignature.append( "()" );
-
-    if ( qmlObject && qmlObject->metaObject()->indexOfMethod( methodSignature )  >= 0 )
-    {
-        QVariant returnValue;
-        QMetaObject::invokeMethod( qmlObject, method, Q_RETURN_ARG( QVariant, returnValue ) );
-        if ( !returnValue.isNull() )
-        {
-            cDebug() << "QML" << methodSignature << "returned" << returnValue;
-        }
-    }
-    else if ( qmlObject )
-    {
-        cDebug() << "QML" << methodSignature << "is missing.";
     }
 }
 
