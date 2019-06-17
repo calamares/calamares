@@ -201,10 +201,10 @@ ExecutionViewStep::onActivate()
         // The QML was already loaded in the constructor, need to start it
         callQMLFunction( m_qmlObject, "onActivate" );
     }
-    else
+    else if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
     {
         // API version 1 assumes onCompleted is the trigger
-        loadQml();
+        m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
     }
 
     JobQueue* queue = JobQueue::instance();
