@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
+/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
 #   Copyright 2019, Adriaan de Groot <groot@kde.org>
+#   Copyright 2019, Michael Picht <mipi@fsfe.org> 
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -19,10 +20,15 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
-import libcalamares
-from libcalamares.utils import check_target_env_call
-
 import gettext
+import libcalamares
+import subprocess
+
+
+#from libcalamares.utils import check_target_env_call
+#from libcalamares.utils import *
+
+#import gettext
 _ = gettext.translation("calamares-python",
                         localedir=libcalamares.utils.gettext_path(),
                         languages=libcalamares.utils.gettext_languages(),
@@ -30,14 +36,19 @@ _ = gettext.translation("calamares-python",
 
 
 def pretty_name():
-    return _("Creating initramfs with mkinitcpio.")
+    return _("Creating initramfs based on archiso with mkinitcpio.")
 
 def run():
     """ Calls routine to create kernel initramfs image.
 
     :return:
     """
-    from subprocess import CalledProcessError
+ #   from subprocess import CalledProcessError
+
+    print("image_source=", libcalamares.job.configuration['image_source'])
+
+    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+    subprocess.check_call(["cp", "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz", root_mount_point + "/boot/vmlinuz-linux"])
 
     kernel = libcalamares.job.configuration['kernel']
     try:
@@ -48,3 +59,4 @@ def run():
                  _( "Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was <pre>{!s}</pre>." ).format( e.returncode, e.cmd ) )
 
     return None
+
