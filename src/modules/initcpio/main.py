@@ -43,7 +43,7 @@ def run():
 
     check_call(["cp",
                 "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz",
-                libcalamares.globalstorage.value("rootMoountPoint") + "/boot/vmlinuz-linux"])
+                libcalamares.globalstorage.value("rootMountPoint") + "/boot/vmlinuz-linux"])
 
     try:
         check_target_env_call(["mkinitcpio",
