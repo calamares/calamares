@@ -127,6 +127,7 @@ Branding::Branding( const QString& brandingFilePath,
     , m_descriptorPath( brandingFilePath )
     , m_welcomeStyleCalamares( false )
     , m_welcomeExpandingLogo( true )
+    , m_slideshowAPI( 1 )
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
 
@@ -234,6 +235,14 @@ Branding::Branding( const QString& brandingFilePath,
             }
             else
                 bail( "Syntax error in slideshow sequence." );
+
+            int api = doc[ "slideshowAPI" ].IsScalar() ? doc[ "slideshowAPI" ].as<int>() : -1;
+            if ( ( api < 1 ) || ( api > 2 ) )
+            {
+                cWarning() << "Invalid or missing *slideshowAPI* in branding file.";
+                api = 1;
+            }
+            m_slideshowAPI = api;
         }
         catch ( YAML::Exception& e )
         {
