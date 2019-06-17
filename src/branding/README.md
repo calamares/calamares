@@ -12,6 +12,7 @@ forking Calamares just for adding some files. Calamares installs
 CMake support macros to help create branding packages. See the
 calamares-branding repository for examples of stand-alone branding.
 
+
 ## Examples
 
 There is one example of a branding component included with Calamares,
@@ -30,6 +31,41 @@ see the documentation below. There are more examples in the [calamares-branding]
 repository.
 
 [1] https://github.com/calamares/calamares-branding
+
+
+## API Versions
+
+In Calamares versions prior to 3.2.10, the QML slideshow was loaded
+synchronously when the installation page is shown. This can lead to
+noticeable lag when showing that page. The QML is written start when
+it is loaded, by responding to the `onComplete` signal.
+
+Calamares 3.2.10 introduces an API versioning scheme which uses different
+loading mechanisms.
+
+ - **API version 1** Loads the QML slideshow synchronously, as before.
+   - The QML can use `onComplete` to start timers, etc. for progress
+     or animation.
+   - Translations are supported through `qsTr()` and the language that is
+     in use when the installation slideshow is loaded, will be used
+     (once the installation part is running, it can't change anyway).
+ - **API version 2** Loads the QML slideshow **a**synchronously, on
+   startup (generally during the requirements-checking phase of Calamares)
+   so that no compilation lag is seen.
+   - The QML should **not** use `onComplete`, since the QML is loaded and
+     instantiated at startup. Instead,
+   - The QML should provide functions `onActivate()` and `onLeave()` in the
+     root object of the slideshow. These are called when the slideshow
+     should start (e.g. becomes visible) and stop.
+   - Translations are supported through `qsTr()`. However, since the language
+     can change after the QML is loaded, code should count on the bindings
+     being re-evaluated on language change. Translation updates (e.g. change
+     of language) is **only supported** with Qt 5.10 and later.
+
+The setting *slideshowAPI* in `branding.desc` indicates which one to use
+for a given branding slideshow. Which API to use is really a function of
+the QML. Expect the version 1 API to be deprecated in the course of Calamares 3.3.
+
 
 ## Translations
 
@@ -57,6 +93,7 @@ If you are packaging the branding by hand, use
     lrelease file_en.ts [file_en_GB.ts ..]
 ```
 with all the language suffixes to *file*.
+
 
 ## Presentation
 
@@ -112,6 +149,7 @@ standard properties for a boring "static text" slideshow, though:
 The presentation classes can be used to produce a fairly dry slideshow
 for the installation process; it is recommended to experiment with the
 visual effects and classes available in QtQuick.
+
 
 ## Project Layout
 
