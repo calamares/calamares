@@ -68,8 +68,9 @@ Presentation
         centeredText: qsTr("This is a third Slide element.")
     }
 
-    Component.onCompleted: {
-        advanceTimer.running = true;
-        console.log("Component complete");
+    function onActivate() {
+        presentation.currentSlide = 0;
+        advanceTimer.running = true
+        console.log("Component activated");
     }
 }

@@ -93,6 +93,17 @@ images:
 # The slideshow is displayed during execution steps (e.g. when the
 # installer is actually writing to disk and doing other slow things).
 slideshow:               "show.qml"
+# There are two available APIs for the slideshow:
+#  - 1 (the default) loads the entire slideshow when the installation-
+#      slideshow page is shown and starts the QML then. The QML
+#      is never stopped (after installation is done, times etc.
+#      continue to fire).
+#  - 2 loads the slideshow on startup and calls onActivate() and
+#      onLeave() in the root object. After the installation is done,
+#      the show is stopped (first by calling onLeave(), then destroying
+#      the QML components).
+slideshowAPI: 2
+
 
 # Colors for text and background components.
 #

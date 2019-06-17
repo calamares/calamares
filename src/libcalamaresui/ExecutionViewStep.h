@@ -25,7 +25,10 @@
 #include <QStringList>
 
 class QLabel;
+class QObject;
 class QProgressBar;
+class QQmlComponent;
+class QQuickItem;
 class QQuickWidget;
 
 namespace Calamares
@@ -51,19 +54,26 @@ public:
     bool isAtEnd() const override;
 
     void onActivate() override;
+    void onLeave() override;
 
     JobList jobs() const override;
 
     void appendJobModuleInstanceKey( const QString& instanceKey );
 
+public slots:
+    void loadQmlV2Complete();
+
 private:
     QWidget* m_widget;
     QProgressBar* m_progressBar;
     QLabel* m_label;
-    QQuickWidget* m_slideShow;
+    QQuickWidget* m_qmlShow;
+    QQmlComponent* m_qmlComponent;
+    QQuickItem* m_qmlObject;  //< The actual show
 
     QStringList m_jobInstanceKeys;
 
+    void loadQmlV2();  //< Loads the slideshow QML (from branding) for API version 2
     void updateFromJobQueue( qreal percent, const QString& message );
 };
 
