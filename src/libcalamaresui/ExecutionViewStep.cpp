@@ -108,7 +108,9 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     }
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
+#if QT_VERSION >= QT_VERSION_CHECK( 5, 10, 0 )
     CALAMARES_RETRANSLATE( m_qmlShow->engine()->retranslate(); )
+#endif
 }
 
 
