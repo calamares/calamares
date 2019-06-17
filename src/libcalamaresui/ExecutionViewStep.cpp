@@ -72,7 +72,11 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     innerLayout->addWidget( m_label );
 
     cDebug() << "QML import paths:" << Logger::DebugList( m_qmlShow->engine()->importPathList() );
-    loadQml();
+    if ( Branding::instance()->slideshowAPI() == 2 )
+    {
+        cDebug() << "QML load on startup.";
+        loadQml();
+    }
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
 }
@@ -143,7 +147,7 @@ ExecutionViewStep::loadQml()
                                             QQmlComponent::CompilationMode::Asynchronous
                                           );
     }
-    if ( m_qmlComponent )
+    if ( m_qmlComponent && !m_qmlObject )
     {
         QObject* o = m_qmlComponent->create();
         m_qmlObject = qobject_cast< QQuickItem* >( o );
@@ -192,8 +196,16 @@ callQMLFunction( QQuickItem* qmlObject, const char* method )
 void
 ExecutionViewStep::onActivate()
 {
-    loadQml();
-    callQMLFunction( m_qmlObject, "onActivate" );
+    if ( Branding::instance()->slideshowAPI() == 2 )
+    {
+        // The QML was already loaded in the constructor, need to start it
+        callQMLFunction( m_qmlObject, "onActivate" );
+    }
+    else
+    {
+        // API version 1 assumes onCompleted is the trigger
+        loadQml();
+    }
 
     JobQueue* queue = JobQueue::instance();
     foreach ( const QString& instanceKey, m_jobInstanceKeys )
@@ -239,9 +251,13 @@ ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 void
 ExecutionViewStep::onLeave()
 {
-    callQMLFunction( m_qmlObject, "onLeave" );
-    delete m_qmlObject;
-    m_qmlObject = nullptr;
+    // API version 2 is explicitly stopped; version 1 keeps running
+    if ( Branding::instance()->slideshowAPI() == 2 )
+    {
+        callQMLFunction( m_qmlObject, "onLeave" );
+        delete m_qmlObject;
+        m_qmlObject = nullptr;
+    }
 }
 
 } // namespace
