@@ -106,12 +106,11 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #       the original four lines with the current translations).
 set( _tx_complete ca cs_CZ da de fr he hr hu ko lt pt_BR sq tr_TR
     zh_TW )
-set( _tx_good ast en_GB es es_MX et gl id it_IT ja nl pl pt_PT ro
-    ru sk zh_CN )
-set( _tx_ok ar bg el es_PR eu fi_FI hi is mr nb sl sr sr@latin sv
-    th uk )
-set( _tx_bad be eo fa fr_CH gu kk kn lo mk ne_NP ur uz )
-
+set( _tx_good ast en_GB es es_MX et fi_FI gl id it_IT ja nl pl
+    pt_PT ro ru sk zh_CN )
+set( _tx_ok ar bg el eo es_PR eu hi is mr nb sl sr sr@latin sv th
+    uk )
+set( _tx_bad be ca@valencia fa fr_CH gu kk kn lo mk ne_NP ur uz )
 
 ### Required versions
 #
