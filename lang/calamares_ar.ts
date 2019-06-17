@@ -149,12 +149,12 @@
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
         <source>Run command %1 %2</source>
-        <translation>شغّل الأمر 1% 2%</translation>
+        <translation>شغّل الأمر %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="61"/>
         <source>Running command %1 %2</source>
-        <translation>يشغّل الأمر 1% 2%</translation>
+        <translation>يشغّل الأمر %1 %2</translation>
     </message>
 </context>
 <context>
