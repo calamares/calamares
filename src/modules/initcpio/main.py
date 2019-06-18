@@ -31,7 +31,6 @@ _ = gettext.translation("calamares-python",
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
-
 def pretty_name():
     return _("Creating initramfs based with mkinitcpio.")
 
@@ -40,11 +39,13 @@ def run():
 
     :return:
     """
-    print("image_source=", libcalamares.job.configuration["image_source"])
 
-    check_call(["cp",
-                "/run/archiso/bootmnt/arch/boot/x86_64/vmlinuz",
-                libcalamares.globalstorage.value("rootMountPoint") + "/boot/vmlinuz-linux"])
+    if (libcalamares.job.configuration and "image_source" in libcalamares.job.configuration):
+        check_call(["cp",
+                    libcalamares.job.configuration["image_source",
+                    libcalamares.globalstorage.value("rootMountPoint")
+                    + "/boot/vmlinuz-"
+                    + llibcalamares.job.configuration["kernel"]]])
 
     try:
         check_target_env_call(["mkinitcpio",
