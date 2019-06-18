@@ -54,6 +54,23 @@ ViewManager::instance( QObject* parent )
     return s_instance;
 }
 
+/** @brief Get a button-sized icon. */
+static inline QPixmap
+getButtonIcon( const QString& name )
+{
+    return Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
+}
+
+static inline void
+setButtonIcon( QPushButton* button, const QString& name )
+{
+    auto icon = getButtonIcon( name );
+    if ( button && !icon.isNull() )
+    {
+        button->setIcon( icon );
+    }
+}
+
 /** @brief Creates a button with a given icon-name
  *
  * Creates a new button as child of @p parent.
@@ -68,11 +85,7 @@ static inline QPushButton*
 makeButton( QWidget* parent, const QString& name )
 {
     QPushButton* button = new QPushButton( parent );
-    auto icon = Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
-    if ( button && !icon.isNull() )
-    {
-        button->setIcon( icon );
-    }
+    setButtonIcon( button, name );
     return button;
 }
 
@@ -350,9 +363,15 @@ ViewManager::updateButtonLabels()
 
     // If we're going into the execution step / install phase, other message
     if ( stepIsExecute( m_steps, m_currentStep+1 ) )
+    {
         m_next->setText( nextIsInstallationStep );
+        setButtonIcon( m_next, "run-install" );
+    }
     else
+    {
         m_next->setText( tr( "&Next" ) );
+        setButtonIcon( m_next, "go-next" );
+    }
 
     // Going back is always simple
     m_back->setText( tr( "&Back" ) );
@@ -363,6 +382,7 @@ ViewManager::updateButtonLabels()
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( quitOnCompleteTooltip );
         m_quit->setVisible( true );  // At end, always visible and enabled.
+        setButtonIcon( m_quit, "dialog-ok-apply" );
         updateCancelEnabled( true );
     }
     else
@@ -373,6 +393,7 @@ ViewManager::updateButtonLabels()
 
         m_quit->setText( tr( "&Cancel" ) );
         m_quit->setToolTip( cancelBeforeInstallationTooltip );
+        setButtonIcon( m_quit, "dialog-cancel" );
     }
 }
 
