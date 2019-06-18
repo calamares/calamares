@@ -71,7 +71,7 @@ def get_tx_stats(token):
     output_langs(all_langs, "complete", lambda s : s == 1.0)
     output_langs(all_langs, "good", lambda s : 1.0 > s >= 0.75)
     output_langs(all_langs, "ok", lambda s : 0.75 > s >= 0.05)
-    output_langs(all_langs, "bad", lambda s : 0.05 > s)
+    output_langs(all_langs, "incomplete", lambda s : 0.05 > s)
 
     return 0
 
