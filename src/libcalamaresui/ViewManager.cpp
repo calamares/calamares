@@ -96,13 +96,7 @@ ViewManager::ViewManager( QObject* parent )
     m_quit = makeButton( m_widget, "dialog-cancel" );
 
     CALAMARES_RETRANSLATE(
-        m_back->setText( tr( "&Back" ) );
-        m_next->setText( tr( "&Next" ) );
-        m_quit->setText( tr( "&Cancel" ) );
-        QString tooltip = Calamares::Settings::instance()->isSetupMode()
-            ? tr( "Cancel setup without changing the system." )
-            : tr( "Cancel installation without changing the system." );
-        m_quit->setToolTip( tooltip );
+        updateButtonLabels();
     )
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
@@ -344,26 +338,30 @@ ViewManager::updateButtonLabels()
 {
     const auto* const settings = Calamares::Settings::instance();
 
-    QString next = settings->isSetupMode()
+    QString nextIsInstallationStep = settings->isSetupMode()
         ? tr( "&Set up" )
         : tr( "&Install" );
-    QString complete = settings->isSetupMode()
+    QString quitOnCompleteTooltip = settings->isSetupMode()
         ? tr( "Setup is complete. Close the setup program." )
         : tr( "The installation is complete. Close the installer." );
-    QString quit = settings->isSetupMode()
+    QString cancelBeforeInstallationTooltip = settings->isSetupMode()
         ? tr( "Cancel setup without changing the system." )
         : tr( "Cancel installation without changing the system." );
 
     // If we're going into the execution step / install phase, other message
     if ( stepIsExecute( m_steps, m_currentStep+1 ) )
-        m_next->setText( next );
+        m_next->setText( nextIsInstallationStep );
     else
         m_next->setText( tr( "&Next" ) );
 
+    // Going back is always simple
+    m_back->setText( tr( "&Back" ) );
+
+    // Cancel button changes label at the end
     if ( isAtVeryEnd() )
     {
         m_quit->setText( tr( "&Done" ) );
-        m_quit->setToolTip( complete );
+        m_quit->setToolTip( quitOnCompleteTooltip );
         m_quit->setVisible( true );  // At end, always visible and enabled.
         updateCancelEnabled( true );
     }
@@ -374,7 +372,7 @@ ViewManager::updateButtonLabels()
         updateCancelEnabled( !settings->disableCancel() && !( stepIsExecute( m_steps, m_currentStep ) && settings->disableCancelDuringExec() ) );
 
         m_quit->setText( tr( "&Cancel" ) );
-        m_quit->setToolTip( quit );
+        m_quit->setToolTip( cancelBeforeInstallationTooltip );
     }
 }
 
