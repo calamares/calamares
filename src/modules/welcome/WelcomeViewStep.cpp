@@ -133,7 +133,7 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         {
             QString countryResult = f->future().result();
             cDebug() << "GeoIP result for welcome=" << countryResult;
-            view->setCountry( countryResult );
+            view->setCountry( countryResult, h );
             f->deleteLater();
             delete h;
         } );
@@ -156,12 +156,22 @@ WelcomeViewStep::checkRequirements()
     return m_requirementsChecker->checkRequirements();
 }
 
+static inline void
+logGeoIPHandler( CalamaresUtils::GeoIP::Handler* handler )
+{
+    if ( handler )
+    {
+        cDebug() << Logger::SubEntry << "Obtained from" << handler->url() << " (" << static_cast<int>( handler->type() ) << handler->selector() << ')';
+    }
+}
+
 void
-WelcomeViewStep::setCountry( const QString& countryCode )
+WelcomeViewStep::setCountry( const QString& countryCode, CalamaresUtils::GeoIP::Handler* handler )
 {
     if ( countryCode.length() != 2 )
     {
         cDebug() << "Unusable country code" << countryCode;
+        logGeoIPHandler( handler );
         return;
     }
 
@@ -169,6 +179,7 @@ WelcomeViewStep::setCountry( const QString& countryCode )
     if ( c_l.first == QLocale::Country::AnyCountry )
     {
         cDebug() << "Unusable country code" << countryCode;
+        logGeoIPHandler( handler );
         return;
     }
     else
