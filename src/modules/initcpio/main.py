@@ -42,10 +42,10 @@ def run():
 
     if (libcalamares.job.configuration and "image_source" in libcalamares.job.configuration):
         check_call(["cp",
-                    libcalamares.job.configuration["image_source",
+                    libcalamares.job.configuration["image_source"],
                     libcalamares.globalstorage.value("rootMountPoint")
                     + "/boot/vmlinuz-"
-                    + libcalamares.job.configuration["kernel"]]])
+                    + libcalamares.job.configuration["kernel"]])
 
     try:
         check_target_env_call(["mkinitcpio",
