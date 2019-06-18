@@ -54,6 +54,28 @@ ViewManager::instance( QObject* parent )
     return s_instance;
 }
 
+/** @brief Creates a button with a given icon-name
+ *
+ * Creates a new button as child of @p parent.
+ * Sets the named icon, if it exists, onto the button.
+ * Returns the new button.
+ *
+ * There is a QPushButton constructor that takes an icon,
+ * but it also needs a text and we've got translations
+ * to worry about as well as state.
+ */
+static inline QPushButton*
+makeButton( QWidget* parent, const QString& name )
+{
+    QPushButton* button = new QPushButton( parent );
+    auto icon = Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
+    if ( button && !icon.isNull() )
+    {
+        button->setIcon( icon );
+    }
+    return button;
+}
+
 ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
     , m_currentStep( 0 )
@@ -68,9 +90,10 @@ ViewManager::ViewManager( QObject* parent )
     m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
-    m_back = new QPushButton( m_widget );
-    m_next = new QPushButton( m_widget );
-    m_quit = new QPushButton( m_widget );
+    // Create buttons and sets an initial icon; the icons may change
+    m_back = makeButton( m_widget, "go-previous" );
+    m_next = makeButton( m_widget, "go-next" );
+    m_quit = makeButton( m_widget, "dialog-cancel" );
 
     CALAMARES_RETRANSLATE(
         m_back->setText( tr( "&Back" ) );
