@@ -54,6 +54,41 @@ ViewManager::instance( QObject* parent )
     return s_instance;
 }
 
+/** @brief Get a button-sized icon. */
+static inline QPixmap
+getButtonIcon( const QString& name )
+{
+    return Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
+}
+
+static inline void
+setButtonIcon( QPushButton* button, const QString& name )
+{
+    auto icon = getButtonIcon( name );
+    if ( button && !icon.isNull() )
+    {
+        button->setIcon( icon );
+    }
+}
+
+/** @brief Creates a button with a given icon-name
+ *
+ * Creates a new button as child of @p parent.
+ * Sets the named icon, if it exists, onto the button.
+ * Returns the new button.
+ *
+ * There is a QPushButton constructor that takes an icon,
+ * but it also needs a text and we've got translations
+ * to worry about as well as state.
+ */
+static inline QPushButton*
+makeButton( QWidget* parent, const QString& name )
+{
+    QPushButton* button = new QPushButton( parent );
+    setButtonIcon( button, name );
+    return button;
+}
+
 ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
     , m_currentStep( 0 )
@@ -68,18 +103,13 @@ ViewManager::ViewManager( QObject* parent )
     m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
-    m_back = new QPushButton( m_widget );
-    m_next = new QPushButton( m_widget );
-    m_quit = new QPushButton( m_widget );
+    // Create buttons and sets an initial icon; the icons may change
+    m_back = makeButton( m_widget, "go-previous" );
+    m_next = makeButton( m_widget, "go-next" );
+    m_quit = makeButton( m_widget, "dialog-cancel" );
 
     CALAMARES_RETRANSLATE(
-        m_back->setText( tr( "&Back" ) );
-        m_next->setText( tr( "&Next" ) );
-        m_quit->setText( tr( "&Cancel" ) );
-        QString tooltip = Calamares::Settings::instance()->isSetupMode()
-            ? tr( "Cancel setup without changing the system." )
-            : tr( "Cancel installation without changing the system." );
-        m_quit->setToolTip( tooltip );
+        updateButtonLabels();
     )
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
@@ -321,27 +351,38 @@ ViewManager::updateButtonLabels()
 {
     const auto* const settings = Calamares::Settings::instance();
 
-    QString next = settings->isSetupMode()
+    QString nextIsInstallationStep = settings->isSetupMode()
         ? tr( "&Set up" )
         : tr( "&Install" );
-    QString complete = settings->isSetupMode()
+    QString quitOnCompleteTooltip = settings->isSetupMode()
         ? tr( "Setup is complete. Close the setup program." )
         : tr( "The installation is complete. Close the installer." );
-    QString quit = settings->isSetupMode()
+    QString cancelBeforeInstallationTooltip = settings->isSetupMode()
         ? tr( "Cancel setup without changing the system." )
         : tr( "Cancel installation without changing the system." );
 
     // If we're going into the execution step / install phase, other message
     if ( stepIsExecute( m_steps, m_currentStep+1 ) )
-        m_next->setText( next );
+    {
+        m_next->setText( nextIsInstallationStep );
+        setButtonIcon( m_next, "run-install" );
+    }
     else
+    {
         m_next->setText( tr( "&Next" ) );
+        setButtonIcon( m_next, "go-next" );
+    }
 
+    // Going back is always simple
+    m_back->setText( tr( "&Back" ) );
+
+    // Cancel button changes label at the end
     if ( isAtVeryEnd() )
     {
         m_quit->setText( tr( "&Done" ) );
-        m_quit->setToolTip( complete );
+        m_quit->setToolTip( quitOnCompleteTooltip );
         m_quit->setVisible( true );  // At end, always visible and enabled.
+        setButtonIcon( m_quit, "dialog-ok-apply" );
         updateCancelEnabled( true );
     }
     else
@@ -351,7 +392,8 @@ ViewManager::updateButtonLabels()
         updateCancelEnabled( !settings->disableCancel() && !( stepIsExecute( m_steps, m_currentStep ) && settings->disableCancelDuringExec() ) );
 
         m_quit->setText( tr( "&Cancel" ) );
-        m_quit->setToolTip( quit );
+        m_quit->setToolTip( cancelBeforeInstallationTooltip );
+        setButtonIcon( m_quit, "dialog-cancel" );
     }
 }
 
