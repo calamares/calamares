@@ -128,16 +128,24 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             CalamaresUtils::getString( geoip, "style" ),
             CalamaresUtils::getString( geoip, "url" ),
             CalamaresUtils::getString( geoip, "selector" ) );
-        auto* future = new FWString();
-        connect( future, &FWString::finished, [view=this, f=future, h=handler]()
+        if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
         {
-            QString countryResult = f->future().result();
-            cDebug() << "GeoIP result for welcome=" << countryResult;
-            view->setCountry( countryResult );
-            f->deleteLater();
-            delete h;
-        } );
-        future->setFuture( handler->queryRaw() );
+            auto* future = new FWString();
+            connect( future, &FWString::finished, [view=this, f=future, h=handler]()
+            {
+                QString countryResult = f->future().result();
+                cDebug() << "GeoIP result for welcome=" << countryResult;
+                view->setCountry( countryResult, h );
+                f->deleteLater();
+                delete h;
+            } );
+            future->setFuture( handler->queryRaw() );
+        }
+        else
+        {
+            // Would not produce useful country code anyway.
+            delete handler;
+        }
     }
 
 
@@ -156,12 +164,22 @@ WelcomeViewStep::checkRequirements()
     return m_requirementsChecker->checkRequirements();
 }
 
+static inline void
+logGeoIPHandler( CalamaresUtils::GeoIP::Handler* handler )
+{
+    if ( handler )
+    {
+        cDebug() << Logger::SubEntry << "Obtained from" << handler->url() << " (" << static_cast<int>( handler->type() ) << handler->selector() << ')';
+    }
+}
+
 void
-WelcomeViewStep::setCountry( const QString& countryCode )
+WelcomeViewStep::setCountry( const QString& countryCode, CalamaresUtils::GeoIP::Handler* handler )
 {
     if ( countryCode.length() != 2 )
     {
         cDebug() << "Unusable country code" << countryCode;
+        logGeoIPHandler( handler );
         return;
     }
 
@@ -169,6 +187,7 @@ WelcomeViewStep::setCountry( const QString& countryCode )
     if ( c_l.first == QLocale::Country::AnyCountry )
     {
         cDebug() << "Unusable country code" << countryCode;
+        logGeoIPHandler( handler );
         return;
     }
     else
