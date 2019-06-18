@@ -128,16 +128,24 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             CalamaresUtils::getString( geoip, "style" ),
             CalamaresUtils::getString( geoip, "url" ),
             CalamaresUtils::getString( geoip, "selector" ) );
-        auto* future = new FWString();
-        connect( future, &FWString::finished, [view=this, f=future, h=handler]()
+        if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
         {
-            QString countryResult = f->future().result();
-            cDebug() << "GeoIP result for welcome=" << countryResult;
-            view->setCountry( countryResult, h );
-            f->deleteLater();
-            delete h;
-        } );
-        future->setFuture( handler->queryRaw() );
+            auto* future = new FWString();
+            connect( future, &FWString::finished, [view=this, f=future, h=handler]()
+            {
+                QString countryResult = f->future().result();
+                cDebug() << "GeoIP result for welcome=" << countryResult;
+                view->setCountry( countryResult, h );
+                f->deleteLater();
+                delete h;
+            } );
+            future->setFuture( handler->queryRaw() );
+        }
+        else
+        {
+            // Would not produce useful country code anyway.
+            delete handler;
+        }
     }
 
 
