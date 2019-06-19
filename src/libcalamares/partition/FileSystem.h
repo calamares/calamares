@@ -17,6 +17,12 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
+
+/*
+ * NOTE: this functionality is only available when Calamares is compiled
+ *       with KPMcore support.
+ */
+
 #ifndef PARTITION_FILESYSTEM_H
 #define PARTITION_FILESYSTEM_H
 

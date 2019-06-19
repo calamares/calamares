@@ -16,6 +16,11 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+ * NOTE: this functionality is only available when Calamares is compiled
+ *       with KPMcore support.
+ */
+
 #ifndef PARTITION_KPMMANAGER_H
 #define PARTITION_KPMMANAGER_H
 
