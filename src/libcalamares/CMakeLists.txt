@@ -37,6 +37,7 @@ set( libSources
 
     # Partition service
     partition/PartitionSize.cpp
+    partition/Sync.cpp
 
     # Utility service
     utils/CalamaresUtilsSystem.cpp
