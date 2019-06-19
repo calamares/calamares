@@ -84,7 +84,7 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 # complete = 100% translated,
 # good = nearly complete (use own judgement, right now >= 75%)
 # ok = incomplete (more than 25% untranslated, at least 5% translated),
-# bad = 0% translated, placeholder in tx; these are not included.
+# incomplete = <5% translated, placeholder in tx; these are not included.
 #
 # Language en (source language) is added later. It isn't listed in
 # Transifex either. Get the list of languages and their status
@@ -106,12 +106,11 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #       the original four lines with the current translations).
 set( _tx_complete ca cs_CZ da de fr he hr hu ko lt pt_BR sq tr_TR
     zh_TW )
-set( _tx_good ast en_GB es es_MX et gl id it_IT ja nl pl pt_PT ro
-    ru sk zh_CN )
-set( _tx_ok ar bg el es_PR eu fi_FI hi is mr nb sl sr sr@latin sv
-    th uk )
-set( _tx_bad be eo fa fr_CH gu kk kn lo mk ne_NP ur uz )
-
+set( _tx_good ast en_GB es es_MX et fi_FI gl id it_IT ja nl pl
+    pt_PT ro ru sk zh_CN )
+set( _tx_ok ar bg el es_PR eu hi is mr nb sl sr sr@latin sv th
+    uk )
+set( _tx_incomplete be ca@valencia eo fa fr_CH gu kk kn lo mk ne_NP ur uz )
 
 ### Required versions
 #
@@ -325,8 +324,8 @@ endif()
 # then run an extra cmake-time check for consistency of the old
 # (p_tx*) and new (_tx*) lists.
 #
-set( prev_tx ${p_tx_complete} ${p_tx_good} ${p_tx_ok} ${p_tx_bad} )
-set( curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_bad} )
+set( prev_tx ${p_tx_complete} ${p_tx_good} ${p_tx_ok} ${p_tx_incomplete} )
+set( curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_incomplete} )
 set( tx_errors OFF )
 if ( prev_tx )
     # Gone in new list

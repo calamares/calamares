@@ -292,7 +292,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="372"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>Anulować ustawianie?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="373"/>
@@ -1144,7 +1144,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="132"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>Ustawianie ukończone</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="133"/>
@@ -1154,7 +1154,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="135"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>Ustawianie %1 jest ukończone.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
@@ -1551,7 +1551,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/oemid/OEMViewStep.cpp" line="115"/>
         <source>OEM Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja OEM</translation>
     </message>
     <message>
         <location filename="../src/modules/oemid/OEMViewStep.cpp" line="120"/>
@@ -2140,7 +2140,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="639"/>
         <source>There are no partitons to install on.</source>
-        <translation type="unfinished"/>
+        <translation>Brak partycji, na których można zainstalować.</translation>
     </message>
 </context>
 <context>
@@ -2311,7 +2311,7 @@ Wyjście:
     <message>
         <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
         <source>(no mount point)</source>
-        <translation type="unfinished"/>
+        <translation>(brak punktu montowania)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="62"/>
@@ -3083,7 +3083,7 @@ i nie uruchomi się</translation>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="17"/>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="72"/>
         <source>Select language</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz język</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3113,7 +3113,7 @@ i nie uruchomi się</translation>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Witamy w ustawianiu %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="90"/>

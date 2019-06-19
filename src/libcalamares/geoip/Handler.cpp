@@ -64,17 +64,21 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
 {
     bool ok = false;
     m_type = handlerTypes().find( implementation, ok );
-#if !defined(QT_XML_LIB)
-    if ( m_type == Type::XML )
-    {
-        m_type = Type::None;
-        cWarning() << "GeoIP style XML is not supported in this version of Calamares.";
-    }
-#endif
     if ( !ok )
     {
-        cWarning() << "GeoIP Style" << implementation << "is not recognized.";
+        cWarning() << "GeoIP style" << implementation << "is not recognized.";
     }
+    else if ( m_type == Type::None )
+    {
+        cWarning() << "GeoIP style *none* does not do anything.";
+    }
+#if !defined(QT_XML_LIB)
+    else if ( m_type == Type::XML )
+    {
+        m_type = Type::None;
+        cWarning() << "GeoIP style *xml* is not supported in this version of Calamares.";
+    }
+#endif
 }
 
 Handler::~Handler()

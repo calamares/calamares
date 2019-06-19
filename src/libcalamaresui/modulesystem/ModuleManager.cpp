@@ -90,10 +90,14 @@ ModuleManager::doInit()
                 if ( success )
                 {
                     QFileInfo descriptorFileInfo( currentDir.absoluteFilePath( QLatin1Literal( "module.desc") ) );
-                    if ( ! ( descriptorFileInfo.exists() && descriptorFileInfo.isReadable() ) )
+                    if ( !descriptorFileInfo.exists() )
                     {
-                        cDebug() << Q_FUNC_INFO << "unreadable file: "
-                                 << descriptorFileInfo.absoluteFilePath();
+                        cDebug() << "ModuleManager expected descriptor is missing:" << descriptorFileInfo.absoluteFilePath();
+                        continue;
+                    }
+                    if ( !descriptorFileInfo.isReadable() )
+                    {
+                        cDebug() << "ModuleManager descriptor file is unreadable:" << descriptorFileInfo.absoluteFilePath();
                         continue;
                     }
 
@@ -111,13 +115,14 @@ ModuleManager::doInit()
                 }
                 else
                 {
-                    cWarning() << "Cannot cd into module directory "
-                               << path << "/" << subdir;
+                    cWarning() << "ModuleManager module directory is not accessible:" << path << "/" << subdir;
                 }
             }
         }
         else
-            cDebug() << "ModuleManager bad search path" << path;
+        {
+            cDebug() << "ModuleManager module search path does not exist:" << path;
+        }
     }
     // At this point m_availableModules is filled with whatever was found in the
     // search paths.
@@ -359,7 +364,7 @@ ModuleManager::checkDependencies()
                 m_availableDescriptorsByModuleName.erase( it );
                 failed << moduleName;
                 cWarning() << "Module" << moduleName << "requires modules" << Logger::DebugList( unmet );
-                cWarning() << Logger::SubEntry << "but these are not available (listed in settings, or installed)."; 
+                cWarning() << Logger::SubEntry << "but these are not available (listed in settings, or installed).";
                 break;
             }
         }

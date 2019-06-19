@@ -24,12 +24,17 @@ Presentation
 {
     id: presentation
 
+    function nextSlide() {
+        console.log("Next slide");
+        presentation.goToNextSlide();
+    }
+
     Timer {
         id: advanceTimer
-        interval: 5000
+        interval: 1000
         running: false
         repeat: true
-        onTriggered: presentation.goToNextSlide()
+        onTriggered: nextSlide()
     }
 
     Slide {
@@ -56,12 +61,16 @@ Presentation
     }
 
     Slide {
-        centeredText: "This is a second Slide element."
+        centeredText: qsTr("This is a second Slide element.")
     }
 
     Slide {
-        centeredText: "This is a third Slide element."
+        centeredText: qsTr("This is a third Slide element.")
     }
 
-    Component.onCompleted: advanceTimer.running = true
+    function onActivate() {
+        presentation.currentSlide = 0;
+        advanceTimer.running = true
+        console.log("Component activated");
+    }
 }

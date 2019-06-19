@@ -118,6 +118,7 @@ public:
 
     /** @brief Path to the slideshow QML file, if any. */
     QString slideshowPath() const { return m_slideshowPath; }
+    int slideshowAPI() const { return m_slideshowAPI; }
 
     QString string( Branding::StringEntry stringEntry ) const;
     QString styleString( Branding::StyleEntry styleEntry ) const;
@@ -172,6 +173,7 @@ private:
     QMap< QString, QString > m_images;
     QMap< QString, QString > m_style;
     QString m_slideshowPath;
+    int m_slideshowAPI;
     QString m_translationsPathPrefix;
 
     /** @brief Initialize the simple settings below */

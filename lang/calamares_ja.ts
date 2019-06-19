@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="82"/>
         <source>Set up</source>
-        <translation type="unfinished"/>
+        <translation>セットアップ</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="83"/>
@@ -195,12 +195,12 @@
     <message numerus="yes">
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="147"/>
         <source>Waiting for %n module(s).</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform> %n モジュールを待機中。</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="148"/>
         <source>(%n second(s))</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>(%n 秒(s))</numerusform></translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="152"/>
@@ -466,7 +466,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="969"/>
         <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 は %2MiB に縮小され新たに  %4 に %3MiB のパーティションが作成されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
@@ -709,12 +709,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="44"/>
         <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-        <translation type="unfinished"/>
+        <translation> %4 (%3) に新たにファイルシステム %1 の %2MiB のパーティションが作成されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="55"/>
         <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Create new &lt;strong&gt;%4&lt;/strong&gt; (%3) に新たにファイルシステム&lt;strong&gt;%1&lt;/strong&gt;の &lt;strong&gt;%2MiB&lt;/strong&gt; のパーティションが作成されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="67"/>

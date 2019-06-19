@@ -14,8 +14,8 @@ def get_tx_credentials():
     txconfig_name = os.path.expanduser("~/.transifexrc")
     try:
         with open(txconfig_name, "r") as f:
-            parser = configparser.SafeConfigParser()
-            parser.readfp(f)
+            parser = configparser.ConfigParser()
+            parser.read_file(f)
 
             return parser.get("https://www.transifex.com", "password")
     except IOError as e:
@@ -71,7 +71,7 @@ def get_tx_stats(token):
     output_langs(all_langs, "complete", lambda s : s == 1.0)
     output_langs(all_langs, "good", lambda s : 1.0 > s >= 0.75)
     output_langs(all_langs, "ok", lambda s : 0.75 > s >= 0.05)
-    output_langs(all_langs, "bad", lambda s : 0.05 > s)
+    output_langs(all_langs, "incomplete", lambda s : 0.05 > s)
 
     return 0
 

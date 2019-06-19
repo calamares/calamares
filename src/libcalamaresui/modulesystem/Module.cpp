@@ -198,7 +198,7 @@ Module::loadConfigurationFile( const QString& configFileName ) //throws YAML::Ex
             return;
         }
     }
-    cDebug() << "No config file found in" << Logger::DebugList( configCandidates );
+    cDebug() << "No config file for" << m_name << "found anywhere at" << Logger::DebugList( configCandidates );
 }
 
 

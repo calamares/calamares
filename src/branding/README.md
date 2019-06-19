@@ -12,6 +12,7 @@ forking Calamares just for adding some files. Calamares installs
 CMake support macros to help create branding packages. See the
 calamares-branding repository for examples of stand-alone branding.
 
+
 ## Examples
 
 There is one example of a branding component included with Calamares,
@@ -20,7 +21,9 @@ so that it can be run directly from the build directory for testing purposes:
  - `default/` is a sample brand for the Generic Linux distribution. It uses
    the default Calamares icons and a as start-page splash it provides a
    tag-cloud view of languages. The slideshow is a basic one with a few
-   slides of text and a single image. No translations are provided.
+   slides of text and a single image. Translations (done by hand, not via
+   the usual mechanism of Calamares translations) in English, Arabic, Dutch
+   and French are available.
 
 Since the slideshow can be **any** QML, it is limited only by your designers
 imagination and your QML experience. For straightforward presentations,
@@ -29,6 +32,41 @@ repository.
 
 [1] https://github.com/calamares/calamares-branding
 
+
+## API Versions
+
+In Calamares versions prior to 3.2.10, the QML slideshow was loaded
+synchronously when the installation page is shown. This can lead to
+noticeable lag when showing that page. The QML is written start when
+it is loaded, by responding to the `onComplete` signal.
+
+Calamares 3.2.10 introduces an API versioning scheme which uses different
+loading mechanisms.
+
+ - **API version 1** Loads the QML slideshow synchronously, as before.
+   - The QML can use `onComplete` to start timers, etc. for progress
+     or animation.
+   - Translations are supported through `qsTr()` and the language that is
+     in use when the installation slideshow is loaded, will be used
+     (once the installation part is running, it can't change anyway).
+ - **API version 2** Loads the QML slideshow **a**synchronously, on
+   startup (generally during the requirements-checking phase of Calamares)
+   so that no compilation lag is seen.
+   - The QML should **not** use `onComplete`, since the QML is loaded and
+     instantiated at startup. Instead,
+   - The QML should provide functions `onActivate()` and `onLeave()` in the
+     root object of the slideshow. These are called when the slideshow
+     should start (e.g. becomes visible) and stop.
+   - Translations are supported through `qsTr()`. However, since the language
+     can change after the QML is loaded, code should count on the bindings
+     being re-evaluated on language change. Translation updates (e.g. change
+     of language) is **only supported** with Qt 5.10 and later.
+
+The setting *slideshowAPI* in `branding.desc` indicates which one to use
+for a given branding slideshow. Which API to use is really a function of
+the QML. Expect the version 1 API to be deprecated in the course of Calamares 3.3.
+
+
 ## Translations
 
 QML files in a branding component can be translated. Translations should
@@ -36,6 +74,9 @@ be placed in a subdirectory `lang/` of the branding component directory.
 Qt translation files are supported (`.ts` sources which get compiled into
 `.qm`). Inside the `lang` subdirectory all translation files must be named
 according to the scheme `calamares-<component name>_<language>.ts`.
+
+The example branding component, called *default*, therefore has translation
+files names `calamares-default_nl.ts` (similar for other languages than Dutch).
 
 Text in your `show.qml` (or whatever *slideshow* is set to in the descriptor
 file) should be enclosed in this form for translations
@@ -52,6 +93,7 @@ If you are packaging the branding by hand, use
     lrelease file_en.ts [file_en_GB.ts ..]
 ```
 with all the language suffixes to *file*.
+
 
 ## Presentation
 
@@ -83,7 +125,8 @@ Generally, you will add a few presentation-level elements first,
 then slides.
  - For visible navigation arrows, add elements of class *ForwardButton* and
    *BackwardButton*. Set the *source* property of each to a suitable
-   image. See the `fancy/` example. It is recommended to turn off other
+   image. See the `fancy/` example in the external branding-examples
+   repository. It is recommended to turn off other
    kinds of navigation when visible navigation is used.
  - To indicate where the user is, add an element of class *SlideCounter*.
    This indicates in "n / total" form where the user is in the slideshow.
@@ -106,6 +149,7 @@ standard properties for a boring "static text" slideshow, though:
 The presentation classes can be used to produce a fairly dry slideshow
 for the installation process; it is recommended to experiment with the
 visual effects and classes available in QtQuick.
+
 
 ## Project Layout
 

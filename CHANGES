@@ -7,6 +7,10 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
 
+Distributions are **advised** to check the slideshow they use for the
+installation step; changes in loading and translation mechanisms may
+require changes in the slideshow.
+
 ## Core ##
 
  - With this release, option *WITH_PYTHONQT* changes default to **off**.
@@ -18,6 +22,12 @@ This release contains contributions from (alphabetically by first name):
    configured after the last *exec* section of the sequence has been
    solved. The *finished* page can be left out (but then you don't get
    the restart-now functionality). #1168
+ - The *slideshow* which is run during installation now has API versions.
+   API version 1 (the default) runs as before, where the slideshow is loaded
+   when the installation starts. API version 2 loads the slideshow on
+   Calamares startup, thus improving responsiveness. Documentation
+   in `src/branding/README.md`. #1152
+ - The example slideshow now uses API version 2.
 
 ## Modules ##
 

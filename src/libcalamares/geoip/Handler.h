@@ -25,7 +25,7 @@
 #include <QString>
 #include <QVariantMap>
 
-namespace CalamaresUtils 
+namespace CalamaresUtils
 {
 namespace GeoIP
 {
@@ -80,6 +80,8 @@ public:
 
     bool isValid() const { return m_type != Type::None; }
     Type type() const { return m_type; }
+    QString url() const { return m_url; }
+    QString selector() const { return m_selector; }
 
 private:
     Type m_type;

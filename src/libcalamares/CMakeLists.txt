@@ -209,6 +209,16 @@ if ( ECM_FOUND AND BUILD_TESTING )
             Qt5::Test
     )
     calamares_automoc( libcalamarespartitiontest )
+
+    ecm_add_test(
+            locale/Tests.cpp
+        TEST_NAME
+            libcalamareslocaletest
+        LINK_LIBRARIES
+            calamares
+            Qt5::Test
+    )
+    calamares_automoc( libcalamareslocaletest )
 endif()
 
 if( BUILD_TESTING )

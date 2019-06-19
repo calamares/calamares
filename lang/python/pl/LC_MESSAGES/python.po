@@ -25,11 +25,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "Konfiguracja GRUB."
 
 #: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Montowanie partycji."
 
 #: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:187
 #: src/modules/initcpiocfg/main.py:191
@@ -42,7 +42,7 @@ msgstr ""
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
-msgstr ""
+msgstr "Błąd konfiguracji"
 
 #: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
@@ -53,12 +53,12 @@ msgstr ""
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
-msgstr ""
+msgstr "Konfiguracja usług systemd"
 
 #: src/modules/services-systemd/main.py:68
 #: src/modules/services-openrc/main.py:102
 msgid "Cannot modify service"
-msgstr ""
+msgstr "Nie można zmodyfikować usług"
 
 #: src/modules/services-systemd/main.py:69
 msgid ""
@@ -167,11 +167,11 @@ msgstr "Plik konfiguracji LXDM {!s} nie istnieje"
 
 #: src/modules/displaymanager/main.py:527
 msgid "Cannot write LightDM configuration file"
-msgstr "nie można zapisać pliku konfiguracji LightDM"
+msgstr "Nie można zapisać pliku konfiguracji LightDM"
 
 #: src/modules/displaymanager/main.py:528
 msgid "LightDM config file {!s} does not exist"
-msgstr "Plik konfiguracji {!s} nie istnieje"
+msgstr "Plik konfiguracji LightDM {!s} nie istnieje"
 
 #: src/modules/displaymanager/main.py:602
 msgid "Cannot configure LightDM"
@@ -179,7 +179,7 @@ msgstr "Nie można skonfigurować LightDM"
 
 #: src/modules/displaymanager/main.py:603
 msgid "No LightDM greeter installed."
-msgstr "Nie zainstalowano ekranu witającego LightDM"
+msgstr "Nie zainstalowano ekranu powitalnego LightDM."
 
 #: src/modules/displaymanager/main.py:634
 msgid "Cannot write SLIM configuration file"
@@ -191,7 +191,7 @@ msgstr "Plik konfiguracji SLIM {!s} nie istnieje"
 
 #: src/modules/displaymanager/main.py:750
 msgid "No display managers selected for the displaymanager module."
-msgstr "Brak wybranych menedżerów wyświetlania dla modułu displaymanager"
+msgstr "Brak wybranych menedżerów wyświetlania dla modułu displaymanager."
 
 #: src/modules/displaymanager/main.py:751
 msgid ""
@@ -203,11 +203,11 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:831
 msgid "Display manager configuration was incomplete"
-msgstr "Konfiguracja menedzera wyświetlania była niekompletna"
+msgstr "Konfiguracja menedżera wyświetlania była niekompletna"
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Konfigurowanie mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:192
 #: src/modules/luksopenswaphookcfg/main.py:100
@@ -219,11 +219,11 @@ msgstr ""
 
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
-msgstr ""
+msgstr "Tworzenie initramfs z mkinitcpio."
 
 #: src/modules/initcpio/main.py:47
 msgid "Process Failed"
-msgstr ""
+msgstr "Błąd procesu"
 
 #: src/modules/initcpio/main.py:48
 msgid ""
@@ -241,7 +241,7 @@ msgstr "Instalowanie danych."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
-msgstr ""
+msgstr "Konfiguracja usług OpenRC"
 
 #: src/modules/services-openrc/main.py:66
 msgid "Cannot add service {name!s} to run-level {level!s}."
@@ -274,7 +274,7 @@ msgstr ""
 
 #: src/modules/services-openrc/main.py:119
 msgid "Target service does not exist"
-msgstr ""
+msgstr "Docelowa usługa nie istnieje"
 
 #: src/modules/services-openrc/main.py:120
 msgid ""
@@ -284,7 +284,7 @@ msgstr ""
 
 #: src/modules/plymouthcfg/main.py:36
 msgid "Configure Plymouth theme"
-msgstr ""
+msgstr "Konfiguracja motywu Plymouth"
 
 #: src/modules/machineid/main.py:36
 msgid "Generate machine-id."
@@ -319,7 +319,7 @@ msgstr[3] "Usuwanie %(num)d pakietów."
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr ""
+msgstr "Instalacja programu rozruchowego."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
@@ -327,7 +327,7 @@ msgstr ""
 
 #: src/modules/initramfs/main.py:35
 msgid "Creating initramfs."
-msgstr ""
+msgstr "Tworzenie initramfs."
 
 #: src/modules/initramfs/main.py:49
 msgid "Failed to run update-initramfs on the target"
@@ -343,7 +343,7 @@ msgstr ""
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "Tworzenie initramfs z dracut."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
@@ -351,7 +351,7 @@ msgstr ""
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "Konfigurowanie initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
@@ -359,7 +359,7 @@ msgstr ""
 
 #: src/modules/luksbootkeyfile/main.py:35
 msgid "Configuring LUKS key file."
-msgstr ""
+msgstr "Konfigurowanie pliku klucza LUKS."
 
 #: src/modules/luksbootkeyfile/main.py:74
 msgid "Encrypted rootfs setup error"
@@ -371,7 +371,7 @@ msgstr ""
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "Zapisywanie fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -383,8 +383,8 @@ msgstr "Krok fikcyjny Python {}"
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr ""
+msgstr "Konfigurowanie ustawień lokalnych."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Zapisywanie konfiguracji sieci."

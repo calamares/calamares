@@ -32,6 +32,14 @@
 class WelcomePage;
 class GeneralRequirements;
 
+namespace CalamaresUtils
+{
+    namespace GeoIP
+    {
+        class Handler;
+    }
+}  // namespace
+
 class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
@@ -57,9 +65,10 @@ public:
     /** @brief Sets the country that Calamares is running in.
      *
      * This (ideally) sets up language and locale settings that are right for
-     * the given 2-letter country code.
+     * the given 2-letter country code. Uses the handler's information (if
+     * given) for error reporting.
      */
-    void setCountry( const QString& );
+    void setCountry( const QString&, CalamaresUtils::GeoIP::Handler* handler );
 
     Calamares::RequirementsList checkRequirements() override;
 
