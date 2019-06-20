@@ -244,17 +244,23 @@ class UnpackOperation:
 
     def mount_image(self, entry, imgmountdir):
         """
-        Mount given image as loop device.
+        Mount given @p entry as loop device on @p imgmountdir.
 
-        :param entry:
-        :param imgmountdir:
+        :param entry: the entry to mount (source is the important property)
+        :param imgmountdir: where to mount it
+
+        :returns: None, but throws if the mount failed
         """
         if os.path.isdir(entry.source):
-            libcalamares.utils.mount(entry.source, imgmountdir, "", "--bind")
+            r = libcalamares.utils.mount(entry.source, imgmountdir, "", "--bind")
         elif os.path.isfile(entry.source):
-            libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "loop")
+            r = libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "loop")
         else: # entry.source is a device
-            libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "")
+            r = libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "")
+
+        if r != 0:
+            raise subprocess.CalledProcessError(r, "mount")
+
 
     def unpack_image(self, entry, imgmountdir):
         """
