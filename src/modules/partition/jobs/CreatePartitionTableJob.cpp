@@ -100,7 +100,7 @@ CreatePartitionTableJob::exec()
         cDebug() << "lsblk:\n" << lsblk.readAllStandardOutput();
 
         QProcess mount;
-        mount.setProgram( "mount" );
+        mount.setProgram( "mount" );  // Debug output only, not mounting something
         mount.setProcessChannelMode( QProcess::MergedChannels );
         mount.start();
         mount.waitForFinished();
