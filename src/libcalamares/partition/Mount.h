@@ -1,0 +1,50 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
+ *
+ *   Calamares is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Calamares is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef PARTITION_MOUNT_H
+#define PARTITION_MOUNT_H
+
+#include "DllMacro.h"
+
+#include <QString>
+
+namespace CalamaresUtils
+{
+namespace Partition
+{
+
+/**
+ * Runs the mount utility with the specified parameters.
+ * @param devicePath the path of the partition to mount.
+ * @param mountPoint the full path of the target mount point.
+ * @param filesystemName the name of the filesystem (optional).
+ * @param options any additional options as passed to mount -o (optional).
+ * @returns the program's exit code, or:
+ *             Crashed = QProcess crash
+ *             FailedToStart = QProcess cannot start
+ *             NoWorkingDirectory = bad arguments
+ */
+DLLEXPORT int mount( const QString& devicePath,
+                     const QString& mountPoint,
+                     const QString& filesystemName = QString(),
+                     const QString& options = QString() );
+}  // namespace Partition
+}  // namespace CalamaresUtils
+
+#endif

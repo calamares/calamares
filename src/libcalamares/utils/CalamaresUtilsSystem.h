@@ -94,23 +94,6 @@ public:
 
     static System* instance();
 
-    /**
-      * Runs the mount utility with the specified parameters.
-      * @param devicePath the path of the partition to mount.
-      * @param mountPoint the full path of the target mount point.
-      * @param filesystemName the name of the filesystem (optional).
-      * @param options any additional options as passed to mount -o (optional).
-      * @returns the program's exit code, or:
-      *             Crashed = QProcess crash
-      *             FailedToStart = QProcess cannot start
-      *             NoWorkingDirectory = bad arguments
-      */
-    DLLEXPORT int mount( const QString& devicePath,
-                         const QString& mountPoint,
-                         const QString& filesystemName = QString(),
-                         const QString& options = QString() );
-
-
     /** (Typed) Boolean describing where a particular command should be run,
      *  whether in the host (live) system or in the (chroot) target system.
      */

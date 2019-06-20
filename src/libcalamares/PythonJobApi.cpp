@@ -19,13 +19,13 @@
 
 #include "PythonJobApi.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "PythonHelper.h"
+#include "partition/Mount.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/String.h"
-
-#include "GlobalStorage.h"
-#include "JobQueue.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -63,8 +63,7 @@ mount( const std::string& device_path,
        const std::string& filesystem_name,
        const std::string& options )
 {
-    return CalamaresUtils::System::instance()->
-           mount( QString::fromStdString( device_path ),
+    return CalamaresUtils::Partition::mount( QString::fromStdString( device_path ),
                   QString::fromStdString( mount_point ),
                   QString::fromStdString( filesystem_name ),
                   QString::fromStdString( options ) );

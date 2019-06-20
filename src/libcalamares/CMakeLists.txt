@@ -36,6 +36,7 @@ set( libSources
     locale/Lookup.cpp
 
     # Partition service
+    partition/Mount.cpp
     partition/PartitionSize.cpp
     partition/Sync.cpp
 
