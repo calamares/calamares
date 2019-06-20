@@ -53,6 +53,23 @@ DLLEXPORT int mount( const QString& devicePath,
  * @returns the program's exit codeor special codes like mount().
  */
 DLLEXPORT int unmount( const QString& path, const QStringList& options = QStringList() );
+
+DLLEXPORT class TemporaryMount
+{
+public:
+    TemporaryMount( const QString& devicePath,
+                    const QString& mountPoint,
+                    const QString& filesystemName = QString(),
+                    const QString& options = QString() );
+    ~TemporaryMount();
+
+    bool isValid() const { return m_valid; }
+
+private:
+    QString m_devicePath;
+    bool m_valid;
+};
+
 }  // namespace Partition
 }  // namespace CalamaresUtils
 

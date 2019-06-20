@@ -82,6 +82,24 @@ unmount( const QString& path, const QStringList& options )
     return r.getExitCode();
 }
 
+TemporaryMount::TemporaryMount( const QString& devicePath,
+                                const QString& mountPoint,
+                                const QString& filesystemName,
+                                const QString& options )
+    : m_devicePath( devicePath )
+{
+    int r = mount( m_devicePath, mountPoint, filesystemName, options );
+    m_valid = r == 0;
+}
+
+TemporaryMount::~TemporaryMount()
+{
+    if ( m_valid )
+    {
+        unmount( m_devicePath );
+    }
+}
+
 
 }  // namespace Partition
 }  // namespace CalamaresUtils
