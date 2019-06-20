@@ -69,8 +69,7 @@ mount( const QString& devicePath, const QString& mountPoint, const QString& file
         args << "-o" << options;
     }
 
-    auto r = CalamaresUtils::System::instance()->runCommand(
-        CalamaresUtils::System::RunLocation::RunInHost, args, QString(), QString(), 10 );
+    auto r = CalamaresUtils::System::instance()->runCommand( args, 10 );
     sync();
     return r.getExitCode();
 }

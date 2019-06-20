@@ -123,6 +123,18 @@ public:
         const QString& stdInput = QString(),
         int timeoutSec = 0 );
 
+    /** @brief Convenience wrapper for runCommand()
+     *
+     * Runs the given command-line @p args in the host in the current direcory
+     * with no input, and the given @p timeoutSec for completion.
+     */
+    static inline ProcessResult runCommand(
+        const QStringList& args,
+        int timeoutSec )
+    {
+        return runCommand( RunLocation::RunInHost, args, QString(), QString(), timeoutSec );
+    }
+
     /** @brief Convenience wrapper for runCommand().
      *  Runs the command in the location specified through the boolean
      *  doChroot(), which is what you usually want for running commands

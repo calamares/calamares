@@ -23,14 +23,7 @@
 
 void CalamaresUtils::Partition::sync()
 {
-    auto* s = CalamaresUtils::System::instance();
-
-    auto r = s->runCommand( CalamaresUtils::System::RunLocation::RunInHost,
-                   { "/sbin/udevadm", "settle" },
-                   QString(),
-                   QString(),
-                   10 // timeout seconds
-    );
+    auto r = CalamaresUtils::System::runCommand( { "/sbin/udevadm", "settle" }, 10 );
 
     if ( r.getExitCode() != 0 )
     {
@@ -38,10 +31,5 @@ void CalamaresUtils::Partition::sync()
         r.explainProcess( "udevadm", 10 );
     }
 
-    s->runCommand( CalamaresUtils::System::RunLocation::RunInHost,
-                   { "/bin/sync" },
-                   QString(),
-                   QString(),
-                   10 // timeout seconds
-    );
+    CalamaresUtils::System::runCommand( { "/bin/sync" }, 10 );
 }
