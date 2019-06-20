@@ -250,22 +250,11 @@ class UnpackOperation:
         :param imgmountdir:
         """
         if os.path.isdir(entry.source):
-            subprocess.check_call(["mount",
-                                   "--bind", entry.source,
-                                   imgmountdir])
+            libcalamares.utils.mount(entry.source, imgmountdir, "", "--bind")
         elif os.path.isfile(entry.source):
-            subprocess.check_call(["mount",
-                                   entry.source,
-                                   imgmountdir,
-                                   "-t", entry.sourcefs,
-                                   "-o", "loop"
-                                   ])
+            libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "loop")
         else: # entry.source is a device
-            subprocess.check_call(["mount",
-                                   entry.source,
-                                   imgmountdir,
-                                   "-t", entry.sourcefs
-                                   ])
+            libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "")
 
     def unpack_image(self, entry, imgmountdir):
         """
