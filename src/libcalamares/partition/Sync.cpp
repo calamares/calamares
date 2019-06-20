@@ -21,7 +21,8 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
-void CalamaresUtils::Partition::sync()
+void
+CalamaresUtils::Partition::sync()
 {
     auto r = CalamaresUtils::System::runCommand( { "/sbin/udevadm", "settle" }, 10 );
 

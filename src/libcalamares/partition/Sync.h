@@ -37,13 +37,10 @@ void sync();
 /** @brief RAII class for calling sync() */
 struct Syncer
 {
-    ~Syncer()
-    {
-        sync();
-    }
+    ~Syncer() { sync(); }
 };
 
-}
-}
+}  // namespace Partition
+}  // namespace CalamaresUtils
 
 #endif
