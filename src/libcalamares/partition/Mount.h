@@ -23,6 +23,7 @@
 #include "DllMacro.h"
 
 #include <QString>
+#include <QStringList>
 
 namespace CalamaresUtils
 {
@@ -44,6 +45,14 @@ DLLEXPORT int mount( const QString& devicePath,
                      const QString& mountPoint,
                      const QString& filesystemName = QString(),
                      const QString& options = QString() );
+
+/** @brief Unmount the given @p path (device or mount point).
+ *
+ * Runs umount(8) in the host system.
+ *
+ * @returns the program's exit codeor special codes like mount().
+ */
+DLLEXPORT int unmount( const QString& path, const QStringList& options = QStringList() );
 }  // namespace Partition
 }  // namespace CalamaresUtils
 

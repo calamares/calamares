@@ -69,10 +69,19 @@ mount( const QString& devicePath, const QString& mountPoint, const QString& file
         args << "-o" << options;
     }
 
-    auto r = CalamaresUtils::System::instance()->runCommand( args, 10 );
+    auto r = CalamaresUtils::System::runCommand( args, 10 );
     sync();
     return r.getExitCode();
 }
+
+int
+unmount( const QString& path, const QStringList& options )
+{
+    auto r = CalamaresUtils::System::runCommand( QStringList { "umount" } << options << path, 10 );
+    sync();
+    return r.getExitCode();
+}
+
 
 }  // namespace Partition
 }  // namespace CalamaresUtils
