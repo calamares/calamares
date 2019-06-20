@@ -54,7 +54,7 @@ DLLEXPORT int mount( const QString& devicePath,
  */
 DLLEXPORT int unmount( const QString& path, const QStringList& options = QStringList() );
 
-DLLEXPORT class TemporaryMount
+class DLLEXPORT TemporaryMount
 {
 public:
     TemporaryMount( const QString& devicePath,

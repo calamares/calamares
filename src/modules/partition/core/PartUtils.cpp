@@ -28,6 +28,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/Mount.h"
 #include "partition/PartitionIterator.h"
 #include "partition/PartitionQuery.h"
 #include "utils/CalamaresUtilsSystem.h"
@@ -248,8 +249,8 @@ lookForFstabEntries( const QString& partitionPath )
     QTemporaryDir mountsDir;
     mountsDir.setAutoRemove( false );
 
-    int exit = QProcess::execute( "mount", { "-o", mountOptions.join(','), partitionPath, mountsDir.path() } );
-    if ( !exit ) // if all is well
+    CalamaresUtils::Partition::TemporaryMount mount( partitionPath, mountsDir.path(), QString(), mountOptions.join(',') );
+    if ( mount.isValid() )
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
 
@@ -269,9 +270,6 @@ lookForFstabEntries( const QString& partitionPath )
         }
         else
             cWarning() << "Could not read fstab from mounted fs";
-
-        if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) )
-            cWarning() << "Could not unmount" << mountsDir.path();
     }
     else
         cWarning() << "Could not mount existing fs";

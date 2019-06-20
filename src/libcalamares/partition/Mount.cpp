@@ -96,7 +96,7 @@ TemporaryMount::~TemporaryMount()
 {
     if ( m_valid )
     {
-        unmount( m_devicePath );
+        unmount( m_devicePath, { "-R" } );
     }
 }
 
