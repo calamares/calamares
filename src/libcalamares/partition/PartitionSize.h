@@ -60,11 +60,7 @@ public:
     }
     PartitionSize( const QString& );
 
-    bool
-    isValid() const
-    {
-        return ( unit() != SizeUnit::None ) && ( value() > 0 );
-    }
+    bool isValid() const { return ( unit() != SizeUnit::None ) && ( value() > 0 ); }
 
     bool operator<( const PartitionSize& other ) const;
     bool operator>( const PartitionSize& other ) const;
@@ -114,8 +110,7 @@ public:
      * be compared with each other, and all the explicit sizes (KiB, ...)
      * can be compared with each other.
      */
-    static constexpr bool
-    unitsComparable( const SizeUnit u1, const SizeUnit u2 )
+    static constexpr bool unitsComparable( const SizeUnit u1, const SizeUnit u2 )
     {
         return !( ( u1 == SizeUnit::None || u2 == SizeUnit::None )
                   || ( u1 == SizeUnit::Percent && u2 != SizeUnit::Percent )
