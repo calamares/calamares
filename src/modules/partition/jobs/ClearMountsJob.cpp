@@ -22,6 +22,7 @@
 
 #include "core/PartitionInfo.h"
 
+#include "partition/Sync.h"
 #include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
@@ -62,6 +63,7 @@ ClearMountsJob::prettyStatusMessage() const
 Calamares::JobResult
 ClearMountsJob::exec()
 {
+    CalamaresUtils::Partition::Syncer s;
     QStringList goodNews;
 
     QString deviceName = m_device->deviceNode().split( '/' ).last();
