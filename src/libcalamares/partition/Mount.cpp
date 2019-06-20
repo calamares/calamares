@@ -19,6 +19,7 @@
 
 #include "Mount.h"
 
+#include "partition/Sync.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
@@ -70,6 +71,7 @@ mount( const QString& devicePath, const QString& mountPoint, const QString& file
 
     auto r = CalamaresUtils::System::instance()->runCommand(
         CalamaresUtils::System::RunLocation::RunInHost, args, QString(), QString(), 10 );
+    sync();
     return r.getExitCode();
 }
 
