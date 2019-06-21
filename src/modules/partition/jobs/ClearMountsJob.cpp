@@ -60,14 +60,9 @@ ClearMountsJob::prettyStatusMessage() const
 }
 
 
-Calamares::JobResult
-ClearMountsJob::exec()
+QStringList
+getPartitionsForDevice( const QString& deviceName )
 {
-    CalamaresUtils::Partition::Syncer s;
-    QStringList goodNews;
-
-    QString deviceName = m_device->deviceNode().split( '/' ).last();
-
     QProcess process;
     process.setProgram( "sh" );
     process.setArguments( {
@@ -80,6 +75,21 @@ ClearMountsJob::exec()
 
     const QString partitions = process.readAllStandardOutput();
     const QStringList partitionsList = partitions.simplified().split( ' ' );
+
+    return partitionsList;
+}
+
+Calamares::JobResult
+ClearMountsJob::exec()
+{
+    CalamaresUtils::Partition::Syncer s;
+
+    QString deviceName = m_device->deviceNode().split( '/' ).last();
+
+    QStringList goodNews;
+    QProcess process;
+
+    QStringList partitionsList = getPartitionsForDevice( deviceName );
 
     // Build a list of partitions of type 82 (Linux swap / Solaris).
     // We then need to clear them just in case they contain something resumable from a
