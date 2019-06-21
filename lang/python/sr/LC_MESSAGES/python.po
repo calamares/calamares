@@ -3,13 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Slobodan Simić <slsimic@gmail.com>, 2019
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-10 19:18-0400\n"
+"POT-Creation-Date: 2019-06-18 15:54+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: Slobodan Simić <slsimic@gmail.com>, 2019\n"
 "Language-Team: Serbian (https://www.transifex.com/calamares/teams/20061/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +23,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "Подеси ГРУБ"
 
 #: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Монтирање партиција."
 
 #: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:187
 #: src/modules/initcpiocfg/main.py:191
@@ -36,7 +40,7 @@ msgstr ""
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
-msgstr ""
+msgstr "Грешка поставе"
 
 #: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
@@ -84,19 +88,19 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "Демонтирање фајл-система."
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Попуњавање фајл-система."
 
 #: src/modules/unpackfs/main.py:159
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "rsync неуспешан са кодом грешке {}."
 
 #: src/modules/unpackfs/main.py:220 src/modules/unpackfs/main.py:238
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "Неуспело распакивање одраза \"{}\""
 
 #: src/modules/unpackfs/main.py:221
 msgid ""
@@ -106,7 +110,7 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:320
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "Нема тачке мотирања за root партицију"
 
 #: src/modules/unpackfs/main.py:321
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
@@ -223,7 +227,7 @@ msgstr ""
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr ""
+msgstr "Инсталирање података."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -355,7 +359,7 @@ msgstr ""
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "Уписивање fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -367,8 +371,8 @@ msgstr ""
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr ""
+msgstr "Подешавање локалитета."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Упис поставе мреже."

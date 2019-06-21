@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Abubakaragoub Y <Abubakaryagob@gmail.com>, 2018
+# aboodilankaboot, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-10 19:18-0400\n"
+"POT-Creation-Date: 2019-06-18 15:54+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Abubakaragoub Y <Abubakaryagob@gmail.com>, 2018\n"
+"Last-Translator: aboodilankaboot, 2019\n"
 "Language-Team: Arabic (https://www.transifex.com/calamares/teams/20061/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr ""
 
 #: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "جاري تركيب الأقسام"
 
 #: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:187
 #: src/modules/initcpiocfg/main.py:191
@@ -40,7 +41,7 @@ msgstr ""
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
-msgstr ""
+msgstr "خطأ في الضبط"
 
 #: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
@@ -51,12 +52,12 @@ msgstr ""
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
-msgstr ""
+msgstr "تعديل خدمات systemd"
 
 #: src/modules/services-systemd/main.py:68
 #: src/modules/services-openrc/main.py:102
 msgid "Cannot modify service"
-msgstr ""
+msgstr "لا يمكن تعديل الخدمة"
 
 #: src/modules/services-systemd/main.py:69
 msgid ""
@@ -92,11 +93,11 @@ msgstr "الغاء تحميل ملف النظام"
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "جاري ملئ أنظمة الملفات"
 
 #: src/modules/unpackfs/main.py:159
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "فشل rsync مع رمز الخطأ {}."
 
 #: src/modules/unpackfs/main.py:220 src/modules/unpackfs/main.py:238
 msgid "Failed to unpack image \"{}\""
@@ -193,7 +194,7 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:831
 msgid "Display manager configuration was incomplete"
-msgstr ""
+msgstr "إعداد مدير العرض لم يكتمل"
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
@@ -213,7 +214,7 @@ msgstr ""
 
 #: src/modules/initcpio/main.py:47
 msgid "Process Failed"
-msgstr ""
+msgstr "العملية فشلت"
 
 #: src/modules/initcpio/main.py:48
 msgid ""
@@ -254,7 +255,7 @@ msgstr ""
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target runlevel does not exist"
-msgstr ""
+msgstr "الـ runlevel الهدف غير موجود"
 
 #: src/modules/services-openrc/main.py:111
 msgid ""
@@ -264,7 +265,7 @@ msgstr ""
 
 #: src/modules/services-openrc/main.py:119
 msgid "Target service does not exist"
-msgstr ""
+msgstr "الخدمة الهدف غير موجودة"
 
 #: src/modules/services-openrc/main.py:120
 msgid ""
@@ -313,11 +314,11 @@ msgstr[5] ""
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr ""
+msgstr "تثبيت محمل الإقلاع"
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
-msgstr ""
+msgstr "إزالة المستخدم المباشر من النظام الهدف"
 
 #: src/modules/initramfs/main.py:35
 msgid "Creating initramfs."
@@ -329,11 +330,11 @@ msgstr ""
 
 #: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "كود الخروج كان {}"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "جاري إعداد ساعة الهاردوير"
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
@@ -381,4 +382,4 @@ msgstr ""
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "جاري حفظ الإعدادات"
