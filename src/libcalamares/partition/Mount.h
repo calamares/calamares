@@ -52,7 +52,7 @@ DLLEXPORT int mount( const QString& devicePath,
  *
  * Runs umount(8) in the host system.
  *
- * @returns the program's exit codeor special codes like mount().
+ * @returns the program's exit code, or special codes like mount().
  */
 DLLEXPORT int unmount( const QString& path, const QStringList& options = QStringList() );
 
