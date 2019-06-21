@@ -60,16 +60,18 @@ class DLLEXPORT TemporaryMount
 {
 public:
     TemporaryMount( const QString& devicePath,
-                    const QString& mountPoint,
                     const QString& filesystemName = QString(),
                     const QString& options = QString() );
+    TemporaryMount( const TemporaryMount& ) = delete;
+    TemporaryMount& operator=( const TemporaryMount& ) = delete;
     ~TemporaryMount();
 
-    bool isValid() const { return m_valid; }
+    bool isValid() const { return m_d; }
+    QString path() const;
 
 private:
-    QString m_devicePath;
-    bool m_valid;
+    struct Private;
+    Private* m_d = nullptr;
 };
 
 }  // namespace Partition

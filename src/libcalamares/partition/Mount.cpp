@@ -24,6 +24,7 @@
 #include "utils/Logger.h"
 
 #include <QDir>
+#include <QTemporaryDir>
 
 namespace CalamaresUtils
 {
@@ -90,24 +91,41 @@ unmount( const QString& path, const QStringList& options )
     return r.getExitCode();
 }
 
-TemporaryMount::TemporaryMount( const QString& devicePath,
-                                const QString& mountPoint,
-                                const QString& filesystemName,
-                                const QString& options )
-    : m_devicePath( devicePath )
+struct TemporaryMount::Private
 {
-    int r = mount( m_devicePath, mountPoint, filesystemName, options );
-    m_valid = r == 0;
+    QString m_devicePath;
+    QTemporaryDir m_mountDir;
+};
+
+
+TemporaryMount::TemporaryMount( const QString& devicePath, const QString& filesystemName, const QString& options )
+    : m_d( new Private )
+{
+    m_d->m_devicePath = devicePath;
+    m_d->m_mountDir.setAutoRemove( false );
+    int r = mount( devicePath, m_d->m_mountDir.path(), filesystemName, options );
+    if ( !r )
+    {
+        delete m_d;
+        m_d = nullptr;
+    }
 }
 
 TemporaryMount::~TemporaryMount()
 {
-    if ( m_valid )
+    if ( m_d )
     {
-        unmount( m_devicePath, { "-R" } );
+        unmount( m_d->m_devicePath, { "-R" } );
+        delete m_d;
+        m_d = nullptr;
     }
 }
 
+QString
+TemporaryMount::path() const
+{
+    return m_d ? m_d->m_mountDir.path() : QString();
+}
 
 }  // namespace Partition
 }  // namespace CalamaresUtils

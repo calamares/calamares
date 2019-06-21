@@ -246,13 +246,11 @@ lookForFstabEntries( const QString& partitionPath )
         << "for fstab (fs=" << r.getOutput() << ')';
 
     FstabEntryList fstabEntries;
-    QTemporaryDir mountsDir;
-    mountsDir.setAutoRemove( false );
 
-    CalamaresUtils::Partition::TemporaryMount mount( partitionPath, mountsDir.path(), QString(), mountOptions.join(',') );
+    CalamaresUtils::Partition::TemporaryMount mount( partitionPath, QString(), mountOptions.join(',') );
     if ( mount.isValid() )
     {
-        QFile fstabFile( mountsDir.path() + "/etc/fstab" );
+        QFile fstabFile( mount.path() + "/etc/fstab" );
 
         cDebug() << Logger::SubEntry << "reading" << fstabFile.fileName();
 
