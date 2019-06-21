@@ -36,6 +36,8 @@ namespace Partition
  * @param mountPoint the full path of the target mount point.
  * @param filesystemName the name of the filesystem (optional).
  * @param options any additional options as passed to mount -o (optional).
+ *          If @p options starts with a dash (-) then it is passed unchanged
+ *          and no -o option is added; this is used in handling --bind mounts.
  * @returns the program's exit code, or:
  *             Crashed = QProcess crash
  *             FailedToStart = QProcess cannot start

@@ -58,7 +58,7 @@ mount( const QString& devicePath, const QString& mountPoint, const QString& file
         }
     }
 
-    QStringList args = { "mount", devicePath, mountPoint };
+    QStringList args = { "mount" };
 
     if ( !filesystemName.isEmpty() )
     {
@@ -66,8 +66,16 @@ mount( const QString& devicePath, const QString& mountPoint, const QString& file
     }
     if ( !options.isEmpty() )
     {
-        args << "-o" << options;
+        if ( options.startsWith( '-' ) )
+        {
+            args << options;
+        }
+        else
+        {
+            args << "-o" << options;
+        }
     }
+    args << devicePath << mountPoint;
 
     auto r = CalamaresUtils::System::runCommand( args, 10 );
     sync();
