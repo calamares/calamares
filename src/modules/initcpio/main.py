@@ -32,7 +32,7 @@ _ = gettext.translation("calamares-python",
                         fallback=True).gettext
 
 def pretty_name():
-    return _("Creating initramfs based with mkinitcpio.")
+    return _("Creating initramfs with mkinitcpio.")
 
 def run():
     """ Calls routine to create kernel initramfs image.
