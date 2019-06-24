@@ -32,31 +32,20 @@ getPartitionsForDevice( const QString& deviceName );
 QStringList
 getPartitionsForDevice_other(const QString& deviceName)
 {
-    QStringList partitions;
+    QProcess process;
+    process.setProgram( "sh" );
+    process.setArguments( {
+                              "-c",
+                              QString( "echo $(awk '{print $4}' /proc/partitions | sed -e '/name/d' -e '/^$/d' -e '/[1-9]/!d' | grep %1)" )
+                                      .arg( deviceName )
+                          } );
+    process.start();
+    process.waitForFinished();
 
-    QFile dev_partitions( "/proc/partitions" );
-    if ( dev_partitions.open( QFile::ReadOnly ) )
-    {
-        cDebug() << "Reading from" << dev_partitions.fileName();
-        QTextStream in( &dev_partitions );
-        (void) in.readLine();  // That's the header line, skip it
-        while ( !in.atEnd() )
-        {
-            // The fourth column (index from 0, so index 3) is the name of the device;
-            // keep it if it is followed by something.
-            QStringList columns = in.readLine().split( ' ', QString::SkipEmptyParts );
-            if ( ( columns.count() >= 4 ) && ( columns[3].startsWith( deviceName ) )  && ( columns[3] != deviceName ) )
-            {
-                partitions.append( columns[3] );
-            }
-        }
-    }
-    else
-    {
-        cDebug() << "Could not open" << dev_partitions.fileName();
-    }
+    const QString partitions = process.readAllStandardOutput();
+    const QStringList partitionsList = partitions.simplified().split( ' ' );
 
-    return partitions;
+    return partitionsList;
 }
 
 
