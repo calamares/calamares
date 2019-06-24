@@ -72,7 +72,8 @@ private:
     QueueRunner m_runner;
 
     void queuePartitionTableCreation( PartitionTable::TableType type );
-    CreatePartitionJob* newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole, FileSystem::Type type, qint64 size );
+    CreatePartitionJob*
+    newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole, FileSystem::Type type, qint64 size );
     void refreshDevice();
 };
 
