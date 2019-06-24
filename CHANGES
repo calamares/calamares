@@ -31,6 +31,11 @@ require changes in the slideshow.
 
 ## Modules ##
 
+ - *initramfs* has been changed from a Python module to a C++ module.
+   Packaging will need to adjust now it installs a .so instead of a .py.
+   The module itself functions as before. It does have a new configuration
+   option, to change the version passed as to the `-k` option of
+   update-initramfs. #1180
  - *partition* Now has its own setting for *requiredStorage*, duplicating
    the same setting in the *welcome* module. This is useful for
    configurations where no *welcome* module is used, but a minimum
