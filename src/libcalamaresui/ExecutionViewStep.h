@@ -69,11 +69,11 @@ private:
     QLabel* m_label;
     QQuickWidget* m_qmlShow;
     QQmlComponent* m_qmlComponent;
-    QQuickItem* m_qmlObject;  //< The actual show
+    QQuickItem* m_qmlObject;  ///< The actual show
 
     QStringList m_jobInstanceKeys;
 
-    void loadQmlV2();  //< Loads the slideshow QML (from branding) for API version 2
+    void loadQmlV2();  ///< Loads the slideshow QML (from branding) for API version 2
     void updateFromJobQueue( qreal percent, const QString& message );
 };
 
