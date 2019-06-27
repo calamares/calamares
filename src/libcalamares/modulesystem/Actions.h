@@ -29,6 +29,6 @@ enum class ModuleAction : char
     Exec
 };
 
-}  // namespace
+}  // namespace Calamares
 
 #endif
