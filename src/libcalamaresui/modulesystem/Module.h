@@ -66,8 +66,8 @@ public:
      */
     enum class Interface
     {
-        QtPlugin, // Jobs or Views
-        Python,   // Jobs only
+        QtPlugin,  // Jobs or Views
+        Python,  // Jobs only
         Process,  // Deprecated interface
         PythonQt  // Views only, available as enum even if PythonQt isn't used
     };
@@ -141,10 +141,7 @@ public:
      * @brief isLoaded reports on the loaded status of a module.
      * @return true if the module's loading phase has finished, otherwise false.
      */
-    bool isLoaded() const
-    {
-        return m_loaded;
-    }
+    bool isLoaded() const { return m_loaded; }
 
     /**
      * @brief loadSelf initialized the module.
@@ -161,10 +158,7 @@ public:
      * are not run (in the common case where there is only
      * one exec block, this doesn't really matter).
      */
-    bool isEmergency() const
-    {
-        return m_emergency;
-    }
+    bool isEmergency() const { return m_emergency; }
 
     /**
      * @brief jobs returns any jobs exposed by this module.
@@ -194,16 +188,15 @@ protected:
     bool m_maybe_emergency = false;  // Based on the module.desc
 
 private:
-    void loadConfigurationFile( const QString& configFileName ); //throws YAML::Exception
+    void loadConfigurationFile( const QString& configFileName );  //throws YAML::Exception
 
     QString m_name;
     QString m_directory;
     QString m_instanceId;
 
-    friend void ::operator>>( const QVariantMap& moduleDescriptor,
-                              Calamares::Module* m );
+    friend void ::operator>>( const QVariantMap& moduleDescriptor, Calamares::Module* m );
 };
 
-}
+}  // namespace Calamares
 
-#endif // CALAMARES_MODULE_H
+#endif  // CALAMARES_MODULE_H

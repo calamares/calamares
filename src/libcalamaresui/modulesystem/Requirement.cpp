@@ -16,4 +16,3 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "Requirement.h"
-

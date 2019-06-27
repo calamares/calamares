@@ -45,7 +45,9 @@ void
 PythonJobModule::loadSelf()
 {
     if ( m_loaded )
+    {
         return;
+    }
 
     m_job = Calamares::job_ptr( new PythonJob( m_scriptFileName, m_workingPath, m_configurationMap ) );
     m_loaded = true;
@@ -67,17 +69,19 @@ PythonJobModule::initFrom( const QVariantMap& moduleDescriptor )
     m_workingPath = directory.absolutePath();
 
     if ( !moduleDescriptor.value( "script" ).toString().isEmpty() )
+    {
         m_scriptFileName = moduleDescriptor.value( "script" ).toString();
+    }
 }
 
 
 PythonJobModule::PythonJobModule()
     : Module()
-{}
+{
+}
 
 
-PythonJobModule::~PythonJobModule()
-{}
+PythonJobModule::~PythonJobModule() {}
 
 
-} // namespace Calamares
+}  // namespace Calamares

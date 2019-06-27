@@ -19,9 +19,9 @@
 
 #include "CppJobModule.h"
 
-#include "utils/PluginFactory.h"
-#include "utils/Logger.h"
 #include "CppJob.h"
+#include "utils/Logger.h"
+#include "utils/PluginFactory.h"
 
 #include <QDir>
 #include <QPluginLoader>
@@ -62,10 +62,10 @@ CppJobModule::loadSelf()
             cDebug() << Q_FUNC_INFO << m_loader->errorString();
             return;
         }
-//        cDebug() << "CppJobModule loading self for instance" << instanceKey()
-//                 << "\nCppJobModule at address" << this
-//                 << "\nCalamares::PluginFactory at address" << pf
-//                 << "\nCppJob at address" << cppJob;
+        //        cDebug() << "CppJobModule loading self for instance" << instanceKey()
+        //                 << "\nCppJobModule at address" << this
+        //                 << "\nCalamares::PluginFactory at address" << pf
+        //                 << "\nCppJob at address" << cppJob;
 
         cppJob->setModuleInstanceKey( instanceKey() );
         cppJob->setConfigurationMap( m_configurationMap );
@@ -97,7 +97,7 @@ CppJobModule::initFrom( const QVariantMap& moduleDescriptor )
     // If a load path is not specified, we look for a plugin to load in the directory.
     if ( load.isEmpty() || !QLibrary::isLibrary( load ) )
     {
-        const QStringList ls = directory.entryList( QStringList{ "*.so" } );
+        const QStringList ls = directory.entryList( QStringList { "*.so" } );
         if ( !ls.isEmpty() )
         {
             for ( QString entry : ls )
@@ -126,4 +126,4 @@ CppJobModule::~CppJobModule()
     delete m_loader;
 }
 
-} // namespace Calamares
+}  // namespace Calamares

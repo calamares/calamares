@@ -91,7 +91,7 @@ public:
 signals:
     void initDone();
     void modulesLoaded();  /// All of the modules were loaded successfully
-    void modulesFailed( QStringList );   /// .. or not
+    void modulesFailed( QStringList );  /// .. or not
     // Below, see RequirementsChecker documentation
     void requirementsComplete( bool );
     void requirementsResult( RequirementsList );
@@ -129,6 +129,6 @@ private:
     static ModuleManager* s_instance;
 };
 
-}
+}  // namespace Calamares
 
-#endif // MODULELOADER_H
+#endif  // MODULELOADER_H

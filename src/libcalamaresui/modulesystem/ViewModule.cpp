@@ -19,10 +19,10 @@
 
 #include "ViewModule.h"
 
-#include "utils/PluginFactory.h"
-#include "utils/Logger.h"
-#include "viewpages/ViewStep.h"
 #include "ViewManager.h"
+#include "utils/Logger.h"
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
 #include <QDir>
 #include <QPluginLoader>
@@ -75,7 +75,9 @@ ViewModule::loadSelf()
         cDebug() << "ViewModule" << instanceKey() << "loading complete.";
     }
     else
+    {
         cWarning() << Q_FUNC_INFO << "No view step was created";
+    }
 }
 
 
@@ -100,7 +102,7 @@ ViewModule::initFrom( const QVariantMap& moduleDescriptor )
     // If a load path is not specified, we look for a plugin to load in the directory.
     if ( load.isEmpty() || !QLibrary::isLibrary( load ) )
     {
-        const QStringList ls = directory.entryList( QStringList{ "*.so" } );
+        const QStringList ls = directory.entryList( QStringList { "*.so" } );
         if ( !ls.isEmpty() )
         {
             for ( QString entry : ls )
@@ -135,4 +137,4 @@ ViewModule::checkRequirements()
     return m_viewStep->checkRequirements();
 }
 
-} // namespace Calamares
+}  // namespace Calamares

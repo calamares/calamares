@@ -20,15 +20,15 @@
 
 #include "PythonQtViewModule.h"
 
-#include "utils/Logger.h"
-#include "viewpages/ViewStep.h"
-#include "viewpages/PythonQtViewStep.h"
-#include "ViewManager.h"
 #include "CalamaresConfig.h"
-#include "viewpages/PythonQtGlobalStorageWrapper.h"
-#include "viewpages/PythonQtUtilsWrapper.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "ViewManager.h"
+#include "utils/Logger.h"
+#include "viewpages/PythonQtGlobalStorageWrapper.h"
+#include "viewpages/PythonQtUtilsWrapper.h"
+#include "viewpages/PythonQtViewStep.h"
+#include "viewpages/ViewStep.h"
 
 #include <PythonQt.h>
 #include <PythonQt_QtAll.h>
@@ -65,11 +65,12 @@ PythonQtViewModule::loadSelf()
         if ( PythonQt::self() == nullptr )
         {
             if ( Py_IsInitialized() )
-                PythonQt::init( PythonQt::IgnoreSiteModule |
-                                PythonQt::RedirectStdOut |
-                                PythonQt::PythonAlreadyInitialized );
+                PythonQt::init( PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut
+                                | PythonQt::PythonAlreadyInitialized );
             else
+            {
                 PythonQt::init();
+            }
 
             PythonQt_QtAll::init();
             cDebug() << "Initializing PythonQt bindings."
@@ -81,8 +82,7 @@ PythonQtViewModule::loadSelf()
 
             // We only do the following to force PythonQt to create a submodule
             // "calamares" for us to put our static objects in
-            PythonQt::self()->registerClass( &::GlobalStorage::staticMetaObject,
-                                             "calamares" );
+            PythonQt::self()->registerClass( &::GlobalStorage::staticMetaObject, "calamares" );
 
             // Get a PythonQtObjectPtr to the PythonQt.calamares submodule
             PythonQtObjectPtr pqtm = PythonQt::priv()->pythonQtModule();
@@ -90,39 +90,34 @@ PythonQtViewModule::loadSelf()
 
             // Prepare GlobalStorage object, in module PythonQt.calamares
             if ( !s_gs )
+            {
                 s_gs = new ::GlobalStorage( Calamares::JobQueue::instance()->globalStorage() );
+            }
             cala.addObject( "global_storage", s_gs );
 
             // Prepare Utils object, in module PythonQt.calamares
             if ( !s_utils )
+            {
                 s_utils = new ::Utils( Calamares::JobQueue::instance()->globalStorage() );
+            }
             cala.addObject( "utils", s_utils );
 
             // Append configuration object, in module PythonQt.calamares
             cala.addVariable( "configuration", m_configurationMap );
 
             // Basic stdout/stderr handling
-            QObject::connect( PythonQt::self(), &PythonQt::pythonStdOut,
-                []( const QString& message )
-                {
-                    cDebug() << "PythonQt OUT>" << message;
-                }
-            );
-            QObject::connect( PythonQt::self(), &PythonQt::pythonStdErr,
-                []( const QString& message )
-                {
-                    cDebug() << "PythonQt ERR>" << message;
-                }
-            );
+            QObject::connect( PythonQt::self(), &PythonQt::pythonStdOut, []( const QString& message ) {
+                cDebug() << "PythonQt OUT>" << message;
+            } );
+            QObject::connect( PythonQt::self(), &PythonQt::pythonStdErr, []( const QString& message ) {
+                cDebug() << "PythonQt ERR>" << message;
+            } );
         }
 
         QDir workingDir( m_workingPath );
         if ( !workingDir.exists() )
         {
-            cDebug() << "Invalid working directory"
-                     << m_workingPath
-                     << "for module"
-                     << name();
+            cDebug() << "Invalid working directory" << m_workingPath << "for module" << name();
             return;
         }
 
@@ -130,23 +125,15 @@ PythonQtViewModule::loadSelf()
         QFileInfo scriptFileInfo( fullPath );
         if ( !scriptFileInfo.isReadable() )
         {
-            cDebug() << "Invalid main script file path"
-                     << fullPath
-                     << "for module"
-                     << name();
+            cDebug() << "Invalid main script file path" << fullPath << "for module" << name();
             return;
         }
 
         // Construct empty Python module with the given name
-        PythonQtObjectPtr cxt =
-            PythonQt::self()->
-            createModuleFromScript( name() );
+        PythonQtObjectPtr cxt = PythonQt::self()->createModuleFromScript( name() );
         if ( cxt.isNull() )
         {
-            cDebug() << "Cannot load PythonQt context from file"
-                     << fullPath
-                     << "for module"
-                     << name();
+            cDebug() << "Cannot load PythonQt context from file" << fullPath << "for module" << name();
             return;
         }
 
@@ -165,9 +152,8 @@ PythonQtViewModule::loadSelf()
 
         m_viewStep = new PythonQtViewStep( cxt );
 
-        cDebug() << "PythonQtViewModule loading self for instance" << instanceKey()
-                 << "\nPythonQtViewModule at address" << this
-                 << "\nViewStep at address" << m_viewStep;
+        cDebug() << "PythonQtViewModule loading self for instance" << instanceKey() << "\nPythonQtViewModule at address"
+                 << this << "\nViewStep at address" << m_viewStep;
 
         m_viewStep->setModuleInstanceKey( instanceKey() );
         m_viewStep->setConfigurationMap( m_configurationMap );
@@ -193,7 +179,9 @@ PythonQtViewModule::initFrom( const QVariantMap& moduleDescriptor )
     m_workingPath = directory.absolutePath();
 
     if ( !moduleDescriptor.value( "script" ).toString().isEmpty() )
+    {
         m_scriptFileName = moduleDescriptor.value( "script" ).toString();
+    }
 }
 
 PythonQtViewModule::PythonQtViewModule()
@@ -201,8 +189,6 @@ PythonQtViewModule::PythonQtViewModule()
 {
 }
 
-PythonQtViewModule::~PythonQtViewModule()
-{
-}
+PythonQtViewModule::~PythonQtViewModule() {}
 
-} // namespace Calamares
+}  // namespace Calamares
