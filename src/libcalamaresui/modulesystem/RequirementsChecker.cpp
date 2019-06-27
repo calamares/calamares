@@ -90,6 +90,7 @@ RequirementsChecker::run()
     {
         Watcher* watcher = new Watcher( this );
         watcher->setFuture( QtConcurrent::run( check, module, this ) );
+        watcher->setObjectName( module->name() );
         m_watchers.append( watcher );
         connect( watcher, &Watcher::finished, this, &RequirementsChecker::finished );
     }
@@ -149,10 +150,19 @@ RequirementsChecker::reportProgress()
 {
     m_progressTimeouts++;
 
-    auto remaining = std::count_if(
-        m_watchers.cbegin(), m_watchers.cend(), []( const Watcher* w ) { return w && !w->isFinished(); } );
+    QStringList remainingNames;
+    auto remaining = std::count_if( m_watchers.cbegin(), m_watchers.cend(),
+        [&]( const Watcher* w ) {
+        if ( w && !w->isFinished() )
+        {
+            remainingNames << w->objectName();
+            return true;
+        }
+        return false;
+    } );
     if ( remaining > 0 )
     {
+        cDebug() << "Remaining modules:" << remaining << Logger::DebugList( remainingNames );
         unsigned int posInterval = ( m_progressTimer->interval() < 0 ) ? 1000 : uint( m_progressTimer->interval() );
         QString waiting = tr( "Waiting for %n module(s).", "", remaining );
         QString elapsed = tr( "(%n second(s))", "", m_progressTimeouts * posInterval / 1000 );
