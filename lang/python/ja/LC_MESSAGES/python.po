@@ -5,8 +5,8 @@
 # 
 # Translators:
 # UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019
-# Takefumi Nagata, 2019
 # ブラシックデービッド, 2019
+# Takefumi Nagata, 2019
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-18 15:54+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: ブラシックデービッド, 2019\n"
+"Last-Translator: Takefumi Nagata, 2019\n"
 "Language-Team: Japanese (https://www.transifex.com/calamares/teams/20061/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr "GRUBを設定にします。"
 
 #: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "パーティションのマウント。"
 
 #: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:187
 #: src/modules/initcpiocfg/main.py:191
@@ -207,7 +207,7 @@ msgstr "mkinitcpioを設定中"
 #: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:317
 #: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr " <pre>{!s}</pre> を使用するのにルートマウントポイントが与えられていません。"
 
 #: src/modules/initcpio/main.py:33
 msgid "Creating initramfs with mkinitcpio."
@@ -222,6 +222,7 @@ msgid ""
 "Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
 "<pre>{!s}</pre>."
 msgstr ""
+"<pre>mkinitcpio</pre> プロセスがエラーコード {!s} により失敗しました。 コマンドは <pre>{!s}</pre>でした。"
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
@@ -309,7 +310,7 @@ msgstr "ブートローダーをインストール"
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
-msgstr ""
+msgstr "ターゲットシステムからliveユーザーを消去"
 
 #: src/modules/initramfs/main.py:35
 msgid "Creating initramfs."
@@ -317,7 +318,7 @@ msgstr "initramfsを作成中"
 
 #: src/modules/initramfs/main.py:49
 msgid "Failed to run update-initramfs on the target"
-msgstr ""
+msgstr "ターゲット上の initramfs のアップデートに失敗"
 
 #: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
 msgid "The exit code was {}"
@@ -325,7 +326,7 @@ msgstr "停止コードは {} でした"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "ハードウェアクロックの設定"
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
@@ -333,7 +334,7 @@ msgstr "dracutとinitramfsを作成中"
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "ターゲット上で dracut の実行に失敗"
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
@@ -353,7 +354,7 @@ msgstr "暗号化したrootfsセットアップエラー"
 
 #: src/modules/luksbootkeyfile/main.py:75
 msgid "Rootfs partition {!s} is LUKS but no passphrase found."
-msgstr ""
+msgstr "Rootfs のパーティションは {!s}  LUKS ですが、パスフレーズが見つかりません。"
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
