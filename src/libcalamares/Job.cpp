@@ -97,6 +97,13 @@ Job::~Job()
 {}
 
 
+qreal
+Job::getJobWeight() const
+{
+    return qreal( 1.0 );
+}
+
+
 QString
 Job::prettyDescription() const
 {
