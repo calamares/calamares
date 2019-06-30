@@ -35,7 +35,9 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QMetaObject>
+#include <QRegularExpression>
 #include <QTcpSocket>
+#include <QUrl>
 
 namespace Calamares
 {
@@ -288,12 +290,21 @@ quint16 fichePort = 9999;           // TODO: config var
 
         cDebug() << "Reading response from paste server";
 
-        char resp[1024];
-        socket->readLine(resp, 1024);
+        char resp[1024]; resp[0] = '\0';
+        qint64 nBytesRead = socket->readLine(resp, 1024);
         socket->close();
 
-        QString pasteUrl = QString( resp ) ;
-        QString pasteUrlMsg = QString( pasteUrlFmt ).arg( pasteUrl );
+        QUrl pasteUrl = QUrl( QString( resp ).trimmed(), QUrl::StrictMode );
+        QString pasteUrlStr = pasteUrl.toString() ;
+        QRegularExpression pasteUrlRegex( "^http[s]?://" + ficheHost );
+        QString pasteUrlMsg = QString( pasteUrlFmt ).arg( pasteUrlStr );
+
+        if ( nBytesRead < 8 || !pasteUrl.isValid() ||
+             !pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
+        {
+            cError() << "No data from paste server";
+            return;
+        }
 
         cDebug() << pasteUrlMsg;
 
