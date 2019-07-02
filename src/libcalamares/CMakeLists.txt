@@ -147,7 +147,7 @@ install( FILES ${utilsHeaders}                      DESTINATION include/libcalam
 #
 if ( ECM_FOUND AND BUILD_TESTING )
     ecm_add_test(
-            Tests.cpp
+            utils/Tests.cpp
         TEST_NAME
             libcalamarestest
         LINK_LIBRARIES

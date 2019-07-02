@@ -18,9 +18,9 @@
 
 #include "Tests.h"
 
-#include "utils/CalamaresUtilsSystem.h"
-#include "utils/Logger.h"
-#include "utils/Yaml.h"
+#include "CalamaresUtilsSystem.h"
+#include "Logger.h"
+#include "Yaml.h"
 
 #include <QTemporaryFile>
 
@@ -28,13 +28,9 @@
 
 QTEST_GUILESS_MAIN( LibCalamaresTests )
 
-LibCalamaresTests::LibCalamaresTests()
-{
-}
+LibCalamaresTests::LibCalamaresTests() {}
 
-LibCalamaresTests::~LibCalamaresTests()
-{
-}
+LibCalamaresTests::~LibCalamaresTests() {}
 
 void
 LibCalamaresTests::initTestCase()
@@ -46,9 +42,9 @@ LibCalamaresTests::testDebugLevels()
 {
     Logger::setupLogLevel( Logger::LOG_DISABLE );
 
-    QCOMPARE( Logger::logLevel(), static_cast<unsigned int>( Logger::LOG_DISABLE ) );
+    QCOMPARE( Logger::logLevel(), static_cast< unsigned int >( Logger::LOG_DISABLE ) );
 
-    for ( unsigned int level = 0; level <= Logger::LOGVERBOSE ; ++level )
+    for ( unsigned int level = 0; level <= Logger::LOGVERBOSE; ++level )
     {
         Logger::setupLogLevel( level );
         QCOMPARE( Logger::logLevel(), level );
@@ -67,7 +63,9 @@ LibCalamaresTests::testLoadSaveYaml()
     QFile f( "settings.conf" );
     // Find the nearest settings.conf to read
     for ( unsigned int up = 0; !f.exists() && ( up < 4 ); ++up )
+    {
         f.setFileName( QString( "../" ) + f.fileName() );
+    }
     cDebug() << QDir().absolutePath() << f.fileName() << f.exists();
     QVERIFY( f.exists() );
 
@@ -75,7 +73,7 @@ LibCalamaresTests::testLoadSaveYaml()
     CalamaresUtils::saveYaml( "out.yaml", map );
 
     auto other_map = CalamaresUtils::loadYaml( "out.yaml" );
-    CalamaresUtils::saveYaml(" out2.yaml", other_map );
+    CalamaresUtils::saveYaml( " out2.yaml", other_map );
     QCOMPARE( map, other_map );
 
     QFile::remove( "out.yaml" );
@@ -121,10 +119,7 @@ void
 LibCalamaresTests::testCommands()
 {
     using CalamaresUtils::System;
-    auto r = System::runCommand(
-        System::RunLocation::RunInHost,
-        { "/bin/ls", "/tmp" }
-        );
+    auto r = System::runCommand( System::RunLocation::RunInHost, { "/bin/ls", "/tmp" } );
 
     QVERIFY( r.getExitCode() == 0 );
 
@@ -136,25 +131,13 @@ LibCalamaresTests::testCommands()
     QVERIFY( !r.getOutput().contains( tfn.fileName() ) );
 
     // Run ls again, now that the file exists
-    r = System::runCommand(
-        System::RunLocation::RunInHost,
-        { "/bin/ls", "/tmp" }
-        );
+    r = System::runCommand( System::RunLocation::RunInHost, { "/bin/ls", "/tmp" } );
     QVERIFY( r.getOutput().contains( tfn.fileName() ) );
 
     // .. and without a working directory set, assume builddir != /tmp
-    r = System::runCommand(
-        System::RunLocation::RunInHost,
-        { "/bin/ls" }
-        );
+    r = System::runCommand( System::RunLocation::RunInHost, { "/bin/ls" } );
     QVERIFY( !r.getOutput().contains( tfn.fileName() ) );
 
-    r = System::runCommand(
-        System::RunLocation::RunInHost,
-        { "/bin/ls" },
-        "/tmp"
-        );
+    r = System::runCommand( System::RunLocation::RunInHost, { "/bin/ls" }, "/tmp" );
     QVERIFY( r.getOutput().contains( tfn.fileName() ) );
-
-
 }
