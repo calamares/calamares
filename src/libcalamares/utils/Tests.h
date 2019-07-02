@@ -36,6 +36,9 @@ private Q_SLOTS:
     void testLoadSaveYamlExtended();  // Do a find() in the src dir
 
     void testCommands();
+
+    /** @brief Test that all the UMask objects work correctly. */
+    void testUmask();
 };
 
 #endif

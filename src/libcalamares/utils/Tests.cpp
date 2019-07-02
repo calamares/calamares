@@ -20,11 +20,16 @@
 
 #include "CalamaresUtilsSystem.h"
 #include "Logger.h"
+#include "UMask.h"
 #include "Yaml.h"
 
 #include <QTemporaryFile>
 
 #include <QtTest/QtTest>
+
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 QTEST_GUILESS_MAIN( LibCalamaresTests )
 
@@ -140,4 +145,32 @@ LibCalamaresTests::testCommands()
 
     r = System::runCommand( System::RunLocation::RunInHost, { "/bin/ls" }, "/tmp" );
     QVERIFY( r.getOutput().contains( tfn.fileName() ) );
+}
+
+void
+LibCalamaresTests::testUmask()
+{
+    struct stat mystat;
+
+    QTemporaryFile ft;
+    QVERIFY( ft.open() );
+
+    mode_t m = CalamaresUtils::setUMask( 022 );
+    QCOMPARE( CalamaresUtils::setUMask( m ), m );
+
+    for ( int i = 0; i <= 0777 /* octal! */; ++i )
+    {
+        QByteArray name = ( ft.fileName() + QChar( '.' ) + QString::number( i, 8 ) ).toLatin1();
+        CalamaresUtils::UMask um( i );
+        int fd = creat( name, 0777 );
+        QVERIFY( fd >= 0 );
+        close( fd );
+        QFileInfo fi( name );
+        QVERIFY( fi.exists() );
+        QCOMPARE( stat( name, &mystat ), 0 );
+        QCOMPARE( mystat.st_mode & 0777, 0777 & ~i );
+        QCOMPARE( unlink( name ), 0 );
+    }
+    QCOMPARE( CalamaresUtils::setUMask( 022 ), m );
+    QCOMPARE( CalamaresUtils::setUMask( m ), 022 );
 }
