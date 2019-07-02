@@ -6,10 +6,30 @@ website will have to do for older versions.
 # 3.2.11 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - No other contributors this time around.
+
+This is a security release with no functional changes (except for
+improved security) relative to 3.2.10. The Calamares team would like
+to acknowledge the help of the following people in reporting and
+understanding the issues (alphabetically by first name):
+ - Kevin Kofler
+ - Seth Arnold
+ - Simon Quigley
+ - Thomas Ward
+
 
 ## Core ##
 
+No core changes.
+
 ## Modules ##
+
+ - *initramfs* could create an initramfs with insecure permissions.
+   Since the keyfile is included in the initramfs, an attacker could
+   read the file from the initramfs. #1190
+ - *luksbootkeyfile* created a key file where a window of opportunity
+   existed where the key file could have too-lax file permissions.
+   #1191 CVE-2019-13179
 
 
 # 3.2.10 (2019-06-28) #
