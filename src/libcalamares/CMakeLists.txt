@@ -46,6 +46,7 @@ set( libSources
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
     utils/String.cpp
+    utils/UMask.cpp
     utils/Variant.cpp
     utils/Yaml.cpp
 )
