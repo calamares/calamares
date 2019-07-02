@@ -20,6 +20,7 @@
 
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/UMask.h"
 #include "utils/Variant.h"
 
 InitramfsJob::InitramfsJob( QObject* parent )
@@ -40,6 +41,8 @@ InitramfsJob::prettyName() const
 Calamares::JobResult
 InitramfsJob::exec()
 {
+    CalamaresUtils::UMask( CalamaresUtils::UMask::Safe );
+
     cDebug() << "Updating initramfs with kernel" << m_kernel;
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
         { "update-initramfs", "-k", m_kernel, "-c", "-t" }, QString(), QString(), 10 );
