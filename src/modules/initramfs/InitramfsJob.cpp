@@ -45,7 +45,7 @@ InitramfsJob::exec()
 
     cDebug() << "Updating initramfs with kernel" << m_kernel;
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "update-initramfs", "-k", m_kernel, "-c", "-t" }, QString(), QString(), 10 );
+        { "update-initramfs", "-k", m_kernel, "-c", "-t" }, QString(), QString(), 120 );
     return r.explainProcess( "update-initramfs", 10 );
 }
 
