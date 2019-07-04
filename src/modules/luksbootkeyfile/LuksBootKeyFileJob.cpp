@@ -20,6 +20,7 @@
 
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/UMask.h"
 #include "utils/Variant.h"
 
 #include "GlobalStorage.h"
@@ -111,6 +112,7 @@ static const char keyfile[] = "/crypto_keyfile.bin";
 static bool
 generateTargetKeyfile()
 {
+    CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
         { "dd", "bs=512", "count=4", "if=/dev/urandom", QString( "of=%1" ).arg( keyfile ) } );
     if ( r.getExitCode() != 0 )
