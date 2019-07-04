@@ -106,6 +106,18 @@ struct LuksDeviceList
     bool valid;
 };
 
+static bool
+generateTargetKeyfile()
+{
+    return false;
+}
+
+static bool
+setupLuks( const LuksDevice& d )
+{
+    return false;
+}
+
 Calamares::JobResult
 LuksBootKeyFileJob::exec()
 {
@@ -117,17 +129,60 @@ LuksBootKeyFileJob::exec()
     }
     if ( !gs->contains( "partitions" ) )
     {
+        cError() << "No GS[partitions] key.";
         return Calamares::JobResult::internalError(
-            "LukeBootKeyFile",
-            tr( "No partitions are defined for LUKS to use." ).arg( "luksbootkeyfile" ),
-            Calamares::JobResult::InvalidConfiguration );
+            "LukeBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
     }
 
     LuksDeviceList s( gs->value( "partitions" ) );
-    cDebug() << "There are" << s.devices.count() << "LUKS partitions";
-    for ( const auto& p : s.devices )
+    if ( !s.valid )
     {
-        cDebug() << Logger::SubEntry << p.isRoot << p.device << p.passphrase;
+        cError() << "GS[partitions] is invalid";
+        return Calamares::JobResult::internalError(
+            "LukeBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
+    }
+
+    cDebug() << "There are" << s.devices.count() << "LUKS partitions";
+    if ( s.devices.count() < 1 )
+    {
+        cDebug() << Logger::SubEntry << "Nothing to do for LUKS.";
+        return Calamares::JobResult::ok();
+    }
+
+    auto it = std::partition( s.devices.begin(), s.devices.end(), []( const LuksDevice& d ) { return d.isRoot; } );
+    for ( const auto& d : s.devices )
+    {
+        cDebug() << Logger::SubEntry << d.isRoot << d.device << d.passphrase;
+    }
+
+    if ( it == s.devices.begin() )
+    {
+        // Then there was no root partition
+        cDebug() << Logger::SubEntry << "No root partition.";
+        return Calamares::JobResult::ok();
+    }
+
+    if ( s.devices.first().passphrase.isEmpty() )
+    {
+        cDebug() << Logger::SubEntry << "No root passphrase.";
+        return Calamares::JobResult::error(
+            tr( "Encrypted rootfs setup error" ),
+            tr( "Root partition %1 is LUKS but no passphrase has been set." ).arg( s.devices.first().device ) );
+    }
+
+    if ( !generateTargetKeyfile() )
+    {
+        return Calamares::JobResult::error(
+            tr( "Encrypted rootfs setup error" ),
+            tr( "Could not create LUKS key file for root partition %1." ).arg( s.devices.first().device ) );
+    }
+
+    for ( const auto& d : s.devices )
+    {
+        if ( !setupLuks( d ) )
+            return Calamares::JobResult::error(
+                tr( "Encrypted rootfs setup error" ),
+                tr( "Could configure LUKS key file on partition %1." ).arg( d.device ) );
     }
 
     return Calamares::JobResult::ok();
