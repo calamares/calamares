@@ -41,7 +41,7 @@ InitramfsJob::prettyName() const
 Calamares::JobResult
 InitramfsJob::exec()
 {
-    CalamaresUtils::UMask( CalamaresUtils::UMask::Safe );
+    CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
 
     cDebug() << "Updating initramfs with kernel" << m_kernel;
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
