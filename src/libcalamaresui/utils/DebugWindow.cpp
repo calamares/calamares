@@ -223,7 +223,7 @@ DebugWindow::DebugWindow()
              {
                  for ( auto* w : qApp->topLevelWidgets() )
                  {
-                     auto deb = cDebug();
+                     Logger::CDebug deb;
                      dumpWidgetTree( deb, w, 0 );
                  }
              });
