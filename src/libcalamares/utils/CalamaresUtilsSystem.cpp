@@ -152,7 +152,7 @@ System::runCommand(
     const QStringList& args,
     const QString& workingPath,
     const QString& stdInput,
-    int timeoutSec )
+    std::chrono::seconds timeoutSec )
 {
     QString output;
 
