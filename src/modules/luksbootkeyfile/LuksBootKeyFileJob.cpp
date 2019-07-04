@@ -49,7 +49,37 @@ struct GlobalSettings
     GlobalSettings( const QVariant& partitions )
         : valid( false )
     {
-        cDebug() << partitions;
+        if ( partitions.canConvert<QVariantList>() )
+        {
+            filesystems = getPartitionInfo( partitions.toList() );
+            valid = true;
+        }
+    }
+
+    /** @brief Extract the luks passphrases setup.
+     *
+     * Given a list of partitions (as set up by the partitioning module,
+     * so there's maps with keys inside), returns just the list of
+     * luks passphrases for each device.
+     */
+    static QList< LuksPassphrase > getPartitionInfo( const QVariantList& list )
+    {
+        int count = 0;
+        for( const auto& p : list )
+        {
+            if ( p.canConvert< QVariantMap>() )
+            {
+                auto pinfo = p.toMap();
+                QString device = pinfo["device"].toString();
+                QString fs = pinfo["fs"].toString();
+                QString mountPoint = pinfo["mountPoint"].toString();
+                QString uuid = pinfo["uuid"].toString();
+
+                cDebug() << count << "D=" << device << mountPoint << '(' << fs << ')';
+            }
+            count++;
+        }
+        return QList< LuksPassphrase >();
     }
 
     QList< LuksPassphrase > filesystems;
@@ -69,7 +99,7 @@ LuksBootKeyFileJob::exec()
     {
         return Calamares::JobResult::internalError(
             "LukeBootKeyFile",
-            tr( "No partitions are defined for <pre>%1</pre> to use." ).arg( "luksbootkeyfile" ),
+            tr( "No partitions are defined for LUKS to use." ).arg( "luksbootkeyfile" ),
             Calamares::JobResult::InvalidConfiguration );
     }
 
