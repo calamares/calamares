@@ -122,7 +122,7 @@ generateTargetKeyfile()
     }
     // Give ample time to check that the file was created correctly
     r = CalamaresUtils::System::instance()->targetEnvCommand( { "ls", "-la", "/" } );
-    cDebug() << "In target system" << r.getOutput();
+    cDebug() << "In target system after creating LUKS file" << r.getOutput();
     return true;
 }
 
