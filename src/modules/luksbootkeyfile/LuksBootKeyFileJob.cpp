@@ -174,7 +174,8 @@ LuksBootKeyFileJob::exec()
     auto it = std::partition( s.devices.begin(), s.devices.end(), []( const LuksDevice& d ) { return d.isRoot; } );
     for ( const auto& d : s.devices )
     {
-        cDebug() << Logger::SubEntry << d.isRoot << d.device << d.passphrase;
+        cDebug() << Logger::SubEntry << ( d.isRoot ? "root" : "dev." ) << d.device << "passphrase?"
+                 << !d.passphrase.isEmpty();
     }
 
     if ( it == s.devices.begin() )
