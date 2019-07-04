@@ -27,6 +27,8 @@
 #include <QPair>
 #include <QString>
 
+#include <chrono>
+
 namespace CalamaresUtils
 {
 class ProcessResult : public QPair< int, QString >
@@ -138,7 +140,7 @@ public:
         const QStringList &args,
         const QString& workingPath = QString(),
         const QString& stdInput = QString(),
-        int timeoutSec = 0 );
+        std::chrono::seconds timeoutSec = std::chrono::seconds(0) );
 
     /** @brief Convenience wrapper for runCommand().
      *  Runs the command in the location specified through the boolean
@@ -149,7 +151,7 @@ public:
         const QStringList &args,
         const QString& workingPath = QString(),
         const QString& stdInput = QString(),
-        int timeoutSec = 0 )
+        std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         return runCommand(
             m_doChroot ? RunLocation::RunInTarget : RunLocation::RunInHost,
@@ -163,7 +165,7 @@ public:
     inline int targetEnvCall( const QStringList& args,
                               const QString& workingPath = QString(),
                               const QString& stdInput = QString(),
-                              int timeoutSec = 0 )
+                              std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         return targetEnvCommand( args, workingPath, stdInput, timeoutSec ).first;
     }
@@ -172,7 +174,7 @@ public:
     inline int targetEnvCall( const QString& command,
                               const QString& workingPath = QString(),
                               const QString& stdInput = QString(),
-                              int timeoutSec = 0 )
+                              std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         return targetEnvCall( QStringList{ command }, workingPath, stdInput, timeoutSec );
     }
@@ -185,7 +187,7 @@ public:
                                 QString& output,
                                 const QString& workingPath = QString(),
                                 const QString& stdInput = QString(),
-                                int timeoutSec = 0 )
+                                std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         auto r = targetEnvCommand( args, workingPath, stdInput, timeoutSec );
         output = r.second;
@@ -200,7 +202,7 @@ public:
                                 QString& output,
                                 const QString& workingPath = QString(),
                                 const QString& stdInput = QString(),
-                                int timeoutSec = 0 )
+                                std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         return targetEnvOutput( QStringList{ command }, output, workingPath, stdInput, timeoutSec );
     }
