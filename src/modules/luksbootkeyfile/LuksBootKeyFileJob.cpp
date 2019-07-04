@@ -106,16 +106,33 @@ struct LuksDeviceList
     bool valid;
 };
 
+static const char keyfile[] = "/crypto_keyfile.bin";
+
 static bool
 generateTargetKeyfile()
 {
-    return false;
+    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+        { "dd", "bs=512", "count=4", "if=/dev/urandom", QString( "of=%1" ).arg( keyfile ) } );
+    if ( r.getExitCode() != 0 )
+    {
+        cWarning() << "Could not create LUKS keyfile:" << r.getOutput() << "(exit code" << r.getExitCode() << ')';
+        return false;
+    }
+    return true;
 }
 
 static bool
 setupLuks( const LuksDevice& d )
 {
-    return false;
+    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+        { "cryptsetup", "luksAddKey", d.device, keyfile }, QString(), d.passphrase, 15 );
+    if ( r.getExitCode() != 0 )
+    {
+        cWarning() << "Could not configure LUKS keyfile on" << d.device << ':' << r.getOutput() << "(exit code"
+                   << r.getExitCode() << ')';
+        return false;
+    }
+    return true;
 }
 
 Calamares::JobResult
