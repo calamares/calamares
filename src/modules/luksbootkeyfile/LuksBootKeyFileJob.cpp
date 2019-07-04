@@ -38,20 +38,41 @@ LuksBootKeyFileJob::prettyName() const
     return tr( "Configuring LUKS key file." );
 }
 
-struct LuksPassphrase
+struct LuksDevice
 {
+    LuksDevice( const QMap< QString, QVariant >& pinfo )
+        : isValid( false )
+        , isRoot( false )
+    {
+        if ( pinfo.contains( "luksMapperName" ) )
+        {
+            QString fs = pinfo[ "fs" ].toString();
+            QString mountPoint = pinfo[ "mountPoint" ].toString();
+
+            if ( !mountPoint.isEmpty() || fs == QStringLiteral( "linuxswap" ) )
+            {
+                isValid = true;
+                isRoot = mountPoint == '/';
+                device = pinfo[ "device" ].toString();
+                passphrase = pinfo[ "luksPassphrase" ].toString();
+            }
+        }
+    }
+
+    bool isValid;
+    bool isRoot;
     QString device;
     QString passphrase;
 };
 
-struct GlobalSettings
+struct LuksDeviceList
 {
-    GlobalSettings( const QVariant& partitions )
+    LuksDeviceList( const QVariant& partitions )
         : valid( false )
     {
-        if ( partitions.canConvert<QVariantList>() )
+        if ( partitions.canConvert< QVariantList >() )
         {
-            filesystems = getPartitionInfo( partitions.toList() );
+            devices = getLuksDevices( partitions.toList() );
             valid = true;
         }
     }
@@ -62,27 +83,26 @@ struct GlobalSettings
      * so there's maps with keys inside), returns just the list of
      * luks passphrases for each device.
      */
-    static QList< LuksPassphrase > getPartitionInfo( const QVariantList& list )
+    static QList< LuksDevice >
+    getLuksDevices( const QVariantList& list )
     {
-        int count = 0;
-        for( const auto& p : list )
-        {
-            if ( p.canConvert< QVariantMap>() )
-            {
-                auto pinfo = p.toMap();
-                QString device = pinfo["device"].toString();
-                QString fs = pinfo["fs"].toString();
-                QString mountPoint = pinfo["mountPoint"].toString();
-                QString uuid = pinfo["uuid"].toString();
+        QList< LuksDevice > luksItems;
 
-                cDebug() << count << "D=" << device << mountPoint << '(' << fs << ')';
+        for ( const auto& p : list )
+        {
+            if ( p.canConvert< QVariantMap >() )
+            {
+                LuksDevice d( p.toMap() );
+                if ( d.isValid )
+                {
+                    luksItems.append( d );
+                }
             }
-            count++;
         }
-        return QList< LuksPassphrase >();
+        return luksItems;
     }
 
-    QList< LuksPassphrase > filesystems;
+    QList< LuksDevice > devices;
     bool valid;
 };
 
@@ -103,7 +123,13 @@ LuksBootKeyFileJob::exec()
             Calamares::JobResult::InvalidConfiguration );
     }
 
-    GlobalSettings s( gs->value( "partitions" ) );
+    LuksDeviceList s( gs->value( "partitions" ) );
+    cDebug() << "There are" << s.devices.count() << "LUKS partitions";
+    for ( const auto& p : s.devices )
+    {
+        cDebug() << Logger::SubEntry << p.isRoot << p.device << p.passphrase;
+    }
+
     return Calamares::JobResult::ok();
 }
 
