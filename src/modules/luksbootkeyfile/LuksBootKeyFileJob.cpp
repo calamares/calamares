@@ -120,6 +120,9 @@ generateTargetKeyfile()
         cWarning() << "Could not create LUKS keyfile:" << r.getOutput() << "(exit code" << r.getExitCode() << ')';
         return false;
     }
+    // Give ample time to check that the file was created correctly
+    r = CalamaresUtils::System::instance()->targetEnvCommand( { "ls", "-la", "/" } );
+    cDebug() << "In target system" << r.getOutput();
     return true;
 }
 
