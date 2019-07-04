@@ -71,6 +71,6 @@ Presentation
     function onActivate() {
         presentation.currentSlide = 0;
         advanceTimer.running = true
-        console.log("Component activated");
+        console.log("QML Component (default slideshow) activated");
     }
 }
