@@ -244,7 +244,7 @@ System::runCommand(
 }
 
 QString
-System::createTargetFile( const QString& path, const QByteArray& contents )
+System::targetPath( const QString& path ) const
 {
     QString completePath;
     
@@ -263,6 +263,18 @@ System::createTargetFile( const QString& path, const QByteArray& contents )
     else
     {
         completePath = QStringLiteral( "/" ) + path;
+    }
+    
+    return completePath;
+}
+
+QString
+System::createTargetFile( const QString& path, const QByteArray& contents ) const
+{
+    QString completePath = targetPath( path );
+    if ( completePath.isEmpty() )
+    {
+        return QString();
     }
     
     QFile f( completePath );
