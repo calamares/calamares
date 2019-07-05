@@ -40,7 +40,7 @@ InitcpioJob::prettyName() const
     return tr( "Creating initramfs with mkinitcpio." );
 }
 
-static void
+void
 fixPermissions( const QDir& d )
 {
     for ( const auto& fi : d.entryInfoList( { "initramfs*" }, QDir::Files ) )
