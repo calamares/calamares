@@ -42,6 +42,7 @@ public:
 
 private:
     QString m_kernel;
+    bool m_unsafe = false;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( InitcpioJobFactory )

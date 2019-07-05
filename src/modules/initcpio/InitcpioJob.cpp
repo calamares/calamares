@@ -59,12 +59,19 @@ InitcpioJob::exec()
 {
     CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
 
-    QDir d( CalamaresUtils::System::instance()->targetPath( "/boot" ) );
-    if ( d.exists() )
+    if ( m_unsafe )
     {
-        fixPermissions( d );
+        cDebug() << "Skipping mitigations for unsafe initramfs permissions.";
     }
-    
+    else
+    {
+        QDir d( CalamaresUtils::System::instance()->targetPath( "/boot" ) );
+        if ( d.exists() )
+        {
+            fixPermissions( d );
+        }
+    }
+
     cDebug() << "Updating initramfs with kernel" << m_kernel;
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
         { "mkinitcpio", "-p", m_kernel }, QString(), QString(), 0 );
@@ -94,6 +101,8 @@ InitcpioJob::setConfigurationMap( const QVariantMap& configurationMap )
                        << r.getExitCode() << r.getOutput();
         }
     }
+
+    m_unsafe = CalamaresUtils::getBool( configurationMap, "be_unsafe", false );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( InitcpioJobFactory, registerPlugin< InitcpioJob >(); )
