@@ -9,7 +9,13 @@
 set -e
 
 AS=$( which astyle )
-CF=$( which clang-format-7 )
+
+for _cf in clang-format-7 clang-format-8 clang-format70 clang-format80
+do
+	# Not an error if this particular clang-format isn't found
+	CF=$( which $_cf || true )
+	test -n "$CF" && break
+done
 
 test -n "$AS" || { echo "! No astyle found in PATH"; exit 1 ; }
 test -n "$CF" || { echo "! No clang-format-7 found in PATH"; exit 1 ; }
