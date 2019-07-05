@@ -66,6 +66,31 @@ struct LuksDevice
     QString passphrase;
 };
 
+/** @brief Extract the luks passphrases setup.
+ *
+ * Given a list of partitions (as set up by the partitioning module,
+ * so there's maps with keys inside), returns just the list of
+ * luks passphrases for each device.
+ */ 
+static QList< LuksDevice >
+getLuksDevices( const QVariantList& list )
+{
+    QList< LuksDevice > luksItems;
+
+    for ( const auto& p : list )
+    {
+        if ( p.canConvert< QVariantMap >() )
+        {
+            LuksDevice d( p.toMap() );
+            if ( d.isValid )
+            {
+                luksItems.append( d );
+            }
+        }
+    }
+    return luksItems;
+}
+
 struct LuksDeviceList
 {
     LuksDeviceList( const QVariant& partitions )
@@ -76,31 +101,6 @@ struct LuksDeviceList
             devices = getLuksDevices( partitions.toList() );
             valid = true;
         }
-    }
-
-    /** @brief Extract the luks passphrases setup.
-     *
-     * Given a list of partitions (as set up by the partitioning module,
-     * so there's maps with keys inside), returns just the list of
-     * luks passphrases for each device.
-     */
-    static QList< LuksDevice >
-    getLuksDevices( const QVariantList& list )
-    {
-        QList< LuksDevice > luksItems;
-
-        for ( const auto& p : list )
-        {
-            if ( p.canConvert< QVariantMap >() )
-            {
-                LuksDevice d( p.toMap() );
-                if ( d.isValid )
-                {
-                    luksItems.append( d );
-                }
-            }
-        }
-        return luksItems;
     }
 
     QList< LuksDevice > devices;
@@ -120,6 +120,9 @@ generateTargetKeyfile()
         cWarning() << "Could not create LUKS keyfile:" << r.getOutput() << "(exit code" << r.getExitCode() << ')';
         return false;
     }
+    // Give ample time to check that the file was created correctly
+    r = CalamaresUtils::System::instance()->targetEnvCommand( { "ls", "-la", "/" } );
+    cDebug() << "In target system after creating LUKS file" << r.getOutput();
     return true;
 }
 
@@ -171,7 +174,8 @@ LuksBootKeyFileJob::exec()
     auto it = std::partition( s.devices.begin(), s.devices.end(), []( const LuksDevice& d ) { return d.isRoot; } );
     for ( const auto& d : s.devices )
     {
-        cDebug() << Logger::SubEntry << d.isRoot << d.device << d.passphrase;
+        cDebug() << Logger::SubEntry << ( d.isRoot ? "root" : "dev." ) << d.device << "passphrase?"
+                 << !d.passphrase.isEmpty();
     }
 
     if ( it == s.devices.begin() )

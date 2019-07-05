@@ -16,35 +16,44 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INITRAMFSJOB_H
-#define INITRAMFSJOB_H
+#include "Tests.h"
 
-#include "CppJob.h"
-#include "PluginDllMacro.h"
-#include "utils/PluginFactory.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "Settings.h"
 
-#include <QObject>
-#include <QVariantMap>
+#include "utils/Logger.h"
+#include "utils/Yaml.h"
 
-class PLUGINDLLEXPORT InitramfsJob : public Calamares::CppJob
+#include <QtTest/QtTest>
+
+#include <QFileInfo>
+#include <QStringList>
+
+extern void fixPermissions( const QDir& d );
+    
+QTEST_GUILESS_MAIN( InitcpioTests )
+
+InitcpioTests::InitcpioTests()
 {
-    Q_OBJECT
+}
 
-public:
-    explicit InitramfsJob( QObject* parent = nullptr );
-    virtual ~InitramfsJob() override;
+InitcpioTests::~InitcpioTests()
+{
+}
 
-    QString prettyName() const override;
+void
+InitcpioTests::initTestCase()
+{
+}
 
-    Calamares::JobResult exec() override;
+void InitcpioTests::testFixPermissions()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+    cDebug() << "Fixing up /boot";
+    fixPermissions( QDir( "/boot" ) );
+    cDebug() << "Fixing up /nonexistent";
+    fixPermissions( QDir( "/nonexistent/nonexistent" ) );
+    QVERIFY( true );
+}
 
-    void setConfigurationMap( const QVariantMap& configurationMap ) override;
-
-private:
-    QString m_kernel;
-    bool m_unsafe = false;
-};
-
-CALAMARES_PLUGIN_FACTORY_DECLARATION( InitramfsJobFactory )
-
-#endif  // INITRAMFSJOB_H

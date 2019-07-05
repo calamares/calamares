@@ -16,34 +16,48 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "InitramfsJob.h"
+#include "InitcpioJob.h"
 
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/UMask.h"
 #include "utils/Variant.h"
 
-InitramfsJob::InitramfsJob( QObject* parent )
+#include <QDir>
+#include <QFile>
+
+InitcpioJob::InitcpioJob( QObject* parent )
     : Calamares::CppJob( parent )
 {
 }
 
-InitramfsJob::~InitramfsJob() {}
+InitcpioJob::~InitcpioJob() {}
 
 
 QString
-InitramfsJob::prettyName() const
+InitcpioJob::prettyName() const
 {
-    return tr( "Creating initramfs." );
+    return tr( "Creating initramfs with mkinitcpio." );
 }
 
+void
+fixPermissions( const QDir& d )
+{
+    for ( const auto& fi : d.entryInfoList( { "initramfs*" }, QDir::Files ) )
+    {
+        QFile f( fi.absoluteFilePath() );
+        if ( f.exists() )
+        {
+            cDebug() << "initcpio fixing permissions for" << f.fileName();
+            f.setPermissions( QFileDevice::ReadOwner | QFileDevice::WriteOwner );
+        }
+    }
+}
 
 Calamares::JobResult
-InitramfsJob::exec()
+InitcpioJob::exec()
 {
     CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
-
-    cDebug() << "Updating initramfs with kernel" << m_kernel;
 
     if ( m_unsafe )
     {
@@ -51,25 +65,21 @@ InitramfsJob::exec()
     }
     else
     {
-        // First make sure we generate a safe initramfs with suitable permissions.
-        static const char confFile[] = "/etc/initramfs-tools/conf.d/calamares-safe-initramfs.conf";
-        static const char contents[] = "UMASK=0077\n";
-        if ( CalamaresUtils::System::instance()->createTargetFile( confFile, QByteArray( contents ) ).isEmpty() )
+        QDir d( CalamaresUtils::System::instance()->targetPath( "/boot" ) );
+        if ( d.exists() )
         {
-            cWarning() << Logger::SubEntry << "Could not configure safe UMASK for initramfs.";
-            // But continue anyway.
+            fixPermissions( d );
         }
     }
 
-    // And then do the ACTUAL work.
+    cDebug() << "Updating initramfs with kernel" << m_kernel;
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "update-initramfs", "-k", m_kernel, "-c", "-t" }, QString(), QString(), 0 );
-    return r.explainProcess( "update-initramfs", 10 );
+        { "mkinitcpio", "-p", m_kernel }, QString(), QString(), 0 );
+    return r.explainProcess( "mkinitcpio", 10 );
 }
 
-
 void
-InitramfsJob::setConfigurationMap( const QVariantMap& configurationMap )
+InitcpioJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_kernel = CalamaresUtils::getString( configurationMap, "kernel" );
     if ( m_kernel.isEmpty() )
@@ -83,11 +93,11 @@ InitramfsJob::setConfigurationMap( const QVariantMap& configurationMap )
         if ( r.getExitCode() == 0 )
         {
             m_kernel = r.getOutput();
-            cDebug() << "*initramfs* using running kernel" << m_kernel;
+            cDebug() << "*initcpio* using running kernel" << m_kernel;
         }
         else
         {
-            cWarning() << "*initramfs* could not determine running kernel, using 'all'." << Logger::Continuation
+            cWarning() << "*initcpio* could not determine running kernel, using 'all'." << Logger::Continuation
                        << r.getExitCode() << r.getOutput();
         }
     }
@@ -95,4 +105,4 @@ InitramfsJob::setConfigurationMap( const QVariantMap& configurationMap )
     m_unsafe = CalamaresUtils::getBool( configurationMap, "be_unsafe", false );
 }
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( InitramfsJobFactory, registerPlugin< InitramfsJob >(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( InitcpioJobFactory, registerPlugin< InitcpioJob >(); )

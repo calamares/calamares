@@ -205,6 +205,40 @@ public:
         return targetEnvOutput( QStringList{ command }, output, workingPath, stdInput, timeoutSec );
     }
 
+    
+    /** @brief Gets a path to a file in the target system, from the host.
+     * 
+     * @param path Path to the file; this is interpreted
+     *      from the root of the target system (whatever that may be,
+     *      but / in the chroot, or / in OEM modes).
+     * 
+     * @return The complete path to the target file, from
+     *      the root of the host system, or empty on failure.
+     * 
+     * For instance, during installation where the target root is
+     * mounted on /tmp/calamares-something, asking for targetPath("/etc/passwd")
+     * will give you /tmp/calamares-something/etc/passwd.
+     * 
+     * No attempt is made to canonicalize anything, since paths might not exist.
+     */ 
+    DLLEXPORT QString targetPath( const QString& path ) const;
+    
+    /** @brief Create a (small-ish) file in the target system.
+     * 
+     * @param path Path to the file; this is interpreted
+     *      from the root of the target system (whatever that may be,
+     *      but / in the chroot, or / in OEM modes).
+     * @param contents Actual content of the file.
+     * 
+     * Will not overwrite files. Returns an empty string if the
+     * target file already exists.
+     * 
+     * @return The complete canonical path to the target file from the
+     *      root of the host system, or empty on failure. (Here, it is
+     *      possible to be canonical because the file exists).
+     */
+    DLLEXPORT QString createTargetFile( const QString& path, const QByteArray& contents ) const;
+    
     /**
      * @brief getTotalMemoryB returns the total main memory, in bytes.
      *

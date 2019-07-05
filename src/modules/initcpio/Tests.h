@@ -16,35 +16,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INITRAMFSJOB_H
-#define INITRAMFSJOB_H
-
-#include "CppJob.h"
-#include "PluginDllMacro.h"
-#include "utils/PluginFactory.h"
+#ifndef TESTS_H
+#define TESTS_H
 
 #include <QObject>
-#include <QVariantMap>
 
-class PLUGINDLLEXPORT InitramfsJob : public Calamares::CppJob
+class InitcpioTests : public QObject
 {
     Q_OBJECT
-
 public:
-    explicit InitramfsJob( QObject* parent = nullptr );
-    virtual ~InitramfsJob() override;
+    InitcpioTests();
+    ~InitcpioTests() override;
 
-    QString prettyName() const override;
-
-    Calamares::JobResult exec() override;
-
-    void setConfigurationMap( const QVariantMap& configurationMap ) override;
-
-private:
-    QString m_kernel;
-    bool m_unsafe = false;
+private Q_SLOTS:
+    void initTestCase();
+    void testFixPermissions();
 };
 
-CALAMARES_PLUGIN_FACTORY_DECLARATION( InitramfsJobFactory )
-
-#endif  // INITRAMFSJOB_H
+#endif

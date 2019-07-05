@@ -16,8 +16,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INITRAMFSJOB_H
-#define INITRAMFSJOB_H
+#ifndef INITCPIOJOB_H
+#define INITCPIOJOB_H
 
 #include "CppJob.h"
 #include "PluginDllMacro.h"
@@ -26,13 +26,13 @@
 #include <QObject>
 #include <QVariantMap>
 
-class PLUGINDLLEXPORT InitramfsJob : public Calamares::CppJob
+class PLUGINDLLEXPORT InitcpioJob : public Calamares::CppJob
 {
     Q_OBJECT
 
 public:
-    explicit InitramfsJob( QObject* parent = nullptr );
-    virtual ~InitramfsJob() override;
+    explicit InitcpioJob( QObject* parent = nullptr );
+    virtual ~InitcpioJob() override;
 
     QString prettyName() const override;
 
@@ -45,6 +45,6 @@ private:
     bool m_unsafe = false;
 };
 
-CALAMARES_PLUGIN_FACTORY_DECLARATION( InitramfsJobFactory )
+CALAMARES_PLUGIN_FACTORY_DECLARATION( InitcpioJobFactory )
 
-#endif  // INITRAMFSJOB_H
+#endif  // INITCPIOJOB_H

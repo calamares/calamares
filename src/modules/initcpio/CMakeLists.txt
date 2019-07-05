@@ -1,8 +1,8 @@
-calamares_add_plugin( initramfs
+calamares_add_plugin( initcpio
     TYPE job
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-        InitramfsJob.cpp
+        InitcpioJob.cpp
     LINK_PRIVATE_LIBRARIES
         calamares
     SHARED_LIB
@@ -12,15 +12,15 @@ if( ECM_FOUND AND BUILD_TESTING )
     ecm_add_test(
             Tests.cpp
         TEST_NAME
-            initramfstest
+            initcpiotest
         LINK_LIBRARIES
             ${CALAMARES_LIBRARIES}
             calamares
-            calamares_job_initramfs # From above
+            calamares_job_initcpio # From above
             ${YAMLCPP_LIBRARY}
             Qt5::Core
             Qt5::Test
     )
-    set_target_properties( initramfstest PROPERTIES AUTOMOC TRUE )
-    target_include_directories( initramfstest PRIVATE /usr/local/include )
+    set_target_properties( initcpiotest PROPERTIES AUTOMOC TRUE )
+    target_include_directories( initcpiotest PRIVATE /usr/local/include )
 endif()

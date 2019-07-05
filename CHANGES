@@ -16,7 +16,7 @@ understanding the issues (alphabetically by first name):
  - Seth Arnold
  - Simon Quigley
  - Thomas Ward
-
+Both CVE's have been resolved.
 
 ## Core ##
 
@@ -26,7 +26,7 @@ No core changes.
 
  - *initramfs* could create an initramfs with insecure permissions.
    Since the keyfile is included in the initramfs, an attacker could
-   read the file from the initramfs. #1190
+   read the file from the initramfs. #1190 CVE-2019-13178
  - *luksbootkeyfile* created a key file where a window of opportunity
    existed where the key file could have too-lax file permissions.
    #1191 CVE-2019-13179
