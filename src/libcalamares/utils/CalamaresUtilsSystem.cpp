@@ -243,6 +243,57 @@ System::runCommand(
     return ProcessResult(r, output);
 }
 
+QString
+System::createTargetFile( const QString& path, const QByteArray& contents )
+{
+    QString completePath;
+    
+    if ( doChroot() )
+    {
+        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+
+        if ( !gs || !gs->contains( "rootMountPoint" ) )
+        {
+            cWarning() << "No rootMountPoint in global storage, cannot create target file" << path;
+            return QString();
+        }
+        
+        completePath = gs->value( "rootMountPoint" ).toString() + '/' + path;
+    }
+    else
+    {
+        completePath = QStringLiteral( "/" ) + path;
+    }
+    
+    QFile f( completePath );
+    if ( f.exists() )
+    {
+        return QString();
+    }
+    
+    QIODevice::OpenMode m =
+#if QT_VERSION >= QT_VERSION_CHECK( 5, 11, 0 )
+        // New flag from Qt 5.11, implies WriteOnly
+        QIODevice::NewOnly |
+#endif
+        QIODevice::WriteOnly | QIODevice::Truncate;
+        
+    if ( !f.open( m ) )
+    {
+        return QString();
+    }
+    
+    if ( f.write( contents ) != contents.size() )
+    {
+        f.close();
+        f.remove();
+        return QString();
+    }
+    
+    f.close();
+    return QFileInfo( f ).canonicalFilePath();
+}
+
 
 QPair<quint64, float>
 System::getTotalMemoryB() const

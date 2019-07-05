@@ -205,6 +205,20 @@ public:
         return targetEnvOutput( QStringList{ command }, output, workingPath, stdInput, timeoutSec );
     }
 
+    /** @brief Create a (small-ish) file in the target system.
+     * 
+     * @param path Path to the file; this is **always** interpreted
+     *      from the root of the target system (whatever that may be,
+     *      but / in the chroot, or / in OEM modes).
+     * @param contents Actual content of the file.
+     * 
+     * Will not overwrite files. Returns an empty string if the
+     * target file already exists.
+     * 
+     * @return The complete canonical path to the target file, or empty on failure.
+     */
+    QString createTargetFile( const QString& path, const QByteArray& contents );
+    
     /**
      * @brief getTotalMemoryB returns the total main memory, in bytes.
      *
