@@ -23,6 +23,9 @@
 #include "utils/UMask.h"
 #include "utils/Variant.h"
 
+#include <QDir>
+#include <QFile>
+
 InitcpioJob::InitcpioJob( QObject* parent )
     : Calamares::CppJob( parent )
 {
@@ -37,12 +40,31 @@ InitcpioJob::prettyName() const
     return tr( "Creating initramfs with mkinitcpio." );
 }
 
+static void
+fixPermissions( const QDir& d )
+{
+    for ( const auto& fi : d.entryInfoList( { "initramfs*" }, QDir::Files ) )
+    {
+        QFile f( fi.absoluteFilePath() );
+        if ( f.exists() )
+        {
+            cDebug() << "initcpio fixing permissions for" << f.fileName();
+            f.setPermissions( QFileDevice::ReadOwner | QFileDevice::WriteOwner );
+        }
+    }
+}
 
 Calamares::JobResult
 InitcpioJob::exec()
 {
     CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
 
+    QDir d( CalamaresUtils::System::instance()->targetPath( "/boot" ) );
+    if ( d.exists() )
+    {
+        fixPermissions( d );
+    }
+    
     cDebug() << "Updating initramfs with kernel" << m_kernel;
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
         { "mkinitcpio", "-p", m_kernel }, QString(), QString(), 0 );
