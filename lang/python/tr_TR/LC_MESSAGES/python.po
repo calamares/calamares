@@ -96,7 +96,7 @@ msgstr "Dosya sistemlerini ayırın."
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
-msgstr "Dosya sistemini genişlet."
+msgstr "Dosya sistemi genişletiliyor."
 
 #: src/modules/unpackfs/main.py:159
 msgid "rsync failed with error code {}."

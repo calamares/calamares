@@ -323,7 +323,7 @@ msgstr ""
 
 #: src/modules/initramfs/main.py:49
 msgid "Failed to run update-initramfs on the target"
-msgstr ""
+msgstr "Fallu al executar update-initramfs nel destín"
 
 #: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
 msgid "The exit code was {}"
@@ -339,7 +339,7 @@ msgstr ""
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "Fallu al executar dracut nel destín"
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
