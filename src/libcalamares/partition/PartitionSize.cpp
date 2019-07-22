@@ -33,7 +33,8 @@ unitSuffixes()
         { QStringLiteral( "%" ), SizeUnit::Percent }, { QStringLiteral( "K" ), SizeUnit::KiB },
         { QStringLiteral( "KiB" ), SizeUnit::KiB },   { QStringLiteral( "M" ), SizeUnit::MiB },
         { QStringLiteral( "MiB" ), SizeUnit::MiB },   { QStringLiteral( "G" ), SizeUnit::GiB },
-        { QStringLiteral( "GiB" ), SizeUnit::GiB }
+        { QStringLiteral( "GiB" ), SizeUnit::GiB },   { QStringLiteral( "KB" ), SizeUnit::KB },
+        { QStringLiteral( "MB" ), SizeUnit::MB },     { QStringLiteral( "GB" ), SizeUnit::GB }
     };
 
     return names;
@@ -90,8 +91,11 @@ PartitionSize::toSectors( qint64 totalSectors, qint64 sectorSize ) const
             return totalSectors * value() / 100;
         }
     case SizeUnit::Byte:
+    case SizeUnit::KB:
     case SizeUnit::KiB:
+    case SizeUnit::MB:
     case SizeUnit::MiB:
+    case SizeUnit::GB:
     case SizeUnit::GiB:
         return CalamaresUtils::bytesToSectors( toBytes(), sectorSize );
     }
@@ -125,8 +129,11 @@ PartitionSize::toBytes( qint64 totalSectors, qint64 sectorSize ) const
             return totalSectors * value() / 100;
         }
     case SizeUnit::Byte:
+    case SizeUnit::KB:
     case SizeUnit::KiB:
+    case SizeUnit::MB:
     case SizeUnit::MiB:
+    case SizeUnit::GB:
     case SizeUnit::GiB:
         return toBytes();
     }
@@ -161,8 +168,11 @@ PartitionSize::toBytes( qint64 totalBytes ) const
             return totalBytes * value() / 100;
         }
     case SizeUnit::Byte:
+    case SizeUnit::KB:
     case SizeUnit::KiB:
+    case SizeUnit::MB:
     case SizeUnit::MiB:
+    case SizeUnit::GB:
     case SizeUnit::GiB:
         return toBytes();
     }
@@ -186,10 +196,16 @@ PartitionSize::toBytes() const
         return -1;
     case SizeUnit::Byte:
         return value();
+    case SizeUnit::KB:
+        return CalamaresUtils::KBtoBytes( static_cast< unsigned long long >( value() ) );
     case SizeUnit::KiB:
         return CalamaresUtils::KiBtoBytes( static_cast< unsigned long long >( value() ) );
+    case SizeUnit::MB:
+        return CalamaresUtils::MBtoBytes( static_cast< unsigned long long >( value() ) );
     case SizeUnit::MiB:
         return CalamaresUtils::MiBtoBytes( static_cast< unsigned long long >( value() ) );
+    case SizeUnit::GB:
+        return CalamaresUtils::GBtoBytes( static_cast< unsigned long long >( value() ) );
     case SizeUnit::GiB:
         return CalamaresUtils::GiBtoBytes( static_cast< unsigned long long >( value() ) );
     }
@@ -211,8 +227,11 @@ PartitionSize::operator<( const PartitionSize& other ) const
     case SizeUnit::Percent:
         return ( m_value < other.m_value );
     case SizeUnit::Byte:
+    case SizeUnit::KB:
     case SizeUnit::KiB:
+    case SizeUnit::MB:
     case SizeUnit::MiB:
+    case SizeUnit::GB:
     case SizeUnit::GiB:
         return ( toBytes() < other.toBytes() );
     }
@@ -234,8 +253,11 @@ PartitionSize::operator>( const PartitionSize& other ) const
     case SizeUnit::Percent:
         return ( m_value > other.m_value );
     case SizeUnit::Byte:
+    case SizeUnit::KB:
     case SizeUnit::KiB:
+    case SizeUnit::MB:
     case SizeUnit::MiB:
+    case SizeUnit::GB:
     case SizeUnit::GiB:
         return ( toBytes() > other.toBytes() );
     }
@@ -257,8 +279,11 @@ PartitionSize::operator==( const PartitionSize& other ) const
     case SizeUnit::Percent:
         return ( m_value == other.m_value );
     case SizeUnit::Byte:
+    case SizeUnit::KB:
     case SizeUnit::KiB:
+    case SizeUnit::MB:
     case SizeUnit::MiB:
+    case SizeUnit::GB:
     case SizeUnit::GiB:
         return ( toBytes() == other.toBytes() );
     }
