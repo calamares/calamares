@@ -79,7 +79,7 @@ yamlScalarToVariant( const YAML::Node& scalarNode )
     }
     if ( QRegExp( "[-+]?\\d+" ).exactMatch( scalarString ) )
     {
-        return QVariant( scalarString.toInt() );
+        return QVariant( scalarString.toLongLong() );
     }
     if ( QRegExp( "[-+]?\\d*\\.?\\d+" ).exactMatch( scalarString ) )
     {
