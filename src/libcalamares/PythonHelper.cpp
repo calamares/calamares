@@ -52,6 +52,9 @@ variantToPyObject( const QVariant& variant )
     case QVariant::Int:
         return bp::object( variant.toInt() );
 
+    case QVariant::LongLong:
+        return bp::object( variant.toLongLong() );
+
     case QVariant::Double:
         return bp::object( variant.toDouble() );
 
