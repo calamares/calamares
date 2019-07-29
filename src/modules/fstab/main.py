@@ -246,8 +246,8 @@ class FstabGenerator(object):
         if not mount_point:
             mount_point = "swap"
 
-        options = self.mount_options.get(filesystem,
-                                         self.mount_options["default"])
+        options = self.get_mount_options(filesystem, mount_point)
+
         if is_ssd:
             extra = self.ssd_extra_mount_options.get(filesystem)
 
@@ -294,6 +294,16 @@ class FstabGenerator(object):
         for partition in self.partitions:
             if partition["mountPoint"]:
                 mkdir_p(self.root_mount_point + partition["mountPoint"])
+
+    def get_mount_options(self, filesystem, mount_point):
+        efiMountPoint = libcalamares.globalstorage.value("efiSystemPartition")
+        job_config = libcalamares.job.configuration
+
+        if (mount_point == efiMountPoint and "efiMountOptions" in job_config):
+            return job_config["efiMountOptions"]
+
+        return self.mount_options.get(filesystem,
+                                      self.mount_options["default"])
 
 
 def run():
