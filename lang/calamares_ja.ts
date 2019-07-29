@@ -208,17 +208,17 @@
 <context>
     <name>Calamares::RequirementsChecker</name>
     <message numerus="yes">
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="153"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
         <source>Waiting for %n module(s).</source>
         <translation><numerusform> %n モジュールを待機中。</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="154"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="168"/>
         <source>(%n second(s))</source>
         <translation><numerusform>(%n 秒(s))</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="158"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="173"/>
         <source>System-requirements checking is complete.</source>
         <translation>要求されるシステムの確認を終了しました。</translation>
     </message>
@@ -226,160 +226,156 @@
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="377"/>
         <source>&amp;Back</source>
         <translation>戻る (&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="372"/>
         <source>&amp;Next</source>
         <translation>次へ (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="78"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="353"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
         <source>&amp;Cancel</source>
         <translation>中止 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup without changing the system.</source>
         <translation>システムを変更することなくセットアップを中断します。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="81"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
         <source>Cancel installation without changing the system.</source>
         <translation>システムを変更しないでインストールを中止します。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
         <source>Setup Failed</source>
         <translation>セットアップに失敗しました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
         <source>Calamares Initialization Failed</source>
         <translation>Calamares によるインストールに失敗しました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="193"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="223"/>
         <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
         <translation>%1 をインストールできません。Calamares はすべてのモジュールをロードすることをできませんでした。これは、Calamares のこのディストリビューションでの使用法による問題です。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="198"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="228"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
         <translation>&lt;br/&gt;以下のモジュールがロードできませんでした。:</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="290"/>
         <source>Continue with installation?</source>
         <translation>インストールを続行しますか?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="262"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="292"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%1 のセットアッププログラムは %2 のセットアップのためディスクの内容を変更します。&lt;br/&gt;&lt;strong&gt;これらの変更は取り消しできません。&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="269"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="299"/>
         <source>&amp;Set up now</source>
         <translation>セットアップ中（&amp;S）</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="355"/>
         <source>&amp;Set up</source>
         <translation>セットアップ （&amp;S）</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="356"/>
         <source>&amp;Install</source>
         <translation>インストール (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="358"/>
         <source>Setup is complete. Close the setup program.</source>
         <translation>セットアップが完了しました。プログラムを閉じます。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="399"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="441"/>
         <source>Cancel setup?</source>
         <translation>セットアップを中止しますか？</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="442"/>
         <source>Cancel installation?</source>
         <translation>インストールを中止しますか?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="444"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
         <translation>本当に現在のセットアップのプロセスを中止しますか？
 すべての変更が取り消されます。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="446"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>本当に現在の作業を中止しますか？
 すべての変更が取り消されます。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="454"/>
         <source>&amp;Yes</source>
         <translation>はい (&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="413"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="455"/>
         <source>&amp;No</source>
         <translation>いいえ (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="174"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="204"/>
         <source>&amp;Close</source>
         <translation>閉じる (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="259"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="289"/>
         <source>Continue with setup?</source>
         <translation>セットアップを続行しますか?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%1 インストーラーは %2 をインストールするためディスクの内容を変更しようとしています。&lt;br/&gt;&lt;strong&gt;これらの変更は取り消せません。&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="270"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
         <source>&amp;Install now</source>
         <translation>今すぐインストール (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="307"/>
         <source>Go &amp;back</source>
         <translation>戻る (&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="342"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="382"/>
         <source>&amp;Done</source>
         <translation>実行 (&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="329"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="359"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>インストールが完了しました。インストーラーを閉じます。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="168"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="198"/>
         <source>Installation Failed</source>
         <translation>インストールに失敗</translation>
     </message>
@@ -1292,6 +1288,22 @@ The installer will quit and all changes will be lost.</source>
     </message>
 </context>
 <context>
+    <name>InitcpioJob</name>
+    <message>
+        <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="40"/>
+        <source>Creating initramfs with mkinitcpio.</source>
+        <translation>mkinitcpioとinitramfsを作成中</translation>
+    </message>
+</context>
+<context>
+    <name>InitramfsJob</name>
+    <message>
+        <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="37"/>
+        <source>Creating initramfs.</source>
+        <translation>initramfsを作成中</translation>
+    </message>
+</context>
+<context>
     <name>InteractiveTerminalPage</name>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="53"/>
@@ -1512,6 +1524,42 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="132"/>
         <source>Location</source>
         <translation>ロケーション</translation>
+    </message>
+</context>
+<context>
+    <name>LuksBootKeyFileJob</name>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="39"/>
+        <source>Configuring LUKS key file.</source>
+        <translation>LUKSキーファイルを設定中</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
+        <source>No partitions are defined.</source>
+        <translation>パーティションが定義されていません。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="199"/>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="207"/>
+        <source>Encrypted rootfs setup error</source>
+        <translation>暗号化したrootfsセットアップエラー</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
+        <source>Root partition %1 is LUKS but no passphrase has been set.</source>
+        <translation>ルートパーティション %1 はLUKSですが、パスワードが設定されていません。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
+        <source>Could not create LUKS key file for root partition %1.</source>
+        <translation>ルートパーティション %1 のLUKSキーファイルを作成できませんでした。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
+        <source>Could configure LUKS key file on partition %1.</source>
+        <translation>パーティション %1 にLUKSキーファイルを設定できました。</translation>
     </message>
 </context>
 <context>
@@ -2221,14 +2269,14 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>ProcessResult</name>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="317"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="382"/>
         <source>
 There was no output from the command.</source>
         <translation>
 コマンドから出力するものがありませんでした。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="318"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="383"/>
         <source>
 Output:
 </source>
@@ -2237,52 +2285,52 @@ Output:
 </translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="321"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="386"/>
         <source>External command crashed.</source>
         <translation>外部コマンドがクラッシュしました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="322"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="387"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
         <translation>コマンド &lt;i&gt;%1&lt;/i&gt; がクラッシュしました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="327"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="392"/>
         <source>External command failed to start.</source>
         <translation>外部コマンドの起動に失敗しました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="328"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="393"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
         <translation>コマンド &lt;i&gt;%1&lt;/i&gt; の起動に失敗しました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="332"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="397"/>
         <source>Internal error when starting command.</source>
         <translation>コマンドが起動する際に内部エラーが発生しました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="333"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="398"/>
         <source>Bad parameters for process job call.</source>
         <translation>ジョブ呼び出しにおける不正なパラメータ</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="336"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="401"/>
         <source>External command failed to finish.</source>
         <translation>外部コマンドの終了に失敗しました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="337"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="402"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
         <translation>コマンド&lt;i&gt;%1&lt;/i&gt;  %2 秒以内に終了することに失敗しました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="343"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="408"/>
         <source>External command finished with errors.</source>
         <translation>外部のコマンドがエラーで停止しました。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="344"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="409"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
         <translation>コマンド &lt;i&gt;%1&lt;/i&gt; が終了コード %2 で終了しました。.</translation>
     </message>
@@ -2331,7 +2379,7 @@ Output:
         <translation>(マウントポイントなし)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="62"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="65"/>
         <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
         <translation>モジュール &lt;i&gt;%1&lt;/i&gt; に必要なパッケージの確認が完了しました。</translation>
     </message>
