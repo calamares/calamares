@@ -48,6 +48,17 @@ public:
     void setJobs( const JobList& jobs )
     {
         m_jobs = jobs;
+
+        qreal totalJobsWeight = 0.0;
+        for( auto job : m_jobs )
+        {
+            totalJobsWeight += job->getJobWeight();
+        }
+        for( auto job : m_jobs )
+        {
+            qreal jobWeight = qreal( job->getJobWeight() / totalJobsWeight );
+            m_jobWeights.append( jobWeight ) ;
+        }
     }
 
     void run() override
@@ -87,6 +98,7 @@ public:
 
 private:
     JobList m_jobs;
+    QList< qreal > m_jobWeights;
     JobQueue* m_queue;
     int m_jobIndex;
 
@@ -101,8 +113,22 @@ private:
             ? m_jobs.at( m_jobIndex )->prettyStatusMessage()
             : tr( "Done" );
 
-        qreal percent = ( m_jobIndex + jobPercent ) / qreal( jobCount );
+        qreal cumulativeProgress = 0.0;
+        for( auto jobWeight : m_jobWeights.mid( 0, m_jobIndex ) )
+        {
+            cumulativeProgress += jobWeight;
+        }
+        qreal percent = m_jobIndex < jobCount
+            ? cumulativeProgress + ( ( m_jobWeights.at( m_jobIndex ) ) * jobPercent )
+            : 1.0;
 
+        if (m_jobIndex < jobCount)
+        {
+            cDebug(Logger::LOGVERBOSE) << "[JOBQUEUE]: Progress for Job[" << m_jobIndex << "]: " << ( jobPercent * 100 ) << "% completed";
+            cDebug(Logger::LOGVERBOSE) << "[JOBQUEUE]: Progress Overall: " << ( cumulativeProgress * 100 ) << "% (accumulated) + "
+                                       << ( ( ( m_jobWeights.at( m_jobIndex ) ) * jobPercent ) * 100 ) << "% (this job) = "
+                                       << ( percent * 100 ) << "% (total)";
+        }
         QMetaObject::invokeMethod( m_queue, "progress", Qt::QueuedConnection,
             Q_ARG( qreal, percent ),
             Q_ARG( QString, message )
