@@ -245,7 +245,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
             // TODO: host and port should be configurable
-            QString pasteUrlMsg = CalamaresUtils::pastebin( msgBox, QStringLiteral( "termbin.com" ), 9999 );
+            QString pasteUrlMsg = CalamaresUtils::sendLogToPastebin( msgBox, QStringLiteral( "termbin.com" ), 9999 );
 
             QString pasteUrlTitle = tr( "Install Log Paste URL" );
             if ( pasteUrlMsg.isEmpty() )
@@ -253,6 +253,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
                 pasteUrlMsg = tr( "The upload was unsuccessful. No web-paste was done." );
             }
 
+            // TODO: make the URL clickable, or copy it to the clipboard automatically
             QMessageBox::critical(nullptr,
                                 pasteUrlTitle,
                                 pasteUrlMsg);

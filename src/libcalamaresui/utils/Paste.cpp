@@ -29,7 +29,7 @@ namespace CalamaresUtils
 {
 
 QString
-pastebin( QObject* parent, const QString& ficheHost, int fichePort )
+sendLogToPastebin( QObject* parent, const QString& ficheHost, int fichePort )
 {
     QString pasteUrlFmt = parent->tr( "Install log posted to:\n%1" );
     QFile pasteSourceFile( Logger::logFile() );

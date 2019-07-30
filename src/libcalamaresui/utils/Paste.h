@@ -24,7 +24,13 @@ class QString;
 
 namespace CalamaresUtils
 {
-QString pastebin( QObject* parent, const QString& ficheHost, int fichePort );
-}
+
+/** @brief Send the current log file to a pastebin
+ *
+ * Returns the (string) URL that the pastebin gives us.
+ */
+QString sendLogToPastebin( QObject* parent, const QString& ficheHost, int fichePort );
+
+}  // namespace CalamaresUtils
 
 #endif
