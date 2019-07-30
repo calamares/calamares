@@ -32,6 +32,41 @@ namespace Calamares
 class Module;
 struct RequirementEntry;  // from Requirement.h
 
+/** @brief A module instance's key (`module@id`)
+ *
+ * A module instance is identified by both the module's name
+ * (a Calamares module, e.g. `users`) and an instance id.
+ * Usually, the instance id is the same as the module name
+ * and the whole module instance key is `users@users`, but
+ * it is possible to use the same module more than once
+ * and then you distinguish those module instances by their
+ * secondary id (e.g. `users@one`).
+ *
+ * This is supported by the *instances* configuration entry
+ * in `settings.conf`.
+ */
+class ModuleInstanceKey : protected QPair< QString, QString >
+{
+public:
+    /// @brief Create an instance key from explicit module and id.
+    ModuleInstanceKey( const QString& module, const QString& id )
+        : QPair( module, id )
+    {
+    }
+
+    /// @brief Create "usual" instances keys `module@module`
+    ModuleInstanceKey( const QString& module )
+        : QPair( module, module )
+    {
+    }
+
+    QString module() const { return first; }
+    QString id() const { return second; }
+
+    explicit operator QString() const { return module() + '@' + id(); }
+};
+
+
 /**
  * @brief The ModuleManager class is a singleton which manages Calamares modules.
  *
