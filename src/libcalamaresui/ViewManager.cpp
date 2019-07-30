@@ -21,23 +21,23 @@
 
 #include "ViewManager.h"
 
-#include "utils/Logger.h"
 #include "viewpages/BlankViewStep.h"
 #include "viewpages/ViewStep.h"
+
+#include "Branding.h"
 #include "ExecutionViewStep.h"
 #include "JobQueue.h"
-#include "utils/Retranslator.h"
-#include "Branding.h"
 #include "Settings.h"
+
+#include "utils/Logger.h"
+#include "utils/Paste.h"
+#include "utils/Retranslator.h"
 
 #include <QApplication>
 #include <QBoxLayout>
 #include <QFile>
 #include <QMessageBox>
 #include <QMetaObject>
-#include <QRegularExpression>
-#include <QTcpSocket>
-#include <QUrl>
 
 namespace Calamares
 {
@@ -193,9 +193,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-bool    shouldOfferWebPaste = true; // TODO: config var
-QString ficheHost = "termbin.com";  // TODO: config var
-quint16 fichePort = 9999;           // TODO: config var
+    bool    shouldOfferWebPaste = true; // TODO: config var
 
     cError() << "Installation failed:";
     cDebug() << "- message:" << message;
@@ -205,8 +203,6 @@ quint16 fichePort = 9999;           // TODO: config var
         ? tr( "Setup Failed" )
         : tr( "Installation Failed" );
     QString pasteMsg = tr( "Would you like to paste the install log to the web?" );
-    QString pasteUrlFmt = tr( "Install log posted to:\n%1" );
-    QString pasteUrlTitle = tr( "Install Log Paste URL" );
     QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
         text += "<p>" + details + "</p>";
@@ -235,7 +231,7 @@ quint16 fichePort = 9999;           // TODO: config var
 
     cDebug() << "Calamares will quit when the dialog closes.";
     connect( msgBox, &QMessageBox::buttonClicked,
-             [msgBox, ficheHost, fichePort, pasteUrlFmt, pasteUrlTitle] ( QAbstractButton* button )
+             [msgBox] ( QAbstractButton* button )
     {
         if ( button->text() != tr( "&Yes" ) )
         {
@@ -243,68 +239,14 @@ quint16 fichePort = 9999;           // TODO: config var
             return;
         }
 
-        QFile pasteSourceFile( Logger::logFile() );
-        if ( !pasteSourceFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
+        // TODO: host and port should be configurable
+        QString pasteUrlMsg = CalamaresUtils::pastebin( msgBox, QStringLiteral( "termbin.com" ), 9999 );
+
+        QString pasteUrlTitle = tr( "Install Log Paste URL" );
+        if ( pasteUrlMsg.isEmpty() )
         {
-            cError() << "Could not open log file";
-            return;
+            pasteUrlMsg = tr( "The upload was unsuccessful. No web-paste was done." );
         }
-
-        QByteArray pasteData;
-        while ( !pasteSourceFile.atEnd() )
-        {
-            pasteData += pasteSourceFile.readLine();
-        }
-
-        QTcpSocket* socket = new QTcpSocket(msgBox);
-        socket->connectToHost( ficheHost, fichePort );
-
-        if ( !socket->waitForConnected() )
-        {
-            cError() << "Could not connect to paste server";
-            socket->close();
-            return;
-        }
-
-        cDebug() << "Connected to paste server";
-
-        socket->write( pasteData );
-
-        if ( !socket->waitForBytesWritten() )
-        {
-            cError() << "Could not write to paste server";
-            socket->close();
-            return;
-        }
-
-        cDebug() << "Paste data written to paste server";
-
-        if ( !socket->waitForReadyRead() )
-        {
-            cError() << "No data from paste server";
-            socket->close();
-            return;
-        }
-
-        cDebug() << "Reading response from paste server";
-
-        char resp[1024]; resp[0] = '\0';
-        qint64 nBytesRead = socket->readLine(resp, 1024);
-        socket->close();
-
-        QUrl pasteUrl = QUrl( QString( resp ).trimmed(), QUrl::StrictMode );
-        QString pasteUrlStr = pasteUrl.toString() ;
-        QRegularExpression pasteUrlRegex( "^http[s]?://" + ficheHost );
-        QString pasteUrlMsg = QString( pasteUrlFmt ).arg( pasteUrlStr );
-
-        if ( nBytesRead < 8 || !pasteUrl.isValid() ||
-             !pasteUrlRegex.match( pasteUrlStr ).hasMatch() )
-        {
-            cError() << "No data from paste server";
-            return;
-        }
-
-        cDebug() << pasteUrlMsg;
 
         QMessageBox* pasteUrlMsgBox = new QMessageBox();
         pasteUrlMsgBox->setIcon( QMessageBox::Critical );
