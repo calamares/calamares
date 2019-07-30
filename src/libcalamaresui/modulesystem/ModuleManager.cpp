@@ -137,7 +137,12 @@ ModuleManager::doInit()
 QStringList
 ModuleManager::loadedInstanceKeys()
 {
-    return m_loadedModulesByInstanceKey.keys();
+    QStringList l;
+    for ( const auto& m : m_loadedModulesByInstanceKey.keys() )
+    {
+        l << QString( m );
+    }
+    return l;
 }
 
 
@@ -150,7 +155,7 @@ ModuleManager::moduleDescriptor( const QString& name )
 Module*
 ModuleManager::moduleInstance( const QString& instanceKey )
 {
-    return m_loadedModulesByInstanceKey.value( instanceKey );
+    return m_loadedModulesByInstanceKey.value( ModuleInstanceKey::fromString( instanceKey ) );
 }
 
 
@@ -160,12 +165,12 @@ ModuleManager::moduleInstance( const QString& instanceKey )
  * @return -1 on failure, otherwise index of the instance that matches.
  */
 static int
-findCustomInstance( const Settings::InstanceDescriptionList& customInstances, const QString& module, const QString& id )
+findCustomInstance( const Settings::InstanceDescriptionList& customInstances, const ModuleInstanceKey& m )
 {
     for ( int i = 0; i < customInstances.count(); ++i )
     {
         const auto& thisInstance = customInstances[ i ];
-        if ( thisInstance.value( "module" ) == module && thisInstance.value( "id" ) == id )
+        if ( thisInstance.value( "module" ) == m.module() && thisInstance.value( "id" ) == m.id() )
         {
             return i;
         }
@@ -189,32 +194,28 @@ ModuleManager::loadModules()
 
             foreach ( const QString& moduleEntry, modulePhase.second )
             {
-                QStringList moduleEntrySplit = moduleEntry.split( '@' );
-                QString moduleName;
-                QString instanceId;
-                QString configFileName;
-                if ( moduleEntrySplit.length() < 1 || moduleEntrySplit.length() > 2 )
+                auto instanceKey = ModuleInstanceKey::fromString( moduleEntry );
+                if ( !instanceKey.isValid() )
                 {
                     cError() << "Wrong module entry format for module" << moduleEntry;
                     failedModules.append( moduleEntry );
                     continue;
                 }
-                moduleName = moduleEntrySplit.first();
-                instanceId = moduleEntrySplit.last();
-                configFileName = QString( "%1.conf" ).arg( moduleName );
 
-                if ( !m_availableDescriptorsByModuleName.contains( moduleName )
-                     || m_availableDescriptorsByModuleName.value( moduleName ).isEmpty() )
+
+                if ( !m_availableDescriptorsByModuleName.contains( instanceKey.module() )
+                     || m_availableDescriptorsByModuleName.value( instanceKey.module() ).isEmpty() )
                 {
-                    cError() << "Module" << moduleName << "not found in module search paths."
+                    cError() << "Module" << QString( instanceKey ) << "not found in module search paths."
                              << Logger::DebugList( m_paths );
-                    failedModules.append( moduleName );
+                    failedModules.append( QString( instanceKey ) );
                     continue;
                 }
 
-                if ( moduleName != instanceId )  //means this is a custom instance
+                QString configFileName;
+                if ( instanceKey.isCustom() )
                 {
-                    int found = findCustomInstance( customInstances, moduleName, instanceId );
+                    int found = findCustomInstance( customInstances, instanceKey );
 
                     if ( found > -1 )
                     {
@@ -227,6 +228,10 @@ ModuleManager::loadModules()
                         continue;
                     }
                 }
+                else
+                {
+                    configFileName = QString( "%1.conf" ).arg( instanceKey.module() );
+                }
 
                 // So now we can assume that the module entry is at least valid,
                 // that we have a descriptor on hand (and therefore that the
@@ -235,38 +240,35 @@ ModuleManager::loadModules()
                 // We still don't know whether the config file for the entry
                 // exists and is valid, but that's the only thing that could fail
                 // from this point on. -- Teo 8/2015
-
-                QString instanceKey = QString( "%1@%2" ).arg( moduleName ).arg( instanceId );
-
                 Module* thisModule = m_loadedModulesByInstanceKey.value( instanceKey, nullptr );
                 if ( thisModule && !thisModule->isLoaded() )
                 {
-                    cError() << "Module" << instanceKey << "exists but not loaded.";
-                    failedModules.append( instanceKey );
+                    cError() << "Module" << QString( instanceKey ) << "exists but not loaded.";
+                    failedModules.append( QString( instanceKey ) );
                     continue;
                 }
 
                 if ( thisModule && thisModule->isLoaded() )
                 {
-                    cDebug() << "Module" << instanceKey << "already loaded.";
+                    cDebug() << "Module" << QString( instanceKey ) << "already loaded.";
                 }
                 else
                 {
-                    thisModule = Module::fromDescriptor( m_availableDescriptorsByModuleName.value( moduleName ),
-                                                         instanceId,
+                    thisModule = Module::fromDescriptor( m_availableDescriptorsByModuleName.value( instanceKey.module() ),
+                                                         instanceKey.id(),
                                                          configFileName,
-                                                         m_moduleDirectoriesByModuleName.value( moduleName ) );
+                                                         m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
                     if ( !thisModule )
                     {
-                        cError() << "Module" << instanceKey << "cannot be created from descriptor" << configFileName;
-                        failedModules.append( instanceKey );
+                        cError() << "Module" << QString( instanceKey ) << "cannot be created from descriptor" << configFileName;
+                        failedModules.append( QString( instanceKey ) );
                         continue;
                     }
 
                     if ( !checkDependencies( *thisModule ) )
                     {
                         // Error message is already printed
-                        failedModules.append( instanceKey );
+                        failedModules.append( QString( instanceKey ) );
                         continue;
                     }
 
@@ -275,8 +277,8 @@ ModuleManager::loadModules()
                     m_loadedModulesByInstanceKey.insert( instanceKey, thisModule );
                     if ( !thisModule->isLoaded() )
                     {
-                        cError() << "Module" << instanceKey << "loading FAILED.";
-                        failedModules.append( instanceKey );
+                        cError() << "Module" << QString( instanceKey ) << "loading FAILED.";
+                        failedModules.append( QString( instanceKey ) );
                         continue;
                     }
                 }
@@ -293,7 +295,7 @@ ModuleManager::loadModules()
                         ViewManager::instance()->addViewStep( evs );
                     }
 
-                    evs->appendJobModuleInstanceKey( instanceKey );
+                    evs->appendJobModuleInstanceKey( QString( instanceKey ) );
                 }
             }
         }
