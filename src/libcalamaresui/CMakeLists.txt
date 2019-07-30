@@ -16,6 +16,7 @@ set( calamaresui_SOURCES
     utils/CalamaresUtilsGui.cpp
     utils/DebugWindow.cpp
     utils/ImageRegistry.cpp
+    utils/Paste.cpp
 
     utils/qjsonmodel.cpp
     utils/qjsonitem.cpp
