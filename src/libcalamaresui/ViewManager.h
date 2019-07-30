@@ -133,7 +133,8 @@ private:
 
     bool isAtVeryEnd() const
     {
-        return ( m_currentStep >= m_steps.count() ) || ( m_currentStep == m_steps.count() - 1 && m_steps.last()->isAtEnd() );
+        return ( m_currentStep >= m_steps.count() )
+            || ( m_currentStep == m_steps.count() - 1 && m_steps.last()->isAtEnd() );
     }
 
     static ViewManager* s_instance;
@@ -148,6 +149,6 @@ private:
     QPushButton* m_quit;
 };
 
-}
+}  // namespace Calamares
 
-#endif // VIEWMANAGER_H
+#endif  // VIEWMANAGER_H
