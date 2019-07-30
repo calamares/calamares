@@ -239,7 +239,9 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox->show();
 
     cDebug() << "Calamares will quit when the dialog closes.";
-    connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
+    connect( msgBox, &QMessageBox::buttonClicked, [this,msgBox]( QAbstractButton* button ) {
+        cDebug() << "Button role:" << msgBox->buttonRole( button );
+
         if ( button->text() != tr( "&Yes" ) )
         {
             QApplication::quit();
@@ -255,14 +257,10 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
             pasteUrlMsg = tr( "The upload was unsuccessful. No web-paste was done." );
         }
 
-        QMessageBox* pasteUrlMsgBox = new QMessageBox();
-        pasteUrlMsgBox->setIcon( QMessageBox::Critical );
-        pasteUrlMsgBox->setWindowTitle( pasteUrlTitle );
-        pasteUrlMsgBox->setStandardButtons( QMessageBox::Close );
-        pasteUrlMsgBox->setText( pasteUrlMsg );
-        pasteUrlMsgBox->show();
-
-        connect( pasteUrlMsgBox, &QMessageBox::buttonClicked, qApp, &QApplication::quit );
+        QMessageBox::critical(nullptr,
+                              pasteUrlTitle,
+                              pasteUrlMsg);
+        QApplication::quit();
     } );
 }
 
