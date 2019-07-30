@@ -139,6 +139,8 @@ ViewManager::ViewManager( QObject* parent )
     {
         m_quit->setVisible( false );
     }
+
+    // onInstallationFailed( "Tile of Failure", "Body of Failure");  // for testing paste functionality
 }
 
 
@@ -199,7 +201,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    bool shouldOfferWebPaste = true;  // TODO: config var
+    bool shouldOfferWebPaste = false;  // TODO: config var
 
     cError() << "Installation failed:";
     cDebug() << "- message:" << message;
@@ -240,26 +242,21 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
 
     cDebug() << "Calamares will quit when the dialog closes.";
     connect( msgBox, &QMessageBox::buttonClicked, [this,msgBox]( QAbstractButton* button ) {
-        cDebug() << "Button role:" << msgBox->buttonRole( button );
-
-        if ( button->text() != tr( "&Yes" ) )
+        if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
-            QApplication::quit();
-            return;
+            // TODO: host and port should be configurable
+            QString pasteUrlMsg = CalamaresUtils::pastebin( msgBox, QStringLiteral( "termbin.com" ), 9999 );
+
+            QString pasteUrlTitle = tr( "Install Log Paste URL" );
+            if ( pasteUrlMsg.isEmpty() )
+            {
+                pasteUrlMsg = tr( "The upload was unsuccessful. No web-paste was done." );
+            }
+
+            QMessageBox::critical(nullptr,
+                                pasteUrlTitle,
+                                pasteUrlMsg);
         }
-
-        // TODO: host and port should be configurable
-        QString pasteUrlMsg = CalamaresUtils::pastebin( msgBox, QStringLiteral( "termbin.com" ), 9999 );
-
-        QString pasteUrlTitle = tr( "Install Log Paste URL" );
-        if ( pasteUrlMsg.isEmpty() )
-        {
-            pasteUrlMsg = tr( "The upload was unsuccessful. No web-paste was done." );
-        }
-
-        QMessageBox::critical(nullptr,
-                              pasteUrlTitle,
-                              pasteUrlMsg);
         QApplication::quit();
     } );
 }
