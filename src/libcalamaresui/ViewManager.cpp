@@ -137,8 +137,6 @@ ViewManager::ViewManager( QObject* parent )
 
     if (Calamares::Settings::instance()->disableCancel())
         m_quit->setVisible( false );
-
-onInstallationFailed("amessage","somedetails"); // TODO: remove this
 }
 
 
