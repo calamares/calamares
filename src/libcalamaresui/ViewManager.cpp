@@ -357,8 +357,8 @@ ViewManager::next()
                 confirm,
                 tr( "Go &back" ),
                 QString(),
-                0,
-                1 );
+                0 /* default first button, i.e. confirm */,
+                1 /* escape is second button, i.e. cancel */ );
             if ( reply == 1 )
             {
                 return;
