@@ -27,6 +27,8 @@
 #include <QSemaphore>
 #include <QTimer>
 
+#include <chrono>
+
 TrackingInstallJob::TrackingInstallJob( const QString& url )
     : m_url( url )
     , m_networkManager( nullptr )
@@ -79,7 +81,7 @@ TrackingInstallJob::exec()
     connect( &timeout, &QTimer::timeout, &loop, &QEventLoop::quit );
 
     m_networkManager->get( request );  // The semaphore is released when data is received
-    timeout.start( 5000 /* ms */ );
+    timeout.start( std::chrono::milliseconds( 5000 ) );
 
     loop.exec();
 
