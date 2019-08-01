@@ -63,8 +63,8 @@ InitramfsJob::exec()
 
     // And then do the ACTUAL work.
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "update-initramfs", "-k", m_kernel, "-c", "-t" }, QString(), QString(), 0 );
-    return r.explainProcess( "update-initramfs", 10 );
+        { "update-initramfs", "-k", m_kernel, "-c", "-t" }, QString(), QString() /* no timeout, 0 */ );
+    return r.explainProcess( "update-initramfs", std::chrono::seconds( 10 ) /* fake timeout */ );
 }
 
 
@@ -79,7 +79,7 @@ InitramfsJob::setConfigurationMap( const QVariantMap& configurationMap )
     else if ( m_kernel == "$uname" )
     {
         auto r = CalamaresUtils::System::runCommand(
-            CalamaresUtils::System::RunLocation::RunInHost, { "/bin/uname", "-r" }, QString(), QString(), 3 );
+            CalamaresUtils::System::RunLocation::RunInHost, { "/bin/uname", "-r" }, QString(), QString(), std::chrono::seconds( 3 ) );
         if ( r.getExitCode() == 0 )
         {
             m_kernel = r.getOutput();
