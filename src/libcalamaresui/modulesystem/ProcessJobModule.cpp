@@ -72,10 +72,13 @@ ProcessJobModule::initFrom( const QVariantMap& moduleDescriptor )
         m_command = moduleDescriptor.value( "command" ).toString();
     }
 
-    m_secondsTimeout = 30;
+    m_secondsTimeout = std::chrono::seconds( 30 );
     if ( moduleDescriptor.contains( "timeout" ) && !moduleDescriptor.value( "timeout" ).isNull() )
     {
-        m_secondsTimeout = moduleDescriptor.value( "timeout" ).toInt();
+        int sec = moduleDescriptor.value( "timeout" ).toInt();
+        if ( sec < 0 )
+            sec = 0;
+        m_secondsTimeout = std::chrono::seconds( sec );
     }
 
     m_runInChroot = false;
@@ -88,7 +91,7 @@ ProcessJobModule::initFrom( const QVariantMap& moduleDescriptor )
 
 ProcessJobModule::ProcessJobModule()
     : Module()
-    , m_secondsTimeout( 30 )
+    , m_secondsTimeout( std::chrono::seconds( 30 ) )
     , m_runInChroot( false )
 {
 }

@@ -35,10 +35,10 @@ namespace CalamaresUtils
 static CommandLine get_variant_object( const QVariantMap& m )
 {
     QString command = CalamaresUtils::getString( m, "command" );
-    int timeout = CalamaresUtils::getInteger( m, "timeout", CommandLine::TimeoutNotSet );
+    int timeout = CalamaresUtils::getInteger( m, "timeout", -1 );
 
     if ( !command.isEmpty() )
-        return CommandLine( command, timeout );
+        return CommandLine( command, timeout >= 0 ? std::chrono::seconds( timeout ) : CommandLine::TimeoutNotSet() );
     cWarning() << "Bad CommandLine element" << m;
     return CommandLine();
 }
@@ -50,7 +50,7 @@ static CommandList_t get_variant_stringlist( const QVariantList& l )
     for ( const auto& v : l )
     {
         if ( v.type() == QVariant::String )
-            retl.append( CommandLine( v.toString(), CommandLine::TimeoutNotSet ) );
+            retl.append( CommandLine( v.toString(), CommandLine::TimeoutNotSet() ) );
         else if ( v.type() == QVariant::Map )
         {
             auto command( get_variant_object( v.toMap() ) );
@@ -65,13 +65,13 @@ static CommandList_t get_variant_stringlist( const QVariantList& l )
     return retl;
 }
 
-CommandList::CommandList( bool doChroot, int timeout )
+CommandList::CommandList( bool doChroot, std::chrono::seconds timeout )
     : m_doChroot( doChroot )
     , m_timeout( timeout )
 {
 }
 
-CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, int timeout )
+CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, std::chrono::seconds timeout )
     : CommandList( doChroot, timeout )
 {
     if ( v.type() == QVariant::List )
@@ -155,7 +155,7 @@ Calamares::JobResult CommandList::run()
         QStringList shell_cmd { "/bin/sh", "-c" };
         shell_cmd << processed_cmd;
 
-        int timeout = i->timeout() >= 0 ? i->timeout() : m_timeout;
+        std::chrono::seconds timeout = i->timeout() >= std::chrono::seconds::zero() ? i->timeout() : m_timeout;
         ProcessResult r = System::runCommand(
                               location, shell_cmd, QString(), QString(), timeout );
 

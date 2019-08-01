@@ -125,7 +125,7 @@ sed -i "s,URI =.*,URI = http://releases.neon.kde.org/meta-release/${MACHINE_ID},
 sed -i "s,URI_LTS =.*,URI_LTS = http://releases.neon.kde.org/meta-release-lts/${MACHINE_ID}," /etc/update-manager/meta-release
 true
 )x"),
-        1);
+        std::chrono::seconds( 1 ) );
 
     if ( r == 0 )
         return Calamares::JobResult::ok();

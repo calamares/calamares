@@ -158,7 +158,7 @@ CreateUserJob::exec()
     if ( commandResult.getExitCode() )
     {
         cError() << "useradd failed" << commandResult.getExitCode();
-        return commandResult.explainProcess( useradd, 10 /* bogus timeout */ );
+        return commandResult.explainProcess( useradd, std::chrono::seconds( 10 ) /* bogus timeout */ );
     }
 
     commandResult = CalamaresUtils::System::instance()->targetEnvCommand(
@@ -166,7 +166,7 @@ CreateUserJob::exec()
     if ( commandResult.getExitCode() )
     {
         cError() << "usermod failed" << commandResult.getExitCode();
-        return commandResult.explainProcess( "usermod", 10 );
+        return commandResult.explainProcess( "usermod", std::chrono::seconds( 10 ) /* bogus timeout */ );
     }
 
     QString userGroup = QString( "%1:%2" ).arg( m_userName ).arg( m_userName );
@@ -176,7 +176,7 @@ CreateUserJob::exec()
     if ( commandResult.getExitCode() )
     {
         cError() << "chown failed" << commandResult.getExitCode();
-        return commandResult.explainProcess( "chown", 10 );
+        return commandResult.explainProcess( "chown", std::chrono::seconds( 10 ) /* bogus timeout */ );
     }
 
     return Calamares::JobResult::ok();

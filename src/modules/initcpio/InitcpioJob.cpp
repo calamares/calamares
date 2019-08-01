@@ -74,8 +74,8 @@ InitcpioJob::exec()
 
     cDebug() << "Updating initramfs with kernel" << m_kernel;
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "mkinitcpio", "-p", m_kernel }, QString(), QString(), 0 );
-    return r.explainProcess( "mkinitcpio", 10 );
+        { "mkinitcpio", "-p", m_kernel }, QString(), QString() /* no timeout , 0 */ );
+    return r.explainProcess( "mkinitcpio", std::chrono::seconds( 10 ) /* fake timeout */ );
 }
 
 void
@@ -89,7 +89,7 @@ InitcpioJob::setConfigurationMap( const QVariantMap& configurationMap )
     else if ( m_kernel == "$uname" )
     {
         auto r = CalamaresUtils::System::runCommand(
-            CalamaresUtils::System::RunLocation::RunInHost, { "/bin/uname", "-r" }, QString(), QString(), 3 );
+            CalamaresUtils::System::RunLocation::RunInHost, { "/bin/uname", "-r" }, QString(), QString(), std::chrono::seconds( 3 ) );
         if ( r.getExitCode() == 0 )
         {
             m_kernel = r.getOutput();

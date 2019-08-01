@@ -170,7 +170,7 @@ ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
                 continue;
             }
 
-            CalamaresUtils::CommandList* commands = new CalamaresUtils::CommandList( valueiter.value(), !dontChroot, timeout );
+            CalamaresUtils::CommandList* commands = new CalamaresUtils::CommandList( valueiter.value(), !dontChroot, std::chrono::seconds( timeout ) );
 
             binding->append( valueString, commands );
         }

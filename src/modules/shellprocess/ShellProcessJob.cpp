@@ -75,7 +75,7 @@ ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "script" ) )
     {
-        m_commands = new CalamaresUtils::CommandList( configurationMap.value( "script" ), !dontChroot, timeout );
+        m_commands = new CalamaresUtils::CommandList( configurationMap.value( "script" ), !dontChroot, std::chrono::seconds( timeout ) );
         if ( m_commands->isEmpty() )
             cDebug() << "ShellProcessJob: \"script\" contains no commands for" << moduleInstanceKey();
     }

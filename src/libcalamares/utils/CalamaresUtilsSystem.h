@@ -27,6 +27,8 @@
 #include <QPair>
 #include <QString>
 
+#include <chrono>
+
 namespace CalamaresUtils
 {
 class ProcessResult : public QPair< int, QString >
@@ -60,16 +62,16 @@ public:
      * @param timeout   Timeout passed to the process runner, for explaining
      *                  error code -4 (timeout).
      */
-    static Calamares::JobResult explainProcess( int errorCode, const QString& command, const QString& output, int timeout );
+    static Calamares::JobResult explainProcess( int errorCode, const QString& command, const QString& output, std::chrono::seconds timeout );
 
     /// @brief Convenience wrapper for explainProcess()
-    inline Calamares::JobResult explainProcess( const QString& command, int timeout ) const
+    inline Calamares::JobResult explainProcess( const QString& command, std::chrono::seconds timeout ) const
     {
         return explainProcess( getExitCode(), command, getOutput(), timeout );
     }
 
     /// @brief Convenience wrapper for explainProcess()
-    inline Calamares::JobResult explainProcess( const QStringList& command, int timeout ) const
+    inline Calamares::JobResult explainProcess( const QStringList& command, std::chrono::seconds timeout ) const
     {
         return explainProcess( getExitCode(), command.join( ' ' ), getOutput(), timeout );
     }
@@ -138,7 +140,7 @@ public:
         const QStringList &args,
         const QString& workingPath = QString(),
         const QString& stdInput = QString(),
-        int timeoutSec = 0 );
+        std::chrono::seconds timeoutSec = std::chrono::seconds(0) );
 
     /** @brief Convenience wrapper for runCommand().
      *  Runs the command in the location specified through the boolean
@@ -149,7 +151,7 @@ public:
         const QStringList &args,
         const QString& workingPath = QString(),
         const QString& stdInput = QString(),
-        int timeoutSec = 0 )
+        std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         return runCommand(
             m_doChroot ? RunLocation::RunInTarget : RunLocation::RunInHost,
@@ -163,7 +165,7 @@ public:
     inline int targetEnvCall( const QStringList& args,
                               const QString& workingPath = QString(),
                               const QString& stdInput = QString(),
-                              int timeoutSec = 0 )
+                              std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         return targetEnvCommand( args, workingPath, stdInput, timeoutSec ).first;
     }
@@ -172,7 +174,7 @@ public:
     inline int targetEnvCall( const QString& command,
                               const QString& workingPath = QString(),
                               const QString& stdInput = QString(),
-                              int timeoutSec = 0 )
+                              std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         return targetEnvCall( QStringList{ command }, workingPath, stdInput, timeoutSec );
     }
@@ -185,7 +187,7 @@ public:
                                 QString& output,
                                 const QString& workingPath = QString(),
                                 const QString& stdInput = QString(),
-                                int timeoutSec = 0 )
+                                std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         auto r = targetEnvCommand( args, workingPath, stdInput, timeoutSec );
         output = r.second;
@@ -200,45 +202,45 @@ public:
                                 QString& output,
                                 const QString& workingPath = QString(),
                                 const QString& stdInput = QString(),
-                                int timeoutSec = 0 )
+                                std::chrono::seconds timeoutSec = std::chrono::seconds(0) )
     {
         return targetEnvOutput( QStringList{ command }, output, workingPath, stdInput, timeoutSec );
     }
 
-    
+
     /** @brief Gets a path to a file in the target system, from the host.
-     * 
+     *
      * @param path Path to the file; this is interpreted
      *      from the root of the target system (whatever that may be,
      *      but / in the chroot, or / in OEM modes).
-     * 
+     *
      * @return The complete path to the target file, from
      *      the root of the host system, or empty on failure.
-     * 
+     *
      * For instance, during installation where the target root is
      * mounted on /tmp/calamares-something, asking for targetPath("/etc/passwd")
      * will give you /tmp/calamares-something/etc/passwd.
-     * 
+     *
      * No attempt is made to canonicalize anything, since paths might not exist.
-     */ 
+     */
     DLLEXPORT QString targetPath( const QString& path ) const;
-    
+
     /** @brief Create a (small-ish) file in the target system.
-     * 
+     *
      * @param path Path to the file; this is interpreted
      *      from the root of the target system (whatever that may be,
      *      but / in the chroot, or / in OEM modes).
      * @param contents Actual content of the file.
-     * 
+     *
      * Will not overwrite files. Returns an empty string if the
      * target file already exists.
-     * 
+     *
      * @return The complete canonical path to the target file from the
      *      root of the host system, or empty on failure. (Here, it is
      *      possible to be canonical because the file exists).
      */
     DLLEXPORT QString createTargetFile( const QString& path, const QByteArray& contents ) const;
-    
+
     /**
      * @brief getTotalMemoryB returns the total main memory, in bytes.
      *

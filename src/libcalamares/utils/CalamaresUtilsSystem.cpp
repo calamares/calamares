@@ -154,7 +154,7 @@ System::runCommand(
     const QStringList& args,
     const QString& workingPath,
     const QString& stdInput,
-    int timeoutSec )
+    std::chrono::seconds timeoutSec )
 {
     QString output;
 
@@ -219,7 +219,7 @@ System::runCommand(
     }
     process.closeWriteChannel();
 
-    if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
+    if ( !process.waitForFinished( timeoutSec > std::chrono::seconds::zero() ? ( std::chrono::milliseconds( timeoutSec ).count() ) : -1 ) )
     {
         cWarning().noquote().nospace() << "Timed out. Output so far:\n" <<
             process.readAllStandardOutput();
@@ -249,7 +249,7 @@ QString
 System::targetPath( const QString& path ) const
 {
     QString completePath;
-    
+
     if ( doChroot() )
     {
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
@@ -259,14 +259,14 @@ System::targetPath( const QString& path ) const
             cWarning() << "No rootMountPoint in global storage, cannot create target file" << path;
             return QString();
         }
-        
+
         completePath = gs->value( "rootMountPoint" ).toString() + '/' + path;
     }
     else
     {
         completePath = QStringLiteral( "/" ) + path;
     }
-    
+
     return completePath;
 }
 
@@ -278,32 +278,32 @@ System::createTargetFile( const QString& path, const QByteArray& contents ) cons
     {
         return QString();
     }
-    
+
     QFile f( completePath );
     if ( f.exists() )
     {
         return QString();
     }
-    
+
     QIODevice::OpenMode m =
 #if QT_VERSION >= QT_VERSION_CHECK( 5, 11, 0 )
         // New flag from Qt 5.11, implies WriteOnly
         QIODevice::NewOnly |
 #endif
         QIODevice::WriteOnly | QIODevice::Truncate;
-        
+
     if ( !f.open( m ) )
     {
         return QString();
     }
-    
+
     if ( f.write( contents ) != contents.size() )
     {
         f.close();
         f.remove();
         return QString();
     }
-    
+
     f.close();
     return QFileInfo( f ).canonicalFilePath();
 }
@@ -371,7 +371,7 @@ System::doChroot() const
 }
 
 Calamares::JobResult
-ProcessResult::explainProcess( int ec, const QString& command, const QString& output, int timeout )
+ProcessResult::explainProcess( int ec, const QString& command, const QString& output, std::chrono::seconds timeout )
 {
     using Calamares::JobResult;
 
@@ -401,7 +401,7 @@ ProcessResult::explainProcess( int ec, const QString& command, const QString& ou
         return JobResult::error( QCoreApplication::translate( "ProcessResult", "External command failed to finish." ),
                                  QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> failed to finish in %2 seconds." )
                                     .arg( command )
-                                    .arg( timeout )
+                                    .arg( timeout.count() )
                                     + outputMessage );
 
     //Any other exit code
