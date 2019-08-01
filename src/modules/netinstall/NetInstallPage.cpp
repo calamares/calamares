@@ -132,7 +132,13 @@ NetInstallPage::loadGroupList( const QString& confUrl )
 
     connect( &m_networkManager, &QNetworkAccessManager::finished,
              this, &NetInstallPage::dataIsHere );
-    m_networkManager.get( request );
+    auto* rq = m_networkManager.get( request );
+    if ( rq->error() )
+    {
+        cDebug() << Logger::Continuation << "request failed immediately," << rq->errorString();
+        rq->deleteLater();
+        ui->netinst_status->setText( tr( "Network Installation. (Disabled: Incorrect configuration)" ) );
+    }
 }
 
 void
