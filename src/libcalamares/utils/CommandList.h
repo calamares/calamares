@@ -24,6 +24,8 @@
 #include <QStringList>
 #include <QVariant>
 
+#include <chrono>
+
 namespace CalamaresUtils
 {
 
@@ -31,23 +33,23 @@ namespace CalamaresUtils
  * Each command can have an associated timeout in seconds. The timeout
  * defaults to 10 seconds. Provide some convenience naming and construction.
  */
-struct CommandLine : public QPair< QString, int >
+struct CommandLine : public QPair< QString, std::chrono::seconds >
 {
-    enum { TimeoutNotSet = -1 };
+    static inline constexpr std::chrono::seconds TimeoutNotSet() { return std::chrono::seconds(-1); }
 
     /// An invalid command line
     CommandLine()
-        : QPair< QString, int >( QString(), TimeoutNotSet )
+        : QPair( QString(), TimeoutNotSet() )
     {
     }
 
     CommandLine( const QString& s )
-        : QPair< QString, int >( s, TimeoutNotSet )
+        : QPair( s, TimeoutNotSet() )
     {
     }
 
-    CommandLine( const QString& s, int t )
-        : QPair< QString, int >( s, t)
+    CommandLine( const QString& s, std::chrono::seconds t )
+        : QPair( s, t)
     {
     }
 
@@ -56,7 +58,7 @@ struct CommandLine : public QPair< QString, int >
         return first;
     }
 
-    int timeout() const
+    std::chrono::seconds timeout() const
     {
         return second;
     }
@@ -82,8 +84,8 @@ class CommandList : protected CommandList_t
 {
 public:
     /** @brief empty command-list with timeout to apply to entries. */
-    CommandList( bool doChroot = true, int timeout = 10 );
-    CommandList( const QVariant& v, bool doChroot = true, int timeout = 10 );
+    CommandList( bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
+    CommandList( const QVariant& v, bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
     ~CommandList();
 
     bool doChroot() const
@@ -106,7 +108,7 @@ protected:
 
 private:
     bool m_doChroot;
-    int m_timeout;
+    std::chrono::seconds m_timeout;
 } ;
 
 }  // namespace

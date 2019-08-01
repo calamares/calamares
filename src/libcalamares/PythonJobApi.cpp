@@ -89,11 +89,13 @@ _target_env_command(
     const std::string& stdin,
     int timeout )
 {
+    // Since Python doesn't give us the type system for distinguishing
+    // seconds from other integral types, massage to seconds here.
     return CalamaresUtils::System::instance()->
         targetEnvCommand( args,
                           QString(),
                           QString::fromStdString( stdin ),
-                          timeout );
+                          std::chrono::seconds( timeout ) );
 }
 
 int

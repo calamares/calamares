@@ -31,7 +31,7 @@ namespace Calamares {
 ProcessJob::ProcessJob( const QString& command,
                         const QString& workingPath,
                         bool runInChroot,
-                        int secondsTimeout,
+                        std::chrono::seconds secondsTimeout,
                         QObject* parent )
     : Job( parent )
     , m_command( command )
