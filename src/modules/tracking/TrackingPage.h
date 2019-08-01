@@ -21,8 +21,8 @@
 
 #include "TrackingType.h"
 
-#include <QWidget>
 #include <QUrl>
+#include <QWidget>
 
 namespace Ui
 {
@@ -61,4 +61,4 @@ private:
     Ui::TrackingPage* ui;
 };
 
-#endif //TRACKINGPAGE_H
+#endif  //TRACKINGPAGE_H

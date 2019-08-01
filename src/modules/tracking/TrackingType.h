@@ -24,6 +24,6 @@ enum class TrackingType
     InstallTracking,
     MachineTracking,
     UserTracking
-} ;
+};
 
-#endif //TRACKINGTYPE_H
+#endif  //TRACKINGTYPE_H
