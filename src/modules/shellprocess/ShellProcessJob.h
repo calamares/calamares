@@ -50,4 +50,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ShellProcessJobFactory )
 
-#endif // SHELLPROCESSJOB_H
+#endif  // SHELLPROCESSJOB_H
