@@ -208,17 +208,17 @@
 <context>
     <name>Calamares::RequirementsChecker</name>
     <message numerus="yes">
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="153"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
         <source>Waiting for %n module(s).</source>
         <translation><numerusform>Laukiama %n modulio.</numerusform><numerusform>Laukiama %n modulių.</numerusform><numerusform>Laukiama %n modulių.</numerusform><numerusform>Laukiama %n modulio.</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="154"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="168"/>
         <source>(%n second(s))</source>
         <translation><numerusform>(%n sekundė)</numerusform><numerusform>(%n sekundės)</numerusform><numerusform>(%n sekundžių)</numerusform><numerusform>(%n sekundė)</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="158"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="173"/>
         <source>System-requirements checking is complete.</source>
         <translation>Sistemos reikalavimų tikrinimas yra užbaigtas.</translation>
     </message>
@@ -226,160 +226,156 @@
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="377"/>
         <source>&amp;Back</source>
         <translation>&amp;Atgal</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="372"/>
         <source>&amp;Next</source>
         <translation>&amp;Toliau</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="78"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="353"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;tsisakyti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup without changing the system.</source>
         <translation>Atsisakyti sąrankos, nieko sistemoje nekeičiant.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="81"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Atsisakyti diegimo, nieko sistemoje nekeičiant.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
         <source>Setup Failed</source>
         <translation>Sąranka patyrė nesėkmę</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
         <source>Calamares Initialization Failed</source>
         <translation>Calamares inicijavimas nepavyko</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="193"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="223"/>
         <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
         <translation>Nepavyksta įdiegti %1. Calamares nepavyko įkelti visų sukonfigūruotų modulių. Tai yra problema, susijusi su tuo, kaip distribucija naudoja diegimo programą Calamares.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="198"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="228"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
         <translation>&lt;br/&gt;Nepavyko įkelti šių modulių:</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="290"/>
         <source>Continue with installation?</source>
         <translation>Tęsti diegimą?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="262"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="292"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%1 sąrankos programa, siekdama nustatyti %2, ketina atlikti pakeitimus diske.&lt;br/&gt;&lt;strong&gt;Šių pakeitimų nebegalėsite atšaukti.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="269"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="299"/>
         <source>&amp;Set up now</source>
         <translation>Nu&amp;statyti dabar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="355"/>
         <source>&amp;Set up</source>
         <translation>Nu&amp;statyti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="356"/>
         <source>&amp;Install</source>
         <translation>Į&amp;diegti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="358"/>
         <source>Setup is complete. Close the setup program.</source>
         <translation>Sąranka užbaigta. Užverkite sąrankos programą.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="399"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="441"/>
         <source>Cancel setup?</source>
         <translation>Atsisakyti sąrankos?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="442"/>
         <source>Cancel installation?</source>
         <translation>Atsisakyti diegimo?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="444"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
         <translation>Ar tikrai norite atsisakyti dabartinio sąrankos proceso?
 Sąrankos programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="446"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Ar tikrai norite atsisakyti dabartinio diegimo proceso?
 Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="454"/>
         <source>&amp;Yes</source>
         <translation>&amp;Taip</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="413"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="455"/>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="174"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="204"/>
         <source>&amp;Close</source>
         <translation>&amp;Užverti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="259"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="289"/>
         <source>Continue with setup?</source>
         <translation>Tęsti sąranką?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%1 diegimo programa, siekdama įdiegti %2, ketina atlikti pakeitimus diske.&lt;br/&gt;&lt;strong&gt;Šių pakeitimų nebegalėsite atšaukti.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="270"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
         <source>&amp;Install now</source>
         <translation>Į&amp;diegti dabar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="307"/>
         <source>Go &amp;back</source>
         <translation>&amp;Grįžti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="342"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="382"/>
         <source>&amp;Done</source>
         <translation>A&amp;tlikta</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="329"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="359"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>Diegimas užbaigtas. Užverkite diegimo programą.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
         <source>Error</source>
         <translation>Klaida</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="168"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="198"/>
         <source>Installation Failed</source>
         <translation>Diegimas nepavyko</translation>
     </message>
@@ -1291,6 +1287,22 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
 </context>
 <context>
+    <name>InitcpioJob</name>
+    <message>
+        <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="40"/>
+        <source>Creating initramfs with mkinitcpio.</source>
+        <translation>Sukuriama initramfs naudojant mkinitcpio.</translation>
+    </message>
+</context>
+<context>
+    <name>InitramfsJob</name>
+    <message>
+        <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="37"/>
+        <source>Creating initramfs.</source>
+        <translation>Sukuriama initramfs.</translation>
+    </message>
+</context>
+<context>
     <name>InteractiveTerminalPage</name>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="53"/>
@@ -1511,6 +1523,42 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="132"/>
         <source>Location</source>
         <translation>Vieta</translation>
+    </message>
+</context>
+<context>
+    <name>LuksBootKeyFileJob</name>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="39"/>
+        <source>Configuring LUKS key file.</source>
+        <translation>Konfigūruojamas LUKS raktų failas.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
+        <source>No partitions are defined.</source>
+        <translation>Nėra jokių apibrėžtų skaidinių.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="199"/>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="207"/>
+        <source>Encrypted rootfs setup error</source>
+        <translation>Šifruoto rootfs sąrankos klaida</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
+        <source>Root partition %1 is LUKS but no passphrase has been set.</source>
+        <translation>Šaknies skaidinys %1 yra LUKS, tačiau nebuvo nustatyta jokia slaptafrazė.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
+        <source>Could not create LUKS key file for root partition %1.</source>
+        <translation>Nepavyko šaknies skaidiniui %1 sukurti LUKS rakto failo. </translation>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
+        <source>Could configure LUKS key file on partition %1.</source>
+        <translation>Nepavyko konfigūruoti LUKS rakto failo skaidinyje %1.</translation>
     </message>
 </context>
 <context>
@@ -2220,14 +2268,14 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
 <context>
     <name>ProcessResult</name>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="317"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="382"/>
         <source>
 There was no output from the command.</source>
         <translation>
 Nebuvo jokios išvesties iš komandos.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="318"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="383"/>
         <source>
 Output:
 </source>
@@ -2236,52 +2284,52 @@ Išvestis:
 </translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="321"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="386"/>
         <source>External command crashed.</source>
         <translation>Išorinė komanda užstrigo.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="322"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="387"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
         <translation>Komanda &lt;i&gt;%1&lt;/i&gt; užstrigo.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="327"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="392"/>
         <source>External command failed to start.</source>
         <translation>Nepavyko paleisti išorinės komandos.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="328"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="393"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
         <translation>Nepavyko paleisti komandos &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="332"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="397"/>
         <source>Internal error when starting command.</source>
         <translation>Paleidžiant komandą, įvyko vidinė klaida.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="333"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="398"/>
         <source>Bad parameters for process job call.</source>
         <translation>Blogi parametrai proceso užduoties iškvietai.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="336"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="401"/>
         <source>External command failed to finish.</source>
         <translation>Nepavyko pabaigti išorinės komandos.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="337"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="402"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
         <translation>Nepavyko per %2 sek. pabaigti komandos &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="343"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="408"/>
         <source>External command finished with errors.</source>
         <translation>Išorinė komanda pabaigta su klaidomis.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="344"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="409"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
         <translation>Komanda &lt;i&gt;%1&lt;/i&gt; pabaigta su išėjimo kodu %2.</translation>
     </message>
@@ -2330,7 +2378,7 @@ Išvestis:
         <translation>(nėra prijungimo taško)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="62"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="65"/>
         <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
         <translation>Reikalavimų tikrinimas &lt;i&gt;%1&lt;/i&gt; moduliui yra užbaigtas.</translation>
     </message>

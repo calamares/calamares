@@ -21,17 +21,21 @@
 
 #include "ViewManager.h"
 
-#include "utils/Logger.h"
 #include "viewpages/BlankViewStep.h"
 #include "viewpages/ViewStep.h"
+
+#include "Branding.h"
 #include "ExecutionViewStep.h"
 #include "JobQueue.h"
-#include "utils/Retranslator.h"
-#include "Branding.h"
 #include "Settings.h"
+
+#include "utils/Logger.h"
+#include "utils/Paste.h"
+#include "utils/Retranslator.h"
 
 #include <QApplication>
 #include <QBoxLayout>
+#include <QFile>
 #include <QMessageBox>
 #include <QMetaObject>
 
@@ -108,9 +112,7 @@ ViewManager::ViewManager( QObject* parent )
     m_next = makeButton( m_widget, "go-next" );
     m_quit = makeButton( m_widget, "dialog-cancel" );
 
-    CALAMARES_RETRANSLATE(
-        updateButtonLabels();
-    )
+    CALAMARES_RETRANSLATE( updateButtonLabels(); )
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
     mainLayout->addLayout( bottomLayout );
@@ -124,15 +126,21 @@ ViewManager::ViewManager( QObject* parent )
     connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
     m_back->setEnabled( false );
 
-    connect( m_quit, &QPushButton::clicked, this,
-             [this]() { if ( this->confirmCancelInstallation() ) qApp->quit(); } );
-    connect( JobQueue::instance(), &JobQueue::failed,
-             this, &ViewManager::onInstallationFailed );
-    connect( JobQueue::instance(), &JobQueue::finished,
-             this, &ViewManager::next );
+    connect( m_quit, &QPushButton::clicked, this, [this]() {
+        if ( this->confirmCancelInstallation() )
+        {
+            qApp->quit();
+        }
+    } );
+    connect( JobQueue::instance(), &JobQueue::failed, this, &ViewManager::onInstallationFailed );
+    connect( JobQueue::instance(), &JobQueue::finished, this, &ViewManager::next );
 
-    if (Calamares::Settings::instance()->disableCancel())
+    if ( Calamares::Settings::instance()->disableCancel() )
+    {
         m_quit->setVisible( false );
+    }
+
+    // onInstallationFailed( "Tile of Failure", "Body of Failure");  // for testing paste functionality
 }
 
 
@@ -156,7 +164,9 @@ ViewManager::addViewStep( ViewStep* step )
     insertViewStep( m_steps.size(), step );
     // If this is the first inserted view step, update status of "Next" button
     if ( m_steps.count() == 1 )
+    {
         m_next->setEnabled( step->isNextEnabled() );
+    }
 }
 
 
@@ -166,18 +176,20 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     m_steps.insert( before, step );
     QLayout* layout = step->widget()->layout();
     if ( layout )
+    {
         layout->setContentsMargins( 0, 0, 0, 0 );
+    }
     m_stack->insertWidget( before, step->widget() );
 
     connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
-    connect( step, &ViewStep::nextStatusChanged,
-             this, [this]( bool status )
-    {
+    connect( step, &ViewStep::nextStatusChanged, this, [this]( bool status ) {
         ViewStep* vs = qobject_cast< ViewStep* >( sender() );
         if ( vs )
         {
             if ( vs == m_steps.at( m_currentStep ) )
+            {
                 m_next->setEnabled( status );
+            }
         }
     } );
 
@@ -189,48 +201,88 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
+    bool shouldOfferWebPaste = false;  // TODO: config var
+
     cError() << "Installation failed:";
     cDebug() << "- message:" << message;
     cDebug() << "- details:" << details;
 
-    QString heading = Calamares::Settings::instance()->isSetupMode()
-        ? tr( "Setup Failed" )
-        : tr( "Installation Failed" );
+    QString heading
+        = Calamares::Settings::instance()->isSetupMode() ? tr( "Setup Failed" ) : tr( "Installation Failed" );
+    QString pasteMsg = tr( "Would you like to paste the install log to the web?" );
+    QString text = "<p>" + message + "</p>";
+    if ( !details.isEmpty() )
+    {
+        text += "<p>" + details + "</p>";
+    }
+    if ( shouldOfferWebPaste )
+    {
+        text += "<p>" + pasteMsg + "</p>";
+    }
+
     QMessageBox* msgBox = new QMessageBox();
     msgBox->setIcon( QMessageBox::Critical );
     msgBox->setWindowTitle( tr( "Error" ) );
     msgBox->setText( "<strong>" + heading + "</strong>" );
-    msgBox->setStandardButtons( QMessageBox::Close );
-    msgBox->button( QMessageBox::Close )->setText( tr( "&Close" ) );
-
-    QString text = "<p>" + message + "</p>";
-    if ( !details.isEmpty() )
-        text += "<p>" + details + "</p>";
     msgBox->setInformativeText( text );
-
-    connect( msgBox, &QMessageBox::buttonClicked, qApp, &QApplication::quit );
-    cDebug() << "Calamares will quit when the dialog closes.";
+    if ( shouldOfferWebPaste )
+    {
+        msgBox->setStandardButtons( QMessageBox::Yes | QMessageBox::No );
+        msgBox->setDefaultButton( QMessageBox::No );
+        msgBox->button( QMessageBox::Yes )->setText( tr( "&Yes" ) );
+        msgBox->button( QMessageBox::No )->setText( tr( "&No" ) );
+    }
+    else
+    {
+        msgBox->setStandardButtons( QMessageBox::Close );
+        msgBox->setDefaultButton( QMessageBox::Close );
+        msgBox->button( QMessageBox::Close )->setText( tr( "&Close" ) );
+    }
     msgBox->show();
+
+    cDebug() << "Calamares will quit when the dialog closes.";
+    connect( msgBox, &QMessageBox::buttonClicked, [this,msgBox]( QAbstractButton* button ) {
+        if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
+        {
+            // TODO: host and port should be configurable
+            QString pasteUrlMsg = CalamaresUtils::sendLogToPastebin( msgBox, QStringLiteral( "termbin.com" ), 9999 );
+
+            QString pasteUrlTitle = tr( "Install Log Paste URL" );
+            if ( pasteUrlMsg.isEmpty() )
+            {
+                pasteUrlMsg = tr( "The upload was unsuccessful. No web-paste was done." );
+            }
+
+            // TODO: make the URL clickable, or copy it to the clipboard automatically
+            QMessageBox::critical(nullptr,
+                                pasteUrlTitle,
+                                pasteUrlMsg);
+        }
+        QApplication::quit();
+    } );
 }
 
 
 void
-ViewManager::onInitFailed( const QStringList& modules)
+ViewManager::onInitFailed( const QStringList& modules )
 {
     // Because this means the installer / setup program is broken by the distributor,
     // don't bother being precise about installer / setup wording.
     QString title( tr( "Calamares Initialization Failed" ) );
-    QString description( tr( "%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution." ) );
+    QString description( tr( "%1 can not be installed. Calamares was unable to load all of the configured modules. "
+                             "This is a problem with the way Calamares is being used by the distribution." ) );
     QString detailString;
 
     if ( modules.count() > 0 )
     {
         description.append( tr( "<br/>The following modules could not be loaded:" ) );
         QStringList details;
-        details << QLatin1Literal("<ul>");
-        for( const auto& m : modules )
-            details << QLatin1Literal("<li>") << m << QLatin1Literal("</li>");
-        details << QLatin1Literal("</ul>");
+        details << QLatin1Literal( "<ul>" );
+        for ( const auto& m : modules )
+        {
+            details << QLatin1Literal( "<li>" ) << m << QLatin1Literal( "</li>" );
+        }
+        details << QLatin1Literal( "</ul>" );
         detailString = details.join( QString() );
     }
 
@@ -265,10 +317,8 @@ ViewManager::currentStepIndex() const
 static inline bool
 stepIsExecute( const ViewStepList& steps, int index )
 {
-    return
-        ( 0 <= index ) &&
-        ( index < steps.count() ) &&
-        ( qobject_cast< ExecutionViewStep* >( steps.at( index ) ) != nullptr );
+    return ( 0 <= index ) && ( index < steps.count() )
+        && ( qobject_cast< ExecutionViewStep* >( steps.at( index ) ) != nullptr );
 }
 
 void
@@ -283,11 +333,10 @@ ViewManager::next()
         // Special case when the user clicks next on the very last page in a view phase
         // and right before switching to an execution phase.
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
-        if ( settings->showPromptBeforeExecution() && stepIsExecute( m_steps, m_currentStep+1 ) )
+        if ( settings->showPromptBeforeExecution() && stepIsExecute( m_steps, m_currentStep + 1 ) )
         {
-            QString title = settings->isSetupMode()
-                ? tr( "Continue with setup?" )
-                : tr( "Continue with installation?" );
+            QString title
+                = settings->isSetupMode() ? tr( "Continue with setup?" ) : tr( "Continue with installation?" );
             QString question = settings->isSetupMode()
                 ? tr( "The %1 setup program is about to make changes to your "
                       "disk in order to set up %2.<br/><strong>You will not be able "
@@ -295,21 +344,21 @@ ViewManager::next()
                 : tr( "The %1 installer is about to make changes to your "
                       "disk in order to install %2.<br/><strong>You will not be able "
                       "to undo these changes.</strong>" );
-            QString confirm = settings->isSetupMode()
-                ? tr( "&Set up now" )
-                : tr( "&Install now" );
+            QString confirm = settings->isSetupMode() ? tr( "&Set up now" ) : tr( "&Install now" );
 
-            int reply =
-                QMessageBox::question( m_widget,
-                                       title,
-                                       question.arg( *Calamares::Branding::ShortProductName, *Calamares::Branding::ShortVersionedName ),
-                                       confirm,
-                                       tr( "Go &back" ),
-                                       QString(),
-                                       0,
-                                       1 );
+            int reply = QMessageBox::question(
+                m_widget,
+                title,
+                question.arg( *Calamares::Branding::ShortProductName, *Calamares::Branding::ShortVersionedName ),
+                confirm,
+                tr( "Go &back" ),
+                QString(),
+                0 /* default first button, i.e. confirm */,
+                1 /* escape is second button, i.e. cancel */ );
             if ( reply == 1 )
+            {
                 return;
+            }
         }
 
         m_currentStep++;
@@ -330,7 +379,7 @@ ViewManager::next()
             m_next->setEnabled( false );
             m_back->setEnabled( false );
         }
-        updateCancelEnabled( !settings->disableCancel() && !(executing && settings->disableCancelDuringExec() ) );
+        updateCancelEnabled( !settings->disableCancel() && !( executing && settings->disableCancelDuringExec() ) );
     }
     else
     {
@@ -351,9 +400,7 @@ ViewManager::updateButtonLabels()
 {
     const auto* const settings = Calamares::Settings::instance();
 
-    QString nextIsInstallationStep = settings->isSetupMode()
-        ? tr( "&Set up" )
-        : tr( "&Install" );
+    QString nextIsInstallationStep = settings->isSetupMode() ? tr( "&Set up" ) : tr( "&Install" );
     QString quitOnCompleteTooltip = settings->isSetupMode()
         ? tr( "Setup is complete. Close the setup program." )
         : tr( "The installation is complete. Close the installer." );
@@ -362,7 +409,7 @@ ViewManager::updateButtonLabels()
         : tr( "Cancel installation without changing the system." );
 
     // If we're going into the execution step / install phase, other message
-    if ( stepIsExecute( m_steps, m_currentStep+1 ) )
+    if ( stepIsExecute( m_steps, m_currentStep + 1 ) )
     {
         m_next->setText( nextIsInstallationStep );
         setButtonIcon( m_next, "run-install" );
@@ -388,8 +435,11 @@ ViewManager::updateButtonLabels()
     else
     {
         if ( settings->disableCancel() )
+        {
             m_quit->setVisible( false );  // In case we went back from final
-        updateCancelEnabled( !settings->disableCancel() && !( stepIsExecute( m_steps, m_currentStep ) && settings->disableCancelDuringExec() ) );
+        }
+        updateCancelEnabled( !settings->disableCancel()
+                             && !( stepIsExecute( m_steps, m_currentStep ) && settings->disableCancelDuringExec() ) );
 
         m_quit->setText( tr( "&Cancel" ) );
         m_quit->setToolTip( cancelBeforeInstallationTooltip );
@@ -410,46 +460,53 @@ ViewManager::back()
         emit currentStepChanged();
     }
     else if ( !step->isAtBeginning() )
+    {
         step->back();
-    else return;
+    }
+    else
+    {
+        return;
+    }
 
     m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
     m_back->setEnabled( m_steps.at( m_currentStep )->isBackEnabled() );
 
     if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
+    {
         m_back->setEnabled( false );
+    }
 
     updateButtonLabels();
 }
 
-bool ViewManager::confirmCancelInstallation()
+bool
+ViewManager::confirmCancelInstallation()
 {
     const auto* const settings = Calamares::Settings::instance();
 
     // When we're at the very end, then it's always OK to exit.
     if ( isAtVeryEnd() )
+    {
         return true;
+    }
 
     // Not at the very end, cancel/quit might be disabled
     if ( settings->disableCancel() )
+    {
         return false;
+    }
     if ( settings->disableCancelDuringExec() && stepIsExecute( m_steps, m_currentStep ) )
+    {
         return false;
+    }
 
     // Otherwise, confirm cancel/quit.
-    QString title = settings->isSetupMode()
-        ? tr( "Cancel setup?" )
-        : tr( "Cancel installation?" );
-    QString question = settings->isSetupMode()
-        ? tr( "Do you really want to cancel the current setup process?\n"
-                "The setup program will quit and all changes will be lost." )
-        : tr( "Do you really want to cancel the current install process?\n"
-                "The installer will quit and all changes will be lost." );
-    QMessageBox mb( QMessageBox::Question,
-                    title,
-                    question,
-                    QMessageBox::Yes | QMessageBox::No,
-                    m_widget );
+    QString title = settings->isSetupMode() ? tr( "Cancel setup?" ) : tr( "Cancel installation?" );
+    QString question = settings->isSetupMode() ? tr( "Do you really want to cancel the current setup process?\n"
+                                                     "The setup program will quit and all changes will be lost." )
+                                               : tr( "Do you really want to cancel the current install process?\n"
+                                                     "The installer will quit and all changes will be lost." );
+    QMessageBox mb( QMessageBox::Question, title, question, QMessageBox::Yes | QMessageBox::No, m_widget );
     mb.setDefaultButton( QMessageBox::No );
     mb.button( QMessageBox::Yes )->setText( tr( "&Yes" ) );
     mb.button( QMessageBox::No )->setText( tr( "&No" ) );
@@ -464,4 +521,4 @@ ViewManager::updateCancelEnabled( bool enabled )
     emit cancelEnabled( enabled );
 }
 
-}  // namespace
+}  // namespace Calamares

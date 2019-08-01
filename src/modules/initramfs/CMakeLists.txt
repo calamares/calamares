@@ -7,3 +7,20 @@ calamares_add_plugin( initramfs
         calamares
     SHARED_LIB
 )
+
+if( ECM_FOUND AND BUILD_TESTING )
+    ecm_add_test(
+            Tests.cpp
+        TEST_NAME
+            initramfstest
+        LINK_LIBRARIES
+            ${CALAMARES_LIBRARIES}
+            calamares
+            calamares_job_initramfs # From above
+            ${YAMLCPP_LIBRARY}
+            Qt5::Core
+            Qt5::Test
+    )
+    set_target_properties( initramfstest PROPERTIES AUTOMOC TRUE )
+    target_include_directories( initramfstest PRIVATE /usr/local/include )
+endif()

@@ -74,6 +74,9 @@ NetInstallPage::readGroups( const QByteArray& yamlData )
 void
 NetInstallPage::dataIsHere( QNetworkReply* reply )
 {
+    cDebug() << "NetInstall group data received" << reply->url();
+    reply->deleteLater();
+
     // If m_required is *false* then we still say we're ready
     // even if the reply is corrupt or missing.
     if ( reply->error() != QNetworkReply::NoError )
@@ -92,7 +95,6 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
         cDebug() << Logger::SubEntry << "Url:     " <<  reply->url().toString();
         cDebug() << Logger::SubEntry << "Headers: " <<  reply->rawHeaderList();
         ui->netinst_status->setText( tr( "Network Installation. (Disabled: Received invalid groups data)" ) );
-        reply->deleteLater();
         emit checkReady( !m_required );
         return;
     }
@@ -101,7 +103,6 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
     ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
 
-    reply->deleteLater();
     emit checkReady( true );
 }
 
@@ -120,6 +121,7 @@ NetInstallPage::selectedPackages() const
 void
 NetInstallPage::loadGroupList( const QString& confUrl )
 {
+    cDebug() << "NetInstall loading groups from" << confUrl;
     QNetworkRequest request;
     request.setUrl( QUrl( confUrl ) );
     // Follows all redirects except unsafe ones (https to http).
@@ -130,7 +132,13 @@ NetInstallPage::loadGroupList( const QString& confUrl )
 
     connect( &m_networkManager, &QNetworkAccessManager::finished,
              this, &NetInstallPage::dataIsHere );
-    m_networkManager.get( request );
+    auto* rq = m_networkManager.get( request );
+    if ( rq->error() )
+    {
+        cDebug() << Logger::Continuation << "request failed immediately," << rq->errorString();
+        rq->deleteLater();
+        ui->netinst_status->setText( tr( "Network Installation. (Disabled: Incorrect configuration)" ) );
+    }
 }
 
 void

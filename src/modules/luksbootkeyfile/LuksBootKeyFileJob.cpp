@@ -1,0 +1,214 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *
+ *   Calamares is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Calamares is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "LuksBootKeyFileJob.h"
+
+#include "utils/CalamaresUtilsSystem.h"
+#include "utils/Logger.h"
+#include "utils/UMask.h"
+#include "utils/Variant.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
+LuksBootKeyFileJob::LuksBootKeyFileJob( QObject* parent )
+    : Calamares::CppJob( parent )
+{
+}
+
+LuksBootKeyFileJob::~LuksBootKeyFileJob() {}
+
+QString
+LuksBootKeyFileJob::prettyName() const
+{
+    return tr( "Configuring LUKS key file." );
+}
+
+struct LuksDevice
+{
+    LuksDevice( const QMap< QString, QVariant >& pinfo )
+        : isValid( false )
+        , isRoot( false )
+    {
+        if ( pinfo.contains( "luksMapperName" ) )
+        {
+            QString fs = pinfo[ "fs" ].toString();
+            QString mountPoint = pinfo[ "mountPoint" ].toString();
+
+            if ( !mountPoint.isEmpty() || fs == QStringLiteral( "linuxswap" ) )
+            {
+                isValid = true;
+                isRoot = mountPoint == '/';
+                device = pinfo[ "device" ].toString();
+                passphrase = pinfo[ "luksPassphrase" ].toString();
+            }
+        }
+    }
+
+    bool isValid;
+    bool isRoot;
+    QString device;
+    QString passphrase;
+};
+
+/** @brief Extract the luks passphrases setup.
+ *
+ * Given a list of partitions (as set up by the partitioning module,
+ * so there's maps with keys inside), returns just the list of
+ * luks passphrases for each device.
+ */ 
+static QList< LuksDevice >
+getLuksDevices( const QVariantList& list )
+{
+    QList< LuksDevice > luksItems;
+
+    for ( const auto& p : list )
+    {
+        if ( p.canConvert< QVariantMap >() )
+        {
+            LuksDevice d( p.toMap() );
+            if ( d.isValid )
+            {
+                luksItems.append( d );
+            }
+        }
+    }
+    return luksItems;
+}
+
+struct LuksDeviceList
+{
+    LuksDeviceList( const QVariant& partitions )
+        : valid( false )
+    {
+        if ( partitions.canConvert< QVariantList >() )
+        {
+            devices = getLuksDevices( partitions.toList() );
+            valid = true;
+        }
+    }
+
+    QList< LuksDevice > devices;
+    bool valid;
+};
+
+static const char keyfile[] = "/crypto_keyfile.bin";
+
+static bool
+generateTargetKeyfile()
+{
+    CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
+    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+        { "dd", "bs=512", "count=4", "if=/dev/urandom", QString( "of=%1" ).arg( keyfile ) } );
+    if ( r.getExitCode() != 0 )
+    {
+        cWarning() << "Could not create LUKS keyfile:" << r.getOutput() << "(exit code" << r.getExitCode() << ')';
+        return false;
+    }
+    // Give ample time to check that the file was created correctly
+    r = CalamaresUtils::System::instance()->targetEnvCommand( { "ls", "-la", "/" } );
+    cDebug() << "In target system after creating LUKS file" << r.getOutput();
+    return true;
+}
+
+static bool
+setupLuks( const LuksDevice& d )
+{
+    auto r = CalamaresUtils::System::instance()->targetEnvCommand(
+        { "cryptsetup", "luksAddKey", d.device, keyfile }, QString(), d.passphrase, 15 );
+    if ( r.getExitCode() != 0 )
+    {
+        cWarning() << "Could not configure LUKS keyfile on" << d.device << ':' << r.getOutput() << "(exit code"
+                   << r.getExitCode() << ')';
+        return false;
+    }
+    return true;
+}
+
+Calamares::JobResult
+LuksBootKeyFileJob::exec()
+{
+    const auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( !gs )
+    {
+        return Calamares::JobResult::internalError(
+            "LukeBootKeyFile", "No GlobalStorage defined.", Calamares::JobResult::InvalidConfiguration );
+    }
+    if ( !gs->contains( "partitions" ) )
+    {
+        cError() << "No GS[partitions] key.";
+        return Calamares::JobResult::internalError(
+            "LukeBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
+    }
+
+    LuksDeviceList s( gs->value( "partitions" ) );
+    if ( !s.valid )
+    {
+        cError() << "GS[partitions] is invalid";
+        return Calamares::JobResult::internalError(
+            "LukeBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
+    }
+
+    cDebug() << "There are" << s.devices.count() << "LUKS partitions";
+    if ( s.devices.count() < 1 )
+    {
+        cDebug() << Logger::SubEntry << "Nothing to do for LUKS.";
+        return Calamares::JobResult::ok();
+    }
+
+    auto it = std::partition( s.devices.begin(), s.devices.end(), []( const LuksDevice& d ) { return d.isRoot; } );
+    for ( const auto& d : s.devices )
+    {
+        cDebug() << Logger::SubEntry << ( d.isRoot ? "root" : "dev." ) << d.device << "passphrase?"
+                 << !d.passphrase.isEmpty();
+    }
+
+    if ( it == s.devices.begin() )
+    {
+        // Then there was no root partition
+        cDebug() << Logger::SubEntry << "No root partition.";
+        return Calamares::JobResult::ok();
+    }
+
+    if ( s.devices.first().passphrase.isEmpty() )
+    {
+        cDebug() << Logger::SubEntry << "No root passphrase.";
+        return Calamares::JobResult::error(
+            tr( "Encrypted rootfs setup error" ),
+            tr( "Root partition %1 is LUKS but no passphrase has been set." ).arg( s.devices.first().device ) );
+    }
+
+    if ( !generateTargetKeyfile() )
+    {
+        return Calamares::JobResult::error(
+            tr( "Encrypted rootfs setup error" ),
+            tr( "Could not create LUKS key file for root partition %1." ).arg( s.devices.first().device ) );
+    }
+
+    for ( const auto& d : s.devices )
+    {
+        if ( !setupLuks( d ) )
+            return Calamares::JobResult::error(
+                tr( "Encrypted rootfs setup error" ),
+                tr( "Could configure LUKS key file on partition %1." ).arg( d.device ) );
+    }
+
+    return Calamares::JobResult::ok();
+}
+
+CALAMARES_PLUGIN_FACTORY_DEFINITION( LuksBootKeyFileJobFactory, registerPlugin< LuksBootKeyFileJob >(); )

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-18 15:54+0200\n"
+"POT-Creation-Date: 2019-07-06 01:16+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: scootergrisen, 2019\n"
 "Language-Team: Danish (https://www.transifex.com/calamares/teams/20061/da/)\n"
@@ -36,8 +36,7 @@ msgstr "Monterer partitioner."
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
 #: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82
-#: src/modules/luksbootkeyfile/main.py:51 src/modules/fstab/main.py:312
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:312
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
@@ -46,7 +45,7 @@ msgstr "Fejl ved konfiguration"
 #: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
+#: src/modules/fstab/main.py:313
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Der er ikke angivet nogle partitioner som <pre>{!s}</pre> skal bruge."
 
@@ -217,22 +216,6 @@ msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
 "Der er ikke angivet noget rodmonteringspunkt som <pre>{!s}</pre> skal bruge."
 
-#: src/modules/initcpio/main.py:33
-msgid "Creating initramfs with mkinitcpio."
-msgstr "Opretter initramfs med mkinitcpio."
-
-#: src/modules/initcpio/main.py:47
-msgid "Process Failed"
-msgstr "Processen mislykkedes"
-
-#: src/modules/initcpio/main.py:48
-msgid ""
-"Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
-"<pre>{!s}</pre>."
-msgstr ""
-"Processen <pre>mkinitcpio</pre> mislykkedes med fejlkoden {!s}. Kommandoen "
-"blev <pre>{!s}</pre>."
-
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "Konfigurerer krypteret swap."
@@ -329,18 +312,6 @@ msgstr "Installér bootloader."
 msgid "Remove live user from target system"
 msgstr "Fjern livebruger fra målsystemet"
 
-#: src/modules/initramfs/main.py:35
-msgid "Creating initramfs."
-msgstr "Opretter initramfs."
-
-#: src/modules/initramfs/main.py:49
-msgid "Failed to run update-initramfs on the target"
-msgstr "Kunne ikke køre update-initramfs på målet"
-
-#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "Afslutningskoden var {}"
-
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "Indstiller hardwareur."
@@ -353,6 +324,10 @@ msgstr "Opretter initramfs med dracut."
 msgid "Failed to run dracut on the target"
 msgstr "Kunne ikke køre dracut på målet"
 
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "Afslutningskoden var {}"
+
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "Konfigurerer initramfs."
@@ -360,19 +335,6 @@ msgstr "Konfigurerer initramfs."
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "Konfigurerer OpenRC dmcrypt-tjeneste."
-
-#: src/modules/luksbootkeyfile/main.py:35
-msgid "Configuring LUKS key file."
-msgstr "Konfigurerer LUKS-nøglefil."
-
-#: src/modules/luksbootkeyfile/main.py:74
-msgid "Encrypted rootfs setup error"
-msgstr "Fejl ved opsætning af krypteret rootfs"
-
-#: src/modules/luksbootkeyfile/main.py:75
-msgid "Rootfs partition {!s} is LUKS but no passphrase found."
-msgstr ""
-"Rootfs-partitionen {!s} er LUKS men der blev ikke fundet nogen adgangskode."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."

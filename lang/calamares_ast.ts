@@ -135,7 +135,7 @@
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
         <source>Programmed job failure was explicitly requested.</source>
-        <translation type="unfinished"/>
+        <translation>El fallu del trabayu programáu solicitóse esplicitamente.</translation>
     </message>
 </context>
 <context>
@@ -208,17 +208,17 @@
 <context>
     <name>Calamares::RequirementsChecker</name>
     <message numerus="yes">
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="153"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
         <source>Waiting for %n module(s).</source>
         <translation><numerusform>Esperando por %n módulu</numerusform><numerusform>Esperando por %n módulos</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="154"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="168"/>
         <source>(%n second(s))</source>
         <translation><numerusform>(%n segundu)</numerusform><numerusform>(%n segundos)</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="158"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="173"/>
         <source>System-requirements checking is complete.</source>
         <translation>Completóse la comprobación de los requirimientos del sistema.</translation>
     </message>
@@ -226,160 +226,156 @@
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="377"/>
         <source>&amp;Back</source>
         <translation>&amp;Atrás</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="372"/>
         <source>&amp;Next</source>
         <translation>&amp;Siguiente</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="78"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="353"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Encaboxar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup without changing the system.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="81"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Encaboxa la instalación ensin camudar el sistema.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
         <source>Setup Failed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
         <source>Calamares Initialization Failed</source>
         <translation>Falló l&apos;aniciu de Calamares</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="193"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="223"/>
         <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
         <translation>%1 nun pue instalase. Calamares nun foi a cargar tolos módulos configuraos. Esto ye un problema col mou nel que la distribución usa Calamares.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="198"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="228"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
         <translation>&lt;br/&gt;Nun pudieron cargase los módulos de darréu:</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="290"/>
         <source>Continue with installation?</source>
         <translation>¿Siguir cola instalación?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="262"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="292"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>El programa d&apos;instalación de %1 ta a piques de facer cambeos nel discu pa configurar %2.&lt;br/&gt;&lt;strong&gt;Nun vas ser a desfacer estos cambeos.&lt;strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="269"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="299"/>
         <source>&amp;Set up now</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="355"/>
         <source>&amp;Set up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="356"/>
         <source>&amp;Install</source>
         <translation>&amp;Instalar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="358"/>
         <source>Setup is complete. Close the setup program.</source>
         <translation>Completóse la configuración. Zarra&apos;l programa de configuración.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="399"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="441"/>
         <source>Cancel setup?</source>
         <translation>¿Encaboxar la configuración?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="442"/>
         <source>Cancel installation?</source>
         <translation>¿Encaboxar la instalación?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="444"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
         <translation>¿De xuru que quies encaboxar el procesu actual de configuración?
 El programa de configuración va colar y van perdese tolos cambeos.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="446"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>¿De xuru que quies encaboxar el procesu actual d&apos;instalación?
 L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="454"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sí</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="413"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="455"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="174"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="204"/>
         <source>&amp;Close</source>
         <translation>&amp;Zarrar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="259"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="289"/>
         <source>Continue with setup?</source>
         <translation>¿Siguir cola instalación?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>L&apos;instalador de %1 ta a piques de facer cambeos nel discu pa instalar %2.&lt;br/&gt;&lt;strong&gt;Nun vas ser a desfacer esos cambeos.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="270"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
         <source>&amp;Install now</source>
         <translation>&amp;Instalar agora</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="307"/>
         <source>Go &amp;back</source>
         <translation>Dir p&apos;&amp;atrás</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="342"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="382"/>
         <source>&amp;Done</source>
         <translation>&amp;Fecho</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="329"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="359"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>Completóse la instalación. Zarra l&apos;instalador.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
         <source>Error</source>
         <translation>Fallu</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="168"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="198"/>
         <source>Installation Failed</source>
         <translation>Falló la instalación</translation>
     </message>
@@ -1291,6 +1287,22 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     </message>
 </context>
 <context>
+    <name>InitcpioJob</name>
+    <message>
+        <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="40"/>
+        <source>Creating initramfs with mkinitcpio.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>InitramfsJob</name>
+    <message>
+        <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="37"/>
+        <source>Creating initramfs.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>InteractiveTerminalPage</name>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="53"/>
@@ -1511,6 +1523,42 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="132"/>
         <source>Location</source>
         <translation>Allugamientu</translation>
+    </message>
+</context>
+<context>
+    <name>LuksBootKeyFileJob</name>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="39"/>
+        <source>Configuring LUKS key file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
+        <source>No partitions are defined.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="199"/>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="207"/>
+        <source>Encrypted rootfs setup error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
+        <source>Root partition %1 is LUKS but no passphrase has been set.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
+        <source>Could not create LUKS key file for root partition %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
+        <source>Could configure LUKS key file on partition %1.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2220,14 +2268,14 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
 <context>
     <name>ProcessResult</name>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="317"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="382"/>
         <source>
 There was no output from the command.</source>
         <translation>
 El comandu nun produxo denguna salida.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="318"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="383"/>
         <source>
 Output:
 </source>
@@ -2236,52 +2284,52 @@ Salida:
 </translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="321"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="386"/>
         <source>External command crashed.</source>
         <translation>El comandu esternu cascó.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="322"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="387"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
         <translation>El comandu &lt;i&gt;%1&lt;/i&gt; cascó.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="327"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="392"/>
         <source>External command failed to start.</source>
         <translation>El comandu esternu falló al aniciar.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="328"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="393"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
         <translation>El comandu &lt;i&gt;%1&lt;/i&gt; falló al aniciar.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="332"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="397"/>
         <source>Internal error when starting command.</source>
         <translation>Fallu internu al aniciar el comandu.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="333"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="398"/>
         <source>Bad parameters for process job call.</source>
         <translation>Los parámetros son incorreutos pa la llamada del trabayu de procesos.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="336"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="401"/>
         <source>External command failed to finish.</source>
         <translation>El comandu esternu finó al finar.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="337"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="402"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
         <translation>El comandu &lt;i&gt;%1&lt;/i&gt; falló al finar en %2 segundos.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="343"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="408"/>
         <source>External command finished with errors.</source>
         <translation>El comandu esternu finó con fallos.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="344"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="409"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
         <translation>El comandu &lt;i&gt;%1&lt;/i&gt; finó col códigu de salida %2.</translation>
     </message>
@@ -2330,7 +2378,7 @@ Salida:
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="62"/>
+        <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="65"/>
         <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
         <translation>Completóse la comprobación de requirimientos del módulu &lt;i&gt;%1&lt;/i&gt;</translation>
     </message>

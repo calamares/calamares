@@ -41,11 +41,29 @@ InitramfsJob::prettyName() const
 Calamares::JobResult
 InitramfsJob::exec()
 {
-    CalamaresUtils::UMask( CalamaresUtils::UMask::Safe );
+    CalamaresUtils::UMask m( CalamaresUtils::UMask::Safe );
 
     cDebug() << "Updating initramfs with kernel" << m_kernel;
+
+    if ( m_unsafe )
+    {
+        cDebug() << "Skipping mitigations for unsafe initramfs permissions.";
+    }
+    else
+    {
+        // First make sure we generate a safe initramfs with suitable permissions.
+        static const char confFile[] = "/etc/initramfs-tools/conf.d/calamares-safe-initramfs.conf";
+        static const char contents[] = "UMASK=0077\n";
+        if ( CalamaresUtils::System::instance()->createTargetFile( confFile, QByteArray( contents ) ).isEmpty() )
+        {
+            cWarning() << Logger::SubEntry << "Could not configure safe UMASK for initramfs.";
+            // But continue anyway.
+        }
+    }
+
+    // And then do the ACTUAL work.
     auto r = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "update-initramfs", "-k", m_kernel, "-c", "-t" }, QString(), QString(), 120 );
+        { "update-initramfs", "-k", m_kernel, "-c", "-t" }, QString(), QString(), 0 );
     return r.explainProcess( "update-initramfs", 10 );
 }
 
@@ -73,6 +91,8 @@ InitramfsJob::setConfigurationMap( const QVariantMap& configurationMap )
                        << r.getExitCode() << r.getOutput();
         }
     }
+
+    m_unsafe = CalamaresUtils::getBool( configurationMap, "be_unsafe", false );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( InitramfsJobFactory, registerPlugin< InitramfsJob >(); )

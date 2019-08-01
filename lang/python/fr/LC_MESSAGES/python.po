@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-18 15:54+0200\n"
+"POT-Creation-Date: 2019-07-06 01:16+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Arnaud Ferraris <arnaud.ferraris@gmail.com>, 2019\n"
 "Language-Team: French (https://www.transifex.com/calamares/teams/20061/fr/)\n"
@@ -43,8 +43,7 @@ msgstr "Montage des partitions."
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
 #: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82
-#: src/modules/luksbootkeyfile/main.py:51 src/modules/fstab/main.py:312
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:312
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
@@ -53,7 +52,7 @@ msgstr "Erreur de configuration"
 #: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
+#: src/modules/fstab/main.py:313
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr ""
 "Aucune partition n'est définie pour être utilisée par <pre>{!s}</pre>."
@@ -228,22 +227,6 @@ msgstr ""
 "Aucun point de montage racine n'a été donné pour être utilisé par "
 "<pre>{!s}</pre>."
 
-#: src/modules/initcpio/main.py:33
-msgid "Creating initramfs with mkinitcpio."
-msgstr "Création de l'initramfs avec mkinitcpio."
-
-#: src/modules/initcpio/main.py:47
-msgid "Process Failed"
-msgstr "Échec du processus"
-
-#: src/modules/initcpio/main.py:48
-msgid ""
-"Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
-"<pre>{!s}</pre>."
-msgstr ""
-"Le processus <pre>mkinitcpio</pre> a échoué avec le code d'erreur {!s}. La "
-"commande était <pre>{!s}</pre>."
-
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "Configuration du swap chiffrée."
@@ -342,18 +325,6 @@ msgstr "Installation du bootloader."
 msgid "Remove live user from target system"
 msgstr "Supprimer l'utilisateur live du système cible"
 
-#: src/modules/initramfs/main.py:35
-msgid "Creating initramfs."
-msgstr "création du initramfs"
-
-#: src/modules/initramfs/main.py:49
-msgid "Failed to run update-initramfs on the target"
-msgstr "Erreur d'exécution de update-initramfs sur la cible."
-
-#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "Le code de sortie était {}"
-
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "Configuration de l'horloge matériel."
@@ -366,6 +337,10 @@ msgstr "Configuration du initramfs avec dracut."
 msgid "Failed to run dracut on the target"
 msgstr "Erreur d'exécution de dracut sur la cible."
 
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "Le code de sortie était {}"
+
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "Configuration du initramfs."
@@ -373,20 +348,6 @@ msgstr "Configuration du initramfs."
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "Configuration du service OpenRC dmcrypt."
-
-#: src/modules/luksbootkeyfile/main.py:35
-msgid "Configuring LUKS key file."
-msgstr "Configuration de la clé de fichier LUKS."
-
-#: src/modules/luksbootkeyfile/main.py:74
-msgid "Encrypted rootfs setup error"
-msgstr "Erreur du chiffrement du setup rootfs"
-
-#: src/modules/luksbootkeyfile/main.py:75
-msgid "Rootfs partition {!s} is LUKS but no passphrase found."
-msgstr ""
-"La partition racine {!s} est de type LUKS mais aucune phrase de passe n'a "
-"été trouvée."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."

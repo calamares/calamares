@@ -30,13 +30,6 @@
 
 namespace Calamares
 {
-class Module;
-}
-
-void operator>>( const QVariantMap& moduleDescriptor, Calamares::Module* m );
-
-namespace Calamares
-{
 
 /**
  * @brief The Module class is a common supertype for Calamares modules.
@@ -193,8 +186,6 @@ private:
     QString m_name;
     QString m_directory;
     QString m_instanceId;
-
-    friend void ::operator>>( const QVariantMap& moduleDescriptor, Calamares::Module* m );
 };
 
 }  // namespace Calamares

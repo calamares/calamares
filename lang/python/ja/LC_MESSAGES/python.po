@@ -4,18 +4,18 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019
 # ブラシックデービッド, 2019
 # Takefumi Nagata, 2019
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-18 15:54+0200\n"
+"POT-Creation-Date: 2019-07-06 01:16+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Takefumi Nagata, 2019\n"
+"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019\n"
 "Language-Team: Japanese (https://www.transifex.com/calamares/teams/20061/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,8 +37,7 @@ msgstr "パーティションのマウント。"
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
 #: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82
-#: src/modules/luksbootkeyfile/main.py:51 src/modules/fstab/main.py:312
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:312
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
@@ -47,9 +46,9 @@ msgstr "コンフィグレーションエラー"
 #: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
+#: src/modules/fstab/main.py:313
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "<pre>{!s}</pre> に使用するパーティションが定義されていません。"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -64,6 +63,7 @@ msgstr "サービスが変更できません"
 msgid ""
 "<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"chroot で <code>systemctl {arg!s}</code> を呼び出すと、エラーコード {num!s} が返されました。"
 
 #: src/modules/services-systemd/main.py:72
 #: src/modules/services-systemd/main.py:76
@@ -80,13 +80,15 @@ msgstr "systemd でターゲット <code>{name!s}</code>が停止できません
 
 #: src/modules/services-systemd/main.py:80
 msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr ""
+msgstr "systemd ユニット <code>{name!s}</code> をマスクできません。"
 
 #: src/modules/services-systemd/main.py:82
 msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
+"ユニット {name!s} に対する未知の systemd コマンド <code>{command!s}</code> と "
+"<code>{suffix!s}</code>。"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -94,7 +96,7 @@ msgstr "ファイルシステムをアンマウントする。"
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "ファイルシステムを埋める。"
 
 #: src/modules/unpackfs/main.py:159
 msgid "rsync failed with error code {}."
@@ -209,21 +211,6 @@ msgstr "mkinitcpioを設定中"
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr " <pre>{!s}</pre> を使用するのにルートマウントポイントが与えられていません。"
 
-#: src/modules/initcpio/main.py:33
-msgid "Creating initramfs with mkinitcpio."
-msgstr "mkinitcpioとinitramfsを作成中"
-
-#: src/modules/initcpio/main.py:47
-msgid "Process Failed"
-msgstr "プロセスを失敗しました"
-
-#: src/modules/initcpio/main.py:48
-msgid ""
-"Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
-"<pre>{!s}</pre>."
-msgstr ""
-"<pre>mkinitcpio</pre> プロセスがエラーコード {!s} により失敗しました。 コマンドは <pre>{!s}</pre>でした。"
-
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "暗号化したswapを設定中"
@@ -249,11 +236,12 @@ msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+"ランレベル {level!s} 内のサービス {name!s} に対する未知のサービスアクション <code>{arg!s}</code>。"
 
 #: src/modules/services-openrc/main.py:103
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
+msgstr "chrootで <code>rc-update {arg!s}</code> を呼び出すとエラーコード {num!s} が返されました。"
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target runlevel does not exist"
@@ -263,7 +251,7 @@ msgstr "ターゲットとするランレベルは存在しません"
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
-msgstr ""
+msgstr "ランレベル {level!s} のパスが <code>{path!s}</code> です。これは存在しません。"
 
 #: src/modules/services-openrc/main.py:119
 msgid "Target service does not exist"
@@ -273,7 +261,7 @@ msgstr "ターゲットとするサービスは存在しません"
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
-msgstr ""
+msgstr "サービス {name!s} のパスが <code>{path!s}</code> です。これは存在しません。"
 
 #: src/modules/plymouthcfg/main.py:36
 msgid "Configure Plymouth theme"
@@ -312,18 +300,6 @@ msgstr "ブートローダーをインストール"
 msgid "Remove live user from target system"
 msgstr "ターゲットシステムからliveユーザーを消去"
 
-#: src/modules/initramfs/main.py:35
-msgid "Creating initramfs."
-msgstr "initramfsを作成中"
-
-#: src/modules/initramfs/main.py:49
-msgid "Failed to run update-initramfs on the target"
-msgstr "ターゲット上の initramfs のアップデートに失敗"
-
-#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "停止コードは {} でした"
-
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "ハードウェアクロックの設定"
@@ -336,6 +312,10 @@ msgstr "dracutとinitramfsを作成中"
 msgid "Failed to run dracut on the target"
 msgstr "ターゲット上で dracut の実行に失敗"
 
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "停止コードは {} でした"
+
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "initramfsを設定中"
@@ -343,18 +323,6 @@ msgstr "initramfsを設定中"
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "OpenRC dmcryptサービスを設定中"
-
-#: src/modules/luksbootkeyfile/main.py:35
-msgid "Configuring LUKS key file."
-msgstr "LUKSキーファイルを設定中"
-
-#: src/modules/luksbootkeyfile/main.py:74
-msgid "Encrypted rootfs setup error"
-msgstr "暗号化したrootfsセットアップエラー"
-
-#: src/modules/luksbootkeyfile/main.py:75
-msgid "Rootfs partition {!s} is LUKS but no passphrase found."
-msgstr "Rootfs のパーティションは {!s}  LUKS ですが、パスフレーズが見つかりません。"
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."

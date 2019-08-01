@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-18 15:54+0200\n"
+"POT-Creation-Date: 2019-07-06 01:16+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: 이정희 <daemul72@gmail.com>, 2019\n"
 "Language-Team: Korean (https://www.transifex.com/calamares/teams/20061/ko/)\n"
@@ -36,8 +36,7 @@ msgstr "파티션 마운트 중."
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
 #: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82
-#: src/modules/luksbootkeyfile/main.py:51 src/modules/fstab/main.py:312
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:312
 #: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
@@ -46,7 +45,7 @@ msgstr "구성 오류"
 #: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/luksbootkeyfile/main.py:52 src/modules/fstab/main.py:313
+#: src/modules/fstab/main.py:313
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "사용할 <pre>{!s}</pre>에 대해 정의된 파티션이 없음."
 
@@ -211,22 +210,6 @@ msgstr "mkinitcpio 구성 중."
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre>에서 사용할 루트 마운트 지점이 제공되지 않음."
 
-#: src/modules/initcpio/main.py:33
-msgid "Creating initramfs with mkinitcpio."
-msgstr "mkinitcpio를 사용하여 initramfs 만드는 중."
-
-#: src/modules/initcpio/main.py:47
-msgid "Process Failed"
-msgstr "프로세스 실패"
-
-#: src/modules/initcpio/main.py:48
-msgid ""
-"Process <pre>mkinitcpio</pre> failed with error code {!s}. The command was "
-"<pre>{!s}</pre>."
-msgstr ""
-"오류 코드 {!s}이(가) 포함된 프로세스 <pre>mkinitcpio</pre>가 실패했습니다. 명령은 "
-"<pre>{!s}</pre>입니다"
-
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "암호화된 스왑 구성 중."
@@ -317,18 +300,6 @@ msgstr "부트로더 설치."
 msgid "Remove live user from target system"
 msgstr "대상 시스템에서 라이브 사용자 제거"
 
-#: src/modules/initramfs/main.py:35
-msgid "Creating initramfs."
-msgstr "initramfs를 만드는 중."
-
-#: src/modules/initramfs/main.py:49
-msgid "Failed to run update-initramfs on the target"
-msgstr "대상에서 update-initramfs 실행 실패"
-
-#: src/modules/initramfs/main.py:50 src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "종료 코드 {}"
-
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "하드웨어 클럭 설정 중."
@@ -341,6 +312,10 @@ msgstr "dracut을 사용하여 initramfs 만들기."
 msgid "Failed to run dracut on the target"
 msgstr "대상에서 dracut을 실행하지 못함"
 
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "종료 코드 {}"
+
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "initramfs 구성 중."
@@ -348,18 +323,6 @@ msgstr "initramfs 구성 중."
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "OpenRC dmcrypt 서비스 구성 중."
-
-#: src/modules/luksbootkeyfile/main.py:35
-msgid "Configuring LUKS key file."
-msgstr "LUKS 키 파일 구성 중."
-
-#: src/modules/luksbootkeyfile/main.py:74
-msgid "Encrypted rootfs setup error"
-msgstr "암호화된 rootfs 설정 오류"
-
-#: src/modules/luksbootkeyfile/main.py:75
-msgid "Rootfs partition {!s} is LUKS but no passphrase found."
-msgstr "Rootfs 파티션 {!s}은(는) LUKS이지만 암호구문을 찾을 수 없음."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
