@@ -162,7 +162,6 @@ class FstabGenerator(object):
             return None
 
         mapper_name = partition["luksMapperName"]
-        mount_point = partition["mountPoint"]
         luks_uuid = partition["luksUuid"]
         if not mapper_name or not luks_uuid:
             return None
@@ -247,8 +246,8 @@ class FstabGenerator(object):
         if not mount_point:
             mount_point = "swap"
 
-        options = self.mount_options.get(filesystem,
-                                         self.mount_options["default"])
+        options = self.get_mount_options(filesystem, mount_point)
+
         if is_ssd:
             extra = self.ssd_extra_mount_options.get(filesystem)
 
@@ -266,12 +265,12 @@ class FstabGenerator(object):
             self.root_is_ssd = is_ssd
 
         if filesystem == "btrfs" and "subvol" in partition:
-            options="subvol={},".format(partition["subvol"]) + options
+            options = "subvol={},".format(partition["subvol"]) + options
 
         if has_luks:
-            device="/dev/mapper/" + partition["luksMapperName"]
+            device = "/dev/mapper/" + partition["luksMapperName"]
         else:
-            device="UUID=" + partition["uuid"]
+            device = "UUID=" + partition["uuid"]
 
         return dict(device=device,
                     mount_point=mount_point,
@@ -296,6 +295,16 @@ class FstabGenerator(object):
             if partition["mountPoint"]:
                 mkdir_p(self.root_mount_point + partition["mountPoint"])
 
+    def get_mount_options(self, filesystem, mount_point):
+        efiMountPoint = libcalamares.globalstorage.value("efiSystemPartition")
+        job_config = libcalamares.job.configuration
+
+        if (mount_point == efiMountPoint and "efiMountOptions" in job_config):
+            return job_config["efiMountOptions"]
+
+        return self.mount_options.get(filesystem,
+                                      self.mount_options["default"])
+
 
 def run():
     """ Configures fstab.
@@ -308,13 +317,17 @@ def run():
     root_mount_point = global_storage.value("rootMountPoint")
 
     if not partitions:
-        libcalamares.utils.warning("partitions is empty, {!s}".format(partitions))
+        libcalamares.utils.warning("partitions is empty, {!s}"
+                                   .format(partitions))
         return (_("Configuration Error"),
-                _("No partitions are defined for <pre>{!s}</pre> to use." ).format("fstab"))
+                _("No partitions are defined for <pre>{!s}</pre> to use.")
+                .format("fstab"))
     if not root_mount_point:
-        libcalamares.utils.warning("rootMountPoint is empty, {!s}".format(root_mount_point))
+        libcalamares.utils.warning("rootMountPoint is empty, {!s}"
+                                   .format(root_mount_point))
         return (_("Configuration Error"),
-                _("No root mount point is given for <pre>{!s}</pre> to use." ).format("fstab"))
+                _("No root mount point is given for <pre>{!s}</pre> to use.")
+                .format("fstab"))
 
     mount_options = conf["mountOptions"]
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
