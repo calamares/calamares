@@ -117,7 +117,7 @@
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="121"/>
         <source>Set up</source>
-        <translation type="unfinished"/>
+        <translation>Configuración</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="122"/>
@@ -243,7 +243,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Encaboxa la configuración ensin camudar el sistema.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
@@ -253,7 +253,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>Falló la configuración</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
@@ -283,12 +283,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="299"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Configurar agora</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="355"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Configurar</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="356"/>
@@ -408,7 +408,7 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="72"/>
         <source>%1 Setup Program</source>
-        <translation type="unfinished"/>
+        <translation>Programa de configuración de %1</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="73"/>
@@ -477,7 +477,7 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="967"/>
         <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 va redimensionase a %2MB y va crease una partición nueva de %3MB pa %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
@@ -1202,22 +1202,22 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="108"/>
         <source>has at least %1 GiB available drive space</source>
-        <translation type="unfinished"/>
+        <translation>tien polo menos %1 GiB d&apos;espaciu disponible nel discu</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="109"/>
         <source>There is not enough drive space. At least %1 GiB is required.</source>
-        <translation type="unfinished"/>
+        <translation>Nun hai espaciu abondu nel discu. Ríquense polo menos %1 GiB.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="116"/>
         <source>has at least %1 GiB working memory</source>
-        <translation type="unfinished"/>
+        <translation>tien polo menos %1 GiB memoria de trabayu</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="117"/>
         <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-        <translation type="unfinished"/>
+        <translation>El sistema nun tien abonda memoria de trabayu. Ríquense polo menos %1 GiB.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="124"/>
@@ -2901,7 +2901,7 @@ Salida:
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="57"/>
         <source>This is an overview of what will happen once you start the setup procedure.</source>
-        <translation type="unfinished"/>
+        <translation>Esto ye una previsualización de lo que va asoceder nel momentu qu&apos;anicies el procesu de configuración.</translation>
     </message>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="60"/>

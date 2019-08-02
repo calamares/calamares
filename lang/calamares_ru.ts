@@ -99,7 +99,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="106"/>
         <source>Reload Stylesheet</source>
-        <translation type="unfinished"/>
+        <translation>Перезагрузить таблицу стилей</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="113"/>
@@ -130,7 +130,7 @@
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
         <source>Job failed (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Задание не успешно (%1)</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
@@ -220,7 +220,7 @@
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="173"/>
         <source>System-requirements checking is complete.</source>
-        <translation type="unfinished"/>
+        <translation>Проверка соответствия системным требованиям завершена.</translation>
     </message>
 </context>
 <context>
@@ -243,7 +243,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Отменить установку без изменения системы.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
@@ -524,7 +524,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1506"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Использовать существующий раздел подкачки</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1509"/>
@@ -2545,12 +2545,12 @@ Output:
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="238"/>
         <source>The filesystem %1 must be resized, but cannot.</source>
-        <translation type="unfinished"/>
+        <translation>Необходимо, но не удаётся изменить размер файловой системы %1</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="239"/>
         <source>The device %1 must be resized, but cannot</source>
-        <translation type="unfinished"/>
+        <translation>Необходимо, но не удаётся изменить размер устройства %1</translation>
     </message>
 </context>
 <context>

@@ -1536,7 +1536,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
         <source>No partitions are defined.</source>
-        <translation type="unfinished"/>
+        <translation>Nejsou definovány žádné oddíly.</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
@@ -1548,17 +1548,17 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
         <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-        <translation type="unfinished"/>
+        <translation>Kořenový oddíl %1 je LUKS, ale nebyla nastavena žádná heslová fráze.</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
         <source>Could not create LUKS key file for root partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Nedaří se vytvořit LUKS klíč pro kořenový oddíl %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
         <source>Could configure LUKS key file on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Nedaří se nastavit LUKS klíč pro oddíl %1.</translation>
     </message>
 </context>
 <context>
