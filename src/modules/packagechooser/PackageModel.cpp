@@ -83,9 +83,17 @@ PackageListModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    if ( role == Qt::DisplayRole )
+    if ( role == Qt::DisplayRole /* Also PackageNameRole */ )
     {
         return m_packages[ row ].name;
+    }
+    else if ( role == DescriptionRole )
+    {
+        return m_packages[ row ].description;
+    }
+    else if ( role == ScreenshotRole )
+    {
+        return m_packages[ row ].screenshot;
     }
 
     return QVariant();

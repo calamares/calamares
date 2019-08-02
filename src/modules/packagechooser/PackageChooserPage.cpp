@@ -36,14 +36,14 @@ PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent
     ui->setupUi( this );
     CALAMARES_RETRANSLATE( updateLabels(); )
 
-    switch( mode )
+    switch ( mode )
     {
-        case PackageChooserMode::Optional:
-        case PackageChooserMode::Exclusive:
-            ui->products->setSelectionMode( QAbstractItemView::SingleSelection );
-        case PackageChooserMode::Multiple:
-        case PackageChooserMode::RequiredMultiple:
-            ui->products->setSelectionMode( QAbstractItemView::ExtendedSelection );
+    case PackageChooserMode::Optional:
+    case PackageChooserMode::Exclusive:
+        ui->products->setSelectionMode( QAbstractItemView::SingleSelection );
+    case PackageChooserMode::Multiple:
+    case PackageChooserMode::RequiredMultiple:
+        ui->products->setSelectionMode( QAbstractItemView::ExtendedSelection );
     }
 }
 
@@ -58,9 +58,11 @@ PackageChooserPage::currentChanged( const QModelIndex& index )
     }
     else
     {
-        ui->productName->setText( QString::number( index.row() ) );
-        ui->productScreenshot->hide();
-        ui->productDescription->setText( "derp" );
+        const auto* model = ui->products->model();
+
+        ui->productName->setText( model->data( index, PackageListModel::NameRole ).toString() );
+        ui->productScreenshot->setPixmap( model->data( index, PackageListModel::ScreenshotRole ).value< QPixmap >() );
+        ui->productDescription->setText( model->data( index, PackageListModel::DescriptionRole ).toString() );
     }
 }
 

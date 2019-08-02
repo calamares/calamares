@@ -27,7 +27,7 @@
 enum class PackageChooserMode
 {
     Optional,  // zero or one
-    Exclusive, // exactly one
+    Exclusive,  // exactly one
     Multiple,  // zero or more
     RequiredMultiple  // one or more
 };
@@ -69,6 +69,13 @@ public:
 
     int rowCount( const QModelIndex& index ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;
+
+    enum Roles : int
+    {
+        NameRole = Qt::DisplayRole,
+        DescriptionRole = Qt::UserRole,
+        ScreenshotRole
+    };
 
 private:
     PackageList m_packages;

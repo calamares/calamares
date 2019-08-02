@@ -93,20 +93,20 @@ PackageChooserViewStep::isNextEnabled() const
         return true;
     }
 
-    switch( m_mode )
+    switch ( m_mode )
     {
-        case PackageChooserMode::Optional:
-            // zero or one
-            return false;
-        case PackageChooserMode::Exclusive:
-            // exactly one
-            return false;
-        case PackageChooserMode::Multiple:
-            // zero or more
-            return true;
-        case PackageChooserMode::RequiredMultiple:
-            // one or more
-            return false;
+    case PackageChooserMode::Optional:
+        // zero or one
+        return false;
+    case PackageChooserMode::Exclusive:
+        // exactly one
+        return false;
+    case PackageChooserMode::Multiple:
+        // zero or more
+        return true;
+    case PackageChooserMode::RequiredMultiple:
+        // one or more
+        return false;
     }
 
     NOTREACHED return true;
