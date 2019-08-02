@@ -30,7 +30,6 @@
 #include <QVariantMap>
 
 class PackageChooserPage;
-class PackageListModel;
 
 class PLUGINDLLEXPORT PackageChooserViewStep : public Calamares::ViewStep
 {
