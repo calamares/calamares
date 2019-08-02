@@ -6,12 +6,24 @@ website will have to do for older versions.
 # 3.2.12 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - apt-ghetto
  - Bill Auger
  - embar
 
 ## Core ##
 
+ - Preliminary work to allow jobs to have a *weight* assigned to them
+   has been added. This will allow the progress bar to better reflect
+   progress by the amount of work done rather than purely by the
+   number of jobs. (Thanks to Bill Auger)
+ - Preliminary work has been added to post the installation log to a
+   pastebin for bug reporting. (Thanks to Bill Auger)
+
 ## Modules ##
+
+ - *fstab* A new configuration key *efiMountOptions* has been added, to
+   allow setting filesystem options specifically for the EFI partition.
+   (Thanks to apt-ghetto)
 
 
 # 3.2.11 (2019-07-06) #
