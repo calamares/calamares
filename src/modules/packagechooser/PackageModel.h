@@ -21,6 +21,7 @@
 
 #include <QAbstractListModel>
 #include <QObject>
+#include <QPixmap>
 #include <QVector>
 
 struct PackageItem
@@ -32,9 +33,15 @@ struct PackageItem
     QString name;
     QString description;
     // TODO: may be more than one
-    // QPixmap screenshot;
+    QPixmap screenshot;
 
+    /// @brief Create blank PackageItem
     PackageItem();
+    /** @brief Creates a PackageItem from given strings
+     *
+     * This constructor sets all the text members,
+     * but leaves the screenshot blank. Set that separately.
+     */
     PackageItem( const QString& id, const QString& package, const QString& name, const QString& description );
 
     // TODO: implement this

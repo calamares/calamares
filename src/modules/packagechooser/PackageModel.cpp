@@ -73,7 +73,6 @@ PackageListModel::rowCount( const QModelIndex& index ) const
 QVariant
 PackageListModel::data( const QModelIndex& index, int role ) const
 {
-    cDebug() << "Data" << m_packages.count() << index.isValid() << ( index.isValid() ? index.row() : -1 );
     if ( !index.isValid() )
     {
         return QVariant();

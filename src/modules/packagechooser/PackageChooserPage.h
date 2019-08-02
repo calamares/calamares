@@ -19,6 +19,8 @@
 #ifndef PACKAGECHOOSERPAGE_H
 #define PACKAGECHOOSERPAGE_H
 
+#include "PackageModel.h"
+
 #include <QAbstractItemModel>
 #include <QWidget>
 
@@ -36,11 +38,12 @@ public:
     void setModel( QAbstractItemModel* model );
 
 public slots:
+    void currentChanged( const QModelIndex& index );
     void updateLabels();
-    void currentChanged( const QModelIndex& current );
 
 private:
     Ui::PackageChooserPage* ui;
+    PackageItem m_introduction;
 };
 
 #endif  // PACKAGECHOOSERPAGE_H

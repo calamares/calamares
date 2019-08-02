@@ -28,29 +28,51 @@
 PackageChooserPage::PackageChooserPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::PackageChooserPage )
+    , m_introduction( QString(),
+                      QString(),
+                      tr( "Package Selection" ),
+                      tr( "Please pick a product from the list. The selected product will be installed." ) )
 {
     ui->setupUi( this );
     CALAMARES_RETRANSLATE( updateLabels(); )
 }
 
 void
+PackageChooserPage::currentChanged( const QModelIndex& index )
+{
+    if ( !index.isValid() || !ui->products->selectionModel()->hasSelection() )
+    {
+        ui->productName->setText( m_introduction.name );
+        ui->productScreenshot->setPixmap( m_introduction.screenshot );
+        ui->productDescription->setText( m_introduction.description );
+    }
+    else
+    {
+        ui->productName->setText( QString::number( index.row() ) );
+        ui->productScreenshot->hide();
+        ui->productDescription->setText( "derp" );
+    }
+}
+
+void
 PackageChooserPage::updateLabels()
 {
-    ui->productName->setText( QString() );
-    ui->productScreenshot->hide();
-    ui->productDescription->setText( tr( "Please pick a product from the list." ) );
+    if ( ui && ui->products && ui->products->selectionModel() )
+    {
+        currentChanged( ui->products->selectionModel()->currentIndex() );
+    }
+    else
+    {
+        currentChanged( QModelIndex() );
+    }
 }
 
 void
 PackageChooserPage::setModel( QAbstractItemModel* model )
 {
     ui->products->setModel( model );
-}
-
-void
-PackageChooserPage::currentChanged( const QModelIndex& current )
-{
-    updateLabels();
-    cDebug() << "Current updated to" << current.row();
-    cDebug() << ui->products->model()->data( current, Qt::DisplayRole );
+    connect( ui->products->selectionModel(),
+             &QItemSelectionModel::selectionChanged,
+             this,
+             &PackageChooserPage::updateLabels );
 }
