@@ -6,6 +6,7 @@ calamares_add_plugin( packagechooser
     SOURCES
         PackageChooserPage.cpp
         PackageChooserViewStep.cpp
+        PackageModel.cpp
     UI
         page_package.ui
     LINK_PRIVATE_LIBRARIES

@@ -1,0 +1,93 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *
+ *   Calamares is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Calamares is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "PackageModel.h"
+
+#include "utils/Logger.h"
+
+PackageItem
+PackageItem::fromAppStream( const QString& filename )
+{
+    // TODO: implement this
+    return PackageItem {};
+}
+
+PackageItem::PackageItem() {}
+
+PackageItem::PackageItem( const QString& a_id,
+                          const QString& a_package,
+                          const QString& a_name,
+                          const QString& a_description )
+    : id( a_id )
+    , package( a_package )
+    , name( a_name )
+    , description( a_description )
+{
+}
+
+
+PackageListModel::PackageListModel( QObject* parent )
+    : QAbstractListModel( parent )
+{
+}
+
+PackageListModel::PackageListModel( PackageList&& items, QObject* parent )
+    : QAbstractListModel( parent )
+    , m_packages( std::move( items ) )
+{
+}
+
+PackageListModel::~PackageListModel() {}
+
+void
+PackageListModel::addPackage( PackageItem&& p )
+{
+    int c = m_packages.count();
+    beginInsertRows( QModelIndex(), c, c );
+    m_packages.append( p );
+    endInsertRows();
+}
+
+int
+PackageListModel::rowCount( const QModelIndex& index ) const
+{
+    // For lists, valid indexes have zero children; only the root index has them
+    return index.isValid() ? 0 : m_packages.count();
+}
+
+QVariant
+PackageListModel::data( const QModelIndex& index, int role ) const
+{
+    cDebug() << "Data" << m_packages.count() << index.isValid() << ( index.isValid() ? index.row() : -1 );
+    if ( !index.isValid() )
+    {
+        return QVariant();
+    }
+    int row = index.row();
+    if ( row >= m_packages.count() || row < 0 )
+    {
+        return QVariant();
+    }
+
+    if ( role == Qt::DisplayRole )
+    {
+        return m_packages[ row ].name;
+    }
+
+    return QVariant();
+}

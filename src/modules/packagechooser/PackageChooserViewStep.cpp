@@ -19,6 +19,7 @@
 #include "PackageChooserViewStep.h"
 
 #include "PackageChooserPage.h"
+#include "PackageModel.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -35,6 +36,7 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( PackageChooserViewStepFactory, registerPlug
 PackageChooserViewStep::PackageChooserViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( nullptr )
+    , m_model( nullptr )
 {
     emit nextStatusChanged( false );
 }
@@ -46,6 +48,7 @@ PackageChooserViewStep::~PackageChooserViewStep()
     {
         m_widget->deleteLater();
     }
+    delete m_model;
 }
 
 
@@ -62,6 +65,10 @@ PackageChooserViewStep::widget()
     if ( !m_widget )
     {
         m_widget = new PackageChooserPage( nullptr );
+        if ( m_model )
+        {
+            hookupModel();
+        }
     }
     return m_widget;
 }
@@ -110,4 +117,32 @@ PackageChooserViewStep::jobs() const
 void
 PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    // TODO: use the configurationMap
+
+    if ( !m_model )
+    {
+
+        m_model = new PackageListModel( nullptr );
+        m_model->addPackage( PackageItem { "kde", "kde", "Plasma", "Plasma Desktop" } );
+        m_model->addPackage(
+            PackageItem { "gnome", "gnome", "GNOME", "GNU Networked Object Modeling Environment Desktop" } );
+
+
+        if ( m_widget )
+        {
+            hookupModel();
+        }
+    }
+}
+
+void
+PackageChooserViewStep::hookupModel()
+{
+    if ( !m_model || !m_widget )
+    {
+        cError() << "Can't hook up model until widget and model both exist.";
+        return;
+    }
+
+    m_widget->setModel( m_model );
 }

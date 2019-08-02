@@ -30,9 +30,7 @@ PackageChooserPage::PackageChooserPage( QWidget* parent )
     , ui( new Ui::PackageChooserPage )
 {
     ui->setupUi( this );
-    CALAMARES_RETRANSLATE(
-        updateLabels();
-    )
+    CALAMARES_RETRANSLATE( updateLabels(); )
 }
 
 void
@@ -41,4 +39,18 @@ PackageChooserPage::updateLabels()
     ui->productName->setText( QString() );
     ui->productScreenshot->hide();
     ui->productDescription->setText( tr( "Please pick a product from the list." ) );
+}
+
+void
+PackageChooserPage::setModel( QAbstractItemModel* model )
+{
+    ui->products->setModel( model );
+}
+
+void
+PackageChooserPage::currentChanged( const QModelIndex& current )
+{
+    updateLabels();
+    cDebug() << "Current updated to" << current.row();
+    cDebug() << ui->products->model()->data( current, Qt::DisplayRole );
 }

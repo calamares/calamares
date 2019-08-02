@@ -19,13 +19,16 @@
 #ifndef PACKAGECHOOSERVIEWSTEP_H
 #define PACKAGECHOOSERVIEWSTEP_H
 
-#include <PluginDllMacro.h>
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include "PluginDllMacro.h"
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
 #include <QObject>
 #include <QUrl>
 #include <QVariantMap>
+
+class PackageChooserPage;
+class PackageListModel;
 
 class PLUGINDLLEXPORT PackageChooserViewStep : public Calamares::ViewStep
 {
@@ -52,7 +55,10 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    QWidget* m_widget;
+    void hookupModel();
+
+    PackageChooserPage* m_widget;
+    PackageListModel* m_model;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PackageChooserViewStepFactory )
