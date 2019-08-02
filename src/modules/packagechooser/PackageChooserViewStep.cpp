@@ -37,7 +37,7 @@ PackageChooserViewStep::PackageChooserViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( nullptr )
     , m_model( nullptr )
-    , m_mode( PackageChooserMode::Optional )
+    , m_mode( PackageChooserMode::Exclusive )
 {
     emit nextStatusChanged( false );
 }
@@ -66,6 +66,10 @@ PackageChooserViewStep::widget()
     if ( !m_widget )
     {
         m_widget = new PackageChooserPage( m_mode, nullptr );
+        connect( m_widget, &PackageChooserPage::selectionChanged, [=]() {
+            emit nextStatusChanged( this->isNextEnabled() );
+        } );
+
         if ( m_model )
         {
             hookupModel();
@@ -96,17 +100,13 @@ PackageChooserViewStep::isNextEnabled() const
     switch ( m_mode )
     {
     case PackageChooserMode::Optional:
-        // zero or one
-        return false;
-    case PackageChooserMode::Exclusive:
-        // exactly one
-        return false;
     case PackageChooserMode::Multiple:
-        // zero or more
+        // zero or one OR zero or more
         return true;
+    case PackageChooserMode::Exclusive:
     case PackageChooserMode::RequiredMultiple:
-        // one or more
-        return false;
+        // exactly one OR one or more
+        return m_widget->hasSelection();
     }
 
     NOTREACHED return true;

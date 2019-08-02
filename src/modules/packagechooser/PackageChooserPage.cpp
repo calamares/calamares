@@ -80,6 +80,7 @@ PackageChooserPage::updateLabels()
     {
         currentChanged( QModelIndex() );
     }
+    emit selectionChanged();
 }
 
 void
@@ -90,4 +91,10 @@ PackageChooserPage::setModel( QAbstractItemModel* model )
              &QItemSelectionModel::selectionChanged,
              this,
              &PackageChooserPage::updateLabels );
+}
+
+bool
+PackageChooserPage::hasSelection() const
+{
+    return ui && ui->products && ui->products->selectionModel() && ui->products->selectionModel()->hasSelection();
 }

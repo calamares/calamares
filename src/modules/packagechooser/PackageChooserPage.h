@@ -37,9 +37,14 @@ public:
 
     void setModel( QAbstractItemModel* model );
 
+    bool hasSelection() const;
+
 public slots:
     void currentChanged( const QModelIndex& index );
     void updateLabels();
+
+signals:
+    void selectionChanged();
 
 private:
     Ui::PackageChooserPage* ui;
