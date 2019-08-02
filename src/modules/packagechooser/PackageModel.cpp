@@ -20,6 +20,26 @@
 
 #include "utils/Logger.h"
 
+const NamedEnumTable< PackageChooserMode >&
+roleNames()
+{
+    static const NamedEnumTable< PackageChooserMode > names {
+        { "optional", PackageChooserMode::Optional },
+        { "exclusive", PackageChooserMode::Exclusive },
+        { "multiple", PackageChooserMode::Multiple },
+        { "requiredmultiple",
+        PackageChooserMode::RequiredMultiple },
+        // and a bunch of aliases
+        { "zero-or-one", PackageChooserMode::Optional },
+        { "radio", PackageChooserMode::Exclusive },
+        { "one", PackageChooserMode::Exclusive },
+        { "set", PackageChooserMode::Multiple },
+        { "zero-or-more", PackageChooserMode::Multiple },
+        { "required", PackageChooserMode::RequiredMultiple },
+        { "one-or-more", PackageChooserMode::RequiredMultiple } };
+    return names;
+}
+
 PackageItem
 PackageItem::fromAppStream( const QString& filename )
 {

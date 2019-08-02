@@ -19,6 +19,8 @@
 #ifndef PACKAGEMODEL_H
 #define PACKAGEMODEL_H
 
+#include "utils/NamedEnum.h"
+
 #include <QAbstractListModel>
 #include <QObject>
 #include <QPixmap>
@@ -31,6 +33,8 @@ enum class PackageChooserMode
     Multiple,  // zero or more
     RequiredMultiple  // one or more
 };
+
+const NamedEnumTable< PackageChooserMode >& roleNames();
 
 struct PackageItem
 {
