@@ -23,6 +23,8 @@
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
+#include "PackageModel.h"
+
 #include <QObject>
 #include <QUrl>
 #include <QVariantMap>
@@ -59,6 +61,7 @@ private:
 
     PackageChooserPage* m_widget;
     PackageListModel* m_model;
+    PackageChooserMode m_mode;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PackageChooserViewStepFactory )

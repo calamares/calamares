@@ -25,7 +25,7 @@
 
 #include <QLabel>
 
-PackageChooserPage::PackageChooserPage( QWidget* parent )
+PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::PackageChooserPage )
     , m_introduction( QString(),
@@ -35,6 +35,16 @@ PackageChooserPage::PackageChooserPage( QWidget* parent )
 {
     ui->setupUi( this );
     CALAMARES_RETRANSLATE( updateLabels(); )
+
+    switch( mode )
+    {
+        case PackageChooserMode::Optional:
+        case PackageChooserMode::Exclusive:
+            ui->products->setSelectionMode( QAbstractItemView::SingleSelection );
+        case PackageChooserMode::Multiple:
+        case PackageChooserMode::RequiredMultiple:
+            ui->products->setSelectionMode( QAbstractItemView::ExtendedSelection );
+    }
 }
 
 void

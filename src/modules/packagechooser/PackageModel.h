@@ -24,6 +24,14 @@
 #include <QPixmap>
 #include <QVector>
 
+enum class PackageChooserMode
+{
+    Optional,  // zero or one
+    Exclusive, // exactly one
+    Multiple,  // zero or more
+    RequiredMultiple  // one or more
+};
+
 struct PackageItem
 {
     QString id;

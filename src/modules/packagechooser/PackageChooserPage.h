@@ -33,7 +33,7 @@ class PackageChooserPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PackageChooserPage( QWidget* parent = nullptr );
+    explicit PackageChooserPage( PackageChooserMode mode, QWidget* parent = nullptr );
 
     void setModel( QAbstractItemModel* model );
 
