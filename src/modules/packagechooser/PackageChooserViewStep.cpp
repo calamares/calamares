@@ -155,9 +155,9 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
     {
 
         m_model = new PackageListModel( nullptr );
-        m_model->addPackage( PackageItem { "kde", "kde", "Plasma", "Plasma Desktop" } );
+        m_model->addPackage( PackageItem { "kde", "kde", "Plasma", "Plasma Desktop", ":/images/kde.png" } );
         m_model->addPackage(
-            PackageItem { "gnome", "gnome", "GNOME", "GNU Networked Object Modeling Environment Desktop" } );
+            PackageItem { "gnome", "gnome", "GNOME", "GNU Networked Object Modeling Environment Desktop", ":/images/gnome.png" } );
 
 
         if ( m_widget )

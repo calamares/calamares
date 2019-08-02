@@ -52,6 +52,12 @@ struct PackageItem
      */
     PackageItem( const QString& id, const QString& package, const QString& name, const QString& description );
 
+    PackageItem( const QString& id,
+                 const QString& package,
+                 const QString& name,
+                 const QString& description,
+                 const QString& screenshotPath );
+
     // TODO: implement this
     PackageItem fromAppStream( const QString& filename );
 };

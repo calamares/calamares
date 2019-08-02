@@ -40,6 +40,19 @@ PackageItem::PackageItem( const QString& a_id,
 {
 }
 
+PackageItem::PackageItem( const QString& a_id,
+                          const QString& a_package,
+                          const QString& a_name,
+                          const QString& a_description,
+                          const QString& screenshotPath )
+    : id( a_id )
+    , package( a_package )
+    , name( a_name )
+    , description( a_description )
+    , screenshot( screenshotPath )
+{
+}
+
 
 PackageListModel::PackageListModel( QObject* parent )
     : QAbstractListModel( parent )
