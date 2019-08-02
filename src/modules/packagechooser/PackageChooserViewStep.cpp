@@ -70,6 +70,10 @@ PackageChooserViewStep::widget()
         {
             hookupModel();
         }
+        else
+        {
+            cWarning() << "PackageChooser Widget created before model.";
+        }
     }
     return m_widget;
 }
