@@ -32,6 +32,9 @@ class PackageChooserPage : public QWidget
 public:
     explicit PackageChooserPage( QWidget* parent = nullptr );
 
+public slots:
+    void updateLabels();
+
 private:
     Ui::PackageChooserPage* ui;
 };
