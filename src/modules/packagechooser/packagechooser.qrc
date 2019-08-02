@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/no-selection.png</file>
+        <file>images/kde.png</file>
+        <file>images/gnome.png</file>
+    </qresource>
+</RCC>

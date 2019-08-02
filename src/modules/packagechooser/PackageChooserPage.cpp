@@ -33,6 +33,9 @@ PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent
                       tr( "Package Selection" ),
                       tr( "Please pick a product from the list. The selected product will be installed." ) )
 {
+    m_introduction.screenshot = QPixmap( QStringLiteral( ":/images/no-selection.png" ) );
+    cDebug() << m_introduction.screenshot;
+
     ui->setupUi( this );
     CALAMARES_RETRANSLATE( updateLabels(); )
 
