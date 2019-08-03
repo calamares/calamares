@@ -26,6 +26,7 @@
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
 
+#include "Branding.h"
 #include "GlobalStorage.h"
 #include "Job.h"
 #include "JobQueue.h"
@@ -68,6 +69,10 @@ handle_args( QCoreApplication& a )
     QCommandLineOption langOption( QStringList() << QStringLiteral( "l" ) << QStringLiteral( "language" ),
                                    QStringLiteral( "Language (global)" ),
                                    "languagecode" );
+    QCommandLineOption brandOption( QStringList() << QStringLiteral( "b" ) << QStringLiteral( "branding" ),
+                                    QStringLiteral( "Branding directory" ),
+                                    "path/to/branding.desc",
+                                    "src/branding/default/branding.desc" );
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Calamares module tester" );
@@ -78,6 +83,7 @@ handle_args( QCoreApplication& a )
     parser.addOption( globalOption );
     parser.addOption( jobOption );
     parser.addOption( langOption );
+    parser.addOption( brandOption );
     parser.addPositionalArgument( "module", "Path or name of module to run." );
     parser.addPositionalArgument( "job.yaml", "Path of job settings document to use.", "[job.yaml]" );
 
@@ -104,7 +110,11 @@ handle_args( QCoreApplication& a )
             jobSettings = args.at( 1 );
         }
 
-        return ModuleConfig { args.first(), jobSettings, parser.value( globalOption ), parser.value( langOption ) };
+        return ModuleConfig { args.first(),
+                              jobSettings,
+                              parser.value( globalOption ),
+                              parser.value( langOption ),
+                              parser.value( brandOption ) };
     }
 }
 
@@ -211,6 +221,7 @@ main( int argc, char* argv[] )
     if ( m->type() == Calamares::Module::Type::View )
     {
         aw = new QApplication( argc, argv );
+        (void)new Calamares::Branding( module.m_branding );
         (void)Calamares::ViewManager::instance( nullptr );
     }
 
