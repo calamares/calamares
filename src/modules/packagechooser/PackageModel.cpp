@@ -128,6 +128,10 @@ PackageListModel::data( const QModelIndex& index, int role ) const
     {
         return m_packages[ row ].screenshot;
     }
+    else if ( role == IdRole )
+    {
+        return m_packages[ row ].id;
+    }
 
     return QVariant();
 }

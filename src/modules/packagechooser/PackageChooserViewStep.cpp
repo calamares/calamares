@@ -137,6 +137,15 @@ PackageChooserViewStep::isAtEnd() const
 void
 PackageChooserViewStep::onLeave()
 {
+    QString key = QStringLiteral( "packagechooser_%1" ).arg( m_id );
+    QString value;
+    if ( m_widget->hasSelection() )
+    {
+        value = m_widget->selectedPackageIds().join( ',' );
+    }
+    Calamares::JobQueue::instance()->globalStorage()->insert( key, value );
+    
+    cDebug() << "PackageChooser" << key << "selected" << value;
 }
 
 Calamares::JobList

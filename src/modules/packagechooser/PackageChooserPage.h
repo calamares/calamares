@@ -37,7 +37,13 @@ public:
 
     void setModel( QAbstractItemModel* model );
 
+    /// @brief Is anything selected?
     bool hasSelection() const;
+    /** @brief Get the list of selected ids
+     *
+     * This list may be empty (if none is selected).
+     */
+    QStringList selectedPackageIds() const;
 
 public slots:
     void currentChanged( const QModelIndex& index );

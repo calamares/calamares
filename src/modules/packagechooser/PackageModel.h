@@ -84,7 +84,8 @@ public:
     {
         NameRole = Qt::DisplayRole,
         DescriptionRole = Qt::UserRole,
-        ScreenshotRole
+        ScreenshotRole,
+        IdRole
     };
 
 private:

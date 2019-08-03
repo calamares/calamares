@@ -98,3 +98,24 @@ PackageChooserPage::hasSelection() const
 {
     return ui && ui->products && ui->products->selectionModel() && ui->products->selectionModel()->hasSelection();
 }
+
+QStringList
+PackageChooserPage::selectedPackageIds() const
+{
+    if ( !( ui && ui->products && ui->products->selectionModel() ) )
+    {
+        return QStringList();
+    }
+
+    const auto* model = ui->products->model();
+    QStringList ids;
+    for ( const auto& index : ui->products->selectionModel()->selectedIndexes() )
+    {
+        QString pid = model->data( index, PackageListModel::IdRole ).toString();
+        if ( !pid.isEmpty() )
+        {
+            ids.append( pid );
+        }
+    }
+    return ids;
+}
