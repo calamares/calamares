@@ -73,7 +73,7 @@ class PackageListModel : public QAbstractListModel
 public:
     PackageListModel( PackageList&& items, QObject* parent );
     PackageListModel( QObject* parent );
-    virtual ~PackageListModel();
+    virtual ~PackageListModel() override;
 
     void addPackage( PackageItem&& p );
 

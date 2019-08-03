@@ -37,7 +37,7 @@ PackageChooserViewStep::PackageChooserViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( nullptr )
     , m_model( nullptr )
-    , m_mode( PackageChooserMode::Exclusive )
+    , m_mode( PackageChooserMode::Required )
 {
     emit nextStatusChanged( false );
 }
@@ -100,10 +100,10 @@ PackageChooserViewStep::isNextEnabled() const
     switch ( m_mode )
     {
     case PackageChooserMode::Optional:
-    case PackageChooserMode::Multiple:
+    case PackageChooserMode::OptionalMultiple:
         // zero or one OR zero or more
         return true;
-    case PackageChooserMode::Exclusive:
+    case PackageChooserMode::Required:
     case PackageChooserMode::RequiredMultiple:
         // exactly one OR one or more
         return m_widget->hasSelection();
@@ -159,17 +159,17 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
     {
         m_mode = PackageChooserMode::Required;
     }
-    
+
     m_id = CalamaresUtils::getString( configurationMap, "id" );
-    
+
     // TODO: replace this hard-coded model
     if ( !m_model )
     {
 
         m_model = new PackageListModel( nullptr );
         m_model->addPackage( PackageItem { "kde", "kde", "Plasma", "Plasma Desktop", ":/images/kde.png" } );
-        m_model->addPackage(
-            PackageItem { "gnome", "gnome", "GNOME", "GNU Networked Object Modeling Environment Desktop", ":/images/gnome.png" } );
+        m_model->addPackage( PackageItem {
+            "gnome", "gnome", "GNOME", "GNU Networked Object Modeling Environment Desktop", ":/images/gnome.png" } );
 
 
         if ( m_widget )

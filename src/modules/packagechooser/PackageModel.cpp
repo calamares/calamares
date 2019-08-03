@@ -35,7 +35,8 @@ roleNames()
         { "set", PackageChooserMode::OptionalMultiple },
         { "zero-or-more", PackageChooserMode::OptionalMultiple },
         { "multiple", PackageChooserMode::RequiredMultiple },
-        { "one-or-more", PackageChooserMode::RequiredMultiple } };
+        { "one-or-more", PackageChooserMode::RequiredMultiple }
+    };
     return names;
 }
 
