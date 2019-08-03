@@ -20,9 +20,9 @@
 #ifndef LICENSEPAGEPLUGIN_H
 #define LICENSEPAGEPLUGIN_H
 
+#include <PluginDllMacro.h>
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
-#include <PluginDllMacro.h>
 
 #include <QObject>
 #include <QUrl>
@@ -58,4 +58,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( LicenseViewStepFactory )
 
-#endif // LICENSEPAGEPLUGIN_H
+#endif  // LICENSEPAGEPLUGIN_H

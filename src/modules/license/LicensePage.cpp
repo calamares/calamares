@@ -21,11 +21,11 @@
 
 #include "LicensePage.h"
 
-#include "ui_LicensePage.h"
 #include "LicenseWidget.h"
+#include "ui_LicensePage.h"
 
-#include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "ViewManager.h"
 
 #include "utils/CalamaresUtilsGui.h"
@@ -36,10 +36,10 @@
 
 #include <QApplication>
 #include <QBoxLayout>
+#include <QComboBox>
 #include <QDesktopServices>
 #include <QFocusEvent>
 #include <QLabel>
-#include <QComboBox>
 #include <QMessageBox>
 
 #include <algorithm>
@@ -47,11 +47,11 @@
 const NamedEnumTable< LicenseEntry::Type >&
 LicenseEntry::typeNames()
 {
-    static const NamedEnumTable< LicenseEntry::Type > names{
-        { QStringLiteral( "software" ), LicenseEntry::Type::Software},
+    static const NamedEnumTable< LicenseEntry::Type > names {
+        { QStringLiteral( "software" ), LicenseEntry::Type::Software },
         { QStringLiteral( "driver" ), LicenseEntry::Type::Driver },
         { QStringLiteral( "gpudriver" ), LicenseEntry::Type::GpuDriver },
-        { QStringLiteral( "browserplugin" ), LicenseEntry::Type::BrowserPlugin},
+        { QStringLiteral( "browserplugin" ), LicenseEntry::Type::BrowserPlugin },
         { QStringLiteral( "codec" ), LicenseEntry::Type::Codec },
         { QStringLiteral( "package" ), LicenseEntry::Type::Package }
     };
@@ -59,10 +59,12 @@ LicenseEntry::typeNames()
     return names;
 }
 
-LicenseEntry::LicenseEntry(const QVariantMap& conf)
+LicenseEntry::LicenseEntry( const QVariantMap& conf )
 {
     if ( !conf.contains( "id" ) || !conf.contains( "name" ) || !conf.contains( "url" ) )
+    {
         return;
+    }
 
     m_id = conf[ "id" ].toString();
     m_prettyName = conf[ "name" ].toString();
@@ -75,7 +77,9 @@ LicenseEntry::LicenseEntry(const QVariantMap& conf)
     QString typeString = conf.value( "type", "software" ).toString();
     m_type = typeNames().find( typeString, ok );
     if ( !ok )
+    {
         cWarning() << "License entry" << m_id << "has unknown type" << typeString << "(using 'software')";
+    }
 }
 
 bool
@@ -85,7 +89,7 @@ LicenseEntry::isLocal() const
 }
 
 
-LicensePage::LicensePage(QWidget *parent)
+LicensePage::LicensePage( QWidget* parent )
     : QWidget( parent )
     , m_isNextEnabled( false )
     , m_allLicensesOptional( false )
@@ -119,9 +123,7 @@ LicensePage::LicensePage(QWidget *parent)
 
     connect( ui->acceptCheckBox, &QCheckBox::toggled, this, &LicensePage::checkAcceptance );
 
-    CALAMARES_RETRANSLATE(
-        ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) );
-    )
+    CALAMARES_RETRANSLATE( ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) ); )
 }
 
 
@@ -132,41 +134,40 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
     m_entries.clear();
     m_entries.reserve( entriesList.count() );
 
-    const bool required = std::any_of( entriesList.cbegin(), entriesList.cend(), []( const LicenseEntry& e ){ return e.m_required; });
+    const bool required
+        = std::any_of( entriesList.cbegin(), entriesList.cend(), []( const LicenseEntry& e ) { return e.m_required; } );
     if ( entriesList.isEmpty() )
+    {
         m_allLicensesOptional = true;
+    }
     else
+    {
         m_allLicensesOptional = !required;
+    }
 
     checkAcceptance( false );
 
-    CALAMARES_RETRANSLATE(
-        if ( required )
-        {
-            ui->mainText->setText( tr( "<h1>License Agreement</h1>"
-                "This setup procedure will install proprietary "
-                "software that is subject to licensing terms." ) );
-            ui->additionalText->setText( tr( "Please review the End User License "
-                "Agreements (EULAs) above.<br/>"
-                "If you do not agree with the terms, the setup procedure cannot continue." ) );
-        }
-        else
-        {
-            ui->mainText->setText( tr( "<h1>License Agreement</h1>"
-                "This setup procedure can install proprietary "
-                "software that is subject to licensing terms "
-                "in order to provide additional features and enhance the user "
-                "experience." ) );
-            ui->additionalText->setText( tr( "Please review the End User License "
-                "Agreements (EULAs) above.<br/>"
-                "If you do not agree with the terms, proprietary software will not "
-                "be installed, and open source alternatives will be used instead." ) );
-        }
-        ui->retranslateUi( this );
+    CALAMARES_RETRANSLATE( if ( required ) {
+        ui->mainText->setText( tr( "<h1>License Agreement</h1>"
+                                   "This setup procedure will install proprietary "
+                                   "software that is subject to licensing terms." ) );
+        ui->additionalText->setText( tr( "Please review the End User License "
+                                         "Agreements (EULAs) above.<br/>"
+                                         "If you do not agree with the terms, the setup procedure cannot continue." ) );
+    } else {
+        ui->mainText->setText( tr( "<h1>License Agreement</h1>"
+                                   "This setup procedure can install proprietary "
+                                   "software that is subject to licensing terms "
+                                   "in order to provide additional features and enhance the user "
+                                   "experience." ) );
+        ui->additionalText->setText( tr( "Please review the End User License "
+                                         "Agreements (EULAs) above.<br/>"
+                                         "If you do not agree with the terms, proprietary software will not "
+                                         "be installed, and open source alternatives will be used instead." ) );
+    } ui->retranslateUi( this );
 
-        for ( const auto& w : m_entries )
-            w->retranslateUi();
-    )
+                           for ( const auto& w
+                                 : m_entries ) w->retranslateUi(); )
 
     for ( const LicenseEntry& entry : entriesList )
     {
@@ -190,7 +191,8 @@ LicensePage::updateGlobalStorage( bool v )
     Calamares::JobQueue::instance()->globalStorage()->insert( "licenseAgree", v );
 }
 
-void LicensePage::checkAcceptance( bool checked )
+void
+LicensePage::checkAcceptance( bool checked )
 {
     updateGlobalStorage( checked );
 
