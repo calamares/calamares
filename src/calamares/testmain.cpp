@@ -51,13 +51,14 @@ struct ModuleConfig
     QString m_jobConfig;
     QString m_globalConfig;
     QString m_language;
+    QString m_branding;
 };
 
 static ModuleConfig
 handle_args( QCoreApplication& a )
 {
     QCommandLineOption debugLevelOption(
-        QStringLiteral( "D" ), "Verbose output for debugging purposes (0-8).", "level" );
+        QStringLiteral( "D" ), "Verbose output for debugging purposes (0-8), ignored.", "level" );
     QCommandLineOption globalOption( QStringList() << QStringLiteral( "g" ) << QStringLiteral( "global " ),
                                      QStringLiteral( "Global settings document" ),
                                      "global.yaml" );
@@ -82,21 +83,7 @@ handle_args( QCoreApplication& a )
 
     parser.process( a );
 
-    if ( parser.isSet( debugLevelOption ) )
-    {
-        bool ok = true;
-        unsigned int l = parser.value( debugLevelOption ).toUInt( &ok );
-        unsigned int dlevel = 0;
-        if ( !ok )
-        {
-            dlevel = Logger::LOGVERBOSE;
-        }
-        else
-        {
-            dlevel = l;
-        }
-        Logger::setupLogLevel( dlevel );
-    }
+    Logger::setupLogLevel( Logger::LOGVERBOSE );
 
     const QStringList args = parser.positionalArguments();
     if ( args.isEmpty() )
