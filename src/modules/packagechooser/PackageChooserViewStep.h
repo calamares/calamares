@@ -60,7 +60,10 @@ private:
 
     PackageChooserPage* m_widget;
     PackageListModel* m_model;
+    
+    // Configuration
     PackageChooserMode m_mode;
+    QString m_id;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PackageChooserViewStepFactory )

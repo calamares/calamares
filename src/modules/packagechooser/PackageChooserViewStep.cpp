@@ -149,7 +149,6 @@ PackageChooserViewStep::jobs() const
 void
 PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    // TODO: use the configurationMap
     QString mode = CalamaresUtils::getString( configurationMap, "mode" );
     bool ok = false;
     if ( !mode.isEmpty() )
@@ -160,7 +159,10 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
     {
         m_mode = PackageChooserMode::Required;
     }
-
+    
+    m_id = CalamaresUtils::getString( configurationMap, "id" );
+    
+    // TODO: replace this hard-coded model
     if ( !m_model )
     {
 
