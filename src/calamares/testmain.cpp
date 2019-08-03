@@ -40,6 +40,7 @@
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QFileInfo>
+#include <QLabel>
 #include <QMainWindow>
 
 #include <memory>
@@ -95,8 +96,6 @@ handle_args( QCoreApplication& a )
     parser.addPositionalArgument( "job.yaml", "Path of job settings document to use.", "[job.yaml]" );
 
     parser.process( a );
-
-    Logger::setupLogLevel( Logger::LOGVERBOSE );
 
     const QStringList args = parser.positionalArguments();
     if ( args.isEmpty() )
@@ -189,13 +188,38 @@ load_module( const ModuleConfig& moduleConfig )
     return module;
 }
 
+/** @brief Create the right kind of QApplication
+ *
+ * Does primitive parsing of argv[] to find the --ui option and returns
+ * a UI-enabled application if it does.
+ *
+ * @p argc must be a reference (to main's argc) because the QCoreApplication
+ * constructors take a reference as well, and that would otherwise be a
+ * reference to a temporary.
+ */
+QCoreApplication*
+createApplication( int& argc, char* argv[] )
+{
+    for ( int i = 1; i < argc; ++i )
+    {
+        if ( !qstrcmp( argv[ i ], "--ui" ) || !qstrcmp( argv[ i ], "-U" ) )
+        {
+            auto* aw = new QApplication( argc, argv );
+            aw->setQuitOnLastWindowClosed( true );
+            return aw;
+        }
+    }
+    return new QCoreApplication( argc, argv );
+}
+
 int
 main( int argc, char* argv[] )
 {
-    QCoreApplication a( argc, argv );
-    QApplication* aw = nullptr;
+    QCoreApplication* aw = createApplication( argc, argv );
 
-    ModuleConfig module = handle_args( a );
+    Logger::setupLogLevel( Logger::LOGVERBOSE );
+
+    ModuleConfig module = handle_args( *aw );
     if ( module.moduleName().isEmpty() )
     {
         return 1;
@@ -203,6 +227,7 @@ main( int argc, char* argv[] )
 
     std::unique_ptr< Calamares::Settings > settings_p( new Calamares::Settings( QString(), true ) );
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
+    QMainWindow* mw = nullptr;
 
     auto gs = jobqueue_p->globalStorage();
     if ( !module.globalConfigFile().isEmpty() )
@@ -228,8 +253,8 @@ main( int argc, char* argv[] )
     cDebug() << " .. got" << m->name() << m->typeString() << m->interfaceString();
     if ( m->type() == Calamares::Module::Type::View )
     {
-        aw = new QApplication( argc, argv );
-        QMainWindow* mw = module.m_ui ? new QMainWindow() : nullptr;
+        mw = module.m_ui ? new QMainWindow() : nullptr;
+
         (void)new Calamares::Branding( module.m_branding );
         (void)new Calamares::ModuleManager( QStringList(), nullptr );
         (void)Calamares::ViewManager::instance( mw );
@@ -244,6 +269,16 @@ main( int argc, char* argv[] )
     {
         cError() << "Module" << module.moduleName() << "could not be loaded.";
         return 1;
+    }
+
+    if ( mw )
+    {
+        QWidget* w = Calamares::ViewManager::instance()->currentStep()->widget();
+        w->setParent( mw );
+        mw->setCentralWidget( w );
+        w->show();
+        mw->show();
+        return aw->exec();
     }
 
     using TR = Logger::DebugRow< const char*, const QString >;
