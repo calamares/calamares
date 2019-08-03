@@ -86,6 +86,26 @@ void
 PackageChooserPage::setModel( QAbstractItemModel* model )
 {
     ui->products->setModel( model );
+
+    // Check if any of the items in the model is the "none" option.
+    // If so, copy its values into the introduction / none item.
+    for ( int r = 0; r < model->rowCount(); ++r )
+    {
+        auto index = model->index( r, 0 );
+        if ( index.isValid() )
+        {
+            QVariant v = model->data( index, PackageListModel::IdRole );
+            if ( v.isValid() && v.toString().isEmpty() )
+            {
+                m_introduction.name = model->data( index, PackageListModel::NameRole ).toString();
+                m_introduction.description = model->data( index, PackageListModel::DescriptionRole ).toString();
+                m_introduction.screenshot = model->data( index, PackageListModel::ScreenshotRole ).value< QPixmap >();
+                currentChanged( QModelIndex() );
+                break;
+            }
+        }
+    }
+
     connect( ui->products->selectionModel(),
              &QItemSelectionModel::selectionChanged,
              this,
