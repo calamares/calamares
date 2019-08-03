@@ -38,6 +38,7 @@
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QFileInfo>
+#include <QMainWindow>
 
 #include <memory>
 
@@ -53,6 +54,7 @@ struct ModuleConfig
     QString m_globalConfig;
     QString m_language;
     QString m_branding;
+    bool m_ui;
 };
 
 static ModuleConfig
@@ -73,6 +75,8 @@ handle_args( QCoreApplication& a )
                                     QStringLiteral( "Branding directory" ),
                                     "path/to/branding.desc",
                                     "src/branding/default/branding.desc" );
+    QCommandLineOption uiOption( QStringList() << QStringLiteral( "U" ) << QStringLiteral( "ui" ),
+                                 QStringLiteral( "Enable UI" ) );
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Calamares module tester" );
@@ -84,6 +88,7 @@ handle_args( QCoreApplication& a )
     parser.addOption( jobOption );
     parser.addOption( langOption );
     parser.addOption( brandOption );
+    parser.addOption( uiOption );
     parser.addPositionalArgument( "module", "Path or name of module to run." );
     parser.addPositionalArgument( "job.yaml", "Path of job settings document to use.", "[job.yaml]" );
 
@@ -114,7 +119,8 @@ handle_args( QCoreApplication& a )
                               jobSettings,
                               parser.value( globalOption ),
                               parser.value( langOption ),
-                              parser.value( brandOption ) };
+                              parser.value( brandOption ),
+                              parser.isSet( uiOption ) };
     }
 }
 
@@ -221,8 +227,9 @@ main( int argc, char* argv[] )
     if ( m->type() == Calamares::Module::Type::View )
     {
         aw = new QApplication( argc, argv );
+        QMainWindow* mw = module.m_ui ? new QMainWindow() : nullptr;
         (void)new Calamares::Branding( module.m_branding );
-        (void)Calamares::ViewManager::instance( nullptr );
+        (void)Calamares::ViewManager::instance( mw );
     }
 
     if ( !m->isLoaded() )
