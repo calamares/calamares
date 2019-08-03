@@ -33,6 +33,8 @@
 #include "Settings.h"
 #include "ViewManager.h"
 
+#include "modulesystem/ModuleManager.h"
+
 #include <QApplication>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
@@ -229,6 +231,7 @@ main( int argc, char* argv[] )
         aw = new QApplication( argc, argv );
         QMainWindow* mw = module.m_ui ? new QMainWindow() : nullptr;
         (void)new Calamares::Branding( module.m_branding );
+        (void)new Calamares::ModuleManager( QStringList(), nullptr );
         (void)Calamares::ViewManager::instance( mw );
     }
 
