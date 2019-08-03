@@ -19,29 +19,30 @@
 
 #include "LicenseViewStep.h"
 
-#include "LicensePage.h"
-#include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "LicensePage.h"
 #include "utils/Logger.h"
 
 #include <QVariantMap>
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( LicenseViewStepFactory, registerPlugin<LicenseViewStep>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( LicenseViewStepFactory, registerPlugin< LicenseViewStep >(); )
 
 LicenseViewStep::LicenseViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new LicensePage )
 {
     emit nextStatusChanged( false );
-    connect( m_widget, &LicensePage::nextStatusChanged,
-             this, &LicenseViewStep::nextStatusChanged );
+    connect( m_widget, &LicensePage::nextStatusChanged, this, &LicenseViewStep::nextStatusChanged );
 }
 
 
 LicenseViewStep::~LicenseViewStep()
 {
     if ( m_widget && m_widget->parent() == nullptr )
+    {
         m_widget->deleteLater();
+    }
 }
 
 
@@ -97,18 +98,21 @@ void
 LicenseViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     QList< LicenseEntry > entriesList;
-    if ( configurationMap.contains( "entries" ) &&
-         configurationMap.value( "entries" ).type() == QVariant::List )
+    if ( configurationMap.contains( "entries" ) && configurationMap.value( "entries" ).type() == QVariant::List )
     {
         const auto entries = configurationMap.value( "entries" ).toList();
         for ( const QVariant& entryV : entries )
         {
             if ( entryV.type() != QVariant::Map )
+            {
                 continue;
+            }
 
             LicenseEntry entry( entryV.toMap() );
             if ( entry.isValid() )
+            {
                 entriesList.append( entry );
+            }
         }
     }
 

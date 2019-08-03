@@ -24,8 +24,8 @@
 
 #include "utils/NamedEnum.h"
 
-#include <QWidget>
 #include <QUrl>
+#include <QWidget>
 
 namespace Ui
 {
@@ -101,4 +101,4 @@ private:
     QList< LicenseWidget* > m_entries;
 };
 
-#endif //LICENSEPAGE_H
+#endif  //LICENSEPAGE_H

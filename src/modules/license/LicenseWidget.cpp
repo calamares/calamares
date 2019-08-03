@@ -34,10 +34,12 @@ static QString
 loadLocalFile( const QUrl& u )
 {
     if ( !u.isLocalFile() )
+    {
         return QString();
+    }
 
     QFile file( u.path() );
-    if ( !file.open(QIODevice::ReadOnly | QIODevice::Text) )
+    if ( !file.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
         cWarning() << "Could not load license file" << u.path();
         return QString();
@@ -108,11 +110,10 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     retranslateUi();
 }
 
-LicenseWidget::~LicenseWidget()
-{
-}
+LicenseWidget::~LicenseWidget() {}
 
-void LicenseWidget::retranslateUi()
+void
+LicenseWidget::retranslateUi()
 {
     QString productDescription;
     switch ( m_entry.m_type )
@@ -120,40 +121,40 @@ void LicenseWidget::retranslateUi()
     case LicenseEntry::Type::Driver:
         //: %1 is an untranslatable product name, example: Creative Audigy driver
         productDescription = tr( "<strong>%1 driver</strong><br/>"
-                                    "by %2" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "by %2" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::GpuDriver:
         //: %1 is usually a vendor name, example: Nvidia graphics driver
         productDescription = tr( "<strong>%1 graphics driver</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::BrowserPlugin:
         productDescription = tr( "<strong>%1 browser plugin</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Codec:
         productDescription = tr( "<strong>%1 codec</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Package:
         productDescription = tr( "<strong>%1 package</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Software:
         productDescription = tr( "<strong>%1</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
     }
     m_label->setText( productDescription );
     updateExpandToolTip();
@@ -173,7 +174,9 @@ LicenseWidget::expandClicked()
 
     // Show/hide based on the new arrow direction.
     if ( m_fullText )
+    {
         m_fullText->setHidden( m_expandLicenseButton->arrowType() == Qt::UpArrow );
+    }
 
     updateExpandToolTip();
 }
@@ -186,21 +189,15 @@ LicenseWidget::updateExpandToolTip()
     {
         const bool isNowCollapsed = m_expandLicenseButton->arrowType() == Qt::UpArrow;
 
-        m_expandLicenseButton->setToolTip(
-            isNowCollapsed
-            ? tr( "Shows the complete license text" )
-            : tr( "Hide license text" )
-            ) ;
-        m_viewLicenseLabel->setText(
-            isNowCollapsed
-            ? tr( "Show license agreement" )
-            : tr( "Hide license agreement" ) );
+        m_expandLicenseButton->setToolTip( isNowCollapsed ? tr( "Shows the complete license text" )
+                                                          : tr( "Hide license text" ) );
+        m_viewLicenseLabel->setText( isNowCollapsed ? tr( "Show license agreement" ) : tr( "Hide license agreement" ) );
     }
     else
     {
         m_expandLicenseButton->setToolTip( tr( "Opens the license agreement in a browser window." ) );
-        m_viewLicenseLabel->setText( tr( "<a href=\"%1\">View license agreement</a>" )
-                                .arg( m_entry.m_url.toString() ) );
+        m_viewLicenseLabel->setText(
+            tr( "<a href=\"%1\">View license agreement</a>" ).arg( m_entry.m_url.toString() ) );
     }
 }
 
