@@ -161,6 +161,12 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
     }
 
     m_id = CalamaresUtils::getString( configurationMap, "id" );
+    if ( m_id.isEmpty() )
+    {
+        // Not set, so use the instance id
+        // TODO: use a stronger type than QString for structured IDs
+        m_id = moduleInstanceKey().split( '@' ).last();
+    }
 
     // TODO: replace this hard-coded model
     if ( !m_model )
