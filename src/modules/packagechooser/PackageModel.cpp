@@ -25,17 +25,16 @@ roleNames()
 {
     static const NamedEnumTable< PackageChooserMode > names {
         { "optional", PackageChooserMode::Optional },
-        { "exclusive", PackageChooserMode::Exclusive },
-        { "multiple", PackageChooserMode::Multiple },
-        { "requiredmultiple",
-        PackageChooserMode::RequiredMultiple },
+        { "required", PackageChooserMode::Required },
+        { "optionalmultiple", PackageChooserMode::OptionalMultiple },
+        { "requiredmultiple", PackageChooserMode::RequiredMultiple },
         // and a bunch of aliases
         { "zero-or-one", PackageChooserMode::Optional },
-        { "radio", PackageChooserMode::Exclusive },
-        { "one", PackageChooserMode::Exclusive },
-        { "set", PackageChooserMode::Multiple },
-        { "zero-or-more", PackageChooserMode::Multiple },
-        { "required", PackageChooserMode::RequiredMultiple },
+        { "radio", PackageChooserMode::Required },
+        { "one", PackageChooserMode::Required },
+        { "set", PackageChooserMode::OptionalMultiple },
+        { "zero-or-more", PackageChooserMode::OptionalMultiple },
+        { "multiple", PackageChooserMode::RequiredMultiple },
         { "one-or-more", PackageChooserMode::RequiredMultiple } };
     return names;
 }

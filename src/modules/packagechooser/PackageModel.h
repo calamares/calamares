@@ -29,8 +29,8 @@
 enum class PackageChooserMode
 {
     Optional,  // zero or one
-    Exclusive,  // exactly one
-    Multiple,  // zero or more
+    Required,  // exactly one
+    OptionalMultiple,  // zero or more
     RequiredMultiple  // one or more
 };
 

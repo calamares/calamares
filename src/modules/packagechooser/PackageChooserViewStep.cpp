@@ -150,6 +150,16 @@ void
 PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     // TODO: use the configurationMap
+    QString mode = CalamaresUtils::getString( configurationMap, "mode" );
+    bool ok = false;
+    if ( !mode.isEmpty() )
+    {
+        m_mode = roleNames().find( mode, ok );
+    }
+    if ( !ok )
+    {
+        m_mode = PackageChooserMode::Required;
+    }
 
     if ( !m_model )
     {
