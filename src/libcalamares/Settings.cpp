@@ -40,8 +40,10 @@ static QString
 requireString( const YAML::Node& config, const char* key )
 {
     auto v = config[ key ];
-    if ( hasValue(v) )
+    if ( hasValue( v ) )
+    {
         return QString::fromStdString( v.as< std::string >() );
+    }
     else
     {
         cWarning() << Logger::SubEntry << "Required settings.conf key" << key << "is missing.";
@@ -54,8 +56,10 @@ static bool
 requireBool( const YAML::Node& config, const char* key, bool d )
 {
     auto v = config[ key ];
-    if ( hasValue(v) )
+    if ( hasValue( v ) )
+    {
         return v.as< bool >();
+    }
     else
     {
         cWarning() << Logger::SubEntry << "Required settings.conf key" << key << "is missing.";
@@ -86,17 +90,17 @@ interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStri
             // module search path in the build dir.
             if ( debugMode )
             {
-                QString buildDirModules = QDir::current().absolutePath() +
-                                            QDir::separator() + "src" +
-                                            QDir::separator() + "modules";
+                QString buildDirModules
+                    = QDir::current().absolutePath() + QDir::separator() + "src" + QDir::separator() + "modules";
                 if ( QDir( buildDirModules ).exists() )
+                {
                     output.append( buildDirModules );
+                }
             }
 
             // Install path is set in CalamaresAddPlugin.cmake
-            output.append( CalamaresUtils::systemLibDir().absolutePath() +
-                                            QDir::separator() + "calamares" +
-                                            QDir::separator() + "modules" );
+            output.append( CalamaresUtils::systemLibDir().absolutePath() + QDir::separator() + "calamares"
+                           + QDir::separator() + "modules" );
         }
         else
         {
@@ -106,7 +110,9 @@ interpretModulesSearch( const bool debugMode, const QStringList& rawPaths, QStri
                 output.append( d.absolutePath() );
             }
             else
+            {
                 cDebug() << Logger::SubEntry << "module-search entry non-existent" << path;
+            }
         }
     }
 }
@@ -124,15 +130,17 @@ interpretInstances( const YAML::Node& node, Settings::InstanceDescriptionList& c
             for ( const QVariant& instancesVListItem : instances )
             {
                 if ( instancesVListItem.type() != QVariant::Map )
+                {
                     continue;
-                QVariantMap instancesVListItemMap =
-                        instancesVListItem.toMap();
+                }
+                QVariantMap instancesVListItemMap = instancesVListItem.toMap();
                 Settings::InstanceDescription instanceMap;
-                for ( auto it = instancesVListItemMap.constBegin();
-                        it != instancesVListItemMap.constEnd(); ++it )
+                for ( auto it = instancesVListItemMap.constBegin(); it != instancesVListItemMap.constEnd(); ++it )
                 {
                     if ( it.value().type() != QVariant::String )
+                    {
                         continue;
+                    }
                     instanceMap.insert( it.key(), it.value().toString() );
                 }
                 customInstances.append( instanceMap );
@@ -149,37 +157,43 @@ interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSeque
     {
         QVariant sequenceV = CalamaresUtils::yamlToVariant( node );
         if ( !( sequenceV.type() == QVariant::List ) )
+        {
             throw YAML::Exception( YAML::Mark(), "sequence key does not have a list-value" );
+        }
 
         const auto sequence = sequenceV.toList();
         for ( const QVariant& sequenceVListItem : sequence )
         {
             if ( sequenceVListItem.type() != QVariant::Map )
+            {
                 continue;
+            }
             QString thisActionS = sequenceVListItem.toMap().firstKey();
             ModuleAction thisAction;
             if ( thisActionS == "show" )
+            {
                 thisAction = ModuleAction::Show;
+            }
             else if ( thisActionS == "exec" )
+            {
                 thisAction = ModuleAction::Exec;
+            }
             else
+            {
                 continue;
+            }
 
-            QStringList thisActionRoster = sequenceVListItem
-                                            .toMap()
-                                            .value( thisActionS )
-                                            .toStringList();
-            moduleSequence.append( qMakePair( thisAction,
-                                                    thisActionRoster ) );
+            QStringList thisActionRoster = sequenceVListItem.toMap().value( thisActionS ).toStringList();
+            moduleSequence.append( qMakePair( thisAction, thisActionRoster ) );
         }
     }
     else
+    {
         throw YAML::Exception( YAML::Mark(), "sequence key is missing" );
+    }
 }
 
-Settings::Settings( const QString& settingsFilePath,
-                    bool debugMode,
-                    QObject* parent )
+Settings::Settings( const QString& settingsFilePath, bool debugMode, QObject* parent )
     : QObject( parent )
     , m_debug( debugMode )
     , m_doChroot( true )
@@ -198,7 +212,8 @@ Settings::Settings( const QString& settingsFilePath,
             YAML::Node config = YAML::Load( ba.constData() );
             Q_ASSERT( config.IsMap() );
 
-            interpretModulesSearch( debugMode, CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
+            interpretModulesSearch(
+                debugMode, CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
             interpretInstances( config[ "instances" ], m_customModuleInstances );
             interpretSequence( config[ "sequence" ], m_modulesSequence );
 
@@ -283,4 +298,4 @@ Settings::disableCancelDuringExec() const
 }
 
 
-}
+}  // namespace Calamares

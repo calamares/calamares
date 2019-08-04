@@ -36,9 +36,7 @@ class DLLEXPORT Settings : public QObject
 {
     Q_OBJECT
 public:
-    explicit Settings( const QString& settingsFilePath,
-                       bool debugMode,
-                       QObject* parent = nullptr );
+    explicit Settings( const QString& settingsFilePath, bool debugMode, QObject* parent = nullptr );
 
     static Settings* instance();
 
@@ -88,6 +86,6 @@ private:
     bool m_disableCancelDuringExec;
 };
 
-}
+}  // namespace Calamares
 
-#endif // SETTINGS_H
+#endif  // SETTINGS_H

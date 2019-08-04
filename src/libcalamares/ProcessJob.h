@@ -24,7 +24,8 @@
 
 #include <chrono>
 
-namespace Calamares {
+namespace Calamares
+{
 
 class ProcessJob : public Job
 {
@@ -33,7 +34,7 @@ public:
     explicit ProcessJob( const QString& command,
                          const QString& workingPath,
                          bool runInChroot = false,
-                         std::chrono::seconds secondsTimeout = std::chrono::seconds(30),
+                         std::chrono::seconds secondsTimeout = std::chrono::seconds( 30 ),
                          QObject* parent = nullptr );
     virtual ~ProcessJob() override;
 
@@ -48,6 +49,6 @@ private:
     std::chrono::seconds m_timeoutSec;
 };
 
-} // namespace Calamares
+}  // namespace Calamares
 
-#endif // CALAMARES_PROCESSJOB_H
+#endif  // CALAMARES_PROCESSJOB_H
