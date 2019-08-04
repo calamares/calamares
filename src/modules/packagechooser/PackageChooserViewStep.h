@@ -56,6 +56,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
+    void fillModel( const QVariantMap& items );
     void hookupModel();
 
     PackageChooserPage* m_widget;
