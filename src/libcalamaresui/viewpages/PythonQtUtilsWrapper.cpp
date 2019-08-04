@@ -57,7 +57,7 @@ Utils::target_env_call( const QString& command,
                         int timeout ) const
 {
     return CalamaresUtils::System::instance()->
-            targetEnvCall( command, QString(), stdin, timeout );
+            targetEnvCall( command, QString(), stdin, std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
 }
 
 
@@ -67,7 +67,7 @@ Utils::target_env_call( const QStringList& args,
                         int timeout ) const
 {
     return CalamaresUtils::System::instance()->
-            targetEnvCall( args, QString(), stdin, timeout );
+            targetEnvCall( args, QString(), stdin, std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
 }
 
 
@@ -102,7 +102,7 @@ Utils::check_target_env_output( const QString& command,
                               output,
                               QString(),
                               stdin,
-                              timeout );
+                              std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
     _handle_check_target_env_call_error( ec, command );
     return output;
 }
@@ -119,7 +119,7 @@ Utils::check_target_env_output( const QStringList& args,
                               output,
                               QString(),
                               stdin,
-                              timeout );
+                              std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
     _handle_check_target_env_call_error( ec, args.join( ' ' ) );
     return output;
 }
