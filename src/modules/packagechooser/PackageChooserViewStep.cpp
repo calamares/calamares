@@ -178,12 +178,9 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
     }
 
     bool first_time = !m_model;
-    
-    ok = false;
-    QVariantMap items = CalamaresUtils::getSubMap( configurationMap, "items", ok );
-    if ( ok )
+    if ( configurationMap.contains( "items" ) )
     {
-        fillModel( items );
+        fillModel( configurationMap.value( "items" ).toList() );
     }
 
     // TODO: replace this hard-coded model
@@ -210,31 +207,42 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
 }
 
 void
-PackageChooserViewStep::fillModel( const QVariantMap& items )
+PackageChooserViewStep::fillModel( const QVariantList& items )
 {
     if ( !m_model )
     {
         m_model = new PackageListModel( nullptr );
     }
 
-    cDebug() << "Loading PackageChooser model items from config";
-    for ( auto item_it = items.constKeyValueBegin(); item_it != items.constKeyValueEnd(); ++item_it )
+    if ( items.isEmpty() )
     {
-        QString id = ( *item_it ).first;
+        cWarning() << "No *items* for PackageChooser module.";
+        return;
+    }
 
-        QVariantMap item_map = ( *item_it ).second.toMap();
+    cDebug() << "Loading PackageChooser model items from config";
+    int item_index = 0;
+    for ( const auto& item_it : items )
+    {
+        ++item_index;
+        QVariantMap item_map = item_it.toMap();
         if ( item_map.isEmpty() )
         {
-            cWarning() << "PackageChooser item" << id << "is not valid.";
+            cWarning() << "PackageChooser entry" << item_index << "is not valid.";
             continue;
         }
 
+        QString id = CalamaresUtils::getString( item_map, "id" );
         QString package = CalamaresUtils::getString( item_map, "package" );
         QString name = CalamaresUtils::getString( item_map, "name" );
         QString description = CalamaresUtils::getString( item_map, "description" );
         QString screenshot = CalamaresUtils::getString( item_map, "screenshot" );
 
-        if ( name.isEmpty() )
+        if ( name.isEmpty() && id.isEmpty() )
+        {
+            name = tr( "No product" );
+        }
+        else if ( name.isEmpty() )
         {
             cWarning() << "PackageChooser item" << id << "has an empty name.";
             continue;
