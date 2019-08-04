@@ -31,12 +31,12 @@
 
 #include <QString>
 
-#include <vector>
-#include <type_traits>
 #include <initializer_list>
+#include <type_traits>
+#include <vector>
 
 /** @brief Type for collecting parts of a named enum. */
-template<typename T>
+template < typename T >
 struct NamedEnumTable
 {
     using string_t = QString;
@@ -53,7 +53,11 @@ struct NamedEnumTable
      *
      * static const NamedEnumTable<Colors> c{ {"red", Colors::Red } };
      */
-    NamedEnumTable( const std::initializer_list< pair_t >& v ) : table( v ) { /* static_assert( v.size() > 0 ); */ }
+    NamedEnumTable( const std::initializer_list< pair_t >& v )
+        : table( v )
+    {
+        /* static_assert( v.size() > 0 ); */
+    }
 
     /** @brief Find a name @p s in the table.
      *
@@ -89,8 +93,8 @@ struct NamedEnumTable
     {
         ok = false;
 
-        for ( const auto &p : table )
-            if ( s == p.second)
+        for ( const auto& p : table )
+            if ( s == p.second )
             {
                 ok = true;
                 return p.first;
@@ -99,13 +103,14 @@ struct NamedEnumTable
         // ok is still false
         return string_t();
     }
-} ;
+};
 
 /** @brief Smashes an enum value to its underlying type. */
-template<typename E>
-constexpr typename std::underlying_type<E>::type smash( const E e )
+template < typename E >
+constexpr typename std::underlying_type< E >::type
+smash( const E e )
 {
-    return static_cast<typename std::underlying_type<E>::type>( e );
+    return static_cast< typename std::underlying_type< E >::type >( e );
 }
 
 #endif

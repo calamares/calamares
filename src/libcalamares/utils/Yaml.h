@@ -73,10 +73,10 @@ bool saveYaml( const QString& filename, const QVariantMap& map );
  * what is going on in terms of the data passed to the parser.
  * Uses @p label when labeling the data source (e.g. "netinstall data")
  */
-void explainYamlException( const YAML::Exception& e, const QByteArray& data, const char *label );
+void explainYamlException( const YAML::Exception& e, const QByteArray& data, const char* label );
 void explainYamlException( const YAML::Exception& e, const QByteArray& data, const QString& label );
 void explainYamlException( const YAML::Exception& e, const QByteArray& data );
 
-}  // namespace
+}  // namespace CalamaresUtils
 
 #endif

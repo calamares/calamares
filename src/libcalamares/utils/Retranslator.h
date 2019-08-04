@@ -32,24 +32,21 @@ class QLocale;
 
 namespace CalamaresUtils
 {
-    /**
-     * @brief installTranslator changes the application language.
-     * @param locale the new locale.
-     * @param brandingTranslationsPrefix the branding path prefix, from Calamares::Branding.
-     * @param parent the parent QObject.
-     */
-    DLLEXPORT void installTranslator( const QLocale& locale,
-                                      const QString& brandingTranslationsPrefix,
-                                      QObject* parent );
+/**
+ * @brief installTranslator changes the application language.
+ * @param locale the new locale.
+ * @param brandingTranslationsPrefix the branding path prefix, from Calamares::Branding.
+ * @param parent the parent QObject.
+ */
+DLLEXPORT void installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix, QObject* parent );
 
-    DLLEXPORT QString translatorLocaleName();
+DLLEXPORT QString translatorLocaleName();
 
 class Retranslator : public QObject
 {
     Q_OBJECT
 public:
-    static void attachRetranslator( QObject* parent,
-                                    std::function< void( void ) > retranslateFunc );
+    static void attachRetranslator( QObject* parent, std::function< void( void ) > retranslateFunc );
 
     void addRetranslateFunc( std::function< void( void ) > retranslateFunc );
 
@@ -63,11 +60,10 @@ private:
 };
 
 
-}  // namespace
+}  // namespace CalamaresUtils
 
-#define CALAMARES_RETRANSLATE(body) \
-    CalamaresUtils::Retranslator::attachRetranslator( this, [=] { body } );
-#define CALAMARES_RETRANSLATE_WIDGET(widget,body) \
+#define CALAMARES_RETRANSLATE( body ) CalamaresUtils::Retranslator::attachRetranslator( this, [=] { body } );
+#define CALAMARES_RETRANSLATE_WIDGET( widget, body ) \
     CalamaresUtils::Retranslator::attachRetranslator( widget, [=] { body } );
 
 #endif

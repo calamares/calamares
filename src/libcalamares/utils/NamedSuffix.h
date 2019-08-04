@@ -42,7 +42,7 @@
 #include "NamedEnum.h"
 
 /** @brief Template that takes the enum type to work with and a special none-enum. */
-template<typename T, T _none>
+template < typename T, T _none >
 class NamedSuffix
 {
 public:
@@ -52,7 +52,7 @@ public:
 
     /** @brief Empty value. */
     NamedSuffix()
-        : m_value(0)
+        : m_value( 0 )
         , m_unit( none )
     {
     }
@@ -69,10 +69,10 @@ public:
      * This parses the given string @p s by comparing with the suffixes
      * in @p table and uses the first matching suffix as the unit.
      */
-    NamedSuffix( const NamedEnumTable<T>& table, const QString& s )
+    NamedSuffix( const NamedEnumTable< T >& table, const QString& s )
         : NamedSuffix()
     {
-        for( const auto& suffix : table.table )
+        for ( const auto& suffix : table.table )
             if ( s.endsWith( suffix.first ) )
             {
                 m_value = s.left( s.length() - suffix.first.length() ).toInt();

@@ -101,16 +101,24 @@ mungeEnvironment( QStringList& l, const char* name, const char* defaultDirs )
 
     QStringList dirs = QString( qgetenv( name ) ).split( ':' );
     if ( dirs.isEmpty() )
+    {
         dirs = QString( defaultDirs ).split( ':' );
+    }
 
     for ( auto s : dirs )
     {
         if ( s.isEmpty() )
+        {
             continue;
+        }
         if ( s.endsWith( '/' ) )
+        {
             l << ( s + calamaresSubdir ) << s;
+        }
         else
+        {
             l << ( s + '/' + calamaresSubdir ) << ( s + '/' );
+        }
     }
 }
 
@@ -127,7 +135,9 @@ QStringList
 extraConfigDirs()
 {
     if ( s_haveExtraDirs )
+    {
         return s_extraConfigDirs;
+    }
     return QStringList();
 }
 
@@ -135,7 +145,9 @@ QStringList
 extraDataDirs()
 {
     if ( s_haveExtraDirs )
+    {
         return s_extraDataDirs;
+    }
     return QStringList();
 }
 
@@ -173,12 +185,16 @@ appLogDir()
     QString path = QStandardPaths::writableLocation( QStandardPaths::CacheLocation );
     QDir dir( path );
     if ( isWritableDir( dir ) )
+    {
         return dir;
+    }
 
     cerr << "warning: Could not find a standard writable location for log dir, falling back to $HOME\n";
     dir = QDir::home();
     if ( isWritableDir( dir ) )
+    {
         return dir;
+    }
 
     cerr << "warning: Found no writable location for log dir, falling back to the temp dir\n";
     return QDir::temp();
@@ -191,4 +207,4 @@ setQmlModulesDir( const QDir& dir )
     s_qmlModulesDir = dir;
 }
 
-}  // namespace
+}  // namespace CalamaresUtils
