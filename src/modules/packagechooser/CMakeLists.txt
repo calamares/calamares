@@ -20,11 +20,11 @@ if( ECM_FOUND AND BUILD_TESTING )
     ecm_add_test(
             Tests.cpp
         TEST_NAME
-            packagechooosertest
+            packagechoosertest
         LINK_LIBRARIES
             ${CALAMARES_LIBRARIES}
             Qt5::Core
             Qt5::Test
     )
-    calamares_automoc( packagechooosertest)
+    calamares_automoc( packagechoosertest)
 endif()
