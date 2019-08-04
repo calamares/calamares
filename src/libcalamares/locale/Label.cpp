@@ -50,18 +50,24 @@ Label::setLabels( const QString& locale, LabelFormat format )
     QString countryName;
 
     if ( languageName.isEmpty() )
+    {
         languageName = QString( "* %1 (%2)" ).arg( locale, englishName );
+    }
 
-    bool needsCountryName = ( format == LabelFormat::AlwaysWithCountry ) ||
-        (locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
+    bool needsCountryName = ( format == LabelFormat::AlwaysWithCountry )
+        || ( locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 1 );
 
     if ( needsCountryName )
+    {
         countryName = m_locale.nativeCountryName();
+    }
     m_label = needsCountryName ? longFormat.arg( languageName, countryName ) : languageName;
-    m_englishLabel = needsCountryName ? longFormat.arg( englishName, QLocale::countryToString( m_locale.country() ) ) : englishName;
+    m_englishLabel = needsCountryName ? longFormat.arg( englishName, QLocale::countryToString( m_locale.country() ) )
+                                      : englishName;
 }
 
-QLocale Label::getLocale( const QString& localeName )
+QLocale
+Label::getLocale( const QString& localeName )
 {
     if ( localeName.contains( "@latin" ) )
     {
@@ -69,8 +75,10 @@ QLocale Label::getLocale( const QString& localeName )
         return QLocale( loc.language(), QLocale::Script::LatinScript, loc.country() );
     }
     else
+    {
         return QLocale( localeName );
+    }
 }
 
-}
-}  // namespace
+}  // namespace Locale
+}  // namespace CalamaresUtils

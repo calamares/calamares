@@ -25,13 +25,9 @@
 
 QTEST_GUILESS_MAIN( LocaleTests )
 
-LocaleTests::LocaleTests()
-{
-}
+LocaleTests::LocaleTests() {}
 
-LocaleTests::~LocaleTests()
-{
-}
+LocaleTests::~LocaleTests() {}
 
 void
 LocaleTests::initTestCase()
