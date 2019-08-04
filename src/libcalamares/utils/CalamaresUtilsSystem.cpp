@@ -34,8 +34,11 @@
 #endif
 
 #ifdef Q_OS_FREEBSD
-#include <sys/sysctl.h>
+// clang-format off
+// these includes need to stay in-order (that's a FreeBSD thing)
 #include <sys/types.h>
+#include <sys/sysctl.h>
+// clang-format on
 #endif
 
 /** @brief When logging commands, don't log everything.
