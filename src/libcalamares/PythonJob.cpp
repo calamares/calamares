@@ -197,7 +197,9 @@ QString
 PythonJob::prettyStatusMessage() const
 {
     if ( m_description.isEmpty() )
+    {
         return tr( "Running %1 operation." ).arg( QDir( m_workingPath ).dirName() );
+    }
     else
     {
         return m_description;
