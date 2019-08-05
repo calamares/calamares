@@ -53,7 +53,6 @@ TranslatedString::TranslatedString(const QVariantMap& map, const QString& key)
         }
         else if ( subkey.startsWith( key ) )
         {
-            cDebug() << "Checking" << subkey;
             QRegularExpressionMatch match;
             if ( subkey.indexOf( QRegularExpression("\\[([a-zA-Z_@]*)\\]"), 0, &match ) > 0 )
             {
@@ -63,6 +62,18 @@ TranslatedString::TranslatedString(const QVariantMap& map, const QString& key)
         }
     }
 }
+
+QString TranslatedString::get() const
+{
+    return get( QLocale() );
+}
+
+QString TranslatedString::get(const QLocale& locale) const
+{
+    cDebug() << "Getting locale" << locale.name();
+    return m_strings[QString()];
+}
+
 
 }  // namespace Locale
 }  // namespace CalamaresUtils

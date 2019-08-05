@@ -109,10 +109,16 @@ void LocaleTests::testTranslatableConfig1()
     CalamaresUtils::Locale::TranslatedString ts1( "Hello" );
     QCOMPARE( ts1.count(), 1 );
     
+    QCOMPARE( ts1.get(), "Hello" );
+    QCOMPARE( ts1.get( QLocale("nl")), "Hello" );
+    
     QVariantMap map;
     map.insert( "description", "description (no language)" );
     CalamaresUtils::Locale::TranslatedString ts2(map, "description");
     QCOMPARE( ts2.count(), 1 );
+    
+    QCOMPARE( ts2.get(), "description (no language)");
+    QCOMPARE( ts2.get( QLocale( "nl" ) ), "description (no language)");
 }
 
 void LocaleTests::testTranslatableConfig2()
@@ -131,6 +137,9 @@ void LocaleTests::testTranslatableConfig2()
     CalamaresUtils::Locale::TranslatedString ts1(map, "description");
     // The +1 is because "" is always also inserted
     QCOMPARE( ts1.count(), someLanguages().count()+1 );
+
+    QCOMPARE( ts1.get(), "description");  // it wasn't set
+    QCOMPARE( ts1.get( QLocale( "nl" ) ), "description (language nl)");
     
     CalamaresUtils::Locale::TranslatedString ts2(map, "name");
     // We skipped dutch this time

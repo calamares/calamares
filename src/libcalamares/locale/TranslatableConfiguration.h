@@ -47,6 +47,12 @@ namespace Locale
         
         int count() const { return m_strings.count(); }
         
+        /// @brief Gets the string in the current locale
+        QString get() const;
+        
+        /// @brief Gets the string from the given locale
+        QString get(const QLocale&) const;
+        
     private:
         // Maps locale name to human-readable string, "" is English
         QMap< QString, QString > m_strings;
