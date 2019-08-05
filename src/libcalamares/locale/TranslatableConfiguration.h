@@ -29,34 +29,34 @@ namespace CalamaresUtils
 {
 namespace Locale
 {
-    /** @brief A human-readable string from a configuration file
-     * 
-     * The configuration files can contain human-readable strings,
-     * but those need their own translations and are not supported
-     * by QObject::tr or anything else.
+/** @brief A human-readable string from a configuration file
+ *
+ * The configuration files can contain human-readable strings,
+ * but those need their own translations and are not supported
+ * by QObject::tr or anything else.
+ */
+class DLLEXPORT TranslatedString
+{
+public:
+    /** @brief Get all the translations connected to @p key
      */
-    class DLLEXPORT TranslatedString
-    {
-    public:
-        /** @brief Get all the translations connected to @p key
-         */
-        TranslatedString( const QVariantMap& map, const QString& key );
-        /** @brief Not-actually-translated string.
-         */
-        TranslatedString( const QString& string );
-        
-        int count() const { return m_strings.count(); }
-        
-        /// @brief Gets the string in the current locale
-        QString get() const;
-        
-        /// @brief Gets the string from the given locale
-        QString get(const QLocale&) const;
-        
-    private:
-        // Maps locale name to human-readable string, "" is English
-        QMap< QString, QString > m_strings;
-    };
+    TranslatedString( const QVariantMap& map, const QString& key );
+    /** @brief Not-actually-translated string.
+     */
+    TranslatedString( const QString& string );
+
+    int count() const { return m_strings.count(); }
+
+    /// @brief Gets the string in the current locale
+    QString get() const;
+
+    /// @brief Gets the string from the given locale
+    QString get( const QLocale& ) const;
+
+private:
+    // Maps locale name to human-readable string, "" is English
+    QMap< QString, QString > m_strings;
+};
 }  // namespace Locale
 }  // namespace CalamaresUtils
 

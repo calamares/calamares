@@ -21,8 +21,8 @@
 #include "locale/LabelModel.h"
 #include "locale/TranslatableConfiguration.h"
 
-#include "utils/Logger.h"
 #include "CalamaresVersion.h"
+#include "utils/Logger.h"
 
 #include <QtTest/QtTest>
 
@@ -88,60 +88,64 @@ LocaleTests::testEsperanto()
 static const QStringList&
 someLanguages()
 {
-    static QStringList languages{ "nl", "de", "da", "nb", "sr@latin", "ar", "ru" };
+    static QStringList languages { "nl", "de", "da", "nb", "sr@latin", "ar", "ru" };
     return languages;
-    }
+}
 
-    
-    void LocaleTests::testTranslatableLanguages()
+
+void
+LocaleTests::testTranslatableLanguages()
 {
     QStringList availableLanguages = QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' );
     cDebug() << "Translation languages:" << availableLanguages;
-    for ( const auto& language: someLanguages() )
+    for ( const auto& language : someLanguages() )
     {
         // Could be QVERIFY, but then we don't see what language code fails
         QCOMPARE( availableLanguages.contains( language ) ? language : QString(), language );
     }
 }
 
-void LocaleTests::testTranslatableConfig1()
+void
+LocaleTests::testTranslatableConfig1()
 {
     CalamaresUtils::Locale::TranslatedString ts1( "Hello" );
     QCOMPARE( ts1.count(), 1 );
-    
+
     QCOMPARE( ts1.get(), "Hello" );
-    QCOMPARE( ts1.get( QLocale("nl")), "Hello" );
-    
+    QCOMPARE( ts1.get( QLocale( "nl" ) ), "Hello" );
+
     QVariantMap map;
     map.insert( "description", "description (no language)" );
-    CalamaresUtils::Locale::TranslatedString ts2(map, "description");
+    CalamaresUtils::Locale::TranslatedString ts2( map, "description" );
     QCOMPARE( ts2.count(), 1 );
-    
-    QCOMPARE( ts2.get(), "description (no language)");
-    QCOMPARE( ts2.get( QLocale( "nl" ) ), "description (no language)");
+
+    QCOMPARE( ts2.get(), "description (no language)" );
+    QCOMPARE( ts2.get( QLocale( "nl" ) ), "description (no language)" );
 }
 
-void LocaleTests::testTranslatableConfig2()
+void
+LocaleTests::testTranslatableConfig2()
 {
     QVariantMap map;
-    
-    for ( const auto& language: someLanguages() )
+
+    for ( const auto& language : someLanguages() )
     {
-        map.insert( QString("description[%1]").arg(language), QString("description (language %1)").arg(language) );
+        map.insert( QString( "description[%1]" ).arg( language ),
+                    QString( "description (language %1)" ).arg( language ) );
         if ( language != "nl" )
         {
-            map.insert( QString("name[%1]").arg(language), QString("name (language %1)").arg(language) );
+            map.insert( QString( "name[%1]" ).arg( language ), QString( "name (language %1)" ).arg( language ) );
         }
     }
-    
-    CalamaresUtils::Locale::TranslatedString ts1(map, "description");
-    // The +1 is because "" is always also inserted
-    QCOMPARE( ts1.count(), someLanguages().count()+1 );
 
-    QCOMPARE( ts1.get(), "description");  // it wasn't set
-    QCOMPARE( ts1.get( QLocale( "nl" ) ), "description (language nl)");
-    
-    CalamaresUtils::Locale::TranslatedString ts2(map, "name");
+    CalamaresUtils::Locale::TranslatedString ts1( map, "description" );
+    // The +1 is because "" is always also inserted
+    QCOMPARE( ts1.count(), someLanguages().count() + 1 );
+
+    QCOMPARE( ts1.get(), "description" );  // it wasn't set
+    QCOMPARE( ts1.get( QLocale( "nl" ) ), "description (language nl)" );
+
+    CalamaresUtils::Locale::TranslatedString ts2( map, "name" );
     // We skipped dutch this time
     QCOMPARE( ts2.count(), someLanguages().count() );
 }

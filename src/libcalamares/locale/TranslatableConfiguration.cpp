@@ -30,11 +30,11 @@ namespace CalamaresUtils
 {
 namespace Locale
 {
-TranslatedString::TranslatedString(const QString& string)
+TranslatedString::TranslatedString( const QString& string )
 {
-    m_strings[QString()]=string;
+    m_strings[ QString() ] = string;
 }
-TranslatedString::TranslatedString(const QVariantMap& map, const QString& key)
+TranslatedString::TranslatedString( const QVariantMap& map, const QString& key )
 {
     // Get the un-decorated value for the key
     QString value = CalamaresUtils::getString( map, key );
@@ -42,11 +42,11 @@ TranslatedString::TranslatedString(const QVariantMap& map, const QString& key)
     {
         value = key;
     }
-    m_strings[QString()] = value;
-    
+    m_strings[ QString() ] = value;
+
     for ( auto it = map.constKeyValueBegin(); it != map.constKeyValueEnd(); ++it )
     {
-        QString subkey = (*it).first;
+        QString subkey = ( *it ).first;
         if ( subkey == key )
         {
             // Already obtained, above
@@ -54,24 +54,51 @@ TranslatedString::TranslatedString(const QVariantMap& map, const QString& key)
         else if ( subkey.startsWith( key ) )
         {
             QRegularExpressionMatch match;
-            if ( subkey.indexOf( QRegularExpression("\\[([a-zA-Z_@]*)\\]"), 0, &match ) > 0 )
+            if ( subkey.indexOf( QRegularExpression( "\\[([a-zA-Z_@]*)\\]" ), 0, &match ) > 0 )
             {
-                QString language = match.captured(1);
-                m_strings[language] = (*it).second.toString();
+                QString language = match.captured( 1 );
+                m_strings[ language ] = ( *it ).second.toString();
             }
         }
     }
 }
 
-QString TranslatedString::get() const
+QString
+TranslatedString::get() const
 {
     return get( QLocale() );
 }
 
-QString TranslatedString::get(const QLocale& locale) const
+QString
+TranslatedString::get( const QLocale& locale ) const
 {
-    cDebug() << "Getting locale" << locale.name();
-    return m_strings[QString()];
+    QString localeName = locale.name();
+    cDebug() << "Getting locale" << localeName;
+    if ( m_strings.contains( localeName ) )
+    {
+        return m_strings[ localeName ];
+    }
+    int index = localeName.indexOf( '@' );
+    if ( index > 0 )
+    {
+        localeName.truncate( index );
+        if ( m_strings.contains( localeName ) )
+        {
+            return m_strings[ localeName ];
+        }
+    }
+
+    index = localeName.indexOf( '_' );
+    if ( index > 0 )
+    {
+        localeName.truncate( index );
+        if ( m_strings.contains( localeName ) )
+        {
+            return m_strings[ localeName ];
+        }
+    }
+
+    return m_strings[ QString() ];
 }
 
 
