@@ -44,7 +44,7 @@ TranslatedString::TranslatedString(const QVariantMap& map, const QString& key)
     }
     m_strings[QString()] = value;
     
-    for ( auto it = m_strings.constKeyValueBegin(); it != m_strings.constKeyValueEnd(); ++it )
+    for ( auto it = map.constKeyValueBegin(); it != map.constKeyValueEnd(); ++it )
     {
         QString subkey = (*it).first;
         if ( subkey == key )
@@ -53,11 +53,12 @@ TranslatedString::TranslatedString(const QVariantMap& map, const QString& key)
         }
         else if ( subkey.startsWith( key ) )
         {
+            cDebug() << "Checking" << subkey;
             QRegularExpressionMatch match;
             if ( subkey.indexOf( QRegularExpression("\\[([a-zA-Z_@]*)\\]"), 0, &match ) > 0 )
             {
                 QString language = match.captured(1);
-                cDebug() << "Found translation" << key << '[' << language << ']';
+                m_strings[language] = (*it).second.toString();
             }
         }
     }

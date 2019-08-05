@@ -19,7 +19,10 @@
 #include "Tests.h"
 
 #include "locale/LabelModel.h"
+#include "locale/TranslatableConfiguration.h"
+
 #include "utils/Logger.h"
+#include "CalamaresVersion.h"
 
 #include <QtTest/QtTest>
 
@@ -80,4 +83,48 @@ LocaleTests::testEsperanto()
     }
 
     QCOMPARE( QLocale( "eo" ).language(), QLocale::C );
+}
+
+static const QStringList&
+someLanguages()
+{
+    static QStringList languages{ "nl", "de", "da", "nb", "sr@latin", "ar", "ru" };
+    return languages;
+    }
+
+    
+    void LocaleTests::testTranslatableLanguages()
+{
+    QStringList availableLanguages = QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' );
+    cDebug() << "Translation languages:" << availableLanguages;
+    for ( const auto& language: someLanguages() )
+    {
+        // Could be QVERIFY, but then we don't see what language code fails
+        QCOMPARE( availableLanguages.contains( language ) ? language : QString(), language );
+    }
+}
+
+void LocaleTests::testTranslatableConfig1()
+{
+    CalamaresUtils::Locale::TranslatedString ts1( "Hello" );
+    QCOMPARE( ts1.count(), 1 );
+    
+    QVariantMap map;
+    map.insert( "description", "description (no language)" );
+    CalamaresUtils::Locale::TranslatedString ts2(map, "description");
+    QCOMPARE( ts2.count(), 1 );
+}
+
+void LocaleTests::testTranslatableConfig2()
+{
+    QVariantMap map;
+    
+    for ( const auto& language: someLanguages() )
+    {
+        map.insert( QString("description[%1]").arg(language), QString("description (language %1)").arg(language) );
+    }
+    
+    CalamaresUtils::Locale::TranslatedString s(map, "description");
+    // The +1 is because "" is always also inserted
+    QCOMPARE( s.count(), someLanguages().count()+1 );
 }

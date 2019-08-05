@@ -44,6 +44,9 @@ namespace Locale
         /** @brief Not-actually-translated string.
          */
         TranslatedString( const QString& string );
+        
+        int count() const { return m_strings.count(); }
+        
     private:
         // Maps locale name to human-readable string, "" is English
         QMap< QString, QString > m_strings;
