@@ -32,17 +32,17 @@
 namespace CalamaresPython
 {
 
-boost::python::object   variantToPyObject( const QVariant& variant );
-QVariant                variantFromPyObject( const boost::python::object& pyObject );
+boost::python::object variantToPyObject( const QVariant& variant );
+QVariant variantFromPyObject( const boost::python::object& pyObject );
 
-boost::python::list     variantListToPyList( const QVariantList& variantList );
-QVariantList            variantListFromPyList( const boost::python::list& pyList );
+boost::python::list variantListToPyList( const QVariantList& variantList );
+QVariantList variantListFromPyList( const boost::python::list& pyList );
 
-boost::python::dict     variantMapToPyDict( const QVariantMap& variantMap );
-QVariantMap             variantMapFromPyDict( const boost::python::dict& pyDict );
+boost::python::dict variantMapToPyDict( const QVariantMap& variantMap );
+QVariantMap variantMapFromPyDict( const boost::python::dict& pyDict );
 
-boost::python::dict     variantHashToPyDict( const QVariantHash& variantHash );
-QVariantHash            variantHashFromPyDict( const boost::python::dict& pyDict );
+boost::python::dict variantHashToPyDict( const QVariantHash& variantHash );
+QVariantHash variantHashFromPyDict( const boost::python::dict& pyDict );
 
 
 class Helper : public QObject
@@ -66,6 +66,6 @@ private:
     QStringList m_pythonPaths;
 };
 
-} // namespace Calamares
+}  // namespace CalamaresPython
 
-#endif // CALAMARES_PYTHONJOBHELPER_H
+#endif  // CALAMARES_PYTHONJOBHELPER_H

@@ -35,7 +35,7 @@
 # One special target is "show-version", which can be built
 # to obtain the version number from here.
 
-cmake_minimum_required( VERSION 3.2 FATAL_ERROR )
+cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
     VERSION 3.2.12
     LANGUAGES C CXX )
@@ -96,10 +96,10 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 # (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
 #
 # TODO: drop the es_ES translation from Transifex
-# TODO: move eo (Esperanto) to _ok once Qt can actually create a
-#       locale for it.
 #
-# NOTE: when updating the list from Transifex, copy these four lines
+# NOTE: move eo (Esperanto) to _ok once Qt can actually create a
+#       locale for it. (Qt 5.12.2 can, see check later on).
+# NOTE: update these lines by running txstats.py, or copy these four lines
 #       and prefix each variable name with "p", so that the automatic
 #       checks for new languages and misspelled ones are done (that is,
 #       copy these four lines to four backup lines, add "p", and then update
@@ -128,6 +128,10 @@ set( BOOSTPYTHON_VERSION 1.55.0 )
 #
 set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 
+# Enable IN_LIST
+if( POLICY CMP0057 )
+    cmake_policy( SET CMP0057 NEW )
+endif()
 # CMake 3.9, 3.10 compatibility
 if( POLICY CMP0071 )
     cmake_policy( SET CMP0071 NEW )
@@ -249,6 +253,15 @@ include( CMakeColors )
 ### DEPENDENCIES
 #
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
+if( Qt5_VERSION VERSION_GREATER 5.12.1 )
+    # At least Qt 5.12.2 seems to support Esperanto in QLocale
+    if( "eo" IN_LIST _tx_incomplete )
+        message(STATUS "Esperanto support since Qt 5.12.2, enabling Esperanto locale")
+        list( REMOVE_ITEM _tx_incomplete "eo" )
+        list( APPEND _tx_ok "eo" )
+    endif()
+endif()
+
 find_package( YAMLCPP ${YAMLCPP_VERSION} REQUIRED )
 if( INSTALL_POLKIT )
     find_package( PolkitQt5-1 REQUIRED )

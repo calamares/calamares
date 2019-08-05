@@ -35,29 +35,19 @@ int mount( const std::string& device_path,
            const std::string& filesystem_name = std::string(),
            const std::string& options = std::string() );
 
-int target_env_call( const std::string& command,
-                 const std::string& stdin = std::string(),
-                 int timeout = 0 );
+int target_env_call( const std::string& command, const std::string& stdin = std::string(), int timeout = 0 );
 
-int target_env_call( const boost::python::list& args,
-                 const std::string& stdin = std::string(),
-                 int timeout = 0 );
+int target_env_call( const boost::python::list& args, const std::string& stdin = std::string(), int timeout = 0 );
 
-int check_target_env_call( const std::string& command,
-                       const std::string& stdin = std::string(),
-                       int timeout = 0 );
+int check_target_env_call( const std::string& command, const std::string& stdin = std::string(), int timeout = 0 );
 
-int check_target_env_call( const boost::python::list& args,
-                       const std::string& stdin = std::string(),
-                       int timeout = 0 );
+int check_target_env_call( const boost::python::list& args, const std::string& stdin = std::string(), int timeout = 0 );
 
-std::string check_target_env_output( const std::string& command,
-                                 const std::string& stdin = std::string(),
-                                 int timeout = 0 );
+std::string
+check_target_env_output( const std::string& command, const std::string& stdin = std::string(), int timeout = 0 );
 
-std::string check_target_env_output( const boost::python::list& args,
-                                 const std::string& stdin = std::string(),
-                                 int timeout = 0 );
+std::string
+check_target_env_output( const boost::python::list& args, const std::string& stdin = std::string(), int timeout = 0 );
 
 std::string obscure( const std::string& string );
 
@@ -85,6 +75,6 @@ private:
     Calamares::PythonJob* m_parent;
 };
 
-}
+}  // namespace CalamaresPython
 
-#endif // PYTHONJOBAPI_H
+#endif  // PYTHONJOBAPI_H

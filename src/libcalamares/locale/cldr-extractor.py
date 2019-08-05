@@ -225,12 +225,14 @@ cpp_header_comment = """/*   GENERATED FILE DO NOT EDIT
 *    Unicode Data Files ("DATA FILES") include all data files under the directories:
 *    https://www.unicode.org/Public/
 * C. Terms of Use
-*    2. Any person is hereby authorized, without fee, to view, use, reproduce, 
-*       and distribute all documents and files, subject to the Terms and 
+*    2. Any person is hereby authorized, without fee, to view, use, reproduce,
+*       and distribute all documents and files, subject to the Terms and
 *       Conditions herein.
 */
 
 // BEGIN Generated from CLDR data
+// *INDENT-OFF*
+// clang-format off
 
 """
 

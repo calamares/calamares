@@ -34,8 +34,8 @@ namespace api
 class object;
 }
 class list;
-}
-}
+}  // namespace python
+}  // namespace boost
 #endif
 
 namespace Calamares
@@ -96,7 +96,7 @@ private:
     friend DebugWindow;
 };
 
-} // namespace Calamares
+}  // namespace Calamares
 
 #ifdef WITH_PYTHON
 namespace CalamaresPython
@@ -124,7 +124,7 @@ private:
     static Calamares::GlobalStorage* s_gs_instance;  // See globalStorageInstance()
 };
 
-} // namespace CalamaresPython
+}  // namespace CalamaresPython
 #endif
 
-#endif // CALAMARES_GLOBALSTORAGE_H
+#endif  // CALAMARES_GLOBALSTORAGE_H

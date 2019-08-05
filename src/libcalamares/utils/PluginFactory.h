@@ -27,8 +27,11 @@
 #include "DllMacro.h"
 
 #include <QtCore/QObject>
-#include <QtCore/QVariant>
 #include <QtCore/QStringList>
+#include <QtCore/QVariant>
+
+// *INDENT-OFF*
+// clang-format off
 
 namespace Calamares
 {

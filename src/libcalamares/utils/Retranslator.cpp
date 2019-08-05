@@ -26,27 +26,30 @@
 #include <QTranslator>
 
 
-namespace CalamaresUtils {
+namespace CalamaresUtils
+{
 static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
 static QString s_translatorLocaleName;
 
 void
-installTranslator( const QLocale& locale,
-                   const QString& brandingTranslationsPrefix,
-                   QObject* parent )
+installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix, QObject* parent )
 {
     QString localeName = locale.name();
     localeName.replace( "-", "_" );
 
     if ( localeName == "C" )
+    {
         localeName = "en";
+    }
 
     // Special case of sr@latin
     //
     // See top-level CMakeLists.txt about special cases for translation loading.
     if ( locale.language() == QLocale::Language::Serbian && locale.script() == QLocale::Script::LatinScript )
+    {
         localeName = QStringLiteral( "sr@latin" );
+    }
 
     cDebug() << "Looking for translations for" << localeName;
 
@@ -56,19 +59,14 @@ installTranslator( const QLocale& locale,
     if ( !brandingTranslationsPrefix.isEmpty() )
     {
         QString brandingTranslationsDirPath( brandingTranslationsPrefix );
-        brandingTranslationsDirPath.truncate( brandingTranslationsPrefix.lastIndexOf(
-                                                  QDir::separator() ) );
+        brandingTranslationsDirPath.truncate( brandingTranslationsPrefix.lastIndexOf( QDir::separator() ) );
         QDir brandingTranslationsDir( brandingTranslationsDirPath );
         if ( brandingTranslationsDir.exists() )
         {
             QString filenameBase( brandingTranslationsPrefix );
-            filenameBase.remove( 0, brandingTranslationsPrefix.lastIndexOf(
-                                        QDir::separator() ) + 1 );
+            filenameBase.remove( 0, brandingTranslationsPrefix.lastIndexOf( QDir::separator() ) + 1 );
             translator = new QTranslator( parent );
-            if ( translator->load( locale,
-                                   filenameBase,
-                                   "_",
-                                   brandingTranslationsDir.absolutePath() ) )
+            if ( translator->load( locale, filenameBase, "_", brandingTranslationsDir.absolutePath() ) )
             {
                 cDebug() << Logger::SubEntry << "Branding using locale:" << localeName;
             }
@@ -121,19 +119,22 @@ translatorLocaleName()
 }
 
 void
-Retranslator::attachRetranslator( QObject* parent,
-                                  std::function< void ( void ) > retranslateFunc )
+Retranslator::attachRetranslator( QObject* parent, std::function< void( void ) > retranslateFunc )
 {
     Retranslator* r = nullptr;
     for ( QObject* child : parent->children() )
     {
         r = qobject_cast< Retranslator* >( child );
         if ( r )
+        {
             break;
+        }
     }
 
     if ( !r )
+    {
         r = new Retranslator( parent );
+    }
 
     r->m_retranslateFuncList.append( retranslateFunc );
     retranslateFunc();
@@ -155,7 +156,9 @@ Retranslator::eventFilter( QObject* obj, QEvent* e )
         if ( e->type() == QEvent::LanguageChange )
         {
             foreach ( std::function< void() > func, m_retranslateFuncList )
+            {
                 func();
+            }
         }
     }
     // pass the event on to the base
@@ -163,4 +166,4 @@ Retranslator::eventFilter( QObject* obj, QEvent* e )
 }
 
 
-} // namespace CalamaresUtils
+}  // namespace CalamaresUtils

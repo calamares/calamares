@@ -23,7 +23,7 @@
 #include <QLocale>
 #include <QString>
 
-namespace CalamaresUtils 
+namespace CalamaresUtils
 {
 namespace Locale
 {
@@ -39,7 +39,11 @@ class Label
 {
 public:
     /** @brief Formatting option for label -- add (country) to label. */
-    enum class LabelFormat { AlwaysWithCountry, IfNeededWithCountry } ;
+    enum class LabelFormat
+    {
+        AlwaysWithCountry,
+        IfNeededWithCountry
+    };
 
     /** @brief Empty locale. This uses the system-default locale. */
     Label();
@@ -54,56 +58,33 @@ public:
 
     /** @brief Define a sorting order.
      *
-     * English (@see isEnglish() -- it means en_US) is sorted at the top.
+     * Locales are sorted by their id, which means the ISO 2-letter code + country.
      */
-    bool operator <( const Label& other ) const
-    {
-        return m_localeId < other.m_localeId;
-    }
+    bool operator<( const Label& other ) const { return m_localeId < other.m_localeId; }
 
     /** @brief Is this locale English?
      *
      * en_US and en (American English) is defined as English. The Queen's
      * English -- proper English -- is relegated to non-English status.
      */
-    bool isEnglish() const
-    {
-        return m_localeId == QLatin1Literal( "en_US" ) || m_localeId == QLatin1Literal( "en" );
-    }
+    bool isEnglish() const { return m_localeId == QLatin1Literal( "en_US" ) || m_localeId == QLatin1Literal( "en" ); }
 
     /** @brief Get the human-readable name for this locale. */
-    QString label() const
-    {
-        return m_label;
-    }
+    QString label() const { return m_label; }
     /** @brief Get the *English* human-readable name for this locale. */
-    QString englishLabel() const
-    {
-        return m_englishLabel;
-    }
+    QString englishLabel() const { return m_englishLabel; }
 
     /** @brief Get the Qt locale. */
-    QLocale locale() const
-    {
-        return m_locale;
-    }
+    QLocale locale() const { return m_locale; }
 
-    QString name() const
-    {
-        return m_locale.name();
-    }
+    QString name() const { return m_locale.name(); }
+    QString id() const { return m_localeId; }
 
     /// @brief Convenience accessor to the language part of the locale
-    QLocale::Language language() const
-    {
-        return m_locale.language();
-    }
+    QLocale::Language language() const { return m_locale.language(); }
 
     /// @brief Convenience accessor to the country part (if any) of the locale
-    QLocale::Country country() const
-    {
-        return m_locale.country();
-    }
+    QLocale::Country country() const { return m_locale.country(); }
 
     /** @brief Get a Qt locale for the given @p localeName
      *
@@ -119,9 +100,9 @@ protected:
     QString m_localeId;  // the locale identifier, e.g. "en_GB"
     QString m_label;  // the native name of the locale
     QString m_englishLabel;
-} ;
+};
 
-}
-}  // namespace
+}  // namespace Locale
+}  // namespace CalamaresUtils
 
 #endif

@@ -20,8 +20,8 @@
 
 #include "Logger.h"
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 #include <QCoreApplication>
 #include <QDir>
@@ -30,17 +30,17 @@
 #include <QTime>
 #include <QVariant>
 
-#include "utils/Dirs.h"
 #include "CalamaresVersion.h"
+#include "utils/Dirs.h"
 
 #define LOGFILE_SIZE 1024 * 256
 
 static std::ofstream logfile;
 static unsigned int s_threshold =
 #ifdef QT_NO_DEBUG
-            Logger::LOG_DISABLE;
+    Logger::LOG_DISABLE;
 #else
-            Logger::LOGEXTRA + 1;  // Comparison is < in log() function
+    Logger::LOGEXTRA + 1;  // Comparison is < in log() function
 #endif
 static QMutex s_mutex;
 
@@ -48,15 +48,17 @@ namespace Logger
 {
 
 void
-setupLogLevel(unsigned int level)
+setupLogLevel( unsigned int level )
 {
     if ( level > LOGVERBOSE )
+    {
         level = LOGVERBOSE;
+    }
     s_threshold = level + 1;  // Comparison is < in log() function
 }
 
 bool
-logLevelEnabled(unsigned int level)
+logLevelEnabled( unsigned int level )
 {
     return level < s_threshold;
 }
@@ -77,11 +79,9 @@ log( const char* msg, unsigned int debugLevel )
         // If we don't format the date as a Qt::ISODate then we get a crash when
         // logging at exit as Qt tries to use QLocale to format, but QLocale is
         // on its way out.
-        logfile << QDate::currentDate().toString( Qt::ISODate ).toUtf8().data()
-                << " - "
-                << QTime::currentTime().toString().toUtf8().data()
-                << " [" << QString::number( debugLevel ).toUtf8().data() << "]: "
-                << msg << std::endl;
+        logfile << QDate::currentDate().toString( Qt::ISODate ).toUtf8().data() << " - "
+                << QTime::currentTime().toString().toUtf8().data() << " ["
+                << QString::number( debugLevel ).toUtf8().data() << "]: " << msg << std::endl;
 
         logfile.flush();
     }
@@ -90,9 +90,8 @@ log( const char* msg, unsigned int debugLevel )
     {
         QMutexLocker lock( &s_mutex );
 
-        std::cout << QTime::currentTime().toString().toUtf8().data()
-             << " [" << QString::number( debugLevel ).toUtf8().data() << "]: "
-             << msg << std::endl;
+        std::cout << QTime::currentTime().toString().toUtf8().data() << " ["
+                  << QString::number( debugLevel ).toUtf8().data() << "]: " << msg << std::endl;
         std::cout.flush();
     }
 }
@@ -107,21 +106,21 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& m
     const char* message = ba.constData();
 
     QMutexLocker locker( &s_mutex );
-    switch( type )
+    switch ( type )
     {
-        case QtDebugMsg:
-            log( message, LOGVERBOSE );
-            break;
+    case QtDebugMsg:
+        log( message, LOGVERBOSE );
+        break;
 
-        case QtInfoMsg:
-            log( message, 1 );
-            break;
+    case QtInfoMsg:
+        log( message, 1 );
+        break;
 
-        case QtCriticalMsg:
-        case QtWarningMsg:
-        case QtFatalMsg:
-            log( message, 0 );
-            break;
+    case QtCriticalMsg:
+    case QtWarningMsg:
+    case QtFatalMsg:
+        log( message, 0 );
+        break;
     }
 }
 
@@ -161,11 +160,13 @@ setupLogfile()
 
     // Lock while (re-)opening the logfile
     {
-    QMutexLocker lock( &s_mutex );
-    logfile.open( logFile().toLocal8Bit(), std::ios::app );
-    if ( logfile.tellp() )
-        logfile << "\n\n" << std::endl;
-    logfile << "=== START CALAMARES " << CALAMARES_VERSION << std::endl;
+        QMutexLocker lock( &s_mutex );
+        logfile.open( logFile().toLocal8Bit(), std::ios::app );
+        if ( logfile.tellp() )
+        {
+            logfile << "\n\n" << std::endl;
+        }
+        logfile << "=== START CALAMARES " << CALAMARES_VERSION << std::endl;
     }
 
     qInstallMessageHandler( CalamaresLogHandler );
@@ -183,14 +184,13 @@ CLog::~CLog()
     log( m_msg.toUtf8().data(), m_debugLevel );
 }
 
-CDebug::~CDebug()
-{
-}
+CDebug::~CDebug() {}
 
 const char Continuation[] = "\n    ";
 const char SubEntry[] = " .. ";
 
-QString toString( const QVariant& v )
+QString
+toString( const QVariant& v )
 {
     auto t = v.type();
 
@@ -199,11 +199,15 @@ QString toString( const QVariant& v )
         QStringList s;
         auto l = v.toList();
         for ( auto lit = l.constBegin(); lit != l.constEnd(); ++lit )
+        {
             s << lit->toString();
-        return s.join(", ");
+        }
+        return s.join( ", " );
     }
     else
+    {
         return v.toString();
+    }
 }
 
-}  // namespace
+}  // namespace Logger

@@ -35,7 +35,7 @@ namespace CalamaresUtils
  */
 struct CommandLine : public QPair< QString, std::chrono::seconds >
 {
-    static inline constexpr std::chrono::seconds TimeoutNotSet() { return std::chrono::seconds(-1); }
+    static inline constexpr std::chrono::seconds TimeoutNotSet() { return std::chrono::seconds( -1 ); }
 
     /// An invalid command line
     CommandLine()
@@ -49,25 +49,16 @@ struct CommandLine : public QPair< QString, std::chrono::seconds >
     }
 
     CommandLine( const QString& s, std::chrono::seconds t )
-        : QPair( s, t)
+        : QPair( s, t )
     {
     }
 
-    QString command() const
-    {
-        return first;
-    }
+    QString command() const { return first; }
 
-    std::chrono::seconds timeout() const
-    {
-        return second;
-    }
+    std::chrono::seconds timeout() const { return second; }
 
-    bool isValid() const
-    {
-        return !first.isEmpty();
-    }
-} ;
+    bool isValid() const { return !first.isEmpty(); }
+};
 
 /** @brief Abbreviation, used internally. */
 using CommandList_t = QList< CommandLine >;
@@ -88,19 +79,16 @@ public:
     CommandList( const QVariant& v, bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
     ~CommandList();
 
-    bool doChroot() const
-    {
-        return m_doChroot;
-    }
+    bool doChroot() const { return m_doChroot; }
 
     Calamares::JobResult run();
 
-    using CommandList_t::isEmpty;
-    using CommandList_t::count;
+    using CommandList_t::at;
     using CommandList_t::cbegin;
     using CommandList_t::cend;
     using CommandList_t::const_iterator;
-    using CommandList_t::at;
+    using CommandList_t::count;
+    using CommandList_t::isEmpty;
 
 protected:
     using CommandList_t::append;
@@ -109,7 +97,7 @@ protected:
 private:
     bool m_doChroot;
     std::chrono::seconds m_timeout;
-} ;
+};
 
-}  // namespace
+}  // namespace CalamaresUtils
 #endif

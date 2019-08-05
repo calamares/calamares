@@ -31,6 +31,11 @@ namespace CalamaresUtils
 QString
 removeDiacritics( const QString& string )
 {
+    // *INDENT-OFF*
+    // clang-format off
+    // Map these extended-Latin characters to ASCII; keep the
+    // layout so that one line in *diacriticLetters* corresponds
+    // to one line of replacements in *noDiacriticLetters*.
     static const QString diacriticLetters = QString::fromUtf8(
         "ŠŒŽšœžŸ¥µÀ"
         "ÁÂÃÄÅÆÇÈÉÊ"
@@ -65,9 +70,11 @@ removeDiacritics( const QString& string )
         "r", "A", "a", "E", "e", "L", "l", "N", "n", "S",
         "s", "Z", "z", "Z", "z"
     };
+    // clang-format on
+    // *INDENT-ON*
 
     QString output;
-    for ( const QChar &c : string )
+    for ( const QChar& c : string )
     {
         int i = diacriticLetters.indexOf( c );
         if ( i < 0 )
@@ -112,14 +119,14 @@ QString
 obscure( const QString& string )
 {
     QString result;
-    const QChar *unicode = string.unicode();
+    const QChar* unicode = string.unicode();
     for ( int i = 0; i < string.length(); ++i )
-        // yes, no typo. can't encode ' ' or '!' because
-        // they're the unicode BOM. stupid scrambling. stupid.
-        result += ( unicode[ i ].unicode() <= 0x21 ) ?
-                      unicode[ i ] :
-                      QChar( 0x1001F - unicode[ i ].unicode() );
+    // yes, no typo. can't encode ' ' or '!' because
+    // they're the unicode BOM. stupid scrambling. stupid.
+    {
+        result += ( unicode[ i ].unicode() <= 0x21 ) ? unicode[ i ] : QChar( 0x1001F - unicode[ i ].unicode() );
+    }
     return result;
 }
 
-}
+}  // namespace CalamaresUtils

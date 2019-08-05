@@ -30,10 +30,10 @@ public:
 
 private Q_SLOTS:
     void initTestCase();
-    
+
     void testUnitComparison_data();
     void testUnitComparison();
-    
+
     void testUnitNormalisation_data();
     void testUnitNormalisation();
 };

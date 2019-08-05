@@ -36,7 +36,8 @@ GoodJob::exec()
 JobResult
 FailJob::exec()
 {
-    return JobResult::error( tr( "Job failed (%1)" ).arg( m_name ), tr( "Programmed job failure was explicitly requested." ) );
+    return JobResult::error( tr( "Job failed (%1)" ).arg( m_name ),
+                             tr( "Programmed job failure was explicitly requested." ) );
 }
 
-}  // namespace
+}  // namespace Calamares

@@ -33,6 +33,9 @@ private Q_SLOTS:
 
     void testLanguageModelCount();
     void testEsperanto();
+    void testTranslatableLanguages();
+    void testTranslatableConfig1();
+    void testTranslatableConfig2();
 };
 
 #endif

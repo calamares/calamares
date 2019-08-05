@@ -32,23 +32,24 @@ namespace Calamares
 
 class PluginFactoryPrivate
 {
-    Q_DECLARE_PUBLIC(PluginFactory)
+    Q_DECLARE_PUBLIC( PluginFactory )
 protected:
-    typedef QPair<const QMetaObject *, PluginFactory::CreateInstanceFunction> Plugin;
+    typedef QPair< const QMetaObject*, PluginFactory::CreateInstanceFunction > Plugin;
 
     PluginFactoryPrivate()
         : catalogInitialized( false )
         , q_ptr( nullptr )
-    {}
+    {
+    }
     ~PluginFactoryPrivate() {}
 
-    QHash<QString, Plugin> createInstanceHash;
+    QHash< QString, Plugin > createInstanceHash;
     QString catalogName;
     bool catalogInitialized;
 
-    PluginFactory *q_ptr;
+    PluginFactory* q_ptr;
 };
 
-}  // namespace
+}  // namespace Calamares
 
 #endif

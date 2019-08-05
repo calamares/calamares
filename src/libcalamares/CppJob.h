@@ -45,6 +45,6 @@ protected:
     QString m_instanceKey;
 };
 
-}
+}  // namespace Calamares
 
-#endif // CALAMARES_CPPJOB_H
+#endif  // CALAMARES_CPPJOB_H

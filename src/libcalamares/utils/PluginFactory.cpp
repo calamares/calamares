@@ -24,8 +24,11 @@
 #include "PluginFactory.h"
 #include "PluginFactory_p.h"
 
-#include <QObjectCleanupHandler>
 #include <QDebug>
+#include <QObjectCleanupHandler>
+
+// *INDENT-OFF*
+// clang-format off
 
 Q_GLOBAL_STATIC( QObjectCleanupHandler, factorycleanup )
 

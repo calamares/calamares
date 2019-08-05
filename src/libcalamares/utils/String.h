@@ -34,20 +34,20 @@
  */
 namespace CalamaresUtils
 {
-    /**
-     * @brief removeDiacritics replaces letters with diacritics and ligatures with
-     * alternative forms and digraphs.
-     * @param string the string to transform.
-     * @return the output string with plain characters.
-     */
-    DLLEXPORT QString removeDiacritics( const QString& string );
+/**
+ * @brief removeDiacritics replaces letters with diacritics and ligatures with
+ * alternative forms and digraphs.
+ * @param string the string to transform.
+ * @return the output string with plain characters.
+ */
+DLLEXPORT QString removeDiacritics( const QString& string );
 
-    /**
-     * @brief obscure is a bidirectional obfuscation function, from KStringHandler.
-     * @param string the input string.
-     * @return the obfuscated string.
-     */
-    DLLEXPORT QString obscure( const QString& string );
-}  // namespace
+/**
+ * @brief obscure is a bidirectional obfuscation function, from KStringHandler.
+ * @param string the input string.
+ * @return the obfuscated string.
+ */
+DLLEXPORT QString obscure( const QString& string );
+}  // namespace CalamaresUtils
 
 #endif

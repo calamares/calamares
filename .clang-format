@@ -2,6 +2,7 @@
 BasedOnStyle: WebKit
 
 AlignAfterOpenBracket: Align
+AlignEscapedNewlines: Left
 AllowAllParametersOfDeclarationOnNextLine: 'false'
 AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: 'false'
