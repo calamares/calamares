@@ -34,6 +34,7 @@ set( libSources
     locale/Label.cpp
     locale/LabelModel.cpp
     locale/Lookup.cpp
+    locale/TranslatableConfiguration.cpp
 
     # Partition service
     partition/PartitionSize.cpp

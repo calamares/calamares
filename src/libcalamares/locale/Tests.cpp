@@ -19,6 +19,9 @@
 #include "Tests.h"
 
 #include "locale/LabelModel.h"
+#include "locale/TranslatableConfiguration.h"
+
+#include "CalamaresVersion.h"
 #include "utils/Logger.h"
 
 #include <QtTest/QtTest>
@@ -83,4 +86,85 @@ LocaleTests::testEsperanto()
 #else
     QCOMPARE( QLocale( "eo" ).language(), QLocale::Esperanto );
 #endif
+}
+
+static const QStringList&
+someLanguages()
+{
+    static QStringList languages { "nl", "de", "da", "nb", "sr@latin", "ar", "ru" };
+    return languages;
+}
+
+
+void
+LocaleTests::testTranslatableLanguages()
+{
+    QStringList availableLanguages = QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' );
+    cDebug() << "Translation languages:" << availableLanguages;
+    for ( const auto& language : someLanguages() )
+    {
+        // Could be QVERIFY, but then we don't see what language code fails
+        QCOMPARE( availableLanguages.contains( language ) ? language : QString(), language );
+    }
+}
+
+void
+LocaleTests::testTranslatableConfig1()
+{
+    QCOMPARE( QLocale().name(), "C" );  // Otherwise plain get() is dubious
+    CalamaresUtils::Locale::TranslatedString ts1( "Hello" );
+    QCOMPARE( ts1.count(), 1 );
+
+    QCOMPARE( ts1.get(), "Hello" );
+    QCOMPARE( ts1.get( QLocale( "nl" ) ), "Hello" );
+
+    QVariantMap map;
+    map.insert( "description", "description (no language)" );
+    CalamaresUtils::Locale::TranslatedString ts2( map, "description" );
+    QCOMPARE( ts2.count(), 1 );
+
+    QCOMPARE( ts2.get(), "description (no language)" );
+    QCOMPARE( ts2.get( QLocale( "nl" ) ), "description (no language)" );
+}
+
+void
+LocaleTests::testTranslatableConfig2()
+{
+    QCOMPARE( QLocale().name(), "C" );  // Otherwise plain get() is dubious
+    QVariantMap map;
+
+    for ( const auto& language : someLanguages() )
+    {
+        map.insert( QString( "description[%1]" ).arg( language ),
+                    QString( "description (language %1)" ).arg( language ) );
+        if ( language != "nl" )
+        {
+            map.insert( QString( "name[%1]" ).arg( language ), QString( "name (language %1)" ).arg( language ) );
+        }
+    }
+
+    CalamaresUtils::Locale::TranslatedString ts1( map, "description" );
+    // The +1 is because "" is always also inserted
+    QCOMPARE( ts1.count(), someLanguages().count() + 1 );
+
+    QCOMPARE( ts1.get(), "description" );  // it wasn't set
+    QCOMPARE( ts1.get( QLocale( "nl" ) ), "description (language nl)" );
+    for ( const auto& language : someLanguages() )
+    {
+        // Skip Serbian (latin) because QLocale() constructed with it
+        // doesn't retain the @latin part.
+        if ( language == "sr@latin" )
+        {
+            continue;
+        }
+        // Could be QVERIFY, but then we don't see what language code fails
+        QCOMPARE( ts1.get( language ) == QString( "description (language %1)" ).arg( language ) ? language : QString(),
+                  language );
+    }
+    QCOMPARE( ts1.get( QLocale( QLocale::Language::Serbian, QLocale::Script::LatinScript, QLocale::Country::Serbia ) ),
+              "description (language sr@latin)" );
+
+    CalamaresUtils::Locale::TranslatedString ts2( map, "name" );
+    // We skipped dutch this time
+    QCOMPARE( ts2.count(), someLanguages().count() );
 }
