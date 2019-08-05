@@ -58,7 +58,7 @@ public:
 
     /** @brief Define a sorting order.
      *
-     * English (@see isEnglish() -- it means en_US) is sorted at the top.
+     * Locales are sorted by their id, which means the ISO 2-letter code + country.
      */
     bool operator<( const Label& other ) const { return m_localeId < other.m_localeId; }
 
@@ -78,6 +78,7 @@ public:
     QLocale locale() const { return m_locale; }
 
     QString name() const { return m_locale.name(); }
+    QString id() const { return m_localeId; }
 
     /// @brief Convenience accessor to the language part of the locale
     QLocale::Language language() const { return m_locale.language(); }
