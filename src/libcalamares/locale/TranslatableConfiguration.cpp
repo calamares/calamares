@@ -79,7 +79,6 @@ TranslatedString::get( const QLocale& locale ) const
         localeName = QStringLiteral( "sr@latin" );
     }
 
-    cDebug() << "Getting locale" << localeName;
     if ( m_strings.contains( localeName ) )
     {
         return m_strings[ localeName ];
