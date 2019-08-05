@@ -41,9 +41,12 @@ PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent
     switch ( mode )
     {
     case PackageChooserMode::Optional:
+        FALLTHRU;
     case PackageChooserMode::Required:
         ui->products->setSelectionMode( QAbstractItemView::SingleSelection );
+        break;
     case PackageChooserMode::OptionalMultiple:
+        FALLTHRU;
     case PackageChooserMode::RequiredMultiple:
         ui->products->setSelectionMode( QAbstractItemView::ExtendedSelection );
     }
