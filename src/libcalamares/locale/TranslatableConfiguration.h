@@ -44,6 +44,9 @@ public:
     /** @brief Not-actually-translated string.
      */
     TranslatedString( const QString& string );
+    /// @brief Empty string
+    TranslatedString()
+        : TranslatedString( QString() ) {}
 
     int count() const { return m_strings.count(); }
 
