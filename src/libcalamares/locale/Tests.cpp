@@ -108,6 +108,7 @@ LocaleTests::testTranslatableLanguages()
 void
 LocaleTests::testTranslatableConfig1()
 {
+    QCOMPARE( QLocale().name(), "C" );  // Otherwise plain get() is dubious
     CalamaresUtils::Locale::TranslatedString ts1( "Hello" );
     QCOMPARE( ts1.count(), 1 );
 
@@ -126,6 +127,7 @@ LocaleTests::testTranslatableConfig1()
 void
 LocaleTests::testTranslatableConfig2()
 {
+    QCOMPARE( QLocale().name(), "C" );  // Otherwise plain get() is dubious
     QVariantMap map;
 
     for ( const auto& language : someLanguages() )
@@ -144,6 +146,20 @@ LocaleTests::testTranslatableConfig2()
 
     QCOMPARE( ts1.get(), "description" );  // it wasn't set
     QCOMPARE( ts1.get( QLocale( "nl" ) ), "description (language nl)" );
+    for ( const auto& language : someLanguages() )
+    {
+        // Skip Serbian (latin) because QLocale() constructed with it
+        // doesn't retain the @latin part.
+        if ( language == "sr@latin" )
+        {
+            continue;
+        }
+        // Could be QVERIFY, but then we don't see what language code fails
+        QCOMPARE( ts1.get( language ) == QString( "description (language %1)" ).arg( language ) ? language : QString(),
+                  language );
+    }
+    QCOMPARE( ts1.get( QLocale( QLocale::Language::Serbian, QLocale::Script::LatinScript, QLocale::Country::Serbia ) ),
+              "description (language sr@latin)" );
 
     CalamaresUtils::Locale::TranslatedString ts2( map, "name" );
     // We skipped dutch this time

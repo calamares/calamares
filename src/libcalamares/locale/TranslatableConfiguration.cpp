@@ -73,6 +73,12 @@ QString
 TranslatedString::get( const QLocale& locale ) const
 {
     QString localeName = locale.name();
+    // Special case, sr@latin doesn't have the @latin reflected in the name
+    if ( locale.language() == QLocale::Language::Serbian && locale.script() == QLocale::Script::LatinScript )
+    {
+        localeName = QStringLiteral( "sr@latin" );
+    }
+
     cDebug() << "Getting locale" << localeName;
     if ( m_strings.contains( localeName ) )
     {
