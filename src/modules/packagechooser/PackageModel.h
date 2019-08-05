@@ -19,6 +19,7 @@
 #ifndef PACKAGEMODEL_H
 #define PACKAGEMODEL_H
 
+#include "locale/TranslatableConfiguration.h"
 #include "utils/NamedEnum.h"
 
 #include <QAbstractListModel>
@@ -41,9 +42,8 @@ struct PackageItem
     QString id;
     // TODO: may need more than one
     QString package;
-    // TODO: name and description are localized
-    QString name;
-    QString description;
+    CalamaresUtils::Locale::TranslatedString name;
+    CalamaresUtils::Locale::TranslatedString description;
     // TODO: may be more than one
     QPixmap screenshot;
 

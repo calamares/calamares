@@ -118,11 +118,11 @@ PackageListModel::data( const QModelIndex& index, int role ) const
 
     if ( role == Qt::DisplayRole /* Also PackageNameRole */ )
     {
-        return m_packages[ row ].name;
+        return m_packages[ row ].name.get();
     }
     else if ( role == DescriptionRole )
     {
-        return m_packages[ row ].description;
+        return m_packages[ row ].description.get();
     }
     else if ( role == ScreenshotRole )
     {

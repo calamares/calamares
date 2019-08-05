@@ -54,9 +54,9 @@ PackageChooserPage::currentChanged( const QModelIndex& index )
 {
     if ( !index.isValid() || !ui->products->selectionModel()->hasSelection() )
     {
-        ui->productName->setText( m_introduction.name );
+        ui->productName->setText( m_introduction.name.get() );
         ui->productScreenshot->setPixmap( m_introduction.screenshot );
-        ui->productDescription->setText( m_introduction.description );
+        ui->productDescription->setText( m_introduction.description.get() );
     }
     else
     {
