@@ -18,12 +18,25 @@ This release contains contributions from (alphabetically by first name):
    number of jobs. (Thanks to Bill Auger)
  - Preliminary work has been added to post the installation log to a
    pastebin for bug reporting. (Thanks to Bill Auger)
+ - Support for translated human-readable strings in Calamares
+   config files has been added. This is used only in the *packagechooser*
+   module (see below) but will expand to those modules that need
+   user-visible strings from the configuration file (existing
+   solutions need either gettext or Qt support).
+ - Esperanto is now available when Qt version 5.12.2 or later is used.
 
 ## Modules ##
 
  - *fstab* A new configuration key *efiMountOptions* has been added, to
    allow setting filesystem options specifically for the EFI partition.
    (Thanks to apt-ghetto)
+ - *packagechooser* is a new module for low-density package choices,
+   e.g. for selecting a default desktop environment, or adding some
+   proprietary drivers, or chosing browsers of office suites. It presents
+   **one** collection of items -- at most ten or so, because of the UI --
+   and the user can select zero or more of them. The behavior is
+   configurable, and package information can be set through the Calamares
+   configuration file or by reading AppData files for the packages. #426
 
 
 # 3.2.11 (2019-07-06) #
