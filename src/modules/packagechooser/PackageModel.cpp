@@ -19,6 +19,7 @@
 #include "PackageModel.h"
 
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 const NamedEnumTable< PackageChooserMode >&
 roleNames()
@@ -73,6 +74,31 @@ PackageItem::PackageItem( const QString& a_id,
 {
 }
 
+PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
+    : id( CalamaresUtils::getString( item_map, "id" ) )
+    , package( CalamaresUtils::getString( item_map, "package" ) )
+    , name( CalamaresUtils::Locale::TranslatedString( item_map, "name" ) )
+    , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
+    , screenshot( CalamaresUtils::getString( item_map, "screenshot" ) )
+{
+    if ( name.isEmpty() && id.isEmpty() )
+    {
+        name = QObject::tr( "No product" );
+    }
+    else if ( name.isEmpty() )
+    {
+        cWarning() << "PackageChooser item" << id << "has an empty name.";
+    }
+    if ( description.isEmpty() )
+    {
+        description = QObject::tr( "No description provided." );
+    }
+    if ( screenshot.isNull() )
+    {
+        screenshot = QPixmap( QStringLiteral( ":/images/no-selection.png" ) );
+    }
+}
+
 
 PackageListModel::PackageListModel( QObject* parent )
     : QAbstractListModel( parent )
@@ -90,10 +116,14 @@ PackageListModel::~PackageListModel() {}
 void
 PackageListModel::addPackage( PackageItem&& p )
 {
-    int c = m_packages.count();
-    beginInsertRows( QModelIndex(), c, c );
-    m_packages.append( p );
-    endInsertRows();
+    // Only add valid packages
+    if ( !p.name.isEmpty() )
+    {
+        int c = m_packages.count();
+        beginInsertRows( QModelIndex(), c, c );
+        m_packages.append( p );
+        endInsertRows();
+    }
 }
 
 int

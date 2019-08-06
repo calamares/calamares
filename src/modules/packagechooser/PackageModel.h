@@ -56,11 +56,25 @@ struct PackageItem
      */
     PackageItem( const QString& id, const QString& package, const QString& name, const QString& description );
 
+    /** @brief Creates a PackageItem from given strings.
+     *
+     * Set all the text members and load the screenshot from the given
+     * @p screenshotPath, which may be a QRC path (:/path/in/qrc) or
+     * a filesystem path, whatever QPixmap understands.
+     */
     PackageItem( const QString& id,
                  const QString& package,
                  const QString& name,
                  const QString& description,
                  const QString& screenshotPath );
+
+    /** @brief Creates a PackageItem from a QVariantMap
+     *
+     * This is intended for use when loading PackageItems from a
+     * configuration map. It will look up the various keys in the map
+     * and handle translation strings as well.
+     */
+    PackageItem( const QVariantMap& map );
 
     // TODO: implement this
     PackageItem fromAppStream( const QString& filename );
@@ -75,6 +89,10 @@ public:
     PackageListModel( QObject* parent );
     virtual ~PackageListModel() override;
 
+    /** @brief Add a package @p to the model
+     *
+     * Only valid packages are added -- that is, they must have a name.
+     */
     void addPackage( PackageItem&& p );
 
     int rowCount( const QModelIndex& index ) const override;
