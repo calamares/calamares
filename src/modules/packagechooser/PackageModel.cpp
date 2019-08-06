@@ -257,9 +257,15 @@ getNameAndSummary( const QDomNode& n )
 #endif
 
 PackageItem
-PackageItem::fromAppData( const QString& fileName )
+PackageItem::fromAppData( const QVariantMap& item_map )
 {
 #ifdef HAVE_XML
+    QString fileName = CalamaresUtils::getString( item_map, "appdata" );
+    if ( fileName.isEmpty() )
+    {
+        cWarning() << "Can't load AppData without a suitable key.";
+        return PackageItem();
+    }
     cDebug() << "Loading AppData XML from" << fileName;
 
     QDomDocument doc = loadAppData( fileName );
@@ -271,17 +277,28 @@ PackageItem::fromAppData( const QString& fileName )
     QDomElement componentNode = doc.documentElement();
     if ( !componentNode.isNull() && componentNode.tagName() == "component" )
     {
-        QString id = getChildText( componentNode, "id" );
+        // An "id" entry in the Calamares config overrides ID in the AppData
+        QString id = CalamaresUtils::getString( item_map, "id" );
+        if ( id.isEmpty() )
+        {
+            id = getChildText( componentNode, "id" );
+        }
         if ( id.isEmpty() )
         {
             return PackageItem();
         }
 
-        QString screenshotPath = getScreenshotPath( componentNode );
+        // A "screenshot" entry in the Calamares config overrides AppData
+        QString screenshotPath = CalamaresUtils::getString( item_map, "screenshot" );
+        if ( screenshotPath.isEmpty() )
+        {
+            screenshotPath = getScreenshotPath( componentNode );
+        }
 
         QVariantMap map = getNameAndSummary( componentNode );
         map.insert( "id", id );
         map.insert( "screenshot", screenshotPath );
+
         return PackageItem( map );
     }
 

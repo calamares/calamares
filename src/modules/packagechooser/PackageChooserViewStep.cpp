@@ -234,7 +234,7 @@ PackageChooserViewStep::fillModel( const QVariantList& items )
 
         if ( item_map.contains( "appdata" ) )
         {
-            m_model->addPackage( PackageItem::fromAppData( CalamaresUtils::getString( item_map, "appdata" ) ) );
+            m_model->addPackage( PackageItem::fromAppData( item_map ) );
         }
         else
         {
