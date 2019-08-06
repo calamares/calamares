@@ -52,6 +52,13 @@ PackageChooserTests::testAppData()
     PackageItem p = PackageItem::fromAppData( appdataName );
 #ifdef HAVE_XML
     QVERIFY( p.isValid() );
+    QCOMPARE( p.id, "io.calamares.calamares.desktop" );
+    QCOMPARE( p.name.get(), "Calamares" );
+    // The <description> entry has precedence
+    QCOMPARE( p.description.get(), "Calamares is an installer program for Linux distributions." );
+    // .. but en_GB doesn't have an entry in description, so uses <summary>
+    QCOMPARE( p.description.get( QLocale( "en_GB" ) ), "Calamares Linux Installer" );
+    QCOMPARE( p.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
 #else
     QVERIFY( !p.isValid() );
 #endif
