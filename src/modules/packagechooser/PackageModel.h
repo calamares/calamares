@@ -40,11 +40,10 @@ const NamedEnumTable< PackageChooserMode >& roleNames();
 struct PackageItem
 {
     QString id;
-    // TODO: may need more than one
+    // FIXME: unused
     QString package;
     CalamaresUtils::Locale::TranslatedString name;
     CalamaresUtils::Locale::TranslatedString description;
-    // TODO: may be more than one
     QPixmap screenshot;
 
     /// @brief Create blank PackageItem
