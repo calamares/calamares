@@ -3,5 +3,6 @@
         <file>images/no-selection.png</file>
         <file>images/kde.png</file>
         <file>images/gnome.png</file>
+        <file>images/calamares.png</file>
     </qresource>
 </RCC>
