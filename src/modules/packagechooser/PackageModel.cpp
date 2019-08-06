@@ -92,10 +92,6 @@ PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     {
         description = QObject::tr( "No description provided." );
     }
-    if ( screenshot.isNull() )
-    {
-        screenshot = QPixmap( QStringLiteral( ":/images/no-selection.png" ) );
-    }
 }
 
 #ifdef HAVE_XML
