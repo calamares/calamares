@@ -20,6 +20,8 @@
 
 #include "PackageModel.h"
 
+#include "utils/Logger.h"
+
 #include <QtTest/QtTest>
 
 QTEST_GUILESS_MAIN( PackageChooserTests )
@@ -31,6 +33,7 @@ PackageChooserTests::~PackageChooserTests() {}
 void
 PackageChooserTests::initTestCase()
 {
+    Logger::setupLogLevel( Logger::LOGDEBUG );
 }
 
 void

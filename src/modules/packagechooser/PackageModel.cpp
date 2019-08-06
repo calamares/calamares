@@ -128,6 +128,8 @@ PackageItem
 PackageItem::fromAppData( const QString& fileName )
 {
 #ifdef HAVE_XML
+    cDebug() << "Loading AppData XML from" << fileName;
+    
     QDomDocument doc = loadAppData( fileName );
     if ( doc.isNull() )
     {
@@ -143,6 +145,8 @@ PackageItem::fromAppData( const QString& fileName )
 
     return PackageItem();
 #else
+    cWarning() << "Loading AppData XML is not supported.";
+    
     return PackageItem();
 #endif
 }
