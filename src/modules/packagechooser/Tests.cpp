@@ -52,26 +52,26 @@ PackageChooserTests::testAppData()
     QVariantMap m;
     m.insert( "appdata", appdataName );
     
-    PackageItem p = PackageItem::fromAppData( m );
+    PackageItem p1 = PackageItem::fromAppData( m );
 #ifdef HAVE_XML
-    QVERIFY( p.isValid() );
-    QCOMPARE( p.id, "io.calamares.calamares.desktop" );
-    QCOMPARE( p.name.get(), "Calamares" );
+    QVERIFY( p1.isValid() );
+    QCOMPARE( p1.id, "io.calamares.calamares.desktop" );
+    QCOMPARE( p1.name.get(), "Calamares" );
     // The <description> entry has precedence
-    QCOMPARE( p.description.get(), "Calamares is an installer program for Linux distributions." );
+    QCOMPARE( p1.description.get(), "Calamares is an installer program for Linux distributions." );
     // .. but en_GB doesn't have an entry in description, so uses <summary>
-    QCOMPARE( p.description.get( QLocale( "en_GB" ) ), "Calamares Linux Installer" );
-    QCOMPARE( p.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
-    QVERIFY( p.screenshot.isNull() );
+    QCOMPARE( p1.description.get( QLocale( "en_GB" ) ), "Calamares Linux Installer" );
+    QCOMPARE( p1.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
+    QVERIFY( p1.screenshot.isNull() );
     
     m.insert( "id", "calamares" );
     m.insert( "screenshot", ":/images/calamares.png" );
-    PackageItem p_self = PackageItem::fromAppData( m );
-    QVERIFY( p.isValid() );
-    QCOMPARE( p.id, "calamares" );
-    QCOMPARE( p.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
-    QVERIFY( !p.screenshot.isNull() );
+    PackageItem p2= PackageItem::fromAppData( m );
+    QVERIFY( p2.isValid() );
+    QCOMPARE( p2.id, "calamares" );
+    QCOMPARE( p2.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
+    QVERIFY( !p2.screenshot.isNull() );
 #else
-    QVERIFY( !p.isValid() );
+    QVERIFY( !p1.isValid() );
 #endif
 }
