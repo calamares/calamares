@@ -38,10 +38,6 @@ TranslatedString::TranslatedString( const QVariantMap& map, const QString& key )
 {
     // Get the un-decorated value for the key
     QString value = CalamaresUtils::getString( map, key );
-    if ( value.isEmpty() )
-    {
-        value = key;
-    }
     m_strings[ QString() ] = value;
 
     for ( auto it = map.constKeyValueBegin(); it != map.constKeyValueEnd(); ++it )
