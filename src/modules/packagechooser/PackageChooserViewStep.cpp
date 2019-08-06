@@ -232,7 +232,14 @@ PackageChooserViewStep::fillModel( const QVariantList& items )
             continue;
         }
 
-        m_model->addPackage( PackageItem( item_map ) );
+        if ( item_map.contains( "appdata" ) )
+        {
+            m_model->addPackage( PackageItem::fromAppData( CalamaresUtils::getString( item_map, "appdata" ) ) );
+        }
+        else
+        {
+            m_model->addPackage( PackageItem( item_map ) );
+        }
     }
 }
 
