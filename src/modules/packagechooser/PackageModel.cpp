@@ -21,6 +21,11 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+#ifdef HAVE_XML
+#include <QDomDocument>
+#include <QFile>
+#endif
+
 const NamedEnumTable< PackageChooserMode >&
 roleNames()
 {
@@ -39,13 +44,6 @@ roleNames()
         { "one-or-more", PackageChooserMode::RequiredMultiple }
     };
     return names;
-}
-
-PackageItem
-PackageItem::fromAppStream( const QString& filename )
-{
-    // TODO: implement this
-    return PackageItem {};
 }
 
 PackageItem::PackageItem() {}
@@ -99,6 +97,56 @@ PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     }
 }
 
+#ifdef HAVE_XML
+QDomDocument
+loadAppData( const QString& fileName )
+{
+    QFile file( fileName );
+    if ( !file.open( QIODevice::ReadOnly ) )
+    {
+        return QDomDocument();
+    }
+    QDomDocument doc( "AppData" );
+    if ( !doc.setContent( &file ) )
+    {
+        file.close();
+        return QDomDocument();
+    }
+    file.close();
+    return doc;
+}
+
+QString
+getChildText( const QDomNode& n, const QString& tagName )
+{
+    QDomElement e = n.firstChildElement( tagName );
+    return e.isNull() ? QString() : e.text();
+}
+#endif
+
+PackageItem
+PackageItem::fromAppData( const QString& fileName )
+{
+#ifdef HAVE_XML
+    QDomDocument doc = loadAppData( fileName );
+    if ( doc.isNull() )
+    {
+        return PackageItem();
+    }
+
+    QDomElement componentNode = doc.documentElement();
+    if ( !componentNode.isNull() && componentNode.tagName() == "component" )
+    {
+        QString id = getChildText( componentNode, "id" );
+        cDebug() << "Got AppData id" << id;
+    }
+
+    return PackageItem();
+#else
+    return PackageItem();
+#endif
+}
+
 
 PackageListModel::PackageListModel( QObject* parent )
     : QAbstractListModel( parent )
@@ -117,7 +165,7 @@ void
 PackageListModel::addPackage( PackageItem&& p )
 {
     // Only add valid packages
-    if ( !p.name.isEmpty() )
+    if ( p.isValid() )
     {
         int c = m_packages.count();
         beginInsertRows( QModelIndex(), c, c );

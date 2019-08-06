@@ -18,6 +18,8 @@
 
 #include "Tests.h"
 
+#include "PackageModel.h"
+
 #include <QtTest/QtTest>
 
 QTEST_GUILESS_MAIN( PackageChooserTests )
@@ -35,4 +37,19 @@ void
 PackageChooserTests::testBogus()
 {
     QVERIFY( true );
+}
+
+void
+PackageChooserTests::testAppData()
+{
+    // Path from the build-dir
+    QString appdataName( "../io.calamares.calamares.appdata.xml" );
+    QVERIFY( QFile::exists( appdataName ) );
+
+    PackageItem p = PackageItem::fromAppData( appdataName );
+#ifdef HAVE_XML
+    QVERIFY( p.isValid() );
+#else
+    QVERIFY( !p.isValid() );
+#endif
 }

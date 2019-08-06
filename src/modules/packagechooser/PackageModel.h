@@ -75,8 +75,18 @@ struct PackageItem
      */
     PackageItem( const QVariantMap& map );
 
-    // TODO: implement this
-    PackageItem fromAppStream( const QString& filename );
+    /** @brief Is this item valid?
+     *
+     * A valid item has an untranslated name available.
+     */
+    bool isValid() const { return !name.isEmpty(); }
+
+    /** @brief Loads an AppData XML file and returns a PackageItem
+     *
+     * Requires XML support in libcalamares, if not present will
+     * return invalid PackageItems.
+     */
+    static PackageItem fromAppData( const QString& filename );
 };
 
 using PackageList = QVector< PackageItem >;
