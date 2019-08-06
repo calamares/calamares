@@ -38,10 +38,6 @@ TranslatedString::TranslatedString( const QVariantMap& map, const QString& key )
 {
     // Get the un-decorated value for the key
     QString value = CalamaresUtils::getString( map, key );
-    if ( value.isEmpty() )
-    {
-        value = key;
-    }
     m_strings[ QString() ] = value;
 
     for ( auto it = map.constKeyValueBegin(); it != map.constKeyValueEnd(); ++it )
@@ -79,7 +75,6 @@ TranslatedString::get( const QLocale& locale ) const
         localeName = QStringLiteral( "sr@latin" );
     }
 
-    cDebug() << "Getting locale" << localeName;
     if ( m_strings.contains( localeName ) )
     {
         return m_strings[ localeName ];

@@ -96,6 +96,10 @@ someLanguages()
 }
 
 
+/** @brief Check consistency of test data
+ * Check that all the languages used in testing, are actually enabled
+ * in Calamares translations.
+ */
 void
 LocaleTests::testTranslatableLanguages()
 {
@@ -108,12 +112,19 @@ LocaleTests::testTranslatableLanguages()
     }
 }
 
+/** @brief Test strings with no translations
+ */
 void
 LocaleTests::testTranslatableConfig1()
 {
+    CalamaresUtils::Locale::TranslatedString ts0;
+    QVERIFY( ts0.isEmpty() );
+    QCOMPARE( ts0.count(), 1 );  // the empty string
+
     QCOMPARE( QLocale().name(), "C" );  // Otherwise plain get() is dubious
     CalamaresUtils::Locale::TranslatedString ts1( "Hello" );
     QCOMPARE( ts1.count(), 1 );
+    QVERIFY( !ts1.isEmpty() );
 
     QCOMPARE( ts1.get(), "Hello" );
     QCOMPARE( ts1.get( QLocale( "nl" ) ), "Hello" );
@@ -122,11 +133,14 @@ LocaleTests::testTranslatableConfig1()
     map.insert( "description", "description (no language)" );
     CalamaresUtils::Locale::TranslatedString ts2( map, "description" );
     QCOMPARE( ts2.count(), 1 );
+    QVERIFY( !ts2.isEmpty() );
 
     QCOMPARE( ts2.get(), "description (no language)" );
     QCOMPARE( ts2.get( QLocale( "nl" ) ), "description (no language)" );
 }
 
+/** @bref Test strings with translations.
+ */
 void
 LocaleTests::testTranslatableConfig2()
 {
@@ -143,11 +157,22 @@ LocaleTests::testTranslatableConfig2()
         }
     }
 
+    // If there's no untranslated string in the map, it is considered empty
+    CalamaresUtils::Locale::TranslatedString ts0( map, "description" );
+    QVERIFY( ts0.isEmpty() );  // Because no untranslated string
+    QCOMPARE( ts0.count(),
+              someLanguages().count() + 1 );  // But there are entries for the translations, plus an empty string
+
+    // expand the map with untranslated entries
+    map.insert( QString( "description" ), "description (no language)" );
+    map.insert( QString( "name" ), "name (no language)" );
+
     CalamaresUtils::Locale::TranslatedString ts1( map, "description" );
     // The +1 is because "" is always also inserted
     QCOMPARE( ts1.count(), someLanguages().count() + 1 );
+    QVERIFY( !ts1.isEmpty() );
 
-    QCOMPARE( ts1.get(), "description" );  // it wasn't set
+    QCOMPARE( ts1.get(), "description (no language)" );  // it wasn't set
     QCOMPARE( ts1.get( QLocale( "nl" ) ), "description (language nl)" );
     for ( const auto& language : someLanguages() )
     {
@@ -167,4 +192,10 @@ LocaleTests::testTranslatableConfig2()
     CalamaresUtils::Locale::TranslatedString ts2( map, "name" );
     // We skipped dutch this time
     QCOMPARE( ts2.count(), someLanguages().count() );
+    QVERIFY( !ts2.isEmpty() );
+
+    // This key doesn't exist
+    CalamaresUtils::Locale::TranslatedString ts3( map, "front" );
+    QVERIFY( ts3.isEmpty() );
+    QCOMPARE( ts3.count(), 1 );  // The empty string
 }

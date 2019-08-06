@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+  <id>io.calamares.calamares.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>Calamares</name>
+  <name xml:lang="da">Calamares</name>
+  <name xml:lang="en-GB">Calamares</name>
+  <name xml:lang="nl">Calamares</name>
+  <summary>Calamares Linux Installer</summary>
+  <summary xml:lang="en-GB">Calamares Linux Installer</summary>
+  <summary xml:lang="nl">Linux Installatieprogramma Calamares</summary>
+  <description>
+    <p>Calamares is an installer program for Linux distributions.</p>
+    <p xml:lang="nl">Calamares is een installatieprogramma voor Linux distributies.</p>
+  </description>
+  <url type="homepage">https://calamares.io</url>
+  <url type="bugtracker">https://https://github.com/calamares/calamares/issues/</url>
+  <url type="help">https://github.com/calamares/calamares/wiki</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Calamares Welcome</caption>
+      <image>https://calamares.io/images/cal_640.png</image>
+    </screenshot>
+  </screenshots>
+  <provides>
+    <binary>calamares</binary>
+  </provides>
+</component>
