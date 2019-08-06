@@ -49,7 +49,10 @@ PackageChooserTests::testAppData()
     QString appdataName( "../io.calamares.calamares.appdata.xml" );
     QVERIFY( QFile::exists( appdataName ) );
 
-    PackageItem p = PackageItem::fromAppData( appdataName );
+    QVariantMap m;
+    m.insert( "appdata", appdataName );
+    
+    PackageItem p = PackageItem::fromAppData( m );
 #ifdef HAVE_XML
     QVERIFY( p.isValid() );
     QCOMPARE( p.id, "io.calamares.calamares.desktop" );
@@ -59,6 +62,15 @@ PackageChooserTests::testAppData()
     // .. but en_GB doesn't have an entry in description, so uses <summary>
     QCOMPARE( p.description.get( QLocale( "en_GB" ) ), "Calamares Linux Installer" );
     QCOMPARE( p.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
+    QVERIFY( p.screenshot.isNull() );
+    
+    m.insert( "id", "calamares" );
+    m.insert( "screenshot", ":/images/calamares.png" );
+    PackageItem p_self = PackageItem::fromAppData( m );
+    QVERIFY( p.isValid() );
+    QCOMPARE( p.id, "calamares" );
+    QCOMPARE( p.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
+    QVERIFY( !p.screenshot.isNull() );
 #else
     QVERIFY( !p.isValid() );
 #endif
