@@ -92,22 +92,13 @@ option( BUILD_SCHEMA_TESTING "Enable schema-validation-tests" ON )
 #
 # To explicitly disable a set of modules, set USE_<foo>=none
 # (e.g. the literal string none), which won't match any of the
-# modules but is handled specially. This is the default for
-# USE_os, which are modules for specialty non-Linux distributions.
+# modules but is handled specially.
 #
 # The following USE_* functionalities are available:
 #  - *services* picks one of the two service-configuration modules,
 #    for either systemd or openrc. This defaults to empty so that
 #    **both** modules are available.
-#  - *os* picks an OS-specific module for things-that-are-not-Linux.
-#    It is generally discouraged to use this unless your distro is
-#    completely unable to use standard Linux tools for configuration.
-#    This defaults to *none* so that nothing gets picked up and nothing
-#    is packaged -- you must explicitly set it to empty to get all of
-#    the modules, but that hardly makes sense. Note, too that there
-#    are currently no os-* modules shipped with Calamares.
 set( USE_services "" CACHE STRING "Select the services module to use" )
-set( USE_os "none" CACHE STRING "Select the OS-specific module to include" )
 
 ### Calamares application info
 #
