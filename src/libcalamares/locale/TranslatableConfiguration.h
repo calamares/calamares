@@ -51,14 +51,14 @@ public:
     }
 
     /** @brief How many strings (translations) are there?
-     * 
+     *
      * This is always at least 1 (for the untranslated string),
      * but may be more than 1 even when isEmpty() is true --
      * if there is no untranslated version, for instance.
      */
     int count() const { return m_strings.count(); }
     /** @brief Consider this string empty?
-     * 
+     *
      * Only the state of the untranslated string is considered,
      * so count() may be more than 1 even while the string is empty.
      */
