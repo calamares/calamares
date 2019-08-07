@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 #
 # Uses the Transifex API to get a list of enabled languages,
 # and outputs CMake settings for inclusion into CMakeLists.txt.
