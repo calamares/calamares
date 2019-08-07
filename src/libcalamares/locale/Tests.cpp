@@ -35,6 +35,8 @@ LocaleTests::~LocaleTests() {}
 void
 LocaleTests::initTestCase()
 {
+    // Otherwise plain get() is dubious in the TranslatableConfiguration tests
+    QVERIFY( ( QLocale().name() == "C" ) || ( QLocale().name() == "en_US" ) );
 }
 
 void
@@ -121,7 +123,6 @@ LocaleTests::testTranslatableConfig1()
     QVERIFY( ts0.isEmpty() );
     QCOMPARE( ts0.count(), 1 );  // the empty string
 
-    QCOMPARE( QLocale().name(), "C" );  // Otherwise plain get() is dubious
     CalamaresUtils::Locale::TranslatedString ts1( "Hello" );
     QCOMPARE( ts1.count(), 1 );
     QVERIFY( !ts1.isEmpty() );
@@ -144,7 +145,6 @@ LocaleTests::testTranslatableConfig1()
 void
 LocaleTests::testTranslatableConfig2()
 {
-    QCOMPARE( QLocale().name(), "C" );  // Otherwise plain get() is dubious
     QVariantMap map;
 
     for ( const auto& language : someLanguages() )
