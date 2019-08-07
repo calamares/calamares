@@ -183,23 +183,6 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
         fillModel( configurationMap.value( "items" ).toList() );
     }
 
-    // TODO: replace this hard-coded model
-    if ( !m_model )
-    {
-        m_model = new PackageListModel( nullptr );
-        m_model->addPackage( PackageItem { QString(),
-                                           QString(),
-                                           "No Desktop",
-                                           "Please pick a desktop environment from the list. "
-                                           "If you don't want to install a desktop, that's fine, "
-                                           "your system will start up in text-only mode and you can "
-                                           "install a desktop environment later.",
-                                           ":/images/no-selection.png" } );
-        m_model->addPackage( PackageItem { "kde", "kde", "Plasma", "Plasma Desktop", ":/images/kde.png" } );
-        m_model->addPackage( PackageItem {
-            "gnome", "gnome", "GNOME", "GNU Networked Object Modeling Environment Desktop", ":/images/gnome.png" } );
-    }
-
     if ( first_time && m_widget && m_model )
     {
         hookupModel();
