@@ -47,6 +47,14 @@ PackageChooserTests::testAppData()
 {
     // Path from the build-dir
     QString appdataName( "../io.calamares.calamares.appdata.xml" );
+    if ( !QFile::exists( appdataName ) )
+    {
+        // Running the tests by hand from the build-dir uses the
+        // path above, but ctest, used by "make test", runs them in
+        // the module build dir (e.g. build/src/modules/packagechooser)
+        // so we need to adjust the path some.
+        appdataName.prepend( "../../../" );
+    }
     QVERIFY( QFile::exists( appdataName ) );
 
     QVariantMap m;
