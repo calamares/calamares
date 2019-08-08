@@ -5,6 +5,8 @@
 option( DEBUG_PARTITION_UNSAFE "Allow unsafe partitioning choices." OFF )
 option( DEBUG_PARTITION_LAME   "Unsafe partitioning will error out on exec." ON )
 
+include_directories( ${CMAKE_SOURCE_DIR} )  # For 3rdparty
+
 set( _partition_defs )
 if( DEBUG_PARTITION_UNSAFE )
     if( DEBUG_PARTITION_LAME )
