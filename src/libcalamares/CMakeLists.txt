@@ -51,12 +51,16 @@ set( libSources
     utils/Variant.cpp
     utils/Yaml.cpp
 )
-set( kdsagSources
+set( _kdsagSources
     kdsingleapplicationguard/kdsingleapplicationguard.cpp
     kdsingleapplicationguard/kdsharedmemorylocker.cpp
     kdsingleapplicationguard/kdtoolsglobal.cpp
     kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
 )
+set( kdsagSources "" )
+foreach( _s ${_kdsagSources} )
+    list( APPEND kdsagSources ${CMAKE_SOURCE_DIR}/3rdparty/${_s} )
+endforeach()
 mark_thirdparty_code( ${kdsagSources} )
 
 include_directories(

@@ -18,16 +18,16 @@ set( calamaresui_SOURCES
     utils/ImageRegistry.cpp
     utils/Paste.cpp
 
-    utils/qjsonmodel.cpp
-    utils/qjsonitem.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonmodel.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonitem.cpp
 
     viewpages/BlankViewStep.cpp
     viewpages/ViewStep.cpp
 
     widgets/ClickableLabel.cpp
     widgets/FixedAspectRatioLabel.cpp
-    widgets/waitingspinnerwidget.cpp
     widgets/WaitingWidget.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
 
     ExecutionViewStep.cpp
     Branding.cpp
@@ -36,10 +36,9 @@ set( calamaresui_SOURCES
 
 # Don't warn about third-party sources
 mark_thirdparty_code(
-    utils/ImageRegistry.cpp
-    utils/qjsonitem.cpp
-    utils/qjsonmodel.cpp
-    widgets/waitingspinnerwidget.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonitem.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonmodel.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
 )
 
 set( calamaresui_UI
