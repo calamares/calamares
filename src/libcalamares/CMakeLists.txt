@@ -44,7 +44,6 @@ set( libSources
     utils/CommandList.cpp
     utils/Dirs.cpp
     utils/Logger.cpp
-    utils/PluginFactory.cpp
     utils/Retranslator.cpp
     utils/String.cpp
     utils/UMask.cpp
@@ -120,6 +119,7 @@ target_link_libraries( calamares
     LINK_PUBLIC
         ${YAMLCPP_LIBRARY}
         Qt5::Core
+        KF5::CoreAddons
         ${OPTIONAL_PUBLIC_LIBRARIES}
 )
 
