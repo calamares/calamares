@@ -22,11 +22,11 @@ set_package_properties(
     KPMcore PROPERTIES
     PURPOSE "For partitioning module"
 )
+find_package( KF5Config CONFIG )
+find_package( KF5I18n CONFIG )
+find_package( KF5WidgetsAddons CONFIG )
 
-if ( KPMcore_FOUND )
-    find_package( Qt5 REQUIRED DBus )
-    find_package( KF5 REQUIRED Config CoreAddons I18n WidgetsAddons )
-
+if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND )
     if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
         list( APPEND _partition_defs WITH_KPMCORE331API) # kpmcore > 3.3.0 with deprecations
     endif()
@@ -106,5 +106,9 @@ if ( KPMcore_FOUND )
         SHARED_LIB
     )
 else()
-    calamares_skip_module( "partition (missing suitable KPMcore)" )
+    if ( NOT KPMcore_FOUND )
+        calamares_skip_module( "partition (missing suitable KPMcore)" )
+    else()
+        calamares_skip_module( "partition (missing dependencies for KPMcore)" )
+    endif()
 endif()
