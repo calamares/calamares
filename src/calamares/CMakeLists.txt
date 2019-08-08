@@ -17,8 +17,9 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}/../libcalamares
 
-    ../libcalamares
-    ../libcalamaresui
+    ${CMAKE_SOURCE_DIR}/src/libcalamares
+    ${CMAKE_SOURCE_DIR}/src//libcalamaresui
+    ${CMAKE_SOURCE_DIR}
 )
 
 # Translations
