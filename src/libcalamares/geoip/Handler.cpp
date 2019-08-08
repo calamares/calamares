@@ -38,11 +38,15 @@ handlerTypes()
 {
     using Type = CalamaresUtils::GeoIP::Handler::Type;
 
+    // *INDENT-OFF*
+    // clang-format off
     static const NamedEnumTable<Type> names{
-        { QStringLiteral( "none" ), Type::None},
-        { QStringLiteral( "json" ), Type::JSON},
-        { QStringLiteral( "xml" ), Type::XML}
+        { QStringLiteral( "none" ), Type::None },
+        { QStringLiteral( "json" ), Type::JSON },
+        { QStringLiteral( "xml" ), Type::XML }
     };
+    // *INDENT-ON*
+    // clang-format on
 
     return names;
 }
