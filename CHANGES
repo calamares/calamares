@@ -9,6 +9,11 @@ This release contains contributions from (alphabetically by first name):
 
 ## Core ##
 
+- The Calamares standard coding style -- embodied in `ci/calamaresstyle`
+  has had a few updates and has now been consistently applied across
+  the core codebase (e.g. libcalamares, libcalamaresui, calamares, but
+  not the modules).
+
 ## Modules ##
 
 
