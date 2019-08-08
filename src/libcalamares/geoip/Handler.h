@@ -21,9 +21,9 @@
 
 #include "Interface.h"
 
-#include <QtConcurrent/QtConcurrentRun>
 #include <QString>
 #include <QVariantMap>
+#include <QtConcurrent/QtConcurrentRun>
 
 namespace CalamaresUtils
 {
@@ -46,7 +46,7 @@ public:
         None,
         JSON,
         XML
-    } ;
+    };
 
     /** @brief An unconfigured handler; this always returns errors. */
     Handler();
@@ -89,7 +89,6 @@ private:
     const QString m_selector;
 };
 
-}
-}  // namespace
+}  // namespace GeoIP
+}  // namespace CalamaresUtils
 #endif
-

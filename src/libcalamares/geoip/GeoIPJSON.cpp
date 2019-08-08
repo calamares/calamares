@@ -30,7 +30,7 @@ namespace CalamaresUtils
 namespace GeoIP
 {
 
-GeoIPJSON::GeoIPJSON(const QString& attribute)
+GeoIPJSON::GeoIPJSON( const QString& attribute )
     : Interface( attribute.isEmpty() ? QStringLiteral( "time_zone" ) : attribute )
 {
 }
@@ -42,19 +42,25 @@ GeoIPJSON::GeoIPJSON(const QString& attribute)
  * "foo" of @p m, like a regular JSON lookup would.
  */
 static QString
-selectMap( const QVariantMap& m, const QStringList& l, int index)
+selectMap( const QVariantMap& m, const QStringList& l, int index )
 {
     if ( index >= l.count() )
+    {
         return QString();
+    }
 
-    QString attributeName = l[index];
+    QString attributeName = l[ index ];
     if ( index == l.count() - 1 )
+    {
         return CalamaresUtils::getString( m, attributeName );
+    }
     else
     {
         bool success = false;  // bogus
         if ( m.contains( attributeName ) )
-            return selectMap( CalamaresUtils::getSubMap( m, attributeName, success ), l, index+1 );
+        {
+            return selectMap( CalamaresUtils::getSubMap( m, attributeName, success ), l, index + 1 );
+        }
         return QString();
     }
 }
@@ -67,18 +73,18 @@ GeoIPJSON::rawReply( const QByteArray& data )
         YAML::Node doc = YAML::Load( data );
 
         QVariant var = CalamaresUtils::yamlToVariant( doc );
-        if ( !var.isNull() &&
-            var.isValid() &&
-            var.type() == QVariant::Map )
+        if ( !var.isNull() && var.isValid() && var.type() == QVariant::Map )
         {
-            return selectMap( var.toMap(), m_element.split('.'), 0 );
+            return selectMap( var.toMap(), m_element.split( '.' ), 0 );
         }
         else
+        {
             cWarning() << "Invalid YAML data for GeoIPJSON";
+        }
     }
     catch ( YAML::Exception& e )
     {
-        CalamaresUtils::explainYamlException( e, data, "GeoIP data");
+        CalamaresUtils::explainYamlException( e, data, "GeoIP data" );
     }
 
     return QString();
@@ -90,5 +96,5 @@ GeoIPJSON::processReply( const QByteArray& data )
     return splitTZString( rawReply( data ) );
 }
 
-}
-}  // namespace
+}  // namespace GeoIP
+}  // namespace CalamaresUtils
