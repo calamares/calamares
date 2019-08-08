@@ -23,7 +23,6 @@
 #include "Branding.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
-#include "utils/qjsonmodel.h"
 
 #include "GlobalStorage.h"
 #include "Job.h"
@@ -31,11 +30,13 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
+#include "3rdparty/qjsonmodel.h"
 
 #ifdef WITH_PYTHONQT
-#include <gui/PythonQtScriptingConsole.h>
 #include "ViewManager.h"
 #include "viewpages/PythonQtViewStep.h"
+
+#include <gui/PythonQtScriptingConsole.h>
 #endif
 
 #include <QJsonDocument>

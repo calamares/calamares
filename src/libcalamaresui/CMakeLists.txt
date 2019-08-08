@@ -2,7 +2,7 @@
 # view modules, view steps, widgets, and branding.
 
 # The UI libs use the non-UI library
-include_directories( ${CMAKE_SOURCE_DIR}/src/libcalamares ${CMAKE_BINARY_DIR}/src/libcalamares )
+include_directories( ${CMAKE_SOURCE_DIR}/src/libcalamares ${CMAKE_BINARY_DIR}/src/libcalamares ${CMAKE_SOURCE_DIR} )
 
 set( calamaresui_SOURCES
     modulesystem/CppJobModule.cpp

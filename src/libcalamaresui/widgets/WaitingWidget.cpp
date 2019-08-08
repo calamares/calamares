@@ -20,7 +20,8 @@
 #include "WaitingWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
-#include "waitingspinnerwidget.h"
+
+#include "3rdparty/waitingspinnerwidget.h"
 
 #include <QBoxLayout>
 #include <QLabel>
