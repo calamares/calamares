@@ -1,5 +1,4 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
- *
+/*
  *   SPDX-License-Identifier: MIT
  *   License-Filename: LICENSES/MIT-QtWaitingSpinner
  */

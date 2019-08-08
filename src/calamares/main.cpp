@@ -21,9 +21,10 @@
 #include "CalamaresApplication.h"
 
 #include "CalamaresConfig.h"
-#include "kdsingleapplicationguard/kdsingleapplicationguard.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+
+#include "3rdparty/kdsingleapplicationguard/kdsingleapplicationguard.h"
 
 #ifdef WITH_KF5Crash
 #include <KF5/KCoreAddons/KAboutData>

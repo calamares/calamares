@@ -1,3 +1,9 @@
+/*
+ *   SPDX-License-Identifier: LGPL-2.0-only
+ *   License-Filename: LICENSES/LGPLv2-KDAB
+ *
+ *   The KD Tools Library is Copyright (C) 2001-2010 Klaralvdalens Datakonsult AB.
+ */
 #ifndef __KDTOOLS__CORE__KDLOCKEDSHAREDMEMORYPOINTER_H__
 #define __KDTOOLS__CORE__KDLOCKEDSHAREDMEMORYPOINTER_H__
 
@@ -74,7 +80,7 @@ public:
     typedef const T* const_iterator;
     typedef std::reverse_iterator< const_iterator > const_reverse_iterator;
     typedef std::reverse_iterator< iterator > reverse_iterator;
-    
+
     iterator begin() { return get(); }
     const_iterator begin() const { return get(); }
 

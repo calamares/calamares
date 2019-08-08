@@ -1,3 +1,9 @@
+/*
+ *   SPDX-License-Identifier: LGPL-2.0-only
+ *   License-Filename: LICENSES/LGPLv2-KDAB
+ *
+ *   The KD Tools Library is Copyright (C) 2001-2010 Klaralvdalens Datakonsult AB.
+ */
 #include "pimpl_ptr.h"
 
 /*!
@@ -9,7 +15,7 @@
   (The exception safety of this class has not been evaluated yet.)
 
   pimpl_ptr is a smart immutable pointer, which owns the contained object. Unlike other smart pointers,
-  it creates a standard constructed object when instanciated via the 
+  it creates a standard constructed object when instanciated via the
   \link pimpl_ptr() standard constructor\endlink.
   Additionally, pimpl_ptr respects constness of the pointer object and returns \c const \c T* for
   a const pimpl_ptr object.
@@ -126,7 +132,7 @@
 */
 
 /*!
-  \fn T * pimpl_ptr::operator->() 
+  \fn T * pimpl_ptr::operator->()
 
   Member-by-pointer operator. Returns get().
 */
@@ -163,7 +169,7 @@ KDAB_UNITTEST_SIMPLE( pimpl_ptr, "kdcoretools" ) {
     }
 
 
-    {   
+    {
         QPointer< QObject > o;
         {
             kdtools::pimpl_ptr< QObject > qobject( new QObject );
@@ -174,7 +180,7 @@ KDAB_UNITTEST_SIMPLE( pimpl_ptr, "kdcoretools" ) {
         assertNull( o );
     }
 
-    {   
+    {
         const kdtools::pimpl_ptr< QObject > qobject( new QObject );
         const QObject* o = qobject.get();
         assertEqual( o, qobject.operator->() );

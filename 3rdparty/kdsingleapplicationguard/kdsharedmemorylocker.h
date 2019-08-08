@@ -1,3 +1,9 @@
+/*
+ *   SPDX-License-Identifier: LGPL-2.0-only
+ *   License-Filename: LICENSES/LGPLv2-KDAB
+ *
+ *   The KD Tools Library is Copyright (C) 2001-2010 Klaralvdalens Datakonsult AB.
+ */
 #ifndef __KDTOOLS__CORE__KDSHAREDMEMORYLOCKER_H
 #define __KDTOOLS__CORE__KDSHAREDMEMORYLOCKER_H
 

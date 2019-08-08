@@ -19,7 +19,7 @@
 
 #include "ScanningDialog.h"
 
-#include "widgets/waitingspinnerwidget.h"
+#include "3rdparty/waitingspinnerwidget.h"
 
 #include <QBoxLayout>
 #include <QLabel>
