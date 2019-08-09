@@ -158,7 +158,7 @@ LibCalamaresTests::testUmask()
     mode_t m = CalamaresUtils::setUMask( 022 );
     QCOMPARE( CalamaresUtils::setUMask( m ), m );
 
-    for ( int i = 0; i <= 0777 /* octal! */; ++i )
+    for ( mode_t i = 0; i <= 0777 /* octal! */; ++i )
     {
         QByteArray name = ( ft.fileName() + QChar( '.' ) + QString::number( i, 8 ) ).toLatin1();
         CalamaresUtils::UMask um( i );
