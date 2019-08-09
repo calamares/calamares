@@ -236,8 +236,9 @@ System::runCommand( System::RunLocation location,
     }
     process.closeWriteChannel();
 
-    if ( !process.waitForFinished(
-             timeoutSec > std::chrono::seconds::zero() ? ( std::chrono::milliseconds( timeoutSec ).count() ) : -1 ) )
+    if ( !process.waitForFinished( timeoutSec > std::chrono::seconds::zero()
+                                       ? ( static_cast< int >( std::chrono::milliseconds( timeoutSec ).count() ) )
+                                       : -1 ) )
     {
         cWarning().noquote().nospace() << "Timed out. Output so far:\n" << process.readAllStandardOutput();
         return ProcessResult::Code::TimedOut;
