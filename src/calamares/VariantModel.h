@@ -79,6 +79,10 @@ private:
 
     /// @brief Implementation of walking an index through the variant-tree
     const QVariant underlying( const QModelIndex& index ) const;
+
+    /// @brief Helpers for range-checking
+    inline bool inRange( quintptr p ) const { return p < static_cast< quintptr >( m_rows.count() ); }
+    inline bool inRange( const QModelIndex& index ) const { return inRange( index.internalId() ); }
 };
 
 #endif

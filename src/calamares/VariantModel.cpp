@@ -19,7 +19,7 @@
 #include "VariantModel.h"
 
 static void
-overallLength( const QVariant& item, int& c, int parent, VariantModel::IndexVector* skiplist )
+overallLength( const QVariant& item, quintptr& c, quintptr parent, VariantModel::IndexVector* skiplist )
 {
     if ( skiplist )
     {
@@ -46,9 +46,11 @@ overallLength( const QVariant& item, int& c, int parent, VariantModel::IndexVect
 static quintptr
 findNth( const VariantModel::IndexVector& skiplist, quintptr value, int n )
 {
+    constexpr const quintptr invalid_index = static_cast< quintptr >( -1 );
+
     if ( n < 0 )
     {
-        return -1;
+        return invalid_index;
     }
 
     int index = 0;
@@ -58,12 +60,13 @@ findNth( const VariantModel::IndexVector& skiplist, quintptr value, int n )
         {
             if ( --n < 0 )
             {
-                return index;
+                // It's bigger than 0
+                return static_cast< quintptr >( index );
             }
         }
         index++;
     }
-    return -1;
+    return invalid_index;
 }
 
 
@@ -78,16 +81,19 @@ VariantModel::~VariantModel() {}
 void
 VariantModel::reload()
 {
-    int x = 0;
-    overallLength( *m_p, x, -1, nullptr );
+    constexpr const quintptr invalid_index = static_cast< quintptr >( -1 );
+
+    quintptr x = 0;
     m_rows.clear();  // Start over
-    m_rows.reserve( x );  // We'll need this much
-    x = 0;
-    overallLength( *m_p, x, -1, &m_rows );
+    if ( m_rows.capacity() < 64 )
+    {
+        m_rows.reserve( 64 );  // Start reasonably-sized
+    }
+    overallLength( *m_p, x, invalid_index, &m_rows );
 }
 
 int
-VariantModel::columnCount( const QModelIndex& index ) const
+VariantModel::columnCount( const QModelIndex& ) const
 {
     return 2;
 }
@@ -106,7 +112,7 @@ VariantModel::index( int row, int column, const QModelIndex& parent ) const
 
     if ( parent.isValid() )
     {
-        if ( !( parent.internalId() >= m_rows.count() ) )
+        if ( inRange( parent ) )
         {
             p = parent.internalId();
         }
@@ -115,27 +121,33 @@ VariantModel::index( int row, int column, const QModelIndex& parent ) const
     return createIndex( row, column, findNth( m_rows, p, row ) );
 }
 
+static inline quintptr
+deref( const VariantModel::IndexVector& v, quintptr i )
+{
+    return v[ static_cast< int >( i ) ];
+}
+
 QModelIndex
 VariantModel::parent( const QModelIndex& index ) const
 {
-    if ( !index.isValid() || ( index.internalId() > m_rows.count() ) )
+    if ( !index.isValid() || !inRange( index ) )
     {
         return QModelIndex();
     }
 
-    quintptr p = m_rows[ index.internalId() ];
+    quintptr p = deref( m_rows, index.internalId() );
     if ( p == 0 )
     {
         return QModelIndex();
     }
 
-    if ( p >= m_rows.count() )
+    if ( !inRange( p ) )
     {
         return QModelIndex();
     }
-    quintptr p_pid = m_rows[ p ];
+    quintptr p_pid = deref( m_rows, p );
     int row = 0;
-    for ( int i = 0; i < p; ++i )
+    for ( int i = 0; i < static_cast< int >( p ); ++i )
     {
         if ( m_rows[ i ] == p_pid )
         {
@@ -164,7 +176,7 @@ VariantModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    if ( index.internalId() >= m_rows.count() )
+    if ( !inRange( index ) )
     {
         return QVariant();
     }
