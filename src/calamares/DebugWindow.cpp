@@ -20,6 +20,8 @@
 #include "DebugWindow.h"
 #include "ui_DebugWindow.h"
 
+#include "VariantModel.h"
+
 #include "Branding.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
@@ -72,23 +74,25 @@ namespace Calamares {
 DebugWindow::DebugWindow()
     : QWidget( nullptr )
     , m_ui( new Ui::DebugWindow )
+    , m_globals( JobQueue::instance()->globalStorage()->data() )
+    , m_globals_model( std::make_unique< VariantModel >( &m_globals ) )
+    , m_module_model( std::make_unique< VariantModel >( &m_module ) )
 {
-    m_ui->setupUi( this );
-
-    // GlobalStorage page
-    QJsonModel* jsonModel = new QJsonModel( this );
-
-    m_ui->globalStorageView->setModel( jsonModel );
     GlobalStorage* gs = JobQueue::instance()->globalStorage();
 
+    m_ui->setupUi( this );
+
+    m_ui->globalStorageView->setModel( m_globals_model.get() );
+    m_ui->globalStorageView->expandAll();
+
+    // Do above when the GS changes, too
     connect( gs, &GlobalStorage::changed,
              this, [ = ]
     {
-        jsonModel->loadJson( QJsonDocument::fromVariant( gs->m ).toJson() );
+        m_globals = JobQueue::instance()->globalStorage()->data();
+        m_globals_model->reload();
         m_ui->globalStorageView->expandAll();
     } );
-    jsonModel->loadJson( QJsonDocument::fromVariant( gs->m ).toJson() );
-    m_ui->globalStorageView->expandAll();
 
     // JobQueue page
     m_ui->jobQueueText->setReadOnly( true );
@@ -109,8 +113,7 @@ DebugWindow::DebugWindow()
     m_ui->modulesListView->setModel( modulesModel );
     m_ui->modulesListView->setSelectionMode( QAbstractItemView::SingleSelection );
 
-    QJsonModel* moduleConfigModel = new QJsonModel( this );
-    m_ui->moduleConfigView->setModel( moduleConfigModel );
+    m_ui->moduleConfigView->setModel( m_module_model.get() );
 
 #ifdef WITH_PYTHONQT
     QPushButton* pythonConsoleButton = new QPushButton;
@@ -181,7 +184,7 @@ DebugWindow::DebugWindow()
 #endif
 
     connect( m_ui->modulesListView->selectionModel(), &QItemSelectionModel::selectionChanged,
-             this, [ this, moduleConfigModel
+             this, [ this
 #ifdef WITH_PYTHONQT
              , pythonConsoleButton
 #endif
@@ -191,7 +194,8 @@ DebugWindow::DebugWindow()
         Module* module = ModuleManager::instance()->moduleInstance( moduleName );
         if ( module )
         {
-            moduleConfigModel->loadJson( QJsonDocument::fromVariant( module->configurationMap() ).toJson() );
+            m_module = module->configurationMap();
+            m_module_model->reload();
             m_ui->moduleConfigView->expandAll();
             m_ui->moduleTypeLabel->setText( module->typeString() );
             m_ui->moduleInterfaceLabel->setText( module->interfaceString() );

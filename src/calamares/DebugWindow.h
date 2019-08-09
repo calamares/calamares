@@ -20,8 +20,12 @@
 #ifndef CALAMARES_DEBUGWINDOW_H
 #define CALAMARES_DEBUGWINDOW_H
 
+#include "VariantModel.h"
+
+#include <QVariant>
 #include <QWidget>
 
+#include <memory>
 
 namespace Calamares {
 
@@ -46,6 +50,10 @@ protected:
 
 private:
     Ui::DebugWindow *m_ui;
+    QVariant m_globals;
+    QVariant m_module;
+    std::unique_ptr< VariantModel> m_globals_model;
+    std::unique_ptr< VariantModel> m_module_model;
 };
 
 
