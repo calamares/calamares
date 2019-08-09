@@ -125,9 +125,9 @@ Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
     : QObject( parent )
     , m_descriptorPath( brandingFilePath )
+    , m_slideshowAPI( 1 )
     , m_welcomeStyleCalamares( false )
     , m_welcomeExpandingLogo( true )
-    , m_slideshowAPI( 1 )
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
 
