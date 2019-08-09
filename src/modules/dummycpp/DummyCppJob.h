@@ -49,4 +49,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( DummyCppJobFactory )
 
-#endif // DUMMYCPPJOB_H
+#endif  // DUMMYCPPJOB_H
