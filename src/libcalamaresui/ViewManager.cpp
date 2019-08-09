@@ -241,7 +241,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox->show();
 
     cDebug() << "Calamares will quit when the dialog closes.";
-    connect( msgBox, &QMessageBox::buttonClicked, [this,msgBox]( QAbstractButton* button ) {
+    connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
             // TODO: host and port should be configurable
@@ -254,9 +254,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
             }
 
             // TODO: make the URL clickable, or copy it to the clipboard automatically
-            QMessageBox::critical(nullptr,
-                                pasteUrlTitle,
-                                pasteUrlMsg);
+            QMessageBox::critical( nullptr, pasteUrlTitle, pasteUrlMsg );
         }
         QApplication::quit();
     } );
