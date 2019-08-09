@@ -5,6 +5,8 @@ set( calamaresSources
     CalamaresApplication.cpp
     CalamaresWindow.cpp
 
+    DebugWindow.cpp
+
     progresstree/ProgressTreeDelegate.cpp
     progresstree/ProgressTreeItem.cpp
     progresstree/ProgressTreeModel.cpp
@@ -35,6 +37,7 @@ set_target_properties(calamares_bin
         RUNTIME_OUTPUT_NAME calamares
 )
 calamares_automoc( calamares_bin )
+calamares_autouic( calamares_bin )
 
 target_link_libraries( calamares_bin
     PRIVATE

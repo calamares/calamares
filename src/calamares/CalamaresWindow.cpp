@@ -26,7 +26,7 @@
 #include "ViewManager.h"
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
-#include "utils/DebugWindow.h"
+#include "DebugWindow.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
