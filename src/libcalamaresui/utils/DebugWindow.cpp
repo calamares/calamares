@@ -30,8 +30,6 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#include "3rdparty/qjsonmodel.h"
-
 #ifdef WITH_PYTHONQT
 #include "ViewManager.h"
 #include "viewpages/PythonQtViewStep.h"
@@ -39,10 +37,10 @@
 #include <gui/PythonQtScriptingConsole.h>
 #endif
 
-#include <QJsonDocument>
 #include <QSplitter>
 #include <QStringListModel>
 #include <QTreeView>
+#include <QWidget>
 
 /**
  * @brief crash makes Calamares crash immediately.
