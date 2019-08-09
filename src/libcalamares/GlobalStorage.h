@@ -22,6 +22,8 @@
 
 #include "CalamaresConfig.h"
 
+#include <QObject>
+#include <QString>
 #include <QVariantMap>
 
 #ifdef WITH_PYTHON
@@ -87,13 +89,19 @@ public:
     /// @brief reads settings from the given filename
     bool loadYaml( const QString& filename );
 
+    /** @brief Get internal mapping as a constant object
+     *
+     * Note that the VariantMap underneath may change, because
+     * it's not constant in itself. Connect to the changed()
+     * signal for notifications.
+     */
+    const QVariantMap& data() const { return m; }
+
 signals:
     void changed();
 
 private:
     QVariantMap m;
-
-    friend DebugWindow;
 };
 
 }  // namespace Calamares
