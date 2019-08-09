@@ -21,6 +21,5 @@ if( ECM_FOUND AND BUILD_TESTING )
             Qt5::Core
             Qt5::Test
     )
-    set_target_properties( initcpiotest PROPERTIES AUTOMOC TRUE )
-    target_include_directories( initcpiotest PRIVATE /usr/local/include )
+    calamares_automoc( initcpiotest )
 endif()
