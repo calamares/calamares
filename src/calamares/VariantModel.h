@@ -75,6 +75,30 @@ public:
 
 private:
     const QVariant* const m_p;
+
+    /** @brief Tree representation of the variant.
+     *
+     * At index 0 in the vector , we store -1 to indicate the root.
+     *
+     * Then we enumerate all the elements in the tree (by traversing
+     * the variant and using QVariantMap and QVariantList as having
+     * children, and everything else being a leaf node) and at the index
+     * for a child, store the index of its parent. This means that direct
+     * children of the root store a 0 in their indexes, children of the first
+     * child of the root store a 1, and we can "pointer chase" from an index
+     * through parents back to index 0.
+     *
+     * Because of this structure, the value stored at index i must be
+     * less than i (except for index 0, which is special). This makes it
+     * slightly easier to search for a given value *p*, because we can start
+     * at index *p* (or even *p+1*).
+     *
+     * Given an index *i* into the vector corresponding to a child, we know the
+     * parent, but can also count which row this child should have, by counting
+     * *other* indexes before *i* with the same parent (and by the ordering
+     * of values, we can start counting at index *parent-index*).
+     *
+     */
     IndexVector m_rows;
 
     /// @brief Implementation of walking an index through the variant-tree

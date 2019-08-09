@@ -53,7 +53,7 @@ findNth( const VariantModel::IndexVector& skiplist, quintptr value, int n )
         return invalid_index;
     }
 
-    int index = 0;
+    int index = static_cast< int >( value );
     while ( ( n >= 0 ) && ( index < skiplist.count() ) )
     {
         if ( skiplist[ index ] == value )
@@ -147,7 +147,7 @@ VariantModel::parent( const QModelIndex& index ) const
     }
     quintptr p_pid = deref( m_rows, p );
     int row = 0;
-    for ( int i = 0; i < static_cast< int >( p ); ++i )
+    for ( int i = static_cast< int >( p_pid ); i < static_cast< int >( p ); ++i )
     {
         if ( m_rows[ i ] == p_pid )
         {
