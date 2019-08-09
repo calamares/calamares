@@ -6,6 +6,7 @@ set( calamaresSources
     CalamaresWindow.cpp
 
     DebugWindow.cpp
+    VariantModel.cpp
 
     progresstree/ProgressTreeDelegate.cpp
     progresstree/ProgressTreeItem.cpp
