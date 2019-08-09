@@ -55,21 +55,29 @@ crash()
 }
 
 /// @brief Print out the widget tree (names) in indented form.
-static void dumpWidgetTree( QDebug& deb, const QWidget* widget, int depth )
+static void
+dumpWidgetTree( QDebug& deb, const QWidget* widget, int depth )
 {
     if ( !widget )
+    {
         return;
+    }
 
     deb << Logger::Continuation;
-    for (int i = 0; i < depth; ++i )
+    for ( int i = 0; i < depth; ++i )
+    {
         deb << ' ';
+    }
     deb << widget->objectName();
 
-    for ( const auto* w : widget->findChildren<QWidget*>( QString(), Qt::FindDirectChildrenOnly ) )
-        dumpWidgetTree( deb, w, depth+1 );
+    for ( const auto* w : widget->findChildren< QWidget* >( QString(), Qt::FindDirectChildrenOnly ) )
+    {
+        dumpWidgetTree( deb, w, depth + 1 );
+    }
 }
 
-namespace Calamares {
+namespace Calamares
+{
 
 DebugWindow::DebugWindow()
     : QWidget( nullptr )
@@ -86,9 +94,7 @@ DebugWindow::DebugWindow()
     m_ui->globalStorageView->expandAll();
 
     // Do above when the GS changes, too
-    connect( gs, &GlobalStorage::changed,
-             this, [ = ]
-    {
+    connect( gs, &GlobalStorage::changed, this, [=] {
         m_globals = JobQueue::instance()->globalStorage()->data();
         m_globals_model->reload();
         m_ui->globalStorageView->expandAll();
@@ -96,11 +102,9 @@ DebugWindow::DebugWindow()
 
     // JobQueue page
     m_ui->jobQueueText->setReadOnly( true );
-    connect( JobQueue::instance(), &JobQueue::queueChanged,
-             this, [ this ]( const JobList& jobs )
-    {
+    connect( JobQueue::instance(), &JobQueue::queueChanged, this, [this]( const JobList& jobs ) {
         QStringList text;
-        for ( const auto &job : jobs )
+        for ( const auto& job : jobs )
         {
             text.append( job->prettyName() );
         }
@@ -121,21 +125,17 @@ DebugWindow::DebugWindow()
     m_ui->modulesVerticalLayout->insertWidget( 1, pythonConsoleButton );
     pythonConsoleButton->hide();
 
-    QObject::connect( pythonConsoleButton, &QPushButton::clicked,
-                      this, [ this, moduleConfigModel ]
-    {
+    QObject::connect( pythonConsoleButton, &QPushButton::clicked, this, [this, moduleConfigModel] {
         QString moduleName = m_ui->modulesListView->currentIndex().data().toString();
         Module* module = ModuleManager::instance()->moduleInstance( moduleName );
-        if ( module->interface() != Module::Interface::PythonQt ||
-             module->type() != Module::Type::View )
+        if ( module->interface() != Module::Interface::PythonQt || module->type() != Module::Type::View )
             return;
 
         for ( ViewStep* step : ViewManager::instance()->viewSteps() )
         {
             if ( step->moduleInstanceKey() == module->instanceKey() )
             {
-                PythonQtViewStep* pqvs =
-                    qobject_cast< PythonQtViewStep* >( step );
+                PythonQtViewStep* pqvs = qobject_cast< PythonQtViewStep* >( step );
                 if ( pqvs )
                 {
                     QWidget* consoleWindow = new QWidget;
@@ -152,23 +152,17 @@ DebugWindow::DebugWindow()
 
                     QLabel* bottomLabel = new QLabel( consoleWindow );
                     bottomLayout->addWidget( bottomLabel );
-                    QString line =
-                        QString( "Module: <font color=\"#008000\"><code>%1</code></font><br/>"
-                                 "Python class: <font color=\"#008000\"><code>%2</code></font>" )
-                            .arg( module->instanceKey() )
-                            .arg( console->property( "classname" ).toString() );
+                    QString line = QString( "Module: <font color=\"#008000\"><code>%1</code></font><br/>"
+                                            "Python class: <font color=\"#008000\"><code>%2</code></font>" )
+                                       .arg( module->instanceKey() )
+                                       .arg( console->property( "classname" ).toString() );
                     bottomLabel->setText( line );
 
                     QPushButton* closeButton = new QPushButton( consoleWindow );
                     closeButton->setText( "&Close" );
-                    QObject::connect( closeButton, &QPushButton::clicked,
-                                      [ consoleWindow ]
-                    {
-                        consoleWindow->close();
-                    } );
+                    QObject::connect( closeButton, &QPushButton::clicked, [consoleWindow] { consoleWindow->close(); } );
                     bottomLayout->addWidget( closeButton );
-                    bottomLabel->setSizePolicy( QSizePolicy::Expanding,
-                                                QSizePolicy::Preferred );
+                    bottomLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
                     consoleWindow->setParent( this );
                     consoleWindow->setWindowFlags( Qt::Window );
@@ -183,58 +177,52 @@ DebugWindow::DebugWindow()
 
 #endif
 
-    connect( m_ui->modulesListView->selectionModel(), &QItemSelectionModel::selectionChanged,
-             this, [ this
+    connect( m_ui->modulesListView->selectionModel(),
+             &QItemSelectionModel::selectionChanged,
+             this,
+             [this
 #ifdef WITH_PYTHONQT
-             , pythonConsoleButton
+              ,
+              pythonConsoleButton
 #endif
-             ]
-    {
-        QString moduleName = m_ui->modulesListView->currentIndex().data().toString();
-        Module* module = ModuleManager::instance()->moduleInstance( moduleName );
-        if ( module )
-        {
-            m_module = module->configurationMap();
-            m_module_model->reload();
-            m_ui->moduleConfigView->expandAll();
-            m_ui->moduleTypeLabel->setText( module->typeString() );
-            m_ui->moduleInterfaceLabel->setText( module->interfaceString() );
+    ] {
+                 QString moduleName = m_ui->modulesListView->currentIndex().data().toString();
+                 Module* module = ModuleManager::instance()->moduleInstance( moduleName );
+                 if ( module )
+                 {
+                     m_module = module->configurationMap();
+                     m_module_model->reload();
+                     m_ui->moduleConfigView->expandAll();
+                     m_ui->moduleTypeLabel->setText( module->typeString() );
+                     m_ui->moduleInterfaceLabel->setText( module->interfaceString() );
 #ifdef WITH_PYTHONQT
-            pythonConsoleButton->setVisible(
-                        module->interface() == Module::Interface::PythonQt &&
-                        module->type() == Module::Type::View );
+                     pythonConsoleButton->setVisible( module->interface() == Module::Interface::PythonQt
+                                                      && module->type() == Module::Type::View );
 #endif
-        }
-    } );
+                 }
+             } );
 
     // Tools page
     connect( m_ui->crashButton, &QPushButton::clicked, this, [] { ::crash(); } );
-    connect( m_ui->reloadStylesheetButton, &QPushButton::clicked,
-             []()
-             {
-                 for ( auto* w : qApp->topLevelWidgets() )
-                 {
-                     // Needs to match what's set in CalamaresWindow
-                     if ( w->objectName() == QStringLiteral( "mainApp" ) )
-                     {
-                         w->setStyleSheet( Calamares::Branding::instance()->stylesheet() );
-                     }
-                 }
-             });
-    connect( m_ui->widgetTreeButton, &QPushButton::clicked,
-             []()
-             {
-                 for ( auto* w : qApp->topLevelWidgets() )
-                 {
-                     Logger::CDebug deb;
-                     dumpWidgetTree( deb, w, 0 );
-                 }
-             });
+    connect( m_ui->reloadStylesheetButton, &QPushButton::clicked, []() {
+        for ( auto* w : qApp->topLevelWidgets() )
+        {
+            // Needs to match what's set in CalamaresWindow
+            if ( w->objectName() == QStringLiteral( "mainApp" ) )
+            {
+                w->setStyleSheet( Calamares::Branding::instance()->stylesheet() );
+            }
+        }
+    } );
+    connect( m_ui->widgetTreeButton, &QPushButton::clicked, []() {
+        for ( auto* w : qApp->topLevelWidgets() )
+        {
+            Logger::CDebug deb;
+            dumpWidgetTree( deb, w, 0 );
+        }
+    } );
 
-    CALAMARES_RETRANSLATE(
-        m_ui->retranslateUi( this );
-        setWindowTitle( tr( "Debug information" ) );
-    )
+    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); setWindowTitle( tr( "Debug information" ) ); )
 }
 
 
@@ -245,4 +233,4 @@ DebugWindow::closeEvent( QCloseEvent* e )
     emit closed();
 }
 
-} // namespace Calamares
+}  // namespace Calamares

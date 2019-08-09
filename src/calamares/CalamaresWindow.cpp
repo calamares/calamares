@@ -22,11 +22,11 @@
 #include "CalamaresWindow.h"
 
 #include "Branding.h"
+#include "DebugWindow.h"
 #include "Settings.h"
 #include "ViewManager.h"
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
-#include "DebugWindow.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
