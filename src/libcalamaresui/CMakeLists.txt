@@ -14,12 +14,8 @@ set( calamaresui_SOURCES
     modulesystem/ViewModule.cpp
 
     utils/CalamaresUtilsGui.cpp
-    utils/DebugWindow.cpp
     utils/ImageRegistry.cpp
     utils/Paste.cpp
-
-    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonmodel.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonitem.cpp
 
     viewpages/BlankViewStep.cpp
     viewpages/ViewStep.cpp
@@ -39,10 +35,6 @@ mark_thirdparty_code(
     ${CMAKE_SOURCE_DIR}/3rdparty/qjsonitem.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/qjsonmodel.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
-)
-
-set( calamaresui_UI
-    utils/DebugWindow.ui
 )
 
 if( WITH_PYTHON )
@@ -72,7 +64,6 @@ endif()
 
 calamares_add_library( calamaresui
     SOURCES ${calamaresui_SOURCES}
-    UI ${calamaresui_UI}
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_PRIVATE_LIBRARIES
         ${OPTIONAL_PYTHON_LIBRARIES}
