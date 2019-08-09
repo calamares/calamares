@@ -265,6 +265,4 @@ VariantModel::underlying( const QModelIndex& index ) const
     {
         return thing;
     }
-
-    return QVariant();
 }
