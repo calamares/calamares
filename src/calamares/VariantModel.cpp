@@ -70,14 +70,20 @@ findNth( const VariantModel::IndexVector& skiplist, quintptr value, int n )
 VariantModel::VariantModel( const QVariant* p )
     : m_p( p )
 {
-    int x = 0;
-    overallLength( *p, x, -1, nullptr );
-    m_rows.reserve( x );
-    x = 0;
-    overallLength( *p, x, -1, &m_rows );
+    reload();
 }
 
 VariantModel::~VariantModel() {}
+
+void VariantModel::reload()
+{
+    int x = 0;
+    overallLength( *m_p, x, -1, nullptr );
+    m_rows.clear();  // Start over
+    m_rows.reserve( x );  // We'll need this much
+    x = 0;
+    overallLength( *m_p, x, -1, &m_rows );
+}
 
 int
 VariantModel::columnCount( const QModelIndex& index ) const

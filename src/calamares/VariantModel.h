@@ -33,7 +33,9 @@
  * VariantMap's data structure.
  *
  * Take care of object lifetimes and that the underlying
- * QVariant does not change during use.
+ * QVariant does not change during use. If the QVariant
+ * **does** change, call reload() to re-build the internal
+ * representation of the tree.
  */
 class VariantModel : public QAbstractItemModel
 {
@@ -55,6 +57,13 @@ public:
     VariantModel( const QVariant* p );
 
     ~VariantModel() override;
+
+    /** @brief Re-build the internal tree
+     *
+     * Call this when the underlying variant is changed, which
+     * might impact how the tree is laid out.
+     */
+    void reload();
 
     int columnCount( const QModelIndex& index ) const override;
     int rowCount( const QModelIndex& index ) const override;
