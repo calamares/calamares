@@ -75,7 +75,8 @@ VariantModel::VariantModel( const QVariant* p )
 
 VariantModel::~VariantModel() {}
 
-void VariantModel::reload()
+void
+VariantModel::reload()
 {
     int x = 0;
     overallLength( *m_p, x, -1, nullptr );
@@ -210,6 +211,35 @@ VariantModel::data( const QModelIndex& index, int role ) const
         {
             return thing;
         }
+    }
+}
+
+QVariant
+VariantModel::headerData( int section, Qt::Orientation orientation, int role ) const
+{
+    if ( role != Qt::DisplayRole )
+    {
+        return QVariant();
+    }
+
+    if ( orientation == Qt::Horizontal )
+    {
+        if ( section == 0 )
+        {
+            return tr( "Key" );
+        }
+        else if ( section == 1 )
+        {
+            return tr( "Value" );
+        }
+        else
+        {
+            return QVariant();
+        }
+    }
+    else
+    {
+        return QVariant();
     }
 }
 
