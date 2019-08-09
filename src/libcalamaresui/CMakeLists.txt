@@ -18,9 +18,6 @@ set( calamaresui_SOURCES
     utils/ImageRegistry.cpp
     utils/Paste.cpp
 
-    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonmodel.cpp
-    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonitem.cpp
-
     viewpages/BlankViewStep.cpp
     viewpages/ViewStep.cpp
 
