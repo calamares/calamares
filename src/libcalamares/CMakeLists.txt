@@ -120,6 +120,7 @@ target_link_libraries( calamares
     LINK_PUBLIC
         ${YAMLCPP_LIBRARY}
         Qt5::Core
+        KF5::CoreAddons
         ${OPTIONAL_PUBLIC_LIBRARIES}
 )
 

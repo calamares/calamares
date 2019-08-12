@@ -1,11 +1,11 @@
 find_package( KPMcore 3.3 )
+find_package( KF5Config CONFIG )
+find_package( KF5I18n CONFIG )
+find_package( KF5WidgetsAddons CONFIG )
 
 set( _partition_defs "" )
 
-if ( KPMcore_FOUND )
-    find_package( Qt5 REQUIRED DBus )  # Needed for KPMCore
-    find_package( KF5 REQUIRED I18n WidgetsAddons )  # Needed for KPMCore
-
+if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND )
     include_directories( ${KPMCORE_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/src/modules/partition )
 
     if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
@@ -48,5 +48,9 @@ if ( KPMcore_FOUND )
         target_compile_definitions( fsresizertest PRIVATE ${_partition_defs} )
     endif()
 else()
-    calamares_skip_module( "fsresizer (missing suitable KPMcore)" )
+    if ( NOT KPMcore_FOUND )
+        calamares_skip_module( "fsresizer (missing suitable KPMcore)" )
+    else()
+        calamares_skip_module( "fsresizer (missing dependencies for KPMcore)" )
+    endif()
 endif()

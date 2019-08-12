@@ -75,8 +75,6 @@ calamares_add_library( calamaresui
     VERSION ${CALAMARES_VERSION_SHORT}
 )
 
-find_package( KF5CoreAddons 5.58 QUIET )  # If it's really new
-if ( KF5CoreAddons_FOUND )
+if ( KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58 )
     target_compile_definitions( calamaresui PRIVATE WITH_KOSRelease )
-    target_link_libraries( calamaresui PRIVATE KF5::CoreAddons )
 endif()

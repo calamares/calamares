@@ -13,6 +13,11 @@ This release contains contributions from (alphabetically by first name):
   has had a few updates and has now been consistently applied across
   the core codebase (e.g. libcalamares, libcalamaresui, calamares, but
   not the modules).
+- *KCoreAddons* is now a required dependency. This lets us drop a chunk
+  of code that was copied from KCoreAddons years ago, and use the
+  (maintained!) upstream version instead. It also gives us KMacroExpander
+  everywhere, which will simplify code for handling substitutions
+  in configuration files.
 
 ## Modules ##
 

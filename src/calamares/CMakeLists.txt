@@ -46,11 +46,11 @@ target_link_libraries( calamares_bin
         calamaresui
         Qt5::Core
         Qt5::Widgets
+        KF5::CoreAddons
 )
 if( WITH_KF5Crash )
     target_link_libraries( calamares_bin
         PRIVATE
-            KF5::CoreAddons
             KF5::Crash
     )
     target_compile_definitions( calamares_bin PRIVATE WITH_KF5Crash )
