@@ -50,7 +50,7 @@ ViewModule::loadSelf()
 {
     if ( m_loader )
     {
-        PluginFactory* pf = qobject_cast< PluginFactory* >( m_loader->instance() );
+        CalamaresPluginFactory* pf = qobject_cast< CalamaresPluginFactory* >( m_loader->instance() );
         if ( !pf )
         {
             cWarning() << Q_FUNC_INFO << "No factory:" << m_loader->errorString();

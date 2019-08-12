@@ -44,6 +44,7 @@ set( libSources
     utils/CommandList.cpp
     utils/Dirs.cpp
     utils/Logger.cpp
+    utils/PluginFactory.cpp
     utils/Retranslator.cpp
     utils/String.cpp
     utils/UMask.cpp
