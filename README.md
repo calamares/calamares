@@ -21,6 +21,7 @@ Main:
 * Boost.Python >= 1.55.0 (required for some modules)
 * KDE extra-cmake-modules >= 5.18 (recommended; required for some modules;
   required for some tests)
+* KDE Frameworks KCoreAddons (>= 5.58 recommended)
 * PythonQt (optional, deprecated)
 
 Modules:
