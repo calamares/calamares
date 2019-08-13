@@ -29,13 +29,22 @@ namespace Partition
 static const NamedEnumTable< SizeUnit >&
 unitSuffixes()
 {
+    // *INDENT-OFF*
+    // clang-format off
     static const NamedEnumTable< SizeUnit > names {
-        { QStringLiteral( "%" ), SizeUnit::Percent }, { QStringLiteral( "K" ), SizeUnit::KiB },
-        { QStringLiteral( "KiB" ), SizeUnit::KiB },   { QStringLiteral( "M" ), SizeUnit::MiB },
-        { QStringLiteral( "MiB" ), SizeUnit::MiB },   { QStringLiteral( "G" ), SizeUnit::GiB },
-        { QStringLiteral( "GiB" ), SizeUnit::GiB },   { QStringLiteral( "KB" ), SizeUnit::KB },
-        { QStringLiteral( "MB" ), SizeUnit::MB },     { QStringLiteral( "GB" ), SizeUnit::GB }
+        { QStringLiteral( "%" ), SizeUnit::Percent },
+        { QStringLiteral( "K" ), SizeUnit::KiB },
+        { QStringLiteral( "KiB" ), SizeUnit::KiB },
+        { QStringLiteral( "M" ), SizeUnit::MiB },
+        { QStringLiteral( "MiB" ), SizeUnit::MiB },
+        { QStringLiteral( "G" ), SizeUnit::GiB },
+        { QStringLiteral( "GiB" ), SizeUnit::GiB },
+        { QStringLiteral( "KB" ), SizeUnit::KB },
+        { QStringLiteral( "MB" ), SizeUnit::MB },
+        { QStringLiteral( "GB" ), SizeUnit::GB }
     };
+    // clang-format on
+    // *INDENT-ON*
 
     return names;
 }
