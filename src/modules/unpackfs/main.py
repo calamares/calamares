@@ -103,6 +103,7 @@ def file_copy(source, dest, progress_cb):
     if not source.endswith("/"):
         source += "/"
 
+    num_files_total_local = 0
     num_files_copied = 0  # Gets updated through rsync output
 
     args = ['rsync', '-aHAXr']
