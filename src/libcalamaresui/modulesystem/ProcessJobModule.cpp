@@ -77,7 +77,9 @@ ProcessJobModule::initFrom( const QVariantMap& moduleDescriptor )
     {
         int sec = moduleDescriptor.value( "timeout" ).toInt();
         if ( sec < 0 )
+        {
             sec = 0;
+        }
         m_secondsTimeout = std::chrono::seconds( sec );
     }
 

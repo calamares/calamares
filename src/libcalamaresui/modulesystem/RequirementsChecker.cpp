@@ -151,8 +151,7 @@ RequirementsChecker::reportProgress()
     m_progressTimeouts++;
 
     QStringList remainingNames;
-    auto remaining = std::count_if( m_watchers.cbegin(), m_watchers.cend(),
-        [&]( const Watcher* w ) {
+    auto remaining = std::count_if( m_watchers.cbegin(), m_watchers.cend(), [&]( const Watcher* w ) {
         if ( w && !w->isFinished() )
         {
             remainingNames << w->objectName();
