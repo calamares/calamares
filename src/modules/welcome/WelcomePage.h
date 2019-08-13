@@ -38,10 +38,16 @@ class WelcomePage : public QWidget
 public:
     explicit WelcomePage( QWidget* parent = nullptr );
 
-    /// @brief Configure the buttons for URLs from the branding configuration
-    void setUpLinks( bool showSupportUrl, bool showKnownIssuesUrl, bool showReleaseNotesUrl );
-    /// @brief Configure the "Donate" button
-    void setupDonateButton( const QString& );
+    enum class Button
+    {
+        Support,
+        Donate,
+        KnownIssues,
+        ReleaseNotes
+    };
+
+    /// @brief Configure the button @p n, to open @p url
+    void setupButton( Button b, const QString& url );
 
     /// @brief Set international language-selector icon
     void setLanguageIcon( QPixmap );

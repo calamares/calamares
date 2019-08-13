@@ -32,6 +32,7 @@
 #include "modulesystem/ModuleManager.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"
 
 #include <QApplication>
@@ -244,27 +245,59 @@ WelcomePage::setUpLinks( bool showSupportUrl, bool showKnownIssuesUrl, bool show
 
 
 void
-WelcomePage::setupDonateButton( const QString& url )
+WelcomePage::setupButton( Button role, const QString& url )
 {
+    QPushButton* button = nullptr;
+    CalamaresUtils::ImageType icon = CalamaresUtils::Information;
+
+    switch ( role )
+    {
+    case Button::Donate:
+        button = ui->donateButton;
+        icon = CalamaresUtils::Donate;
+        break;
+    case Button::KnownIssues:
+        button = ui->knownIssuesButton;
+        icon = CalamaresUtils::Bugs;
+        break;
+    case Button::ReleaseNotes:
+        button = ui->releaseNotesButton;
+        icon = CalamaresUtils::Release;
+        break;
+    case Button::Support:
+        button = ui->supportButton;
+        icon = CalamaresUtils::Help;
+        break;
+    }
+    if ( !button )
+    {
+        qWarning() << "Unknown button role" << smash( role );
+        return;
+    }
+
     if ( url.isEmpty() )
     {
-        ui->donateButton->hide();
+        button->hide();
         return;
     }
 
     QUrl u( url );
     if ( u.isValid() )
     {
-        ui->donateButton->setIcon( CalamaresUtils::defaultPixmap(
-            CalamaresUtils::Donate,
-            CalamaresUtils::Original,
-            2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() ) ) );
-        connect( ui->donateButton, &QPushButton::clicked, [u]() { QDesktopServices::openUrl( u ); } );
+        auto size = 2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() ) );
+        button->setIcon( CalamaresUtils::defaultPixmap(
+                        icon,
+                        CalamaresUtils::Original,size
+                    );
+        connect( button, &QPushButton::clicked, [u]()
+        {
+            QDesktopServices::openUrl( u );
+        } );
     }
     else
     {
-        qWarning() << "Donate URL" << url << "is invalid.";
-        ui->donateButton->hide();
+        qWarning() << "Welcome button" << smash( role ) << "URL" << url << "is invalid.";
+        button->hide();
     }
 }
 
