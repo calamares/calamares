@@ -76,10 +76,9 @@ ProgressTreeView::setModel( QAbstractItemModel* model )
     QTreeView::setModel( model );
     expandAll();
 
-    connect(
-        Calamares::ViewManager::instance(),
-        &Calamares::ViewManager::currentStepChanged,
-        this,
-        [this]() { viewport()->update(); },
-        Qt::UniqueConnection );
+    connect( Calamares::ViewManager::instance(),
+             &Calamares::ViewManager::currentStepChanged,
+             this,
+             [this]() { viewport()->update(); },
+             Qt::UniqueConnection );
 }
