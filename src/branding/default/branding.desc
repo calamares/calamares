@@ -58,7 +58,8 @@ windowSize: 800px,520px
 # if it contains substitutions, or you'll get YAML exceptions.
 #
 # The *Url* entries are used on the welcome page, and they
-# are visible as buttons there if the corresponding *show* keys are set.
+# are visible as buttons there if the corresponding *show* keys
+# are set to "true" (they can also be overridden).
 strings:
     productName:         "@{NAME}"
     shortProductName:    Generic
