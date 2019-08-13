@@ -52,6 +52,8 @@ Branding::instance()
 }
 
 
+// *INDENT-OFF*
+// clang-format off
 const QStringList Branding::s_stringEntryStrings =
 {
     "productName",
@@ -82,15 +84,21 @@ const QStringList Branding::s_styleEntryStrings =
     "sidebarTextSelect",
     "sidebarTextHighlight"
 };
+// clang-format on
+// *INDENT-ON*
 
 const NamedEnumTable<Branding::WindowDimensionUnit>&
 Branding::WindowDimension::suffixes()
 {
     using Unit = Branding::WindowDimensionUnit;
+    // *INDENT-OFF*
+    // clang-format off
     static const NamedEnumTable<Unit> names{
         {"px", Unit::Pixies},
         {"em", Unit::Fonties}
     };
+    // clang-format on
+    // *INDENT-ON*
 
     return names;
 }

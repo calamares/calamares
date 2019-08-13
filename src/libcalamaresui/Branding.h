@@ -25,13 +25,13 @@
 
 #include "utils/NamedSuffix.h"
 
+#include <QMap>
 #include <QObject>
 #include <QStringList>
-#include <QMap>
 
 namespace YAML
 {
-    class Node;
+class Node;
 }
 
 namespace Calamares
@@ -79,27 +79,39 @@ public:
     };
 
     /** @brief Setting for how much the main window may expand. */
-    enum class WindowExpansion { Normal, Fullscreen, Fixed } ;
+    enum class WindowExpansion
+    {
+        Normal,
+        Fullscreen,
+        Fixed
+    };
     /** @brief Setting for the main window size.
      *
      * The units are pixels (Pixies) or something-based-on-fontsize (Fonties), which
      * we suffix as "em", e.g. "600px" or "32em".
      */
-    enum class WindowDimensionUnit { None, Pixies, Fonties };
-    class WindowDimension : public NamedSuffix<WindowDimensionUnit, WindowDimensionUnit::None>
+    enum class WindowDimensionUnit
+    {
+        None,
+        Pixies,
+        Fonties
+    };
+    class WindowDimension : public NamedSuffix< WindowDimensionUnit, WindowDimensionUnit::None >
     {
     public:
-        static  const NamedEnumTable< WindowDimensionUnit >& suffixes();
+        static const NamedEnumTable< WindowDimensionUnit >& suffixes();
         bool isValid() const;
 
         using NamedSuffix::NamedSuffix;
-        WindowDimension( const QString& s ) : NamedSuffix( suffixes(), s ) {}
-    } ;
+        WindowDimension( const QString& s )
+            : NamedSuffix( suffixes(), s )
+        {
+        }
+    };
 
     static Branding* instance();
 
-    explicit Branding( const QString& brandingFilePath,
-                       QObject* parent = nullptr );
+    explicit Branding( const QString& brandingFilePath, QObject* parent = nullptr );
 
     /** @brief Complete path of the branding descriptor file. */
     QString descriptorPath() const { return m_descriptorPath; }
@@ -184,11 +196,14 @@ private:
     WindowExpansion m_windowExpansion;
 
     WindowDimension m_windowHeight, m_windowWidth;
-
 };
 
-template<typename U> inline QString operator*(U e) { return Branding::instance()->string( e ); }
-
+template < typename U >
+inline QString operator*( U e )
+{
+    return Branding::instance()->string( e );
 }
 
-#endif // BRANDING_H
+}  // namespace Calamares
+
+#endif  // BRANDING_H

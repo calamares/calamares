@@ -77,6 +77,6 @@ private:
     void updateFromJobQueue( qreal percent, const QString& message );
 };
 
-}
+}  // namespace Calamares
 
 #endif /* EXECUTIONVIEWSTEP_H */

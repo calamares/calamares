@@ -23,10 +23,10 @@
 #include "Branding.h"
 #include "Job.h"
 #include "JobQueue.h"
-#include "modulesystem/Module.h"
-#include "modulesystem/ModuleManager.h"
 #include "Settings.h"
 #include "ViewManager.h"
+#include "modulesystem/Module.h"
+#include "modulesystem/ModuleManager.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Dirs.h"
@@ -56,7 +56,7 @@ callQMLFunction( QQuickItem* qmlObject, const char* method )
     QByteArray methodSignature( method );
     methodSignature.append( "()" );
 
-    if ( qmlObject && qmlObject->metaObject()->indexOfMethod( methodSignature )  >= 0 )
+    if ( qmlObject && qmlObject->metaObject()->indexOfMethod( methodSignature ) >= 0 )
     {
         QVariant returnValue;
         QMetaObject::invokeMethod( qmlObject, method, Q_RETURN_ARG( QVariant, returnValue ) );
@@ -117,9 +117,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
 QString
 ExecutionViewStep::prettyName() const
 {
-    return Calamares::Settings::instance()->isSetupMode()
-        ? tr( "Set up" )
-        : tr( "Install" );
+    return Calamares::Settings::instance()->isSetupMode() ? tr( "Set up" ) : tr( "Install" );
 }
 
 
@@ -176,8 +174,7 @@ ExecutionViewStep::loadQmlV2()
     {
         m_qmlComponent = new QQmlComponent( m_qmlShow->engine(),
                                             QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ),
-                                            QQmlComponent::CompilationMode::Asynchronous
-                                          );
+                                            QQmlComponent::CompilationMode::Asynchronous );
         connect( m_qmlComponent, &QQmlComponent::statusChanged, this, &ExecutionViewStep::loadQmlV2Complete );
     }
 }
@@ -194,14 +191,17 @@ ExecutionViewStep::loadQmlV2Complete()
         QObject* o = m_qmlComponent->create();
         m_qmlObject = qobject_cast< QQuickItem* >( o );
         if ( !m_qmlObject )
+        {
             delete o;
+        }
         else
         {
             // setContent() is public API, but not documented publicly.
             // It is marked \internal in the Qt sources, but does exactly
             // what is needed: sets up visual parent by replacing the root
             // item, and handling resizes.
-            m_qmlShow->setContent( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ), m_qmlComponent, m_qmlObject );
+            m_qmlShow->setContent(
+                QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ), m_qmlComponent, m_qmlObject );
             if ( ViewManager::instance()->currentStep() == this )
             {
                 // We're alreay visible! Must have been slow QML loading, and we
@@ -235,8 +235,10 @@ ExecutionViewStep::onActivate()
             auto jl = module->jobs();
             if ( module->isEmergency() )
             {
-                for( auto& j : jl )
+                for ( auto& j : jl )
+                {
                     j->setEmergency( true );
+                }
             }
             queue->enqueue( jl );
         }
@@ -279,4 +281,4 @@ ExecutionViewStep::onLeave()
     }
 }
 
-} // namespace
+}  // namespace Calamares
