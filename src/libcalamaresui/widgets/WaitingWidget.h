@@ -35,4 +35,4 @@ private:
     QLabel* m_waitingLabel;
 };
 
-#endif // WAITINGWIDGET_H
+#endif  // WAITINGWIDGET_H

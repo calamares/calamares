@@ -42,4 +42,4 @@ private:
     QTime m_time;
 };
 
-#endif // CLICKABLELABEL_H
+#endif  // CLICKABLELABEL_H
