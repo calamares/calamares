@@ -47,6 +47,7 @@ enum ImageType : int
     Bugs,
     Help,
     Release,
+    Donate,
     PartitionDisk,
     PartitionPartition,
     PartitionAlongside,

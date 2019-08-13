@@ -74,6 +74,10 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/release.svg", size );
         break;
 
+    case Donate:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/donate.svg", size );
+        break;
+
     case PartitionDisk:
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-disk.svg", size );
         break;
