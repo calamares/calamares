@@ -41,7 +41,7 @@ DLLEXPORT QString getString( const QVariantMap& map, const QString& key );
 /**
  * Get an integer value from a mapping; returns @p d if no value.
  */
-DLLEXPORT int getInteger( const QVariantMap& map, const QString& key, int d );
+DLLEXPORT qint64 getInteger( const QVariantMap& map, const QString& key, qint64 d );
 
 /**
  * Get a double value from a mapping (integers are converted); returns @p d if no value.

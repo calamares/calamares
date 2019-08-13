@@ -50,7 +50,7 @@ PartitionSize::PartitionSize( const QString& s )
 
     if ( m_unit == SizeUnit::None )
     {
-        m_value = s.toInt();
+        m_value = s.toLongLong();
         if ( m_value > 0 )
         {
             m_unit = SizeUnit::Byte;

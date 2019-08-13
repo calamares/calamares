@@ -58,7 +58,7 @@ public:
     }
 
     /** @brief Specific value and unit. */
-    NamedSuffix( int value, unit_t unit )
+    NamedSuffix( qint64 value, unit_t unit )
         : m_value( value )
         , m_unit( unit )
     {
@@ -75,7 +75,7 @@ public:
         for ( const auto& suffix : table.table )
             if ( s.endsWith( suffix.first ) )
             {
-                m_value = s.left( s.length() - suffix.first.length() ).toInt();
+                m_value = s.left( s.length() - suffix.first.length() ).toLongLong();
                 m_unit = suffix.second;
                 break;
             }
@@ -89,7 +89,7 @@ public:
      */
     NamedSuffix( const QString& s );
 
-    int value() const { return m_value; }
+    qint64 value() const { return m_value; }
     unit_t unit() const { return m_unit; }
 
     /** @brief Check that a value-unit combination is valid.
@@ -100,7 +100,7 @@ public:
     bool isValid() const;
 
 protected:
-    int m_value;
+    qint64 m_value;
     unit_t m_unit;
 };
 

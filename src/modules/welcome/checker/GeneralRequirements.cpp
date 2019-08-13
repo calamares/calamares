@@ -206,7 +206,7 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "requiredStorage" ) &&
          ( configurationMap.value( "requiredStorage" ).type() == QVariant::Double ||
-           configurationMap.value( "requiredStorage" ).type() == QVariant::Int ) )
+           configurationMap.value( "requiredStorage" ).type() == QVariant::LongLong ) )
     {
         bool ok = false;
         m_requiredStorageGiB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
@@ -227,7 +227,7 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "requiredRam" ) &&
          ( configurationMap.value( "requiredRam" ).type() == QVariant::Double ||
-           configurationMap.value( "requiredRam" ).type() == QVariant::Int ) )
+           configurationMap.value( "requiredRam" ).type() == QVariant::LongLong ) )
     {
         bool ok = false;
         m_requiredRamGiB = configurationMap.value( "requiredRam" ).toDouble( &ok );
