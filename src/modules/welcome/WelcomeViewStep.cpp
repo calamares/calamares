@@ -105,15 +105,50 @@ WelcomeViewStep::jobs() const
 }
 
 
+/** @brief Look up a URL for a button
+ *
+ * Looks up @p key in @p map; if it is a *boolean* value, then
+ * assume an old-style configuration, and fetch the string from
+ * the branding settings @p e. If it is a string, not a boolean,
+ * use it as-is. If not found, or a weird type, returns empty.
+ *
+ * This allows switching the showKnownIssuesUrl and similar settings
+ * in welcome.conf from a boolean (deferring to branding) to an
+ * actual string for immediate use. Empty strings, as well as
+ * "false" as a setting, will hide the buttons as before.
+ */
+static QString
+jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map, const QString& key )
+{
+    if ( !map.contains( key ) )
+    {
+        return QString();
+    }
+    auto v = map.value( key );
+    if ( v.type() == QVariant::Bool )
+    {
+        return v.toBool() ? ( *e ) : QString();
+    }
+    if ( v.type() == QVariant::String )
+    {
+        return v.toString();
+    }
+
+    return QString();
+}
+
 void
 WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    bool showSupportUrl = CalamaresUtils::getBool( configurationMap, "showSupportUrl", false );
-    bool showKnownIssuesUrl = CalamaresUtils::getBool( configurationMap, "showKnownIssuesUrl", false );
-    bool showReleaseNotesUrl = CalamaresUtils::getBool( configurationMap, "showReleaseNotesUrl", false );
+    using Calamares::Branding;
 
-    m_widget->setUpLinks( showSupportUrl, showKnownIssuesUrl, showReleaseNotesUrl );
-    m_widget->setupDonateButton( CalamaresUtils::getString( configurationMap, "donateUrl" ) );
+    m_widget->setupButton( WelcomePage::Button::Support,
+                           jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
+    m_widget->setupButton( WelcomePage::Button::KnownIssues,
+                           jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
+    m_widget->setupButton( WelcomePage::Button::ReleaseNotes,
+                           jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
+    m_widget->setupButton( WelcomePage::Button::Donate, CalamaresUtils::getString( configurationMap, "donateUrl" ) );
 
     if ( configurationMap.contains( "requirements" )
          && configurationMap.value( "requirements" ).type() == QVariant::Map )
