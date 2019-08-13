@@ -2,7 +2,7 @@
  *
  *   SPDX-License-Identifier: GPLv3+
  *   License-Filename: LICENSES/GPLv3+-ImageRegistry
- * 
+ *
  *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  */
 

@@ -56,7 +56,7 @@ enum ImageType : int
     PartitionTable,
     BootEnvironment,
     Squid,
-    StatusOk,         // Icons for the requirements checker
+    StatusOk,  // Icons for the requirements checker
     StatusWarning,
     StatusError
 };
@@ -94,9 +94,7 @@ UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
  * @return the transformed pixmap.
  * This one is currently unused.
  */
-UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar,
-                                        const QSize& size,
-                                        float frameWidthPct = 0.20f );
+UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size, float frameWidthPct = 0.20f );
 
 /**
  * @brief unmarginLayout recursively walks the QLayout tree and removes all margins.
@@ -112,8 +110,8 @@ UIDLLEXPORT void unmarginLayout( QLayout* layout );
 UIDLLEXPORT void clearLayout( QLayout* layout );
 
 UIDLLEXPORT void setDefaultFontSize( int points );
-UIDLLEXPORT int defaultFontSize();      // in points
-UIDLLEXPORT int defaultFontHeight();    // in pixels, DPI-specific
+UIDLLEXPORT int defaultFontSize();  // in points
+UIDLLEXPORT int defaultFontHeight();  // in pixels, DPI-specific
 UIDLLEXPORT QFont defaultFont();
 UIDLLEXPORT QFont largeFont();
 UIDLLEXPORT QSize defaultIconSize();
@@ -128,4 +126,4 @@ constexpr int windowPreferredHeight = 520;
 
 }  // namespace CalamaresUtils
 
-#endif // CALAMARESUTILSGUI_H
+#endif  // CALAMARESUTILSGUI_H
