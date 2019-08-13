@@ -135,6 +135,16 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="donateButton">
+           <property name="text">
+            <string>&amp;Donate</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="supportButton">
            <property name="text">
             <string>&amp;Support</string>
