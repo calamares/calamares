@@ -56,6 +56,10 @@ windowSize: 800px,520px
 # Note that ANSI_COLOR and CPE_NAME don't make sense here, and
 # are not supported (the rest are). Remember to quote the string
 # if it contains substitutions, or you'll get YAML exceptions.
+#
+# The *Url* entries are used on the welcome page, and they
+# are visible as buttons there if the corresponding *show* keys
+# are set to "true" (they can also be overridden).
 strings:
     productName:         "@{NAME}"
     shortProductName:    Generic
@@ -84,7 +88,7 @@ strings:
 #       the window. Use `welcomeExpandingLogo` to make it non-scaled.
 #       Recommended size is 320x150.
 #
-# These strings can also use substitutions from os-release (see above).
+# These filenames can also use substitutions from os-release (see above).
 images:
     productLogo:         "squid.png"
     productIcon:         "squid.png"

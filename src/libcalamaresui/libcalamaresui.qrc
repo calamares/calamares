@@ -7,6 +7,7 @@
         <file alias="images/bugs.svg">../../data/images/bugs.svg</file>
         <file alias="images/help.svg">../../data/images/help.svg</file>
         <file alias="images/release.svg">../../data/images/release.svg</file>
+        <file alias="images/donate.svg">../../data/images/help-donate.svg</file>
         <file alias="images/partition-disk.svg">../../data/images/partition-disk.svg</file>
         <file alias="images/partition-partition.svg">../../data/images/partition-partition.svg</file>
         <file alias="images/partition-alongside.svg">../../data/images/partition-alongside.svg</file>
