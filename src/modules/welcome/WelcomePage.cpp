@@ -73,18 +73,20 @@ WelcomePage::WelcomePage( QWidget* parent )
     cDebug() << "Welcome string" << Calamares::Branding::instance()->welcomeStyleCalamares()
              << *Calamares::Branding::VersionedName;
 
-    CALAMARES_RETRANSLATE( QString message;
+    CALAMARES_RETRANSLATE(
+        QString message;
 
-                           if ( Calamares::Settings::instance()->isSetupMode() ) message
-                           = Calamares::Branding::instance()->welcomeStyleCalamares()
-                               ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
-                               : tr( "<h1>Welcome to %1 setup.</h1>" );
-                           else message = Calamares::Branding::instance()->welcomeStyleCalamares()
-                               ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
-                               : tr( "<h1>Welcome to the %1 installer.</h1>" );
+        if ( Calamares::Settings::instance()->isSetupMode() ) message
+        = Calamares::Branding::instance()->welcomeStyleCalamares()
+            ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
+            : tr( "<h1>Welcome to %1 setup.</h1>" );
+        else message = Calamares::Branding::instance()->welcomeStyleCalamares()
+            ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
+            : tr( "<h1>Welcome to the %1 installer.</h1>" );
 
-                           ui->mainText->setText( message.arg( *Calamares::Branding::VersionedName ) );
-                           ui->retranslateUi( this ); )
+        ui->mainText->setText( message.arg( *Calamares::Branding::VersionedName ) );
+        ui->retranslateUi( this );
+        ui->supportButton->setText( tr( "%1 support" ).arg( *Calamares::Branding::ShortProductName ) ); )
 
     ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
         CalamaresUtils::Information,
@@ -195,56 +197,6 @@ WelcomePage::initLanguages()
 
 
 void
-WelcomePage::setUpLinks( bool showSupportUrl, bool showKnownIssuesUrl, bool showReleaseNotesUrl )
-{
-    using namespace Calamares;
-    if ( showSupportUrl && !( *Branding::SupportUrl ).isEmpty() )
-    {
-        CALAMARES_RETRANSLATE( ui->supportButton->setText( tr( "%1 support" ).arg( *Branding::ShortProductName ) ); )
-        ui->supportButton->setIcon( CalamaresUtils::defaultPixmap(
-            CalamaresUtils::Help,
-            CalamaresUtils::Original,
-            2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() ) ) );
-        connect( ui->supportButton, &QPushButton::clicked, [] { QDesktopServices::openUrl( *Branding::SupportUrl ); } );
-    }
-    else
-    {
-        ui->supportButton->hide();
-    }
-
-    if ( showKnownIssuesUrl && !( *Branding::KnownIssuesUrl ).isEmpty() )
-    {
-        ui->knownIssuesButton->setIcon( CalamaresUtils::defaultPixmap(
-            CalamaresUtils::Bugs,
-            CalamaresUtils::Original,
-            2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() ) ) );
-        connect( ui->knownIssuesButton, &QPushButton::clicked, [] {
-            QDesktopServices::openUrl( *Branding::KnownIssuesUrl );
-        } );
-    }
-    else
-    {
-        ui->knownIssuesButton->hide();
-    }
-
-    if ( showReleaseNotesUrl && !( *Branding::ReleaseNotesUrl ).isEmpty() )
-    {
-        ui->releaseNotesButton->setIcon( CalamaresUtils::defaultPixmap(
-            CalamaresUtils::Release,
-            CalamaresUtils::Original,
-            2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() ) ) );
-        connect( ui->releaseNotesButton, &QPushButton::clicked, [] {
-            QDesktopServices::openUrl( *Branding::ReleaseNotesUrl );
-        } );
-    }
-    else
-    {
-        ui->releaseNotesButton->hide();
-    }
-}
-
-
-void
 WelcomePage::setupButton( Button role, const QString& url )
 {
     QPushButton* button = nullptr;
@@ -284,15 +236,9 @@ WelcomePage::setupButton( Button role, const QString& url )
     QUrl u( url );
     if ( u.isValid() )
     {
-        auto size = 2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() ) );
-        button->setIcon( CalamaresUtils::defaultPixmap(
-                        icon,
-                        CalamaresUtils::Original,size
-                    );
-        connect( button, &QPushButton::clicked, [u]()
-        {
-            QDesktopServices::openUrl( u );
-        } );
+        auto size = 2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() );
+        button->setIcon( CalamaresUtils::defaultPixmap( icon, CalamaresUtils::Original, size ) );
+        connect( button, &QPushButton::clicked, [u]() { QDesktopServices::openUrl( u ); } );
     }
     else
     {
