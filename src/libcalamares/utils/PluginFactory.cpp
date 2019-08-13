@@ -6,6 +6,4 @@
 
 #include "PluginFactory.h"
 
-CalamaresPluginFactory::~CalamaresPluginFactory()
-{
-}
+CalamaresPluginFactory::~CalamaresPluginFactory() {}

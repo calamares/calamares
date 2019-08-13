@@ -44,7 +44,10 @@ class CalamaresPluginFactory : public KPluginFactory
 {
     Q_OBJECT
 public:
-    explicit CalamaresPluginFactory() : KPluginFactory() {}
+    explicit CalamaresPluginFactory()
+        : KPluginFactory()
+    {
+    }
     ~CalamaresPluginFactory() override;
 
     /** @brief Create an object from the factory.
@@ -52,17 +55,18 @@ public:
      * Ignores all the @p args since they are not used. Calls
      * Calamares constructors for the Jobs and ViewSteps.
      */
-    template<class impl, class ParentType>
-    static QObject *createInstance(QWidget *parentWidget, QObject *parent, const QVariantList &args)
+    template < class impl, class ParentType >
+    static QObject* createInstance( QWidget* parentWidget, QObject* parent, const QVariantList& args )
     {
-        Q_UNUSED(parentWidget);
-        Q_UNUSED(args);
-        ParentType *p = nullptr;
-        if (parent) {
-            p = qobject_cast<ParentType *>(parent);
-            Q_ASSERT(p);
+        Q_UNUSED( parentWidget );
+        Q_UNUSED( args );
+        ParentType* p = nullptr;
+        if ( parent )
+        {
+            p = qobject_cast< ParentType* >( parent );
+            Q_ASSERT( p );
         }
-        return new impl(p);
+        return new impl( p );
     }
 
     /** @brief register a plugin
@@ -71,10 +75,10 @@ public:
      * the Calamares createInstance() version which ignores
      * the QVariantList of arguments.
      */
-    template<class T>
+    template < class T >
     void registerPlugin()
     {
-        KPluginFactory::registerPlugin<T>(QString(), &createInstance<T, QObject>);
+        KPluginFactory::registerPlugin< T >( QString(), &createInstance< T, QObject > );
     }
 };
 
@@ -84,18 +88,18 @@ public:
  * except that does not actually use the base factory class that is
  * passed in.
  */
-#define CALAMARES_PLUGIN_FACTORY_DECLARATION(name) \
+#define CALAMARES_PLUGIN_FACTORY_DECLARATION( name ) \
     class name : public CalamaresPluginFactory \
     { \
         Q_OBJECT \
-        Q_INTERFACES(KPluginFactory) \
-        Q_PLUGIN_METADATA(IID CalamaresPluginFactory_iid) \
+        Q_INTERFACES( KPluginFactory ) \
+        Q_PLUGIN_METADATA( IID CalamaresPluginFactory_iid ) \
     public: \
         explicit name(); \
         ~name(); \
     };
-#define CALAMARES_PLUGIN_FACTORY_DEFINITION(name, pluginRegistrations) \
-    K_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY(name,CalamaresPluginFactory,pluginRegistrations)
+#define CALAMARES_PLUGIN_FACTORY_DEFINITION( name, pluginRegistrations ) \
+    K_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY( name, CalamaresPluginFactory, pluginRegistrations )
 
 
 // Q_DECLARE_INTERFACE( Calamares::PluginFactory, CalamaresPluginFactory_iid )
