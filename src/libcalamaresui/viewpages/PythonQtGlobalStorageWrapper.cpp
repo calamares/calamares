@@ -24,7 +24,8 @@
 GlobalStorage::GlobalStorage( Calamares::GlobalStorage* gs )
     : QObject( gs )
     , m_gs( gs )
-{}
+{
+}
 
 
 bool

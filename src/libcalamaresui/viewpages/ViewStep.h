@@ -130,10 +130,7 @@ public:
     virtual JobList jobs() const = 0;
 
     void setModuleInstanceKey( const QString& instanceKey );
-    QString moduleInstanceKey() const
-    {
-        return m_instanceKey;
-    }
+    QString moduleInstanceKey() const { return m_instanceKey; }
 
     virtual void setConfigurationMap( const QVariantMap& configurationMap );
 
@@ -161,6 +158,6 @@ protected:
 };
 
 using ViewStepList = QList< ViewStep* >;
-}
+}  // namespace Calamares
 
-#endif // VIEWSTEP_H
+#endif  // VIEWSTEP_H

@@ -43,29 +43,17 @@ public slots:
                const QString& filesystem_name,
                const QString& options ) const;
 
-    int target_env_call( const QString& command,
-                         const QString& stdin = QString(),
-                         int timeout = 0 ) const;
+    int target_env_call( const QString& command, const QString& stdin = QString(), int timeout = 0 ) const;
 
-    int target_env_call( const QStringList& args,
-                         const QString& stdin = QString(),
-                         int timeout = 0 ) const;
+    int target_env_call( const QStringList& args, const QString& stdin = QString(), int timeout = 0 ) const;
 
-    int check_target_env_call( const QString& command,
-                               const QString& stdin = QString(),
-                               int timeout = 0 ) const;
+    int check_target_env_call( const QString& command, const QString& stdin = QString(), int timeout = 0 ) const;
 
-    int check_target_env_call( const QStringList& args,
-                               const QString& stdin = QString(),
-                               int timeout = 0 ) const;
+    int check_target_env_call( const QStringList& args, const QString& stdin = QString(), int timeout = 0 ) const;
 
-    QString check_target_env_output( const QString& command,
-                                     const QString& stdin = QString(),
-                                     int timeout = 0 ) const;
+    QString check_target_env_output( const QString& command, const QString& stdin = QString(), int timeout = 0 ) const;
 
-    QString check_target_env_output( const QStringList& args,
-                                     const QString& stdin = QString(),
-                                     int timeout = 0 ) const;
+    QString check_target_env_output( const QStringList& args, const QString& stdin = QString(), int timeout = 0 ) const;
 
     QString obscure( const QString& string ) const;
 
@@ -75,4 +63,4 @@ private:
     PythonQtObjectPtr m_exceptionCxt;
 };
 
-#endif // PYTHONQTUTILSWRAPPER_H
+#endif  // PYTHONQTUTILSWRAPPER_H

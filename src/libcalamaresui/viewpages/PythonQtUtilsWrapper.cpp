@@ -25,7 +25,7 @@
 #include <PythonQt.h>
 
 
-Utils::Utils(QObject* parent)
+Utils::Utils( QObject* parent )
     : QObject( parent )
     , m_exceptionCxt( PythonQt::self()->createUniqueModule() )
 {
@@ -34,7 +34,7 @@ Utils::Utils(QObject* parent)
 
 
 void
-Utils::debug(const QString& s) const
+Utils::debug( const QString& s ) const
 {
     cDebug() << "PythonQt DBG>" << s;
 }
@@ -46,35 +46,28 @@ Utils::mount( const QString& device_path,
               const QString& filesystem_name,
               const QString& options ) const
 {
-    return CalamaresUtils::System::instance()->
-            mount( device_path, mount_point, filesystem_name, options );
+    return CalamaresUtils::System::instance()->mount( device_path, mount_point, filesystem_name, options );
 }
 
 
 int
-Utils::target_env_call( const QString& command,
-                        const QString& stdin,
-                        int timeout ) const
+Utils::target_env_call( const QString& command, const QString& stdin, int timeout ) const
 {
-    return CalamaresUtils::System::instance()->
-            targetEnvCall( command, QString(), stdin, std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
+    return CalamaresUtils::System::instance()->targetEnvCall(
+        command, QString(), stdin, std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
 }
 
 
 int
-Utils::target_env_call( const QStringList& args,
-                        const QString& stdin,
-                        int timeout ) const
+Utils::target_env_call( const QStringList& args, const QString& stdin, int timeout ) const
 {
-    return CalamaresUtils::System::instance()->
-            targetEnvCall( args, QString(), stdin, std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
+    return CalamaresUtils::System::instance()->targetEnvCall(
+        args, QString(), stdin, std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
 }
 
 
 int
-Utils::check_target_env_call( const QString& command,
-                              const QString& stdin,
-                              int timeout ) const
+Utils::check_target_env_call( const QString& command, const QString& stdin, int timeout ) const
 {
     int ec = target_env_call( command, stdin, timeout );
     return _handle_check_target_env_call_error( ec, command );
@@ -82,9 +75,7 @@ Utils::check_target_env_call( const QString& command,
 
 
 int
-Utils::check_target_env_call( const QStringList& args,
-                              const QString& stdin,
-                              int timeout) const
+Utils::check_target_env_call( const QStringList& args, const QString& stdin, int timeout ) const
 {
     int ec = target_env_call( args, stdin, timeout );
     return _handle_check_target_env_call_error( ec, args.join( ' ' ) );
@@ -92,34 +83,22 @@ Utils::check_target_env_call( const QStringList& args,
 
 
 QString
-Utils::check_target_env_output( const QString& command,
-                                const QString& stdin,
-                                int timeout ) const
+Utils::check_target_env_output( const QString& command, const QString& stdin, int timeout ) const
 {
     QString output;
-    int ec = CalamaresUtils::System::instance()->
-             targetEnvOutput( command,
-                              output,
-                              QString(),
-                              stdin,
-                              std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
+    int ec = CalamaresUtils::System::instance()->targetEnvOutput(
+        command, output, QString(), stdin, std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
     _handle_check_target_env_call_error( ec, command );
     return output;
 }
 
 
 QString
-Utils::check_target_env_output( const QStringList& args,
-                                const QString& stdin,
-                                int timeout ) const
+Utils::check_target_env_output( const QStringList& args, const QString& stdin, int timeout ) const
 {
     QString output;
-    int ec = CalamaresUtils::System::instance()->
-             targetEnvOutput( args,
-                              output,
-                              QString(),
-                              stdin,
-                              std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
+    int ec = CalamaresUtils::System::instance()->targetEnvOutput(
+        args, output, QString(), stdin, std::chrono::seconds( timeout > 0 ? timeout : 0 ) );
     _handle_check_target_env_call_error( ec, args.join( ' ' ) );
     return output;
 }
@@ -133,13 +112,11 @@ Utils::obscure( const QString& string ) const
 
 
 int
-Utils::_handle_check_target_env_call_error( int ec, const QString& cmd) const
+Utils::_handle_check_target_env_call_error( int ec, const QString& cmd ) const
 {
     if ( ec )
     {
-        QString raise = QString( "raise subprocess.CalledProcessError(%1,\"%2\")" )
-                        .arg( ec )
-                        .arg( cmd );
+        QString raise = QString( "raise subprocess.CalledProcessError(%1,\"%2\")" ).arg( ec ).arg( cmd );
         PythonQt::self()->evalScript( m_exceptionCxt, raise );
     }
     return ec;

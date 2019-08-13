@@ -54,4 +54,4 @@ private:
     Calamares::GlobalStorage* m_gs;
 };
 
-#endif // PYTHONQTGLOBALSTORAGEWRAPPER_H
+#endif  // PYTHONQTGLOBALSTORAGEWRAPPER_H
