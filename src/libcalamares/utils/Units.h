@@ -160,7 +160,7 @@ alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
 constexpr qint64
 bytesToSectors( qint64 bytes, qint64 blocksize )
 {
-    return alignBytesToBlockSize( bytes, blocksize ) / blocksize;
+    return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize ), MiBtoBytes( 1ULL ) ) / blocksize;
 }
 
 }  // namespace CalamaresUtils
