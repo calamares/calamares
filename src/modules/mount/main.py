@@ -37,7 +37,7 @@ _ = gettext.translation("calamares-python",
 def pretty_name():
     return _("Mounting partitions.")
 
-def mount_part(root_mount_point, partition, partitions):
+def mount_partition(root_mount_point, partition, partitions):
     # Create mount point with `+` rather than `os.path.join()` because
     # `partition["mountPoint"]` starts with a '/'.
     raw_mount_point = partition["mountPoint"]
@@ -126,21 +126,6 @@ def mount_part(root_mount_point, partition, partitions):
                         ["subvol=@home", partition.get("options", "")]),
                     )
 
-def mount_partitions(root_mount_point, partitions, extra_mounts=None):
-    """
-    Pass back mount point and filesystem for each partition.
-
-    :param root_mount_point:
-    :param partitions:
-    :param extra_mounts:
-    """
-    for partition in partitions:
-        if "mountPoint" not in partition or not partition["mountPoint"]:
-            continue
-        mount_part(root_mount_point, partition, partitions)
-        if partition["mountPoint"] is "/" and extra_mounts is not None:
-            mount_partitions(root_mount_point, extra_mounts)
-
 
 def run():
     """
@@ -163,16 +148,21 @@ def run():
     if not extra_mounts and not extra_mounts_efi:
         libcalamares.utils.warning("No extra mounts defined. Does mount.conf exist?")
 
-    # Sort by mount points to ensure / is mounted before the rest
-    partitions.sort(key=lambda x: x["mountPoint"])
-    mount_partitions(root_mount_point, partitions, extra_mounts)
-
-    all_extra_mounts = extra_mounts
     if libcalamares.globalstorage.value("firmwareType") == "efi":
-        mount_partitions(root_mount_point, extra_mounts_efi)
-        all_extra_mounts.extend(extra_mounts_efi)
+        extra_mounts.extend(extra_mounts_efi)
+
+    # Add extra mounts to the partitions list and sort by mount points.
+    # This way, we ensure / is mounted before the rest, and every mount point
+    # is created on the right partition (e.g. if a partition is to be mounted
+    # under /tmp, we make sure /tmp is mounted before the partition)
+    partitions.extend(extra_mounts)
+    partitions.sort(key=lambda x: x["mountPoint"])
+    for partition in partitions:
+        if "mountPoint" not in partition or not partition["mountPoint"]:
+            continue
+        mount_partition(root_mount_point, partition, partitions)
 
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
 
     # Remember the extra mounts for the unpackfs module
-    libcalamares.globalstorage.insert("extraMounts", all_extra_mounts)
+    libcalamares.globalstorage.insert("extraMounts", extra_mounts)
