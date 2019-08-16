@@ -23,6 +23,13 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+- The *partition* module now understands the units *KB*, *MB*, *GB* which
+  are powers-of-ten sizes, alongside the powers-of-two sizes that it already
+  used. (thanks to Arnaud)
+- The *welcome* module now supports a *Donate* button if *showDonateUrl*
+  is set to a non-empty URL. #1197
+- The *welcome* module can have URLs for the various buttons configured
+  directly in the module configuration (rather than in `branding.desc`).
 
 # 3.2.12 (2019-08-07) #
 
