@@ -38,6 +38,12 @@ def pretty_name():
     return _("Mounting partitions.")
 
 def mount_partition(root_mount_point, partition, partitions):
+    """
+    Do a single mount of @p partition inside @p root_mount_point.
+
+    The @p partitions are used to handle btrfs special-cases:
+    then subvolumes are created for root and home.
+    """
     # Create mount point with `+` rather than `os.path.join()` because
     # `partition["mountPoint"]` starts with a '/'.
     raw_mount_point = partition["mountPoint"]
@@ -129,9 +135,8 @@ def mount_partition(root_mount_point, partition, partitions):
 
 def run():
     """
-    Define mountpoints.
-
-    :return:
+    Mount all the partitions from GlobalStorage and from the job configuration.
+    Partitions are mounted in-lexical-order of their mountPoint.
     """
     partitions = libcalamares.globalstorage.value("partitions")
 
