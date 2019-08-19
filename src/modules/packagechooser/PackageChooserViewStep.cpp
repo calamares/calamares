@@ -219,6 +219,10 @@ PackageChooserViewStep::fillModel( const QVariantList& items )
         {
             m_model->addPackage( PackageItem::fromAppData( item_map ) );
         }
+        else if ( item_map.contains( "appstream" ) )
+        {
+            m_model->addPackage( PackageItem::fromAppStream( item_map ) );
+        }
         else
         {
             m_model->addPackage( PackageItem( item_map ) );

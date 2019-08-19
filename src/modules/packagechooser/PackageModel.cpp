@@ -98,6 +98,15 @@ PackageItem::fromAppData( const QVariantMap& item_map )
 }
 #endif
 
+#ifndef HAVE_APPSTREAM
+PackageItem
+PackageItem::fromAppStream( const QVariantMap& item_map )
+{
+    cWarning() << "Loading AppStream data is not supported.";
+    return PackageItem();
+}
+#endif
+
 
 PackageListModel::PackageListModel( QObject* parent )
     : QAbstractListModel( parent )

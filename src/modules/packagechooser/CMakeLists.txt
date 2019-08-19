@@ -23,6 +23,7 @@ set_package_properties(
 if ( AppStreamQt_FOUND )
     add_definitions( -DHAVE_APPSTREAM )
     list( APPEND _extra_libraries AppStreamQt )
+    list( APPEND _extra_src ItemAppStream.cpp )
 endif()
 
 calamares_add_plugin( packagechooser

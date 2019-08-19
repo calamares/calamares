@@ -93,6 +93,20 @@ struct PackageItem
      * return invalid PackageItems.
      */
     static PackageItem fromAppData( const QVariantMap& map );
+
+    /** @brief Loads an item from AppStream data.
+     *
+     * The @p map must have a key *appstream*. That is used as the
+     * primary source of information from the AppStream cache, but
+     * keys *id* and *screenshotPath* may be used to override parts
+     * of the AppStream data -- so that the ID is under the control
+     * of Calamares, and the screenshot can be forced to a local path
+     * available on the installation medium.
+     *
+     * Requires AppStreamQt, if not present will return invalid
+     * PackageItems.
+     */
+    static PackageItem fromAppStream( const QVariantMap& map );
 };
 
 using PackageList = QVector< PackageItem >;
