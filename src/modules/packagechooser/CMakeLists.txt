@@ -9,7 +9,19 @@ if ( Qt5Xml_FOUND )
     add_definitions( -DHAVE_XML )
     list( APPEND _extra_libraries Qt5::Xml )
 endif()
-    
+
+find_package(AppStreamQt)
+set_package_properties(
+    AppStreamQt PROPERTIES
+    DESCRIPTION "Support for AppStream (cache) data"
+    URL "https://github.com/ximion/appstream"
+    PURPOSE "AppStream provides package data"
+    TYPE OPTIONAL
+)
+if ( AppStreamQt_FOUND )
+    add_definitions( -DHAVE_APPSTREAM )
+    list( APPEND _extra_libraries AppStreamQt )
+endif()
 
 calamares_add_plugin( packagechooser
     TYPE viewmodule
