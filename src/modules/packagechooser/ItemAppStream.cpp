@@ -25,9 +25,63 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
-PackageItem
-PackageItem::fromAppStream( const QVariantMap& map )
+#include <AppStreamQt/pool.h>
+
+static PackageItem
+fromComponent( const AppStream::Component& component )
 {
-    cWarning() << "AppStream loading not implemented.";
-    return PackageItem();
+    cDebug() << "Loaded" << component.id();
+
+    QVariantMap map;
+    map.insert( "id", component.id() );
+    map.insert( "name", component.name() );
+    map.insert( "description", component.description() );
+    // map.insert( "screenshot", component.screenshots() );
+    return PackageItem( map );
+}
+
+PackageItem
+PackageItem::fromAppStream( const QVariantMap& item_map )
+{
+    QString appstreamId = CalamaresUtils::getString( item_map, "appstream" );
+    if ( appstreamId.isEmpty() )
+    {
+        cWarning() << "Can't load AppStream without a suitable appstreamId.";
+        return PackageItem();
+    }
+    cDebug() << "Loading AppStream data for" << appstreamId;
+
+    AppStream::Pool pool;
+    if ( !pool.load() )
+    {
+        cWarning() << "AppStream load failed" << pool.lastError();
+        return PackageItem();
+    }
+
+    auto itemList = pool.componentsById( appstreamId );
+    if ( itemList.count() < 1 )
+    {
+        cWarning() << "No AppStream data for" << appstreamId;
+        return PackageItem();
+    }
+    if ( itemList.count() > 1 )
+    {
+        cDebug() << "Multiple AppStream data for" << appstreamId << "using first.";
+    }
+
+    auto r = fromComponent( itemList.first() );
+    if ( r.isValid() )
+    {
+        QString id = CalamaresUtils::getString( item_map, "id" );
+        QString screenshotPath = CalamaresUtils::getString( item_map, "screenshot" );
+        if ( !id.isEmpty() )
+        {
+            r.id = id;
+        }
+        if ( !screenshotPath.isEmpty() )
+        {
+            r.screenshot = screenshotPath;
+        }
+    }
+    return r;
 }
