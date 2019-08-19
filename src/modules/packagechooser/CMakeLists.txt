@@ -1,5 +1,6 @@
 find_package( Qt5 COMPONENTS Core Gui Widgets REQUIRED )
 set( _extra_libraries "" )
+set( _extra_src "" )
 
 ### OPTIONAL AppData XML support in PackageModel
 #
@@ -8,6 +9,7 @@ find_package(Qt5 COMPONENTS Xml)
 if ( Qt5Xml_FOUND )
     add_definitions( -DHAVE_XML )
     list( APPEND _extra_libraries Qt5::Xml )
+    list( APPEND _extra_src ItemAppData.cpp )
 endif()
 
 find_package(AppStreamQt)
@@ -30,6 +32,7 @@ calamares_add_plugin( packagechooser
         PackageChooserPage.cpp
         PackageChooserViewStep.cpp
         PackageModel.cpp
+        ${_extra_src}
     RESOURCES
         packagechooser.qrc
     UI
