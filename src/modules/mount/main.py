@@ -155,11 +155,9 @@ def run():
     # This way, we ensure / is mounted before the rest, and every mount point
     # is created on the right partition (e.g. if a partition is to be mounted
     # under /tmp, we make sure /tmp is mounted before the partition)
-    partitions.extend(extra_mounts)
-    partitions.sort(key=lambda x: x["mountPoint"])
-    for partition in partitions:
-        if "mountPoint" not in partition or not partition["mountPoint"]:
-            continue
+    mountable_partitions = [ p for p in partitions + extra_mounts if "mountPoint" in p and p["mountPoint"] ]
+    mountable_partitions.sort(key=lambda x: x["mountPoint"])
+    for partition in mountable_partitions:
         mount_partition(root_mount_point, partition, partitions)
 
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
