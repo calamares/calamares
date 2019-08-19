@@ -22,21 +22,76 @@
  */
 #include "PackageModel.h"
 
+#include "locale/LabelModel.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+#include <AppStreamQt/image.h>
 #include <AppStreamQt/pool.h>
+#include <AppStreamQt/screenshot.h>
 
-static PackageItem
-fromComponent( const AppStream::Component& component )
+/// @brief Return number of pixels in a size, for < ordering purposes
+static inline quint64
+sizeOrder( const QSize& size )
 {
-    cDebug() << "Loaded" << component.id();
+    return size.width() * size.height();
+}
 
+/// @brief Sets a screenshot in @p map from @p screenshot, if a usable one is found
+static void
+setScreenshot( QVariantMap& map, const AppStream::Screenshot& screenshot )
+{
+    if ( screenshot.images().count() < 1 )
+    {
+        return;
+    }
+
+    // Pick the smallest
+    QUrl url;
+    quint64 size = sizeOrder( screenshot.images().first().size() );
+    for ( const auto& img : screenshot.images() )
+    {
+        if ( sizeOrder( img.size() ) <= size )
+        {
+            url = img.url();
+        }
+    }
+
+    if ( url.isValid() )
+    {
+        map.insert( "screenshot", url.toString() );
+    }
+}
+
+/// @brief Interpret an AppStream Component
+static PackageItem
+fromComponent( AppStream::Component& component )
+{
     QVariantMap map;
     map.insert( "id", component.id() );
     map.insert( "name", component.name() );
     map.insert( "description", component.description() );
-    // map.insert( "screenshot", component.screenshots() );
+    map.insert( "package", component.packageNames().join(",") );
+
+    auto screenshots = component.screenshots();
+    if ( screenshots.count() > 0 )
+    {
+        bool done = false;
+        for ( const auto& s : screenshots )
+        {
+            if ( s.isDefault() )
+            {
+                setScreenshot( map, s );
+                done = true;
+                break;
+            }
+        }
+        if ( !done )
+        {
+            setScreenshot( map, screenshots.first() );
+        }
+    }
+
     return PackageItem( map );
 }
 
