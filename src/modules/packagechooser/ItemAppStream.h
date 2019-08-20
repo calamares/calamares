@@ -21,6 +21,11 @@
 
 #include "PackageModel.h"
 
+namespace AppStream
+{
+class Pool;
+}
+
 /** @brief Loads an item from AppStream data.
  *
  * The @p map must have a key *appstream*. That is used as the
@@ -33,6 +38,6 @@
  * Requires AppStreamQt, if not present will return invalid
  * PackageItems.
  */
-PackageItem fromAppStream( const QVariantMap& map );
+PackageItem fromAppStream( AppStream::Pool& pool, const QVariantMap& map );
 
 #endif

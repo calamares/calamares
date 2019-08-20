@@ -96,7 +96,7 @@ fromComponent( AppStream::Component& component )
 }
 
 PackageItem
-fromAppStream( const QVariantMap& item_map )
+fromAppStream( AppStream::Pool& pool, const QVariantMap& item_map )
 {
     QString appstreamId = CalamaresUtils::getString( item_map, "appstream" );
     if ( appstreamId.isEmpty() )
@@ -105,13 +105,6 @@ fromAppStream( const QVariantMap& item_map )
         return PackageItem();
     }
     cDebug() << "Loading AppStream data for" << appstreamId;
-
-    AppStream::Pool pool;
-    if ( !pool.load() )
-    {
-        cWarning() << "AppStream load failed" << pool.lastError();
-        return PackageItem();
-    }
 
     auto itemList = pool.componentsById( appstreamId );
     if ( itemList.count() < 1 )
