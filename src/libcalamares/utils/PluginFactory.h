@@ -58,8 +58,8 @@ public:
     template < class impl, class ParentType >
     static QObject* createInstance( QWidget* parentWidget, QObject* parent, const QVariantList& args )
     {
-        Q_UNUSED( parentWidget );
-        Q_UNUSED( args );
+        Q_UNUSED( parentWidget )
+        Q_UNUSED( args )
         ParentType* p = nullptr;
         if ( parent )
         {
