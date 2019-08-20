@@ -37,13 +37,36 @@ class DLLEXPORT Manager : QObject
     Manager();
 
 public:
+    /** @brief Gets the single Manager instance.
+     *
+     * Typical code will use `auto& nam = Manager::instance();`
+     * to keep the reference.
+     */
     static Manager& instance();
     virtual ~Manager();
 
+    /** @brief Checks if the given @p url returns data.
+     *
+     * Returns @c true if it does; @c false means no data, typically
+     * because of an error or no network access.
+     */
     bool synchronousPing( const QUrl& url );
 
+    /// @brief Set the URL which is used for the general "is there internet" check.
     void setCheckHasInternetUrl( const QUrl& url );
+    /** @brief Do an explicit check for internet connectivity.
+     *
+     * This **may** do a ping to the configured check URL, but can also
+     * use other mechanisms.
+     */
     bool checkHasInternet();
+    /** @brief Is there internet connectivity?
+     *
+     * This returns the result of the last explicit check, or if there
+     * is other information about the state of the internet connection,
+     * whatever is known. @c true means you can expect (all) internet
+     * connectivity to be present.
+     */
     bool hasInternet();
 
 private:
