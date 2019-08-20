@@ -66,8 +66,9 @@ CalamaresUtils::Network::Manager::hasInternet()
 bool
 CalamaresUtils::Network::Manager::checkHasInternet()
 {
-    bool b = false;
-    if ( d->m_hasInternetUrl.isValid() )
+    bool b = d->m_nam->networkAccessible() == QNetworkAccessManager::Accessible;
+
+    if ( !b && d->m_hasInternetUrl.isValid() )
     {
         b = synchronousPing( d->m_hasInternetUrl );
     }
