@@ -48,7 +48,6 @@ private:
 
     qreal m_requiredStorageGiB;
     qreal m_requiredRamGiB;
-    QString m_checkHasInternetUrl;
 };
 
 #endif // REQUIREMENTSCHECKER_H
