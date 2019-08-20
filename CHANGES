@@ -23,6 +23,9 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+- The *packagechooser* module can load data from the config-file,
+  from AppData XML files referred by the config-file, and (new) also
+  from AppStream caches by referring to an application's AppStream id. #1212
 - The *partition* module now understands the units *KB*, *MB*, *GB* which
   are powers-of-ten sizes, alongside the powers-of-two sizes that it already
   used. (thanks to Arnaud)
