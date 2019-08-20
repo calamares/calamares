@@ -69,9 +69,33 @@ fromComponent( AppStream::Component& component )
 {
     QVariantMap map;
     map.insert( "id", component.id() );
-    map.insert( "name", component.name() );
-    map.insert( "description", component.description() );
     map.insert( "package", component.packageNames().join( "," ) );
+
+    // Assume that the pool has loaded "ALL" locales, but it might be set
+    // to any of them; get the en_US locale as "untranslated" and then
+    // loop over Calamares locales (since there is no way to query for
+    // available locales in the Component) to see if there's anything else.
+    component.setActiveLocale( QStringLiteral( "en_US" ) );
+    QString en_name = component.name();
+    QString en_description = component.description();
+    map.insert( "name", en_name );
+    map.insert( "description", en_description );
+
+    for ( const QString& locale : CalamaresUtils::Locale::availableTranslations()->localeIds() )
+    {
+        component.setActiveLocale( locale );
+        QString name = component.name();
+        if ( name != en_name )
+        {
+            map.insert( QStringLiteral( "name[%1]" ).arg( locale ), name );
+        }
+        QString description = component.description();
+        if ( description != en_description )
+        {
+            map.insert( QStringLiteral( "description[%1]" ).arg( locale ), description );
+        }
+    }
+
 
     auto screenshots = component.screenshots();
     if ( screenshots.count() > 0 )
