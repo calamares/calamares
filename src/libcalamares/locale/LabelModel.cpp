@@ -29,6 +29,7 @@ namespace Locale
 
 LabelModel::LabelModel( const QStringList& locales, QObject* parent )
     : QAbstractListModel( parent )
+    , m_localeIds( locales )
 {
     Q_ASSERT( locales.count() > 0 );
     m_locales.reserve( locales.count() );
@@ -132,7 +133,7 @@ LabelModel::find( const QString& countryCode ) const
 LabelModel*
 availableTranslations()
 {
-    static LabelModel* model = new LabelModel( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) );
+    static LabelModel* model = new LabelModel( QStringLiteral( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) );
     return model;
 }
 

@@ -18,6 +18,12 @@
 
 #include "Tests.h"
 
+#ifdef HAVE_XML
+#include "ItemAppData.h"
+#endif
+#ifdef HAVE_APPSTREAM
+#include "ItemAppStream.h"
+#endif
 #include "PackageModel.h"
 
 #include "utils/Logger.h"
@@ -62,8 +68,8 @@ PackageChooserTests::testAppData()
     QVariantMap m;
     m.insert( "appdata", appdataName );
 
-    PackageItem p1 = PackageItem::fromAppData( m );
 #ifdef HAVE_XML
+    PackageItem p1 = fromAppData( m );
     QVERIFY( p1.isValid() );
     QCOMPARE( p1.id, "io.calamares.calamares.desktop" );
     QCOMPARE( p1.name.get(), "Calamares" );
@@ -76,12 +82,10 @@ PackageChooserTests::testAppData()
 
     m.insert( "id", "calamares" );
     m.insert( "screenshot", ":/images/calamares.png" );
-    PackageItem p2 = PackageItem::fromAppData( m );
+    PackageItem p2 = fromAppData( m );
     QVERIFY( p2.isValid() );
     QCOMPARE( p2.id, "calamares" );
     QCOMPARE( p2.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
     QVERIFY( !p2.screenshot.isNull() );
-#else
-    QVERIFY( !p1.isValid() );
 #endif
 }

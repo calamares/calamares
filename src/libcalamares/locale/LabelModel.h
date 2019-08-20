@@ -54,6 +54,9 @@ public:
      */
     const Label& locale( int row ) const;
 
+    /// @brief Returns all of the locale Ids (e.g. en_US) put into this model.
+    const QStringList& localeIds() const { return m_localeIds; }
+
     /** @brief Searches for an item that matches @p predicate
      *
      * Returns the row number of the first match, or -1 if there isn't one.
@@ -67,6 +70,7 @@ public:
 
 private:
     QVector< Label > m_locales;
+    QStringList m_localeIds;
 };
 
 /** @brief Returns a model with all available translations.

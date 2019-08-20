@@ -18,6 +18,14 @@
 
 #include "PackageChooserViewStep.h"
 
+#ifdef HAVE_XML
+#include "ItemAppData.h"
+#endif
+#ifdef HAVE_APPSTREAM
+#include "ItemAppStream.h"
+#include <AppStreamQt/pool.h>
+#include <memory>
+#endif
 #include "PackageChooserPage.h"
 #include "PackageModel.h"
 
@@ -203,6 +211,11 @@ PackageChooserViewStep::fillModel( const QVariantList& items )
         return;
     }
 
+#ifdef HAVE_APPSTREAM
+    std::unique_ptr< AppStream::Pool > pool;
+    bool poolOk = false;
+#endif
+
     cDebug() << "Loading PackageChooser model items from config";
     int item_index = 0;
     for ( const auto& item_it : items )
@@ -217,7 +230,28 @@ PackageChooserViewStep::fillModel( const QVariantList& items )
 
         if ( item_map.contains( "appdata" ) )
         {
-            m_model->addPackage( PackageItem::fromAppData( item_map ) );
+#ifdef HAVE_XML
+            m_model->addPackage( fromAppData( item_map ) );
+#else
+            cWarning() << "Loading AppData XML is not supported.";
+#endif
+        }
+        else if ( item_map.contains( "appstream" ) )
+        {
+#ifdef HAVE_APPSTREAM
+            if ( !pool )
+            {
+                pool = std::make_unique< AppStream::Pool >();
+                pool->setLocale( QStringLiteral( "ALL" ) );
+                poolOk = pool->load();
+            }
+            if ( pool && poolOk )
+            {
+                m_model->addPackage( fromAppStream( *pool, item_map ) );
+            }
+#else
+            cWarning() << "Loading AppStream data is not supported.";
+#endif
         }
         else
         {
