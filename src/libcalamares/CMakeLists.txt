@@ -36,6 +36,9 @@ set( libSources
     locale/Lookup.cpp
     locale/TranslatableConfiguration.cpp
 
+    # Network service
+    network/Manager.cpp
+
     # Partition service
     partition/PartitionSize.cpp
 
