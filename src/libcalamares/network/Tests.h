@@ -32,6 +32,7 @@ private Q_SLOTS:
     void initTestCase();
 
     void testInstance();
+    void testPing();
 };
 
 #endif

@@ -24,20 +24,25 @@
 
 QTEST_GUILESS_MAIN( NetworkTests )
 
-NetworkTests::NetworkTests()
+NetworkTests::NetworkTests() {}
+
+NetworkTests::~NetworkTests() {}
+
+void
+NetworkTests::initTestCase()
 {
 }
 
-NetworkTests::~NetworkTests()
-{
-}
-
-void NetworkTests::initTestCase()
-{
-}
-
-void NetworkTests::testInstance()
+void
+NetworkTests::testInstance()
 {
     auto& nam = CalamaresUtils::Network::Manager::instance();
     QVERIFY( !nam.hasInternet() );
+}
+
+void
+NetworkTests::testPing()
+{
+    auto& nam = CalamaresUtils::Network::Manager::instance();
+    QVERIFY( nam.synchronousPing( QUrl( "https://www.kde.org" ) ) );
 }
