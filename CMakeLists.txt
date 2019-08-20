@@ -25,6 +25,9 @@
 #   SKIP_MODULES    : a space or semicolon-separated list of directory names
 #                     under src/modules that should not be built.
 #   USE_<foo>       : fills in SKIP_MODULES for modules called <foo>-<something>
+#   WITH_<foo>      : try to enable <foo> (these usually default to ON). For
+#                     a list of WITH_<foo> grep CMakeCache.txt after running
+#                     CMake once.
 #   BUILD_<foo>     : choose additional things to build
 #   DEBUG_<foo>     : special developer flags for debugging
 #
