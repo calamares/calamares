@@ -18,6 +18,12 @@
 
 #include "PackageChooserViewStep.h"
 
+#ifdef HAVE_XML
+#include "ItemAppData.h"
+#endif
+#ifdef HAVE_APPSTREAM
+#include "ItemAppStream.h"
+#endif
 #include "PackageChooserPage.h"
 #include "PackageModel.h"
 
@@ -217,11 +223,19 @@ PackageChooserViewStep::fillModel( const QVariantList& items )
 
         if ( item_map.contains( "appdata" ) )
         {
-            m_model->addPackage( PackageItem::fromAppData( item_map ) );
+#ifdef HAVE_XML
+            m_model->addPackage( fromAppData( item_map ) );
+#else
+            cWarning() << "Loading AppData XML is not supported.";
+#endif
         }
         else if ( item_map.contains( "appstream" ) )
         {
-            m_model->addPackage( PackageItem::fromAppStream( item_map ) );
+#ifdef HAVE_APPSTREAM
+            m_model->addPackage( fromAppStream( item_map ) );
+#else
+            cWarning() << "Loading AppStream data is not supported.";
+#endif
         }
         else
         {

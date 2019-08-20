@@ -186,7 +186,7 @@ getNameAndSummary( const QDomNode& n )
 }
 
 PackageItem
-PackageItem::fromAppData( const QVariantMap& item_map )
+fromAppData( const QVariantMap& item_map )
 {
     QString fileName = CalamaresUtils::getString( item_map, "appdata" );
     if ( fileName.isEmpty() )

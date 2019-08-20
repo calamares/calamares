@@ -71,7 +71,7 @@ fromComponent( AppStream::Component& component )
     map.insert( "id", component.id() );
     map.insert( "name", component.name() );
     map.insert( "description", component.description() );
-    map.insert( "package", component.packageNames().join(",") );
+    map.insert( "package", component.packageNames().join( "," ) );
 
     auto screenshots = component.screenshots();
     if ( screenshots.count() > 0 )
@@ -96,7 +96,7 @@ fromComponent( AppStream::Component& component )
 }
 
 PackageItem
-PackageItem::fromAppStream( const QVariantMap& item_map )
+fromAppStream( const QVariantMap& item_map )
 {
     QString appstreamId = CalamaresUtils::getString( item_map, "appstream" );
     if ( appstreamId.isEmpty() )

@@ -88,26 +88,6 @@ PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
     }
 }
 
-
-#ifndef HAVE_XML
-PackageItem
-PackageItem::fromAppData( const QVariantMap& item_map )
-{
-    cWarning() << "Loading AppData XML is not supported.";
-    return PackageItem();
-}
-#endif
-
-#ifndef HAVE_APPSTREAM
-PackageItem
-PackageItem::fromAppStream( const QVariantMap& item_map )
-{
-    cWarning() << "Loading AppStream data is not supported.";
-    return PackageItem();
-}
-#endif
-
-
 PackageListModel::PackageListModel( QObject* parent )
     : QAbstractListModel( parent )
 {
