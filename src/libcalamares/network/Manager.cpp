@@ -66,14 +66,14 @@ CalamaresUtils::Network::Manager::hasInternet()
 bool
 CalamaresUtils::Network::Manager::checkHasInternet()
 {
-    bool b = d->m_nam->networkAccessible() == QNetworkAccessManager::Accessible;
+    bool hasInternet = d->m_nam->networkAccessible() == QNetworkAccessManager::Accessible;
 
-    if ( !b && d->m_hasInternetUrl.isValid() )
+    if ( !hasInternet && ( d->m_nam->networkAccessible() == QNetworkAccessManager::UnknownAccessibility ) )
     {
-        b = synchronousPing( d->m_hasInternetUrl );
+        hasInternet = synchronousPing( d->m_hasInternetUrl );
     }
-    d->m_hasInternet = b;
-    return b;
+    d->m_hasInternet = hasInternet;
+    return hasInternet;
 }
 
 void
@@ -85,6 +85,11 @@ CalamaresUtils::Network::Manager::setCheckHasInternetUrl( const QUrl& url )
 bool
 CalamaresUtils::Network::Manager::synchronousPing( const QUrl& url )
 {
+    if ( !url.isValid() )
+    {
+        return false;
+    }
+
     QNetworkRequest req = QNetworkRequest( url );
     QNetworkReply* reply = d->m_nam->get( req );
     QEventLoop loop;
