@@ -87,7 +87,7 @@ const QStringList Branding::s_styleEntryStrings =
 // clang-format on
 // *INDENT-ON*
 
-const NamedEnumTable<Branding::WindowDimensionUnit>&
+const NamedEnumTable< Branding::WindowDimensionUnit >&
 Branding::WindowDimension::suffixes()
 {
     using Unit = Branding::WindowDimensionUnit;
@@ -110,16 +110,23 @@ Branding::WindowDimension::suffixes()
  * the @p transform function, which may change strings.
  */
 static void
-loadStrings( QMap<QString, QString>& map, const YAML::Node& doc, const std::string& key, const std::function< QString(const QString&) >& transform )
+loadStrings( QMap< QString, QString >& map,
+             const YAML::Node& doc,
+             const std::string& key,
+             const std::function< QString( const QString& ) >& transform )
 {
     if ( !doc[ key ].IsMap() )
-        throw YAML::Exception( YAML::Mark(), std::string("Branding configuration is not a map: ") + key );
+    {
+        throw YAML::Exception( YAML::Mark(), std::string( "Branding configuration is not a map: " ) + key );
+    }
 
     const auto& config = CalamaresUtils::yamlMapToVariant( doc[ key ] ).toMap();
 
     map.clear();
     for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
+    {
         map.insert( it.key(), transform( it.value().toString() ) );
+    }
 }
 
 /** @brief Load the @p map with strings from @p config
@@ -129,8 +136,7 @@ loadStrings( QMap<QString, QString>& map, const YAML::Node& doc, const std::stri
  * documentation for details.
  */
 
-Branding::Branding( const QString& brandingFilePath,
-                    QObject* parent )
+Branding::Branding( const QString& brandingFilePath, QObject* parent )
     : QObject( parent )
     , m_descriptorPath( brandingFilePath )
     , m_slideshowAPI( 1 )
@@ -141,7 +147,9 @@ Branding::Branding( const QString& brandingFilePath,
 
     QDir componentDir( componentDirectory() );
     if ( !componentDir.exists() )
+    {
         bail( "Bad component directory path." );
+    }
 
     QFile file( brandingFilePath );
     if ( file.exists() && file.open( QFile::ReadOnly | QFile::Text ) )
@@ -153,8 +161,7 @@ Branding::Branding( const QString& brandingFilePath,
             YAML::Node doc = YAML::Load( ba.constData() );
             Q_ASSERT( doc.IsMap() );
 
-            m_componentName = QString::fromStdString( doc[ "componentName" ]
-                                                      .as< std::string >() );
+            m_componentName = QString::fromStdString( doc[ "componentName" ].as< std::string >() );
             if ( m_componentName != componentDir.dirName() )
                 bail( "The branding component name should match the name of the "
                       "component directory." );
@@ -165,8 +172,7 @@ Branding::Branding( const QString& brandingFilePath,
             // Copy the os-release information into a QHash for use by KMacroExpander.
             KOSRelease relInfo;
 
-            QHash< QString, QString > relMap{
-                std::initializer_list< std::pair< QString, QString > > {
+            QHash< QString, QString > relMap { std::initializer_list< std::pair< QString, QString > > {
                 { QStringLiteral( "NAME" ), relInfo.name() },
                 { QStringLiteral( "VERSION" ), relInfo.version() },
                 { QStringLiteral( "ID" ), relInfo.id() },
@@ -182,9 +188,10 @@ Branding::Branding( const QString& brandingFilePath,
                 { QStringLiteral( "BUILD_ID" ), relInfo.buildId() },
                 { QStringLiteral( "VARIANT" ), relInfo.variant() },
                 { QStringLiteral( "VARIANT_ID" ), relInfo.variantId() },
-                { QStringLiteral( "LOGO" ), relInfo.logo() }
-            } };
-            auto expand = [&]( const QString& s ) -> QString { return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '@' ) ); };
+                { QStringLiteral( "LOGO" ), relInfo.logo() } } };
+            auto expand = [&]( const QString& s ) -> QString {
+                return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '@' ) );
+            };
 #else
             auto expand = []( const QString& s ) -> QString { return s; };
 #endif
@@ -192,26 +199,23 @@ Branding::Branding( const QString& brandingFilePath,
 
             // Massage the strings, images and style sections.
             loadStrings( m_strings, doc, "strings", expand );
-            loadStrings( m_images, doc, "images",
-                [&]( const QString& s ) -> QString
+            loadStrings( m_images, doc, "images", [&]( const QString& s ) -> QString {
+                // See also image()
+                const QString imageName( expand( s ) );
+                QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
+                if ( !imageFi.exists() )
                 {
-                    // See also image()
-                    const QString imageName( expand( s ) );
-                    QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
-                    if ( !imageFi.exists() )
+                    const auto icon = QIcon::fromTheme( imageName );
+                    // Not found, bail out with the filename used
+                    if ( icon.isNull() )
                     {
-                        const auto icon = QIcon::fromTheme( imageName );
-                        // Not found, bail out with the filename used
-                        if ( icon.isNull() )
-                            bail( QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
-                        return imageName;  // Not turned into a path
+                        bail( QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
                     }
-                    return  imageFi.absoluteFilePath();
+                    return imageName;  // Not turned into a path
                 }
-                );
-            loadStrings( m_style, doc, "style",
-                []( const QString& s ) -> QString { return s; }
-                );
+                return imageFi.absoluteFilePath();
+            } );
+            loadStrings( m_style, doc, "style", []( const QString& s ) -> QString { return s; } );
 
             if ( doc[ "slideshow" ].IsSequence() )
             {
@@ -222,8 +226,7 @@ Branding::Branding( const QString& brandingFilePath,
                     QString pathString = slideShowPictures[ i ];
                     QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
                     if ( !imageFi.exists() )
-                        bail( QString( "Slideshow file %1 does not exist." )
-                                .arg( imageFi.absoluteFilePath() ) );
+                        bail( QString( "Slideshow file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
 
                     slideShowPictures[ i ] = imageFi.absoluteFilePath();
                 }
@@ -232,19 +235,19 @@ Branding::Branding( const QString& brandingFilePath,
             }
             else if ( doc[ "slideshow" ].IsScalar() )
             {
-                QString slideshowPath = QString::fromStdString( doc[ "slideshow" ]
-                                                          .as< std::string >() );
+                QString slideshowPath = QString::fromStdString( doc[ "slideshow" ].as< std::string >() );
                 QFileInfo slideshowFi( componentDir.absoluteFilePath( slideshowPath ) );
-                if ( !slideshowFi.exists() ||
-                     !slideshowFi.fileName().toLower().endsWith( ".qml" ) )
+                if ( !slideshowFi.exists() || !slideshowFi.fileName().toLower().endsWith( ".qml" ) )
                     bail( QString( "Slideshow file %1 does not exist or is not a valid QML file." )
-                            .arg( slideshowFi.absoluteFilePath() ) );
+                              .arg( slideshowFi.absoluteFilePath() ) );
                 m_slideshowPath = slideshowFi.absoluteFilePath();
             }
             else
+            {
                 bail( "Syntax error in slideshow sequence." );
+            }
 
-            int api = doc[ "slideshowAPI" ].IsScalar() ? doc[ "slideshowAPI" ].as<int>() : -1;
+            int api = doc[ "slideshowAPI" ].IsScalar() ? doc[ "slideshowAPI" ].as< int >() : -1;
             if ( ( api < 1 ) || ( api > 2 ) )
             {
                 cWarning() << "Invalid or missing *slideshowAPI* in branding file.";
@@ -260,11 +263,11 @@ Branding::Branding( const QString& brandingFilePath,
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
         if ( !translationsDir.exists() )
+        {
             cWarning() << "the branding component" << componentDir.absolutePath() << "does not ship translations.";
+        }
         m_translationsPathPrefix = translationsDir.absolutePath();
-        m_translationsPathPrefix.append( QString( "%1calamares-%2" )
-                                            .arg( QDir::separator() )
-                                            .arg( m_componentName ) );
+        m_translationsPathPrefix.append( QString( "%1calamares-%2" ).arg( QDir::separator() ).arg( m_componentName ) );
     }
     else
     {
@@ -286,7 +289,7 @@ Branding::Branding( const QString& brandingFilePath,
 QString
 Branding::componentDirectory() const
 {
-    QFileInfo fi ( m_descriptorPath );
+    QFileInfo fi( m_descriptorPath );
     return fi.absoluteDir().absolutePath();
 }
 
@@ -325,7 +328,7 @@ Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
     }
     else
     {
-        auto icon = QIcon::fromTheme(path);
+        auto icon = QIcon::fromTheme( path );
 
         Q_ASSERT( !icon.isNull() );
         return icon.pixmap( size );
@@ -333,7 +336,7 @@ Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
 }
 
 QPixmap
-Branding::image(const QString& imageName, const QSize& size) const
+Branding::image( const QString& imageName, const QSize& size ) const
 {
     QDir componentDir( componentDirectory() );
     QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
@@ -342,7 +345,9 @@ Branding::image(const QString& imageName, const QSize& size) const
         const auto icon = QIcon::fromTheme( imageName );
         // Not found, bail out with the filename used
         if ( icon.isNull() )
+        {
             return QPixmap();
+        }
         return icon.pixmap( size );
     }
     return ImageRegistry::instance()->pixmap( imageFi.absoluteFilePath(), size );
@@ -360,7 +365,9 @@ Branding::stylesheet() const
         return stylesheetFile.readAll();
     }
     else
+    {
         cWarning() << "The branding component" << fi.absoluteDir().absolutePath() << "does not ship stylesheet.qss.";
+    }
     return QString();
 }
 
@@ -369,7 +376,9 @@ Branding::setGlobals( GlobalStorage* globalStorage ) const
 {
     QVariantMap brandingMap;
     for ( const QString& key : s_stringEntryStrings )
+    {
         brandingMap.insert( key, m_strings.value( key ) );
+    }
     globalStorage->insert( "branding", brandingMap );
 }
 
@@ -384,15 +393,17 @@ Branding::WindowDimension::isValid() const
 static inline QString
 getString( const YAML::Node& doc, const char* key )
 {
-    if ( doc[key] )
-        return QString::fromStdString( doc[key].as< std::string >() );
+    if ( doc[ key ] )
+    {
+        return QString::fromStdString( doc[ key ].as< std::string >() );
+    }
     return QString();
 }
 
 void
 Branding::initSimpleSettings( const YAML::Node& doc )
 {
-    static const NamedEnumTable< WindowExpansion > expansionNames{
+    static const NamedEnumTable< WindowExpansion > expansionNames {
         { QStringLiteral( "normal" ), WindowExpansion::Normal },
         { QStringLiteral( "fullscreen" ), WindowExpansion::Fullscreen },
         { QStringLiteral( "noexpand" ), WindowExpansion::Fixed }
@@ -403,7 +414,10 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     m_welcomeExpandingLogo = doc[ "welcomeExpandingLogo" ].as< bool >( true );
     m_windowExpansion = expansionNames.find( getString( doc, "windowExpanding" ), ok );
     if ( !ok )
-        cWarning() << "Branding module-setting *windowExpanding* interpreted as" << expansionNames.find( m_windowExpansion, ok );
+    {
+        cWarning() << "Branding module-setting *windowExpanding* interpreted as"
+                   << expansionNames.find( m_windowExpansion, ok );
+    }
 
     QString windowSize = getString( doc, "windowSize" );
     if ( !windowSize.isEmpty() )
@@ -411,24 +425,26 @@ Branding::initSimpleSettings( const YAML::Node& doc )
         auto l = windowSize.split( ',' );
         if ( l.count() == 2 )
         {
-            m_windowWidth = WindowDimension( l[0] );
-            m_windowHeight = WindowDimension( l[1] );
+            m_windowWidth = WindowDimension( l[ 0 ] );
+            m_windowHeight = WindowDimension( l[ 1 ] );
         }
     }
     if ( !m_windowWidth.isValid() )
+    {
         m_windowWidth = WindowDimension( CalamaresUtils::windowPreferredWidth, WindowDimensionUnit::Pixies );
+    }
     if ( !m_windowHeight.isValid() )
+    {
         m_windowHeight = WindowDimension( CalamaresUtils::windowPreferredHeight, WindowDimensionUnit::Pixies );
+    }
 }
 
 
 [[noreturn]] void
 Branding::bail( const QString& message )
 {
-    cError() << "FATAL in"
-           << m_descriptorPath
-           << "\n" + message;
+    cError() << "FATAL in" << m_descriptorPath << "\n" + message;
     ::exit( EXIT_FAILURE );
 }
 
-}
+}  // namespace Calamares

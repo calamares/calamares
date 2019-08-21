@@ -73,10 +73,14 @@ ViewStep::setModuleInstanceKey( const QString& instanceKey )
 
 
 void
-ViewStep::setConfigurationMap( const QVariantMap& configurationMap ) { Q_UNUSED( configurationMap ) }
+ViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    Q_UNUSED( configurationMap )
+}
 
 
-RequirementsList ViewStep::checkRequirements()
+RequirementsList
+ViewStep::checkRequirements()
 {
     return RequirementsList();
 }
