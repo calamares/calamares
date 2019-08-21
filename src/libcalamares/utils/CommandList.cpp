@@ -36,7 +36,7 @@ static CommandLine
 get_variant_object( const QVariantMap& m )
 {
     QString command = CalamaresUtils::getString( m, "command" );
-    int timeout = CalamaresUtils::getInteger( m, "timeout", -1 );
+    qint64 timeout = CalamaresUtils::getInteger( m, "timeout", -1 );
 
     if ( !command.isEmpty() )
     {

@@ -152,7 +152,7 @@ void
 ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool dontChroot = CalamaresUtils::getBool( configurationMap, "dontChroot", false );
-    int timeout = CalamaresUtils::getInteger( configurationMap, "timeout", 10 );
+    qint64 timeout = CalamaresUtils::getInteger( configurationMap, "timeout", 10 );
     if ( timeout < 1 )
     {
         timeout = 10;
