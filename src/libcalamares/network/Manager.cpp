@@ -95,5 +95,23 @@ CalamaresUtils::Network::Manager::synchronousPing( const QUrl& url )
     QEventLoop loop;
     connect( reply, &QNetworkReply::finished, &loop, &QEventLoop::quit );
     loop.exec();
+    reply->deleteLater();
     return reply->bytesAvailable();
+}
+
+QByteArray
+CalamaresUtils::Network::Manager::synchronousGet( const QUrl& url )
+{
+    if ( !url.isValid() )
+    {
+        return QByteArray();
+    }
+
+    QNetworkRequest request( url );
+    QNetworkReply* reply = d->m_nam->get( request );
+    QEventLoop loop;
+    connect( reply, &QNetworkReply::finished, &loop, &QEventLoop::quit );
+    loop.exec();
+    reply->deleteLater();
+    return reply->readAll();
 }

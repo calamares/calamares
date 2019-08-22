@@ -23,13 +23,10 @@
 #include "GeoIPXML.h"
 #endif
 
+#include "network/Manager.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Variant.h"
-
-#include <QEventLoop>
-#include <QNetworkReply>
-#include <QNetworkRequest>
 
 #include <memory>
 
@@ -87,22 +84,6 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
 
 Handler::~Handler() {}
 
-static QByteArray
-synchronous_get( const QString& urlstring )
-{
-    QUrl url( urlstring );
-    QNetworkAccessManager manager;
-    QEventLoop loop;
-
-    QObject::connect( &manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit );
-
-    QNetworkRequest request( url );
-    QNetworkReply* reply = manager.get( request );
-    loop.exec();
-    reply->deleteLater();
-    return reply->readAll();
-}
-
 static std::unique_ptr< Interface >
 create_interface( Handler::Type t, const QString& selector )
 {
@@ -131,7 +112,7 @@ do_query( Handler::Type type, const QString& url, const QString& selector )
         return RegionZonePair();
     }
 
-    return interface->processReply( synchronous_get( url ) );
+    return interface->processReply( CalamaresUtils::Network::Manager::instance().synchronousGet( url ) );
 }
 
 static QString
@@ -143,7 +124,7 @@ do_raw_query( Handler::Type type, const QString& url, const QString& selector )
         return QString();
     }
 
-    return interface->rawReply( synchronous_get( url ) );
+    return interface->rawReply( CalamaresUtils::Network::Manager::instance().synchronousGet( url ) );
 }
 
 RegionZonePair

@@ -21,6 +21,7 @@
 
 #include "DllMacro.h"
 
+#include <QByteArray>
 #include <QObject>
 #include <QUrl>
 
@@ -51,6 +52,13 @@ public:
      * because of an error or no network access.
      */
     bool synchronousPing( const QUrl& url );
+
+    /** @brief Downloads the data from a given @p url
+     *
+     * Returns the data as a QByteArray, or an empty
+     * array if any error occurred.
+     */
+    QByteArray synchronousGet( const QUrl& url );
 
     /// @brief Set the URL which is used for the general "is there internet" check.
     void setCheckHasInternetUrl( const QUrl& url );
