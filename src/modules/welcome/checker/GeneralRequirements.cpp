@@ -44,13 +44,9 @@
 #include <QDBusInterface>
 #include <QDesktopWidget>
 #include <QDir>
-#include <QEventLoop>
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
 #include <QProcess>
 #include <QTimer>
 
