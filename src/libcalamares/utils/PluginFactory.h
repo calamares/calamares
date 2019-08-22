@@ -102,6 +102,6 @@ public:
     K_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY( name, CalamaresPluginFactory, pluginRegistrations )
 
 
-// Q_DECLARE_INTERFACE( Calamares::PluginFactory, CalamaresPluginFactory_iid )
+Q_DECLARE_INTERFACE( Calamares::PluginFactory, CalamaresPluginFactory_iid )
 
 #endif
