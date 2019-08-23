@@ -27,6 +27,23 @@ namespace CalamaresUtils
 {
 namespace Network
 {
+void
+RequestOptions::applyToRequest( QNetworkRequest* request ) const
+{
+    if ( m_flags & Flag::FollowRedirect )
+    {
+        // Follows all redirects except unsafe ones (https to http).
+        request->setAttribute( QNetworkRequest::FollowRedirectsAttribute, true );
+    }
+
+    if ( m_flags & Flag::FakeUserAgent )
+    {
+        // Not everybody likes the default User Agent used by this class (looking at you,
+        // sourceforge.net), so let's set a more descriptive one.
+        request->setRawHeader( "User-Agent", "Mozilla/5.0 (compatible; Calamares)" );
+    }
+}
+
 struct Manager::Private
 {
     std::unique_ptr< QNetworkAccessManager > m_nam;
@@ -82,16 +99,17 @@ Manager::setCheckHasInternetUrl( const QUrl& url )
 }
 
 bool
-Manager::synchronousPing( const QUrl& url )
+Manager::synchronousPing( const QUrl& url, const RequestOptions& options )
 {
     if ( !url.isValid() )
     {
         return false;
     }
 
-    QNetworkRequest req = QNetworkRequest( url );
-    QNetworkReply* reply = d->m_nam->get( req );
+    QNetworkRequest request = QNetworkRequest( url );
+    QNetworkReply* reply = d->m_nam->get( request );
     QEventLoop loop;
+    options.applyToRequest( &request );
     connect( reply, &QNetworkReply::finished, &loop, &QEventLoop::quit );
     loop.exec();
     reply->deleteLater();
@@ -99,7 +117,7 @@ Manager::synchronousPing( const QUrl& url )
 }
 
 QByteArray
-Manager::synchronousGet( const QUrl& url )
+Manager::synchronousGet( const QUrl& url, const RequestOptions& options )
 {
     if ( !url.isValid() )
     {
@@ -109,6 +127,7 @@ Manager::synchronousGet( const QUrl& url )
     QNetworkRequest request( url );
     QNetworkReply* reply = d->m_nam->get( request );
     QEventLoop loop;
+    options.applyToRequest( &request );
     connect( reply, &QNetworkReply::finished, &loop, &QEventLoop::quit );
     loop.exec();
     reply->deleteLater();

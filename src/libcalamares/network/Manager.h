@@ -25,12 +25,46 @@
 #include <QObject>
 #include <QUrl>
 
+#include <chrono>
 #include <memory>
+
+class QNetworkRequest;
 
 namespace CalamaresUtils
 {
 namespace Network
 {
+class DLLEXPORT RequestOptions
+{
+public:
+    enum Flag
+    {
+        FollowRedirect = 0x1,
+        FakeUserAgent = 0x100
+    };
+    Q_DECLARE_FLAGS( Flags, Flag )
+
+    RequestOptions()
+        : m_flags( 0 )
+        , m_timeout( -1 )
+    {
+    }
+
+    RequestOptions( Flags f, std::chrono::milliseconds timeout = std::chrono::milliseconds( -1 ) )
+        : m_flags( f )
+        , m_timeout( timeout )
+    {
+    }
+
+    void applyToRequest( QNetworkRequest* ) const;
+
+private:
+    Flags m_flags;
+    std::chrono::milliseconds m_timeout;
+};
+
+Q_DECLARE_OPERATORS_FOR_FLAGS( RequestOptions::Flags );
+
 class DLLEXPORT Manager : QObject
 {
     Q_OBJECT
@@ -51,14 +85,14 @@ public:
      * Returns @c true if it does; @c false means no data, typically
      * because of an error or no network access.
      */
-    bool synchronousPing( const QUrl& url );
+    bool synchronousPing( const QUrl& url, const RequestOptions& options = RequestOptions() );
 
     /** @brief Downloads the data from a given @p url
      *
      * Returns the data as a QByteArray, or an empty
      * array if any error occurred.
      */
-    QByteArray synchronousGet( const QUrl& url );
+    QByteArray synchronousGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
 
     /// @brief Set the URL which is used for the general "is there internet" check.
     void setCheckHasInternetUrl( const QUrl& url );
