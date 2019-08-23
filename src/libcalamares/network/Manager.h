@@ -37,6 +37,8 @@ namespace Network
 class DLLEXPORT RequestOptions
 {
 public:
+    using milliseconds = std::chrono::milliseconds;
+
     enum Flag
     {
         FollowRedirect = 0x1,
@@ -50,7 +52,7 @@ public:
     {
     }
 
-    RequestOptions( Flags f, std::chrono::milliseconds timeout = std::chrono::milliseconds( -1 ) )
+    RequestOptions( Flags f, milliseconds timeout = milliseconds( -1 ) )
         : m_flags( f )
         , m_timeout( timeout )
     {
@@ -58,9 +60,12 @@ public:
 
     void applyToRequest( QNetworkRequest* ) const;
 
+    bool hasTimeout() const { return m_timeout > milliseconds( 0 ); }
+    auto timeout() const { return m_timeout; }
+
 private:
     Flags m_flags;
-    std::chrono::milliseconds m_timeout;
+    milliseconds m_timeout;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS( RequestOptions::Flags );

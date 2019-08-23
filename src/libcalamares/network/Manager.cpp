@@ -22,6 +22,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QTimer>
 
 namespace CalamaresUtils
 {
@@ -98,6 +99,28 @@ Manager::setCheckHasInternetUrl( const QUrl& url )
     d->m_hasInternetUrl = url;
 }
 
+static QNetworkReply*
+synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl& url, const RequestOptions& options )
+{
+    QNetworkRequest request = QNetworkRequest( url );
+    QNetworkReply* reply = nam->get( request );
+    QEventLoop loop;
+    QTimer timer;
+
+    options.applyToRequest( &request );
+    if ( options.hasTimeout() )
+    {
+        timer.setSingleShot( true );
+        QObject::connect( &timer, &QTimer::timeout, &loop, &QEventLoop::quit );
+        timer.start( options.timeout() );
+    }
+
+    QObject::connect( reply, &QNetworkReply::finished, &loop, &QEventLoop::quit );
+    loop.exec();
+    reply->deleteLater();
+    return reply;
+}
+
 bool
 Manager::synchronousPing( const QUrl& url, const RequestOptions& options )
 {
@@ -106,13 +129,7 @@ Manager::synchronousPing( const QUrl& url, const RequestOptions& options )
         return false;
     }
 
-    QNetworkRequest request = QNetworkRequest( url );
-    QNetworkReply* reply = d->m_nam->get( request );
-    QEventLoop loop;
-    options.applyToRequest( &request );
-    connect( reply, &QNetworkReply::finished, &loop, &QEventLoop::quit );
-    loop.exec();
-    reply->deleteLater();
+    auto reply = synchronousRun( d->m_nam, url, options );
     return reply->bytesAvailable();
 }
 
@@ -124,13 +141,7 @@ Manager::synchronousGet( const QUrl& url, const RequestOptions& options )
         return QByteArray();
     }
 
-    QNetworkRequest request( url );
-    QNetworkReply* reply = d->m_nam->get( request );
-    QEventLoop loop;
-    options.applyToRequest( &request );
-    connect( reply, &QNetworkReply::finished, &loop, &QEventLoop::quit );
-    loop.exec();
-    reply->deleteLater();
+    auto reply = synchronousRun( d->m_nam, url, options );
     return reply->readAll();
 }
 
