@@ -3,13 +3,13 @@
 #
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
-#   Copyright 2019 Dominic Hayes <ferenosdev@outlook.com>
 #   Copyright 2014-2018, Philip Müller <philm@manjaro.org>
 #   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2017, Bernhard Landauer <oberon@manjaro.org>
-#   Copyright 2017, Adriaan de Groot <groot@kde.org>
+#   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
+#   Copyright 2019, Dominic Hayes <ferenosdev@outlook.com>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -117,14 +117,11 @@ class DisplayManager(metaclass=abc.ABCMeta):
         in the target system.
         """
         if self.executable is None:
-            return True
+            return False
 
         bin_path = "{!s}/usr/bin/{!s}".format(self.root_mount_point, self.executable)
         sbin_path = "{!s}/usr/sbin/{!s}".format(self.root_mount_point, self.executable)
-        return (
-            os.path.exists(bin_path)
-            or os.path.exists(sbin_path)
-            )
+        return os.path.exists(bin_path) or os.path.exists(sbin_path)
 
     # The four abstract methods below are called in the order listed here.
     # They must all be implemented by subclasses, but not all of them
@@ -251,10 +248,33 @@ class DMmdm(DisplayManager):
 class DMgdm(DisplayManager):
     name = "gdm"
     executable = "gdm"
+    config = None  # Set by have_dm()
+
+    def have_dm(self):
+        """
+        GDM exists with different executable names, so search
+        for one of them and use it.
+        """
+        for executable, config in (
+            ( "gdm", "etc/gdm/custom.conf" ),
+            ( "gdm3", "etc/gdm3/daemon.conf" )
+        ):
+            bin_path = "{!s}/usr/bin/{!s}".format(self.root_mount_point, executable)
+            sbin_path = "{!s}/usr/sbin/{!s}".format(self.root_mount_point, executable)
+            if os.path.exists(bin_path) or os.path.exists(sbin_path):
+                # Keep the found-executable name around for later
+                self.executable = executable
+                self.config = config
+                return True
+
+        return False
 
     def set_autologin(self, username, do_autologin, default_desktop_environment):
+        if self.config is None:
+            raise ValueError( "No config file for GDM has been set." )
+
         # Systems with GDM as Desktop Manager
-        gdm_conf_path = os.path.join(self.root_mount_point, "etc/gdm/custom.conf")
+        gdm_conf_path = os.path.join(self.root_mount_point, self.config)
 
         if os.path.exists(gdm_conf_path):
             with open(gdm_conf_path, 'r') as gdm_conf:
