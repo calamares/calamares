@@ -8,7 +8,7 @@
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2017, Bernhard Landauer <oberon@manjaro.org>
-#   Copyright 2017, Adriaan de Groot <groot@kde.org>
+#   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
 #   Copyright 2019, Dominic Hayes <ferenosdev@outlook.com>
 #
 #   Calamares is free software: you can redistribute it and/or modify
@@ -117,14 +117,11 @@ class DisplayManager(metaclass=abc.ABCMeta):
         in the target system.
         """
         if self.executable is None:
-            return True
+            return False
 
         bin_path = "{!s}/usr/bin/{!s}".format(self.root_mount_point, self.executable)
         sbin_path = "{!s}/usr/sbin/{!s}".format(self.root_mount_point, self.executable)
-        return (
-            os.path.exists(bin_path)
-            or os.path.exists(sbin_path)
-            )
+        return os.path.exists(bin_path) or os.path.exists(sbin_path)
 
     # The four abstract methods below are called in the order listed here.
     # They must all be implemented by subclasses, but not all of them
