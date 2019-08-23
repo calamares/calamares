@@ -35,36 +35,35 @@ struct Manager::Private
 
     Private();
 };
-}  // namespace Network
-}  // namespace CalamaresUtils
-CalamaresUtils::Network::Manager::Private::Private()
+
+Manager::Private::Private()
     : m_nam( std::make_unique< QNetworkAccessManager >() )
     , m_hasInternet( false )
 {
 }
 
-CalamaresUtils::Network::Manager::Manager()
+Manager::Manager()
     : d( std::make_unique< Private >() )
 {
 }
 
-CalamaresUtils::Network::Manager::~Manager() {}
+Manager::~Manager() {}
 
-CalamaresUtils::Network::Manager&
-CalamaresUtils::Network::Manager::instance()
+Manager&
+Manager::instance()
 {
-    static auto* s_manager = new CalamaresUtils::Network::Manager();
+    static auto* s_manager = new Manager();
     return *s_manager;
 }
 
 bool
-CalamaresUtils::Network::Manager::hasInternet()
+Manager::hasInternet()
 {
     return d->m_hasInternet;
 }
 
 bool
-CalamaresUtils::Network::Manager::checkHasInternet()
+Manager::checkHasInternet()
 {
     bool hasInternet = d->m_nam->networkAccessible() == QNetworkAccessManager::Accessible;
 
@@ -77,13 +76,13 @@ CalamaresUtils::Network::Manager::checkHasInternet()
 }
 
 void
-CalamaresUtils::Network::Manager::setCheckHasInternetUrl( const QUrl& url )
+Manager::setCheckHasInternetUrl( const QUrl& url )
 {
     d->m_hasInternetUrl = url;
 }
 
 bool
-CalamaresUtils::Network::Manager::synchronousPing( const QUrl& url )
+Manager::synchronousPing( const QUrl& url )
 {
     if ( !url.isValid() )
     {
@@ -100,7 +99,7 @@ CalamaresUtils::Network::Manager::synchronousPing( const QUrl& url )
 }
 
 QByteArray
-CalamaresUtils::Network::Manager::synchronousGet( const QUrl& url )
+Manager::synchronousGet( const QUrl& url )
 {
     if ( !url.isValid() )
     {
@@ -115,3 +114,6 @@ CalamaresUtils::Network::Manager::synchronousGet( const QUrl& url )
     reply->deleteLater();
     return reply->readAll();
 }
+
+}  // namespace Network
+}  // namespace CalamaresUtils
