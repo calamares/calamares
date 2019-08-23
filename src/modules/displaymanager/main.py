@@ -248,25 +248,33 @@ class DMmdm(DisplayManager):
 class DMgdm(DisplayManager):
     name = "gdm"
     executable = "gdm"
+    config = None  # Set by have_dm()
 
     def have_dm(self):
         """
         GDM exists with different executable names, so search
         for one of them and use it.
         """
-        for executable in ( "gdm", "gdm3" ):
+        for executable, config in (
+            ( "gdm", "etc/gdm/custom.conf" ),
+            ( "gdm3", "etc/gdm3/daemon.conf" )
+        ):
             bin_path = "{!s}/usr/bin/{!s}".format(self.root_mount_point, executable)
             sbin_path = "{!s}/usr/sbin/{!s}".format(self.root_mount_point, executable)
             if os.path.exists(bin_path) or os.path.exists(sbin_path):
                 # Keep the found-executable name around for later
                 self.executable = executable
+                self.config = config
                 return True
 
         return False
 
     def set_autologin(self, username, do_autologin, default_desktop_environment):
+        if self.config is None:
+            raise ValueError( "No config file for GDM has been set." )
+
         # Systems with GDM as Desktop Manager
-        gdm_conf_path = os.path.join(self.root_mount_point, "etc/gdm/custom.conf")
+        gdm_conf_path = os.path.join(self.root_mount_point, self.config)
 
         if os.path.exists(gdm_conf_path):
             with open(gdm_conf_path, 'r') as gdm_conf:
