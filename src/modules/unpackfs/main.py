@@ -208,7 +208,7 @@ class UnpackOperation:
                 imgbasename = os.path.splitext(
                     os.path.basename(entry.source))[0]
                 imgmountdir = os.path.join(source_mount_path, imgbasename)
-                os.mkdir(imgmountdir)
+                os.makedirs(imgmountdir, exist_ok=True)
 
                 self.mount_image(entry, imgmountdir)
 
