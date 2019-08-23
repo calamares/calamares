@@ -24,7 +24,7 @@
 #ifndef UTILS_PLUGINFACTORY_H
 #define UTILS_PLUGINFACTORY_H
 
-#include <KF5/KCoreAddons/KPluginFactory>
+#include <KPluginFactory>
 
 #define CalamaresPluginFactory_iid "io.calamares.PluginFactory"
 
