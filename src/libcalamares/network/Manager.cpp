@@ -107,6 +107,12 @@ synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl&
     QEventLoop loop;
     QTimer timer;
 
+    if ( reply->error() )
+    {
+        reply->deleteLater();
+        return reply;
+    }
+
     options.applyToRequest( &request );
     if ( options.hasTimeout() )
     {
