@@ -37,21 +37,36 @@
        <item>
         <widget class="QLabel" name="productName">
          <property name="text">
-          <string>TextLabel</string>
+          <string>Product Name</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="productScreenshot">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>TextLabel</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="productDescription">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>2</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
-          <string>TextLabel</string>
+          <string>Long Product Description</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
