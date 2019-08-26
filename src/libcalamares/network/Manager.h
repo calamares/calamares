@@ -80,10 +80,13 @@ struct RequestStatus
         Empty  // for ping(), response is empty
     };
 
-    RequestStatus( State s = Ok );
-    operator bool() const { return m_s == Ok; }
+    RequestStatus( State s = Ok )
+        : status( s )
+    {
+    }
+    operator bool() const { return status == Ok; }
 
-    State m_s;
+    State status;
 };
 
 class DLLEXPORT Manager : QObject
