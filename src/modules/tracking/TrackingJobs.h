@@ -21,13 +21,10 @@
 
 #include "Job.h"
 
-class QNetworkAccessManager;
-class QNetworkReply;
 class QSemaphore;
 
 class TrackingInstallJob : public Calamares::Job
 {
-    Q_OBJECT
 public:
     TrackingInstallJob( const QString& url );
     ~TrackingInstallJob() override;
@@ -37,13 +34,8 @@ public:
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
-public slots:
-    void dataIsHere( QNetworkReply* );
-
 private:
     const QString m_url;
-
-    QNetworkAccessManager* m_networkManager;
 };
 
 class TrackingMachineNeonJob : public Calamares::Job

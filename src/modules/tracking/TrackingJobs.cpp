@@ -18,12 +18,10 @@
 
 #include "TrackingJobs.h"
 
+#include "network/Manager.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
-#include <QEventLoop>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
 #include <QSemaphore>
 #include <QTimer>
 
@@ -31,13 +29,11 @@
 
 TrackingInstallJob::TrackingInstallJob( const QString& url )
     : m_url( url )
-    , m_networkManager( nullptr )
 {
 }
 
 TrackingInstallJob::~TrackingInstallJob()
 {
-    delete m_networkManager;
 }
 
 QString
@@ -61,46 +57,21 @@ TrackingInstallJob::prettyStatusMessage() const
 Calamares::JobResult
 TrackingInstallJob::exec()
 {
-    m_networkManager = new QNetworkAccessManager();
+    using CalamaresUtils::Network::Manager;
+    using CalamaresUtils::Network::RequestOptions;
+    using CalamaresUtils::Network::RequestStatus;
 
-    QNetworkRequest request;
-    request.setUrl( QUrl( m_url ) );
-    // Follows all redirects except unsafe ones (https to http).
-    request.setAttribute( QNetworkRequest::FollowRedirectsAttribute, true );
-    // Not everybody likes the default User Agent used by this class (looking at you,
-    // sourceforge.net), so let's set a more descriptive one.
-    request.setRawHeader( "User-Agent", "Mozilla/5.0 (compatible; Calamares)" );
-
-    QTimer timeout;
-    timeout.setSingleShot( true );
-
-    QEventLoop loop;
-
-    connect( m_networkManager, &QNetworkAccessManager::finished, this, &TrackingInstallJob::dataIsHere );
-    connect( m_networkManager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit );
-    connect( &timeout, &QTimer::timeout, &loop, &QEventLoop::quit );
-
-    m_networkManager->get( request );  // The semaphore is released when data is received
-    timeout.start( std::chrono::milliseconds( 5000 ) );
-
-    loop.exec();
-
-    if ( !timeout.isActive() )
+    auto result = Manager::instance().synchronousPing(
+        QUrl( m_url ),
+        RequestOptions( RequestOptions::FollowRedirect | RequestOptions::FakeUserAgent,
+                        RequestOptions::milliseconds( 5000 ) ) );
+    if ( result.status == RequestStatus::Timeout )
     {
         cWarning() << "install-tracking request timed out.";
         return Calamares::JobResult::error( tr( "Internal error in install-tracking." ),
                                             tr( "HTTP request timed out." ) );
     }
-    timeout.stop();
-
     return Calamares::JobResult::ok();
-}
-
-void
-TrackingInstallJob::dataIsHere( QNetworkReply* reply )
-{
-    cDebug() << "Installation feedback request OK";
-    reply->deleteLater();
 }
 
 QString
