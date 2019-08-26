@@ -99,6 +99,14 @@ Manager::setCheckHasInternetUrl( const QUrl& url )
     d->m_hasInternetUrl = url;
 }
 
+/** @brief Does a request synchronously, returns the request itself
+ *
+ * The extra options for the request are taken from @p options,
+ * including the timeout setting.
+ *
+ * On failure, returns nullptr (e.g. bad URL, timeout). The request
+ * is marked for later automatic deletion, so don't store the pointer.
+ */
 static QNetworkReply*
 synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl& url, const RequestOptions& options )
 {
@@ -107,10 +115,11 @@ synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl&
     QEventLoop loop;
     QTimer timer;
 
+    // Bail out early if the request is bad
     if ( reply->error() )
     {
         reply->deleteLater();
-        return reply;
+        return nullptr;
     }
 
     options.applyToRequest( &request );
@@ -123,6 +132,12 @@ synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl&
 
     QObject::connect( reply, &QNetworkReply::finished, &loop, &QEventLoop::quit );
     loop.exec();
+    if ( options.hasTimeout() && !timer.isActive() )
+    {
+        reply->deleteLater();
+        return nullptr;
+    }
+
     reply->deleteLater();
     return reply;
 }
@@ -135,8 +150,8 @@ Manager::synchronousPing( const QUrl& url, const RequestOptions& options )
         return false;
     }
 
-    auto reply = synchronousRun( d->m_nam, url, options );
-    return reply->bytesAvailable();
+    auto* reply = synchronousRun( d->m_nam, url, options );
+    return reply && reply->bytesAvailable();
 }
 
 QByteArray
@@ -147,8 +162,8 @@ Manager::synchronousGet( const QUrl& url, const RequestOptions& options )
         return QByteArray();
     }
 
-    auto reply = synchronousRun( d->m_nam, url, options );
-    return reply->readAll();
+    auto* reply = synchronousRun( d->m_nam, url, options );
+    return reply ? reply->readAll() : QByteArray();
 }
 
 }  // namespace Network
