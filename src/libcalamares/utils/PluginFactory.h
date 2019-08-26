@@ -101,7 +101,4 @@ public:
 #define CALAMARES_PLUGIN_FACTORY_DEFINITION( name, pluginRegistrations ) \
     K_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY( name, CalamaresPluginFactory, pluginRegistrations )
 
-
-Q_DECLARE_INTERFACE( CalamaresPluginFactory, CalamaresPluginFactory_iid )
-
 #endif
