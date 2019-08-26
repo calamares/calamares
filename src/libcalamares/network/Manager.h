@@ -47,7 +47,7 @@ public:
     Q_DECLARE_FLAGS( Flags, Flag )
 
     RequestOptions()
-        : m_flags( 0 )
+        : m_flags( Flags() )
         , m_timeout( -1 )
     {
     }
