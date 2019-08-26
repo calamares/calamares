@@ -1,3 +1,7 @@
+# Example configuration with groups and packages, taken from Chakra Linux.
+#
+# This example is rather limited. See `README.md` for full documentation
+# on the configuration format.
 - name: "Default"
   description: "Default group"
   hidden: true
