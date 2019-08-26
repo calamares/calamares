@@ -24,9 +24,7 @@
 #endif
 #include "Handler.h"
 
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QNetworkRequest>
+#include "network/Manager.h"
 
 #include <QtTest/QtTest>
 
@@ -197,27 +195,9 @@ GeoIPTests::testSplitTZ()
 }
 
 
-static QByteArray
-synchronous_get( const char* urlstring )
-{
-    QUrl url( urlstring );
-    QNetworkAccessManager manager;
-    QEventLoop loop;
-
-    qDebug() << "Fetching" << url;
-
-    QObject::connect( &manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit );
-
-    QNetworkRequest request( url );
-    QNetworkReply* reply = manager.get( request );
-    loop.exec();
-    reply->deleteLater();
-    return reply->readAll();
-}
-
 #define CHECK_GET( t, selector, url ) \
     { \
-        auto tz = GeoIP##t( selector ).processReply( synchronous_get( url ) ); \
+        auto tz = GeoIP##t( selector ).processReply( CalamaresUtils::Network::Manager::instance().synchronousGet( QUrl( url ) ) ); \
         qDebug() << tz; \
         QCOMPARE( default_tz, tz ); \
         auto tz2 = CalamaresUtils::GeoIP::Handler( "" #t, url, selector ).get(); \
@@ -236,7 +216,7 @@ GeoIPTests::testGet()
 
     GeoIPJSON default_handler;
     // Call the KDE service the definitive source.
-    auto default_tz = default_handler.processReply( synchronous_get( "https://geoip.kde.org/v1/calamares" ) );
+    auto default_tz = default_handler.processReply( CalamaresUtils::Network::Manager::instance().synchronousGet( QUrl( "https://geoip.kde.org/v1/calamares" ) ) );
 
     // This is bogus, because the test isn't always run by me
     // QCOMPARE( default_tz.first, QStringLiteral("Europe") );

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,37 +16,23 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TRACKINGJOBS
-#define TRACKINGJOBS
+#ifndef LIBCALAMARES_NETWORK_TESTS_H
+#define LIBCALAMARES_NETWORK_TESTS_H
 
-#include "Job.h"
+#include <QObject>
 
-class QSemaphore;
-
-class TrackingInstallJob : public Calamares::Job
-{
-public:
-    TrackingInstallJob( const QString& url );
-    ~TrackingInstallJob() override;
-
-    QString prettyName() const override;
-    QString prettyDescription() const override;
-    QString prettyStatusMessage() const override;
-    Calamares::JobResult exec() override;
-
-private:
-    const QString m_url;
-};
-
-class TrackingMachineNeonJob : public Calamares::Job
+class NetworkTests : public QObject
 {
     Q_OBJECT
 public:
-    QString prettyName() const override;
-    QString prettyDescription() const override;
-    QString prettyStatusMessage() const override;
-    Calamares::JobResult exec() override;
-};
+    NetworkTests();
+    ~NetworkTests() override;
 
+private Q_SLOTS:
+    void initTestCase();
+
+    void testInstance();
+    void testPing();
+};
 
 #endif

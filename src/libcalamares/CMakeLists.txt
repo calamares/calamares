@@ -36,6 +36,9 @@ set( libSources
     locale/Lookup.cpp
     locale/TranslatableConfiguration.cpp
 
+    # Network service
+    network/Manager.cpp
+
     # Partition service
     partition/PartitionSize.cpp
 
@@ -194,6 +197,16 @@ if ( ECM_FOUND AND BUILD_TESTING )
             Qt5::Test
     )
     calamares_automoc( libcalamareslocaletest )
+
+    ecm_add_test(
+            network/Tests.cpp
+        TEST_NAME
+            libcalamaresnetworktest
+        LINK_LIBRARIES
+            calamares
+            Qt5::Test
+    )
+    calamares_automoc( libcalamaresnetworktest )
 endif()
 
 if( BUILD_TESTING )
