@@ -70,6 +70,22 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS( RequestOptions::Flags );
 
+struct RequestStatus
+{
+    enum State
+    {
+        Ok,
+        Timeout,  // Timeout exceeded
+        Failed,  // bad Url
+        Empty  // for ping(), response is empty
+    };
+
+    RequestStatus( State s = Ok );
+    operator bool() const { return m_s == Ok; }
+
+    State m_s;
+};
+
 class DLLEXPORT Manager : QObject
 {
     Q_OBJECT
@@ -87,15 +103,19 @@ public:
 
     /** @brief Checks if the given @p url returns data.
      *
-     * Returns @c true if it does; @c false means no data, typically
-     * because of an error or no network access.
+     * Returns a RequestStatus, which converts to @c true if the ping
+     * was successful. Other status reasons convert to @c false,
+     * typically because of no data, a Url error or no network access.
+     *
+     * May return Empty if the request was successful but returned
+     * no data at all.
      */
-    bool synchronousPing( const QUrl& url, const RequestOptions& options = RequestOptions() );
+    RequestStatus synchronousPing( const QUrl& url, const RequestOptions& options = RequestOptions() );
 
     /** @brief Downloads the data from a given @p url
      *
      * Returns the data as a QByteArray, or an empty
-     * array if any error occurred.
+     * array if any error occurred (or no data was returned).
      */
     QByteArray synchronousGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
 

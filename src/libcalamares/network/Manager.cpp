@@ -107,7 +107,7 @@ Manager::setCheckHasInternetUrl( const QUrl& url )
  * On failure, returns nullptr (e.g. bad URL, timeout). The request
  * is marked for later automatic deletion, so don't store the pointer.
  */
-static QNetworkReply*
+static QPair< RequestStatus, QNetworkReply* >
 synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl& url, const RequestOptions& options )
 {
     QNetworkRequest request = QNetworkRequest( url );
@@ -119,7 +119,7 @@ synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl&
     if ( reply->error() )
     {
         reply->deleteLater();
-        return nullptr;
+        return qMakePair( RequestStatus( RequestStatus::Failed ), nullptr );
     }
 
     options.applyToRequest( &request );
@@ -135,23 +135,30 @@ synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl&
     if ( options.hasTimeout() && !timer.isActive() )
     {
         reply->deleteLater();
-        return nullptr;
+        return qMakePair( RequestStatus( RequestStatus::Timeout ), nullptr );
     }
 
     reply->deleteLater();
-    return reply;
+    return qMakePair( RequestStatus( RequestStatus::Ok ), reply );
 }
 
-bool
+RequestStatus
 Manager::synchronousPing( const QUrl& url, const RequestOptions& options )
 {
     if ( !url.isValid() )
     {
-        return false;
+        return RequestStatus::Failed;
     }
 
-    auto* reply = synchronousRun( d->m_nam, url, options );
-    return reply && reply->bytesAvailable();
+    auto reply = synchronousRun( d->m_nam, url, options );
+    if ( reply.first )
+    {
+        return reply.second->bytesAvailable() ? RequestStatus::Ok : RequestStatus::Empty;
+    }
+    else
+    {
+        return reply.first;
+    }
 }
 
 QByteArray
@@ -162,8 +169,8 @@ Manager::synchronousGet( const QUrl& url, const RequestOptions& options )
         return QByteArray();
     }
 
-    auto* reply = synchronousRun( d->m_nam, url, options );
-    return reply ? reply->readAll() : QByteArray();
+    auto reply = synchronousRun( d->m_nam, url, options );
+    return reply.first ? reply.second->readAll() : QByteArray();
 }
 
 }  // namespace Network
