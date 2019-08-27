@@ -32,7 +32,7 @@ Presentation
     Timer {
         id: advanceTimer
         interval: 1000
-        running: false
+        running: presentation.activatedInCalamares
         repeat: true
         onTriggered: nextSlide()
     }
@@ -68,15 +68,19 @@ Presentation
         centeredText: qsTr("This is a third Slide element.")
     }
 
+    // When this slideshow is loaded as a V1 slideshow, only
+    // activatedInCalamares is set, which starts the timer (see above).
+    //
+    // In V2, also the onActivate() and onLeave() methods are called.
+    // These example functions log a message (and re-start the slides
+    // from the first).
     function onActivate() {
-        presentation.currentSlide = 0;
-        presentation.activatedInCalamares = true;
-        advanceTimer.running = true;
         console.log("QML Component (default slideshow) activated");
+        presentation.currentSlide = 0;
     }
     
     function onLeave() {
-        presentation.activatedInCalamares = true;
+        console.log("QML Component (default slideshow) deactivated");
     }
 
 }

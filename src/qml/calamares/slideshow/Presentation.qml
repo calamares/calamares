@@ -80,7 +80,13 @@ Item {
     property string fontFamily: "Helvetica"
     property string codeFontFamily: "Courier New"
 
-    property bool activatedInCalamares: false;
+    // This is set by the C++ part of Calamares when the slideshow
+    // becomes visible. You can connect it to a timer, or whatever
+    // else needs to start only when the slideshow becomes visible.
+    //
+    // It is used in this example also to keep the keyboard shortcuts
+    // enabled only while the slideshow is active.
+    property bool activatedInCalamares: false
     
     // Private API
     property int _lastShownSlide: 0
