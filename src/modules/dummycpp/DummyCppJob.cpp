@@ -28,6 +28,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
 DummyCppJob::DummyCppJob( QObject* parent )
@@ -113,9 +114,10 @@ Calamares::JobResult
 DummyCppJob::exec()
 {
     // Ported from dummypython
-    QProcess::execute( "/bin/sh",
-                       QStringList() << "-c"
-                                     << "touch ~/calamares-dummycpp" );
+    CalamaresUtils::System::runCommand( CalamaresUtils::System::RunLocation::RunInHost,
+                                        QStringList() << "/bin/sh"
+                                                      << "-c"
+                                                      << "touch ~/calamares-dummycpp" );
     QString accumulator = QDateTime::currentDateTimeUtc().toString( Qt::ISODate ) + '\n';
     accumulator += QStringLiteral( "Calamares version: " ) + CALAMARES_VERSION_SHORT + '\n';
     accumulator += QStringLiteral( "This job's name: " ) + prettyName() + '\n';
