@@ -184,7 +184,7 @@ ExecutionViewStep::loadQmlV2Complete()
 {
     if ( m_qmlComponent && m_qmlComponent->isReady() && !m_qmlObject )
     {
-        cDebug() << "QML loading complete, API 2";
+        cDebug() << "QML component complete, API 2";
         // Don't do this again
         disconnect( m_qmlComponent, &QQmlComponent::statusChanged, this, &ExecutionViewStep::loadQmlV2Complete );
 
@@ -196,6 +196,8 @@ ExecutionViewStep::loadQmlV2Complete()
         }
         else
         {
+            cDebug() << Logger::SubEntry << "Loading" << Calamares::Branding::instance()->slideshowPath();
+            
             // setContent() is public API, but not documented publicly.
             // It is marked \internal in the Qt sources, but does exactly
             // what is needed: sets up visual parent by replacing the root
