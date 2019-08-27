@@ -179,6 +179,21 @@ ExecutionViewStep::loadQmlV2()
     }
 }
 
+static void
+activateSlideShow( QQuickItem* slideshow, QQuickWidget* widget)
+{
+    if ( Branding::instance()->slideshowAPI() == 2 )
+    {
+        // The QML was already loaded in the constructor, need to start it
+        callQMLFunction( slideshow, "onActivate" );
+    }
+    else if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
+    {
+        // API version 1 assumes onCompleted is the trigger
+        widget->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
+    }
+}
+
 void
 ExecutionViewStep::loadQmlV2Complete()
 {
@@ -208,7 +223,7 @@ ExecutionViewStep::loadQmlV2Complete()
             {
                 // We're alreay visible! Must have been slow QML loading, and we
                 // passed onActivate already.
-                callQMLFunction( m_qmlObject, "onActivate" );
+                activateSlideShow( m_qmlObject, m_qmlShow );
             }
         }
     }
@@ -217,16 +232,7 @@ ExecutionViewStep::loadQmlV2Complete()
 void
 ExecutionViewStep::onActivate()
 {
-    if ( Branding::instance()->slideshowAPI() == 2 )
-    {
-        // The QML was already loaded in the constructor, need to start it
-        callQMLFunction( m_qmlObject, "onActivate" );
-    }
-    else if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
-    {
-        // API version 1 assumes onCompleted is the trigger
-        m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
-    }
+    activateSlideShow( m_qmlObject, m_qmlShow );
 
     JobQueue* queue = JobQueue::instance();
     foreach ( const QString& instanceKey, m_jobInstanceKeys )
