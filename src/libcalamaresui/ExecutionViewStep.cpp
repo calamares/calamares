@@ -179,12 +179,63 @@ ExecutionViewStep::loadQmlV2()
     }
 }
 
+/// @brief State-change of the slideshow, for changeSlideShowState()
+enum class Slideshow
+{
+    Start,
+    Stop
+};
+
+/** @brief Tells the slideshow we activated or left the show.
+ *
+ * If @p state is @c Slideshow::Start, calls suitable activation procedures.
+ * If @p state is @c Slideshow::Stop, calls deactivation procedures.
+ *
+ * Applies V1 and V2 QML activation / deactivation:
+ *  - V1 loads the QML in @p widget on activation. Sets root object property
+ *    *activatedInCalamares* as appropriate.
+ *  - V2 calls onActivate() or onLeave() in the QML as appropriate. Also
+ *    sets the *activatedInCalamares* property.
+ */
+static void
+changeSlideShowState( Slideshow state, QQuickItem* slideshow, QQuickWidget* widget )
+{
+    bool activate = state == Slideshow::Start;
+
+    if ( Branding::instance()->slideshowAPI() == 2 )
+    {
+        // The QML was already loaded in the constructor, need to start it
+        callQMLFunction( slideshow, activate ? "onActivate" : "onLeave" );
+    }
+    else if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
+    {
+        // API version 1 assumes onCompleted is the trigger
+        if ( activate )
+        {
+            widget->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
+        }
+        // needs the root object for property setting, below
+        slideshow = widget->rootObject();
+    }
+
+    // V1 API has picked up the root object for use, V2 passed it in.
+    if ( slideshow )
+    {
+        static const char propertyName[] = "activatedInCalamares";
+        auto property = slideshow->property( propertyName );
+        if ( property.isValid() && ( property.type() == QVariant::Bool ) && ( property.toBool() != activate ) )
+        {
+            slideshow->setProperty( propertyName, activate );
+        }
+    }
+}
+
 void
 ExecutionViewStep::loadQmlV2Complete()
 {
     if ( m_qmlComponent && m_qmlComponent->isReady() && !m_qmlObject )
     {
-        cDebug() << "QML loading complete, API 2";
+        cDebug() << "QML component complete, API 2";
         // Don't do this again
         disconnect( m_qmlComponent, &QQmlComponent::statusChanged, this, &ExecutionViewStep::loadQmlV2Complete );
 
@@ -196,6 +247,8 @@ ExecutionViewStep::loadQmlV2Complete()
         }
         else
         {
+            cDebug() << Logger::SubEntry << "Loading" << Calamares::Branding::instance()->slideshowPath();
+
             // setContent() is public API, but not documented publicly.
             // It is marked \internal in the Qt sources, but does exactly
             // what is needed: sets up visual parent by replacing the root
@@ -206,7 +259,7 @@ ExecutionViewStep::loadQmlV2Complete()
             {
                 // We're alreay visible! Must have been slow QML loading, and we
                 // passed onActivate already.
-                callQMLFunction( m_qmlObject, "onActivate" );
+                changeSlideShowState( Slideshow::Start, m_qmlObject, m_qmlShow );
             }
         }
     }
@@ -215,16 +268,7 @@ ExecutionViewStep::loadQmlV2Complete()
 void
 ExecutionViewStep::onActivate()
 {
-    if ( Branding::instance()->slideshowAPI() == 2 )
-    {
-        // The QML was already loaded in the constructor, need to start it
-        callQMLFunction( m_qmlObject, "onActivate" );
-    }
-    else if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
-    {
-        // API version 1 assumes onCompleted is the trigger
-        m_qmlShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
-    }
+    changeSlideShowState( Slideshow::Start, m_qmlObject, m_qmlShow );
 
     JobQueue* queue = JobQueue::instance();
     foreach ( const QString& instanceKey, m_jobInstanceKeys )
@@ -272,10 +316,10 @@ ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 void
 ExecutionViewStep::onLeave()
 {
+    changeSlideShowState( Slideshow::Stop, m_qmlObject, m_qmlShow );
     // API version 2 is explicitly stopped; version 1 keeps running
     if ( Branding::instance()->slideshowAPI() == 2 )
     {
-        callQMLFunction( m_qmlObject, "onLeave" );
         delete m_qmlObject;
         m_qmlObject = nullptr;
     }

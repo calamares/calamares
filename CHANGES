@@ -20,6 +20,9 @@ This release contains contributions from (alphabetically by first name):
   (maintained!) upstream version instead. It also gives us KMacroExpander
   everywhere, which will simplify code for handling substitutions
   in configuration files.
+- *Slideshows* now have a new property *activatedInCalamares* which
+  controls the keyboard shortcuts (and can control timers and other
+  properties of the slideshow, too).
 
 ## Modules ##
 

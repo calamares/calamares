@@ -8,6 +8,9 @@
  *       (this and the 'c' key make sense in a *presentation*
  *       slideshow, not in a passive slideshow like Calamares)
  *     - remove quit key
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *     - Support "V2" loading
+ *     - Disable shortcuts until the content is visible in Calamares
  *
  *   SPDX-License-Identifier: LGPL-2.1
  *   License-Filename: LICENSES/LGPLv2.1-Presentation
@@ -77,6 +80,14 @@ Item {
     property string fontFamily: "Helvetica"
     property string codeFontFamily: "Courier New"
 
+    // This is set by the C++ part of Calamares when the slideshow
+    // becomes visible. You can connect it to a timer, or whatever
+    // else needs to start only when the slideshow becomes visible.
+    //
+    // It is used in this example also to keep the keyboard shortcuts
+    // enabled only while the slideshow is active.
+    property bool activatedInCalamares: false
+    
     // Private API
     property int _lastShownSlide: 0
 
@@ -136,17 +147,17 @@ Item {
     Keys.onLeftPressed: goToPreviousSlide()
 
     // navigate with arrow keys
-    Shortcut { sequence: StandardKey.MoveToNextLine; enabled: root.arrowNavigation; onActivated: goToNextSlide() }
-    Shortcut { sequence: StandardKey.MoveToPreviousLine; enabled: root.arrowNavigation; onActivated: goToPreviousSlide() }
-    Shortcut { sequence: StandardKey.MoveToNextChar; enabled: root.arrowNavigation; onActivated: goToNextSlide() }
-    Shortcut { sequence: StandardKey.MoveToPreviousChar; enabled: root.arrowNavigation; onActivated: goToPreviousSlide() }
+    Shortcut { sequence: StandardKey.MoveToNextLine; enabled: root.activatedInCalamares && root .arrowNavigation; onActivated: goToNextSlide() }
+    Shortcut { sequence: StandardKey.MoveToPreviousLine; enabled: root.activatedInCalamares && root.arrowNavigation; onActivated: goToPreviousSlide() }
+    Shortcut { sequence: StandardKey.MoveToNextChar; enabled: root.activatedInCalamares && root.arrowNavigation; onActivated: goToNextSlide() }
+    Shortcut { sequence: StandardKey.MoveToPreviousChar; enabled: root.activatedInCalamares && root.arrowNavigation; onActivated: goToPreviousSlide() }
 
     // presentation-specific single-key shortcuts (which interfere with normal typing)
-    Shortcut { sequence: " "; enabled: root.keyShortcutsEnabled; onActivated: goToNextSlide() }
+    Shortcut { sequence: " "; enabled: root.activatedInCalamares && root.keyShortcutsEnabled; onActivated: goToNextSlide() }
 
     // standard shortcuts
-    Shortcut { sequence: StandardKey.MoveToNextPage; onActivated: goToNextSlide() }
-    Shortcut { sequence: StandardKey.MoveToPreviousPage; onActivated: goToPreviousSlide() }
+    Shortcut { sequence: StandardKey.MoveToNextPage; enabled: root.activatedInCalamares; onActivated: goToNextSlide() }
+    Shortcut { sequence: StandardKey.MoveToPreviousPage; enabled: root.activatedInCalamares; onActivated: goToPreviousSlide() }
 
     MouseArea {
         id: mouseArea

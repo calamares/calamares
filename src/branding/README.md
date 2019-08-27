@@ -66,6 +66,16 @@ The setting *slideshowAPI* in `branding.desc` indicates which one to use
 for a given branding slideshow. Which API to use is really a function of
 the QML. Expect the version 1 API to be deprecated in the course of Calamares 3.3.
 
+In Calamares 3.2.13 support for activation notification to the QML 
+parts is improved:
+ - If the root object has a property *activatedInCalamares* (the examples do),
+   then that property is set to *true* when the slideshow becomes visible
+   (activated) and is set to *false* when the slideshow is hidden (e.g.
+   when the installation phase is done).
+ - The *actvatedInCalamares* property can be used to set up timers also in V1.
+ - The keyboard shortcuts in the example slideshow are enabled only while
+   the slideshow is visible.
+
 
 ## Translations
 
