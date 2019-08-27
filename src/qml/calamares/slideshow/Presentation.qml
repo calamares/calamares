@@ -8,6 +8,9 @@
  *       (this and the 'c' key make sense in a *presentation*
  *       slideshow, not in a passive slideshow like Calamares)
  *     - remove quit key
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *     - Support "V2" loading
+ *     - Disable shortcuts until the content is visible in Calamares
  *
  *   SPDX-License-Identifier: LGPL-2.1
  *   License-Filename: LICENSES/LGPLv2.1-Presentation

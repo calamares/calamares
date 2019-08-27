@@ -25,7 +25,7 @@ Presentation
     id: presentation
 
     function nextSlide() {
-        console.log("Next slide");
+        console.log("QML Component (default slideshow) Next slide");
         presentation.goToNextSlide();
     }
 
@@ -70,7 +70,13 @@ Presentation
 
     function onActivate() {
         presentation.currentSlide = 0;
-        advanceTimer.running = true
+        presentation.activatedInCalamares = true;
+        advanceTimer.running = true;
         console.log("QML Component (default slideshow) activated");
     }
+    
+    function onLeave() {
+        presentation.activatedInCalamares = true;
+    }
+
 }
