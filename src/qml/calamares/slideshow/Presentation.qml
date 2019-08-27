@@ -77,6 +77,8 @@ Item {
     property string fontFamily: "Helvetica"
     property string codeFontFamily: "Courier New"
 
+    property bool activatedInCalamares: false;
+    
     // Private API
     property int _lastShownSlide: 0
 
@@ -136,17 +138,17 @@ Item {
     Keys.onLeftPressed: goToPreviousSlide()
 
     // navigate with arrow keys
-    Shortcut { sequence: StandardKey.MoveToNextLine; enabled: root.arrowNavigation; onActivated: goToNextSlide() }
-    Shortcut { sequence: StandardKey.MoveToPreviousLine; enabled: root.arrowNavigation; onActivated: goToPreviousSlide() }
-    Shortcut { sequence: StandardKey.MoveToNextChar; enabled: root.arrowNavigation; onActivated: goToNextSlide() }
-    Shortcut { sequence: StandardKey.MoveToPreviousChar; enabled: root.arrowNavigation; onActivated: goToPreviousSlide() }
+    Shortcut { sequence: StandardKey.MoveToNextLine; enabled: root.activatedInCalamares && root .arrowNavigation; onActivated: goToNextSlide() }
+    Shortcut { sequence: StandardKey.MoveToPreviousLine; enabled: root.activatedInCalamares && root.arrowNavigation; onActivated: goToPreviousSlide() }
+    Shortcut { sequence: StandardKey.MoveToNextChar; enabled: root.activatedInCalamares && root.arrowNavigation; onActivated: goToNextSlide() }
+    Shortcut { sequence: StandardKey.MoveToPreviousChar; enabled: root.activatedInCalamares && root.arrowNavigation; onActivated: goToPreviousSlide() }
 
     // presentation-specific single-key shortcuts (which interfere with normal typing)
-    Shortcut { sequence: " "; enabled: root.keyShortcutsEnabled; onActivated: goToNextSlide() }
+    Shortcut { sequence: " "; enabled: root.activatedInCalamares && root.keyShortcutsEnabled; onActivated: goToNextSlide() }
 
     // standard shortcuts
-    Shortcut { sequence: StandardKey.MoveToNextPage; onActivated: goToNextSlide() }
-    Shortcut { sequence: StandardKey.MoveToPreviousPage; onActivated: goToPreviousSlide() }
+    Shortcut { sequence: StandardKey.MoveToNextPage; enabled: root.activatedInCalamares; onActivated: goToNextSlide() }
+    Shortcut { sequence: StandardKey.MoveToPreviousPage; enabled: root.activatedInCalamares; onActivated: goToPreviousSlide() }
 
     MouseArea {
         id: mouseArea
