@@ -226,7 +226,9 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                     QString pathString = slideShowPictures[ i ];
                     QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
                     if ( !imageFi.exists() )
+                    {
                         bail( QString( "Slideshow file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
+                    }
 
                     slideShowPictures[ i ] = imageFi.absoluteFilePath();
                 }
