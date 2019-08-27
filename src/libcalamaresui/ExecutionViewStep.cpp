@@ -191,6 +191,17 @@ activateSlideShow( QQuickItem* slideshow, QQuickWidget* widget)
     {
         // API version 1 assumes onCompleted is the trigger
         widget->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()->slideshowPath() ) );
+        slideshow = widget->rootObject();
+    }
+    
+    if ( slideshow )
+    {
+        static const char propertyName[] = "activatedInCalamares";
+        auto active = slideshow->property( propertyName );
+        if ( active.isValid() && ( active.type() == QVariant::Bool ) && !active.toBool() )
+        {
+            slideshow->setProperty( propertyName, true );
+        }
     }
 }
 
