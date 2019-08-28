@@ -235,7 +235,7 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        // Optional
+        // Accommodate deprecated geoip configuration
         m_geoipUrl = CalamaresUtils::getString( configurationMap, "geoipUrl" );
         m_geoipStyle = CalamaresUtils::getString( configurationMap, "geoipStyle" );
         m_geoipSelector = CalamaresUtils::getString( configurationMap, "geoipSelector" );
