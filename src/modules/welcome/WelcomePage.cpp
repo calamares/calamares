@@ -124,7 +124,8 @@ WelcomePage::WelcomePage( QWidget* parent )
         mb.exec();
     } );
 
-    ui->verticalLayout->insertWidget( 3, m_checkingWidget );
+    int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
+    ui->verticalLayout->insertWidget( welcome_text_idx + 1, m_checkingWidget );
 }
 
 
