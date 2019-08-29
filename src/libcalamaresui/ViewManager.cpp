@@ -112,7 +112,7 @@ ViewManager::ViewManager( QObject* parent )
     m_next = makeButton( m_widget, "go-next" );
     m_quit = makeButton( m_widget, "dialog-cancel" );
 
-    CALAMARES_RETRANSLATE( updateButtonLabels(); )
+    CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels )
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
     mainLayout->addLayout( bottomLayout );
