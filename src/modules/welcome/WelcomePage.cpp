@@ -73,61 +73,13 @@ WelcomePage::WelcomePage( QWidget* parent )
     cDebug() << "Welcome string" << Calamares::Branding::instance()->welcomeStyleCalamares()
              << *Calamares::Branding::VersionedName;
 
-    CALAMARES_RETRANSLATE(
-        QString message;
-
-        if ( Calamares::Settings::instance()->isSetupMode() ) 
-        {
-            message = Calamares::Branding::instance()->welcomeStyleCalamares()
-                ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
-                : tr( "<h1>Welcome to %1 setup.</h1>" );
-        } 
-        else 
-        {
-            message = Calamares::Branding::instance()->welcomeStyleCalamares()
-                ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
-                : tr( "<h1>Welcome to the %1 installer.</h1>" );
-        }
-
-        ui->mainText->setText( message.arg( *Calamares::Branding::VersionedName ) );
-        ui->retranslateUi( this );
-        ui->supportButton->setText( tr( "%1 support" ).arg( *Calamares::Branding::ShortProductName ) ); )
+    CALAMARES_RETRANSLATE( retranslate(); )
 
     ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
         CalamaresUtils::Information,
         CalamaresUtils::Original,
         2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() ) ) );
-    connect( ui->aboutButton, &QPushButton::clicked, this, [this] {
-        QString title
-            = Calamares::Settings::instance()->isSetupMode() ? tr( "About %1 setup" ) : tr( "About %1 installer" );
-        QMessageBox mb( QMessageBox::Information,
-                        title.arg( CALAMARES_APPLICATION_NAME ),
-                        tr( "<h1>%1</h1><br/>"
-                            "<strong>%2<br/>"
-                            "for %3</strong><br/><br/>"
-                            "Copyright 2014-2017 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
-                            "Copyright 2017-2019 Adriaan de Groot &lt;groot@kde.org&gt;<br/>"
-                            "Thanks to <a href=\"https://calamares.io/team/\">the Calamares team</a> "
-                            "and the <a href=\"https://www.transifex.com/calamares/calamares/\">Calamares "
-                            "translators team</a>.<br/><br/>"
-                            "<a href=\"https://calamares.io/\">Calamares</a> "
-                            "development is sponsored by <br/>"
-                            "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
-                            "Liberating Software." )
-                            .arg( CALAMARES_APPLICATION_NAME )
-                            .arg( CALAMARES_VERSION )
-                            .arg( *Calamares::Branding::VersionedName ),
-                        QMessageBox::Ok,
-                        this );
-        mb.setIconPixmap( CalamaresUtils::defaultPixmap(
-            CalamaresUtils::Squid,
-            CalamaresUtils::Original,
-            QSize( CalamaresUtils::defaultFontHeight() * 6, CalamaresUtils::defaultFontHeight() * 6 ) ) );
-        QGridLayout* layout = reinterpret_cast< QGridLayout* >( mb.layout() );
-        if ( layout )
-            layout->setColumnMinimumWidth( 2, CalamaresUtils::defaultFontHeight() * 24 );
-        mb.exec();
-    } );
+    connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
 
     int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
     ui->verticalLayout->insertWidget( welcome_text_idx + 1, m_checkingWidget );
@@ -282,6 +234,65 @@ void
 WelcomePage::setLanguageIcon( QPixmap i )
 {
     ui->languageIcon->setPixmap( i );
+}
+
+void
+WelcomePage::retranslate()
+{
+    QString message;
+
+    if ( Calamares::Settings::instance()->isSetupMode() )
+    {
+        message = Calamares::Branding::instance()->welcomeStyleCalamares()
+            ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
+            : tr( "<h1>Welcome to %1 setup.</h1>" );
+    }
+    else
+    {
+        message = Calamares::Branding::instance()->welcomeStyleCalamares()
+            ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
+            : tr( "<h1>Welcome to the %1 installer.</h1>" );
+    }
+
+    ui->mainText->setText( message.arg( *Calamares::Branding::VersionedName ) );
+    ui->retranslateUi( this );
+    ui->supportButton->setText( tr( "%1 support" ).arg( *Calamares::Branding::ShortProductName ) );
+}
+
+void
+WelcomePage::showAboutBox()
+{
+    QString title
+        = Calamares::Settings::instance()->isSetupMode() ? tr( "About %1 setup" ) : tr( "About %1 installer" );
+    QMessageBox mb( QMessageBox::Information,
+                    title.arg( CALAMARES_APPLICATION_NAME ),
+                    tr( "<h1>%1</h1><br/>"
+                        "<strong>%2<br/>"
+                        "for %3</strong><br/><br/>"
+                        "Copyright 2014-2017 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
+                        "Copyright 2017-2019 Adriaan de Groot &lt;groot@kde.org&gt;<br/>"
+                        "Thanks to <a href=\"https://calamares.io/team/\">the Calamares team</a> "
+                        "and the <a href=\"https://www.transifex.com/calamares/calamares/\">Calamares "
+                        "translators team</a>.<br/><br/>"
+                        "<a href=\"https://calamares.io/\">Calamares</a> "
+                        "development is sponsored by <br/>"
+                        "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
+                        "Liberating Software." )
+                        .arg( CALAMARES_APPLICATION_NAME )
+                        .arg( CALAMARES_VERSION )
+                        .arg( *Calamares::Branding::VersionedName ),
+                    QMessageBox::Ok,
+                    this );
+    mb.setIconPixmap( CalamaresUtils::defaultPixmap(
+        CalamaresUtils::Squid,
+        CalamaresUtils::Original,
+        QSize( CalamaresUtils::defaultFontHeight() * 6, CalamaresUtils::defaultFontHeight() * 6 ) ) );
+    QGridLayout* layout = reinterpret_cast< QGridLayout* >( mb.layout() );
+    if ( layout )
+    {
+        layout->setColumnMinimumWidth( 2, CalamaresUtils::defaultFontHeight() * 24 );
+    }
+    mb.exec();
 }
 
 

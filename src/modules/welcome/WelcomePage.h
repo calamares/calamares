@@ -58,6 +58,10 @@ public:
     /// @brief Change the language from an external source.
     void externallySelectedLanguage( int row );
 
+public slots:
+    void retranslate();
+    void showAboutBox();
+
 protected:
     void focusInEvent( QFocusEvent* e ) override;  //choose the child widget to focus
 
