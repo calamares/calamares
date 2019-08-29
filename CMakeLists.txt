@@ -198,6 +198,7 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
         -Wno-missing-prototypes
         -Wno-documentation-unknown-command
         -Wno-unknown-warning-option
+        -Werror=return-type
     )
         string( APPEND CMAKE_CXX_FLAGS " ${CLANG_WARNINGS}" )
     endforeach()
