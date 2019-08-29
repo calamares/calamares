@@ -73,7 +73,7 @@ WelcomePage::WelcomePage( QWidget* parent )
     cDebug() << "Welcome string" << Calamares::Branding::instance()->welcomeStyleCalamares()
              << *Calamares::Branding::VersionedName;
 
-    CALAMARES_RETRANSLATE( retranslate(); )
+    CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate )
 
     ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
         CalamaresUtils::Information,
