@@ -118,8 +118,8 @@ translatorLocaleName()
     return s_translatorLocaleName;
 }
 
-void
-Retranslator::attachRetranslator( QObject* parent, std::function< void( void ) > retranslateFunc )
+Retranslator*
+Retranslator::retranslatorFor( QObject* parent )
 {
     Retranslator* r = nullptr;
     for ( QObject* child : parent->children() )
@@ -127,16 +127,17 @@ Retranslator::attachRetranslator( QObject* parent, std::function< void( void ) >
         r = qobject_cast< Retranslator* >( child );
         if ( r )
         {
-            break;
+            return r;
         }
     }
 
-    if ( !r )
-    {
-        r = new Retranslator( parent );
-    }
+    return new Retranslator( parent );
+}
 
-    r->m_retranslateFuncList.append( retranslateFunc );
+void
+Retranslator::attachRetranslator( QObject* parent, std::function< void( void ) > retranslateFunc )
+{
+    retranslatorFor( parent )->m_retranslateFuncList.append( retranslateFunc );
     retranslateFunc();
 }
 
@@ -159,6 +160,7 @@ Retranslator::eventFilter( QObject* obj, QEvent* e )
             {
                 func();
             }
+            emit languageChange();
         }
     }
     // pass the event on to the base
