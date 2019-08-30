@@ -176,7 +176,7 @@
          <item>
           <widget class="QPushButton" name="releaseNotesButton">
            <property name="toolTip">
-            <string>Open relead notes website</string>
+            <string>Open release notes website</string>
            </property>
            <property name="text">
             <string>&amp;Release notes</string>
