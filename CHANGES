@@ -3,7 +3,8 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.13 (unreleased) #
+
+# 3.2.13 (2019-08-30) #
 
 This release contains contributions from (alphabetically by first name):
  - Arnaud Ferraris
@@ -38,6 +39,7 @@ This release contains contributions from (alphabetically by first name):
   is set to a non-empty URL. #1197
 - The *welcome* module can have URLs for the various buttons configured
   directly in the module configuration (rather than in `branding.desc`).
+
 
 # 3.2.12 (2019-08-07) #
 
