@@ -93,7 +93,7 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr "Desmontar sistemas de ficheiro."
+msgstr "Desmontar sistemas de ficheiros."
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
@@ -146,7 +146,7 @@ msgstr "O sistema de ficheiros fonte \"{}\" não existe"
 
 #: src/modules/unpackfs/main.py:353
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "O destino \"{}\" no sistema alvo não é uma diretoria"
+msgstr "O destino \"{}\" no sistema de destino não é um diretório"
 
 #: src/modules/displaymanager/main.py:381
 msgid "Cannot write KDM configuration file"
@@ -215,11 +215,11 @@ msgstr "A configurar o mkintcpio."
 #: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:317
 #: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nenhum ponto de montagem root é fornecido para <pre>{!s}</pre> usar."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "Configurando a swap criptografada."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -318,19 +318,19 @@ msgstr "Remover utilizador ativo do sistema de destino"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "A definir o relógio do hardware."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "Criando o initramfs com o dracut."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "Falha ao executar o dracut no destino"
 
 #: src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "O código de saída foi {}"
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
@@ -338,11 +338,11 @@ msgstr "A configurar o initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "A configurar o serviço OpenRC dmcrypt."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "A escrever o fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -354,8 +354,8 @@ msgstr "Passo Dummy python {}"
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr "A configurar o local."
+msgstr "A configurar a localização."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "A guardar a configuração de rede."
