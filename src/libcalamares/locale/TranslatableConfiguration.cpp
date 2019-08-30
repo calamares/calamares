@@ -40,9 +40,9 @@ TranslatedString::TranslatedString( const QVariantMap& map, const QString& key )
     QString value = CalamaresUtils::getString( map, key );
     m_strings[ QString() ] = value;
 
-    for ( auto it = map.constKeyValueBegin(); it != map.constKeyValueEnd(); ++it )
+    for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
     {
-        QString subkey = ( *it ).first;
+        QString subkey = it.key();
         if ( subkey == key )
         {
             // Already obtained, above
@@ -53,7 +53,7 @@ TranslatedString::TranslatedString( const QVariantMap& map, const QString& key )
             if ( subkey.indexOf( QRegularExpression( "\\[([a-zA-Z_@]*)\\]" ), 0, &match ) > 0 )
             {
                 QString language = match.captured( 1 );
-                m_strings[ language ] = ( *it ).second.toString();
+                m_strings[ language ] = it.value().toString();
             }
         }
     }
