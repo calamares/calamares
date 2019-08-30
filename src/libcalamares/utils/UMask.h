@@ -25,7 +25,10 @@
 
 namespace CalamaresUtils
 {
-/// @brief Wrapper for umask(2)
+/** @brief Wrapper for umask(2)
+ *
+ * Like umask(2), sets the umask and returns the previous value of the mask.
+ */
 DLLEXPORT mode_t setUMask( mode_t u );
 
 /** @brief RAII for setting and re-setting umask.

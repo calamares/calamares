@@ -155,8 +155,10 @@ LibCalamaresTests::testUmask()
     QTemporaryFile ft;
     QVERIFY( ft.open() );
 
+    // m gets the previous value of the mask (depends on the environment the
+    // test is run in, might be 002, might be 077), ..
     mode_t m = CalamaresUtils::setUMask( 022 );
-    QCOMPARE( CalamaresUtils::setUMask( m ), m );
+    QCOMPARE( CalamaresUtils::setUMask( m ), 022 );  // But now most recently set was 022
 
     for ( mode_t i = 0; i <= 0777 /* octal! */; ++i )
     {
