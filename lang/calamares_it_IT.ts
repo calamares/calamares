@@ -117,7 +117,7 @@
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="121"/>
         <source>Set up</source>
-        <translation type="unfinished"/>
+        <translation>Installazione</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="122"/>
@@ -159,12 +159,12 @@
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command &apos;%1&apos; in target system.</source>
-        <translation type="unfinished"/>
+        <translation>Esegui il comando &apos;%1&apos; sul sistema di destinazione</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source> Run command &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Esegui il comando &apos;1%&apos;</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="59"/>
@@ -243,7 +243,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="361"/>
         <source>Cancel setup without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Annulla l&apos;installazione senza modificare il computer</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="362"/>
@@ -253,7 +253,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>Installazione fallita</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
@@ -273,22 +273,22 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="290"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>Continuare l&apos;installazione?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="292"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Il %1 programma di installazione sta per fare dei cambiamenti sul tuo disco per installare %2. Non sarà possibile annullare questi cambiamenti.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="299"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Installa adesso</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="355"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Installazione</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="356"/>
@@ -298,12 +298,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="358"/>
         <source>Setup is complete. Close the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>Installazione completata. Chiudere il programma di installazione.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="441"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>Annullare l&apos;installazione?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="442"/>
@@ -314,7 +314,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="444"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi davvero annullare il processo di installazione? Il programma di installazione verrrà terminato e tutti i cambiamenti verranno persi.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="446"/>
@@ -407,7 +407,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="72"/>
         <source>%1 Setup Program</source>
-        <translation type="unfinished"/>
+        <translation>%1 Programma di installazione</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="73"/>
@@ -476,7 +476,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="967"/>
         <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 sarà ridotta a %2MiB ed una nuova partizione di %3MiB sarà creata per %4</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
@@ -719,7 +719,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="44"/>
         <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-        <translation type="unfinished"/>
+        <translation>Crea una nuova partizione da %2MiB su %4 (%3) con file system %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="55"/>
@@ -1155,7 +1155,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="132"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>Installazione completata</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="133"/>
@@ -1165,7 +1165,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="135"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;installazione di %1 è completa</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
@@ -1201,22 +1201,22 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="108"/>
         <source>has at least %1 GiB available drive space</source>
-        <translation type="unfinished"/>
+        <translation>ha almeno %1 GiB di spazio disponibile</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="109"/>
         <source>There is not enough drive space. At least %1 GiB is required.</source>
-        <translation type="unfinished"/>
+        <translation>Non c&apos;è abbastanza spazio sul disco. E&apos; richiesto almeno %1 GiB</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="116"/>
         <source>has at least %1 GiB working memory</source>
-        <translation type="unfinished"/>
+        <translation>ha almeno %1 GiB di memoria</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="117"/>
         <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-        <translation type="unfinished"/>
+        <translation>Il sistema non ha abbastanza memoria. E&apos; richiesto almeno %1 GiB</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="124"/>
@@ -1241,7 +1241,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="142"/>
         <source>The setup program is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>Il programma di installazione non è stato lanciato con i permessi di amministratore.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="143"/>
@@ -1251,7 +1251,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="152"/>
         <source>The screen is too small to display the setup program.</source>
-        <translation type="unfinished"/>
+        <translation>Lo schermo è troppo piccolo per mostrare il programma di installazione</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="153"/>

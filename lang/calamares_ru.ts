@@ -3155,7 +3155,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
         <source>&amp;About</source>
-        <translation>&amp;О</translation>
+        <translation>&amp;О программе</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="76"/>

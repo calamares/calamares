@@ -1299,7 +1299,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
         <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="37"/>
         <source>Creating initramfs.</source>
-        <translation type="unfinished"/>
+        <translation>A criar o initramfs.</translation>
     </message>
 </context>
 <context>
@@ -1530,20 +1530,20 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="39"/>
         <source>Configuring LUKS key file.</source>
-        <translation type="unfinished"/>
+        <translation>A configurar o ficheiro chave do LUKS.</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
         <source>No partitions are defined.</source>
-        <translation type="unfinished"/>
+        <translation>Nenhuma partição é definida.</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="199"/>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="207"/>
         <source>Encrypted rootfs setup error</source>
-        <translation type="unfinished"/>
+        <translation>Erro de configuração do rootfs criptografado</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
