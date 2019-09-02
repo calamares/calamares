@@ -20,6 +20,7 @@
 #define PACKAGECHOOSERVIEWSTEP_H
 
 #include "PluginDllMacro.h"
+#include "locale/TranslatableConfiguration.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
@@ -65,6 +66,7 @@ private:
     // Configuration
     PackageChooserMode m_mode;
     QString m_id;
+    CalamaresUtils::Locale::TranslatedString *m_stepName;  // As it appears in the sidebar
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PackageChooserViewStepFactory )

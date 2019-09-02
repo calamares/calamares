@@ -32,6 +32,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
+#include "locale/TranslatableConfiguration.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
@@ -46,6 +47,7 @@ PackageChooserViewStep::PackageChooserViewStep( QObject* parent )
     , m_widget( nullptr )
     , m_model( nullptr )
     , m_mode( PackageChooserMode::Required )
+    , m_stepName( nullptr )
 {
     emit nextStatusChanged( false );
 }
@@ -58,13 +60,14 @@ PackageChooserViewStep::~PackageChooserViewStep()
         m_widget->deleteLater();
     }
     delete m_model;
+    delete m_stepName;
 }
 
 
 QString
 PackageChooserViewStep::prettyName() const
 {
-    return tr( "Packages" );
+    return m_stepName ? m_stepName->get() : tr( "Packages" );
 }
 
 
@@ -167,12 +170,12 @@ void
 PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     QString mode = CalamaresUtils::getString( configurationMap, "mode" );
-    bool ok = false;
+    bool mode_ok = false;
     if ( !mode.isEmpty() )
     {
-        m_mode = roleNames().find( mode, ok );
+        m_mode = roleNames().find( mode, mode_ok );
     }
-    if ( !ok )
+    if ( !mode_ok )
     {
         m_mode = PackageChooserMode::Required;
     }
@@ -183,6 +186,16 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
         // Not set, so use the instance id
         // TODO: use a stronger type than QString for structured IDs
         m_id = moduleInstanceKey().split( '@' ).last();
+    }
+
+    bool labels_ok = false;
+    auto labels = CalamaresUtils::getSubMap( configurationMap, "labels", labels_ok );
+    if ( labels_ok )
+    {
+        if ( labels.contains( "step" ) )
+        {
+            m_stepName = new CalamaresUtils::Locale::TranslatedString( labels, "step" );
+        }
     }
 
     bool first_time = !m_model;
