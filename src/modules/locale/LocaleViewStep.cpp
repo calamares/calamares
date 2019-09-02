@@ -35,8 +35,6 @@
 
 #include <QBoxLayout>
 #include <QLabel>
-#include <QNetworkRequest>
-#include <QNetworkReply>
 #include <QtConcurrent/QtConcurrentRun>
 
 

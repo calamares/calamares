@@ -28,6 +28,7 @@
 #include <chrono>
 #include <memory>
 
+class QNetworkReply;
 class QNetworkRequest;
 
 namespace CalamaresUtils
@@ -138,6 +139,14 @@ public:
      * connectivity to be present.
      */
     bool hasInternet();
+
+    /** @brief Do a network request asynchronously.
+     *
+     * Returns a pointer to the reply-from-the-request.
+     * This may be a nullptr if an error occurs immediately.
+     * The caller is responsible for cleaning up the reply (eventually).
+     */
+    QNetworkReply* asynchronouseGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
 
 private:
     struct Private;

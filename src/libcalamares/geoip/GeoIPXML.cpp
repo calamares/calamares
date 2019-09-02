@@ -20,7 +20,6 @@
 
 #include "utils/Logger.h"
 
-#include <QNetworkReply>
 #include <QtXml/QDomDocument>
 
 namespace CalamaresUtils
