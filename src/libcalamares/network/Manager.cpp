@@ -99,6 +99,40 @@ Manager::setCheckHasInternetUrl( const QUrl& url )
     d->m_hasInternetUrl = url;
 }
 
+/** @brief Does a request asynchronously, returns the (pending) reply
+ *
+ * The extra options for the request are taken from @p options,
+ * including the timeout setting. A timeout will cause the reply
+ * to abort.
+ *
+ * On failure, returns nullptr (e.g. bad URL, timeout).
+ */
+static QNetworkReply*
+asynchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl& url, const RequestOptions& options )
+{
+    QNetworkRequest request = QNetworkRequest( url );
+    QNetworkReply* reply = nam->get( request );
+    QTimer* timer = nullptr;
+
+    // Bail out early if the request is bad
+    if ( reply->error() )
+    {
+        reply->deleteLater();
+        return nullptr;
+    }
+
+    options.applyToRequest( &request );
+    if ( options.hasTimeout() )
+    {
+        timer = new QTimer( reply );
+        timer->setSingleShot( true );
+        QObject::connect( timer, &QTimer::timeout, reply, &QNetworkReply::abort );
+        timer->start( options.timeout() );
+    }
+
+    return reply;
+}
+
 /** @brief Does a request synchronously, returns the request itself
  *
  * The extra options for the request are taken from @p options,
@@ -172,6 +206,13 @@ Manager::synchronousGet( const QUrl& url, const RequestOptions& options )
     auto reply = synchronousRun( d->m_nam, url, options );
     return reply.first ? reply.second->readAll() : QByteArray();
 }
+
+QNetworkReply*
+Manager::asynchronouseGet( const QUrl& url, const CalamaresUtils::Network::RequestOptions& options )
+{
+    return asynchronousRun( d->m_nam, url, options );
+}
+
 
 }  // namespace Network
 }  // namespace CalamaresUtils
