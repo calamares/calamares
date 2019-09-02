@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-06 01:16+0200\n"
+"POT-Creation-Date: 2019-08-30 13:38+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019\n"
 "Language-Team: Japanese (https://www.transifex.com/calamares/teams/20061/ja/)\n"
@@ -31,22 +31,22 @@ msgstr "GRUBを設定にします。"
 msgid "Mounting partitions."
 msgstr "パーティションのマウント。"
 
-#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:187
+#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:187
 #: src/modules/initcpiocfg/main.py:191
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
 #: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:312
-#: src/modules/fstab/main.py:316 src/modules/localecfg/main.py:144
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:322
+#: src/modules/fstab/main.py:328 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "コンフィグレーションエラー"
 
-#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:188
+#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:188
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:313
+#: src/modules/fstab/main.py:323
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> に使用するパーティションが定義されていません。"
 
@@ -98,104 +98,104 @@ msgstr "ファイルシステムをアンマウントする。"
 msgid "Filling up filesystems."
 msgstr "ファイルシステムを埋める。"
 
-#: src/modules/unpackfs/main.py:159
+#: src/modules/unpackfs/main.py:160
 msgid "rsync failed with error code {}."
 msgstr "エラーコード {} によりrsyncを失敗。"
 
-#: src/modules/unpackfs/main.py:220 src/modules/unpackfs/main.py:238
+#: src/modules/unpackfs/main.py:221 src/modules/unpackfs/main.py:239
 msgid "Failed to unpack image \"{}\""
 msgstr "イメージ  \"{}\" の展開に失敗"
 
-#: src/modules/unpackfs/main.py:221
+#: src/modules/unpackfs/main.py:222
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr "unsquashfs が見つかりませんでした。 squashfs-toolsがインストールされているか、確認してください。"
 
-#: src/modules/unpackfs/main.py:320
+#: src/modules/unpackfs/main.py:321
 msgid "No mount point for root partition"
 msgstr "ルートパーティションのためのマウントポイントがありません"
 
-#: src/modules/unpackfs/main.py:321
+#: src/modules/unpackfs/main.py:322
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr "globalstorage に \"rootMountPoint\" キーが含まれていません。何もしません。"
 
-#: src/modules/unpackfs/main.py:326
+#: src/modules/unpackfs/main.py:327
 msgid "Bad mount point for root partition"
 msgstr "ルートパーティションのためのマウントポイントが不正です"
 
-#: src/modules/unpackfs/main.py:327
+#: src/modules/unpackfs/main.py:328
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr "ルートマウントポイントは \"{}\" ですが、存在しません。何もできません。"
 
-#: src/modules/unpackfs/main.py:340 src/modules/unpackfs/main.py:347
-#: src/modules/unpackfs/main.py:352
+#: src/modules/unpackfs/main.py:341 src/modules/unpackfs/main.py:348
+#: src/modules/unpackfs/main.py:353
 msgid "Bad unsquash configuration"
 msgstr "unsquash の設定が不正です"
 
-#: src/modules/unpackfs/main.py:341
+#: src/modules/unpackfs/main.py:342
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr "ファイルシステム \"{}\" ({}) はサポートされていません"
 
-#: src/modules/unpackfs/main.py:348
+#: src/modules/unpackfs/main.py:349
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "ソースファイルシステム  \"{}\" は存在しません"
 
-#: src/modules/unpackfs/main.py:353
+#: src/modules/unpackfs/main.py:354
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "ターゲットシステムの宛先 \"{}\" はディレクトリではありません"
 
-#: src/modules/displaymanager/main.py:381
+#: src/modules/displaymanager/main.py:401
 msgid "Cannot write KDM configuration file"
 msgstr "KDMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:382
+#: src/modules/displaymanager/main.py:402
 msgid "KDM config file {!s} does not exist"
 msgstr "KDM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:443
+#: src/modules/displaymanager/main.py:463
 msgid "Cannot write LXDM configuration file"
 msgstr "LXDMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:444
+#: src/modules/displaymanager/main.py:464
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:527
+#: src/modules/displaymanager/main.py:547
 msgid "Cannot write LightDM configuration file"
 msgstr "LightDMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:528
+#: src/modules/displaymanager/main.py:548
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:602
+#: src/modules/displaymanager/main.py:622
 msgid "Cannot configure LightDM"
 msgstr "LightDMの設定ができません"
 
-#: src/modules/displaymanager/main.py:603
+#: src/modules/displaymanager/main.py:623
 msgid "No LightDM greeter installed."
 msgstr "LightDM greeter がインストールされていません。"
 
-#: src/modules/displaymanager/main.py:634
+#: src/modules/displaymanager/main.py:654
 msgid "Cannot write SLIM configuration file"
 msgstr "SLIMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:635
+#: src/modules/displaymanager/main.py:655
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:750
+#: src/modules/displaymanager/main.py:770
 msgid "No display managers selected for the displaymanager module."
 msgstr "ディスプレイマネージャが選択されていません。"
 
-#: src/modules/displaymanager/main.py:751
+#: src/modules/displaymanager/main.py:771
 msgid ""
 "The displaymanagers list is empty or undefined in bothglobalstorage and "
 "displaymanager.conf."
 msgstr "ディスプレイマネージャのリストが bothglobalstorage 及び displaymanager.conf 内で空白か未定義です。"
 
-#: src/modules/displaymanager/main.py:831
+#: src/modules/displaymanager/main.py:851
 msgid "Display manager configuration was incomplete"
 msgstr "ディスプレイマネージャの設定が不完全です"
 
@@ -206,7 +206,7 @@ msgstr "mkinitcpioを設定中"
 #: src/modules/initcpiocfg/main.py:192
 #: src/modules/luksopenswaphookcfg/main.py:100
 #: src/modules/machineid/main.py:50 src/modules/initramfscfg/main.py:99
-#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:317
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:329
 #: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr " <pre>{!s}</pre> を使用するのにルートマウントポイントが与えられていません。"
