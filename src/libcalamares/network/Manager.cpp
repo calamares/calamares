@@ -103,7 +103,7 @@ Manager::setCheckHasInternetUrl( const QUrl& url )
  *
  * The extra options for the request are taken from @p options,
  * including the timeout setting. A timeout will cause the reply
- * to abort.
+ * to abort. The reply is **not** scheduled for deletion.
  *
  * On failure, returns nullptr (e.g. bad URL, timeout).
  */
@@ -144,36 +144,28 @@ asynchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl
 static QPair< RequestStatus, QNetworkReply* >
 synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl& url, const RequestOptions& options )
 {
-    QNetworkRequest request = QNetworkRequest( url );
-    QNetworkReply* reply = nam->get( request );
+    auto* reply = asynchronousRun( nam, url, options );
+    if ( !reply )
+    {
+                return qMakePair( RequestStatus( RequestStatus::Failed ), nullptr );
+    }
+
     QEventLoop loop;
-    QTimer timer;
-
-    // Bail out early if the request is bad
-    if ( reply->error() )
-    {
-        reply->deleteLater();
-        return qMakePair( RequestStatus( RequestStatus::Failed ), nullptr );
-    }
-
-    options.applyToRequest( &request );
-    if ( options.hasTimeout() )
-    {
-        timer.setSingleShot( true );
-        QObject::connect( &timer, &QTimer::timeout, &loop, &QEventLoop::quit );
-        timer.start( options.timeout() );
-    }
-
     QObject::connect( reply, &QNetworkReply::finished, &loop, &QEventLoop::quit );
     loop.exec();
-    if ( options.hasTimeout() && !timer.isActive() )
+    reply->deleteLater();
+    if ( reply->isRunning() )
     {
-        reply->deleteLater();
         return qMakePair( RequestStatus( RequestStatus::Timeout ), nullptr );
     }
-
-    reply->deleteLater();
-    return qMakePair( RequestStatus( RequestStatus::Ok ), reply );
+    else if ( reply->error() != QNetworkReply::NoError )
+    {
+        return qMakePair( RequestStatus( RequestStatus::Timeout ), nullptr );
+    }
+    else
+    {
+        return qMakePair( RequestStatus( RequestStatus::Ok ), reply );
+    }
 }
 
 RequestStatus
