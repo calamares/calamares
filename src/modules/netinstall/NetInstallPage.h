@@ -24,14 +24,10 @@
 #include "PackageModel.h"
 #include "PackageTreeItem.h"
 
-#include <QAbstractButton>
-#include <QNetworkAccessManager>
+#include <QString>
 #include <QWidget>
 
-// required forward declarations
-class QByteArray;
 class QNetworkReply;
-class QString;
 
 namespace Ui
 {
@@ -57,10 +53,7 @@ public:
     // corrupt or unavailable data causes checkReady() to be emitted
     // true (not-required) or false.
     void setRequired( bool );
-    bool getRequired() const
-    {
-        return m_required;
-    }
+    bool getRequired() const { return m_required; }
 
     // Returns the list of packages belonging to groups that are
     // selected in the view in this given moment. No data is cached here, so
@@ -68,7 +61,7 @@ public:
     PackageModel::PackageItemDataList selectedPackages() const;
 
 public slots:
-    void dataIsHere( QNetworkReply* );
+    void dataIsHere();
 
 signals:
     void checkReady( bool );
@@ -81,11 +74,9 @@ private:
 
     Ui::Page_NetInst* ui;
 
-    // Handles connection with the remote URL storing the configuration.
-    QNetworkAccessManager m_networkManager;
-
+    QNetworkReply* m_reply;
     PackageModel* m_groups;
     bool m_required;
 };
 
-#endif // NETINSTALLPAGE_H
+#endif  // NETINSTALLPAGE_H
