@@ -80,6 +80,14 @@ struct PackageItem
      * A valid item has an untranslated name available.
      */
     bool isValid() const { return !name.isEmpty(); }
+
+    /** @brief Is this a (the) No-Package package?
+     *
+     * There should be at most one No-Package item in a collection
+     * of PackageItems. That one will be used to describe a
+     * "no package" situation.
+     */
+    bool isNonePackage() const { return id.isEmpty(); }
 };
 
 using PackageList = QVector< PackageItem >;
@@ -99,6 +107,11 @@ public:
 
     int rowCount( const QModelIndex& index ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;
+
+    /// @brief Direct (non-abstract) access to package data
+    const PackageItem& packageData( int r ) const { return m_packages[ r ]; }
+    /// @brief Direct (non-abstract) count of package data
+    int packageCount() const { return m_packages.count(); }
 
     enum Roles : int
     {

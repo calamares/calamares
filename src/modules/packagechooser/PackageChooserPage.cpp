@@ -53,10 +53,10 @@ PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent
 }
 
 /** @brief size the given @p pixmap to @p size
- * 
+ *
  * This is "smart" in the sense that it tries to keep the image un-scaled
  * (if it's just a little too big) and otherwise scales as needed.
- * 
+ *
  * Returns a copy if any modifications are done.
  */
 static QPixmap
@@ -129,26 +129,7 @@ void
 PackageChooserPage::setModel( QAbstractItemModel* model )
 {
     ui->products->setModel( model );
-
-    // Check if any of the items in the model is the "none" option.
-    // If so, copy its values into the introduction / none item.
-    for ( int r = 0; r < model->rowCount(); ++r )
-    {
-        auto index = model->index( r, 0 );
-        if ( index.isValid() )
-        {
-            QVariant v = model->data( index, PackageListModel::IdRole );
-            if ( v.isValid() && v.toString().isEmpty() )
-            {
-                m_introduction.name = model->data( index, PackageListModel::NameRole ).toString();
-                m_introduction.description = model->data( index, PackageListModel::DescriptionRole ).toString();
-                m_introduction.screenshot = model->data( index, PackageListModel::ScreenshotRole ).value< QPixmap >();
-                currentChanged( QModelIndex() );
-                break;
-            }
-        }
-    }
-
+    currentChanged( QModelIndex() );
     connect( ui->products->selectionModel(),
              &QItemSelectionModel::selectionChanged,
              this,
@@ -180,4 +161,12 @@ PackageChooserPage::selectedPackageIds() const
         }
     }
     return ids;
+}
+
+void
+PackageChooserPage::setIntroduction( const CalamaresUtils::Locale::TranslatedString& name,
+                                     const CalamaresUtils::Locale::TranslatedString& description )
+{
+    m_introduction.name = name;
+    m_introduction.description = description;
 }

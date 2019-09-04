@@ -283,4 +283,13 @@ PackageChooserViewStep::hookupModel()
     }
 
     m_widget->setModel( m_model );
+    for ( int i = 0; i < m_model->packageCount(); ++i )
+    {
+        const auto& package = m_model->packageData( i );
+        if ( package.id.isEmpty() )
+        {
+            m_widget->setIntroduction( package.name, package.description );
+            break;
+        }
+    }
 }

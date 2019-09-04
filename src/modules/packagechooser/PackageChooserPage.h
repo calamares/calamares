@@ -21,6 +21,8 @@
 
 #include "PackageModel.h"
 
+#include "locale/TranslatableConfiguration.h"
+
 #include <QAbstractItemModel>
 #include <QWidget>
 
@@ -37,6 +39,9 @@ public:
 
     void setModel( QAbstractItemModel* model );
 
+    /// @brief Sets the introductory (no-package-selected) texts
+    void setIntroduction( const CalamaresUtils::Locale::TranslatedString& name,
+                          const CalamaresUtils::Locale::TranslatedString& description );
     /// @brief Is anything selected?
     bool hasSelection() const;
     /** @brief Get the list of selected ids
