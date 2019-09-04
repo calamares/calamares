@@ -73,10 +73,12 @@ QString
 GeoIPXML::rawReply( const QByteArray& data )
 {
     for ( const auto& e : getElementTexts( data, m_element ) )
+    {
         if ( !e.isEmpty() )
         {
             return e;
         }
+    }
 
     return QString();
 }
