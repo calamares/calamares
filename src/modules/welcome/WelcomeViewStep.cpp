@@ -148,7 +148,8 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                            jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
     m_widget->setupButton( WelcomePage::Button::ReleaseNotes,
                            jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
-    m_widget->setupButton( WelcomePage::Button::Donate, CalamaresUtils::getString( configurationMap, "showDonateUrl" ) );
+    m_widget->setupButton( WelcomePage::Button::Donate,
+                           CalamaresUtils::getString( configurationMap, "showDonateUrl" ) );
 
     if ( configurationMap.contains( "requirements" )
          && configurationMap.value( "requirements" ).type() == QVariant::Map )

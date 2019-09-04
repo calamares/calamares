@@ -34,11 +34,11 @@ class GeneralRequirements;
 
 namespace CalamaresUtils
 {
-    namespace GeoIP
-    {
-        class Handler;
-    }
-}  // namespace
+namespace GeoIP
+{
+class Handler;
+}
+}  // namespace CalamaresUtils
 
 class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
 {
@@ -79,4 +79,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )
 
-#endif // WELCOMEPAGEPLUGIN_H
+#endif  // WELCOMEPAGEPLUGIN_H
