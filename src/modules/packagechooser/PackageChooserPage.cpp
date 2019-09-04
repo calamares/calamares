@@ -164,9 +164,8 @@ PackageChooserPage::selectedPackageIds() const
 }
 
 void
-PackageChooserPage::setIntroduction( const CalamaresUtils::Locale::TranslatedString& name,
-                                     const CalamaresUtils::Locale::TranslatedString& description )
+PackageChooserPage::setIntroduction( const PackageItem& item )
 {
-    m_introduction.name = name;
-    m_introduction.description = description;
+    m_introduction.name = item.name;
+    m_introduction.description = item.description;
 }

@@ -288,7 +288,7 @@ PackageChooserViewStep::hookupModel()
         const auto& package = m_model->packageData( i );
         if ( package.id.isEmpty() )
         {
-            m_widget->setIntroduction( package.name, package.description );
+            m_widget->setIntroduction( package );
             break;
         }
     }
