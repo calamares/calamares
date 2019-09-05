@@ -168,4 +168,5 @@ PackageChooserPage::setIntroduction( const PackageItem& item )
 {
     m_introduction.name = item.name;
     m_introduction.description = item.description;
+    m_introduction.screenshot = item.screenshot;
 }
