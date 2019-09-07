@@ -289,61 +289,31 @@ LocaleConfiguration::isEmpty() const
         && lc_identification.isEmpty();
 }
 
+/// @brief Sets @p value on @p key in the @p map if @p value is non-empty
+static inline void
+add_lc( QMap< QString, QString >& map, const char* key, const QString& value )
+{
+    if ( !value.isEmpty() )
+    {
+        map.insert( key, value );
+    }
+}
 
 QMap< QString, QString >
 LocaleConfiguration::toMap() const
 {
     QMap< QString, QString > map;
 
-    if ( !m_lang.isEmpty() )
-    {
-        map.insert( "LANG", m_lang );
-    }
-
-    if ( !lc_numeric.isEmpty() )
-    {
-        map.insert( "LC_NUMERIC", lc_numeric );
-    }
-
-    if ( !lc_time.isEmpty() )
-    {
-        map.insert( "LC_TIME", lc_time );
-    }
-
-    if ( !lc_monetary.isEmpty() )
-    {
-        map.insert( "LC_MONETARY", lc_monetary );
-    }
-
-    if ( !lc_paper.isEmpty() )
-    {
-        map.insert( "LC_PAPER", lc_paper );
-    }
-
-    if ( !lc_name.isEmpty() )
-    {
-        map.insert( "LC_NAME", lc_name );
-    }
-
-    if ( !lc_address.isEmpty() )
-    {
-        map.insert( "LC_ADDRESS", lc_address );
-    }
-
-    if ( !lc_telephone.isEmpty() )
-    {
-        map.insert( "LC_TELEPHONE", lc_telephone );
-    }
-
-    if ( !lc_measurement.isEmpty() )
-    {
-        map.insert( "LC_MEASUREMENT", lc_measurement );
-    }
-
-    if ( !lc_identification.isEmpty() )
-    {
-        map.insert( "LC_IDENTIFICATION", lc_identification );
-    }
+    add_lc( map, "LANG", m_lang );
+    add_lc( map, "LC_NUMERIC", lc_numeric );
+    add_lc( map, "LC_TIME", lc_time );
+    add_lc( map, "LC_MONETARY", lc_monetary );
+    add_lc( map, "LC_PAPER", lc_paper );
+    add_lc( map, "LC_NAME", lc_name );
+    add_lc( map, "LC_ADDRESS", lc_address );
+    add_lc( map, "LC_TELEPHONE", lc_telephone );
+    add_lc( map, "LC_MEASUREMENT", lc_measurement );
+    add_lc( map, "LC_IDENTIFICATION", lc_identification );
 
     return map;
 }
