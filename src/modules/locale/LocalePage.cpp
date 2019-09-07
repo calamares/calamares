@@ -215,15 +215,7 @@ LocalePage::LocalePage( QWidget* parent )
 
     } );
 
-    CALAMARES_RETRANSLATE(
-        m_regionLabel->setText( tr( "Region:" ) );
-        m_zoneLabel->setText( tr( "Zone:" ) );
-
-        updateLocaleLabels();
-
-        m_localeChangeButton->setText( tr( "&Change..." ) );
-        m_formatsChangeButton->setText( tr( "&Change..." ) );
-    )
+    CALAMARES_RETRANSLATE_SLOT( &LocalePage::updateLocaleLabels )
 }
 
 
@@ -234,6 +226,11 @@ LocalePage::~LocalePage()
 void
 LocalePage::updateLocaleLabels()
 {
+    m_regionLabel->setText( tr( "Region:" ) );
+    m_zoneLabel->setText( tr( "Zone:" ) );
+    m_localeChangeButton->setText( tr( "&Change..." ) );
+    m_formatsChangeButton->setText( tr( "&Change..." ) );
+
     LocaleConfiguration lc = m_selectedLocaleConfiguration.isEmpty() ?
                              guessLocaleConfiguration() :
                              m_selectedLocaleConfiguration;
