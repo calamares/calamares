@@ -83,4 +83,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( LocaleViewStepFactory )
 
-#endif // LOCALEVIEWSTEP_H
+#endif  // LOCALEVIEWSTEP_H

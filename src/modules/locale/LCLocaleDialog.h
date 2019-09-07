@@ -37,4 +37,4 @@ private:
     QListWidget* m_localesWidget;
 };
 
-#endif // LCLOCALEDIALOG_H
+#endif  // LCLOCALEDIALOG_H
