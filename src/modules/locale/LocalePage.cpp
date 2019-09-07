@@ -127,6 +127,18 @@ LocalePage::updateLocaleLabels()
     m_formatsLabel->setText( labels.second );
 }
 
+static inline bool
+containsLocation( const QList< LocaleGlobal::Location >& locations, const QString& zone )
+{
+    for ( const LocaleGlobal::Location& location : locations )
+    {
+        if ( location.zone == zone )
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 void
 LocalePage::init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
@@ -149,18 +161,6 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
     m_zoneCombo->blockSignals( false );
 
     m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
-
-    // Default location
-    auto containsLocation = []( const QList< LocaleGlobal::Location >& locations, const QString& zone ) -> bool {
-        for ( const LocaleGlobal::Location& location : locations )
-        {
-            if ( location.zone == zone )
-            {
-                return true;
-            }
-        }
-        return false;
-    };
 
     if ( keys.contains( initialRegion ) && containsLocation( regions.value( initialRegion ), initialZone ) )
     {
