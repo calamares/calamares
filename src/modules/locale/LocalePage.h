@@ -65,6 +65,9 @@ private:
     void updateGlobalStorage();
     void updateLocaleLabels();
 
+    void regionChanged( int currentIndex );
+    void zoneChanged( int currentIndex );
+
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;
     QComboBox* m_zoneCombo;

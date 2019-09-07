@@ -99,43 +99,8 @@ LocalePage::LocalePage( QWidget* parent )
 
     setLayout( mainLayout );
 
-    connect( m_regionCombo,
-             static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
-             [this]( int currentIndex )
-    {
-        Q_UNUSED( currentIndex )
-        QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
-        if ( !regions.contains( m_regionCombo->currentData().toString() ) )
-            return;
-
-        m_zoneCombo->blockSignals( true );
-
-        m_zoneCombo->clear();
-
-        const QList< LocaleGlobal::Location > zones = regions.value( m_regionCombo->currentData().toString() );
-        for ( const LocaleGlobal::Location& zone : zones )
-        {
-            m_zoneCombo->addItem( LocaleGlobal::Location::pretty( zone.zone ), zone.zone );
-        }
-
-        m_zoneCombo->model()->sort( 0 );
-
-        m_zoneCombo->blockSignals( false );
-
-        m_zoneCombo->currentIndexChanged( m_zoneCombo->currentIndex() );
-    } );
-
-    connect( m_zoneCombo,
-             static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
-             [this]( int currentIndex )
-    {
-        Q_UNUSED( currentIndex )
-        if ( !m_blockTzWidgetSet )
-            m_tzWidget->setCurrentLocation( m_regionCombo->currentData().toString(),
-                                            m_zoneCombo->currentData().toString() );
-
-        updateGlobalStorage();
-    } );
+    connect( m_regionCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::regionChanged );
+    connect( m_zoneCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::zoneChanged );
 
     connect( m_tzWidget, &TimeZoneWidget::locationChanged,
              [this]( LocaleGlobal::Location location )
@@ -516,4 +481,43 @@ LocalePage::updateGlobalStorage()
 
     m_selectedLocaleConfiguration = newLocale;
     updateLocaleLabels();
+}
+
+
+void
+LocalePage::regionChanged( int currentIndex )
+{
+    Q_UNUSED( currentIndex )
+    QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
+    if ( !regions.contains( m_regionCombo->currentData().toString() ) )
+    {
+        return;
+    }
+
+    m_zoneCombo->blockSignals( true );
+
+    m_zoneCombo->clear();
+
+    const QList< LocaleGlobal::Location > zones = regions.value( m_regionCombo->currentData().toString() );
+    for ( const LocaleGlobal::Location& zone : zones )
+    {
+        m_zoneCombo->addItem( LocaleGlobal::Location::pretty( zone.zone ), zone.zone );
+    }
+
+    m_zoneCombo->model()->sort( 0 );
+
+    m_zoneCombo->blockSignals( false );
+
+    m_zoneCombo->currentIndexChanged( m_zoneCombo->currentIndex() );
+}
+
+void
+LocalePage::zoneChanged( int currentIndex )
+{
+    Q_UNUSED( currentIndex )
+    if ( !m_blockTzWidgetSet )
+        m_tzWidget->setCurrentLocation( m_regionCombo->currentData().toString(),
+                                        m_zoneCombo->currentData().toString() );
+
+    updateGlobalStorage();
 }
