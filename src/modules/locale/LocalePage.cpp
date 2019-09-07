@@ -101,84 +101,9 @@ LocalePage::LocalePage( QWidget* parent )
 
     connect( m_regionCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::regionChanged );
     connect( m_zoneCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::zoneChanged );
-
-    connect( m_tzWidget, &TimeZoneWidget::locationChanged,
-             [this]( LocaleGlobal::Location location )
-    {
-        m_blockTzWidgetSet = true;
-
-        // Set region index
-        int index = m_regionCombo->findData( location.region );
-        if ( index < 0 )
-            return;
-
-        m_regionCombo->setCurrentIndex( index );
-
-        // Set zone index
-        index = m_zoneCombo->findData( location.zone );
-        if ( index < 0 )
-            return;
-
-        m_zoneCombo->setCurrentIndex( index );
-
-        m_blockTzWidgetSet = false;
-
-        updateGlobalStorage();
-    } );
-
-    connect( m_localeChangeButton, &QPushButton::clicked,
-             [this]
-    {
-        LCLocaleDialog* dlg =
-                new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ?
-                                        guessLocaleConfiguration().language() :
-                                        m_selectedLocaleConfiguration.language(),
-                                    m_localeGenLines,
-                                    this );
-        dlg->exec();
-        if ( dlg->result() == QDialog::Accepted &&
-             !dlg->selectedLCLocale().isEmpty() )
-        {
-            m_selectedLocaleConfiguration.setLanguage( dlg->selectedLCLocale() );
-            m_selectedLocaleConfiguration.explicit_lang = true;
-            this->updateGlobalLocale();
-            this->updateLocaleLabels();
-        }
-
-        dlg->deleteLater();
-    } );
-
-    connect( m_formatsChangeButton, &QPushButton::clicked,
-             [this]
-    {
-        LCLocaleDialog* dlg =
-                new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ?
-                                        guessLocaleConfiguration().lc_numeric :
-                                        m_selectedLocaleConfiguration.lc_numeric,
-                                    m_localeGenLines,
-                                    this );
-        dlg->exec();
-        if ( dlg->result() == QDialog::Accepted &&
-             !dlg->selectedLCLocale().isEmpty() )
-        {
-            // TODO: improve the granularity of this setting.
-            m_selectedLocaleConfiguration.lc_numeric = dlg->selectedLCLocale();
-            m_selectedLocaleConfiguration.lc_time = dlg->selectedLCLocale();
-            m_selectedLocaleConfiguration.lc_monetary = dlg->selectedLCLocale();
-            m_selectedLocaleConfiguration.lc_paper = dlg->selectedLCLocale();
-            m_selectedLocaleConfiguration.lc_name = dlg->selectedLCLocale();
-            m_selectedLocaleConfiguration.lc_address = dlg->selectedLCLocale();
-            m_selectedLocaleConfiguration.lc_telephone = dlg->selectedLCLocale();
-            m_selectedLocaleConfiguration.lc_measurement = dlg->selectedLCLocale();
-            m_selectedLocaleConfiguration.lc_identification = dlg->selectedLCLocale();
-            m_selectedLocaleConfiguration.explicit_lc = true;
-
-            this->updateLocaleLabels();
-        }
-
-        dlg->deleteLater();
-
-    } );
+    connect( m_tzWidget, &TimeZoneWidget::locationChanged, this, &LocalePage::locationChanged );
+    connect( m_localeChangeButton, &QPushButton::clicked, this, &LocalePage::changeLocale );
+    connect( m_formatsChangeButton, &QPushButton::clicked, this, &LocalePage::changeFormats );
 
     CALAMARES_RETRANSLATE_SLOT( &LocalePage::updateLocaleLabels )
 }
@@ -520,4 +445,83 @@ LocalePage::zoneChanged( int currentIndex )
                                         m_zoneCombo->currentData().toString() );
 
     updateGlobalStorage();
+}
+
+void
+LocalePage::locationChanged( LocaleGlobal::Location location )
+{
+    m_blockTzWidgetSet = true;
+
+    // Set region index
+    int index = m_regionCombo->findData( location.region );
+    if ( index < 0 )
+        return;
+
+    m_regionCombo->setCurrentIndex( index );
+
+    // Set zone index
+    index = m_zoneCombo->findData( location.zone );
+    if ( index < 0 )
+        return;
+
+    m_zoneCombo->setCurrentIndex( index );
+
+    m_blockTzWidgetSet = false;
+
+    updateGlobalStorage();
+}
+
+void
+LocalePage::changeLocale()
+{
+    LCLocaleDialog* dlg =
+            new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ?
+                                    guessLocaleConfiguration().language() :
+                                    m_selectedLocaleConfiguration.language(),
+                                m_localeGenLines,
+                                this );
+    dlg->exec();
+    if ( dlg->result() == QDialog::Accepted &&
+            !dlg->selectedLCLocale().isEmpty() )
+    {
+        m_selectedLocaleConfiguration.setLanguage( dlg->selectedLCLocale() );
+        m_selectedLocaleConfiguration.explicit_lang = true;
+        this->updateGlobalLocale();
+        this->updateLocaleLabels();
+    }
+
+    dlg->deleteLater();
+}
+
+
+void
+LocalePage::changeFormats()
+{
+    LCLocaleDialog* dlg =
+            new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ?
+                                    guessLocaleConfiguration().lc_numeric :
+                                    m_selectedLocaleConfiguration.lc_numeric,
+                                m_localeGenLines,
+                                this );
+    dlg->exec();
+    if ( dlg->result() == QDialog::Accepted &&
+            !dlg->selectedLCLocale().isEmpty() )
+    {
+        // TODO: improve the granularity of this setting.
+        m_selectedLocaleConfiguration.lc_numeric = dlg->selectedLCLocale();
+        m_selectedLocaleConfiguration.lc_time = dlg->selectedLCLocale();
+        m_selectedLocaleConfiguration.lc_monetary = dlg->selectedLCLocale();
+        m_selectedLocaleConfiguration.lc_paper = dlg->selectedLCLocale();
+        m_selectedLocaleConfiguration.lc_name = dlg->selectedLCLocale();
+        m_selectedLocaleConfiguration.lc_address = dlg->selectedLCLocale();
+        m_selectedLocaleConfiguration.lc_telephone = dlg->selectedLCLocale();
+        m_selectedLocaleConfiguration.lc_measurement = dlg->selectedLCLocale();
+        m_selectedLocaleConfiguration.lc_identification = dlg->selectedLCLocale();
+        m_selectedLocaleConfiguration.explicit_lc = true;
+
+        this->updateLocaleLabels();
+    }
+
+    dlg->deleteLater();
+
 }
