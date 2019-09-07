@@ -39,9 +39,7 @@ public:
     explicit LocalePage( QWidget* parent = nullptr );
     virtual ~LocalePage();
 
-    void init( const QString& initialRegion,
-               const QString& initialZone,
-               const QString& localeGenPath );
+    void init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath );
 
     QString prettyStatus() const;
 
@@ -91,4 +89,4 @@ private:
     bool m_blockTzWidgetSet;
 };
 
-#endif // LOCALEPAGE_H
+#endif  // LOCALEPAGE_H
