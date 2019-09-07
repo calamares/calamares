@@ -231,20 +231,4 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         m_geoipStyle = CalamaresUtils::getString( geoip, "style" );
         m_geoipSelector = CalamaresUtils::getString( geoip, "selector" );
     }
-    else
-    {
-        // Accommodate deprecated geoip configuration
-        m_geoipUrl = CalamaresUtils::getString( configurationMap, "geoipUrl" );
-        m_geoipStyle = CalamaresUtils::getString( configurationMap, "geoipStyle" );
-        m_geoipSelector = CalamaresUtils::getString( configurationMap, "geoipSelector" );
-
-        if ( !m_geoipUrl.isEmpty() && ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" ) )
-        {
-            m_geoipStyle = "json";
-            m_geoipUrl.append( "/json/" );
-        }
-
-        if ( !m_geoipUrl.isEmpty() )
-            cWarning() << "Legacy-style GeoIP configuration is deprecated. Use geoip: map.";
-    }
 }
