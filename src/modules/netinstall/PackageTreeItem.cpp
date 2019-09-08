@@ -45,7 +45,7 @@ PackageTreeItem::PackageTreeItem::PackageTreeItem() :
     PackageTreeItem( QString(), nullptr )
 {
     m_data.selected = Qt::Checked;
-    m_data.name = QLatin1Literal( "<root>" );
+    m_data.name = QLatin1String( "<root>" );
 }
 
 PackageTreeItem::~PackageTreeItem()

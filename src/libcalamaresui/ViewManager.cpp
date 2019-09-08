@@ -275,12 +275,12 @@ ViewManager::onInitFailed( const QStringList& modules )
     {
         description.append( tr( "<br/>The following modules could not be loaded:" ) );
         QStringList details;
-        details << QLatin1Literal( "<ul>" );
+        details << QLatin1String( "<ul>" );
         for ( const auto& m : modules )
         {
-            details << QLatin1Literal( "<li>" ) << m << QLatin1Literal( "</li>" );
+            details << QLatin1String( "<li>" ) << m << QLatin1String( "</li>" );
         }
-        details << QLatin1Literal( "</ul>" );
+        details << QLatin1String( "</ul>" );
         detailString = details.join( QString() );
     }
 

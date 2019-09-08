@@ -241,7 +241,7 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
                    << "\n\t  "
                    << "* a well-formed" << supported.fileName() << "\n\tOR"
                    << "* a well-formed"
-                   << ( localeGenPath.isEmpty() ? QLatin1Literal( "/etc/locale.gen" ) : localeGenPath ) << "\n\tOR"
+                   << ( localeGenPath.isEmpty() ? QLatin1String( "/etc/locale.gen" ) : localeGenPath ) << "\n\tOR"
                    << "* a complete pre-compiled locale-gen database which allows complete locale -a output.";
         return;  // something went wrong and there's nothing we can do about it.
     }

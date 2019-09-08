@@ -91,7 +91,7 @@ ModuleManager::doInit()
                 bool success = currentDir.cd( subdir );
                 if ( success )
                 {
-                    QFileInfo descriptorFileInfo( currentDir.absoluteFilePath( QLatin1Literal( "module.desc" ) ) );
+                    QFileInfo descriptorFileInfo( currentDir.absoluteFilePath( QLatin1String( "module.desc" ) ) );
                     if ( !descriptorFileInfo.exists() )
                     {
                         cDebug() << "ModuleManager expected descriptor is missing:"

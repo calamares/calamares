@@ -52,7 +52,7 @@ QString targetPrefix()
         }
     }
 
-    return QLatin1Literal( "/" );
+    return QLatin1String( "/" );
 }
 
 QString atReplacements( QString s )
