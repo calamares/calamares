@@ -61,14 +61,15 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+    /// @brief Do setup (returns empty list) asynchronously
+    virtual Calamares::RequirementsList checkRequirements();
+
 private slots:
     void setUpPage();
 
 private:
     void fetchGeoIpTimezone();
     QWidget* m_widget;
-    QFutureWatcher< void > m_initWatcher;
-    WaitingWidget* m_waitingWidget;
 
     LocalePage* m_actualWidget;
     bool m_nextEnabled;

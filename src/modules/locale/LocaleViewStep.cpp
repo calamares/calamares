@@ -27,7 +27,7 @@
 #include "JobQueue.h"
 
 #include "geoip/Handler.h"
-
+#include "network/Manager.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
@@ -43,7 +43,6 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleViewStepFactory, registerPlugin< Loca
 LocaleViewStep::LocaleViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new QWidget() )
-    , m_waitingWidget( nullptr )
     , m_actualWidget( nullptr )
     , m_nextEnabled( false )
     , m_geoip( nullptr )
@@ -68,12 +67,6 @@ LocaleViewStep::~LocaleViewStep()
 void
 LocaleViewStep::setUpPage()
 {
-    if ( m_waitingWidget )
-    {
-        m_widget->layout()->removeWidget( m_waitingWidget );
-        m_waitingWidget->deleteLater();
-    }
-
     if ( !m_actualWidget )
     {
         m_actualWidget = new LocalePage();
@@ -117,12 +110,6 @@ LocaleViewStep::prettyStatus() const
 QWidget*
 LocaleViewStep::widget()
 {
-    // If none of the inner widgets is already created, create the spinner
-    if ( !m_actualWidget && !m_waitingWidget )
-    {
-        m_waitingWidget = new WaitingWidget( tr( "Loading location data..." ) );
-        m_widget->layout()->addWidget( m_waitingWidget );
-    }
     return m_widget;
 }
 
@@ -165,10 +152,11 @@ LocaleViewStep::jobs() const
 void
 LocaleViewStep::onActivate()
 {
-    if ( m_actualWidget )
+    if ( !m_actualWidget )
     {
-        m_actualWidget->onActivate();
+        setUpPage();
     }
+    m_actualWidget->onActivate();
 }
 
 
@@ -234,4 +222,27 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             cWarning() << "GeoIP Style" << style << "is not recognized.";
         }
     }
+}
+
+Calamares::RequirementsList
+LocaleViewStep::checkRequirements()
+{
+    LocaleGlobal::init();
+    if ( m_geoip && m_geoip->isValid() )
+    {
+        auto& network = CalamaresUtils::Network::Manager::instance();
+        if ( network.hasInternet() )
+        {
+            fetchGeoIpTimezone();
+        }
+        else
+        {
+            if ( network.synchronousPing( m_geoip->url() ) )
+            {
+                fetchGeoIpTimezone();
+            }
+        }
+    }
+
+    return Calamares::RequirementsList();
 }
