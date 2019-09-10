@@ -45,6 +45,7 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
     , m_widget( new QWidget() )
     , m_actualWidget( new LocalePage() )
     , m_nextEnabled( false )
+    , m_geoip( nullptr )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
@@ -55,8 +56,10 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
 
     connect( &m_initWatcher, &QFutureWatcher< void >::finished, this, [=] {
         bool hasInternet = Calamares::JobQueue::instance()->globalStorage()->value( "hasInternet" ).toBool();
-        if ( m_geoipUrl.isEmpty() || !hasInternet )
+        if ( !m_geoip || !hasInternet )
+        {
             setUpPage();
+        }
         else
         {
             fetchGeoIpTimezone();
@@ -65,8 +68,10 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
 
     QFuture< void > initFuture = QtConcurrent::run( [=] {
         LocaleGlobal::init();
-        if ( m_geoipUrl.isEmpty() )
+        if ( !m_geoip )
+        {
             return;
+        }
 
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
@@ -109,18 +114,13 @@ LocaleViewStep::setUpPage()
 void
 LocaleViewStep::fetchGeoIpTimezone()
 {
-    CalamaresUtils::GeoIP::Handler h( m_geoipStyle, m_geoipUrl, m_geoipSelector );
-    if ( h.isValid() )
+    if ( m_geoip && m_geoip->isValid() )
     {
-        m_startingTimezone = h.get();
+        m_startingTimezone = m_geoip->get();
         if ( !m_startingTimezone.isValid() )
         {
-            cWarning() << "GeoIP lookup at" << m_geoipUrl << "failed.";
+            cWarning() << "GeoIP lookup at" << m_geoip->url() << "failed.";
         }
-    }
-    else
-    {
-        cWarning() << "GeoIP Style" << m_geoipStyle << "is not recognized.";
     }
     setUpPage();
 }
@@ -233,8 +233,14 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
     if ( ok )
     {
-        m_geoipUrl = CalamaresUtils::getString( geoip, "url" );
-        m_geoipStyle = CalamaresUtils::getString( geoip, "style" );
-        m_geoipSelector = CalamaresUtils::getString( geoip, "selector" );
+        QString url = CalamaresUtils::getString( geoip, "url" );
+        QString style = CalamaresUtils::getString( geoip, "style" );
+        QString selector = CalamaresUtils::getString( geoip, "selector" );
+
+        m_geoip = std::make_unique< CalamaresUtils::GeoIP::Handler >( style, url, selector );
+        if ( !m_geoip->isValid() )
+        {
+            cWarning() << "GeoIP Style" << style << "is not recognized.";
+        }
     }
 }
