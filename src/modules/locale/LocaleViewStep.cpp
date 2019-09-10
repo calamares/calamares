@@ -43,48 +43,14 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleViewStepFactory, registerPlugin< Loca
 LocaleViewStep::LocaleViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new QWidget() )
-    , m_actualWidget( new LocalePage() )
+    , m_waitingWidget( nullptr )
+    , m_actualWidget( nullptr )
     , m_nextEnabled( false )
     , m_geoip( nullptr )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
-
-    m_waitingWidget = new WaitingWidget( tr( "Loading location data..." ) );
-    mainLayout->addWidget( m_waitingWidget );
-
-    connect( &m_initWatcher, &QFutureWatcher< void >::finished, this, [=] {
-        bool hasInternet = Calamares::JobQueue::instance()->globalStorage()->value( "hasInternet" ).toBool();
-        if ( !m_geoip || !hasInternet )
-        {
-            setUpPage();
-        }
-        else
-        {
-            fetchGeoIpTimezone();
-        }
-    } );
-
-    QFuture< void > initFuture = QtConcurrent::run( [=] {
-        LocaleGlobal::init();
-        if ( !m_geoip )
-        {
-            return;
-        }
-
-        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-
-        // Max 10sec wait for RequirementsChecker to finish, assuming the welcome
-        // module is used.
-        // If welcome is not used, either "hasInternet" should be set by other means,
-        // or the GeoIP feature should be disabled.
-        for ( int i = 0; i < 10; ++i )
-            if ( !gs->contains( "hasInternet" ) )
-                QThread::sleep( 1 );
-    } );
-
-    m_initWatcher.setFuture( initFuture );
 
     emit nextStatusChanged( m_nextEnabled );
 }
@@ -102,10 +68,19 @@ LocaleViewStep::~LocaleViewStep()
 void
 LocaleViewStep::setUpPage()
 {
+    if ( m_waitingWidget )
+    {
+        m_widget->layout()->removeWidget( m_waitingWidget );
+        m_waitingWidget->deleteLater();
+    }
+
+    if ( !m_actualWidget )
+    {
+        m_actualWidget = new LocalePage();
+    }
     m_actualWidget->init( m_startingTimezone.first, m_startingTimezone.second, m_localeGenPath );
-    m_widget->layout()->removeWidget( m_waitingWidget );
-    m_waitingWidget->deleteLater();
     m_widget->layout()->addWidget( m_actualWidget );
+
     m_nextEnabled = true;
     emit nextStatusChanged( m_nextEnabled );
 }
@@ -122,7 +97,6 @@ LocaleViewStep::fetchGeoIpTimezone()
             cWarning() << "GeoIP lookup at" << m_geoip->url() << "failed.";
         }
     }
-    setUpPage();
 }
 
 
@@ -143,6 +117,12 @@ LocaleViewStep::prettyStatus() const
 QWidget*
 LocaleViewStep::widget()
 {
+    // If none of the inner widgets is already created, create the spinner
+    if ( !m_actualWidget && !m_waitingWidget )
+    {
+        m_waitingWidget = new WaitingWidget( tr( "Loading location data..." ) );
+        m_widget->layout()->addWidget( m_waitingWidget );
+    }
     return m_widget;
 }
 
@@ -185,7 +165,10 @@ LocaleViewStep::jobs() const
 void
 LocaleViewStep::onActivate()
 {
-    m_actualWidget->onActivate();
+    if ( m_actualWidget )
+    {
+        m_actualWidget->onActivate();
+    }
 }
 
 
@@ -193,18 +176,26 @@ void
 LocaleViewStep::onLeave()
 {
     m_jobs.clear();
-    m_jobs.append( m_actualWidget->createJobs() );
 
-    m_prettyStatus = m_actualWidget->prettyStatus();
-
-    auto map = m_actualWidget->localesMap();
-    QVariantMap vm;
-    for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
+    if ( m_actualWidget )
     {
-        vm.insert( it.key(), it.value() );
-    }
+        m_jobs.append( m_actualWidget->createJobs() );
 
-    Calamares::JobQueue::instance()->globalStorage()->insert( "localeConf", vm );
+        m_prettyStatus = m_actualWidget->prettyStatus();
+
+        auto map = m_actualWidget->localesMap();
+        QVariantMap vm;
+        for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
+        {
+            vm.insert( it.key(), it.value() );
+        }
+
+        Calamares::JobQueue::instance()->globalStorage()->insert( "localeConf", vm );
+    }
+    else
+    {
+        Calamares::JobQueue::instance()->globalStorage()->remove( "localeConf" );
+    }
 }
 
 
