@@ -111,6 +111,8 @@ static QNetworkReply*
 asynchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl& url, const RequestOptions& options )
 {
     QNetworkRequest request = QNetworkRequest( url );
+    options.applyToRequest( &request );
+
     QNetworkReply* reply = nam->get( request );
     QTimer* timer = nullptr;
 
@@ -121,7 +123,6 @@ asynchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl
         return nullptr;
     }
 
-    options.applyToRequest( &request );
     if ( options.hasTimeout() )
     {
         timer = new QTimer( reply );
