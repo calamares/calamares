@@ -77,7 +77,7 @@ public:
     QString module() const { return first; }
     QString id() const { return second; }
 
-    explicit operator QString() const { return module() + '@' + id(); }
+    explicit operator QString() const { return isValid() ? module() + '@' + id() : QString(); }
 
     /// @brief Create instance key from stringified version
     static InstanceKey fromString( const QString& s )
