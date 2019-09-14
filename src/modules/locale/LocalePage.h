@@ -21,6 +21,8 @@
 #define LOCALEPAGE_H
 
 #include "LocaleConfiguration.h"
+#include "timezonewidget/localeglobal.h"
+
 #include "Job.h"
 
 #include <QWidget>
@@ -37,9 +39,7 @@ public:
     explicit LocalePage( QWidget* parent = nullptr );
     virtual ~LocalePage();
 
-    void init( const QString& initialRegion,
-               const QString& initialZone,
-               const QString& localeGenPath );
+    void init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath );
 
     QString prettyStatus() const;
 
@@ -65,6 +65,12 @@ private:
     void updateGlobalStorage();
     void updateLocaleLabels();
 
+    void regionChanged( int currentIndex );
+    void zoneChanged( int currentIndex );
+    void locationChanged( LocaleGlobal::Location location );
+    void changeLocale();
+    void changeFormats();
+
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;
     QComboBox* m_zoneCombo;
@@ -83,4 +89,4 @@ private:
     bool m_blockTzWidgetSet;
 };
 
-#endif // LOCALEPAGE_H
+#endif  // LOCALEPAGE_H

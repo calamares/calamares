@@ -12,6 +12,9 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ - *locale* module no longer recognized the legacy GeoIP configuration.
+   This has been deprecated since Calamares 3.2.8.
+
 
 # 3.2.13 (2019-08-30) #
 

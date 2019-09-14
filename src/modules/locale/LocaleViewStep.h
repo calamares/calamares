@@ -20,6 +20,7 @@
 #ifndef LOCALEVIEWSTEP_H
 #define LOCALEVIEWSTEP_H
 
+#include "geoip/Handler.h"
 #include "geoip/Interface.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
@@ -28,6 +29,8 @@
 
 #include <QFutureWatcher>
 #include <QObject>
+
+#include <memory>
 
 class LocalePage;
 class WaitingWidget;
@@ -58,14 +61,15 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+    /// @brief Do setup (returns empty list) asynchronously
+    virtual Calamares::RequirementsList checkRequirements();
+
 private slots:
     void setUpPage();
 
 private:
     void fetchGeoIpTimezone();
     QWidget* m_widget;
-    QFutureWatcher< void > m_initWatcher;
-    WaitingWidget* m_waitingWidget;
 
     LocalePage* m_actualWidget;
     bool m_nextEnabled;
@@ -74,13 +78,10 @@ private:
     CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
     QString m_localeGenPath;
 
-    QString m_geoipUrl;  // The URL, depening on style might be modified on lookup
-    QString m_geoipStyle;  // String selecting which kind of geoip data to expect
-    QString m_geoipSelector;  // String selecting data from the geoip lookup
-
     QList< Calamares::job_ptr > m_jobs;
+    std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( LocaleViewStepFactory )
 
-#endif // LOCALEVIEWSTEP_H
+#endif  // LOCALEVIEWSTEP_H

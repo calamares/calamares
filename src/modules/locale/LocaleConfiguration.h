@@ -21,8 +21,8 @@
 #define LOCALECONFIGURATION_H
 
 #include <QDebug>
-#include <QString>
 #include <QMap>
+#include <QString>
 
 class LocaleConfiguration
 {
@@ -31,13 +31,14 @@ public:
     explicit LocaleConfiguration();
     /// @brief Create a locale with everything set to the given @p localeName
     explicit LocaleConfiguration( const QString& localeName /* "en_US.UTF-8" */ )
-        : LocaleConfiguration( localeName, localeName ) { }
+        : LocaleConfiguration( localeName, localeName )
+    {
+    }
     /// @brief Create a locale with language and formats separate
     explicit LocaleConfiguration( const QString& localeName, const QString& formatsName );
 
-    static LocaleConfiguration fromLanguageAndLocation( const QString& language,
-                                                        const QStringList& availableLocales,
-                                                        const QString& countryCode );
+    static LocaleConfiguration
+    fromLanguageAndLocation( const QString& language, const QStringList& availableLocales, const QString& countryCode );
 
     bool isEmpty() const;
 
@@ -55,8 +56,8 @@ public:
 
     // These become all uppercase in locale.conf, but we keep them lowercase here to
     // avoid confusion with locale.h.
-    QString lc_numeric, lc_time, lc_monetary, lc_paper, lc_name, lc_address,
-            lc_telephone, lc_measurement, lc_identification;
+    QString lc_numeric, lc_time, lc_monetary, lc_paper, lc_name, lc_address, lc_telephone, lc_measurement,
+        lc_identification;
 
     // If the user has explicitly selected language (from the dialog)
     // or numbers format, set these to avoid implicit changes to them.
@@ -67,9 +68,10 @@ private:
     QString m_languageLocaleBcp47;
 };
 
-inline QDebug& operator <<( QDebug& s, const LocaleConfiguration& l )
+inline QDebug&
+operator<<( QDebug& s, const LocaleConfiguration& l )
 {
     return s << l.language() << '(' << l.toBcp47() << ") +" << l.lc_numeric;
 }
 
-#endif // LOCALECONFIGURATION_H
+#endif  // LOCALECONFIGURATION_H

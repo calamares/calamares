@@ -25,9 +25,7 @@
 #include <QListWidget>
 #include <QPushButton>
 
-LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
-                                const QStringList& localeGenLines,
-                                QWidget* parent )
+LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale, const QStringList& localeGenLines, QWidget* parent )
     : QDialog( parent )
 {
     setModal( true );
@@ -41,7 +39,7 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     upperText->setText( tr( "The system locale setting affects the language and character "
                             "set for some command line user interface elements.<br/>"
                             "The current setting is <strong>%1</strong>." )
-                        .arg( guessedLCLocale ) );
+                            .arg( guessedLCLocale ) );
     mainLayout->addWidget( upperText );
     setMinimumWidth( upperText->fontMetrics().height() * 24 );
 
@@ -60,33 +58,32 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
         }
     }
 
-    QDialogButtonBox* dbb = new QDialogButtonBox( QDialogButtonBox::Ok | QDialogButtonBox::Cancel,
-            Qt::Horizontal,
-            this );
+    QDialogButtonBox* dbb
+        = new QDialogButtonBox( QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this );
     dbb->button( QDialogButtonBox::Cancel )->setText( tr( "&Cancel" ) );
     dbb->button( QDialogButtonBox::Ok )->setText( tr( "&OK" ) );
 
     mainLayout->addWidget( dbb );
 
-    connect( dbb->button( QDialogButtonBox::Ok ), &QPushButton::clicked,
-             this, &QDialog::accept );
-    connect( dbb->button( QDialogButtonBox::Cancel ), &QPushButton::clicked,
-             this, &QDialog::reject );
+    connect( dbb->button( QDialogButtonBox::Ok ), &QPushButton::clicked, this, &QDialog::accept );
+    connect( dbb->button( QDialogButtonBox::Cancel ), &QPushButton::clicked, this, &QDialog::reject );
 
-    connect( m_localesWidget, &QListWidget::itemDoubleClicked,
-             this, &QDialog::accept );
-    connect( m_localesWidget, &QListWidget::itemSelectionChanged,
-             [this, dbb]()
-    {
+    connect( m_localesWidget, &QListWidget::itemDoubleClicked, this, &QDialog::accept );
+    connect( m_localesWidget, &QListWidget::itemSelectionChanged, [this, dbb]() {
         if ( m_localesWidget->selectedItems().isEmpty() )
+        {
             dbb->button( QDialogButtonBox::Ok )->setEnabled( false );
+        }
         else
+        {
             dbb->button( QDialogButtonBox::Ok )->setEnabled( true );
-
+        }
     } );
 
     if ( selected > -1 )
+    {
         m_localesWidget->setCurrentRow( selected );
+    }
 }
 
 
