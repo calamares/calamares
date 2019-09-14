@@ -20,6 +20,8 @@
 #ifndef MODULELOADER_H
 #define MODULELOADER_H
 
+#include "modulesystem/InstanceKey.h"
+
 #include "Requirement.h"
 
 #include <QObject>
@@ -31,70 +33,6 @@ namespace Calamares
 
 class Module;
 struct RequirementEntry;  // from Requirement.h
-
-/** @brief A module instance's key (`module@id`)
- *
- * A module instance is identified by both the module's name
- * (a Calamares module, e.g. `users`) and an instance id.
- * Usually, the instance id is the same as the module name
- * and the whole module instance key is `users@users`, but
- * it is possible to use the same module more than once
- * and then you distinguish those module instances by their
- * secondary id (e.g. `users@one`).
- *
- * This is supported by the *instances* configuration entry
- * in `settings.conf`.
- */
-class ModuleInstanceKey : public QPair< QString, QString >
-{
-public:
-    /// @brief Create an instance key from explicit module and id.
-    ModuleInstanceKey( const QString& module, const QString& id )
-        : QPair( module, id )
-    {
-        if ( second.isEmpty() )
-        {
-            second = first;
-        }
-    }
-
-    /// @brief Create "usual" instances keys `module@module`
-    explicit ModuleInstanceKey( const QString& module )
-        : QPair( module, module )
-    {
-    }
-
-    /// @brief Create unusual, invalid instance key
-    ModuleInstanceKey()
-        : QPair( QString(), QString() )
-    {
-    }
-
-    /// @brief A valid module has both name and id
-    bool isValid() const { return !first.isEmpty() && !second.isEmpty(); }
-
-    /// @brief A custom module has a non-default id
-    bool isCustom() const { return first != second; }
-
-    QString module() const { return first; }
-    QString id() const { return second; }
-
-    explicit operator QString() const { return module() + '@' + id(); }
-
-    /// @brief Create instance key from stringified version
-    static ModuleInstanceKey fromString( const QString& s )
-    {
-        QStringList moduleEntrySplit = s.split( '@' );
-        if ( moduleEntrySplit.length() < 1 || moduleEntrySplit.length() > 2 )
-        {
-            return ModuleInstanceKey();
-        }
-        // For length 1, first == last
-        return ModuleInstanceKey( moduleEntrySplit.first(), moduleEntrySplit.last() );
-    }
-
-};
-
 
 /**
  * @brief The ModuleManager class is a singleton which manages Calamares modules.
@@ -187,7 +125,7 @@ private:
 
     QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
-    QMap< ModuleInstanceKey, Module* > m_loadedModulesByInstanceKey;
+    QMap< ModuleSystem::InstanceKey, Module* > m_loadedModulesByInstanceKey;
     const QStringList m_paths;
 
     static ModuleManager* s_instance;

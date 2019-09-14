@@ -155,7 +155,7 @@ ModuleManager::moduleDescriptor( const QString& name )
 Module*
 ModuleManager::moduleInstance( const QString& instanceKey )
 {
-    return m_loadedModulesByInstanceKey.value( ModuleInstanceKey::fromString( instanceKey ) );
+    return m_loadedModulesByInstanceKey.value( ModuleSystem::InstanceKey::fromString( instanceKey ) );
 }
 
 
@@ -165,7 +165,7 @@ ModuleManager::moduleInstance( const QString& instanceKey )
  * @return -1 on failure, otherwise index of the instance that matches.
  */
 static int
-findCustomInstance( const Settings::InstanceDescriptionList& customInstances, const ModuleInstanceKey& m )
+findCustomInstance( const Settings::InstanceDescriptionList& customInstances, const ModuleSystem::InstanceKey& m )
 {
     for ( int i = 0; i < customInstances.count(); ++i )
     {
@@ -194,7 +194,7 @@ ModuleManager::loadModules()
 
             foreach ( const QString& moduleEntry, modulePhase.second )
             {
-                auto instanceKey = ModuleInstanceKey::fromString( moduleEntry );
+                auto instanceKey = ModuleSystem::InstanceKey::fromString( moduleEntry );
                 if ( !instanceKey.isValid() )
                 {
                     cError() << "Wrong module entry format for module" << moduleEntry;
