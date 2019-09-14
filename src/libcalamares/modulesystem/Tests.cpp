@@ -51,6 +51,7 @@ void assert_is_invalid( const InstanceKey& k )
     QVERIFY( !k.isCustom() );
     QVERIFY( k.module().isEmpty() );
     QVERIFY( k.id().isEmpty() );
+    QVERIFY( QString( k ).isEmpty() );
 }
 
 void ModuleSystemTests::testEmptyInstanceKey()
@@ -66,6 +67,7 @@ void ModuleSystemTests::testSimpleInstanceKey()
     QVERIFY( !k1.isCustom() );
     QCOMPARE( k1.module(), QStringLiteral( "derp" ) );
     QCOMPARE( k1.id(), QStringLiteral( "derp" ) );
+    QCOMPARE( QString( k1 ), QStringLiteral( "derp@derp" ) );
 }
 
 void ModuleSystemTests::testCustomInstanceKey()
@@ -75,12 +77,21 @@ void ModuleSystemTests::testCustomInstanceKey()
     QVERIFY( !k0.isCustom() );
     QCOMPARE( k0.module(), QStringLiteral( "derp" ) );
     QCOMPARE( k0.id(), QStringLiteral( "derp" ) );
+    QCOMPARE( QString( k0 ), QStringLiteral( "derp@derp" ) );
 
     InstanceKey k1("derp", "horse");
     QVERIFY( k1.isValid() );
     QVERIFY( k1.isCustom() );
     QCOMPARE( k1.module(), QStringLiteral( "derp" ) );
     QCOMPARE( k1.id(), QStringLiteral( "horse" ) );
+    QCOMPARE( QString( k1 ), QStringLiteral( "derp@horse" ) );
+
+    InstanceKey k4( "derp", QString() );
+    QVERIFY( k4.isValid() );
+    QVERIFY( !k4.isCustom() );
+    QCOMPARE( k4.module(), QStringLiteral( "derp" ) );
+    QCOMPARE( k4.id(), QStringLiteral( "derp" ) );
+    QCOMPARE( QString( k4 ), QStringLiteral( "derp@derp" ) );
 }
 
 void ModuleSystemTests::testFromStringInstanceKey()
@@ -90,18 +101,21 @@ void ModuleSystemTests::testFromStringInstanceKey()
     QVERIFY( !k0.isCustom() );
     QCOMPARE( k0.module(), QStringLiteral( "derp" ) );
     QCOMPARE( k0.id(), QStringLiteral( "derp" ) );
+    QCOMPARE( QString( k0 ), QStringLiteral( "derp@derp" ) );
 
     InstanceKey k1 = InstanceKey::fromString( "derp@horse" );
     QVERIFY( k1.isValid() );
     QVERIFY( k1.isCustom() );
     QCOMPARE( k1.module(), QStringLiteral( "derp" ) );
     QCOMPARE( k1.id(), QStringLiteral( "horse" ) );
+    QCOMPARE( QString( k1 ), QStringLiteral( "derp@horse" ) );
 
     InstanceKey k2 = InstanceKey::fromString( "derp" );
     QVERIFY( k2.isValid() );
     QVERIFY( !k2.isCustom() );
     QCOMPARE( k2.module(), QStringLiteral( "derp" ) );
     QCOMPARE( k2.id(), QStringLiteral( "derp" ) );
+    QCOMPARE( QString( k2 ), QStringLiteral( "derp@derp" ) );
 }
 
 /// @brief These are expected to fail since they show bugs in the code
@@ -112,6 +126,9 @@ void ModuleSystemTests::testBadSimpleCases()
 
     InstanceKey k3( "derp@horse" );
     assert_is_invalid( k3 );
+
+    InstanceKey k4( "derp", "derp@derp" );
+    assert_is_invalid( k4 );
 }
 
 void ModuleSystemTests::testBadFromStringCases()
