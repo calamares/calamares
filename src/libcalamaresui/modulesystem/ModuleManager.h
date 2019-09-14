@@ -79,8 +79,9 @@ public:
     Module* moduleInstance( const QString& instanceKey );
 
     /**
-     * @brief loadModules initiates the asynchronous module loading operation.
+     * @brief loadModules does all of the module loading operation.
      * When this is done, the signal modulesLoaded is emitted.
+     * It is recommended to call this from a single-shot QTimer.
      */
     void loadModules();
 
