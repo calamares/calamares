@@ -7,12 +7,13 @@ website will have to do for older versions.
 # 3.2.14 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - No external contributors in this release.
 
 ## Core ##
 
 ## Modules ##
 
- - *locale* module no longer recognized the legacy GeoIP configuration.
+ - *locale* module no longer recognizes the legacy GeoIP configuration.
    This has been deprecated since Calamares 3.2.8.
 
 
