@@ -19,9 +19,15 @@
 #ifndef MODULESYSTEM_INSTANCEKEY_H
 #define MODULESYSTEM_INSTANCEKEY_H
 
-#include <QString>
+#include <QList>
 #include <QPair>
+#include <QString>
 #include <QStringList>
+
+namespace Logger
+{
+class CLog;
+}
 
 namespace Calamares
 {
@@ -55,13 +61,6 @@ public:
         validate();
     }
 
-    /// @brief Create "usual" instances keys `module@module`
-    explicit InstanceKey( const QString& module )
-        : QPair( module, module )
-    {
-        validate();
-    }
-
     /// @brief Create unusual, invalid instance key
     InstanceKey()
         : QPair( QString(), QString() )
@@ -77,8 +76,6 @@ public:
     QString module() const { return first; }
     QString id() const { return second; }
 
-    explicit operator QString() const { return isValid() ? module() + '@' + id() : QString(); }
-
     /// @brief Create instance key from stringified version
     static InstanceKey fromString( const QString& s )
     {
@@ -89,6 +86,11 @@ public:
         }
         // For length 1, first == last
         return InstanceKey( moduleEntrySplit.first(), moduleEntrySplit.last() );
+    }
+
+    QString toString() const
+    {
+        return first + '@' + second;
     }
 
 private:
@@ -103,6 +105,7 @@ private:
     }
 };
 
-}
-}
+}  // namespace ModuleSystem
+}  // namespace Calamares
+
 #endif
