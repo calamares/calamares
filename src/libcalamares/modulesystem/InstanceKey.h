@@ -52,12 +52,14 @@ public:
         {
             second = first;
         }
+        validate();
     }
 
     /// @brief Create "usual" instances keys `module@module`
     explicit InstanceKey( const QString& module )
         : QPair( module, module )
     {
+        validate();
     }
 
     /// @brief Create unusual, invalid instance key
@@ -89,6 +91,16 @@ public:
         return InstanceKey( moduleEntrySplit.first(), moduleEntrySplit.last() );
     }
 
+private:
+    /** @brief Check validity and reset module and id if needed. */
+    void validate()
+    {
+        if ( first.contains( '@' ) || second.contains( '@' ) )
+        {
+            first = QString();
+            second = QString();
+        }
+    }
 };
 
 }
