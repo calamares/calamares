@@ -190,7 +190,7 @@ ModuleManager::loadModules()
             = failedModules.isEmpty() ? Settings::instance()->modulesSequence() : Settings::ModuleSequence();
         for ( const auto& modulePhase : modulesSequence )
         {
-            ModuleAction currentAction = modulePhase.first;
+            ModuleSystem::Action currentAction = modulePhase.first;
 
             foreach ( const QString& moduleEntry, modulePhase.second )
             {
@@ -285,7 +285,7 @@ ModuleManager::loadModules()
 
                 // At this point we most certainly have a pointer to a loaded module in
                 // thisModule. We now need to enqueue jobs info into an EVS.
-                if ( currentAction == ModuleAction::Exec )
+                if ( currentAction == ModuleSystem::Action::Exec )
                 {
                     ExecutionViewStep* evs
                         = qobject_cast< ExecutionViewStep* >( Calamares::ViewManager::instance()->viewSteps().last() );

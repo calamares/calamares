@@ -22,13 +22,16 @@
 
 namespace Calamares
 {
+namespace ModuleSystem
+{
 
-enum class ModuleAction : char
+enum class Action : char
 {
     Show,
     Exec
 };
 
+}  // namespace ModuleSystem
 }  // namespace Calamares
 
 #endif
