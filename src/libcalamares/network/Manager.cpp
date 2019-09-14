@@ -18,10 +18,15 @@
 
 #include "Manager.h"
 
+#include "utils/Logger.h"
+
 #include <QEventLoop>
+#include <QMutex>
+#include <QMutexLocker>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QThread>
 #include <QTimer>
 
 namespace CalamaresUtils
@@ -45,20 +50,90 @@ RequestOptions::applyToRequest( QNetworkRequest* request ) const
     }
 }
 
-struct Manager::Private
+class Manager::Private : public QObject
 {
+    Q_OBJECT
+private:
     std::unique_ptr< QNetworkAccessManager > m_nam;
+
+    using ThreadNam = QPair< QThread*, QNetworkAccessManager* >;
+    QVector< ThreadNam > m_perThreadNams;
+
+public slots:
+    void cleanupNam();
+
+public:
     QUrl m_hasInternetUrl;
     bool m_hasInternet;
 
     Private();
+
+    QNetworkAccessManager* nam();
 };
 
 Manager::Private::Private()
     : m_nam( std::make_unique< QNetworkAccessManager >() )
     , m_hasInternet( false )
 {
+    m_perThreadNams.reserve( 20 );
+    m_perThreadNams.append( qMakePair( QThread::currentThread(), m_nam.get() ) );
 }
+
+static QMutex*
+namMutex()
+{
+    static QMutex namMutex;
+    return &namMutex;
+}
+
+QNetworkAccessManager*
+Manager::Private::nam()
+{
+    QMutexLocker lock( namMutex() );
+
+    auto* thread = QThread::currentThread();
+    int index = 0;
+    for ( const auto& n : m_perThreadNams )
+    {
+        if ( n.first == thread )
+        {
+            return n.second;
+        }
+        ++index;
+    }
+
+    // Need a new NAM for this thread
+    QNetworkAccessManager* nam = new QNetworkAccessManager();
+    m_perThreadNams.append( qMakePair( thread, nam ) );
+    QObject::connect( thread, &QThread::finished, this, &Manager::Private::cleanupNam );
+
+    return nam;
+}
+
+void
+Manager::Private::cleanupNam()
+{
+    QMutexLocker lock( namMutex() );
+
+    auto* thread = QThread::currentThread();
+    bool cleanupFound = false;
+    int cleanupIndex = 0;
+    for ( const auto& n : m_perThreadNams )
+    {
+        if ( n.first == thread )
+        {
+            cleanupFound = true;
+            delete n.second;
+            break;
+        }
+        ++cleanupIndex;
+    }
+    if ( cleanupFound )
+    {
+        m_perThreadNams.remove( cleanupIndex );
+    }
+}
+
 
 Manager::Manager()
     : d( std::make_unique< Private >() )
@@ -83,9 +158,9 @@ Manager::hasInternet()
 bool
 Manager::checkHasInternet()
 {
-    bool hasInternet = d->m_nam->networkAccessible() == QNetworkAccessManager::Accessible;
+    bool hasInternet = d->nam()->networkAccessible() == QNetworkAccessManager::Accessible;
 
-    if ( !hasInternet && ( d->m_nam->networkAccessible() == QNetworkAccessManager::UnknownAccessibility ) )
+    if ( !hasInternet && ( d->nam()->networkAccessible() == QNetworkAccessManager::UnknownAccessibility ) )
     {
         hasInternet = synchronousPing( d->m_hasInternetUrl );
     }
@@ -108,7 +183,7 @@ Manager::setCheckHasInternetUrl( const QUrl& url )
  * On failure, returns nullptr (e.g. bad URL, timeout).
  */
 static QNetworkReply*
-asynchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl& url, const RequestOptions& options )
+asynchronousRun( QNetworkAccessManager* nam, const QUrl& url, const RequestOptions& options )
 {
     QNetworkRequest request = QNetworkRequest( url );
     options.applyToRequest( &request );
@@ -143,12 +218,12 @@ asynchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl
  * is marked for later automatic deletion, so don't store the pointer.
  */
 static QPair< RequestStatus, QNetworkReply* >
-synchronousRun( const std::unique_ptr< QNetworkAccessManager >& nam, const QUrl& url, const RequestOptions& options )
+synchronousRun( QNetworkAccessManager* nam, const QUrl& url, const RequestOptions& options )
 {
     auto* reply = asynchronousRun( nam, url, options );
     if ( !reply )
     {
-                return qMakePair( RequestStatus( RequestStatus::Failed ), nullptr );
+        return qMakePair( RequestStatus( RequestStatus::Failed ), nullptr );
     }
 
     QEventLoop loop;
@@ -177,7 +252,7 @@ Manager::synchronousPing( const QUrl& url, const RequestOptions& options )
         return RequestStatus::Failed;
     }
 
-    auto reply = synchronousRun( d->m_nam, url, options );
+    auto reply = synchronousRun( d->nam(), url, options );
     if ( reply.first )
     {
         return reply.second->bytesAvailable() ? RequestStatus::Ok : RequestStatus::Empty;
@@ -196,16 +271,18 @@ Manager::synchronousGet( const QUrl& url, const RequestOptions& options )
         return QByteArray();
     }
 
-    auto reply = synchronousRun( d->m_nam, url, options );
+    auto reply = synchronousRun( d->nam(), url, options );
     return reply.first ? reply.second->readAll() : QByteArray();
 }
 
 QNetworkReply*
 Manager::asynchronouseGet( const QUrl& url, const CalamaresUtils::Network::RequestOptions& options )
 {
-    return asynchronousRun( d->m_nam, url, options );
+    return asynchronousRun( d->nam(), url, options );
 }
 
 
 }  // namespace Network
 }  // namespace CalamaresUtils
+
+#include "Manager.moc"
