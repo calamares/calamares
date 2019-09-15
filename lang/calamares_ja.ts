@@ -1923,12 +1923,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="33"/>
         <source>Package Selection</source>
-        <translation type="unfinished"/>
+        <translation>パッケージの選択</translation>
     </message>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
         <source>Please pick a product from the list. The selected product will be installed.</source>
-        <translation type="unfinished"/>
+        <translation>リストから製品を選んでください。選択した製品がインストールされます。</translation>
     </message>
 </context>
 <context>
@@ -1936,7 +1936,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="67"/>
         <source>Packages</source>
-        <translation type="unfinished"/>
+        <translation>パッケージ</translation>
     </message>
 </context>
 <context>
@@ -2464,7 +2464,7 @@ Output:
     <message>
         <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
         <source>No product</source>
-        <translation type="unfinished"/>
+        <translation>製品がありません。</translation>
     </message>
     <message>
         <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
@@ -3232,12 +3232,12 @@ Output:
         <location filename="../src/modules/welcome/WelcomePage.ui" line="69"/>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="82"/>
         <source>Select application and system language</source>
-        <translation type="unfinished"/>
+        <translation>アプリケーション及び言語の選択</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
         <source>Open donations website</source>
-        <translation type="unfinished"/>
+        <translation>寄付サイトを開く</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
@@ -3247,12 +3247,12 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
         <source>Open help and support website</source>
-        <translation type="unfinished"/>
+        <translation>サポートサイトを開く</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
         <source>Open issues and bug-tracking website</source>
-        <translation type="unfinished"/>
+        <translation>issue 及び bug-track のサイトを開く</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
