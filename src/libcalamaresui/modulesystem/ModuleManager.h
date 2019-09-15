@@ -20,6 +20,8 @@
 #ifndef MODULELOADER_H
 #define MODULELOADER_H
 
+#include "modulesystem/InstanceKey.h"
+
 #include "Requirement.h"
 
 #include <QObject>
@@ -77,8 +79,9 @@ public:
     Module* moduleInstance( const QString& instanceKey );
 
     /**
-     * @brief loadModules initiates the asynchronous module loading operation.
+     * @brief loadModules does all of the module loading operation.
      * When this is done, the signal modulesLoaded is emitted.
+     * It is recommended to call this from a single-shot QTimer.
      */
     void loadModules();
 
@@ -123,7 +126,7 @@ private:
 
     QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
-    QMap< QString, Module* > m_loadedModulesByInstanceKey;
+    QMap< ModuleSystem::InstanceKey, Module* > m_loadedModulesByInstanceKey;
     const QStringList m_paths;
 
     static ModuleManager* s_instance;

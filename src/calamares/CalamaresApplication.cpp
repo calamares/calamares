@@ -39,6 +39,7 @@
 #include <QDesktopWidget>
 #include <QDir>
 #include <QFileInfo>
+#include <QTimer>
 
 
 CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
@@ -354,7 +355,7 @@ CalamaresApplication::initView()
     connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, this, &CalamaresApplication::initViewSteps );
     connect( m_moduleManager, &Calamares::ModuleManager::modulesFailed, this, &CalamaresApplication::initFailed );
 
-    m_moduleManager->loadModules();
+    QTimer::singleShot( 0, m_moduleManager, &Calamares::ModuleManager::loadModules );
 
     m_mainwindow->move( this->desktop()->availableGeometry().center() - m_mainwindow->rect().center() );
 

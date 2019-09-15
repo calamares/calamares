@@ -169,14 +169,14 @@ interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSeque
                 continue;
             }
             QString thisActionS = sequenceVListItem.toMap().firstKey();
-            ModuleAction thisAction;
+            ModuleSystem::Action thisAction;
             if ( thisActionS == "show" )
             {
-                thisAction = ModuleAction::Show;
+                thisAction = ModuleSystem::Action::Show;
             }
             else if ( thisActionS == "exec" )
             {
-                thisAction = ModuleAction::Exec;
+                thisAction = ModuleSystem::Action::Exec;
             }
             else
             {
