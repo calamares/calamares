@@ -289,15 +289,15 @@ msgstr "Asenna paketteja."
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Asentaa "
+msgstr[1] "Asentaa %(num)d paketteja."
 
 #: src/modules/packages/main.py:70
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Removing one package."
+msgstr[1] "Poistaa %(num)d paketteja."
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."

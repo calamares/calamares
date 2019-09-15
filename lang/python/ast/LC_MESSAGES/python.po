@@ -91,7 +91,7 @@ msgstr "Desmontaxe de sistemes de ficheros."
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Rellenando los sistemes de ficheros."
 
 #: src/modules/unpackfs/main.py:160
 msgid "rsync failed with error code {}."
@@ -296,7 +296,7 @@ msgstr[1] "Desaniciando %(num)d paquetes."
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr ""
+msgstr "Instalando'l xestor d'arrinque."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
