@@ -140,7 +140,7 @@ ModuleManager::loadedInstanceKeys()
     QStringList l;
     for ( const auto& m : m_loadedModulesByInstanceKey.keys() )
     {
-        l << QString( m );
+        l << m.toString();
     }
     return l;
 }
@@ -205,9 +205,9 @@ ModuleManager::loadModules()
             if ( !m_availableDescriptorsByModuleName.contains( instanceKey.module() )
                     || m_availableDescriptorsByModuleName.value( instanceKey.module() ).isEmpty() )
             {
-                cError() << "Module" << QString( instanceKey ) << "not found in module search paths."
+                cError() << "Module" << instanceKey.toString() << "not found in module search paths."
                             << Logger::DebugList( m_paths );
-                failedModules.append( QString( instanceKey ) );
+                failedModules.append( instanceKey.toString() );
                 continue;
             }
 
@@ -242,14 +242,14 @@ ModuleManager::loadModules()
             Module* thisModule = m_loadedModulesByInstanceKey.value( instanceKey, nullptr );
             if ( thisModule && !thisModule->isLoaded() )
             {
-                cError() << "Module" << QString( instanceKey ) << "exists but not loaded.";
-                failedModules.append( QString( instanceKey ) );
+                cError() << "Module" << instanceKey.toString() << "exists but not loaded.";
+                failedModules.append( instanceKey.toString() );
                 continue;
             }
 
             if ( thisModule && thisModule->isLoaded() )
             {
-                cDebug() << "Module" << QString( instanceKey ) << "already loaded.";
+                cDebug() << "Module" << instanceKey.toString() << "already loaded.";
             }
             else
             {
@@ -259,15 +259,15 @@ ModuleManager::loadModules()
                                                         m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
                 if ( !thisModule )
                 {
-                    cError() << "Module" << QString( instanceKey ) << "cannot be created from descriptor" << configFileName;
-                    failedModules.append( QString( instanceKey ) );
+                    cError() << "Module" << instanceKey.toString() << "cannot be created from descriptor" << configFileName;
+                    failedModules.append( instanceKey.toString() );
                     continue;
                 }
 
                 if ( !checkDependencies( *thisModule ) )
                 {
                     // Error message is already printed
-                    failedModules.append( QString( instanceKey ) );
+                    failedModules.append( instanceKey.toString() );
                     continue;
                 }
 
@@ -276,8 +276,8 @@ ModuleManager::loadModules()
                 m_loadedModulesByInstanceKey.insert( instanceKey, thisModule );
                 if ( !thisModule->isLoaded() )
                 {
-                    cError() << "Module" << QString( instanceKey ) << "loading FAILED.";
-                    failedModules.append( QString( instanceKey ) );
+                    cError() << "Module" << instanceKey.toString() << "loading FAILED.";
+                    failedModules.append( instanceKey.toString() );
                     continue;
                 }
             }
@@ -294,7 +294,7 @@ ModuleManager::loadModules()
                     ViewManager::instance()->addViewStep( evs );
                 }
 
-                evs->appendJobModuleInstanceKey( QString( instanceKey ) );
+                evs->appendJobModuleInstanceKey( instanceKey.toString() );
             }
         }
     }
