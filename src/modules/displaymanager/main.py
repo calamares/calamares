@@ -63,6 +63,7 @@ class DesktopEnvironment:
 
 
 desktop_environments = [
+    DesktopEnvironment('/usr/bin/startplasma-x11', 'plasma'),  # KDE Plasma 5.17+
     DesktopEnvironment('/usr/bin/startkde', 'plasma'),  # KDE Plasma 5
     DesktopEnvironment('/usr/bin/startkde', 'kde-plasma'),  # KDE Plasma 4
     DesktopEnvironment(
