@@ -1379,22 +1379,22 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="32"/>
         <source>System locale setting</source>
         <translation>Systemets lokalitetsindstilling</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="39"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Systemets lokalitetsindstilling har indflydelse på sproget og tegnsættet for nogle kommandolinje-brugerelementer.&lt;br/&gt;Den nuværende indstilling er &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="66"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annullér</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -1508,33 +1508,33 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="396"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="284"/>
         <source>The system language will be set to %1.</source>
         <translation>Systemsproget vil blive sat til %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="397"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="285"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>Lokalitet for tal og datoer vil blive sat til %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="219"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="118"/>
         <source>Region:</source>
         <translation>Region:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="119"/>
         <source>Zone:</source>
         <translation>Zone:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="224"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="225"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="120"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="121"/>
         <source>&amp;Change...</source>
         <translation>&amp;Skift ...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="404"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="292"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Sæt tidszone til %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -1542,12 +1542,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="55"/>
-        <source>Loading location data...</source>
-        <translation>Indlæser placeringsdata ...</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="132"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
         <source>Location</source>
         <translation>Placering</translation>
     </message>
@@ -1591,27 +1586,27 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="61"/>
         <source>Name</source>
         <translation>Navn</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="63"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
         <source>Description</source>
         <translation>Beskrivelse</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="87"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="109"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Netværksinstallation. (Deaktiveret: Kunne ikke hente pakkelister, tjek din netværksforbindelse)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="97"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="119"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
         <translation>Netværksinstallation. (Deaktiveret: Modtog ugyldige gruppers data)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="140"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="158"/>
         <source>Network Installation. (Disabled: Incorrect configuration)</source>
         <translation>Netværksinstallation. (deaktiveret: forkert konfiguration)</translation>
     </message>
@@ -1921,12 +1916,12 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <translation>Lang produktbeskrivelse</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="33"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
         <source>Package Selection</source>
         <translation>Valg af pakke</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
         <source>Please pick a product from the list. The selected product will be installed.</source>
         <translation>Vælg venligst et produkt fra listen. Det valgte produkt installeres.</translation>
     </message>
@@ -1934,7 +1929,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
 <context>
     <name>PackageChooserViewStep</name>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="67"/>
+        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
         <source>Packages</source>
         <translation>Pakker</translation>
     </message>
@@ -2942,22 +2937,22 @@ Output:
         <translation>Ugyldig sti: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
         <source>Cannot set timezone.</source>
         <translation>Kan ikke sætte tidszone.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
         <source>Link creation failed, target: %1; link name: %2</source>
         <translation>Oprettelse af link mislykkedes, destination: %1; linknavn: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone,</source>
         <translation>Kan ikke sætte tidszone,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>Kan ikke åbne /etc/timezone til skrivning</translation>
     </message>
@@ -3256,8 +3251,8 @@ Output:
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
-        <source>Open relead notes website</source>
-        <translation>Åbn websted for udgivelsesnoter</translation>
+        <source>Open release notes website</source>
+        <translation>Åbn websted med udgivelsesnoter</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>

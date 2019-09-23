@@ -1379,22 +1379,22 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="32"/>
         <source>System locale setting</source>
         <translation>Postavke jezične sheme sustava</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="39"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Jezična shema sustava ima efekt na jezični i znakovni skup za neke komandno linijske elemente sučelja.&lt;br/&gt;Trenutačna postavka je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="66"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Odustani</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -1508,33 +1508,33 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="396"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="284"/>
         <source>The system language will be set to %1.</source>
         <translation>Jezik sustava će se postaviti na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="397"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="285"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>Jezična shema brojeva i datuma će se postaviti na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="219"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="118"/>
         <source>Region:</source>
         <translation>Regija:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="119"/>
         <source>Zone:</source>
         <translation>Zona:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="224"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="225"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="120"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="121"/>
         <source>&amp;Change...</source>
         <translation>&amp;Promijeni...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="404"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="292"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Postavi vremesku zonu na %1%2.&lt;br/&gt;</translation>
     </message>
@@ -1542,12 +1542,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="55"/>
-        <source>Loading location data...</source>
-        <translation>Učitavanje podataka o lokaciji...</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="132"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
         <source>Location</source>
         <translation>Lokacija</translation>
     </message>
@@ -1591,27 +1586,27 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="61"/>
         <source>Name</source>
         <translation>Ime</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="63"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
         <source>Description</source>
         <translation>Opis</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="87"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="109"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Mrežna instalacija. (Onemogućeno: Ne mogu dohvatiti listu paketa, provjerite da li ste spojeni na mrežu)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="97"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="119"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
         <translation>Mrežna instalacija. (Onemogućeno: Primanje nevažećih podataka o grupama)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="140"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="158"/>
         <source>Network Installation. (Disabled: Incorrect configuration)</source>
         <translation>Mrežna instalacija. (Onemogućeno: Neispravna konfiguracija)</translation>
     </message>
@@ -1921,12 +1916,12 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
         <translation>Dugi opis proizvoda</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="33"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
         <source>Package Selection</source>
         <translation>Odabir paketa</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
         <source>Please pick a product from the list. The selected product will be installed.</source>
         <translation>Molimo odaberite proizvod s popisa. Izabrani proizvod će biti instaliran.</translation>
     </message>
@@ -1934,7 +1929,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
 <context>
     <name>PackageChooserViewStep</name>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="67"/>
+        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
         <source>Packages</source>
         <translation>Paketi</translation>
     </message>
@@ -2942,22 +2937,22 @@ Izlaz:
         <translation>Loš put: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
         <source>Cannot set timezone.</source>
         <translation>Ne mogu postaviti vremesku zonu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
         <source>Link creation failed, target: %1; link name: %2</source>
         <translation>Kreiranje linka nije uspjelo, cilj: %1; ime linka: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone,</source>
         <translation>Ne mogu postaviti vremensku zonu,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>Ne mogu otvoriti /etc/timezone za pisanje</translation>
     </message>
@@ -3256,8 +3251,8 @@ Izlaz:
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
-        <source>Open relead notes website</source>
-        <translation>Otvorite web mjesto za bilješke</translation>
+        <source>Open release notes website</source>
+        <translation>Otvorite web mjesto s bilješkama izdanja</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>

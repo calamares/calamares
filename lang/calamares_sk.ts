@@ -117,7 +117,7 @@
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="120"/>
         <source>Set up</source>
-        <translation type="unfinished"/>
+        <translation>Inštalácia</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="120"/>
@@ -293,7 +293,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Inštalačný program distribúcie %1 sa chystá vykonať zmeny na vašom disku, aby nainštaloval distribúciu %2. &lt;br/&gt;&lt;strong&gt;Tieto zmeny nebudete môcť vrátiť späť.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="345"/>
@@ -1149,7 +1149,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Keď je zaškrtnuté toto políčko, váš systém sa okamžite reštartuje po stlačení tlačidla &lt;span style=&quot;font-style:italic;&quot;&gt;Dokončiť&lt;/span&gt; alebo zatvorení inštalačného programu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="66"/>
@@ -1159,12 +1159,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="71"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Keď je zaškrtnuté toto políčko, váš systém sa okamžite reštartuje po stlačení tlačidla &lt;span style=&quot;font-style:italic;&quot;&gt;Dokončiť&lt;/span&gt; alebo zatvorení inštalátora.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="133"/>
         <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Inštalácia zlyhala&lt;/h1&gt;&lt;br/&gt;Distribúcia %1 nebola nainštalovaná do vášho počítača.&lt;br/&gt;Chybová hláška: %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>
@@ -1317,7 +1317,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="40"/>
         <source>Creating initramfs with mkinitcpio.</source>
-        <translation type="unfinished"/>
+        <translation>Vytvára sa initramfs pomocou mkinitcpio.</translation>
     </message>
 </context>
 <context>
@@ -1325,7 +1325,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="37"/>
         <source>Creating initramfs.</source>
-        <translation type="unfinished"/>
+        <translation>Vytvára sa initramfs.</translation>
     </message>
 </context>
 <context>
@@ -1378,22 +1378,22 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="32"/>
         <source>System locale setting</source>
         <translation>Miestne nastavenie systému</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="39"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Miestne nastavenie systému ovplyvní jazyk a znakovú sadu niektorých prvkov používateľského rozhrania v príkazovom riadku.&lt;br/&gt;Aktuálne nastavenie je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="66"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušiť</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -1507,33 +1507,33 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="396"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="284"/>
         <source>The system language will be set to %1.</source>
         <translation>Jazyk systému bude nastavený na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="397"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="285"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>Miestne nastavenie čísel a dátumov bude nastavené na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="219"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="118"/>
         <source>Region:</source>
         <translation>Oblasť:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="119"/>
         <source>Zone:</source>
         <translation>Zóna:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="224"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="225"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="120"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="121"/>
         <source>&amp;Change...</source>
         <translation>Z&amp;meniť...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="404"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="292"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Nastavenie časovej zóny na %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -1541,12 +1541,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="55"/>
-        <source>Loading location data...</source>
-        <translation>Načítavajú sa údaje umiestnenia...</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="132"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
         <source>Location</source>
         <translation>Umiestnenie</translation>
     </message>
@@ -1590,27 +1585,27 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="61"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="63"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
         <source>Description</source>
         <translation>Popis</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="87"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="109"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Sieťová inštalácia. (Zakázaná: Nie je možné získať zoznamy balíkov. Skontrolujte vaše sieťové pripojenie.)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="97"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="119"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
         <translation>Sieťová inštalácia. (Zakázaná: Boli prijaté neplatné údaje o skupinách)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="140"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="158"/>
         <source>Network Installation. (Disabled: Incorrect configuration)</source>
         <translation>Sieťová inštalácia. (Zakázaná: Nesprávna konfigurácia)</translation>
     </message>
@@ -1920,12 +1915,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Dlhý popis produktu</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="33"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
         <source>Package Selection</source>
         <translation>Výber balíkov</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
         <source>Please pick a product from the list. The selected product will be installed.</source>
         <translation type="unfinished"/>
     </message>
@@ -1933,7 +1928,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>PackageChooserViewStep</name>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="67"/>
+        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
         <source>Packages</source>
         <translation>Balíky</translation>
     </message>
@@ -2463,12 +2458,12 @@ Výstup:
     <message>
         <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
         <source>No product</source>
-        <translation type="unfinished"/>
+        <translation>Žiadny produkt</translation>
     </message>
     <message>
         <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
         <source>No description provided.</source>
-        <translation type="unfinished"/>
+        <translation>Nie je poskytnutý żiadny popis.</translation>
     </message>
 </context>
 <context>
@@ -2646,12 +2641,12 @@ Výstup:
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="55"/>
         <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Zmena veľkosti &lt;strong&gt;%2MiB&lt;/strong&gt; oddielu &lt;strong&gt;%1&lt;/strong&gt; na &lt;strong&gt;%3MiB&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="66"/>
         <source>Resizing %2MiB partition %1 to %3MiB.</source>
-        <translation type="unfinished"/>
+        <translation>Mení sa veľkosť %2MiB oddielu %1 na %3MiB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
@@ -2691,7 +2686,7 @@ Výstup:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Tento počítač nespĺňa minimálne požiadavky pre inštaláciu distribúcie %1.&lt;br/&gt;Inštalácia nemôže pokračovať. &lt;a href=&quot;#details&quot;&gt;Podrobnosti...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
@@ -2701,7 +2696,7 @@ Výstup:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
         <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Tento počítač nespĺňa niektoré z odporúčaných požiadaviek pre inštaláciu distribúcie %1.&lt;br/&gt;Inštalácia môže pokračovať, ale niektoré funkcie môžu byť zakázané.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
@@ -2807,7 +2802,7 @@ Výstup:
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="52"/>
         <source>Set flags on %1MiB %2 partition.</source>
-        <translation type="unfinished"/>
+        <translation>Nastavenie značiek na %1MiB oddieli %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
@@ -2822,22 +2817,22 @@ Výstup:
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
         <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-        <translation type="unfinished"/>
+        <translation>Vymazanie značiek na %1MiB oddieli &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="85"/>
         <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Označenie %1MiB oddielu &lt;strong&gt;%2&lt;/strong&gt; ako &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
         <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-        <translation type="unfinished"/>
+        <translation>Vymazávajú sa značky na %1MiB oddieli &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="121"/>
         <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-        <translation type="unfinished"/>
+        <translation>Nastavujú sa značky &lt;strong&gt;%3&lt;/strong&gt; na %1MiB oddieli &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
@@ -2941,22 +2936,22 @@ Výstup:
         <translation>Nesprávna cesta: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
         <source>Cannot set timezone.</source>
         <translation>Nedá sa nastaviť časová zóna.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
         <source>Link creation failed, target: %1; link name: %2</source>
         <translation>Zlyhalo vytvorenie odakzu, cieľ: %1; názov odkazu: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone,</source>
         <translation>Nedá sa nastaviť časová zóna,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>Nedá sa otvoriť cesta /etc/timezone pre zapisovanie</translation>
     </message>
@@ -2983,7 +2978,7 @@ Výstup:
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="57"/>
         <source>This is an overview of what will happen once you start the setup procedure.</source>
-        <translation type="unfinished"/>
+        <translation>Toto je prehľad toho, čo sa stane, keď spustíte inštaláciu.</translation>
     </message>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="60"/>
@@ -3107,12 +3102,12 @@ Výstup:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="120"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Ak bude tento počítač používať viac ako jedna osoba, môžete nastaviť viacero účtov po inštalácii.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="126"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Ak bude tento počítač používať viac ako jedna osoba, môžete nastaviť viacero účtov po inštalácii.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="317"/>
@@ -3231,7 +3226,7 @@ Výstup:
         <location filename="../src/modules/welcome/WelcomePage.ui" line="69"/>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="82"/>
         <source>Select application and system language</source>
-        <translation type="unfinished"/>
+        <translation>Výber jazyka aplikácií a systému</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3255,7 +3250,7 @@ Výstup:
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
-        <source>Open relead notes website</source>
+        <source>Open release notes website</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3291,12 +3286,12 @@ Výstup:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
         <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Vitajte v inštalačnom programe Calamares pre distribúciu %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="248"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Vitajte pri inštalácii distribúcie %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>

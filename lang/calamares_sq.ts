@@ -1379,22 +1379,22 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="32"/>
         <source>System locale setting</source>
         <translation>Rregullim i vendores së sistemit</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="39"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Rregullimi i vendores së sistemit ka të bëjë me gjuhën dhe shkronjat për disa elementë të ndërfaqes së përdoruesit për rresht urdhrash.&lt;br/&gt;Vlera e tanishme është &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="66"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Anuloje</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -1508,33 +1508,33 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="396"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="284"/>
         <source>The system language will be set to %1.</source>
         <translation>Si gjuhë sistemi do të caktohet %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="397"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="285"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>Si vendore për numra dhe data do të vihet %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="219"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="118"/>
         <source>Region:</source>
         <translation>Rajon:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="119"/>
         <source>Zone:</source>
         <translation>Zonë:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="224"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="225"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="120"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="121"/>
         <source>&amp;Change...</source>
         <translation>&amp;Ndryshojeni…</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="404"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="292"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Si zonë kohore do të caktohet %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -1542,12 +1542,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="55"/>
-        <source>Loading location data...</source>
-        <translation>Po ngarkohen të dhëna vendndodhjeje…</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="132"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
         <source>Location</source>
         <translation>Vendndodhje</translation>
     </message>
@@ -1591,27 +1586,27 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="61"/>
         <source>Name</source>
         <translation>Emër</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="63"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
         <source>Description</source>
         <translation>Përshkrim</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="87"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="109"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Instalim Nga Rrjeti. (U çaktivizua: S’arrihet të sillen lista paketash, kontrolloni lidhjen tuaj në rrjet)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="97"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="119"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
         <translation>Instalim Nga Rrjeti. (U çaktivizua: U morën të dhëna të pavlefshme grupesh)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="140"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="158"/>
         <source>Network Installation. (Disabled: Incorrect configuration)</source>
         <translation>Instalim Nga Rrjeti. (E çaktivizuar: Formësim i pasaktë)</translation>
     </message>
@@ -1921,12 +1916,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
         <translation>Përshkrim i Gjatë i Produktit</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="33"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
         <source>Package Selection</source>
         <translation>Përzgjedhje Pakete</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
         <source>Please pick a product from the list. The selected product will be installed.</source>
         <translation>Ju lutemi, zgjidhni prej listës një produkt. Produkti i përzgjedhur do të instalohet.</translation>
     </message>
@@ -1934,7 +1929,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
 <context>
     <name>PackageChooserViewStep</name>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="67"/>
+        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
         <source>Packages</source>
         <translation>Paketa</translation>
     </message>
@@ -2942,22 +2937,22 @@ Përfundim:
         <translation>Shteg i gabuar: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
         <source>Cannot set timezone.</source>
         <translation>S’caktohet dot zonë kohore.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
         <source>Link creation failed, target: %1; link name: %2</source>
         <translation>Krijimi i lidhjes dështoi, objektiv: %1; emër lidhjeje: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone,</source>
         <translation>S’caktohet dot zonë kohore,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>S’hapet dot /etc/timezone për shkrim</translation>
     </message>
@@ -3256,8 +3251,8 @@ Përfundim:
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
-        <source>Open relead notes website</source>
-        <translation>Hap sajtin e shënimeve mbi hedhjet në qarkullim</translation>
+        <source>Open release notes website</source>
+        <translation>Hapni sajtin e shënimeve mbi hedhjet në qarkullim</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>

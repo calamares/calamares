@@ -258,17 +258,17 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
         <source>Would you like to paste the install log to the web?</source>
-        <translation type="unfinished"/>
+        <translation>インストールログをWebに貼り付けますか？</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="250"/>
         <source>Install Log Paste URL</source>
-        <translation type="unfinished"/>
+        <translation>インストールログを貼り付けるURL</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
         <source>The upload was unsuccessful. No web-paste was done.</source>
-        <translation type="unfinished"/>
+        <translation>アップロードは失敗しました。 ウェブへの貼り付けは行われませんでした。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="269"/>
@@ -426,7 +426,8 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/libcalamaresui/utils/Paste.cpp" line="34"/>
         <source>Install log posted to:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>インストールログの投稿先:
+%1</translation>
     </message>
 </context>
 <context>
@@ -1379,22 +1380,22 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="32"/>
         <source>System locale setting</source>
         <translation>システムのロケールの設定</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="39"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>システムロケールの設定はコマンドラインやインターフェースでの言語や文字の表示に影響をおよぼします。&lt;br/&gt;現在の設定 &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="66"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
         <source>&amp;Cancel</source>
         <translation>中止 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
         <source>&amp;OK</source>
         <translation>了解 (&amp;O)</translation>
     </message>
@@ -1508,33 +1509,33 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="396"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="284"/>
         <source>The system language will be set to %1.</source>
         <translation>システムの言語が %1 に設定されます。</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="397"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="285"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>数字と日付のロケールが %1 に設定されます。</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="219"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="118"/>
         <source>Region:</source>
         <translation>地域:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="119"/>
         <source>Zone:</source>
         <translation>ゾーン:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="224"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="225"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="120"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="121"/>
         <source>&amp;Change...</source>
         <translation>変更 (&amp;C)...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="404"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="292"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>タイムゾーンを  %1/%2 に設定。&lt;br/&gt;</translation>
     </message>
@@ -1542,12 +1543,7 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="55"/>
-        <source>Loading location data...</source>
-        <translation>ロケーションデータをロード中...</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="132"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
         <source>Location</source>
         <translation>ロケーション</translation>
     </message>
@@ -1591,29 +1587,29 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="61"/>
         <source>Name</source>
         <translation>名前</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="63"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
         <source>Description</source>
         <translation>説明</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="87"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="109"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>ネットワークインストール。(無効: パッケージリストを取得できません。ネットワーク接続を確認してください。)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="97"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="119"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
         <translation>ネットワークインストール (不可: 無効なグループデータを受け取りました)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="140"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="158"/>
         <source>Network Installation. (Disabled: Incorrect configuration)</source>
-        <translation type="unfinished"/>
+        <translation>ネットワークインストール。(無効: 不正な設定)</translation>
     </message>
 </context>
 <context>
@@ -1908,7 +1904,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/packagechooser/page_package.ui" line="40"/>
         <source>Product Name</source>
-        <translation type="unfinished"/>
+        <translation>製品名</translation>
     </message>
     <message>
         <location filename="../src/modules/packagechooser/page_package.ui" line="53"/>
@@ -1918,15 +1914,15 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/packagechooser/page_package.ui" line="69"/>
         <source>Long Product Description</source>
-        <translation type="unfinished"/>
+        <translation>製品の詳しい説明</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="33"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
         <source>Package Selection</source>
         <translation>パッケージの選択</translation>
     </message>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
+        <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
         <source>Please pick a product from the list. The selected product will be installed.</source>
         <translation>リストから製品を選んでください。選択した製品がインストールされます。</translation>
     </message>
@@ -1934,7 +1930,7 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>PackageChooserViewStep</name>
     <message>
-        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="67"/>
+        <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
         <source>Packages</source>
         <translation>パッケージ</translation>
     </message>
@@ -2469,7 +2465,7 @@ Output:
     <message>
         <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
         <source>No description provided.</source>
-        <translation type="unfinished"/>
+        <translation>説明はありません。</translation>
     </message>
 </context>
 <context>
@@ -2942,22 +2938,22 @@ Output:
         <translation>不正なパス: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
         <source>Cannot set timezone.</source>
         <translation>タイムゾーンを設定できません。</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
         <source>Link creation failed, target: %1; link name: %2</source>
         <translation>リンクの作成に失敗しました、ターゲット: %1 ; リンク名: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone,</source>
         <translation>タイムゾーンを設定できません,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>/etc/timezone を開くことができません</translation>
     </message>
@@ -3160,7 +3156,7 @@ Output:
     <message>
         <location filename="../src/calamares/VariantModel.cpp" line="241"/>
         <source>Key</source>
-        <translation type="unfinished"/>
+        <translation>キー</translation>
     </message>
     <message>
         <location filename="../src/calamares/VariantModel.cpp" line="245"/>
@@ -3242,7 +3238,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
         <source>&amp;Donate</source>
-        <translation type="unfinished"/>
+        <translation>寄付する(&amp;D)</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
@@ -3256,8 +3252,8 @@ Output:
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
-        <source>Open relead notes website</source>
-        <translation type="unfinished"/>
+        <source>Open release notes website</source>
+        <translation>リリースノートのウェブサイトを開く</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
