@@ -62,7 +62,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
     /// @brief Do setup (returns empty list) asynchronously
-    virtual Calamares::RequirementsList checkRequirements();
+    virtual Calamares::RequirementsList checkRequirements() override;
 
 private slots:
     void setUpPage();
