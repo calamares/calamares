@@ -108,14 +108,14 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #       copy these four lines to four backup lines, add "p", and then update
 #       the original four lines with the current translations).
 #
-# Total 60 languages
-set( _tx_complete ca cs_CZ da de fi_FI fr he hi hr hu ja ko lt
-    pt_BR sq tr_TR zh_TW )
-set( _tx_good ast en_GB es es_MX et gl id it_IT nl pl pt_PT ru sk
-    zh_CN )
-set( _tx_ok ar bg el es_PR eu is mr nb ro sl sr sr@latin sv th uk )
-set( _tx_incomplete be ca@valencia eo fa fr_CH gu kk kn lo mk ne_NP
-    ur uz )
+# Total 61 languages
+set( _tx_complete ca cs_CZ da fi_FI he hr ja lt pt_BR sq )
+set( _tx_good ast de es es_MX et fr gl hi hu id it_IT ko nl pl
+    pt_PT ru sk tr_TR zh_TW )
+set( _tx_ok ar be bg el en_GB es_PR eu is ml mr nb ro sl sr
+    sr@latin sv th uk zh_CN )
+set( _tx_incomplete ca@valencia eo fa fr_CH gu kk kn lo mk ne_NP ur
+    uz )
 
 ### Required versions
 #
