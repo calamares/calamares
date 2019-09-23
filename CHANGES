@@ -7,14 +7,17 @@ website will have to do for older versions.
 # 3.2.14 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors in this release.
+ - Harald Sitter
 
 ## Core ##
 
 ## Modules ##
 
  - *locale* module no longer recognizes the legacy GeoIP configuration.
-   This has been deprecated since Calamares 3.2.8.
+   This has been deprecated since Calamares 3.2.8 and is now removed.
+ - *packagechooser* module can now be custom-labeled in the overall
+   progress (left-hand column). #1228
+ - *displaymanager* module now recognizes KDE Plasma 5.17.
 
 
 # 3.2.13 (2019-08-30) #
