@@ -149,7 +149,7 @@ public:
     QNetworkReply* asynchronouseGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
 
 private:
-    struct Private;
+    class Private;
     std::unique_ptr< Private > d;
 };
 }  // namespace Network
