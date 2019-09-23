@@ -3,13 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Abhijith Sheheer <abhijithsheheer@gmail.com>, 2019
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-30 13:38+0200\n"
+"POT-Creation-Date: 2019-09-15 21:54+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: Abhijith Sheheer <abhijithsheheer@gmail.com>, 2019\n"
 "Language-Team: Malayalam (https://www.transifex.com/calamares/teams/20061/ml/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -286,7 +290,7 @@ msgstr[1] ""
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr ""
+msgstr "ബൂട്ട്‌ലോടർ ഇൻസ്റ്റാൾ ചെയ്യൂ ."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
