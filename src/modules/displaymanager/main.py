@@ -51,7 +51,7 @@ class DesktopEnvironment:
         self.executable = exec
         self.desktop_file = desktop
 
-    def find_de_tryexec(self, root_mount_point, command):
+    def find_executable(self, root_mount_point, command):
         if command.startswith("/"):
             path = [""]
         else:
@@ -70,7 +70,7 @@ class DesktopEnvironment:
                 try:
                     key, value = tryexec_line.split("=")
                     if key.strip() == "TryExec":
-                        return self.find_de_tryexec(root_mount_point, value)
+                        return self.find_executable(root_mount_point, value.strip())
                 except:
                     pass
         return None
@@ -83,19 +83,17 @@ class DesktopEnvironment:
                 return candidate
         return None
 
-    def find_de_executable(self, root_mount_point):
-        return os.path.exists("{!s}{!s}".format(root_mount_point, self.executable))
-
-    def find_de_session(self, root_mount_point):
-        desktop_file = self.find_desktop_file(root_mount_point)
-        return desktop_file is not None
-
     def find_desktop_environment(self, root_mount_point):
         """
         Check if this environment is installed in the
         target system at @p root_mount_point.
         """
-        return self.find_de_executable(root_mount_point) and self.find_de_session(root_mount_point)
+        desktop_file = self.find_desktop_file(root_mount_point)
+        if desktop_file is None:
+            return False
+
+        return (self.find_executable(root_mount_point, self.executable) is not None or
+                self.find_tryexec(root_mount_point, desktop_file) is not None)
 
 
 desktop_environments = [
@@ -131,7 +129,7 @@ def find_desktop_environment(root_mount_point):
     :param root_mount_point:
     :return:
     """
-    libcalamares.utils.debug("Using root {!r}".format(root_mount_point))
+    libcalamares.utils.debug("Using rootMountPoint {!r}".format(root_mount_point))
     for desktop_environment in desktop_environments:
         if desktop_environment.find_desktop_environment(root_mount_point):
             libcalamares.utils.debug(".. selected DE {!s}".format(desktop_environment.desktop_file))
