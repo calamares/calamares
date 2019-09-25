@@ -95,7 +95,7 @@ class DesktopEnvironment:
         Check if this environment is installed in the
         target system at @p root_mount_point.
         """
-        return find_de_executable(root_mount_point) and find_de_session(root_mount_point)
+        return self.find_de_executable(root_mount_point) and self.find_de_session(root_mount_point)
 
 
 desktop_environments = [
