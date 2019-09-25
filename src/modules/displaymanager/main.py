@@ -131,8 +131,10 @@ def find_desktop_environment(root_mount_point):
     :param root_mount_point:
     :return:
     """
+    libcalamares.utils.debug("Using root {!r}".format(root_mount_point))
     for desktop_environment in desktop_environments:
         if desktop_environment.find_desktop_environment(root_mount_point):
+            libcalamares.utils.debug(".. selected DE {!s}".format(desktop_environment.desktop_file))
             return desktop_environment
     return None
 
