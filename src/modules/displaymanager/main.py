@@ -51,15 +51,49 @@ class DesktopEnvironment:
         self.executable = exec
         self.desktop_file = desktop
 
+    def find_executable(self, root_mount_point, command):
+        if command.startswith("/"):
+            path = [""]
+        else:
+            path = ["/bin/", "/usr/bin/", "/sbin/", "/usr/local/bin/"]
+
+        for p in path:
+            absolute_path = "{!s}{!s}{!s}".format(root_mount_point, p, command)
+            if os.path.exists(absolute_path):
+                return absolute_path
+        return None
+
+    def find_tryexec(self, root_mount_point, absolute_desktop_file):
+        assert absolute_desktop_file.startswith(root_mount_point)
+        with open(absolute_desktop_file, "r") as f:
+            for tryexec_line in [x for x in f.readlines() if x.startswith("TryExec")]:
+                try:
+                    key, value = tryexec_line.split("=")
+                    if key.strip() == "TryExec":
+                        return self.find_executable(root_mount_point, value.strip())
+                except:
+                    pass
+        return None
+
+    def find_desktop_file(self, root_mount_point):
+        x11_sessions = "{!s}/usr/share/xsessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
+        wayland_sessions = "{!s}/usr/share/wayland-sessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
+        for candidate in (x11_sessions, wayland_sessions):
+            if os.path.exists(candidate):
+                return candidate
+        return None
+
     def find_desktop_environment(self, root_mount_point):
         """
         Check if this environment is installed in the
         target system at @p root_mount_point.
         """
-        return (
-            os.path.exists("{!s}{!s}".format(root_mount_point, self.executable)) and
-            os.path.exists("{!s}/usr/share/xsessions/{!s}.desktop".format(root_mount_point, self.desktop_file))
-            )
+        desktop_file = self.find_desktop_file(root_mount_point)
+        if desktop_file is None:
+            return False
+
+        return (self.find_executable(root_mount_point, self.executable) is not None or
+                self.find_tryexec(root_mount_point, desktop_file) is not None)
 
 
 desktop_environments = [
@@ -95,8 +129,10 @@ def find_desktop_environment(root_mount_point):
     :param root_mount_point:
     :return:
     """
+    libcalamares.utils.debug("Using rootMountPoint {!r}".format(root_mount_point))
     for desktop_environment in desktop_environments:
         if desktop_environment.find_desktop_environment(root_mount_point):
+            libcalamares.utils.debug(".. selected DE {!s}".format(desktop_environment.desktop_file))
             return desktop_environment
     return None
 
