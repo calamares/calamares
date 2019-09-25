@@ -51,6 +51,30 @@ class DesktopEnvironment:
         self.executable = exec
         self.desktop_file = desktop
 
+    def find_de_tryexec(self, root_mount_point, command):
+        if command.startswith("/"):
+            path = [""]
+        else:
+            path = ["/bin/", "/usr/bin/", "/sbin/", "/usr/local/bin/"]
+
+        for p in path:
+            absolute_path = "{!s}{!s}{!s}".format(root_mount_point, p, command)
+            if os.path.exists(absolute_path):
+                return absolute_path
+        return None
+
+    def find_tryexec(self, root_mount_point, absolute_desktop_file):
+        assert absolute_desktop_file.startswith(root_mount_point)
+        with open(absolute_desktop_file, "r") as f:
+            for tryexec_line in [x for x in f.readlines() if x.startswith("TryExec")]:
+                try:
+                    key, value = tryexec_line.split("=")
+                    if key.strip() == "TryExec":
+                        return self.find_de_tryexec(root_mount_point, value)
+                except:
+                    pass
+        return None
+
     def find_desktop_file(self, root_mount_point):
         x11_sessions = "{!s}/usr/share/xsessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
         wayland_sessions = "{!s}/usr/share/wayland-sessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
