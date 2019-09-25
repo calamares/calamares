@@ -51,14 +51,21 @@ class DesktopEnvironment:
         self.executable = exec
         self.desktop_file = desktop
 
-    def find_de_executable(self, root_mount_point):
-        return os.path.exists("{!s}{!s}".format(root_mount_point, self.executable))
-    
-    def find_de_session(self, root_mount_point):
+    def find_desktop_file(self, root_mount_point):
         x11_sessions = "{!s}/usr/share/xsessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
         wayland_sessions = "{!s}/usr/share/wayland-sessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
-        return os.path.exists(x11_sessions) or os.path.exists(wayland_sessions)
-    
+        for candidate in (x11_sessions, wayland_sessions):
+            if os.path.exists(candidate):
+                return candidate
+        return None
+
+    def find_de_executable(self, root_mount_point):
+        return os.path.exists("{!s}{!s}".format(root_mount_point, self.executable))
+
+    def find_de_session(self, root_mount_point):
+        desktop_file = self.find_desktop_file(root_mount_point)
+        return desktop_file is not None
+
     def find_desktop_environment(self, root_mount_point):
         """
         Check if this environment is installed in the
