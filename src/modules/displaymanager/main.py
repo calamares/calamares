@@ -123,6 +123,41 @@ class DesktopEnvironment:
         return (self.find_executable(root_mount_point) is not None or
                 self._search_tryexec(root_mount_point, desktop_file) is not None)
 
+    def find(self, root_mount_point):
+        """
+        Find thie DE in the target system at @p root_mount_point.
+        This can update the *executable* configuration value if
+        the configured executable isn't found but the TryExec line
+        from the .desktop file is.
+
+        The .desktop file is mandatory for a DE.
+
+        Returns True if the DE is installed.
+        """
+        desktop_file = self.find_desktop_file(root_mount_point)
+        if desktop_file is None:
+            return False
+
+        executable_file = self.find_executable(root_mount_point)
+        if executable_file is not None:
+            # .desktop found and executable as well.
+            return True
+
+        executable_file = self._search_tryexec(root_mount_point, desktop_file)
+        if executable_file is not None:
+            # Found from the .desktop file, so update own executable config
+            if root_mount_point and executable_file.startswith(root_mount_point):
+                executable_file = executable_file[len(root_mount_point):]
+            if not executable_file:
+                # Somehow chopped down to nothing
+                return False
+
+            if executable_file[0] != "/":
+                executable_file = "/" + executable_file
+            self.executable = executable_file
+            return True
+        # This is to double-check
+        return self.is_installed(root_mount_point)
 
 
 # This is the list of desktop environments that Calamares looks
