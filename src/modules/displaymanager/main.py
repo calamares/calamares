@@ -96,6 +96,19 @@ class DesktopEnvironment:
                 self.find_tryexec(root_mount_point, desktop_file) is not None)
 
 
+# This is the list of desktop environments that Calamares looks
+# for; if no default environment is **explicitly** configured
+# in the `displaymanager.conf` then the first one from this list
+# that is found, is used.
+#
+# Each DE has a sample executable to look for, and a .desktop filename.
+# If the executable exists, the DE is assumed to be installed
+# and to use the given .desktop filename.
+#
+# If the .desktop file exists and contains a TryExec line and that
+# TryExec executable exists (searched in /bin, /usr/bin, /sbin and
+# /usr/local/bin) then the DE is assumed to be installed
+# and to use that .desktop filename.
 desktop_environments = [
     DesktopEnvironment('/usr/bin/startplasma-x11', 'plasma'),  # KDE Plasma 5.17+
     DesktopEnvironment('/usr/bin/startkde', 'plasma'),  # KDE Plasma 5
