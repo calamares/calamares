@@ -90,7 +90,11 @@ public:
 
     QString toString() const
     {
-        return first + '@' + second;
+        if ( isValid() )
+        {
+            return first + '@' + second;
+        }
+        return QString();
     }
 
 private:
