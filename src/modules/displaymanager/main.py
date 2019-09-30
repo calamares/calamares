@@ -123,7 +123,7 @@ class DesktopEnvironment:
         return (self.find_executable(root_mount_point) is not None or
                 self._search_tryexec(root_mount_point, desktop_file) is not None)
 
-    def find(self, root_mount_point):
+    def update_from_desktop_file(self, root_mount_point):
         """
         Find thie DE in the target system at @p root_mount_point.
         This can update the *executable* configuration value if
@@ -924,6 +924,11 @@ def run():
         default_desktop_environment = DesktopEnvironment(
             entry["executable"], entry["desktopFile"]
             )
+        # Adjust if executable is bad, but desktopFile isn't.
+        if not default_desktop_environment.update_from_desktop_file(root_mount_point):
+            libcalamares.utils.warning(
+                "The configured default desktop environment, {!s}, "
+                "can not be found.".format(default_desktop_environment.desktop_file))
     else:
         default_desktop_environment = find_desktop_environment(
             root_mount_point
