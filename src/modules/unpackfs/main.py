@@ -103,7 +103,7 @@ def file_copy(source, dest, progress_cb):
     # `source` *must* end with '/' otherwise a directory named after the source
     # will be created in `dest`: ie if `source` is "/foo/bar" and `dest` is
     # "/dest", then files will be copied in "/dest/bar".
-    if not source.endswith("/"):
+    if not source.endswith("/") and not os.path.isfile(source):
         source += "/"
 
     num_files_total_local = 0
@@ -228,10 +228,15 @@ class UnpackOperation:
                         ["unsquashfs", "-l", entry.source]
                         )
 
-                if entry.sourcefs == "ext4":
+                elif entry.sourcefs == "ext4":
                     fslist = subprocess.check_output(
                         ["find", imgmountdir, "-type", "f"]
                         )
+
+                elif entry.is_file():
+                    # Hasn't been mounted, copy directly; find handles both
+                    # files and directories.
+                    fslist = subprocess.check_output(["find", entry.source, "-type", "f"])
 
                 entry.total = len(fslist.splitlines())
 
@@ -296,7 +301,12 @@ class UnpackOperation:
             self.report_progress()
 
         try:
-            return file_copy(imgmountdir, entry.destination, progress_cb)
+            if entry.is_file():
+                source = entry.source
+            else:
+                source = imgmountdir
+
+            return file_copy(source, entry.destination, progress_cb)
         finally:
             if not entry.is_file():
                 subprocess.check_call(["umount", "-l", imgmountdir])
