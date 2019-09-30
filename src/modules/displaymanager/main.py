@@ -51,31 +51,59 @@ class DesktopEnvironment:
         self.executable = exec
         self.desktop_file = desktop
 
-    def find_executable(self, root_mount_point, command):
-        if command.startswith("/"):
+    def _search_executable(self, root_mount_point, pathname):
+        """
+        Search for @p pathname within @p root_mount_point .
+        If the pathname is absolute, just check there inside
+        the target, otherwise earch in a sort-of-sensible $PATH.
+
+        Returns the full (including @p root_mount_point) path
+        to that executable, or None.
+        """
+        if pathname.startswith("/"):
             path = [""]
         else:
             path = ["/bin/", "/usr/bin/", "/sbin/", "/usr/local/bin/"]
 
         for p in path:
-            absolute_path = "{!s}{!s}{!s}".format(root_mount_point, p, command)
+            absolute_path = "{!s}{!s}{!s}".format(root_mount_point, p, pathname)
             if os.path.exists(absolute_path):
                 return absolute_path
         return None
 
-    def find_tryexec(self, root_mount_point, absolute_desktop_file):
+    def _search_tryexec(self, root_mount_point, absolute_desktop_file):
+        """
+        Check @p absolute_desktop_file for a TryExec line and, if that is
+        found, search for the command (executable pathname) within
+        @p root_mount_point. The .desktop file must live within the
+        target root.
+
+        Returns the full (including @p root_mount_point) for the executable
+        from TryExec, or None.
+        """
         assert absolute_desktop_file.startswith(root_mount_point)
         with open(absolute_desktop_file, "r") as f:
             for tryexec_line in [x for x in f.readlines() if x.startswith("TryExec")]:
                 try:
                     key, value = tryexec_line.split("=")
                     if key.strip() == "TryExec":
-                        return self.find_executable(root_mount_point, value.strip())
+                        return self._search_executable(root_mount_point, value.strip())
                 except:
                     pass
         return None
 
+    def find_executable(self, root_mount_point):
+        """
+        Returns the full path of the configured executable within @p root_mount_point,
+        or None if it isn't found. May search in a semi-sensible $PATH.
+        """
+        return self._search_executable(root_mount_point, self.executable)
+
     def find_desktop_file(self, root_mount_point):
+        """
+        Returns the full path of the .desktop file within @p root_mount_point,
+        or None if it isn't found.  Searches both X11 and Wayland sessions.
+        """
         x11_sessions = "{!s}/usr/share/xsessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
         wayland_sessions = "{!s}/usr/share/wayland-sessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
         for candidate in (x11_sessions, wayland_sessions):
@@ -92,8 +120,9 @@ class DesktopEnvironment:
         if desktop_file is None:
             return False
 
-        return (self.find_executable(root_mount_point, self.executable) is not None or
-                self.find_tryexec(root_mount_point, desktop_file) is not None)
+        return (self.find_executable(root_mount_point) is not None or
+                self._search_tryexec(root_mount_point, desktop_file) is not None)
+
 
 
 # This is the list of desktop environments that Calamares looks
