@@ -131,8 +131,8 @@ findInCommands( const CommandList& l, const QString& needle )
 Calamares::JobResult
 CommandList::run()
 {
-    QLatin1Literal rootMagic( "@@ROOT@@" );
-    QLatin1Literal userMagic( "@@USER@@" );
+    QLatin1String rootMagic( "@@ROOT@@" );
+    QLatin1String userMagic( "@@USER@@" );
 
     System::RunLocation location = m_doChroot ? System::RunLocation::RunInTarget : System::RunLocation::RunInHost;
 

@@ -30,7 +30,7 @@
 #include "utils/Logger.h"
 
 // static
-const QLatin1Literal DracutLuksCfgJob::CONFIG_FILE( "/etc/dracut.conf.d/calamares-luks.conf" );
+const QLatin1String DracutLuksCfgJob::CONFIG_FILE( "/etc/dracut.conf.d/calamares-luks.conf" );
 
 // static
 const char *DracutLuksCfgJob::CONFIG_FILE_HEADER =
@@ -50,7 +50,7 @@ const char *DracutLuksCfgJob::CONFIG_FILE_CRYPTTAB_LINE =
     "install_items+=\" /etc/crypttab \"\n";
 
 // static
-const QLatin1Literal DracutLuksCfgJob::CONFIG_FILE_SWAPLINE( "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
+const QLatin1String DracutLuksCfgJob::CONFIG_FILE_SWAPLINE( "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
 
 // static
 QString

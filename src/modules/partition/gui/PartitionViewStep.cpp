@@ -646,7 +646,7 @@ PartitionViewStep::checkRequirements()
     Calamares::RequirementsList l;
     l.append(
     {
-        QLatin1Literal( "partitions" ),
+        QLatin1String( "partitions" ),
         []{ return tr( "has at least one disk device available." ); },
         []{ return tr( "There are no partitons to install on." ); },
         m_core->deviceModel()->rowCount() > 0,  // satisfied

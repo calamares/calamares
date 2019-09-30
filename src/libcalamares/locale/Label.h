@@ -67,7 +67,7 @@ public:
      * en_US and en (American English) is defined as English. The Queen's
      * English -- proper English -- is relegated to non-English status.
      */
-    bool isEnglish() const { return m_localeId == QLatin1Literal( "en_US" ) || m_localeId == QLatin1Literal( "en" ); }
+    bool isEnglish() const { return m_localeId == QLatin1String( "en_US" ) || m_localeId == QLatin1String( "en" ); }
 
     /** @brief Get the human-readable name for this locale. */
     QString label() const { return m_label; }

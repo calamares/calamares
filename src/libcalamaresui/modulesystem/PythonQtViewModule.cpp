@@ -137,7 +137,7 @@ PythonQtViewModule::loadSelf()
             return;
         }
 
-        static const QLatin1Literal calamares_module_annotation(
+        static const QLatin1String calamares_module_annotation(
             "_calamares_module_typename = ''\n"
             "def calamares_module(viewmodule_type):\n"
             "    global _calamares_module_typename\n"
