@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Saverio <saverio.brancaccio@gmail.com>, 2018
-# Pietro Francesco Fontana, 2018
+# Pietro F. Fontana, 2018
 # Pierfrancesco Passerini <p.passerini@gmail.com>, 2019
 # 
 #, fuzzy

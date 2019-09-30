@@ -308,7 +308,7 @@ msgstr[2] "Uklanjam %(num)d pakete."
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr "Instalirajte bootloader."
+msgstr "Instaliram bootloader."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
