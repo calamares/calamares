@@ -52,7 +52,14 @@ assert_is_invalid( const InstanceKey& k )
     QVERIFY( !k.isCustom() );
     QVERIFY( k.module().isEmpty() );
     QVERIFY( k.id().isEmpty() );
-    QVERIFY( k.toString().isEmpty() );
+    if ( k.toString().isEmpty() )
+    {
+        QVERIFY( k.toString().isEmpty() );
+    }
+    else
+    {
+        QCOMPARE( k.toString(), QString() );
+    }
 }
 
 void
