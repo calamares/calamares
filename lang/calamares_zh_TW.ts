@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation>這個系統的&lt;strong&gt;開機環境&lt;/strong&gt;。&lt;br&gt;&lt;br&gt;較舊的 x86 系統只支援 &lt;strong&gt;BIOS&lt;/strong&gt;。&lt;br&gt;現代的系統則通常使用 &lt;strong&gt;EFI&lt;/strong&gt;，但若開機環境是以相容模式執行，其也可能顯示為 BIOS。</translation>
+        <translation>這個系統的&lt;strong&gt;開機環境&lt;/strong&gt;。&lt;br&gt;&lt;br&gt;較舊的 x86 系統只支援 &lt;strong&gt;BIOS&lt;/strong&gt;。&lt;br&gt;現時的系統則通常使用 &lt;strong&gt;EFI&lt;/strong&gt;，但若使用相容模式 (CSM)，也可能顯示為 BIOS。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="81"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>這個系統以 &lt;strong&gt;EFI&lt;/strong&gt; 開機環境啟動。&lt;br&gt;&lt;br&gt;要設定從 EFI 環境開機，本安裝程式必須部署一個開機載入器應用程式，像是 &lt;strong&gt;GRUB&lt;/strong&gt; 或 &lt;strong&gt;systemd-boot&lt;/strong&gt; 在 &lt;strong&gt;EFI 系統分割區&lt;/strong&gt;上。這是自動的，除非您選擇手動分割，在這種情況下，您必須自行選取或建立它。</translation>
+        <translation>這個系統以 &lt;strong&gt;EFI&lt;/strong&gt; 開機。&lt;br&gt;&lt;br&gt;要從 EFI 環境開機，本安裝程式必須安裝開機載入器程式，像是 &lt;strong&gt;GRUB&lt;/strong&gt; 或 &lt;strong&gt;systemd-boot&lt;/strong&gt; 在 &lt;strong&gt;EFI 系統分割區&lt;/strong&gt;。這是自動的，除非選擇手動分割；在這種情況，您必須自行選取或建立它。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="93"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>這個系統以 &lt;strong&gt;BIOS&lt;/strong&gt; 開機環境開始。&lt;br&gt;&lt;br&gt;要從 BIOS 環境開機開機，本安裝程式必須安裝開機載入器，像是 &lt;strong&gt;GRUB&lt;/strong&gt;，且通常不是安裝在分割區的開頭就是在靠進分割表開頭的 &lt;strong&gt;主開機記錄&lt;/strong&gt;（推薦）。這是自動的，除非您選擇手動分割，在這種情況下，您必須自行設定它。</translation>
+        <translation>這個系統以 &lt;strong&gt;BIOS&lt;/strong&gt; 開機。&lt;br&gt;&lt;br&gt;要從 BIOS 環境開機，本安裝程式必須安裝開機載入器程式，像是 &lt;strong&gt;GRUB&lt;/strong&gt;。而且通常安裝在分割區的開首，又或最好安裝在靠近分割表開首的 &lt;strong&gt;主要開機記錄 (MBR)&lt;/strong&gt;。這是自動的，除非選擇手動分割；在這種情況，您必須自行設定它。</translation>
     </message>
 </context>
 <context>
@@ -258,7 +258,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
         <source>Would you like to paste the install log to the web?</source>
-        <translation>您想要將安裝紀錄檔貼到網路上嗎？</translation>
+        <translation>想要將安裝紀錄檔貼到網路上嗎？</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="250"/>
@@ -298,7 +298,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="345"/>
         <source>&amp;Set up now</source>
-        <translation>現在進行設定 (&amp;S)</translation>
+        <translation>馬上進行設定 (&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
@@ -329,7 +329,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="503"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-        <translation>您真的想要取消目前的設定程序嗎？
+        <translation>真的想要取消目前的設定程序嗎？
 設定程式將會結束，所有變更都將會遺失。</translation>
     </message>
     <message>
@@ -471,7 +471,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="330"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation>&lt;strong&gt;手動分割&lt;/strong&gt;&lt;br/&gt;您可以自行建立或重新調整分割區大小。</translation>
+        <translation>&lt;strong&gt;手動分割&lt;/strong&gt;&lt;br/&gt;可以自行建立或重新調整分割區大小。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
@@ -537,7 +537,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-        <translation>&lt;strong&gt;抹除磁碟&lt;/strong&gt;&lt;br/&gt;這將會&lt;font color=&quot;red&quot;&gt;刪除&lt;/font&gt;目前選取的儲存裝置上所有的資料。</translation>
+        <translation>&lt;strong&gt;抹除磁碟&lt;/strong&gt;&lt;br/&gt;這將會&lt;font color=&quot;red&quot;&gt;刪除&lt;/font&gt;目前選取的儲存裝置所有的資料。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1297"/>
@@ -932,12 +932,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>選定的儲存裝置上的&lt;strong&gt;分割表&lt;/strong&gt;類型。&lt;br&gt;&lt;br&gt;變更分割表的唯一方法就是抹除再重新從頭建立分割表，這會破壞在該儲存裝置上所有的資料。&lt;br&gt;除非您特別選擇，否則本安裝程式將會保留目前的分割表。&lt;br&gt;若不確定，在現代的系統上，建議使用 GPT。</translation>
+        <translation>選定的儲存裝置的&lt;strong&gt;分割表&lt;/strong&gt;類型。&lt;br&gt;&lt;br&gt;變更分割表的唯一方法，就是抹除再重新從頭建立分割表，這會破壞在該儲存裝置所有的資料。&lt;br&gt;除非特別選擇，否則本安裝程式會保留目前的分割表。&lt;br&gt;若不確定，現時的系統建議使用 GPT。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation>此裝置已有一個 &lt;strong&gt;%1&lt;/strong&gt; 分割表了。</translation>
+        <translation>此裝置已有 &lt;strong&gt;%1&lt;/strong&gt; 分割表。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="115"/>
@@ -957,7 +957,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="138"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-        <translation>&lt;br&gt;&lt;br&gt;這個分割表類型只被建議在從 &lt;strong&gt;BIOS&lt;/strong&gt; 開機環境啟動的較舊系統上使用。其他大多數情況建議使用 GPT。&lt;br&gt;&lt;strong&gt;警告：&lt;/strong&gt;MBR 分割表是一個被棄用的 MS-DOS 時代的標準。&lt;br&gt;只能有 4 個&lt;em&gt;主要&lt;/em&gt;分割區被建立，其中一個可以是&lt;em&gt;延伸&lt;/em&gt;分割區，其可以包含許多&lt;em&gt;邏輯&lt;/em&gt;分割區。</translation>
+        <translation>&lt;br&gt;&lt;br&gt;建議這個分割表類型只在以 &lt;strong&gt;BIOS&lt;/strong&gt; 開機的舊系統使用。其他大多數情況建議使用 GPT。&lt;br&gt;&lt;strong&gt;警告：&lt;/strong&gt;MBR 分割表是已過時、源自 MS-DOS 時代的標準。&lt;br&gt;最多只能建立 4 個&lt;em&gt;主要&lt;/em&gt;分割區；其中一個可以是&lt;em&gt;延伸&lt;/em&gt;分割區，其可以包含許多&lt;em&gt;邏輯&lt;/em&gt;分割區。</translation>
     </message>
 </context>
 <context>
@@ -1016,7 +1016,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>&amp;Keep</source>
-        <translation>保持(&amp;K)</translation>
+        <translation>保留(&amp;K)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -1510,12 +1510,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="284"/>
         <source>The system language will be set to %1.</source>
-        <translation>系統語言將會設定為 %1。</translation>
+        <translation>系統語言會設定為%1。</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="285"/>
         <source>The numbers and dates locale will be set to %1.</source>
-        <translation>數字與日期語系將會被設定為 %1。</translation>
+        <translation>數字與日期語系會設定為%1。</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="118"/>
@@ -2443,7 +2443,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
         <source>(no mount point)</source>
-        <translation>（沒有掛載點）</translation>
+        <translation>(沒有掛載點)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="65"/>
@@ -2707,7 +2707,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="160"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>本程式將會問您一些問題並在您的電腦上安裝及設定 %2 。</translation>
+        <translation>本程式會問您一些問題，然後在您的電腦安裝及設定 %2。</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="181"/>
@@ -2979,7 +2979,7 @@ Output:
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="57"/>
         <source>This is an overview of what will happen once you start the setup procedure.</source>
-        <translation>這是您開始安裝後所會發生的事的概覽。</translation>
+        <translation>這是開始安裝後所會發生的事的概覽。</translation>
     </message>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="60"/>
@@ -3252,7 +3252,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
         <source>Open release notes website</source>
-        <translation type="unfinished"/>
+        <translation>開啟發行手記網站</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>

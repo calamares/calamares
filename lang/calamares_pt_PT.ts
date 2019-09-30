@@ -1903,7 +1903,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
         <location filename="../src/modules/packagechooser/page_package.ui" line="40"/>
         <source>Product Name</source>
-        <translation type="unfinished"/>
+        <translation>Nome do produto</translation>
     </message>
     <message>
         <location filename="../src/modules/packagechooser/page_package.ui" line="53"/>
@@ -1913,7 +1913,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
         <location filename="../src/modules/packagechooser/page_package.ui" line="69"/>
         <source>Long Product Description</source>
-        <translation type="unfinished"/>
+        <translation>Descrição longa do produto</translation>
     </message>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
@@ -1931,7 +1931,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
         <source>Packages</source>
-        <translation type="unfinished"/>
+        <translation>Pacotes</translation>
     </message>
 </context>
 <context>
@@ -2459,12 +2459,12 @@ Saída de Dados:
     <message>
         <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
         <source>No product</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum produto</translation>
     </message>
     <message>
         <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
         <source>No description provided.</source>
-        <translation type="unfinished"/>
+        <translation>Nenhuma descrição fornecida.</translation>
     </message>
 </context>
 <context>
@@ -3103,12 +3103,12 @@ Saída de Dados:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="120"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Se mais de uma pessoa usar este computador, você pode criar várias contas após a configuração.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="126"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Se mais de uma pessoa usar este computador, você pode criar várias contas após a instalação.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="317"/>
@@ -3155,7 +3155,7 @@ Saída de Dados:
     <message>
         <location filename="../src/calamares/VariantModel.cpp" line="241"/>
         <source>Key</source>
-        <translation type="unfinished"/>
+        <translation>Chave</translation>
     </message>
     <message>
         <location filename="../src/calamares/VariantModel.cpp" line="245"/>
@@ -3227,7 +3227,7 @@ Saída de Dados:
         <location filename="../src/modules/welcome/WelcomePage.ui" line="69"/>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="82"/>
         <source>Select application and system language</source>
-        <translation type="unfinished"/>
+        <translation>Selecione o idioma da aplicação e do sistema</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3252,7 +3252,7 @@ Saída de Dados:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
         <source>Open release notes website</source>
-        <translation type="unfinished"/>
+        <translation>Abrir o site com as notas de lançamento</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>

@@ -99,12 +99,12 @@
     <message>
         <location filename="../src/calamares/DebugWindow.ui" line="106"/>
         <source>Reload Stylesheet</source>
-        <translation type="unfinished"/>
+        <translation>Endurhlaða stílblað</translation>
     </message>
     <message>
         <location filename="../src/calamares/DebugWindow.ui" line="113"/>
         <source>Widget Tree</source>
-        <translation type="unfinished"/>
+        <translation>Greinar viðmótshluta</translation>
     </message>
     <message>
         <location filename="../src/calamares/DebugWindow.cpp" line="225"/>
@@ -117,7 +117,7 @@
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="120"/>
         <source>Set up</source>
-        <translation type="unfinished"/>
+        <translation>Setja upp</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="120"/>
@@ -130,7 +130,7 @@
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
         <source>Job failed (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Verk mistókst (%1)</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/JobExample.cpp" line="40"/>
@@ -253,7 +253,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
         <source>Setup Failed</source>
-        <translation type="unfinished"/>
+        <translation>Uppsetning mistókst</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
@@ -288,7 +288,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
         <source>Continue with installation?</source>
-        <translation type="unfinished"/>
+        <translation>Halda áfram með uppsetningu?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
@@ -298,12 +298,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="345"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Setja upp núna</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Setja upp</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
@@ -318,7 +318,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="502"/>
         <source>Cancel setup?</source>
-        <translation type="unfinished"/>
+        <translation>Hætta við uppsetningu?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="502"/>
@@ -1181,7 +1181,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="132"/>
         <source>Setup Complete</source>
-        <translation type="unfinished"/>
+        <translation>Uppsetningu lokið</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="133"/>
@@ -1191,12 +1191,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="135"/>
         <source>The setup of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>Uppsetningu á %1 er lokið.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
         <source>The installation of %1 is complete.</source>
-        <translation>Uppsetningu af %1 er lokið.</translation>
+        <translation>Uppsetningu á %1 er lokið.</translation>
     </message>
 </context>
 <context>
@@ -1916,7 +1916,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
         <source>Package Selection</source>
-        <translation type="unfinished"/>
+        <translation>Valdir pakkar</translation>
     </message>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
@@ -1929,7 +1929,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
         <source>Packages</source>
-        <translation type="unfinished"/>
+        <translation>Pakkar</translation>
     </message>
 </context>
 <context>
@@ -2112,7 +2112,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
         <source>Cre&amp;ate</source>
-        <translation type="unfinished"/>
+        <translation>Útbú&amp;a</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
@@ -2310,7 +2310,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="68"/>
         <source>Look-and-Feel</source>
-        <translation type="unfinished"/>
+        <translation>Útlit og hegðun</translation>
     </message>
 </context>
 <context>
@@ -2438,7 +2438,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
         <source>(no mount point)</source>
-        <translation type="unfinished"/>
+        <translation>(enginn tengipunktur)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="65"/>
@@ -3052,7 +3052,7 @@ Output:
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="24"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Frátökueining</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
@@ -3222,7 +3222,7 @@ Output:
         <location filename="../src/modules/welcome/WelcomePage.ui" line="69"/>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="82"/>
         <source>Select application and system language</source>
-        <translation type="unfinished"/>
+        <translation>Veldu tungumál forrits og kerfis</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3232,7 +3232,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
         <source>&amp;Donate</source>
-        <translation type="unfinished"/>
+        <translation>Styr&amp;kja</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
@@ -3247,7 +3247,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
         <source>Open release notes website</source>
-        <translation type="unfinished"/>
+        <translation>Opna vefsvæði með upplýsingum um útgáfuna</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
@@ -3282,17 +3282,17 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
         <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Velkomin til Calamares uppsetningarforritið fyrir %1&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="248"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Velkomin í %1 uppsetninguna.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>
         <source>About %1 setup</source>
-        <translation type="unfinished"/>
+        <translation>Um %1 uppsetninguna</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>
@@ -3302,7 +3302,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="269"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href=&quot;https://calamares.io/team/&quot;&gt;the Calamares team&lt;/a&gt; and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;fyrir %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Höfundarréttur 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Höfundarréttur 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Þakkir til &lt;a href=&quot;https://calamares.io/team/&quot;&gt;Calamares teymisinsm&lt;/a&gt; og &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;allra þýðenda Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Þróun &lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; er studd af &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="259"/>

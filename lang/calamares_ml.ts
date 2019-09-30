@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="81"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>ഈ സിസ്റ്റം ഒരു &lt;strong&gt;ഇ.എഫ്.ഐ&lt;/strong&gt; ബൂട്ട് എൻ‌വയോൺ‌മെന്റ്  ഉപയോഗിച്ചാണ് ആരംഭിച്ചത്.&lt;br&gt;&lt;br&gt;ഒരു ഇ.എഫ്.ഐ എൻ‌വയോൺ‌മെൻറിൽ‌ നിന്നും സ്റ്റാർ‌ട്ടപ്പ് ക്രമീകരിക്കുന്നതിന് ,ഒരു ഇ.എഫ്.ഐ സിസ്റ്റം പാർട്ടീഷനിൽ ഈ ഇൻസ്റ്റാളർ &lt;strong&gt;ഗ്രബ്&lt;/strong&gt; അല്ലെങ്കിൽ &lt;strong&gt;സിസ്റ്റംഡി-ബൂട്ട്&lt;/strong&gt; പോലെയുള്ള ഒരു ബൂട്ട് ലോഡർ ആപ്ലിക്കേഷൻ വിന്യസിക്കണം.നിങ്ങൾ മാനുവൽ പാർട്ടീഷനിംഗ് തിരഞ്ഞെടുത്തിട്ടില്ലെങ്കിൽ ഇത് യാന്ത്രികമായി നടക്കേണ്ടതാണ്,അത്തരം സന്ദർഭങ്ങളിൽ നിങ്ങൾ അത് തിരഞ്ഞെടുക്കണം അല്ലെങ്കിൽ സ്വന്തമായി സൃഷ്ടിക്കണം.</translation>
+        <translation>ഈ സിസ്റ്റം ഒരു &lt;strong&gt;ഇ.എഫ്.ഐ&lt;/strong&gt; ബൂട്ട് എൻ‌വയോൺ‌മെന്റ്  ഉപയോഗിച്ചാണ് ആരംഭിച്ചത്.&lt;br&gt;ഒരു ഇ.എഫ്.ഐ എൻ‌വയോൺ‌മെൻറിൽ‌ നിന്നും സ്റ്റാർ‌ട്ടപ്പ് ക്രമീകരിക്കുന്നതിന്, ഒരു ഇ.എഫ്.ഐ സിസ്റ്റം പാർട്ടീഷനിൽ ഈ ഇൻസ്റ്റാളർ &lt;strong&gt;ഗ്രബ്&lt;/strong&gt; അല്ലെങ്കിൽ &lt;strong&gt;systemd-boot&lt;/strong&gt; പോലെയുള്ള ഒരു ബൂട്ട് ലോഡർ ആപ്ലിക്കേഷൻ വിന്യസിക്കണം.നിങ്ങൾ മാനുവൽ പാർട്ടീഷനിംഗ് തിരഞ്ഞെടുത്തിട്ടില്ലെങ്കിൽ ഇത് യാന്ത്രികമായി നടക്കേണ്ടതാണ്,അത്തരം സന്ദർഭങ്ങളിൽ നിങ്ങൾ അത് തിരഞ്ഞെടുക്കണം അല്ലെങ്കിൽ സ്വന്തമായി സൃഷ്ടിക്കണം.&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="93"/>
@@ -63,12 +63,12 @@
     <message>
         <location filename="../src/calamares/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation>ഗ്ലോബൽ സ്റ്റോറേജ്</translation>
+        <translation>GlobalStorage</translation>
     </message>
     <message>
         <location filename="../src/calamares/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation>ജോബ് ക്യൂ</translation>
+        <translation>JobQueue</translation>
     </message>
     <message>
         <location filename="../src/calamares/DebugWindow.ui" line="44"/>
@@ -238,7 +238,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="442"/>
         <source>&amp;Cancel</source>
-        <translation>റദ്ദാക്കുക (%C)</translation>
+        <translation>റദ്ദാക്കുക (&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
@@ -402,7 +402,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="303"/>
         <source>Unknown exception type</source>
-        <translation type="unfinished"/>
+        <translation>അജ്ഞാതമായ പിശക്</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="321"/>
@@ -719,7 +719,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="72"/>
         <source>En&amp;crypt</source>
-        <translation type="unfinished"/>
+        <translation>എൻക്രിപ്റ്റ് (&amp;c)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="151"/>
@@ -803,7 +803,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) -ൽ പുതിയ &lt;strong&gt;%1&lt;/strong&gt; പാർട്ടീഷൻ ടേബിൾ ഉണ്ടാക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="64"/>
@@ -813,7 +813,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="82"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ൽ പാർട്ടീഷൻ പട്ടിക സൃഷ്ടിക്കുന്നതിൽ ഇൻസ്റ്റാളർ പരാജയപ്പെട്ടു.</translation>
     </message>
 </context>
 <context>
@@ -1069,7 +1069,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
         <source>En&amp;crypt system</source>
-        <translation type="unfinished"/>
+        <translation>സിസ്റ്റം എൻക്രിപ്റ്റ് ചെയ്യുക (&amp;c)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="42"/>
@@ -1170,7 +1170,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>
         <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;ഇൻസ്റ്റാളേഷൻ പരാജയപ്പെട്ടു&lt;/h1&gt;&lt;br/&gt; നിങ്ങളുടെ കമ്പ്യൂട്ടറിൽ %1 സജ്ജമാക്കിയിട്ടില്ല.&lt;br/&gt;പിശക് സന്ദേശം ഇതായിരുന്നു: %2.</translation>
     </message>
 </context>
 <context>
@@ -1229,22 +1229,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="106"/>
         <source>has at least %1 GiB available drive space</source>
-        <translation type="unfinished"/>
+        <translation>%1 GiB ഡിസ്ക്സ്പെയ്സ് എങ്കിലും ലഭ്യമായിരിക്കണം.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="107"/>
         <source>There is not enough drive space. At least %1 GiB is required.</source>
-        <translation type="unfinished"/>
+        <translation>ആവശ്യത്തിനു ഡിസ്ക്സ്പെയ്സ് ലഭ്യമല്ല. %1 GiB എങ്കിലും വേണം.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="114"/>
         <source>has at least %1 GiB working memory</source>
-        <translation type="unfinished"/>
+        <translation>%1 GiB RAM എങ്കിലും ലഭ്യമായിരിക്കണം.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="115"/>
         <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-        <translation type="unfinished"/>
+        <translation>സിസ്റ്റത്തിൽ ആവശ്യത്തിനു RAM ലഭ്യമല്ല. %1 GiB എങ്കിലും വേണം.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="122"/>
@@ -1391,7 +1391,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
         <source>&amp;Cancel</source>
-        <translation>റദ്ദാക്കുക (%C)</translation>
+        <translation>റദ്ദാക്കുക (&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
@@ -1515,7 +1515,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="285"/>
         <source>The numbers and dates locale will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>സംഖ്യ &amp; തീയതി രീതി %1 ആയി ക്രമീകരിക്കും.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="118"/>
@@ -1531,12 +1531,12 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/locale/LocalePage.cpp" line="120"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="121"/>
         <source>&amp;Change...</source>
-        <translation type="unfinished"/>
+        <translation>മാറ്റുക (&amp;C)...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="292"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-        <translation type="unfinished"/>
+        <translation>സമയപദ്ധതി %1/%2 ആയി ക്രമീകരിക്കുക.&lt;br/&gt;</translation>
     </message>
 </context>
 <context>
@@ -1598,17 +1598,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="109"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-        <translation type="unfinished"/>
+        <translation>നെറ്റ്‌വർക്ക് ഇൻസ്റ്റാളേഷൻ. (അപ്രാപ്‌തമാക്കി: പാക്കേജ് ലിസ്റ്റുകൾ നേടാനായില്ല, നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിക്കുക)</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="119"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
-        <translation type="unfinished"/>
+        <translation>നെറ്റ്‌വർക്ക് ഇൻസ്റ്റാളേഷൻ. (അപ്രാപ്‌തമാക്കി: അസാധുവായ ഗ്രൂപ്പുകളുടെ ഡാറ്റ ലഭിച്ചു)</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="158"/>
         <source>Network Installation. (Disabled: Incorrect configuration)</source>
-        <translation type="unfinished"/>
+        <translation>നെറ്റ്‌വർക്ക് ഇൻസ്റ്റാളേഷൻ. (പ്രവർത്തനരഹിതമാക്കി: തെറ്റായ ക്രമീകരണം)</translation>
     </message>
 </context>
 <context>
@@ -1629,7 +1629,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/oemid/OEMPage.ui" line="38"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a batch-identifier here. This will be stored in the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ഒരു ബാച്ച് ഐഡന്റിഫയർ ഇവിടെ നൽകുക. ഇത് ടാർഗെറ്റ് സിസ്റ്റത്തിൽ സംഭരിക്കും&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/oemid/OEMPage.ui" line="48"/>
@@ -1690,7 +1690,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="186"/>
         <source>The password differs with case changes only</source>
-        <translation type="unfinished"/>
+        <translation>പാസ്‌വേഡ് അക്ഷരങ്ങളുടെ കേസ് മാറ്റങ്ങളിൽ മാത്രം വ്യത്യാസപ്പെട്ടിരിക്കുന്നു</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
@@ -1775,7 +1775,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
         <source>The password does not contain enough character classes</source>
-        <translation type="unfinished"/>
+        <translation>രഹസ്യവാക്കിൽ ആവശ്യത്തിനു അക്ഷരങ്ങൾ ഇല്ല</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="223"/>
@@ -1790,12 +1790,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>രഹസ്യവാക്കിൽ %1 തവണ ഒരേ തരം അക്ഷരം ആവർത്തിക്കുന്നു</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
         <source>The password contains too many characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>രഹസ്യവാക്കിൽ ഒരുപാട് തവണ ഒരേ തരം അക്ഷരം ആവർത്തിക്കുന്നു</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
@@ -1815,12 +1815,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="236"/>
         <source>Cannot obtain random numbers from the RNG device</source>
-        <translation type="unfinished"/>
+        <translation>RNG ഉപകരണത്തിൽ നിന്ന് ആകസ്‌മിക സംഖ്യകൾ എടുക്കാൻ പറ്റുന്നില്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
         <source>Password generation failed - required entropy too low for settings</source>
-        <translation type="unfinished"/>
+        <translation>രഹസ്യവാക്ക് സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു - ആവശ്യത്തിനു entropy ഇല്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
@@ -1850,42 +1850,42 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
         <source>Bad integer value</source>
-        <translation type="unfinished"/>
+        <translation>തെറ്റായ സംഖ്യ</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>Setting %1 is not of integer type</source>
-        <translation type="unfinished"/>
+        <translation>%1 സജ്ജീകരണം സംഖ്യയല്ല</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
         <source>Setting is not of integer type</source>
-        <translation type="unfinished"/>
+        <translation>സജ്ജീകരണം സംഖ്യയല്ല</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="273"/>
         <source>Setting %1 is not of string type</source>
-        <translation type="unfinished"/>
+        <translation>%1 സജ്ജീകരണം ഒരു വാക്കല്ലാ</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="277"/>
         <source>Setting is not of string type</source>
-        <translation type="unfinished"/>
+        <translation>സജ്ജീകരണം ഒരു വാക്കല്ലാ</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
         <source>Opening the configuration file failed</source>
-        <translation type="unfinished"/>
+        <translation>ക്രമീകരണ ഫയൽ തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="281"/>
         <source>The configuration file is malformed</source>
-        <translation type="unfinished"/>
+        <translation>ക്രമീകരണ ഫയൽ പാഴാണു</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
         <source>Fatal failure</source>
-        <translation type="unfinished"/>
+        <translation>അപകടകരമായ പിഴവ്</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="285"/>
@@ -1918,12 +1918,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
         <source>Package Selection</source>
-        <translation type="unfinished"/>
+        <translation>പാക്കേജ് തിരഞ്ഞെടുക്കൽ</translation>
     </message>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
         <source>Please pick a product from the list. The selected product will be installed.</source>
-        <translation type="unfinished"/>
+        <translation>പട്ടികയിൽ നിന്നും ഒരു ഉത്പന്നം തിരഞ്ഞെടുക്കുക. തിരഞ്ഞെടുത്ത ഉത്പന്നം ഇൻസ്റ്റാൾ ചെയ്യപ്പെടുക.</translation>
     </message>
 </context>
 <context>
@@ -1931,7 +1931,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
         <source>Packages</source>
-        <translation type="unfinished"/>
+        <translation>പാക്കേജുകൾ</translation>
     </message>
 </context>
 <context>
@@ -1977,7 +1977,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;ഒരേ പാസ്‌വേഡ് രണ്ടുതവണ നൽകുക, അതുവഴി ടൈപ്പിംഗ് പിശകുകൾ പരിശോധിക്കാൻ കഴിയും.ഒരു നല്ല പാസ്‌വേഡിൽ അക്ഷരങ്ങൾ, അക്കങ്ങൾ, ചിഹ്നനം എന്നിവയുടെ മിശ്രിതം അടങ്ങിയിരിക്കും, കുറഞ്ഞത് എട്ട് പ്രതീകങ്ങളെങ്കിലും നീളമുണ്ടായിരിക്കണം, കൃത്യമായ ഇടവേളകളിൽ അവ മാറ്റണം.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
@@ -2020,7 +2020,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>ഹോം</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
@@ -2060,7 +2060,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="144"/>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="176"/>
         <source>Free Space</source>
-        <translation type="unfinished"/>
+        <translation>ലഭ്യമായ സ്ഥലം</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="148"/>
@@ -2099,7 +2099,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>സ്റ്റോറേജ് ഉപകരണം (&amp;v):</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -2134,32 +2134,32 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
         <source>Resize Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>വോള്യം ഗ്രൂപ്പിന്റെ വലുപ്പം മാറ്റുക</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
         <source>Deactivate Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>വോള്യം ഗ്രൂപ്പ് നിഷ്ക്രിയമാക്കുക</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
         <source>Remove Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>വോള്യം ഗ്രൂപ്പ് നീക്കം ചെയ്യുക</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
         <source>I&amp;nstall boot loader on:</source>
-        <translation type="unfinished"/>
+        <translation>ബൂട്ട്ലോഡർ ഇവിടെ ഇൻസ്റ്റാൾ ചെയ്യുക (&amp;n):</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="209"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
-        <translation type="unfinished"/>
+        <translation>%1ൽ ഒരു പുതിയ പാർട്ടീഷൻ ടേബിൾ നിർമ്മിക്കണമെന്ന് താങ്കൾക്കുറപ്പാണോ?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="238"/>
         <source>Can not create new partition</source>
-        <translation type="unfinished"/>
+        <translation>പുതിയ പാർട്ടീഷൻ നിർമ്മിക്കാനായില്ല</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="239"/>
@@ -2187,12 +2187,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
-        <translation type="unfinished"/>
+        <translation>ഡിസ്ക് &lt;strong&gt;മായ്ക്കുക&lt;/strong&gt;എന്നിട്ട് %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
-        <translation type="unfinished"/>
+        <translation>ഒരു പാർട്ടീഷൻ %1 ഉപയോഗിച്ച് &lt;strong&gt;പുനഃസ്ഥാപിക്കുക.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="180"/>
@@ -2207,22 +2207,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="199"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
-        <translation type="unfinished"/>
+        <translation>ഡിസ്ക് &lt;strong&gt;%2&lt;/strong&gt; (%3) &lt;strong&gt;മായ്‌ച്ച് &lt;/strong&gt; %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="205"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) ഡിസ്കിലെ ഒരു പാർട്ടീഷൻ %1 ഉപയോഗിച്ച്  &lt;strong&gt;മാറ്റിസ്ഥാപിക്കുക&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="212"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 &lt;/strong&gt;(%2) ഡിസ്കിലെ &lt;strong&gt;സ്വമേധയാ&lt;/strong&gt; പാർട്ടീഷനിംഗ്.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="220"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
-        <translation type="unfinished"/>
+        <translation>ഡിസ്ക് &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="248"/>
@@ -2237,12 +2237,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="415"/>
         <source>No EFI system partition configured</source>
-        <translation type="unfinished"/>
+        <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷനൊന്നും ക്രമീകരിച്ചിട്ടില്ല</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="416"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ആരംഭിക്കാൻ ഒരു ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ ആവശ്യമാണ്.&lt;br/&gt;&lt;br/&gt;ഒരു ഇഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ ക്രമീകരിക്കുന്നതിന്,തിരികെ പോയി &lt;strong&gt;ഇ എസ് പി&lt;/strong&gt; ഫ്ലാഗും മൗണ്ട് പോയിന്റ് &lt;strong&gt;%2&lt;/strong&gt; ഉം ആയിട്ടുള്ള ഒരു FAT32 ഫയൽസിസ്റ്റം തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ സൃഷ്ടിക്കുക.&lt;br/&gt;&lt;br/&gt;ഒരു ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ സജ്ജീകരിക്കാതെ നിങ്ങൾക്ക് തുടരാം, പക്ഷേ നിങ്ങളുടെ സിസ്റ്റം ആരംഭിക്കുന്നതിൽ പരാജയപ്പെട്ടേക്കാം.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="429"/>
@@ -2257,7 +2257,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="465"/>
         <source>Boot partition not encrypted</source>
-        <translation type="unfinished"/>
+        <translation>ബൂട്ട് പാർട്ടീഷൻ എൻക്രിപ്റ്റ് ചെയ്യപ്പെട്ടിട്ടില്ല</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="466"/>
@@ -2320,17 +2320,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="84"/>
         <source>Saving files for later ...</source>
-        <translation type="unfinished"/>
+        <translation>ഫയലുകൾ ഭാവിയിലേക്കായി സംരക്ഷിക്കുന്നു ...</translation>
     </message>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="122"/>
         <source>No files configured to save for later.</source>
-        <translation type="unfinished"/>
+        <translation>ഭാവിയിലേക്കായി സംരക്ഷിക്കാനായി ഫയലുകളൊന്നും ക്രമീകരിച്ചിട്ടില്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="176"/>
         <source>Not all of the configured files could be preserved.</source>
-        <translation type="unfinished"/>
+        <translation>ക്രമീകരിക്കപ്പെട്ട ഫയലുകളെല്ലാം സംരക്ഷിക്കാനായില്ല.</translation>
     </message>
 </context>
 <context>
@@ -2404,18 +2404,18 @@ Output:
     <message>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
         <source>Default Keyboard Model</source>
-        <translation type="unfinished"/>
+        <translation>സ്വതേയുള്ള കീബോർഡ് തരം</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>സ്വതേയുള്ളത്</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>അജ്ഞാതം</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="209"/>
@@ -2470,17 +2470,17 @@ Output:
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
         <source>Remove Volume Group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 എന്ന് പേരുള്ള വോള്യം ഗ്രൂപ്പ് നീക്കം ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="41"/>
         <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt; എന്ന് പേരുള്ള വോള്യം ഗ്രൂപ്പ് നീക്കം ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
         <source>The installer failed to remove a volume group named &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>&apos;%1&apos; എന്ന് പേരുള്ള വോള്യം ഗ്രൂപ്പ് നീക്കം ചെയ്യുന്നതിൽ ഇൻസ്റ്റാളർ പരാജയപ്പെട്ടു.</translation>
     </message>
 </context>
 <context>
@@ -2568,7 +2568,7 @@ Output:
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="172"/>
         <source>Invalid configuration</source>
-        <translation type="unfinished"/>
+        <translation>അസാധുവായ ക്രമീകരണം</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="173"/>
@@ -2657,7 +2657,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="39"/>
         <source>Resize Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>വോള്യം ഗ്രൂപ്പിന്റെ വലുപ്പം മാറ്റുക</translation>
     </message>
 </context>
 <context>
@@ -2684,27 +2684,27 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാനാവില്ല. &lt;a href=&quot;#details&quot;&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാനാവില്ല. &lt;a href=&quot;#details&quot;&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
         <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ചില ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യാൻ ശുപാർശ ചെയ്യപ്പെട്ടിട്ടുള്ള ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="160"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>ഈ പ്രക്രിയ താങ്കളോട് ചില ചോദ്യങ്ങൾ ചോദിക്കുകയും %2 താങ്കളുടെ കമ്പ്യൂട്ടറിൽ സജ്ജീകരിക്കുകയും ചെയ്യും.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="181"/>
@@ -2898,7 +2898,7 @@ Output:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="123"/>
         <source>Cannot disable root account.</source>
-        <translation type="unfinished"/>
+        <translation>റൂട്ട് അക്കൗണ്ട് നിഷ്ക്രിയമാക്കാനായില്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="124"/>
@@ -2936,7 +2936,7 @@ Output:
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
         <source>Cannot set timezone.</source>
-        <translation type="unfinished"/>
+        <translation>സമയപദ്ധതി സജ്ജമാക്കാനായില്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
@@ -2946,12 +2946,12 @@ Output:
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone,</source>
-        <translation type="unfinished"/>
+        <translation>സമയപദ്ധതി സജ്ജമാക്കാനായില്ല,</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Cannot open /etc/timezone for writing</source>
-        <translation type="unfinished"/>
+        <translation>എഴുതുന്നതിനായി /etc/timezone തുറക്കാനായില്ല</translation>
     </message>
 </context>
 <context>
@@ -2976,7 +2976,7 @@ Output:
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="57"/>
         <source>This is an overview of what will happen once you start the setup procedure.</source>
-        <translation type="unfinished"/>
+        <translation>താങ്കൾ സജ്ജീകരണപ്രക്രിയ ആരംഭിച്ചതിനുശേഷം എന്ത് സംഭവിക്കും എന്നതിന്റെ അവലോകനമാണിത്.</translation>
     </message>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="60"/>
@@ -2989,7 +2989,7 @@ Output:
     <message>
         <location filename="../src/modules/summary/SummaryViewStep.cpp" line="43"/>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>ചുരുക്കം</translation>
     </message>
 </context>
 <context>
@@ -2997,12 +2997,12 @@ Output:
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="42"/>
         <source>Installation feedback</source>
-        <translation type="unfinished"/>
+        <translation>ഇൻസ്റ്റളേഷനെ പറ്റിയുള്ള പ്രതികരണം</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="54"/>
         <source>Sending installation feedback.</source>
-        <translation type="unfinished"/>
+        <translation>ഇൻസ്റ്റളേഷനെ പറ്റിയുള്ള പ്രതികരണം അയയ്ക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="71"/>
@@ -3074,7 +3074,7 @@ Output:
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="49"/>
         <source>By selecting this you will send information about your installation and hardware. This information will &lt;b&gt;only be sent once&lt;/b&gt; after the installation finishes.</source>
-        <translation type="unfinished"/>
+        <translation>ഇത് തിരഞ്ഞെടുക്കുന്നതിലൂടെ നിങ്ങളുടെ ഇൻസ്റ്റാളേഷനെക്കുറിച്ചും ഹാർഡ്‌വെയറിനെക്കുറിച്ചും വിവരങ്ങൾ അയയ്ക്കും. ഇൻസ്റ്റാളേഷൻ പൂർത്തിയായതിന് ശേഷം &lt;b&gt;ഒരു തവണ മാത്രമേ ഈ വിവരങ്ങൾ അയയ്ക്കൂ&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="51"/>
@@ -3084,7 +3084,7 @@ Output:
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="54"/>
         <source>By selecting this you will &lt;b&gt;regularly&lt;/b&gt; send information about your installation, hardware, applications and usage patterns, to %1.</source>
-        <translation type="unfinished"/>
+        <translation>ഇത് തിരഞ്ഞെടുക്കുന്നതിലൂടെ നിങ്ങളുടെ ഇൻസ്റ്റാളേഷൻ, ഹാർഡ്‌വെയർ, ആപ്ലിക്കേഷനുകൾ, ഉപയോഗ രീതികൾ എന്നിവയെക്കുറിച്ചുള്ള വിവരങ്ങൾ &lt;b&gt;പതിവായി&lt;/b&gt; %1 ലേക്ക് അയയ്ക്കും.</translation>
     </message>
 </context>
 <context>
@@ -3092,7 +3092,7 @@ Output:
     <message>
         <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="64"/>
         <source>Feedback</source>
-        <translation type="unfinished"/>
+        <translation>പ്രതികരണം</translation>
     </message>
 </context>
 <context>
@@ -3100,12 +3100,12 @@ Output:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="120"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;ഒന്നിലധികം ആളുകൾ ഈ കമ്പ്യൂട്ടർ ഉപയോഗിക്കുമെങ്കിൽ, താങ്കൾക്ക് സജ്ജീകരണത്തിന് ശേഷം നിരവധി അക്കൗണ്ടുകൾ സൃഷ്ടിക്കാം.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="126"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;ഒന്നിലധികം ആളുകൾ ഈ കമ്പ്യൂട്ടർ ഉപയോഗിക്കുമെങ്കിൽ, താങ്കൾക്ക് ഇൻസ്റ്റളേഷന് ശേഷം നിരവധി അക്കൗണ്ടുകൾ സൃഷ്ടിക്കാം.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="317"/>
@@ -3152,12 +3152,12 @@ Output:
     <message>
         <location filename="../src/calamares/VariantModel.cpp" line="241"/>
         <source>Key</source>
-        <translation type="unfinished"/>
+        <translation>സൂചിക</translation>
     </message>
     <message>
         <location filename="../src/calamares/VariantModel.cpp" line="245"/>
         <source>Value</source>
-        <translation type="unfinished"/>
+        <translation>മൂല്യം</translation>
     </message>
 </context>
 <context>
@@ -3175,12 +3175,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="30"/>
         <source>Volume Group Name:</source>
-        <translation type="unfinished"/>
+        <translation>വോള്യം ഗ്രൂപ്പിന്റെ പേര്:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="43"/>
         <source>Volume Group Type:</source>
-        <translation type="unfinished"/>
+        <translation>വോള്യം ഗ്രൂപ്പ് തരം:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
@@ -3195,17 +3195,17 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="82"/>
         <source>Total Size:</source>
-        <translation type="unfinished"/>
+        <translation>മൊത്തം വലുപ്പം:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="102"/>
         <source>Used Size:</source>
-        <translation type="unfinished"/>
+        <translation>ഉപയോഗിച്ച വലുപ്പം:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="122"/>
         <source>Total Sectors:</source>
-        <translation type="unfinished"/>
+        <translation>മൊത്തം സെക്ടറുകൾ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
@@ -3249,17 +3249,17 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
         <source>Open release notes website</source>
-        <translation>റിലീസ് കുറിപ്പുകളുടെ വെബ്സൈറ്റ് തുറക്കുക</translation>
+        <translation>പ്രകാശന കുറിപ്പുകളുടെ വെബ്സൈറ്റ് തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
         <source>&amp;Release notes</source>
-        <translation>പ്രകാശന കുറിപ്പുകൾ </translation>
+        <translation>പ്രകാശന കുറിപ്പുകൾ (&amp;R)</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
         <source>&amp;Known issues</source>
-        <translation>&amp;നേരത്തേ അറിയാവുന്ന പ്രശ്നങ്ങൾ</translation>
+        <translation>ഇതിനകം അറിയാവുന്ന പ്രശ്നങ്ങൾ (&amp;K)</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
@@ -3269,27 +3269,27 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
         <source>&amp;About</source>
-        <translation>&amp;വിവരം (&amp;A)</translation>
+        <translation>വിവരം (&amp;A)</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="254"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1 ഇൻസ്റ്റാളറിലേക്ക് സ്വാഗതം&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="253"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1 -നായുള്ള കലാമാരേസ് ഇൻസ്റ്റാളറിലേക്ക് സ്വാഗതം.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
         <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1 -നായുള്ള കലാമാരേസ് സജ്ജീകരണപ്രക്രിയയിലേയ്ക്ക് സ്വാഗതം.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="248"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1 സജ്ജീകരണത്തിലേക്ക് സ്വാഗതം.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>
