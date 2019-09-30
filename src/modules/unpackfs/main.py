@@ -58,6 +58,9 @@ class UnpackEntry:
         self.copied = 0
         self.total = 0
 
+    def is_file(self):
+        return self.sourcefs == "file"
+
 
 ON_POSIX = 'posix' in sys.builtin_module_names
 
@@ -247,9 +250,15 @@ class UnpackOperation:
         """
         Mount given image as loop device.
 
+        A *file* entry (e.g. one with *sourcefs* set to *file*)
+        is not mounted and just ignored.
+
         :param entry:
         :param imgmountdir:
         """
+        if entry.is_file():
+            return
+
         if os.path.isdir(entry.source):
             subprocess.check_call(["mount",
                                    "--bind", entry.source,
@@ -289,10 +298,11 @@ class UnpackOperation:
         try:
             return file_copy(imgmountdir, entry.destination, progress_cb)
         finally:
-            subprocess.check_call(["umount", "-l", imgmountdir])
+            if not entry.is_file():
+                subprocess.check_call(["umount", "-l", imgmountdir])
 
 
-def get_supported_filesystems():
+def get_supported_filesystems_kernel():
     """
     Reads /proc/filesystems (the list of supported filesystems
     for the current kernel) and returns a list of (names of)
@@ -308,6 +318,14 @@ def get_supported_filesystems():
             return filesystems
 
     return []
+
+
+def get_supported_filesystems():
+    """
+    Returns a list of all the supported filesystems
+    (valid values for the *sourcefs* key in an item.
+    """
+    return ["file"] + get_supported_filesystems_kernel()
 
 
 def run():
