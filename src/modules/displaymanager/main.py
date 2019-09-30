@@ -51,31 +51,59 @@ class DesktopEnvironment:
         self.executable = exec
         self.desktop_file = desktop
 
-    def find_executable(self, root_mount_point, command):
-        if command.startswith("/"):
+    def _search_executable(self, root_mount_point, pathname):
+        """
+        Search for @p pathname within @p root_mount_point .
+        If the pathname is absolute, just check there inside
+        the target, otherwise earch in a sort-of-sensible $PATH.
+
+        Returns the full (including @p root_mount_point) path
+        to that executable, or None.
+        """
+        if pathname.startswith("/"):
             path = [""]
         else:
             path = ["/bin/", "/usr/bin/", "/sbin/", "/usr/local/bin/"]
 
         for p in path:
-            absolute_path = "{!s}{!s}{!s}".format(root_mount_point, p, command)
+            absolute_path = "{!s}{!s}{!s}".format(root_mount_point, p, pathname)
             if os.path.exists(absolute_path):
                 return absolute_path
         return None
 
-    def find_tryexec(self, root_mount_point, absolute_desktop_file):
+    def _search_tryexec(self, root_mount_point, absolute_desktop_file):
+        """
+        Check @p absolute_desktop_file for a TryExec line and, if that is
+        found, search for the command (executable pathname) within
+        @p root_mount_point. The .desktop file must live within the
+        target root.
+
+        Returns the full (including @p root_mount_point) for the executable
+        from TryExec, or None.
+        """
         assert absolute_desktop_file.startswith(root_mount_point)
         with open(absolute_desktop_file, "r") as f:
             for tryexec_line in [x for x in f.readlines() if x.startswith("TryExec")]:
                 try:
                     key, value = tryexec_line.split("=")
                     if key.strip() == "TryExec":
-                        return self.find_executable(root_mount_point, value.strip())
+                        return self._search_executable(root_mount_point, value.strip())
                 except:
                     pass
         return None
 
+    def find_executable(self, root_mount_point):
+        """
+        Returns the full path of the configured executable within @p root_mount_point,
+        or None if it isn't found. May search in a semi-sensible $PATH.
+        """
+        return self._search_executable(root_mount_point, self.executable)
+
     def find_desktop_file(self, root_mount_point):
+        """
+        Returns the full path of the .desktop file within @p root_mount_point,
+        or None if it isn't found.  Searches both X11 and Wayland sessions.
+        """
         x11_sessions = "{!s}/usr/share/xsessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
         wayland_sessions = "{!s}/usr/share/wayland-sessions/{!s}.desktop".format(root_mount_point, self.desktop_file)
         for candidate in (x11_sessions, wayland_sessions):
@@ -83,7 +111,7 @@ class DesktopEnvironment:
                 return candidate
         return None
 
-    def find_desktop_environment(self, root_mount_point):
+    def is_installed(self, root_mount_point):
         """
         Check if this environment is installed in the
         target system at @p root_mount_point.
@@ -92,10 +120,59 @@ class DesktopEnvironment:
         if desktop_file is None:
             return False
 
-        return (self.find_executable(root_mount_point, self.executable) is not None or
-                self.find_tryexec(root_mount_point, desktop_file) is not None)
+        return (self.find_executable(root_mount_point) is not None or
+                self._search_tryexec(root_mount_point, desktop_file) is not None)
+
+    def update_from_desktop_file(self, root_mount_point):
+        """
+        Find thie DE in the target system at @p root_mount_point.
+        This can update the *executable* configuration value if
+        the configured executable isn't found but the TryExec line
+        from the .desktop file is.
+
+        The .desktop file is mandatory for a DE.
+
+        Returns True if the DE is installed.
+        """
+        desktop_file = self.find_desktop_file(root_mount_point)
+        if desktop_file is None:
+            return False
+
+        executable_file = self.find_executable(root_mount_point)
+        if executable_file is not None:
+            # .desktop found and executable as well.
+            return True
+
+        executable_file = self._search_tryexec(root_mount_point, desktop_file)
+        if executable_file is not None:
+            # Found from the .desktop file, so update own executable config
+            if root_mount_point and executable_file.startswith(root_mount_point):
+                executable_file = executable_file[len(root_mount_point):]
+            if not executable_file:
+                # Somehow chopped down to nothing
+                return False
+
+            if executable_file[0] != "/":
+                executable_file = "/" + executable_file
+            self.executable = executable_file
+            return True
+        # This is to double-check
+        return self.is_installed(root_mount_point)
 
 
+# This is the list of desktop environments that Calamares looks
+# for; if no default environment is **explicitly** configured
+# in the `displaymanager.conf` then the first one from this list
+# that is found, is used.
+#
+# Each DE has a sample executable to look for, and a .desktop filename.
+# If the executable exists, the DE is assumed to be installed
+# and to use the given .desktop filename.
+#
+# If the .desktop file exists and contains a TryExec line and that
+# TryExec executable exists (searched in /bin, /usr/bin, /sbin and
+# /usr/local/bin) then the DE is assumed to be installed
+# and to use that .desktop filename.
 desktop_environments = [
     DesktopEnvironment('/usr/bin/startplasma-x11', 'plasma'),  # KDE Plasma 5.17+
     DesktopEnvironment('/usr/bin/startkde', 'plasma'),  # KDE Plasma 5
@@ -131,7 +208,7 @@ def find_desktop_environment(root_mount_point):
     """
     libcalamares.utils.debug("Using rootMountPoint {!r}".format(root_mount_point))
     for desktop_environment in desktop_environments:
-        if desktop_environment.find_desktop_environment(root_mount_point):
+        if desktop_environment.is_installed(root_mount_point):
             libcalamares.utils.debug(".. selected DE {!s}".format(desktop_environment.desktop_file))
             return desktop_environment
     return None
@@ -847,6 +924,11 @@ def run():
         default_desktop_environment = DesktopEnvironment(
             entry["executable"], entry["desktopFile"]
             )
+        # Adjust if executable is bad, but desktopFile isn't.
+        if not default_desktop_environment.update_from_desktop_file(root_mount_point):
+            libcalamares.utils.warning(
+                "The configured default desktop environment, {!s}, "
+                "can not be found.".format(default_desktop_environment.desktop_file))
     else:
         default_desktop_environment = find_desktop_environment(
             root_mount_point
