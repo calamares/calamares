@@ -7,6 +7,7 @@ website will have to do for older versions.
 # 3.2.14 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Andrius Štikonas
  - Harald Sitter
 
 ## Core ##
@@ -18,6 +19,8 @@ This release contains contributions from (alphabetically by first name):
  - *packagechooser* module can now be custom-labeled in the overall
    progress (left-hand column). #1228
  - *displaymanager* module now recognizes KDE Plasma 5.17.
+ - *displaymanager* module now can handle Wayland sessions and can detect
+   sessions from their .desktop files. #1247 #1248
 
 
 # 3.2.13 (2019-08-30) #
