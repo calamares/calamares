@@ -330,8 +330,7 @@ def run():
 
     supported_filesystems = get_supported_filesystems()
 
-    unpack = list()
-
+    # Bail out before we start when there are obvious problems
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
         sourcefs = entry["sourcefs"]
@@ -340,13 +339,17 @@ def run():
             utils.warning("The filesystem for \"{}\" ({}) is not supported".format(source, sourcefs))
             return (_("Bad unsquash configuration"),
                     _("The filesystem for \"{}\" ({}) is not supported").format(source, sourcefs))
-
-        destination = os.path.abspath(root_mount_point + entry["destination"])
-
         if not os.path.exists(source):
             utils.warning("The source filesystem \"{}\" does not exist".format(source))
             return (_("Bad unsquash configuration"),
                     _("The source filesystem \"{}\" does not exist").format(source))
+
+    unpack = list()
+
+    for entry in job.configuration["unpack"]:
+        source = os.path.abspath(entry["source"])
+        sourcefs = entry["sourcefs"]
+        destination = os.path.abspath(root_mount_point + entry["destination"])
 
         if not os.path.isdir(destination):
             utils.warning(("The destination \"{}\" in the target system is not a directory").format(destination))
