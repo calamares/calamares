@@ -25,6 +25,11 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
+#include <QFile>
+
 MachineIdJob::MachineIdJob( QObject* parent )
     : Calamares::CppJob( parent )
 {
@@ -40,10 +45,49 @@ MachineIdJob::prettyName() const
     return tr( "Generate machine-id." );
 }
 
+// might need to use a helper to remove the file
+static void
+removeFile( const QString& fileName )
+{
+    QFile::remove( fileName );
+}
 
 Calamares::JobResult
 MachineIdJob::exec()
 {
+    QString root;
+
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( gs && gs->contains( "rootMountPoint" ) )
+    {
+        root = gs->value( "rootMountPoint" ).toString();
+    }
+    else
+    {
+        cWarning() << "No *rootMountPoint* defined.";
+        return Calamares::JobResult::internalError( tr( "Configuration Error" ),
+                                                    tr( "No root mount point is set for MachineId." ),
+                                                    Calamares::JobResult::InvalidConfiguration );
+    }
+
+    QString target_systemd_machineid_file = root + QStringLiteral( "/etc/machine-id" );
+    QString target_dbus_machineid_file = root + QStringLiteral( "/var/lib/dbus/machine-id" );
+    QString target_entropy_file = root + QStringLiteral( "/var/lib/urandom/random-seed" );
+
+    // Clear existing files
+    if ( m_entropy )
+    {
+        removeFile( target_entropy_file );
+    }
+    if ( m_dbus )
+    {
+        removeFile( target_dbus_machineid_file );
+    }
+    if ( m_systemd )
+    {
+        removeFile( target_systemd_machineid_file );
+    }
+
     return Calamares::JobResult::ok();
 }
 
