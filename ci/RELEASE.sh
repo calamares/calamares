@@ -19,7 +19,7 @@
 #   * switching to the right branch
 #
 # You can influence the script a little with these options:
-#   * `-B` do not build (anything)
+#   * `-B` do not build (before tagging)
 #   * `-P` do not package (tag, sign, tarball)
 #
 # The build / package settings can be influenced via environment variables:
@@ -88,11 +88,21 @@ if test "x$BUILD_ONLY" = "xtrue" ; then
     exit 1
 fi
 
+if test -f "$BUILDDIR/CMakeCache.txt" ; then
+    # Some build has created it, so that's good
+    :
+else
+    # Presumably -B was given; just do the cmake part
+    rm -rf "$BUILDDIR"
+    mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
+    ( cd "$BUILDDIR" && cmake .. ) || { echo "Could not run cmake in $BUILDDIR." ; exit 1 ; }
+fi
+
 ### Get version number for this release
 #
 #
 V=$( cd "$BUILDDIR" && make show-version | grep ^CALAMARES_VERSION | sed s/^[A-Z_]*=// )
-test -n "$V" || { echo "Could not obtain version." ; exit 1 ; }
+test -n "$V" || { echo "Could not obtain version in $BUILDDIR." ; exit 1 ; }
 
 ### Create signed tag
 #
