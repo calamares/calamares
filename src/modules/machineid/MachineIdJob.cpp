@@ -23,6 +23,7 @@
 
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 MachineIdJob::MachineIdJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -48,8 +49,27 @@ MachineIdJob::exec()
 
 
 void
-MachineIdJob::setConfigurationMap( const QVariantMap& configurationMap )
+MachineIdJob::setConfigurationMap( const QVariantMap& map )
 {
+    m_systemd = CalamaresUtils::getBool( map, "systemd", false );
+
+    m_dbus = CalamaresUtils::getBool( map, "dbus", false );
+    if ( map.contains( "dbus-symlink" ) )
+    {
+        m_dbus_symlink = CalamaresUtils::getBool( map, "dbus-symlink", false );
+    }
+    else if ( map.contains( "symlink" ) )
+    {
+        m_dbus_symlink = CalamaresUtils::getBool( map, "symlink", false );
+        cWarning() << "MachineId: configuration setting *symlink* is deprecated, use *dbus-symlink*.";
+    }
+    // else it's still false from the constructor
+
+    // ignore it, though, if dbus is false
+    m_dbus_symlink = m_dbus && m_dbus_symlink;
+
+    m_entropy = CalamaresUtils::getBool( map, "entropy", false );
+    m_entropy_copy = CalamaresUtils::getBool( map, "entropy-copy", false );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( MachineIdJobFactory, registerPlugin< MachineIdJob >(); )

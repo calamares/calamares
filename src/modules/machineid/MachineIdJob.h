@@ -41,6 +41,15 @@ public:
     Calamares::JobResult exec() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
+
+private:
+    bool m_systemd = false;  ///< write systemd's files
+
+    bool m_dbus = false;  ///< write dbus files
+    bool m_dbus_symlink = false;  ///< .. or just symlink to systemd
+
+    bool m_entropy = false;  ///< write an entropy file
+    bool m_entropy_copy = false;  ///< copy from host system
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( MachineIdJobFactory )
