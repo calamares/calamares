@@ -1,5 +1,7 @@
 #! /bin/sh
 #
+### USAGE
+#
 # Release script for Calamares
 #
 # This attempts to perform the different steps of the RELEASE.md
@@ -11,15 +13,21 @@
 #
 # None of the "update stuff" is done by this script; in preparation
 # for the release, you should have already done:
-#   - updating the version
-#   - pulling translations
-#   - updating the language list
-#   - switching to the right branch
+#   * updating the version
+#   * pulling translations
+#   * updating the language list
+#   * switching to the right branch
 #
-# You can influence the script a little with environment variables:
-#   - BUILD_DEFAULT set to false to avoid first build with gcc
-#   - BUILD_CLANG   set to false to avoid second build with clang
-#   - BUILD_ONLY    set to true to break after building
+# You can influence the script a little with these options:
+#   * `-B` do not build (anything)
+#   * `-P` do not package (tag, sign, tarball)
+#
+# The build / package settings can be influenced via environment variables:
+#   * BUILD_DEFAULT set to `false` to avoid first build with gcc
+#   * BUILD_CLANG   set to `false` to avoid second build with clang
+#   * BUILD_ONLY    set to `true` to break after building
+#
+### END USAGE
 
 test -d .git || { echo "Not at top-level." ; exit 1 ; }
 test -d src/modules || { echo "No src/modules." ; exit 1 ; }
@@ -29,6 +37,23 @@ which cmake > /dev/null 2>&1 || { echo "No cmake(1) available." ; exit 1 ; }
 test -z "$BUILD_DEFAULT" && BUILD_DEFAULT=true
 test -z "$BUILD_CLANG" && BUILD_CLANG=true
 test -z "$BUILD_ONLY" && BUILD_ONLY=false
+
+while getopts "hBP" opt ; do
+    case "$opt" in
+    h|\?)
+        sed -e '1,/USAGE/d' -e '/END.USAGE/,$d' < "$0"
+        return 0
+        ;;
+    B)
+        BUILD_DEFAULT=false
+        BUILD_CLANG=false
+        ;;
+    P)
+        BUILD_ONLY=true
+        ;;
+    esac
+done
+
 
 ### Setup
 #
