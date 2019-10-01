@@ -68,9 +68,16 @@ public:
 
     /// @brief an "ok status" result
     static JobResult ok();
-    /// @brief an "error" result resulting from the execution of the job
+    /** @brief an "error" result resulting from the execution of the job
+     *
+     * The error code is set to GenericError.
+     */
     static JobResult error( const QString& message, const QString& details = QString() );
-    /// @brief an "internal error" meaning the job itself has a problem (usually for python)
+    /** @brief an "internal error" meaning the job itself has a problem (usually for python)
+     *
+     * Pass in a suitable error code; using 0 (which would normally mean "ok") instead
+     * gives you a GenericError code.
+     */
     static JobResult internalError( const QString&, const QString& details, int errorCode );
 
 protected:
