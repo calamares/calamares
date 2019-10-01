@@ -52,6 +52,37 @@ removeFile( const QString& rootMountPoint, const QString& fileName )
     QFile::remove( rootMountPoint + fileName );
 }
 
+/// @brief How to generate entropy (bool-like)
+enum class EntropyGeneration
+{
+    New,
+    CopyFromHost
+};
+/// @brief How to create the DBus machine-id (bool-like)
+enum class DBusGeneration
+{
+    New,
+    SymlinkFromSystemD
+};
+
+static Calamares::JobResult
+createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, const QString& fileName )
+{
+    return Calamares::JobResult::internalError( QObject::tr( "Internal Error" ), QObject::tr( "Not implemented" ), 0 );
+}
+
+static Calamares::JobResult
+createSystemdMachineId( const QString& rootMountPoint, const QString& fileName )
+{
+    return Calamares::JobResult::internalError( QObject::tr( "Internal Error" ), QObject::tr( "Not implemented" ), 0 );
+}
+
+static Calamares::JobResult
+createDBusMachineId( DBusGeneration kind, const QString& rootMountPoint, const QString& fileName )
+{
+    return Calamares::JobResult::internalError( QObject::tr( "Internal Error" ), QObject::tr( "Not implemented" ), 0 );
+}
+
 Calamares::JobResult
 MachineIdJob::exec()
 {
@@ -86,6 +117,35 @@ MachineIdJob::exec()
     if ( m_systemd )
     {
         removeFile( root, target_systemd_machineid_file );
+    }
+
+    //Create new files
+    if ( m_entropy )
+    {
+        auto r = createEntropy(
+            m_entropy_copy ? EntropyGeneration::CopyFromHost : EntropyGeneration::New, root, target_entropy_file );
+        if ( !r )
+        {
+            return r;
+        }
+    }
+    if ( m_systemd )
+    {
+        auto r = createSystemdMachineId( root, target_systemd_machineid_file );
+        if ( !r )
+        {
+            return r;
+        }
+    }
+    if ( m_dbus )
+    {
+        auto r = createDBusMachineId( m_dbus_symlink ? DBusGeneration::SymlinkFromSystemD : DBusGeneration::New,
+                                      root,
+                                      target_dbus_machineid_file );
+        if ( !r )
+        {
+            return r;
+        }
     }
 
     return Calamares::JobResult::ok();
