@@ -47,9 +47,9 @@ MachineIdJob::prettyName() const
 
 // might need to use a helper to remove the file
 static void
-removeFile( const QString& fileName )
+removeFile( const QString& rootMountPoint, const QString& fileName )
 {
-    QFile::remove( fileName );
+    QFile::remove( rootMountPoint + fileName );
 }
 
 Calamares::JobResult
@@ -70,22 +70,22 @@ MachineIdJob::exec()
                                                     Calamares::JobResult::InvalidConfiguration );
     }
 
-    QString target_systemd_machineid_file = root + QStringLiteral( "/etc/machine-id" );
-    QString target_dbus_machineid_file = root + QStringLiteral( "/var/lib/dbus/machine-id" );
-    QString target_entropy_file = root + QStringLiteral( "/var/lib/urandom/random-seed" );
+    QString target_systemd_machineid_file = QStringLiteral( "/etc/machine-id" );
+    QString target_dbus_machineid_file = QStringLiteral( "/var/lib/dbus/machine-id" );
+    QString target_entropy_file = QStringLiteral( "/var/lib/urandom/random-seed" );
 
     // Clear existing files
     if ( m_entropy )
     {
-        removeFile( target_entropy_file );
+        removeFile( root, target_entropy_file );
     }
     if ( m_dbus )
     {
-        removeFile( target_dbus_machineid_file );
+        removeFile( root, target_dbus_machineid_file );
     }
     if ( m_systemd )
     {
-        removeFile( target_systemd_machineid_file );
+        removeFile( root, target_systemd_machineid_file );
     }
 
     return Calamares::JobResult::ok();
