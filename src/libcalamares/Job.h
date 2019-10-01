@@ -46,11 +46,16 @@ public:
         InvalidConfiguration = 2
     };
 
+    // Can't copy, but you can keep a temporary
     JobResult( const JobResult& rhs ) = delete;
     JobResult( JobResult&& rhs );
 
     virtual ~JobResult() {}
 
+    /** @brief Is this JobResult a success?
+     *
+     * Equivalent to errorCode() == 0, might be named  isValid().
+     */
     virtual operator bool() const;
 
     virtual QString message() const;
