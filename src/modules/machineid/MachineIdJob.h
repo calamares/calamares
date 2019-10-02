@@ -54,4 +54,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( MachineIdJobFactory )
 
-#endif  // DUMMYCPPJOB_H
+#endif  // MACHINEIDJOB_H
