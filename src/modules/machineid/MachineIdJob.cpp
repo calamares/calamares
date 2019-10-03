@@ -20,6 +20,7 @@
  */
 
 #include "MachineIdJob.h"
+#include "Workers.h"
 
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
@@ -43,143 +44,6 @@ QString
 MachineIdJob::prettyName() const
 {
     return tr( "Generate machine-id." );
-}
-
-// might need to use a helper to remove the file
-static void
-removeFile( const QString& rootMountPoint, const QString& fileName )
-{
-    QFile::remove( rootMountPoint + fileName );
-}
-
-/// @brief Copy @p fileName from host into target system at @p rootMountPoint
-static Calamares::JobResult
-copyFile( const QString& rootMountPoint, const QString& fileName )
-{
-    QFile f( fileName );
-    if ( !f.exists() )
-    {
-        return Calamares::JobResult::error( QObject::tr( "File not found" ), fileName );
-    }
-    if ( !f.copy( rootMountPoint + fileName ) )
-    {
-        return Calamares::JobResult::error( QObject::tr( "File not found" ), rootMountPoint + fileName );
-    }
-    return Calamares::JobResult::ok();
-}
-
-/// @brief How to generate entropy (bool-like)
-enum class EntropyGeneration
-{
-    New,
-    CopyFromHost
-};
-
-/// @brief How to create the DBus machine-id (bool-like)
-enum class DBusGeneration
-{
-    New,
-    SymlinkFromSystemD
-};
-
-static int
-getUrandomPoolSize()
-{
-    QFile f( "/proc/sys/kernel/random/poolsize" );
-    constexpr const int minimumPoolSize = 512;
-    int poolSize = minimumPoolSize;
-
-    if ( f.exists() && f.open( QIODevice::ReadOnly | QIODevice::Text ) )
-    {
-        QByteArray v = f.read( 16 );
-        if ( v.length() > 2 )
-        {
-            bool ok = false;
-            poolSize = v.toInt( &ok );
-            if ( !ok )
-            {
-                poolSize = minimumPoolSize;
-            }
-        }
-    }
-    return poolSize >= minimumPoolSize ? poolSize : minimumPoolSize;
-}
-
-static Calamares::JobResult
-createNewEntropy( int poolSize, const QString& rootMountPoint, const QString& fileName )
-{
-    QFile urandom( "/dev/urandom" );
-    if ( urandom.exists() && urandom.open( QIODevice::ReadOnly ) )
-    {
-        QByteArray data = urandom.read( poolSize );
-        urandom.close();
-
-        QFile entropyFile( rootMountPoint + fileName );
-        if ( entropyFile.exists() )
-        {
-            cWarning() << "Entropy file" << ( rootMountPoint + fileName ) << "already exists.";
-            return Calamares::JobResult::ok();  // .. anyway
-        }
-        if ( !entropyFile.open( QIODevice::WriteOnly ) )
-        {
-            return Calamares::JobResult::error(
-                QObject::tr( "File not found" ),
-                QObject::tr( "Could not create new random file <pre>%1</pre>." ).arg( fileName ) );
-        }
-        entropyFile.write( data );
-        entropyFile.close();
-        if ( entropyFile.size() < data.length() )
-        {
-            cWarning() << "Entropy file is" << entropyFile.size() << "bytes, random data was" << data.length();
-        }
-        if ( data.length() < poolSize )
-        {
-            cWarning() << "Entropy data is" << data.length() << "bytes, rather than poolSize" << poolSize;
-        }
-    }
-    return Calamares::JobResult::error(
-        QObject::tr( "File not found" ),
-        QObject::tr( "Could not read random file <pre>%1</pre>." ).arg( QStringLiteral( "/dev/urandom" ) ) );
-}
-
-
-static Calamares::JobResult
-createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, const QString& fileName )
-{
-    if ( kind == EntropyGeneration::CopyFromHost )
-    {
-        if ( QFile::exists( fileName ) )
-        {
-            auto r = copyFile( rootMountPoint, fileName );
-            if ( r )
-            {
-                return r;
-            }
-            else
-            {
-                cWarning() << "Could not copy" << fileName << "for entropy, generating new.";
-            }
-        }
-        else
-        {
-            cWarning() << "Host system entropy does not exist at" << fileName;
-        }
-    }
-
-    int poolSize = getUrandomPoolSize();
-    return createNewEntropy( poolSize, rootMountPoint, fileName );
-}
-
-static Calamares::JobResult
-createSystemdMachineId( const QString& rootMountPoint, const QString& fileName )
-{
-    return Calamares::JobResult::internalError( QObject::tr( "Internal Error" ), QObject::tr( "Not implemented" ), 0 );
-}
-
-static Calamares::JobResult
-createDBusMachineId( DBusGeneration kind, const QString& rootMountPoint, const QString& fileName )
-{
-    return Calamares::JobResult::internalError( QObject::tr( "Internal Error" ), QObject::tr( "Not implemented" ), 0 );
 }
 
 Calamares::JobResult
@@ -207,22 +71,22 @@ MachineIdJob::exec()
     // Clear existing files
     if ( m_entropy )
     {
-        removeFile( root, target_entropy_file );
+        MachineId::removeFile( root, target_entropy_file );
     }
     if ( m_dbus )
     {
-        removeFile( root, target_dbus_machineid_file );
+        MachineId::removeFile( root, target_dbus_machineid_file );
     }
     if ( m_systemd )
     {
-        removeFile( root, target_systemd_machineid_file );
+        MachineId::removeFile( root, target_systemd_machineid_file );
     }
 
     //Create new files
     if ( m_entropy )
     {
-        auto r = createEntropy(
-            m_entropy_copy ? EntropyGeneration::CopyFromHost : EntropyGeneration::New, root, target_entropy_file );
+        auto r = MachineId::createEntropy(
+            m_entropy_copy ? MachineId::EntropyGeneration::CopyFromHost : MachineId::EntropyGeneration::New, root, target_entropy_file );
         if ( !r )
         {
             return r;
@@ -230,7 +94,7 @@ MachineIdJob::exec()
     }
     if ( m_systemd )
     {
-        auto r = createSystemdMachineId( root, target_systemd_machineid_file );
+        auto r = MachineId::createSystemdMachineId( root, target_systemd_machineid_file );
         if ( !r )
         {
             return r;
@@ -238,7 +102,7 @@ MachineIdJob::exec()
     }
     if ( m_dbus )
     {
-        auto r = createDBusMachineId( m_dbus_symlink ? DBusGeneration::SymlinkFromSystemD : DBusGeneration::New,
+        auto r = MachineId::createDBusMachineId( m_dbus_symlink ? MachineId::DBusGeneration::SymlinkFromSystemD : MachineId::DBusGeneration::New,
                                       root,
                                       target_dbus_machineid_file );
         if ( !r )
