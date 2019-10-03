@@ -8,3 +8,17 @@ calamares_add_plugin( machineid
         calamares
     SHARED_LIB
 )
+
+if ( ECM_FOUND AND BUILD_TESTING )
+    ecm_add_test(
+            Tests.cpp
+            Workers.cpp
+        TEST_NAME
+            machineidtest
+        LINK_LIBRARIES
+            calamares
+            Qt5::Core
+            Qt5::Test
+    )
+    calamares_automoc( machineidtest )
+endif()

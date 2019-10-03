@@ -85,8 +85,10 @@ MachineIdJob::exec()
     //Create new files
     if ( m_entropy )
     {
-        auto r = MachineId::createEntropy(
-            m_entropy_copy ? MachineId::EntropyGeneration::CopyFromHost : MachineId::EntropyGeneration::New, root, target_entropy_file );
+        auto r = MachineId::createEntropy( m_entropy_copy ? MachineId::EntropyGeneration::CopyFromHost
+                                                          : MachineId::EntropyGeneration::New,
+                                           root,
+                                           target_entropy_file );
         if ( !r )
         {
             return r;
@@ -102,9 +104,10 @@ MachineIdJob::exec()
     }
     if ( m_dbus )
     {
-        auto r = MachineId::createDBusMachineId( m_dbus_symlink ? MachineId::DBusGeneration::SymlinkFromSystemD : MachineId::DBusGeneration::New,
-                                      root,
-                                      target_dbus_machineid_file );
+        auto r = MachineId::createDBusMachineId( m_dbus_symlink ? MachineId::DBusGeneration::SymlinkFromSystemD
+                                                                : MachineId::DBusGeneration::New,
+                                                 root,
+                                                 target_dbus_machineid_file );
         if ( !r )
         {
             return r;

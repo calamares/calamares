@@ -58,7 +58,8 @@ int getUrandomPoolSize();
 Calamares::JobResult createNewEntropy( int poolSize, const QString& rootMountPoint, const QString& fileName );
 
 /// @brief Create an entropy file  @p fileName in the target system at @p rootMountPoint
-Calamares::JobResult createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, const QString& fileName );
+Calamares::JobResult
+createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, const QString& fileName );
 
 
 /** @brief MachineID functions
@@ -78,6 +79,6 @@ Calamares::JobResult createDBusMachineId( DBusGeneration kind, const QString& ro
 Calamares::JobResult createSystemdMachineId( const QString& rootMountPoint, const QString& fileName );
 
 
-}
+}  // namespace MachineId
 
 #endif  // WORKERS_H

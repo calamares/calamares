@@ -151,4 +151,4 @@ createDBusMachineId( DBusGeneration kind, const QString& rootMountPoint, const Q
     return Calamares::JobResult::internalError( QObject::tr( "Internal Error" ), QObject::tr( "Not implemented" ), 0 );
 }
 
-}  // namespace
+}  // namespace MachineId
