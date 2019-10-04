@@ -50,12 +50,16 @@ MachineIdTests::initTestCase()
 void
 MachineIdTests::testCopyFile()
 {
-    QTemporaryDir d( QDir::tempPath() + QStringLiteral( "/test-XXXXXX" ) );
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-root-XXXXXX" ) );
     cDebug() << "Temporary files as" << QDir::tempPath();
-    cDebug() << "Temp dir file at  " << d.path();
-    QVERIFY( !d.path().isEmpty() );
+    cDebug() << "Temp dir file at  " << tempRoot.path();
+    QVERIFY( !tempRoot.path().isEmpty() );
 
-    QFile source( d.filePath( "example" ) );
+    // This will pretend to be the host system
+    QTemporaryDir tempISOdir( QDir::tempPath() + QStringLiteral( "/test-live-XXXXXX" ) );
+    QVERIFY( QDir( tempRoot.path() ).mkpath( tempRoot.path() + tempISOdir.path() ) );
+
+    QFile source( tempRoot.filePath( "example" ) );
     QVERIFY( !source.exists() );
     source.open( QIODevice::WriteOnly );
     source.write( "Derp" );
@@ -63,17 +67,20 @@ MachineIdTests::testCopyFile()
     QCOMPARE( source.size(), 4 );
     QVERIFY( source.exists() );
 
-    QString root = d.path() + '/';
-
     // This should fail since "example" isn't standard in our test directory
-    auto r0 = MachineId::copyFile( root, "example" );
+    auto r0 = MachineId::copyFile( tempRoot.path(), "example" );
     QVERIFY( !r0 );
 
-    if ( QFile::exists( "CMakeCache.txt" ) )
+    const QString sampleFile = QStringLiteral( "CMakeCache.txt" );
+    if ( QFile::exists( sampleFile ) )
     {
-        auto r1 = MachineId::copyFile( root, "CMakeCache.txt" );
-        QVERIFY( r1 );
-        QVERIFY( QFile::exists( d.filePath( "CMakeCache.txt" ) ) );
+        auto r1 = MachineId::copyFile( tempRoot.path(), sampleFile );
+        // Also fail, because it's not an absolute path
+        QVERIFY( !r1 );
+
+        QVERIFY( QFile::copy( sampleFile, tempISOdir.path() + '/' + sampleFile ) );
+        auto r2 = MachineId::copyFile( tempRoot.path(), tempISOdir.path() + '/' + sampleFile );
+        QVERIFY( r2 );
     }
 }
 
