@@ -63,13 +63,15 @@ MachineIdTests::testCopyFile()
     QCOMPARE( source.size(), 4 );
     QVERIFY( source.exists() );
 
+    QString root = d.path() + '/';
+
     // This should fail since "example" isn't standard in our test directory
-    auto r0 = MachineId::copyFile( d.path(), "example" );
+    auto r0 = MachineId::copyFile( root, "example" );
     QVERIFY( !r0 );
 
     if ( QFile::exists( "CMakeCache.txt" ) )
     {
-        auto r1 = MachineId::copyFile( d.path(), "CMakeCache.txt" );
+        auto r1 = MachineId::copyFile( root, "CMakeCache.txt" );
         QVERIFY( r1 );
         QVERIFY( QFile::exists( d.filePath( "CMakeCache.txt" ) ) );
     }
