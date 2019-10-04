@@ -81,6 +81,10 @@ getUrandomPoolSize()
         QByteArray v = f.read( 16 );
         if ( v.length() > 2 )
         {
+            if ( v.endsWith( '\n' ) )
+            {
+                v.chop(1);
+            }
             bool ok = false;
             poolSize = v.toInt( &ok );
             if ( !ok )
@@ -89,7 +93,7 @@ getUrandomPoolSize()
             }
         }
     }
-    return poolSize >= minimumPoolSize ? poolSize : minimumPoolSize;
+    return (poolSize >= minimumPoolSize) ? poolSize : minimumPoolSize;
 }
 
 Calamares::JobResult
