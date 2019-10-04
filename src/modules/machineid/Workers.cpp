@@ -142,7 +142,14 @@ createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, cons
 Calamares::JobResult
 createSystemdMachineId( const QString& rootMountPoint, const QString& fileName )
 {
-    return Calamares::JobResult::internalError( QObject::tr( "Internal Error" ), QObject::tr( "Not implemented" ), 0 );
+    auto cmd = QStringList { QStringLiteral( "systemd-machine-id-setup" ) };
+    auto r = CalamaresUtils::System::instance()->targetEnvCommand( cmd );
+    if ( r.getExitCode() )
+    {
+        return r.explainProcess( cmd, std::chrono::seconds( 0 ) );
+    }
+
+    return Calamares::JobResult::ok();
 }
 
 Calamares::JobResult
