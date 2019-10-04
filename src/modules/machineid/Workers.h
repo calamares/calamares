@@ -67,14 +67,12 @@ createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, cons
  * Creating UUIDs for DBUS and SystemD.
  */
 
-/// @brief How to create the DBus machine-id (bool-like)
-enum class DBusGeneration
-{
-    New,
-    SymlinkFromSystemD
-};
+/// @brief Create a new DBus UUID file
+Calamares::JobResult createDBusMachineId( const QString& rootMountPoint, const QString& fileName );
 
-Calamares::JobResult createDBusMachineId( DBusGeneration kind, const QString& rootMountPoint, const QString& fileName );
+/// @brief Symlink DBus UUID file to the one from systemd (which must exist already)
+Calamares::JobResult
+createDBusLink( const QString& rootMountPoint, const QString& fileName, const QString& systemdFileName );
 
 Calamares::JobResult createSystemdMachineId( const QString& rootMountPoint, const QString& fileName );
 

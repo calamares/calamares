@@ -139,10 +139,9 @@ createEntropy( const EntropyGeneration kind, const QString& rootMountPoint, cons
     return createNewEntropy( poolSize, rootMountPoint, fileName );
 }
 
-Calamares::JobResult
-createSystemdMachineId( const QString& rootMountPoint, const QString& fileName )
+static Calamares::JobResult
+runCmd( const QStringList& cmd )
 {
-    auto cmd = QStringList { QStringLiteral( "systemd-machine-id-setup" ) };
     auto r = CalamaresUtils::System::instance()->targetEnvCommand( cmd );
     if ( r.getExitCode() )
     {
@@ -153,9 +152,26 @@ createSystemdMachineId( const QString& rootMountPoint, const QString& fileName )
 }
 
 Calamares::JobResult
-createDBusMachineId( DBusGeneration kind, const QString& rootMountPoint, const QString& fileName )
+createSystemdMachineId( const QString& rootMountPoint, const QString& fileName )
 {
-    return Calamares::JobResult::internalError( QObject::tr( "Internal Error" ), QObject::tr( "Not implemented" ), 0 );
+    Q_UNUSED( rootMountPoint )
+    Q_UNUSED( fileName )
+    return runCmd( QStringList { QStringLiteral( "systemd-machine-id-setup" ) } );
+}
+
+Calamares::JobResult
+createDBusMachineId( const QString& rootMountPoint, const QString& fileName )
+{
+    Q_UNUSED( rootMountPoint )
+    Q_UNUSED( fileName )
+    return runCmd( QStringList { QStringLiteral( "dbus-uuidgen" ), QStringLiteral( "--ensure" ) } );
+}
+
+Calamares::JobResult
+createDBusLink( const QString& rootMountPoint, const QString& fileName, const QString& systemdFileName )
+{
+    Q_UNUSED( rootMountPoint );
+    return runCmd( QStringList { QStringLiteral( "ln" ), QStringLiteral( "-s" ), systemdFileName, fileName } );
 }
 
 }  // namespace MachineId
