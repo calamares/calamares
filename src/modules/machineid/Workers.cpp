@@ -29,16 +29,34 @@
 namespace MachineId
 {
 
+static inline bool
+isAbsolutePath( const QString& fileName )
+{
+    return fileName.startsWith( '/' );
+}
+
 // might need to use a helper to remove the file
 void
 removeFile( const QString& rootMountPoint, const QString& fileName )
 {
-    QFile::remove( rootMountPoint + fileName );
+    if ( isAbsolutePath( fileName ) )
+    {
+        QFile::remove( rootMountPoint + fileName );
+    }
+    // Otherwise, do nothing
 }
 
 Calamares::JobResult
 copyFile( const QString& rootMountPoint, const QString& fileName )
 {
+    if ( !isAbsolutePath( fileName ) )
+    {
+        return Calamares::JobResult::internalError(
+            QObject::tr( "File not found" ),
+            QObject::tr( "Path <pre>%1</pre> must be an absolute path." ).arg( fileName ),
+            0 );
+    }
+
     QFile f( fileName );
     if ( !f.exists() )
     {
