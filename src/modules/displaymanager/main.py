@@ -850,6 +850,13 @@ class DMsysconfig(DisplayManager):
     def greeter_setup(self):
         pass
 
+    # For openSUSE-derivatives, there is only sysconfig to configure,
+    # and no special DM configuration for it. Instead, check that
+    # sysconfig is available in the target.
+    def have_dm(self):
+        config = "{!s}/etc/sysconfig/displaymanager".format(self.root_mount_point)
+        return os.path.exists(config)
+
 
 # Collect all the subclasses of DisplayManager defined above,
 # and index them based on the name property of each class.
@@ -879,6 +886,10 @@ def run():
     if libcalamares.globalstorage.contains("displayManagers"):
         displaymanagers = libcalamares.globalstorage.value("displayManagers")
 
+    if ("sysconfigSetup" in libcalamares.job.configuration
+            and libcalamares.job.configuration["sysconfigSetup"]):
+        displaymanagers = ["sysconfig"]
+
     if not displaymanagers:
         return (
             _("No display managers selected for the displaymanager module."),
@@ -890,9 +901,6 @@ def run():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     dm_impl = []
     dm_names = displaymanagers[:]
-    if ("sysconfigSetup" in libcalamares.job.configuration
-            and libcalamares.job.configuration["sysconfigSetup"]):
-        dm_names.append("sysconfig")
     for dm in dm_names:
         # Find the implementation class
         dm_instance = None
