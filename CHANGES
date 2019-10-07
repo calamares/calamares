@@ -11,6 +11,12 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ - *displaymanager* module now treats *sysconfig* as a regular entry in the
+   *displaymanagers* list, and the *sysconfigSetup* key is used as a
+   shorthand to force **only** that entry in the list. #1253
+ - *machineid* module has been re-written in C++ and extended with
+   a new configuration key to generate urandom pool data. #1252
+
 
 # 3.2.14 (2019-09-30) #
 
