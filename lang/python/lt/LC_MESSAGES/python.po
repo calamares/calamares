@@ -5,6 +5,7 @@
 # 
 # Translators:
 # Moo, 2019
+# Mindaugas <opensuse.lietuviu.kalba@gmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-15 21:54+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Moo, 2019\n"
+"Last-Translator: Mindaugas <opensuse.lietuviu.kalba@gmail.com>, 2019\n"
 "Language-Team: Lithuanian (https://www.transifex.com/calamares/teams/20061/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +104,7 @@ msgstr "rsync patyrė nesėkmę su klaidos kodu {}."
 
 #: src/modules/unpackfs/main.py:221 src/modules/unpackfs/main.py:239
 msgid "Failed to unpack image \"{}\""
-msgstr "Nepavyko išpakuoti atvaizdį \"{}\""
+msgstr "Nepavyko išpakuoti atvaizdį „{}“"
 
 #: src/modules/unpackfs/main.py:222
 msgid ""
@@ -119,7 +120,7 @@ msgstr "Nėra prijungimo taško šaknies skaidiniui"
 
 #: src/modules/unpackfs/main.py:322
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage viduje nėra \"rootMountPoint\" rakto, nieko nedaroma"
+msgstr "globalstorage viduje nėra „rootMountPoint“ rakto, nieko nedaroma"
 
 #: src/modules/unpackfs/main.py:327
 msgid "Bad mount point for root partition"
@@ -127,7 +128,7 @@ msgstr "Blogas šaknies skaidinio prijungimo taškas"
 
 #: src/modules/unpackfs/main.py:328
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint yra \"{}\", kurio nėra, nieko nedaroma"
+msgstr "rootMountPoint yra „{}“, kurio nėra, nieko nedaroma"
 
 #: src/modules/unpackfs/main.py:341 src/modules/unpackfs/main.py:348
 #: src/modules/unpackfs/main.py:353
@@ -136,15 +137,15 @@ msgstr "Bloga unsquash konfigūracija"
 
 #: src/modules/unpackfs/main.py:342
 msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr "\"{}\" ({}) failų sistema yra nepalaikoma"
+msgstr "„{}“ ({}) failų sistema yra nepalaikoma"
 
 #: src/modules/unpackfs/main.py:349
 msgid "The source filesystem \"{}\" does not exist"
-msgstr "Šaltinio failų sistemos \"{}\" nėra"
+msgstr "Šaltinio failų sistemos „{}“ nėra"
 
 #: src/modules/unpackfs/main.py:354
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Paskirties vieta \"{}\", esanti paskirties sistemoje, nėra katalogas"
+msgstr "Paskirties vieta „{}“, esanti paskirties sistemoje, nėra katalogas"
 
 #: src/modules/displaymanager/main.py:401
 msgid "Cannot write KDM configuration file"
@@ -176,7 +177,7 @@ msgstr "Nepavyksta konfigūruoti LightDM"
 
 #: src/modules/displaymanager/main.py:623
 msgid "No LightDM greeter installed."
-msgstr "Nėra įdiegtas joks LightDM sveikintojas."
+msgstr "Neįdiegtas joks LightDM pasisveikinimas."
 
 #: src/modules/displaymanager/main.py:654
 msgid "Cannot write SLIM configuration file"
