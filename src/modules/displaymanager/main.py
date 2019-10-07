@@ -879,6 +879,10 @@ def run():
     if libcalamares.globalstorage.contains("displayManagers"):
         displaymanagers = libcalamares.globalstorage.value("displayManagers")
 
+    if ("sysconfigSetup" in libcalamares.job.configuration
+            and libcalamares.job.configuration["sysconfigSetup"]):
+        displaymanagers = ["sysconfig"]
+
     if not displaymanagers:
         return (
             _("No display managers selected for the displaymanager module."),
@@ -890,9 +894,6 @@ def run():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     dm_impl = []
     dm_names = displaymanagers[:]
-    if ("sysconfigSetup" in libcalamares.job.configuration
-            and libcalamares.job.configuration["sysconfigSetup"]):
-        dm_names.append("sysconfig")
     for dm in dm_names:
         # Find the implementation class
         dm_instance = None
