@@ -850,6 +850,13 @@ class DMsysconfig(DisplayManager):
     def greeter_setup(self):
         pass
 
+    # For openSUSE-derivatives, there is only sysconfig to configure,
+    # and no special DM configuration for it. Instead, check that
+    # sysconfig is available in the target.
+    def have_dm(self):
+        config = "{!s}/etc/sysconfig/displaymanager".format(self.root_mount_point)
+        return os.path.exists(config)
+
 
 # Collect all the subclasses of DisplayManager defined above,
 # and index them based on the name property of each class.
