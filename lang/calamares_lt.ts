@@ -159,12 +159,12 @@
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
         <source>Run command &apos;%1&apos; in target system.</source>
-        <translation>Paleisti paskirties sistemoje komandą &quot;%1&quot;.</translation>
+        <translation>Paleisti paskirties sistemoje komandą „%1“.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
         <source> Run command &apos;%1&apos;.</source>
-        <translation>Paleisti komandą &quot;%1&quot;.</translation>
+        <translation>Paleisti komandą „%1“.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="59"/>
@@ -882,7 +882,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
         <source>The installer failed to create a volume group named &apos;%1&apos;.</source>
-        <translation>Diegimo programai nepavyko sukurti tomų grupės, pavadinimu &quot;%1&quot;.</translation>
+        <translation>Diegimo programai nepavyko sukurti tomų grupės pavadinimu „%1“.</translation>
     </message>
 </context>
 <context>
@@ -1575,7 +1575,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
         <source>Could not create LUKS key file for root partition %1.</source>
-        <translation>Nepavyko šaknies skaidiniui %1 sukurti LUKS rakto failo. </translation>
+        <translation>Nepavyko šakniniam skaidiniui %1 sukurti LUKS rakto failo. </translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
@@ -2597,7 +2597,7 @@ Išvestis:
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="237"/>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="254"/>
         <source>Resize Failed</source>
-        <translation>Dydžio keitimas patyrė nesėkmę</translation>
+        <translation>Dydžio pakeisti nepavyko</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
@@ -2679,7 +2679,7 @@ Išvestis:
     <message>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
         <source>The installer failed to resize a volume group named &apos;%1&apos;.</source>
-        <translation>Diegimo programai nepavyko pakeisti tomų grupės, pavadinimu &quot;%1&quot;, dydį.</translation>
+        <translation>Diegimo programai nepavyko pakeisti tomų grupės, kurios pavadinimas „%1“, dydžio.</translation>
     </message>
 </context>
 <context>

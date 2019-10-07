@@ -1360,12 +1360,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="219"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
-        <translation type="unfinished"/>
+        <translation>കീബോർഡ് മോഡൽ %1 എന്നതായി ക്രമീകരിക്കുക.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="223"/>
         <source>Set keyboard layout to %1/%2.</source>
-        <translation type="unfinished"/>
+        <translation>കീബോർഡ് വിന്യാസം %1%2 എന്നതായി ക്രമീകരിക്കുക.</translation>
     </message>
 </context>
 <context>
@@ -1446,7 +1446,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="123"/>
         <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
         <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 ഡ്രൈവർ&lt;/strong&gt;&lt;br/&gt;%2 വക</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="130"/>
@@ -1552,7 +1552,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="39"/>
         <source>Configuring LUKS key file.</source>
-        <translation type="unfinished"/>
+        <translation>LUKS കീ ഫയൽ ക്രമീകരിക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
@@ -1570,17 +1570,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
         <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-        <translation type="unfinished"/>
+        <translation>റൂട്ട് പാർട്ടീഷൻ %1 LUKS ആണ് പക്ഷേ രഹസ്യവാക്കൊന്നും ക്രമീകരിച്ചിട്ടില്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
         <source>Could not create LUKS key file for root partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>റൂട്ട് പാർട്ടീഷൻ %1ന് വേണ്ടി LUKS കീ ഫയൽ നിർമ്മിക്കാനായില്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
         <source>Could configure LUKS key file on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>പാർട്ടീഷൻ %1ൽ LUKS കീ ഫയൽ ക്രമീകരിക്കാം.</translation>
     </message>
 </context>
 <context>
@@ -1670,7 +1670,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;%1&apos; ക്രമീക്കരിക്കുന്നതിൽ മെമ്മറി പങ്കുവയ്ക്കൽ പിഴവ്</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
@@ -2247,12 +2247,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="429"/>
         <source>EFI system partition flag not set</source>
-        <translation type="unfinished"/>
+        <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ ഫ്ലാഗ് ക്രമീകരിച്ചിട്ടില്ല</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="430"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ആരംഭിക്കുന്നതിനായി ഒരു ഇഎഫ്ഐ.&lt;br/&gt;&lt;br/&gt;മൗണ്ട് പോയിന്റ് &lt;strong&gt;%2 -ഓട്&lt;/strong&gt;കൂടി ഒരു പാർട്ടീഷൻ ക്രമീകരിച്ചിട്ടുണ്ടായിരുന്നു, പക്ഷേ അതിന്റെ &lt;strong&gt;esp&lt;/strong&gt; ഫ്ലാഗ് ക്രമീകരിച്ചിട്ടില്ല.&lt;br/&gt; ഫ്ലാഗ് ക്രമീകരിക്കാനായി തിരിച്ച് പോയി പാർട്ടീഷൻ തിരുത്തുക.&lt;br/&gt;&lt;br/&gt;ഫ്ലാഗ് ക്രമീകരിക്കാതെ തന്നെ താങ്കൾക്ക് തുടരാവുന്നതാണ്, പക്ഷേ താങ്കളുടെ സിസ്റ്റം ആരംഭിക്കാതിരുന്നേക്കാം.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="465"/>
@@ -2267,7 +2267,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="650"/>
         <source>has at least one disk device available.</source>
-        <translation type="unfinished"/>
+        <translation>ഒരു ഡിസ്ക് ഡിവൈസെങ്കിലും ലഭ്യമാണ്.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="651"/>
@@ -2339,14 +2339,17 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="407"/>
         <source>
 There was no output from the command.</source>
-        <translation type="unfinished"/>
+        <translation>
+ആജ്ഞയിൽ നിന്നും ഔട്ട്പുട്ടൊന്നുമില്ല.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="408"/>
         <source>
 Output:
 </source>
-        <translation type="unfinished"/>
+        <translation>
+ഔട്ട്പുട്ട്
+</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="412"/>
@@ -2356,7 +2359,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="413"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
-        <translation type="unfinished"/>
+        <translation>ആജ്ഞ &lt;i&gt;%1&lt;/i&gt; പ്രവർത്തനരഹിതമായി.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
@@ -2371,7 +2374,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
         <source>Internal error when starting command.</source>
-        <translation type="unfinished"/>
+        <translation>ആജ്ഞ ആരംഭിക്കുന്നതിൽ ആന്തരികമായ പിഴവ്.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="424"/>
@@ -2425,17 +2428,17 @@ Output:
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="211"/>
         <source>unformatted</source>
-        <translation type="unfinished"/>
+        <translation>ഫോർമാറ്റ് ചെയ്യപ്പെടാത്തത്</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="213"/>
         <source>swap</source>
-        <translation type="unfinished"/>
+        <translation>സ്വാപ്പ്</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation type="unfinished"/>
+        <translation>പാർട്ടീഷൻ ചെയ്യപ്പെടാത്ത സ്ഥലം അല്ലെങ്കിൽ അപരിചിതമായ പാർട്ടീഷൻ ടേബിൾ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
@@ -2445,7 +2448,7 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="65"/>
         <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;%1&lt;/i&gt;മൊഡ്യൂളിനായുള്ള ആവശ്യകതകൾ പരിശോധിക്കൽ പൂർത്തിയായിരിക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/Label.cpp" line="46"/>
@@ -2493,27 +2496,27 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="135"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 എവിടെ ഇൻസ്റ്റാൾ ചെയ്യണമെന്ന് തിരഞ്ഞെടുക്കുക.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;മുന്നറിയിപ്പ്: &lt;/font&gt; ഇത് തിരഞ്ഞെടുത്ത പാർട്ടീഷനിലെ എല്ലാ ഫയലുകളും നീക്കം ചെയ്യും.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation type="unfinished"/>
+        <translation>തിരഞ്ഞെടുക്കപ്പെട്ടത് സാധുവായ ഒരു പാർട്ടീഷനായി തോന്നുന്നില്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ഒരു ശൂന്യമായ സ്ഥലത്ത് ഇൻസ്റ്റാൾ ചെയ്യാൻ സാധിക്കില്ല. ദയവായി നിലവിലുള്ള ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കൂ.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ഒരു എക്സ്റ്റൻഡഡ് പാർട്ടീഷനിൽ ചെയ്യാൻ സാധിക്കില്ല. ദയവായി നിലവിലുള്ള ഒരു പ്രൈമറി അല്ലെങ്കിൽ ലോജിക്കൽ പാർട്ടീഷൻ തിരഞ്ഞെടുക്കൂ.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="189"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ഈ പാർട്ടീഷനിൽ ഇൻസ്റ്റാൾ ചെയ്യാൻ സാധിക്കില്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="195"/>
@@ -2533,19 +2536,19 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="228"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;പാർട്ടീഷൻ %1 %2ന് തീരെ ചെറുതാണ്. ദയവായി %3ജിബി എങ്കീലും  ഇടമുള്ള ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കൂ.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;ഈ സിസ്റ്റത്തിൽ എവിടേയും ഒരു ഇഎഫ്ഐ സിസ്റ്റം പർട്ടീഷൻ കണ്ടെത്താനായില്ല. %1 സജ്ജീകരിക്കുന്നതിന് ദയവായി തിരിച്ചുപോയി മാനുവൽ പാർട്ടീഷനിങ്ങ് ഉപയോഗിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="262"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="279"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="303"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 %2ൽ ഇൻസ്റ്റാൾ ചെയ്യപ്പെടും.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;മുന്നറിയിപ്പ്:&lt;/font&gt;പാർട്ടീഷൻ %2ൽ ഉള്ള എല്ലാ ഡാറ്റയും നഷ്ടപ്പെടും.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
@@ -2777,7 +2780,7 @@ Output:
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="326"/>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="332"/>
         <source>Failed to write to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1ലേക്ക് എഴുതുന്നതിൽ പരാജയപ്പെട്ടു</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="325"/>
@@ -2795,27 +2798,27 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="49"/>
         <source>Set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>പാർട്ടീഷൻ %1ൽ ഫ്ലാഗുകൾ ക്രമീകരിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="52"/>
         <source>Set flags on %1MiB %2 partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1എംബി പാർട്ടീഷൻ %2ൽ ഫ്ലാഗുകൾ ക്രമീകരിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
         <source>Set flags on new partition.</source>
-        <translation type="unfinished"/>
+        <translation>പുതിയ പാർട്ടീഷനിൽ ഫ്ലാഗുകൾ ക്രമീകരിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="67"/>
         <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt; പാർട്ടീഷനിലെ ഫ്ലാഗുകൾ നീക്കം ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
         <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1എംബി &lt;strong&gt;%2&lt;/strong&gt; പാർട്ടീഷനിലെ ഫ്ലാഗുകൾ ക്രമീകരിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="85"/>
@@ -2835,7 +2838,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
         <source>Clear flags on new partition.</source>
-        <translation type="unfinished"/>
+        <translation>പുതിയ പാർട്ടീഷനിലെ ഫ്ലാഗുകൾ മായ്ക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="79"/>
@@ -2850,12 +2853,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="103"/>
         <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>പാർട്ടീഷൻ &lt;strong&gt;%1&lt;/strong&gt;ലെ ഫ്ലാഗുകൾ മായ്ക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="111"/>
         <source>Clearing flags on new partition.</source>
-        <translation type="unfinished"/>
+        <translation>പുതിയ പാർട്ടീഷനിലെ ഫ്ലാഗുകൾ മായ്ക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="115"/>
@@ -2870,7 +2873,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="144"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>പാർട്ടീഷൻ %1ൽ ഫ്ലാഗുകൾ ക്രമീകരിക്കുന്നതിൽ ഇൻസ്റ്റാളർ പരാജയപ്പെട്ടു.</translation>
     </message>
 </context>
 <context>
@@ -2908,7 +2911,7 @@ Output:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="139"/>
         <source>Cannot set password for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>ഉപയോക്താവ് %1നായി രഹസ്യവാക്ക് ക്രമീകരിക്കാനായില്ല.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="141"/>
