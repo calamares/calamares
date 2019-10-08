@@ -52,6 +52,17 @@ class UnpackEntry:
     __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total']
 
     def __init__(self, source, sourcefs, destination):
+        """
+        @p source is the source file name (might be an image file, or
+            a directory, too)
+        @p sourcefs is a type indication; "file" is special, as is
+            "squashfs".
+        @p destination is where the files from the source go. This is
+            **already** prefixed by rootMountPoint, so should be a 
+            valid absolute path within the host system.
+            
+        The members copied and total are filled in by the copying process.
+        """
         self.source = source
         self.sourcefs = sourcefs
         self.destination = destination
@@ -84,7 +95,6 @@ def list_excludes(destination):
             lst.extend(['--exclude', mount_point + '/'])
 
     return lst
-
 
 def file_copy(source, dest, progress_cb):
     """
@@ -303,10 +313,6 @@ class UnpackOperation:
         try:
             if entry.is_file():
                 source = entry.source
-                if entry.total <= 1:
-                    # If there is one file, *and* the target does not exist (as a file or dir)
-                    # but the dirname of the target does, we should copy just one file and rename.
-                    pass
             else:
                 source = imgmountdir
 
