@@ -303,6 +303,10 @@ class UnpackOperation:
         try:
             if entry.is_file():
                 source = entry.source
+                if entry.total <= 1:
+                    # If there is one file, *and* the target does not exist (as a file or dir)
+                    # but the dirname of the target does, we should copy just one file and rename.
+                    pass
             else:
                 source = imgmountdir
 
