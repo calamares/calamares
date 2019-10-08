@@ -378,6 +378,7 @@ def run():
 
     unpack = list()
 
+    is_first = True
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
         sourcefs = entry["sourcefs"]
@@ -385,10 +386,14 @@ def run():
 
         if not os.path.isdir(destination):
             utils.warning(("The destination \"{}\" in the target system is not a directory").format(destination))
-            return (_("Bad unsquash configuration"),
-                    _("The destination \"{}\" in the target system is not a directory").format(destination))
+            if is_first:
+                return (_("Bad unsquash configuration"),
+                        _("The destination \"{}\" in the target system is not a directory").format(destination))
+            else:
+                utils.debug(".. assuming that the previous targets will create that directory.")
 
         unpack.append(UnpackEntry(source, sourcefs, destination))
+        is_first = False
 
     unpackop = UnpackOperation(unpack)
 
