@@ -52,6 +52,17 @@ class UnpackEntry:
     __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total']
 
     def __init__(self, source, sourcefs, destination):
+        """
+        @p source is the source file name (might be an image file, or
+            a directory, too)
+        @p sourcefs is a type indication; "file" is special, as is
+            "squashfs".
+        @p destination is where the files from the source go. This is
+            **already** prefixed by rootMountPoint, so should be a
+            valid absolute path within the host system.
+
+        The members copied and total are filled in by the copying process.
+        """
         self.source = source
         self.sourcefs = sourcefs
         self.destination = destination
@@ -84,7 +95,6 @@ def list_excludes(destination):
             lst.extend(['--exclude', mount_point + '/'])
 
     return lst
-
 
 def file_copy(source, dest, progress_cb):
     """
@@ -374,17 +384,22 @@ def run():
 
     unpack = list()
 
+    is_first = True
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
         sourcefs = entry["sourcefs"]
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
-        if not os.path.isdir(destination):
+        if not os.path.isdir(destination) and sourcefs != "file":
             utils.warning(("The destination \"{}\" in the target system is not a directory").format(destination))
-            return (_("Bad unsquash configuration"),
-                    _("The destination \"{}\" in the target system is not a directory").format(destination))
+            if is_first:
+                return (_("Bad unsquash configuration"),
+                        _("The destination \"{}\" in the target system is not a directory").format(destination))
+            else:
+                utils.debug(".. assuming that the previous targets will create that directory.")
 
         unpack.append(UnpackEntry(source, sourcefs, destination))
+        is_first = False
 
     unpackop = UnpackOperation(unpack)
 
