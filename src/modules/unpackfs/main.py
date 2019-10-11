@@ -49,7 +49,7 @@ class UnpackEntry:
     :param sourcefs:
     :param destination:
     """
-    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total']
+    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile']
 
     def __init__(self, source, sourcefs, destination):
         """
@@ -66,6 +66,8 @@ class UnpackEntry:
         self.source = source
         self.sourcefs = sourcefs
         self.destination = destination
+        self.exclude = None
+        self.excludeFile = None
         self.copied = 0
         self.total = 0
 
@@ -399,6 +401,12 @@ def run():
                 utils.debug(".. assuming that the previous targets will create that directory.")
 
         unpack.append(UnpackEntry(source, sourcefs, destination))
+        # Optional settings
+        if entry.get("exclude", None):
+            unpack[-1].exclude = entry["exclude"]
+        if entry.get("excludeFile", None):
+            unpack[-1].excludeFile = entry["excludeFile"]
+
         is_first = False
 
     unpackop = UnpackOperation(unpack)
