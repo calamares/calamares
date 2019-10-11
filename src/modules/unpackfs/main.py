@@ -49,7 +49,7 @@ class UnpackEntry:
     :param sourcefs:
     :param destination:
     """
-    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total']
+    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile']
 
     def __init__(self, source, sourcefs, destination):
         """
@@ -66,6 +66,8 @@ class UnpackEntry:
         self.source = source
         self.sourcefs = sourcefs
         self.destination = destination
+        self.exclude = None
+        self.excludeFile = None
         self.copied = 0
         self.total = 0
 
@@ -76,12 +78,9 @@ class UnpackEntry:
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 
-def list_excludes(destination):
+def global_excludes():
     """
     List excludes for rsync.
-
-    :param destination:
-    :return:
     """
     lst = []
     extra_mounts = globalstorage.value("extraMounts")
@@ -96,15 +95,18 @@ def list_excludes(destination):
 
     return lst
 
-def file_copy(source, dest, progress_cb):
+def file_copy(source, entry, progress_cb):
     """
     Extract given image using rsync.
 
-    :param source:
-    :param dest:
-    :param progress_cb:
-    :return:
+    :param source: Source file. This may be the place the entry's
+        image is mounted, or if it's a single file, the entry's source value.
+    :param entry: The UnpackEntry being copied.
+    :param progress_cb: A callback function for progress reporting.
+        Takes a number and a total-number.
     """
+    dest = entry.destination
+
     # Environment used for executing rsync properly
     # Setting locale to C (fix issue with tr_TR locale)
     at_env = os.environ
@@ -120,7 +122,12 @@ def file_copy(source, dest, progress_cb):
     num_files_copied = 0  # Gets updated through rsync output
 
     args = ['rsync', '-aHAXr']
-    args.extend(list_excludes(dest))
+    args.extend(global_excludes())
+    if entry.excludeFile:
+        args.extend(["--exclude-from=" + entry.excludeFile])
+    if entry.exclude:
+        for f in entry.exclude:
+            args.extend(["--exclude", f])
     args.extend(['--progress', source, dest])
     process = subprocess.Popen(
         args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX
@@ -316,7 +323,7 @@ class UnpackOperation:
             else:
                 source = imgmountdir
 
-            return file_copy(source, entry.destination, progress_cb)
+            return file_copy(source, entry, progress_cb)
         finally:
             if not entry.is_file():
                 subprocess.check_call(["umount", "-l", imgmountdir])
@@ -399,6 +406,12 @@ def run():
                 utils.debug(".. assuming that the previous targets will create that directory.")
 
         unpack.append(UnpackEntry(source, sourcefs, destination))
+        # Optional settings
+        if entry.get("exclude", None):
+            unpack[-1].exclude = entry["exclude"]
+        if entry.get("excludeFile", None):
+            unpack[-1].excludeFile = entry["excludeFile"]
+
         is_first = False
 
     unpackop = UnpackOperation(unpack)
