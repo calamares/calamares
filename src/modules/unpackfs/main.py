@@ -93,15 +93,18 @@ def global_excludes():
 
     return lst
 
-def file_copy(source, dest, progress_cb):
+def file_copy(source, entry, progress_cb):
     """
     Extract given image using rsync.
 
-    :param source:
-    :param dest:
-    :param progress_cb:
-    :return:
+    :param source: Source file. This may be the place the entry's
+        image is mounted, or if it's a single file, the entry's source value.
+    :param entry: The UnpackEntry being copied.
+    :param progress_cb: A callback function for progress reporting.
+        Takes a number and a total-number.
     """
+    dest = entry.destination
+
     # Environment used for executing rsync properly
     # Setting locale to C (fix issue with tr_TR locale)
     at_env = os.environ
@@ -313,7 +316,7 @@ class UnpackOperation:
             else:
                 source = imgmountdir
 
-            return file_copy(source, entry.destination, progress_cb)
+            return file_copy(source, entry, progress_cb)
         finally:
             if not entry.is_file():
                 subprocess.check_call(["umount", "-l", imgmountdir])
