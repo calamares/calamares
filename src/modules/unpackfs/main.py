@@ -58,9 +58,9 @@ class UnpackEntry:
         @p sourcefs is a type indication; "file" is special, as is
             "squashfs".
         @p destination is where the files from the source go. This is
-            **already** prefixed by rootMountPoint, so should be a 
+            **already** prefixed by rootMountPoint, so should be a
             valid absolute path within the host system.
-            
+
         The members copied and total are filled in by the copying process.
         """
         self.source = source
@@ -390,7 +390,7 @@ def run():
         sourcefs = entry["sourcefs"]
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
-        if not os.path.isdir(destination):
+        if not os.path.isdir(destination) and sourcefs != "file":
             utils.warning(("The destination \"{}\" in the target system is not a directory").format(destination))
             if is_first:
                 return (_("Bad unsquash configuration"),
