@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.15 (unreleased) #
+# 3.2.15 (2019-10-11) #
 
 This release contains contributions from (alphabetically by first name):
  - No other contributors this time around.
@@ -21,6 +21,8 @@ This release contains contributions from (alphabetically by first name):
  - *unpackfs* now supports a special *sourcefs* value of `file`
    for copying single files (optionally with renaming) or directory
    trees to the target system.
+ - *unpackfs* now support an *exclude* and *excludeFile* setting for
+   excluding particular files or patters from unpacking. #1229
 
 
 # 3.2.14 (2019-09-30) #
