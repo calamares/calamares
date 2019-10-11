@@ -123,6 +123,11 @@ def file_copy(source, entry, progress_cb):
 
     args = ['rsync', '-aHAXr']
     args.extend(global_excludes())
+    if entry.excludeFile:
+        args.extend(["--exclude-from=" + entry.excludeFile])
+    if entry.exclude:
+        for f in entry.exclude:
+            args.extend(["--exclude", f])
     args.extend(['--progress', source, dest])
     process = subprocess.Popen(
         args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX
