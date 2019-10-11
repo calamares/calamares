@@ -6,8 +6,10 @@ website will have to do for older versions.
 # 3.2.15 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - No other contributors this time around.
 
 ## Core ##
+ - No changes to core functionality
 
 ## Modules ##
 
@@ -16,6 +18,9 @@ This release contains contributions from (alphabetically by first name):
    shorthand to force **only** that entry in the list. #1253
  - *machineid* module has been re-written in C++ and extended with
    a new configuration key to generate urandom pool data. #1252
+ - *unpackfs* now supports a special *sourcefs* value of `file`
+   for copying single files (optionally with renaming) or directory
+   trees to the target system.
 
 
 # 3.2.14 (2019-09-30) #
