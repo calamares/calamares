@@ -76,12 +76,9 @@ class UnpackEntry:
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 
-def list_excludes(destination):
+def global_excludes():
     """
     List excludes for rsync.
-
-    :param destination:
-    :return:
     """
     lst = []
     extra_mounts = globalstorage.value("extraMounts")
@@ -120,7 +117,7 @@ def file_copy(source, dest, progress_cb):
     num_files_copied = 0  # Gets updated through rsync output
 
     args = ['rsync', '-aHAXr']
-    args.extend(list_excludes(dest))
+    args.extend(global_excludes())
     args.extend(['--progress', source, dest])
     process = subprocess.Popen(
         args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX
