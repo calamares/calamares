@@ -91,17 +91,20 @@ ModuleManager::doInit()
                 bool success = currentDir.cd( subdir );
                 if ( success )
                 {
+                    static const char bad_descriptor[] = "ModuleManager potential module descriptor is bad";
                     QFileInfo descriptorFileInfo( currentDir.absoluteFilePath( QLatin1String( "module.desc" ) ) );
                     if ( !descriptorFileInfo.exists() )
                     {
-                        cDebug() << "ModuleManager expected descriptor is missing:"
-                                 << descriptorFileInfo.absoluteFilePath();
+                        cDebug() << bad_descriptor
+                                 << descriptorFileInfo.absoluteFilePath()
+                                 << "(missing)";
                         continue;
                     }
                     if ( !descriptorFileInfo.isReadable() )
                     {
-                        cDebug() << "ModuleManager descriptor file is unreadable:"
-                                 << descriptorFileInfo.absoluteFilePath();
+                        cDebug() << bad_descriptor
+                                 << descriptorFileInfo.absoluteFilePath()
+                                 << "(unreadable)";
                         continue;
                     }
 
@@ -109,7 +112,7 @@ ModuleManager::doInit()
                     QVariantMap moduleDescriptorMap = CalamaresUtils::loadYaml( descriptorFileInfo, &ok );
                     QString moduleName = ok ? moduleDescriptorMap.value( "name" ).toString() : QString();
 
-                    if ( ok && ( moduleName == currentDir.dirName() )
+                    if ( ok && !moduleName.isEmpty() && ( moduleName == currentDir.dirName() )
                          && !m_availableDescriptorsByModuleName.contains( moduleName ) )
                     {
                         m_availableDescriptorsByModuleName.insert( moduleName, moduleDescriptorMap );
