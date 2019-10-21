@@ -173,6 +173,18 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
+    if ( configurationMap.contains( "allowWeakPasswords" ) &&
+        configurationMap.value( "allowWeakPasswords" ).type() == QVariant::Bool )
+    {
+        m_widget->setPasswordCheckboxVisible( configurationMap.value( "allowWeakPasswords" ).toBool() );
+    }
+
+    if ( configurationMap.contains( "doPasswordChecks" ) &&
+        configurationMap.value( "doPasswordChecks" ).type() == QVariant::Bool )
+    {
+        m_widget->setValidatePasswordDefault( configurationMap.value( "doPasswordChecks" ).toBool() );
+    }
+
     QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
     if ( configurationMap.contains( "userShell" ) )
         shell = CalamaresUtils::getString( configurationMap, "userShell" );

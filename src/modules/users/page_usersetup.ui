@@ -461,6 +461,13 @@
     </spacer>
    </item>
    <item>
+    <widget class="QCheckBox" name="checkBoxValidatePassword">
+     <property name="text">
+      <string>Require strong passwords.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QCheckBox" name="checkBoxAutoLogin">
      <property name="text">
       <string>Log in automatically without asking for the password.</string>

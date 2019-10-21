@@ -48,6 +48,8 @@ public:
     void onActivate();
 
     void setWriteRootPassword( bool show );
+    void setPasswordCheckboxVisible( bool visible );
+    void setValidatePasswordDefault( bool checked );
     void setAutologinDefault( bool checked );
     void setReusePasswordDefault( bool checked );
 

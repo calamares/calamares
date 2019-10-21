@@ -88,6 +88,13 @@ UsersPage::UsersPage( QWidget* parent )
              this, &UsersPage::onRootPasswordTextChanged );
     connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged,
              this, &UsersPage::onRootPasswordTextChanged );
+    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged,
+             this, [this]( int checked )
+    {
+        onPasswordTextChanged( ui->textBoxUserPassword->text() );
+        onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
+        checkReady( isReady() );
+    } );
     connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged,
              this, [this]( int checked )
     {
@@ -105,6 +112,8 @@ UsersPage::UsersPage( QWidget* parent )
 
     setWriteRootPassword( true );
     ui->checkBoxReusePassword->setChecked( true );
+    ui->checkBoxValidatePassword->setChecked( true );
+    ui->checkBoxValidatePassword->setVisible( false );
 
     // Don't expand the explanations to "stupid wide", but keep them vaguely as-wide-as
     // the things they are explaining.
@@ -387,6 +396,7 @@ UsersPage::onPasswordTextChanged( const QString& )
 {
     QString pw1 = ui->textBoxUserPassword->text();
     QString pw2 = ui->textBoxUserVerifiedPassword->text();
+    m_readyPassword = true;
 
     // TODO: 3.3: remove empty-check and leave it to passwordRequirements
     if ( pw1.isEmpty() && pw2.isEmpty() )
@@ -403,23 +413,24 @@ UsersPage::onPasswordTextChanged( const QString& )
     }
     else
     {
-        bool ok = true;
-        for ( auto pc : m_passwordChecks )
+        if ( ui->checkBoxValidatePassword->isChecked() )
         {
-            QString s = pc.filter( pw1 );
-            if ( !s.isEmpty() )
+            for ( auto pc : m_passwordChecks )
             {
-                labelError( ui->labelUserPassword, ui->labelUserPasswordError, s );
-                ok = false;
-                m_readyPassword = false;
-                break;
+                QString s = pc.filter( pw1 );
+
+                if ( !s.isEmpty() )
+                {
+                    labelError( ui->labelUserPassword, ui->labelUserPasswordError, s );
+                    m_readyPassword = false;
+                    break;
+                }
             }
         }
 
-        if ( ok )
+        if ( m_readyPassword )
         {
             labelOk( ui->labelUserPassword, ui->labelUserPasswordError );
-            m_readyPassword = true;
         }
     }
 
@@ -431,6 +442,7 @@ UsersPage::onRootPasswordTextChanged( const QString& )
 {
     QString pw1 = ui->textBoxRootPassword->text();
     QString pw2 = ui->textBoxVerifiedRootPassword->text();
+    m_readyRootPassword = true;
 
     // TODO: 3.3: remove empty-check and leave it to passwordRequirements
     if ( pw1.isEmpty() && pw2.isEmpty() )
@@ -447,29 +459,43 @@ UsersPage::onRootPasswordTextChanged( const QString& )
     }
     else
     {
-        bool ok = true;
-        for ( auto pc : m_passwordChecks )
+        if ( ui->checkBoxValidatePassword->isChecked() )
         {
-            QString s = pc.filter( pw1 );
-            if ( !s.isEmpty() )
+            for ( auto pc : m_passwordChecks )
             {
-                labelError( ui->labelRootPassword, ui->labelRootPasswordError, s );
-                ok = false;
-                m_readyRootPassword = false;
-                break;
+                QString s = pc.filter( pw1 );
+
+                if ( !s.isEmpty() )
+                {
+                    labelError( ui->labelRootPassword, ui->labelRootPasswordError, s );
+                    m_readyRootPassword = false;
+                    break;
+                }
             }
         }
 
-        if ( ok )
+        if ( m_readyRootPassword )
         {
             labelOk( ui->labelRootPassword, ui->labelRootPasswordError );
-            m_readyRootPassword = true;
         }
     }
 
     emit checkReady( isReady() );
 }
 
+
+void
+UsersPage::setPasswordCheckboxVisible( bool visible )
+{
+    ui->checkBoxValidatePassword->setVisible( visible );
+}
+
+void
+UsersPage::setValidatePasswordDefault( bool checked )
+{
+    ui->checkBoxValidatePassword->setChecked( checked );
+    emit checkReady( isReady() );
+}
 
 void
 UsersPage::setAutologinDefault( bool checked )
@@ -501,7 +527,7 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
     {
         add_check_libpwquality( m_passwordChecks, value );
     }
-#endif
+#endif // CHECK_PWQUALITY
     else
         cWarning() << "Unknown password-check key" << key;
 }
