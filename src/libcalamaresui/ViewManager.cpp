@@ -86,9 +86,11 @@ setButtonIcon( QPushButton* button, const QString& name )
  * to worry about as well as state.
  */
 static inline QPushButton*
-makeButton( QWidget* parent, const QString& name )
+makeButton( QWidget* parent, const QString& name, const QString& label )
 {
     QPushButton* button = new QPushButton( parent );
+    button->setObjectName( name );
+    button->setText( label );
     setButtonIcon( button, name );
     return button;
 }
@@ -108,9 +110,9 @@ ViewManager::ViewManager( QObject* parent )
     mainLayout->addWidget( m_stack );
 
     // Create buttons and sets an initial icon; the icons may change
-    m_back = makeButton( m_widget, "go-previous" );
-    m_next = makeButton( m_widget, "go-next" );
-    m_quit = makeButton( m_widget, "dialog-cancel" );
+    m_back = makeButton( m_widget, QStringLiteral( "go-previous" ), tr( "&Back" ) );
+    m_next = makeButton( m_widget, QStringLiteral( "go-next" ), tr( "&Next" ) );
+    m_quit = makeButton( m_widget, QStringLiteral( "dialog-cancel" ), tr( "&Cancel" ) );
 
     CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels )
 
