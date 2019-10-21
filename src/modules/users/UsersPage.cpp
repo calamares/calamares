@@ -102,7 +102,8 @@ UsersPage::UsersPage( QWidget* parent )
     setWriteRootPassword( true );
     ui->checkBoxReusePassword->setChecked( true );
     ui->checkBoxValidatePassword->setChecked( true );
-    ui->checkBoxValidatePassword->setVisible( false );
+    
+    setPasswordCheckboxVisible( false );
 
     // Don't expand the explanations to "stupid wide", but keep them vaguely as-wide-as
     // the things they are explaining.
