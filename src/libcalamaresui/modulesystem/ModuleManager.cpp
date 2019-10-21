@@ -188,11 +188,15 @@ findCustomInstance( const Settings::InstanceDescriptionList& customInstances, co
 void
 ModuleManager::loadModules()
 {
-    QStringList failedModules = checkDependencies();
+    if (checkDependencies())
+    {
+        cWarning() << "Some installed modules have unmet dependencies.";
+    }
     Settings::InstanceDescriptionList customInstances = Settings::instance()->customModuleInstances();
 
+    QStringList failedModules;
     const auto modulesSequence
-        = failedModules.isEmpty() ? Settings::instance()->modulesSequence() : Settings::ModuleSequence();
+        = Settings::instance()->modulesSequence() ;
     for ( const auto& modulePhase : modulesSequence )
     {
         ModuleSystem::Action currentAction = modulePhase.first;
@@ -270,7 +274,7 @@ ModuleManager::loadModules()
                     continue;
                 }
 
-                if ( !checkDependencies( *thisModule ) )
+                if ( !checkModuleDependencies( *thisModule ) )
                 {
                     // Error message is already printed
                     failedModules.append( instanceKey.toString() );
@@ -351,10 +355,10 @@ missingRequiredModules( const QStringList& required, const QMap< QString, QVaria
     return l;
 }
 
-QStringList
+size_t
 ModuleManager::checkDependencies()
 {
-    QStringList failed;
+    size_t numberRemoved = 0;
     bool somethingWasRemovedBecauseOfUnmetDependencies = false;
 
     // This goes through the map of available modules, and deletes those whose
@@ -373,19 +377,18 @@ ModuleManager::checkDependencies()
                 QString moduleName = it->value( "name" ).toString();
                 somethingWasRemovedBecauseOfUnmetDependencies = true;
                 m_availableDescriptorsByModuleName.erase( it );
-                failed << moduleName;
-                cWarning() << "Module" << moduleName << "requires modules" << Logger::DebugList( unmet );
-                cWarning() << Logger::SubEntry << "but these are not available (listed in settings, or installed).";
+                numberRemoved++;
+                cWarning() << "Module" << moduleName << "requires missing modules" << Logger::DebugList( unmet );
                 break;
             }
         }
     } while ( somethingWasRemovedBecauseOfUnmetDependencies );
 
-    return failed;
+    return numberRemoved;
 }
 
 bool
-ModuleManager::checkDependencies( const Module& m )
+ModuleManager::checkModuleDependencies( const Module& m )
 {
     bool allRequirementsFound = true;
     QStringList requiredModules
