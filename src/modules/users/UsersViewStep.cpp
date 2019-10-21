@@ -173,11 +173,7 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
-    if ( configurationMap.contains( "allowWeakPasswords" )
-         && configurationMap.value( "allowWeakPasswords" ).type() == QVariant::Bool )
-    {
-        m_widget->setPasswordCheckboxVisible( configurationMap.value( "allowWeakPasswords" ).toBool() );
-    }
+    m_widget->setPasswordCheckboxVisible( CalamaresUtils::getBool( configurationMap, "allowWeakPasswords", false ) );
 
     if ( configurationMap.contains( "doPasswordChecks" )
          && configurationMap.value( "doPasswordChecks" ).type() == QVariant::Bool )
