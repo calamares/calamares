@@ -96,4 +96,4 @@ private:
     bool m_writeRootPassword;
 };
 
-#endif // USERSPAGE_H
+#endif  // USERSPAGE_H

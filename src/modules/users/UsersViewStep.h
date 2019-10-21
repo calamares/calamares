@@ -65,4 +65,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( UsersViewStepFactory )
 
-#endif // USERSPAGEPLUGIN_H
+#endif  // USERSPAGEPLUGIN_H

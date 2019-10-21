@@ -21,11 +21,11 @@
 #include "SetHostNameJob.h"
 
 #include "GlobalStorage.h"
-#include "utils/Logger.h"
 #include "JobQueue.h"
+#include "utils/Logger.h"
 
-#include <QFile>
 #include <QDir>
+#include <QFile>
 
 SetHostNameJob::SetHostNameJob( const QString& hostname )
     : Calamares::Job()
@@ -33,7 +33,8 @@ SetHostNameJob::SetHostNameJob( const QString& hostname )
 {
 }
 
-QString SetHostNameJob::prettyName() const
+QString
+SetHostNameJob::prettyName() const
 {
     return tr( "Set hostname %1" ).arg( m_hostname );
 }
@@ -52,7 +53,8 @@ SetHostNameJob::prettyStatusMessage() const
     return tr( "Setting hostname %1." ).arg( m_hostname );
 }
 
-Calamares::JobResult SetHostNameJob::exec()
+Calamares::JobResult
+SetHostNameJob::exec()
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
@@ -90,11 +92,21 @@ Calamares::JobResult SetHostNameJob::exec()
     // We also need to write the appropriate entries for /etc/hosts
     QTextStream hostsfileout( &hostsfile );
     // ipv4 support
-    hostsfileout << "127.0.0.1" << "\t" << "localhost" << "\n";
-    hostsfileout << "127.0.1.1" << "\t" << m_hostname << "\n";
+    hostsfileout << "127.0.0.1"
+                 << "\t"
+                 << "localhost"
+                 << "\n";
+    hostsfileout << "127.0.1.1"
+                 << "\t" << m_hostname << "\n";
     // ipv6 support
-    hostsfileout << "::1" << "\t" << "localhost ip6-localhost ip6-loopback" << "\n";
-    hostsfileout << "ff02::1 ip6-allnodes" << "\n" << "ff02::2 ip6-allrouters" << "\n";
+    hostsfileout << "::1"
+                 << "\t"
+                 << "localhost ip6-localhost ip6-loopback"
+                 << "\n";
+    hostsfileout << "ff02::1 ip6-allnodes"
+                 << "\n"
+                 << "ff02::2 ip6-allrouters"
+                 << "\n";
     hostsfile.close();
 
     return Calamares::JobResult::ok();
