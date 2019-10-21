@@ -131,8 +131,11 @@ ModuleManager::doInit()
             cDebug() << "ModuleManager module search path does not exist:" << path;
         }
     }
-    // At this point m_availableModules is filled with whatever was found in the
-    // search paths.
+    // At this point m_availableDescriptorsByModuleName is filled with 
+    // the modules that were found in the search paths.
+    cDebug() << "Found" 
+        << m_availableDescriptorsByModuleName.count() << "modules"
+        << m_moduleDirectoriesByModuleName.count() << "names";
     emit initDone();
 }
 
