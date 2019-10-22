@@ -106,15 +106,17 @@ private slots:
 private:
     /**
      * Check in a general sense whether the dependencies between
-     * modules are valid. Returns a list of module names that
-     * do **not** have their requirements met.
+     * modules are valid. Returns the number of modules that
+     * have missing dependencies -- this is **not** a problem
+     * unless any of those modules are actually used.
      *
-     * Returns an empty list on success.
+     * Returns 0 on success.
      *
      * Also modifies m_availableDescriptorsByModuleName to remove
-     * all the entries that fail.
+     * all the entries that (so that later, when we try to look
+     * them up, they are not found).
      */
-    QStringList checkDependencies();
+    size_t checkDependencies();
 
     /**
      * Check for this specific module if its required modules have
@@ -122,7 +124,7 @@ private:
      *
      * Returns true if the requirements are met.
      */
-    bool checkDependencies( const Module& );
+    bool checkModuleDependencies( const Module& );
 
     QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;

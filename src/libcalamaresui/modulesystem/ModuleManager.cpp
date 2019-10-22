@@ -91,17 +91,20 @@ ModuleManager::doInit()
                 bool success = currentDir.cd( subdir );
                 if ( success )
                 {
+                    static const char bad_descriptor[] = "ModuleManager potential module descriptor is bad";
                     QFileInfo descriptorFileInfo( currentDir.absoluteFilePath( QLatin1String( "module.desc" ) ) );
                     if ( !descriptorFileInfo.exists() )
                     {
-                        cDebug() << "ModuleManager expected descriptor is missing:"
-                                 << descriptorFileInfo.absoluteFilePath();
+                        cDebug() << bad_descriptor
+                                 << descriptorFileInfo.absoluteFilePath()
+                                 << "(missing)";
                         continue;
                     }
                     if ( !descriptorFileInfo.isReadable() )
                     {
-                        cDebug() << "ModuleManager descriptor file is unreadable:"
-                                 << descriptorFileInfo.absoluteFilePath();
+                        cDebug() << bad_descriptor
+                                 << descriptorFileInfo.absoluteFilePath()
+                                 << "(unreadable)";
                         continue;
                     }
 
@@ -109,7 +112,7 @@ ModuleManager::doInit()
                     QVariantMap moduleDescriptorMap = CalamaresUtils::loadYaml( descriptorFileInfo, &ok );
                     QString moduleName = ok ? moduleDescriptorMap.value( "name" ).toString() : QString();
 
-                    if ( ok && ( moduleName == currentDir.dirName() )
+                    if ( ok && !moduleName.isEmpty() && ( moduleName == currentDir.dirName() )
                          && !m_availableDescriptorsByModuleName.contains( moduleName ) )
                     {
                         m_availableDescriptorsByModuleName.insert( moduleName, moduleDescriptorMap );
@@ -128,8 +131,11 @@ ModuleManager::doInit()
             cDebug() << "ModuleManager module search path does not exist:" << path;
         }
     }
-    // At this point m_availableModules is filled with whatever was found in the
-    // search paths.
+    // At this point m_availableDescriptorsByModuleName is filled with 
+    // the modules that were found in the search paths.
+    cDebug() << "Found" 
+        << m_availableDescriptorsByModuleName.count() << "modules"
+        << m_moduleDirectoriesByModuleName.count() << "names";
     emit initDone();
 }
 
@@ -182,11 +188,15 @@ findCustomInstance( const Settings::InstanceDescriptionList& customInstances, co
 void
 ModuleManager::loadModules()
 {
-    QStringList failedModules = checkDependencies();
+    if (checkDependencies())
+    {
+        cWarning() << "Some installed modules have unmet dependencies.";
+    }
     Settings::InstanceDescriptionList customInstances = Settings::instance()->customModuleInstances();
 
+    QStringList failedModules;
     const auto modulesSequence
-        = failedModules.isEmpty() ? Settings::instance()->modulesSequence() : Settings::ModuleSequence();
+        = Settings::instance()->modulesSequence() ;
     for ( const auto& modulePhase : modulesSequence )
     {
         ModuleSystem::Action currentAction = modulePhase.first;
@@ -264,7 +274,7 @@ ModuleManager::loadModules()
                     continue;
                 }
 
-                if ( !checkDependencies( *thisModule ) )
+                if ( !checkModuleDependencies( *thisModule ) )
                 {
                     // Error message is already printed
                     failedModules.append( instanceKey.toString() );
@@ -345,10 +355,10 @@ missingRequiredModules( const QStringList& required, const QMap< QString, QVaria
     return l;
 }
 
-QStringList
+size_t
 ModuleManager::checkDependencies()
 {
-    QStringList failed;
+    size_t numberRemoved = 0;
     bool somethingWasRemovedBecauseOfUnmetDependencies = false;
 
     // This goes through the map of available modules, and deletes those whose
@@ -367,19 +377,18 @@ ModuleManager::checkDependencies()
                 QString moduleName = it->value( "name" ).toString();
                 somethingWasRemovedBecauseOfUnmetDependencies = true;
                 m_availableDescriptorsByModuleName.erase( it );
-                failed << moduleName;
-                cWarning() << "Module" << moduleName << "requires modules" << Logger::DebugList( unmet );
-                cWarning() << Logger::SubEntry << "but these are not available (listed in settings, or installed).";
+                numberRemoved++;
+                cWarning() << "Module" << moduleName << "requires missing modules" << Logger::DebugList( unmet );
                 break;
             }
         }
     } while ( somethingWasRemovedBecauseOfUnmetDependencies );
 
-    return failed;
+    return numberRemoved;
 }
 
 bool
-ModuleManager::checkDependencies( const Module& m )
+ModuleManager::checkModuleDependencies( const Module& m )
 {
     bool allRequirementsFound = true;
     QStringList requiredModules
