@@ -154,7 +154,7 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
 
     foreach ( const QString& key, keys )
     {
-        m_regionCombo->addItem( LocaleGlobal::Location::pretty( key ), key );
+        m_regionCombo->addItem( tr(LocaleGlobal::Location::pretty( key ).toUtf8().constData()), key );
     }
 
     m_regionCombo->blockSignals( false );
@@ -420,7 +420,7 @@ LocalePage::regionChanged( int currentIndex )
     const QList< LocaleGlobal::Location > zones = regions.value( m_regionCombo->currentData().toString() );
     for ( const LocaleGlobal::Location& zone : zones )
     {
-        m_zoneCombo->addItem( LocaleGlobal::Location::pretty( zone.zone ), zone.zone );
+        m_zoneCombo->addItem( tr(LocaleGlobal::Location::pretty( zone.zone ).toUtf8().constData()), zone.zone );
     }
 
     m_zoneCombo->model()->sort( 0 );
