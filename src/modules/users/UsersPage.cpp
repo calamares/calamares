@@ -167,9 +167,13 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
     {
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
         if ( ui->checkBoxReusePassword->isChecked() )
+        {
             j = new SetPasswordJob( "root", ui->textBoxUserPassword->text() );
+        }
         else
+        {
             j = new SetPasswordJob( "root", ui->textBoxRootPassword->text() );
+        }
         list.append( Calamares::job_ptr( j ) );
     }
     else
