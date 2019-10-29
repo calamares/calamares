@@ -79,12 +79,6 @@ private:
 
     PasswordCheckList m_passwordChecks;
 
-    const QRegExp USERNAME_RX = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
-    const QRegExp HOSTNAME_RX = QRegExp( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
-    const int USERNAME_MAX_LENGTH = 31;
-    const int HOSTNAME_MIN_LENGTH = 2;
-    const int HOSTNAME_MAX_LENGTH = 63;
-
     bool m_readyFullName;
     bool m_readyUsername;
     bool m_customUsername;

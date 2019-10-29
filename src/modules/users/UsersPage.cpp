@@ -45,6 +45,12 @@
 #include <QRegExp>
 #include <QRegExpValidator>
 
+static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
+static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
+static constexpr const int USERNAME_MAX_LENGTH = 31;
+static constexpr const int HOSTNAME_MIN_LENGTH = 2;
+static constexpr const int HOSTNAME_MAX_LENGTH = 63;
+
 /** Add an error message and pixmap to a label. */
 static inline void
 labelError( QLabel* pix, QLabel* label, const QString& message )
@@ -299,8 +305,7 @@ void
 UsersPage::validateUsernameText( const QString& textRef )
 {
     QString text( textRef );
-    QRegExp rx( USERNAME_RX );
-    QRegExpValidator val( rx );
+    QRegExpValidator val( USERNAME_RX );
     int pos = -1;
 
     if ( text.isEmpty() )
@@ -344,8 +349,7 @@ void
 UsersPage::validateHostnameText( const QString& textRef )
 {
     QString text = textRef;
-    QRegExp rx( HOSTNAME_RX );
-    QRegExpValidator val( rx );
+    QRegExpValidator val( HOSTNAME_RX );
     int pos = -1;
 
     if ( text.isEmpty() )
