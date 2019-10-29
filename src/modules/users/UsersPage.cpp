@@ -88,7 +88,6 @@ UsersPage::UsersPage( QWidget* parent )
     } );
     connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
         ui->labelChooseRootPassword->setVisible( !checked );
-        ui->labelExtraRootPassword->setVisible( !checked );
         ui->labelRootPassword->setVisible( !checked );
         ui->labelRootPasswordError->setVisible( !checked );
         ui->textBoxRootPassword->setVisible( !checked );
@@ -105,24 +104,21 @@ UsersPage::UsersPage( QWidget* parent )
     
     setPasswordCheckboxVisible( false );
 
-    // Don't expand the explanations to "stupid wide", but keep them vaguely as-wide-as
-    // the things they are explaining.
-    int boxWidth
-        = qMax( qMax( ui->textBoxUsername->width(), ui->textBoxHostname->width() ), ui->textBoxUserPassword->width() );
-    ui->username_extra_label_2->setMaximumWidth( 3 * boxWidth );
-    ui->hostname_extra_label_2->setMaximumWidth( 3 * boxWidth );
-    ui->password_extra_label_3->setMaximumWidth( 3 * boxWidth );
-
     CALAMARES_RETRANSLATE(
-        ui->retranslateUi( this ); if ( Calamares::Settings::instance()->isSetupMode() ) {
-            ui->username_extra_label_2->setText( tr( "<small>If more than one person will "
+        ui->retranslateUi( this ); 
+        if ( Calamares::Settings::instance()->isSetupMode() ) 
+        {
+            ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
                                                      "use this computer, you can create multiple "
                                                      "accounts after setup.</small>" ) );
-        } else {
-            ui->username_extra_label_2->setText( tr( "<small>If more than one person will "
+        } 
+        else 
+        {
+            ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
                                                      "use this computer, you can create multiple "
                                                      "accounts after installation.</small>" ) );
-        } )
+        } 
+    )
 }
 
 
