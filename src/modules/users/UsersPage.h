@@ -29,6 +29,8 @@
 
 #include <QWidget>
 
+class QLabel;
+
 namespace Ui
 {
 class Page_UserSetup;
@@ -75,6 +77,14 @@ signals:
     void checkReady( bool );
 
 private:
+    /** @brief Is the password acceptable?
+     *
+     * Checks the two copies of the password and places error messages in the
+     * given QLabels. Returns true (and clears the error messages) if the
+     * password is acceptable.
+     */
+    bool checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message );
+
     Ui::Page_UserSetup* ui;
 
     PasswordCheckList m_passwordChecks;

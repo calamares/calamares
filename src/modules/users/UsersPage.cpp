@@ -393,23 +393,19 @@ UsersPage::validateHostnameText( const QString& textRef )
     emit checkReady( isReady() );
 }
 
-void
-UsersPage::onPasswordTextChanged( const QString& )
+bool
+UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message )
 {
-    QString pw1 = ui->textBoxUserPassword->text();
-    QString pw2 = ui->textBoxUserVerifiedPassword->text();
-    m_readyPassword = true;
-
     if ( pw1.isEmpty() && pw2.isEmpty() )
     {
-        ui->labelUserPasswordError->clear();
-        ui->labelUserPassword->clear();
-        m_readyPassword = false;
+        badge->clear();
+        message->clear();
+        return false;
     }
     else if ( pw1 != pw2 )
     {
-        labelError( ui->labelUserPassword, ui->labelUserPasswordError, tr( "Your passwords do not match!" ) );
-        m_readyPassword = false;
+        labelError( badge, message, tr( "Your passwords do not match!" ) );
+        return false;
     }
     else
     {
@@ -421,18 +417,24 @@ UsersPage::onPasswordTextChanged( const QString& )
 
                 if ( !s.isEmpty() )
                 {
-                    labelError( ui->labelUserPassword, ui->labelUserPasswordError, s );
-                    m_readyPassword = false;
-                    break;
+                    labelError( badge, message, s );
+                    return false;
                 }
             }
         }
 
-        if ( m_readyPassword )
-        {
-            labelOk( ui->labelUserPassword, ui->labelUserPasswordError );
-        }
+        labelOk( badge, message );
+        return true;
     }
+}
+
+void
+UsersPage::onPasswordTextChanged( const QString& )
+{
+    m_readyPassword = checkPasswordAcceptance( ui->textBoxUserPassword->text(),
+                                               ui->textBoxUserVerifiedPassword->text(),
+                                               ui->labelUserPassword,
+                                               ui->labelUserPasswordError );
 
     emit checkReady( isReady() );
 }
@@ -440,44 +442,10 @@ UsersPage::onPasswordTextChanged( const QString& )
 void
 UsersPage::onRootPasswordTextChanged( const QString& )
 {
-    QString pw1 = ui->textBoxRootPassword->text();
-    QString pw2 = ui->textBoxVerifiedRootPassword->text();
-    m_readyRootPassword = true;
-
-    if ( pw1.isEmpty() && pw2.isEmpty() )
-    {
-        ui->labelRootPasswordError->clear();
-        ui->labelRootPassword->clear();
-        m_readyRootPassword = false;
-    }
-    else if ( pw1 != pw2 )
-    {
-        labelError( ui->labelRootPassword, ui->labelRootPasswordError, tr( "Your passwords do not match!" ) );
-        m_readyRootPassword = false;
-    }
-    else
-    {
-        if ( ui->checkBoxValidatePassword->isChecked() )
-        {
-            for ( auto pc : m_passwordChecks )
-            {
-                QString s = pc.filter( pw1 );
-
-                if ( !s.isEmpty() )
-                {
-                    labelError( ui->labelRootPassword, ui->labelRootPasswordError, s );
-                    m_readyRootPassword = false;
-                    break;
-                }
-            }
-        }
-
-        if ( m_readyRootPassword )
-        {
-            labelOk( ui->labelRootPassword, ui->labelRootPasswordError );
-        }
-    }
-
+    m_readyRootPassword = checkPasswordAcceptance( ui->textBoxRootPassword->text(),
+                                                   ui->textBoxVerifiedRootPassword->text(),
+                                                   ui->labelRootPassword,
+                                                   ui->labelRootPasswordError );
     emit checkReady( isReady() );
 }
 
