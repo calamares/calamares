@@ -322,18 +322,16 @@ UsersPage::validateUsernameText( const QString& textRef )
     }
     else if ( val_start.validate( text, pos ) == QValidator::Invalid )
     {
-        labelError(
-            ui->labelUsername,
-            ui->labelUsernameError,
-            tr( "Your username must start with a lowercase letter or underscore." ) );
+        labelError( ui->labelUsername,
+                    ui->labelUsernameError,
+                    tr( "Your username must start with a lowercase letter or underscore." ) );
         m_readyUsername = false;
     }
     else if ( val_whole.validate( text, pos ) == QValidator::Invalid )
     {
-        labelError(
-            ui->labelUsername,
-            ui->labelUsernameError,
-            tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
+        labelError( ui->labelUsername,
+                    ui->labelUsernameError,
+                    tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
         m_readyUsername = false;
     }
     else
