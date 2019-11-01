@@ -27,8 +27,8 @@
 #include "ui_page_usersetup.h"
 
 #include "CreateUserJob.h"
-#include "SetPasswordJob.h"
 #include "SetHostNameJob.h"
+#include "SetPasswordJob.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -45,12 +45,28 @@
 #include <QRegExp>
 #include <QRegExpValidator>
 
+static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
+static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
+static constexpr const int USERNAME_MAX_LENGTH = 31;
+static constexpr const int HOSTNAME_MIN_LENGTH = 2;
+static constexpr const int HOSTNAME_MAX_LENGTH = 63;
+
+/** @brief How bad is the error for labelError() ? */
+enum class Badness
+{
+    Fatal,
+    Warning
+};
+
 /** Add an error message and pixmap to a label. */
 static inline void
-labelError( QLabel* pix, QLabel* label, const QString& message )
+labelError( QLabel* pix, QLabel* label, const QString& message, Badness bad = Badness::Fatal )
 {
     label->setText( message );
-    pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No, CalamaresUtils::Original, label->size() ) );
+    pix->setPixmap( CalamaresUtils::defaultPixmap( ( bad == Badness::Fatal ) ? CalamaresUtils::StatusError
+                                                                             : CalamaresUtils::StatusWarning,
+                                                   CalamaresUtils::Original,
+                                                   label->size() ) );
 }
 
 /** Clear error, indicate OK on a label. */
@@ -74,25 +90,20 @@ UsersPage::UsersPage( QWidget* parent )
     ui->setupUi( this );
 
     // Connect signals and slots
-    connect( ui->textBoxFullName, &QLineEdit::textEdited,
-             this, &UsersPage::onFullNameTextEdited );
-    connect( ui->textBoxUsername, &QLineEdit::textEdited,
-             this, &UsersPage::onUsernameTextEdited );
-    connect( ui->textBoxHostname, &QLineEdit::textEdited,
-             this, &UsersPage::onHostnameTextEdited );
-    connect( ui->textBoxUserPassword, &QLineEdit::textChanged,
-             this, &UsersPage::onPasswordTextChanged );
-    connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged,
-             this, &UsersPage::onPasswordTextChanged );
-    connect( ui->textBoxRootPassword, &QLineEdit::textChanged,
-             this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged,
-             this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged,
-             this, [this]( int checked )
-    {
+    connect( ui->textBoxFullName, &QLineEdit::textEdited, this, &UsersPage::onFullNameTextEdited );
+    connect( ui->textBoxUsername, &QLineEdit::textEdited, this, &UsersPage::onUsernameTextEdited );
+    connect( ui->textBoxHostname, &QLineEdit::textEdited, this, &UsersPage::onHostnameTextEdited );
+    connect( ui->textBoxUserPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
+    connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
+    connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
+    connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
+    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+        onPasswordTextChanged( ui->textBoxUserPassword->text() );
+        onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
+        checkReady( isReady() );
+    } );
+    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
         ui->labelChooseRootPassword->setVisible( !checked );
-        ui->labelExtraRootPassword->setVisible( !checked );
         ui->labelRootPassword->setVisible( !checked );
         ui->labelRootPasswordError->setVisible( !checked );
         ui->textBoxRootPassword->setVisible( !checked );
@@ -105,47 +116,45 @@ UsersPage::UsersPage( QWidget* parent )
 
     setWriteRootPassword( true );
     ui->checkBoxReusePassword->setChecked( true );
+    ui->checkBoxValidatePassword->setChecked( true );
 
-    // Don't expand the explanations to "stupid wide", but keep them vaguely as-wide-as
-    // the things they are explaining.
-    int boxWidth = qMax( qMax( ui->textBoxUsername->width(), ui->textBoxHostname->width() ), ui->textBoxUserPassword->width() );
-    ui->username_extra_label_2->setMaximumWidth( 3 * boxWidth );
-    ui->hostname_extra_label_2->setMaximumWidth( 3 * boxWidth );
-    ui->password_extra_label_3->setMaximumWidth( 3 * boxWidth );
+    setPasswordCheckboxVisible( false );
 
-    CALAMARES_RETRANSLATE(
-        ui->retranslateUi( this );
-        if ( Calamares::Settings::instance()->isSetupMode() )
-        {
-            ui->username_extra_label_2->setText( tr( "<small>If more than one person will "
-                                                     "use this computer, you can create multiple "
-                                                     "accounts after setup.</small>" ) );
-        }
-        else
-        {
-            ui->username_extra_label_2->setText( tr( "<small>If more than one person will "
-                                                     "use this computer, you can create multiple "
-                                                     "accounts after installation.</small>" ) );
-        }
-    )
+    CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate );
 }
-
 
 UsersPage::~UsersPage()
 {
     delete ui;
 }
 
+void
+UsersPage::retranslate()
+{
+    ui->retranslateUi( this );
+    if ( Calamares::Settings::instance()->isSetupMode() )
+    {
+        ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
+                                             "use this computer, you can create multiple "
+                                             "accounts after setup.</small>" ) );
+    }
+    else
+    {
+        ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
+                                             "use this computer, you can create multiple "
+                                             "accounts after installation.</small>" ) );
+    }
+}
+
 
 bool
 UsersPage::isReady()
 {
-    bool readyFields = m_readyFullName &&
-                       m_readyHostname &&
-                       m_readyPassword &&
-                       m_readyUsername;
+    bool readyFields = m_readyFullName && m_readyHostname && m_readyPassword && m_readyUsername;
     if ( !m_writeRootPassword || ui->checkBoxReusePassword->isChecked() )
+    {
         return readyFields;
+    }
 
     return readyFields && m_readyRootPassword;
 }
@@ -156,38 +165,40 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 {
     QList< Calamares::job_ptr > list;
     if ( !isReady() )
+    {
         return list;
+    }
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
     Calamares::Job* j;
     j = new CreateUserJob( ui->textBoxUsername->text(),
-                           ui->textBoxFullName->text().isEmpty() ?
-                               ui->textBoxUsername->text() :
-                               ui->textBoxFullName->text(),
+                           ui->textBoxFullName->text().isEmpty() ? ui->textBoxUsername->text()
+                                                                 : ui->textBoxFullName->text(),
                            ui->checkBoxAutoLogin->isChecked(),
                            defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
 
-    j = new SetPasswordJob( ui->textBoxUsername->text(),
-                            ui->textBoxUserPassword->text() );
+    j = new SetPasswordJob( ui->textBoxUsername->text(), ui->textBoxUserPassword->text() );
     list.append( Calamares::job_ptr( j ) );
 
     if ( m_writeRootPassword )
     {
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
         if ( ui->checkBoxReusePassword->isChecked() )
-            j = new SetPasswordJob( "root",
-                                    ui->textBoxUserPassword->text() );
+        {
+            j = new SetPasswordJob( "root", ui->textBoxUserPassword->text() );
+        }
         else
-            j = new SetPasswordJob( "root",
-                                    ui->textBoxRootPassword->text() );
+        {
+            j = new SetPasswordJob( "root", ui->textBoxRootPassword->text() );
+        }
         list.append( Calamares::job_ptr( j ) );
     }
     else
     {
         j = new SetPasswordJob( "root",
-                                "" ); //explicitly disable root password
+                                "" );  //explicitly disable root password
         list.append( Calamares::job_ptr( j ) );
     }
 
@@ -196,7 +207,9 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 
     gs->insert( "hostname", ui->textBoxHostname->text() );
     if ( ui->checkBoxAutoLogin->isChecked() )
+    {
         gs->insert( "autologinUser", ui->textBoxUsername->text() );
+    }
 
     gs->insert( "username", ui->textBoxUsername->text() );
     gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
@@ -228,16 +241,19 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
         ui->labelFullNameError->clear();
         ui->labelFullName->clear();
         if ( !m_customUsername )
+        {
             ui->textBoxUsername->clear();
+        }
         if ( !m_customHostname )
+        {
             ui->textBoxHostname->clear();
+        }
         m_readyFullName = false;
     }
     else
     {
-        ui->labelFullName->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelFullName->size() ) );
+        ui->labelFullName->setPixmap(
+            CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, ui->labelFullName->size() ) );
         m_readyFullName = true;
         fillSuggestions();
     }
@@ -250,8 +266,7 @@ UsersPage::fillSuggestions()
 {
     QString fullName = ui->textBoxFullName->text();
     QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
-    QString cleanName = CalamaresUtils::removeDiacritics( fullName )
-                        .toLower().replace( rx, " " ).simplified();
+    QString cleanName = CalamaresUtils::removeDiacritics( fullName ).toLower().replace( rx, " " ).simplified();
     QStringList cleanParts = cleanName.split( ' ' );
 
     if ( !m_customUsername )
@@ -262,7 +277,9 @@ UsersPage::fillSuggestions()
             for ( int i = 1; i < cleanParts.length(); ++i )
             {
                 if ( !cleanParts.value( i ).isEmpty() )
+                {
                     usernameSuggestion.append( cleanParts.value( i ).at( 0 ) );
+                }
             }
             if ( USERNAME_RX.indexIn( usernameSuggestion ) != -1 )
             {
@@ -301,8 +318,8 @@ void
 UsersPage::validateUsernameText( const QString& textRef )
 {
     QString text( textRef );
-    QRegExp rx( USERNAME_RX );
-    QRegExpValidator val( rx );
+    QRegExpValidator val_whole( USERNAME_RX );
+    QRegExpValidator val_start( QRegExp( "[a-z_].*" ) );  // anchors are implicit in QRegExpValidator
     int pos = -1;
 
     if ( text.isEmpty() )
@@ -313,14 +330,21 @@ UsersPage::validateUsernameText( const QString& textRef )
     }
     else if ( text.length() > USERNAME_MAX_LENGTH )
     {
-        labelError( ui->labelUsername, ui->labelUsernameError,
-                    tr( "Your username is too long." ) );
+        labelError( ui->labelUsername, ui->labelUsernameError, tr( "Your username is too long." ) );
         m_readyUsername = false;
     }
-    else if ( val.validate( text, pos ) == QValidator::Invalid )
+    else if ( val_start.validate( text, pos ) == QValidator::Invalid )
     {
-        labelError( ui->labelUsername, ui->labelUsernameError,
-                    tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
+        labelError( ui->labelUsername,
+                    ui->labelUsernameError,
+                    tr( "Your username must start with a lowercase letter or underscore." ) );
+        m_readyUsername = false;
+    }
+    else if ( val_whole.validate( text, pos ) == QValidator::Invalid )
+    {
+        labelError( ui->labelUsername,
+                    ui->labelUsernameError,
+                    tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
         m_readyUsername = false;
     }
     else
@@ -345,32 +369,30 @@ void
 UsersPage::validateHostnameText( const QString& textRef )
 {
     QString text = textRef;
-    QRegExp rx( HOSTNAME_RX );
-    QRegExpValidator val( rx );
+    QRegExpValidator val( HOSTNAME_RX );
     int pos = -1;
 
     if ( text.isEmpty() )
     {
         ui->labelHostnameError->clear();
         ui->labelHostname->clear();
-        m_readyHostname= false;
+        m_readyHostname = false;
     }
     else if ( text.length() < HOSTNAME_MIN_LENGTH )
     {
-        labelError( ui->labelHostname, ui->labelHostnameError,
-                    tr( "Your hostname is too short." ) );
+        labelError( ui->labelHostname, ui->labelHostnameError, tr( "Your hostname is too short." ) );
         m_readyHostname = false;
     }
     else if ( text.length() > HOSTNAME_MAX_LENGTH )
     {
-        labelError( ui->labelHostname, ui->labelHostnameError,
-                    tr( "Your hostname is too long." ) );
+        labelError( ui->labelHostname, ui->labelHostnameError, tr( "Your hostname is too long." ) );
         m_readyHostname = false;
     }
     else if ( val.validate( text, pos ) == QValidator::Invalid )
     {
-        labelError( ui->labelHostname, ui->labelHostnameError,
-                    tr( "Your hostname contains invalid characters. Only letters, numbers and dashes are allowed." ) );
+        labelError( ui->labelHostname,
+                    ui->labelHostnameError,
+                    tr( "Only letters, numbers, underscore and hyphen are allowed." ) );
         m_readyHostname = false;
     }
     else
@@ -382,46 +404,59 @@ UsersPage::validateHostnameText( const QString& textRef )
     emit checkReady( isReady() );
 }
 
-void
-UsersPage::onPasswordTextChanged( const QString& )
+bool
+UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message )
 {
-    QString pw1 = ui->textBoxUserPassword->text();
-    QString pw2 = ui->textBoxUserVerifiedPassword->text();
-
-    // TODO: 3.3: remove empty-check and leave it to passwordRequirements
     if ( pw1.isEmpty() && pw2.isEmpty() )
     {
-        ui->labelUserPasswordError->clear();
-        ui->labelUserPassword->clear();
-        m_readyPassword = false;
+        // Not exactly labelOk() because we also don't want a checkmark OK
+        badge->clear();
+        message->clear();
+        return false;
     }
     else if ( pw1 != pw2 )
     {
-        labelError( ui->labelUserPassword, ui->labelUserPasswordError,
-                    tr( "Your passwords do not match!" ) );
-        m_readyPassword = false;
+        labelError( badge, message, tr( "Your passwords do not match!" ) );
+        return false;
     }
     else
     {
-        bool ok = true;
+        bool failureIsFatal = ui->checkBoxValidatePassword->isChecked();
+        bool failureFound = false;
+
         for ( auto pc : m_passwordChecks )
         {
             QString s = pc.filter( pw1 );
+
             if ( !s.isEmpty() )
             {
-                labelError( ui->labelUserPassword, ui->labelUserPasswordError, s );
-                ok = false;
-                m_readyPassword = false;
-                break;
+                labelError( badge, message, s, failureIsFatal ? Badness::Fatal : Badness::Warning );
+                failureFound = true;
+                if ( failureIsFatal )
+                {
+                    return false;
+                }
             }
         }
 
-        if ( ok )
+        if ( !failureFound )
         {
-            labelOk( ui->labelUserPassword, ui->labelUserPasswordError );
-            m_readyPassword = true;
+            labelOk( badge, message );
         }
+
+        // Here, if failureFound is true then we've found **warnings**,
+        // which is ok to continue but the user should know.
+        return true;
     }
+}
+
+void
+UsersPage::onPasswordTextChanged( const QString& )
+{
+    m_readyPassword = checkPasswordAcceptance( ui->textBoxUserPassword->text(),
+                                               ui->textBoxUserVerifiedPassword->text(),
+                                               ui->labelUserPassword,
+                                               ui->labelUserPasswordError );
 
     emit checkReady( isReady() );
 }
@@ -429,47 +464,26 @@ UsersPage::onPasswordTextChanged( const QString& )
 void
 UsersPage::onRootPasswordTextChanged( const QString& )
 {
-    QString pw1 = ui->textBoxRootPassword->text();
-    QString pw2 = ui->textBoxVerifiedRootPassword->text();
-
-    // TODO: 3.3: remove empty-check and leave it to passwordRequirements
-    if ( pw1.isEmpty() && pw2.isEmpty() )
-    {
-        ui->labelRootPasswordError->clear();
-        ui->labelRootPassword->clear();
-        m_readyRootPassword = false;
-    }
-    else if ( pw1 != pw2 )
-    {
-        labelError( ui->labelRootPassword, ui->labelRootPasswordError,
-                    tr( "Your passwords do not match!" ) );
-        m_readyRootPassword = false;
-    }
-    else
-    {
-        bool ok = true;
-        for ( auto pc : m_passwordChecks )
-        {
-            QString s = pc.filter( pw1 );
-            if ( !s.isEmpty() )
-            {
-                labelError( ui->labelRootPassword, ui->labelRootPasswordError, s );
-                ok = false;
-                m_readyRootPassword = false;
-                break;
-            }
-        }
-
-        if ( ok )
-        {
-            labelOk( ui->labelRootPassword, ui->labelRootPasswordError );
-            m_readyRootPassword = true;
-        }
-    }
-
+    m_readyRootPassword = checkPasswordAcceptance( ui->textBoxRootPassword->text(),
+                                                   ui->textBoxVerifiedRootPassword->text(),
+                                                   ui->labelRootPassword,
+                                                   ui->labelRootPasswordError );
     emit checkReady( isReady() );
 }
 
+
+void
+UsersPage::setPasswordCheckboxVisible( bool visible )
+{
+    ui->checkBoxValidatePassword->setVisible( visible );
+}
+
+void
+UsersPage::setValidatePasswordDefault( bool checked )
+{
+    ui->checkBoxValidatePassword->setChecked( checked );
+    emit checkReady( isReady() );
+}
 
 void
 UsersPage::setAutologinDefault( bool checked )
@@ -501,7 +515,9 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
     {
         add_check_libpwquality( m_passwordChecks, value );
     }
-#endif
+#endif  // CHECK_PWQUALITY
     else
+    {
         cWarning() << "Unknown password-check key" << key;
+    }
 }

@@ -75,26 +75,6 @@ setButtonIcon( QPushButton* button, const QString& name )
     }
 }
 
-/** @brief Creates a button with a given icon-name
- *
- * Creates a new button as child of @p parent.
- * Sets the named icon, if it exists, onto the button.
- * Returns the new button.
- *
- * There is a QPushButton constructor that takes an icon,
- * but it also needs a text and we've got translations
- * to worry about as well as state.
- */
-static inline QPushButton*
-makeButton( QWidget* parent, const QString& name, const QString& label )
-{
-    QPushButton* button = new QPushButton( parent );
-    button->setObjectName( name );
-    button->setText( label );
-    setButtonIcon( button, name );
-    return button;
-}
-
 ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
     , m_currentStep( 0 )
@@ -110,9 +90,12 @@ ViewManager::ViewManager( QObject* parent )
     mainLayout->addWidget( m_stack );
 
     // Create buttons and sets an initial icon; the icons may change
-    m_back = makeButton( m_widget, QStringLiteral( "go-previous" ), tr( "&Back" ) );
-    m_next = makeButton( m_widget, QStringLiteral( "go-next" ), tr( "&Next" ) );
-    m_quit = makeButton( m_widget, QStringLiteral( "dialog-cancel" ), tr( "&Cancel" ) );
+    m_back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), m_widget );
+    m_back->setObjectName( "view-button-back" );
+    m_next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), m_widget );
+    m_next->setObjectName( "view-button-next" );
+    m_quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), m_widget );
+    m_quit->setObjectName( "view-button-cancel" );
 
     CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels )
 

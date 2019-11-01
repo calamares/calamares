@@ -47,6 +47,9 @@
          <height>0</height>
         </size>
        </property>
+       <property name="placeholderText">
+        <string>Your Full Name</string>
+       </property>
       </widget>
      </item>
      <item>
@@ -137,6 +140,9 @@
          <height>0</height>
         </size>
        </property>
+       <property name="placeholderText">
+        <string>login</string>
+       </property>
       </widget>
      </item>
      <item>
@@ -192,19 +198,6 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="username_extra_label_2">
-     <property name="styleSheet">
-      <string notr="true">font-weight: normal</string>
-     </property>
-     <property name="text">
-      <string notr="true">&lt;Username extra label 2 text&gt;</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <spacer name="verticalSpacer_4">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -245,6 +238,12 @@
          <width>200</width>
          <height>0</height>
         </size>
+       </property>
+       <property name="toolTip">
+        <string>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</string>
+       </property>
+       <property name="placeholderText">
+        <string>Computer Name</string>
        </property>
       </widget>
      </item>
@@ -301,19 +300,6 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="hostname_extra_label_2">
-     <property name="styleSheet">
-      <string notr="true">font-weight: normal</string>
-     </property>
-     <property name="text">
-      <string>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</string>
-     </property>
-     <property name="wordWrap">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <spacer name="verticalSpacer_3">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -355,8 +341,14 @@
          <height>0</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</string>
+       </property>
        <property name="echoMode">
         <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Password</string>
        </property>
       </widget>
      </item>
@@ -374,8 +366,14 @@
          <height>0</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</string>
+       </property>
        <property name="echoMode">
         <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Repeat Password</string>
        </property>
       </widget>
      </item>
@@ -432,19 +430,6 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="password_extra_label_3">
-     <property name="styleSheet">
-      <string notr="true">font-weight: normal</string>
-     </property>
-     <property name="text">
-      <string>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <spacer name="verticalSpacer_5">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -459,6 +444,16 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="checkBoxValidatePassword">
+     <property name="toolTip">
+      <string>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</string>
+     </property>
+     <property name="text">
+      <string>Require strong passwords.</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QCheckBox" name="checkBoxAutoLogin">
@@ -516,8 +511,14 @@
          <height>0</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</string>
+       </property>
        <property name="echoMode">
         <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Password</string>
        </property>
       </widget>
      </item>
@@ -535,8 +536,14 @@
          <height>0</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</string>
+       </property>
        <property name="echoMode">
         <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Repeat Password</string>
        </property>
       </widget>
      </item>
@@ -591,19 +598,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QLabel" name="labelExtraRootPassword">
-     <property name="styleSheet">
-      <string notr="true">font-weight: normal</string>
-     </property>
-     <property name="text">
-      <string>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
    </item>
    <item>
     <spacer name="verticalSpacer_7">

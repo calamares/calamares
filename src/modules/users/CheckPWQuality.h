@@ -35,8 +35,8 @@ class PasswordCheck
 {
 public:
     /** Return true if the string is acceptable. */
-    using AcceptFunc = std::function<bool( const QString& )>;
-    using MessageFunc = std::function<QString()>;
+    using AcceptFunc = std::function< bool( const QString& ) >;
+    using MessageFunc = std::function< QString() >;
 
     /** Generate a @p message if @p filter returns true */
     PasswordCheck( MessageFunc message, AcceptFunc filter );
@@ -50,17 +50,14 @@ public:
         *  according to this filter. Returns a message describing
         *  what is wrong if not.
         */
-    QString filter( const QString& s ) const
-    {
-        return m_accept( s ) ? QString() : m_message();
-    }
+    QString filter( const QString& s ) const { return m_accept( s ) ? QString() : m_message(); }
 
 private:
     MessageFunc m_message;
     AcceptFunc m_accept;
-} ;
+};
 
-using PasswordCheckList = QVector<PasswordCheck>;
+using PasswordCheckList = QVector< PasswordCheck >;
 
 /* Each of these functions adds a check (if possible) to the list
  * of checks; they use the configuration value(s) from the
@@ -68,16 +65,14 @@ using PasswordCheckList = QVector<PasswordCheck>;
  * may skip adding a check, and do nothing (it should log
  * an error, though).
  */
-#define _xDEFINE_CHECK_FUNC(x) \
-    add_check_##x( PasswordCheckList& checks, const QVariant& value )
-#define DEFINE_CHECK_FUNC(x) void _xDEFINE_CHECK_FUNC(x)
-#define DECLARE_CHECK_FUNC(x) void _xDEFINE_CHECK_FUNC(x);
+#define _xDEFINE_CHECK_FUNC( x ) add_check_##x( PasswordCheckList& checks, const QVariant& value )
+#define DEFINE_CHECK_FUNC( x ) void _xDEFINE_CHECK_FUNC( x )
+#define DECLARE_CHECK_FUNC( x ) void _xDEFINE_CHECK_FUNC( x );
 
-DECLARE_CHECK_FUNC(minLength)
-DECLARE_CHECK_FUNC(maxLength)
+DECLARE_CHECK_FUNC( minLength )
+DECLARE_CHECK_FUNC( maxLength )
 #ifdef HAVE_LIBPWQUALITY
-DECLARE_CHECK_FUNC(libpwquality)
+DECLARE_CHECK_FUNC( libpwquality )
 #endif
 
 #endif
-

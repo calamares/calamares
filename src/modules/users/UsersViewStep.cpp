@@ -29,22 +29,23 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin<UsersViewStep>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin< UsersViewStep >(); )
 
 UsersViewStep::UsersViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new UsersPage() )
 {
     emit nextStatusChanged( true );
-    connect( m_widget, &UsersPage::checkReady,
-             this, &UsersViewStep::nextStatusChanged );
+    connect( m_widget, &UsersPage::checkReady, this, &UsersViewStep::nextStatusChanged );
 }
 
 
 UsersViewStep::~UsersViewStep()
 {
     if ( m_widget && m_widget->parent() == nullptr )
+    {
         m_widget->deleteLater();
+    }
 }
 
 
@@ -116,68 +117,71 @@ UsersViewStep::onLeave()
 void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "defaultGroups" ) &&
-         configurationMap.value( "defaultGroups" ).type() == QVariant::List )
+    if ( configurationMap.contains( "defaultGroups" )
+         && configurationMap.value( "defaultGroups" ).type() == QVariant::List )
     {
         m_defaultGroups = configurationMap.value( "defaultGroups" ).toStringList();
     }
     else
     {
         cWarning() << "Using fallback groups. Please check defaultGroups in users.conf";
-        m_defaultGroups = QStringList{ "lp", "video", "network", "storage", "wheel", "audio" };
+        m_defaultGroups = QStringList { "lp", "video", "network", "storage", "wheel", "audio" };
     }
 
-    if ( configurationMap.contains( "autologinGroup" ) &&
-         configurationMap.value( "autologinGroup" ).type() == QVariant::String )
+    if ( configurationMap.contains( "autologinGroup" )
+         && configurationMap.value( "autologinGroup" ).type() == QVariant::String )
     {
-        Calamares::JobQueue::instance()->globalStorage()->insert( "autologinGroup",
-                        configurationMap.value( "autologinGroup" ).toString() );
+        Calamares::JobQueue::instance()->globalStorage()->insert(
+            "autologinGroup", configurationMap.value( "autologinGroup" ).toString() );
     }
 
-    if ( configurationMap.contains( "sudoersGroup" ) &&
-         configurationMap.value( "sudoersGroup" ).type() == QVariant::String )
+    if ( configurationMap.contains( "sudoersGroup" )
+         && configurationMap.value( "sudoersGroup" ).type() == QVariant::String )
     {
         Calamares::JobQueue::instance()->globalStorage()->insert( "sudoersGroup",
-                        configurationMap.value( "sudoersGroup" ).toString() );
+                                                                  configurationMap.value( "sudoersGroup" ).toString() );
     }
 
-    if ( configurationMap.contains( "setRootPassword" ) &&
-         configurationMap.value( "setRootPassword" ).type() == QVariant::Bool )
+    if ( configurationMap.contains( "setRootPassword" )
+         && configurationMap.value( "setRootPassword" ).type() == QVariant::Bool )
     {
-        Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword",
-                        configurationMap.value( "setRootPassword" ).toBool() );
+        Calamares::JobQueue::instance()->globalStorage()->insert(
+            "setRootPassword", configurationMap.value( "setRootPassword" ).toBool() );
         m_widget->setWriteRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
     }
 
-    if ( configurationMap.contains( "doAutologin" ) &&
-         configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
+    if ( configurationMap.contains( "doAutologin" )
+         && configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
     {
         m_widget->setAutologinDefault( configurationMap.value( "doAutologin" ).toBool() );
     }
 
-    if ( configurationMap.contains( "doReusePassword" ) &&
-         configurationMap.value( "doReusePassword" ).type() == QVariant::Bool )
+    if ( configurationMap.contains( "doReusePassword" )
+         && configurationMap.value( "doReusePassword" ).type() == QVariant::Bool )
     {
         m_widget->setReusePasswordDefault( configurationMap.value( "doReusePassword" ).toBool() );
     }
 
-    if ( configurationMap.contains( "passwordRequirements" ) &&
-        configurationMap.value( "passwordRequirements" ).type() == QVariant::Map )
+    if ( configurationMap.contains( "passwordRequirements" )
+         && configurationMap.value( "passwordRequirements" ).type() == QVariant::Map )
     {
         auto pr_checks( configurationMap.value( "passwordRequirements" ).toMap() );
 
-        for (decltype(pr_checks)::const_iterator i = pr_checks.constBegin();
-            i != pr_checks.constEnd(); ++i)
+        for ( decltype( pr_checks )::const_iterator i = pr_checks.constBegin(); i != pr_checks.constEnd(); ++i )
         {
             m_widget->addPasswordCheck( i.key(), i.value() );
         }
     }
 
+    m_widget->setPasswordCheckboxVisible( CalamaresUtils::getBool( configurationMap, "allowWeakPasswords", false ) );
+    m_widget->setValidatePasswordDefault( !CalamaresUtils::getBool( configurationMap, "allowWeakPasswordsDefault", false) );
+
     QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
     if ( configurationMap.contains( "userShell" ) )
+    {
         shell = CalamaresUtils::getString( configurationMap, "userShell" );
-        // Now it might be explicitly set to empty, which is ok
+    }
+    // Now it might be explicitly set to empty, which is ok
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "userShell", shell );
 }
-

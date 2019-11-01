@@ -27,13 +27,12 @@ class SetPasswordJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    SetPasswordJob( const QString& userName,
-                    const QString& newPassword );
+    SetPasswordJob( const QString& userName, const QString& newPassword );
     QString prettyName() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
-    static QString make_salt(int length);
+    static QString make_salt( int length );
 
 private:
     QString m_userName;

@@ -19,10 +19,10 @@
 
 #include <CreateUserJob.h>
 
-#include "JobQueue.h"
 #include "GlobalStorage.h"
-#include "utils/Logger.h"
+#include "JobQueue.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Logger.h"
 
 #include <QDateTime>
 #include <QDir>
@@ -72,17 +72,20 @@ CreateUserJob::exec()
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QDir destDir( gs->value( "rootMountPoint" ).toString() );
 
-    if ( gs->contains( "sudoersGroup" ) &&
-         !gs->value( "sudoersGroup" ).toString().isEmpty() )
+    if ( gs->contains( "sudoersGroup" ) && !gs->value( "sudoersGroup" ).toString().isEmpty() )
     {
         QFileInfo sudoersFi( destDir.absoluteFilePath( "etc/sudoers.d/10-installer" ) );
 
         if ( !sudoersFi.absoluteDir().exists() )
+        {
             return Calamares::JobResult::error( tr( "Sudoers dir is not writable." ) );
+        }
 
         QFile sudoersFile( sudoersFi.absoluteFilePath() );
-        if (!sudoersFile.open( QIODevice::WriteOnly | QIODevice::Text ) )
+        if ( !sudoersFile.open( QIODevice::WriteOnly | QIODevice::Text ) )
+        {
             return Calamares::JobResult::error( tr( "Cannot create sudoers file for writing." ) );
+        }
 
         QString sudoersGroup = gs->value( "sudoersGroup" ).toString();
 
@@ -96,11 +99,12 @@ CreateUserJob::exec()
     QFileInfo groupsFi( destDir.absoluteFilePath( "etc/group" ) );
     QFile groupsFile( groupsFi.absoluteFilePath() );
     if ( !groupsFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
         return Calamares::JobResult::error( tr( "Cannot open groups file for reading." ) );
+    }
     QString groupsData = QString::fromLocal8Bit( groupsFile.readAll() );
     QStringList groupsLines = groupsData.split( '\n' );
-    for ( QStringList::iterator it = groupsLines.begin();
-          it != groupsLines.end(); ++it )
+    for ( QStringList::iterator it = groupsLines.begin(); it != groupsLines.end(); ++it )
     {
         int indexOfFirstToDrop = it->indexOf( ':' );
         it->truncate( indexOfFirstToDrop );
@@ -108,15 +112,13 @@ CreateUserJob::exec()
 
     foreach ( const QString& group, m_defaultGroups )
         if ( !groupsLines.contains( group ) )
-            CalamaresUtils::System::instance()->
-                    targetEnvCall( { "groupadd", group } );
+            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", group } );
 
     QString defaultGroups = m_defaultGroups.join( ',' );
     if ( m_autologin )
     {
         QString autologinGroup;
-        if ( gs->contains( "autologinGroup" ) &&
-                !gs->value( "autologinGroup" ).toString().isEmpty() )
+        if ( gs->contains( "autologinGroup" ) && !gs->value( "autologinGroup" ).toString().isEmpty() )
         {
             autologinGroup = gs->value( "autologinGroup" ).toString();
             CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", autologinGroup } );
@@ -131,26 +133,20 @@ CreateUserJob::exec()
         QDir existingHome( destDir.absolutePath() + shellFriendlyHome );
         if ( existingHome.exists() )
         {
-            QString backupDirName = "dotfiles_backup_" +
-                                    QDateTime::currentDateTime()
-                                        .toString( "yyyy-MM-dd_HH-mm-ss" );
+            QString backupDirName = "dotfiles_backup_" + QDateTime::currentDateTime().toString( "yyyy-MM-dd_HH-mm-ss" );
             existingHome.mkdir( backupDirName );
 
-            CalamaresUtils::System::instance()->
-                    targetEnvCall( { "sh",
-                                     "-c",
-                                     "mv -f " +
-                                        shellFriendlyHome + "/.* " +
-                                        shellFriendlyHome + "/" +
-                                        backupDirName
-                                   } );
+            CalamaresUtils::System::instance()->targetEnvCall(
+                { "sh", "-c", "mv -f " + shellFriendlyHome + "/.* " + shellFriendlyHome + "/" + backupDirName } );
         }
     }
 
-    QStringList useradd{ "useradd", "-m", "-U" };
+    QStringList useradd { "useradd", "-m", "-U" };
     QString shell = gs->value( "userShell" ).toString();
     if ( !shell.isEmpty() )
+    {
         useradd << "-s" << shell;
+    }
     useradd << "-c" << m_fullName;
     useradd << m_userName;
 
@@ -161,8 +157,8 @@ CreateUserJob::exec()
         return commandResult.explainProcess( useradd, std::chrono::seconds( 10 ) /* bogus timeout */ );
     }
 
-    commandResult = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "usermod", "-aG", defaultGroups, m_userName } );
+    commandResult
+        = CalamaresUtils::System::instance()->targetEnvCommand( { "usermod", "-aG", defaultGroups, m_userName } );
     if ( commandResult.getExitCode() )
     {
         cError() << "usermod failed" << commandResult.getExitCode();
@@ -171,8 +167,7 @@ CreateUserJob::exec()
 
     QString userGroup = QString( "%1:%2" ).arg( m_userName ).arg( m_userName );
     QString homeDir = QString( "/home/%1" ).arg( m_userName );
-    commandResult = CalamaresUtils::System::instance()->targetEnvCommand(
-        { "chown", "-R", userGroup, homeDir } );
+    commandResult = CalamaresUtils::System::instance()->targetEnvCommand( { "chown", "-R", userGroup, homeDir } );
     if ( commandResult.getExitCode() )
     {
         cError() << "chown failed" << commandResult.getExitCode();
