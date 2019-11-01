@@ -400,7 +400,6 @@ UsersPage::onPasswordTextChanged( const QString& )
     QString pw2 = ui->textBoxUserVerifiedPassword->text();
     m_readyPassword = true;
 
-    // TODO: 3.3: remove empty-check and leave it to passwordRequirements
     if ( pw1.isEmpty() && pw2.isEmpty() )
     {
         ui->labelUserPasswordError->clear();
@@ -445,7 +444,6 @@ UsersPage::onRootPasswordTextChanged( const QString& )
     QString pw2 = ui->textBoxVerifiedRootPassword->text();
     m_readyRootPassword = true;
 
-    // TODO: 3.3: remove empty-check and leave it to passwordRequirements
     if ( pw1.isEmpty() && pw2.isEmpty() )
     {
         ui->labelRootPasswordError->clear();
