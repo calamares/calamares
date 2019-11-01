@@ -6,13 +6,22 @@ website will have to do for older versions.
 # 3.2.16 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No other contributors this time around.
+ - Bill Auger
 
 ## Core ##
- - No changes to core functionality
+ - Some obscure build scenarios which would lead to bogus module-is-
+   misconfigured messages on startup have been resolved.
 
 ## Modules ##
- - No changes to module functionality
+ - The explanatory messages on the *users* page have moved to tooltips,
+   and placeholder text has been added to the fields. #1202
+ - The bad-password messages in the *users* page have been improved. #1261
+ - Password-checking in the *users* module has been substantially
+   changed. A new key *allowWeakPasswords* can be used to introduce
+   an additional checkbox to the page, which can then be used to
+   switch off strict password checking. (Thanks to Bill Auger)
+ - The icons used in password warnings on the *users* page have been
+   changed to the colorful status icons (rather than the thin red X).
 
 
 # 3.2.15 (2019-10-11) #
