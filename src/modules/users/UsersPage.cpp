@@ -51,12 +51,22 @@ static constexpr const int USERNAME_MAX_LENGTH = 31;
 static constexpr const int HOSTNAME_MIN_LENGTH = 2;
 static constexpr const int HOSTNAME_MAX_LENGTH = 63;
 
+/** @brief How bad is the error for labelError() ? */
+enum class Badness
+{
+    Fatal,
+    Warning
+};
+
 /** Add an error message and pixmap to a label. */
 static inline void
-labelError( QLabel* pix, QLabel* label, const QString& message )
+labelError( QLabel* pix, QLabel* label, const QString& message, Badness bad = Badness::Fatal )
 {
     label->setText( message );
-    pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No, CalamaresUtils::Original, label->size() ) );
+    pix->setPixmap( CalamaresUtils::defaultPixmap( ( bad == Badness::Fatal ) ? CalamaresUtils::StatusError
+                                                                             : CalamaresUtils::StatusWarning,
+                                                   CalamaresUtils::Original,
+                                                   label->size() ) );
 }
 
 /** Clear error, indicate OK on a label. */
@@ -399,6 +409,7 @@ UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLab
 {
     if ( pw1.isEmpty() && pw2.isEmpty() )
     {
+        // Not exactly labelOk() because we also don't want a checkmark OK
         badge->clear();
         message->clear();
         return false;
@@ -410,21 +421,31 @@ UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLab
     }
     else
     {
-        if ( ui->checkBoxValidatePassword->isChecked() )
-        {
-            for ( auto pc : m_passwordChecks )
-            {
-                QString s = pc.filter( pw1 );
+        bool failureIsFatal = ui->checkBoxValidatePassword->isChecked();
+        bool failureFound = false;
 
-                if ( !s.isEmpty() )
+        for ( auto pc : m_passwordChecks )
+        {
+            QString s = pc.filter( pw1 );
+
+            if ( !s.isEmpty() )
+            {
+                labelError( badge, message, s, failureIsFatal ? Badness::Fatal : Badness::Warning );
+                failureFound = true;
+                if ( failureIsFatal )
                 {
-                    labelError( badge, message, s );
                     return false;
                 }
             }
         }
 
-        labelOk( badge, message );
+        if ( !failureFound )
+        {
+            labelOk( badge, message );
+        }
+
+        // Here, if failureFound is true then we've found **warnings**,
+        // which is ok to continue but the user should know.
         return true;
     }
 }
