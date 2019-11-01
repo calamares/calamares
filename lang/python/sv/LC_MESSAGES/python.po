@@ -3,6 +3,9 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Jan-Olof Svensson, 2019
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -10,6 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-15 21:54+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: Jan-Olof Svensson, 2019\n"
 "Language-Team: Swedish (https://www.transifex.com/calamares/teams/20061/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -208,7 +212,7 @@ msgstr ""
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr ""
+msgstr "Installerar data."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -268,21 +272,21 @@ msgstr ""
 
 #: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
-msgstr ""
+msgstr "Installera paket."
 
 #: src/modules/packages/main.py:67
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Installerar ett paket."
+msgstr[1] "Installerar %(num)d paket."
 
 #: src/modules/packages/main.py:70
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tar bort ett paket."
+msgstr[1] "Tar bort %(num)d paket."
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
@@ -294,7 +298,7 @@ msgstr ""
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "Ställer hårdvaruklockan."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
@@ -318,7 +322,7 @@ msgstr ""
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "Skriver fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."

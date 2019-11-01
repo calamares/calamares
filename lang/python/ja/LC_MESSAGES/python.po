@@ -92,11 +92,11 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr "ファイルシステムをアンマウントする。"
+msgstr "ファイルシステムをアンマウント。"
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
-msgstr "ファイルシステムを埋める。"
+msgstr "ファイルシステムに書き込んでいます。"
 
 #: src/modules/unpackfs/main.py:160
 msgid "rsync failed with error code {}."
@@ -201,7 +201,7 @@ msgstr "ディスプレイマネージャの設定が不完全です"
 
 #: src/modules/initcpiocfg/main.py:36
 msgid "Configuring mkinitcpio."
-msgstr "mkinitcpioを設定中"
+msgstr "mkinitcpioを設定しています。"
 
 #: src/modules/initcpiocfg/main.py:192
 #: src/modules/luksopenswaphookcfg/main.py:100
@@ -213,7 +213,7 @@ msgstr " <pre>{!s}</pre> を使用するのにルートマウントポイント�
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr "暗号化したswapを設定中"
+msgstr "暗号化したswapを設定しています。"
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -274,7 +274,7 @@ msgstr "machine-id の生成"
 #: src/modules/packages/main.py:62
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "パッケージの処理中 (%(count)d / %(total)d)"
+msgstr "パッケージを処理しています (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
@@ -284,13 +284,13 @@ msgstr "パッケージのインストール"
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] " %(num)d パッケージのインストール中。"
+msgstr[0] " %(num)d パッケージをインストールしています。"
 
 #: src/modules/packages/main.py:70
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] " %(num)d パッケージの削除中。"
+msgstr[0] " %(num)d パッケージを削除しています。"
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
@@ -306,7 +306,7 @@ msgstr "ハードウェアクロックの設定"
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr "dracutとinitramfsを作成中"
+msgstr "dracutとinitramfsを作成しています。"
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
@@ -318,15 +318,15 @@ msgstr "停止コードは {} でした"
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr "initramfsを設定中"
+msgstr "initramfsを設定しています。"
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcryptサービスを設定中"
+msgstr "OpenRC dmcryptサービスを設定しています。"
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr "fstabを書き込み中"
+msgstr "fstabを書き込んでいます。"
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -338,8 +338,8 @@ msgstr "Dummy python step {}"
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr "ローカルを設定中"
+msgstr "ロケールを設定しています。"
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr "ネットワーク設定を保存中"
+msgstr "ネットワーク設定を保存しています。"
