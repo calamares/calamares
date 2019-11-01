@@ -305,7 +305,8 @@ void
 UsersPage::validateUsernameText( const QString& textRef )
 {
     QString text( textRef );
-    QRegExpValidator val( USERNAME_RX );
+    QRegExpValidator val_whole( USERNAME_RX );
+    QRegExpValidator val_start( QRegExp( "[a-z_].*" ) );  // anchors are implicit in QRegExpValidator
     int pos = -1;
 
     if ( text.isEmpty() )
@@ -319,12 +320,20 @@ UsersPage::validateUsernameText( const QString& textRef )
         labelError( ui->labelUsername, ui->labelUsernameError, tr( "Your username is too long." ) );
         m_readyUsername = false;
     }
-    else if ( val.validate( text, pos ) == QValidator::Invalid )
+    else if ( val_start.validate( text, pos ) == QValidator::Invalid )
     {
         labelError(
             ui->labelUsername,
             ui->labelUsernameError,
-            tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
+            tr( "Your username must start with a lowercase letter or underscore." ) );
+        m_readyUsername = false;
+    }
+    else if ( val_whole.validate( text, pos ) == QValidator::Invalid )
+    {
+        labelError(
+            ui->labelUsername,
+            ui->labelUsernameError,
+            tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
         m_readyUsername = false;
     }
     else
@@ -372,7 +381,7 @@ UsersPage::validateHostnameText( const QString& textRef )
     {
         labelError( ui->labelHostname,
                     ui->labelHostnameError,
-                    tr( "Your hostname contains invalid characters. Only letters, numbers and dashes are allowed." ) );
+                    tr( "Only letters, numbers, underscore and hyphen are allowed." ) );
         m_readyHostname = false;
     }
     else
