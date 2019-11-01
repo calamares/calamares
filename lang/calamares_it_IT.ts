@@ -99,7 +99,7 @@
     <message>
         <location filename="../src/calamares/DebugWindow.ui" line="106"/>
         <source>Reload Stylesheet</source>
-        <translation type="unfinished"/>
+        <translation>Ricarica il foglio di stile</translation>
     </message>
     <message>
         <location filename="../src/calamares/DebugWindow.ui" line="113"/>
@@ -210,7 +210,7 @@
     <message numerus="yes">
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="166"/>
         <source>Waiting for %n module(s).</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>In attesa del(i) modulo(i) %n.</numerusform><numerusform>In attesa del(i) modulo(i) %n.</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
@@ -258,7 +258,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
         <source>Would you like to paste the install log to the web?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi incollare il log di installazione nel web?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="250"/>
@@ -1148,7 +1148,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot;font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quando questa casella è selezionata, il tuo computer verrà riavviato immediatamente quando clicchi su &lt;span style=&quot;font-style:italic;&quot;&gt;Finito&lt;/span&gt; oppure chiudi il programma di setup.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="66"/>
@@ -1163,7 +1163,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="133"/>
         <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Installazione fallita&lt;/h1&gt;&lt;br/&gt;%1 non è stato installato sul tuo computer.&lt;br/&gt;Il messaggio di errore è: %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>
@@ -1204,12 +1204,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="41"/>
         <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-        <translation type="unfinished"/>
+        <translation>Formatta la partitione %1 (file system: %2, dimensione: %3 MiB) su %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="52"/>
         <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Formatta la partizione &lt;strong&gt;%1&lt;/strong&gt; di dimensione &lt;strong&gt;%3MiB &lt;/strong&gt;  con il file system &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
@@ -1298,17 +1298,17 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/oemid/IDJob.cpp" line="48"/>
         <source>Could not create directories &lt;code&gt;%1&lt;/code&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile creare le cartelle &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/oemid/IDJob.cpp" line="60"/>
         <source>Could not open file &lt;code&gt;%1&lt;/code&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile aprire il file &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/oemid/IDJob.cpp" line="68"/>
         <source>Could not write to file &lt;code&gt;%1&lt;/code&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile scrivere sul file &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1316,7 +1316,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="40"/>
         <source>Creating initramfs with mkinitcpio.</source>
-        <translation type="unfinished"/>
+        <translation>Sto creando initramfs con mkinitcpio.</translation>
     </message>
 </context>
 <context>
@@ -1324,7 +1324,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="37"/>
         <source>Creating initramfs.</source>
-        <translation type="unfinished"/>
+        <translation>Sto creando initramfs.</translation>
     </message>
 </context>
 <context>
@@ -1475,32 +1475,32 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="192"/>
         <source>Shows the complete license text</source>
-        <translation type="unfinished"/>
+        <translation>Mostra il testo completo della licenza</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="193"/>
         <source>Hide license text</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi il testo della licenza</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
         <source>Show license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Mostra l&apos;accordo di licenza</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
         <source>Hide license agreement</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi l&apos;accordo di licenza</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
         <source>Opens the license agreement in a browser window.</source>
-        <translation type="unfinished"/>
+        <translation>Apre l&apos;accordo di licenza in una finestra del browser.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicenseWidget.cpp" line="200"/>
         <source>&lt;a href=&quot;%1&quot;&gt;View license agreement&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;%1&quot;&gt;Visualizza l&apos;accordo di licenza&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -1556,7 +1556,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
         <source>No partitions are defined.</source>
-        <translation type="unfinished"/>
+        <translation>Non è stata specificata alcuna partizione.</translation>
     </message>
     <message>
         <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
@@ -2462,7 +2462,7 @@ Output:
     <message>
         <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
         <source>No description provided.</source>
-        <translation type="unfinished"/>
+        <translation>Non è stata fornita alcuna descrizione.</translation>
     </message>
 </context>
 <context>
@@ -2564,7 +2564,7 @@ Output:
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="59"/>
         <source>Resize Filesystem Job</source>
-        <translation type="unfinished"/>
+        <translation>Operazione di ridimensionamento del Filesystem</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="172"/>
@@ -2574,7 +2574,7 @@ Output:
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="173"/>
         <source>The file-system resize job has an invalid configuration and will not run.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;operazione di ridimensionamento del file-system ha una configurazione non valida e non verrà effettuata.</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
@@ -2622,12 +2622,12 @@ Output:
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="238"/>
         <source>The filesystem %1 must be resized, but cannot.</source>
-        <translation type="unfinished"/>
+        <translation>Il filesystem %1 deve essere ridimensionato, ma non è possibile farlo.</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="239"/>
         <source>The device %1 must be resized, but cannot</source>
-        <translation type="unfinished"/>
+        <translation>Il dispositivo %1 deve essere ridimensionato, non è possibile farlo</translation>
     </message>
 </context>
 <context>
@@ -2645,7 +2645,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="66"/>
         <source>Resizing %2MiB partition %1 to %3MiB.</source>
-        <translation type="unfinished"/>
+        <translation>Sto ridimensionando la partizione %1 di dimensione %2MiB a %3MiB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
@@ -2667,12 +2667,12 @@ Output:
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="55"/>
         <source>Resize volume group named %1 from %2 to %3.</source>
-        <translation type="unfinished"/>
+        <translation>Ridimensiona il gruppo di volumi con nome %1 da %2 a %3.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
         <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Ridimensiona il gruppo di volumi con nome &lt;strong&gt;%1&lt;/strong&gt; da &lt;strong&gt;%2&lt;/strong&gt; a &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
@@ -2685,7 +2685,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Questo computer non soddisfa i requisiti minimi per l&apos;installazione di %1.&lt;br/&gt;L&apos;installazione non può continuare. &lt;a href=&quot;#details&quot;&gt;Dettagli...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
@@ -2695,7 +2695,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
         <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Questo computer non soddisfa alcuni requisiti raccomandati per l&apos;installazione di %1.&lt;br/&gt;L&apos;installazione può continuare, ma alcune funzionalità potrebbero essere disabilitate.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
@@ -3230,17 +3230,17 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
         <source>Open donations website</source>
-        <translation type="unfinished"/>
+        <translation>Apri il sito web per le donazioni</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
         <source>&amp;Donate</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Donazioni</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
         <source>Open help and support website</source>
-        <translation type="unfinished"/>
+        <translation>Apri il sito web per l&apos;aiuto ed il supporto</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
@@ -3250,7 +3250,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
         <source>Open release notes website</source>
-        <translation type="unfinished"/>
+        <translation>Apri il sito web delle note di rilascio</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
@@ -3285,12 +3285,12 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
         <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Benvenuto nel programma di installazione Calamares di %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="248"/>
         <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Benvenuto nell&apos;installazione di %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>

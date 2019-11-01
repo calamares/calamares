@@ -1165,7 +1165,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="133"/>
         <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation>&lt;h1&gt;セットアップに失敗しました。&lt;/h1&gt;&lt;br/&gt;%1 はコンピュータにセットアップされていません。&lt;br/&gt;エラーメッセージは次のとおりです: %2</translation>
+        <translation>&lt;h1&gt;セットアップに失敗しました。&lt;/h1&gt;&lt;br/&gt;%1 はコンピュータにセットアップされていません。&lt;br/&gt;エラーメッセージ: %2</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>

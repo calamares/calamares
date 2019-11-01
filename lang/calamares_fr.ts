@@ -3253,7 +3253,7 @@ Sortie
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
         <source>Open release notes website</source>
-        <translation type="unfinished"/>
+        <translation>Ouvrir le site des notes de publication</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>

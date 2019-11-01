@@ -3257,7 +3257,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
         <source>Open release notes website</source>
-        <translation type="unfinished"/>
+        <translation>Sürüm Notları web sitesini aç</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>

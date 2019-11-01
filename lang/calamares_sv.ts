@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation>Systemets &lt;strong&gt;uppstartsmiljö&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Äldre x86-system stödjer endast &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderna system stödjer vanligen &lt;strong&gt;EFI&lt;/strong&gt;, men kan också vara i kompabilitetsläge för BIOS.</translation>
+        <translation>Systemets &lt;strong&gt;startmiljö&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Äldre x86-system stöder endast &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderna system stöder vanligen &lt;strong&gt;EFI&lt;/strong&gt;, men kan också vara i kompatibilitetsläge för BIOS.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="81"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>Detta system startades med en &lt;strong&gt;EFI-miljö&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;För att ställa in uppstart från en EFI-miljö måste en uppstartsladdare användas, t.ex. &lt;strong&gt;GRUB&lt;/strong&gt; eller &lt;strong&gt;systemd-boot&lt;/strong&gt; eller en &lt;strong&gt;EFI-systempartition&lt;/strong&gt;. Detta sker automatiskt, såvida du inte väljer att partitionera manuellt. Då måste du själv installera en uppstartsladdare.</translation>
+        <translation>Detta system startades med en &lt;strong&gt;EFI-miljö&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;För att ställa in start från en EFI-miljö måste en starthanterare användas, t.ex. &lt;strong&gt;GRUB&lt;/strong&gt; eller &lt;strong&gt;systemd-boot&lt;/strong&gt; på en &lt;strong&gt;EFI-systempartition&lt;/strong&gt;. Detta sker automatiskt, såvida du inte väljer att partitionera manuellt. Då måste du själv installera en starthanterare.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="93"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>Detta system startades med en &lt;strong&gt;BIOS-miljö&lt;/strong&gt;. &lt;br&gt;&lt;br&gt;För att ställa in uppstart från en BIOS-miljö måste en uppstartsladdare som t.ex. &lt;strong&gt;GRUB&lt;/strong&gt; installeras, antingen i början av en partition eller på &lt;strong&gt;huvudstartsektorn (MBR)&lt;/strong&gt; i början av partitionstabellen. Detta sker automatiskt, såvida du inte väljer manuell partitionering. Då måste du själv installera en uppstartsladdare.</translation>
+        <translation>Detta system startades med en &lt;strong&gt;BIOS-miljö&lt;/strong&gt;. &lt;br&gt;&lt;br&gt;För att ställa in start från en BIOS-miljö måste en starthanterare som t.ex. &lt;strong&gt;GRUB&lt;/strong&gt; installeras, antingen i början av en partition eller på &lt;strong&gt;huvudstartsektorn (MBR)&lt;/strong&gt; i början av partitionstabellen. Detta sker automatiskt, såvida du inte väljer manuell partitionering. Då måste du själv installera en starthanterare.</translation>
     </message>
 </context>
 <context>
@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="104"/>
         <source>Boot Partition</source>
-        <translation>Uppstartspartition</translation>
+        <translation>Startpartition</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="109"/>
@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="139"/>
         <source>Do not install a boot loader</source>
-        <translation>Installera inte en uppstartsladdare</translation>
+        <translation>Installera inte någon starthanterare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="156"/>
@@ -210,12 +210,12 @@
     <message numerus="yes">
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="166"/>
         <source>Waiting for %n module(s).</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Väntar på %n modul(er).</numerusform><numerusform>Väntar på %n modul(er).</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
         <source>(%n second(s))</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>(%n sekund(er))</numerusform><numerusform>(%n sekund(er))</numerusform></translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="172"/>
@@ -273,7 +273,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="269"/>
         <source>Calamares Initialization Failed</source>
-        <translation type="unfinished"/>
+        <translation>Initieringen av Calamares misslyckades</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="270"/>
@@ -283,7 +283,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="276"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br/&gt;Följande moduler kunde inte hämtas:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
@@ -363,7 +363,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="342"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation>%1-installeraren är på väg att göra ändringar för att installera %2.&lt;br/&gt;&lt;strong&gt;Du kommer inte att kunna ångra dessa ändringar!strong&gt;</translation>
+        <translation>%1-installeraren är på väg att göra ändringar för att installera %2.&lt;br/&gt;&lt;strong&gt;Du kommer inte att kunna ångra dessa ändringar.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="345"/>
@@ -474,7 +474,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
         <source>Boot loader location:</source>
-        <translation>Sökväg till uppstartshanterare:</translation>
+        <translation>Sökväg till starthanterare:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="152"/>
@@ -522,7 +522,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
         <source>EFI system partition:</source>
-        <translation>EFI system partition:</translation>
+        <translation>EFI-partition:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
@@ -988,7 +988,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="149"/>
         <source>Failed to open %1</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte öppna %1</translation>
     </message>
 </context>
 <context>
@@ -2637,12 +2637,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="55"/>
         <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Ändra &lt;strong&gt;%2MiB&lt;/strong&gt;-partitionen &lt;strong&gt;%1&lt;/strong&gt; till &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="66"/>
         <source>Resizing %2MiB partition %1 to %3MiB.</source>
-        <translation type="unfinished"/>
+        <translation>Ändrar storlek på partitionen %1 från %2MB till %3MB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
@@ -2682,7 +2682,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Datorn uppfyller inte minimikraven för inställning av %1.&lt;br/&gt;Inga inställningar kan inte göras. &lt;a href=&quot;#details&quot;&gt;Detaljer...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
@@ -2692,7 +2692,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
         <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Några av kraven för inställning av %1 uppfylls inte av datorn.&lt;br/&gt;Inställningarna kan ändå göras men vissa funktioner kommer kanske inte att kunna användas.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
@@ -2785,7 +2785,7 @@ Output:
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="331"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-        <translation type="unfinished"/>
+        <translation>Misslyckades med att skriva tangentbordskonfiguration till den existerande mappen /etc/default.</translation>
     </message>
 </context>
 <context>
@@ -2901,7 +2901,7 @@ Output:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="124"/>
         <source>passwd terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>passwd stoppades med felkod %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="139"/>
@@ -3052,7 +3052,7 @@ Output:
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="24"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Platshållare</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
@@ -3098,12 +3098,12 @@ Output:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="120"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Om mer än en person skall använda datorn så kan du skapa flera användarkonton när inställningarna är klara.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="126"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Om mer än en person skall använda datorn så kan du skapa flera användarkonton när installationen är klar.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="317"/>
@@ -3134,7 +3134,7 @@ Output:
         <location filename="../src/modules/users/UsersPage.cpp" line="401"/>
         <location filename="../src/modules/users/UsersPage.cpp" line="445"/>
         <source>Your passwords do not match!</source>
-        <translation>Dina lösenord matchar inte!</translation>
+        <translation>Lösenorden överensstämmer inte!</translation>
     </message>
 </context>
 <context>
@@ -3150,7 +3150,7 @@ Output:
     <message>
         <location filename="../src/calamares/VariantModel.cpp" line="241"/>
         <source>Key</source>
-        <translation type="unfinished"/>
+        <translation>Nyckel</translation>
     </message>
     <message>
         <location filename="../src/calamares/VariantModel.cpp" line="245"/>
@@ -3237,22 +3237,22 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
         <source>Open help and support website</source>
-        <translation type="unfinished"/>
+        <translation>Besök webbplatsen för hjälp och support</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
         <source>Open issues and bug-tracking website</source>
-        <translation type="unfinished"/>
+        <translation>Besök webbplatsen för problem och felsökning</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
         <source>Open release notes website</source>
-        <translation type="unfinished"/>
+        <translation>Besök webbplatsen för versionsinformation</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="182"/>
         <source>&amp;Release notes</source>
-        <translation>Versionsinfomation</translation>
+        <translation>Versionsinformation, &amp;R</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
@@ -3262,22 +3262,22 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
         <source>&amp;Support</source>
-        <translation>%Support</translation>
+        <translation>&amp;Support</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
         <source>&amp;About</source>
-        <translation>Om</translation>
+        <translation>Om, &amp;A</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="254"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;V&amp;auml;lkommen till %1-installeraren.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Välkommen till %1-installeraren.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="253"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Välkommen till installationsprogrammet Calamares för %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
@@ -3292,7 +3292,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>
         <source>About %1 setup</source>
-        <translation type="unfinished"/>
+        <translation>Om inställningarna för %1</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>
