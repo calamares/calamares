@@ -107,30 +107,33 @@ UsersPage::UsersPage( QWidget* parent )
     setWriteRootPassword( true );
     ui->checkBoxReusePassword->setChecked( true );
     ui->checkBoxValidatePassword->setChecked( true );
-    
+
     setPasswordCheckboxVisible( false );
 
-    CALAMARES_RETRANSLATE(
-        ui->retranslateUi( this ); 
-        if ( Calamares::Settings::instance()->isSetupMode() ) 
-        {
-            ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
-                                                     "use this computer, you can create multiple "
-                                                     "accounts after setup.</small>" ) );
-        } 
-        else 
-        {
-            ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
-                                                     "use this computer, you can create multiple "
-                                                     "accounts after installation.</small>" ) );
-        } 
-    )
+    CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate );
 }
-
 
 UsersPage::~UsersPage()
 {
     delete ui;
+}
+
+void
+UsersPage::retranslate()
+{
+    ui->retranslateUi( this );
+    if ( Calamares::Settings::instance()->isSetupMode() )
+    {
+        ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
+                                             "use this computer, you can create multiple "
+                                             "accounts after setup.</small>" ) );
+    }
+    else
+    {
+        ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
+                                             "use this computer, you can create multiple "
+                                             "accounts after installation.</small>" ) );
+    }
 }
 
 

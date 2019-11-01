@@ -85,6 +85,8 @@ private:
      */
     bool checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message );
 
+    void retranslate();
+
     Ui::Page_UserSetup* ui;
 
     PasswordCheckList m_passwordChecks;
