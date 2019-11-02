@@ -144,6 +144,11 @@ UsersPage::retranslate()
                                              "use this computer, you can create multiple "
                                              "accounts after installation.</small>" ) );
     }
+    // Re-do password checks (with output messages) as well.
+    // .. the password-checking methods get their values from the text boxes,
+    //    not from their parameters.
+    onPasswordTextChanged(QString());
+    onRootPasswordTextChanged(QString());
 }
 
 
@@ -222,6 +227,8 @@ void
 UsersPage::onActivate()
 {
     ui->textBoxFullName->setFocus();
+    onPasswordTextChanged(QString());
+    onRootPasswordTextChanged(QString());
 }
 
 
