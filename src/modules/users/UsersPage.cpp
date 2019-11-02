@@ -407,14 +407,7 @@ UsersPage::validateHostnameText( const QString& textRef )
 bool
 UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message )
 {
-    if ( pw1.isEmpty() && pw2.isEmpty() )
-    {
-        // Not exactly labelOk() because we also don't want a checkmark OK
-        badge->clear();
-        message->clear();
-        return false;
-    }
-    else if ( pw1 != pw2 )
+    if ( pw1 != pw2 )
     {
         labelError( badge, message, tr( "Your passwords do not match!" ) );
         return false;
@@ -509,6 +502,14 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
     else if ( key == "maxLength" )
     {
         add_check_maxLength( m_passwordChecks, value );
+    }
+    else if ( key == "nonempty" )
+    {
+        if ( value.toBool() )
+        {
+            m_passwordChecks.push_back( PasswordCheck( []() { return QCoreApplication::translate( "EMP", "Password is empty" ); },
+                                    []( const QString& s ) { return ((cDebug() << "Checking pwd" << s << "for empty"), !s.isEmpty()); } ) );
+        }
     }
 #ifdef CHECK_PWQUALITY
     else if ( key == "libpwquality" )
