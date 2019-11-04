@@ -180,7 +180,11 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                   or lines[i].startswith("GRUB_DISTRIBUTOR")):
                 if libcalamares.job.configuration.get("keepDistributor", false):
                     lines[i] = distributor_line
-                have_distributor_line = True
+                    have_distributor_line = True
+                else:
+                    # We're not updating because of *keepDistributor*, but if
+                    # this was a comment line, then it's still not been set.
+                    have_distributor_line = not lines[i].startsdwith("#")
     else:
         lines = []
 
