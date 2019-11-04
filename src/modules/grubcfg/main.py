@@ -46,9 +46,12 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     :param partitions:
     :param root_mount_point:
     :param distributor: name of the distributor to fill in for
-        GRUB_DISTRIBUTOR. Must be a string, but if it is empty ("")
-        then the existing GRUB_DISTRIBUTOR lines are kept instead
-        of replaced by a new line.
+        GRUB_DISTRIBUTOR. Must be a string. If the job setting
+        *keepDistributor* is set, then this is only used if no
+        GRUB_DISTRIBUTOR is found at all (otherwise, when *keepDistributor*
+        is set, the GRUB_DISTRIBUTOR lines are left unchanged).
+        If *keepDistributor* is unset or false, then GRUB_DISTRIBUTOR
+        is always updated to set this value.
     :return:
     """
     default_dir = os.path.join(root_mount_point, "etc/default")
@@ -175,7 +178,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 have_kernel_cmd = True
             elif (lines[i].startswith("#GRUB_DISTRIBUTOR")
                   or lines[i].startswith("GRUB_DISTRIBUTOR")):
-                if distributor:
+                if libcalamares.job.configuration.get("keepDistributor", false):
                     lines[i] = distributor_line
                 have_distributor_line = True
     else:
@@ -240,10 +243,6 @@ def run():
 
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     branding = libcalamares.globalstorage.value("branding")
-
-    if libcalamares.job.configuration.get("keepDistributor", false):
-        distributor = ""
-    else:
-        distributor = branding["bootloaderEntryName"]
+    distributor = branding["bootloaderEntryName"]
 
     return modify_grub_default(partitions, root_mount_point, distributor)
