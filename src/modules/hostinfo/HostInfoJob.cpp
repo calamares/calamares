@@ -67,10 +67,12 @@ hostOSName()
 {
 #ifdef WITH_KOSRelease
     KOSRelease r;
-    return r.name();
-#else
-    return hostOS();
+    if ( !r.name().isEmpty() )
+    {
+        return r.name();
+    }
 #endif
+    return hostOS();
 }
 
 static QString
