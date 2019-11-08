@@ -524,7 +524,7 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
         {
             m_passwordChecks.push_back( PasswordCheck(
                 []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
-                []( const QString& s ) { return ( ( cDebug() << "Checking pwd" << s << "for empty" ), !s.isEmpty() ); },
+                []( const QString& s ) { return !s.isEmpty(); },
                 PasswordCheck::Weight( 1 ) ) );
         }
     }
