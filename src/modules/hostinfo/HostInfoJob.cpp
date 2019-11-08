@@ -118,9 +118,9 @@ hostCPU_Linux()
     {
         QTextStream in( &cpuinfo );
         QString line;
-        while ( in.readLineInto( line ) )
+        while ( in.readLineInto( &line ) )
         {
-            if ( line.startsWith( "cpu_type" ) )
+            if ( line.startsWith( "vendor_id" ) )
             {
                 return hostCPUmatch( line );
             }
