@@ -38,11 +38,18 @@ public:
     using AcceptFunc = std::function< bool( const QString& ) >;
     using MessageFunc = std::function< QString() >;
 
-    /** Generate a @p message if @p filter returns true */
-    PasswordCheck( MessageFunc message, AcceptFunc filter );
-    /** Yields @p message if @p filter returns true */
-    PasswordCheck( const QString& message, AcceptFunc filter );
-    /** Null check, always returns empty */
+    using Weight = size_t;
+
+    /** @brief Generate a @p message if @p filter returns true
+     *
+     * When @p filter returns true on the proposed password, the
+     * password is accepted (by this check). If false, then the
+     * @p message will be shown to the user.
+     *
+     * @p weight is used to order the checks (low-weight goes first).
+     */
+    PasswordCheck( MessageFunc message, AcceptFunc filter, Weight weight = 1000 );
+    /** @brief Null check, always accepts, no message */
     PasswordCheck();
 
     /** Applies this check to the given password string @p s
@@ -52,7 +59,10 @@ public:
         */
     QString filter( const QString& s ) const { return m_accept( s ) ? QString() : m_message(); }
 
+    Weight weight() const { return m_weight; }
+
 private:
+    Weight m_weight;
     MessageFunc m_message;
     AcceptFunc m_accept;
 };

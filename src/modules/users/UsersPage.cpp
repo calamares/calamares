@@ -147,8 +147,8 @@ UsersPage::retranslate()
     // Re-do password checks (with output messages) as well.
     // .. the password-checking methods get their values from the text boxes,
     //    not from their parameters.
-    onPasswordTextChanged(QString());
-    onRootPasswordTextChanged(QString());
+    onPasswordTextChanged( QString() );
+    onRootPasswordTextChanged( QString() );
 }
 
 
@@ -227,8 +227,8 @@ void
 UsersPage::onActivate()
 {
     ui->textBoxFullName->setFocus();
-    onPasswordTextChanged(QString());
-    onRootPasswordTextChanged(QString());
+    onPasswordTextChanged( QString() );
+    onRootPasswordTextChanged( QString() );
 }
 
 
@@ -514,8 +514,10 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
     {
         if ( value.toBool() )
         {
-            m_passwordChecks.push_back( PasswordCheck( []() { return QCoreApplication::translate( "EMP", "Password is empty" ); },
-                                    []( const QString& s ) { return ((cDebug() << "Checking pwd" << s << "for empty"), !s.isEmpty()); } ) );
+            m_passwordChecks.push_back( PasswordCheck(
+                []() { return QCoreApplication::translate( "EMP", "Password is empty" ); },
+                []( const QString& s ) { return ( ( cDebug() << "Checking pwd" << s << "for empty" ), !s.isEmpty() ); },
+                PasswordCheck::Weight( 1 ) ) );
         }
     }
 #ifdef CHECK_PWQUALITY
