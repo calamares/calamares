@@ -22,6 +22,7 @@
 #include "JobQueue.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/Units.h"
 
 #include <QDir>
 #include <QFile>
@@ -154,6 +155,12 @@ HostInfoJob::exec()
     gs->insert( "hostOS", hostOS() );
     gs->insert( "hostOSName", hostOSName() );
     gs->insert( "hostCPU", hostCPU() );
+
+    auto ram = CalamaresUtils::BytesToMiB( CalamaresUtils::System::instance()->getTotalMemoryB().first );
+    if ( ram )
+    {
+        gs->insert( "hostRAMMiB", ram );
+    }
 
     return Calamares::JobResult::ok();
 }
