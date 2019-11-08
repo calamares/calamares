@@ -523,7 +523,7 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
         if ( value.toBool() )
         {
             m_passwordChecks.push_back( PasswordCheck(
-                []() { return QCoreApplication::translate( "EMP", "Password is empty" ); },
+                []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
                 []( const QString& s ) { return ( ( cDebug() << "Checking pwd" << s << "for empty" ), !s.isEmpty() ); },
                 PasswordCheck::Weight( 1 ) ) );
         }
