@@ -144,6 +144,11 @@ UsersPage::retranslate()
                                              "use this computer, you can create multiple "
                                              "accounts after installation.</small>" ) );
     }
+    // Re-do password checks (with output messages) as well.
+    // .. the password-checking methods get their values from the text boxes,
+    //    not from their parameters.
+    onPasswordTextChanged( QString() );
+    onRootPasswordTextChanged( QString() );
 }
 
 
@@ -222,6 +227,8 @@ void
 UsersPage::onActivate()
 {
     ui->textBoxFullName->setFocus();
+    onPasswordTextChanged( QString() );
+    onRootPasswordTextChanged( QString() );
 }
 
 
@@ -407,14 +414,7 @@ UsersPage::validateHostnameText( const QString& textRef )
 bool
 UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message )
 {
-    if ( pw1.isEmpty() && pw2.isEmpty() )
-    {
-        // Not exactly labelOk() because we also don't want a checkmark OK
-        badge->clear();
-        message->clear();
-        return false;
-    }
-    else if ( pw1 != pw2 )
+    if ( pw1 != pw2 )
     {
         labelError( badge, message, tr( "Your passwords do not match!" ) );
         return false;
@@ -423,6 +423,12 @@ UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLab
     {
         bool failureIsFatal = ui->checkBoxValidatePassword->isChecked();
         bool failureFound = false;
+
+        if ( m_passwordChecksChanged )
+        {
+            std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
+            m_passwordChecksChanged = false;
+        }
 
         for ( auto pc : m_passwordChecks )
         {
@@ -502,6 +508,8 @@ UsersPage::setReusePasswordDefault( bool checked )
 void
 UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
 {
+    m_passwordChecksChanged = true;
+
     if ( key == "minLength" )
     {
         add_check_minLength( m_passwordChecks, value );
@@ -509,6 +517,16 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
     else if ( key == "maxLength" )
     {
         add_check_maxLength( m_passwordChecks, value );
+    }
+    else if ( key == "nonempty" )
+    {
+        if ( value.toBool() )
+        {
+            m_passwordChecks.push_back( PasswordCheck(
+                []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
+                []( const QString& s ) { return !s.isEmpty(); },
+                PasswordCheck::Weight( 1 ) ) );
+        }
     }
 #ifdef CHECK_PWQUALITY
     else if ( key == "libpwquality" )

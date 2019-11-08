@@ -90,6 +90,7 @@ private:
     Ui::Page_UserSetup* ui;
 
     PasswordCheckList m_passwordChecks;
+    bool m_passwordChecksChanged = false;
 
     bool m_readyFullName;
     bool m_readyUsername;

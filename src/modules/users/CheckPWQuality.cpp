@@ -31,19 +31,15 @@
 #include <memory>
 
 PasswordCheck::PasswordCheck()
-    : m_message()
+    : m_weight( 0 )
+    , m_message()
     , m_accept( []( const QString& ) { return true; } )
 {
 }
 
-PasswordCheck::PasswordCheck( const QString& m, AcceptFunc a )
-    : m_message( [m]() { return m; } )
-    , m_accept( a )
-{
-}
-
-PasswordCheck::PasswordCheck( MessageFunc m, AcceptFunc a )
-    : m_message( m )
+PasswordCheck::PasswordCheck( MessageFunc m, AcceptFunc a, Weight weight )
+    : m_weight( weight )
+    , m_message( m )
     , m_accept( a )
 {
 }
@@ -59,7 +55,8 @@ DEFINE_CHECK_FUNC( minLength )
     {
         cDebug() << Logger::SubEntry << "minLength set to" << minLength;
         checks.push_back( PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is too short" ); },
-                                         [minLength]( const QString& s ) { return s.length() >= minLength; } ) );
+                                         [minLength]( const QString& s ) { return s.length() >= minLength; },
+                                         PasswordCheck::Weight( 10 ) ) );
     }
 }
 
@@ -74,7 +71,8 @@ DEFINE_CHECK_FUNC( maxLength )
     {
         cDebug() << Logger::SubEntry << "maxLength set to" << maxLength;
         checks.push_back( PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is too long" ); },
-                                         [maxLength]( const QString& s ) { return s.length() <= maxLength; } ) );
+                                         [maxLength]( const QString& s ) { return s.length() <= maxLength; },
+                                         PasswordCheck::Weight( 10 ) ) );
     }
 }
 
@@ -363,7 +361,8 @@ DEFINE_CHECK_FUNC( libpwquality )
                                                  cDebug() << "Password strength" << r << "too low";
                                              }
                                              return r >= settings->arbitrary_minimum_strength;
-                                         } ) );
+                                         },
+                                         PasswordCheck::Weight( 100 ) ) );
     }
 }
 #endif
