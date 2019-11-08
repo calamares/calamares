@@ -424,6 +424,12 @@ UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLab
         bool failureIsFatal = ui->checkBoxValidatePassword->isChecked();
         bool failureFound = false;
 
+        if ( m_passwordChecksChanged )
+        {
+            std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
+            m_passwordChecksChanged = false;
+        }
+
         for ( auto pc : m_passwordChecks )
         {
             QString s = pc.filter( pw1 );
@@ -502,6 +508,8 @@ UsersPage::setReusePasswordDefault( bool checked )
 void
 UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
 {
+    m_passwordChecksChanged = true;
+
     if ( key == "minLength" )
     {
         add_check_minLength( m_passwordChecks, value );

@@ -60,6 +60,7 @@ public:
     QString filter( const QString& s ) const { return m_accept( s ) ? QString() : m_message(); }
 
     Weight weight() const { return m_weight; }
+    bool operator<( const PasswordCheck& other ) const { return weight() < other.weight(); }
 
 private:
     Weight m_weight;
