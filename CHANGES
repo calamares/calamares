@@ -15,6 +15,14 @@ This release contains contributions from (alphabetically by first name):
  - A new module, *hostinfo*, places information about the host into
    Global Storage. This can support contextualprocess modules that
    need that information.
+ - The password-checks in the *users* module are now ordered consistently.
+   A new check *nonempty* can be used to explicitly check for a non-empty
+   password. This was previously hard-coded. If you have no other
+   password-requirements set (e.g. minimum-length) and rely on
+   Calamares to filter out empty passwords, add this check.
+ - The *grubcfg* module has a new configuration setting *keepDistributor*
+   which prevents replacing the `GRUB_DISTRIBUTION` line when writing
+   the new configuration. #1201
 
 
 # 3.2.16 (2019-11-01) #
