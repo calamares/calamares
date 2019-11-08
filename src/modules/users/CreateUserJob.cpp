@@ -74,6 +74,8 @@ CreateUserJob::exec()
 
     if ( gs->contains( "sudoersGroup" ) && !gs->value( "sudoersGroup" ).toString().isEmpty() )
     {
+        cDebug() << "[CREATEUSER]: preparing sudoers";
+
         QFileInfo sudoersFi( destDir.absoluteFilePath( "etc/sudoers.d/10-installer" ) );
 
         if ( !sudoersFi.absoluteDir().exists() )
@@ -95,6 +97,8 @@ CreateUserJob::exec()
         if ( QProcess::execute( "chmod", { "440", sudoersFi.absoluteFilePath() } ) )
             return Calamares::JobResult::error( tr( "Cannot chmod sudoers file." ) );
     }
+
+    cDebug() << "[CREATEUSER]: preparing groups";
 
     QFileInfo groupsFi( destDir.absoluteFilePath( "etc/group" ) );
     QFile groupsFile( groupsFi.absoluteFilePath() );
@@ -140,6 +144,8 @@ CreateUserJob::exec()
                 { "sh", "-c", "mv -f " + shellFriendlyHome + "/.* " + shellFriendlyHome + "/" + backupDirName } );
         }
     }
+
+    cDebug() << "[CREATEUSER]: creating user";
 
     QStringList useradd { "useradd", "-m", "-U" };
     QString shell = gs->value( "userShell" ).toString();
