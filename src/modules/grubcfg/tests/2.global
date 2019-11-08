@@ -1,0 +1,10 @@
+---
+bogus: true
+firmwareType: bios
+bootLoader: grub
+rootMountPoint: /tmp/calamares
+
+branding:
+  bootloaderEntryName: generic
+partitions: []
+
