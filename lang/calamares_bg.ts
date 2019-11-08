@@ -226,172 +226,175 @@
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="93"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
         <source>&amp;Back</source>
         <translation>&amp;Назад</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="95"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
         <source>&amp;Next</source>
         <translation>&amp;Напред</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="442"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="427"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отказ</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
         <source>Cancel setup without changing the system.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Отказ от инсталацията без промяна на системата.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
         <source>Setup Failed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
         <source>Would you like to paste the install log to the web?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="250"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="235"/>
         <source>Install Log Paste URL</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
         <source>The upload was unsuccessful. No web-paste was done.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="269"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="254"/>
         <source>Calamares Initialization Failed</source>
         <translation>Инициализацията на Calamares се провали</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="270"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="255"/>
         <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
         <translation>%1 не може да се инсталира. Calamares не можа да зареди всичките конфигурирани модули. Това е проблем с начина, по който Calamares е използван от дистрибуцията.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="276"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
         <translation>&lt;br/&gt;Следните модули не могат да се заредят:</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="322"/>
         <source>Continue with installation?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="324"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="345"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
         <source>&amp;Set up now</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
         <source>&amp;Set up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
         <source>&amp;Install</source>
         <translation>&amp;Инсталирай</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="388"/>
         <source>Setup is complete. Close the setup program.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="502"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="487"/>
         <source>Cancel setup?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="502"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="487"/>
         <source>Cancel installation?</source>
         <translation>Отмяна на инсталацията?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="503"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="488"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="505"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Наистина ли искате да отмените текущият процес на инсталиране?
 Инсталатора ще прекъсне и всичките промени ще бъдат загубени.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="509"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="217"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="494"/>
         <source>&amp;Yes</source>
         <translation>&amp;Да</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="510"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
         <source>&amp;No</source>
         <translation>&amp;Не</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
         <source>&amp;Close</source>
         <translation>&amp;Затвори</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="322"/>
         <source>Continue with setup?</source>
         <translation>Продължаване?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="342"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>Инсталатора на %1 ще направи промени по вашия диск за да инсталира %2. &lt;br&gt;&lt;strong&gt;Промените ще бъдат окончателни.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="345"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
         <source>&amp;Install now</source>
         <translation>&amp;Инсталирай сега</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="352"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
         <source>Go &amp;back</source>
         <translation>В&amp;ръщане</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="427"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
         <source>&amp;Done</source>
         <translation>&amp;Готово</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>Инсталацията е завършена. Затворете инсталаторa.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="210"/>
         <source>Error</source>
         <translation>Грешка</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
         <source>Installation Failed</source>
         <translation>Неуспешна инсталация</translation>
     </message>
@@ -837,17 +840,17 @@ The installer will quit and all changes will be lost.</source>
         <translation>Директорията sudoers е незаписваема.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="87"/>
         <source>Cannot create sudoers file for writing.</source>
         <translation>Не може да се създаде sudoers файл за записване.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="93"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="96"/>
         <source>Cannot chmod sudoers file.</source>
         <translation>Не може да се изпълни chmod върху sudoers файла.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="103"/>
         <source>Cannot open groups file for reading.</source>
         <translation>Не може да се отвори файла на групите за четене.</translation>
     </message>
@@ -1582,6 +1585,24 @@ The installer will quit and all changes will be lost.</source>
     </message>
 </context>
 <context>
+    <name>MachineIdJob</name>
+    <message>
+        <location filename="../src/modules/machineid/MachineIdJob.cpp" line="46"/>
+        <source>Generate machine-id.</source>
+        <translation>Генерирай machine-id.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/MachineIdJob.cpp" line="62"/>
+        <source>Configuration Error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/MachineIdJob.cpp" line="63"/>
+        <source>No root mount point is set for MachineId.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>NetInstallPage</name>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="61"/>
@@ -1651,242 +1672,242 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>PWQ</name>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="63"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="61"/>
         <source>Password is too short</source>
         <translation>Паролата е твърде кратка</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="85"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="76"/>
         <source>Password is too long</source>
         <translation>Паролата е твърде дълга</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="169"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
         <source>Password is too weak</source>
         <translation>Паролата е твърде слаба</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="159"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
         <translation>Грешка при разпределяне на паметта по време на настройването на &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
         <source>Memory allocation error</source>
         <translation>Грешка при разпределяне на паметта</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="182"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
         <source>The password is the same as the old one</source>
         <translation>Паролата съвпада с предишната</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
         <source>The password is a palindrome</source>
         <translation>Паролата е палиндром</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="186"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password differs with case changes only</source>
         <translation>Паролата се различава само със смяна на главни и малки букви</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password is too similar to the old one</source>
         <translation>Паролата е твърде сходна с предишната</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
         <source>The password contains the user name in some form</source>
         <translation>Паролата съдържа потребителското име под някаква форма</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>The password contains words from the real name of the user in some form</source>
         <translation>Паролата съдържа думи от истинското име на потребителя под някаква форма</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="194"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="179"/>
         <source>The password contains forbidden words in some form</source>
         <translation>Паролата съдържа забранени думи под някаква форма</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 digits</source>
         <translation>Паролата съдържа по-малко от %1 цифри</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="186"/>
         <source>The password contains too few digits</source>
         <translation>Паролата съдържа твърде малко цифри</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
         <source>The password contains less than %1 uppercase letters</source>
         <translation>Паролата съдържа по-малко от %1 главни букви</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="193"/>
         <source>The password contains too few uppercase letters</source>
         <translation>Паролата съдържа твърде малко главни букви</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
         <source>The password contains less than %1 lowercase letters</source>
         <translation>Паролата съдържа по-малко от %1 малки букви</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
         <source>The password contains too few lowercase letters</source>
         <translation>Паролата съдържа твърде малко малки букви</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="204"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
         <translation>Паролата съдържа по-малко от %1 знаци, които не са букви или цифри</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="208"/>
         <source>The password contains too few non-alphanumeric characters</source>
         <translation>Паролата съдържа твърде малко знаци, които не са букви или цифри</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="212"/>
         <source>The password is shorter than %1 characters</source>
         <translation>Паролата е по-малка от %1 знаци</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
         <source>The password is too short</source>
         <translation>Паролата е твърде кратка</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="217"/>
         <source>The password is just rotated old one</source>
         <translation>Паролата е обърнат вариант на старата</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
         <source>The password contains less than %1 character classes</source>
         <translation>Паролата съдържа по-малко от %1 видове знаци</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
         <source>The password does not contain enough character classes</source>
         <translation>Паролата не съдържа достатъчно видове знаци</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="223"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
         <source>The password contains more than %1 same characters consecutively</source>
         <translation>Паролата съдържа повече от %1 еднакви знаци последователно</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
         <source>The password contains too many same characters consecutively</source>
         <translation>Паролата съдържа твърде много еднакви знаци последователно</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="236"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
         <translation>Паролата съдържа повече от %1 еднакви видове знаци последователно</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="240"/>
         <source>The password contains too many characters of the same class consecutively</source>
         <translation>Паролата съдържа твърде много еднакви видове знаци последователно</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="245"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
         <translation>Паролата съдържа монотонна последователност, по-дълга от %1 знаци</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
         <source>The password contains too long of a monotonic character sequence</source>
         <translation>Паролата съдържа твърде дълга монотонна последователност от знаци</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
         <source>No password supplied</source>
         <translation>Липсва парола</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="236"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
         <source>Cannot obtain random numbers from the RNG device</source>
         <translation>Получаването на произволни числа от RNG устройството е неуспешно</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="256"/>
         <source>Password generation failed - required entropy too low for settings</source>
         <translation>Генерирането на парола е неуспешно - необходимата ентропия е твърде ниска за настройки</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
         <source>The password fails the dictionary check - %1</source>
         <translation>Паролата не издържа проверката на речника - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="245"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>The password fails the dictionary check</source>
         <translation>Паролата не издържа проверката на речника</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
         <source>Unknown setting - %1</source>
         <translation>Неизвестна настройка - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="253"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="273"/>
         <source>Unknown setting</source>
         <translation>Неизвестна настройка</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="257"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="277"/>
         <source>Bad integer value of setting - %1</source>
         <translation>Невалидна числена стойност на настройката - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="282"/>
         <source>Bad integer value</source>
         <translation>Невалидна числена стойност на настройката</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="286"/>
         <source>Setting %1 is not of integer type</source>
         <translation>Настройката %1 не е от числов вид</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="291"/>
         <source>Setting is not of integer type</source>
         <translation>Настройката не е от числов вид</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="273"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="295"/>
         <source>Setting %1 is not of string type</source>
         <translation>Настройката %1 не е от текстов вид</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="277"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
         <source>Setting is not of string type</source>
         <translation>Настройката не е от текстов вид</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="302"/>
         <source>Opening the configuration file failed</source>
         <translation>Отварянето на файла с конфигурацията е неуспешно</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="281"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="304"/>
         <source>The configuration file is malformed</source>
         <translation>Файлът с конфигурацията е деформиран</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
         <source>Fatal failure</source>
         <translation>Фатална повреда</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="285"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="308"/>
         <source>Unknown error</source>
         <translation>Неизвестна грешка</translation>
     </message>
@@ -1963,47 +1984,86 @@ The installer will quit and all changes will be lost.</source>
         <translation>Какво е вашето име?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
         <source>What name do you want to use to log in?</source>
         <translation>Какво име искате да използвате за влизане?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="321"/>
         <source>Choose a password to keep your account safe.</source>
         <translation>Изберете парола за да държите вашият акаунт в безопасност.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="370"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Внесете същата парола два пъти, за да може да бъде проверена за правописни грешки. Добра парола ще съдържа смесица от букви, цифри и пунктуационни знаци, трябва да бъде поне с осем знака и да бъде променяна често.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
         <source>What is the name of this computer?</source>
         <translation>Какво е името на този компютър?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
+        <source>Your Full Name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
+        <source>login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Това име ще бъде използвано ако направите компютъра видим за други при мрежа.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="466"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
+        <source>Computer Name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
+        <source>Password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
+        <source>Repeat Password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
+        <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="454"/>
+        <source>Require strong passwords.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="461"/>
         <source>Log in automatically without asking for the password.</source>
         <translation>Влизайте автоматично, без питане за паролата.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="473"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="468"/>
         <source>Use the same password for the administrator account.</source>
         <translation>Използвайте същата парола за администраторския акаунт.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="496"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="491"/>
         <source>Choose a password for the administrator account.</source>
         <translation>Изберете парола за администраторския акаунт.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="601"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="515"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="540"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Внесете същата парола два пъти, за да може да бъде проверена за правописни грешки.&lt;/small&gt;</translation>
     </message>
@@ -2463,6 +2523,30 @@ Output:
         <source>No description provided.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/modules/machineid/Workers.cpp" line="55"/>
+        <location filename="../src/modules/machineid/Workers.cpp" line="63"/>
+        <location filename="../src/modules/machineid/Workers.cpp" line="67"/>
+        <location filename="../src/modules/machineid/Workers.cpp" line="117"/>
+        <location filename="../src/modules/machineid/Workers.cpp" line="132"/>
+        <source>File not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/Workers.cpp" line="56"/>
+        <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/Workers.cpp" line="118"/>
+        <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/Workers.cpp" line="133"/>
+        <source>Could not read random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>RemoveVolumeGroupJob</name>
@@ -2734,29 +2818,29 @@ Output:
 <context>
     <name>SetHostNameJob</name>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="38"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="39"/>
         <source>Set hostname %1</source>
         <translation>Поставете име на хоста %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="45"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Поставете име на хост &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="52"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="53"/>
         <source>Setting hostname %1.</source>
         <translation>Задаване името на хоста %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="62"/>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="69"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="64"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="71"/>
         <source>Internal Error</source>
         <translation>Вътрешна грешка</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="76"/>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="87"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="78"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="89"/>
         <source>Cannot write hostname to target system</source>
         <translation>Не може да се запише името на хоста на целевата система</translation>
     </message>
@@ -2897,22 +2981,22 @@ Output:
         <translation>rootMountPoint е %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="123"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
         <source>Cannot disable root account.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="124"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="120"/>
         <source>passwd terminated with error code %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="139"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="128"/>
         <source>Cannot set password for user %1.</source>
         <translation>Не може да се постави парола за потребител %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="141"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="129"/>
         <source>usermod terminated with error code %1.</source>
         <translation>usermod е прекратен с грешка %1.</translation>
     </message>
@@ -3099,43 +3183,47 @@ Output:
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="120"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="137"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="126"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="143"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="317"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
         <source>Your username is too long.</source>
         <translation>Вашето потребителско име е твърде дълго.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="323"/>
-        <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation>Потребителското ви име съдържа непозволени символи! Само малки букви и числа са позволени.</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
+        <source>Your username must start with a lowercase letter or underscore.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="361"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="347"/>
+        <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="395"/>
+        <source>Only letters, numbers, underscore and hyphen are allowed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="383"/>
         <source>Your hostname is too short.</source>
         <translation>Вашето име на хоста е твърде кратко.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="367"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="388"/>
         <source>Your hostname is too long.</source>
         <translation>Вашето име на хоста е твърде дълго.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
-        <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>Вашето име на хоста съдържа непозволени символи! Само букви, цифри и тирета са позволени.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="401"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="445"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="419"/>
         <source>Your passwords do not match!</source>
         <translation>Паролите Ви не съвпадат!</translation>
     </message>
@@ -3143,7 +3231,7 @@ Output:
 <context>
     <name>UsersViewStep</name>
     <message>
-        <location filename="../src/modules/users/UsersViewStep.cpp" line="54"/>
+        <location filename="../src/modules/users/UsersViewStep.cpp" line="55"/>
         <source>Users</source>
         <translation>Потребители</translation>
     </message>

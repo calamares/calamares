@@ -226,173 +226,176 @@
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="93"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
         <source>&amp;Back</source>
         <translation>പുറകോട്ട് (&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="95"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
         <source>&amp;Next</source>
         <translation>അടുത്തത് (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="442"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="427"/>
         <source>&amp;Cancel</source>
         <translation>റദ്ദാക്കുക (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
         <source>Cancel setup without changing the system.</source>
         <translation>സിസ്റ്റത്തിന് മാറ്റമൊന്നും വരുത്താതെ സജ്ജീകരണപ്രക്രിയ റദ്ദാക്കുക.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
         <source>Cancel installation without changing the system.</source>
         <translation>സിസ്റ്റത്തിന് മാറ്റമൊന്നും വരുത്താതെ ഇൻസ്റ്റളേഷൻ റദ്ദാക്കുക.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
         <source>Setup Failed</source>
         <translation>സജ്ജീകരണപ്രക്രിയ പരാജയപ്പെട്ടു</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
         <source>Would you like to paste the install log to the web?</source>
         <translation>ഇൻസ്റ്റാൾ ലോഗ് വെബിലേക്ക് പകർത്തണോ?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="250"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="235"/>
         <source>Install Log Paste URL</source>
         <translation>ഇൻസ്റ്റാൾ ലോഗ് പകർപ്പിന്റെ വിലാസം</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
         <source>The upload was unsuccessful. No web-paste was done.</source>
         <translation>അപ്‌ലോഡ് പരാജയമായിരുന്നു. വെബിലേക്ക് പകർത്തിയില്ല.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="269"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="254"/>
         <source>Calamares Initialization Failed</source>
         <translation>കലാമാരേസ് സമാരംഭിക്കൽ പരാജയപ്പെട്ടു</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="270"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="255"/>
         <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
         <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യാൻ കഴിയില്ല. ക്രമീകരിച്ച എല്ലാ മൊഡ്യൂളുകളും ലോഡുചെയ്യാൻ കാലാമറെസിന് കഴിഞ്ഞില്ല. വിതരണത്തിൽ കാലാമറെസ് ഉപയോഗിക്കുന്ന രീതിയിലുള്ള ഒരു പ്രശ്നമാണിത്.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="276"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>&lt;br/&gt;The following modules could not be loaded:</source>
         <translation>&lt;br/&gt;താഴെ പറയുന്ന മൊഡ്യൂളുകൾ ലഭ്യമാക്കാനായില്ല:</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="322"/>
         <source>Continue with installation?</source>
         <translation>ഇൻസ്റ്റളേഷൻ തുടരണോ?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="324"/>
         <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%2 സജ്ജീകരിക്കുന്നതിന് %1 സജ്ജീകരണ പ്രോഗ്രാം നിങ്ങളുടെ ഡിസ്കിൽ മാറ്റങ്ങൾ വരുത്താൻ പോകുന്നു.&lt;br/&gt;&lt;strong&gt;നിങ്ങൾക്ക് ഈ മാറ്റങ്ങൾ പഴയപടിയാക്കാൻ കഴിയില്ല&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="345"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
         <source>&amp;Set up now</source>
         <translation>ഉടൻ സജ്ജീകരിക്കുക (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
         <source>&amp;Set up</source>
         <translation>സജ്ജീകരിക്കുക (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
         <source>&amp;Install</source>
         <translation>ഇൻസ്റ്റാൾ (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="388"/>
         <source>Setup is complete. Close the setup program.</source>
         <translation>സജ്ജീകരണം പൂർത്തിയായി. പ്രയോഗം അടയ്ക്കുക.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="502"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="487"/>
         <source>Cancel setup?</source>
         <translation>സജ്ജീകരണം റദ്ദാക്കണോ?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="502"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="487"/>
         <source>Cancel installation?</source>
         <translation>ഇൻസ്റ്റളേഷൻ റദ്ദാക്കണോ?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="503"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="488"/>
         <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
         <translation>നിലവിലുള്ള സജ്ജീകരണപ്രക്രിയ റദ്ദാക്കണോ?
 സജ്ജീകരണപ്രയോഗം നിൽക്കുകയും എല്ലാ മാറ്റങ്ങളും നഷ്ടപ്പെടുകയും ചെയ്യും.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="505"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>നിലവിലുള്ള ഇൻസ്റ്റാൾ പ്രക്രിയ റദ്ദാക്കണോ?
 ഇൻസ്റ്റാളർ നിൽക്കുകയും എല്ലാ മാറ്റങ്ങളും നഷ്ടപ്പെടുകയും ചെയ്യും.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="509"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="217"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="494"/>
         <source>&amp;Yes</source>
         <translation>വേണം (&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="510"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
         <source>&amp;No</source>
         <translation>വേണ്ട (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
         <source>&amp;Close</source>
         <translation>അടയ്ക്കുക (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="322"/>
         <source>Continue with setup?</source>
         <translation>സജ്ജീകരണപ്രക്രിയ തുടരണോ?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="342"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%2 ഇൻസ്റ്റാളുചെയ്യുന്നതിന് %1 ഇൻസ്റ്റാളർ നിങ്ങളുടെ ഡിസ്കിൽ മാറ്റങ്ങൾ വരുത്താൻ പോകുന്നു.&lt;br/&gt;&lt;strong&gt;നിങ്ങൾക്ക് ഈ മാറ്റങ്ങൾ പഴയപടിയാക്കാൻ കഴിയില്ല.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="345"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
         <source>&amp;Install now</source>
         <translation>ഉടൻ ഇൻസ്റ്റാൾ ചെയ്യുക (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="352"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
         <source>Go &amp;back</source>
         <translation>പുറകോട്ടു പോകുക </translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="427"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
         <source>&amp;Done</source>
         <translation>ചെയ്‌തു</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>ഇൻസ്റ്റളേഷൻ പൂർത്തിയായി. ഇൻസ്റ്റാളർ അടയ്ക്കുക</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="210"/>
         <source>Error</source>
         <translation>പിശക്</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
         <source>Installation Failed</source>
         <translation>ഇൻസ്റ്റളേഷൻ പരാജയപ്പെട്ടു</translation>
     </message>
@@ -839,17 +842,17 @@ The installer will quit and all changes will be lost.</source>
         <translation>സുഡോവേഴ്സ് ഡയറക്ടറിയിലേക്ക് എഴുതാൻ സാധിക്കില്ല.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="87"/>
         <source>Cannot create sudoers file for writing.</source>
         <translation>എഴുതുന്നതിനായി സുഡോവേഴ്സ് ഫയൽ നിർമ്മിക്കാനായില്ല.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="93"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="96"/>
         <source>Cannot chmod sudoers file.</source>
         <translation>സുഡോവേഴ്സ് ഫയൽ chmod ചെയ്യാൻ സാധിച്ചില്ല.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="103"/>
         <source>Cannot open groups file for reading.</source>
         <translation>ഗ്രൂപ്സ് ഫയൽ വായിക്കാനായി തുറക്കാൻ സാധിച്ചില്ല.</translation>
     </message>
@@ -1584,6 +1587,24 @@ The installer will quit and all changes will be lost.</source>
     </message>
 </context>
 <context>
+    <name>MachineIdJob</name>
+    <message>
+        <location filename="../src/modules/machineid/MachineIdJob.cpp" line="46"/>
+        <source>Generate machine-id.</source>
+        <translation>മെഷീൻ-ഐഡ് നിർമ്മിക്കുക</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/MachineIdJob.cpp" line="62"/>
+        <source>Configuration Error</source>
+        <translation>ക്രമീകരണത്തിൽ പിഴവ്</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/MachineIdJob.cpp" line="63"/>
+        <source>No root mount point is set for MachineId.</source>
+        <translation>മെഷീൻ ഐഡിയ്ക്ക് റൂട്ട് മൗണ്ട് പോയിന്റൊന്നും ക്രമീകരിച്ചിട്ടില്ല</translation>
+    </message>
+</context>
+<context>
     <name>NetInstallPage</name>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="61"/>
@@ -1653,242 +1674,242 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>PWQ</name>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="63"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="61"/>
         <source>Password is too short</source>
         <translation>രഹസ്യവാക്ക് വളരെ ചെറുതാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="85"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="76"/>
         <source>Password is too long</source>
         <translation>രഹസ്യവാക്ക് വളരെ വലുതാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="169"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
         <source>Password is too weak</source>
         <translation>രഹസ്യവാക്ക് വളരെ ദുർബലമാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="159"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
         <translation>&apos;%1&apos; ക്രമീക്കരിക്കുന്നതിൽ മെമ്മറി പങ്കുവയ്ക്കൽ പിഴവ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
         <source>Memory allocation error</source>
         <translation>മെമ്മറി വിന്യസിക്കുന്നതിൽ പിഴവ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="182"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
         <source>The password is the same as the old one</source>
         <translation>രഹസ്യവാക്ക് പഴയയതുതന്നെ ആണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
         <source>The password is a palindrome</source>
         <translation> രഹസ്യവാക്ക് ഒരു അനുലോമവിലോമപദമാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="186"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password differs with case changes only</source>
         <translation>പാസ്‌വേഡ് അക്ഷരങ്ങളുടെ കേസ് മാറ്റങ്ങളിൽ മാത്രം വ്യത്യാസപ്പെട്ടിരിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password is too similar to the old one</source>
         <translation>രഹസ്യവാക്ക് പഴയതിനോട് വളരെ സമാനമാണ് </translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
         <source>The password contains the user name in some form</source>
         <translation>രഹസ്യവാക്ക് ഏതെങ്കിലും രൂപത്തിൽ ഉപയോക്തൃനാമം അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>The password contains words from the real name of the user in some form</source>
         <translation>രഹസ്യവാക്കിൽഏതെങ്കിലും രൂപത്തിൽ ഉപയോക്താവിന്റെ യഥാർത്ഥ പേരിൽ നിന്നുള്ള വാക്കുകൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="194"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="179"/>
         <source>The password contains forbidden words in some form</source>
         <translation>രഹസ്യവാക്കിൽ ഏതെങ്കിലും രൂപത്തിൽ വിലക്കപ്പെട്ട വാക്കുകൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 digits</source>
         <translation>രഹസ്യവാക്ക് %1 അക്കത്തിൽ കുറവാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="186"/>
         <source>The password contains too few digits</source>
         <translation>രഹസ്യവാക്കിൽ വളരെ കുറച്ച് അക്കങ്ങൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
         <source>The password contains less than %1 uppercase letters</source>
         <translation>രഹസ്യവാക്കിൽ %1 വലിയക്ഷരങ്ങൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="193"/>
         <source>The password contains too few uppercase letters</source>
         <translation>രഹസ്യവാക്കിൽ വളരെ കുറച്ചു വലിയക്ഷരങ്ങൾ മാത്രമേ അടങ്ങിയിട്ടുള്ളു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
         <source>The password contains less than %1 lowercase letters</source>
         <translation>രഹസ്യവാക്കിൽ %1 -ൽ താഴെ ചെറിയ അക്ഷരങ്ങൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
         <source>The password contains too few lowercase letters</source>
         <translation>രഹസ്യവാക്കിൽ വളരെ കുറച്ചു ചെറിയക്ഷരങ്ങൾ മാത്രമേ അടങ്ങിയിട്ടുള്ളു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="204"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
         <translation>രഹസ്യവാക്കിൽ ആൽഫാന്യൂമെറിക് ഇതര പ്രതീകങ്ങൾ %1 -ൽ കുറവാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="208"/>
         <source>The password contains too few non-alphanumeric characters</source>
         <translation> രഹസ്യവാക്കിൽ ആൽഫാന്യൂമെറിക് ഇതര പ്രതീകങ്ങൾ വളരെ കുറവാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="212"/>
         <source>The password is shorter than %1 characters</source>
         <translation>പാസ്‌വേഡ് %1 പ്രതീകങ്ങളേക്കാൾ ചെറുതാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
         <source>The password is too short</source>
         <translation>രഹസ്യവാക്ക് വളരെ ചെറുതാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="217"/>
         <source>The password is just rotated old one</source>
         <translation>രഹസ്യവാക്ക് പഴയതുതന്നെ തിരിച്ചിട്ടതാണ് </translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
         <source>The password contains less than %1 character classes</source>
         <translation>പാസ്‌വേഡിൽ പ്രതീക ക്ലാസുകൾ %1 ൽ കുറവാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
         <source>The password does not contain enough character classes</source>
         <translation>രഹസ്യവാക്കിൽ ആവശ്യത്തിനു അക്ഷരങ്ങൾ ഇല്ല</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="223"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
         <source>The password contains more than %1 same characters consecutively</source>
         <translation>രഹസ്സ്യവാക്കിൽ അടുത്തടുത്തായി ഒരേ പ്രതീകം %1 കൂടുതൽ തവണ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
         <source>The password contains too many same characters consecutively</source>
         <translation>രഹസ്സ്യവാക്കിൽ അടുത്തടുത്തായി ഒരേ പ്രതീകം ഒരുപാട് തവണ അടങ്ങിയിരിക്കുന്നു.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="236"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
         <translation>രഹസ്യവാക്കിൽ %1 തവണ ഒരേ തരം അക്ഷരം ആവർത്തിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="240"/>
         <source>The password contains too many characters of the same class consecutively</source>
         <translation>രഹസ്യവാക്കിൽ ഒരുപാട് തവണ ഒരേ തരം അക്ഷരം ആവർത്തിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="245"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
         <translation>പാസ്‌വേഡിൽ %1 പ്രതീകങ്ങളേക്കാൾ ദൈർഘ്യമുള്ള മോണോടോണിക് ശ്രേണി അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
         <source>The password contains too long of a monotonic character sequence</source>
         <translation>പാസ്‌വേഡിൽ വളരെ ദൈർഘ്യമുള്ള ഒരു മോണോടോണിക് പ്രതീക ശ്രേണിയുണ്ട്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
         <source>No password supplied</source>
         <translation>രഹസ്യവാക്ക് ഒന്നും നല്‍കിയിട്ടില്ല</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="236"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
         <source>Cannot obtain random numbers from the RNG device</source>
         <translation>RNG ഉപകരണത്തിൽ നിന്ന് ആകസ്‌മിക സംഖ്യകൾ എടുക്കാൻ പറ്റുന്നില്ല.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="256"/>
         <source>Password generation failed - required entropy too low for settings</source>
         <translation>രഹസ്യവാക്ക് സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു - ആവശ്യത്തിനു entropy ഇല്ല.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
         <source>The password fails the dictionary check - %1</source>
         <translation>രഹസ്യവാക്ക് നിഘണ്ടു പരിശോധനയിൽ പരാജയപ്പെടുന്നു - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="245"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>The password fails the dictionary check</source>
         <translation>രഹസ്യവാക്ക് നിഘണ്ടു പരിശോധനയിൽ പരാജയപ്പെടുന്നു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
         <source>Unknown setting - %1</source>
         <translation>അജ്ഞാതമായ ക്രമീകരണം - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="253"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="273"/>
         <source>Unknown setting</source>
         <translation>അപരിചിതമായ സജ്ജീകരണം</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="257"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="277"/>
         <source>Bad integer value of setting - %1</source>
         <translation>ക്രമീകരണത്തിന്റെ ശരിയല്ലാത്ത സംഖ്യാമൂല്യം - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="282"/>
         <source>Bad integer value</source>
         <translation>തെറ്റായ സംഖ്യ</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="286"/>
         <source>Setting %1 is not of integer type</source>
         <translation>%1 സജ്ജീകരണം സംഖ്യയല്ല</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="291"/>
         <source>Setting is not of integer type</source>
         <translation>സജ്ജീകരണം സംഖ്യയല്ല</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="273"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="295"/>
         <source>Setting %1 is not of string type</source>
         <translation>%1 സജ്ജീകരണം ഒരു വാക്കല്ലാ</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="277"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
         <source>Setting is not of string type</source>
         <translation>സജ്ജീകരണം ഒരു വാക്കല്ലാ</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="302"/>
         <source>Opening the configuration file failed</source>
         <translation>ക്രമീകരണ ഫയൽ തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="281"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="304"/>
         <source>The configuration file is malformed</source>
         <translation>ക്രമീകരണ ഫയൽ പാഴാണു</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
         <source>Fatal failure</source>
         <translation>അപകടകരമായ പിഴവ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="285"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="308"/>
         <source>Unknown error</source>
         <translation>അപരിചിതമായ പിശക്</translation>
     </message>
@@ -1965,47 +1986,86 @@ The installer will quit and all changes will be lost.</source>
         <translation>നിങ്ങളുടെ പേരെന്താണ് ?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
         <source>What name do you want to use to log in?</source>
         <translation>ലോഗിൻ ചെയ്യാൻ നിങ്ങൾ ഏത് നാമം ഉപയോഗിക്കാനാണു ആഗ്രഹിക്കുന്നത്?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="321"/>
         <source>Choose a password to keep your account safe.</source>
         <translation>നിങ്ങളുടെ അക്കൗണ്ട് സുരക്ഷിതമായി സൂക്ഷിക്കാൻ ഒരു രഹസ്യവാക്ക് തിരഞ്ഞെടുക്കുക.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="370"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
         <translation>&lt;small&gt;ഒരേ പാസ്‌വേഡ് രണ്ടുതവണ നൽകുക, അതുവഴി ടൈപ്പിംഗ് പിശകുകൾ പരിശോധിക്കാൻ കഴിയും.ഒരു നല്ല പാസ്‌വേഡിൽ അക്ഷരങ്ങൾ, അക്കങ്ങൾ, ചിഹ്നനം എന്നിവയുടെ മിശ്രിതം അടങ്ങിയിരിക്കും, കുറഞ്ഞത് എട്ട് പ്രതീകങ്ങളെങ്കിലും നീളമുണ്ടായിരിക്കണം, കൃത്യമായ ഇടവേളകളിൽ അവ മാറ്റണം.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
         <source>What is the name of this computer?</source>
         <translation>ഈ കമ്പ്യൂട്ടറിന്റെ നാമം എന്താണ് ?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
+        <source>Your Full Name</source>
+        <translation>താങ്കളുടെ മുഴുവൻ പേരു്</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
+        <source>login</source>
+        <translation>ലോഗിൻ</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
         <translation>&lt;small&gt;നിങ്ങൾ ഒരു നെറ്റ്‌വർക്കിൽ കമ്പ്യൂട്ടർ മറ്റുള്ളവർക്ക് ദൃശ്യമാക്കുകയാണെങ്കിൽ ഈ പേര് ഉപയോഗിക്കും.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="466"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
+        <source>Computer Name</source>
+        <translation>കമ്പ്യൂട്ടറിന്റെ പേര്</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
+        <source>Password</source>
+        <translation>രഹസ്യവാക്ക്</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
+        <source>Repeat Password</source>
+        <translation>രഹസ്യവാക്ക് വീണ്ടും</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
+        <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
+        <translation>ഈ കള്ളി തിരഞ്ഞെടുക്കുമ്പോൾ, രഹസ്യവാക്കിന്റെ ബലപരിശോധന നടപ്പിലാക്കുകയും, ആയതിനാൽ താങ്കൾക്ക് ദുർബലമായ ഒരു രഹസ്യവാക്ക് ഉപയോഗിക്കാൻ സാധിക്കാതെ വരുകയും ചെയ്യും.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="454"/>
+        <source>Require strong passwords.</source>
+        <translation>ശക്തമായ രഹസ്യവാക്കുകൾ ആവശ്യപ്പെടുക</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="461"/>
         <source>Log in automatically without asking for the password.</source>
         <translation>രഹസ്യവാക്കില്ലാതെ യാന്ത്രികമായി ലോഗിൻ ചെയ്യുക.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="473"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="468"/>
         <source>Use the same password for the administrator account.</source>
         <translation>അഡ്മിനിസ്ട്രേറ്റർ അക്കൗണ്ടിനും ഇതേ രഹസ്യവാക്ക് ഉപയോഗിക്കുക.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="496"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="491"/>
         <source>Choose a password for the administrator account.</source>
         <translation>അഡ്മിനിസ്ട്രേറ്റർ അക്കണ്ടിനായി ഒരു രഹസ്യവാക്ക് തിരഞ്ഞെടുക്കുക.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="601"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="515"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="540"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;ഒരേ പാസ്‌വേഡ് രണ്ടുതവണ നൽകുക, അതുവഴി ടൈപ്പിംഗ് പിശകുകൾ പരിശോധിക്കാൻ കഴിയും.&lt;/small&gt;</translation>
     </message>
@@ -2466,6 +2526,30 @@ Output:
         <source>No description provided.</source>
         <translation>വിവരണമൊന്നും നൽകിയിട്ടില്ല.</translation>
     </message>
+    <message>
+        <location filename="../src/modules/machineid/Workers.cpp" line="55"/>
+        <location filename="../src/modules/machineid/Workers.cpp" line="63"/>
+        <location filename="../src/modules/machineid/Workers.cpp" line="67"/>
+        <location filename="../src/modules/machineid/Workers.cpp" line="117"/>
+        <location filename="../src/modules/machineid/Workers.cpp" line="132"/>
+        <source>File not found</source>
+        <translation>ഫയൽ കണ്ടെത്താനായില്ല</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/Workers.cpp" line="56"/>
+        <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
+        <translation>&lt;pre&gt;%1&lt;/pre&gt; പാഥ് ഒരു പൂർണ്ണമായ പാഥ് ആയിരിക്കണം.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/Workers.cpp" line="118"/>
+        <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
+        <translation>റാൻഡം ഫയൽ &lt;pre&gt;%1&lt;/pre&gt; നിർമ്മിക്കാനായില്ല.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/machineid/Workers.cpp" line="133"/>
+        <source>Could not read random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
+        <translation>റാൻഡം ഫയൽ &lt;pre&gt;%1&lt;/pre&gt; വായിക്കാനായില്ല.</translation>
+    </message>
 </context>
 <context>
     <name>RemoveVolumeGroupJob</name>
@@ -2736,29 +2820,29 @@ Output:
 <context>
     <name>SetHostNameJob</name>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="38"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="39"/>
         <source>Set hostname %1</source>
         <translation>%1 ഹോസ്റ്റ്‌നെയിം ക്രമീകരിക്കുക</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="45"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>&lt;strong&gt;%1&lt;/strong&gt; ഹോസ്റ്റ്‌നെയിം ക്രമീകരിക്കുക.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="52"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="53"/>
         <source>Setting hostname %1.</source>
         <translation>%1 ഹോസ്റ്റ്‌നെയിം ക്രമീകരിക്കുന്നു.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="62"/>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="69"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="64"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="71"/>
         <source>Internal Error</source>
         <translation>ആന്തരികമായ പിഴവ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="76"/>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="87"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="78"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="89"/>
         <source>Cannot write hostname to target system</source>
         <translation>ടാർഗെറ്റ് സിസ്റ്റത്തിലേക്ക് ഹോസ്റ്റ്നാമം എഴുതാൻ കഴിയില്ല</translation>
     </message>
@@ -2899,22 +2983,22 @@ Output:
         <translation>rootMountPoint %1 ആണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="123"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
         <source>Cannot disable root account.</source>
         <translation>റൂട്ട് അക്കൗണ്ട് നിഷ്ക്രിയമാക്കാനായില്ല.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="124"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="120"/>
         <source>passwd terminated with error code %1.</source>
         <translation>passwd പിഴവ് കോഡ്‌ %1 ഓട് കൂടീ അവസാനിച്ചു.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="139"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="128"/>
         <source>Cannot set password for user %1.</source>
         <translation>ഉപയോക്താവ് %1നായി രഹസ്യവാക്ക് ക്രമീകരിക്കാനായില്ല.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="141"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="129"/>
         <source>usermod terminated with error code %1.</source>
         <translation>usermod പിഴവ് കോഡ്‌ %1 ഓട് കൂടീ അവസാനിച്ചു.</translation>
     </message>
@@ -3101,43 +3185,47 @@ Output:
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="120"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="137"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
         <translation>&lt;small&gt;ഒന്നിലധികം ആളുകൾ ഈ കമ്പ്യൂട്ടർ ഉപയോഗിക്കുമെങ്കിൽ, താങ്കൾക്ക് സജ്ജീകരണത്തിന് ശേഷം നിരവധി അക്കൗണ്ടുകൾ സൃഷ്ടിക്കാം.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="126"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="143"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
         <translation>&lt;small&gt;ഒന്നിലധികം ആളുകൾ ഈ കമ്പ്യൂട്ടർ ഉപയോഗിക്കുമെങ്കിൽ, താങ്കൾക്ക് ഇൻസ്റ്റളേഷന് ശേഷം നിരവധി അക്കൗണ്ടുകൾ സൃഷ്ടിക്കാം.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="317"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
         <source>Your username is too long.</source>
         <translation>നിങ്ങളുടെ ഉപയോക്തൃനാമം വളരെ വലുതാണ്.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="323"/>
-        <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation>നിങ്ങളുടെ ഉപയോക്തൃനാമത്തിൽ അസാധുവായ പ്രതീകങ്ങൾ അടങ്ങിയിരിക്കുന്നു.ചെറിയ അക്ഷരങ്ങളും അക്കങ്ങളും മാത്രമേ അനുവദിക്കൂ.</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
+        <source>Your username must start with a lowercase letter or underscore.</source>
+        <translation>താങ്കളുടെ ഉപയോക്തൃനാമം ഒരു ചെറിയ അക്ഷരമോ അണ്ടർസ്കോറോ ഉപയോഗിച്ച് വേണം തുടങ്ങാൻ.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="361"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="347"/>
+        <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
+        <translation>ചെറിയ അക്ഷരങ്ങൾ, അക്കങ്ങൾ, അണ്ടർസ്കോർ, ഹൈഫൺ എന്നിവയേ അനുവദിച്ചിട്ടുള്ളൂ.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="395"/>
+        <source>Only letters, numbers, underscore and hyphen are allowed.</source>
+        <translation>അക്ഷരങ്ങൾ, അക്കങ്ങൾ, അണ്ടർസ്കോർ, ഹൈഫൺ എന്നിവയേ അനുവദിച്ചിട്ടുള്ളൂ.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="383"/>
         <source>Your hostname is too short.</source>
         <translation> നിങ്ങളുടെ ഹോസ്റ്റ്നാമം വളരെ ചെറുതാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="367"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="388"/>
         <source>Your hostname is too long.</source>
         <translation>നിങ്ങളുടെ ഹോസ്റ്റ്നാമം ദൈർഘ്യമേറിയതാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
-        <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>നിങ്ങളുടെ ഹോസ്റ്റ്നാമത്തിൽ അസാധുവായ പ്രതീകങ്ങൾ അടങ്ങിയിരിക്കുന്നു.അക്ഷരങ്ങൾ, അക്കങ്ങൾ, ഡാഷുകൾ എന്നിവ മാത്രമേ അനുവദിക്കൂ.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="401"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="445"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="419"/>
         <source>Your passwords do not match!</source>
         <translation>നിങ്ങളുടെ പാസ്‌വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല!</translation>
     </message>
@@ -3145,7 +3233,7 @@ Output:
 <context>
     <name>UsersViewStep</name>
     <message>
-        <location filename="../src/modules/users/UsersViewStep.cpp" line="54"/>
+        <location filename="../src/modules/users/UsersViewStep.cpp" line="55"/>
         <source>Users</source>
         <translation>ഉപയോക്താക്കൾ</translation>
     </message>
