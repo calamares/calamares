@@ -12,7 +12,9 @@ This release contains contributions from (alphabetically by first name):
  - No changes to core functionality
 
 ## Modules ##
- - No changes to module functionality
+ - A new module, *hostinfo*, places information about the host into
+   Global Storage. This can support contextualprocess modules that
+   need that information.
 
 
 # 3.2.16 (2019-11-01) #
