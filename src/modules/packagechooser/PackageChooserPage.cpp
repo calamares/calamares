@@ -140,6 +140,16 @@ PackageChooserPage::setModel( QAbstractItemModel* model )
              &PackageChooserPage::updateLabels );
 }
 
+void
+PackageChooserPage::setSelection( const QModelIndex& index )
+{
+    if ( index.isValid() )
+    {
+        ui->products->selectionModel()->select( index, QItemSelectionModel::Select );
+        currentChanged( index );
+    }
+}
+
 bool
 PackageChooserPage::hasSelection() const
 {
