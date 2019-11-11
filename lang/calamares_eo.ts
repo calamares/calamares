@@ -229,13 +229,13 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="93"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
         <source>&amp;Back</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Reen</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="95"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
         <source>&amp;Next</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sekva</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
@@ -301,12 +301,12 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
         <source>&amp;Set up now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Aranĝu nun</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
         <source>&amp;Set up</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Aranĝu</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
@@ -376,7 +376,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
         <source>Go &amp;back</source>
-        <translation type="unfinished"/>
+        <translation>Iru &amp;Reen</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
@@ -482,7 +482,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="152"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Elektita &amp;tenada aparato</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
@@ -670,7 +670,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
         <source>Create a Partition</source>
-        <translation type="unfinished"/>
+        <translation>Kreiu Subdisko</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
@@ -680,57 +680,57 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
         <source>Partition &amp;Type:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Speco de Subdisko:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="67"/>
         <source>&amp;Primary</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ĉefsubdisko</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="77"/>
         <source>E&amp;xtended</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kromsubdisko</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="119"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Dosiersistemo:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
         <source>LVM LV name</source>
-        <translation type="unfinished"/>
+        <translation>LVM LV nomo</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Flagoj:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="161"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Muntopunkto:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Grandeco:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="72"/>
         <source>En&amp;crypt</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ĉifras</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="151"/>
         <source>Logical</source>
-        <translation type="unfinished"/>
+        <translation>Logika</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="156"/>
         <source>Primary</source>
-        <translation type="unfinished"/>
+        <translation>Ĉefa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="173"/>
@@ -740,7 +740,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="262"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>Muntopunkto jam utiliĝi. Bonvolu elektu alian.</translation>
     </message>
 </context>
 <context>
@@ -1017,7 +1017,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>&amp;Keep</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tenu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -1032,12 +1032,12 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Muntopunkto:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Grandeco:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
@@ -1047,17 +1047,17 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Dosiersistemo:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="149"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Flagoj:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="269"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>Muntopunkto jam utiliĝi. Bonvolu elektu alian.</translation>
     </message>
 </context>
 <context>
@@ -1070,7 +1070,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
         <source>En&amp;crypt system</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ĉifru la sistemo</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="42"/>
@@ -1141,7 +1141,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
         <source>&amp;Restart now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Restartigu nun</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
@@ -1397,7 +1397,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Daŭrigu</translation>
     </message>
 </context>
 <context>
@@ -1532,7 +1532,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
         <location filename="../src/modules/locale/LocalePage.cpp" line="120"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="121"/>
         <source>&amp;Change...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ŝanĝu...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="292"/>
@@ -1643,7 +1643,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/oemid/OEMPage.ui" line="28"/>
         <source>Ba&amp;tch:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Baĉo</translation>
     </message>
     <message>
         <location filename="../src/modules/oemid/OEMPage.ui" line="38"/>
@@ -2157,12 +2157,12 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tenada aparato</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
         <source>&amp;Revert All Changes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Malfari Sanĝojn</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="87"/>
@@ -2172,17 +2172,17 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
         <source>Cre&amp;ate</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kreiu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Redaktu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="121"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Forviŝu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
