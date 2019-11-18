@@ -28,8 +28,19 @@ test -f ".tx/config" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 test -f "calamares.desktop" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 
 if test "x$1" = "x--no-tx" ; then
+  # tx is the transifex command -- eat its arguments and do nothing
   tx() {
     echo "Skipped tx $*"
+  }
+  # txtag is used to tag in git to measure changes -- skip it too
+  txtag() {
+    echo "Skipped tx tagging."
+  }
+else
+  # tx is the regular transifex command
+  # txtag is used to tag in git to measure changes
+  txtag() {
+    git tag -f translations
   }
 fi
 
@@ -84,3 +95,6 @@ if test -n "$SHARED_PYTHON" ; then
   tx set -r calamares.python --source -l en "$POTFILE"
   tx push --source --no-interactive -r calamares.python
 fi
+
+txtag
+exit 0
