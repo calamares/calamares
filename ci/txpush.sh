@@ -39,6 +39,9 @@ fi
 # sources, then push to Transifex
 
 export QT_SELECT=5
+lupdate -version > /dev/null 2>&1 || export QT_SELECT=qt5
+lupdate -version > /dev/null 2>&1 || { echo "! No working lupdate" ; lupdate -version ; exit 1 ; }
+
 # Don't pull branding translations in,
 # those are done separately.
 _srcdirs="src/calamares src/libcalamares src/libcalamaresui src/modules src/qml"
