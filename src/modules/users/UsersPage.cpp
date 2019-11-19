@@ -97,12 +97,14 @@ UsersPage::UsersPage( QWidget* parent )
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
     connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked )
+    {
         onPasswordTextChanged( ui->textBoxUserPassword->text() );
         onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
         checkReady( isReady() );
     } );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked )
+    {
         ui->labelChooseRootPassword->setVisible( !checked );
         ui->labelRootPassword->setVisible( !checked );
         ui->labelRootPasswordError->setVisible( !checked );
