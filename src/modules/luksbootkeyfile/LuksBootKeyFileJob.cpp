@@ -147,13 +147,13 @@ LuksBootKeyFileJob::exec()
     if ( !gs )
     {
         return Calamares::JobResult::internalError(
-            "LukeBootKeyFile", "No GlobalStorage defined.", Calamares::JobResult::InvalidConfiguration );
+            "LuksBootKeyFile", "No GlobalStorage defined.", Calamares::JobResult::InvalidConfiguration );
     }
     if ( !gs->contains( "partitions" ) )
     {
         cError() << "No GS[partitions] key.";
         return Calamares::JobResult::internalError(
-            "LukeBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
+            "LuksBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
     }
 
     LuksDeviceList s( gs->value( "partitions" ) );
@@ -161,7 +161,7 @@ LuksBootKeyFileJob::exec()
     {
         cError() << "GS[partitions] is invalid";
         return Calamares::JobResult::internalError(
-            "LukeBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
+            "LuksBootKeyFile", tr( "No partitions are defined." ), Calamares::JobResult::InvalidConfiguration );
     }
 
     cDebug() << "There are" << s.devices.count() << "LUKS partitions";
