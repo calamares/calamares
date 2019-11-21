@@ -65,6 +65,6 @@ fi
 # Cleanup artifacs of checking
 git worktree remove --force build-txcheck-head
 git worktree remove --force build-txcheck-prev
-git branch -D build-txcheck-head
+git branch -D build-txcheck-head > /dev/null 2>&1
 
 exit 0
