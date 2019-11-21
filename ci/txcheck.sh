@@ -42,11 +42,9 @@ tx_sum()
 HEAD_SUM=`tx_sum build-txcheck-head ""`
 PREV_SUM=`tx_sum build-txcheck-prev translation`
 
-test -d build-txcheck-head || exit 1
-test -d build-txcheck-prev || exit 1
-
-echo "HEAD=$HEAD_SUM"
-echo "PREV=$PREV_SUM"
+# An error message will have come from the shell function
+test -d build-txcheck-head || { echo "$HEAD_SUM" ; exit 1 ; }
+test -d build-txcheck-prev || { echo "$PREV_SUM" ; exit 1 ; }
 
 if test "$HEAD_SUM" = "$PREV_SUM" ; then
 	:
@@ -58,5 +56,10 @@ else
 	done
 	exit 1
 fi
+
+# Cleanup artifacs of checking
+git worktree remove --force build-txcheck-head
+git worktree remove --force build-txcheck-prev
+git branch -D build-txcheck-head
 
 exit 0
