@@ -18,7 +18,12 @@ else
 	echo "! There are local changes."
 	exit 1
 fi
-# No unsaved changes, collect names of relevant files
+# No unsaved changes; enforce a string freeze of one week
+DATE_PREV=$( git log -1 translation --date=unix | sed -e '/^Date:/s+.*:++p' -e d )
+DATE_HEAD=$( date +%s -d "1 week ago" )
+test "$DATE_PREV" -le "$DATE_HEAD" || { echo "! Translation tag has not aged enough." ; git log -1 translation ; exit 1 ; }
+
+# Tag is good, do real work of checking strings: collect names of relevant files
 test -f ".tx/config" || { echo "! No Transifex configuration is present." ; exit 1 ; }
 # Print part after = for each source_file line and delete all the rest
 TX_FILE_LIST=$( sed -e '/^source_file/s+.*=++p' -e d .tx/config )
