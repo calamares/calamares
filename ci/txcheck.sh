@@ -26,13 +26,27 @@ for f in $TX_FILE_LIST ; do
 	test -f $f || { echo "! Translation file '$f' does not exist." ; exit 1 ; }
 done
 
-# The state of translations here
-HEAD_SUM=$( cat $TX_FILE_LIST | sha256sum )
+# The state of translations
+tx_sum()
+{
+	WORKTREE_NAME="$1"
+	WORKTREE_TAG="$2"
+
+	git worktree add $WORKTREE_NAME $WORKTREE_TAG > /dev/null 2>&1 || { echo "! Could not create worktree." ; exit 1 ; }
+	( cd $WORKTREE_NAME && sh ci/txpush.sh --no-tx ) > /dev/null 2>&1 || { echo "! Could not re-create translations." ; exit 1 ; }
+	_SUM=$( cd $WORKTREE_NAME && cat $TX_FILE_LIST | sha256sum )
+	echo "$_SUM"
+}
 
 # Check from the translation tag as well
-git worktree add build-txcheck translation
-( cd build-txcheck && sh ci/txpush.sh --no-tx ) || { echo "! Could not re-create translations." ; exit 1 ; }
-PREV_SUM=$( cd build-txcheck && cat $TX_FILE_LIST | sha256sum )
+HEAD_SUM=`tx_sum build-txcheck-head ""`
+PREV_SUM=`tx_sum build-txcheck-prev translation`
+
+test -d build-txcheck-head || exit 1
+test -d build-txcheck-prev || exit 1
+
+echo "HEAD=$HEAD_SUM"
+echo "PREV=$PREV_SUM"
 
 if test "$HEAD_SUM" = "$PREV_SUM" ; then
 	:
@@ -40,7 +54,7 @@ else
 	echo "! Translations have changed."
 	for f in $TX_FILE_LIST ; do
 		echo "! $f"
-		diff -u build-txcheck/$f $f
+		diff -u build-txcheck-prev/$f build-txcheck-head/$f
 	done
 	exit 1
 fi
