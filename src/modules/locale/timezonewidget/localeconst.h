@@ -25,7 +25,6 @@
 
 
 #define LOCALESDIR "/usr/share/i18n/locales"
-#define TZ_DATA_FILE "/usr/share/zoneinfo/zone.tab"
 #define USER_IMAGES_PATH "/usr/share/pixmaps/faces"
 
 

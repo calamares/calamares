@@ -131,6 +131,8 @@ LocaleGlobal::initLocales() {
 
 void
 LocaleGlobal::initLocations() {
+    static const char TZ_DATA_FILE[] = "/usr/share/zoneinfo/zone.tab";
+
     locations.clear();
 
     QFile file(TZ_DATA_FILE);
