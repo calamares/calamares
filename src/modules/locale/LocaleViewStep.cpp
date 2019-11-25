@@ -142,7 +142,7 @@ LocaleViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 LocaleViewStep::jobs() const
 {
     return m_jobs;
@@ -163,12 +163,9 @@ LocaleViewStep::onActivate()
 void
 LocaleViewStep::onLeave()
 {
-    m_jobs.clear();
-
     if ( m_actualWidget )
     {
-        m_jobs.append( m_actualWidget->createJobs() );
-
+        m_jobs = m_actualWidget->createJobs();
         m_prettyStatus = m_actualWidget->prettyStatus();
 
         auto map = m_actualWidget->localesMap();
@@ -182,6 +179,7 @@ LocaleViewStep::onLeave()
     }
     else
     {
+        m_jobs.clear();
         Calamares::JobQueue::instance()->globalStorage()->remove( "localeConf" );
     }
 }

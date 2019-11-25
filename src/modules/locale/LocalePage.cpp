@@ -301,7 +301,7 @@ LocalePage::prettyStatus() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 LocalePage::createJobs()
 {
     QList< Calamares::job_ptr > list;
