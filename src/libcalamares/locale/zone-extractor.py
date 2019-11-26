@@ -91,6 +91,9 @@ cpp_header_comment = """/*   GENERATED FILE DO NOT EDIT
 */
 
 /** THIS FILE EXISTS ONLY FOR TRANSLATIONS PURPOSES **/
+
+// *INDENT-OFF*
+// clang-format off
 """
 
 if __name__ == "__main__":

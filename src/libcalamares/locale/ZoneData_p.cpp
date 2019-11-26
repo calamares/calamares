@@ -18,6 +18,9 @@
 */
 
 /** THIS FILE EXISTS ONLY FOR TRANSLATIONS PURPOSES **/
+
+// *INDENT-OFF*
+// clang-format off
 /* This returns a reference to local, which is a terrible idea.
  * Good thing it's not meant to be compiled.
  */
