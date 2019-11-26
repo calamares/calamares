@@ -34,6 +34,7 @@ class QFileInfo;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
 #pragma clang diagnostic ignored "-Wshadow"
+#pragma clang diagnostic ignored "-Wfloat-equal"
 #endif
 
 #include <yaml-cpp/yaml.h>
