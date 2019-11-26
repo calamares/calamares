@@ -19,6 +19,7 @@
 #include "Tests.h"
 
 #include "locale/LabelModel.h"
+#include "locale/TimeZone.h"
 #include "locale/TranslatableConfiguration.h"
 
 #include "CalamaresVersion.h"
@@ -198,4 +199,35 @@ LocaleTests::testTranslatableConfig2()
     CalamaresUtils::Locale::TranslatedString ts3( map, "front" );
     QVERIFY( ts3.isEmpty() );
     QCOMPARE( ts3.count(), 1 );  // The empty string
+}
+
+void
+LocaleTests::testSimpleZones()
+{
+    using namespace CalamaresUtils::Locale;
+
+    {
+        TZRegion r;
+        QVERIFY( r.tr().isEmpty() );
+    }
+    {
+        TZZone n;
+        QVERIFY( n.tr().isEmpty() );
+    }
+    {
+        TZRegion r0( "xAmsterdam" );
+        QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
+        TZRegion r1( r0 );
+        QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
+        QCOMPARE( r1.tr(), QStringLiteral( "xAmsterdam" ) );
+        TZRegion r2( std::move( r0 ) );
+        QCOMPARE( r2.tr(), QStringLiteral( "xAmsterdam" ) );
+        QCOMPARE( r0.tr(), QString() );
+    }
+}
+
+void
+LocaleTests::testComplexZones()
+{
+    // Stub for now
 }

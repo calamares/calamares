@@ -36,6 +36,10 @@ private Q_SLOTS:
     void testTranslatableLanguages();
     void testTranslatableConfig1();
     void testTranslatableConfig2();
+
+    // TimeZone testing
+    void testSimpleZones();
+    void testComplexZones();
 };
 
 #endif
