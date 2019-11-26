@@ -276,7 +276,7 @@ PartitionLabelsView::drawLabels( QPainter* painter,
             labelRect.adjust( 0, -LAYOUT_MARGIN, 0, -2*LAYOUT_MARGIN );
             painter->translate( 0.5, 0.5 );
             QRect hoverRect = labelRect.adjusted( 0, 0, -1, -1 );
-            painter->setBrush( QPalette().background().color().lighter( 102 ) );
+            painter->setBrush( QPalette().window().color().lighter( 102 ) );
             painter->setPen( Qt::NoPen );
             painter->drawRoundedRect( hoverRect, CORNER_RADIUS, CORNER_RADIUS );
 
