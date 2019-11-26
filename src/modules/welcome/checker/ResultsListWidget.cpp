@@ -74,7 +74,7 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
 
             ciw->setAutoFillBackground( true );
             QPalette pal( ciw->palette() );
-            QColor bgColor = pal.window().color().value();
+            QColor bgColor = pal.window().color();
             int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
             bgColor.setHsv( bgHue, 64, bgColor.value() );
             pal.setColor( QPalette::Window, bgColor );
@@ -199,7 +199,7 @@ ResultsListWidget::showDetailsDialog( const Calamares::RequirementsList& checkEn
 
         ciw->setAutoFillBackground( true );
         QPalette pal( ciw->palette() );
-        QColor bgColor = pal.window().color().value();
+        QColor bgColor = pal.window().color();
         int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
         bgColor.setHsv( bgHue, 64, bgColor.value() );
         pal.setColor( QPalette::Window, bgColor );
