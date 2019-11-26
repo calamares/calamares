@@ -37,8 +37,8 @@
 """
 Python3 script to scrape some data out of zoneinfo/zone.tab.
 
-To use this script, you must have a zone.tab in a standard location.
-FreeBSD uses /usr/share/zoneinfo/zone.tab, so that's where it looks.
+To use this script, you must have a zone.tab in a standard location,
+/usr/share/zoneinfo/zone.tab (this is usual on FreeBSD and Linux).
 
 Prints out a few tables of zone names for use in translations.
 """
@@ -67,7 +67,7 @@ def write_set(file, label, set):
     file.write("/* This returns a reference to local, which is a terrible idea.\n * Good thing it's not meant to be compiled.\n */\n")
     # Note {{ is an escaped { for Python string formatting
     file.write("static const QStringList& {!s}_table()\n{{\n\treturn QStringList {{\n".format(label))
-    for x in set:
+    for x in sorted(set):
         file.write("""\t\tQObject::tr("{!s}", "{!s}"),\n""".format(x, label))
     file.write("\t\tQString()\n\t};\n}\n\n")
     
