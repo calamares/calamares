@@ -224,10 +224,31 @@ LocaleTests::testSimpleZones()
         QCOMPARE( r2.tr(), QStringLiteral( "xAmsterdam" ) );
         QCOMPARE( r0.tr(), QString() );
     }
+    {
+        TZZone r0( nullptr );
+        QVERIFY( r0.tr().isEmpty() );
+        TZZone r1( r0 );
+        QVERIFY( r1.tr().isEmpty() );
+        TZZone r2( std::move( r0 ) );
+        QVERIFY( r2.tr().isEmpty() );
+    }
 }
 
 void
 LocaleTests::testComplexZones()
 {
-    // Stub for now
+    using namespace CalamaresUtils::Locale;
+
+    {
+        TZZone r0( "America/New_York" );
+        TZZone r1( "America/New York" );
+
+        QCOMPARE( r0.tr(), r1.tr() );
+        QCOMPARE( r0.tr(), QStringLiteral( "America/New York" ) );
+    }
+    {
+        TZZone r( "zxc,;*_vm" );
+        QVERIFY( !r.tr().isEmpty() );
+        QCOMPARE( r.tr(), QStringLiteral( "zxc,;* vm" ) );  // Only _ is special
+    }
 }
