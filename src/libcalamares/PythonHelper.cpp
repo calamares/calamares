@@ -26,7 +26,12 @@
 #include <QFileInfo>
 
 #undef slots
+#include "utils/boost-warnings.h"
 #include <boost/python.hpp>
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 
 namespace bp = boost::python;
 
