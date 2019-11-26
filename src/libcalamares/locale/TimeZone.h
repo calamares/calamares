@@ -61,9 +61,7 @@ class TZRegion : public CStringPair
 {
 public:
     using CStringPair::CStringPair;
-
-    // NOTE: context name must match what's used in zone-extractor.py
-    QString tr() const override { return QObject::tr( m_human, "tz_regions" ); }
+    QString tr() const override;
 };
 
 /// @brief A pair of strings for specific timezone names (e.g. "New_York")
@@ -71,9 +69,7 @@ class TZZone : public CStringPair
 {
 public:
     using CStringPair::CStringPair;
-
-    // NOTE: context name must match what's used in zone-extractor.py
-    QString tr() const override { return QObject::tr( m_human, "tz_names" ); }
+    QString tr() const override;
 };
 
 }  // namespace Locale

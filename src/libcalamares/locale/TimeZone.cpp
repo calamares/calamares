@@ -79,5 +79,20 @@ CStringPair::~CStringPair()
     free( m_key );
 }
 
+
+QString
+TZRegion::tr() const
+{
+    // NOTE: context name must match what's used in zone-extractor.py
+    return QObject::tr( m_human, "tz_regions" );
+}
+
+QString
+TZZone::tr() const
+{
+    // NOTE: context name must match what's used in zone-extractor.py
+    return QObject::tr( m_human, "tz_names" );
+}
+
 }  // namespace Locale
 }  // namespace CalamaresUtils
