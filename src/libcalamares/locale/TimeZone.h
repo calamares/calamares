@@ -19,6 +19,7 @@
 #ifndef LOCALE_TIMEZONE_H
 #define LOCALE_TIMEZONE_H
 
+#include <QObject>
 #include <QString>
 
 namespace CalamaresUtils
@@ -39,14 +40,20 @@ namespace Locale
 class CStringPair
 {
 public:
-    explicit CStringPair(const char *s1);
-    CStringPair(CStringPair&& t);
-    CStringPair(const CStringPair&) = delete;
-    ~CStringPair();
+    /// @brief An empty pair
+    CStringPair() {};
+    /// @brief Given an identifier, create the pair
+    explicit CStringPair( const char* s1 );
+    CStringPair( CStringPair&& t );
+    CStringPair( const CStringPair& );
+    virtual ~CStringPair();
 
-private:
-    const char* m_human = nullptr;
-    const char* m_key = nullptr;
+    /// @brief Give the localized human-readable form
+    virtual QString tr() const = 0;
+
+protected:
+    char* m_human = nullptr;
+    char* m_key = nullptr;
 };
 
 /// @brief A pair of strings for timezone regions (e.g. "America")
@@ -54,6 +61,9 @@ class TZRegion : public CStringPair
 {
 public:
     using CStringPair::CStringPair;
+
+    // NOTE: context name must match what's used in zone-extractor.py
+    QString tr() const override { return QObject::tr( m_human, "tz_regions" ); }
 };
 
 /// @brief A pair of strings for specific timezone names (e.g. "New_York")
@@ -61,9 +71,12 @@ class TZZone : public CStringPair
 {
 public:
     using CStringPair::CStringPair;
+
+    // NOTE: context name must match what's used in zone-extractor.py
+    QString tr() const override { return QObject::tr( m_human, "tz_names" ); }
 };
 
-}
-}
+}  // namespace Locale
+}  // namespace CalamaresUtils
 
 #endif  // LOCALE_TIMEZONE_H
