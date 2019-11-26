@@ -83,9 +83,12 @@ public slots:
      *  - the user has ticked the "OK" box.
      * This function calls updateGlobalStorage() as needed, and updates
      * the appearance of the page as needed. @p checked indicates whether
-     * the checkbox has been ticked or not.
+     * the checkbox has been ticked or not. (e.g. when @p checked is true,
+     * you can continue regardless)
      */
     void checkAcceptance( bool checked );
+
+    void retranslate();
 
 signals:
     void nextStatusChanged( bool status );
