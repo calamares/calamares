@@ -126,7 +126,6 @@ LicensePage::LicensePage( QWidget* parent )
     CALAMARES_RETRANSLATE( ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) ); )
 }
 
-
 void
 LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
 {
@@ -134,27 +133,36 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
     m_entries.clear();
     m_entries.reserve( entriesList.count() );
 
-    const bool required
-        = std::any_of( entriesList.cbegin(), entriesList.cend(), []( const LicenseEntry& e ) { return e.m_required; } );
-    if ( entriesList.isEmpty() )
-    {
-        m_allLicensesOptional = true;
-    }
-    else
-    {
-        m_allLicensesOptional = !required;
-    }
+    auto isRequired = []( const LicenseEntry& e ) { return e.m_required; };
+    m_allLicensesOptional = std::none_of( entriesList.cbegin(), entriesList.cend(), isRequired );
 
     checkAcceptance( false );
 
-    CALAMARES_RETRANSLATE( if ( required ) {
+    for ( const LicenseEntry& entry : entriesList )
+    {
+        LicenseWidget* w = new LicenseWidget( entry );
+        ui->licenseEntriesLayout->addWidget( w );
+        m_entries.append( w );
+    }
+    ui->licenseEntriesLayout->addStretch();
+
+    CALAMARES_RETRANSLATE_SLOT( &LicensePage::retranslate )
+}
+
+void
+LicensePage::retranslate()
+{
+    if ( !m_allLicensesOptional )
+    {
         ui->mainText->setText( tr( "<h1>License Agreement</h1>"
                                    "This setup procedure will install proprietary "
                                    "software that is subject to licensing terms." ) );
         ui->additionalText->setText( tr( "Please review the End User License "
                                          "Agreements (EULAs) above.<br/>"
                                          "If you do not agree with the terms, the setup procedure cannot continue." ) );
-    } else {
+    }
+    else
+    {
         ui->mainText->setText( tr( "<h1>License Agreement</h1>"
                                    "This setup procedure can install proprietary "
                                    "software that is subject to licensing terms "
@@ -164,18 +172,13 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
                                          "Agreements (EULAs) above.<br/>"
                                          "If you do not agree with the terms, proprietary software will not "
                                          "be installed, and open source alternatives will be used instead." ) );
-    } ui->retranslateUi( this );
-
-                           for ( const auto& w
-                                 : m_entries ) w->retranslateUi(); )
-
-    for ( const LicenseEntry& entry : entriesList )
-    {
-        LicenseWidget* w = new LicenseWidget( entry );
-        ui->licenseEntriesLayout->addWidget( w );
-        m_entries.append( w );
     }
-    ui->licenseEntriesLayout->addStretch();
+    ui->retranslateUi( this );
+
+    for ( const auto& w : m_entries )
+    {
+        w->retranslateUi();
+    }
 }
 
 
@@ -208,5 +211,5 @@ LicensePage::checkAcceptance( bool checked )
     {
         ui->acceptFrame->setStyleSheet( "#acceptFrame { padding: 3px }" );
     }
-    emit nextStatusChanged( checked );
+    emit nextStatusChanged( m_isNextEnabled );
 }
