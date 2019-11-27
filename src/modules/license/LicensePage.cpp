@@ -211,5 +211,5 @@ LicensePage::checkAcceptance( bool checked )
     {
         ui->acceptFrame->setStyleSheet( "#acceptFrame { padding: 3px }" );
     }
-    emit nextStatusChanged( checked );
+    emit nextStatusChanged( m_isNextEnabled );
 }
