@@ -30,6 +30,10 @@
 #include <QToolButton>
 #include <QVBoxLayout>
 
+static constexpr const auto ArrowOpenExternalLink = Qt::RightArrow;
+static constexpr const auto ArrowLocalLicenseIsCollapsed = Qt::UpArrow;
+static constexpr const auto ArrowLocalLicenseIsExpanded = Qt::DownArrow;
+
 static QString
 loadLocalFile( const QUrl& u )
 {
@@ -82,7 +86,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     {
         QVBoxLayout* vLayout = new QVBoxLayout;
 
-        m_expandLicenseButton->setArrowType( Qt::UpArrow );
+        m_expandLicenseButton->setArrowType( ArrowLocalLicenseIsCollapsed );
         connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
 
         vLayout->addLayout( wiLayout );
@@ -97,7 +101,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     }
     else
     {
-        m_expandLicenseButton->setArrowType( Qt::RightArrow );
+        m_expandLicenseButton->setArrowType( ArrowOpenExternalLink );
         connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
 
         // Normally setOpenExternalLinks( true ) would do, but we need the
@@ -163,19 +167,19 @@ LicenseWidget::retranslateUi()
 void
 LicenseWidget::expandClicked()
 {
-    if ( m_expandLicenseButton->arrowType() == Qt::DownArrow )
+    if ( m_expandLicenseButton->arrowType() == ArrowLocalLicenseIsExpanded )
     {
-        m_expandLicenseButton->setArrowType( Qt::UpArrow );
+        m_expandLicenseButton->setArrowType( ArrowLocalLicenseIsCollapsed );
     }
     else
     {
-        m_expandLicenseButton->setArrowType( Qt::DownArrow );
+        m_expandLicenseButton->setArrowType( ArrowLocalLicenseIsExpanded );
     }
 
     // Show/hide based on the new arrow direction.
     if ( m_fullText )
     {
-        m_fullText->setHidden( m_expandLicenseButton->arrowType() == Qt::UpArrow );
+        m_fullText->setHidden( m_expandLicenseButton->arrowType() == ArrowLocalLicenseIsCollapsed );
     }
 
     updateExpandToolTip();
@@ -187,7 +191,7 @@ LicenseWidget::updateExpandToolTip()
 {
     if ( m_entry.isLocal() )
     {
-        const bool isNowCollapsed = m_expandLicenseButton->arrowType() == Qt::UpArrow;
+        const bool isNowCollapsed = m_expandLicenseButton->arrowType() == ArrowLocalLicenseIsCollapsed;
 
         m_expandLicenseButton->setToolTip( isNowCollapsed ? tr( "Shows the complete license text" )
                                                           : tr( "Hide license text" ) );
