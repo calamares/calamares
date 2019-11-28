@@ -151,7 +151,7 @@ rm -rf "$TMPDIR"  # From tarball
 #
 cat <<EOF
 # Next steps for this release:
-  git push --tags
+  git push origin v$V
   gpg -s -u $KEY_ID --detach --armor $TAR_FILE  # Sign the tarball
   # Upload tarball $TAR_FILE and the signature $TAR_FILE.asc
   # Announce via https://github.com/calamares/calamares/releases/new
