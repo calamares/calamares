@@ -56,13 +56,15 @@ struct LicenseEntry
     bool isValid() const { return !m_id.isEmpty(); }
     bool isRequired() const { return m_required; }
     bool isLocal() const;
+    bool expandByDefault() const { return m_expand; }
 
     QString m_id;
     QString m_prettyName;
     QString m_prettyVendor;
-    Type m_type;
+    Type m_type = Type::Software;
     QUrl m_url;
-    bool m_required;
+    bool m_required = false;
+    bool m_expand = false;
 };
 
 class LicensePage : public QWidget

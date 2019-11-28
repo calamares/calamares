@@ -72,6 +72,7 @@ LicenseEntry::LicenseEntry( const QVariantMap& conf )
     m_url = QUrl( conf[ "url" ].toString() );
 
     m_required = CalamaresUtils::getBool( conf, "required", false );
+    m_expand = CalamaresUtils::getBool( conf, "expand", false );
 
     bool ok = false;
     QString typeString = conf.value( "type", "software" ).toString();

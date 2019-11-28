@@ -98,6 +98,13 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
 
         vLayout->addWidget( m_fullText );
         setLayout( vLayout );
+
+        if ( m_entry.expandByDefault() )
+        {
+            // Since we started in a collapsed state, toggle it to expand.
+            // This can only be done once the full text has been added.
+            expandClicked();
+        }
     }
     else
     {
