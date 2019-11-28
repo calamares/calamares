@@ -104,5 +104,6 @@ MachineIdTests::testPoolSize()
 
 QTEST_GUILESS_MAIN( MachineIdTests )
 
-#include "Tests.moc"
 #include "utils/moc-warnings.h"
+
+#include "Tests.moc"
