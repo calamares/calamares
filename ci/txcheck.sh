@@ -39,6 +39,7 @@ tx_sum()
 
 	git worktree add $WORKTREE_NAME $WORKTREE_TAG > /dev/null 2>&1 || { echo "! Could not create worktree." ; exit 1 ; }
 	( cd $WORKTREE_NAME && sh ci/txpush.sh --no-tx ) > /dev/null 2>&1 || { echo "! Could not re-create translations." ; exit 1 ; }
+	( cd $WORKTREE_NAME && sed -i'' -e '/<location filename/d' $TX_FILE_LIST )
 	_SUM=$( cd $WORKTREE_NAME && cat $TX_FILE_LIST | sha256sum )
 	echo "$_SUM"
 }
