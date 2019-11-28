@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0">
      <item>
       <widget class="QLabel" name="mainText">
        <property name="sizePolicy">
@@ -29,6 +29,16 @@
        </property>
        <property name="text">
         <string notr="true">&lt;Calamares license text&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="mainSubText">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>Please review the End User License Agreements (EULAs).</string>
        </property>
       </widget>
      </item>
@@ -47,6 +57,12 @@
      </item>
      <item>
       <widget class="QScrollArea" name="scrollArea">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
        </property>
@@ -65,7 +81,7 @@
           <x>0</x>
           <y>0</y>
           <width>765</width>
-          <height>94</height>
+          <height>86</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="licenseEntriesLayout"/>

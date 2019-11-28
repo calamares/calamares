@@ -157,9 +157,7 @@ LicensePage::retranslate()
         ui->mainText->setText( tr( "<h1>License Agreement</h1>"
                                    "This setup procedure will install proprietary "
                                    "software that is subject to licensing terms." ) );
-        ui->additionalText->setText( tr( "Please review the End User License "
-                                         "Agreements (EULAs) above.<br/>"
-                                         "If you do not agree with the terms, the setup procedure cannot continue." ) );
+        ui->additionalText->setText( tr( "If you do not agree with the terms, the setup procedure cannot continue." ) );
     }
     else
     {
@@ -168,9 +166,7 @@ LicensePage::retranslate()
                                    "software that is subject to licensing terms "
                                    "in order to provide additional features and enhance the user "
                                    "experience." ) );
-        ui->additionalText->setText( tr( "Please review the End User License "
-                                         "Agreements (EULAs) above.<br/>"
-                                         "If you do not agree with the terms, proprietary software will not "
+        ui->additionalText->setText( tr( "If you do not agree with the terms, proprietary software will not "
                                          "be installed, and open source alternatives will be used instead." ) );
     }
     ui->retranslateUi( this );
