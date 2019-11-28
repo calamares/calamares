@@ -57,7 +57,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     , m_fullText( nullptr )
 {
     QPalette pal( palette() );
-    pal.setColor( QPalette::Background, palette().background().color().lighter( 108 ) );
+    pal.setColor( QPalette::Background, palette().window().color().lighter( 108 ) );
 
     setObjectName( "licenseItem" );
 
