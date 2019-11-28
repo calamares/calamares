@@ -96,7 +96,7 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
             = Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarTextHighlight );
         if ( textHighlight.isEmpty() )
         {
-            painter->setBrush( CalamaresApplication::instance()->mainWindow()->palette().background() );
+            painter->setBrush( CalamaresApplication::instance()->mainWindow()->palette().window() );
         }
         else
         {
