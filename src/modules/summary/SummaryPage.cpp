@@ -184,7 +184,7 @@ SummaryPage::createBodyLabel( const QString& text ) const
     QLabel* label = new QLabel;
     label->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
     QPalette pal( palette() );
-    pal.setColor( QPalette::Background, palette().background().color().lighter( 108 ) );
+    pal.setColor( QPalette::Background, palette().window().color().lighter( 108 ) );
     label->setAutoFillBackground( true );
     label->setPalette( pal );
     label->setText( text );
