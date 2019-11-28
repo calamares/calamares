@@ -5,6 +5,23 @@
 # a translations push, which works for the current development
 # workflow .. but it could be improved by looking for one of
 # the typical txpush log messages instead of the tag.
+#
+# Use --cleanup as an argument to clean things up.
+
+tx_cleanup()
+{
+    # Cleanup artifacs of checking
+    git worktree remove --force build-txcheck-head
+    git worktree remove --force build-txcheck-prev
+    git branch -D build-txcheck-head > /dev/null 2>&1
+}
+
+if test "x$1" = "x--cleanup" ; then
+    tx_cleanup
+    exit 0
+fi
+test -z "$1" || { echo "! Usage: txcheck.sh [--cleanup]" ; exit 1 ; }
+
 if git describe translation > /dev/null 2>&1 ; then
 	:
 else
@@ -63,9 +80,6 @@ else
 	exit 1
 fi
 
-# Cleanup artifacs of checking
-git worktree remove --force build-txcheck-head
-git worktree remove --force build-txcheck-prev
-git branch -D build-txcheck-head > /dev/null 2>&1
+tx_cleanup
 
 exit 0
