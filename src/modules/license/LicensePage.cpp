@@ -123,7 +123,7 @@ LicensePage::LicensePage( QWidget* parent )
 
     connect( ui->acceptCheckBox, &QCheckBox::toggled, this, &LicensePage::checkAcceptance );
 
-    CALAMARES_RETRANSLATE( ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) ); )
+    CALAMARES_RETRANSLATE_SLOT( &LicensePage::retranslate )
 }
 
 void
@@ -145,13 +145,12 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
         m_entries.append( w );
     }
     ui->licenseEntriesLayout->addStretch();
-
-    CALAMARES_RETRANSLATE_SLOT( &LicensePage::retranslate )
 }
 
 void
 LicensePage::retranslate()
 {
+    ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) );
     if ( !m_allLicensesOptional )
     {
         ui->mainText->setText( tr( "<h1>License Agreement</h1>"
