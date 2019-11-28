@@ -130,21 +130,21 @@ void
 LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
 {
     CalamaresUtils::clearLayout( ui->licenseEntriesLayout );
+
+    m_allLicensesOptional = true;
+
     m_entries.clear();
     m_entries.reserve( entriesList.count() );
-
-    auto isRequired = []( const LicenseEntry& e ) { return e.m_required; };
-    m_allLicensesOptional = std::none_of( entriesList.cbegin(), entriesList.cend(), isRequired );
-
-    checkAcceptance( false );
-
     for ( const LicenseEntry& entry : entriesList )
     {
         LicenseWidget* w = new LicenseWidget( entry );
         ui->licenseEntriesLayout->addWidget( w );
         m_entries.append( w );
+        m_allLicensesOptional &= !entry.isRequired();
     }
-    ui->licenseEntriesLayout->addStretch();
+
+    ui->acceptCheckBox->setChecked(false);
+    checkAcceptance( false );
 }
 
 void
