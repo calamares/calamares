@@ -184,7 +184,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 else:
                     # We're not updating because of *keepDistributor*, but if
                     # this was a comment line, then it's still not been set.
-                    have_distributor_line = have_distributor_line or not lines[i].startsdwith("#")
+                    have_distributor_line = have_distributor_line or not lines[i].startswith("#")
     else:
         lines = []
 
