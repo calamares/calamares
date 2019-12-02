@@ -15,6 +15,15 @@ This release contains contributions from (alphabetically by first name):
  - No changes to modules.
 
 
+# 3.2.17.1 (2019-12-02) #
+
+This is a hotfix release for a bug in the grubcfg module.
+Reported by Philip Mueller and Erik Dubois.
+
+## Modules ##
+ - The *grubcfg* module had a typo in it that made installations fail.
+
+
 # 3.2.17 (2019-11-28) #
 
 This release contains contributions from (alphabetically by first name):
