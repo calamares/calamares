@@ -67,11 +67,7 @@ biggestSingleScreen()
     for ( const auto* screen : QGuiApplication::screens() )
     {
         QSize thisScreen = screen->availableSize();
-        if ( !s.isValid() )
-        {
-            s = thisScreen;
-        }
-        else if ( s.width() * s.height() < thisScreen.width() * thisScreen.height() )
+        if ( !s.isValid()  || ( s.width() * s.height() < thisScreen.width() * thisScreen.height() ) )
         {
             s = thisScreen;
         }
@@ -88,7 +84,7 @@ Calamares::RequirementsList GeneralRequirements::checkRequirements()
     bool hasPower = false;
     bool hasInternet = false;
     bool isRoot = false;
-    bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
+    bool enoughScreen = availableSize.isValid() && (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
 
     qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGiB);
     cDebug() << "Need at least storage bytes:" << requiredStorageB;
