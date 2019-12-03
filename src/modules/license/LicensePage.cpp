@@ -72,6 +72,7 @@ LicenseEntry::LicenseEntry( const QVariantMap& conf )
     m_url = QUrl( conf[ "url" ].toString() );
 
     m_required = CalamaresUtils::getBool( conf, "required", false );
+    m_expand = CalamaresUtils::getBool( conf, "expand", false );
 
     bool ok = false;
     QString typeString = conf.value( "type", "software" ).toString();
@@ -97,20 +98,13 @@ LicensePage::LicensePage( QWidget* parent )
 {
     ui->setupUi( this );
 
-    ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() );
+    // ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() );
+    CalamaresUtils::unmarginLayout( ui->verticalLayout );
 
-    ui->mainText->setAlignment( Qt::AlignCenter );
     ui->mainText->setWordWrap( true );
     ui->mainText->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
 
     ui->additionalText->setWordWrap( true );
-
-    ui->verticalLayout->insertSpacing( 4, CalamaresUtils::defaultFontHeight() / 2 );
-
-    ui->verticalLayout->setContentsMargins( CalamaresUtils::defaultFontHeight(),
-                                            CalamaresUtils::defaultFontHeight() * 3,
-                                            CalamaresUtils::defaultFontHeight(),
-                                            CalamaresUtils::defaultFontHeight() );
 
     ui->acceptFrame->setFrameStyle( QFrame::NoFrame | QFrame::Plain );
     ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
@@ -123,54 +117,53 @@ LicensePage::LicensePage( QWidget* parent )
 
     connect( ui->acceptCheckBox, &QCheckBox::toggled, this, &LicensePage::checkAcceptance );
 
-    CALAMARES_RETRANSLATE( ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) ); )
+    CALAMARES_RETRANSLATE_SLOT( &LicensePage::retranslate )
 }
 
 void
 LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
 {
     CalamaresUtils::clearLayout( ui->licenseEntriesLayout );
+
+    m_allLicensesOptional = true;
+
     m_entries.clear();
     m_entries.reserve( entriesList.count() );
-
-    auto isRequired = []( const LicenseEntry& e ) { return e.m_required; };
-    m_allLicensesOptional = std::none_of( entriesList.cbegin(), entriesList.cend(), isRequired );
-
-    checkAcceptance( false );
-
     for ( const LicenseEntry& entry : entriesList )
     {
         LicenseWidget* w = new LicenseWidget( entry );
         ui->licenseEntriesLayout->addWidget( w );
         m_entries.append( w );
+        m_allLicensesOptional &= !entry.isRequired();
     }
-    ui->licenseEntriesLayout->addStretch();
 
-    CALAMARES_RETRANSLATE_SLOT( &LicensePage::retranslate )
+    ui->acceptCheckBox->setChecked( false );
+    checkAcceptance( false );
 }
 
 void
 LicensePage::retranslate()
 {
+    ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) );
+
+    QString review = tr( "Please review the End User License Agreements (EULAs)." );
+    const auto br = QStringLiteral( "<br/>" );
+
     if ( !m_allLicensesOptional )
     {
-        ui->mainText->setText( tr( "<h1>License Agreement</h1>"
-                                   "This setup procedure will install proprietary "
-                                   "software that is subject to licensing terms." ) );
-        ui->additionalText->setText( tr( "Please review the End User License "
-                                         "Agreements (EULAs) above.<br/>"
-                                         "If you do not agree with the terms, the setup procedure cannot continue." ) );
+        ui->mainText->setText( tr( "This setup procedure will install proprietary "
+                                   "software that is subject to licensing terms." )
+                               + br + review );
+        ui->additionalText->setText( tr( "If you do not agree with the terms, the setup procedure cannot continue." ) );
     }
     else
     {
-        ui->mainText->setText( tr( "<h1>License Agreement</h1>"
-                                   "This setup procedure can install proprietary "
+        ui->mainText->setText( tr( "This setup procedure can install proprietary "
                                    "software that is subject to licensing terms "
                                    "in order to provide additional features and enhance the user "
-                                   "experience." ) );
-        ui->additionalText->setText( tr( "Please review the End User License "
-                                         "Agreements (EULAs) above.<br/>"
-                                         "If you do not agree with the terms, proprietary software will not "
+                                   "experience." )
+                               + br + review );
+        ui->additionalText->setText( tr( "If you do not agree with the terms, proprietary software will not "
                                          "be installed, and open source alternatives will be used instead." ) );
     }
     ui->retranslateUi( this );
