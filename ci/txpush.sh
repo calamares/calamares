@@ -40,7 +40,7 @@ else
   # tx is the regular transifex command
   # txtag is used to tag in git to measure changes
   txtag() {
-    git tag -f translations
+    git tag -f translation
   }
 fi
 
