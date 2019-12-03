@@ -1295,7 +1295,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="51"/>
         <source>Collecting information about your machine.</source>
-        <translation type="unfinished"/>
+        <translation>താങ്കളുടെ മെഷീനെ പറ്റിയുള്ള വിവരങ്ങൾ ശേഖരിക്കുന്നു.</translation>
     </message>
 </context>
 <context>
@@ -1423,22 +1423,22 @@ The installer will quit and all changes will be lost.</source>
         <translation>മുകളിലുള്ള നിബന്ധനകളും വ്യവസ്ഥകളും ഞാൻ അംഗീകരിക്കുന്നു.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="157"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
         <translation>&lt;h1&gt;ലൈസൻസ് ഉടമ്പടി&lt;/h1&gt;ഈ സജ്ജീകരണ നടപടിക്രമം ലൈസൻസിംഗ് നിബന്ധനകൾക്ക് വിധേയമായ കുത്തക സോഫ്റ്റ്വെയർ ഇൻസ്റ്റാൾ ചെയ്യും.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="154"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="160"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
         <translation>മുകളിലുള്ള അന്തിമ ഉപയോക്തൃ ലൈസൻസ് കരാറുകൾ (EULAs) അവലോകനം ചെയ്യുക.&lt;br/&gt;നിങ്ങൾ നിബന്ധനകളോട് യോജിക്കുന്നില്ലെങ്കിൽ, സജ്ജീകരണ നടപടിക്രമം തുടരാനാവില്ല.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="158"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="166"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
         <translation>&lt;h1&gt;ലൈസൻസ് ഉടമ്പടി&lt;/h1&gt;അധിക സവിശേഷതകൾ നൽകുന്നതിനും ഉപയോക്തൃ അനുഭവം മെച്ചപ്പെടുത്തുന്നതിനും ഈ സജ്ജീകരണ നടപടിക്രമത്തിന് ലൈസൻസിംഗ് നിബന്ധനകൾക്ക് വിധേയമായ കുത്തക സോഫ്റ്റ്വെയർ ഇൻസ്റ്റാൾ ചെയ്യാൻ കഴിയും.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="163"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="171"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
         <translation>മുകളിലുള്ള അന്തിമ ഉപയോക്തൃ ലൈസൻസ് കരാറുകൾ (EULAs) അവലോകനം ചെയ്യുക.&lt;br/&gt;നിങ്ങൾ നിബന്ധനകളോട് യോജിക്കുന്നില്ലെങ്കിൽ, പ്രൊപ്രൈറ്ററി സോഫ്റ്റ്വെയർ ഇൻസ്റ്റാൾ ചെയ്യില്ല, പകരം ഓപ്പൺ സോഴ്‌സ് ഇതരമാർഗങ്ങൾ ഉപയോഗിക്കും.</translation>
     </message>
@@ -1922,9 +1922,9 @@ The installer will quit and all changes will be lost.</source>
         <translation>അപരിചിതമായ പിശക്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="526"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="528"/>
         <source>Password is empty</source>
-        <translation type="unfinished"/>
+        <translation>രഹസ്യവാക്ക് ശൂന്യമാണ്</translation>
     </message>
 </context>
 <context>
@@ -2782,37 +2782,37 @@ Output:
 <context>
     <name>ResultsListWidget</name>
     <message>
-        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="96"/>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="99"/>
         <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
         <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാനാവില്ല. &lt;a href=&quot;#details&quot;&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="100"/>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="103"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
         <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാനാവില്ല. &lt;a href=&quot;#details&quot;&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="118"/>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="121"/>
         <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
         <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ചില ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="122"/>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="125"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
         <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യാൻ ശുപാർശ ചെയ്യപ്പെട്ടിട്ടുള്ള ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="160"/>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="163"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
         <translation>ഈ പ്രക്രിയ താങ്കളോട് ചില ചോദ്യങ്ങൾ ചോദിക്കുകയും %2 താങ്കളുടെ കമ്പ്യൂട്ടറിൽ സജ്ജീകരിക്കുകയും ചെയ്യും.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="181"/>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="184"/>
         <source>For best results, please ensure that this computer:</source>
         <translation>മികച്ച ഫലങ്ങൾക്കായി ഈ കമ്പ്യൂട്ടർ താഴെപ്പറയുന്നവ നിറവേറ്റുന്നു എന്നുറപ്പുവരുത്തുക:</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="209"/>
+        <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="215"/>
         <source>System requirements</source>
         <translation>സിസ്റ്റം ആവശ്യകതകൾ</translation>
     </message>
@@ -3198,47 +3198,47 @@ Output:
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="137"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="139"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
         <translation>&lt;small&gt;ഒന്നിലധികം ആളുകൾ ഈ കമ്പ്യൂട്ടർ ഉപയോഗിക്കുമെങ്കിൽ, താങ്കൾക്ക് സജ്ജീകരണത്തിന് ശേഷം നിരവധി അക്കൗണ്ടുകൾ സൃഷ്ടിക്കാം.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="143"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="145"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
         <translation>&lt;small&gt;ഒന്നിലധികം ആളുകൾ ഈ കമ്പ്യൂട്ടർ ഉപയോഗിക്കുമെങ്കിൽ, താങ്കൾക്ക് ഇൻസ്റ്റളേഷന് ശേഷം നിരവധി അക്കൗണ്ടുകൾ സൃഷ്ടിക്കാം.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="342"/>
         <source>Your username is too long.</source>
         <translation>നിങ്ങളുടെ ഉപയോക്തൃനാമം വളരെ വലുതാണ്.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="347"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="349"/>
         <source>Your username must start with a lowercase letter or underscore.</source>
         <translation>താങ്കളുടെ ഉപയോക്തൃനാമം ഒരു ചെറിയ അക്ഷരമോ അണ്ടർസ്കോറോ ഉപയോഗിച്ച് വേണം തുടങ്ങാൻ.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="354"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="356"/>
         <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
         <translation>ചെറിയ അക്ഷരങ്ങൾ, അക്കങ്ങൾ, അണ്ടർസ്കോർ, ഹൈഫൺ എന്നിവയേ അനുവദിച്ചിട്ടുള്ളൂ.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="402"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="404"/>
         <source>Only letters, numbers, underscore and hyphen are allowed.</source>
         <translation>അക്ഷരങ്ങൾ, അക്കങ്ങൾ, അണ്ടർസ്കോർ, ഹൈഫൺ എന്നിവയേ അനുവദിച്ചിട്ടുള്ളൂ.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="390"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="392"/>
         <source>Your hostname is too short.</source>
         <translation> നിങ്ങളുടെ ഹോസ്റ്റ്നാമം വളരെ ചെറുതാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="395"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="397"/>
         <source>Your hostname is too long.</source>
         <translation>നിങ്ങളുടെ ഹോസ്റ്റ്നാമം ദൈർഘ്യമേറിയതാണ്</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="419"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="421"/>
         <source>Your passwords do not match!</source>
         <translation>നിങ്ങളുടെ പാസ്‌വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല!</translation>
     </message>

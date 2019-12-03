@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="en" version="2.1">
 <context>
     <name>BootInfoWidget</name>
     <message>
@@ -212,18 +210,12 @@
     <message numerus="yes">
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="166"/>
         <source>Waiting for %n module(s).</source>
-        <translation>
-            <numerusform>Waiting for %n module(s).</numerusform>
-            <numerusform>Waiting for %n module(s).</numerusform>
-        </translation>
+        <translation><numerusform>Waiting for %n module(s).</numerusform><numerusform>Waiting for %n module(s).</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
         <source>(%n second(s))</source>
-        <translation>
-            <numerusform>(%n second(s))</numerusform>
-            <numerusform>(%n second(s))</numerusform>
-        </translation>
+        <translation><numerusform>(%n second(s))</numerusform><numerusform>(%n second(s))</numerusform></translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="172"/>
