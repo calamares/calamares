@@ -144,7 +144,7 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
         m_allLicensesOptional &= !entry.isRequired();
     }
 
-    ui->acceptCheckBox->setChecked(false);
+    ui->acceptCheckBox->setChecked( false );
     checkAcceptance( false );
 }
 
@@ -152,20 +152,27 @@ void
 LicensePage::retranslate()
 {
     ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) );
+
+    QString header = tr( "<h1>License Agreement</h1>" );
+    QString review = tr( "Please review the End User License Agreements (EULAs)." );
+    const auto br = QStringLiteral( "<br/>" );
+
     if ( !m_allLicensesOptional )
     {
-        ui->mainText->setText( tr( "<h1>License Agreement</h1>"
-                                   "This setup procedure will install proprietary "
-                                   "software that is subject to licensing terms." ) );
+        ui->mainText->setText( header
+                               + tr( "This setup procedure will install proprietary "
+                                     "software that is subject to licensing terms." )
+                               + br + review );
         ui->additionalText->setText( tr( "If you do not agree with the terms, the setup procedure cannot continue." ) );
     }
     else
     {
-        ui->mainText->setText( tr( "<h1>License Agreement</h1>"
-                                   "This setup procedure can install proprietary "
-                                   "software that is subject to licensing terms "
-                                   "in order to provide additional features and enhance the user "
-                                   "experience." ) );
+        ui->mainText->setText( header
+                               + tr( "This setup procedure can install proprietary "
+                                     "software that is subject to licensing terms "
+                                     "in order to provide additional features and enhance the user "
+                                     "experience." )
+                               + br + review );
         ui->additionalText->setText( tr( "If you do not agree with the terms, proprietary software will not "
                                          "be installed, and open source alternatives will be used instead." ) );
     }

@@ -33,16 +33,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="mainSubText">
-       <property name="toolTip">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>Please review the End User License Agreements (EULAs).</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
