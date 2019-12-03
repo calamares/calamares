@@ -98,20 +98,13 @@ LicensePage::LicensePage( QWidget* parent )
 {
     ui->setupUi( this );
 
-    ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() );
+    // ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() );
+    CalamaresUtils::unmarginLayout( ui->verticalLayout );
 
-    ui->mainText->setAlignment( Qt::AlignCenter );
     ui->mainText->setWordWrap( true );
     ui->mainText->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
 
     ui->additionalText->setWordWrap( true );
-
-    ui->verticalLayout->insertSpacing( 4, CalamaresUtils::defaultFontHeight() / 2 );
-
-    ui->verticalLayout->setContentsMargins( CalamaresUtils::defaultFontHeight(),
-                                            CalamaresUtils::defaultFontHeight() * 3,
-                                            CalamaresUtils::defaultFontHeight(),
-                                            CalamaresUtils::defaultFontHeight() );
 
     ui->acceptFrame->setFrameStyle( QFrame::NoFrame | QFrame::Plain );
     ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
@@ -153,25 +146,22 @@ LicensePage::retranslate()
 {
     ui->acceptCheckBox->setText( tr( "I accept the terms and conditions above." ) );
 
-    QString header = tr( "<h1>License Agreement</h1>" );
     QString review = tr( "Please review the End User License Agreements (EULAs)." );
     const auto br = QStringLiteral( "<br/>" );
 
     if ( !m_allLicensesOptional )
     {
-        ui->mainText->setText( header
-                               + tr( "This setup procedure will install proprietary "
-                                     "software that is subject to licensing terms." )
+        ui->mainText->setText( tr( "This setup procedure will install proprietary "
+                                   "software that is subject to licensing terms." )
                                + br + review );
         ui->additionalText->setText( tr( "If you do not agree with the terms, the setup procedure cannot continue." ) );
     }
     else
     {
-        ui->mainText->setText( header
-                               + tr( "This setup procedure can install proprietary "
-                                     "software that is subject to licensing terms "
-                                     "in order to provide additional features and enhance the user "
-                                     "experience." )
+        ui->mainText->setText( tr( "This setup procedure can install proprietary "
+                                   "software that is subject to licensing terms "
+                                   "in order to provide additional features and enhance the user "
+                                   "experience." )
                                + br + review );
         ui->additionalText->setText( tr( "If you do not agree with the terms, proprietary software will not "
                                          "be installed, and open source alternatives will be used instead." ) );
