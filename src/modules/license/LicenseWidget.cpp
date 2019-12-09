@@ -27,12 +27,8 @@
 #include <QFile>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QToolButton>
+#include <QPushButton>
 #include <QVBoxLayout>
-
-static constexpr const auto ArrowOpenExternalLink = Qt::RightArrow;
-static constexpr const auto ArrowLocalLicenseIsCollapsed = Qt::UpArrow;
-static constexpr const auto ArrowLocalLicenseIsExpanded = Qt::DownArrow;
 
 static QString
 loadLocalFile( const QUrl& u )
@@ -56,9 +52,9 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     : QWidget( parent )
     , m_entry( std::move( entry ) )
     , m_label( new QLabel( this ) )
-    , m_viewLicenseLabel( new QLabel( this ) )
-    , m_expandLicenseButton( nullptr )
+    , m_viewLicenseButton( new QPushButton( this ) )
     , m_fullText( nullptr )
+    , m_isExpanded( m_entry.expandByDefault() )
 {
     QPalette pal( palette() );
     pal.setColor( QPalette::Background, palette().window().color().lighter( 108 ) );
@@ -76,46 +72,28 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     m_label->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Minimum );
     wiLayout->addWidget( m_label );
 
-    m_viewLicenseLabel->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
-    m_viewLicenseLabel->setAlignment( Qt::AlignVCenter | Qt::AlignRight );
-    wiLayout->addWidget( m_viewLicenseLabel );
+    m_viewLicenseButton->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Minimum );
+    wiLayout->addWidget( m_viewLicenseButton );
 
-    m_expandLicenseButton = new QToolButton( this );
-    wiLayout->addWidget( m_expandLicenseButton );
     if ( m_entry.isLocal() )
     {
         QVBoxLayout* vLayout = new QVBoxLayout;
-
-        m_expandLicenseButton->setArrowType( ArrowLocalLicenseIsCollapsed );
-        connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
-
         vLayout->addLayout( wiLayout );
         m_fullText = new QLabel( this );
         m_fullText->setText( loadLocalFile( m_entry.m_url ) );
-        m_fullText->hide();
         m_fullText->setStyleSheet( "border-top: 1px solid black; margin-top: 1em; padding-top: 1em;" );
         m_fullText->setObjectName( "licenseItemFullText" );
 
+        m_fullText->setHidden( !m_isExpanded );
+
         vLayout->addWidget( m_fullText );
         setLayout( vLayout );
-
-        if ( m_entry.expandByDefault() )
-        {
-            // Since we started in a collapsed state, toggle it to expand.
-            // This can only be done once the full text has been added.
-            expandClicked();
-        }
+        connect( m_viewLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
     }
     else
     {
-        m_expandLicenseButton->setArrowType( ArrowOpenExternalLink );
-        connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
-
-        // Normally setOpenExternalLinks( true ) would do, but we need the
-        // open code anyway for the toolbutton, let's share it.
-        connect( m_viewLicenseLabel, &QLabel::linkActivated, this, &LicenseWidget::viewClicked );
-
         setLayout( wiLayout );  // Only the horizontal layout needed
+        connect( m_viewLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
     }
 
     retranslateUi();
@@ -174,19 +152,11 @@ LicenseWidget::retranslateUi()
 void
 LicenseWidget::expandClicked()
 {
-    if ( m_expandLicenseButton->arrowType() == ArrowLocalLicenseIsExpanded )
-    {
-        m_expandLicenseButton->setArrowType( ArrowLocalLicenseIsCollapsed );
-    }
-    else
-    {
-        m_expandLicenseButton->setArrowType( ArrowLocalLicenseIsExpanded );
-    }
-
+    m_isExpanded = !m_isExpanded;
     // Show/hide based on the new arrow direction.
     if ( m_fullText )
     {
-        m_fullText->setHidden( m_expandLicenseButton->arrowType() == ArrowLocalLicenseIsCollapsed );
+        m_fullText->setHidden( !m_isExpanded );
     }
 
     updateExpandToolTip();
@@ -198,17 +168,11 @@ LicenseWidget::updateExpandToolTip()
 {
     if ( m_entry.isLocal() )
     {
-        const bool isNowCollapsed = m_expandLicenseButton->arrowType() == ArrowLocalLicenseIsCollapsed;
-
-        m_expandLicenseButton->setToolTip( isNowCollapsed ? tr( "Shows the complete license text" )
-                                                          : tr( "Hide license text" ) );
-        m_viewLicenseLabel->setText( isNowCollapsed ? tr( "Show license agreement" ) : tr( "Hide license agreement" ) );
+        m_viewLicenseButton->setText( m_isExpanded ? tr( "Hide license text" ) : tr( "Show the license text" ) );
     }
     else
     {
-        m_expandLicenseButton->setToolTip( tr( "Opens the license agreement in a browser window." ) );
-        m_viewLicenseLabel->setText(
-            tr( "<a href=\"%1\">View license agreement</a>" ).arg( m_entry.m_url.toString() ) );
+        m_viewLicenseButton->setText( tr( "Open license agreement in browser." ) );
     }
 }
 
