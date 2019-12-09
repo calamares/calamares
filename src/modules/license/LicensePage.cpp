@@ -110,8 +110,6 @@ LicensePage::LicensePage( QWidget* parent )
     ui->mainText->setWordWrap( true );
     ui->mainText->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
 
-    ui->additionalText->setWordWrap( true );
-
     ui->acceptFrame->setFrameStyle( QFrame::NoFrame | QFrame::Plain );
     ui->acceptFrame->setStyleSheet( mustAccept );
     ui->acceptFrame->layout()->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
@@ -157,7 +155,8 @@ LicensePage::retranslate()
         ui->mainText->setText( tr( "This setup procedure will install proprietary "
                                    "software that is subject to licensing terms." )
                                + br + review );
-        ui->additionalText->setText( tr( "If you do not agree with the terms, the setup procedure cannot continue." ) );
+        QString mustAcceptText( tr( "If you do not agree with the terms, the setup procedure cannot continue." ) );
+        ui->acceptCheckBox->setToolTip( mustAcceptText );
     }
     else
     {
@@ -166,8 +165,9 @@ LicensePage::retranslate()
                                    "in order to provide additional features and enhance the user "
                                    "experience." )
                                + br + review );
-        ui->additionalText->setText( tr( "If you do not agree with the terms, proprietary software will not "
-                                         "be installed, and open source alternatives will be used instead." ) );
+        QString okAcceptText( tr( "If you do not agree with the terms, proprietary software will not "
+                                  "be installed, and open source alternatives will be used instead." ) );
+        ui->acceptCheckBox->setToolTip( okAcceptText );
     }
     ui->retranslateUi( this );
 
