@@ -54,6 +54,8 @@ public:
     /// @brief Give the localized human-readable form
     virtual QString tr() const = 0;
 
+    const char* key() const { return m_key; }
+
 protected:
     char* m_human = nullptr;
     char* m_key = nullptr;
@@ -90,6 +92,8 @@ public:
     int rowCount( const QModelIndex& parent ) const override;
 
     QVariant data( const QModelIndex& index, int role ) const override;
+
+    const TZRegion& region( int index ) const;
 
 private:
     QVector< TZRegion > m_regions;

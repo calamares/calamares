@@ -180,6 +180,15 @@ TZRegionModel::data( const QModelIndex& index, int role ) const
     return region.tr();
 }
 
+const TZRegion&
+TZRegionModel::region( int index ) const
+{
+    if ( ( index < 0 ) || ( index >= m_regions.count() ) )
+    {
+        index = 0;
+    }
+    return m_regions[ index ];
+}
 
 }  // namespace Locale
 }  // namespace CalamaresUtils
