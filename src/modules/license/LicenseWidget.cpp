@@ -53,7 +53,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     , m_entry( std::move( entry ) )
     , m_label( new QLabel( this ) )
     , m_viewLicenseButton( new QPushButton( this ) )
-    , m_fullText( nullptr )
+    , m_licenceTextLabel( new QLabel( this ) )
     , m_isExpanded( m_entry.expandByDefault() )
 {
     QPalette pal( palette() );
@@ -69,32 +69,39 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     QHBoxLayout* wiLayout = new QHBoxLayout;
 
     m_label->setWordWrap( true );
-    m_label->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Minimum );
+    m_label->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
     wiLayout->addWidget( m_label );
 
-    m_viewLicenseButton->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Minimum );
+    wiLayout->addSpacing( 1 );
+    m_viewLicenseButton->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
     wiLayout->addWidget( m_viewLicenseButton );
+
+    QVBoxLayout* vLayout = new QVBoxLayout;
+    vLayout->addLayout( wiLayout );
+    m_licenceTextLabel->setStyleSheet( "border-top: 1px solid black; margin-top: 0px; padding-top: 1em;" );
+    m_licenceTextLabel->setObjectName( "licenseItemFullText" );
 
     if ( m_entry.isLocal() )
     {
-        QVBoxLayout* vLayout = new QVBoxLayout;
-        vLayout->addLayout( wiLayout );
-        m_fullText = new QLabel( this );
-        m_fullText->setText( loadLocalFile( m_entry.m_url ) );
-        m_fullText->setStyleSheet( "border-top: 1px solid black; margin-top: 1em; padding-top: 1em;" );
-        m_fullText->setObjectName( "licenseItemFullText" );
-
-        m_fullText->setHidden( !m_isExpanded );
-
-        vLayout->addWidget( m_fullText );
-        setLayout( vLayout );
+        m_fullTextContents = loadLocalFile( m_entry.m_url );
+        if ( m_isExpanded )
+        {
+            m_licenceTextLabel->setText( m_fullTextContents );
+        }
+        else
+        {
+            m_licenceTextLabel->setText( tr( "URL: %1" ).arg( m_entry.m_url.toDisplayString() ) );
+        }
         connect( m_viewLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
     }
     else
     {
-        setLayout( wiLayout );  // Only the horizontal layout needed
+        m_licenceTextLabel->setText( tr( "URL: %1" ).arg( m_entry.m_url.toDisplayString() ) );
         connect( m_viewLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
     }
+
+    vLayout->addWidget( m_licenceTextLabel );
+    setLayout( vLayout );
 
     retranslateUi();
 }
@@ -154,9 +161,16 @@ LicenseWidget::expandClicked()
 {
     m_isExpanded = !m_isExpanded;
     // Show/hide based on the new arrow direction.
-    if ( m_fullText )
+    if ( !m_fullTextContents.isEmpty() )
     {
-        m_fullText->setHidden( !m_isExpanded );
+        if ( m_isExpanded )
+        {
+            m_licenceTextLabel->setText( m_fullTextContents );
+        }
+        else
+        {
+            m_licenceTextLabel->setText( tr( "URL: %1" ).arg( m_entry.m_url.toDisplayString() ) );
+        }
     }
 
     updateExpandToolTip();

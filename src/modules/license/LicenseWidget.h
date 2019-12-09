@@ -45,7 +45,8 @@ private:
     LicenseEntry m_entry;
     QLabel* m_label;
     QPushButton* m_viewLicenseButton;
-    QLabel* m_fullText;
+    QLabel* m_licenceTextLabel;
+    QString m_fullTextContents;
     bool m_isExpanded;
 };
 #endif
