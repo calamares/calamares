@@ -66,18 +66,21 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
     setContentsMargins( 4, 4, 4, 4 );
 
+    QVBoxLayout* vLayout = new QVBoxLayout;
+    QWidget* topPart = new QWidget( this );
+    vLayout->addWidget( topPart );
+
     QHBoxLayout* wiLayout = new QHBoxLayout;
+    topPart->setLayout( wiLayout );
 
     m_label->setWordWrap( true );
     m_label->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
     wiLayout->addWidget( m_label );
 
-    wiLayout->addSpacing( 1 );
-    m_viewLicenseButton->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
+    wiLayout->addSpacing( 10 );
+    m_viewLicenseButton->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed );
     wiLayout->addWidget( m_viewLicenseButton );
 
-    QVBoxLayout* vLayout = new QVBoxLayout;
-    vLayout->addLayout( wiLayout );
     m_licenceTextLabel->setStyleSheet( "border-top: 1px solid black; margin-top: 0px; padding-top: 1em;" );
     m_licenceTextLabel->setObjectName( "licenseItemFullText" );
 
