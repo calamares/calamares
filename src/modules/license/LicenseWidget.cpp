@@ -68,6 +68,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
 
     QVBoxLayout* vLayout = new QVBoxLayout;
     QWidget* topPart = new QWidget( this );
+    topPart->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
     vLayout->addWidget( topPart );
 
     QHBoxLayout* wiLayout = new QHBoxLayout;
@@ -102,6 +103,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
         m_licenceTextLabel->setText( tr( "URL: %1" ).arg( m_entry.m_url.toDisplayString() ) );
         connect( m_viewLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
     }
+    m_licenceTextLabel->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
 
     vLayout->addWidget( m_licenceTextLabel );
     setLayout( vLayout );

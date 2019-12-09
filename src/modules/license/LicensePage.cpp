@@ -137,6 +137,7 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
         m_entries.append( w );
         m_allLicensesOptional &= !entry.isRequired();
     }
+    ui->licenseEntriesLayout->addSpacerItem( new QSpacerItem( 10, 10, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
 
     ui->acceptCheckBox->setChecked( false );
     checkAcceptance( false );
