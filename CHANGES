@@ -12,7 +12,9 @@ This release contains contributions from (alphabetically by first name):
  - No changes to core functionality.
 
 ## Modules ##
- - No changes to modules.
+ - The *license* module has seen a significant change to its looks.
+   Actions are now labeled more clearly, and the URL (or filename)
+   for each license is displayed.
 
 
 # 3.2.17.1 (2019-12-02) #

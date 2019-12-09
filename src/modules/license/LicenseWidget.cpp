@@ -88,14 +88,7 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     if ( m_entry.isLocal() )
     {
         m_fullTextContents = loadLocalFile( m_entry.m_url );
-        if ( m_isExpanded )
-        {
-            m_licenceTextLabel->setText( m_fullTextContents );
-        }
-        else
-        {
-            m_licenceTextLabel->setText( tr( "URL: %1" ).arg( m_entry.m_url.toDisplayString() ) );
-        }
+        showLocalLicenseText();
         connect( m_viewLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
     }
     else
@@ -162,20 +155,31 @@ LicenseWidget::retranslateUi()
 }
 
 void
+LicenseWidget::showLocalLicenseText()
+{
+    if ( m_isExpanded )
+    {
+        m_licenceTextLabel->setText( m_fullTextContents );
+    }
+    else
+    {
+        QString fileName = m_entry.m_url.toDisplayString();
+        if ( fileName.startsWith( "file:" ) )
+        {
+            fileName = fileName.remove( 0, 5 );
+        }
+        m_licenceTextLabel->setText( tr( "File: %1" ).arg( fileName ) );
+    }
+}
+
+void
 LicenseWidget::expandClicked()
 {
     m_isExpanded = !m_isExpanded;
     // Show/hide based on the new arrow direction.
     if ( !m_fullTextContents.isEmpty() )
     {
-        if ( m_isExpanded )
-        {
-            m_licenceTextLabel->setText( m_fullTextContents );
-        }
-        else
-        {
-            m_licenceTextLabel->setText( tr( "URL: %1" ).arg( m_entry.m_url.toDisplayString() ) );
-        }
+        showLocalLicenseText();
     }
 
     updateExpandToolTip();

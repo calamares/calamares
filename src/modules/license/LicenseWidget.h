@@ -38,6 +38,7 @@ public:
     void retranslateUi();
 
 private:
+    void showLocalLicenseText();  // Display (or hide) the local license text
     void expandClicked();  // "slot" to toggle show/hide of local license text
     void viewClicked();  // "slot" to open link
     void updateExpandToolTip();
