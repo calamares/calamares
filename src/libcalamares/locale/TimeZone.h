@@ -19,6 +19,9 @@
 #ifndef LOCALE_TIMEZONE_H
 #define LOCALE_TIMEZONE_H
 
+#include "DllMacro.h"
+
+#include <QAbstractListModel>
 #include <QObject>
 #include <QString>
 
@@ -70,6 +73,26 @@ class TZZone : public CStringPair
 public:
     using CStringPair::CStringPair;
     QString tr() const override;
+};
+
+class DLLEXPORT TZRegionModel : public QAbstractListModel
+{
+public:
+    enum
+    {
+        LabelRole = Qt::DisplayRole
+    };
+
+    /// @brief Create from the zone.tab file
+    TZRegionModel();
+    virtual ~TZRegionModel() override;
+
+    int rowCount( const QModelIndex& parent ) const override;
+
+    QVariant data( const QModelIndex& index, int role ) const override;
+
+private:
+    QVector< TZRegion > m_regions;
 };
 
 }  // namespace Locale
