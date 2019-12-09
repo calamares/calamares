@@ -146,6 +146,7 @@ TZRegionModel::TZRegionModel()
             regions.append( region );
         }
     }
+    regions.sort();
 
     m_regions.reserve( regions.length() );
     for ( int i = 0; i < regions.length(); ++i )
