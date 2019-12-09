@@ -44,6 +44,12 @@
 
 #include <algorithm>
 
+static const char mustAccept[] = "#acceptFrame { border: 1px solid red;"
+                                 "background-color: #fff6f6;"
+                                 "border-radius: 4px;"
+                                 "padding: 2px; }";
+static const char okAccept[] = "#acceptFrame { padding: 3px }";
+
 const NamedEnumTable< LicenseEntry::Type >&
 LicenseEntry::typeNames()
 {
@@ -107,10 +113,7 @@ LicensePage::LicensePage( QWidget* parent )
     ui->additionalText->setWordWrap( true );
 
     ui->acceptFrame->setFrameStyle( QFrame::NoFrame | QFrame::Plain );
-    ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
-                                    "background-color: #fff6f6;"
-                                    "border-radius: 4px;"
-                                    "padding: 2px; }" );
+    ui->acceptFrame->setStyleSheet( mustAccept );
     ui->acceptFrame->layout()->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
 
     updateGlobalStorage( false );  // Have not agreed yet
@@ -195,14 +198,11 @@ LicensePage::checkAcceptance( bool checked )
     m_isNextEnabled = checked || m_allLicensesOptional;
     if ( !m_isNextEnabled )
     {
-        ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
-                                        "background-color: #fff8f8;"
-                                        "border-radius: 4px;"
-                                        "padding: 2px; }" );
+        ui->acceptFrame->setStyleSheet( mustAccept );
     }
     else
     {
-        ui->acceptFrame->setStyleSheet( "#acceptFrame { padding: 3px }" );
+        ui->acceptFrame->setStyleSheet( okAccept );
     }
     emit nextStatusChanged( m_isNextEnabled );
 }
