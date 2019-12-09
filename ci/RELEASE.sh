@@ -17,10 +17,13 @@
 #   * pulling translations
 #   * updating the language list
 #   * switching to the right branch
+# The release can fail for various reasons: doesn't build, tests fail,
+# or the string freeze has been violated.
 #
 # You can influence the script a little with these options:
 #   * `-B` do not build (before tagging)
 #   * `-P` do not package (tag, sign, tarball)
+#   * `-T` do not respect string freeze
 #
 # The build / package settings can be influenced via environment variables:
 #   * BUILD_DEFAULT set to `false` to avoid first build with gcc
@@ -37,8 +40,9 @@ which cmake > /dev/null 2>&1 || { echo "No cmake(1) available." ; exit 1 ; }
 test -z "$BUILD_DEFAULT" && BUILD_DEFAULT=true
 test -z "$BUILD_CLANG" && BUILD_CLANG=true
 test -z "$BUILD_ONLY" && BUILD_ONLY=false
+STRING_FREEZE=true
 
-while getopts "hBP" opt ; do
+while getopts "hBPT" opt ; do
     case "$opt" in
     h|\?)
         sed -e '1,/USAGE/d' -e '/END.USAGE/,$d' < "$0"
@@ -51,9 +55,16 @@ while getopts "hBP" opt ; do
     P)
         BUILD_ONLY=true
         ;;
+    T)
+	STRING_FREEZE=false
+	;;
     esac
 done
 
+
+if $STRING_FREEZE ; then
+	sh ci/txcheck.sh || { echo "! String freeze failed." ; exit 1 ; }
+fi
 
 ### Setup
 #
@@ -140,7 +151,7 @@ rm -rf "$TMPDIR"  # From tarball
 #
 cat <<EOF
 # Next steps for this release:
-  git push --tags
+  git push origin v$V
   gpg -s -u $KEY_ID --detach --armor $TAR_FILE  # Sign the tarball
   # Upload tarball $TAR_FILE and the signature $TAR_FILE.asc
   # Announce via https://github.com/calamares/calamares/releases/new

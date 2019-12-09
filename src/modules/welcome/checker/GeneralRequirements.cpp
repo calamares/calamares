@@ -48,6 +48,7 @@
 #include <QFileInfo>
 #include <QLabel>
 #include <QProcess>
+#include <QScreen>
 #include <QTimer>
 
 #include <unistd.h> //geteuid
@@ -59,16 +60,31 @@ GeneralRequirements::GeneralRequirements( QObject* parent )
 {
 }
 
+static QSize
+biggestSingleScreen()
+{
+    QSize s;
+    for ( const auto* screen : QGuiApplication::screens() )
+    {
+        QSize thisScreen = screen->availableSize();
+        if ( !s.isValid()  || ( s.width() * s.height() < thisScreen.width() * thisScreen.height() ) )
+        {
+            s = thisScreen;
+        }
+    }
+    return s;
+}
+
 Calamares::RequirementsList GeneralRequirements::checkRequirements()
 {
-    QSize availableSize = qApp->desktop()->availableGeometry().size();
+    QSize availableSize = biggestSingleScreen();
 
     bool enoughStorage = false;
     bool enoughRam = false;
     bool hasPower = false;
     bool hasInternet = false;
     bool isRoot = false;
-    bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
+    bool enoughScreen = availableSize.isValid() && (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
 
     qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGiB);
     cDebug() << "Need at least storage bytes:" << requiredStorageB;

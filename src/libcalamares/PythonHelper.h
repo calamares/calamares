@@ -25,9 +25,15 @@
 #include <QStringList>
 
 #undef slots
+#include "utils/boost-warnings.h"
+
 #include <boost/python/dict.hpp>
 #include <boost/python/list.hpp>
 #include <boost/python/object.hpp>
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 
 namespace CalamaresPython
 {

@@ -3,13 +3,34 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.17 (unreleased) #
+# 3.2.18 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributions.
+ - No other contributors this time around.
 
 ## Core ##
- - No changes to core functionality
+ - No changes to core functionality.
+
+## Modules ##
+ - No changes to modules.
+
+
+# 3.2.17.1 (2019-12-02) #
+
+This is a hotfix release for a bug in the grubcfg module.
+Reported by Philip Mueller and Erik Dubois.
+
+## Modules ##
+ - The *grubcfg* module had a typo in it that made installations fail.
+
+
+# 3.2.17 (2019-11-28) #
+
+This release contains contributions from (alphabetically by first name):
+ - Bill Auger
+
+## Core ##
+ - A translation "string freeze" is now enforced by the release scripts.
 
 ## Modules ##
  - A new module, *hostinfo*, places information about the host into
@@ -23,6 +44,9 @@ This release contains contributions from (alphabetically by first name):
  - The *grubcfg* module has a new configuration setting *keepDistributor*
    which prevents replacing the `GRUB_DISTRIBUTION` line when writing
    the new configuration. #1201
+ - *packagechooser* documentation has been updated.
+ - *welcome* module now works better with dark themes.
+ - The *license* module could get into a confused state, now fixed. #1271
 
 
 # 3.2.16 (2019-11-01) #

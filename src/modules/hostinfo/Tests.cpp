@@ -65,5 +65,6 @@ HostInfoTests::testHostOS()
 
 QTEST_GUILESS_MAIN( HostInfoTests )
 
-#include "Tests.moc"
 #include "utils/moc-warnings.h"
+
+#include "Tests.moc"

@@ -192,7 +192,7 @@ createDBusMachineId( const QString& rootMountPoint, const QString& fileName )
 Calamares::JobResult
 createDBusLink( const QString& rootMountPoint, const QString& fileName, const QString& systemdFileName )
 {
-    Q_UNUSED( rootMountPoint );
+    Q_UNUSED( rootMountPoint )
     return runCmd( QStringList { QStringLiteral( "ln" ), QStringLiteral( "-s" ), systemdFileName, fileName } );
 }
 

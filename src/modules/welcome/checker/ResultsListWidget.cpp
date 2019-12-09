@@ -71,11 +71,14 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
             allChecked = false;
             if ( entry.mandatory )
                 requirementsSatisfied = false;
+
             ciw->setAutoFillBackground( true );
             QPalette pal( ciw->palette() );
-            pal.setColor( QPalette::Background, Qt::white );
+            QColor bgColor = pal.window().color();
+            int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
+            bgColor.setHsv( bgHue, 64, bgColor.value() );
+            pal.setColor( QPalette::Window, bgColor );
             ciw->setPalette( pal );
-
         }
     }
 
@@ -196,7 +199,10 @@ ResultsListWidget::showDetailsDialog( const Calamares::RequirementsList& checkEn
 
         ciw->setAutoFillBackground( true );
         QPalette pal( ciw->palette() );
-        pal.setColor( QPalette::Background, Qt::white );
+        QColor bgColor = pal.window().color();
+        int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
+        bgColor.setHsv( bgHue, 64, bgColor.value() );
+        pal.setColor( QPalette::Window, bgColor );
         ciw->setPalette( pal );
     }
 

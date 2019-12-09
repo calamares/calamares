@@ -6,8 +6,6 @@
 # You can pass in directory names, in which case the files
 # in that directory (NOT below it) are processed.
 #
-set -e
-
 AS=$( which astyle )
 
 for _cf in clang-format-7 clang-format-8 clang-format70 clang-format80
@@ -21,6 +19,8 @@ test -n "$AS" || { echo "! No astyle found in PATH"; exit 1 ; }
 test -n "$CF" || { echo "! No clang-format-7 found in PATH"; exit 1 ; }
 test -x "$AS" || { echo "! $AS is not executable."; exit 1 ; }
 test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
+
+set -e
 
 any_dirs=no
 for d in "$@"

@@ -40,7 +40,7 @@
 
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.17
+    VERSION 3.2.18
     LANGUAGES C CXX )
 
 set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
@@ -449,6 +449,10 @@ add_feature_info( ExampleDistro ${mksquashfs_FOUND} "Create example-distro targe
 ### CALAMARES PROPER
 #
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
+# In rare cases we have hotfix-releases with a tweak
+if( CALAMARES_VERSION_TWEAK )
+    set( CALAMARES_VERSION "${CALAMARES_VERSION}.${CALAMARES_VERSION_TWEAK}" )
+endif()
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
 if( CALAMARES_VERSION_RC )
     set( CALAMARES_VERSION ${CALAMARES_VERSION}rc${CALAMARES_VERSION_RC} )

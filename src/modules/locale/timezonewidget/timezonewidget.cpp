@@ -225,7 +225,7 @@ void TimeZoneWidget::paintEvent( QPaintEvent* )
     painter.drawImage( point.x() - pin.width()/2, point.y() - pin.height()/2, pin );
 
     // Draw text and box
-    const int textWidth = fontMetrics.width( LocaleGlobal::Location::pretty( currentLocation.zone ) );
+    const int textWidth = fontMetrics.horizontalAdvance( LocaleGlobal::Location::pretty( currentLocation.zone ) );
     const int textHeight = fontMetrics.height();
 
     QRect rect = QRect( point.x() - textWidth/2 - 5, point.y() - textHeight - 8, textWidth + 10, textHeight - 2 );
