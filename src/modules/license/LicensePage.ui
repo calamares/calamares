@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0">
      <item>
       <widget class="QLabel" name="titleLabel">
        <property name="text">
@@ -87,7 +87,7 @@
           <x>0</x>
           <y>0</y>
           <width>765</width>
-          <height>81</height>
+          <height>89</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="licenseEntriesLayout"/>
@@ -106,22 +106,6 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="additionalText">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string notr="true">&lt;additionalText&gt;</string>
-       </property>
-      </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">

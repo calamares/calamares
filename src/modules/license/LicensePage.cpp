@@ -44,6 +44,12 @@
 
 #include <algorithm>
 
+static const char mustAccept[] = "#acceptFrame { border: 1px solid red;"
+                                 "background-color: #fff6f6;"
+                                 "border-radius: 4px;"
+                                 "padding: 2px; }";
+static const char okAccept[] = "#acceptFrame { padding: 3px }";
+
 const NamedEnumTable< LicenseEntry::Type >&
 LicenseEntry::typeNames()
 {
@@ -104,13 +110,8 @@ LicensePage::LicensePage( QWidget* parent )
     ui->mainText->setWordWrap( true );
     ui->mainText->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
 
-    ui->additionalText->setWordWrap( true );
-
     ui->acceptFrame->setFrameStyle( QFrame::NoFrame | QFrame::Plain );
-    ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
-                                    "background-color: #fff6f6;"
-                                    "border-radius: 4px;"
-                                    "padding: 2px; }" );
+    ui->acceptFrame->setStyleSheet( mustAccept );
     ui->acceptFrame->layout()->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
 
     updateGlobalStorage( false );  // Have not agreed yet
@@ -136,6 +137,7 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
         m_entries.append( w );
         m_allLicensesOptional &= !entry.isRequired();
     }
+    ui->licenseEntriesLayout->addSpacerItem( new QSpacerItem( 10, 10, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
 
     ui->acceptCheckBox->setChecked( false );
     checkAcceptance( false );
@@ -154,7 +156,8 @@ LicensePage::retranslate()
         ui->mainText->setText( tr( "This setup procedure will install proprietary "
                                    "software that is subject to licensing terms." )
                                + br + review );
-        ui->additionalText->setText( tr( "If you do not agree with the terms, the setup procedure cannot continue." ) );
+        QString mustAcceptText( tr( "If you do not agree with the terms, the setup procedure cannot continue." ) );
+        ui->acceptCheckBox->setToolTip( mustAcceptText );
     }
     else
     {
@@ -163,8 +166,9 @@ LicensePage::retranslate()
                                    "in order to provide additional features and enhance the user "
                                    "experience." )
                                + br + review );
-        ui->additionalText->setText( tr( "If you do not agree with the terms, proprietary software will not "
-                                         "be installed, and open source alternatives will be used instead." ) );
+        QString okAcceptText( tr( "If you do not agree with the terms, proprietary software will not "
+                                  "be installed, and open source alternatives will be used instead." ) );
+        ui->acceptCheckBox->setToolTip( okAcceptText );
     }
     ui->retranslateUi( this );
 
@@ -195,14 +199,11 @@ LicensePage::checkAcceptance( bool checked )
     m_isNextEnabled = checked || m_allLicensesOptional;
     if ( !m_isNextEnabled )
     {
-        ui->acceptFrame->setStyleSheet( "#acceptFrame { border: 1px solid red;"
-                                        "background-color: #fff8f8;"
-                                        "border-radius: 4px;"
-                                        "padding: 2px; }" );
+        ui->acceptFrame->setStyleSheet( mustAccept );
     }
     else
     {
-        ui->acceptFrame->setStyleSheet( "#acceptFrame { padding: 3px }" );
+        ui->acceptFrame->setStyleSheet( okAccept );
     }
     emit nextStatusChanged( m_isNextEnabled );
 }
