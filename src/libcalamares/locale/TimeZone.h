@@ -66,7 +66,22 @@ protected:
     QString m_key;
 };
 
-using CStringPairList = QList< CStringPair* >;
+class CStringPairList : public QList< CStringPair* >
+{
+public:
+    template < typename T >
+    T* find( const QString& key ) const
+    {
+        for ( auto* p : *this )
+        {
+            if ( p->key() == key )
+            {
+                return dynamic_cast< T* >( p );
+            }
+        }
+        return nullptr;
+    }
+};
 
 /// @brief A pair of strings for timezone regions (e.g. "America")
 class TZRegion : public CStringPair
@@ -89,6 +104,8 @@ public:
     static CStringPairList fromFile( const char* fileName );
     /// @brief Calls fromFile with the standard zone.tab name
     static CStringPairList fromZoneTab();
+
+    const CStringPairList& zones() const { return m_zones; }
 
 private:
     CStringPairList m_zones;

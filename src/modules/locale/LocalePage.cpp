@@ -147,9 +147,12 @@ containsLocation( const QList< LocaleGlobal::Location >& locations, const QStrin
 void
 LocalePage::init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
 {
-    m_regionList = CalamaresUtils::Locale::TZRegion::fromZoneTab();
-    m_regionModel = std::make_unique< CalamaresUtils::Locale::CStringListModel >( m_regionList );
+    using namespace CalamaresUtils::Locale;
+
+    m_regionList = TZRegion::fromZoneTab();
+    m_regionModel = std::make_unique< CStringListModel >( m_regionList );
     m_regionCombo->setModel( m_regionModel.get() );
+
 
     // Setup locations
     QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
@@ -159,7 +162,8 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
 
     m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
 
-    if ( keys.contains( initialRegion ) && containsLocation( regions.value( initialRegion ), initialZone ) )
+    auto* region = m_regionList.find< TZRegion >( initialRegion );
+    if ( region && region->zones().find< TZZone >( initialZone ) )
     {
         m_tzWidget->setCurrentLocation( initialRegion, initialZone );
     }
