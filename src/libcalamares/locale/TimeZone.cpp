@@ -34,7 +34,7 @@ namespace Locale
 
 CStringPair::CStringPair( CStringPair&& t )
     : m_human( nullptr )
-    , m_key( nullptr )
+    , m_key()
 {
     // My pointers are initialized to nullptr
     std::swap( m_human, t.m_human );
@@ -43,7 +43,7 @@ CStringPair::CStringPair( CStringPair&& t )
 
 CStringPair::CStringPair( const CStringPair& t )
     : m_human( t.m_human ? strdup( t.m_human ) : nullptr )
-    , m_key( t.m_key ? strdup( t.m_key ) : nullptr )
+    , m_key( t.m_key )
 {
 }
 
@@ -76,7 +76,7 @@ munge( const char* s )
 
 CStringPair::CStringPair( const char* s1 )
     : m_human( s1 ? munge( s1 ) : nullptr )
-    , m_key( s1 ? strdup( s1 ) : nullptr )
+    , m_key( s1 ? QString( s1 ) : QString() )
 {
 }
 
@@ -84,7 +84,6 @@ CStringPair::CStringPair( const char* s1 )
 CStringPair::~CStringPair()
 {
     free( m_human );
-    free( m_key );
 }
 
 

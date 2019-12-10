@@ -54,11 +54,11 @@ public:
     /// @brief Give the localized human-readable form
     virtual QString tr() const = 0;
 
-    const char* key() const { return m_key; }
+    QString key() const { return m_key; }
 
 protected:
     char* m_human = nullptr;
-    char* m_key = nullptr;
+    QString m_key;
 };
 
 /// @brief A pair of strings for timezone regions (e.g. "America")
