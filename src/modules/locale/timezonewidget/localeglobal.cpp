@@ -30,7 +30,7 @@
 //### Private variables
 //###
 
-QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > LocaleGlobal::locales;
+QHash< QString, QHash< QString, QList< LocaleGlobal::Locale > > > LocaleGlobal::locales;
 
 
 //###
@@ -48,13 +48,12 @@ LocaleGlobal::Location::pretty( const QString& s )
 QString
 LocaleGlobal::Location::comment() const
 {
-    QTimeZone qtz = QTimeZone( QString( "%1/%2" )
-                                    .arg( region )
-                                    .arg( zone ).toLatin1() );
+    QTimeZone qtz = QTimeZone( QString( "%1/%2" ).arg( region ).arg( zone ).toLatin1() );
     return qtz.comment();
 }
 
-LocaleGlobal::Location & LocaleGlobal::Location::operator=(const CalamaresUtils::Locale::TZZone& location)
+LocaleGlobal::Location&
+LocaleGlobal::Location::operator=( const CalamaresUtils::Locale::TZZone& location )
 {
     region = location.region();
     zone = location.key();
@@ -66,18 +65,18 @@ LocaleGlobal::Location & LocaleGlobal::Location::operator=(const CalamaresUtils:
 
 
 void
-LocaleGlobal::init() {
+LocaleGlobal::init()
+{
     // TODO: Error handling
     initLocales();
 }
 
 
-
 QHash< QString, QHash< QString, QList< LocaleGlobal::Locale > > >
-LocaleGlobal::getLocales() {
+LocaleGlobal::getLocales()
+{
     return locales;
 }
-
 
 
 //###
@@ -86,47 +85,66 @@ LocaleGlobal::getLocales() {
 
 
 void
-LocaleGlobal::initLocales() {
+LocaleGlobal::initLocales()
+{
     locales.clear();
 
-    QStringList files = QDir(LOCALESDIR).entryList(QDir::Files, QDir::Name);
+    QStringList files = QDir( LOCALESDIR ).entryList( QDir::Files, QDir::Name );
 
-    for (int i = 0; i < files.size(); ++i) {
-        QString filename = files.at(i);
-        QFile file(QString(LOCALESDIR) + "/" + filename);
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    for ( int i = 0; i < files.size(); ++i )
+    {
+        QString filename = files.at( i );
+        QFile file( QString( LOCALESDIR ) + "/" + filename );
+        if ( !file.open( QIODevice::ReadOnly | QIODevice::Text ) )
+        {
             continue;
+        }
 
-        QTextStream in(&file);
+        QTextStream in( &file );
         QString commentChar = "%";
         Locale locale;
         QString lang, territory;
 
         locale.locale = filename;
 
-        while (!in.atEnd()) {
+        while ( !in.atEnd() )
+        {
             QString line = in.readLine().trimmed();
-            QStringList split = line.split(commentChar, QString::KeepEmptyParts).first().split(QRegExp(" (?=[^\"]*(\"[^\"]*\"[^\"]*)*$)"), QString::SkipEmptyParts);
+            QStringList split = line.split( commentChar, QString::KeepEmptyParts )
+                                    .first()
+                                    .split( QRegExp( " (?=[^\"]*(\"[^\"]*\"[^\"]*)*$)" ), QString::SkipEmptyParts );
 
-            if (split.size() < 2)
+            if ( split.size() < 2 )
+            {
                 continue;
+            }
 
-            QString sub1 = QString(split.at(0)).remove("\"");
-            QString sub2 = QString(split.at(1)).remove("\"");
+            QString sub1 = QString( split.at( 0 ) ).remove( "\"" );
+            QString sub2 = QString( split.at( 1 ) ).remove( "\"" );
 
-            if (sub1 == "comment_char")
+            if ( sub1 == "comment_char" )
+            {
                 commentChar = sub2;
-            else if (sub1 == "title")
+            }
+            else if ( sub1 == "title" )
+            {
                 locale.description = sub2;
-            else if (sub1 == "territory")
-                territory= sub2;
-            else if (sub1 == "language")
+            }
+            else if ( sub1 == "territory" )
+            {
+                territory = sub2;
+            }
+            else if ( sub1 == "language" )
+            {
                 lang = sub2;
+            }
         }
 
-        if (lang.isEmpty() || territory.isEmpty())
+        if ( lang.isEmpty() || territory.isEmpty() )
+        {
             continue;
+        }
 
-        locales[lang][territory].append(locale);
+        locales[ lang ][ territory ].append( locale );
     }
 }

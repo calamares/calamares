@@ -28,20 +28,22 @@
 
 #include "locale/TimeZone.h"
 
-#include <QWidget>
-#include <QPainter>
-#include <QImage>
 #include <QFile>
-#include <QTextStream>
-#include <QList>
-#include <QStringList>
-#include <QMouseEvent>
-#include <QFontMetrics>
 #include <QFont>
+#include <QFontMetrics>
+#include <QImage>
+#include <QList>
+#include <QMouseEvent>
+#include <QPainter>
+#include <QStringList>
+#include <QTextStream>
+#include <QWidget>
 
 
 #define RGB_TRANSPARENT 0
-#define ZONES "0.0 1.0 2.0 3.0 3.5 4.0 4.5 5.0 5.5 5.75 6.0 6.5 7.0 8.0 9.0 9.5 10.0 10.5 11.0 11.5 12.0 12.75 13.0 -1.0 -2.0 -3.0 -3.5 -4.0 -4.5 -5.0 -5.5 -6.0 -7.0 -8.0 -9.0 -9.5 -10.0 -11.0"
+#define ZONES \
+    "0.0 1.0 2.0 3.0 3.5 4.0 4.5 5.0 5.5 5.75 6.0 6.5 7.0 8.0 9.0 9.5 10.0 10.5 11.0 11.5 12.0 12.75 13.0 -1.0 -2.0 " \
+    "-3.0 -3.5 -4.0 -4.5 -5.0 -5.5 -6.0 -7.0 -8.0 -9.0 -9.5 -10.0 -11.0"
 #define X_SIZE 780
 #define Y_SIZE 340
 
@@ -52,12 +54,9 @@ class TimeZoneWidget : public QWidget
 public:
     explicit TimeZoneWidget( QWidget* parent = nullptr );
 
-    LocaleGlobal::Location getCurrentLocation()
-    {
-        return currentLocation;
-    }
+    LocaleGlobal::Location getCurrentLocation() { return currentLocation; }
     void setCurrentLocation( QString region, QString zone );
-    void setCurrentLocation( const CalamaresUtils::Locale::TZZone *location );
+    void setCurrentLocation( const CalamaresUtils::Locale::TZZone* location );
 
 signals:
     void locationChanged( LocaleGlobal::Location location );
@@ -65,7 +64,7 @@ signals:
 private:
     QFont font;
     QImage background, pin, currentZoneImage;
-    QList<QImage> timeZoneImages;
+    QList< QImage > timeZoneImages;
     LocaleGlobal::Location currentLocation;
 
     QPoint getLocationPosition( const LocaleGlobal::Location& l )
@@ -78,4 +77,4 @@ private:
     void mousePressEvent( QMouseEvent* event );
 };
 
-#endif // TIMEZONEWIDGET_H
+#endif  // TIMEZONEWIDGET_H

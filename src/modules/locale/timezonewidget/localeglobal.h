@@ -24,25 +24,25 @@
 #ifndef LOCALEGLOBAL_H
 #define LOCALEGLOBAL_H
 
-#include <QString>
-#include <QFile>
-#include <QTextStream>
+#include "localeconst.h"
+#include <QDebug>
 #include <QDir>
-#include <QStringList>
-#include <QList>
+#include <QFile>
 #include <QHash>
+#include <QList>
 #include <QMap>
 #include <QRegExp>
-#include <QDebug>
-#include "localeconst.h"
+#include <QString>
+#include <QStringList>
+#include <QTextStream>
 
 namespace CalamaresUtils
 {
-    namespace Locale
-    {
-        class TZZone;
-    }
+namespace Locale
+{
+class TZZone;
 }
+}  // namespace CalamaresUtils
 
 class LocaleGlobal
 {
@@ -59,21 +59,22 @@ public:
         static QString pretty( const QString& s );
         QString comment() const;
 
-        Location& operator=(const CalamaresUtils::Locale::TZZone&);
+        Location& operator=( const CalamaresUtils::Locale::TZZone& );
     };
 
     static void init();
-    static QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > getLocales();
+    static QHash< QString, QHash< QString, QList< LocaleGlobal::Locale > > > getLocales();
 
 private:
-    static QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > locales;
+    static QHash< QString, QHash< QString, QList< LocaleGlobal::Locale > > > locales;
 
     static void initLocales();
 };
 
-inline QDebug& operator <<( QDebug& s, const LocaleGlobal::Location& l )
+inline QDebug&
+operator<<( QDebug& s, const LocaleGlobal::Location& l )
 {
-    return s << l.region << '/' << l.zone << '(' << l.country << ") @N" << l.latitude  << 'E' << l.longitude;
+    return s << l.region << '/' << l.zone << '(' << l.country << ") @N" << l.latitude << 'E' << l.longitude;
 }
 
-#endif // LOCALEGLOBAL_H
+#endif  // LOCALEGLOBAL_H

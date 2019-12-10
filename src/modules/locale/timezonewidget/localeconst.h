@@ -28,4 +28,4 @@
 #define USER_IMAGES_PATH "/usr/share/pixmaps/faces"
 
 
-#endif // LOCALECONST_H
+#endif  // LOCALECONST_H
