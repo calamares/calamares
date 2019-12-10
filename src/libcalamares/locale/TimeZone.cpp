@@ -147,8 +147,7 @@ TZRegion::fromFile( const char* fileName )
         return model;
     }
 
-    QStringList regions;
-
+    TZRegion* thisRegion = nullptr;
     QTextStream in( &file );
     while ( !in.atEnd() )
     {
@@ -177,10 +176,16 @@ TZRegion::fromFile( const char* fileName )
             continue;
         }
 
-        if ( !regions.contains( region ) )
+        auto it
+            = std::find_if( model.begin(), model.end(), [&region]( const TZRegion* r ) { return r->m_key == region; } );
+        if ( it != model.end() )
         {
-            regions.append( region );
-            model.append( new TZRegion( region.toUtf8().data() ) );
+            thisRegion = *it;
+        }
+        else
+        {
+            thisRegion = new TZRegion( region.toUtf8().data() );
+            model.append( thisRegion );
         }
 
         QString countryCode = list.at( 0 ).trimmed();
@@ -190,11 +195,15 @@ TZRegion::fromFile( const char* fileName )
         }
 
         timezoneParts.removeFirst();
-        TZZone z( timezoneParts.join( '/' ).toUtf8().constData(), countryCode, list.at( 1 ) );
-        cDebug() << "Region" << region << z;
+        thisRegion->m_zones.append( new TZZone( timezoneParts.join( '/' ).toUtf8().constData(), countryCode, list.at( 1 ) ) );
     }
 
     std::sort( model.begin(), model.end(), []( const TZRegion* l, const TZRegion* r ) { return *l < *r; } );
+    for ( auto& r : model )
+    {
+        std::sort( r->m_zones.begin(), r->m_zones.end(), []( const TZZone* l, const TZZone* r ) { return *l < *r; } );
+    }
+
     return model;
 }
 

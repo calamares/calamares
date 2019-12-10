@@ -60,6 +60,8 @@ public:
 
     QString key() const { return m_key; }
 
+    bool operator<( const CStringPair& other ) const { return m_key < other.m_key; }
+
 protected:
     char* m_human = nullptr;
     QString m_key;
@@ -77,8 +79,6 @@ public:
     using CStringPair::CStringPair;
     virtual ~TZRegion();
     QString tr() const override;
-
-    bool operator<( const TZRegion& other ) const { return m_key < other.m_key; }
 
     /** @brief Create model from a zone.tab-like file
      *
