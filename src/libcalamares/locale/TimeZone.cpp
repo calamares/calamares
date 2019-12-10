@@ -120,6 +120,7 @@ TZRegionModel::fromFile( const char* fileName )
         return model;
     }
 
+    model->m_regions.reserve( 12 );  // There's 10 in the file right now
     QStringList regions;
 
     QTextStream in( &file );
@@ -153,20 +154,20 @@ TZRegionModel::fromFile( const char* fileName )
         if ( !regions.contains( region ) )
         {
             regions.append( region );
+            model->m_regions.append( new TZRegion( region.toUtf8().data() ) );
         }
     }
-    regions.sort();
 
-    model->m_regions.reserve( regions.length() );
-    for ( int i = 0; i < regions.length(); ++i )
-    {
-        model->m_regions.append( TZRegion( regions[ i ].toUtf8().data() ) );
-    }
-
+    std::sort( model->m_regions.begin(), model->m_regions.end(), []( const TZRegion* l, const TZRegion* r ) {
+        return *l < *r;
+    } );
     return model;
 }
 
-TZRegionModel::~TZRegionModel() {}
+TZRegionModel::~TZRegionModel()
+{
+    qDeleteAll( m_regions );
+}
 
 int
 TZRegionModel::rowCount( const QModelIndex& parent ) const
@@ -187,11 +188,11 @@ TZRegionModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    const TZRegion& region = m_regions.at( index.row() );
-    return role == LabelRole ? region.tr() : region.key();
+    const TZRegion* region = m_regions.at( index.row() );
+    return role == LabelRole ? region->tr() : region->key();
 }
 
-const TZRegion&
+const TZRegion*
 TZRegionModel::region( int index ) const
 {
     if ( ( index < 0 ) || ( index >= m_regions.count() ) )

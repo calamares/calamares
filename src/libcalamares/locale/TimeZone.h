@@ -69,6 +69,8 @@ class TZRegion : public CStringPair
 public:
     using CStringPair::CStringPair;
     QString tr() const override;
+
+    bool operator<( const TZRegion& other ) const { return m_key < other.m_key; }
 };
 
 /// @brief A pair of strings for specific timezone names (e.g. "New_York")
@@ -100,10 +102,10 @@ public:
 
     QVariant data( const QModelIndex& index, int role ) const override;
 
-    const TZRegion& region( int index ) const;
+    const TZRegion* region( int index ) const;
 
 private:
-    QVector< TZRegion > m_regions;
+    QList< TZRegion* > m_regions;
 };
 
 }  // namespace Locale
