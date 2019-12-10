@@ -152,14 +152,6 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
     m_regionList = TZRegion::fromZoneTab();
     m_regionModel = std::make_unique< CStringListModel >( m_regionList );
     m_regionCombo->setModel( m_regionModel.get() );
-
-
-    // Setup locations
-    QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
-
-    QStringList keys = regions.keys();
-    keys.sort();
-
     m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
 
     auto* region = m_regionList.find< TZRegion >( initialRegion );
@@ -406,29 +398,20 @@ LocalePage::updateGlobalStorage()
 void
 LocalePage::regionChanged( int currentIndex )
 {
+    using namespace CalamaresUtils::Locale;
+
     Q_UNUSED( currentIndex )
     QString selectedRegion = m_regionCombo->currentData().toString();
 
-    QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
-    if ( !regions.contains( selectedRegion ) )
+    TZRegion* region = m_regionList.find< TZRegion >( selectedRegion );
+    if ( !region )
     {
         return;
     }
 
     m_zoneCombo->blockSignals( true );
-
-    m_zoneCombo->clear();
-
-    const QList< LocaleGlobal::Location > zones = regions.value( selectedRegion );
-    for ( const LocaleGlobal::Location& zone : zones )
-    {
-        m_zoneCombo->addItem( LocaleGlobal::Location::pretty( zone.zone ), zone.zone );
-    }
-
-    m_zoneCombo->model()->sort( 0 );
-
+    m_zoneCombo->setModel( new CStringListModel( region->zones() ) );
     m_zoneCombo->blockSignals( false );
-
     m_zoneCombo->currentIndexChanged( m_zoneCombo->currentIndex() );
 }
 
