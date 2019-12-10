@@ -66,10 +66,12 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent )
     setMaximumSize( background.size() );
 
     // Zone images
-    QStringList zones = QString( ZONES ).split( " ", QString::SkipEmptyParts );
-    for ( int i = 0; i < zones.size(); ++i )
+    for ( const auto* zoneName :
+          { "0.0",  "1.0",  "2.0",  "3.0",  "3.5",  "4.0",  "4.5",  "5.0",  "5.5",   "5.75", "6.0",   "6.5",  "7.0",
+            "8.0",  "9.0",  "9.5",  "10.0", "10.5", "11.0", "11.5", "12.0", "12.75", "13.0", "-1.0",  "-2.0", "-3.0",
+            "-3.5", "-4.0", "-4.5", "-5.0", "-5.5", "-6.0", "-7.0", "-8.0", "-9.0",  "-9.5", "-10.0", "-11.0" } )
     {
-        timeZoneImages.append( QImage( ":/images/timezone_" + zones.at( i ) + ".png" ) );
+        timeZoneImages.append( QImage( QStringLiteral( ":/images/timezone_" ) + zoneName + ".png" ) );
 #ifdef DEBUG_TIMEZONES
         if ( timeZoneImages.last().size() != background.size() )
         {
