@@ -178,7 +178,7 @@ TZRegionModel::rowCount( const QModelIndex& parent ) const
 QVariant
 TZRegionModel::data( const QModelIndex& index, int role ) const
 {
-    if ( ( role != LabelRole ) && ( role != Qt::UserRole ) )
+    if ( ( role != Qt::DisplayRole ) && ( role != Qt::UserRole ) )
     {
         return QVariant();
     }
@@ -189,7 +189,7 @@ TZRegionModel::data( const QModelIndex& index, int role ) const
     }
 
     const TZRegion* region = m_regions.at( index.row() );
-    return role == LabelRole ? region->tr() : region->key();
+    return role == Qt::DisplayRole ? region->tr() : region->key();
 }
 
 const TZRegion*

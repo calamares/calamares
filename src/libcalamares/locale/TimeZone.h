@@ -84,11 +84,6 @@ public:
 class DLLEXPORT TZRegionModel : public QAbstractListModel
 {
 public:
-    enum
-    {
-        LabelRole = Qt::DisplayRole
-    };
-
     /// @brief Create empty model (useless)
     TZRegionModel();
     virtual ~TZRegionModel() override;
