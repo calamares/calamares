@@ -144,7 +144,7 @@ containsLocation( const QList< LocaleGlobal::Location >& locations, const QStrin
 void
 LocalePage::init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
 {
-    m_regionModel.reset( new CalamaresUtils::Locale::TZRegionModel );
+    m_regionModel = CalamaresUtils::Locale::TZRegionModel::fromZoneTab();
     m_regionCombo->setModel( m_regionModel.get() );
 
     // Setup locations
