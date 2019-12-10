@@ -87,6 +87,8 @@ LocaleGlobal::getLocales()
 void
 LocaleGlobal::initLocales()
 {
+    static const char LOCALESDIR[] = "/usr/share/i18n/locales";
+
     locales.clear();
 
     QStringList files = QDir( LOCALESDIR ).entryList( QDir::Files, QDir::Name );

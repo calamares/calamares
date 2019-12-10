@@ -24,7 +24,6 @@
 #ifndef LOCALEGLOBAL_H
 #define LOCALEGLOBAL_H
 
-#include "localeconst.h"
 #include <QDebug>
 #include <QDir>
 #include <QFile>
