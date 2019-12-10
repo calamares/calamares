@@ -21,6 +21,8 @@
 
 #include "DllMacro.h"
 
+#include "utils/Logger.h"
+
 #include <QAbstractListModel>
 #include <QObject>
 #include <QString>
@@ -100,7 +102,22 @@ class TZZone : public CStringPair
 public:
     using CStringPair::CStringPair;
     QString tr() const override;
+
+    TZZone( const char* zoneName, const QString& country, QString position );
+
+    void print( QDebug& ) const;
+
+protected:
+    QString m_country;
+    double m_latitude = 0.0, m_longitude = 0.0;
 };
+
+inline QDebug&
+operator<<( QDebug& log, const TZZone& z )
+{
+    z.print( log );
+    return log;
+}
 
 class DLLEXPORT TZRegionModel : public QAbstractListModel
 {

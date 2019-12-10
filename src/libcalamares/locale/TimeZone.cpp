@@ -18,6 +18,8 @@
 
 #include "TimeZone.h"
 
+#include "utils/Logger.h"
+
 #include <QFile>
 #include <QStringList>
 #include <QTextStream>
@@ -25,6 +27,35 @@
 #include <cstring>
 
 static const char TZ_DATA_FILE[] = "/usr/share/zoneinfo/zone.tab";
+
+static double
+getRightGeoLocation( QString str )
+{
+    double sign = 1, num = 0.00;
+
+    // Determine sign
+    if ( str.startsWith( '-' ) )
+    {
+        sign = -1;
+        str.remove( 0, 1 );
+    }
+    else if ( str.startsWith( '+' ) )
+    {
+        str.remove( 0, 1 );
+    }
+
+    if ( str.length() == 4 || str.length() == 6 )
+    {
+        num = str.mid( 0, 2 ).toDouble() + str.mid( 2, 2 ).toDouble() / 60.0;
+    }
+    else if ( str.length() == 5 || str.length() == 7 )
+    {
+        num = str.mid( 0, 3 ).toDouble() + str.mid( 3, 2 ).toDouble() / 60.0;
+    }
+
+    return sign * num;
+}
+
 
 namespace CalamaresUtils
 {
@@ -151,10 +182,32 @@ TZRegion::fromFile( const char* fileName )
             regions.append( region );
             model.append( new TZRegion( region.toUtf8().data() ) );
         }
+
+        QString countryCode = list.at( 0 ).trimmed();
+        if ( countryCode.size() != 2 )
+        {
+            continue;
+        }
+
+        timezoneParts.removeFirst();
+        TZZone z( timezoneParts.join( '/' ).toUtf8().constData(), countryCode, list.at( 1 ) );
+        cDebug() << "Region" << region << z;
     }
 
     std::sort( model.begin(), model.end(), []( const TZRegion* l, const TZRegion* r ) { return *l < *r; } );
     return model;
+}
+
+TZZone::TZZone( const char* zoneName, const QString& country, QString position )
+    : CStringPair( zoneName )
+    , m_country( country )
+{
+    int cooSplitPos = position.indexOf( QRegExp( "[-+]" ), 1 );
+    if ( cooSplitPos > 0 )
+    {
+        m_latitude = getRightGeoLocation( position.mid( 0, cooSplitPos ) );
+        m_longitude = getRightGeoLocation( position.mid( cooSplitPos + 1 ) );
+    }
 }
 
 QString
@@ -163,6 +216,13 @@ TZZone::tr() const
     // NOTE: context name must match what's used in zone-extractor.py
     return QObject::tr( m_human, "tz_names" );
 }
+
+void
+TZZone::print( QDebug& log ) const
+{
+    log << key() << '(' << m_country << ' ' << m_latitude << ',' << m_longitude << ')';
+}
+
 
 TZRegionModel::TZRegionModel( TZRegionList l )
     : m_regions( l )
