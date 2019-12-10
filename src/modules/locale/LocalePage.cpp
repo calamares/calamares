@@ -42,6 +42,8 @@
 LocalePage::LocalePage( QWidget* parent )
     : QWidget( parent )
     , m_blockTzWidgetSet( false )
+    , m_regionList( CalamaresUtils::Locale::TZRegion::fromZoneTab() )
+    , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( m_regionList ) )
 {
     QBoxLayout* mainLayout = new QVBoxLayout;
 
@@ -149,8 +151,6 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
 {
     using namespace CalamaresUtils::Locale;
 
-    m_regionList = TZRegion::fromZoneTab();
-    m_regionModel = std::make_unique< CStringListModel >( m_regionList );
     m_regionCombo->setModel( m_regionModel.get() );
     m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
 
