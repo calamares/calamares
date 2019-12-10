@@ -28,6 +28,8 @@
 
 #include "timezonewidget.h"
 
+// Pixel value indicating that a spot is outside of a zone
+#define RGB_TRANSPARENT 0
 
 static constexpr double MAP_Y_OFFSET = 0.125;
 static constexpr double MAP_X_OFFSET = -0.0370;
@@ -49,8 +51,15 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent )
     font.setBold( false );
 
     // Images
-    background = QImage( ":/images/bg.png" ).scaled( X_SIZE, Y_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    background = QImage( ":/images/bg.png" );
     pin = QImage( ":/images/pin.png" );
+
+#ifdef DEBUG_TIMEZONES
+    if ( background.size() != QSize( 780, 340 ) )
+    {
+        cWarning() << "Timezone background size mitsmatch" << background.size();
+    }
+#endif
 
     // Set size
     setMinimumSize( background.size() );
@@ -60,9 +69,12 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent )
     QStringList zones = QString( ZONES ).split( " ", QString::SkipEmptyParts );
     for ( int i = 0; i < zones.size(); ++i )
     {
-        timeZoneImages.append( QImage( ":/images/timezone_" + zones.at( i ) + ".png" )
-                                   .scaled( X_SIZE, Y_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
+        timeZoneImages.append( QImage( ":/images/timezone_" + zones.at( i ) + ".png" ) );
 #ifdef DEBUG_TIMEZONES
+        if ( timeZoneImages.last().size() != background.size() )
+        {
+            cWarning() << "Timezone image size mismatch" << zones.at( i ) << timeZoneImages.last().size();
+        }
         timeZoneImages.last().setText( ZONE_NAME, zones.at( i ) );
 #endif
     }
