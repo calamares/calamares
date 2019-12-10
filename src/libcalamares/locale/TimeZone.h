@@ -57,7 +57,6 @@ public:
 
     /// @brief Give the localized human-readable form
     virtual QString tr() const = 0;
-
     QString key() const { return m_key; }
 
     bool operator<( const CStringPair& other ) const { return m_key < other.m_key; }
@@ -67,10 +66,7 @@ protected:
     QString m_key;
 };
 
-class TZZone;
-class TZRegion;
-using TZZoneList = QList< TZZone* >;
-using TZRegionList = QList< TZRegion* >;
+using CStringPairList = QList< CStringPair* >;
 
 /// @brief A pair of strings for timezone regions (e.g. "America")
 class TZRegion : public CStringPair
@@ -80,20 +76,22 @@ public:
     virtual ~TZRegion();
     QString tr() const override;
 
-    /** @brief Create model from a zone.tab-like file
+    /** @brief Create list from a zone.tab-like file
      *
      * Returns a list of all the regions; each region has a list
-     * of zones within that region.
+     * of zones within that region. Dyamically, the items in the
+     * returned list are TZRegions; their zones dynamically are
+     * TZZones even though all those lists have type CStringPairList.
      *
      * The list owns the regions, and the regions own their own list of zones.
      * When getting rid of the list, remember to qDeleteAll() on it.
      */
-    static TZRegionList fromFile( const char* fileName );
+    static CStringPairList fromFile( const char* fileName );
     /// @brief Calls fromFile with the standard zone.tab name
-    static TZRegionList fromZoneTab();
+    static CStringPairList fromZoneTab();
 
 private:
-    TZZoneList m_zones;
+    CStringPairList m_zones;
 };
 
 /// @brief A pair of strings for specific timezone names (e.g. "New_York")
@@ -119,23 +117,23 @@ operator<<( QDebug& log, const TZZone& z )
     return log;
 }
 
-class DLLEXPORT TZRegionModel : public QAbstractListModel
+class CStringListModel : public QAbstractListModel
 {
 public:
     /// @brief Create empty model
-    TZRegionModel();
+    CStringListModel();
     /// @brief Create model from list (non-owning)
-    TZRegionModel( TZRegionList );
-    virtual ~TZRegionModel() override;
+    CStringListModel( CStringPairList );
+    virtual ~CStringListModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
 
     QVariant data( const QModelIndex& index, int role ) const override;
 
-    const TZRegion* region( int index ) const;
+    const CStringPair* item( int index ) const;
 
 private:
-    TZRegionList m_regions;
+    CStringPairList m_list;
 };
 
 }  // namespace Locale

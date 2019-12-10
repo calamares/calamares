@@ -130,16 +130,16 @@ TZRegion::~TZRegion()
     qDeleteAll( m_zones );
 }
 
-TZRegionList
+CStringPairList
 TZRegion::fromZoneTab()
 {
     return TZRegion::fromFile( TZ_DATA_FILE );
 }
 
-TZRegionList
+CStringPairList
 TZRegion::fromFile( const char* fileName )
 {
-    TZRegionList model;
+    CStringPairList model;
 
     QFile file( fileName );
     if ( !file.open( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -176,11 +176,11 @@ TZRegion::fromFile( const char* fileName )
             continue;
         }
 
-        auto it
-            = std::find_if( model.begin(), model.end(), [&region]( const TZRegion* r ) { return r->m_key == region; } );
+        auto keyMatch = [&region]( const CStringPair* r ) { return r->key() == region; };
+        auto it = std::find_if( model.begin(), model.end(), keyMatch );
         if ( it != model.end() )
         {
-            thisRegion = *it;
+            thisRegion = dynamic_cast< TZRegion* >( *it );
         }
         else
         {
@@ -195,13 +195,19 @@ TZRegion::fromFile( const char* fileName )
         }
 
         timezoneParts.removeFirst();
-        thisRegion->m_zones.append( new TZZone( timezoneParts.join( '/' ).toUtf8().constData(), countryCode, list.at( 1 ) ) );
+        thisRegion->m_zones.append(
+            new TZZone( timezoneParts.join( '/' ).toUtf8().constData(), countryCode, list.at( 1 ) ) );
     }
 
-    std::sort( model.begin(), model.end(), []( const TZRegion* l, const TZRegion* r ) { return *l < *r; } );
-    for ( auto& r : model )
+    auto sorter = []( const CStringPair* l, const CStringPair* r ) { return *l < *r; };
+    std::sort( model.begin(), model.end(), sorter );
+    for ( auto& it : model )
     {
-        std::sort( r->m_zones.begin(), r->m_zones.end(), []( const TZZone* l, const TZZone* r ) { return *l < *r; } );
+        TZRegion* r = dynamic_cast< TZRegion* >( it );
+        if ( r )
+        {
+            std::sort( r->m_zones.begin(), r->m_zones.end(), sorter );
+        }
     }
 
     return model;
@@ -233,21 +239,21 @@ TZZone::print( QDebug& log ) const
 }
 
 
-TZRegionModel::TZRegionModel( TZRegionList l )
-    : m_regions( l )
+CStringListModel::CStringListModel( CStringPairList l )
+    : m_list( l )
 {
 }
 
-TZRegionModel::~TZRegionModel() {}
+CStringListModel::~CStringListModel() {}
 
 int
-TZRegionModel::rowCount( const QModelIndex& parent ) const
+CStringListModel::rowCount( const QModelIndex& parent ) const
 {
-    return m_regions.count();
+    return m_list.count();
 }
 
 QVariant
-TZRegionModel::data( const QModelIndex& index, int role ) const
+CStringListModel::data( const QModelIndex& index, int role ) const
 {
     if ( ( role != Qt::DisplayRole ) && ( role != Qt::UserRole ) )
     {
@@ -259,18 +265,18 @@ TZRegionModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    const TZRegion* region = m_regions.at( index.row() );
-    return role == Qt::DisplayRole ? region->tr() : region->key();
+    const auto* item = m_list.at( index.row() );
+    return item ? ( role == Qt::DisplayRole ? item->tr() : item->key() ) : QVariant();
 }
 
-const TZRegion*
-TZRegionModel::region( int index ) const
+const CStringPair*
+CStringListModel::item( int index ) const
 {
-    if ( ( index < 0 ) || ( index >= m_regions.count() ) )
+    if ( ( index < 0 ) || ( index >= m_list.count() ) )
     {
         return nullptr;
     }
-    return m_regions[ index ];
+    return m_list[ index ];
 }
 
 }  // namespace Locale

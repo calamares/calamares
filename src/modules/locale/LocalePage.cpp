@@ -148,7 +148,7 @@ void
 LocalePage::init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
 {
     m_regionList = CalamaresUtils::Locale::TZRegion::fromZoneTab();
-    m_regionModel = std::make_unique< CalamaresUtils::Locale::TZRegionModel >( m_regionList );
+    m_regionModel = std::make_unique< CalamaresUtils::Locale::CStringListModel >( m_regionList );
     m_regionCombo->setModel( m_regionModel.get() );
 
     // Setup locations
