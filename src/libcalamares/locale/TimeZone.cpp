@@ -130,10 +130,11 @@ TZRegion::~TZRegion()
     qDeleteAll( m_zones );
 }
 
-CStringPairList
+const CStringPairList&
 TZRegion::fromZoneTab()
 {
-    return TZRegion::fromFile( TZ_DATA_FILE );
+    static CStringPairList zoneTab = TZRegion::fromFile( TZ_DATA_FILE );
+    return zoneTab;
 }
 
 CStringPairList

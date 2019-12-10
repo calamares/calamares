@@ -103,7 +103,7 @@ public:
      */
     static CStringPairList fromFile( const char* fileName );
     /// @brief Calls fromFile with the standard zone.tab name
-    static CStringPairList fromZoneTab();
+    static const CStringPairList& fromZoneTab();
 
     const CStringPairList& zones() const { return m_zones; }
 
