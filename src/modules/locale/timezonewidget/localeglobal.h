@@ -36,6 +36,14 @@
 #include <QDebug>
 #include "localeconst.h"
 
+namespace CalamaresUtils
+{
+    namespace Locale
+    {
+        class TZZone;
+    }
+}
+
 class LocaleGlobal
 {
 public:
@@ -50,19 +58,17 @@ public:
         double latitude, longitude;
         static QString pretty( const QString& s );
         QString comment() const;
+
+        Location& operator=(const CalamaresUtils::Locale::TZZone&);
     };
 
     static void init();
     static QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > getLocales();
-    static QHash<QString, QList<LocaleGlobal::Location> > getLocations();
 
 private:
     static QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > locales;
-    static QHash<QString, QList<LocaleGlobal::Location> > locations;
 
     static void initLocales();
-    static void initLocations();
-    static double getRightGeoLocation( QString str );
 };
 
 inline QDebug& operator <<( QDebug& s, const LocaleGlobal::Location& l )

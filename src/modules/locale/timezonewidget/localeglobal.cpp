@@ -22,6 +22,8 @@
 
 #include "localeglobal.h"
 
+#include "locale/TimeZone.h"
+
 #include <QTimeZone>
 
 //###
@@ -29,7 +31,6 @@
 //###
 
 QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > LocaleGlobal::locales;
-QHash<QString, QList<LocaleGlobal::Location> > LocaleGlobal::locations;
 
 
 //###
@@ -53,12 +54,21 @@ LocaleGlobal::Location::comment() const
     return qtz.comment();
 }
 
+LocaleGlobal::Location & LocaleGlobal::Location::operator=(const CalamaresUtils::Locale::TZZone& location)
+{
+    region = location.region();
+    zone = location.key();
+    country = location.country();
+    latitude = location.latitude();
+    longitude = location.longitude();
+    return *this;
+}
+
 
 void
 LocaleGlobal::init() {
     // TODO: Error handling
     initLocales();
-    initLocations();
 }
 
 
@@ -68,12 +78,6 @@ LocaleGlobal::getLocales() {
     return locales;
 }
 
-
-
-QHash< QString, QList< LocaleGlobal::Location > >
-LocaleGlobal::getLocations() {
-    return locations;
-}
 
 
 //###
@@ -126,71 +130,3 @@ LocaleGlobal::initLocales() {
         locales[lang][territory].append(locale);
     }
 }
-
-
-
-void
-LocaleGlobal::initLocations() {
-    static const char TZ_DATA_FILE[] = "/usr/share/zoneinfo/zone.tab";
-
-    locations.clear();
-
-    QFile file(TZ_DATA_FILE);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;
-
-    QTextStream in(&file);
-    while (!in.atEnd()) {
-        QString line = in.readLine().trimmed().split('#', QString::KeepEmptyParts).first().trimmed();
-        if (line.isEmpty())
-            continue;
-
-        QStringList list = line.split(QRegExp("[\t ]"), QString::SkipEmptyParts);
-        if (list.size() < 3)
-            continue;
-
-        Location location;
-        QStringList timezoneParts = list.at(2).split('/', QString::SkipEmptyParts);
-        int cooSplitPos = QString(list.at(1)).remove(0, 1).indexOf(QRegExp("[-+]")) + 1;
-
-        if (timezoneParts.size() < 2)
-            continue;
-
-        QString countryCode = list.at(0).trimmed();
-        if (countryCode.size() != 2)
-            continue;
-
-        location.region = timezoneParts.takeFirst();
-        location.zone = timezoneParts.join( '/' );
-        location.latitude = getRightGeoLocation(list.at(1).mid(0, cooSplitPos));
-        location.longitude = getRightGeoLocation(list.at(1).mid(cooSplitPos));
-        location.country = countryCode;
-
-        locations[location.region].append(location);
-    }
-}
-
-
-
-double
-LocaleGlobal::getRightGeoLocation(QString str) {
-    double sign = 1, num = 0.00;
-
-    // Determind sign
-    if (str.startsWith('-')) {
-        sign = -1;
-        str.remove(0, 1);
-    }
-    else if (str.startsWith('+')) {
-        str.remove(0, 1);
-    }
-
-
-    if (str.length() == 4 || str.length() == 6)
-        num = str.mid(0, 2).toDouble() + str.mid(2, 2).toDouble() / 60;
-    else if (str.length() == 5 || str.length() == 7)
-        num = str.mid(0, 3).toDouble() + str.mid(3, 2).toDouble() / 60;
-
-    return sign * num;
-}
-

@@ -24,6 +24,10 @@
 #ifndef TIMEZONEWIDGET_H
 #define TIMEZONEWIDGET_H
 
+#include "localeglobal.h"
+
+#include "locale/TimeZone.h"
+
 #include <QWidget>
 #include <QPainter>
 #include <QImage>
@@ -34,7 +38,6 @@
 #include <QMouseEvent>
 #include <QFontMetrics>
 #include <QFont>
-#include "localeglobal.h"
 
 
 #define RGB_TRANSPARENT 0
@@ -54,7 +57,7 @@ public:
         return currentLocation;
     }
     void setCurrentLocation( QString region, QString zone );
-    void setCurrentLocation( LocaleGlobal::Location location );
+    void setCurrentLocation( const CalamaresUtils::Locale::TZZone *location );
 
 signals:
     void locationChanged( LocaleGlobal::Location location );

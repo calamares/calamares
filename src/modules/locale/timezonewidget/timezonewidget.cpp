@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -24,6 +24,7 @@
 #include <cmath>
 
 #include "utils/Logger.h"
+#include "locale/TimeZone.h"
 
 #include "timezonewidget.h"
 
@@ -67,28 +68,27 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent ) :
 }
 
 
-void TimeZoneWidget::setCurrentLocation( QString region, QString zone )
+void TimeZoneWidget::setCurrentLocation( QString regionName, QString zoneName )
 {
-    QHash<QString, QList<LocaleGlobal::Location> > hash = LocaleGlobal::getLocations();
-
-    if ( !hash.contains( region ) )
-        return;
-
-    QList<LocaleGlobal::Location> locations = hash.value( region );
-    for ( int i = 0; i < locations.size(); ++i )
+    using namespace CalamaresUtils::Locale;
+    const auto& regions = TZRegion::fromZoneTab();
+    auto *region = regions.find<TZRegion>( regionName );
+    if ( !region )
     {
-        if ( locations.at( i ).zone == zone )
-        {
-            setCurrentLocation( locations.at( i ) );
-            break;
-        }
+        return;
+    }
+
+    auto *zone = region->zones().find< TZZone >(zoneName);
+    if ( zone )
+    {
+        setCurrentLocation( zone );
     }
 }
 
 
-void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
+void TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone *location )
 {
-    currentLocation = location;
+    currentLocation = *location;
 
     // Set zone
     QPoint pos = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
@@ -259,32 +259,37 @@ void TimeZoneWidget::mousePressEvent( QMouseEvent* event )
     // Set nearest location
     int nX = 999999, mX = event->pos().x();
     int nY = 999999, mY = event->pos().y();
-    QHash<QString, QList<LocaleGlobal::Location> > hash = LocaleGlobal::getLocations();
-    QHash<QString, QList<LocaleGlobal::Location> >::iterator iter = hash.begin();
 
-    while ( iter != hash.end() )
+    using namespace CalamaresUtils::Locale;
+    const TZZone* closest = nullptr;
+    for ( const auto* region_p : TZRegion::fromZoneTab() )
     {
-        QList<LocaleGlobal::Location> locations = iter.value();
-
-        for ( int i = 0; i < locations.size(); ++i )
+        const auto* region = dynamic_cast<const TZRegion*>(region_p);
+        if ( region )
         {
-            LocaleGlobal::Location loc = locations[i];
-            QPoint locPos = getLocationPosition( loc.longitude, loc.latitude );
-
-            if ( ( abs( mX - locPos.x() ) + abs( mY - locPos.y() )  <  abs( mX - nX ) + abs( mY - nY ) ) )
+            for ( const auto* zone_p : region->zones() )
             {
-                currentLocation = loc;
-                nX = locPos.x();
-                nY = locPos.y();
+                const auto* zone = dynamic_cast<const TZZone*>(zone_p);
+                if ( zone )
+                {
+                    QPoint locPos = getLocationPosition( zone->longitude(), zone->latitude() );
+
+                    if ( ( abs( mX - locPos.x() ) + abs( mY - locPos.y() )  <  abs( mX - nX ) + abs( mY - nY ) ) )
+                    {
+                        closest = zone;
+                        nX = locPos.x();
+                        nY = locPos.y();
+                    }
+                }
             }
         }
-
-        ++iter;
     }
 
-    // Set zone image and repaint widget
-    setCurrentLocation( currentLocation );
-
-    // Emit signal
-    emit locationChanged( currentLocation );
+    if ( closest )
+    {
+        // Set zone image and repaint widget
+        setCurrentLocation( closest );
+        // Emit signal
+        emit locationChanged( currentLocation );
+    }
 }
