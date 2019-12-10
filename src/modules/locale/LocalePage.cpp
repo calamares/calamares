@@ -28,6 +28,7 @@
 #include "Settings.h"
 
 #include "locale/Label.h"
+#include "locale/TimeZone.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
@@ -143,22 +144,14 @@ containsLocation( const QList< LocaleGlobal::Location >& locations, const QStrin
 void
 LocalePage::init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
 {
-    m_regionCombo->blockSignals( true );
-    m_zoneCombo->blockSignals( true );
+    m_regionModel.reset( new CalamaresUtils::Locale::TZRegionModel );
+    m_regionCombo->setModel( m_regionModel.get() );
 
     // Setup locations
     QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
 
     QStringList keys = regions.keys();
     keys.sort();
-
-    foreach ( const QString& key, keys )
-    {
-        m_regionCombo->addItem( LocaleGlobal::Location::pretty( key ), key );
-    }
-
-    m_regionCombo->blockSignals( false );
-    m_zoneCombo->blockSignals( false );
 
     m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
 
@@ -402,13 +395,14 @@ LocalePage::updateGlobalStorage()
     updateLocaleLabels();
 }
 
-
 void
 LocalePage::regionChanged( int currentIndex )
 {
     Q_UNUSED( currentIndex )
+    QString selectedRegion = m_regionCombo->currentData().toString();
+
     QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
-    if ( !regions.contains( m_regionCombo->currentData().toString() ) )
+    if ( !regions.contains( selectedRegion ) )
     {
         return;
     }
@@ -417,7 +411,7 @@ LocalePage::regionChanged( int currentIndex )
 
     m_zoneCombo->clear();
 
-    const QList< LocaleGlobal::Location > zones = regions.value( m_regionCombo->currentData().toString() );
+    const QList< LocaleGlobal::Location > zones = regions.value( selectedRegion );
     for ( const LocaleGlobal::Location& zone : zones )
     {
         m_zoneCombo->addItem( LocaleGlobal::Location::pretty( zone.zone ), zone.zone );
