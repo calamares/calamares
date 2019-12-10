@@ -110,7 +110,10 @@ LocalePage::LocalePage( QWidget* parent )
 }
 
 
-LocalePage::~LocalePage() {}
+LocalePage::~LocalePage()
+{
+    qDeleteAll( m_regionList );
+}
 
 
 void
@@ -144,7 +147,8 @@ containsLocation( const QList< LocaleGlobal::Location >& locations, const QStrin
 void
 LocalePage::init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
 {
-    m_regionModel = CalamaresUtils::Locale::TZRegionModel::fromZoneTab();
+    m_regionList = CalamaresUtils::Locale::TZRegion::fromZoneTab();
+    m_regionModel = std::make_unique< CalamaresUtils::Locale::TZRegionModel >( m_regionList );
     m_regionCombo->setModel( m_regionModel.get() );
 
     // Setup locations

@@ -63,14 +63,35 @@ protected:
     QString m_key;
 };
 
+class TZZone;
+class TZRegion;
+using TZZoneList = QList< TZZone* >;
+using TZRegionList = QList< TZRegion* >;
+
 /// @brief A pair of strings for timezone regions (e.g. "America")
 class TZRegion : public CStringPair
 {
 public:
     using CStringPair::CStringPair;
+    virtual ~TZRegion();
     QString tr() const override;
 
     bool operator<( const TZRegion& other ) const { return m_key < other.m_key; }
+
+    /** @brief Create model from a zone.tab-like file
+     *
+     * Returns a list of all the regions; each region has a list
+     * of zones within that region.
+     *
+     * The list owns the regions, and the regions own their own list of zones.
+     * When getting rid of the list, remember to qDeleteAll() on it.
+     */
+    static TZRegionList fromFile( const char* fileName );
+    /// @brief Calls fromFile with the standard zone.tab name
+    static TZRegionList fromZoneTab();
+
+private:
+    TZZoneList m_zones;
 };
 
 /// @brief A pair of strings for specific timezone names (e.g. "New_York")
@@ -84,14 +105,11 @@ public:
 class DLLEXPORT TZRegionModel : public QAbstractListModel
 {
 public:
-    /// @brief Create empty model (useless)
+    /// @brief Create empty model
     TZRegionModel();
+    /// @brief Create model from list (non-owning)
+    TZRegionModel( TZRegionList );
     virtual ~TZRegionModel() override;
-
-    /// @brief Create model from a zone.tab-like file
-    static std::shared_ptr< TZRegionModel > fromFile( const char* fileName );
-    /// @brief Calls fromFile with the standard zone.tab name
-    static std::shared_ptr< TZRegionModel > fromZoneTab();
 
     int rowCount( const QModelIndex& parent ) const override;
 
@@ -100,7 +118,7 @@ public:
     const TZRegion* region( int index ) const;
 
 private:
-    QList< TZRegion* > m_regions;
+    TZRegionList m_regions;
 };
 
 }  // namespace Locale

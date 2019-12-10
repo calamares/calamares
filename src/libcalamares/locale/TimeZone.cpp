@@ -94,25 +94,21 @@ TZRegion::tr() const
     return QObject::tr( m_human, "tz_regions" );
 }
 
-QString
-TZZone::tr() const
+TZRegion::~TZRegion()
 {
-    // NOTE: context name must match what's used in zone-extractor.py
-    return QObject::tr( m_human, "tz_names" );
+    qDeleteAll( m_zones );
 }
 
-TZRegionModel::TZRegionModel() {}
-
-std::shared_ptr< TZRegionModel >
-TZRegionModel::fromZoneTab()
+TZRegionList
+TZRegion::fromZoneTab()
 {
-    return TZRegionModel::fromFile( TZ_DATA_FILE );
+    return TZRegion::fromFile( TZ_DATA_FILE );
 }
 
-std::shared_ptr< TZRegionModel >
-TZRegionModel::fromFile( const char* fileName )
+TZRegionList
+TZRegion::fromFile( const char* fileName )
 {
-    auto model = std::make_shared< TZRegionModel >();
+    TZRegionList model;
 
     QFile file( fileName );
     if ( !file.open( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -120,7 +116,6 @@ TZRegionModel::fromFile( const char* fileName )
         return model;
     }
 
-    model->m_regions.reserve( 12 );  // There's 10 in the file right now
     QStringList regions;
 
     QTextStream in( &file );
@@ -154,20 +149,27 @@ TZRegionModel::fromFile( const char* fileName )
         if ( !regions.contains( region ) )
         {
             regions.append( region );
-            model->m_regions.append( new TZRegion( region.toUtf8().data() ) );
+            model.append( new TZRegion( region.toUtf8().data() ) );
         }
     }
 
-    std::sort( model->m_regions.begin(), model->m_regions.end(), []( const TZRegion* l, const TZRegion* r ) {
-        return *l < *r;
-    } );
+    std::sort( model.begin(), model.end(), []( const TZRegion* l, const TZRegion* r ) { return *l < *r; } );
     return model;
 }
 
-TZRegionModel::~TZRegionModel()
+QString
+TZZone::tr() const
 {
-    qDeleteAll( m_regions );
+    // NOTE: context name must match what's used in zone-extractor.py
+    return QObject::tr( m_human, "tz_names" );
 }
+
+TZRegionModel::TZRegionModel( TZRegionList l )
+    : m_regions( l )
+{
+}
+
+TZRegionModel::~TZRegionModel() {}
 
 int
 TZRegionModel::rowCount( const QModelIndex& parent ) const
@@ -197,7 +199,7 @@ TZRegionModel::region( int index ) const
 {
     if ( ( index < 0 ) || ( index >= m_regions.count() ) )
     {
-        index = 0;
+        return nullptr;
     }
     return m_regions[ index ];
 }
