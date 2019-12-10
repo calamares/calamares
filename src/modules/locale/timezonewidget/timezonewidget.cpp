@@ -75,9 +75,9 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent )
 #ifdef DEBUG_TIMEZONES
         if ( timeZoneImages.last().size() != background.size() )
         {
-            cWarning() << "Timezone image size mismatch" << zones.at( i ) << timeZoneImages.last().size();
+            cWarning() << "Timezone image size mismatch" << zoneName << timeZoneImages.last().size();
         }
-        timeZoneImages.last().setText( ZONE_NAME, zones.at( i ) );
+        timeZoneImages.last().setText( ZONE_NAME, zoneName );
 #endif
     }
 }
@@ -111,8 +111,7 @@ TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* locati
     QPoint pos = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
 
 #ifdef DEBUG_TIMEZONES
-    cDebug() << "Setting location" << location.region << location.zone << location.country;
-    cDebug() << Logger::SubEntry << "longitude" << location.longitude << "latitude" << location.latitude;
+    cDebug() << "Setting location" << location->region() << *location;
     cDebug() << Logger::SubEntry << "pixel x" << pos.x() << "pixel y" << pos.y();
 
     bool found = false;
