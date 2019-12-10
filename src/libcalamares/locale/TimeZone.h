@@ -25,6 +25,8 @@
 #include <QObject>
 #include <QString>
 
+#include <memory>
+
 namespace CalamaresUtils
 {
 namespace Locale
@@ -85,9 +87,14 @@ public:
         LabelRole = Qt::DisplayRole
     };
 
-    /// @brief Create from the zone.tab file
+    /// @brief Create empty model (useless)
     TZRegionModel();
     virtual ~TZRegionModel() override;
+
+    /// @brief Create model from a zone.tab-like file
+    static std::shared_ptr< TZRegionModel > fromFile( const char* fileName );
+    /// @brief Calls fromFile with the standard zone.tab name
+    static std::shared_ptr< TZRegionModel > fromZoneTab();
 
     int rowCount( const QModelIndex& parent ) const override;
 

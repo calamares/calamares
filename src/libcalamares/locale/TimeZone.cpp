@@ -101,13 +101,23 @@ TZZone::tr() const
     return QObject::tr( m_human, "tz_names" );
 }
 
-TZRegionModel::TZRegionModel()
-{
+TZRegionModel::TZRegionModel() {}
 
-    QFile file( TZ_DATA_FILE );
+std::shared_ptr< TZRegionModel >
+TZRegionModel::fromZoneTab()
+{
+    return TZRegionModel::fromFile( TZ_DATA_FILE );
+}
+
+std::shared_ptr< TZRegionModel >
+TZRegionModel::fromFile( const char* fileName )
+{
+    auto model = std::make_shared< TZRegionModel >();
+
+    QFile file( fileName );
     if ( !file.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
-        return;
+        return model;
     }
 
     QStringList regions;
@@ -147,11 +157,13 @@ TZRegionModel::TZRegionModel()
     }
     regions.sort();
 
-    m_regions.reserve( regions.length() );
+    model->m_regions.reserve( regions.length() );
     for ( int i = 0; i < regions.length(); ++i )
     {
-        m_regions.append( TZRegion( regions[ i ].toUtf8().data() ) );
+        model->m_regions.append( TZRegion( regions[ i ].toUtf8().data() ) );
     }
+
+    return model;
 }
 
 TZRegionModel::~TZRegionModel() {}
