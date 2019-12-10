@@ -120,6 +120,11 @@ public:
 
     TZZone( const QString& region, const char* zoneName, const QString& country, QString position );
 
+    QString region() const { return m_region; }
+    QString country() const { return m_country; }
+    double latitude() const { return m_latitude; }
+    double longitude() const { return m_longitude; }
+
     void print( QDebug& ) const;
 
 protected:
