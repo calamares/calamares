@@ -223,7 +223,7 @@ TZZone::TZZone( const QString& region, const char* zoneName, const QString& coun
     if ( cooSplitPos > 0 )
     {
         m_latitude = getRightGeoLocation( position.mid( 0, cooSplitPos ) );
-        m_longitude = getRightGeoLocation( position.mid( cooSplitPos + 1 ) );
+        m_longitude = getRightGeoLocation( position.mid( cooSplitPos ) );
     }
 }
 
