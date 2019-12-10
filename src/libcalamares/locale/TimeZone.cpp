@@ -196,7 +196,7 @@ TZRegion::fromFile( const char* fileName )
 
         timezoneParts.removeFirst();
         thisRegion->m_zones.append(
-            new TZZone( timezoneParts.join( '/' ).toUtf8().constData(), countryCode, list.at( 1 ) ) );
+            new TZZone( region, timezoneParts.join( '/' ).toUtf8().constData(), countryCode, list.at( 1 ) ) );
     }
 
     auto sorter = []( const CStringPair* l, const CStringPair* r ) { return *l < *r; };
@@ -213,8 +213,9 @@ TZRegion::fromFile( const char* fileName )
     return model;
 }
 
-TZZone::TZZone( const char* zoneName, const QString& country, QString position )
+TZZone::TZZone( const QString& region, const char* zoneName, const QString& country, QString position )
     : CStringPair( zoneName )
+    , m_region( region )
     , m_country( country )
 {
     int cooSplitPos = position.indexOf( QRegExp( "[-+]" ), 1 );

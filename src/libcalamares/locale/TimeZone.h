@@ -118,11 +118,12 @@ public:
     using CStringPair::CStringPair;
     QString tr() const override;
 
-    TZZone( const char* zoneName, const QString& country, QString position );
+    TZZone( const QString& region, const char* zoneName, const QString& country, QString position );
 
     void print( QDebug& ) const;
 
 protected:
+    QString m_region;
     QString m_country;
     double m_latitude = 0.0, m_longitude = 0.0;
 };
