@@ -15,6 +15,13 @@
 *       Conditions herein.
 */
 
+/*  MODIFICATIONS
+ *
+ * Edited anyway:
+ *      20191211 India changed to AnyLanguage, since Hindi doesn't make sense. #1284
+ *
+ */
+
 // BEGIN Generated from CLDR data
 // *INDENT-OFF*
 // clang-format off
@@ -115,7 +122,7 @@ static const CountryData country_data_table[] = {
 { QLocale::Language::Spanish, QLocale::Country::CanaryIslands, 'I', 'C' },
 { QLocale::Language::Indonesian, QLocale::Country::Indonesia, 'I', 'D' },
 { QLocale::Language::Hebrew, QLocale::Country::Israel, 'I', 'L' },
-{ QLocale::Language::Hindi, QLocale::Country::India, 'I', 'N' },
+{ QLocale::Language::AnyLanguage, QLocale::Country::India, 'I', 'N' },
 { QLocale::Language::Arabic, QLocale::Country::Iraq, 'I', 'Q' },
 { QLocale::Language::Persian, QLocale::Country::Iran, 'I', 'R' },
 { QLocale::Language::Icelandic, QLocale::Country::Iceland, 'I', 'S' },
