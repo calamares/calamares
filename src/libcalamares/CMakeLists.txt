@@ -34,6 +34,7 @@ set( libSources
     locale/Label.cpp
     locale/LabelModel.cpp
     locale/Lookup.cpp
+    locale/TimeZone.cpp
     locale/TranslatableConfiguration.cpp
 
     # Network service

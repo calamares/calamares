@@ -33,7 +33,6 @@
 #include <memory>
 
 class LocalePage;
-class WaitingWidget;
 
 class PLUGINDLLEXPORT LocaleViewStep : public Calamares::ViewStep
 {
@@ -54,7 +53,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     void onActivate() override;
     void onLeave() override;
@@ -78,7 +77,7 @@ private:
     CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
     QString m_localeGenPath;
 
-    QList< Calamares::job_ptr > m_jobs;
+    Calamares::JobList m_jobs;
     std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
 };
 

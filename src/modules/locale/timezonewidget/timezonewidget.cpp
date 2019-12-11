@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -23,10 +23,13 @@
 
 #include <cmath>
 
+#include "locale/TimeZone.h"
 #include "utils/Logger.h"
 
 #include "timezonewidget.h"
 
+// Pixel value indicating that a spot is outside of a zone
+#define RGB_TRANSPARENT 0
 
 static constexpr double MAP_Y_OFFSET = 0.125;
 static constexpr double MAP_X_OFFSET = -0.0370;
@@ -37,8 +40,8 @@ constexpr static double MATH_PI = 3.14159265;
 constexpr static QLatin1String ZONE_NAME( "zone" );
 #endif
 
-TimeZoneWidget::TimeZoneWidget( QWidget* parent ) :
-    QWidget( parent )
+TimeZoneWidget::TimeZoneWidget( QWidget* parent )
+    : QWidget( parent )
 {
     setMouseTracking( false );
     setCursor( Qt::PointingHandCursor );
@@ -48,54 +51,67 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent ) :
     font.setBold( false );
 
     // Images
-    background = QImage( ":/images/bg.png" ).scaled( X_SIZE, Y_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    background = QImage( ":/images/bg.png" );
     pin = QImage( ":/images/pin.png" );
+
+#ifdef DEBUG_TIMEZONES
+    if ( background.size() != QSize( 780, 340 ) )
+    {
+        cWarning() << "Timezone background size mitsmatch" << background.size();
+    }
+#endif
 
     // Set size
     setMinimumSize( background.size() );
     setMaximumSize( background.size() );
 
     // Zone images
-    QStringList zones = QString( ZONES ).split( " ", QString::SkipEmptyParts );
-    for ( int i = 0; i < zones.size(); ++i )
+    for ( const auto* zoneName :
+          { "0.0",  "1.0",  "2.0",  "3.0",  "3.5",  "4.0",  "4.5",  "5.0",  "5.5",   "5.75", "6.0",   "6.5",  "7.0",
+            "8.0",  "9.0",  "9.5",  "10.0", "10.5", "11.0", "11.5", "12.0", "12.75", "13.0", "-1.0",  "-2.0", "-3.0",
+            "-3.5", "-4.0", "-4.5", "-5.0", "-5.5", "-6.0", "-7.0", "-8.0", "-9.0",  "-9.5", "-10.0", "-11.0" } )
     {
-        timeZoneImages.append( QImage( ":/images/timezone_" + zones.at( i ) + ".png" ).scaled( X_SIZE, Y_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
+        timeZoneImages.append( QImage( QStringLiteral( ":/images/timezone_" ) + zoneName + ".png" ) );
 #ifdef DEBUG_TIMEZONES
-        timeZoneImages.last().setText( ZONE_NAME, zones.at( i ) );
+        if ( timeZoneImages.last().size() != background.size() )
+        {
+            cWarning() << "Timezone image size mismatch" << zoneName << timeZoneImages.last().size();
+        }
+        timeZoneImages.last().setText( ZONE_NAME, zoneName );
 #endif
     }
 }
 
 
-void TimeZoneWidget::setCurrentLocation( QString region, QString zone )
+void
+TimeZoneWidget::setCurrentLocation( QString regionName, QString zoneName )
 {
-    QHash<QString, QList<LocaleGlobal::Location> > hash = LocaleGlobal::getLocations();
-
-    if ( !hash.contains( region ) )
-        return;
-
-    QList<LocaleGlobal::Location> locations = hash.value( region );
-    for ( int i = 0; i < locations.size(); ++i )
+    using namespace CalamaresUtils::Locale;
+    const auto& regions = TZRegion::fromZoneTab();
+    auto* region = regions.find< TZRegion >( regionName );
+    if ( !region )
     {
-        if ( locations.at( i ).zone == zone )
-        {
-            setCurrentLocation( locations.at( i ) );
-            break;
-        }
+        return;
+    }
+
+    auto* zone = region->zones().find< TZZone >( zoneName );
+    if ( zone )
+    {
+        setCurrentLocation( zone );
     }
 }
 
 
-void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
+void
+TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
 {
-    currentLocation = location;
+    m_currentLocation = location;
 
     // Set zone
-    QPoint pos = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+    QPoint pos = getLocationPosition( location );
 
 #ifdef DEBUG_TIMEZONES
-    cDebug() << "Setting location" << location.region << location.zone << location.country;
-    cDebug() << Logger::SubEntry << "longitude" << location.longitude << "latitude" << location.latitude;
+    cDebug() << "Setting location" << location->region() << location->zone() << '(' << location->country() << '@' << location->latitude() << 'N' << location->longitude() << 'E' << ')';
     cDebug() << Logger::SubEntry << "pixel x" << pos.x() << "pixel y" << pos.y();
 
     bool found = false;
@@ -104,7 +120,7 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
 
     for ( int i = 0; i < timeZoneImages.size(); ++i )
     {
-        QImage zone = timeZoneImages[i];
+        QImage zone = timeZoneImages[ i ];
 
         // If not transparent set as current
         if ( zone.pixel( pos ) != RGB_TRANSPARENT )
@@ -119,7 +135,9 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
                 cDebug() << Logger::SubEntry << "First zone found" << i << zone.text( ZONE_NAME );
             }
             else
+            {
                 cDebug() << Logger::SubEntry << "Also in zone" << i << zone.text( ZONE_NAME );
+            }
 #else
             currentZoneImage = zone;
             break;
@@ -129,8 +147,8 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
 
     // Repaint widget
     repaint();
+    emit locationChanged( m_currentLocation );
 }
-
 
 
 //###
@@ -138,7 +156,8 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
 //###
 
 
-QPoint TimeZoneWidget::getLocationPosition( double longitude, double latitude )
+QPoint
+TimeZoneWidget::getLocationPosition( double longitude, double latitude )
 {
     const int width = this->width();
     const int height = this->height();
@@ -152,39 +171,64 @@ QPoint TimeZoneWidget::getLocationPosition( double longitude, double latitude )
     // of the different cities / regions looks ok -- at least Thule ends up in the right
     // country, and Inuvik isn't in the ocean.
     if ( latitude > 70.0 )
+    {
         y -= sin( MATH_PI * ( latitude - 70.0 ) / 56.0 ) * MAP_Y_OFFSET * height * 0.8;
+    }
     if ( latitude > 74.0 )
+    {
         y += 4;
+    }
     if ( latitude > 69.0 )
+    {
         y -= 2;
+    }
     if ( latitude > 59.0 )
+    {
         y -= 4 * int( ( latitude - 54.0 ) / 5.0 );
+    }
     if ( latitude > 54.0 )
+    {
         y -= 2;
+    }
     if ( latitude > 49.0 )
-        y -= int ( (latitude - 44.0) / 5.0 );
+    {
+        y -= int( ( latitude - 44.0 ) / 5.0 );
+    }
     // Far south, some stretching occurs as well, but it is less pronounced.
     // Move down by 1 pixel per 5 degrees past 10 south
     if ( latitude < 0 )
-        y += int( (-latitude) / 5.0 );
+    {
+        y += int( ( -latitude ) / 5.0 );
+    }
     // Antarctica isn't shown on the map, but you could try clicking there
     if ( latitude < -60 )
+    {
         y = height - 1;
+    }
 
     if ( x < 0 )
-        x = width+x;
+    {
+        x = width + x;
+    }
     if ( x >= width )
+    {
         x -= width;
+    }
     if ( y < 0 )
-        y = height+y;
+    {
+        y = height + y;
+    }
     if ( y >= height )
+    {
         y -= height;
+    }
 
-    return QPoint( int(x), int(y) );
+    return QPoint( int( x ), int( y ) );
 }
 
 
-void TimeZoneWidget::paintEvent( QPaintEvent* )
+void
+TimeZoneWidget::paintEvent( QPaintEvent* )
 {
     const int width = this->width();
     const int height = this->height();
@@ -201,90 +245,107 @@ void TimeZoneWidget::paintEvent( QPaintEvent* )
     painter.drawImage( 0, 0, currentZoneImage );
 
 #ifdef DEBUG_TIMEZONES
-    QPoint point = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+    QPoint point = getLocationPosition( m_currentLocation );
     // Draw latitude lines
-    for ( int y_lat = -50; y_lat < 80 ; y_lat+=5 )
+    for ( int y_lat = -50; y_lat < 80; y_lat += 5 )
     {
         QPen p( y_lat ? Qt::black : Qt::red );
         p.setWidth( 0 );
         painter.setPen( p );
         QPoint latLine0( getLocationPosition( 0, y_lat ) );
-        int llx = latLine0.x() + ((y_lat & 1) ? -10 : 0);
+        int llx = latLine0.x() + ( ( y_lat & 1 ) ? -10 : 0 );
         int lly = latLine0.y();
 
-        for ( int c = 0 ; c < width ; ++c )
+        for ( int c = 0; c < width; ++c )
+        {
             painter.drawPoint( c, lly );
+        }
     }
     // Just a dot in the selected location, no label
     painter.setPen( Qt::red );
     painter.drawPoint( point );
 #else
     // Draw pin at current location
-    QPoint point = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+    QPoint point = getLocationPosition( m_currentLocation );
 
-    painter.drawImage( point.x() - pin.width()/2, point.y() - pin.height()/2, pin );
+    painter.drawImage( point.x() - pin.width() / 2, point.y() - pin.height() / 2, pin );
 
     // Draw text and box
-    const int textWidth = fontMetrics.horizontalAdvance( LocaleGlobal::Location::pretty( currentLocation.zone ) );
+    const int textWidth = fontMetrics.horizontalAdvance( m_currentLocation ? m_currentLocation->tr() : QString() );
     const int textHeight = fontMetrics.height();
 
-    QRect rect = QRect( point.x() - textWidth/2 - 5, point.y() - textHeight - 8, textWidth + 10, textHeight - 2 );
+    QRect rect = QRect( point.x() - textWidth / 2 - 5, point.y() - textHeight - 8, textWidth + 10, textHeight - 2 );
 
     if ( rect.x() <= 5 )
+    {
         rect.moveLeft( 5 );
-    if ( rect.right() >= width-5 )
+    }
+    if ( rect.right() >= width - 5 )
+    {
         rect.moveRight( width - 5 );
+    }
     if ( rect.y() <= 5 )
+    {
         rect.moveTop( 5 );
-    if ( rect.y() >= height-5 )
-        rect.moveBottom( height-5 );
+    }
+    if ( rect.y() >= height - 5 )
+    {
+        rect.moveBottom( height - 5 );
+    }
 
-    painter.setPen( QPen() ); // no pen
+    painter.setPen( QPen() );  // no pen
     painter.setBrush( QColor( 40, 40, 40 ) );
     painter.drawRoundedRect( rect, 3, 3 );
     painter.setPen( Qt::white );
-    painter.drawText( rect.x() + 5, rect.bottom() - 4, LocaleGlobal::Location::pretty( currentLocation.zone ) );
+    painter.drawText( rect.x() + 5, rect.bottom() - 4, m_currentLocation ? m_currentLocation->tr() : QString() );
 #endif
 
     painter.end();
 }
 
 
-
-void TimeZoneWidget::mousePressEvent( QMouseEvent* event )
+void
+TimeZoneWidget::mousePressEvent( QMouseEvent* event )
 {
     if ( event->button() != Qt::LeftButton )
+    {
         return;
+    }
 
     // Set nearest location
     int nX = 999999, mX = event->pos().x();
     int nY = 999999, mY = event->pos().y();
-    QHash<QString, QList<LocaleGlobal::Location> > hash = LocaleGlobal::getLocations();
-    QHash<QString, QList<LocaleGlobal::Location> >::iterator iter = hash.begin();
 
-    while ( iter != hash.end() )
+    using namespace CalamaresUtils::Locale;
+    const TZZone* closest = nullptr;
+    for ( const auto* region_p : TZRegion::fromZoneTab() )
     {
-        QList<LocaleGlobal::Location> locations = iter.value();
-
-        for ( int i = 0; i < locations.size(); ++i )
+        const auto* region = dynamic_cast< const TZRegion* >( region_p );
+        if ( region )
         {
-            LocaleGlobal::Location loc = locations[i];
-            QPoint locPos = getLocationPosition( loc.longitude, loc.latitude );
-
-            if ( ( abs( mX - locPos.x() ) + abs( mY - locPos.y() )  <  abs( mX - nX ) + abs( mY - nY ) ) )
+            for ( const auto* zone_p : region->zones() )
             {
-                currentLocation = loc;
-                nX = locPos.x();
-                nY = locPos.y();
+                const auto* zone = dynamic_cast< const TZZone* >( zone_p );
+                if ( zone )
+                {
+                    QPoint locPos = getLocationPosition( zone->longitude(), zone->latitude() );
+
+                    if ( ( abs( mX - locPos.x() ) + abs( mY - locPos.y() ) < abs( mX - nX ) + abs( mY - nY ) ) )
+                    {
+                        closest = zone;
+                        nX = locPos.x();
+                        nY = locPos.y();
+                    }
+                }
             }
         }
-
-        ++iter;
     }
 
-    // Set zone image and repaint widget
-    setCurrentLocation( currentLocation );
-
-    // Emit signal
-    emit locationChanged( currentLocation );
+    if ( closest )
+    {
+        // Set zone image and repaint widget
+        setCurrentLocation( closest );
+        // Emit signal
+        emit locationChanged( m_currentLocation );
+    }
 }

@@ -24,8 +24,11 @@
 #include "timezonewidget/localeglobal.h"
 
 #include "Job.h"
+#include "locale/TimeZone.h"
 
 #include <QWidget>
+
+#include <memory>
 
 class QComboBox;
 class QLabel;
@@ -67,9 +70,13 @@ private:
 
     void regionChanged( int currentIndex );
     void zoneChanged( int currentIndex );
-    void locationChanged( LocaleGlobal::Location location );
+    void locationChanged( const CalamaresUtils::Locale::TZZone* location );
     void changeLocale();
     void changeFormats();
+
+    // Dynamically, QList< TZRegion* >
+    CalamaresUtils::Locale::CStringPairList m_regionList;
+    std::unique_ptr< CalamaresUtils::Locale::CStringListModel > m_regionModel;
 
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;

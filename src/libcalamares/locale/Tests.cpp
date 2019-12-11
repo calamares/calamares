@@ -19,6 +19,7 @@
 #include "Tests.h"
 
 #include "locale/LabelModel.h"
+#include "locale/TimeZone.h"
 #include "locale/TranslatableConfiguration.h"
 
 #include "CalamaresVersion.h"
@@ -198,4 +199,56 @@ LocaleTests::testTranslatableConfig2()
     CalamaresUtils::Locale::TranslatedString ts3( map, "front" );
     QVERIFY( ts3.isEmpty() );
     QCOMPARE( ts3.count(), 1 );  // The empty string
+}
+
+void
+LocaleTests::testSimpleZones()
+{
+    using namespace CalamaresUtils::Locale;
+
+    {
+        TZRegion r;
+        QVERIFY( r.tr().isEmpty() );
+    }
+    {
+        TZZone n;
+        QVERIFY( n.tr().isEmpty() );
+    }
+    {
+        TZRegion r0( "xAmsterdam" );
+        QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
+        TZRegion r1( r0 );
+        QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
+        QCOMPARE( r1.tr(), QStringLiteral( "xAmsterdam" ) );
+        TZRegion r2( std::move( r0 ) );
+        QCOMPARE( r2.tr(), QStringLiteral( "xAmsterdam" ) );
+        QCOMPARE( r0.tr(), QString() );
+    }
+    {
+        TZZone r0( nullptr );
+        QVERIFY( r0.tr().isEmpty() );
+        TZZone r1( r0 );
+        QVERIFY( r1.tr().isEmpty() );
+        TZZone r2( std::move( r0 ) );
+        QVERIFY( r2.tr().isEmpty() );
+    }
+}
+
+void
+LocaleTests::testComplexZones()
+{
+    using namespace CalamaresUtils::Locale;
+
+    {
+        TZZone r0( "America/New_York" );
+        TZZone r1( "America/New York" );
+
+        QCOMPARE( r0.tr(), r1.tr() );
+        QCOMPARE( r0.tr(), QStringLiteral( "America/New York" ) );
+    }
+    {
+        TZZone r( "zxc,;*_vm" );
+        QVERIFY( !r.tr().isEmpty() );
+        QCOMPARE( r.tr(), QStringLiteral( "zxc,;* vm" ) );  // Only _ is special
+    }
 }

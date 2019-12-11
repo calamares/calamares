@@ -28,6 +28,7 @@
 #include "Settings.h"
 
 #include "locale/Label.h"
+#include "locale/TimeZone.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
@@ -41,6 +42,8 @@
 LocalePage::LocalePage( QWidget* parent )
     : QWidget( parent )
     , m_blockTzWidgetSet( false )
+    , m_regionList( CalamaresUtils::Locale::TZRegion::fromZoneTab() )
+    , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( m_regionList ) )
 {
     QBoxLayout* mainLayout = new QVBoxLayout;
 
@@ -109,7 +112,10 @@ LocalePage::LocalePage( QWidget* parent )
 }
 
 
-LocalePage::~LocalePage() {}
+LocalePage::~LocalePage()
+{
+    qDeleteAll( m_regionList );
+}
 
 
 void
@@ -127,42 +133,16 @@ LocalePage::updateLocaleLabels()
     m_formatsLabel->setText( labels.second );
 }
 
-static inline bool
-containsLocation( const QList< LocaleGlobal::Location >& locations, const QString& zone )
-{
-    for ( const LocaleGlobal::Location& location : locations )
-    {
-        if ( location.zone == zone )
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
 void
 LocalePage::init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
 {
-    m_regionCombo->blockSignals( true );
-    m_zoneCombo->blockSignals( true );
+    using namespace CalamaresUtils::Locale;
 
-    // Setup locations
-    QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
-
-    QStringList keys = regions.keys();
-    keys.sort();
-
-    foreach ( const QString& key, keys )
-    {
-        m_regionCombo->addItem( LocaleGlobal::Location::pretty( key ), key );
-    }
-
-    m_regionCombo->blockSignals( false );
-    m_zoneCombo->blockSignals( false );
-
+    m_regionCombo->setModel( m_regionModel.get() );
     m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
 
-    if ( keys.contains( initialRegion ) && containsLocation( regions.value( initialRegion ), initialZone ) )
+    auto* region = m_regionList.find< TZRegion >( initialRegion );
+    if ( region && region->zones().find< TZZone >( initialZone ) )
     {
         m_tzWidget->setCurrentLocation( initialRegion, initialZone );
     }
@@ -170,7 +150,6 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
     {
         m_tzWidget->setCurrentLocation( "America", "New_York" );
     }
-    emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
 
     // Some distros come with a meaningfully commented and easy to parse locale.gen,
     // and others ship a separate file /usr/share/i18n/SUPPORTED with a clean list of
@@ -301,13 +280,13 @@ LocalePage::prettyStatus() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 LocalePage::createJobs()
 {
     QList< Calamares::job_ptr > list;
-    LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
+    const CalamaresUtils::Locale::TZZone* location = m_tzWidget->currentLocation();
 
-    Calamares::Job* j = new SetTimezoneJob( location.region, location.zone );
+    Calamares::Job* j = new SetTimezoneJob( location->region(), location->zone() );
     list.append( Calamares::job_ptr( j ) );
 
     return list;
@@ -340,7 +319,7 @@ LocaleConfiguration
 LocalePage::guessLocaleConfiguration() const
 {
     return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), m_localeGenLines, m_tzWidget->getCurrentLocation().country );
+        QLocale().name(), m_localeGenLines, m_tzWidget->currentLocation()->country() );
 }
 
 
@@ -358,12 +337,12 @@ LocalePage::updateGlobalStorage()
 {
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
-    bool locationChanged
-        = ( location.region != gs->value( "locationRegion" ) ) || ( location.zone != gs->value( "locationZone" ) );
+    const auto* location = m_tzWidget->currentLocation();
+    bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
+        || ( location->zone() != gs->value( "locationZone" ) );
 
-    gs->insert( "locationRegion", location.region );
-    gs->insert( "locationZone", location.zone );
+    gs->insert( "locationRegion", location->region() );
+    gs->insert( "locationZone", location->zone() );
 
     updateGlobalLocale();
 
@@ -373,7 +352,7 @@ LocalePage::updateGlobalStorage()
     if ( locationChanged && Calamares::Settings::instance()->doChroot() )
     {
         QProcess::execute( "timedatectl",  // depends on systemd
-                           { "set-timezone", location.region + '/' + location.zone } );
+                           { "set-timezone", location->region() + '/' + location->zone() } );
     }
 #endif
 
@@ -402,31 +381,23 @@ LocalePage::updateGlobalStorage()
     updateLocaleLabels();
 }
 
-
 void
 LocalePage::regionChanged( int currentIndex )
 {
+    using namespace CalamaresUtils::Locale;
+
     Q_UNUSED( currentIndex )
-    QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
-    if ( !regions.contains( m_regionCombo->currentData().toString() ) )
+    QString selectedRegion = m_regionCombo->currentData().toString();
+
+    TZRegion* region = m_regionList.find< TZRegion >( selectedRegion );
+    if ( !region )
     {
         return;
     }
 
     m_zoneCombo->blockSignals( true );
-
-    m_zoneCombo->clear();
-
-    const QList< LocaleGlobal::Location > zones = regions.value( m_regionCombo->currentData().toString() );
-    for ( const LocaleGlobal::Location& zone : zones )
-    {
-        m_zoneCombo->addItem( LocaleGlobal::Location::pretty( zone.zone ), zone.zone );
-    }
-
-    m_zoneCombo->model()->sort( 0 );
-
+    m_zoneCombo->setModel( new CStringListModel( region->zones() ) );
     m_zoneCombo->blockSignals( false );
-
     m_zoneCombo->currentIndexChanged( m_zoneCombo->currentIndex() );
 }
 
@@ -442,12 +413,12 @@ LocalePage::zoneChanged( int currentIndex )
 }
 
 void
-LocalePage::locationChanged( LocaleGlobal::Location location )
+LocalePage::locationChanged( const CalamaresUtils::Locale::TZZone* location )
 {
     m_blockTzWidgetSet = true;
 
     // Set region index
-    int index = m_regionCombo->findData( location.region );
+    int index = m_regionCombo->findData( location->region() );
     if ( index < 0 )
     {
         return;
@@ -456,7 +427,7 @@ LocalePage::locationChanged( LocaleGlobal::Location location )
     m_regionCombo->setCurrentIndex( index );
 
     // Set zone index
-    index = m_zoneCombo->findData( location.zone );
+    index = m_zoneCombo->findData( location->zone() );
     if ( index < 0 )
     {
         return;

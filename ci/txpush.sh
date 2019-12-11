@@ -50,12 +50,17 @@ fi
 # sources, then push to Transifex
 
 export QT_SELECT=5
+lupdate -version > /dev/null 2>&1 || export QT_SELECT=qt5
+lupdate -version > /dev/null 2>&1 || { echo "! No working lupdate" ; lupdate -version ; exit 1 ; }
+
 # Don't pull branding translations in,
 # those are done separately.
 _srcdirs="src/calamares src/libcalamares src/libcalamaresui src/modules src/qml"
-lupdate $_srcdirs -ts -no-obsolete lang/calamares_en.ts
+lupdate -no-obsolete $_srcdirs -ts lang/calamares_en.ts
+lupdate -no-obsolete -extensions cxxtr src/libcalamares/locale -ts lang/tz_en.ts
 
 tx push --source --no-interactive -r calamares.calamares-master
+tx push --source --no-interactive -r calamares.tz
 tx push --source --no-interactive -r calamares.fdo
 
 ### PYTHON MODULES
