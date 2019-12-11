@@ -9,10 +9,14 @@ This release contains contributions from (alphabetically by first name):
  - No other contributors this time around.
 
 ## Core ##
- - No changes to core functionality.
+ - Timezone support code has migrated into the core of Calamares. This
+   means that modules now have easier access to timezone information.
+   Translations for timezones have also been enabled, so it is **possible**
+   at least to translate the displayed zones in the *welcome* module.
 
 ## Modules ##
- - No changes to modules.
+ - The *welcome* module now supports translations for timezone and
+   location names (e.g. "Berlin" is "Berlijn" in Dutch).
 
 
 # 3.2.17.1 (2019-12-02) #
