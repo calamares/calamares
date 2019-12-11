@@ -43,25 +43,25 @@ class TimeZoneWidget : public QWidget
 {
     Q_OBJECT
 public:
+    using TZZone = CalamaresUtils::Locale::TZZone;
+
     explicit TimeZoneWidget( QWidget* parent = nullptr );
 
-    LocaleGlobal::Location getCurrentLocation() { return currentLocation; }
     void setCurrentLocation( QString region, QString zone );
-    void setCurrentLocation( const CalamaresUtils::Locale::TZZone* location );
+    void setCurrentLocation( const TZZone* location );
+    const TZZone* currentLocation() { return m_currentLocation; }
+
 
 signals:
-    void locationChanged( LocaleGlobal::Location location );
+    void locationChanged( const TZZone* location );
 
 private:
     QFont font;
     QImage background, pin, currentZoneImage;
     QList< QImage > timeZoneImages;
-    LocaleGlobal::Location currentLocation;
+    const TZZone* m_currentLocation = nullptr;  // Not owned by me
 
-    QPoint getLocationPosition( const LocaleGlobal::Location& l )
-    {
-        return getLocationPosition( l.longitude, l.latitude );
-    }
+    QPoint getLocationPosition( const TZZone* l ) { return getLocationPosition( l->longitude(), l->latitude() ); }
     QPoint getLocationPosition( double longitude, double latitude );
 
     void paintEvent( QPaintEvent* event );

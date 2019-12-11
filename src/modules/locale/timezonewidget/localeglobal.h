@@ -51,16 +51,6 @@ public:
         QString description, locale;
     };
 
-    struct Location
-    {
-        QString region, zone, country;
-        double latitude, longitude;
-        static QString pretty( const QString& s );
-        QString comment() const;
-
-        Location& operator=( const CalamaresUtils::Locale::TZZone& );
-    };
-
     static void init();
     static QHash< QString, QHash< QString, QList< LocaleGlobal::Locale > > > getLocales();
 
@@ -69,11 +59,5 @@ private:
 
     static void initLocales();
 };
-
-inline QDebug&
-operator<<( QDebug& s, const LocaleGlobal::Location& l )
-{
-    return s << l.region << '/' << l.zone << '(' << l.country << ") @N" << l.latitude << 'E' << l.longitude;
-}
 
 #endif  // LOCALEGLOBAL_H

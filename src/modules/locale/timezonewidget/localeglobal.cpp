@@ -38,32 +38,6 @@ QHash< QString, QHash< QString, QList< LocaleGlobal::Locale > > > LocaleGlobal::
 //###
 
 
-QString
-LocaleGlobal::Location::pretty( const QString& s )
-{
-    return QString( s ).replace( '_', ' ' ).simplified();
-}
-
-
-QString
-LocaleGlobal::Location::comment() const
-{
-    QTimeZone qtz = QTimeZone( QString( "%1/%2" ).arg( region ).arg( zone ).toLatin1() );
-    return qtz.comment();
-}
-
-LocaleGlobal::Location&
-LocaleGlobal::Location::operator=( const CalamaresUtils::Locale::TZZone& location )
-{
-    region = location.region();
-    zone = location.key();
-    country = location.country();
-    latitude = location.latitude();
-    longitude = location.longitude();
-    return *this;
-}
-
-
 void
 LocaleGlobal::init()
 {

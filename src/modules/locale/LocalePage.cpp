@@ -133,19 +133,6 @@ LocalePage::updateLocaleLabels()
     m_formatsLabel->setText( labels.second );
 }
 
-static inline bool
-containsLocation( const QList< LocaleGlobal::Location >& locations, const QString& zone )
-{
-    for ( const LocaleGlobal::Location& location : locations )
-    {
-        if ( location.zone == zone )
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
 void
 LocalePage::init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
 {
@@ -163,7 +150,6 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
     {
         m_tzWidget->setCurrentLocation( "America", "New_York" );
     }
-    emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
 
     // Some distros come with a meaningfully commented and easy to parse locale.gen,
     // and others ship a separate file /usr/share/i18n/SUPPORTED with a clean list of
@@ -298,9 +284,9 @@ Calamares::JobList
 LocalePage::createJobs()
 {
     QList< Calamares::job_ptr > list;
-    LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
+    const CalamaresUtils::Locale::TZZone* location = m_tzWidget->currentLocation();
 
-    Calamares::Job* j = new SetTimezoneJob( location.region, location.zone );
+    Calamares::Job* j = new SetTimezoneJob( location->region(), location->zone() );
     list.append( Calamares::job_ptr( j ) );
 
     return list;
@@ -333,7 +319,7 @@ LocaleConfiguration
 LocalePage::guessLocaleConfiguration() const
 {
     return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), m_localeGenLines, m_tzWidget->getCurrentLocation().country );
+        QLocale().name(), m_localeGenLines, m_tzWidget->currentLocation()->country() );
 }
 
 
@@ -351,12 +337,12 @@ LocalePage::updateGlobalStorage()
 {
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
-    bool locationChanged
-        = ( location.region != gs->value( "locationRegion" ) ) || ( location.zone != gs->value( "locationZone" ) );
+    const auto* location = m_tzWidget->currentLocation();
+    bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
+        || ( location->zone() != gs->value( "locationZone" ) );
 
-    gs->insert( "locationRegion", location.region );
-    gs->insert( "locationZone", location.zone );
+    gs->insert( "locationRegion", location->region() );
+    gs->insert( "locationZone", location->zone() );
 
     updateGlobalLocale();
 
@@ -366,7 +352,7 @@ LocalePage::updateGlobalStorage()
     if ( locationChanged && Calamares::Settings::instance()->doChroot() )
     {
         QProcess::execute( "timedatectl",  // depends on systemd
-                           { "set-timezone", location.region + '/' + location.zone } );
+                           { "set-timezone", location->region() + '/' + location->zone() } );
     }
 #endif
 
@@ -427,12 +413,12 @@ LocalePage::zoneChanged( int currentIndex )
 }
 
 void
-LocalePage::locationChanged( LocaleGlobal::Location location )
+LocalePage::locationChanged( const CalamaresUtils::Locale::TZZone* location )
 {
     m_blockTzWidgetSet = true;
 
     // Set region index
-    int index = m_regionCombo->findData( location.region );
+    int index = m_regionCombo->findData( location->region() );
     if ( index < 0 )
     {
         return;
@@ -441,7 +427,7 @@ LocalePage::locationChanged( LocaleGlobal::Location location )
     m_regionCombo->setCurrentIndex( index );
 
     // Set zone index
-    index = m_zoneCombo->findData( location.zone );
+    index = m_zoneCombo->findData( location->zone() );
     if ( index < 0 )
     {
         return;

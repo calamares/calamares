@@ -70,7 +70,7 @@ private:
 
     void regionChanged( int currentIndex );
     void zoneChanged( int currentIndex );
-    void locationChanged( LocaleGlobal::Location location );
+    void locationChanged( const CalamaresUtils::Locale::TZZone* location );
     void changeLocale();
     void changeFormats();
 

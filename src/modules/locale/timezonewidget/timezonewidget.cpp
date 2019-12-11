@@ -105,10 +105,10 @@ TimeZoneWidget::setCurrentLocation( QString regionName, QString zoneName )
 void
 TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
 {
-    currentLocation = *location;
+    m_currentLocation = location;
 
     // Set zone
-    QPoint pos = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+    QPoint pos = getLocationPosition( location );
 
 #ifdef DEBUG_TIMEZONES
     cDebug() << "Setting location" << location->region() << *location;
@@ -147,6 +147,7 @@ TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* locati
 
     // Repaint widget
     repaint();
+    emit locationChanged( m_currentLocation );
 }
 
 
@@ -265,12 +266,12 @@ TimeZoneWidget::paintEvent( QPaintEvent* )
     painter.drawPoint( point );
 #else
     // Draw pin at current location
-    QPoint point = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+    QPoint point = getLocationPosition( m_currentLocation );
 
     painter.drawImage( point.x() - pin.width() / 2, point.y() - pin.height() / 2, pin );
 
     // Draw text and box
-    const int textWidth = fontMetrics.horizontalAdvance( LocaleGlobal::Location::pretty( currentLocation.zone ) );
+    const int textWidth = fontMetrics.horizontalAdvance( m_currentLocation ? m_currentLocation->tr() : QString() );
     const int textHeight = fontMetrics.height();
 
     QRect rect = QRect( point.x() - textWidth / 2 - 5, point.y() - textHeight - 8, textWidth + 10, textHeight - 2 );
@@ -296,7 +297,7 @@ TimeZoneWidget::paintEvent( QPaintEvent* )
     painter.setBrush( QColor( 40, 40, 40 ) );
     painter.drawRoundedRect( rect, 3, 3 );
     painter.setPen( Qt::white );
-    painter.drawText( rect.x() + 5, rect.bottom() - 4, LocaleGlobal::Location::pretty( currentLocation.zone ) );
+    painter.drawText( rect.x() + 5, rect.bottom() - 4, m_currentLocation ? m_currentLocation->tr() : QString() );
 #endif
 
     painter.end();
@@ -345,6 +346,6 @@ TimeZoneWidget::mousePressEvent( QMouseEvent* event )
         // Set zone image and repaint widget
         setCurrentLocation( closest );
         // Emit signal
-        emit locationChanged( currentLocation );
+        emit locationChanged( m_currentLocation );
     }
 }
