@@ -111,7 +111,7 @@ TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* locati
     QPoint pos = getLocationPosition( location );
 
 #ifdef DEBUG_TIMEZONES
-    cDebug() << "Setting location" << location->region() << *location;
+    cDebug() << "Setting location" << location->region() << location->zone() << '(' << location->country() << '@' << location->latitude() << 'N' << location->longitude() << 'E' << ')';
     cDebug() << Logger::SubEntry << "pixel x" << pos.x() << "pixel y" << pos.y();
 
     bool found = false;
@@ -245,7 +245,7 @@ TimeZoneWidget::paintEvent( QPaintEvent* )
     painter.drawImage( 0, 0, currentZoneImage );
 
 #ifdef DEBUG_TIMEZONES
-    QPoint point = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+    QPoint point = getLocationPosition( m_currentLocation );
     // Draw latitude lines
     for ( int y_lat = -50; y_lat < 80; y_lat += 5 )
     {
