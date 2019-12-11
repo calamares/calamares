@@ -91,6 +91,8 @@ public:
     virtual ~TZRegion();
     QString tr() const override;
 
+    QString region() const { return key(); }
+
     /** @brief Create list from a zone.tab-like file
      *
      * Returns a list of all the regions; each region has a list
@@ -121,6 +123,7 @@ public:
     TZZone( const QString& region, const char* zoneName, const QString& country, QString position );
 
     QString region() const { return m_region; }
+    QString zone() const { return key(); }
     QString country() const { return m_country; }
     double latitude() const { return m_latitude; }
     double longitude() const { return m_longitude; }
