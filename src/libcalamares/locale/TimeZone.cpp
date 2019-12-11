@@ -234,12 +234,6 @@ TZZone::tr() const
     return QObject::tr( m_human, "tz_names" );
 }
 
-void
-TZZone::print( QDebug& log ) const
-{
-    log << key() << '(' << m_country << ' ' << m_latitude << ',' << m_longitude << ')';
-}
-
 
 CStringListModel::CStringListModel( CStringPairList l )
     : m_list( l )

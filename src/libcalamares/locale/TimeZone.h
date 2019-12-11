@@ -128,20 +128,11 @@ public:
     double latitude() const { return m_latitude; }
     double longitude() const { return m_longitude; }
 
-    void print( QDebug& ) const;
-
 protected:
     QString m_region;
     QString m_country;
     double m_latitude = 0.0, m_longitude = 0.0;
 };
-
-inline QDebug&
-operator<<( QDebug& log, const TZZone& z )
-{
-    z.print( log );
-    return log;
-}
 
 class CStringListModel : public QAbstractListModel
 {
