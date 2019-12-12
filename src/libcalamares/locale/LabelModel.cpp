@@ -17,6 +17,7 @@
  */
 
 #include "LabelModel.h"
+#include <QDebug>
 
 #include "Lookup.h"
 
@@ -36,7 +37,7 @@ LabelModel::LabelModel( const QStringList& locales, QObject* parent )
 
     for ( const auto& l : locales )
     {
-        m_locales.push_back( Label( l ) );
+        m_locales.push_back( new Label( l, Label::LabelFormat::IfNeededWithCountry, this ) );
     }
 }
 
@@ -65,9 +66,9 @@ LabelModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case LabelRole:
-        return locale.label();
+        return locale->label();
     case EnglishLabelRole:
-        return locale.englishLabel();
+        return locale->englishLabel();
     default:
         return QVariant();
     }
@@ -79,13 +80,13 @@ LabelModel::locale( int row ) const
     if ( ( row < 0 ) || ( row >= m_locales.count() ) )
     {
         for ( const auto& l : m_locales )
-            if ( l.isEnglish() )
+            if ( l->isEnglish() )
             {
-                return l;
+                return *l;
             }
-        return m_locales[ 0 ];
+        return *m_locales[ 0 ];
     }
-    return m_locales[ row ];
+    return *m_locales[ row ];
 }
 
 int
@@ -93,7 +94,7 @@ LabelModel::find( std::function< bool( const Label& ) > predicate ) const
 {
     for ( int row = 0; row < m_locales.count(); ++row )
     {
-        if ( predicate( m_locales[ row ] ) )
+        if ( predicate( *m_locales[ row ] ) )
         {
             return row;
         }
