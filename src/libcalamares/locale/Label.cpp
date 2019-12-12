@@ -24,17 +24,19 @@ namespace CalamaresUtils
 namespace Locale
 {
 
-Label::Label()
-    : m_locale( QLocale() )
+Label::Label( QObject* parent )
+    : QObject( parent )
+    , m_locale( QLocale() )
 {
     m_localeId = m_locale.name();
 
     setLabels( QString(), LabelFormat::IfNeededWithCountry );
 }
 
-Label::Label( const QString& locale, LabelFormat format )
+Label::Label( const QString& locale, LabelFormat format, QObject* parent )
     : m_locale( Label::getLocale( locale ) )
     , m_localeId( locale )
+    , QObject( parent )
 {
     setLabels( locale, format );
 }
@@ -42,6 +44,7 @@ Label::Label( const QString& locale, LabelFormat format )
 void
 Label::setLabels( const QString& locale, LabelFormat format )
 {
+    emit localeIdChanged(m_localeId);
     //: language[name] (country[name])
     QString longFormat = QObject::tr( "%1 (%2)" );
 
@@ -62,8 +65,10 @@ Label::setLabels( const QString& locale, LabelFormat format )
         countryName = m_locale.nativeCountryName();
     }
     m_label = needsCountryName ? longFormat.arg( languageName, countryName ) : languageName;
+    emit labelChanged(m_label);
     m_englishLabel = needsCountryName ? longFormat.arg( englishName, QLocale::countryToString( m_locale.country() ) )
                                       : englishName;
+    emit englishLabelChanged(m_englishLabel);
 }
 
 QLocale

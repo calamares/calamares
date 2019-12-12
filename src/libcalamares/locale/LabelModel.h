@@ -33,6 +33,8 @@ namespace Locale
 
 class DLLEXPORT LabelModel : public QAbstractListModel
 {
+    Q_OBJECT
+
 public:
     enum
     {
@@ -69,7 +71,7 @@ public:
     int find( const QString& countryCode ) const;
 
 private:
-    QVector< Label > m_locales;
+    QVector< Label* > m_locales;
     QStringList m_localeIds;
 };
 
