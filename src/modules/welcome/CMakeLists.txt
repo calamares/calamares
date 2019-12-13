@@ -40,3 +40,6 @@ calamares_add_plugin( welcome
         Qt5::Network
     SHARED_LIB
 )
+
+add_executable( welcomeqmltest qmlmain.cpp )
+target_link_libraries( welcomeqmltest calamaresui )
