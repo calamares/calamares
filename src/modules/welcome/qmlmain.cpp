@@ -15,6 +15,7 @@
 
 #include <KAboutData>
 
+#include "locale/LabelModel.h"
 #include "utils/Logger.h"
 
 #include "Config.h"
@@ -61,7 +62,10 @@ int main(int argc, char **argv)
         cnf.setHelpUrl( QUrl( argv[1] ) );
     }
 
+    // TODO: this should put the one config object in the context, rather than adding a factory function to share it everywhere
     qmlRegisterSingletonType< Config >( "io.calamares.modules.welcome", 1, 0, "PotatoConfig", [](QQmlEngine*, QJSEngine*) -> QObject* { return theConfig(); });
+
+    qmlRegisterSingletonType< CalamaresUtils::Locale::LabelModel >( "io.calamares.locale", 1, 0, "LocaleModel", [](QQmlEngine*, QJSEngine*) -> QObject* { return CalamaresUtils::Locale::availableTranslations(); } );
 
     qqw.setSource( QUrl::fromLocalFile("../src/modules/welcome/welcome.qml") );
 
