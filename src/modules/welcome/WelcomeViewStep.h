@@ -45,6 +45,9 @@ class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
     Q_OBJECT
     Q_PROPERTY(QUrl supportUrl READ supportUrl CONSTANT FINAL)
 
+
+    Q_PROPERTY(QString countryCode MEMBER m_countryCode NOTIFY countryCodeChanged FINAL)
+
     Q_PROPERTY(QString genericWelcomeMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL)
     Q_PROPERTY(QString warningMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL)
     Q_PROPERTY(QVariantMap requirementsCheck MEMBER m_requirementsCheck NOTIFY requirementsCheckChanged FINAL)
@@ -94,12 +97,15 @@ private:
     GeneralRequirements* m_requirementsChecker;
     QVariantMap m_requirementsCheck;
 
+    QString m_countryCode;
+
     const QString m_genericWelcomeMessage = "This program will ask you some questions and set up your installation";
 
     const QString m_warningMessage = "This program does not satisfy the minimum requirements for installing.\nInstallation can not continue";
 
 signals:
     void requirementsCheckChanged(QVariantMap requirementsCheck);
+    void countryCodeChanged(QString countryCode);
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )
