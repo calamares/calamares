@@ -2,6 +2,8 @@
  * models from libcalamares for displaying a welcome.
  */
 
+#include <memory>
+
 #include <QApplication>
 #include <QLabel>
 #include <QMainWindow>
@@ -15,6 +17,8 @@
 
 #include <KAboutData>
 
+#include "JobQueue.h"
+#include "Settings.h"
 #include "locale/LabelModel.h"
 #include "utils/Logger.h"
 
@@ -43,6 +47,9 @@ int main(int argc, char **argv)
     a.setApplicationDisplayName( QString() );  // To avoid putting an extra "Calamares/" into the log-file
 
     Logger::setupLogLevel( Logger::LOGVERBOSE );
+
+    std::unique_ptr< Calamares::Settings > settings_p( new Calamares::Settings( QString(), true ) );
+    std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
 
     QMainWindow mw;
     QWidget background;
