@@ -16,6 +16,8 @@
 
 #include "utils/Logger.h"
 
+#include "Config.h"
+
 int main(int argc, char **argv)
 {
     QApplication a( argc, argv );
@@ -45,6 +47,14 @@ int main(int argc, char **argv)
     mw.setCentralWidget( &background );
     mw.resize( QSize( 400, 400 ) );
     mw.show();
+
+    Config cnf;
+    if ( argc > 1 )
+    {
+        cnf.setHelpUrl( QUrl( argv[1] ) );
+    }
+
+    qmlRegisterType< Config >( "io.calamares.modules.welcome", 1, 0, "Config" );
 
     qqw.setSource( QUrl::fromLocalFile("../src/modules/welcome/welcome.qml") );
 

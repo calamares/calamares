@@ -1,4 +1,5 @@
 import QtQuick 2.0;
+import io.calamares.modules.welcome 1.0;
 
 Rectangle {
     width: 200;
