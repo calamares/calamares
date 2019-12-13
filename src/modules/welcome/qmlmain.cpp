@@ -17,6 +17,7 @@
 
 #include <KAboutData>
 
+#include "Branding.h"
 #include "JobQueue.h"
 #include "Settings.h"
 #include "locale/LabelModel.h"
@@ -50,6 +51,9 @@ int main(int argc, char **argv)
 
     std::unique_ptr< Calamares::Settings > settings_p( new Calamares::Settings( QString(), true ) );
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
+
+    Calamares::Branding defaultBrand( "src/branding/default/branding.desc" );
+    cDebug() << "Branding @" << (void *)Calamares::Branding::instance();
 
     QMainWindow mw;
     QWidget background;
