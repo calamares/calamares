@@ -17,7 +17,6 @@
  */
 
 #include "LabelModel.h"
-#include <QDebug>
 
 #include "Lookup.h"
 

@@ -42,6 +42,9 @@ class GlobalStorage;
 class UIDLLEXPORT Branding : public QObject
 {
     Q_OBJECT
+
+    Q_PROPERTY(QString productName READ productName CONSTANT FINAL)
+
 public:
     /**
      * Descriptive strings in the configuration file. use
@@ -61,14 +64,14 @@ public:
         SupportUrl,
         KnownIssuesUrl,
         ReleaseNotesUrl
-    };
+    }; Q_ENUM( StringEntry )
 
     enum ImageEntry : short
     {
         ProductLogo,
         ProductIcon,
         ProductWelcome
-    };
+    }; Q_ENUM( ImageEntry )
 
     enum StyleEntry : short
     {
@@ -76,7 +79,7 @@ public:
         SidebarText,
         SidebarTextSelect,
         SidebarTextHighlight
-    };
+    }; Q_ENUM( StyleEntry )
 
     /** @brief Setting for how much the main window may expand. */
     enum class WindowExpansion
@@ -84,7 +87,7 @@ public:
         Normal,
         Fullscreen,
         Fixed
-    };
+    }; Q_ENUM( WindowExpansion )
     /** @brief Setting for the main window size.
      *
      * The units are pixels (Pixies) or something-based-on-fontsize (Fonties), which
@@ -95,7 +98,7 @@ public:
         None,
         Pixies,
         Fonties
-    };
+    }; Q_ENUM( WindowDimensionUnit )
     class WindowDimension : public NamedSuffix< WindowDimensionUnit, WindowDimensionUnit::None >
     {
     public:
@@ -132,9 +135,7 @@ public:
     QString slideshowPath() const { return m_slideshowPath; }
     int slideshowAPI() const { return m_slideshowAPI; }
 
-    QString string( Branding::StringEntry stringEntry ) const;
-    QString styleString( Branding::StyleEntry styleEntry ) const;
-    QString imagePath( Branding::ImageEntry imageEntry ) const;
+
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
 
     /** @brief Look up an image in the branding directory or as an icon
@@ -156,8 +157,7 @@ public:
 
     bool welcomeStyleCalamares() const { return m_welcomeStyleCalamares; }
     bool welcomeExpandingLogo() const { return m_welcomeExpandingLogo; }
-    bool windowMaximize() const { return m_windowExpansion == WindowExpansion::Fullscreen; }
-    bool windowExpands() const { return m_windowExpansion != WindowExpansion::Fixed; }
+
     QPair< WindowDimension, WindowDimension > windowSize() const
     {
         return QPair< WindowDimension, WindowDimension >( m_windowWidth, m_windowHeight );
@@ -169,6 +169,16 @@ public:
      * information accessible to the Python modules.
      */
     void setGlobals( GlobalStorage* globalStorage ) const;
+
+public slots:
+    QString productName() const;
+
+    QString string( Branding::StringEntry stringEntry ) const;
+    QString styleString( Branding::StyleEntry styleEntry ) const;
+    QString imagePath( Branding::ImageEntry imageEntry ) const;
+
+    bool windowMaximize() const { return m_windowExpansion == WindowExpansion::Fullscreen; }
+    bool windowExpands() const { return m_windowExpansion != WindowExpansion::Fixed; }
 
 private:
     static Branding* s_instance;
@@ -196,6 +206,7 @@ private:
     WindowExpansion m_windowExpansion;
 
     WindowDimension m_windowHeight, m_windowWidth;
+
 };
 
 template < typename U >

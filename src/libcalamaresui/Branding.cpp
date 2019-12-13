@@ -384,6 +384,12 @@ Branding::setGlobals( GlobalStorage* globalStorage ) const
     globalStorage->insert( "branding", brandingMap );
 }
 
+QString
+Branding::productName() const
+{
+    return string(StringEntry::ProductName);
+}
+
 bool
 Branding::WindowDimension::isValid() const
 {
