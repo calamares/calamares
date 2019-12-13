@@ -17,6 +17,8 @@
 
 #include "locale/LabelModel.h"
 #include "utils/Logger.h"
+#include "Branding.h"
+#include "WelcomeViewStep.h"
 
 #include "Config.h"
 
@@ -50,7 +52,7 @@ int main(int argc, char **argv)
     QLabel l( "Hello, world", &mw );
     QQuickWidget qqw( &mw );
     vl.addWidget( &qqw );
-    vl.addWidget( &l );
+//     vl.addWidget( &l );
     background.setLayout( &vl );
     mw.setCentralWidget( &background );
     mw.resize( QSize( 400, 400 ) );
@@ -66,6 +68,8 @@ int main(int argc, char **argv)
     qmlRegisterSingletonType< Config >( "io.calamares.modules.welcome", 1, 0, "PotatoConfig", [](QQmlEngine*, QJSEngine*) -> QObject* { return theConfig(); });
 
     qmlRegisterSingletonType< CalamaresUtils::Locale::LabelModel >( "io.calamares.locale", 1, 0, "LocaleModel", [](QQmlEngine*, QJSEngine*) -> QObject* { return CalamaresUtils::Locale::availableTranslations(); } );
+
+    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
 
     qqw.setSource( QUrl::fromLocalFile("../src/modules/welcome/welcome.qml") );
 

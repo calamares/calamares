@@ -73,6 +73,12 @@ LabelModel::data( const QModelIndex& index, int role ) const
     }
 }
 
+QHash<int, QByteArray>
+LabelModel::roleNames() const
+{
+    return {{LabelRole,"label"}, {EnglishLabelRole, "englishLabel"}};
+}
+
 const Label&
 LabelModel::locale( int row ) const
 {
