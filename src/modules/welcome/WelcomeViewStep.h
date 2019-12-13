@@ -43,8 +43,22 @@ class Handler;
 class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
+    Q_PROPERTY(QUrl supportUrl READ supportUrl CONSTANT FINAL)
+
+    Q_PROPERTY(QString genericWelcomeMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL)
+    Q_PROPERTY(QString warningMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL)
+    Q_PROPERTY(QVariantMap requirementsCheck MEMBER m_requirementsCheck NOTIFY requirementsCheckChanged FINAL)
 
 public:
+
+    enum Alert : short
+    {
+        WarningAlert,
+        ErrorAlert,
+        SucessAlert
+
+    }; Q_ENUM( Alert )
+
     explicit WelcomeViewStep( QObject* parent = nullptr );
     virtual ~WelcomeViewStep() override;
 
@@ -72,9 +86,20 @@ public:
 
     Calamares::RequirementsList checkRequirements() override;
 
+public slots:
+    QUrl supportUrl() const;
+
 private:
     WelcomePage* m_widget;
     GeneralRequirements* m_requirementsChecker;
+    QVariantMap m_requirementsCheck;
+
+    const QString m_genericWelcomeMessage = "This program will ask you some questions and set up your installation";
+
+    const QString m_warningMessage = "This program does not satisfy the minimum requirements for installing.\nInstallation can not continue";
+
+signals:
+    void requirementsCheckChanged(QVariantMap requirementsCheck);
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )

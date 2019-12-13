@@ -105,7 +105,7 @@ Page
                 Layout.preferredHeight: implicitHeight
                 horizontalAlignment: Qt.AlignHCenter
                 wrapMode: Text.NoWrap
-                text: "Welcome to " /*+ Branding.productName*/
+                text: "Welcome to " + Branding.string(Branding.ProductName) + " " + Branding.string(Branding.Version)
                 color: "white"
                 font.bold: true
                 font.weight: Font.Bold
@@ -118,7 +118,7 @@ Page
                 Layout.preferredHeight: implicitHeight
                 horizontalAlignment: Qt.AlignHCenter
                 wrapMode: Text.NoWrap
-                text: "This program will ask you some questions and set up your installation"
+                text: WelcomeStep.genericWelcomeMessage
                 color: "white"
                 font.weight: Font.Light
                 font.pointSize: 12
@@ -224,8 +224,10 @@ Page
 
             Button
             {
-                text: "Support"
+                visible: String(WelcomeStep.supportUrl).length
+                text: qsTr("Support")
                 icon.name: "help-contents"
+                onClicked: Qt.openUrlExternally(WelcomeStep.supportUrl)
             }
 
             Button

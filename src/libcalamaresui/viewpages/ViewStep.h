@@ -23,6 +23,7 @@
 #include <QList>
 #include <QObject>
 #include <QSize>
+#include <QVariantMap>
 
 #include "Job.h"
 #include "UiDllMacro.h"
@@ -155,6 +156,7 @@ signals:
 
 protected:
     QString m_instanceKey;
+    QVariantMap m_configurationMap;
 };
 
 using ViewStepList = QList< ViewStep* >;

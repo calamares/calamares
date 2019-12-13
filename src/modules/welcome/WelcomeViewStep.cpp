@@ -142,6 +142,8 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     using Calamares::Branding;
 
+    m_configurationMap = configurationMap;
+
     m_widget->setupButton( WelcomePage::Button::Support,
                            jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
     m_widget->setupButton( WelcomePage::Button::KnownIssues,
@@ -199,6 +201,13 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 }
+
+QUrl
+WelcomeViewStep::supportUrl() const
+{
+    return m_configurationMap.value("strings").toMap().value("supportUrl").toUrl() ;
+}
+
 
 Calamares::RequirementsList
 WelcomeViewStep::checkRequirements()

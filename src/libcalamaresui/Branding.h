@@ -44,6 +44,12 @@ class UIDLLEXPORT Branding : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString productName READ productName CONSTANT FINAL)
+//     Q_PROPERTY(QString version READ productName CONSTANT FINAL)
+//     Q_PROPERTY(QString shortVersion READ productName CONSTANT FINAL)
+//     Q_PROPERTY(QString versionedName READ productName CONSTANT FINAL)
+//     Q_PROPERTY(QString shortVersionedName READ productName CONSTANT FINAL)
+//     Q_PROPERTY(QString shortProductName READ productName CONSTANT FINAL)
+//     Q_PROPERTY(QString bootloaderEntryName READ productName CONSTANT FINAL)
 
 public:
     /**
@@ -51,7 +57,7 @@ public:
      * e.g. *Branding::ProductName to get the string value for
      * the product name.
      */
-    enum StringEntry : short
+    enum StringEntry
     {
         ProductName,
         Version,
@@ -173,9 +179,9 @@ public:
 public slots:
     QString productName() const;
 
-    QString string( Branding::StringEntry stringEntry ) const;
-    QString styleString( Branding::StyleEntry styleEntry ) const;
-    QString imagePath( Branding::ImageEntry imageEntry ) const;
+    QString string( StringEntry stringEntry ) const;
+    QString styleString( StyleEntry styleEntry ) const;
+    QString imagePath( ImageEntry imageEntry ) const;
 
     bool windowMaximize() const { return m_windowExpansion == WindowExpansion::Fullscreen; }
     bool windowExpands() const { return m_windowExpansion != WindowExpansion::Fixed; }

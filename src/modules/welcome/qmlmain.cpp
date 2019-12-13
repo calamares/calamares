@@ -22,8 +22,8 @@
 #include "Settings.h"
 #include "locale/LabelModel.h"
 #include "utils/Logger.h"
-#include "Branding.h"
 #include "WelcomeViewStep.h"
+#include "utils/Yaml.h"
 
 #include "Config.h"
 
@@ -81,6 +81,16 @@ int main(int argc, char **argv)
     qmlRegisterSingletonType< CalamaresUtils::Locale::LabelModel >( "io.calamares.locale", 1, 0, "LocaleModel", [](QQmlEngine*, QJSEngine*) -> QObject* { return CalamaresUtils::Locale::availableTranslations(); } );
 
     qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
+
+    qmlRegisterSingletonType< WelcomeViewStep >( "io.calamares.modules.welcome", 1, 0, "WelcomeStep", [](QQmlEngine*, QJSEngine*) -> QObject*
+    {
+        auto welcomeStep = new WelcomeViewStep;
+        YAML::Node doc;
+
+        welcomeStep->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile(Calamares::Branding::instance()->descriptorPath().toStdString())).toMap());
+
+         return welcomeStep;
+    } );
 
     qqw.setSource( QUrl::fromLocalFile("../src/modules/welcome/welcome.qml") );
 
