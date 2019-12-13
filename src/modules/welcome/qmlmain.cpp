@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QLabel>
 #include <QMainWindow>
+#include <QQmlEngine>
 #include <QQuickWidget>
 #include <QString>
 #include <QTimer>
@@ -17,6 +18,12 @@
 #include "utils/Logger.h"
 
 #include "Config.h"
+
+static Config* theConfig()
+{
+    static Config* cnf = new Config();
+    return cnf;
+}
 
 int main(int argc, char **argv)
 {
@@ -54,7 +61,7 @@ int main(int argc, char **argv)
         cnf.setHelpUrl( QUrl( argv[1] ) );
     }
 
-    qmlRegisterType< Config >( "io.calamares.modules.welcome", 1, 0, "Config" );
+    qmlRegisterSingletonType< Config >( "io.calamares.modules.welcome", 1, 0, "PotatoConfig", [](QQmlEngine*, QJSEngine*) -> QObject* { return theConfig(); });
 
     qqw.setSource( QUrl::fromLocalFile("../src/modules/welcome/welcome.qml") );
 

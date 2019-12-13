@@ -19,6 +19,7 @@
 #include "Config.h"
 
 Config::Config()
+    : m_helpUrl( "https://www.kde.org/" )
 {
 }
 

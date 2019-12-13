@@ -25,7 +25,7 @@
 class Config : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl )
+    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl CONSTANT )
 public:
     Config();
     virtual ~Config();
