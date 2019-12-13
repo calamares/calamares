@@ -40,3 +40,13 @@ calamares_add_plugin( welcome
         Qt5::Network
     SHARED_LIB
 )
+
+add_executable( welcomeqmltest qmlmain.cpp Config.cpp )
+target_link_libraries( welcomeqmltest PRIVATE calamaresui Qt5::Core )
+set_target_properties( welcomeqmltest
+    PROPERTIES
+        ENABLE_EXPORTS TRUE
+        RUNTIME_OUTPUT_NAME welcomeqmltest
+)
+calamares_automoc( welcomeqmltest )
+calamares_autouic( welcomeqmltest )
