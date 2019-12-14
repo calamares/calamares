@@ -202,13 +202,6 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 }
 
-QUrl
-WelcomeViewStep::supportUrl() const
-{
-    return m_configurationMap.value("strings").toMap().value("supportUrl").toUrl() ;
-}
-
-
 Calamares::RequirementsList
 WelcomeViewStep::checkRequirements()
 {
@@ -244,9 +237,6 @@ WelcomeViewStep::setCountry( const QString& countryCode, CalamaresUtils::GeoIP::
     }
     else
     {
-        m_countryCode = countryCode;
-        emit countryCodeChanged(m_countryCode);
-
         int r = CalamaresUtils::Locale::availableTranslations()->find( countryCode );
         if ( r < 0 )
         {

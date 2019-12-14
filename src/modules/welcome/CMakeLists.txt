@@ -12,8 +12,6 @@ else()
     add_definitions( -DWITHOUT_LIBPARTED )
 endif()
 
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
-
 set( CHECKER_SOURCES
     checker/CheckerContainer.cpp
     checker/GeneralRequirements.cpp
@@ -41,12 +39,12 @@ calamares_add_plugin( welcome
     SHARED_LIB
 )
 
-add_executable( welcomeqmltest qmlmain.cpp Config.cpp WelcomeViewStep.cpp WelcomePage.cpp ${CHECKER_SOURCES} )
-target_link_libraries( welcomeqmltest PRIVATE calamaresui Qt5::Core Qt5::Network Qt5::DBus ${CHECKER_LINK_LIBRARIES})
-set_target_properties( welcomeqmltest
-    PROPERTIES
-        ENABLE_EXPORTS TRUE
-        RUNTIME_OUTPUT_NAME welcomeqmltest
-)
-calamares_automoc( welcomeqmltest )
-calamares_autouic( welcomeqmltest )
+# add_executable( welcomeqmltest qmlmain.cpp Config.cpp WelcomeViewStep.cpp WelcomePage.cpp ${CHECKER_SOURCES} )
+# target_link_libraries( welcomeqmltest PRIVATE calamaresui Qt5::Core Qt5::Network Qt5::DBus ${CHECKER_LINK_LIBRARIES})
+# set_target_properties( welcomeqmltest
+#     PROPERTIES
+#         ENABLE_EXPORTS TRUE
+#         RUNTIME_OUTPUT_NAME welcomeqmltest
+# )
+# calamares_automoc( welcomeqmltest )
+# calamares_autouic( welcomeqmltest )
