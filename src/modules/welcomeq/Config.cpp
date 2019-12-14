@@ -21,7 +21,53 @@
 
 #include <QDebug>
 
+void RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
+{
+    emit beginResetModel();
+    m_requierements = requirements;
+    emit endResetModel();
+
+}
+
+int RequirementsModel::rowCount( const QModelIndex& ) const
+{
+    return m_requierements.count();
+}
+
+QVariant RequirementsModel::data( const QModelIndex& index, int role ) const
+{
+    const auto requirement = m_requierements.at( index.row() );
+
+	switch ( role )
+	{
+		case Roles::Name:
+            return requirement.name;
+        case Roles::Details:
+            return requirement.enumerationText();
+        case Roles::NegatedText:
+            return requirement.negatedText();
+        case Roles::Satisfied:
+            return requirement.satisfied;
+        case Roles::Mandatory:
+            return requirement.mandatory;
+        default:
+			return QVariant();
+	}
+}
+
+QHash<int, QByteArray> RequirementsModel::roleNames() const
+{
+    static QHash<int, QByteArray> roles;
+	roles[Roles::Name] = "name";
+	roles[Roles::Details] = "details";
+	roles[Roles::NegatedText] = "negatedText";
+	roles[Roles::Satisfied] = "satisfied";
+	roles[Roles::Mandatory] = "mandatory";
+	return roles;
+}
+
 Config::Config( QObject* parent ) : QObject( parent )
+    ,m_requirementsModel( new RequirementsModel( this ))
 {
 }
 
@@ -107,13 +153,12 @@ Config::setLanguageIcon(const QString languageIcon)
 	m_languageIcon = languageIcon;
 }
 
-void Config::setRequirementsCheck(const QVariantMap& requirementsCheck)
+RequirementsModel&
+Config::requirementsModel() const
 {
-	m_requirementsCheck = requirementsCheck;
-
-	qDebug() << m_requirementsCheck;
-	emit requirementsCheckChanged( m_requirementsCheck );
+    return *m_requirementsModel;
 }
+
 
 
 

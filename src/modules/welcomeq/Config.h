@@ -21,8 +21,37 @@
 
 #include <QObject>
 #include <QUrl>
+#include "modulesystem/Requirement.h"
 
 #include "locale/LabelModel.h"
+
+class RequirementsModel : public QAbstractListModel
+{
+    Q_OBJECT
+    using QAbstractListModel::QAbstractListModel;
+
+public:
+    enum Roles : short
+    {
+        Name,
+        Satisfied,
+        Mandatory,
+        Details,
+        NegatedText,
+        HasDetails
+    };
+
+    void setRequirementsList( const Calamares::RequirementsList& requirements );
+    int rowCount(const QModelIndex&) const override;
+	QVariant data(const QModelIndex& index, int role) const override;
+
+protected:
+	QHash<int, QByteArray> roleNames() const override;
+
+private:
+    Calamares::RequirementsList m_requierements;
+
+};
 
 
 class Config : public QObject
@@ -41,7 +70,7 @@ class Config : public QObject
 
     Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL )
     Q_PROPERTY( QString warningMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL )
-    Q_PROPERTY( QVariantMap requirementsCheck MEMBER m_requirementsCheck NOTIFY requirementsCheckChanged FINAL )
+    Q_PROPERTY( RequirementsModel* requirementsModel MEMBER m_requirementsModel CONSTANT FINAL )
 
 public:
      enum Alert : short
@@ -57,7 +86,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap );
     void setCountryCode( const QString &countryCode );
     void setLanguageIcon( const QString languageIcon );
-    void setRequirementsCheck( const QVariantMap& requirementsCheck);
+    RequirementsModel& requirementsModel () const;
 
 public slots:
     CalamaresUtils::Locale::LabelModel* languagesModel() const;
@@ -71,7 +100,7 @@ public slots:
 
 private:
     QVariantMap m_configurationMap;
-    QVariantMap m_requirementsCheck;
+    RequirementsModel* m_requirementsModel;
     QString m_languageIcon;
     QString m_countryCode;
     int m_localeIndex = 0;
@@ -81,7 +110,6 @@ private:
     const QString m_warningMessage = "This program does not satisfy the minimum requirements for installing.\nInstallation can not continue";
 
 signals:
-    void requirementsCheckChanged( QVariantMap requirementsCheck );
     void countryCodeChanged( QString countryCode );
     void localeIndexChanged( int localeIndex );
 };

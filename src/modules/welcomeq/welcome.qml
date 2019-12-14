@@ -38,7 +38,7 @@ Page
             asynchronous: true
             cache: true
 
-            source: "file:///home/camilo/.local/share/wallpapers/Alt.jpg"
+            source: "file:///home/camilo/.local/share/wallpapers/wanderer_v02_5120x2880.png"
 
         }
 
@@ -62,7 +62,7 @@ Page
         {
             anchors.centerIn: parent
             text: Welcome.Config.countryCode
-            width: _langList.width
+            width: _requirementsList.width
             height: implicitHeight
         }
     }
@@ -122,9 +122,7 @@ Page
                 font.weight: Font.Light
                 font.pointSize: 12
             }
-
         }
-
 
         Label
         {
@@ -141,7 +139,7 @@ Page
         ListView
         {
 
-            id: _langList
+            id: _requirementsList
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(500, parent.width - 64)
@@ -149,7 +147,7 @@ Page
             spacing: Kirigami.Units.smallSpacing
             clip: true
 
-            currentIndex: Welcome.Config.localeIndex
+//             currentIndex: Welcome.Config.localeIndex
 
             Rectangle
             {
@@ -160,7 +158,91 @@ Page
                 opacity: 0.3
             }
 
-            model: Welcome.Config.languagesModel
+            model: Welcome.Config.requirementsModel
+
+            delegate: ItemDelegate
+            {
+                id: _delegate
+
+                background: Rectangle
+                {
+                    color: model.satisfied ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.negativeTextColor
+                    opacity: 0.2
+                }
+
+                width: parent.width
+                height: 48
+
+                contentItem: RowLayout
+                {
+                    width: parent.width
+                    height: parent.height
+
+                    Item
+                    {
+                        Layout.fillHeight: true
+                        Layout.preferredWidth: height
+
+                        Kirigami.Icon
+                        {
+                            source: model.satisfied ? "checkmark" : (model.mandatory ? "error" : "dialog-warning-symbolic")
+                            height:  32
+                            width: height
+                            anchors.centerIn: parent
+                            color: background.color
+                        }
+                    }
+
+                     ColumnLayout
+                {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: tru
+                    Label
+                    {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        horizontalAlignment: Qt.AlignLeft
+                        text: model.name
+                    }
+
+                    Label
+                    {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        horizontalAlignment: Qt.AlignLeft
+                        text: !model.satisfied ?  model.negatedText : model.details
+                        opacity: isCurrentItem ? 1 : 0.7
+                        font.weight: Font.Light
+                    }
+                }
+                }
+            }
+        }
+
+
+         ListView
+        {
+
+            id: _langList
+            visible: false
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(500, parent.width - 64)
+            Layout.preferredHeight: Math.min(contentHeight, 500)
+            spacing: Kirigami.Units.smallSpacing
+            clip: true
+
+//             currentIndex: Welcome.Config.localeIndex
+
+            Rectangle
+            {
+                z: parent.z - 1
+                anchors.fill: parent
+                color: Kirigami.Theme.backgroundColor
+                radius: 5
+                opacity: 0.3
+            }
+
+            model: Welcome.Config.requirementsModel
 
             delegate: ItemDelegate
             {

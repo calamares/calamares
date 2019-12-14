@@ -46,10 +46,8 @@ WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
 			 this,
 			 &WelcomeQmlViewStep::nextStatusChanged );
 
-	for(auto req : checkRequirements())
-	{
-		qDebug()<< req.mandatory << req.name << req.negatedText();
-	}
+
+
 }
 
 
@@ -157,6 +155,9 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 		 && configurationMap.value( "requirements" ).type() == QVariant::Map )
 	{
 		m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
+
+        m_config->requirementsModel().setRequirementsList( checkRequirements() );
+
 	}
 	else
 		cWarning() << "no valid requirements map found in welcome "
