@@ -22,19 +22,68 @@
 #include <QObject>
 #include <QUrl>
 
+#include "locale/LabelModel.h"
+
+
 class Config : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl CONSTANT )
-public:
-    Config();
-    virtual ~Config();
+    Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL)
+    Q_PROPERTY( QUrl supportUrl READ supportUrl CONSTANT FINAL )
+    Q_PROPERTY( QUrl knownIssuesUrl READ knownIssuesUrl CONSTANT FINAL )
+    Q_PROPERTY( QUrl releaseNotesUrl READ releaseNotesUrl CONSTANT FINAL )
+    Q_PROPERTY( QUrl donateUrl READ donateUrl CONSTANT FINAL )
 
-    QUrl helpUrl() const { return m_helpUrl; }
-    void setHelpUrl( const QUrl& url ) { m_helpUrl = url; }
+    Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
+
+    Q_PROPERTY( QString countryCode MEMBER m_countryCode NOTIFY countryCodeChanged FINAL )
+    Q_PROPERTY (int localeIndex MEMBER m_localeIndex NOTIFY localeIndexChanged)
+
+    Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL )
+    Q_PROPERTY( QString warningMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL )
+    Q_PROPERTY( QVariantMap requirementsCheck MEMBER m_requirementsCheck NOTIFY requirementsCheckChanged FINAL )
+
+public:
+     enum Alert : short
+    {
+        WarningAlert,
+        ErrorAlert,
+        SucessAlert
+
+    }; Q_ENUM( Alert )
+
+    Config( QObject* parent = nullptr );
+    virtual ~Config();
+    void setConfigurationMap( const QVariantMap& configurationMap );
+    void setCountryCode( const QString &countryCode );
+    void setLanguageIcon( const QString languageIcon );
+    void setRequirementsCheck( const QVariantMap& requirementsCheck);
+
+public slots:
+    CalamaresUtils::Locale::LabelModel* languagesModel() const;
+
+    QUrl supportUrl() const;
+    QUrl knownIssuesUrl() const;
+    QUrl releaseNotesUrl() const;
+    QUrl donateUrl() const;
+
+    QString languageIcon() const;
 
 private:
-    QUrl m_helpUrl;
+    QVariantMap m_configurationMap;
+    QVariantMap m_requirementsCheck;
+    QString m_languageIcon;
+    QString m_countryCode;
+    int m_localeIndex = 0;
+
+    const QString m_genericWelcomeMessage = "This program will ask you some questions and set up your installation";
+
+    const QString m_warningMessage = "This program does not satisfy the minimum requirements for installing.\nInstallation can not continue";
+
+signals:
+    void requirementsCheckChanged( QVariantMap requirementsCheck );
+    void countryCodeChanged( QString countryCode );
+    void localeIndexChanged( int localeIndex );
 };
 
 #endif

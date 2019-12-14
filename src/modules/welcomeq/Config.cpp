@@ -17,12 +17,107 @@
  */
 
 #include "Config.h"
+#include "Branding.h"
 
-Config::Config()
-    : m_helpUrl( "https://www.kde.org/" )
+#include <QDebug>
+
+Config::Config( QObject* parent ) : QObject( parent )
 {
 }
 
 Config::~Config()
 {
 }
+
+CalamaresUtils::Locale::LabelModel*
+Config::languagesModel() const
+{
+	return CalamaresUtils::Locale::availableTranslations();
+}
+
+static QString
+jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map, const QString& key )
+{
+	if ( !map.contains( key ) )
+	{
+		return QString();
+	}
+	auto v = map.value( key );
+	if ( v.type() == QVariant::Bool )
+	{
+		return v.toBool() ? ( *e ) : QString();
+	}
+	if ( v.type() == QVariant::String )
+	{
+		return v.toString();
+	}
+
+	return QString();
+}
+
+QUrl
+Config::donateUrl() const
+{
+	return jobOrBrandingSetting( Calamares::Branding::SupportUrl, m_configurationMap, "showDonateUrl" );
+}
+
+QUrl
+Config::knownIssuesUrl() const
+{
+	return jobOrBrandingSetting( Calamares::Branding::SupportUrl, m_configurationMap, "showKnownIssuesUrl" );
+}
+
+QUrl
+Config::releaseNotesUrl() const
+{
+	return jobOrBrandingSetting( Calamares::Branding::SupportUrl, m_configurationMap, "showReleaseNotesUrl" );
+}
+
+QUrl
+Config::supportUrl() const
+{
+	 return jobOrBrandingSetting( Calamares::Branding::SupportUrl, m_configurationMap, "showSupportUrl" );
+}
+
+QString
+Config::languageIcon() const
+{
+	return m_languageIcon;
+}
+
+void
+Config::setConfigurationMap(const QVariantMap& configurationMap)
+{
+	m_configurationMap = configurationMap;
+}
+
+void
+Config::setCountryCode(const QString& countryCode)
+{
+	m_countryCode = countryCode;
+	m_localeIndex = CalamaresUtils::Locale::availableTranslations()->find( m_countryCode );
+
+	emit countryCodeChanged( m_countryCode );
+	emit localeIndexChanged( m_localeIndex );
+}
+
+void
+Config::setLanguageIcon(const QString languageIcon)
+{
+	m_languageIcon = languageIcon;
+}
+
+void Config::setRequirementsCheck(const QVariantMap& requirementsCheck)
+{
+	m_requirementsCheck = requirementsCheck;
+
+	qDebug() << m_requirementsCheck;
+	emit requirementsCheckChanged( m_requirementsCheck );
+}
+
+
+
+
+
+
+

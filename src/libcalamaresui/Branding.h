@@ -42,15 +42,6 @@ class GlobalStorage;
 class UIDLLEXPORT Branding : public QObject
 {
     Q_OBJECT
-
-    Q_PROPERTY(QString productName READ productName CONSTANT FINAL)
-//     Q_PROPERTY(QString version READ productName CONSTANT FINAL)
-//     Q_PROPERTY(QString shortVersion READ productName CONSTANT FINAL)
-//     Q_PROPERTY(QString versionedName READ productName CONSTANT FINAL)
-//     Q_PROPERTY(QString shortVersionedName READ productName CONSTANT FINAL)
-//     Q_PROPERTY(QString shortProductName READ productName CONSTANT FINAL)
-//     Q_PROPERTY(QString bootloaderEntryName READ productName CONSTANT FINAL)
-
 public:
     /**
      * Descriptive strings in the configuration file. use
@@ -177,8 +168,6 @@ public:
     void setGlobals( GlobalStorage* globalStorage ) const;
 
 public slots:
-    QString productName() const;
-
     QString string( StringEntry stringEntry ) const;
     QString styleString( StyleEntry styleEntry ) const;
     QString imagePath( ImageEntry imageEntry ) const;

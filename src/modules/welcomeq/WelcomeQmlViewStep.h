@@ -49,8 +49,8 @@ class QQuickWidget;
 class PLUGINDLLEXPORT WelcomeQmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-
 public:
+
     explicit WelcomeQmlViewStep( QObject* parent = nullptr );
     virtual ~WelcomeQmlViewStep() override;
 
@@ -77,10 +77,11 @@ public:
     void setCountry( const QString&, CalamaresUtils::GeoIP::Handler* handler );
 
     Calamares::RequirementsList checkRequirements() override;
+    Config* config() const;
 
 private:
     // TODO: a generic QML viewstep should return a config object from a method
-    Config m_config;
+    Config *m_config;
     GeneralRequirements* m_requirementsChecker;
 
     // TODO: these need to be in the base class (also a base class of ExecutionViewStep)
