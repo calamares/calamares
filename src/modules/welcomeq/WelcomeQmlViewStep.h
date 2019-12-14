@@ -40,6 +40,10 @@ class Handler;
 
 class GeneralRequirements;
 
+class QQmlComponent;
+class QQuickItem;
+class QQuickWidget;
+
 // TODO: Needs a generic Calamares::QmlViewStep as base class
 // TODO: refactor and move what makes sense to base class
 class PLUGINDLLEXPORT WelcomeQmlViewStep : public Calamares::ViewStep
@@ -78,6 +82,12 @@ private:
     // TODO: a generic QML viewstep should return a config object from a method
     Config m_config;
     GeneralRequirements* m_requirementsChecker;
+
+    // TODO: these need to be in the base class (also a base class of ExecutionViewStep)
+    QQuickWidget* m_qmlWidget;
+    QQmlComponent* m_qmlComponent;
+    QQuickItem* m_qmlItem;
+
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeQmlViewStepFactory )
