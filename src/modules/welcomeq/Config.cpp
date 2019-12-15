@@ -138,7 +138,7 @@ Config::setConfigurationMap(const QVariantMap& configurationMap)
 }
 
 void
-Config::setCountryCode(const QString& countryCode)
+Config::setCountryCode( const QString& countryCode )
 {
 	m_countryCode = countryCode;
 	m_localeIndex = CalamaresUtils::Locale::availableTranslations()->find( m_countryCode );
@@ -148,7 +148,7 @@ Config::setCountryCode(const QString& countryCode)
 }
 
 void
-Config::setLanguageIcon(const QString languageIcon)
+Config::setLanguageIcon( const QString languageIcon )
 {
 	m_languageIcon = languageIcon;
 }
@@ -159,7 +159,19 @@ Config::requirementsModel() const
     return *m_requirementsModel;
 }
 
+void
+Config::setIsBackEnabled( const bool& isBackEnabled )
+{
+    m_isBackEnabled = isBackEnabled;
+    emit isBackEnabledChanged( m_isBackEnabled );
+}
 
+void
+Config::setIsNextEnabled( const bool& isNextEnabled )
+{
+    m_isNextEnabled = isNextEnabled;
+    emit isNextEnabledChanged( m_isNextEnabled );
+}
 
 
 

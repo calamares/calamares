@@ -72,6 +72,11 @@ class Config : public QObject
     Q_PROPERTY( QString warningMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL )
     Q_PROPERTY( RequirementsModel* requirementsModel MEMBER m_requirementsModel CONSTANT FINAL )
 
+    Q_PROPERTY( bool isNextEnabled MEMBER m_isNextEnabled NOTIFY isNextEnabledChanged FINAL )
+
+    Q_PROPERTY( bool isBackEnabled MEMBER m_isBackEnabled NOTIFY isBackEnabledChanged FINAL )
+
+
 public:
      enum Alert : short
     {
@@ -87,6 +92,9 @@ public:
     void setCountryCode( const QString &countryCode );
     void setLanguageIcon( const QString languageIcon );
     RequirementsModel& requirementsModel () const;
+
+    void setIsNextEnabled( const bool& isNextEnabled );
+    void setIsBackEnabled( const bool& isBackEnabled );
 
 public slots:
     CalamaresUtils::Locale::LabelModel* languagesModel() const;
@@ -104,6 +112,8 @@ private:
     QString m_languageIcon;
     QString m_countryCode;
     int m_localeIndex = 0;
+    bool m_isNextEnabled = false;
+    bool m_isBackEnabled = false;
 
     const QString m_genericWelcomeMessage = "This program will ask you some questions and set up your installation";
 
@@ -112,6 +122,8 @@ private:
 signals:
     void countryCodeChanged( QString countryCode );
     void localeIndexChanged( int localeIndex );
+    void isNextEnabledChanged( bool isNextEnabled );
+    void isBackEnabledChanged( bool isBackEnabled );
 };
 
 #endif

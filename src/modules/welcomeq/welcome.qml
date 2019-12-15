@@ -146,8 +146,7 @@ Page
             Layout.preferredHeight: Math.min(contentHeight, 500)
             spacing: Kirigami.Units.smallSpacing
             clip: true
-
-//             currentIndex: Welcome.Config.localeIndex
+            boundsBehavior: Flickable.StopAtBounds
 
             Rectangle
             {
@@ -155,7 +154,7 @@ Page
                 anchors.fill: parent
                 color: Kirigami.Theme.backgroundColor
                 radius: 5
-                opacity: 0.3
+                opacity: 0.5
             }
 
             model: Welcome.Config.requirementsModel
@@ -193,34 +192,34 @@ Page
                         }
                     }
 
-                     ColumnLayout
-                {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: tru
-                    Label
+                    ColumnLayout
                     {
                         Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        horizontalAlignment: Qt.AlignLeft
-                        text: model.name
-                    }
+                        Layout.fillHeight: tru
+                        Label
+                        {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            horizontalAlignment: Qt.AlignLeft
+                            text: model.name
+                        }
 
-                    Label
-                    {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        horizontalAlignment: Qt.AlignLeft
-                        text: !model.satisfied ?  model.negatedText : model.details
-                        opacity: isCurrentItem ? 1 : 0.7
-                        font.weight: Font.Light
+                        Label
+                        {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            horizontalAlignment: Qt.AlignLeft
+                            text: !model.satisfied ?  model.negatedText : model.details
+                            opacity: isCurrentItem ? 1 : 0.7
+                            font.weight: Font.Light
+                        }
                     }
-                }
                 }
             }
         }
 
 
-         ListView
+        ListView
         {
 
             id: _langList
@@ -231,7 +230,7 @@ Page
             spacing: Kirigami.Units.smallSpacing
             clip: true
 
-//             currentIndex: Welcome.Config.localeIndex
+            //             currentIndex: Welcome.Config.localeIndex
 
             Rectangle
             {
@@ -317,7 +316,7 @@ Page
 
             Button
             {
-                text: "Known issues"
+                text: qsTr("Known issues")
                 icon.name: "tools-report-bug"
 
                 visible: String(Welcome.Config.knownIssuesUrl).length
@@ -326,7 +325,7 @@ Page
 
             Button
             {
-                text: "Release notes"
+                text: qsTr("Release notes")
                 icon.name: "answer"
 
                 visible: String(Welcome.Config.releaseNotesUrl).length
