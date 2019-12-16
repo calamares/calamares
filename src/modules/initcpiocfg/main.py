@@ -4,7 +4,7 @@
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Rohan Garg <rohan@kde.org>
-#   Copyright 2015, Philip Müller <philm@manjaro.org>
+#   Copyright 2015 - 2019, Philip Müller <philm@manjaro.org>
 #   Copyright 2017, Alf Gaida <agaida@sidution.org>
 #   Copyright 2019, Adriaan de Groot <groot@kde.org>
 #
@@ -22,6 +22,7 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
+from libcalamares.utils import debug, target_env_call
 import os
 from collections import OrderedDict
 
@@ -100,6 +101,11 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     with open(path, "w") as mkinitcpio_file:
         mkinitcpio_file.write("\n".join(mklins) + "\n")
 
+def detect_plymouth():
+    isPlymouth = target_env_call(["sh", "-c", "which plymouth"])
+    debug("which plymouth exit code: {!s}".format(isPlymouth))
+
+    return isPlymouth
 
 def modify_mkinitcpio_conf(partitions, root_mount_point):
     """
@@ -121,8 +127,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     unencrypted_separate_boot = False
 
     # It is important that the plymouth hook comes before any encrypt hook
-    plymouth_bin = os.path.join(root_mount_point, "usr/bin/plymouth")
-    if os.path.exists(plymouth_bin):
+    if detect_plymouth() == 0:
         hooks.append("plymouth")
 
     for partition in partitions:
