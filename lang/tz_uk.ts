@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="uk">
 <context>
     <name>QObject</name>
     <message>
@@ -1285,7 +1285,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="253"/>
         <source>Kiev</source>
         <comment>tz_names</comment>
-        <translation>Kyiv</translation>
+        <translation>Київ</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="254"/>
