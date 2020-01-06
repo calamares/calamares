@@ -1283,7 +1283,7 @@
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="253"/>
-        <source>Kiev</source>
+        <source>Kyiv</source>
         <comment>tz_names</comment>
         <translation type="unfinished"></translation>
     </message>

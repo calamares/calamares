@@ -250,7 +250,7 @@ static const QStringList& tz_names_table()
 		QObject::tr("Kerguelen", "tz_names"),
 		QObject::tr("Khandyga", "tz_names"),
 		QObject::tr("Khartoum", "tz_names"),
-		QObject::tr("Kiev", "tz_names"),
+		QObject::tr("Kyiv", "tz_names"),
 		QObject::tr("Kigali", "tz_names"),
 		QObject::tr("Kinshasa", "tz_names"),
 		QObject::tr("Kiritimati", "tz_names"),
