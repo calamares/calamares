@@ -357,6 +357,10 @@ CalamaresApplication::initView()
 
     QTimer::singleShot( 0, m_moduleManager, &Calamares::ModuleManager::loadModules );
 
+    if ( Calamares::Branding::instance() && Calamares::Branding::instance()->windowPlacementCentered() )
+    {
+        m_mainwindow->move( this->desktop()->availableGeometry().center() - m_mainwindow->rect().center() );
+    }
     cDebug() << "STARTUP: CalamaresWindow created; loadModules started";
 }
 
