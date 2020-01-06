@@ -53,7 +53,6 @@ PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent
     }
 
     ui->products->setMinimumWidth( 10 * CalamaresUtils::defaultFontHeight() );
-
 }
 
 /** @brief size the given @p pixmap to @p size

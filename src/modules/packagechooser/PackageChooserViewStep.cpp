@@ -148,7 +148,9 @@ void
 PackageChooserViewStep::onActivate()
 {
     if ( !m_widget->hasSelection() )
+    {
         m_widget->setSelection( m_defaultIdx );
+    }
 }
 
 void
@@ -221,7 +223,7 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
     // find default item
     if ( first_time && m_model && !default_item_id.isEmpty() )
     {
-        for (int item_n = 0; item_n < m_model->packageCount(); ++item_n)
+        for ( int item_n = 0; item_n < m_model->packageCount(); ++item_n )
         {
             QModelIndex item_idx = m_model->index( item_n, 0 );
             QVariant item_id = m_model->data( item_idx, PackageListModel::IdRole );
