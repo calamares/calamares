@@ -367,13 +367,14 @@ centerWindowOnScreen( QWidget* w )
 {
     QList< QScreen* > screens = qApp->screens();
     QPoint windowCenter = w->rect().center();
+    QSize windowSize = w->rect().size();
 
     for ( const auto* screen : screens )
     {
-        QPoint screenCenter = screen->availableGeometry().center();
-        if ( !itFits && ( screenCenter.x() >= windowCenter.x() ) && ( screenCenter.y() >= windowCenter.y() ) )
+        QSize screenSize = screen->availableGeometry().size();
+        if ( ( screenSize.width() >= windowSize.width() ) && ( screenSize.height() >= windowSize.height() ) )
         {
-            w->move( screenCenter - windowCenter );
+            w->move( screen->availableGeometry().center() - windowCenter );
             break;
         }
     }
