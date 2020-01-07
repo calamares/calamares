@@ -41,9 +41,9 @@
 
 LocalePage::LocalePage( QWidget* parent )
     : QWidget( parent )
-    , m_blockTzWidgetSet( false )
     , m_regionList( CalamaresUtils::Locale::TZRegion::fromZoneTab() )
     , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( m_regionList ) )
+    , m_blockTzWidgetSet( false )
 {
     QBoxLayout* mainLayout = new QVBoxLayout;
 
