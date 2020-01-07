@@ -324,6 +324,10 @@ set_package_properties(
 )
 
 if ( PYTHONLIBS_FOUND )
+    # Since Boost provides CMake config files (starting with Boost 1.70.
+    # or so) the mess that is the Calamares find code picks the wrong
+    # bits. Suppress those CMake config files, as suggested by @jmrcpn
+    set(Boost_NO_BOOST_CMAKE ON)
     include( BoostPython3 )
     find_boost_python3( ${BOOSTPYTHON_VERSION} ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
     set_package_properties(
