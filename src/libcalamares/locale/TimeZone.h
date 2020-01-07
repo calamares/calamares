@@ -89,6 +89,7 @@ class TZRegion : public CStringPair
 public:
     using CStringPair::CStringPair;
     virtual ~TZRegion() override;
+    TZRegion( const TZRegion& ) = delete;
     QString tr() const override;
 
     QString region() const { return key(); }
