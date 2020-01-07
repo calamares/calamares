@@ -13,6 +13,9 @@ This release contains contributions from (alphabetically by first name):
    means that modules now have easier access to timezone information.
    Translations for timezones have also been enabled, so it is **possible**
    at least to translate the displayed zones in the *locale* module.
+ - Branding can now specify whether to (try to) display the Calamares window
+   in the middle of the desktop or not. The *windowPlacement* key in
+   `branding.desc` specifies *center* or *free* placement.
 
 ## Modules ##
  - The *license* module has seen a significant change to its looks.

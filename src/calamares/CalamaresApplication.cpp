@@ -39,6 +39,7 @@
 #include <QDesktopWidget>
 #include <QDir>
 #include <QFileInfo>
+#include <QScreen>
 #include <QTimer>
 
 
@@ -357,6 +358,20 @@ CalamaresApplication::initView()
 
     QTimer::singleShot( 0, m_moduleManager, &Calamares::ModuleManager::loadModules );
 
+    if ( Calamares::Branding::instance() && Calamares::Branding::instance()->windowPlacementCentered() )
+    {
+        QList< QScreen* > screens = qApp->screens();
+        QPoint windowCenter = m_mainwindow->rect().center();
+        for ( const auto* screen : screens )
+        {
+            QPoint screenCenter = screen->availableGeometry().center();
+            if ( ( screenCenter.x() >= windowCenter.x() ) && ( screenCenter.y() >= windowCenter.y() ) )
+            {
+                m_mainwindow->move( screenCenter - windowCenter );
+                break;
+            }
+        }
+    }
     cDebug() << "STARTUP: CalamaresWindow created; loadModules started";
 }
 
