@@ -6,7 +6,7 @@ website will have to do for older versions.
 # 3.2.18 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No other contributors this time around.
+ - Bill Auger
 
 ## Core ##
  - Timezone support code has migrated into the core of Calamares. This
@@ -23,6 +23,8 @@ This release contains contributions from (alphabetically by first name):
    for each license is displayed.
  - The *locale* module now supports translations for timezone and
    location names (e.g. "Berlin" is "Berlijn" in Dutch).
+ - *Packagechooser* is a little more careful with displaying
+   default and empty package names. (thanks to Bill Auger)
 
 
 # 3.2.17.1 (2019-12-02) #
