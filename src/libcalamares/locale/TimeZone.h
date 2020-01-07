@@ -48,7 +48,7 @@ class CStringPair
 {
 public:
     /// @brief An empty pair
-    CStringPair() {};
+    CStringPair() {}
     /// @brief Given an identifier, create the pair
     explicit CStringPair( const char* s1 );
     CStringPair( CStringPair&& t );
@@ -88,7 +88,7 @@ class TZRegion : public CStringPair
 {
 public:
     using CStringPair::CStringPair;
-    virtual ~TZRegion();
+    virtual ~TZRegion() override;
     QString tr() const override;
 
     QString region() const { return key(); }
