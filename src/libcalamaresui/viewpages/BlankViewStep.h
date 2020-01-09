@@ -19,12 +19,7 @@
 #ifndef BLANKVIEWSTEP_H
 #define BLANKVIEWSTEP_H
 
-#include <QObject>
-
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
-
-class QWidget;
+#include "viewpages/ViewStep.h"
 
 namespace Calamares
 {
