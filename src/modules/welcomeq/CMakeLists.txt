@@ -1,3 +1,6 @@
+# This is a re-write of the welcome module using QML view steps
+# instead of widgets.
+
 set( _welcome ${CMAKE_CURRENT_SOURCE_DIR}/../welcome )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui ${_welcome} )
