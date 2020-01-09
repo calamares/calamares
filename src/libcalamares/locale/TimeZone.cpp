@@ -171,7 +171,6 @@ TZRegion::fromFile( const char* fileName )
         }
 
         QString region = timezoneParts.first().trimmed();
-        ;
         if ( region.isEmpty() )
         {
             continue;
@@ -243,7 +242,7 @@ CStringListModel::CStringListModel( CStringPairList l )
 CStringListModel::~CStringListModel() {}
 
 int
-CStringListModel::rowCount( const QModelIndex& parent ) const
+CStringListModel::rowCount( const QModelIndex& ) const
 {
     return m_list.count();
 }

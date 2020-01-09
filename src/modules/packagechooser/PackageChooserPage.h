@@ -35,10 +35,13 @@ class PackageChooserPage : public QWidget
 public:
     explicit PackageChooserPage( PackageChooserMode mode, QWidget* parent = nullptr );
 
+    /// @brief Sets the data model for the listview
     void setModel( QAbstractItemModel* model );
 
     /// @brief Sets the introductory (no-package-selected) texts
     void setIntroduction( const PackageItem& item );
+    /// @brief Selects a listview item
+    void setSelection( const QModelIndex& index );
     /// @brief Is anything selected?
     bool hasSelection() const;
     /** @brief Get the list of selected ids

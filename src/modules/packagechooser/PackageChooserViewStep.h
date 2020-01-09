@@ -50,6 +50,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
+    void onActivate() override;
     void onLeave() override;
 
     Calamares::JobList jobs() const override;
@@ -67,6 +68,7 @@ private:
     PackageChooserMode m_mode;
     QString m_id;
     CalamaresUtils::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
+    QModelIndex m_defaultIdx;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PackageChooserViewStepFactory )

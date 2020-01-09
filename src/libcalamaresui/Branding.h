@@ -108,6 +108,13 @@ public:
         {
         }
     };
+    /** @brief Placement of main window.
+     */
+    enum class WindowPlacement
+    {
+        Center,
+        Free
+    };
 
     static Branding* instance();
 
@@ -162,6 +169,7 @@ public:
     {
         return QPair< WindowDimension, WindowDimension >( m_windowWidth, m_windowHeight );
     }
+    bool windowPlacementCentered() const { return m_windowPlacement == WindowPlacement::Center; }
 
     /**
      * Creates a map called "branding" in the global storage, and inserts an
@@ -193,9 +201,10 @@ private:
 
     bool m_welcomeStyleCalamares;
     bool m_welcomeExpandingLogo;
-    WindowExpansion m_windowExpansion;
 
+    WindowExpansion m_windowExpansion;
     WindowDimension m_windowHeight, m_windowWidth;
+    WindowPlacement m_windowPlacement;
 };
 
 template < typename U >
