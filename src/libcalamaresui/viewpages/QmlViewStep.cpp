@@ -34,12 +34,16 @@
 static const NamedEnumTable< Calamares::QmlViewStep::QmlSearch >&
 searchNames()
 {
-    using QmlSearch = Calamares::QmlViewStep::QmlSearch;
-    static NamedEnumTable< Calamares::QmlViewStep::QmlSearch > names{
-        { QStringLiteral( "both" ), QmlSearch::Both },
-        { QStringLiteral( "qrc" ), QmlSearch::QrcOnly },
-        { QStringLiteral( "branding" ), QmlSearch::BrandingOnly }
+    using Search = Calamares::QmlViewStep::QmlSearch;
+    // *INDENT-OFF*
+    // clang-format off
+    static NamedEnumTable< Search > names {
+        { QStringLiteral( "both" ), Search::Both },
+        { QStringLiteral( "qrc" ), Search::QrcOnly },
+        { QStringLiteral( "branding" ), Search::BrandingOnly }
     };
+    // *INDENT-ON*
+    // clang-format on
 
     return names;
 }
@@ -61,15 +65,7 @@ QmlViewStep::QmlViewStep( const QString& name, QObject* parent )
     m_qmlWidget->setResizeMode( QQuickWidget::SizeRootObjectToView );
     m_qmlWidget->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
 
-    // TODO: search for suitable file
-    QString qrcName = QStringLiteral( "qrc:/%1.qml" ).arg( m_name );
-    m_qmlFileName = qrcName;
-
-    cDebug() << "QmlViewStep loading" << m_qmlFileName;
-    m_qmlComponent = new QQmlComponent(
-        m_qmlWidget->engine(), QUrl( m_qmlFileName ), QQmlComponent::CompilationMode::Asynchronous );
-    connect( m_qmlComponent, &QQmlComponent::statusChanged, this, &QmlViewStep::loadComplete );
-    cDebug() << Logger::SubEntry << "Status" << m_qmlComponent->status();
+    // QML Loading starts when the configuration for the module is set.
 }
 
 QmlViewStep::~QmlViewStep() {}
@@ -135,6 +131,10 @@ void
 Calamares::QmlViewStep::loadComplete()
 {
     cDebug() << "QML component" << m_qmlFileName << m_qmlComponent->status();
+    if ( m_qmlComponent->status() == QQmlComponent::Error )
+    {
+        showFailedQml();
+    }
     if ( m_qmlComponent->isReady() && !m_qmlObject )
     {
         cDebug() << "QML component complete" << m_qmlFileName;
@@ -181,12 +181,40 @@ Calamares::QmlViewStep::showQml()
     }
 }
 
-void Calamares::QmlViewStep::setConfigurationMap(const QVariantMap& configurationMap)
+void
+Calamares::QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool ok = false;
     m_searchMethod = searchNames().find( CalamaresUtils::getString( configurationMap, "search" ), ok );
-    if (!ok)
+    if ( !ok )
     {
         cDebug() << "Bad QML search mode.";
     }
+
+    if ( !m_qmlComponent )
+    {
+        // TODO: search for suitable file
+        QString qrcName = QStringLiteral( "qrc:/X%1.qml" ).arg( m_name );
+        m_qmlFileName = qrcName;
+
+        cDebug() << "QmlViewStep" << moduleInstanceKey() << "loading" << m_qmlFileName;
+        m_qmlComponent = new QQmlComponent(
+            m_qmlWidget->engine(), QUrl( m_qmlFileName ), QQmlComponent::CompilationMode::Asynchronous );
+        connect( m_qmlComponent, &QQmlComponent::statusChanged, this, &QmlViewStep::loadComplete );
+        if ( m_qmlComponent->status() == QQmlComponent::Error )
+        {
+            showFailedQml();
+        }
+    }
+    else
+    {
+        cWarning() << "QML configuration set after component has loaded.";
+    }
+}
+
+void
+Calamares::QmlViewStep::showFailedQml()
+{
+    cWarning() << "QmlViewStep" << moduleInstanceKey() << "loading failed.";
+    m_spinner->setText( prettyName() + tr( "Loading failed." ) );
 }

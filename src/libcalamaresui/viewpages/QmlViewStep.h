@@ -82,6 +82,8 @@ private Q_SLOTS:
 private:
     /// @brief Swap out the spinner for the QQuickWidget
     void showQml();
+    /// @brief Show error message in spinner.
+    void showFailedQml();
 
     /// @brief Controls where m_name is searched
     QmlSearch m_searchMethod;
