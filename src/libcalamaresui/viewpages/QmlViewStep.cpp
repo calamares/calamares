@@ -74,7 +74,7 @@ QString
 QmlViewStep::prettyName() const
 {
     // TODO: query the QML itself
-    return tr( "QML Step <i>%1</i>" ).arg( m_name );
+    return tr( "QML Step <i>%1</i>." ).arg( m_name );
 }
 
 

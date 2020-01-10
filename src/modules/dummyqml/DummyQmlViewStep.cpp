@@ -28,7 +28,7 @@ DummyQmlViewStep::~DummyQmlViewStep() {}
 QString
 DummyQmlViewStep::prettyName() const
 {
-    return tr( "Example QML page" );
+    return tr( "Example QML page." );
 }
 
 
