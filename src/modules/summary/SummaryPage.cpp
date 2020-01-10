@@ -23,13 +23,13 @@
 #include "SummaryViewStep.h"
 
 #include "Branding.h"
-#include "ExecutionViewStep.h"
 #include "Settings.h"
 #include "ViewManager.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "viewpages/ExecutionViewStep.h"
 
 #include <QBoxLayout>
 #include <QLabel>

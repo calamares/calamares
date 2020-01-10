@@ -18,16 +18,16 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <ExecutionViewStep.h>
+#include "ExecutionViewStep.h"
 
 #include "Branding.h"
 #include "Job.h"
 #include "JobQueue.h"
 #include "Settings.h"
 #include "ViewManager.h"
+
 #include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
-
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"

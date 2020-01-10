@@ -18,6 +18,7 @@ set( calamaresui_SOURCES
     utils/Paste.cpp
 
     viewpages/BlankViewStep.cpp
+    viewpages/ExecutionViewStep.cpp
     viewpages/ViewStep.cpp
 
     widgets/ClickableLabel.cpp
@@ -25,7 +26,6 @@ set( calamaresui_SOURCES
     widgets/WaitingWidget.cpp
     ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
 
-    ExecutionViewStep.cpp
     Branding.cpp
     ViewManager.cpp
 )

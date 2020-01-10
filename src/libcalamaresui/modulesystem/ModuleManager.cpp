@@ -19,7 +19,6 @@
 
 #include "ModuleManager.h"
 
-#include "ExecutionViewStep.h"
 #include "Module.h"
 #include "RequirementsChecker.h"
 #include "Settings.h"
@@ -27,6 +26,7 @@
 
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
+#include "viewpages/ExecutionViewStep.h"
 
 #include <QApplication>
 #include <QDir>
@@ -131,9 +131,9 @@ ModuleManager::doInit()
             cDebug() << "ModuleManager module search path does not exist:" << path;
         }
     }
-    // At this point m_availableDescriptorsByModuleName is filled with 
+    // At this point m_availableDescriptorsByModuleName is filled with
     // the modules that were found in the search paths.
-    cDebug() << "Found" 
+    cDebug() << "Found"
         << m_availableDescriptorsByModuleName.count() << "modules"
         << m_moduleDirectoriesByModuleName.count() << "names";
     emit initDone();

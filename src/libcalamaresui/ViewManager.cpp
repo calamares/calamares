@@ -21,17 +21,16 @@
 
 #include "ViewManager.h"
 
-#include "viewpages/BlankViewStep.h"
-#include "viewpages/ViewStep.h"
-
 #include "Branding.h"
-#include "ExecutionViewStep.h"
 #include "JobQueue.h"
 #include "Settings.h"
 
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
+#include "viewpages/BlankViewStep.h"
+#include "viewpages/ViewStep.h"
+#include "viewpages/ExecutionViewStep.h"
 
 #include <QApplication>
 #include <QBoxLayout>
