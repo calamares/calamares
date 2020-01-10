@@ -194,7 +194,7 @@ Calamares::QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap
     if ( !m_qmlComponent )
     {
         // TODO: search for suitable file
-        QString qrcName = QStringLiteral( "qrc:/X%1.qml" ).arg( m_name );
+        QString qrcName = QStringLiteral( "qrc:/%1.qml" ).arg( m_name );
         m_qmlFileName = qrcName;
 
         cDebug() << "QmlViewStep" << moduleInstanceKey() << "loading" << m_qmlFileName;
@@ -216,5 +216,5 @@ void
 Calamares::QmlViewStep::showFailedQml()
 {
     cWarning() << "QmlViewStep" << moduleInstanceKey() << "loading failed.";
-    m_spinner->setText( prettyName() + tr( "Loading failed." ) );
+    m_spinner->setText( prettyName() + ' ' + tr( "Loading failed." ) );
 }
