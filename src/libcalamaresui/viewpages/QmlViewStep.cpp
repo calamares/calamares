@@ -20,6 +20,8 @@
 
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
+#include "utils/Variant.h"
 #include "widgets/WaitingWidget.h"
 
 #include <QQmlComponent>
@@ -28,6 +30,19 @@
 #include <QQuickWidget>
 #include <QVBoxLayout>
 #include <QWidget>
+
+static const NamedEnumTable< Calamares::QmlViewStep::QmlSearch >&
+searchNames()
+{
+    using QmlSearch = Calamares::QmlViewStep::QmlSearch;
+    static NamedEnumTable< Calamares::QmlViewStep::QmlSearch > names{
+        { QStringLiteral( "both" ), QmlSearch::Both },
+        { QStringLiteral( "qrc" ), QmlSearch::QrcOnly },
+        { QStringLiteral( "branding" ), QmlSearch::BrandingOnly }
+    };
+
+    return names;
+}
 
 namespace Calamares
 {
@@ -163,5 +178,15 @@ Calamares::QmlViewStep::showQml()
     else
     {
         cDebug() << "showQml() called twice";
+    }
+}
+
+void Calamares::QmlViewStep::setConfigurationMap(const QVariantMap& configurationMap)
+{
+    bool ok = false;
+    m_searchMethod = searchNames().find( CalamaresUtils::getString( configurationMap, "search" ), ok );
+    if (!ok)
+    {
+        cDebug() << "Bad QML search mode.";
     }
 }

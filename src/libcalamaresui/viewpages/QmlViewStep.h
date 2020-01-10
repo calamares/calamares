@@ -40,6 +40,20 @@ class QmlViewStep : public Calamares::ViewStep
     Q_OBJECT
 
 public:
+    enum class QmlSearch
+    {
+        QrcOnly,
+        BrandingOnly,
+        Both
+    };
+
+    /** @brief Creates a QML view step
+     *
+     * The name should not have an extension or schema or anything;
+     * just the plain name, which will be searched as "/<name>.qml" in
+     * QRC files, or "<name>.qml" in suitable branding paths.
+     * The search behavior depends on a QmlSearch value.
+     */
     QmlViewStep( const QString& name, QObject* parent = nullptr );
     virtual ~QmlViewStep() override;
 
@@ -56,7 +70,11 @@ public:
     virtual void onActivate() override;
     virtual void onLeave() override;
 
+    /// @brief QML widgets don't produce jobs by default
     virtual JobList jobs() const override;
+
+    /// @brief Configure search paths; subclasses should call this as well
+    virtual void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private Q_SLOTS:
     void loadComplete();
@@ -64,6 +82,9 @@ private Q_SLOTS:
 private:
     /// @brief Swap out the spinner for the QQuickWidget
     void showQml();
+
+    /// @brief Controls where m_name is searched
+    QmlSearch m_searchMethod;
 
     QString m_name;
     QString m_qmlFileName;
