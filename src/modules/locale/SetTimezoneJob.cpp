@@ -19,11 +19,11 @@
 
 #include <SetTimezoneJob.h>
 
-#include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "Settings.h"
-#include "utils/Logger.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Logger.h"
 
 #include <QDir>
 #include <QFileInfo>
@@ -51,13 +51,13 @@ SetTimezoneJob::exec()
     // to a running timedated over D-Bus), and we have code that works
     if ( !Calamares::Settings::instance()->doChroot() )
     {
-        int ec = CalamaresUtils::System::instance()->
-                              targetEnvCall( { "timedatectl",
-                                               "set-timezone",
-                                               m_region + '/' + m_zone } );
+        int ec = CalamaresUtils::System::instance()->targetEnvCall(
+            { "timedatectl", "set-timezone", m_region + '/' + m_zone } );
 
         if ( !ec )
+        {
             return Calamares::JobResult::ok();
+        }
     }
 
     QString localtimeSlink( "/etc/localtime" );
@@ -72,31 +72,21 @@ SetTimezoneJob::exec()
                                             tr( "Bad path: %1" ).arg( zoneFile.absolutePath() ) );
 
     // Make sure /etc/localtime doesn't exist, otherwise symlinking will fail
-    CalamaresUtils::System::instance()->
-                 targetEnvCall( { "rm",
-                                  "-f",
-                                  localtimeSlink } );
+    CalamaresUtils::System::instance()->targetEnvCall( { "rm", "-f", localtimeSlink } );
 
-    int ec = CalamaresUtils::System::instance()->
-                          targetEnvCall( { "ln",
-                                           "-s",
-                                           zoneinfoPath,
-                                           localtimeSlink } );
+    int ec = CalamaresUtils::System::instance()->targetEnvCall( { "ln", "-s", zoneinfoPath, localtimeSlink } );
     if ( ec )
-        return Calamares::JobResult::error( tr( "Cannot set timezone." ),
-                                            tr( "Link creation failed, target: %1; link name: %2" )
-                                                .arg( zoneinfoPath )
-                                                .arg( "/etc/localtime" ) );
+        return Calamares::JobResult::error(
+            tr( "Cannot set timezone." ),
+            tr( "Link creation failed, target: %1; link name: %2" ).arg( zoneinfoPath ).arg( "/etc/localtime" ) );
 
     QFile timezoneFile( gs->value( "rootMountPoint" ).toString() + "/etc/timezone" );
 
-    if ( !timezoneFile.open( QIODevice::WriteOnly |
-                             QIODevice::Text |
-                             QIODevice::Truncate ) )
-        return Calamares::JobResult::error( tr( "Cannot set timezone,"),
-                                            tr( "Cannot open /etc/timezone for writing"));
+    if ( !timezoneFile.open( QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate ) )
+        return Calamares::JobResult::error( tr( "Cannot set timezone," ),
+                                            tr( "Cannot open /etc/timezone for writing" ) );
 
-    QTextStream out(&timezoneFile);
+    QTextStream out( &timezoneFile );
     out << m_region << '/' << m_zone << "\n";
     timezoneFile.close();
 

@@ -30,16 +30,15 @@ LocaleConfiguration::LocaleConfiguration()
 LocaleConfiguration::LocaleConfiguration( const QString& localeName, const QString& formatsName )
     : LocaleConfiguration()
 {
-    lc_numeric = lc_time = lc_monetary = lc_paper = lc_name
-            = lc_address = lc_telephone = lc_measurement
-            = lc_identification = formatsName;
+    lc_numeric = lc_time = lc_monetary = lc_paper = lc_name = lc_address = lc_telephone = lc_measurement
+        = lc_identification = formatsName;
 
-    (void) setLanguage( localeName );
+    (void)setLanguage( localeName );
 }
 
 
 void
-LocaleConfiguration::setLanguage(const QString& localeName )
+LocaleConfiguration::setLanguage( const QString& localeName )
 {
     QString language = localeName.split( '_' ).first();
     m_languageLocaleBcp47 = QLocale( language ).bcp47Name().toLower();
@@ -55,30 +54,39 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     QString language = languageLocale.split( '_' ).first();
 
     QStringList linesForLanguage;
-    for ( const QString &line : availableLocales )
+    for ( const QString& line : availableLocales )
     {
         if ( line.startsWith( language ) )
+        {
             linesForLanguage.append( line );
+        }
     }
 
     QString lang;
     if ( linesForLanguage.length() == 0 || languageLocale.isEmpty() )
+    {
         lang = "en_US.UTF-8";
+    }
     else if ( linesForLanguage.length() == 1 )
+    {
         lang = linesForLanguage.first();
+    }
     else
     {
         QStringList linesForLanguageUtf;
         // FIXME: this might be useless if we already filter out non-UTF8 locales
         foreach ( QString line, linesForLanguage )
         {
-            if ( line.contains( "UTF-8", Qt::CaseInsensitive ) ||
-                 line.contains( "utf8", Qt::CaseInsensitive ) )
+            if ( line.contains( "UTF-8", Qt::CaseInsensitive ) || line.contains( "utf8", Qt::CaseInsensitive ) )
+            {
                 linesForLanguageUtf.append( line );
+            }
         }
 
         if ( linesForLanguageUtf.length() == 1 )
+        {
             lang = linesForLanguageUtf.first();
+        }
     }
 
     // lang could still be empty if we found multiple locales that satisfy myLanguage
@@ -92,8 +100,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
         # locale categories reflect the selected location. */
     if ( language == "pt" || language == "zh" )
     {
-        QString proposedLocale = QString( "%1_%2" ).arg( language )
-                                                   .arg( countryCode );
+        QString proposedLocale = QString( "%1_%2" ).arg( language ).arg( countryCode );
         foreach ( QString line, linesForLanguage )
         {
             if ( line.contains( proposedLocale ) )
@@ -108,7 +115,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     // language locale and pick the first result, if any.
     if ( lang.isEmpty() )
     {
-        for ( const QString &line : availableLocales )
+        for ( const QString& line : availableLocales )
         {
             if ( line.startsWith( languageLocale ) )
             {
@@ -116,13 +123,14 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                 break;
             }
         }
-
     }
 
     // Else we have an unrecognized or unsupported locale, all we can do is go with
     // en_US.UTF-8 UTF-8. This completes all default language setting guesswork.
     if ( lang.isEmpty() )
+    {
         lang = "en_US.UTF-8";
+    }
 
 
     // The following block was inspired by Ubiquity, scripts/localechooser-apply.
@@ -171,10 +179,9 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     // We make a proposed locale based on the UI language and the timezone's country. There is no
     // guarantee that this will be a valid, supported locale (often it won't).
     QString lc_formats;
-    QString combined = QString( "%1_%2" ).arg( language )
-                                         .arg( countryCode );
+    QString combined = QString( "%1_%2" ).arg( language ).arg( countryCode );
     // We look up if it's a supported locale.
-    for ( const QString &line : availableLocales )
+    for ( const QString& line : availableLocales )
     {
         if ( line.startsWith( combined ) )
         {
@@ -187,7 +194,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     if ( lc_formats.isEmpty() )
     {
         QStringList available;
-        for ( const QString &line : availableLocales )
+        for ( const QString& line : availableLocales )
         {
             if ( line.contains( QString( "_%1" ).arg( countryCode ) ) )
             {
@@ -248,11 +255,10 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
             };
             if ( countryToDefaultLanguage.contains( countryCode ) )
             {
-                QString combinedLocale =
-                        QString( "%1_%2" ).arg( countryToDefaultLanguage.value( countryCode ) )
-                                          .arg( countryCode );
+                QString combinedLocale
+                    = QString( "%1_%2" ).arg( countryToDefaultLanguage.value( countryCode ) ).arg( countryCode );
 
-                for ( const QString &line : availableLocales )
+                for ( const QString& line : availableLocales )
                 {
                     if ( line.startsWith( combinedLocale ) )
                     {
@@ -267,7 +273,9 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     // If we cannot make a good choice for a given country we go with the LANG
     // setting, which defaults to en_US.UTF-8 UTF-8 if all else fails.
     if ( lc_formats.isEmpty() )
+    {
         lc_formats = lang;
+    }
 
     return LocaleConfiguration( lang, lc_formats );
 }
@@ -276,54 +284,36 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
 bool
 LocaleConfiguration::isEmpty() const
 {
-    return m_lang.isEmpty() &&
-         lc_numeric.isEmpty() &&
-         lc_time.isEmpty() &&
-         lc_monetary.isEmpty() &&
-         lc_paper.isEmpty() &&
-         lc_name.isEmpty() &&
-         lc_address.isEmpty() &&
-         lc_telephone.isEmpty() &&
-         lc_measurement.isEmpty() &&
-         lc_identification.isEmpty();
+    return m_lang.isEmpty() && lc_numeric.isEmpty() && lc_time.isEmpty() && lc_monetary.isEmpty() && lc_paper.isEmpty()
+        && lc_name.isEmpty() && lc_address.isEmpty() && lc_telephone.isEmpty() && lc_measurement.isEmpty()
+        && lc_identification.isEmpty();
 }
 
+/// @brief Sets @p value on @p key in the @p map if @p value is non-empty
+static inline void
+add_lc( QMap< QString, QString >& map, const char* key, const QString& value )
+{
+    if ( !value.isEmpty() )
+    {
+        map.insert( key, value );
+    }
+}
 
 QMap< QString, QString >
 LocaleConfiguration::toMap() const
 {
     QMap< QString, QString > map;
 
-    if ( !m_lang.isEmpty() )
-        map.insert( "LANG", m_lang );
-
-    if ( !lc_numeric.isEmpty() )
-        map.insert( "LC_NUMERIC", lc_numeric );
-
-    if ( !lc_time.isEmpty() )
-        map.insert( "LC_TIME", lc_time );
-
-    if ( !lc_monetary.isEmpty() )
-        map.insert( "LC_MONETARY", lc_monetary );
-
-    if ( !lc_paper.isEmpty() )
-        map.insert( "LC_PAPER", lc_paper );
-
-    if ( !lc_name.isEmpty() )
-        map.insert( "LC_NAME", lc_name );
-
-    if ( !lc_address.isEmpty() )
-        map.insert( "LC_ADDRESS", lc_address );
-
-    if ( !lc_telephone.isEmpty() )
-        map.insert( "LC_TELEPHONE", lc_telephone );
-
-    if ( !lc_measurement.isEmpty() )
-        map.insert( "LC_MEASUREMENT", lc_measurement );
-
-    if ( !lc_identification.isEmpty() )
-        map.insert( "LC_IDENTIFICATION", lc_identification );
+    add_lc( map, "LANG", m_lang );
+    add_lc( map, "LC_NUMERIC", lc_numeric );
+    add_lc( map, "LC_TIME", lc_time );
+    add_lc( map, "LC_MONETARY", lc_monetary );
+    add_lc( map, "LC_PAPER", lc_paper );
+    add_lc( map, "LC_NAME", lc_name );
+    add_lc( map, "LC_ADDRESS", lc_address );
+    add_lc( map, "LC_TELEPHONE", lc_telephone );
+    add_lc( map, "LC_MEASUREMENT", lc_measurement );
+    add_lc( map, "LC_IDENTIFICATION", lc_identification );
 
     return map;
 }
-

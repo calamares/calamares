@@ -36,9 +36,7 @@ class DLLEXPORT Settings : public QObject
 {
     Q_OBJECT
 public:
-    explicit Settings( const QString& settingsFilePath,
-                       bool debugMode,
-                       QObject* parent = nullptr );
+    explicit Settings( const QString& settingsFilePath, bool debugMode, QObject* parent = nullptr );
 
     static Settings* instance();
 
@@ -48,7 +46,7 @@ public:
     using InstanceDescriptionList = QList< InstanceDescription >;
     InstanceDescriptionList customModuleInstances() const;
 
-    using ModuleSequence = QList< QPair< ModuleAction, QStringList > >;
+    using ModuleSequence = QList< QPair< ModuleSystem::Action, QStringList > >;
     ModuleSequence modulesSequence() const;
 
     QString brandingComponentName() const;
@@ -88,6 +86,6 @@ private:
     bool m_disableCancelDuringExec;
 };
 
-}
+}  // namespace Calamares
 
-#endif // SETTINGS_H
+#endif  // SETTINGS_H

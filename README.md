@@ -13,28 +13,23 @@
 ### Dependencies
 
 Main:
-* Compiler with C++11 support: GCC >= 4.9.0 or Clang >= 3.5.1
-* CMake >= 3.2
-* Qt >= 5.7
+* Compiler with C++14 support: GCC >= 5 or Clang >= 3.5.1
+* CMake >= 3.3
+* Qt >= 5.9
 * yaml-cpp >= 0.5.1
 * Python >= 3.3 (required for some modules)
-* Boost.Python >= 1.55.0 (recommended, or PythonQt; one is required for some modules)
-* PythonQt (recommended, or Boost.Python; one is required for some modules)
-* extra-cmake-modules >= 5.18 (recommended; required for some modules)
+* Boost.Python >= 1.55.0 (required for some modules)
+* KDE extra-cmake-modules >= 5.18 (recommended; required for some modules;
+  required for some tests)
+* KDE Frameworks KCoreAddons (>= 5.58 recommended)
+* PythonQt (optional, deprecated)
 
 Modules:
-* welcome:
-  * NetworkManager
-  * UPower (optional, runtime)
-* partition:
-  * extra-cmake-modules
-  * KF5: KCoreAddons, KConfig, KI18n, KService, KWidgetsAddons
-  * KPMcore >= 3.3
-* bootloader:
-  * systemd-boot or GRUB
-* unpackfs:
-  * squashfs-tools
-  * rsync
+* Individual modules may have their own requirements;
+  these are listed in CMake output. Particular requirements (not complete):
+* *fsresizer* KPMCore >= 3.3
+* *partition* KPMCore >= 3.3
+* *users* LibPWQuality (optional)
 
 ### Building
 

@@ -27,9 +27,10 @@ namespace CalamaresPython
 {
 class PythonJobInterface;
 class Helper;
-}
+}  // namespace CalamaresPython
 
-namespace Calamares {
+namespace Calamares
+{
 
 class PythonJob : public Job
 {
@@ -57,6 +58,6 @@ private:
     QVariantMap m_configurationMap;
 };
 
-} // namespace Calamares
+}  // namespace Calamares
 
-#endif // CALAMARES_PYTHONJOB_H
+#endif  // CALAMARES_PYTHONJOB_H

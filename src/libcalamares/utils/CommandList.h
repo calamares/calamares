@@ -24,6 +24,8 @@
 #include <QStringList>
 #include <QVariant>
 
+#include <chrono>
+
 namespace CalamaresUtils
 {
 
@@ -31,41 +33,32 @@ namespace CalamaresUtils
  * Each command can have an associated timeout in seconds. The timeout
  * defaults to 10 seconds. Provide some convenience naming and construction.
  */
-struct CommandLine : public QPair< QString, int >
+struct CommandLine : public QPair< QString, std::chrono::seconds >
 {
-    enum { TimeoutNotSet = -1 };
+    static inline constexpr std::chrono::seconds TimeoutNotSet() { return std::chrono::seconds( -1 ); }
 
     /// An invalid command line
     CommandLine()
-        : QPair< QString, int >( QString(), TimeoutNotSet )
+        : QPair( QString(), TimeoutNotSet() )
     {
     }
 
     CommandLine( const QString& s )
-        : QPair< QString, int >( s, TimeoutNotSet )
+        : QPair( s, TimeoutNotSet() )
     {
     }
 
-    CommandLine( const QString& s, int t )
-        : QPair< QString, int >( s, t)
+    CommandLine( const QString& s, std::chrono::seconds t )
+        : QPair( s, t )
     {
     }
 
-    QString command() const
-    {
-        return first;
-    }
+    QString command() const { return first; }
 
-    int timeout() const
-    {
-        return second;
-    }
+    std::chrono::seconds timeout() const { return second; }
 
-    bool isValid() const
-    {
-        return !first.isEmpty();
-    }
-} ;
+    bool isValid() const { return !first.isEmpty(); }
+};
 
 /** @brief Abbreviation, used internally. */
 using CommandList_t = QList< CommandLine >;
@@ -82,23 +75,20 @@ class CommandList : protected CommandList_t
 {
 public:
     /** @brief empty command-list with timeout to apply to entries. */
-    CommandList( bool doChroot = true, int timeout = 10 );
-    CommandList( const QVariant& v, bool doChroot = true, int timeout = 10 );
+    CommandList( bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
+    CommandList( const QVariant& v, bool doChroot = true, std::chrono::seconds timeout = std::chrono::seconds( 10 ) );
     ~CommandList();
 
-    bool doChroot() const
-    {
-        return m_doChroot;
-    }
+    bool doChroot() const { return m_doChroot; }
 
     Calamares::JobResult run();
 
-    using CommandList_t::isEmpty;
-    using CommandList_t::count;
+    using CommandList_t::at;
     using CommandList_t::cbegin;
     using CommandList_t::cend;
     using CommandList_t::const_iterator;
-    using CommandList_t::at;
+    using CommandList_t::count;
+    using CommandList_t::isEmpty;
 
 protected:
     using CommandList_t::append;
@@ -106,8 +96,8 @@ protected:
 
 private:
     bool m_doChroot;
-    int m_timeout;
-} ;
+    std::chrono::seconds m_timeout;
+};
 
-}  // namespace
+}  // namespace CalamaresUtils
 #endif

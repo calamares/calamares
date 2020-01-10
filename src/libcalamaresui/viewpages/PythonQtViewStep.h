@@ -30,8 +30,7 @@ class PythonQtViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
 public:
-    PythonQtViewStep( PythonQtObjectPtr cxt,
-                      QObject* parent = nullptr );
+    PythonQtViewStep( PythonQtObjectPtr cxt, QObject* parent = nullptr );
 
     QString prettyName() const override;
 
@@ -62,6 +61,6 @@ private:
     PythonQtObjectPtr m_obj;
 };
 
-}
+}  // namespace Calamares
 
-#endif // PYTHONQTVIEWSTEP_H
+#endif  // PYTHONQTVIEWSTEP_H

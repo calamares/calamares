@@ -39,33 +39,43 @@ getBool( const QVariantMap& map, const QString& key, bool d )
     {
         auto v = map.value( key );
         if ( v.type() == QVariant::Bool )
+        {
             result = v.toBool();
+        }
     }
 
     return result;
 }
 
 QString
-getString(const QVariantMap& map, const QString& key)
+getString( const QVariantMap& map, const QString& key )
 {
     if ( map.contains( key ) )
     {
         auto v = map.value( key );
         if ( v.type() == QVariant::String )
+        {
             return v.toString();
+        }
     }
     return QString();
 }
 
-int
-getInteger( const QVariantMap& map, const QString& key, int d )
+qint64
+getInteger( const QVariantMap& map, const QString& key, qint64 d )
 {
-    int result = d;
+    qint64 result = d;
     if ( map.contains( key ) )
     {
         auto v = map.value( key );
         if ( v.type() == QVariant::Int )
+        {
             result = v.toInt();
+        }
+        else if ( v.type() == QVariant::LongLong )
+        {
+            result = v.toLongLong();
+        }
     }
 
     return result;
@@ -79,9 +89,13 @@ getDouble( const QVariantMap& map, const QString& key, double d )
     {
         auto v = map.value( key );
         if ( v.type() == QVariant::Int )
+        {
             result = v.toInt();
+        }
         else if ( v.type() == QVariant::Double )
+        {
             result = v.toDouble();
+        }
     }
 
     return result;
@@ -104,4 +118,4 @@ getSubMap( const QVariantMap& map, const QString& key, bool& success )
     return QVariantMap();
 }
 
-}
+}  // namespace CalamaresUtils

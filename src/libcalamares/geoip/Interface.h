@@ -27,7 +27,7 @@
 
 class QByteArray;
 
-namespace CalamaresUtils 
+namespace CalamaresUtils
 {
 namespace GeoIP
 {
@@ -38,18 +38,27 @@ namespace GeoIP
  * pasting the strings back together with a "/" is the right thing to
  * do. The Zone **may** contain a "/" (e.g. "Kentucky/Monticello").
  */
-class DLLEXPORT RegionZonePair : public QPair<QString, QString>
+class DLLEXPORT RegionZonePair : public QPair< QString, QString >
 {
 public:
     /** @brief Construct from an existing pair. */
-    explicit RegionZonePair( const QPair& p ) : QPair(p) { }
+    explicit RegionZonePair( const QPair& p )
+        : QPair( p )
+    {
+    }
     /** @brief Construct from two strings, like qMakePair(). */
-    RegionZonePair( const QString& region, const QString& zone ) : QPair( region, zone ) { }
+    RegionZonePair( const QString& region, const QString& zone )
+        : QPair( region, zone )
+    {
+    }
     /** @brief An invalid zone pair (empty strings). */
-    RegionZonePair() : QPair( QString(), QString() ) { }
+    RegionZonePair()
+        : QPair( QString(), QString() )
+    {
+    }
 
     bool isValid() const { return !first.isEmpty(); }
-} ;
+};
 
 /** @brief Splits a region/zone string into a pair.
  *
@@ -60,8 +69,7 @@ public:
  * pair of empty QStrings if it can't. (e.g. America/North Dakota/Beulah
  * will return "America", "North_Dakota/Beulah").
  */
-DLLEXPORT RegionZonePair
-splitTZString( const QString& s );
+DLLEXPORT RegionZonePair splitTZString( const QString& s );
 
 /**
  * @brief Interface for GeoIP retrievers.
@@ -93,8 +101,8 @@ protected:
     Interface( const QString& e = QString() );
 
     QString m_element;  // string for selecting from data
-} ;
+};
 
-}
-}  // namespace
+}  // namespace GeoIP
+}  // namespace CalamaresUtils
 #endif

@@ -22,21 +22,18 @@
 
 FixedAspectRatioLabel::FixedAspectRatioLabel( QWidget* parent )
     : QLabel( parent )
-{}
+{
+}
 
 
-FixedAspectRatioLabel::~FixedAspectRatioLabel()
-{}
+FixedAspectRatioLabel::~FixedAspectRatioLabel() {}
 
 
 void
 FixedAspectRatioLabel::setPixmap( const QPixmap& pixmap )
 {
     m_pixmap = pixmap;
-    QLabel::setPixmap( pixmap.scaled(
-                           contentsRect().size(),
-                           Qt::KeepAspectRatio,
-                           Qt::SmoothTransformation ) );
+    QLabel::setPixmap( pixmap.scaled( contentsRect().size(), Qt::KeepAspectRatio, Qt::SmoothTransformation ) );
 }
 
 
@@ -44,9 +41,5 @@ void
 FixedAspectRatioLabel::resizeEvent( QResizeEvent* event )
 {
     Q_UNUSED( event )
-    QLabel::setPixmap( m_pixmap.scaled(
-                           contentsRect().size(),
-                           Qt::KeepAspectRatio,
-                           Qt::SmoothTransformation ) );
+    QLabel::setPixmap( m_pixmap.scaled( contentsRect().size(), Qt::KeepAspectRatio, Qt::SmoothTransformation ) );
 }
-

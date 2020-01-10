@@ -49,9 +49,9 @@ public:
     int count( const QString& variableName );
 
 private:
-    QList<ContextualProcessBinding*> m_commands;
+    QList< ContextualProcessBinding* > m_commands;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ContextualProcessJobFactory )
 
-#endif // CONTEXTUALPROCESSJOB_H
+#endif  // CONTEXTUALPROCESSJOB_H

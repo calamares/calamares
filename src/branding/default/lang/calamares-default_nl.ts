@@ -11,7 +11,7 @@
     <message>
         <location filename="../show.qml" line="68"/>
         <source>This is a third Slide element.</source>
-	<translation>Dit is het derde Dia element.</translation>
+        <translation>Dit is het derde Dia element.</translation>
     </message>
 </context>
 </TS>

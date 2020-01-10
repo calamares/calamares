@@ -24,6 +24,8 @@
 
 #include "UiDllMacro.h"
 
+#include <chrono>
+
 namespace Calamares
 {
 
@@ -46,11 +48,11 @@ private:
 
     QString m_command;
     QString m_workingPath;
-    int m_secondsTimeout;
+    std::chrono::seconds m_secondsTimeout;
     bool m_runInChroot;
     job_ptr m_job;
 };
 
-} // namespace Calamares
+}  // namespace Calamares
 
-#endif // CALAMARES_PROCESSJOBMODULE_H
+#endif  // CALAMARES_PROCESSJOBMODULE_H

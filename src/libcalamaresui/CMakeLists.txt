@@ -2,7 +2,7 @@
 # view modules, view steps, widgets, and branding.
 
 # The UI libs use the non-UI library
-include_directories( ${CMAKE_SOURCE_DIR}/src/libcalamares ${CMAKE_BINARY_DIR}/src/libcalamares )
+include_directories( ${CMAKE_SOURCE_DIR}/src/libcalamares ${CMAKE_BINARY_DIR}/src/libcalamares ${CMAKE_SOURCE_DIR} )
 
 set( calamaresui_SOURCES
     modulesystem/CppJobModule.cpp
@@ -14,19 +14,16 @@ set( calamaresui_SOURCES
     modulesystem/ViewModule.cpp
 
     utils/CalamaresUtilsGui.cpp
-    utils/DebugWindow.cpp
     utils/ImageRegistry.cpp
-
-    utils/qjsonmodel.cpp
-    utils/qjsonitem.cpp
+    utils/Paste.cpp
 
     viewpages/BlankViewStep.cpp
     viewpages/ViewStep.cpp
 
     widgets/ClickableLabel.cpp
     widgets/FixedAspectRatioLabel.cpp
-    widgets/waitingspinnerwidget.cpp
     widgets/WaitingWidget.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
 
     ExecutionViewStep.cpp
     Branding.cpp
@@ -35,14 +32,9 @@ set( calamaresui_SOURCES
 
 # Don't warn about third-party sources
 mark_thirdparty_code(
-    utils/ImageRegistry.cpp
-    utils/qjsonitem.cpp
-    utils/qjsonmodel.cpp
-    widgets/waitingspinnerwidget.cpp
-)
-
-set( calamaresui_UI
-    utils/DebugWindow.ui
+    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonitem.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/qjsonmodel.cpp
+    ${CMAKE_SOURCE_DIR}/3rdparty/waitingspinnerwidget.cpp
 )
 
 if( WITH_PYTHON )
@@ -72,7 +64,6 @@ endif()
 
 calamares_add_library( calamaresui
     SOURCES ${calamaresui_SOURCES}
-    UI ${calamaresui_UI}
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_PRIVATE_LIBRARIES
         ${OPTIONAL_PYTHON_LIBRARIES}
@@ -84,8 +75,6 @@ calamares_add_library( calamaresui
     VERSION ${CALAMARES_VERSION_SHORT}
 )
 
-find_package( KF5CoreAddons 5.58 QUIET )  # If it's really new
-if ( KF5CoreAddons_FOUND )
+if ( KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58 )
     target_compile_definitions( calamaresui PRIVATE WITH_KOSRelease )
-    target_link_libraries( calamaresui PRIVATE KF5::CoreAddons )
 endif()

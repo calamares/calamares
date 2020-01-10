@@ -36,8 +36,11 @@ enum class SizeUnit
     None,
     Percent,
     Byte,
+    KB,
     KiB,
+    MB,
     MiB,
+    GB,
     GiB
 };
 

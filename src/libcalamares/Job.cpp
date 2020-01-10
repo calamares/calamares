@@ -84,7 +84,8 @@ JobResult::JobResult( const QString& message, const QString& details, int number
     : m_message( message )
     , m_details( details )
     , m_number( number )
-{}
+{
+}
 
 
 Job::Job( QObject* parent )
@@ -93,8 +94,14 @@ Job::Job( QObject* parent )
 }
 
 
-Job::~Job()
-{}
+Job::~Job() {}
+
+
+qreal
+Job::getJobWeight() const
+{
+    return qreal( 1.0 );
+}
 
 
 QString
@@ -111,4 +118,4 @@ Job::prettyStatusMessage() const
 }
 
 
-} // namespace Calamares
+}  // namespace Calamares

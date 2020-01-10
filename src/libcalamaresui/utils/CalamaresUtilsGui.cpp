@@ -34,9 +34,8 @@
 namespace CalamaresUtils
 {
 
-static int s_defaultFontSize   = 0;
+static int s_defaultFontSize = 0;
 static int s_defaultFontHeight = 0;
-
 
 
 QPixmap
@@ -73,6 +72,10 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 
     case Release:
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/release.svg", size );
+        break;
+
+    case Donate:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/donate.svg", size );
         break;
 
     case PartitionDisk:
@@ -152,11 +155,15 @@ createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPc
     }
 
     if ( !height || !width )
+    {
         return QPixmap();
+    }
 
     QPixmap scaledAvatar = pixmap.scaled( width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     if ( frameWidthPct == 0.00f )
+    {
         return scaledAvatar;
+    }
 
     QPixmap frame( width, height );
     frame.fill( Qt::transparent );
@@ -172,7 +179,8 @@ createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPc
 
     painter.setBrush( brush );
     painter.setPen( pen );
-    painter.drawRoundedRect( outerRect, qreal( frameWidthPct ) * 100.0, qreal( frameWidthPct ) * 100.0, Qt::RelativeSize );
+    painter.drawRoundedRect(
+        outerRect, qreal( frameWidthPct ) * 100.0, qreal( frameWidthPct ) * 100.0, Qt::RelativeSize );
 
     return frame;
 }
@@ -189,7 +197,9 @@ unmarginLayout( QLayout* layout )
     {
         QLayout* childLayout = layout->itemAt( i )->layout();
         if ( childLayout )
+        {
             unmarginLayout( childLayout );
+        }
     }
 }
 
@@ -255,13 +265,17 @@ clearLayout( QLayout* layout )
     while ( QLayoutItem* item = layout->takeAt( 0 ) )
     {
         if ( QWidget* widget = item->widget() )
+        {
             widget->deleteLater();
+        }
 
         if ( QLayout* childLayout = item->layout() )
+        {
             clearLayout( childLayout );
+        }
 
         delete item;
     }
 }
 
-}  // namespace
+}  // namespace CalamaresUtils

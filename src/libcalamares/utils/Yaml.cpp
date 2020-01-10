@@ -70,13 +70,21 @@ yamlScalarToVariant( const YAML::Node& scalarNode )
     std::string stdScalar = scalarNode.as< std::string >();
     QString scalarString = QString::fromStdString( stdScalar );
     if ( _yamlScalarTrueValues.exactMatch( scalarString ) )
+    {
         return QVariant( true );
+    }
     if ( _yamlScalarFalseValues.exactMatch( scalarString ) )
+    {
         return QVariant( false );
+    }
     if ( QRegExp( "[-+]?\\d+" ).exactMatch( scalarString ) )
-        return QVariant( scalarString.toInt() );
+    {
+        return QVariant( scalarString.toLongLong() );
+    }
     if ( QRegExp( "[-+]?\\d*\\.?\\d+" ).exactMatch( scalarString ) )
+    {
         return QVariant( scalarString.toDouble() );
+    }
     return QVariant( scalarString );
 }
 
@@ -85,8 +93,7 @@ QVariant
 yamlSequenceToVariant( const YAML::Node& sequenceNode )
 {
     QVariantList vl;
-    for ( YAML::const_iterator it = sequenceNode.begin();
-          it != sequenceNode.end(); ++it )
+    for ( YAML::const_iterator it = sequenceNode.begin(); it != sequenceNode.end(); ++it )
     {
         vl << yamlToVariant( *it );
     }
@@ -98,17 +105,15 @@ QVariant
 yamlMapToVariant( const YAML::Node& mapNode )
 {
     QVariantMap vm;
-    for ( YAML::const_iterator it = mapNode.begin();
-          it != mapNode.end(); ++it )
+    for ( YAML::const_iterator it = mapNode.begin(); it != mapNode.end(); ++it )
     {
-        vm.insert( QString::fromStdString( it->first.as< std::string >() ),
-                   yamlToVariant( it->second ) );
+        vm.insert( QString::fromStdString( it->first.as< std::string >() ), yamlToVariant( it->second ) );
     }
     return vm;
 }
 
 QStringList
-yamlToStringList(const YAML::Node& listNode)
+yamlToStringList( const YAML::Node& listNode )
 {
     QStringList l;
     listNode >> l;
@@ -117,7 +122,7 @@ yamlToStringList(const YAML::Node& listNode)
 
 
 void
-explainYamlException( const YAML::Exception& e, const QByteArray& yamlData, const char *label )
+explainYamlException( const YAML::Exception& e, const QByteArray& yamlData, const char* label )
 {
     cWarning() << "YAML error " << e.what() << "in" << label << '.';
     explainYamlException( e, yamlData );
@@ -142,7 +147,9 @@ explainYamlException( const YAML::Exception& e, const QByteArray& yamlData )
             linestart = yamlData.indexOf( '\n', linestart );
             // No more \ns found, weird
             if ( linestart < 0 )
+            {
                 break;
+            }
             linestart += 1;  // Skip that \n
         }
         int lineend = linestart;
@@ -150,34 +157,43 @@ explainYamlException( const YAML::Exception& e, const QByteArray& yamlData )
         {
             lineend = yamlData.indexOf( '\n', linestart );
             if ( lineend < 0 )
+            {
                 lineend = yamlData.length();
+            }
         }
 
         int rangestart = linestart;
         int rangeend = lineend;
         // Adjust range (linestart..lineend) so it's not too long
         if ( ( linestart >= 0 ) && ( e.mark.column > 30 ) )
+        {
             rangestart += ( e.mark.column - 30 );
+        }
         if ( ( linestart >= 0 ) && ( rangeend - rangestart > 40 ) )
+        {
             rangeend = rangestart + 40;
+        }
 
         if ( linestart >= 0 )
-            cWarning() << "offending YAML data:" << yamlData.mid( rangestart, rangeend-rangestart ).constData();
-
+        {
+            cWarning() << "offending YAML data:" << yamlData.mid( rangestart, rangeend - rangestart ).constData();
+        }
     }
 }
 
 QVariantMap
-loadYaml(const QFileInfo& fi, bool* ok)
+loadYaml( const QFileInfo& fi, bool* ok )
 {
     return loadYaml( fi.absoluteFilePath(), ok );
 }
 
 QVariantMap
-loadYaml(const QString& filename, bool* ok)
+loadYaml( const QString& filename, bool* ok )
 {
     if ( ok )
+    {
         *ok = false;
+    }
 
     QFile yamlFile( filename );
     QVariant yamlContents;
@@ -197,12 +213,12 @@ loadYaml(const QString& filename, bool* ok)
     }
 
 
-    if ( yamlContents.isValid() &&
-         !yamlContents.isNull() &&
-            yamlContents.type() == QVariant::Map )
+    if ( yamlContents.isValid() && !yamlContents.isNull() && yamlContents.type() == QVariant::Map )
     {
         if ( ok )
+        {
             *ok = true;
+        }
         return yamlContents.toMap();
     }
 
@@ -214,7 +230,9 @@ static void
 writeIndent( QFile& f, int indent )
 {
     while ( indent-- > 0 )
+    {
         f.write( "  " );
+    }
 }
 
 // forward declaration
@@ -229,7 +247,9 @@ static void
 dumpYamlElement( QFile& f, const QVariant& value, int indent )
 {
     if ( value.type() == QVariant::Type::Bool )
+    {
         f.write( value.toBool() ? "true" : "false" );
+    }
     else if ( value.type() == QVariant::Type::String )
     {
         f.write( quote );
@@ -251,17 +271,19 @@ dumpYamlElement( QFile& f, const QVariant& value, int indent )
         {
             ++c;
             f.write( newline );
-            writeIndent( f, indent+1 );
+            writeIndent( f, indent + 1 );
             f.write( "- " );
-            dumpYamlElement( f, it, indent+1 );
+            dumpYamlElement( f, it, indent + 1 );
         }
         if ( !c )  // i.e. list was empty
+        {
             f.write( "[]" );
+        }
     }
     else if ( value.type() == QVariant::Type::Map )
     {
         f.write( newline );
-        dumpYaml( f, value.toMap(), indent+1 );
+        dumpYaml( f, value.toMap(), indent + 1 );
     }
     else
     {
@@ -293,12 +315,13 @@ saveYaml( const QString& filename, const QVariantMap& map )
 {
     QFile f( filename );
     if ( !f.open( QFile::WriteOnly ) )
+    {
         return false;
+    }
 
     f.write( "# YAML dump\n---\n" );
     return dumpYaml( f, map, 0 );
 }
 
 
-
-}  // namespace
+}  // namespace CalamaresUtils

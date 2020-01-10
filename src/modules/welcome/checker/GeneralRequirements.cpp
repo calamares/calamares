@@ -25,12 +25,14 @@
 #include "partman_devices.h"
 
 #include "modulesystem/Requirement.h"
+#include "network/Manager.h"
 #include "widgets/WaitingWidget.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Units.h"
+#include "utils/Variant.h"
 #include "Settings.h"
 
 #include "JobQueue.h"
@@ -42,14 +44,11 @@
 #include <QDBusInterface>
 #include <QDesktopWidget>
 #include <QDir>
-#include <QEventLoop>
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
 #include <QProcess>
+#include <QScreen>
 #include <QTimer>
 
 #include <unistd.h> //geteuid
@@ -61,16 +60,31 @@ GeneralRequirements::GeneralRequirements( QObject* parent )
 {
 }
 
+static QSize
+biggestSingleScreen()
+{
+    QSize s;
+    for ( const auto* screen : QGuiApplication::screens() )
+    {
+        QSize thisScreen = screen->availableSize();
+        if ( !s.isValid()  || ( s.width() * s.height() < thisScreen.width() * thisScreen.height() ) )
+        {
+            s = thisScreen;
+        }
+    }
+    return s;
+}
+
 Calamares::RequirementsList GeneralRequirements::checkRequirements()
 {
-    QSize availableSize = qApp->desktop()->availableGeometry().size();
+    QSize availableSize = biggestSingleScreen();
 
     bool enoughStorage = false;
     bool enoughRam = false;
     bool hasPower = false;
     bool hasInternet = false;
     bool isRoot = false;
-    bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
+    bool enoughScreen = availableSize.isValid() && (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
 
     qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGiB);
     cDebug() << "Need at least storage bytes:" << requiredStorageB;
@@ -206,7 +220,7 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "requiredStorage" ) &&
          ( configurationMap.value( "requiredStorage" ).type() == QVariant::Double ||
-           configurationMap.value( "requiredStorage" ).type() == QVariant::Int ) )
+           configurationMap.value( "requiredStorage" ).type() == QVariant::LongLong ) )
     {
         bool ok = false;
         m_requiredStorageGiB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
@@ -227,7 +241,7 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "requiredRam" ) &&
          ( configurationMap.value( "requiredRam" ).type() == QVariant::Double ||
-           configurationMap.value( "requiredRam" ).type() == QVariant::Int ) )
+           configurationMap.value( "requiredRam" ).type() == QVariant::LongLong ) )
     {
         bool ok = false;
         m_requiredRamGiB = configurationMap.value( "requiredRam" ).toDouble( &ok );
@@ -245,16 +259,16 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
         incompleteConfiguration = true;
     }
 
-    if ( configurationMap.contains( "internetCheckUrl" ) &&
-         configurationMap.value( "internetCheckUrl" ).type() == QVariant::String )
+    QUrl checkInternetUrl;
+    QString checkInternetSetting = CalamaresUtils::getString( configurationMap, "internetCheckUrl" );
+    if ( !checkInternetSetting.isEmpty() )
     {
-        m_checkHasInternetUrl = configurationMap.value( "internetCheckUrl" ).toString().trimmed();
-        if ( m_checkHasInternetUrl.isEmpty() ||
-             !QUrl( m_checkHasInternetUrl ).isValid() )
+        checkInternetUrl = QUrl( checkInternetSetting.trimmed() );
+        if ( !checkInternetUrl.isValid() )
         {
-            cWarning() << "GeneralRequirements entry 'internetCheckUrl' is invalid in welcome.conf" << m_checkHasInternetUrl
+            cWarning() << "GeneralRequirements entry 'internetCheckUrl' is invalid in welcome.conf" << checkInternetSetting
                      << "reverting to default (http://example.com).";
-            m_checkHasInternetUrl = "http://example.com";
+            checkInternetUrl = QUrl( "http://example.com" );
             incompleteConfiguration = true;
         }
     }
@@ -262,9 +276,12 @@ GeneralRequirements::setConfigurationMap( const QVariantMap& configurationMap )
     {
         cWarning() << "GeneralRequirements entry 'internetCheckUrl' is undefined in welcome.conf,"
                     "reverting to default (http://example.com).";
-
-        m_checkHasInternetUrl = "http://example.com";
+        checkInternetUrl = "http://example.com";
         incompleteConfiguration = true;
+    }
+    if ( checkInternetUrl.isValid() )
+    {
+        CalamaresUtils::Network::Manager::instance().setCheckHasInternetUrl( checkInternetUrl );
     }
 
     if ( incompleteConfiguration )
@@ -357,22 +374,8 @@ GeneralRequirements::checkHasPower()
 bool
 GeneralRequirements::checkHasInternet()
 {
-    // default to true in the QNetworkAccessManager::UnknownAccessibility case
-    QNetworkAccessManager qnam;
-    bool hasInternet = qnam.networkAccessible() == QNetworkAccessManager::Accessible;
-
-    if ( !hasInternet && qnam.networkAccessible() == QNetworkAccessManager::UnknownAccessibility )
-    {
-        QNetworkRequest req = QNetworkRequest( QUrl( m_checkHasInternetUrl ) );
-        QNetworkReply* reply = qnam.get( req );
-        QEventLoop loop;
-        connect( reply, &QNetworkReply::finished,
-                 &loop, &QEventLoop::quit );
-        loop.exec();
-        if( reply->bytesAvailable() )
-            hasInternet = true;
-    }
-
+    auto& nam = CalamaresUtils::Network::Manager::instance();
+    bool hasInternet = nam.checkHasInternet();
     Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", hasInternet );
     return hasInternet;
 }

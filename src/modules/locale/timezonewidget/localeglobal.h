@@ -24,17 +24,24 @@
 #ifndef LOCALEGLOBAL_H
 #define LOCALEGLOBAL_H
 
-#include <QString>
-#include <QFile>
-#include <QTextStream>
+#include <QDebug>
 #include <QDir>
-#include <QStringList>
-#include <QList>
+#include <QFile>
 #include <QHash>
+#include <QList>
 #include <QMap>
 #include <QRegExp>
-#include <QDebug>
-#include "localeconst.h"
+#include <QString>
+#include <QStringList>
+#include <QTextStream>
+
+namespace CalamaresUtils
+{
+namespace Locale
+{
+class TZZone;
+}
+}  // namespace CalamaresUtils
 
 class LocaleGlobal
 {
@@ -44,30 +51,13 @@ public:
         QString description, locale;
     };
 
-    struct Location
-    {
-        QString region, zone, country;
-        double latitude, longitude;
-        static QString pretty( const QString& s );
-        QString comment() const;
-    };
-
     static void init();
-    static QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > getLocales();
-    static QHash<QString, QList<LocaleGlobal::Location> > getLocations();
+    static QHash< QString, QHash< QString, QList< LocaleGlobal::Locale > > > getLocales();
 
 private:
-    static QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > locales;
-    static QHash<QString, QList<LocaleGlobal::Location> > locations;
+    static QHash< QString, QHash< QString, QList< LocaleGlobal::Locale > > > locales;
 
     static void initLocales();
-    static void initLocations();
-    static double getRightGeoLocation( QString str );
 };
 
-inline QDebug& operator <<( QDebug& s, const LocaleGlobal::Location& l )
-{
-    return s << l.region << '/' << l.zone << '(' << l.country << ") @N" << l.latitude  << 'E' << l.longitude;
-}
-
-#endif // LOCALEGLOBAL_H
+#endif  // LOCALEGLOBAL_H

@@ -37,111 +37,106 @@ _ = gettext.translation("calamares-python",
 def pretty_name():
     return _("Mounting partitions.")
 
-
-def mount_partitions(root_mount_point, partitions):
+def mount_partition(root_mount_point, partition, partitions):
     """
-    Pass back mount point and filesystem for each partition.
+    Do a single mount of @p partition inside @p root_mount_point.
 
-    :param root_mount_point:
-    :param partitions:
+    The @p partitions are used to handle btrfs special-cases:
+    then subvolumes are created for root and home.
     """
-    for partition in partitions:
-        if "mountPoint" not in partition or not partition["mountPoint"]:
-            continue
-        # Create mount point with `+` rather than `os.path.join()` because
-        # `partition["mountPoint"]` starts with a '/'.
-        raw_mount_point = partition["mountPoint"]
-        mount_point = root_mount_point + raw_mount_point
+    # Create mount point with `+` rather than `os.path.join()` because
+    # `partition["mountPoint"]` starts with a '/'.
+    raw_mount_point = partition["mountPoint"]
+    mount_point = root_mount_point + raw_mount_point
 
-        # Ensure that the created directory has the correct SELinux context on
-        # SELinux-enabled systems.
-        os.makedirs(mount_point, exist_ok=True)
-        subprocess.call(['chcon', '--reference=' + raw_mount_point,
-                         mount_point])
+    # Ensure that the created directory has the correct SELinux context on
+    # SELinux-enabled systems.
+    os.makedirs(mount_point, exist_ok=True)
+    subprocess.call(['chcon', '--reference=' + raw_mount_point,
+                     mount_point])
 
-        fstype = partition.get("fs", "").lower()
+    fstype = partition.get("fs", "").lower()
 
-        if fstype == "fat16" or fstype == "fat32":
-            fstype = "vfat"
+    if fstype == "fat16" or fstype == "fat32":
+        fstype = "vfat"
+
+    if "luksMapperName" in partition:
+        libcalamares.utils.debug(
+            "about to mount {!s}".format(partition["luksMapperName"]))
+        libcalamares.utils.mount(
+            "/dev/mapper/{!s}".format(partition["luksMapperName"]),
+            mount_point,
+            fstype,
+            partition.get("options", ""),
+            )
+
+    else:
+        libcalamares.utils.mount(partition["device"],
+                                 mount_point,
+                                 fstype,
+                                 partition.get("options", ""),
+                                 )
+
+    # If the root partition is btrfs, we create a subvolume "@"
+    # for the root mount point.
+    # If a separate /home partition isn't defined, we also create
+    # a subvolume "@home".
+    # Finally we remount all of the above on the correct paths.
+    if fstype == "btrfs" and partition["mountPoint"] == '/':
+        has_home_mount_point = False
+        for p in partitions:
+            if "mountPoint" not in p or not p["mountPoint"]:
+                continue
+            if p["mountPoint"] == "/home":
+                has_home_mount_point = True
+                break
+
+        subprocess.check_call(['btrfs', 'subvolume', 'create',
+                               root_mount_point + '/@'])
+
+        if not has_home_mount_point:
+            subprocess.check_call(['btrfs', 'subvolume', 'create',
+                                   root_mount_point + '/@home'])
+
+        subprocess.check_call(["umount", "-v", root_mount_point])
 
         if "luksMapperName" in partition:
-            libcalamares.utils.debug(
-                "about to mount {!s}".format(partition["luksMapperName"]))
             libcalamares.utils.mount(
                 "/dev/mapper/{!s}".format(partition["luksMapperName"]),
                 mount_point,
                 fstype,
-                partition.get("options", ""),
+                ",".join(
+                    ["subvol=@", partition.get("options", "")]),
                 )
-
-        else:
-            libcalamares.utils.mount(partition["device"],
-                                     mount_point,
-                                     fstype,
-                                     partition.get("options", ""),
-                                     )
-
-        # If the root partition is btrfs, we create a subvolume "@"
-        # for the root mount point.
-        # If a separate /home partition isn't defined, we also create
-        # a subvolume "@home".
-        # Finally we remount all of the above on the correct paths.
-        if fstype == "btrfs" and partition["mountPoint"] == '/':
-            has_home_mount_point = False
-            for p in partitions:
-                if "mountPoint" not in p or not p["mountPoint"]:
-                    continue
-                if p["mountPoint"] == "/home":
-                    has_home_mount_point = True
-                    break
-
-            subprocess.check_call(['btrfs', 'subvolume', 'create',
-                                   root_mount_point + '/@'])
-
             if not has_home_mount_point:
-                subprocess.check_call(['btrfs', 'subvolume', 'create',
-                                       root_mount_point + '/@home'])
-
-            subprocess.check_call(["umount", "-v", root_mount_point])
-
-            if "luksMapperName" in partition:
                 libcalamares.utils.mount(
                     "/dev/mapper/{!s}".format(partition["luksMapperName"]),
-                    mount_point,
+                    root_mount_point + "/home",
                     fstype,
                     ",".join(
-                        ["subvol=@", partition.get("options", "")]),
+                        ["subvol=@home", partition.get("options", "")]),
                     )
-                if not has_home_mount_point:
-                    libcalamares.utils.mount(
-                        "/dev/mapper/{!s}".format(partition["luksMapperName"]),
-                        root_mount_point + "/home",
-                        fstype,
-                        ",".join(
-                            ["subvol=@home", partition.get("options", "")]),
-                        )
-            else:
+        else:
+            libcalamares.utils.mount(
+                partition["device"],
+                mount_point,
+                fstype,
+                ",".join(["subvol=@", partition.get("options", "")]),
+                )
+            if not has_home_mount_point:
                 libcalamares.utils.mount(
                     partition["device"],
-                    mount_point,
+                    root_mount_point + "/home",
                     fstype,
-                    ",".join(["subvol=@", partition.get("options", "")]),
+                    ",".join(
+                        ["subvol=@home", partition.get("options", "")]),
                     )
-                if not has_home_mount_point:
-                    libcalamares.utils.mount(
-                        partition["device"],
-                        root_mount_point + "/home",
-                        fstype,
-                        ",".join(
-                            ["subvol=@home", partition.get("options", "")]),
-                        )
 
 
 def run():
     """
-    Define mountpoints.
-
-    :return:
+    Mount all the partitions from GlobalStorage and from the job configuration.
+    Partitions are mounted in-lexical-order of their mountPoint.
     """
     partitions = libcalamares.globalstorage.value("partitions")
 
@@ -158,17 +153,19 @@ def run():
     if not extra_mounts and not extra_mounts_efi:
         libcalamares.utils.warning("No extra mounts defined. Does mount.conf exist?")
 
-    # Sort by mount points to ensure / is mounted before the rest
-    partitions.sort(key=lambda x: x["mountPoint"])
-    mount_partitions(root_mount_point, partitions)
-    mount_partitions(root_mount_point, extra_mounts)
-
-    all_extra_mounts = extra_mounts
     if libcalamares.globalstorage.value("firmwareType") == "efi":
-        mount_partitions(root_mount_point, extra_mounts_efi)
-        all_extra_mounts.extend(extra_mounts_efi)
+        extra_mounts.extend(extra_mounts_efi)
+
+    # Add extra mounts to the partitions list and sort by mount points.
+    # This way, we ensure / is mounted before the rest, and every mount point
+    # is created on the right partition (e.g. if a partition is to be mounted
+    # under /tmp, we make sure /tmp is mounted before the partition)
+    mountable_partitions = [ p for p in partitions + extra_mounts if "mountPoint" in p and p["mountPoint"] ]
+    mountable_partitions.sort(key=lambda x: x["mountPoint"])
+    for partition in mountable_partitions:
+        mount_partition(root_mount_point, partition, partitions)
 
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
 
     # Remember the extra mounts for the unpackfs module
-    libcalamares.globalstorage.insert("extraMounts", all_extra_mounts)
+    libcalamares.globalstorage.insert("extraMounts", extra_mounts)

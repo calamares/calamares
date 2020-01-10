@@ -42,7 +42,7 @@
 #include "NamedEnum.h"
 
 /** @brief Template that takes the enum type to work with and a special none-enum. */
-template<typename T, T _none>
+template < typename T, T _none >
 class NamedSuffix
 {
 public:
@@ -52,13 +52,13 @@ public:
 
     /** @brief Empty value. */
     NamedSuffix()
-        : m_value(0)
+        : m_value( 0 )
         , m_unit( none )
     {
     }
 
     /** @brief Specific value and unit. */
-    NamedSuffix( int value, unit_t unit )
+    NamedSuffix( qint64 value, unit_t unit )
         : m_value( value )
         , m_unit( unit )
     {
@@ -69,13 +69,13 @@ public:
      * This parses the given string @p s by comparing with the suffixes
      * in @p table and uses the first matching suffix as the unit.
      */
-    NamedSuffix( const NamedEnumTable<T>& table, const QString& s )
+    NamedSuffix( const NamedEnumTable< T >& table, const QString& s )
         : NamedSuffix()
     {
-        for( const auto& suffix : table.table )
+        for ( const auto& suffix : table.table )
             if ( s.endsWith( suffix.first ) )
             {
-                m_value = s.left( s.length() - suffix.first.length() ).toInt();
+                m_value = s.left( s.length() - suffix.first.length() ).toLongLong();
                 m_unit = suffix.second;
                 break;
             }
@@ -89,7 +89,7 @@ public:
      */
     NamedSuffix( const QString& s );
 
-    int value() const { return m_value; }
+    qint64 value() const { return m_value; }
     unit_t unit() const { return m_unit; }
 
     /** @brief Check that a value-unit combination is valid.
@@ -100,7 +100,7 @@ public:
     bool isValid() const;
 
 protected:
-    int m_value;
+    qint64 m_value;
     unit_t m_unit;
 };
 

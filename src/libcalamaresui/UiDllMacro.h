@@ -22,11 +22,11 @@
 #include <QtCore/qglobal.h>
 
 #ifndef UIDLLEXPORT
-# if defined (UIDLLEXPORT_PRO)
-#  define UIDLLEXPORT Q_DECL_EXPORT
-# else
-#  define UIDLLEXPORT Q_DECL_IMPORT
-# endif
+#if defined( UIDLLEXPORT_PRO )
+#define UIDLLEXPORT Q_DECL_EXPORT
+#else
+#define UIDLLEXPORT Q_DECL_IMPORT
+#endif
 #endif
 
 #endif

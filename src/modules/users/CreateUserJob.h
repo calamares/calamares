@@ -27,10 +27,7 @@ class CreateUserJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    CreateUserJob( const QString& userName,
-                   const QString& fullName,
-                   bool autologin,
-                   const QStringList& defaultGroups );
+    CreateUserJob( const QString& userName, const QString& fullName, bool autologin, const QStringList& defaultGroups );
     QString prettyName() const override;
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;

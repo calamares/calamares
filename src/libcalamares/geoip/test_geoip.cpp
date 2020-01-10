@@ -30,34 +30,40 @@
 using std::cerr;
 using namespace CalamaresUtils::GeoIP;
 
-int main(int argc, char** argv)
+int
+main( int argc, char** argv )
 {
-    if (argc != 2)
+    if ( argc != 2 )
     {
         cerr << "Usage: curl url | test_geoip <format>\n";
         return 1;
     }
 
     Interface* handler = nullptr;
-    if ( QStringLiteral( "json" ) == argv[1] )
+    if ( QStringLiteral( "json" ) == argv[ 1 ] )
+    {
         handler = new GeoIPJSON;
+    }
 #ifdef QT_XML_LIB
-    else if ( QStringLiteral( "xml" ) == argv[1] )
+    else if ( QStringLiteral( "xml" ) == argv[ 1 ] )
+    {
         handler = new GeoIPXML;
+    }
 #endif
 
     if ( !handler )
     {
-        cerr << "Unknown format '" << argv[1] << "'\n";
+        cerr << "Unknown format '" << argv[ 1 ] << "'\n";
         return 1;
     }
 
     QByteArray ba;
-    while( !std::cin.eof() ) {
-        char arr[1024];
-        std::cin.read(arr, sizeof(arr));
-        int s = static_cast<int>( std::cin.gcount() );
-        ba.append(arr, s);
+    while ( !std::cin.eof() )
+    {
+        char arr[ 1024 ];
+        std::cin.read( arr, sizeof( arr ) );
+        int s = static_cast< int >( std::cin.gcount() );
+        ba.append( arr, s );
     }
 
     auto tz = handler->processReply( ba );
@@ -67,7 +73,8 @@ int main(int argc, char** argv)
     }
     else
     {
-        std::cout << "TimeZone Region=" << tz.first.toLatin1().constData() << "\nTimeZone Zone=" << tz.second.toLatin1().constData() << '\n';
+        std::cout << "TimeZone Region=" << tz.first.toLatin1().constData()
+                  << "\nTimeZone Zone=" << tz.second.toLatin1().constData() << '\n';
     }
 
     return 0;

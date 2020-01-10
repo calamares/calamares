@@ -29,17 +29,18 @@ namespace Locale
 
 LabelModel::LabelModel( const QStringList& locales, QObject* parent )
     : QAbstractListModel( parent )
+    , m_localeIds( locales )
 {
     Q_ASSERT( locales.count() > 0 );
     m_locales.reserve( locales.count() );
 
     for ( const auto& l : locales )
+    {
         m_locales.push_back( Label( l ) );
+    }
 }
 
-LabelModel::~LabelModel()
-{
-}
+LabelModel::~LabelModel() {}
 
 int
 LabelModel::rowCount( const QModelIndex& ) const
@@ -51,10 +52,14 @@ QVariant
 LabelModel::data( const QModelIndex& index, int role ) const
 {
     if ( ( role != LabelRole ) && ( role != EnglishLabelRole ) )
+    {
         return QVariant();
+    }
 
     if ( !index.isValid() )
+    {
         return QVariant();
+    }
 
     const auto& locale = m_locales.at( index.row() );
     switch ( role )
@@ -75,59 +80,62 @@ LabelModel::locale( int row ) const
     {
         for ( const auto& l : m_locales )
             if ( l.isEnglish() )
+            {
                 return l;
-        return m_locales[0];
+            }
+        return m_locales[ 0 ];
     }
-    return m_locales[row];
+    return m_locales[ row ];
 }
 
 int
-LabelModel::find( std::function<bool ( const Label& )> predicate ) const
+LabelModel::find( std::function< bool( const Label& ) > predicate ) const
 {
-    for ( int row = 0; row < m_locales.count() ; ++row )
+    for ( int row = 0; row < m_locales.count(); ++row )
     {
-        if ( predicate( m_locales[row] ) )
+        if ( predicate( m_locales[ row ] ) )
+        {
             return row;
+        }
     }
     return -1;
 }
 
 int
-LabelModel::find( std::function<bool ( const QLocale& )> predicate ) const
+LabelModel::find( std::function< bool( const QLocale& ) > predicate ) const
 {
-    return find( [&]( const Label& l )
-    {
-        return predicate( l.locale() );
-    } );
+    return find( [&]( const Label& l ) { return predicate( l.locale() ); } );
 }
 
 int
 LabelModel::find( const QLocale& locale ) const
 {
-    return find( [&]( const Label& l )
-    {
-        return locale == l.locale();
-    } );
+    return find( [&]( const Label& l ) { return locale == l.locale(); } );
 }
 
 int
 LabelModel::find( const QString& countryCode ) const
 {
     if ( countryCode.length() != 2 )
+    {
         return -1;
+    }
 
     auto c_l = countryData( countryCode );
-    int r = find( [&]( const Label& l ){ return ( l.language() == c_l.second ) && ( l.country() == c_l.first ); } );
+    int r = find( [&]( const Label& l ) { return ( l.language() == c_l.second ) && ( l.country() == c_l.first ); } );
     if ( r >= 0 )
+    {
         return r;
-    return find( [&]( const Label& l ){ return l.language() == c_l.second; } );
+    }
+    return find( [&]( const Label& l ) { return l.language() == c_l.second; } );
 }
 
-LabelModel* availableTranslations()
+LabelModel*
+availableTranslations()
 {
-    static LabelModel* model = new LabelModel( QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') );
+    static LabelModel* model = new LabelModel( QStringLiteral( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) );
     return model;
 }
 
-}
-}  // namespace
+}  // namespace Locale
+}  // namespace CalamaresUtils

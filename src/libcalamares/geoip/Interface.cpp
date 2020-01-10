@@ -25,14 +25,12 @@ namespace CalamaresUtils
 namespace GeoIP
 {
 
-Interface::Interface(const QString& e)
+Interface::Interface( const QString& e )
     : m_element( e )
 {
 }
 
-Interface::~Interface()
-{
-}
+Interface::~Interface() {}
 
 RegionZonePair
 splitTZString( const QString& tz )
@@ -53,5 +51,5 @@ splitTZString( const QString& tz )
     return RegionZonePair( QString(), QString() );
 }
 
-}
-}  // namespace
+}  // namespace GeoIP
+}  // namespace CalamaresUtils

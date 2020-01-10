@@ -26,7 +26,7 @@
 #include <QVector>
 
 
-namespace CalamaresUtils 
+namespace CalamaresUtils
 {
 namespace Locale
 {
@@ -54,12 +54,15 @@ public:
      */
     const Label& locale( int row ) const;
 
+    /// @brief Returns all of the locale Ids (e.g. en_US) put into this model.
+    const QStringList& localeIds() const { return m_localeIds; }
+
     /** @brief Searches for an item that matches @p predicate
      *
      * Returns the row number of the first match, or -1 if there isn't one.
      */
-    int find( std::function<bool( const QLocale& )> predicate ) const;
-    int find( std::function<bool( const Label& )> predicate ) const;
+    int find( std::function< bool( const QLocale& ) > predicate ) const;
+    int find( std::function< bool( const Label& ) > predicate ) const;
     /// @brief Looks for an item using the same locale, -1 if there isn't one
     int find( const QLocale& ) const;
     /// @brief Looks for an item that best matches the 2-letter country code
@@ -67,7 +70,8 @@ public:
 
 private:
     QVector< Label > m_locales;
-} ;
+    QStringList m_localeIds;
+};
 
 /** @brief Returns a model with all available translations.
  *
@@ -80,6 +84,6 @@ private:
  * NOTE: While the model is not typed const, it should be. Do not modify.
  */
 DLLEXPORT LabelModel* availableTranslations();
-}
-}  // namespace
+}  // namespace Locale
+}  // namespace CalamaresUtils
 #endif

@@ -21,7 +21,8 @@
 
 #include "Job.h"
 
-namespace Calamares {
+namespace Calamares
+{
 
 /** @brief A Job with a name
  *
@@ -39,9 +40,10 @@ public:
     }
 
     virtual QString prettyName() const override;
+
 protected:
     const QString m_name;
-} ;
+};
 
 /// @brief Job does nothing, always succeeds
 class DLLEXPORT GoodJob : public NamedJob
@@ -53,7 +55,7 @@ public:
     }
 
     virtual JobResult exec() override;
-} ;
+};
 
 
 /// @brief Job does nothing, always fails
@@ -66,8 +68,8 @@ public:
     }
 
     virtual JobResult exec() override;
-} ;
+};
 
-} // namespace Calamares
+}  // namespace Calamares
 
-#endif // CALAMARES_JOB_EXAMPLE_H
+#endif  // CALAMARES_JOB_EXAMPLE_H

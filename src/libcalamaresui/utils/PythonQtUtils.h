@@ -33,6 +33,6 @@ QVariant lookupAndCall( PyObject* object,
                         const QVariantList& args = QVariantList(),
                         const QVariantMap& kwargs = QVariantMap() );
 
-} //ns
+}  // namespace CalamaresUtils
 
-#endif // PYTHONQTUTILS_H
+#endif  // PYTHONQTUTILS_H

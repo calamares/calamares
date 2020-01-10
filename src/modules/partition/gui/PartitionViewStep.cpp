@@ -277,7 +277,7 @@ PartitionViewStep::createSummaryWidget() const
         jobsLabel->setText( jobsLines.join( "<br/>" ) );
         jobsLabel->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
         QPalette pal;
-        pal.setColor( QPalette::Background, pal.background().color().lighter( 108 ) );
+        pal.setColor( QPalette::Background, pal.window().color().lighter( 108 ) );
         jobsLabel->setAutoFillBackground( true );
         jobsLabel->setPalette( pal );
     }
@@ -646,7 +646,7 @@ PartitionViewStep::checkRequirements()
     Calamares::RequirementsList l;
     l.append(
     {
-        QLatin1Literal( "partitions" ),
+        QLatin1String( "partitions" ),
         []{ return tr( "has at least one disk device available." ); },
         []{ return tr( "There are no partitons to install on." ); },
         m_core->deviceModel()->rowCount() > 0,  // satisfied

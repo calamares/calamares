@@ -26,7 +26,12 @@
 #include <QFileInfo>
 
 #undef slots
+#include "utils/boost-warnings.h"
 #include <boost/python.hpp>
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 
 namespace bp = boost::python;
 
@@ -52,6 +57,9 @@ variantToPyObject( const QVariant& variant )
     case QVariant::Int:
         return bp::object( variant.toInt() );
 
+    case QVariant::LongLong:
+        return bp::object( variant.toLongLong() );
+
     case QVariant::Double:
         return bp::object( variant.toDouble() );
 
@@ -72,25 +80,39 @@ variantFromPyObject( const boost::python::object& pyObject )
 {
     std::string pyType = bp::extract< std::string >( pyObject.attr( "__class__" ).attr( "__name__" ) );
     if ( pyType == "dict" )
+    {
         return variantMapFromPyDict( bp::extract< bp::dict >( pyObject ) );
+    }
 
     else if ( pyType == "list" )
+    {
         return variantListFromPyList( bp::extract< bp::list >( pyObject ) );
+    }
 
     else if ( pyType == "int" )
+    {
         return QVariant( bp::extract< int >( pyObject ) );
+    }
 
     else if ( pyType == "float" )
+    {
         return QVariant( bp::extract< double >( pyObject ) );
+    }
 
     else if ( pyType == "str" )
+    {
         return QVariant( QString::fromStdString( bp::extract< std::string >( pyObject ) ) );
+    }
 
     else if ( pyType == "bool" )
+    {
         return QVariant( bp::extract< bool >( pyObject ) );
+    }
 
     else
+    {
         return QVariant();
+    }
 }
 
 
@@ -99,7 +121,9 @@ variantListToPyList( const QVariantList& variantList )
 {
     bp::list pyList;
     for ( const QVariant& variant : variantList )
+    {
         pyList.append( variantToPyObject( variant ) );
+    }
     return pyList;
 }
 
@@ -109,7 +133,9 @@ variantListFromPyList( const boost::python::list& pyList )
 {
     QVariantList list;
     for ( int i = 0; i < bp::len( pyList ); ++i )
+    {
         list.append( variantFromPyObject( pyList[ i ] ) );
+    }
     return list;
 }
 
@@ -119,7 +145,9 @@ variantMapToPyDict( const QVariantMap& variantMap )
 {
     bp::dict pyDict;
     for ( auto it = variantMap.constBegin(); it != variantMap.constEnd(); ++it )
+    {
         pyDict[ it.key().toStdString() ] = variantToPyObject( it.value() );
+    }
     return pyDict;
 }
 
@@ -152,7 +180,9 @@ variantHashToPyDict( const QVariantHash& variantHash )
 {
     bp::dict pyDict;
     for ( auto it = variantHash.constBegin(); it != variantHash.constEnd(); ++it )
+    {
         pyDict[ it.key().toStdString() ] = variantToPyObject( it.value() );
+    }
     return pyDict;
 }
 
@@ -181,17 +211,21 @@ variantHashFromPyDict( const boost::python::dict& pyDict )
 }
 
 
-
 Helper* Helper::s_instance = nullptr;
 
-static inline void add_if_lib_exists( const QDir& dir, const char* name, QStringList& list )
+static inline void
+add_if_lib_exists( const QDir& dir, const char* name, QStringList& list )
 {
-    if ( ! ( dir.exists() && dir.isReadable() ) )
+    if ( !( dir.exists() && dir.isReadable() ) )
+    {
         return;
+    }
 
     QFileInfo fi( dir.absoluteFilePath( name ) );
     if ( fi.exists() && fi.isReadable() )
+    {
         list.append( fi.dir().absolutePath() );
+    }
 }
 
 Helper::Helper( QObject* parent )
@@ -201,7 +235,9 @@ Helper::Helper( QObject* parent )
     if ( !s_instance )
     {
         if ( !Py_IsInitialized() )
+        {
             Py_Initialize();
+        }
 
         m_mainModule = bp::import( "__main__" );
         m_mainNamespace = m_mainModule.attr( "__dict__" );
@@ -209,8 +245,7 @@ Helper::Helper( QObject* parent )
         // If we're running from the build dir
         add_if_lib_exists( QDir::current(), "libcalamares.so", m_pythonPaths );
 
-        QDir calaPythonPath( CalamaresUtils::systemLibDir().absolutePath() +
-                             QDir::separator() + "calamares" );
+        QDir calaPythonPath( CalamaresUtils::systemLibDir().absolutePath() + QDir::separator() + "calamares" );
         add_if_lib_exists( calaPythonPath, "libcalamares.so", m_pythonPaths );
 
         bp::object sys = bp::import( "sys" );
@@ -251,7 +286,7 @@ Helper::createCleanNamespace()
 QString
 Helper::handleLastError()
 {
-    PyObject* type = nullptr, *val = nullptr, *traceback_p = nullptr;
+    PyObject *type = nullptr, *val = nullptr, *traceback_p = nullptr;
     PyErr_Fetch( &type, &val, &traceback_p );
 
     Logger::CDebug debug;
@@ -264,10 +299,14 @@ Helper::handleLastError()
         bp::str pystr( h_type );
         bp::extract< std::string > extracted( pystr );
         if ( extracted.check() )
+        {
             typeMsg = QString::fromStdString( extracted() ).trimmed();
+        }
 
         if ( typeMsg.isEmpty() )
+        {
             typeMsg = tr( "Unknown exception type" );
+        }
         debug << typeMsg << '\n';
     }
 
@@ -278,10 +317,14 @@ Helper::handleLastError()
         bp::str pystr( h_val );
         bp::extract< std::string > extracted( pystr );
         if ( extracted.check() )
+        {
             valMsg = QString::fromStdString( extracted() ).trimmed();
+        }
 
         if ( valMsg.isEmpty() )
+        {
             valMsg = tr( "unparseable Python error" );
+        }
 
         // Special-case: CalledProcessError has an attribute "output" with the command output,
         // add that to the printed message.
@@ -318,22 +361,32 @@ Helper::handleLastError()
         bp::object pystr( bp::str( "\n" ).join( tb_list ) );
         bp::extract< std::string > extracted( pystr );
         if ( extracted.check() )
+        {
             tbMsg = QString::fromStdString( extracted() ).trimmed();
+        }
 
         if ( tbMsg.isEmpty() )
+        {
             tbMsg = tr( "unparseable Python traceback" );
+        }
         debug << tbMsg << '\n';
     }
 
     if ( typeMsg.isEmpty() && valMsg.isEmpty() && tbMsg.isEmpty() )
+    {
         return tr( "Unfetchable Python error." );
+    }
 
 
     QStringList msgList;
     if ( !typeMsg.isEmpty() )
+    {
         msgList.append( QString( "<strong>%1</strong>" ).arg( typeMsg.toHtmlEscaped() ) );
+    }
     if ( !valMsg.isEmpty() )
+    {
         msgList.append( valMsg.toHtmlEscaped() );
+    }
 
     if ( !tbMsg.isEmpty() )
     {
@@ -346,4 +399,4 @@ Helper::handleLastError()
 }
 
 
-} // namespace CalamaresPython
+}  // namespace CalamaresPython

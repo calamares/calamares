@@ -31,11 +31,11 @@ public:
     virtual ~FixedAspectRatioLabel() override;
 
 public slots:
-    void setPixmap( const QPixmap &pixmap );
+    void setPixmap( const QPixmap& pixmap );
     void resizeEvent( QResizeEvent* event ) override;
 
 private:
     QPixmap m_pixmap;
 };
 
-#endif // FIXEDASPECTRATIOLABEL_H
+#endif  // FIXEDASPECTRATIOLABEL_H

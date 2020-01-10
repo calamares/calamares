@@ -25,10 +25,10 @@
 
 #include <algorithm>
 
-#include <QtConcurrent/QtConcurrent>
 #include <QFuture>
 #include <QFutureWatcher>
 #include <QTimer>
+#include <QtConcurrent/QtConcurrent>
 
 
 namespace Calamares
@@ -54,12 +54,15 @@ registerMetatypes()
 }
 
 static void
-check( Module * const &m, RequirementsChecker *c )
+check( Module* const& m, RequirementsChecker* c )
 {
     RequirementsList l = m->checkRequirements();
     if ( l.count() > 0 )
+    {
         c->addCheckedRequirements( l );
-    c->requirementsProgress( QObject::tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
+    }
+    c->requirementsProgress(
+        QObject::tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
 }
 
 RequirementsChecker::RequirementsChecker( QVector< Module* > modules, QObject* parent )
@@ -74,9 +77,7 @@ RequirementsChecker::RequirementsChecker( QVector< Module* > modules, QObject* p
     registerMetatypes();
 }
 
-RequirementsChecker::~RequirementsChecker()
-{
-}
+RequirementsChecker::~RequirementsChecker() {}
 
 void
 RequirementsChecker::run()
@@ -85,10 +86,11 @@ RequirementsChecker::run()
     connect( m_progressTimer, &QTimer::timeout, this, &RequirementsChecker::reportProgress );
     m_progressTimer->start( 1200 );  // msec
 
-    for (const auto& module : m_modules )
+    for ( const auto& module : m_modules )
     {
-        Watcher *watcher = new Watcher( this );
+        Watcher* watcher = new Watcher( this );
         watcher->setFuture( QtConcurrent::run( check, module, this ) );
+        watcher->setObjectName( module->name() );
         m_watchers.append( watcher );
         connect( watcher, &Watcher::finished, this, &RequirementsChecker::finished );
     }
@@ -102,7 +104,9 @@ RequirementsChecker::finished()
     static QMutex finishedMutex;
     QMutexLocker lock( &finishedMutex );
 
-    if ( m_progressTimer && std::all_of( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && w->isFinished(); } ) )
+    if ( m_progressTimer && std::all_of( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher* w ) {
+             return w && w->isFinished();
+         } ) )
     {
         cDebug() << "All requirements have been checked.";
         if ( m_progressTimer )
@@ -125,7 +129,7 @@ RequirementsChecker::finished()
         }
 
         emit requirementsComplete( acceptable );
-        QTimer::singleShot(0, this, &RequirementsChecker::done );
+        QTimer::singleShot( 0, this, &RequirementsChecker::done );
     }
 }
 
@@ -146,16 +150,27 @@ RequirementsChecker::reportProgress()
 {
     m_progressTimeouts++;
 
-    auto remaining = std::count_if( m_watchers.cbegin(), m_watchers.cend(), []( const Watcher *w ) { return w && !w->isFinished(); } );
+    QStringList remainingNames;
+    auto remaining = std::count_if( m_watchers.cbegin(), m_watchers.cend(), [&]( const Watcher* w ) {
+        if ( w && !w->isFinished() )
+        {
+            remainingNames << w->objectName();
+            return true;
+        }
+        return false;
+    } );
     if ( remaining > 0 )
     {
+        cDebug() << "Remaining modules:" << remaining << Logger::DebugList( remainingNames );
         unsigned int posInterval = ( m_progressTimer->interval() < 0 ) ? 1000 : uint( m_progressTimer->interval() );
         QString waiting = tr( "Waiting for %n module(s).", "", remaining );
         QString elapsed = tr( "(%n second(s))", "", m_progressTimeouts * posInterval / 1000 );
         emit requirementsProgress( waiting + QString( " " ) + elapsed );
     }
     else
+    {
         emit requirementsProgress( tr( "System-requirements checking is complete." ) );
+    }
 }
 
-}
+}  // namespace Calamares

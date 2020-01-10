@@ -21,8 +21,8 @@
 #ifndef CALAMARES_CPPJOBMODULE_H
 #define CALAMARES_CPPJOBMODULE_H
 
-#include "UiDllMacro.h"
 #include "Module.h"
+#include "UiDllMacro.h"
 
 class QPluginLoader;
 
@@ -42,7 +42,7 @@ protected:
     void initFrom( const QVariantMap& moduleDescriptor ) override;
 
 private:
-    friend class Module; //so only the superclass can instantiate
+    friend class Module;  //so only the superclass can instantiate
     explicit CppJobModule();
     virtual ~CppJobModule() override;
 
@@ -50,6 +50,6 @@ private:
     job_ptr m_job;
 };
 
-} // namespace Calamares
+}  // namespace Calamares
 
-#endif // CALAMARES_CPPJOBMODULE_H
+#endif  // CALAMARES_CPPJOBMODULE_H

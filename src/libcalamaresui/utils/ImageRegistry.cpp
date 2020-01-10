@@ -2,6 +2,8 @@
  *
  *   SPDX-License-Identifier: GPLv3+
  *   License-Filename: LICENSES/GPLv3+-ImageRegistry
+ *
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  */
 
 /*
@@ -23,25 +25,22 @@
 
 #include "ImageRegistry.h"
 
-#include <QSvgRenderer>
 #include <QPainter>
+#include <QSvgRenderer>
 #include <qicon.h>
 
 static QHash< QString, QHash< int, QHash< qint64, QPixmap > > > s_cache;
-ImageRegistry* ImageRegistry::s_instance = 0;
 
 
 ImageRegistry*
 ImageRegistry::instance()
 {
+    static ImageRegistry* s_instance = new ImageRegistry();
     return s_instance;
 }
 
 
-ImageRegistry::ImageRegistry()
-{
-    s_instance = this;
-}
+ImageRegistry::ImageRegistry() {}
 
 
 QIcon
@@ -52,16 +51,20 @@ ImageRegistry::icon( const QString& image, CalamaresUtils::ImageMode mode )
 
 
 qint64
-ImageRegistry::cacheKey( const QSize& size, float opacity, QColor tint )
+ImageRegistry::cacheKey( const QSize& size, qreal opacity, QColor tint )
 {
-    return size.width() * 100 + size.height() * 10 + ( opacity * 100.0 ) + tint.value();
+    return size.width() * 100 + size.height() * 10 + static_cast< qint64 >( opacity * 100.0 ) + tint.value();
 }
 
 
 QPixmap
-ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode, float opacity, QColor tint )
+ImageRegistry::pixmap( const QString& image,
+                       const QSize& size,
+                       CalamaresUtils::ImageMode mode,
+                       qreal opacity,
+                       QColor tint )
 {
-    Q_ASSERT( !(size.width() < 0 || size.height() < 0) );
+    Q_ASSERT( !( size.width() < 0 || size.height() < 0 ) );
     if ( size.width() < 0 || size.height() < 0 )
     {
         return QPixmap();
@@ -110,23 +113,20 @@ ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::
 
             resultImage.setAlphaChannel( p.toImage().alphaChannel() );
             p = QPixmap::fromImage( resultImage );
-       }
+        }
 
         pixmap = p;
     }
     else
+    {
         pixmap = QPixmap( image );
+    }
 
     if ( !pixmap.isNull() )
     {
-        switch ( mode )
+        if ( mode == CalamaresUtils::RoundedCorners )
         {
-            case CalamaresUtils::RoundedCorners:
-                pixmap = CalamaresUtils::createRoundedImage( pixmap, size );
-                break;
-
-            default:
-                break;
+            pixmap = CalamaresUtils::createRoundedImage( pixmap, size );
         }
 
         if ( !size.isNull() && pixmap.size() != size )
@@ -140,7 +140,9 @@ ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::
                 pixmap = pixmap.scaledToWidth( size.width(), Qt::SmoothTransformation );
             }
             else
+            {
                 pixmap = pixmap.scaled( size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+            }
         }
 
         putInCache( image, size, mode, opacity, pixmap, tint );
@@ -151,7 +153,12 @@ ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::
 
 
 void
-ImageRegistry::putInCache( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode, float opacity, const QPixmap& pixmap, QColor tint )
+ImageRegistry::putInCache( const QString& image,
+                           const QSize& size,
+                           CalamaresUtils::ImageMode mode,
+                           qreal opacity,
+                           const QPixmap& pixmap,
+                           QColor tint )
 {
     QHash< qint64, QPixmap > subsubcache;
     QHash< int, QHash< qint64, QPixmap > > subcache;

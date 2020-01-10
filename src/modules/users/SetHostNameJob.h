@@ -31,9 +31,10 @@ public:
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
+
 private:
     const QString m_hostname;
 };
 
 
-#endif // SETHOSTNAMEJOB_CPP_H
+#endif  // SETHOSTNAMEJOB_CPP_H

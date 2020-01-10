@@ -34,11 +34,13 @@ lookupAndCall( PyObject* object,
     {
         PythonQtObjectPtr callable = PythonQt::self()->lookupCallable( object, name );
         if ( callable )
+        {
             return callable.call( args, kwargs );
+        }
     }
 
     // If we haven't found a callable with the given names, we force an error:
     return PythonQt::self()->call( object, candidateNames.first(), args, kwargs );
 }
 
-}
+}  // namespace CalamaresUtils

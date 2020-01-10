@@ -27,7 +27,7 @@
 #include <QLabel>
 #include <QWidget>
 
-class QToolButton;
+class QPushButton;
 
 class LicenseWidget : public QWidget
 {
@@ -38,14 +38,16 @@ public:
     void retranslateUi();
 
 private:
+    void showLocalLicenseText();  // Display (or hide) the local license text
     void expandClicked();  // "slot" to toggle show/hide of local license text
-    void viewClicked();    // "slot" to open link
+    void viewClicked();  // "slot" to open link
     void updateExpandToolTip();
 
     LicenseEntry m_entry;
     QLabel* m_label;
-    QLabel* m_viewLicenseLabel;
-    QToolButton* m_expandLicenseButton;
-    QLabel* m_fullText;
-} ;
+    QPushButton* m_viewLicenseButton;
+    QLabel* m_licenceTextLabel;
+    QString m_fullTextContents;
+    bool m_isExpanded;
+};
 #endif

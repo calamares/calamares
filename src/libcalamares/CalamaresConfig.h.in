@@ -12,4 +12,4 @@
 #cmakedefine WITH_PYTHON
 #cmakedefine WITH_PYTHONQT
 
-#endif // CALAMARESCONFIG_H
+#endif  // CALAMARESCONFIG_H

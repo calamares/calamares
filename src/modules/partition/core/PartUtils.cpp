@@ -450,7 +450,7 @@ isEfiBootable( const Partition* candidate )
 QString
 findFS( QString fsName, FileSystem::Type* fsType )
 {
-    QStringList fsLanguage { QLatin1Literal( "C" ) };  // Required language list to turn off localization
+    QStringList fsLanguage { QLatin1String( "C" ) };  // Required language list to turn off localization
     if ( fsName.isEmpty() )
         fsName = QStringLiteral( "ext4" );
 

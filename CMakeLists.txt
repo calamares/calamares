@@ -25,6 +25,9 @@
 #   SKIP_MODULES    : a space or semicolon-separated list of directory names
 #                     under src/modules that should not be built.
 #   USE_<foo>       : fills in SKIP_MODULES for modules called <foo>-<something>
+#   WITH_<foo>      : try to enable <foo> (these usually default to ON). For
+#                     a list of WITH_<foo> grep CMakeCache.txt after running
+#                     CMake once.
 #   BUILD_<foo>     : choose additional things to build
 #   DEBUG_<foo>     : special developer flags for debugging
 #
@@ -35,9 +38,9 @@
 # One special target is "show-version", which can be built
 # to obtain the version number from here.
 
-cmake_minimum_required( VERSION 3.2 FATAL_ERROR )
+cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.10
+    VERSION 3.2.18
     LANGUAGES C CXX )
 
 set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
@@ -96,21 +99,23 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 # (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
 #
 # TODO: drop the es_ES translation from Transifex
-# TODO: move eo (Esperanto) to _ok once Qt can actually create a
-#       locale for it.
 #
-# NOTE: when updating the list from Transifex, copy these four lines
+# NOTE: move eo (Esperanto) to _ok once Qt can actually create a
+#       locale for it. (Qt 5.12.2 can, see check later on).
+# NOTE: update these lines by running txstats.py, or copy these four lines
 #       and prefix each variable name with "p", so that the automatic
 #       checks for new languages and misspelled ones are done (that is,
 #       copy these four lines to four backup lines, add "p", and then update
 #       the original four lines with the current translations).
-set( _tx_complete ca cs_CZ da de fr he hr hu ko lt pt_BR sq tr_TR
-    zh_TW )
-set( _tx_good ast en_GB es es_MX et fi_FI gl id it_IT ja nl pl
-    pt_PT ro ru sk zh_CN )
-set( _tx_ok ar bg el es_PR eu hi is mr nb sl sr sr@latin sv th
-    uk )
-set( _tx_incomplete be ca@valencia eo fa fr_CH gu kk kn lo mk ne_NP ur uz )
+#
+# Total 61 languages
+set( _tx_complete ca cs_CZ da fi_FI he hr ja lt pt_BR sq )
+set( _tx_good ast de es es_MX et fr gl hi hu id it_IT ko nl pl
+    pt_PT ru sk tr_TR zh_TW )
+set( _tx_ok ar be bg el en_GB es_PR eu is ml mr nb ro sl sr
+    sr@latin sv th uk zh_CN )
+set( _tx_incomplete ca@valencia eo fa fr_CH gu kk kn lo mk ne_NP ur
+    uz )
 
 ### Required versions
 #
@@ -126,6 +131,10 @@ set( BOOSTPYTHON_VERSION 1.55.0 )
 #
 set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 
+# Enable IN_LIST
+if( POLICY CMP0057 )
+    cmake_policy( SET CMP0057 NEW )
+endif()
 # CMake 3.9, 3.10 compatibility
 if( POLICY CMP0071 )
     cmake_policy( SET CMP0071 NEW )
@@ -189,10 +198,11 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
         -Wno-missing-prototypes
         -Wno-documentation-unknown-command
         -Wno-unknown-warning-option
+        -Werror=return-type
     )
         string( APPEND CMAKE_CXX_FLAGS " ${CLANG_WARNINGS}" )
     endforeach()
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='//'" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='//' -DFALLTHRU='[[clang::fallthrough]]'")
 
     # Third-party code where we don't care so much about compiler warnings
     # (because it's uncomfortable to patch) get different flags; use
@@ -210,6 +220,8 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
 
     set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
 
+    # The path prefix is only relevant for CMake 3.16 and later, fixes #1286
+    set( CMAKE_AUTOMOC_PATH_PREFIX OFF )
     set( CALAMARES_AUTOMOC_OPTIONS "-butils/moc-warnings.h" )
     set( CALAMARES_AUTOUIC_OPTIONS --include utils/moc-warnings.h )
 else()
@@ -219,7 +231,7 @@ else()
     set( SUPPRESS_3RDPARTY_WARNINGS "" )
     set( SUPPRESS_BOOST_WARNINGS "" )
 
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='__builtin_unreachable();'" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOTREACHED='__builtin_unreachable();' -DFALLTHRU='/* */'" )
 endif()
 
 # Use mark_thirdparty_code() to reduce warnings from the compiler
@@ -247,6 +259,17 @@ include( CMakeColors )
 ### DEPENDENCIES
 #
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
+if( Qt5_VERSION VERSION_GREATER 5.12.1 )
+    # At least Qt 5.12.2 seems to support Esperanto in QLocale
+    if( "eo" IN_LIST _tx_incomplete )
+        message(STATUS "Esperanto support since Qt 5.12.2, enabling Esperanto locale")
+        list( REMOVE_ITEM _tx_incomplete "eo" )
+        list( APPEND _tx_ok "eo" )
+    endif()
+endif()
+# Optional Qt parts
+find_package( Qt5DBus CONFIG )
+
 find_package( YAMLCPP ${YAMLCPP_VERSION} REQUIRED )
 if( INSTALL_POLKIT )
     find_package( PolkitQt5-1 REQUIRED )
@@ -276,7 +299,14 @@ if( ECM_FOUND )
     include(KDEInstallDirs)
 endif()
 
-find_package( KF5 COMPONENTS CoreAddons Crash )
+find_package( KF5 QUIET COMPONENTS CoreAddons Crash )
+set_package_properties(
+    KF5::CoreAddons PROPERTIES
+    TYPE REQUIRED
+    DESCRIPTION "Classes built on QtCore for About Data"
+    URL "https://api.kde.org/frameworks/kcoreaddons/"
+    PURPOSE "About Calamares"
+)
 if( NOT KF5Crash_FOUND )
     set( WITH_KF5Crash OFF )
 endif()
@@ -294,6 +324,10 @@ set_package_properties(
 )
 
 if ( PYTHONLIBS_FOUND )
+    # Since Boost provides CMake config files (starting with Boost 1.70.
+    # or so) the mess that is the Calamares find code picks the wrong
+    # bits. Suppress those CMake config files, as suggested by @jmrcpn
+    set(Boost_NO_BOOST_CMAKE ON)
     include( BoostPython3 )
     find_boost_python3( ${BOOSTPYTHON_VERSION} ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
     set_package_properties(
@@ -421,6 +455,10 @@ add_feature_info( ExampleDistro ${mksquashfs_FOUND} "Create example-distro targe
 ### CALAMARES PROPER
 #
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
+# In rare cases we have hotfix-releases with a tweak
+if( CALAMARES_VERSION_TWEAK )
+    set( CALAMARES_VERSION "${CALAMARES_VERSION}.${CALAMARES_VERSION_TWEAK}" )
+endif()
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
 if( CALAMARES_VERSION_RC )
     set( CALAMARES_VERSION ${CALAMARES_VERSION}rc${CALAMARES_VERSION_RC} )
@@ -575,10 +613,25 @@ add_custom_target( uninstall
 
 ### CMAKE SUMMARY REPORT
 #
-feature_summary(WHAT ALL)
-
 get_directory_property( SKIPPED_MODULES
     DIRECTORY src/modules
     DEFINITION LIST_SKIPPED_MODULES
 )
 calamares_explain_skipped_modules( ${SKIPPED_MODULES} )
+
+feature_summary(
+    WHAT DISABLED_FEATURES
+    DESCRIPTION "The following features have been disabled:"
+    QUIET_ON_EMPTY
+)
+feature_summary(
+    WHAT OPTIONAL_PACKAGES_NOT_FOUND
+    DESCRIPTION "The following OPTIONAL packages were not found:"
+    QUIET_ON_EMPTY
+)
+feature_summary(
+    WHAT REQUIRED_PACKAGES_NOT_FOUND
+    FATAL_ON_MISSING_REQUIRED_PACKAGES
+    DESCRIPTION "The following REQUIRED packages were not found:"
+    QUIET_ON_EMPTY
+)

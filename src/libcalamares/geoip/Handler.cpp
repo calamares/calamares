@@ -19,17 +19,14 @@
 #include "Handler.h"
 
 #include "GeoIPJSON.h"
-#if defined(QT_XML_LIB)
+#if defined( QT_XML_LIB )
 #include "GeoIPXML.h"
 #endif
 
+#include "network/Manager.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Variant.h"
-
-#include <QEventLoop>
-#include <QNetworkRequest>
-#include <QNetworkReply>
 
 #include <memory>
 
@@ -38,11 +35,15 @@ handlerTypes()
 {
     using Type = CalamaresUtils::GeoIP::Handler::Type;
 
+    // *INDENT-OFF*
+    // clang-format off
     static const NamedEnumTable<Type> names{
-        { QStringLiteral( "none" ), Type::None},
-        { QStringLiteral( "json" ), Type::JSON},
-        { QStringLiteral( "xml" ), Type::XML}
+        { QStringLiteral( "none" ), Type::None },
+        { QStringLiteral( "json" ), Type::JSON },
+        { QStringLiteral( "xml" ), Type::XML }
     };
+    // *INDENT-ON*
+    // clang-format on
 
     return names;
 }
@@ -72,7 +73,7 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
     {
         cWarning() << "GeoIP style *none* does not do anything.";
     }
-#if !defined(QT_XML_LIB)
+#if !defined( QT_XML_LIB )
     else if ( m_type == Type::XML )
     {
         m_type = Type::None;
@@ -81,40 +82,22 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
 #endif
 }
 
-Handler::~Handler()
-{
-}
-
-static QByteArray
-synchronous_get( const QString& urlstring )
-{
-    QUrl url( urlstring );
-    QNetworkAccessManager manager;
-    QEventLoop loop;
-
-    QObject::connect( &manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit );
-
-    QNetworkRequest request( url );
-    QNetworkReply* reply = manager.get( request );
-    loop.exec();
-    reply->deleteLater();
-    return reply->readAll();
-}
+Handler::~Handler() {}
 
 static std::unique_ptr< Interface >
 create_interface( Handler::Type t, const QString& selector )
 {
-    switch( t )
+    switch ( t )
     {
-        case Handler::Type::None:
-            return nullptr;
-        case Handler::Type::JSON:
-            return std::make_unique< GeoIPJSON >( selector );
-        case Handler::Type::XML:
-#if defined(QT_XML_LIB)
-            return std::make_unique< GeoIPXML >( selector );
+    case Handler::Type::None:
+        return nullptr;
+    case Handler::Type::JSON:
+        return std::make_unique< GeoIPJSON >( selector );
+    case Handler::Type::XML:
+#if defined( QT_XML_LIB )
+        return std::make_unique< GeoIPXML >( selector );
 #else
-            return nullptr;
+        return nullptr;
 #endif
     }
     NOTREACHED return nullptr;
@@ -125,9 +108,11 @@ do_query( Handler::Type type, const QString& url, const QString& selector )
 {
     const auto interface = create_interface( type, selector );
     if ( !interface )
+    {
         return RegionZonePair();
+    }
 
-    return interface->processReply( synchronous_get( url ) );
+    return interface->processReply( CalamaresUtils::Network::Manager::instance().synchronousGet( url ) );
 }
 
 static QString
@@ -135,16 +120,20 @@ do_raw_query( Handler::Type type, const QString& url, const QString& selector )
 {
     const auto interface = create_interface( type, selector );
     if ( !interface )
+    {
         return QString();
+    }
 
-    return interface->rawReply( synchronous_get( url ) );
+    return interface->rawReply( CalamaresUtils::Network::Manager::instance().synchronousGet( url ) );
 }
 
 RegionZonePair
 Handler::get() const
 {
     if ( !isValid() )
+    {
         return RegionZonePair();
+    }
     return do_query( m_type, m_url, m_selector );
 }
 
@@ -156,17 +145,16 @@ Handler::query() const
     QString url = m_url;
     QString selector = m_selector;
 
-    return QtConcurrent::run( [=]
-        {
-            return do_query( type, url, selector );
-        } );
+    return QtConcurrent::run( [=] { return do_query( type, url, selector ); } );
 }
 
 QString
 Handler::getRaw() const
 {
     if ( !isValid() )
+    {
         return QString();
+    }
     return do_raw_query( m_type, m_url, m_selector );
 }
 
@@ -178,11 +166,8 @@ Handler::queryRaw() const
     QString url = m_url;
     QString selector = m_selector;
 
-    return QtConcurrent::run( [=]
-        {
-            return do_raw_query( type, url, selector );
-        } );
+    return QtConcurrent::run( [=] { return do_raw_query( type, url, selector ); } );
 }
 
-}
-}  // namespace
+}  // namespace GeoIP
+}  // namespace CalamaresUtils

@@ -49,25 +49,38 @@ class UnpackEntry:
     :param sourcefs:
     :param destination:
     """
-    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total']
+    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile']
 
     def __init__(self, source, sourcefs, destination):
+        """
+        @p source is the source file name (might be an image file, or
+            a directory, too)
+        @p sourcefs is a type indication; "file" is special, as is
+            "squashfs".
+        @p destination is where the files from the source go. This is
+            **already** prefixed by rootMountPoint, so should be a
+            valid absolute path within the host system.
+
+        The members copied and total are filled in by the copying process.
+        """
         self.source = source
         self.sourcefs = sourcefs
         self.destination = destination
+        self.exclude = None
+        self.excludeFile = None
         self.copied = 0
         self.total = 0
+
+    def is_file(self):
+        return self.sourcefs == "file"
 
 
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 
-def list_excludes(destination):
+def global_excludes():
     """
     List excludes for rsync.
-
-    :param destination:
-    :return:
     """
     lst = []
     extra_mounts = globalstorage.value("extraMounts")
@@ -82,16 +95,18 @@ def list_excludes(destination):
 
     return lst
 
-
-def file_copy(source, dest, progress_cb):
+def file_copy(source, entry, progress_cb):
     """
     Extract given image using rsync.
 
-    :param source:
-    :param dest:
-    :param progress_cb:
-    :return:
+    :param source: Source file. This may be the place the entry's
+        image is mounted, or if it's a single file, the entry's source value.
+    :param entry: The UnpackEntry being copied.
+    :param progress_cb: A callback function for progress reporting.
+        Takes a number and a total-number.
     """
+    dest = entry.destination
+
     # Environment used for executing rsync properly
     # Setting locale to C (fix issue with tr_TR locale)
     at_env = os.environ
@@ -100,13 +115,19 @@ def file_copy(source, dest, progress_cb):
     # `source` *must* end with '/' otherwise a directory named after the source
     # will be created in `dest`: ie if `source` is "/foo/bar" and `dest` is
     # "/dest", then files will be copied in "/dest/bar".
-    if not source.endswith("/"):
+    if not source.endswith("/") and not os.path.isfile(source):
         source += "/"
 
+    num_files_total_local = 0
     num_files_copied = 0  # Gets updated through rsync output
 
     args = ['rsync', '-aHAXr']
-    args.extend(list_excludes(dest))
+    args.extend(global_excludes())
+    if entry.excludeFile:
+        args.extend(["--exclude-from=" + entry.excludeFile])
+    if entry.exclude:
+        for f in entry.exclude:
+            args.extend(["--exclude", f])
     args.extend(['--progress', source, dest])
     process = subprocess.Popen(
         args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX
@@ -207,7 +228,7 @@ class UnpackOperation:
                 imgbasename = os.path.splitext(
                     os.path.basename(entry.source))[0]
                 imgmountdir = os.path.join(source_mount_path, imgbasename)
-                os.mkdir(imgmountdir)
+                os.makedirs(imgmountdir, exist_ok=True)
 
                 self.mount_image(entry, imgmountdir)
 
@@ -224,10 +245,15 @@ class UnpackOperation:
                         ["unsquashfs", "-l", entry.source]
                         )
 
-                if entry.sourcefs == "ext4":
+                elif entry.sourcefs == "ext4":
                     fslist = subprocess.check_output(
                         ["find", imgmountdir, "-type", "f"]
                         )
+
+                elif entry.is_file():
+                    # Hasn't been mounted, copy directly; find handles both
+                    # files and directories.
+                    fslist = subprocess.check_output(["find", entry.source, "-type", "f"])
 
                 entry.total = len(fslist.splitlines())
 
@@ -246,11 +272,17 @@ class UnpackOperation:
         """
         Mount given @p entry as loop device on @p imgmountdir.
 
+        A *file* entry (e.g. one with *sourcefs* set to *file*)
+        is not mounted and just ignored.
+
         :param entry: the entry to mount (source is the important property)
         :param imgmountdir: where to mount it
 
         :returns: None, but throws if the mount failed
         """
+        if entry.is_file():
+            return
+
         if os.path.isdir(entry.source):
             r = libcalamares.utils.mount(entry.source, imgmountdir, "", "--bind")
         elif os.path.isfile(entry.source):
@@ -281,12 +313,18 @@ class UnpackOperation:
             self.report_progress()
 
         try:
-            return file_copy(imgmountdir, entry.destination, progress_cb)
+            if entry.is_file():
+                source = entry.source
+            else:
+                source = imgmountdir
+
+            return file_copy(source, entry, progress_cb)
         finally:
-            subprocess.check_call(["umount", "-l", imgmountdir])
+            if not entry.is_file():
+                subprocess.check_call(["umount", "-l", imgmountdir])
 
 
-def get_supported_filesystems():
+def get_supported_filesystems_kernel():
     """
     Reads /proc/filesystems (the list of supported filesystems
     for the current kernel) and returns a list of (names of)
@@ -302,6 +340,14 @@ def get_supported_filesystems():
             return filesystems
 
     return []
+
+
+def get_supported_filesystems():
+    """
+    Returns a list of all the supported filesystems
+    (valid values for the *sourcefs* key in an item.
+    """
+    return ["file"] + get_supported_filesystems_kernel()
 
 
 def run():
@@ -324,8 +370,7 @@ def run():
 
     supported_filesystems = get_supported_filesystems()
 
-    unpack = list()
-
+    # Bail out before we start when there are obvious problems
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
         sourcefs = entry["sourcefs"]
@@ -334,20 +379,35 @@ def run():
             utils.warning("The filesystem for \"{}\" ({}) is not supported".format(source, sourcefs))
             return (_("Bad unsquash configuration"),
                     _("The filesystem for \"{}\" ({}) is not supported").format(source, sourcefs))
-
-        destination = os.path.abspath(root_mount_point + entry["destination"])
-
         if not os.path.exists(source):
             utils.warning("The source filesystem \"{}\" does not exist".format(source))
             return (_("Bad unsquash configuration"),
                     _("The source filesystem \"{}\" does not exist").format(source))
 
-        if not os.path.isdir(destination):
+    unpack = list()
+
+    is_first = True
+    for entry in job.configuration["unpack"]:
+        source = os.path.abspath(entry["source"])
+        sourcefs = entry["sourcefs"]
+        destination = os.path.abspath(root_mount_point + entry["destination"])
+
+        if not os.path.isdir(destination) and sourcefs != "file":
             utils.warning(("The destination \"{}\" in the target system is not a directory").format(destination))
-            return (_("Bad unsquash configuration"),
-                    _("The destination \"{}\" in the target system is not a directory").format(destination))
+            if is_first:
+                return (_("Bad unsquash configuration"),
+                        _("The destination \"{}\" in the target system is not a directory").format(destination))
+            else:
+                utils.debug(".. assuming that the previous targets will create that directory.")
 
         unpack.append(UnpackEntry(source, sourcefs, destination))
+        # Optional settings
+        if entry.get("exclude", None):
+            unpack[-1].exclude = entry["exclude"]
+        if entry.get("excludeFile", None):
+            unpack[-1].excludeFile = entry["excludeFile"]
+
+        is_first = False
 
     unpackop = UnpackOperation(unpack)
 

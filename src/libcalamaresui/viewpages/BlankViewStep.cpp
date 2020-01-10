@@ -26,7 +26,10 @@
 namespace Calamares
 {
 
-BlankViewStep::BlankViewStep( const QString& title, const QString& description, const QString& details, QObject* parent)
+BlankViewStep::BlankViewStep( const QString& title,
+                              const QString& description,
+                              const QString& details,
+                              QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new QWidget() )
 {
@@ -54,14 +57,12 @@ BlankViewStep::BlankViewStep( const QString& title, const QString& description, 
         layout->addWidget( label );
     }
 
-    layout->addStretch( 1 );   // Push the rest to the top
+    layout->addStretch( 1 );  // Push the rest to the top
 
     m_widget->setLayout( layout );
 }
 
-BlankViewStep::~BlankViewStep()
-{
-}
+BlankViewStep::~BlankViewStep() {}
 
 QString
 BlankViewStep::prettyName() const
@@ -115,4 +116,4 @@ BlankViewStep::jobs() const
     return JobList();
 }
 
-}  // namespace
+}  // namespace Calamares

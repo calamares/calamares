@@ -3,9 +3,236 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.10 (unreleased) #
+# 3.2.18 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Bill Auger
+
+## Core ##
+ - Timezone support code has migrated into the core of Calamares. This
+   means that modules now have easier access to timezone information.
+   Translations for timezones have also been enabled, so it is **possible**
+   at least to translate the displayed zones in the *locale* module.
+ - Branding can now specify whether to (try to) display the Calamares window
+   in the middle of the desktop or not. The *windowPlacement* key in
+   `branding.desc` specifies *center* or *free* placement.
+
+## Modules ##
+ - The *license* module has seen a significant change to its looks.
+   Actions are now labeled more clearly, and the URL (or filename)
+   for each license is displayed.
+ - The *locale* module now supports translations for timezone and
+   location names (e.g. "Berlin" is "Berlijn" in Dutch).
+ - *Packagechooser* is a little more careful with displaying
+   default and empty package names. (thanks to Bill Auger)
+
+
+# 3.2.17.1 (2019-12-02) #
+
+This is a hotfix release for a bug in the grubcfg module.
+Reported by Philip Mueller and Erik Dubois.
+
+## Modules ##
+ - The *grubcfg* module had a typo in it that made installations fail.
+
+
+# 3.2.17 (2019-11-28) #
+
+This release contains contributions from (alphabetically by first name):
+ - Bill Auger
+
+## Core ##
+ - A translation "string freeze" is now enforced by the release scripts.
+
+## Modules ##
+ - A new module, *hostinfo*, places information about the host into
+   Global Storage. This can support contextualprocess modules that
+   need that information.
+ - The password-checks in the *users* module are now ordered consistently.
+   A new check *nonempty* can be used to explicitly check for a non-empty
+   password. This was previously hard-coded. If you have no other
+   password-requirements set (e.g. minimum-length) and rely on
+   Calamares to filter out empty passwords, add this check.
+ - The *grubcfg* module has a new configuration setting *keepDistributor*
+   which prevents replacing the `GRUB_DISTRIBUTION` line when writing
+   the new configuration. #1201
+ - *packagechooser* documentation has been updated.
+ - *welcome* module now works better with dark themes.
+ - The *license* module could get into a confused state, now fixed. #1271
+
+
+# 3.2.16 (2019-11-01) #
+
+This release contains contributions from (alphabetically by first name):
+ - Bill Auger
+
+## Core ##
+ - Some obscure build scenarios which would lead to bogus module-is-
+   misconfigured messages on startup have been resolved.
+
+## Modules ##
+ - The explanatory messages on the *users* page have moved to tooltips,
+   and placeholder text has been added to the fields. #1202
+ - The bad-password messages in the *users* page have been improved. #1261
+ - Password-checking in the *users* module has been substantially
+   changed. A new key *allowWeakPasswords* can be used to introduce
+   an additional checkbox to the page, which can then be used to
+   switch off strict password checking. (Thanks to Bill Auger)
+ - The icons used in password warnings on the *users* page have been
+   changed to the colorful status icons (rather than the thin red X).
+
+
+# 3.2.15 (2019-10-11) #
+
+This release contains contributions from (alphabetically by first name):
+ - No other contributors this time around.
+
+## Core ##
+ - No changes to core functionality
+
+## Modules ##
+
+ - *displaymanager* module now treats *sysconfig* as a regular entry in the
+   *displaymanagers* list, and the *sysconfigSetup* key is used as a
+   shorthand to force **only** that entry in the list. #1253
+ - *machineid* module has been re-written in C++ and extended with
+   a new configuration key to generate urandom pool data. #1252
+ - *unpackfs* now supports a special *sourcefs* value of `file`
+   for copying single files (optionally with renaming) or directory
+   trees to the target system.
+ - *unpackfs* now support an *exclude* and *excludeFile* setting for
+   excluding particular files or patters from unpacking. #1229
+
+
+# 3.2.14 (2019-09-30) #
+
+This release contains contributions from (alphabetically by first name):
+ - Andrius Štikonas
+ - Harald Sitter
+
+## Core ##
+ - No changes to core functionality
+
+## Modules ##
+
+ - *locale* module no longer recognizes the legacy GeoIP configuration.
+   This has been deprecated since Calamares 3.2.8 and is now removed.
+ - *packagechooser* module can now be custom-labeled in the overall
+   progress (left-hand column). #1228
+ - *displaymanager* module now recognizes KDE Plasma 5.17.
+ - *displaymanager* module now can handle Wayland sessions and can detect
+   sessions from their .desktop files. #1247 #1248
+ - *unpackfs* now has special handling for *sourcefs* setting "file"
+   (so you can copy single files or directories that are on the source
+   system, directly to the target). #1188 #1181
+
+
+# 3.2.13 (2019-08-30) #
+
+This release contains contributions from (alphabetically by first name):
+ - Arnaud Ferraris
+ - Arnaud Rebillout
+ - Bill Auger
+ - Kevin Kofler
+
+## Core ##
+
+- The Calamares standard coding style -- embodied in `ci/calamaresstyle`
+  has had a few updates and has now been consistently applied across
+  the core codebase (e.g. libcalamares, libcalamaresui, calamares, but
+  not the modules).
+- *KCoreAddons* is now a required dependency. This lets us drop a chunk
+  of code that was copied from KCoreAddons years ago, and use the
+  (maintained!) upstream version instead. It also gives us KMacroExpander
+  everywhere, which will simplify code for handling substitutions
+  in configuration files.
+- *Slideshows* now have a new property *activatedInCalamares* which
+  controls the keyboard shortcuts (and can control timers and other
+  properties of the slideshow, too).
+
+## Modules ##
+
+- The *packagechooser* module can load data from the config-file,
+  from AppData XML files referred by the config-file, and (new) also
+  from AppStream caches by referring to an application's AppStream id. #1212
+- The *partition* module now understands the units *KB*, *MB*, *GB* which
+  are powers-of-ten sizes, alongside the powers-of-two sizes that it already
+  used. (thanks to Arnaud)
+- The *welcome* module now supports a *Donate* button if *showDonateUrl*
+  is set to a non-empty URL. #1197
+- The *welcome* module can have URLs for the various buttons configured
+  directly in the module configuration (rather than in `branding.desc`).
+
+
+# 3.2.12 (2019-08-07) #
+
+This release contains contributions from (alphabetically by first name):
+ - apt-ghetto
+ - Bill Auger
+ - embar
+
+## Core ##
+
+ - Preliminary work to allow jobs to have a *weight* assigned to them
+   has been added. This will allow the progress bar to better reflect
+   progress by the amount of work done rather than purely by the
+   number of jobs. (Thanks to Bill Auger)
+ - Preliminary work has been added to post the installation log to a
+   pastebin for bug reporting. (Thanks to Bill Auger)
+ - Support for translated human-readable strings in Calamares
+   config files has been added. This is used only in the *packagechooser*
+   module (see below) but will expand to those modules that need
+   user-visible strings from the configuration file (existing
+   solutions need either gettext or Qt support).
+ - Esperanto is now available when Qt version 5.12.2 or later is used.
+
+## Modules ##
+
+ - *fstab* A new configuration key *efiMountOptions* has been added, to
+   allow setting filesystem options specifically for the EFI partition.
+   (Thanks to apt-ghetto)
+ - *packagechooser* is a new module for low-density package choices,
+   e.g. for selecting a default desktop environment, or adding some
+   proprietary drivers, or chosing browsers of office suites. It presents
+   **one** collection of items -- at most ten or so, because of the UI --
+   and the user can select zero or more of them. The behavior is
+   configurable, and package information can be set through the Calamares
+   configuration file or by reading AppData files for the packages. #426
+
+
+# 3.2.11 (2019-07-06) #
+
+This release contains contributions from (alphabetically by first name):
+ - No other contributors this time around.
+
+This is a security release with no functional changes (except for
+improved security) relative to 3.2.10. The Calamares team would like
+to acknowledge the help of the following people in reporting and
+understanding the issues (alphabetically by first name):
+ - Kevin Kofler
+ - Seth Arnold
+ - Simon Quigley
+ - Thomas Ward
+Both CVE's have been resolved.
+
+## Core ##
+
+No core changes.
+
+## Modules ##
+
+ - *initramfs* could create an initramfs with insecure permissions.
+   Since the keyfile is included in the initramfs, an attacker could
+   read the file from the initramfs. #1190 CVE-2019-13178
+ - *luksbootkeyfile* created a key file where a window of opportunity
+   existed where the key file could have too-lax file permissions.
+   #1191 CVE-2019-13179
+
+
+# 3.2.10 (2019-06-28) #
+
+This release contains contributions from (alphabetically by first name):
+ - No other contributors this time around.
 
 Distributions are **advised** to check the slideshow they use for the
 installation step; changes in loading and translation mechanisms may
@@ -31,6 +258,11 @@ require changes in the slideshow.
 
 ## Modules ##
 
+ - *initramfs* has been changed from a Python module to a C++ module.
+   Packaging will need to adjust now it installs a .so instead of a .py.
+   The module itself functions as before. It does have a new configuration
+   option, to change the version passed as to the `-k` option of
+   update-initramfs. #1180
  - *partition* Now has its own setting for *requiredStorage*, duplicating
    the same setting in the *welcome* module. This is useful for
    configurations where no *welcome* module is used, but a minimum

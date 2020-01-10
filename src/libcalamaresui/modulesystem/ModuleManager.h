@@ -20,6 +20,8 @@
 #ifndef MODULELOADER_H
 #define MODULELOADER_H
 
+#include "modulesystem/InstanceKey.h"
+
 #include "Requirement.h"
 
 #include <QObject>
@@ -77,8 +79,9 @@ public:
     Module* moduleInstance( const QString& instanceKey );
 
     /**
-     * @brief loadModules initiates the asynchronous module loading operation.
+     * @brief loadModules does all of the module loading operation.
      * When this is done, the signal modulesLoaded is emitted.
+     * It is recommended to call this from a single-shot QTimer.
      */
     void loadModules();
 
@@ -91,7 +94,7 @@ public:
 signals:
     void initDone();
     void modulesLoaded();  /// All of the modules were loaded successfully
-    void modulesFailed( QStringList );   /// .. or not
+    void modulesFailed( QStringList );  /// .. or not
     // Below, see RequirementsChecker documentation
     void requirementsComplete( bool );
     void requirementsResult( RequirementsList );
@@ -103,15 +106,17 @@ private slots:
 private:
     /**
      * Check in a general sense whether the dependencies between
-     * modules are valid. Returns a list of module names that
-     * do **not** have their requirements met.
+     * modules are valid. Returns the number of modules that
+     * have missing dependencies -- this is **not** a problem
+     * unless any of those modules are actually used.
      *
-     * Returns an empty list on success.
+     * Returns 0 on success.
      *
      * Also modifies m_availableDescriptorsByModuleName to remove
-     * all the entries that fail.
+     * all the entries that (so that later, when we try to look
+     * them up, they are not found).
      */
-    QStringList checkDependencies();
+    size_t checkDependencies();
 
     /**
      * Check for this specific module if its required modules have
@@ -119,16 +124,16 @@ private:
      *
      * Returns true if the requirements are met.
      */
-    bool checkDependencies( const Module& );
+    bool checkModuleDependencies( const Module& );
 
     QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
-    QMap< QString, Module* > m_loadedModulesByInstanceKey;
+    QMap< ModuleSystem::InstanceKey, Module* > m_loadedModulesByInstanceKey;
     const QStringList m_paths;
 
     static ModuleManager* s_instance;
 };
 
-}
+}  // namespace Calamares
 
-#endif // MODULELOADER_H
+#endif  // MODULELOADER_H

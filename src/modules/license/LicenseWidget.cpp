@@ -27,17 +27,19 @@
 #include <QFile>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QToolButton>
+#include <QPushButton>
 #include <QVBoxLayout>
 
 static QString
 loadLocalFile( const QUrl& u )
 {
     if ( !u.isLocalFile() )
+    {
         return QString();
+    }
 
     QFile file( u.path() );
-    if ( !file.open(QIODevice::ReadOnly | QIODevice::Text) )
+    if ( !file.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
         cWarning() << "Could not load license file" << u.path();
         return QString();
@@ -50,12 +52,12 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     : QWidget( parent )
     , m_entry( std::move( entry ) )
     , m_label( new QLabel( this ) )
-    , m_viewLicenseLabel( new QLabel( this ) )
-    , m_expandLicenseButton( nullptr )
-    , m_fullText( nullptr )
+    , m_viewLicenseButton( new QPushButton( this ) )
+    , m_licenceTextLabel( new QLabel( this ) )
+    , m_isExpanded( m_entry.expandByDefault() )
 {
     QPalette pal( palette() );
-    pal.setColor( QPalette::Background, palette().background().color().lighter( 108 ) );
+    pal.setColor( QPalette::Background, palette().window().color().lighter( 108 ) );
 
     setObjectName( "licenseItem" );
 
@@ -64,55 +66,48 @@ LicenseWidget::LicenseWidget( LicenseEntry entry, QWidget* parent )
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
     setContentsMargins( 4, 4, 4, 4 );
 
+    QVBoxLayout* vLayout = new QVBoxLayout;
+    QWidget* topPart = new QWidget( this );
+    topPart->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
+    vLayout->addWidget( topPart );
+
     QHBoxLayout* wiLayout = new QHBoxLayout;
+    topPart->setLayout( wiLayout );
 
     m_label->setWordWrap( true );
-    m_label->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Minimum );
+    m_label->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
     wiLayout->addWidget( m_label );
 
-    m_viewLicenseLabel->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
-    m_viewLicenseLabel->setAlignment( Qt::AlignVCenter | Qt::AlignRight );
-    wiLayout->addWidget( m_viewLicenseLabel );
+    wiLayout->addSpacing( 10 );
+    m_viewLicenseButton->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed );
+    wiLayout->addWidget( m_viewLicenseButton );
 
-    m_expandLicenseButton = new QToolButton( this );
-    wiLayout->addWidget( m_expandLicenseButton );
+    m_licenceTextLabel->setStyleSheet( "border-top: 1px solid black; margin-top: 0px; padding-top: 1em;" );
+    m_licenceTextLabel->setObjectName( "licenseItemFullText" );
+
     if ( m_entry.isLocal() )
     {
-        QVBoxLayout* vLayout = new QVBoxLayout;
-
-        m_expandLicenseButton->setArrowType( Qt::UpArrow );
-        connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
-
-        vLayout->addLayout( wiLayout );
-        m_fullText = new QLabel( this );
-        m_fullText->setText( loadLocalFile( m_entry.m_url ) );
-        m_fullText->hide();
-        m_fullText->setStyleSheet( "border-top: 1px solid black; margin-top: 1em; padding-top: 1em;" );
-        m_fullText->setObjectName( "licenseItemFullText" );
-
-        vLayout->addWidget( m_fullText );
-        setLayout( vLayout );
+        m_fullTextContents = loadLocalFile( m_entry.m_url );
+        showLocalLicenseText();
+        connect( m_viewLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::expandClicked );
     }
     else
     {
-        m_expandLicenseButton->setArrowType( Qt::RightArrow );
-        connect( m_expandLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
-
-        // Normally setOpenExternalLinks( true ) would do, but we need the
-        // open code anyway for the toolbutton, let's share it.
-        connect( m_viewLicenseLabel, &QLabel::linkActivated, this, &LicenseWidget::viewClicked );
-
-        setLayout( wiLayout );  // Only the horizontal layout needed
+        m_licenceTextLabel->setText( tr( "URL: %1" ).arg( m_entry.m_url.toDisplayString() ) );
+        connect( m_viewLicenseButton, &QAbstractButton::clicked, this, &LicenseWidget::viewClicked );
     }
+    m_licenceTextLabel->setSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum );
+
+    vLayout->addWidget( m_licenceTextLabel );
+    setLayout( vLayout );
 
     retranslateUi();
 }
 
-LicenseWidget::~LicenseWidget()
-{
-}
+LicenseWidget::~LicenseWidget() {}
 
-void LicenseWidget::retranslateUi()
+void
+LicenseWidget::retranslateUi()
 {
     QString productDescription;
     switch ( m_entry.m_type )
@@ -120,60 +115,72 @@ void LicenseWidget::retranslateUi()
     case LicenseEntry::Type::Driver:
         //: %1 is an untranslatable product name, example: Creative Audigy driver
         productDescription = tr( "<strong>%1 driver</strong><br/>"
-                                    "by %2" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "by %2" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::GpuDriver:
         //: %1 is usually a vendor name, example: Nvidia graphics driver
         productDescription = tr( "<strong>%1 graphics driver</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::BrowserPlugin:
         productDescription = tr( "<strong>%1 browser plugin</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Codec:
         productDescription = tr( "<strong>%1 codec</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Package:
         productDescription = tr( "<strong>%1 package</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
         break;
     case LicenseEntry::Type::Software:
         productDescription = tr( "<strong>%1</strong><br/>"
-                                    "<font color=\"Grey\">by %2</font>" )
-                                .arg( m_entry.m_prettyName )
-                                .arg( m_entry.m_prettyVendor );
+                                 "<font color=\"Grey\">by %2</font>" )
+                                 .arg( m_entry.m_prettyName )
+                                 .arg( m_entry.m_prettyVendor );
     }
     m_label->setText( productDescription );
     updateExpandToolTip();
 }
 
 void
-LicenseWidget::expandClicked()
+LicenseWidget::showLocalLicenseText()
 {
-    if ( m_expandLicenseButton->arrowType() == Qt::DownArrow )
+    if ( m_isExpanded )
     {
-        m_expandLicenseButton->setArrowType( Qt::UpArrow );
+        m_licenceTextLabel->setText( m_fullTextContents );
     }
     else
     {
-        m_expandLicenseButton->setArrowType( Qt::DownArrow );
+        QString fileName = m_entry.m_url.toDisplayString();
+        if ( fileName.startsWith( "file:" ) )
+        {
+            fileName = fileName.remove( 0, 5 );
+        }
+        m_licenceTextLabel->setText( tr( "File: %1" ).arg( fileName ) );
     }
+}
 
+void
+LicenseWidget::expandClicked()
+{
+    m_isExpanded = !m_isExpanded;
     // Show/hide based on the new arrow direction.
-    if ( m_fullText )
-        m_fullText->setHidden( m_expandLicenseButton->arrowType() == Qt::UpArrow );
+    if ( !m_fullTextContents.isEmpty() )
+    {
+        showLocalLicenseText();
+    }
 
     updateExpandToolTip();
 }
@@ -184,23 +191,11 @@ LicenseWidget::updateExpandToolTip()
 {
     if ( m_entry.isLocal() )
     {
-        const bool isNowCollapsed = m_expandLicenseButton->arrowType() == Qt::UpArrow;
-
-        m_expandLicenseButton->setToolTip(
-            isNowCollapsed
-            ? tr( "Shows the complete license text" )
-            : tr( "Hide license text" )
-            ) ;
-        m_viewLicenseLabel->setText(
-            isNowCollapsed
-            ? tr( "Show license agreement" )
-            : tr( "Hide license agreement" ) );
+        m_viewLicenseButton->setText( m_isExpanded ? tr( "Hide license text" ) : tr( "Show the license text" ) );
     }
     else
     {
-        m_expandLicenseButton->setToolTip( tr( "Opens the license agreement in a browser window." ) );
-        m_viewLicenseLabel->setText( tr( "<a href=\"%1\">View license agreement</a>" )
-                                .arg( m_entry.m_url.toString() ) );
+        m_viewLicenseButton->setText( tr( "Open license agreement in browser." ) );
     }
 }
 

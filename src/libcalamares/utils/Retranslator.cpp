@@ -25,92 +25,168 @@
 #include <QEvent>
 #include <QTranslator>
 
-
-namespace CalamaresUtils {
-static QTranslator* s_brandingTranslator = nullptr;
-static QTranslator* s_translator = nullptr;
-static QString s_translatorLocaleName;
-
-void
-installTranslator( const QLocale& locale,
-                   const QString& brandingTranslationsPrefix,
-                   QObject* parent )
+/** @brief Helper class for loading translations
+ *
+ * This is used by the loadSingletonTranslator() function to hand off
+ * work to translation-type specific code.
+ */
+struct TranslationLoader
 {
-    QString localeName = locale.name();
-    localeName.replace( "-", "_" );
-
-    if ( localeName == "C" )
-        localeName = "en";
-
-    // Special case of sr@latin
-    //
-    // See top-level CMakeLists.txt about special cases for translation loading.
-    if ( locale.language() == QLocale::Language::Serbian && locale.script() == QLocale::Script::LatinScript )
-        localeName = QStringLiteral( "sr@latin" );
-
-    cDebug() << "Looking for translations for" << localeName;
-
-    QTranslator* translator = nullptr;
-
-    // Branding translations
-    if ( !brandingTranslationsPrefix.isEmpty() )
+    static QString mungeLocaleName( const QLocale& locale )
     {
-        QString brandingTranslationsDirPath( brandingTranslationsPrefix );
-        brandingTranslationsDirPath.truncate( brandingTranslationsPrefix.lastIndexOf(
-                                                  QDir::separator() ) );
-        QDir brandingTranslationsDir( brandingTranslationsDirPath );
-        if ( brandingTranslationsDir.exists() )
+        QString localeName = locale.name();
+        localeName.replace( "-", "_" );
+
+        if ( localeName == "C" )
         {
-            QString filenameBase( brandingTranslationsPrefix );
-            filenameBase.remove( 0, brandingTranslationsPrefix.lastIndexOf(
-                                        QDir::separator() ) + 1 );
-            translator = new QTranslator( parent );
-            if ( translator->load( locale,
-                                   filenameBase,
-                                   "_",
-                                   brandingTranslationsDir.absolutePath() ) )
-            {
-                cDebug() << Logger::SubEntry << "Branding using locale:" << localeName;
-            }
-            else
-            {
-                cDebug() << Logger::SubEntry << "Branding using default, system locale not found:" << localeName;
-                translator->load( brandingTranslationsPrefix + "en" );
-            }
-
-            if ( s_brandingTranslator )
-            {
-                QCoreApplication::removeTranslator( s_brandingTranslator );
-                delete s_brandingTranslator;
-            }
-
-            QCoreApplication::installTranslator( translator );
-            s_brandingTranslator = translator;
+            localeName = "en";
         }
+
+        // Special case of sr@latin
+        //
+        // See top-level CMakeLists.txt about special cases for translation loading.
+        if ( locale.language() == QLocale::Language::Serbian && locale.script() == QLocale::Script::LatinScript )
+        {
+            localeName = QStringLiteral( "sr@latin" );
+        }
+        return localeName;
     }
 
-    // Calamares translations
-    translator = new QTranslator( parent );
-    if ( translator->load( QString( ":/lang/calamares_" ) + localeName ) )
+    TranslationLoader( const QLocale& locale )
+        : m_locale( locale )
+        , m_localeName( mungeLocaleName( locale ) )
     {
-        cDebug() << Logger::SubEntry << "Calamares using locale:" << localeName;
+    }
+
+    virtual ~TranslationLoader();
+    /// @brief Loads @p translator with the specific translations of this type
+    virtual bool tryLoad( QTranslator* translator ) = 0;
+
+    const QLocale& m_locale;
+    QString m_localeName;
+};
+
+/// @brief Loads translations for branding
+struct BrandingLoader : public TranslationLoader
+{
+    BrandingLoader( const QLocale& locale, const QString& prefix )
+        : TranslationLoader( locale )
+        , m_prefix( prefix )
+    {
+    }
+
+    bool tryLoad( QTranslator* translator ) override;
+
+    QString m_prefix;
+};
+
+/// @brief Loads regular Calamares translations (program text)
+struct CalamaresLoader : public TranslationLoader
+{
+    using TranslationLoader::TranslationLoader;
+    bool tryLoad( QTranslator* translator ) override;
+};
+
+/// @brief Loads timezone name translations
+struct TZLoader : public TranslationLoader
+{
+    using TranslationLoader::TranslationLoader;
+    bool tryLoad( QTranslator* translator ) override;
+};
+
+TranslationLoader::~TranslationLoader() {}
+
+bool
+BrandingLoader::tryLoad( QTranslator* translator )
+{
+    if ( m_prefix.isEmpty() )
+    {
+        return false;
+    }
+    QString brandingTranslationsDirPath( m_prefix );
+    brandingTranslationsDirPath.truncate( m_prefix.lastIndexOf( QDir::separator() ) );
+    QDir brandingTranslationsDir( brandingTranslationsDirPath );
+    if ( brandingTranslationsDir.exists() )
+    {
+        QString filenameBase( m_prefix );
+        filenameBase.remove( 0, m_prefix.lastIndexOf( QDir::separator() ) + 1 );
+        if ( translator->load( m_locale, filenameBase, "_", brandingTranslationsDir.absolutePath() ) )
+        {
+            cDebug() << Logger::SubEntry << "Branding using locale:" << m_localeName;
+            return true;
+        }
+        else
+        {
+            cDebug() << Logger::SubEntry << "Branding using default, system locale not found:" << m_localeName;
+            // TODO: this loads something completely different
+            return translator->load( m_prefix + "en" );
+        }
+    }
+    return false;
+}
+
+bool
+CalamaresLoader::tryLoad( QTranslator* translator )
+{
+    if ( translator->load( QString( ":/lang/calamares_" ) + m_localeName ) )
+    {
+        cDebug() << Logger::SubEntry << "Calamares using locale:" << m_localeName;
+        return true;
     }
     else
     {
-        cDebug() << Logger::SubEntry << "Calamares using default, system locale not found:" << localeName;
-        translator->load( QString( ":/lang/calamares_en" ) );
+        cDebug() << Logger::SubEntry << "Calamares using default, system locale not found:" << m_localeName;
+        return translator->load( QString( ":/lang/calamares_en" ) );
     }
+}
 
-    if ( s_translator )
+bool
+TZLoader::tryLoad( QTranslator* translator )
+{
+    if ( translator->load( QString( ":/lang/tz_" ) + m_localeName ) )
     {
-        QCoreApplication::removeTranslator( s_translator );
-        delete s_translator;
+        cDebug() << Logger::SubEntry << "Calamares Timezones using locale:" << m_localeName;
+        return true;
+    }
+    else
+    {
+        cDebug() << Logger::SubEntry << "Calamares Timezones using default, system locale not found:" << m_localeName;
+        return translator->load( QString( ":/lang/tz_en" ) );
+    }
+}
+
+static void
+loadSingletonTranslator( TranslationLoader&& loader, QTranslator*& translator_p )
+{
+    QTranslator* translator = new QTranslator();
+    loader.tryLoad( translator );
+
+    if ( translator_p )
+    {
+        QCoreApplication::removeTranslator( translator_p );
+        delete translator_p;
     }
 
     QCoreApplication::installTranslator( translator );
-    s_translator = translator;
+    translator_p = translator;
+}
 
-    s_translatorLocaleName = localeName;
+namespace CalamaresUtils
+{
+static QTranslator* s_brandingTranslator = nullptr;
+static QTranslator* s_translator = nullptr;
+static QTranslator* s_tztranslator = nullptr;
+static QString s_translatorLocaleName;
+
+void
+installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix, QObject* )
+{
+    loadSingletonTranslator( BrandingLoader( locale, brandingTranslationsPrefix ), s_brandingTranslator );
+    loadSingletonTranslator( TZLoader( locale ), s_tztranslator );
+
+    CalamaresLoader l( locale );  // because we want the extracted localeName
+    loadSingletonTranslator( std::move( l ), s_translator );
+    s_translatorLocaleName = l.m_localeName;
 }
 
 
@@ -120,22 +196,26 @@ translatorLocaleName()
     return s_translatorLocaleName;
 }
 
-void
-Retranslator::attachRetranslator( QObject* parent,
-                                  std::function< void ( void ) > retranslateFunc )
+Retranslator*
+Retranslator::retranslatorFor( QObject* parent )
 {
     Retranslator* r = nullptr;
     for ( QObject* child : parent->children() )
     {
         r = qobject_cast< Retranslator* >( child );
         if ( r )
-            break;
+        {
+            return r;
+        }
     }
 
-    if ( !r )
-        r = new Retranslator( parent );
+    return new Retranslator( parent );
+}
 
-    r->m_retranslateFuncList.append( retranslateFunc );
+void
+Retranslator::attachRetranslator( QObject* parent, std::function< void( void ) > retranslateFunc )
+{
+    retranslatorFor( parent )->m_retranslateFuncList.append( retranslateFunc );
     retranslateFunc();
 }
 
@@ -155,7 +235,10 @@ Retranslator::eventFilter( QObject* obj, QEvent* e )
         if ( e->type() == QEvent::LanguageChange )
         {
             foreach ( std::function< void() > func, m_retranslateFuncList )
+            {
                 func();
+            }
+            emit languageChange();
         }
     }
     // pass the event on to the base
@@ -163,4 +246,4 @@ Retranslator::eventFilter( QObject* obj, QEvent* e )
 }
 
 
-} // namespace CalamaresUtils
+}  // namespace CalamaresUtils

@@ -21,6 +21,7 @@
 #include "JobQueue.h"
 
 #include "utils/Logger.h"
+#include "utils/Units.h"
 #include "utils/Yaml.h"
 
 #include <QFile>
@@ -37,7 +38,10 @@
 namespace bp = boost::python;
 #endif
 
-namespace Calamares {
+using CalamaresUtils::operator""_MiB;
+
+namespace Calamares
+{
 
 GlobalStorage::GlobalStorage()
     : QObject( nullptr )
@@ -99,17 +103,49 @@ GlobalStorage::debugDump() const
 }
 
 bool
-GlobalStorage::save(const QString& filename)
+GlobalStorage::save( const QString& filename )
 {
     QFile f( filename );
     if ( !f.open( QFile::WriteOnly ) )
+    {
         return false;
+    }
 
-    f.write( QJsonDocument::fromVariant( m ).toJson() ) ;
+    f.write( QJsonDocument::fromVariant( m ).toJson() );
     f.close();
     return true;
 }
 
+bool
+GlobalStorage::load( const QString& filename )
+{
+    QFile f( filename );
+    if ( !f.open( QFile::ReadOnly ) )
+    {
+        return false;
+    }
+
+    QJsonParseError e;
+    QJsonDocument d = QJsonDocument::fromJson( f.read( 1_MiB ), &e );
+    if ( d.isNull() )
+    {
+        cWarning() << filename << e.errorString();
+    }
+    else if ( !d.isObject() )
+    {
+        cWarning() << filename << "Not suitable JSON.";
+    }
+    else
+    {
+        auto map = d.toVariant().toMap();
+        for ( auto i = map.constBegin(); i != map.constEnd(); ++i )
+        {
+            insert( i.key(), *i );
+        }
+        return true;
+    }
+    return false;
+}
 
 bool
 GlobalStorage::saveYaml( const QString& filename )
@@ -123,12 +159,14 @@ GlobalStorage::loadYaml( const QString& filename )
     bool ok = false;
     auto gs = CalamaresUtils::loadYaml( filename, &ok );
     if ( ok )
+    {
         m = gs;
+    }
     return ok;
 }
 
 
-} // namespace Calamares
+}  // namespace Calamares
 
 #ifdef WITH_PYTHON
 
@@ -145,7 +183,7 @@ Calamares::GlobalStorage* GlobalStoragePythonWrapper::s_gs_instance = nullptr;
 GlobalStoragePythonWrapper::GlobalStoragePythonWrapper( Calamares::GlobalStorage* gs )
     : m_gs( gs ? gs : s_gs_instance )
 {
-    if (!m_gs)
+    if ( !m_gs )
     {
         s_gs_instance = new Calamares::GlobalStorage;
         m_gs = s_gs_instance;
@@ -167,11 +205,9 @@ GlobalStoragePythonWrapper::count() const
 
 
 void
-GlobalStoragePythonWrapper::insert( const std::string& key,
-                       const bp::object& value )
+GlobalStoragePythonWrapper::insert( const std::string& key, const bp::object& value )
 {
-    m_gs->insert( QString::fromStdString( key ),
-                CalamaresPython::variantFromPyObject( value ) );
+    m_gs->insert( QString::fromStdString( key ), CalamaresPython::variantFromPyObject( value ) );
 }
 
 bp::list
@@ -180,7 +216,9 @@ GlobalStoragePythonWrapper::keys() const
     bp::list pyList;
     const auto keys = m_gs->keys();
     for ( const QString& key : keys )
+    {
         pyList.append( key.toStdString() );
+    }
     return pyList;
 }
 
@@ -198,6 +236,6 @@ GlobalStoragePythonWrapper::value( const std::string& key ) const
     return CalamaresPython::variantToPyObject( m_gs->value( QString::fromStdString( key ) ) );
 }
 
-} // namespace CalamaresPython
+}  // namespace CalamaresPython
 
-#endif // WITH_PYTHON
+#endif  // WITH_PYTHON

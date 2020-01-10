@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 #
 # Uses the Transifex API to get a list of enabled languages,
 # and outputs CMake settings for inclusion into CMakeLists.txt.
@@ -56,6 +56,11 @@ def get_tx_stats(token):
         return 1
 
     suppressed_languages = ( "es_ES", )  # In Transifex, but not used
+    # Some languages go into the "incomplete" list by definition,
+    # regardless of their completion status: this can have various reasons.
+    incomplete_languages = (
+        "eo",   # Not supported by QLocale
+        )
 
     all_langs = []
 
@@ -66,6 +71,8 @@ def get_tx_stats(token):
         if lang_name in suppressed_languages:
             continue
         stats = languages[lang_name]["translated"]["percentage"]
+        if lang_name in incomplete_languages:
+            stats = 0.0
         all_langs.append((stats, lang_name))
 
     output_langs(all_langs, "complete", lambda s : s == 1.0)

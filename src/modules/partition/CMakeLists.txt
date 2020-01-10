@@ -5,6 +5,8 @@
 option( DEBUG_PARTITION_UNSAFE "Allow unsafe partitioning choices." OFF )
 option( DEBUG_PARTITION_LAME   "Unsafe partitioning will error out on exec." ON )
 
+include_directories( ${CMAKE_SOURCE_DIR} )  # For 3rdparty
+
 set( _partition_defs )
 if( DEBUG_PARTITION_UNSAFE )
     if( DEBUG_PARTITION_LAME )
@@ -20,15 +22,16 @@ set_package_properties(
     KPMcore PROPERTIES
     PURPOSE "For partition module"
 )
+find_package( KF5Config CONFIG )
+find_package( KF5I18n CONFIG )
+find_package( KF5WidgetsAddons CONFIG )
 
-if ( KPMcore_FOUND )
-    find_package( Qt5 REQUIRED DBus )
-    find_package( KF5 REQUIRED Config CoreAddons I18n WidgetsAddons )
-
-    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0" )
-        list( APPEND _partition_defs WITH_KPMCORE4API ) # kpmcore 4 with new API
-    elseif( KPMcore_VERSION VERSION_GREATER "3.3.70" )
-        message( FATAL_ERROR "KPMCore beta versions ${KPMcore_VERSION} are not supported" )
+if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND )
+    if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
+        list( APPEND _partition_defs WITH_KPMCORE331API) # kpmcore > 3.3.0 with deprecations
+    endif()
+    if ( KPMcore_VERSION VERSION_GREATER "3.90")
+        list( APPEND _partition_defs WITH_KPMCORE4API) # kpmcore 4 with new API
     endif()
 
     include_directories( ${KPMCORE_INCLUDE_DIR} )
@@ -102,5 +105,9 @@ if ( KPMcore_FOUND )
         SHARED_LIB
     )
 else()
-    calamares_skip_module( "partition (missing suitable KPMcore)" )
+    if ( NOT KPMcore_FOUND )
+        calamares_skip_module( "partition (missing suitable KPMcore)" )
+    else()
+        calamares_skip_module( "partition (missing dependencies for KPMcore)" )
+    endif()
 endif()

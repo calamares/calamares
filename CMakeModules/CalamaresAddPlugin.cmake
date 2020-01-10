@@ -21,8 +21,8 @@
 # Convenience function for creating a C++ (qtplugin) module for Calamares.
 # This function provides cmake-time feedback about the plugin, adds
 # targets for compilation and boilerplate information, and creates
-# a module.desc with standard values if none is provided (which only
-# happens for very unusual plugins).
+# a module.desc with standard values (if the module.desc file exists,
+# that one is used instead, which happens only for unusual plugins).
 #
 # Usage:
 #
@@ -34,16 +34,35 @@
 #   UI ui-file...
 #   LINK_LIBRARIES lib...
 #   LINK_PRIVATE_LIBRARIES lib...
-#   COMPILE_DEFINITIONS def...
-#   RESOURCES resource-file
+#   [COMPILE_DEFINITIONS def...]
+#   [RESOURCES resource-file]
+#   [REQUIRES module-name...]
 #   [NO_INSTALL]
 #   [SHARED_LIB]
 #   [EMERGENCY]
 # )
 #
-# The COMPILE_DEFINITIONS are set on the resulting module with a suitable
-# flag (i.e. `-D`) so only state the name (optionally, also the value)
-# without a `-D` prefixed to it.
+# Function parameters:
+#  - COMPILE_DEFINITIONS
+#       Definitions are set on the resulting module with a suitable
+#       flag (i.e. `-D`) so only state the name (optionally, also the value)
+#       without a `-D` prefixed to it.
+#  - RESOURCES
+#       One (single!) filename for the RCC file for the plugin.
+#  - REQUIRES
+#       One or more names of modules which are added to the *requiredModules*
+#       key in the descriptor. See *Module Requirements* in the module
+#       documentation.
+#  - NO_INSTALL
+#       If this is set, the module is not installed by default; use this to
+#       build testing modules or unit-testing modules.
+#  - SHARED_LIB
+#       In unusual circumstances, this function is used to add a library
+#       rather than a normal Calamares module / plugin.
+#  - EMERGENCY
+#       If this is set, the module is marked as an *emergency* module in the
+#       descriptor. See *Emergency Modules* in the module documentation.
+#
 
 include( CMakeParseArguments )
 include( CalamaresAddLibrary  )
@@ -54,7 +73,7 @@ function( calamares_add_plugin )
     set( NAME ${ARGV0} )
     set( options NO_INSTALL SHARED_LIB EMERGENCY )
     set( oneValueArgs NAME TYPE EXPORT_MACRO RESOURCES )
-    set( multiValueArgs SOURCES UI LINK_LIBRARIES LINK_PRIVATE_LIBRARIES COMPILE_DEFINITIONS )
+    set( multiValueArgs SOURCES UI LINK_LIBRARIES LINK_PRIVATE_LIBRARIES COMPILE_DEFINITIONS REQUIRES )
     cmake_parse_arguments( PLUGIN "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
     set( PLUGIN_NAME ${NAME} )
     set( PLUGIN_DESTINATION ${CMAKE_INSTALL_LIBDIR}/calamares/modules/${PLUGIN_NAME} )
@@ -142,6 +161,12 @@ function( calamares_add_plugin )
         set( _type ${PLUGIN_TYPE} )
         file( WRITE  ${_file} "# AUTO-GENERATED metadata file\n# Syntax is YAML 1.2\n---\n" )
         file( APPEND ${_file} "type: \"${_type}\"\nname: \"${PLUGIN_NAME}\"\ninterface: \"qtplugin\"\nload: \"lib${target}.so\"\n" )
+        if ( PLUGIN_REQUIRES )
+            file( APPEND ${_file} "requiredModules:\n" )
+            foreach( _r ${PLUGIN_REQUIRES} )
+                file( APPEND ${_file} " - ${_r}\n" )
+            endforeach()
+        endif()
         if ( PLUGIN_EMERGENCY )
             file( APPEND ${_file} "emergency: true\n" )
         endif()

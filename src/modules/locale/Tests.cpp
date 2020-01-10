@@ -25,19 +25,17 @@
 QTEST_GUILESS_MAIN( LocaleTests )
 
 
-LocaleTests::LocaleTests()
+LocaleTests::LocaleTests() {}
+
+LocaleTests::~LocaleTests() {}
+
+void
+LocaleTests::initTestCase()
 {
 }
 
-LocaleTests::~LocaleTests()
-{
-}
-
-void LocaleTests::initTestCase()
-{
-}
-
-void LocaleTests::testEmptyLocaleConfiguration()
+void
+LocaleTests::testEmptyLocaleConfiguration()
 {
     LocaleConfiguration lc;
 
@@ -45,7 +43,8 @@ void LocaleTests::testEmptyLocaleConfiguration()
     QCOMPARE( lc.toBcp47(), QString() );
 }
 
-void LocaleTests::testDefaultLocaleConfiguration()
+void
+LocaleTests::testDefaultLocaleConfiguration()
 {
     LocaleConfiguration lc( "en_US.UTF-8" );
     QVERIFY( !lc.isEmpty() );
@@ -58,7 +57,8 @@ void LocaleTests::testDefaultLocaleConfiguration()
     QCOMPARE( lc2.toBcp47(), "de" );
 }
 
-void LocaleTests::testSplitLocaleConfiguration()
+void
+LocaleTests::testSplitLocaleConfiguration()
 {
     LocaleConfiguration lc( "en_US.UTF-8", "de_DE.UTF-8" );
     QVERIFY( !lc.isEmpty() );
@@ -76,5 +76,4 @@ void LocaleTests::testSplitLocaleConfiguration()
     QVERIFY( !lc3.isEmpty() );
     QCOMPARE( lc3.toBcp47(), "da" );
     QCOMPARE( lc3.lc_numeric, "de_DE.UTF-8" );
-
 }

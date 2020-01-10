@@ -22,11 +22,11 @@
 #include "CalamaresWindow.h"
 
 #include "Branding.h"
+#include "DebugWindow.h"
 #include "Settings.h"
 #include "ViewManager.h"
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
-#include "utils/DebugWindow.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
@@ -48,11 +48,11 @@ windowDimensionToPixels( const Calamares::Branding::WindowDimension& u )
     }
     if ( u.unit() == Calamares::Branding::WindowDimensionUnit::Pixies )
     {
-        return u.value();
+        return static_cast< int >( u.value() );
     }
     if ( u.unit() == Calamares::Branding::WindowDimensionUnit::Fonties )
     {
-        return u.value() * CalamaresUtils::defaultFontHeight();
+        return static_cast< int >( u.value() * CalamaresUtils::defaultFontHeight() );
     }
     return 0;
 }

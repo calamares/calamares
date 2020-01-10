@@ -48,6 +48,6 @@ private:
     job_ptr m_job;
 };
 
-} // namespace Calamares
+}  // namespace Calamares
 
-#endif // CALAMARES_PYTHONJOBMODULE_H
+#endif  // CALAMARES_PYTHONJOBMODULE_H

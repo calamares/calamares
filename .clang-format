@@ -1,33 +1,32 @@
-﻿---
+---
 BasedOnStyle: WebKit
 
 AlignAfterOpenBracket: Align
-AllowAllParametersOfDeclarationOnNextLine: 'false'
+AlignEscapedNewlines: DontAlign
+AllowAllParametersOfDeclarationOnNextLine: "false"
 AllowShortFunctionsOnASingleLine: Inline
-AllowShortIfStatementsOnASingleLine: 'false'
-AllowShortLoopsOnASingleLine: 'false'
+AllowShortIfStatementsOnASingleLine: "false"
+AllowShortLoopsOnASingleLine: "false"
 AlwaysBreakAfterReturnType: TopLevelDefinitions
 AlwaysBreakTemplateDeclarations: Yes
-BinPackArguments: 'false'
-BinPackParameters: 'false'
+BinPackArguments: "false"
+BinPackParameters: "false"
 BreakBeforeBraces: Allman
-BreakBeforeTernaryOperators: 'true'
+BreakBeforeTernaryOperators: "true"
 BreakConstructorInitializers: BeforeComma
 ColumnLimit: 120
-Cpp11BracedListStyle: 'false'
-FixNamespaceComments: 'true'
+Cpp11BracedListStyle: "false"
+FixNamespaceComments: "true"
 IncludeBlocks: Preserve
-IndentWidth: '4'
-MaxEmptyLinesToKeep: '2'
+IndentWidth: "4"
+MaxEmptyLinesToKeep: "2"
 NamespaceIndentation: None
 PointerAlignment: Left
-ReflowComments: 'false'
-SortIncludes: 'true'
-SpaceAfterCStyleCast: 'false'
-SpacesBeforeTrailingComments: '2'
-SpacesInAngles: 'true'
-SpacesInParentheses: 'true'
-SpacesInSquareBrackets: 'true'
+ReflowComments: "false"
+SortIncludes: "true"
+SpaceAfterCStyleCast: "false"
+SpacesBeforeTrailingComments: "2"
+SpacesInAngles: "true"
+SpacesInParentheses: "true"
+SpacesInSquareBrackets: "true"
 Standard: Cpp11
-
-...

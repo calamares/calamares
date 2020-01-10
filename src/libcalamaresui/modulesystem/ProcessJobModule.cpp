@@ -44,12 +44,11 @@ void
 ProcessJobModule::loadSelf()
 {
     if ( m_loaded )
+    {
         return;
+    }
 
-    m_job = job_ptr( new ProcessJob( m_command,
-                                     m_workingPath,
-                                     m_runInChroot,
-                                     m_secondsTimeout ) );
+    m_job = job_ptr( new ProcessJob( m_command, m_workingPath, m_runInChroot, m_secondsTimeout ) );
     m_loaded = true;
 }
 
@@ -69,29 +68,38 @@ ProcessJobModule::initFrom( const QVariantMap& moduleDescriptor )
     m_workingPath = directory.absolutePath();
 
     if ( !moduleDescriptor.value( "command" ).toString().isEmpty() )
+    {
         m_command = moduleDescriptor.value( "command" ).toString();
+    }
 
-    m_secondsTimeout = 30;
-    if ( moduleDescriptor.contains( "timeout" ) &&
-            !moduleDescriptor.value( "timeout" ).isNull() )
-        m_secondsTimeout = moduleDescriptor.value( "timeout" ).toInt();
+    m_secondsTimeout = std::chrono::seconds( 30 );
+    if ( moduleDescriptor.contains( "timeout" ) && !moduleDescriptor.value( "timeout" ).isNull() )
+    {
+        int sec = moduleDescriptor.value( "timeout" ).toInt();
+        if ( sec < 0 )
+        {
+            sec = 0;
+        }
+        m_secondsTimeout = std::chrono::seconds( sec );
+    }
 
     m_runInChroot = false;
-    if ( moduleDescriptor.contains( "chroot" )&&
-            !moduleDescriptor.value( "chroot" ).isNull() )
+    if ( moduleDescriptor.contains( "chroot" ) && !moduleDescriptor.value( "chroot" ).isNull() )
+    {
         m_runInChroot = moduleDescriptor.value( "chroot" ).toBool();
+    }
 }
 
 
 ProcessJobModule::ProcessJobModule()
     : Module()
-    , m_secondsTimeout( 30 )
+    , m_secondsTimeout( std::chrono::seconds( 30 ) )
     , m_runInChroot( false )
-{}
+{
+}
 
 
-ProcessJobModule::~ProcessJobModule()
-{}
+ProcessJobModule::~ProcessJobModule() {}
 
 
-} // namespace Calamares
+}  // namespace Calamares

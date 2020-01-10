@@ -18,8 +18,8 @@
  */
 
 #include "PythonQtViewStep.h"
-#include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
 #include "utils/PythonQtUtils.h"
 #include "utils/Retranslator.h"
 #include "viewpages/PythonQtJob.h"
@@ -33,8 +33,7 @@
 namespace Calamares
 {
 
-PythonQtViewStep::PythonQtViewStep( PythonQtObjectPtr cxt,
-                                    QObject* parent )
+PythonQtViewStep::PythonQtViewStep( PythonQtObjectPtr cxt, QObject* parent )
     : ViewStep( parent )
     , m_widget( new QWidget() )
     , m_cxt( cxt )
@@ -48,32 +47,26 @@ PythonQtViewStep::PythonQtViewStep( PythonQtObjectPtr cxt,
 
     // Instantiate an object of the class marked with @calamares_module and
     // store it as _calamares_module.
-    pq->evalScript( m_cxt, QString( "_calamares_module = %1()" )
-                                            .arg( className ) );
+    pq->evalScript( m_cxt, QString( "_calamares_module = %1()" ).arg( className ) );
     m_obj = pq->lookupObject( m_cxt, "_calamares_module" );
 
-    Q_ASSERT( !m_obj.isNull() );    // no entry point, no party
+    Q_ASSERT( !m_obj.isNull() );  // no entry point, no party
 
     // Prepare the base widget for the module's pages
     m_widget->setLayout( new QVBoxLayout );
     CalamaresUtils::unmarginLayout( m_widget->layout() );
     m_cxt.addObject( "_calamares_module_basewidget", m_widget );
 
-    CALAMARES_RETRANSLATE_WIDGET( m_widget,
-        CalamaresUtils::lookupAndCall( m_obj,
-                                       { "retranslate" },
-                                       { CalamaresUtils::translatorLocaleName() } );
-    )
+    CALAMARES_RETRANSLATE_WIDGET(
+        m_widget,
+        CalamaresUtils::lookupAndCall( m_obj, { "retranslate" }, { CalamaresUtils::translatorLocaleName() } ); )
 }
 
 
 QString
 PythonQtViewStep::prettyName() const
 {
-    return CalamaresUtils::lookupAndCall( m_obj,
-                                          { "prettyName",
-                                            "prettyname",
-                                            "pretty_name" } ).toString();
+    return CalamaresUtils::lookupAndCall( m_obj, { "prettyName", "prettyname", "pretty_name" } ).toString();
 }
 
 
@@ -82,12 +75,14 @@ PythonQtViewStep::widget()
 {
     if ( m_widget->layout()->count() > 1 )
         cWarning() << "PythonQtViewStep wrapper widget has more than 1 child. "
-                    "This should never happen.";
+                      "This should never happen.";
 
-    bool nothingChanged = m_cxt.evalScript(
-        "_calamares_module.widget() in _calamares_module_basewidget.children()" ).toBool();
+    bool nothingChanged
+        = m_cxt.evalScript( "_calamares_module.widget() in _calamares_module_basewidget.children()" ).toBool();
     if ( nothingChanged )
+    {
         return m_widget;
+    }
 
     // Else, we either don't have a child widget, or we have a child widget that
     // was previously set and doesn't apply any more since the Python module
@@ -97,10 +92,11 @@ PythonQtViewStep::widget()
     // We only remove from the layout and not delete because Python is in charge
     // of memory management for these widgets.
     while ( m_widget->layout()->itemAt( 0 ) )
+    {
         m_widget->layout()->takeAt( 0 );
+    }
 
-    m_cxt.evalScript(
-        "_calamares_module_basewidget.layout().addWidget(_calamares_module.widget())" );
+    m_cxt.evalScript( "_calamares_module_basewidget.layout().addWidget(_calamares_module.widget())" );
 
     return m_widget;
 }
@@ -123,58 +119,40 @@ PythonQtViewStep::back()
 bool
 PythonQtViewStep::isNextEnabled() const
 {
-    return CalamaresUtils::lookupAndCall( m_obj,
-                                          { "isNextEnabled",
-                                            "isnextenabled",
-                                            "is_next_enabled" } ).toBool();
+    return CalamaresUtils::lookupAndCall( m_obj, { "isNextEnabled", "isnextenabled", "is_next_enabled" } ).toBool();
 }
 
 
 bool
 PythonQtViewStep::isBackEnabled() const
 {
-    return CalamaresUtils::lookupAndCall( m_obj,
-                                          { "isBackEnabled",
-                                            "isbackenabled",
-                                            "is_back_enabled" } ).toBool();
+    return CalamaresUtils::lookupAndCall( m_obj, { "isBackEnabled", "isbackenabled", "is_back_enabled" } ).toBool();
 }
 
 
 bool
 PythonQtViewStep::isAtBeginning() const
 {
-    return CalamaresUtils::lookupAndCall( m_obj,
-                                          { "isAtBeginning",
-                                            "isatbeginning",
-                                            "is_at_beginning" } ).toBool();
+    return CalamaresUtils::lookupAndCall( m_obj, { "isAtBeginning", "isatbeginning", "is_at_beginning" } ).toBool();
 }
 
 
 bool
 PythonQtViewStep::isAtEnd() const
 {
-    return CalamaresUtils::lookupAndCall( m_obj,
-                                          { "isAtEnd",
-                                            "isatend",
-                                            "is_at_end" } ).toBool();
+    return CalamaresUtils::lookupAndCall( m_obj, { "isAtEnd", "isatend", "is_at_end" } ).toBool();
 }
 
 void
-PythonQtViewStep::onActivate() 
+PythonQtViewStep::onActivate()
 {
-    CalamaresUtils::lookupAndCall( m_obj,
-                                          { "onActivate",
-                                            "onactivate",
-                                            "on_activate" });
+    CalamaresUtils::lookupAndCall( m_obj, { "onActivate", "onactivate", "on_activate" } );
 }
 
 void
 PythonQtViewStep::onLeave()
 {
-    CalamaresUtils::lookupAndCall( m_obj,
-                                          { "onLeave",
-                                            "onleave",
-                                            "on_leave" });
+    CalamaresUtils::lookupAndCall( m_obj, { "onLeave", "onleave", "on_leave" } );
 }
 
 
@@ -185,21 +163,29 @@ PythonQtViewStep::jobs() const
 
     PythonQtObjectPtr jobsCallable = PythonQt::self()->lookupCallable( m_obj, "jobs" );
     if ( jobsCallable.isNull() )
+    {
         return jobs;
+    }
 
     PythonQtObjectPtr response = PythonQt::self()->callAndReturnPyObject( jobsCallable );
     if ( response.isNull() )
+    {
         return jobs;
+    }
 
     PythonQtObjectPtr listPopCallable = PythonQt::self()->lookupCallable( response, "pop" );
     if ( listPopCallable.isNull() )
+    {
         return jobs;
+    }
 
     forever
     {
         PythonQtObjectPtr aJob = PythonQt::self()->callAndReturnPyObject( listPopCallable, { 0 } );
         if ( aJob.isNull() )
+        {
             break;
+        }
 
         jobs.append( Calamares::job_ptr( new PythonQtJob( m_cxt, aJob ) ) );
     }
@@ -219,9 +205,8 @@ QWidget*
 PythonQtViewStep::createScriptingConsole()
 {
     PythonQtScriptingConsole* console = new PythonQtScriptingConsole( nullptr, m_cxt );
-    console->setProperty( "classname",
-                          m_cxt.getVariable( "_calamares_module_typename" ).toString() );
+    console->setProperty( "classname", m_cxt.getVariable( "_calamares_module_typename" ).toString() );
     return console;
 }
 
-}
+}  // namespace Calamares

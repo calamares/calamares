@@ -62,6 +62,6 @@ using RequirementsList = QList< RequirementEntry >;
 
 }  // namespace Calamares
 
-Q_DECLARE_METATYPE(Calamares::RequirementEntry)
+Q_DECLARE_METATYPE( Calamares::RequirementEntry )
 
 #endif

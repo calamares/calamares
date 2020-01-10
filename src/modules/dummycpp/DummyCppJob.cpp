@@ -20,14 +20,15 @@
 
 #include "DummyCppJob.h"
 
-#include <QProcess>
 #include <QDateTime>
+#include <QProcess>
 #include <QThread>
 
 #include "CalamaresVersion.h"
-#include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "JobQueue.h"
 
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
 DummyCppJob::DummyCppJob( QObject* parent )
@@ -36,9 +37,7 @@ DummyCppJob::DummyCppJob( QObject* parent )
 }
 
 
-DummyCppJob::~DummyCppJob()
-{
-}
+DummyCppJob::~DummyCppJob() {}
 
 
 QString
@@ -56,19 +55,20 @@ static QString variantHashToString( const QVariantHash& variantHash );
 static QString
 variantToString( const QVariant& variant )
 {
-    switch ( variant.type() )
+    if ( variant.type() == QVariant::Map )
     {
-    case QVariant::Map:
         return variantMapToString( variant.toMap() );
-
-    case QVariant::Hash:
+    }
+    else if ( variant.type() == QVariant::Hash )
+    {
         return variantHashToString( variant.toHash() );
-
-    case QVariant::List:
-    case QVariant::StringList:
+    }
+    else if ( ( variant.type() == QVariant::List ) || ( variant.type() == QVariant::StringList ) )
+    {
         return variantListToString( variant.toList() );
-
-    default:
+    }
+    else
+    {
         return variant.toString();
     }
 }
@@ -79,8 +79,10 @@ variantListToString( const QVariantList& variantList )
 {
     QStringList result;
     for ( const QVariant& variant : variantList )
+    {
         result.append( variantToString( variant ) );
-    return '{' + result.join(',') + '}';
+    }
+    return '{' + result.join( ',' ) + '}';
 }
 
 
@@ -89,8 +91,10 @@ variantMapToString( const QVariantMap& variantMap )
 {
     QStringList result;
     for ( auto it = variantMap.constBegin(); it != variantMap.constEnd(); ++it )
+    {
         result.append( it.key() + '=' + variantToString( it.value() ) );
-    return '[' + result.join(',') + ']';
+    }
+    return '[' + result.join( ',' ) + ']';
 }
 
 
@@ -99,8 +103,10 @@ variantHashToString( const QVariantHash& variantHash )
 {
     QStringList result;
     for ( auto it = variantHash.constBegin(); it != variantHash.constEnd(); ++it )
+    {
         result.append( it.key() + '=' + variantToString( it.value() ) );
-    return '<' + result.join(',') + '>';
+    }
+    return '<' + result.join( ',' ) + '>';
 }
 
 
@@ -108,24 +114,29 @@ Calamares::JobResult
 DummyCppJob::exec()
 {
     // Ported from dummypython
-    QProcess::execute( "/bin/sh", QStringList() << "-c" << "touch ~/calamares-dummycpp" );
+    CalamaresUtils::System::runCommand( CalamaresUtils::System::RunLocation::RunInHost,
+                                        QStringList() << "/bin/sh"
+                                                      << "-c"
+                                                      << "touch ~/calamares-dummycpp" );
     QString accumulator = QDateTime::currentDateTimeUtc().toString( Qt::ISODate ) + '\n';
     accumulator += QStringLiteral( "Calamares version: " ) + CALAMARES_VERSION_SHORT + '\n';
     accumulator += QStringLiteral( "This job's name: " ) + prettyName() + '\n';
     accumulator += QStringLiteral( "Configuration map: %1\n" ).arg( variantMapToString( m_configurationMap ) );
     accumulator += QStringLiteral( "   *** globalstorage test ***\n" );
-    Calamares::GlobalStorage *globalStorage = Calamares::JobQueue::instance()->globalStorage();
-    accumulator += QStringLiteral( "lala: " ) + (globalStorage->contains( "lala" ) ? QStringLiteral( "true" ) : QStringLiteral( "false" )) + '\n';
-    accumulator += QStringLiteral( "foo: " ) + (globalStorage->contains( "foo" ) ? QStringLiteral( "true" ) : QStringLiteral( "false" )) + '\n';
+    Calamares::GlobalStorage* globalStorage = Calamares::JobQueue::instance()->globalStorage();
+    accumulator += QStringLiteral( "lala: " )
+        + ( globalStorage->contains( "lala" ) ? QStringLiteral( "true" ) : QStringLiteral( "false" ) ) + '\n';
+    accumulator += QStringLiteral( "foo: " )
+        + ( globalStorage->contains( "foo" ) ? QStringLiteral( "true" ) : QStringLiteral( "false" ) ) + '\n';
     accumulator += QStringLiteral( "count: " ) + QString::number( globalStorage->count() ) + '\n';
     globalStorage->insert( "item2", "value2" );
     globalStorage->insert( "item3", 3 );
     accumulator += QStringLiteral( "keys: %1\n" ).arg( globalStorage->keys().join( ',' ) );
     accumulator += QStringLiteral( "remove: %1\n" ).arg( QString::number( globalStorage->remove( "item2" ) ) );
-    accumulator += QStringLiteral( "values: %1 %2 %3\n" ).arg(
-        globalStorage->value( "foo" ).toString(),
-        globalStorage->value( "item2" ).toString(),
-        globalStorage->value( "item3" ).toString() );
+    accumulator += QStringLiteral( "values: %1 %2 %3\n" )
+                       .arg( globalStorage->value( "foo" ).toString(),
+                             globalStorage->value( "item2" ).toString(),
+                             globalStorage->value( "item3" ).toString() );
 
     emit progress( 0.1 );
     cDebug() << "[DUMMYCPP]: " << accumulator;
@@ -145,4 +156,4 @@ DummyCppJob::setConfigurationMap( const QVariantMap& configurationMap )
     m_configurationMap = configurationMap;
 }
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( DummyCppJobFactory, registerPlugin<DummyCppJob>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( DummyCppJobFactory, registerPlugin< DummyCppJob >(); )

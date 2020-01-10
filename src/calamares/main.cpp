@@ -21,12 +21,13 @@
 #include "CalamaresApplication.h"
 
 #include "CalamaresConfig.h"
-#include "kdsingleapplicationguard/kdsingleapplicationguard.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 
-#ifdef WITH_KF5Crash
+#include "3rdparty/kdsingleapplicationguard/kdsingleapplicationguard.h"
+
 #include <KF5/KCoreAddons/KAboutData>
+#ifdef WITH_KF5Crash
 #include <KF5/KCrash/KCrash>
 #endif
 
@@ -92,7 +93,6 @@ main( int argc, char* argv[] )
 {
     CalamaresApplication a( argc, argv );
 
-#ifdef WITH_KF5Crash
     KAboutData aboutData( "calamares",
                           "Calamares",
                           a.applicationVersion(),
@@ -103,12 +103,14 @@ main( int argc, char* argv[] )
                           "https://calamares.io",
                           "https://github.com/calamares/calamares/issues" );
     KAboutData::setApplicationData( aboutData );
+    a.setApplicationDisplayName( QString() );  // To avoid putting an extra "Calamares/" into the log-file
+
+#ifdef WITH_KF5Crash
     KCrash::initialize();
     // KCrash::setCrashHandler();
     KCrash::setDrKonqiEnabled( true );
     KCrash::setFlags( KCrash::SaferDialog | KCrash::AlwaysDirectly );
     // TODO: umount anything in /tmp/calamares-... as an emergency save function
-    a.setApplicationDisplayName( QString() );
 #endif
 
     handle_args( a );

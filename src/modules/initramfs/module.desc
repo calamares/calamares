@@ -1,5 +1,0 @@
----
-type:       "job"
-name:       "initramfs"
-interface:  "python"
-script:     "main.py"
