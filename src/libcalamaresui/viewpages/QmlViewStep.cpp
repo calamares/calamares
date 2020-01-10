@@ -18,13 +18,22 @@
 
 #include "QmlViewStep.h"
 
+#include "widgets/WaitingWidget.h"
+
+#include <QVBoxLayout>
+#include <QWidget>
+
 namespace Calamares
 {
 
 QmlViewStep::QmlViewStep( const QString& name, QObject* parent )
     : ViewStep( parent )
     , m_name( name )
+    , m_widget( new QWidget )
+    , m_spinner( new WaitingWidget( tr( "Loading ..." ) ) )
 {
+    QVBoxLayout* layout = new QVBoxLayout( m_widget );
+    layout->addWidget( m_spinner );
 }
 
 QmlViewStep::~QmlViewStep() {}
@@ -83,5 +92,5 @@ Calamares::QmlViewStep::onLeave()
 QWidget*
 Calamares::QmlViewStep::widget()
 {
-    return nullptr;
+    return m_widget;
 }

@@ -21,6 +21,11 @@
 
 #include "viewpages/ViewStep.h"
 
+class QQmlComponent;
+class QQuickItem;
+class QQuickWidget;
+class WaitingWidget;
+
 namespace Calamares
 {
 
@@ -55,6 +60,12 @@ public:
 
 private:
     QString m_name;
+
+    QWidget* m_widget = nullptr;
+    WaitingWidget* m_spinner = nullptr;
+    QQuickWidget* m_qmlShow = nullptr;
+    QQmlComponent* m_qmlComponent = nullptr;
+    QQuickItem* m_qmlObject = nullptr;
 };
 
 }  // namespace Calamares
