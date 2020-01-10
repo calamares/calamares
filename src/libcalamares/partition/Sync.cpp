@@ -24,13 +24,13 @@
 void
 CalamaresUtils::Partition::sync()
 {
-    auto r = CalamaresUtils::System::runCommand( { "/sbin/udevadm", "settle" }, 10 );
+    auto r = CalamaresUtils::System::runCommand( { "/sbin/udevadm", "settle" }, std::chrono::seconds( 10 ) );
 
     if ( r.getExitCode() != 0 )
     {
         cWarning() << "Could not settle disks.";
-        r.explainProcess( "udevadm", 10 );
+        r.explainProcess( "udevadm", std::chrono::seconds( 10 ) );
     }
 
-    CalamaresUtils::System::runCommand( { "/bin/sync" }, 10 );
+    CalamaresUtils::System::runCommand( { "/bin/sync" }, std::chrono::seconds( 10 ) );
 }

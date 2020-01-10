@@ -78,7 +78,7 @@ mount( const QString& devicePath, const QString& mountPoint, const QString& file
     }
     args << devicePath << mountPoint;
 
-    auto r = CalamaresUtils::System::runCommand( args, 10 );
+    auto r = CalamaresUtils::System::runCommand( args, std::chrono::seconds( 10 ) );
     sync();
     return r.getExitCode();
 }
@@ -86,7 +86,8 @@ mount( const QString& devicePath, const QString& mountPoint, const QString& file
 int
 unmount( const QString& path, const QStringList& options )
 {
-    auto r = CalamaresUtils::System::runCommand( QStringList { "umount" } << options << path, 10 );
+    auto r
+        = CalamaresUtils::System::runCommand( QStringList { "umount" } << options << path, std::chrono::seconds( 10 ) );
     sync();
     return r.getExitCode();
 }

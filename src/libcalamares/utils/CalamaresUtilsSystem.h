@@ -140,9 +140,7 @@ public:
      * Runs the given command-line @p args in the host in the current direcory
      * with no input, and the given @p timeoutSec for completion.
      */
-    static inline ProcessResult runCommand(
-        const QStringList& args,
-        int timeoutSec )
+    static inline ProcessResult runCommand( const QStringList& args, std::chrono::seconds timeoutSec )
     {
         return runCommand( RunLocation::RunInHost, args, QString(), QString(), timeoutSec );
     }
