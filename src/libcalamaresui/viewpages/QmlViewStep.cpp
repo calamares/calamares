@@ -47,7 +47,7 @@ QmlViewStep::QmlViewStep( const QString& name, QObject* parent )
     m_qmlWidget->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
 
     // TODO: search for suitable file
-    QString qrcName = QStringLiteral( ":/%1.qml" ).arg( m_name );
+    QString qrcName = QStringLiteral( "qrc:/%1.qml" ).arg( m_name );
     m_qmlFileName = qrcName;
 
     cDebug() << "QmlViewStep loading" << m_qmlFileName;
