@@ -58,12 +58,19 @@ public:
 
     virtual JobList jobs() const override;
 
+private Q_SLOTS:
+    void loadComplete();
+
 private:
+    /// @brief Swap out the spinner for the QQuickWidget
+    void showQml();
+
     QString m_name;
+    QString m_qmlFileName;
 
     QWidget* m_widget = nullptr;
     WaitingWidget* m_spinner = nullptr;
-    QQuickWidget* m_qmlShow = nullptr;
+    QQuickWidget* m_qmlWidget = nullptr;
     QQmlComponent* m_qmlComponent = nullptr;
     QQuickItem* m_qmlObject = nullptr;
 };
