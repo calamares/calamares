@@ -173,7 +173,12 @@ public:
 
 protected:
     explicit Module();
-    virtual void initFrom( const QVariantMap& moduleDescriptor );
+    
+    /// @brief For subclasses to read their part of the descriptor
+    virtual void initFrom( const QVariantMap& moduleDescriptor ) = 0;
+    /// @brief Generic part of descriptor reading (and instance id)
+    void initFrom( const QVariantMap& moduleDescriptor, const QString& id );
+    
     QVariantMap m_configurationMap;
 
     bool m_loaded = false;

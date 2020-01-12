@@ -174,7 +174,6 @@ PythonQtViewModule::jobs() const
 void
 PythonQtViewModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
 

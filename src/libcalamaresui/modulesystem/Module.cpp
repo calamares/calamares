@@ -48,7 +48,23 @@ static const char EMERGENCY[] = "emergency";
 namespace Calamares
 {
 
+Module::Module()
+    : m_loaded( false )
+{
+}
+
 Module::~Module() {}
+
+void
+Module::initFrom( const QVariantMap& moduleDescriptor, const QString& id )
+{
+    m_name = moduleDescriptor.value( "name" ).toString();
+    m_instanceId = id;
+    if ( moduleDescriptor.contains( EMERGENCY ) )
+    {
+        m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
+    }
+}
 
 Module*
 Module::fromDescriptor( const QVariantMap& moduleDescriptor,
@@ -131,8 +147,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
         return nullptr;
     }
 
-    m->m_instanceId = instanceId;
-
+    m->initFrom( moduleDescriptor, instanceId );
     m->initFrom( moduleDescriptor );
     try
     {
@@ -289,22 +304,6 @@ Module::configurationMap()
     return m_configurationMap;
 }
 
-
-Module::Module()
-    : m_loaded( false )
-{
-}
-
-
-void
-Module::initFrom( const QVariantMap& moduleDescriptor )
-{
-    m_name = moduleDescriptor.value( "name" ).toString();
-    if ( moduleDescriptor.contains( EMERGENCY ) )
-    {
-        m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
-    }
-}
 
 RequirementsList
 Module::checkRequirements()
