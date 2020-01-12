@@ -24,6 +24,8 @@
 #include "Requirement.h"
 #include "UiDllMacro.h"
 
+#include "modulesystem/InstanceKey.h"
+
 #include <QStringList>
 #include <QVariant>
 
@@ -83,13 +85,13 @@ public:
      * @brief name returns the name of this module.
      * @return a string with this module's name.
      */
-    virtual QString name() const final;
+    QString name() const { return m_key.module(); }
 
     /**
      * @brief instanceId returns the instance id of this module.
      * @return a string with this module's instance id.
      */
-    virtual QString instanceId() const final;
+    QString instanceId() const { return m_key.id(); }
 
     /**
      * @brief instanceKey returns the instance key of this module.
@@ -98,7 +100,7 @@ public:
      * For instance, "partition\@partition" (default configuration) or
      * "locale\@someconfig" (custom configuration)
      */
-    virtual QString instanceKey() const final;
+    QString instanceKey() const { return m_key.toString(); }
 
     /**
      * @brief location returns the full path of this module's directory.
@@ -188,9 +190,8 @@ protected:
 private:
     void loadConfigurationFile( const QString& configFileName );  //throws YAML::Exception
 
-    QString m_name;
     QString m_directory;
-    QString m_instanceId;
+    ModuleSystem::InstanceKey m_key;
 };
 
 }  // namespace Calamares

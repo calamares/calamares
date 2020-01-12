@@ -58,8 +58,7 @@ Module::~Module() {}
 void
 Module::initFrom( const QVariantMap& moduleDescriptor, const QString& id )
 {
-    m_name = moduleDescriptor.value( "name" ).toString();
-    m_instanceId = id;
+    m_key = ModuleSystem::InstanceKey( moduleDescriptor.value( "name" ).toString(), id );
     if ( moduleDescriptor.contains( EMERGENCY ) )
     {
         m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
@@ -148,6 +147,12 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     }
 
     m->initFrom( moduleDescriptor, instanceId );
+    if ( !m->m_key.isValid() )
+    {
+        cError() << "Module" << instanceId << "invalid ID";
+        return nullptr;
+    }
+    
     m->initFrom( moduleDescriptor );
     try
     {
@@ -205,7 +210,7 @@ moduleConfigurationCandidates( bool assumeBuildDir, const QString& moduleName, c
 void Module::loadConfigurationFile( const QString& configFileName )  //throws YAML::Exception
 {
     QStringList configCandidates
-        = moduleConfigurationCandidates( Settings::instance()->debugMode(), m_name, configFileName );
+        = moduleConfigurationCandidates( Settings::instance()->debugMode(), name(), configFileName );
     for ( const QString& path : configCandidates )
     {
         QFile configFile( path );
@@ -234,28 +239,7 @@ void Module::loadConfigurationFile( const QString& configFileName )  //throws YA
             return;
         }
     }
-    cDebug() << "No config file for" << m_name << "found anywhere at" << Logger::DebugList( configCandidates );
-}
-
-
-QString
-Module::name() const
-{
-    return m_name;
-}
-
-
-QString
-Module::instanceId() const
-{
-    return m_instanceId;
-}
-
-
-QString
-Module::instanceKey() const
-{
-    return QString( "%1@%2" ).arg( m_name ).arg( m_instanceId );
+    cDebug() << "No config file for" << name() << "found anywhere at" << Logger::DebugList( configCandidates );
 }
 
 
