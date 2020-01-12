@@ -27,6 +27,7 @@
 
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Yaml.h"
 
 #ifdef WITH_PYTHON
@@ -152,7 +153,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
         cError() << "Module" << instanceId << "invalid ID";
         return nullptr;
     }
-    
+
     m->initFrom( moduleDescriptor );
     try
     {
@@ -243,42 +244,55 @@ void Module::loadConfigurationFile( const QString& configFileName )  //throws YA
 }
 
 
-QString
-Module::location() const
+static const NamedEnumTable< Module::Type >&
+typeNames()
 {
-    return m_directory;
+    using Type = Module::Type;
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< Type > table{
+        { QStringLiteral( "job" ), Type::Job },
+        { QStringLiteral( "view" ), Type::View },
+        { QStringLiteral( "viewmodule" ), Type::View },
+        { QStringLiteral( "jobmodule" ), Type::Job }
+    };
+    // *INDENT-ON*
+    // clang-format on
+    return table;
 }
-
 
 QString
 Module::typeString() const
 {
-    switch ( type() )
-    {
-    case Type::Job:
-        return "Job Module";
-    case Type::View:
-        return "View Module";
-    }
-    return QString();
+    bool ok = false;
+    QString v = typeNames().find( type(), ok );
+    return ok ? v : QString();
 }
 
+
+static const NamedEnumTable< Module::Interface >&
+interfaceNames()
+{
+    using Interface = Module::Interface;
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< Interface > table {
+        { QStringLiteral("process"), Interface::Process },
+        { QStringLiteral("qtplugin"), Interface::QtPlugin },
+        { QStringLiteral("python"), Interface::Python },
+        { QStringLiteral("pythonqt"), Interface::PythonQt }
+    };
+    // *INDENT-ON*
+    // clang-format on
+    return table;
+}
 
 QString
 Module::interfaceString() const
 {
-    switch ( interface() )
-    {
-    case Interface::Process:
-        return "External process";
-    case Interface::Python:
-        return "Python (Boost.Python)";
-    case Interface::PythonQt:
-        return "Python (experimental)";
-    case Interface::QtPlugin:
-        return "Qt Plugin";
-    }
-    return QString();
+    bool ok = false;
+    QString v = interfaceNames().find( interface(), ok );
+    return ok ? v : QString();
 }
 
 
