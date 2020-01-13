@@ -181,6 +181,40 @@ Calamares::QmlViewStep::showQml()
     }
 }
 
+
+/** @brief Find a suitable QML file, given the search method and name hints
+ *
+ * Returns QString() if nothing is found (which would mean the module
+ * is badly configured).
+ */
+QString
+searchQmlFile( Calamares::QmlViewStep::QmlSearch method, const QString& configuredName, const QString& moduleName )
+{
+    cDebug() << "Looking for QML for" << moduleName;
+    for ( const QString& candidate :
+          QStringList { configuredName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( configuredName ),
+                        moduleName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( moduleName ) } )
+    {
+        if ( candidate.isEmpty() )
+        {
+            continue;
+        }
+        cDebug() << Logger::SubEntry << "Looking at QML file" << candidate;
+        if ( QFile::exists( candidate ) )
+        {
+            if ( candidate.startsWith( ':' ) )
+            {
+                // Inconsistency: QFile only sees the file with :,
+                // but QML needs an explicit scheme (of qrc:)
+                return QStringLiteral( "qrc" ) + candidate;
+            }
+            return candidate;
+        }
+    }
+    cDebug() << Logger::SubEntry << "None found.";
+    return QString();
+}
+
 void
 Calamares::QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -191,11 +225,14 @@ Calamares::QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap
         cDebug() << "Bad QML search mode.";
     }
 
-    if ( !m_qmlComponent )
+    QString qmlFile = CalamaresUtils::getString( configurationMap, "filename" );
+    if ( qmlFile.isEmpty() )
     {
-        // TODO: search for suitable file
-        QString qrcName = QStringLiteral( "qrc:/%1.qml" ).arg( m_name );
-        m_qmlFileName = qrcName;
+        cWarning() << "No QML file for module" << m_name;
+    }
+    else if ( !m_qmlComponent )
+    {
+        m_qmlFileName = searchQmlFile( m_searchMethod, qmlFile, m_name );
 
         cDebug() << "QmlViewStep" << moduleInstanceKey() << "loading" << m_qmlFileName;
         m_qmlComponent = new QQmlComponent(
