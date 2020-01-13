@@ -18,6 +18,8 @@
 
 #include "QmlViewStep.h"
 
+#include "Branding.h"
+
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
@@ -190,10 +192,27 @@ Calamares::QmlViewStep::showQml()
 QString
 searchQmlFile( Calamares::QmlViewStep::QmlSearch method, const QString& configuredName, const QString& moduleName )
 {
+    using QmlSearch = Calamares::QmlViewStep::QmlSearch;
+
     cDebug() << "Looking for QML for" << moduleName;
-    for ( const QString& candidate :
-          QStringList { configuredName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( configuredName ),
-                        moduleName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( moduleName ) } )
+    QStringList candidates;
+    if ( configuredName.startsWith( '/' ) )
+    {
+        candidates << configuredName;
+    }
+    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::BrandingOnly ) )
+    {
+        QString brandDir = Calamares::Branding::instance()->componentDirectory();
+        candidates << ( configuredName.isEmpty() ? QString()
+                                                 : QStringLiteral( "%1/%2.qml" ).arg( brandDir, configuredName ) )
+                   << ( moduleName.isEmpty() ? QString() : QStringLiteral( "%1/%2.qml" ).arg( brandDir, moduleName ) );
+    }
+    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
+    {
+        candidates << ( configuredName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( configuredName ) )
+                   << ( moduleName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( moduleName ) );
+    }
+    for ( const QString& candidate : candidates )
     {
         if ( candidate.isEmpty() )
         {
