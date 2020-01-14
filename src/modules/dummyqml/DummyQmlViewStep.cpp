@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2020, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2020, Anke Boersma <demm@kaosx.us>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,6 +19,8 @@
 
 #include "DummyQmlViewStep.h"
 
+#include <QVariant>
+
 DummyQmlViewStep::DummyQmlViewStep( QObject* parent )
     : Calamares::QmlViewStep( "dummyqml", parent )
 {
@@ -28,8 +31,23 @@ DummyQmlViewStep::~DummyQmlViewStep() {}
 QString
 DummyQmlViewStep::prettyName() const
 {
-    return tr( "Example QML page." );
+    return m_notesName ? m_notesName->get() : tr( "Notes" );
 }
 
+void
+DummyQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+{ 
+    Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation
+    
+    bool qmlLabel_ok = false;
+    auto qmlLabel = CalamaresUtils::getSubMap( configurationMap, "qmlLabel", qmlLabel_ok );
+    if ( qmlLabel_ok )
+    {
+        if ( qmlLabel.contains( "notes" ) )
+        {
+            m_notesName = new CalamaresUtils::Locale::TranslatedString( qmlLabel, "notes" );
+        }
+    }
+}
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( DummyQmlViewStepFactory, registerPlugin< DummyQmlViewStep >(); )
