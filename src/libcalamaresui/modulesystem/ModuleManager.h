@@ -62,7 +62,7 @@ public:
      * modules.
      * @return a QStringList with the instance keys.
      */
-    QStringList loadedInstanceKeys();
+    QList< ModuleSystem::InstanceKey > loadedInstanceKeys();
 
     /**
      * @brief moduleDescriptor returns the module descriptor structure for a given module.
