@@ -182,7 +182,8 @@ findCustomInstance( const Settings::InstanceDescriptionList& customInstances, co
  */
 static QString
 getConfigFileName( const Settings::InstanceDescriptionList& customInstances,
-                   const ModuleSystem::InstanceKey& instanceKey )
+                   const ModuleSystem::InstanceKey& instanceKey,
+                   const ModuleManager::ModuleDescriptor& descriptor )
 {
     if ( instanceKey.isCustom() )
     {
@@ -198,6 +199,14 @@ getConfigFileName( const Settings::InstanceDescriptionList& customInstances,
     }
     else
     {
+        if ( descriptor.value( "noconfig", false ).toBool() )
+        {
+            // Explicitly set to no-configuration. This doesn't apply
+            // to custom instances (above) since the only reason to
+            // **have** a custom instance is to specify a different
+            // config file for more than one module.
+            return QString();
+        }
         return QString( "%1.conf" ).arg( instanceKey.module() );
     }
 }
@@ -237,8 +246,9 @@ ModuleManager::loadModules()
                 }
             }
 
-            if ( !m_availableDescriptorsByModuleName.contains( instanceKey.module() )
-                 || m_availableDescriptorsByModuleName.value( instanceKey.module() ).isEmpty() )
+            ModuleDescriptor descriptor
+                = m_availableDescriptorsByModuleName.value( instanceKey.module(), ModuleDescriptor() );
+            if ( descriptor.isEmpty() )
             {
                 cError() << "Module" << instanceKey.toString() << "not found in module search paths."
                          << Logger::DebugList( m_paths );
@@ -246,7 +256,7 @@ ModuleManager::loadModules()
                 continue;
             }
 
-            QString configFileName = getConfigFileName( customInstances, instanceKey );
+            QString configFileName = getConfigFileName( customInstances, instanceKey, descriptor );
 
             // So now we can assume that the module entry is at least valid,
             // that we have a descriptor on hand (and therefore that the
