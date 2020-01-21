@@ -266,16 +266,22 @@ ModuleManager::loadModules()
             // exists and is valid, but that's the only thing that could fail
             // from this point on. -- Teo 8/2015
             Module* thisModule = m_loadedModulesByInstanceKey.value( instanceKey, nullptr );
-            if ( thisModule && !thisModule->isLoaded() )
+            if ( thisModule )
             {
-                cError() << "Module" << instanceKey.toString() << "exists but not loaded.";
-                failedModules.append( instanceKey.toString() );
-                continue;
-            }
-
-            if ( thisModule && thisModule->isLoaded() )
-            {
-                cDebug() << "Module" << instanceKey.toString() << "already loaded.";
+                if ( thisModule->isLoaded() )
+                {
+                    // It's been listed before, don't bother loading again.
+                    // This can happen for a module listed twice (e.g. with custom instances)
+                    cDebug() << "Module" << instanceKey.toString() << "already loaded.";
+                }
+                else
+                {
+                    // An attempt was made, earlier, and that failed.
+                    // This can happen for a module listed twice (e.g. with custom instances)
+                    cError() << "Module" << instanceKey.toString() << "exists but not loaded.";
+                    failedModules.append( instanceKey.toString() );
+                    continue;
+                }
             }
             else
             {
