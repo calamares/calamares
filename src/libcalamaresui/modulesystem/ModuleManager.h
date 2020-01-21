@@ -45,6 +45,8 @@ class ModuleManager : public QObject
 {
     Q_OBJECT
 public:
+    using ModuleDescriptor = QVariantMap;  /// TODO: Should be strongly-typed instead
+
     explicit ModuleManager( const QStringList& paths, QObject* parent = nullptr );
     virtual ~ModuleManager() override;
 
@@ -69,7 +71,7 @@ public:
      * @param name the name of the module for which to return the module descriptor.
      * @return the module descriptor, as a variant map already parsed from YAML.
      */
-    QVariantMap moduleDescriptor( const QString& name );
+    ModuleDescriptor moduleDescriptor( const QString& name );
 
     /**
      * @brief moduleInstance returns a Module object for a given instance key.
@@ -126,7 +128,7 @@ private:
      */
     bool checkModuleDependencies( const Module& );
 
-    QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
+    QMap< QString, ModuleDescriptor > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
     QMap< ModuleSystem::InstanceKey, Module* > m_loadedModulesByInstanceKey;
     const QStringList m_paths;
