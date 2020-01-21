@@ -174,6 +174,33 @@ findCustomInstance( const Settings::InstanceDescriptionList& customInstances, co
     return -1;
 }
 
+/** @brief Returns the config file name for the fiven @p instanceKey
+ *
+ * Custom instances have custom config files, non-custom ones
+ * have a <modulename>.conf file. Returns an empty QString on
+ * errors.
+ */
+static QString
+getConfigFileName( const Settings::InstanceDescriptionList& customInstances,
+                   const ModuleSystem::InstanceKey& instanceKey )
+{
+    if ( instanceKey.isCustom() )
+    {
+        int found = findCustomInstance( customInstances, instanceKey );
+
+        if ( found < 0 )
+        {
+            // This should already have been checked and failed the module already
+            return QString();
+        }
+
+        return customInstances[ found ].value( "config" );
+    }
+    else
+    {
+        return QString( "%1.conf" ).arg( instanceKey.module() );
+    }
+}
 
 void
 ModuleManager::loadModules()
@@ -199,7 +226,16 @@ ModuleManager::loadModules()
                 failedModules.append( moduleEntry );
                 continue;
             }
-
+            if ( instanceKey.isCustom() )
+            {
+                int found = findCustomInstance( customInstances, instanceKey );
+                if ( found < 0 )
+                {
+                    cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
+                    failedModules.append( moduleEntry );
+                    continue;
+                }
+            }
 
             if ( !m_availableDescriptorsByModuleName.contains( instanceKey.module() )
                  || m_availableDescriptorsByModuleName.value( instanceKey.module() ).isEmpty() )
@@ -210,26 +246,7 @@ ModuleManager::loadModules()
                 continue;
             }
 
-            QString configFileName;
-            if ( instanceKey.isCustom() )
-            {
-                int found = findCustomInstance( customInstances, instanceKey );
-
-                if ( found > -1 )
-                {
-                    configFileName = customInstances[ found ].value( "config" );
-                }
-                else  //ought to be a custom instance, but cannot find instance entry
-                {
-                    cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
-                    failedModules.append( moduleEntry );
-                    continue;
-                }
-            }
-            else
-            {
-                configFileName = QString( "%1.conf" ).arg( instanceKey.module() );
-            }
+            QString configFileName = getConfigFileName( customInstances, instanceKey );
 
             // So now we can assume that the module entry is at least valid,
             // that we have a descriptor on hand (and therefore that the
