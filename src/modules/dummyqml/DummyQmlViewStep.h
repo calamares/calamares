@@ -24,6 +24,8 @@
 #include "locale/TranslatableConfiguration.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Variant.h"
+#include "utils/PluginFactory.h"
+#include "viewpages/QmlViewStep.h"
 
 class PLUGINDLLEXPORT DummyQmlViewStep : public Calamares::QmlViewStep
 {
