@@ -19,6 +19,9 @@
 
 #include "DummyQmlViewStep.h"
 
+#include "utils/PluginFactory.h"
+#include "viewpages/QmlViewStep.h"
+
 #include <QVariant>
 
 DummyQmlViewStep::DummyQmlViewStep( QObject* parent )
