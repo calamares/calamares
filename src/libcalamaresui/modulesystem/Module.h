@@ -101,7 +101,7 @@ public:
      * For instance, "partition\@partition" (default configuration) or
      * "locale\@someconfig" (custom configuration)
      */
-    QString instanceKey() const { return m_key.toString(); }
+    ModuleSystem::InstanceKey instanceKey() const { return m_key; }
 
     /**
      * @brief location returns the full path of this module's directory.
