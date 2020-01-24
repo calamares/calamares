@@ -19,15 +19,9 @@
 #ifndef MODULESYSTEM_INSTANCEKEY_H
 #define MODULESYSTEM_INSTANCEKEY_H
 
-#include <QList>
+#include <QDebug>
 #include <QPair>
 #include <QString>
-#include <QStringList>
-
-namespace Logger
-{
-class CLog;
-}
 
 namespace Calamares
 {
@@ -77,16 +71,7 @@ public:
     QString id() const { return second; }
 
     /// @brief Create instance key from stringified version
-    static InstanceKey fromString( const QString& s )
-    {
-        QStringList moduleEntrySplit = s.split( '@' );
-        if ( moduleEntrySplit.length() < 1 || moduleEntrySplit.length() > 2 )
-        {
-            return InstanceKey();
-        }
-        // For length 1, first == last
-        return InstanceKey( moduleEntrySplit.first(), moduleEntrySplit.last() );
-    }
+    static InstanceKey fromString( const QString& s );
 
     QString toString() const
     {
@@ -108,6 +93,9 @@ private:
         }
     }
 };
+
+QDebug&
+operator <<( QDebug& s, const Calamares::ModuleSystem::InstanceKey& i );
 
 }  // namespace ModuleSystem
 }  // namespace Calamares

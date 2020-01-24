@@ -9,4 +9,5 @@ calamares_add_plugin( summary
     LINK_PRIVATE_LIBRARIES
         calamaresui
     SHARED_LIB
+    NO_CONFIG
 )

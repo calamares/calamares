@@ -1,7 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2016, Kevin Kofler <kevin.kofler@chello.at>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,31 +16,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CppJob.h"
+#ifndef MODULESYSTEM_DESCRIPTOR_H
+#define MODULESYSTEM_DESCRIPTOR_H
+
+#include <QVariantMap>
 
 namespace Calamares
 {
-
-CppJob::CppJob( QObject* parent )
-    : Job( parent )
+namespace ModuleSystem
 {
-}
-
-
-CppJob::~CppJob() {}
-
-
-void
-CppJob::setModuleInstanceKey( const Calamares::ModuleSystem::InstanceKey& instanceKey )
-{
-    m_instanceKey = instanceKey;
-}
-
-
-void
-CppJob::setConfigurationMap( const QVariantMap& configurationMap )
-{
-    Q_UNUSED( configurationMap )
-}
-
+/* While this isn't a useful *using* right now, the intention is
+ * to create a more strongly-typed Module Descriptor that carries
+ * only the necessary information and no variants.
+ */
+using Descriptor = QVariantMap;
+}  // namespace ModuleSystem
 }  // namespace Calamares
+
+#endif

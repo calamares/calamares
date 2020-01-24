@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,73 +16,31 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include "ViewStep.h"
+#include "InstanceKey.h"
 
 namespace Calamares
 {
-
-ViewStep::ViewStep( QObject* parent )
-    : QObject( parent )
+namespace ModuleSystem
 {
+
+InstanceKey
+InstanceKey::fromString( const QString& s )
+{
+    QStringList moduleEntrySplit = s.split( '@' );
+    if ( moduleEntrySplit.length() < 1 || moduleEntrySplit.length() > 2 )
+    {
+        return InstanceKey();
+    }
+    // For length 1, first == last
+    return InstanceKey( moduleEntrySplit.first(), moduleEntrySplit.last() );
 }
 
 
-ViewStep::~ViewStep() {}
-
-
-QString
-ViewStep::prettyStatus() const
+QDebug&
+operator<<( QDebug& s, const Calamares::ModuleSystem::InstanceKey& i )
 {
-    return QString();
+    return s << i.toString();
 }
 
-QWidget*
-ViewStep::createSummaryWidget() const
-{
-    return nullptr;
-}
-
-void
-ViewStep::onActivate()
-{
-}
-
-
-void
-ViewStep::onLeave()
-{
-}
-
-void
-ViewStep::next()
-{
-}
-
-void
-ViewStep::back()
-{
-}
-
-
-void
-ViewStep::setModuleInstanceKey( const Calamares::ModuleSystem::InstanceKey& instanceKey )
-{
-    m_instanceKey = instanceKey;
-}
-
-
-void
-ViewStep::setConfigurationMap( const QVariantMap& configurationMap )
-{
-    Q_UNUSED( configurationMap )
-}
-
-
-RequirementsList
-ViewStep::checkRequirements()
-{
-    return RequirementsList();
-}
-
+}  // namespace ModuleSystem
 }  // namespace Calamares

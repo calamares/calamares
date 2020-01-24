@@ -54,10 +54,12 @@ Module descriptors for Python and PythonQt modules **must** have the following k
 - *script* (the name of the Python script to load, nearly always `main.py`)
 
 Module descriptors **may** have the following keys:
-- *requiredModules* (a list of modules which are required for this module
-  to operate properly)
 - *emergency* (a boolean value, set to true to mark the module
   as an emergency module)
+- *noconfig* (a boolean value, set to true to state that the module
+  has no configuration file; defaults to false)
+- *requiredModules* (a list of modules which are required for this module
+  to operate properly)
 
 ### Required Modules
 
@@ -96,6 +98,12 @@ named `<modulename>.conf`. If such a file is present in the
 module's directory, it can be shipped as a *default* configuration file.
 This only happens if the CMake-time option `INSTALL_CONFIG` is on.
 
+Modules that have *noconfig* set to true will not attempt to
+read a configuration file, and will not warn that one is missing;
+conversely if *noconfig* is set to false (or is missing, since
+the default value is false) if there is no configuration file,
+a warning is printed during Calamares start-up.
+
 The sample configuration files may work and may be suitable for
 your distribution, but no guarantee is given about their stability
 beyond syntactic correctness.
@@ -122,7 +130,8 @@ to provide jobs.
 
 To add a Qt plugin module, put it in a subdirectory and make sure it has
 a `CMakeLists.txt` with a `calamares_add_plugin` call. It will be picked
-up automatically by our CMake magic. The `module.desc` file is optional.
+up automatically by our CMake magic. The `module.desc` file is not recommended:
+nearly all cases can be described in CMake.
 
 
 

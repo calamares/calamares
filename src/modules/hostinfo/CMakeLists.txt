@@ -25,6 +25,7 @@ calamares_add_plugin( hostinfo
     LINK_PRIVATE_LIBRARIES
         calamares
     SHARED_LIB
+    NO_CONFIG
 )
 
 if ( KF5CoreAddons_FOUND AND KF5CoreAddons_VERSION VERSION_GREATER_EQUAL 5.58 )

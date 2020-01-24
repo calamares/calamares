@@ -24,6 +24,9 @@
 #include "Requirement.h"
 #include "UiDllMacro.h"
 
+#include "modulesystem/Descriptor.h"
+#include "modulesystem/InstanceKey.h"
+
 #include <QStringList>
 #include <QVariant>
 
@@ -73,7 +76,7 @@ public:
      * @param moduleDirectory the path to the directory with this module's files.
      * @return a pointer to an object of a subtype of Module.
      */
-    static Module* fromDescriptor( const QVariantMap& moduleDescriptor,
+    static Module* fromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
                                    const QString& instanceId,
                                    const QString& configFileName,
                                    const QString& moduleDirectory );
@@ -83,13 +86,13 @@ public:
      * @brief name returns the name of this module.
      * @return a string with this module's name.
      */
-    virtual QString name() const final;
+    QString name() const { return m_key.module(); }
 
     /**
      * @brief instanceId returns the instance id of this module.
      * @return a string with this module's instance id.
      */
-    virtual QString instanceId() const final;
+    QString instanceId() const { return m_key.id(); }
 
     /**
      * @brief instanceKey returns the instance key of this module.
@@ -98,49 +101,13 @@ public:
      * For instance, "partition\@partition" (default configuration) or
      * "locale\@someconfig" (custom configuration)
      */
-    virtual QString instanceKey() const final;
+    ModuleSystem::InstanceKey instanceKey() const { return m_key; }
 
     /**
      * @brief location returns the full path of this module's directory.
      * @return the path.
      */
-    virtual QString location() const final;
-
-    /**
-     * @brief type returns the Type of this module object.
-     * @return the type enum value.
-     */
-    virtual Type type() const = 0;
-
-    /**
-     * @brief typeString returns a user-visible string for the module's type.
-     * @return the type string.
-     */
-    virtual QString typeString() const;
-
-    /**
-     * @brief interface the Interface used by this module.
-     * @return the interface enum value.
-     */
-    virtual Interface interface() const = 0;
-
-    /**
-     * @brief interface returns a user-visible string for the module's interface.
-     * @return the interface string.
-     */
-    virtual QString interfaceString() const;
-
-    /**
-     * @brief isLoaded reports on the loaded status of a module.
-     * @return true if the module's loading phase has finished, otherwise false.
-     */
-    bool isLoaded() const { return m_loaded; }
-
-    /**
-     * @brief loadSelf initialized the module.
-     * Subclasses must reimplement this depending on the module type and interface.
-     */
-    virtual void loadSelf() = 0;
+    QString location() const { return m_directory; }
 
     /**
      * @brief Is this an emergency module?
@@ -154,10 +121,10 @@ public:
     bool isEmergency() const { return m_emergency; }
 
     /**
-     * @brief jobs returns any jobs exposed by this module.
-     * @return a list of jobs (can be empty).
+     * @brief isLoaded reports on the loaded status of a module.
+     * @return true if the module's loading phase has finished, otherwise false.
      */
-    virtual JobList jobs() const = 0;
+    bool isLoaded() const { return m_loaded; }
 
     /**
      * @brief configurationMap returns the contents of the configuration file for
@@ -167,13 +134,54 @@ public:
     QVariantMap configurationMap();
 
     /**
+     * @brief typeString returns a user-visible string for the module's type.
+     * @return the type string.
+     */
+    QString typeString() const;
+
+    /**
+     * @brief interface returns a user-visible string for the module's interface.
+     * @return the interface string.
+     */
+    QString interfaceString() const;
+
+    /**
+     * @brief loadSelf initialized the module.
+     * Subclasses must reimplement this depending on the module type and interface.
+     */
+    virtual void loadSelf() = 0;
+
+    /**
+     * @brief jobs returns any jobs exposed by this module.
+     * @return a list of jobs (can be empty).
+     */
+    virtual JobList jobs() const = 0;
+
+    /**
+     * @brief type returns the Type of this module object.
+     * @return the type enum value.
+     */
+    virtual Type type() const = 0;
+
+    /**
+     * @brief interface the Interface used by this module.
+     * @return the interface enum value.
+     */
+    virtual Interface interface() const = 0;
+
+    /**
      * @brief Check the requirements of this module.
      */
     virtual RequirementsList checkRequirements();
 
 protected:
     explicit Module();
-    virtual void initFrom( const QVariantMap& moduleDescriptor );
+
+    /// @brief For subclasses to read their part of the descriptor
+    virtual void initFrom( const QVariantMap& moduleDescriptor ) = 0;
+    /// @brief Generic part of descriptor reading (and instance id)
+    void initFrom( const QVariantMap& moduleDescriptor, const QString& id );
+
     QVariantMap m_configurationMap;
 
     bool m_loaded = false;
@@ -183,9 +191,8 @@ protected:
 private:
     void loadConfigurationFile( const QString& configFileName );  //throws YAML::Exception
 
-    QString m_name;
     QString m_directory;
-    QString m_instanceId;
+    ModuleSystem::InstanceKey m_key;
 };
 
 }  // namespace Calamares

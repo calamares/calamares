@@ -6,4 +6,5 @@ calamares_add_plugin( luksbootkeyfile
     LINK_PRIVATE_LIBRARIES
         calamares
     SHARED_LIB
+    NO_CONFIG
 )

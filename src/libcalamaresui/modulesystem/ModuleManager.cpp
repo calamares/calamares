@@ -95,16 +95,12 @@ ModuleManager::doInit()
                     QFileInfo descriptorFileInfo( currentDir.absoluteFilePath( QLatin1String( "module.desc" ) ) );
                     if ( !descriptorFileInfo.exists() )
                     {
-                        cDebug() << bad_descriptor
-                                 << descriptorFileInfo.absoluteFilePath()
-                                 << "(missing)";
+                        cDebug() << bad_descriptor << descriptorFileInfo.absoluteFilePath() << "(missing)";
                         continue;
                     }
                     if ( !descriptorFileInfo.isReadable() )
                     {
-                        cDebug() << bad_descriptor
-                                 << descriptorFileInfo.absoluteFilePath()
-                                 << "(unreadable)";
+                        cDebug() << bad_descriptor << descriptorFileInfo.absoluteFilePath() << "(unreadable)";
                         continue;
                     }
 
@@ -131,28 +127,22 @@ ModuleManager::doInit()
             cDebug() << "ModuleManager module search path does not exist:" << path;
         }
     }
-    // At this point m_availableDescriptorsByModuleName is filled with 
+    // At this point m_availableDescriptorsByModuleName is filled with
     // the modules that were found in the search paths.
-    cDebug() << "Found" 
-        << m_availableDescriptorsByModuleName.count() << "modules"
-        << m_moduleDirectoriesByModuleName.count() << "names";
+    cDebug() << "Found" << m_availableDescriptorsByModuleName.count() << "modules"
+             << m_moduleDirectoriesByModuleName.count() << "names";
     emit initDone();
 }
 
 
-QStringList
+QList< ModuleSystem::InstanceKey >
 ModuleManager::loadedInstanceKeys()
 {
-    QStringList l;
-    for ( const auto& m : m_loadedModulesByInstanceKey.keys() )
-    {
-        l << m.toString();
-    }
-    return l;
+    return m_loadedModulesByInstanceKey.keys();
 }
 
 
-QVariantMap
+Calamares::ModuleSystem::Descriptor
 ModuleManager::moduleDescriptor( const QString& name )
 {
     return m_availableDescriptorsByModuleName.value( name );
@@ -184,19 +174,54 @@ findCustomInstance( const Settings::InstanceDescriptionList& customInstances, co
     return -1;
 }
 
+/** @brief Returns the config file name for the fiven @p instanceKey
+ *
+ * Custom instances have custom config files, non-custom ones
+ * have a <modulename>.conf file. Returns an empty QString on
+ * errors.
+ */
+static QString
+getConfigFileName( const Settings::InstanceDescriptionList& customInstances,
+                   const ModuleSystem::InstanceKey& instanceKey,
+                   const ModuleSystem::Descriptor& descriptor )
+{
+    if ( instanceKey.isCustom() )
+    {
+        int found = findCustomInstance( customInstances, instanceKey );
+
+        if ( found < 0 )
+        {
+            // This should already have been checked and failed the module already
+            return QString();
+        }
+
+        return customInstances[ found ].value( "config" );
+    }
+    else
+    {
+        if ( descriptor.value( "noconfig", false ).toBool() )
+        {
+            // Explicitly set to no-configuration. This doesn't apply
+            // to custom instances (above) since the only reason to
+            // **have** a custom instance is to specify a different
+            // config file for more than one module.
+            return QString();
+        }
+        return QString( "%1.conf" ).arg( instanceKey.module() );
+    }
+}
 
 void
 ModuleManager::loadModules()
 {
-    if (checkDependencies())
+    if ( checkDependencies() )
     {
         cWarning() << "Some installed modules have unmet dependencies.";
     }
     Settings::InstanceDescriptionList customInstances = Settings::instance()->customModuleInstances();
 
     QStringList failedModules;
-    const auto modulesSequence
-        = Settings::instance()->modulesSequence() ;
+    const auto modulesSequence = Settings::instance()->modulesSequence();
     for ( const auto& modulePhase : modulesSequence )
     {
         ModuleSystem::Action currentAction = modulePhase.first;
@@ -210,37 +235,28 @@ ModuleManager::loadModules()
                 failedModules.append( moduleEntry );
                 continue;
             }
-
-
-            if ( !m_availableDescriptorsByModuleName.contains( instanceKey.module() )
-                    || m_availableDescriptorsByModuleName.value( instanceKey.module() ).isEmpty() )
-            {
-                cError() << "Module" << instanceKey.toString() << "not found in module search paths."
-                            << Logger::DebugList( m_paths );
-                failedModules.append( instanceKey.toString() );
-                continue;
-            }
-
-            QString configFileName;
             if ( instanceKey.isCustom() )
             {
                 int found = findCustomInstance( customInstances, instanceKey );
-
-                if ( found > -1 )
-                {
-                    configFileName = customInstances[ found ].value( "config" );
-                }
-                else  //ought to be a custom instance, but cannot find instance entry
+                if ( found < 0 )
                 {
                     cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
                     failedModules.append( moduleEntry );
                     continue;
                 }
             }
-            else
+
+            ModuleSystem::Descriptor descriptor
+                = m_availableDescriptorsByModuleName.value( instanceKey.module(), ModuleSystem::Descriptor() );
+            if ( descriptor.isEmpty() )
             {
-                configFileName = QString( "%1.conf" ).arg( instanceKey.module() );
+                cError() << "Module" << instanceKey.toString() << "not found in module search paths."
+                         << Logger::DebugList( m_paths );
+                failedModules.append( instanceKey.toString() );
+                continue;
             }
+
+            QString configFileName = getConfigFileName( customInstances, instanceKey, descriptor );
 
             // So now we can assume that the module entry is at least valid,
             // that we have a descriptor on hand (and therefore that the
@@ -250,26 +266,33 @@ ModuleManager::loadModules()
             // exists and is valid, but that's the only thing that could fail
             // from this point on. -- Teo 8/2015
             Module* thisModule = m_loadedModulesByInstanceKey.value( instanceKey, nullptr );
-            if ( thisModule && !thisModule->isLoaded() )
+            if ( thisModule )
             {
-                cError() << "Module" << instanceKey.toString() << "exists but not loaded.";
-                failedModules.append( instanceKey.toString() );
-                continue;
-            }
-
-            if ( thisModule && thisModule->isLoaded() )
-            {
-                cDebug() << "Module" << instanceKey.toString() << "already loaded.";
+                if ( thisModule->isLoaded() )
+                {
+                    // It's been listed before, don't bother loading again.
+                    // This can happen for a module listed twice (e.g. with custom instances)
+                    cDebug() << "Module" << instanceKey.toString() << "already loaded.";
+                }
+                else
+                {
+                    // An attempt was made, earlier, and that failed.
+                    // This can happen for a module listed twice (e.g. with custom instances)
+                    cError() << "Module" << instanceKey.toString() << "exists but not loaded.";
+                    failedModules.append( instanceKey.toString() );
+                    continue;
+                }
             }
             else
             {
-                thisModule = Module::fromDescriptor( m_availableDescriptorsByModuleName.value( instanceKey.module() ),
-                                                        instanceKey.id(),
-                                                        configFileName,
-                                                        m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
+                thisModule = Module::fromDescriptor( descriptor,
+                                                     instanceKey.id(),
+                                                     configFileName,
+                                                     m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
                 if ( !thisModule )
                 {
-                    cError() << "Module" << instanceKey.toString() << "cannot be created from descriptor" << configFileName;
+                    cError() << "Module" << instanceKey.toString() << "cannot be created from descriptor"
+                             << configFileName;
                     failedModules.append( instanceKey.toString() );
                     continue;
                 }
