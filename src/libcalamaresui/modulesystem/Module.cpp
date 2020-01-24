@@ -155,14 +155,17 @@ Module::fromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescrip
     }
 
     m->initFrom( moduleDescriptor );
-    try
+    if ( !configFileName.isEmpty() )
     {
-        m->loadConfigurationFile( configFileName );
-    }
-    catch ( YAML::Exception& e )
-    {
-        cError() << "YAML parser error " << e.what();
-        return nullptr;
+        try
+        {
+            m->loadConfigurationFile( configFileName );
+        }
+        catch ( YAML::Exception& e )
+        {
+            cError() << "YAML parser error " << e.what();
+            return nullptr;
+        }
     }
     return m.release();
 }
