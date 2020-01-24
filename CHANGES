@@ -18,6 +18,11 @@ This release contains contributions from (alphabetically by first name):
    `branding.desc` specifies *center* or *free* placement.
 
 ## Modules ##
+ - All modules can now set a new key in `module.desc` called *noconfig*.
+   If this key is set to `true` (the default is `false), no configuration 
+   file is searched-for or loaded, and no warning is printed if the
+   configuration is missing. This should tidy up some unnecessary warnings
+   on startup. #1302 #1301
  - The *license* module has seen a significant change to its looks.
    Actions are now labeled more clearly, and the URL (or filename)
    for each license is displayed.
