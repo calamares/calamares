@@ -142,7 +142,7 @@ ModuleManager::loadedInstanceKeys()
 }
 
 
-QVariantMap
+Calamares::ModuleSystem::Descriptor
 ModuleManager::moduleDescriptor( const QString& name )
 {
     return m_availableDescriptorsByModuleName.value( name );

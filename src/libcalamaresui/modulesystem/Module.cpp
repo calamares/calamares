@@ -57,7 +57,7 @@ Module::Module()
 Module::~Module() {}
 
 void
-Module::initFrom( const QVariantMap& moduleDescriptor, const QString& id )
+Module::initFrom( const Calamares::ModuleSystem::Descriptor& moduleDescriptor, const QString& id )
 {
     m_key = ModuleSystem::InstanceKey( moduleDescriptor.value( "name" ).toString(), id );
     if ( moduleDescriptor.contains( EMERGENCY ) )
@@ -67,7 +67,7 @@ Module::initFrom( const QVariantMap& moduleDescriptor, const QString& id )
 }
 
 Module*
-Module::fromDescriptor( const QVariantMap& moduleDescriptor,
+Module::fromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescriptor,
                         const QString& instanceId,
                         const QString& configFileName,
                         const QString& moduleDirectory )
