@@ -19,9 +19,6 @@
 
 #include "DummyQmlViewStep.h"
 
-#include "utils/PluginFactory.h"
-#include "viewpages/QmlViewStep.h"
-
 #include <QVariant>
 
 DummyQmlViewStep::DummyQmlViewStep( QObject* parent )
@@ -44,13 +41,12 @@ DummyQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     
     bool qmlLabel_ok = false;
     auto qmlLabel = CalamaresUtils::getSubMap( configurationMap, "qmlLabel", qmlLabel_ok );
-    if ( qmlLabel_ok )
+    
+    if ( qmlLabel.contains( "notes" ) )
     {
-        if ( qmlLabel.contains( "notes" ) )
-        {
-            m_notesName = new CalamaresUtils::Locale::TranslatedString( qmlLabel, "notes" );
-        }
+        m_notesName = new CalamaresUtils::Locale::TranslatedString( qmlLabel, "notes" );
     }
+
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( DummyQmlViewStepFactory, registerPlugin< DummyQmlViewStep >(); )
