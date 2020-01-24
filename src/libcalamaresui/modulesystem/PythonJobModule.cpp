@@ -64,7 +64,6 @@ PythonJobModule::jobs() const
 void
 PythonJobModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
 
