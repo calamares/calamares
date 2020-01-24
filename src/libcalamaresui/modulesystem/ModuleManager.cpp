@@ -183,7 +183,7 @@ findCustomInstance( const Settings::InstanceDescriptionList& customInstances, co
 static QString
 getConfigFileName( const Settings::InstanceDescriptionList& customInstances,
                    const ModuleSystem::InstanceKey& instanceKey,
-                   const ModuleManager::ModuleDescriptor& descriptor )
+                   const ModuleSystem::Descriptor& descriptor )
 {
     if ( instanceKey.isCustom() )
     {
@@ -246,8 +246,8 @@ ModuleManager::loadModules()
                 }
             }
 
-            ModuleDescriptor descriptor
-                = m_availableDescriptorsByModuleName.value( instanceKey.module(), ModuleDescriptor() );
+            ModuleSystem::Descriptor descriptor
+                = m_availableDescriptorsByModuleName.value( instanceKey.module(), ModuleSystem::Descriptor() );
             if ( descriptor.isEmpty() )
             {
                 cError() << "Module" << instanceKey.toString() << "not found in module search paths."
@@ -285,7 +285,7 @@ ModuleManager::loadModules()
             }
             else
             {
-                thisModule = Module::fromDescriptor( m_availableDescriptorsByModuleName.value( instanceKey.module() ),
+                thisModule = Module::fromDescriptor( descriptor,
                                                      instanceKey.id(),
                                                      configFileName,
                                                      m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );

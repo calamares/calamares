@@ -24,6 +24,8 @@
 #include "Requirement.h"
 #include "UiDllMacro.h"
 
+#include "modulesystem/Descriptor.h"
+
 #include <QStringList>
 #include <QVariant>
 
@@ -73,7 +75,7 @@ public:
      * @param moduleDirectory the path to the directory with this module's files.
      * @return a pointer to an object of a subtype of Module.
      */
-    static Module* fromDescriptor( const QVariantMap& moduleDescriptor,
+    static Module* fromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
                                    const QString& instanceId,
                                    const QString& configFileName,
                                    const QString& moduleDirectory );
