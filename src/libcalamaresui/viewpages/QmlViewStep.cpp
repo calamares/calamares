@@ -247,9 +247,10 @@ Calamares::QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap
     QString qmlFile = CalamaresUtils::getString( configurationMap, "filename" );
     if ( qmlFile.isEmpty() )
     {
-        cWarning() << "No QML file for module" << m_name;
+        // TODO use the module instance
     }
-    else if ( !m_qmlComponent )
+
+    if ( !m_qmlComponent )
     {
         m_qmlFileName = searchQmlFile( m_searchMethod, qmlFile, m_name );
 
