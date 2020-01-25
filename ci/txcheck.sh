@@ -103,9 +103,9 @@ else
 		echo "! $f"
 		diff -u build-txcheck-prev/$f build-txcheck-head/$f
 	done
+	echo "! Run 'txcheck.sh --cleanup' to clean-up before next run"
 	exit 1
 fi
 
-# tx_cleanup
-
+tx_cleanup
 exit 0
