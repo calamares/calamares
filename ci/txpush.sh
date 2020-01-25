@@ -41,6 +41,7 @@ else
   # txtag is used to tag in git to measure changes
   txtag() {
     git tag -f translation
+    git push origin translation
   }
 fi
 
