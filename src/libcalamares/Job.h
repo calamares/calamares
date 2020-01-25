@@ -96,6 +96,14 @@ public:
     explicit Job( QObject* parent = nullptr );
     virtual ~Job();
 
+    /** @brief The job's (relative) weight.
+     * 
+     * The default implementation returns 1.0, which gives all jobs
+     * the same weight, so they advance the overall progress the same
+     * amount. This is nonsense, since some jobs take much longer than
+     * others; it's up to the individual jobs to say something about
+     * how much work is (relatively) done.
+     */
     virtual qreal getJobWeight() const;
     virtual QString prettyName() const = 0;
     virtual QString prettyDescription() const;

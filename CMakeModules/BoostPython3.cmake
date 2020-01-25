@@ -37,7 +37,12 @@ macro( _find_boost_python3_int boost_version componentname found_var )
         find_package( Boost ${boost_version} QUIET COMPONENTS ${_fbp_name} )
         string( TOUPPER ${_fbp_name} _fbp_uc_name )
         if( Boost_${_fbp_uc_name}_FOUND )
-            set( ${found_var} ${_fbp_uc_name} )
+            if( CMAKE_SYSTEM_NAME MATCHES "FreeBSD" )
+                # No upcasing
+                set( ${found_var} ${_fbp_name} )
+            else()
+                set( ${found_var} ${_fbp_uc_name} )
+            endif()
             break()
         endif()
     endforeach()
@@ -63,7 +68,7 @@ macro( find_boost_python3 boost_version python_version found_var )
     endif()
 
     set( ${found_var} ${_fbp_found} )
-
+    
     # This is superfluous, but allows proper reporting in the features list
     if ( _fbp_found )
         find_package( Boost ${boost_version} COMPONENTS ${_fbp_found} )
