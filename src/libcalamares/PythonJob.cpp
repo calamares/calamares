@@ -170,7 +170,8 @@ namespace Calamares
 {
 
 
-PythonJob::PythonJob( const QString& scriptFile,
+PythonJob::PythonJob( const QString& instance,
+                      const QString& scriptFile,
                       const QString& workingPath,
                       const QVariantMap& moduleConfiguration,
                       QObject* parent )
@@ -179,12 +180,18 @@ PythonJob::PythonJob( const QString& scriptFile,
     , m_workingPath( workingPath )
     , m_description()
     , m_configurationMap( moduleConfiguration )
+    , m_weight( (instance == QStringLiteral( "unpackfs" )) ? 8.0 : 1.0 )
 {
 }
 
 
 PythonJob::~PythonJob() {}
 
+qreal
+PythonJob::getJobWeight() const
+{
+    return m_weight;
+}
 
 QString
 PythonJob::prettyName() const
