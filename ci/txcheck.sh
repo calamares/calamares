@@ -71,19 +71,15 @@ done
 # The state of translations
 tx_sum()
 {
+	CURDIR=`pwd`
 	WORKTREE_NAME="$1"
 	WORKTREE_TAG="$2"
 
 	git worktree add $WORKTREE_NAME $WORKTREE_TAG > /dev/null 2>&1 || { echo "! Could not create worktree." ; exit 1 ; }
-	( cd $WORKTREE_NAME && sh ci/txpush.sh --no-tx ) > /dev/null 2>&1 || { echo "! Could not re-create translations." ; exit 1 ; }
-	# Clean up the TS (XML) files (like txpush would)
-	TS_FILE="$WORKTREE_NAME/lang/calamares_en.ts"
-	if test -n "$XMLLINT" ; then
-		$XMLLINT --format --encode utf-8 -o "$TS_FILE".new "$TS_FILE" && mv "$TS_FILE".new "$TS_FILE"
-	fi
-	sed -i'' -e '/<location filename/d' $TS_FILE
+	( cd $WORKTREE_NAME && sh "$CURDIR"/ci/txpush.sh --no-tx ) > /dev/null 2>&1 || { echo "! Could not re-create translations." ; exit 1 ; }
 
-	# Remove linenumbers from .pot
+	# Remove linenumbers from .ts (XML) and .pot
+	sed -i'' -e '/<location filename/d' "$WORKTREE_NAME/lang/calamares_en.ts"
 	sed -i'' -e '/^#: src..*[0-9]$/d' $WORKTREE_NAME/lang/python.pot $WORKTREE_NAME/src/modules/dummypythonqt/lang/dummypythonqt.pot
 
 	_SUM=$( cd $WORKTREE_NAME && cat $TX_FILE_LIST | sha256sum )
