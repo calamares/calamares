@@ -38,7 +38,7 @@ class PythonJob : public Job
 {
     Q_OBJECT
 public:
-    explicit PythonJob( const QString& instance,  // TODO: InstanceKey
+    explicit PythonJob( const ModuleSystem::InstanceKey& instance,
                         const QString& scriptFile,
                         const QString& workingPath,
                         const QVariantMap& moduleConfiguration = QVariantMap(),
