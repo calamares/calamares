@@ -18,10 +18,6 @@
 
 #include "ShellProcessJob.h"
 
-#include <QDateTime>
-#include <QProcess>
-#include <QThread>
-
 #include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -30,6 +26,10 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+#include <QDateTime>
+#include <QProcess>
+#include <QThread>
+
 ShellProcessJob::ShellProcessJob( QObject* parent )
     : Calamares::CppJob( parent )
     , m_commands( nullptr )
@@ -37,11 +37,7 @@ ShellProcessJob::ShellProcessJob( QObject* parent )
 }
 
 
-ShellProcessJob::~ShellProcessJob()
-{
-    delete m_commands;
-    m_commands = nullptr;  // TODO: UniquePtr
-}
+ShellProcessJob::~ShellProcessJob() {}
 
 
 QString
@@ -77,7 +73,7 @@ ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "script" ) )
     {
-        m_commands = new CalamaresUtils::CommandList(
+        m_commands = std::make_unique< CalamaresUtils::CommandList >(
             configurationMap.value( "script" ), !dontChroot, std::chrono::seconds( timeout ) );
         if ( m_commands->isEmpty() )
         {
