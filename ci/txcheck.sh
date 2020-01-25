@@ -79,7 +79,7 @@ tx_sum()
 	# Clean up the TS (XML) files (like txpush would)
 	TS_FILE="$WORKTREE_NAME/lang/calamares_en.ts"
 	if test -n "$XMLLINT" ; then
-		$XMLLINT --format -o "$TS_FILE".new "$TS_FILE" && mv "$TS_FILE".new "$TS_FILE"
+		$XMLLINT --format --encode utf-8 -o "$TS_FILE".new "$TS_FILE" && mv "$TS_FILE".new "$TS_FILE"
 	fi
 	sed -i'' -e '/<location filename/d' $TS_FILE
 

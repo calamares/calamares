@@ -82,10 +82,8 @@ $LUPDATE -no-obsolete $_srcdirs -ts lang/calamares_en.ts
 # $LUPDATE -no-obsolete -extensions cxxtr src/libcalamares/locale -ts lang/tz_en.ts
 
 if test -n "$XMLLINT" ; then
-  for f in lang/calamares_en.ts
-  do
-    $XMLLINT --format -o "$f".new "$f" && mv "$f".new "$f"
-  done
+  TS_FILE="lang/calamares_en.ts"
+  $XMLLINT --format --encode utf-8 -o "$TS_FILE".new "$TS_FILE" && mv "$TS_FILE".new "$TS_FILE"
 fi
 
 tx push --source --no-interactive -r calamares.calamares-master
