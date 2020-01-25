@@ -19,7 +19,7 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - All modules can now set a new key in `module.desc` called *noconfig*.
-   If this key is set to `true` (the default is `false), no configuration 
+   If this key is set to `true` (the default is `false), no configuration
    file is searched-for or loaded, and no warning is printed if the
    configuration is missing. This should tidy up some unnecessary warnings
    on startup. #1302 #1301
@@ -30,6 +30,10 @@ This release contains contributions from (alphabetically by first name):
    location names (e.g. "Berlin" is "Berlijn" in Dutch).
  - *Packagechooser* is a little more careful with displaying
    default and empty package names. (thanks to Bill Auger)
+ - The *unpackfs* module now carries a larger weight in the overall
+   progress of the installation, which should resolve downstream reports
+   like "progress stops at 24% for a long time". This is currently
+   hard-coded, but will become configurable in a future release. #1176
 
 
 # 3.2.17.1 (2019-12-02) #
