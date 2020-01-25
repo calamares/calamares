@@ -45,11 +45,10 @@ else
   }
 fi
 
-### CREATE TRANSLATIONS
-#
-# Use local tools (depending on type of source) to create translation
-# sources, then push to Transifex
 
+### FIND EXECUTABLES
+#
+#
 LUPDATE=""
 for _lupdate in lupdate lupdate-qt5
 do
@@ -58,18 +57,40 @@ do
   $_lupdate -version > /dev/null 2>&1 && LUPDATE=$_lupdate
   test -n "$LUPDATE" && break
 done
-
 test -n "$LUPDATE" || { echo "! No working lupdate" ; lupdate -version ; exit 1 ; }
+
+XMLLINT=""
+for _xmllint in xmllint
+do
+  $_xmllint --version > /dev/null 2>&1 && XMLLINT=$_xmllint
+  test -n "$XMLLINT" && break
+done
+# XMLLINT is optional
+
+
+### CREATE TRANSLATIONS
+#
+# Use local tools (depending on type of source) to create translation
+# sources, then push to Transifex
 
 # Don't pull branding translations in,
 # those are done separately.
 _srcdirs="src/calamares src/libcalamares src/libcalamaresui src/modules src/qml"
 $LUPDATE -no-obsolete $_srcdirs -ts lang/calamares_en.ts
-$LUPDATE -no-obsolete -extensions cxxtr src/libcalamares/locale -ts lang/tz_en.ts
+# Updating the TZ only needs to happen when the TZ themselves are updated,
+# very-very-rarely.
+# $LUPDATE -no-obsolete -extensions cxxtr src/libcalamares/locale -ts lang/tz_en.ts
+
+if test -n "$XMLLINT" ; then
+  for f in lang/calamares_en.ts
+  do
+    $XMLLINT --format -o "$f".new "$f" && mv "$f".new "$f"
+  done
+fi
 
 tx push --source --no-interactive -r calamares.calamares-master
-tx push --source --no-interactive -r calamares.tz
 tx push --source --no-interactive -r calamares.fdo
+
 
 ### PYTHON MODULES
 #
