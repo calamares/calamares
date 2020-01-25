@@ -180,7 +180,7 @@ PythonJob::PythonJob( const QString& instance,
     , m_workingPath( workingPath )
     , m_description()
     , m_configurationMap( moduleConfiguration )
-    , m_weight( (instance == QStringLiteral( "unpackfs" )) ? 8.0 : 1.0 )
+    , m_weight( (instance == QStringLiteral( "unpackfs" )) ? 12.0 : 1.0 )
 {
 }
 
