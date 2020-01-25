@@ -50,7 +50,7 @@ fi
 #
 #
 LUPDATE=""
-for _lupdate in lupdate lupdate-qt5
+for _lupdate in lupdate-qt5 lupdate
 do
   export QT_SELECT=5
   $_lupdate -version > /dev/null 2>&1 || export QT_SELECT=qt5
