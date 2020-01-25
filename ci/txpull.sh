@@ -25,6 +25,19 @@ test -f "CMakeLists.txt" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 test -f ".tx/config" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 test -f "calamares.desktop" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 
+
+### FIND EXECUTABLES
+#
+#
+XMLLINT=""
+for _xmllint in xmllint
+do
+  $_xmllint --version > /dev/null 2>&1 && XMLLINT=$_xmllint
+  test -n "$XMLLINT" && break
+done
+# XMLLINT is optional
+
+
 ### FETCH TRANSLATIONS
 #
 # Use Transifex client to get translations; this depends on the
@@ -32,6 +45,7 @@ test -f "calamares.desktop" || { echo "! Not at Calamares top-level" ; exit 1 ; 
 # filesystem with new (merged) translations.
 export QT_SELECT=5
 tx pull --force --source --all
+
 
 ### CLEANUP TRANSLATIONS
 #
@@ -51,6 +65,15 @@ drop_language pl_PL
 #
 { cat calamares.desktop.in ; grep "\\[[a-zA-Z_@]*]=" calamares.desktop ; } > calamares.desktop.new
 mv calamares.desktop.new calamares.desktop
+
+# And fixup the XML files like in txpush.sh
+if test -n "$XMLLINT" ; then
+  for TS_FILE in lang/calamares_*.ts
+  do
+    $XMLLINT --c14n11 "$TS_FILE" | { echo "<!DOCTYPE TS>" ; cat - ; } | $XMLLINT --format --encode utf-8 -o "$TS_FILE".new - && mv "$TS_FILE".new "$TS_FILE"
+  done
+fi
+
 
 ### COMMIT TRANSLATIONS
 #
