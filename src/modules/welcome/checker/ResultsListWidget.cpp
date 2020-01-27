@@ -24,6 +24,7 @@
 #include "Branding.h"
 #include "Settings.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "widgets/FixedAspectRatioLabel.h"
 
@@ -70,7 +71,9 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
 
             allChecked = false;
             if ( entry.mandatory )
+            {
                 requirementsSatisfied = false;
+            }
 
             ciw->setAutoFillBackground( true );
             QPalette pal( ciw->palette() );
@@ -94,50 +97,45 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
 
         if ( !requirementsSatisfied )
         {
-            CALAMARES_RETRANSLATE(
-                QString message = Calamares::Settings::instance()->isSetupMode()
-                    ? tr( "This computer does not satisfy the minimum "
-                          "requirements for setting up %1.<br/>"
-                          "Setup cannot continue. "
-                          "<a href=\"#details\">Details...</a>" )
-                    : tr( "This computer does not satisfy the minimum "
-                          "requirements for installing %1.<br/>"
-                          "Installation cannot continue. "
-                          "<a href=\"#details\">Details...</a>" );
-                textLabel->setText( message.arg( *Calamares::Branding::ShortVersionedName ) );
-            )
+            CALAMARES_RETRANSLATE( QString message = Calamares::Settings::instance()->isSetupMode()
+                                       ? tr( "This computer does not satisfy the minimum "
+                                             "requirements for setting up %1.<br/>"
+                                             "Setup cannot continue. "
+                                             "<a href=\"#details\">Details...</a>" )
+                                       : tr( "This computer does not satisfy the minimum "
+                                             "requirements for installing %1.<br/>"
+                                             "Installation cannot continue. "
+                                             "<a href=\"#details\">Details...</a>" );
+                                   textLabel->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
             textLabel->setOpenExternalLinks( false );
-            connect( textLabel, &QLabel::linkActivated,
-                     this, [ this, checkEntries ]( const QString& link )
-            {
+            connect( textLabel, &QLabel::linkActivated, this, [this, checkEntries]( const QString& link ) {
                 if ( link == "#details" )
+                {
                     showDetailsDialog( checkEntries );
+                }
             } );
         }
         else
         {
-            CALAMARES_RETRANSLATE(
-                QString message = Calamares::Settings::instance()->isSetupMode()
-                    ? tr( "This computer does not satisfy some of the "
-                          "recommended requirements for setting up %1.<br/>"
-                          "Setup can continue, but some features "
-                          "might be disabled." )
-                    : tr( "This computer does not satisfy some of the "
-                          "recommended requirements for installing %1.<br/>"
-                          "Installation can continue, but some features "
-                          "might be disabled." );
-                textLabel->setText( message.arg( *Calamares::Branding::ShortVersionedName ) );
-            )
+            CALAMARES_RETRANSLATE( QString message = Calamares::Settings::instance()->isSetupMode()
+                                       ? tr( "This computer does not satisfy some of the "
+                                             "recommended requirements for setting up %1.<br/>"
+                                             "Setup can continue, but some features "
+                                             "might be disabled." )
+                                       : tr( "This computer does not satisfy some of the "
+                                             "recommended requirements for installing %1.<br/>"
+                                             "Installation can continue, but some features "
+                                             "might be disabled." );
+                                   textLabel->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
         }
     }
 
     if ( allChecked && requirementsSatisfied )
     {
-        if ( !Calamares::Branding::instance()->
-                imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
+        if ( !Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
         {
-            QPixmap theImage = QPixmap( Calamares::Branding::instance()->
-                                        imagePath( Calamares::Branding::ProductWelcome ) );
+            QPixmap theImage
+                = QPixmap( Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ) );
             if ( !theImage.isNull() )
             {
                 QLabel* imageLabel;
@@ -159,41 +157,48 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
             }
         }
-        CALAMARES_RETRANSLATE(
-            textLabel->setText( tr( "This program will ask you some questions and "
-                                    "set up %2 on your computer." )
-                                .arg( *Calamares::Branding::ProductName ) );
-            textLabel->setAlignment( Qt::AlignCenter );
-        )
+        CALAMARES_RETRANSLATE( textLabel->setText( tr( "This program will ask you some questions and "
+                                                       "set up %2 on your computer." )
+                                                       .arg( *Calamares::Branding::ProductName ) );
+                               textLabel->setAlignment( Qt::AlignCenter ); )
     }
     else
+    {
         m_mainLayout->addStretch();
+    }
 }
 
-
-void
-ResultsListWidget::showDetailsDialog( const Calamares::RequirementsList& checkEntries )
+class ResultsListDialog : public QDialog
 {
-    QDialog* detailsDialog = new QDialog( this );
-    QBoxLayout* mainLayout = new QVBoxLayout;
-    detailsDialog->setLayout( mainLayout );
+public:
+    ResultsListDialog( QWidget* parent, const Calamares::RequirementsList& checkEntries );
+    virtual ~ResultsListDialog();
 
-    QLabel* textLabel = new QLabel;
-    mainLayout->addWidget( textLabel );
-    CALAMARES_RETRANSLATE(
-        textLabel->setText( tr( "For best results, please ensure that this computer:" ) );
-    )
-    QBoxLayout* entriesLayout = new QVBoxLayout;
-    CalamaresUtils::unmarginLayout( entriesLayout );
-    mainLayout->addLayout( entriesLayout );
+private:
+    QLabel* m_title;
+    QList< ResultWidget* > m_resultWidgets;
+    const Calamares::RequirementsList& m_entries;
+
+    void retranslate();
+};
+
+ResultsListDialog::ResultsListDialog( QWidget* parent, const Calamares::RequirementsList& checkEntries )
+    : QDialog( parent )
+    , m_entries( checkEntries )
+{
+    auto* mainLayout = new QVBoxLayout;
+    auto* entriesLayout = new QVBoxLayout;
+
+    m_title = new QLabel( this );
 
     for ( const auto& entry : checkEntries )
     {
         if ( !entry.hasDetails() )
+        {
             continue;
+        }
 
         ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
-        CALAMARES_RETRANSLATE( ciw->setText( entry.enumerationText() ); )
         entriesLayout->addWidget( ciw );
         ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
@@ -204,18 +209,53 @@ ResultsListWidget::showDetailsDialog( const Calamares::RequirementsList& checkEn
         bgColor.setHsv( bgHue, 64, bgColor.value() );
         pal.setColor( QPalette::Window, bgColor );
         ciw->setPalette( pal );
+
+        m_resultWidgets.append( ciw );
     }
 
-    QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close,
-            Qt::Horizontal,
-            this );
+    QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
+
+    mainLayout->addWidget( m_title );
+    mainLayout->addLayout( entriesLayout );
     mainLayout->addWidget( buttonBox );
 
-    detailsDialog->setModal( true );
-    detailsDialog->setWindowTitle( tr( "System requirements" ) );
+    setLayout( mainLayout );
 
-    connect( buttonBox, &QDialogButtonBox::clicked,
-             detailsDialog, &QDialog::close );
-    detailsDialog->exec();
-    detailsDialog->deleteLater();
+    CALAMARES_RETRANSLATE_SLOT( &ResultsListDialog::retranslate )
+
+    connect( buttonBox, &QDialogButtonBox::clicked, this, &QDialog::close );
+    retranslate();  // Do it now to fill in the texts
+}
+
+ResultsListDialog::~ResultsListDialog()
+{
+    cDebug() << "~ResultsListDialog @" << (void*)this;
+}
+
+void
+ResultsListDialog::retranslate()
+{
+    cDebug() << "ResultsListDialog::retranslate @" << (void*)this;
+    m_title->setText( tr( "For best results, please ensure that this computer:" ) );
+    setWindowTitle( tr( "System requirements" ) );
+
+    int i = 0;
+    for ( const auto& entry : m_entries )
+    {
+        if ( !entry.hasDetails() )
+        {
+            continue;
+        }
+        m_resultWidgets[ i ]->setText( entry.enumerationText() );
+        i++;
+    }
+}
+
+
+void
+ResultsListWidget::showDetailsDialog( const Calamares::RequirementsList& checkEntries )
+{
+    auto* dialog = new ResultsListDialog( this, checkEntries );
+    dialog->exec();
+    dialog->deleteLater();
 }
