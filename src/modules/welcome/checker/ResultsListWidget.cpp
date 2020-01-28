@@ -34,6 +34,97 @@
 #include <QDialogButtonBox>
 #include <QLabel>
 
+/** @brief A "details" dialog for the results-list
+ * 
+ * This displays the same RequirementsList as ResultsListWidget,
+ * but the *details* part rather than the show description.
+ * 
+ * This is an internal-to-the-widget class.
+ */
+class ResultsListDialog : public QDialog
+{
+public:
+    /** @brief Create a dialog for the given @p checkEntries list of requirements.
+     * 
+     * The list must continue to exist for the lifetime of the dialog,
+     * or UB happens.
+     */
+    ResultsListDialog( QWidget* parent, const Calamares::RequirementsList& checkEntries );
+    virtual ~ResultsListDialog();
+
+private:
+    QLabel* m_title;
+    QList< ResultWidget* > m_resultWidgets;  ///< One widget for each entry with details available
+    const Calamares::RequirementsList& m_entries;
+
+    void retranslate();
+};
+
+ResultsListDialog::ResultsListDialog( QWidget* parent, const Calamares::RequirementsList& checkEntries )
+    : QDialog( parent )
+    , m_entries( checkEntries )
+{
+    auto* mainLayout = new QVBoxLayout;
+    auto* entriesLayout = new QVBoxLayout;
+
+    m_title = new QLabel( this );
+
+    for ( const auto& entry : checkEntries )
+    {
+        if ( !entry.hasDetails() )
+        {
+            continue;
+        }
+
+        ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
+        entriesLayout->addWidget( ciw );
+        ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+
+        ciw->setAutoFillBackground( true );
+        QPalette pal( ciw->palette() );
+        QColor bgColor = pal.window().color();
+        int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
+        bgColor.setHsv( bgHue, 64, bgColor.value() );
+        pal.setColor( QPalette::Window, bgColor );
+        ciw->setPalette( pal );
+
+        m_resultWidgets.append( ciw );
+    }
+
+    QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
+
+    mainLayout->addWidget( m_title );
+    mainLayout->addLayout( entriesLayout );
+    mainLayout->addWidget( buttonBox );
+
+    setLayout( mainLayout );
+
+    CALAMARES_RETRANSLATE_SLOT( &ResultsListDialog::retranslate )
+
+    connect( buttonBox, &QDialogButtonBox::clicked, this, &QDialog::close );
+    retranslate();  // Do it now to fill in the texts
+}
+
+ResultsListDialog::~ResultsListDialog() {}
+
+void
+ResultsListDialog::retranslate()
+{
+    m_title->setText( tr( "For best results, please ensure that this computer:" ) );
+    setWindowTitle( tr( "System requirements" ) );
+
+    int i = 0;
+    for ( const auto& entry : m_entries )
+    {
+        if ( !entry.hasDetails() )
+        {
+            continue;
+        }
+        m_resultWidgets[ i ]->setText( entry.enumerationText() );
+        i++;
+    }
+}
+
 
 ResultsListWidget::ResultsListWidget( QWidget* parent )
     : QWidget( parent )
@@ -168,88 +259,6 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
     }
 }
 
-class ResultsListDialog : public QDialog
-{
-public:
-    ResultsListDialog( QWidget* parent, const Calamares::RequirementsList& checkEntries );
-    virtual ~ResultsListDialog();
-
-private:
-    QLabel* m_title;
-    QList< ResultWidget* > m_resultWidgets;
-    const Calamares::RequirementsList& m_entries;
-
-    void retranslate();
-};
-
-ResultsListDialog::ResultsListDialog( QWidget* parent, const Calamares::RequirementsList& checkEntries )
-    : QDialog( parent )
-    , m_entries( checkEntries )
-{
-    auto* mainLayout = new QVBoxLayout;
-    auto* entriesLayout = new QVBoxLayout;
-
-    m_title = new QLabel( this );
-
-    for ( const auto& entry : checkEntries )
-    {
-        if ( !entry.hasDetails() )
-        {
-            continue;
-        }
-
-        ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
-        entriesLayout->addWidget( ciw );
-        ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-
-        ciw->setAutoFillBackground( true );
-        QPalette pal( ciw->palette() );
-        QColor bgColor = pal.window().color();
-        int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
-        bgColor.setHsv( bgHue, 64, bgColor.value() );
-        pal.setColor( QPalette::Window, bgColor );
-        ciw->setPalette( pal );
-
-        m_resultWidgets.append( ciw );
-    }
-
-    QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
-
-    mainLayout->addWidget( m_title );
-    mainLayout->addLayout( entriesLayout );
-    mainLayout->addWidget( buttonBox );
-
-    setLayout( mainLayout );
-
-    CALAMARES_RETRANSLATE_SLOT( &ResultsListDialog::retranslate )
-
-    connect( buttonBox, &QDialogButtonBox::clicked, this, &QDialog::close );
-    retranslate();  // Do it now to fill in the texts
-}
-
-ResultsListDialog::~ResultsListDialog()
-{
-    cDebug() << "~ResultsListDialog @" << (void*)this;
-}
-
-void
-ResultsListDialog::retranslate()
-{
-    cDebug() << "ResultsListDialog::retranslate @" << (void*)this;
-    m_title->setText( tr( "For best results, please ensure that this computer:" ) );
-    setWindowTitle( tr( "System requirements" ) );
-
-    int i = 0;
-    for ( const auto& entry : m_entries )
-    {
-        if ( !entry.hasDetails() )
-        {
-            continue;
-        }
-        m_resultWidgets[ i ]->setText( entry.enumerationText() );
-        i++;
-    }
-}
 
 
 void
