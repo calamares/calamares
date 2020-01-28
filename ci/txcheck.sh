@@ -40,6 +40,13 @@ do
   test -n "$XMLLINT" && break
 done
 
+# Distinguish GNU date from BSD date
+if date +%s -d "1 week ago" > /dev/null 2>&1 ; then
+    last_week() { date +%s -d "1 week ago" ; }
+else
+    last_week() { date -v1w +%s; }
+fi
+
 
 ### CHECK WORKING DIRECTORY
 #
@@ -59,7 +66,7 @@ else
 fi
 # No unsaved changes; enforce a string freeze of one week
 DATE_PREV=$( git log -1 translation --date=unix | sed -e '/^Date:/s+.*:++p' -e d )
-DATE_HEAD=$( date +%s -d "1 week ago" || date -v1w +%s )
+DATE_HEAD=$( last_week )
 test "$DATE_PREV" -le "$DATE_HEAD" || { echo "! Translation tag has not aged enough." ; git log -1 translation ; exit 1 ; }
 
 # Tag is good, do real work of checking strings: collect names of relevant files
