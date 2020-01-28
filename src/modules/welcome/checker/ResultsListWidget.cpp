@@ -34,16 +34,29 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
+/** @brief Add widgets to @p layout for the list @p checkEntries
+ * 
+ * The @p resultWidgets is filled with pointers to the widgets;
+ * for each entry in @p checkEntries that satisfies @p predicate,
+ * a widget is created, otherwise a nullptr is added instead.
+ * 
+ * Adds all the widgets to the given @p layout.
+ * 
+ * Afterwards, @p resultWidgets has a length equal to @p checkEntries.
+ */
 static void
 createResultWidgets( QLayout* layout,
                      QList< ResultWidget* >& resultWidgets,
                      const Calamares::RequirementsList& checkEntries,
                      std::function< bool( const Calamares::RequirementEntry& ) > predicate )
 {
+    resultWidgets.clear();
+    resultWidgets.reserve( checkEntries.count() );
     for ( const auto& entry : checkEntries )
     {
         if ( !predicate( entry ) )
         {
+            resultWidgets.append( nullptr );
             continue;
         }
 
@@ -127,11 +140,10 @@ ResultsListDialog::retranslate()
     int i = 0;
     for ( const auto& entry : m_entries )
     {
-        if ( !entry.hasDetails() )
+        if ( m_resultWidgets[ i ] )
         {
-            continue;
+            m_resultWidgets[ i ]->setText( entry.enumerationText() );
         }
-        m_resultWidgets[ i ]->setText( entry.enumerationText() );
         i++;
     }
 }
@@ -241,7 +253,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     {
         mainLayout->addStretch();
     }
-    
+
     CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate )
     retranslate();
 }
@@ -264,11 +276,10 @@ ResultsListWidget::retranslate()
     int i = 0;
     for ( const auto& entry : m_entries )
     {
-        if ( entry.satisfied )
+        if ( m_resultWidgets[ i ] )
         {
-            continue;
+            m_resultWidgets[ i ]->setText( entry.negatedText() );
         }
-        m_resultWidgets[ i ]->setText( entry.negatedText() );
         i++;
     }
 }
