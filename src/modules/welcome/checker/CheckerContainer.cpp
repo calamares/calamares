@@ -40,10 +40,7 @@ CheckerContainer::CheckerContainer( QWidget* parent )
     CalamaresUtils::unmarginLayout( mainLayout );
 
     mainLayout->addWidget( m_waitingWidget );
-    CALAMARES_RETRANSLATE(
-        if ( m_waitingWidget )
-            m_waitingWidget->setText( tr( "Gathering system information..." ) );
-    )
+    CALAMARES_RETRANSLATE( if ( m_waitingWidget ) m_waitingWidget->setText( tr( "Gathering system information..." ) ); )
 }
 
 CheckerContainer::~CheckerContainer()
@@ -52,32 +49,37 @@ CheckerContainer::~CheckerContainer()
     delete m_checkerWidget;
 }
 
-void CheckerContainer::requirementsComplete( bool ok )
+void
+CheckerContainer::requirementsComplete( bool ok )
 {
 
     layout()->removeWidget( m_waitingWidget );
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;  // Don't delete in destructor
 
-    m_checkerWidget = new ResultsListWidget( this );
-    m_checkerWidget->init( m_requirements );
+    m_checkerWidget = new ResultsListWidget( this, m_requirements );
     layout()->addWidget( m_checkerWidget );
 
     m_verdict = ok;
 }
 
-void CheckerContainer::requirementsChecked(const Calamares::RequirementsList& l)
+void
+CheckerContainer::requirementsChecked( const Calamares::RequirementsList& l )
 {
     m_requirements.append( l );
 }
 
-void CheckerContainer::requirementsProgress(const QString& message)
+void
+CheckerContainer::requirementsProgress( const QString& message )
 {
     if ( m_waitingWidget )
+    {
         m_waitingWidget->setText( message );
+    }
 }
 
-bool CheckerContainer::verdict() const
+bool
+CheckerContainer::verdict() const
 {
     return m_verdict;
 }

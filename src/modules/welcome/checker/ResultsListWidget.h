@@ -29,15 +29,14 @@ class ResultsListWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ResultsListWidget( QWidget* parent = nullptr );
-
-    void init( const Calamares::RequirementsList& checkEntries );
+    explicit ResultsListWidget( QWidget* parent, const Calamares::RequirementsList& checkEntries );
 
 private:
     void showDetailsDialog( const Calamares::RequirementsList& checkEntries );
 
     QBoxLayout* m_mainLayout;
     QBoxLayout* m_entriesLayout;
+    const Calamares::RequirementsList& m_entries;
 };
 
 #endif  // CHECKER_RESULTSLISTWIDGET_H

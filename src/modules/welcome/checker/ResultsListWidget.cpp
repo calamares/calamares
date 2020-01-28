@@ -126,8 +126,9 @@ ResultsListDialog::retranslate()
 }
 
 
-ResultsListWidget::ResultsListWidget( QWidget* parent )
+ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::RequirementsList& checkEntries )
     : QWidget( parent )
+    , m_entries( checkEntries )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
@@ -143,12 +144,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent )
     spacerLayout->addLayout( m_entriesLayout );
     spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
-}
 
-
-void
-ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
-{
     bool allChecked = true;
     bool requirementsSatisfied = true;
 
