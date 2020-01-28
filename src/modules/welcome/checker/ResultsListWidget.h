@@ -20,6 +20,8 @@
 #ifndef CHECKER_RESULTSLISTWIDGET_H
 #define CHECKER_RESULTSLISTWIDGET_H
 
+#include "ResultWidget.h"
+
 #include "modulesystem/Requirement.h"
 
 #include <QWidget>
@@ -39,6 +41,7 @@ private:
 
     QLabel* m_explanation = nullptr;  ///< Explanatory text above the list, with link
     const Calamares::RequirementsList& m_entries;
+    QList< ResultWidget* > m_resultWidgets;  ///< One widget for each unsatisfied entry
 };
 
 #endif  // CHECKER_RESULTSLISTWIDGET_H

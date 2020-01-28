@@ -110,9 +110,9 @@ ResultsListDialog::ResultsListDialog( QWidget* parent, const Calamares::Requirem
 
     setLayout( mainLayout );
 
-    CALAMARES_RETRANSLATE_SLOT( &ResultsListDialog::retranslate )
-
     connect( buttonBox, &QDialogButtonBox::clicked, this, &QDialog::close );
+
+    CALAMARES_RETRANSLATE_SLOT( &ResultsListDialog::retranslate )
     retranslate();  // Do it now to fill in the texts
 }
 
@@ -171,24 +171,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     const bool requirementsSatisfied = std::none_of( checkEntries.begin(), checkEntries.end(), isUnSatisfied );
     const bool mandatorySatisfied = std::none_of( checkEntries.begin(), checkEntries.end(), isMandatoryAndUnSatisfied );
 
-    for ( const auto& entry : checkEntries )
-    {
-        if ( !entry.satisfied )
-        {
-            ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
-            CALAMARES_RETRANSLATE( ciw->setText( entry.negatedText() ); )
-            entriesLayout->addWidget( ciw );
-            ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-            ciw->setAutoFillBackground( true );
-            QPalette pal( ciw->palette() );
-            QColor bgColor = pal.window().color();
-            int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
-            bgColor.setHsv( bgHue, 64, bgColor.value() );
-            pal.setColor( QPalette::Window, bgColor );
-            ciw->setPalette( pal );
-        }
-    }
-
+    createResultWidgets( entriesLayout, m_resultWidgets, checkEntries, isUnSatisfied );
 
     if ( !requirementsSatisfied )
     {
@@ -258,6 +241,9 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     {
         mainLayout->addStretch();
     }
+    
+    CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate )
+    retranslate();
 }
 
 
@@ -269,5 +255,20 @@ ResultsListWidget::linkClicked( const QString& link )
         auto* dialog = new ResultsListDialog( this, m_entries );
         dialog->exec();
         dialog->deleteLater();
+    }
+}
+
+void
+ResultsListWidget::retranslate()
+{
+    int i = 0;
+    for ( const auto& entry : m_entries )
+    {
+        if ( entry.satisfied )
+        {
+            continue;
+        }
+        m_resultWidgets[ i ]->setText( entry.negatedText() );
+        i++;
     }
 }
