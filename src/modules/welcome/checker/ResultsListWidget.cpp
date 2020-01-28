@@ -179,9 +179,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
     auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
-    auto isMandatoryAndUnSatisfied = []( const Calamares::RequirementEntry& e ) { return e.mandatory && !e.satisfied; };
     const bool requirementsSatisfied = std::none_of( checkEntries.begin(), checkEntries.end(), isUnSatisfied );
-    const bool mandatorySatisfied = std::none_of( checkEntries.begin(), checkEntries.end(), isMandatoryAndUnSatisfied );
 
     createResultWidgets( entriesLayout, m_resultWidgets, checkEntries, isUnSatisfied );
 
