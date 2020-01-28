@@ -157,8 +157,12 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
 
-    bool requirementsSatisfied = true;  // Give a warning
-    bool mandatorySatisfied = true;  // Give an error
+    // Check that all are satisfied (gives warnings if not) and
+    // all *mandatory* entries are satisfied (gives errors if not).
+    auto isUnSatisfied = [](const Calamares::RequirementEntry& e){ return !e.satisfied; };
+    auto isMandatoryAndUnSatisfied = [](const Calamares::RequirementEntry& e){ return e.mandatory && !e.satisfied; };
+    const bool requirementsSatisfied = std::none_of(checkEntries.begin(), checkEntries.end(), isUnSatisfied);
+    const bool mandatorySatisfied = std::none_of(checkEntries.begin(), checkEntries.end(), isMandatoryAndUnSatisfied);
 
     for ( const auto& entry : checkEntries )
     {
@@ -168,13 +172,6 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
             CALAMARES_RETRANSLATE( ciw->setText( entry.negatedText() ); )
             entriesLayout->addWidget( ciw );
             ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-
-            requirementsSatisfied = false;
-            if ( entry.mandatory )
-            {
-                mandatorySatisfied = false;
-            }
-
             ciw->setAutoFillBackground( true );
             QPalette pal( ciw->palette() );
             QColor bgColor = pal.window().color();
