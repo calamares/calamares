@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019-2020, Adriaan de Groot <groot@kde.org>
  *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
