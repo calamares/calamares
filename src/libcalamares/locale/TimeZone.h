@@ -155,6 +155,19 @@ public:
     const CStringPair* item( int index ) const;
     QHash<int, QByteArray> roleNames() const override;
 
+    inline int indexOf(const QString &key)
+    {
+        const auto it = std::find_if(m_list.constBegin(), m_list.constEnd(), [&](const  CalamaresUtils::Locale::CStringPair *item) -> bool
+        {
+            return item->key() == key;
+
+        });
+
+        if(it != m_list.constEnd())
+            return std::distance(m_list.constBegin(), it);
+        else return -1;
+    }
+
 private:
     CStringPairList m_list;
 };

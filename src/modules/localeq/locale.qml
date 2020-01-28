@@ -79,10 +79,30 @@ Page
 
 			Button
 			{
+				text: qsTr("Back")
+// 				enabled: Locale.Config.isNextEnabled
+				onClicked:
+				{
+					if(_stackView.depth === 0)
+						return;
+
+					_stackView.pop()
+				}
+				height: implicitHeight
+			}
+
+			Button
+			{
 				text: qsTr("Next")
-				enabled: Locale.Config.isNextEnabled
+// 				enabled: Locale.Config.isNextEnabled
 				// 			width: _requirementsList.width
-				onClicked: _stackView.push(_zonesListComponent)
+				onClicked:
+				{
+					if(_stackView.depth >=2)
+						return;
+
+					_stackView.push(_zonesListComponent)
+				}
 				height: implicitHeight
 			}
 		}
@@ -96,9 +116,9 @@ Page
 
 		initialItem:  ColumnLayout
 		{
+			id: _regionsListComponent
 			width: parent.width
 			spacing:  Kirigami.Units.largeSpacing * 5
-
 
 			Label
 			{
@@ -106,7 +126,7 @@ Page
 				Layout.preferredHeight: implicitHeight
 				horizontalAlignment: Qt.AlignHCenter
 				wrapMode: Text.NoWrap
-				text: qsTr("Location")
+				text: qsTr("Region")
 				color: "white"
 				font.bold: true
 				font.weight: Font.Bold
@@ -119,12 +139,12 @@ Page
 				Layout.preferredHeight: implicitHeight
 				horizontalAlignment: Qt.AlignHCenter
 				wrapMode: Text.NoWrap
-				text: qsTr("Pick your preferred location")
+				text: qsTr("Pick your preferred region or use the default one based on your current location")
 				color: "white"
 				font.weight: Font.Light
 				font.pointSize: 12
 			}
-
+/*
 			Label
 			{
 				visible: !_requirementsList.model.satisfiedRequirements
@@ -132,11 +152,11 @@ Page
 				Layout.preferredHeight: implicitHeight
 				horizontalAlignment: Qt.AlignHCenter
 				wrapMode: Text.NoWrap
-				text: _regionListView.count
+				text: _stackView.currentItem
 				color: "white"
 				font.weight: Font.Light
 				font.pointSize: 10
-			}
+			}*/
 
 			ListView
 			{
@@ -164,23 +184,32 @@ Page
 				{
 					id: _delegate
 
+					hoverEnabled: true
+
+					property bool isCurrentItem: ListView.isCurrentItem
 					background: Rectangle
 					{
-						color: model.satisfied ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.negativeTextColor
-						opacity: 0.2
+						color: isCurrentItem || hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
+						opacity: isCurrentItem || hovered ? 0.7 : 0.1
 					}
 
 					width: parent.width
 					height: 48
 
-					text: model.label
+					contentItem: Label
+					{
+						anchors.fill: parent
+						anchors.margins: Kirigami.Units.largeSpacing
+						horizontalAlignment: Qt.AlignLeft
+						text: model.label
+						color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+					}
+
 					onClicked:
 					{
 						Locale.Config.currentRegion = index
 						_stackView.push(_zonesListComponent)
 					}
-
-
 				}
 			}
 		}
@@ -213,7 +242,7 @@ Page
 					Layout.preferredHeight: implicitHeight
 					horizontalAlignment: Qt.AlignHCenter
 					wrapMode: Text.NoWrap
-					text: qsTr("Select your preferred zone to continue with the installation")
+					text: qsTr("Select your preferred zone within your location to continue with the installation")
 					color: "white"
 					font.weight: Font.Light
 					font.pointSize: 12
@@ -221,13 +250,14 @@ Page
 
 				ListView
 				{
+					id: _zonesListView
 					Layout.alignment: Qt.AlignCenter
 					Layout.preferredWidth: Math.min(500, parent.width - 64)
 					Layout.preferredHeight: Math.min(contentHeight, parent.height - 200)
 					spacing: Kirigami.Units.smallSpacing
 					clip: true
 
-					currentIndex: Welcome.Config.localeIndex
+					currentIndex: model.currentZone
 
 					Rectangle
 					{
@@ -249,7 +279,7 @@ Page
 						background: Rectangle
 						{
 							color: isCurrentItem || hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
-							opacity: isCurrentItem || hovered ? 1 : 0.1
+							opacity: isCurrentItem || hovered ? 0.7 : 0.1
 						}
 
 						width: parent.width
@@ -257,12 +287,18 @@ Page
 
 						onClicked:
 						{
-							Welcome.Config.localeIndex = index
-							positionViewAtIndex(index, ListView.Beginning)
+							_zonesListView.model.currentZone = index
+							positionViewAtIndex(index, ListView.Center)
 						}
 
-						text: model.label
-// 						color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+						contentItem: Label
+						{
+							anchors.fill: parent
+							anchors.margins: Kirigami.Units.largeSpacing
+							horizontalAlignment: Qt.AlignLeft
+							text: model.label
+							color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+						}
 					}
 				}
 			}

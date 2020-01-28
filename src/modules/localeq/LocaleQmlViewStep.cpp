@@ -19,11 +19,17 @@
 
 #include "LocaleQmlViewStep.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
 #include "geoip/Handler.h"
-#include "locale/LabelModel.h"
-#include "locale/Lookup.h"
+#include "network/Manager.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
+#include "utils/Yaml.h"
+
+#include "timezonewidget/localeglobal.h"
 
 #include "Branding.h"
 #include "modulesystem/ModuleManager.h"
@@ -37,7 +43,7 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleQmlViewStepFactory, registerPlugin< L
 
 LocaleQmlViewStep::LocaleQmlViewStep( QObject* parent )
 : Calamares::ViewStep( parent )
-, m_config( new Config( m_startingTimezone.first, m_startingTimezone.second, m_localeGenPath, this ) )
+, m_config( new Config( this ) )
 , m_nextEnabled( false )
 , m_geoip( nullptr )
 {
@@ -48,6 +54,43 @@ Config*
 LocaleQmlViewStep::config() const
 {
     return m_config;
+}
+
+void
+LocaleQmlViewStep::fetchGeoIpTimezone()
+{
+    if ( m_geoip && m_geoip->isValid() )
+    {
+        m_startingTimezone = m_geoip->get();
+        if ( !m_startingTimezone.isValid() )
+        {
+            cWarning() << "GeoIP lookup at" << m_geoip->url() << "failed.";
+        }
+    }
+
+    m_config->setLocaleInfo(m_startingTimezone.first, m_startingTimezone.second, m_localeGenPath);
+}
+
+Calamares::RequirementsList LocaleQmlViewStep::checkRequirements()
+{
+    LocaleGlobal::init();
+    if ( m_geoip && m_geoip->isValid() )
+    {
+        auto& network = CalamaresUtils::Network::Manager::instance();
+        if ( network.hasInternet() )
+        {
+            fetchGeoIpTimezone();
+        }
+        else
+        {
+            if ( network.synchronousPing( m_geoip->url() ) )
+            {
+                fetchGeoIpTimezone();
+            }
+        }
+    }
+
+    return Calamares::RequirementsList();
 }
 
 QString
@@ -97,13 +140,75 @@ LocaleQmlViewStep::isAtEnd() const
 Calamares::JobList
 LocaleQmlViewStep::jobs() const
 {
-    return Calamares::JobList();
+    return m_jobs;
+}
+
+void LocaleQmlViewStep::onActivate()
+{
+    // TODO no sure if it is needed at all or for the abstract class to start something
+}
+
+void LocaleQmlViewStep::onLeave()
+{
+    if ( true )
+    {
+        m_jobs = m_config->createJobs();
+//         m_prettyStatus = m_actualWidget->prettyStatus();
+
+        auto map = m_config->localesMap();
+        QVariantMap vm;
+        for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
+        {
+            vm.insert( it.key(), it.value() );
+        }
+
+        Calamares::JobQueue::instance()->globalStorage()->insert( "localeConf", vm );
+    }
+    else
+    {
+        m_jobs.clear();
+        Calamares::JobQueue::instance()->globalStorage()->remove( "localeConf" );
+    }
 }
 
 void LocaleQmlViewStep::setConfigurationMap(const QVariantMap& configurationMap)
 {
-    using Calamares::Branding;
+    QString region = CalamaresUtils::getString( configurationMap, "region" );
+    QString zone = CalamaresUtils::getString( configurationMap, "zone" );
+    if ( !region.isEmpty() && !zone.isEmpty() )
+    {
+        m_startingTimezone = CalamaresUtils::GeoIP::RegionZonePair( region, zone );
+    }
+    else
+    {
+        m_startingTimezone
+        = CalamaresUtils::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
+    }
+
+    m_localeGenPath = CalamaresUtils::getString( configurationMap, "localeGenPath" );
+    if ( m_localeGenPath.isEmpty() )
+    {
+        m_localeGenPath = QStringLiteral( "/etc/locale.gen" );
+    }
+
+    bool ok = false;
+    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    if ( ok )
+    {
+        QString url = CalamaresUtils::getString( geoip, "url" );
+        QString style = CalamaresUtils::getString( geoip, "style" );
+        QString selector = CalamaresUtils::getString( geoip, "selector" );
+
+        m_geoip = std::make_unique< CalamaresUtils::GeoIP::Handler >( style, url, selector );
+        if ( !m_geoip->isValid() )
+        {
+            cWarning() << "GeoIP Style" << style << "is not recognized.";
+        }
+    }
+
+    checkRequirements();
 
 }
+
 
 

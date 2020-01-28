@@ -22,6 +22,7 @@
 #include <QObject>
 #include <QUrl>
 #include <QAbstractListModel>
+#include "Job.h"
 #include "locale/TimeZone.h"
 #include "LocaleConfiguration.h"
 #include "timezonewidget/localeglobal.h"
@@ -31,11 +32,15 @@ class ZonesModel : public QAbstractListModel
 {
     Q_OBJECT
     using QAbstractListModel::QAbstractListModel;
+    Q_PROPERTY(int currentZone READ currentZone WRITE setCurrentZone NOTIFY currentZoneChanged)
+
 public:
     void setZones( const CalamaresUtils::Locale::CStringPairList &zones );
     void setZone( const QString &key);
     int rowCount(const QModelIndex&) const override;
     QVariant data(const QModelIndex& index, int role) const override;
+
+    const CalamaresUtils::Locale::CStringPair *item(const int &index) const;
 
     inline int indexOf(const QString &key)
     {
@@ -50,12 +55,18 @@ public:
         else return -1;
     }
 
+    const CalamaresUtils::Locale::TZZone* currentLocation();
+
+    void setCurrentZone(const int &index);
+    int currentZone() const;
+
 protected:
     QHash<int, QByteArray> roleNames() const override;
 
 private:
     CalamaresUtils::Locale::CStringPairList m_zones;
     int m_currentZone = -1;
+
 
 signals:
     void currentZoneChanged();
@@ -70,13 +81,21 @@ class Config : public QObject
     Q_PROPERTY(CalamaresUtils::Locale::CStringListModel * regionModel READ regionModel CONSTANT FINAL)
 
 public:
-    Config(const QString& initialRegion, const QString& initialZone, const QString& localeGenPath, QObject* parent = nullptr );
+    Config( QObject* parent = nullptr );
+    ~Config();
     CalamaresUtils::Locale::CStringListModel* regionModel() const;
+
+    void setLocaleInfo(const QString& initialRegion, const QString& initialZone, const QString& localeGenPath);
 
     void setCurrentRegion(const int &index);
     int currentRegion() const;
 
     ZonesModel * zonesModel() const;
+
+    Calamares::JobList createJobs();
+    QMap< QString, QString > localesMap();
+
+    QString prettyStatus() const;
 
 private:
     CalamaresUtils::Locale::CStringPairList m_regionList;
@@ -89,6 +108,21 @@ private:
     int m_currentRegion = -1;
 
     bool m_blockTzWidgetSet;
+
+    LocaleConfiguration guessLocaleConfiguration() const;
+
+    // For the given locale config, return two strings describing
+    // the settings for language and numbers.
+    std::pair< QString, QString > prettyLocaleStatus( const LocaleConfiguration& ) const;
+
+    /** @brief Update the GS *locale* key with the selected system language.
+     *
+     * This uses whatever is set in m_selectedLocaleConfiguration as the language,
+     * and writes it to GS *locale* key (as a string, in BCP47 format).
+     */
+    void updateGlobalLocale();
+    void updateGlobalStorage();
+    void updateLocaleLabels();
 
 signals:
     void currentRegionChanged();

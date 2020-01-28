@@ -21,7 +21,6 @@ calamares_add_plugin( localeq
         LCLocaleDialog.cpp
         LocaleConfiguration.cpp
         SetTimezoneJob.cpp
-        timezonewidget/timezonewidget.cpp
         timezonewidget/localeglobal.cpp
     UI
     RESOURCES
@@ -34,7 +33,7 @@ calamares_add_plugin( localeq
     SHARED_LIB
 )
 
-add_executable( localeqmltest qmlmain.cpp Config.cpp LocaleQmlViewStep.cpp LocaleConfiguration.cpp ${geoip_src} )
+add_executable( localeqmltest qmlmain.cpp Config.cpp LocaleQmlViewStep.cpp LocaleConfiguration.cpp timezonewidget/localeglobal.cpp SetTimezoneJob.cpp ${geoip_src} )
 target_link_libraries( localeqmltest PRIVATE calamaresui Qt5::Core Qt5::Network Qt5::DBus ${geoip_libs})
 set_target_properties( localeqmltest
     PROPERTIES

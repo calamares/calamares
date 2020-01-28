@@ -23,13 +23,10 @@
 #include "geoip/Handler.h"
 #include "geoip/Interface.h"
 #include "utils/PluginFactory.h"
-#include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 #include <PluginDllMacro.h>
 
 #include <QObject>
-
-#include "PluginDllMacro.h"
 
 #include <QFutureWatcher>
 #include <QObject>
@@ -70,14 +67,17 @@ public:
     bool isAtEnd() const override;
 
     Calamares::JobList jobs() const override;
+    void onActivate() override;
+    void onLeave() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
     Config* config() const;
 
+    virtual Calamares::RequirementsList checkRequirements() override;
+
 private:
     // TODO: a generic QML viewstep should return a config object from a method
     Config *m_config;
-//     GeneralRequirements* m_requirementsChecker;
 
     // TODO: these need to be in the base class (also a base class of ExecutionViewStep)
     QQuickWidget* m_qmlWidget;
@@ -92,6 +92,8 @@ private:
 
     Calamares::JobList m_jobs;
     std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
+
+    void fetchGeoIpTimezone();
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( LocaleQmlViewStepFactory )
