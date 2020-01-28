@@ -53,7 +53,6 @@ PackageChooserPage::PackageChooserPage( PackageChooserMode mode, QWidget* parent
     }
 
     ui->products->setMinimumWidth( 10 * CalamaresUtils::defaultFontHeight() );
-
 }
 
 /** @brief size the given @p pixmap to @p size
@@ -138,6 +137,16 @@ PackageChooserPage::setModel( QAbstractItemModel* model )
              &QItemSelectionModel::selectionChanged,
              this,
              &PackageChooserPage::updateLabels );
+}
+
+void
+PackageChooserPage::setSelection( const QModelIndex& index )
+{
+    if ( index.isValid() )
+    {
+        ui->products->selectionModel()->select( index, QItemSelectionModel::Select );
+        currentChanged( index );
+    }
 }
 
 bool

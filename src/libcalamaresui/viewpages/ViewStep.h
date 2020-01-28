@@ -20,14 +20,14 @@
 #ifndef VIEWSTEP_H
 #define VIEWSTEP_H
 
-#include <QList>
-#include <QObject>
-#include <QSize>
-
 #include "Job.h"
 #include "UiDllMacro.h"
 
 #include "modulesystem/Requirement.h"
+
+#include <QList>
+#include <QObject>
+#include <QSize>
 
 namespace Calamares
 {

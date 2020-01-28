@@ -39,6 +39,7 @@
 #include <QDesktopWidget>
 #include <QDir>
 #include <QFileInfo>
+#include <QScreen>
 #include <QTimer>
 
 
@@ -342,6 +343,42 @@ CalamaresApplication::initModuleManager()
     m_moduleManager->init();
 }
 
+/** @brief centers the widget @p w on (a) screen
+ * 
+ * This tries to duplicate the (deprecated) qApp->desktop()->availableGeometry()
+ * placement by iterating over screens and putting Calamares in the first
+ * one where it fits; this is *generally* the primary screen.
+ * 
+ * With debugging, it would look something like this (2 screens attached,
+ * primary at +1080+240 because I have a very strange X setup). Before
+ * being mapped, the Calamares window is at +0+0 but does have a size.
+ * The first screen's geometry includes the offset from the origin in
+ * screen coordinates.
+ * 
+ *  Proposed window size: 1024 520 
+ *  Window QRect(0,0 1024x520) 
+ *  Screen QRect(1080,240 2560x1440) 
+ *  Moving QPoint(1848,700) 
+ *  Screen QRect(0,0 1080x1920) 
+ *
+ */
+static void
+centerWindowOnScreen( QWidget* w )
+{
+    QList< QScreen* > screens = qApp->screens();
+    QPoint windowCenter = w->rect().center();
+    QSize windowSize = w->rect().size();
+
+    for ( const auto* screen : screens )
+    {
+        QSize screenSize = screen->availableGeometry().size();
+        if ( ( screenSize.width() >= windowSize.width() ) && ( screenSize.height() >= windowSize.height() ) )
+        {
+            w->move( screen->availableGeometry().center() - windowCenter );
+            break;
+        }
+    }
+}
 
 void
 CalamaresApplication::initView()
@@ -357,6 +394,10 @@ CalamaresApplication::initView()
 
     QTimer::singleShot( 0, m_moduleManager, &Calamares::ModuleManager::loadModules );
 
+    if ( Calamares::Branding::instance() && Calamares::Branding::instance()->windowPlacementCentered() )
+    {
+        centerWindowOnScreen( m_mainwindow );
+    }
     cDebug() << "STARTUP: CalamaresWindow created; loadModules started";
 }
 

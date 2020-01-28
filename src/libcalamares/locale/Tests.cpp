@@ -215,12 +215,12 @@ LocaleTests::testSimpleZones()
         QVERIFY( n.tr().isEmpty() );
     }
     {
-        TZRegion r0( "xAmsterdam" );
+        TZZone r0( "xAmsterdam" );
         QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
-        TZRegion r1( r0 );
+        TZZone r1( r0 );
         QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
         QCOMPARE( r1.tr(), QStringLiteral( "xAmsterdam" ) );
-        TZRegion r2( std::move( r0 ) );
+        TZZone r2( std::move( r0 ) );
         QCOMPARE( r2.tr(), QStringLiteral( "xAmsterdam" ) );
         QCOMPARE( r0.tr(), QString() );
     }

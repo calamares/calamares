@@ -410,6 +410,9 @@ Branding::initSimpleSettings( const YAML::Node& doc )
         { QStringLiteral( "fullscreen" ), WindowExpansion::Fullscreen },
         { QStringLiteral( "noexpand" ), WindowExpansion::Fixed }
     };
+    static const NamedEnumTable< WindowPlacement > placementNames {
+        { QStringLiteral( "free" ), WindowPlacement::Free }, { QStringLiteral( "center" ), WindowPlacement::Center }
+    };
     bool ok = false;
 
     m_welcomeStyleCalamares = doc[ "welcomeStyleCalamares" ].as< bool >( false );
@@ -419,6 +422,12 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     {
         cWarning() << "Branding module-setting *windowExpanding* interpreted as"
                    << expansionNames.find( m_windowExpansion, ok );
+    }
+    m_windowPlacement = placementNames.find( getString( doc, "windowPlacement" ), ok );
+    if ( !ok )
+    {
+        cWarning() << "Branding module-setting *windowPlacement* interpreted as"
+                   << placementNames.find( m_windowPlacement, ok );
     }
 
     QString windowSize = getString( doc, "windowSize" );

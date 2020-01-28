@@ -144,6 +144,14 @@ PackageChooserViewStep::isAtEnd() const
     return true;
 }
 
+void
+PackageChooserViewStep::onActivate()
+{
+    if ( !m_widget->hasSelection() )
+    {
+        m_widget->setSelection( m_defaultIdx );
+    }
+}
 
 void
 PackageChooserViewStep::onLeave()
@@ -198,6 +206,9 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
         }
     }
 
+    QString default_item_id = CalamaresUtils::getString( configurationMap, "default" );
+    m_defaultIdx = QModelIndex();
+
     bool first_time = !m_model;
     if ( configurationMap.contains( "items" ) )
     {
@@ -207,6 +218,22 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
     if ( first_time && m_widget && m_model )
     {
         hookupModel();
+    }
+
+    // find default item
+    if ( first_time && m_model && !default_item_id.isEmpty() )
+    {
+        for ( int item_n = 0; item_n < m_model->packageCount(); ++item_n )
+        {
+            QModelIndex item_idx = m_model->index( item_n, 0 );
+            QVariant item_id = m_model->data( item_idx, PackageListModel::IdRole );
+
+            if ( item_id.toString() == default_item_id )
+            {
+                m_defaultIdx = item_idx;
+                break;
+            }
+        }
     }
 }
 

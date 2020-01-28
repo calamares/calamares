@@ -220,6 +220,8 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
 
     set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
 
+    # The path prefix is only relevant for CMake 3.16 and later, fixes #1286
+    set( CMAKE_AUTOMOC_PATH_PREFIX OFF )
     set( CALAMARES_AUTOMOC_OPTIONS "-butils/moc-warnings.h" )
     set( CALAMARES_AUTOUIC_OPTIONS --include utils/moc-warnings.h )
 else()
@@ -322,6 +324,10 @@ set_package_properties(
 )
 
 if ( PYTHONLIBS_FOUND )
+    # Since Boost provides CMake config files (starting with Boost 1.70.
+    # or so) the mess that is the Calamares find code picks the wrong
+    # bits. Suppress those CMake config files, as suggested by @jmrcpn
+    set(Boost_NO_BOOST_CMAKE ON)
     include( BoostPython3 )
     find_boost_python3( ${BOOSTPYTHON_VERSION} ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
     set_package_properties(

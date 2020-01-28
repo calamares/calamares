@@ -1,3 +1,9 @@
+# Product branding information. This influences some global
+# user-visible aspects of Calamares, such as the product
+# name, window behavior, and the slideshow during installation.
+#
+# Additional styling can be done using the stylesheet.qss
+# file, also in the branding directory.
 ---
 componentName:  default
 
@@ -9,28 +15,105 @@ componentName:  default
 welcomeStyleCalamares:   false
 
 # Should the welcome image (productWelcome, below) be scaled
-# up beyond its natural size?
-welcomeExpandingLogo:   false
+# up beyond its natural size? If false, the image does not grow
+# with the window but remains the same size throughout (this
+# may have surprising effects on HiDPI monitors).
+welcomeExpandingLogo:   true
 
+# Size and expansion policy for Calamares.
+#  - "normal" or unset, expand as needed, use *windowSize*
+#  - "fullscreen", start as large as possible, ignore *windowSize*
+#  - "noexpand", don't expand automatically, use *windowSize*
+windowExpanding:    normal
+
+# Size of Calamares window, expressed as w,h. Both w and h
+# may be either pixels (suffix px) or font-units (suffix em).
+#   e.g.    "800px,600px"
+#           "60em,480px"
+# This setting is ignored if "fullscreen" is selected for
+# *windowExpanding*, above. If not set, use constants defined
+# in CalamaresUtilsGui, 800x520.
+windowSize: 800px,520px
+
+# Placement of Calamares window. Either "center" or "free".
+# Whether "center" actually works does depend on the window
+# manager in use (and only makes sense if you're not using
+# *windowExpanding* set to "fullscreen").
+windowPlacement: center
+
+# These are strings shown to the user in the user interface.
+# There is no provision for translating them -- since they
+# are names, the string is included as-is.
+#
+# The four Url strings are the Urls used by the buttons in
+# the welcome screen, and are not shown to the user. Clicking
+# on the "Support" button, for instance, opens the link supportUrl.
+# If a Url is empty, the corresponding button is not shown.
+#
+# bootloaderEntryName is how this installation / distro is named
+# in the boot loader (e.g. in the GRUB menu).
+#
+# These strings support substitution from /etc/os-release
+# if KDE Frameworks 5.58 are available at build-time. When
+# enabled, @{var-name} is replaced by the equivalent value
+# from os-release. All the supported var-names are in all-caps,
+# and are listed on the FreeDesktop.org site,
+#       https://www.freedesktop.org/software/systemd/man/os-release.html
+# Note that ANSI_COLOR and CPE_NAME don't make sense here, and
+# are not supported (the rest are). Remember to quote the string
+# if it contains substitutions, or you'll get YAML exceptions.
+#
+# The *Url* entries are used on the welcome page, and they
+# are visible as buttons there if the corresponding *show* keys
+# are set to "true" (they can also be overridden).
 strings:
-    productName:         Nitrux OS
-    shortProductName:    Nitrux
-    version:             1.1.0
-    shortVersion:        1.1.0
-    versionedName:       Nitrux OS 1.1.0
-    shortVersionedName:  Nitrux 1.1.0
-    bootloaderEntryName: Nitrux
-    productUrl:          https://nxos.org/
-    supportUrl:          https://nxos.org/compendium/#help-and-support
-    knownIssuesUrl:      https://nxos.org/compendium/#get-started
-    releaseNotesUrl:     https://sourceforge.net/p/nitruxos/news/
+    productName:         "@{NAME}"
+    shortProductName:    Generic
+    version:             2017.8 LTS
+    shortVersion:        2017.8
+    versionedName:       Generic GNU/Linux 2017.8 LTS "Soapy Sousaphone"
+    shortVersionedName:  Generic 2017.8
+    bootloaderEntryName: Generic
+    productUrl:          https://calamares.io/
+    supportUrl:          https://github.com/calamares/calamares/issues
+    knownIssuesUrl:      https://calamares.io/about/
+    releaseNotesUrl:     https://calamares.io/about/
 
+# These images are loaded from the branding module directory.
+#
+# productIcon is used as the window icon, and will (usually) be used
+#       by the window manager to represent the application. This image
+#       should be square, and may be displayed by the window manager
+#       as small as 16x16 (but possibly larger).
+# productLogo is used as the logo at the top of the left-hand column
+#       which shows the steps to be taken. The image should be square,
+#       and is displayed at 80x80 pixels (also on HiDPI).
+# productWelcome is shown on the welcome page of the application in
+#       the middle of the window, below the welcome text. It can be
+#       any size and proportion, and will be scaled to fit inside
+#       the window. Use `welcomeExpandingLogo` to make it non-scaled.
+#       Recommended size is 320x150.
+#
+# These filenames can also use substitutions from os-release (see above).
 images:
-    productLogo:         "nxos_logo_large.png"
-    productIcon:         "nxos_logo_large.png"
-    productWelcome:      "nxos_logo.png"
+    productLogo:         "squid.png"
+    productIcon:         "squid.png"
+    productWelcome:      "languages.png"
 
+# The slideshow is displayed during execution steps (e.g. when the
+# installer is actually writing to disk and doing other slow things).
 slideshow:               "show.qml"
+# There are two available APIs for the slideshow:
+#  - 1 (the default) loads the entire slideshow when the installation-
+#      slideshow page is shown and starts the QML then. The QML
+#      is never stopped (after installation is done, times etc.
+#      continue to fire).
+#  - 2 loads the slideshow on startup and calls onActivate() and
+#      onLeave() in the root object. After the installation is done,
+#      the show is stopped (first by calling onLeave(), then destroying
+#      the QML components).
+slideshowAPI: 2
+
 
 # Colors for text and background components.
 #
@@ -40,8 +123,11 @@ slideshow:               "show.qml"
 #    Optional, and defaults to the application palette.
 #  - sidebarSelect is the text color of the selected step.
 #
+# These colors can **also** be set through the stylesheet, if the
+# branding component also ships a stylesheet.qss. Then they are
+# the corresponding CSS attributes of #sidebarApp.
 style:
-   sidebarBackground:    "#231F20"
+   sidebarBackground:    "#292F34"
    sidebarText:          "#FFFFFF"
-   sidebarTextSelect:    "#FFFFFF"
-   sidebarTextHighlight: "#26C6DA"
+   sidebarTextSelect:    "#292F34"
+   sidebarTextHighlight: "#D35400"

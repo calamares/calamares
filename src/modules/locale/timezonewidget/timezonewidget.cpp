@@ -271,7 +271,14 @@ TimeZoneWidget::paintEvent( QPaintEvent* )
     painter.drawImage( point.x() - pin.width() / 2, point.y() - pin.height() / 2, pin );
 
     // Draw text and box
-    const int textWidth = fontMetrics.horizontalAdvance( m_currentLocation ? m_currentLocation->tr() : QString() );
+    // .. the lambda manages deprecations: the old one works in Qt 5.9 and Qt 5.10,
+    //    while the new one avoids deprecation messages in Qt 5.13 and later.
+#if QT_VERSION >= QT_VERSION_CHECK( 5, 11, 0 )
+    auto textwidth = [&]( const QString& s ) { return fontMetrics.horizontalAdvance( s ); };
+#else
+    auto textwidth = [&]( const QString& s ) { return fontMetrics.width( s ); };
+#endif
+    const int textWidth = textwidth( m_currentLocation ? m_currentLocation->tr() : QString() );
     const int textHeight = fontMetrics.height();
 
     QRect rect = QRect( point.x() - textWidth / 2 - 5, point.y() - textHeight - 8, textWidth + 10, textHeight - 2 );

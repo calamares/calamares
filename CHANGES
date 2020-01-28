@@ -6,20 +6,25 @@ website will have to do for older versions.
 # 3.2.18 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No other contributors this time around.
+ - Bill Auger
 
 ## Core ##
  - Timezone support code has migrated into the core of Calamares. This
    means that modules now have easier access to timezone information.
    Translations for timezones have also been enabled, so it is **possible**
-   at least to translate the displayed zones in the *welcome* module.
+   at least to translate the displayed zones in the *locale* module.
+ - Branding can now specify whether to (try to) display the Calamares window
+   in the middle of the desktop or not. The *windowPlacement* key in
+   `branding.desc` specifies *center* or *free* placement.
 
 ## Modules ##
  - The *license* module has seen a significant change to its looks.
    Actions are now labeled more clearly, and the URL (or filename)
    for each license is displayed.
- - The *welcome* module now supports translations for timezone and
+ - The *locale* module now supports translations for timezone and
    location names (e.g. "Berlin" is "Berlijn" in Dutch).
+ - *Packagechooser* is a little more careful with displaying
+   default and empty package names. (thanks to Bill Auger)
 
 
 # 3.2.17.1 (2019-12-02) #
