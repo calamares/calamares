@@ -151,7 +151,7 @@ Calamares::RequirementsList GeneralRequirements::checkRequirements()
         else if ( entry == "root" )
             checkEntries.append( {
                 entry,
-                []{ return QString(); }, //we hide it
+                []{ return tr( "is running the installer as an administrator (root)" ); },
                 []{ return Calamares::Settings::instance()->isSetupMode()
                             ? tr( "The setup program is not running with administrator rights." )
                             : tr( "The installer is not running with administrator rights." ); },
@@ -161,7 +161,7 @@ Calamares::RequirementsList GeneralRequirements::checkRequirements()
         else if ( entry == "screen" )
             checkEntries.append( {
                 entry,
-                []{ return QString(); }, // we hide it
+                []{ return tr( "has a screen large enough to show the whole installer" ); },
                 []{ return Calamares::Settings::instance()->isSetupMode()
                             ? tr( "The screen is too small to display the setup program." )
                             : tr( "The screen is too small to display the installer." ); },
