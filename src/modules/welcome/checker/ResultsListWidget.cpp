@@ -29,10 +29,10 @@
 #include "widgets/FixedAspectRatioLabel.h"
 
 #include <QAbstractButton>
-#include <QBoxLayout>
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QLabel>
+#include <QVBoxLayout>
 
 static void
 createResultWidgets( QLayout* layout,
@@ -157,6 +157,13 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
 
+    m_explanation = new QLabel;
+    m_explanation->setWordWrap( true );
+    m_explanation->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+    m_explanation->setOpenExternalLinks( false );
+    connect( m_explanation, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
+    entriesLayout->addWidget( m_explanation );
+
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
     auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
@@ -182,11 +189,6 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
         }
     }
 
-    QLabel* textLabel = new QLabel;
-
-    textLabel->setWordWrap( true );
-    entriesLayout->insertWidget( 0, textLabel );
-    textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
     if ( !requirementsSatisfied )
     {
@@ -203,9 +205,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
                                              "requirements for installing %1.<br/>"
                                              "Installation cannot continue. "
                                              "<a href=\"#details\">Details...</a>" );
-                                   textLabel->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
-            textLabel->setOpenExternalLinks( false );
-            connect( textLabel, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
+                                   m_explanation->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
         }
         else
         {
@@ -218,7 +218,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
                                              "recommended requirements for installing %1.<br/>"
                                              "Installation can continue, but some features "
                                              "might be disabled." );
-                                   textLabel->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
+                                   m_explanation->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
         }
     }
 
@@ -249,10 +249,10 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
             }
         }
-        CALAMARES_RETRANSLATE( textLabel->setText( tr( "This program will ask you some questions and "
-                                                       "set up %2 on your computer." )
-                                                       .arg( *Calamares::Branding::ProductName ) );
-                               textLabel->setAlignment( Qt::AlignCenter ); )
+        CALAMARES_RETRANSLATE( m_explanation->setText( tr( "This program will ask you some questions and "
+                                                           "set up %2 on your computer." )
+                                                           .arg( *Calamares::Branding::ProductName ) );
+                               m_explanation->setAlignment( Qt::AlignCenter ); )
     }
     else
     {

@@ -29,6 +29,8 @@
 #include "utils/Retranslator.h"
 #include "widgets/WaitingWidget.h"
 
+#include <QHBoxLayout>
+
 CheckerContainer::CheckerContainer( QWidget* parent )
     : QWidget( parent )
     , m_waitingWidget( new WaitingWidget( QString(), this ) )

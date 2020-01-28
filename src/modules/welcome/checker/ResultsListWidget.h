@@ -22,8 +22,9 @@
 
 #include "modulesystem/Requirement.h"
 
-#include <QBoxLayout>
 #include <QWidget>
+
+class QLabel;
 
 class ResultsListWidget : public QWidget
 {
@@ -36,6 +37,7 @@ private:
     void linkClicked( const QString& link );
     void retranslate();
 
+    QLabel* m_explanation = nullptr;  ///< Explanatory text above the list, with link
     const Calamares::RequirementsList& m_entries;
 };
 
