@@ -167,7 +167,7 @@ Page
 				spacing: Kirigami.Units.smallSpacing
 				clip: true
 				boundsBehavior: Flickable.StopAtBounds
-				currentIndex: Locale.Config.currentRegion
+				currentIndex: model.currentIndex
 
 				Rectangle
 				{
@@ -207,7 +207,7 @@ Page
 
 					onClicked:
 					{
-						Locale.Config.currentRegion = index
+						_regionListView.model.currentIndex = index
 						_stackView.push(_zonesListComponent)
 					}
 				}
@@ -257,7 +257,7 @@ Page
 					spacing: Kirigami.Units.smallSpacing
 					clip: true
 
-					currentIndex: model.currentZone
+					currentIndex: model.currentIndex
 
 					Rectangle
 					{
@@ -287,7 +287,7 @@ Page
 
 						onClicked:
 						{
-							_zonesListView.model.currentZone = index
+							_zonesListView.model.currentIndex = index
 							positionViewAtIndex(index, ListView.Center)
 						}
 

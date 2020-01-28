@@ -6,10 +6,7 @@ if( DEBUG_TIMEZONES )
     add_definitions( -DDEBUG_TIMEZONES )
 endif()
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set( _locale ${CMAKE_CURRENT_SOURCE_DIR}/../locale )
+set( _locale ${CMAKE_CURRENT_SOURCE_DIR}/../localeq )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui ${CMAKE_CURRENT_SOURCE_DIR}/../../libcalamares ${_locale} )
 

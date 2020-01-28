@@ -35,87 +35,16 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-
-QHash<int, QByteArray>
-ZonesModel::roleNames() const
-{
-    return {{Qt::DisplayRole,"label"}, {Qt::UserRole, "key"}};
-}
-
-QVariant
-ZonesModel::data(const QModelIndex& index, int role) const
-{
-    if ( !index.isValid() )
-    {
-        return QVariant();
-    }
-
-    const auto zone = item( index.row() );
-    return zone ? ( role == Qt::DisplayRole ? zone->tr() : zone->key() ) : QVariant();
-}
-
-int
-ZonesModel::rowCount(const QModelIndex&) const
-{
-   return m_zones.count();
-}
-
-void
-ZonesModel::setZones(const CalamaresUtils::Locale::CStringPairList& zones)
-{
-    beginResetModel();
-    m_zones = zones;
-    endResetModel();
-}
-
-void
-ZonesModel::setZone(const QString& key)
-{
-    const auto index = indexOf(key);
-    cDebug() << "settins zxone index" << index;
-    setCurrentZone(index);
-}
-
-int
-ZonesModel::currentZone() const
-{
-    return m_currentZone;
-}
-
-void
-ZonesModel::setCurrentZone(const int& index)
-{
-    if(index >= m_zones.count() || index < 0)
-        return;
-
-    m_currentZone = index;
-    emit currentZoneChanged();
-}
-
-const CalamaresUtils::Locale::TZZone *
-ZonesModel::currentLocation()
-{
-    return this->m_zones.find< CalamaresUtils::Locale::TZZone>( item(m_currentZone)->key() );
-}
-
-const CalamaresUtils::Locale::CStringPair *
-ZonesModel::item(const int& index) const
-{
-    if ( ( index < 0 ) || ( index >= m_zones.count() ) )
-    {
-        return nullptr;
-    }
-    return m_zones.at(index);
-}
-
-
 Config::Config(QObject *parent) : QObject(parent)
 , m_regionList( CalamaresUtils::Locale::TZRegion::fromZoneTab() )
 , m_regionModel( new CalamaresUtils::Locale::CStringListModel ( m_regionList ) )
-, m_zonesModel( new ZonesModel(this))
+, m_zonesModel( new CalamaresUtils::Locale::CStringListModel ( ) )
 , m_blockTzWidgetSet( false )
 {
-
+    connect(m_regionModel, &CalamaresUtils::Locale::CStringListModel::currentIndexChanged, [&]()
+    {
+        m_zonesModel->setList(static_cast<const CalamaresUtils::Locale::TZRegion*>(m_regionModel->item(m_regionModel->currentIndex()))->zones());
+    });
 }
 
 Config::~Config()
@@ -123,7 +52,8 @@ Config::~Config()
     qDeleteAll( m_regionList );
 }
 
-ZonesModel * Config::zonesModel() const
+CalamaresUtils::Locale::CStringListModel *
+Config::zonesModel() const
 {
     return m_zonesModel;
 }
@@ -143,13 +73,17 @@ Config::setLocaleInfo(const QString& initialRegion, const QString& initialZone, 
     auto* region = m_regionList.find< TZRegion >( initialRegion );
     if ( region && region->zones().find< TZZone >( initialZone ) )
     {
-        this->setCurrentRegion(m_regionModel->indexOf(initialRegion));
-        this->m_zonesModel->setZone(initialZone);
+        this->m_regionModel->setCurrentIndex(m_regionModel->indexOf(initialRegion));
+        m_zonesModel->setList(region->zones());
+        this->m_zonesModel->setCurrentIndex(m_zonesModel->indexOf(initialZone));
+
     }
     else
     {
-        this->setCurrentRegion(m_regionModel->indexOf("America"));
-        this->m_zonesModel->setZone("New_York");
+        this->m_regionModel->setCurrentIndex(m_regionModel->indexOf("America"));
+        m_zonesModel->setList(static_cast<const TZRegion*>(m_regionModel->item(m_regionModel->currentIndex()))->zones());
+        this->m_zonesModel->setCurrentIndex(m_zonesModel->indexOf("New_York"));
+
     }
 
     // Some distros come with a meaningfully commented and easy to parse locale.gen,
@@ -263,7 +197,7 @@ void Config::updateGlobalStorage()
 {
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    const auto* location = m_zonesModel->currentLocation();
+    const auto* location = currentLocation();
     bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
     || ( location->zone() != gs->value( "locationZone" ) );
 
@@ -329,34 +263,10 @@ Config::prettyLocaleStatus(const LocaleConfiguration& lc) const
                                               tr( "The numbers and dates locale will be set to %1." ).arg( num.label() ) );
 }
 
-void
-Config::setCurrentRegion(const int &index)
-{
-    if(index >= m_regionModel->rowCount(QModelIndex()) || index < 0)
-        return;
-
-    m_currentRegion = index;
-    emit currentRegionChanged();
-
-    using namespace CalamaresUtils::Locale;
-   const auto zoneKey=  this->m_regionModel->item(index)->tr();
-
-   cDebug() << "REGIONS" << zoneKey << index;
-
-   if(auto region = m_regionList.find< TZRegion >(zoneKey))
-       m_zonesModel->setZones(region->zones());
-}
-
-int
-Config::currentRegion() const
-{
-    return m_currentRegion;
-}
-
 Calamares::JobList Config::createJobs()
 {
     QList< Calamares::job_ptr > list;
-    const CalamaresUtils::Locale::TZZone* location = m_zonesModel->currentLocation();
+    const CalamaresUtils::Locale::TZZone* location = currentLocation();
 
     Calamares::Job* j = new SetTimezoneJob( location->region(), location->zone() );
     list.append( Calamares::job_ptr( j ) );
@@ -367,7 +277,7 @@ Calamares::JobList Config::createJobs()
 LocaleConfiguration Config::guessLocaleConfiguration() const
 {
     return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), m_localeGenLines, m_zonesModel->currentLocation()->country() );
+        QLocale().name(), m_localeGenLines, currentLocation()->country() );
 }
 
 QMap<QString, QString> Config::localesMap()
@@ -379,7 +289,7 @@ QMap<QString, QString> Config::localesMap()
 QString Config::prettyStatus() const
 {
     QString status;
-    status += tr( "Set timezone to %1/%2.<br/>" ).arg( m_regionModel->item(m_currentRegion)->tr() ).arg( m_zonesModel->item(m_zonesModel->currentZone())->tr() );
+    status += tr( "Set timezone to %1/%2.<br/>" ).arg( m_regionModel->item(m_regionModel->currentIndex())->tr() ).arg( m_zonesModel->item(m_zonesModel->currentIndex())->tr() );
 
     LocaleConfiguration lc
     = m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration() : m_selectedLocaleConfiguration;
@@ -391,5 +301,8 @@ QString Config::prettyStatus() const
 }
 
 
-
-
+const CalamaresUtils::Locale::TZZone * Config::currentLocation() const
+{
+    return static_cast<const CalamaresUtils::Locale::TZZone*>(m_zonesModel->item(m_zonesModel->currentIndex()));
+    return new CalamaresUtils::Locale::TZZone();
+}

@@ -141,12 +141,13 @@ protected:
 class CStringListModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int currentIndex READ currentIndex WRITE setCurrentIndex NOTIFY currentIndexChanged)
+
 public:
     /// @brief Create empty model
-    CStringListModel();
+    CStringListModel() {};
     /// @brief Create model from list (non-owning)
     CStringListModel( CStringPairList );
-    virtual ~CStringListModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
 
@@ -154,6 +155,11 @@ public:
 
     const CStringPair* item( int index ) const;
     QHash<int, QByteArray> roleNames() const override;
+
+    void setCurrentIndex(const int &index);
+    int currentIndex() const;
+
+    void setList(CStringPairList);
 
     inline int indexOf(const QString &key)
     {
@@ -168,8 +174,13 @@ public:
         else return -1;
     }
 
+
 private:
     CStringPairList m_list;
+    int m_currentIndex = -1;
+
+signals:
+    void currentIndexChanged();
 };
 
 }  // namespace Locale
