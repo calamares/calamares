@@ -34,8 +34,6 @@ public:
 private:
     void showDetailsDialog( const Calamares::RequirementsList& checkEntries );
 
-    QBoxLayout* m_mainLayout;
-    QBoxLayout* m_entriesLayout;
     const Calamares::RequirementsList& m_entries;
 };
 

@@ -143,16 +143,17 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
-    m_mainLayout = new QVBoxLayout;
-    setLayout( m_mainLayout );
+    QBoxLayout* mainLayout = new QVBoxLayout;
+    QBoxLayout* entriesLayout = new QVBoxLayout;
+
+    setLayout( mainLayout );
 
     int paddingSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 4, 128 );
 
     QHBoxLayout* spacerLayout = new QHBoxLayout;
-    m_mainLayout->addLayout( spacerLayout );
+    mainLayout->addLayout( spacerLayout );
     spacerLayout->addSpacing( paddingSize );
-    m_entriesLayout = new QVBoxLayout;
-    spacerLayout->addLayout( m_entriesLayout );
+    spacerLayout->addLayout( entriesLayout );
     spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
 
@@ -165,7 +166,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
         {
             ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
             CALAMARES_RETRANSLATE( ciw->setText( entry.negatedText() ); )
-            m_entriesLayout->addWidget( ciw );
+            entriesLayout->addWidget( ciw );
             ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
             allChecked = false;
@@ -187,12 +188,12 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     QLabel* textLabel = new QLabel;
 
     textLabel->setWordWrap( true );
-    m_entriesLayout->insertWidget( 0, textLabel );
+    entriesLayout->insertWidget( 0, textLabel );
     textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
     if ( !allChecked )
     {
-        m_entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
+        entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
 
         if ( !requirementsSatisfied )
         {
@@ -251,7 +252,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
                 }
 
                 imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight() * 3 / 4, 4, 4 );
-                m_mainLayout->addWidget( imageLabel );
+                mainLayout->addWidget( imageLabel );
                 imageLabel->setAlignment( Qt::AlignCenter );
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
             }
@@ -263,7 +264,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     }
     else
     {
-        m_mainLayout->addStretch();
+        mainLayout->addStretch();
     }
 }
 
