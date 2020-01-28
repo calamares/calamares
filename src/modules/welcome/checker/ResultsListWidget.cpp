@@ -34,6 +34,35 @@
 #include <QDialogButtonBox>
 #include <QLabel>
 
+static void
+createResultWidgets( QLayout* layout,
+                     QList< ResultWidget* >& resultWidgets,
+                     const Calamares::RequirementsList& checkEntries,
+                     std::function< bool( const Calamares::RequirementEntry& ) > predicate )
+{
+    for ( const auto& entry : checkEntries )
+    {
+        if ( !predicate( entry ) )
+        {
+            continue;
+        }
+
+        ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
+        layout->addWidget( ciw );
+        ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+
+        ciw->setAutoFillBackground( true );
+        QPalette pal( ciw->palette() );
+        QColor bgColor = pal.window().color();
+        int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
+        bgColor.setHsv( bgHue, 64, bgColor.value() );
+        pal.setColor( QPalette::Window, bgColor );
+        ciw->setPalette( pal );
+
+        resultWidgets.append( ciw );
+    }
+}
+
 /** @brief A "details" dialog for the results-list
  *
  * This displays the same RequirementsList as ResultsListWidget,
@@ -69,27 +98,9 @@ ResultsListDialog::ResultsListDialog( QWidget* parent, const Calamares::Requirem
 
     m_title = new QLabel( this );
 
-    for ( const auto& entry : checkEntries )
-    {
-        if ( !entry.hasDetails() )
-        {
-            continue;
-        }
-
-        ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
-        entriesLayout->addWidget( ciw );
-        ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-
-        ciw->setAutoFillBackground( true );
-        QPalette pal( ciw->palette() );
-        QColor bgColor = pal.window().color();
-        int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
-        bgColor.setHsv( bgHue, 64, bgColor.value() );
-        pal.setColor( QPalette::Window, bgColor );
-        ciw->setPalette( pal );
-
-        m_resultWidgets.append( ciw );
-    }
+    createResultWidgets( entriesLayout, m_resultWidgets, checkEntries, []( const Calamares::RequirementEntry& e ) {
+        return e.hasDetails();
+    } );
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
 
