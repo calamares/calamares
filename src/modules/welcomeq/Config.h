@@ -29,6 +29,7 @@ class RequirementsModel : public QAbstractListModel
 {
     Q_OBJECT
     using QAbstractListModel::QAbstractListModel;
+    Q_PROPERTY(bool satisfiedRequirements MEMBER m_satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL)
 
 public:
     enum Roles : short
@@ -43,14 +44,17 @@ public:
 
     void setRequirementsList( const Calamares::RequirementsList& requirements );
     int rowCount(const QModelIndex&) const override;
-	QVariant data(const QModelIndex& index, int role) const override;
+    QVariant data(const QModelIndex& index, int role) const override;
 
 protected:
-	QHash<int, QByteArray> roleNames() const override;
+    QHash<int, QByteArray> roleNames() const override;
 
 private:
     Calamares::RequirementsList m_requierements;
+    bool m_satisfiedRequirements = false;
 
+signals:
+    void satisfiedRequirementsChanged(bool value);
 };
 
 
@@ -58,12 +62,7 @@ class Config : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL)
-    Q_PROPERTY( QUrl supportUrl READ supportUrl CONSTANT FINAL )
-    Q_PROPERTY( QUrl knownIssuesUrl READ knownIssuesUrl CONSTANT FINAL )
-    Q_PROPERTY( QUrl releaseNotesUrl READ releaseNotesUrl CONSTANT FINAL )
-    Q_PROPERTY( QUrl donateUrl READ donateUrl CONSTANT FINAL )
-
-    Q_PROPERTY( QString productName MEMBER m_productName CONSTANT FINAL )
+    Q_PROPERTY( RequirementsModel* requirementsModel MEMBER m_requirementsModel CONSTANT FINAL )
 
     Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
 
@@ -71,8 +70,7 @@ class Config : public QObject
     Q_PROPERTY (int localeIndex MEMBER m_localeIndex NOTIFY localeIndexChanged)
 
     Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL )
-    Q_PROPERTY( QString warningMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL )
-    Q_PROPERTY( RequirementsModel* requirementsModel MEMBER m_requirementsModel CONSTANT FINAL )
+    Q_PROPERTY( QString warningMessage MEMBER m_warningMessage CONSTANT FINAL )
 
     Q_PROPERTY( bool isNextEnabled MEMBER m_isNextEnabled NOTIFY isNextEnabledChanged FINAL )
 
@@ -80,13 +78,6 @@ class Config : public QObject
 
 
 public:
-     enum Alert : short
-    {
-        WarningAlert,
-        ErrorAlert,
-        SucessAlert
-
-    }; Q_ENUM( Alert )
 
     Config( QObject* parent = nullptr );
     void setConfigurationMap( const QVariantMap& configurationMap );
@@ -100,11 +91,6 @@ public:
 public slots:
     CalamaresUtils::Locale::LabelModel* languagesModel() const;
 
-    QUrl supportUrl() const;
-    QUrl knownIssuesUrl() const;
-    QUrl releaseNotesUrl() const;
-    QUrl donateUrl() const;
-
     QString languageIcon() const;
 
 private:
@@ -116,10 +102,9 @@ private:
     bool m_isNextEnabled = false;
     bool m_isBackEnabled = false;
 
-    QString m_productName;
-    const QString m_genericWelcomeMessage = "This program will ask you some questions and set up your installation";
+    const QString m_genericWelcomeMessage = tr("This program will ask you some questions and set up your installation");
 
-    const QString m_warningMessage = "This program does not satisfy the minimum requirements for installing.\nInstallation can not continue";
+    const QString m_warningMessage = tr("This program does not satisfy the minimum requirements for installing.\nInstallation can not continue");
 
 signals:
     void countryCodeChanged( QString countryCode );

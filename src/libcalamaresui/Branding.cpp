@@ -74,7 +74,8 @@ const QStringList Branding::s_imageEntryStrings =
 {
     "productLogo",
     "productIcon",
-    "productWelcome"
+    "productWelcome",
+    "productWallpaper"
 };
 
 const QStringList Branding::s_styleEntryStrings =

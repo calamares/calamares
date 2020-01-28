@@ -157,7 +157,6 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 		m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
 
         m_config->requirementsModel().setRequirementsList( checkRequirements() );
-
 	}
 	else
 		cWarning() << "no valid requirements map found in welcome "

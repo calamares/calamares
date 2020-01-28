@@ -21,7 +21,6 @@
 
 #include <QDebug>
 
-
 static QString
 jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map, const QString& key )
 {
@@ -42,20 +41,34 @@ jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map
     return QString();
 }
 
-void RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
+void
+RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
 {
     emit beginResetModel();
     m_requierements = requirements;
-    emit endResetModel();
+    m_satisfiedRequirements = true;
 
+    for(const auto requirement : m_requierements)
+    {
+        if(requirement.mandatory && !requirement.satisfied)
+        {
+//             m_satisfiedRequirements = false;
+            break;
+        }
+    }
+
+    emit satisfiedRequirementsChanged(m_satisfiedRequirements);
+    emit endResetModel();
 }
 
-int RequirementsModel::rowCount( const QModelIndex& ) const
+int
+RequirementsModel::rowCount( const QModelIndex& ) const
 {
     return m_requierements.count();
 }
 
-QVariant RequirementsModel::data( const QModelIndex& index, int role ) const
+QVariant
+RequirementsModel::data( const QModelIndex& index, int role ) const
 {
     const auto requirement = m_requierements.at( index.row() );
 
@@ -76,7 +89,8 @@ QVariant RequirementsModel::data( const QModelIndex& index, int role ) const
 	}
 }
 
-QHash<int, QByteArray> RequirementsModel::roleNames() const
+QHash<int, QByteArray>
+RequirementsModel::roleNames() const
 {
     static QHash<int, QByteArray> roles;
 	roles[Roles::Name] = "name";
@@ -90,38 +104,13 @@ QHash<int, QByteArray> RequirementsModel::roleNames() const
 Config::Config( QObject* parent ) : QObject( parent )
     ,m_requirementsModel( new RequirementsModel( this ))
 {
-    m_productName = jobOrBrandingSetting( Calamares::Branding::ProductName, m_configurationMap, "productName" );
+    connect(m_requirementsModel, &RequirementsModel::satisfiedRequirementsChanged, this, &Config::setIsNextEnabled);
 }
 
 CalamaresUtils::Locale::LabelModel*
 Config::languagesModel() const
 {
 	return CalamaresUtils::Locale::availableTranslations();
-}
-
-
-QUrl
-Config::donateUrl() const
-{
-	return jobOrBrandingSetting( Calamares::Branding::SupportUrl, m_configurationMap, "showDonateUrl" );
-}
-
-QUrl
-Config::knownIssuesUrl() const
-{
-	return jobOrBrandingSetting( Calamares::Branding::SupportUrl, m_configurationMap, "showKnownIssuesUrl" );
-}
-
-QUrl
-Config::releaseNotesUrl() const
-{
-	return jobOrBrandingSetting( Calamares::Branding::SupportUrl, m_configurationMap, "showReleaseNotesUrl" );
-}
-
-QUrl
-Config::supportUrl() const
-{
-	 return jobOrBrandingSetting( Calamares::Branding::SupportUrl, m_configurationMap, "showSupportUrl" );
 }
 
 QString

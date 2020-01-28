@@ -67,7 +67,8 @@ public:
     {
         ProductLogo,
         ProductIcon,
-        ProductWelcome
+        ProductWelcome,
+        ProductWallpaper
     }; Q_ENUM( ImageEntry )
 
     enum StyleEntry : short
