@@ -35,13 +35,13 @@
 #include <QVBoxLayout>
 
 /** @brief Add widgets to @p layout for the list @p checkEntries
- * 
+ *
  * The @p resultWidgets is filled with pointers to the widgets;
  * for each entry in @p checkEntries that satisfies @p predicate,
  * a widget is created, otherwise a nullptr is added instead.
- * 
+ *
  * Adds all the widgets to the given @p layout.
- * 
+ *
  * Afterwards, @p resultWidgets has a length equal to @p checkEntries.
  */
 static void
@@ -188,33 +188,6 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     if ( !requirementsSatisfied )
     {
         entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
-
-        if ( !mandatorySatisfied )
-        {
-            CALAMARES_RETRANSLATE( QString message = Calamares::Settings::instance()->isSetupMode()
-                                       ? tr( "This computer does not satisfy the minimum "
-                                             "requirements for setting up %1.<br/>"
-                                             "Setup cannot continue. "
-                                             "<a href=\"#details\">Details...</a>" )
-                                       : tr( "This computer does not satisfy the minimum "
-                                             "requirements for installing %1.<br/>"
-                                             "Installation cannot continue. "
-                                             "<a href=\"#details\">Details...</a>" );
-                                   m_explanation->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
-        }
-        else
-        {
-            CALAMARES_RETRANSLATE( QString message = Calamares::Settings::instance()->isSetupMode()
-                                       ? tr( "This computer does not satisfy some of the "
-                                             "recommended requirements for setting up %1.<br/>"
-                                             "Setup can continue, but some features "
-                                             "might be disabled." )
-                                       : tr( "This computer does not satisfy some of the "
-                                             "recommended requirements for installing %1.<br/>"
-                                             "Installation can continue, but some features "
-                                             "might be disabled." );
-                                   m_explanation->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
-        }
         mainLayout->addStretch();
     }
     else
@@ -244,10 +217,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
             }
         }
-        CALAMARES_RETRANSLATE( m_explanation->setText( tr( "This program will ask you some questions and "
-                                                           "set up %2 on your computer." )
-                                                           .arg( *Calamares::Branding::ProductName ) );
-                               m_explanation->setAlignment( Qt::AlignCenter ); )
+        m_explanation->setAlignment( Qt::AlignCenter );
     }
 
     CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate )
@@ -277,5 +247,47 @@ ResultsListWidget::retranslate()
             m_resultWidgets[ i ]->setText( entry.negatedText() );
         }
         i++;
+    }
+
+    // Check that all are satisfied (gives warnings if not) and
+    // all *mandatory* entries are satisfied (gives errors if not).
+    auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
+    auto isMandatoryAndUnSatisfied = []( const Calamares::RequirementEntry& e ) { return e.mandatory && !e.satisfied; };
+    const bool requirementsSatisfied = std::none_of( m_entries.begin(), m_entries.end(), isUnSatisfied );
+    const bool mandatorySatisfied = std::none_of( m_entries.begin(), m_entries.end(), isMandatoryAndUnSatisfied );
+
+    if ( !requirementsSatisfied )
+    {
+        QString message;
+        const bool setup = Calamares::Settings::instance()->isSetupMode();
+        if ( !mandatorySatisfied )
+        {
+            message = setup ? tr( "This computer does not satisfy the minimum "
+                                  "requirements for setting up %1.<br/>"
+                                  "Setup cannot continue. "
+                                  "<a href=\"#details\">Details...</a>" )
+                            : tr( "This computer does not satisfy the minimum "
+                                  "requirements for installing %1.<br/>"
+                                  "Installation cannot continue. "
+                                  "<a href=\"#details\">Details...</a>" );
+        }
+        else
+        {
+            message = setup ? tr( "This computer does not satisfy some of the "
+                                  "recommended requirements for setting up %1.<br/>"
+                                  "Setup can continue, but some features "
+                                  "might be disabled." )
+                            : tr( "This computer does not satisfy some of the "
+                                  "recommended requirements for installing %1.<br/>"
+                                  "Installation can continue, but some features "
+                                  "might be disabled." );
+        }
+        m_explanation->setText( message.arg( *Calamares::Branding::ShortVersionedName ) );
+    }
+    else
+    {
+        m_explanation->setText( tr( "This program will ask you some questions and "
+                                    "set up %2 on your computer." )
+                                    .arg( *Calamares::Branding::ProductName ) );
     }
 }
