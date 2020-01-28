@@ -32,7 +32,9 @@ public:
     explicit ResultsListWidget( QWidget* parent, const Calamares::RequirementsList& checkEntries );
 
 private:
-    void showDetailsDialog( const Calamares::RequirementsList& checkEntries );
+    /// @brief A link in the explanatory text has been clicked
+    void linkClicked( const QString& link );
+    void retranslate();
 
     const Calamares::RequirementsList& m_entries;
 };

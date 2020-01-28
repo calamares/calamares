@@ -159,10 +159,10 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
 
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
-    auto isUnSatisfied = [](const Calamares::RequirementEntry& e){ return !e.satisfied; };
-    auto isMandatoryAndUnSatisfied = [](const Calamares::RequirementEntry& e){ return e.mandatory && !e.satisfied; };
-    const bool requirementsSatisfied = std::none_of(checkEntries.begin(), checkEntries.end(), isUnSatisfied);
-    const bool mandatorySatisfied = std::none_of(checkEntries.begin(), checkEntries.end(), isMandatoryAndUnSatisfied);
+    auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
+    auto isMandatoryAndUnSatisfied = []( const Calamares::RequirementEntry& e ) { return e.mandatory && !e.satisfied; };
+    const bool requirementsSatisfied = std::none_of( checkEntries.begin(), checkEntries.end(), isUnSatisfied );
+    const bool mandatorySatisfied = std::none_of( checkEntries.begin(), checkEntries.end(), isMandatoryAndUnSatisfied );
 
     for ( const auto& entry : checkEntries )
     {
@@ -205,12 +205,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
                                              "<a href=\"#details\">Details...</a>" );
                                    textLabel->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
             textLabel->setOpenExternalLinks( false );
-            connect( textLabel, &QLabel::linkActivated, this, [this, checkEntries]( const QString& link ) {
-                if ( link == "#details" )
-                {
-                    showDetailsDialog( checkEntries );
-                }
-            } );
+            connect( textLabel, &QLabel::linkActivated, this, &ResultsListWidget::linkClicked );
         }
         else
         {
@@ -267,9 +262,12 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
 
 
 void
-ResultsListWidget::showDetailsDialog( const Calamares::RequirementsList& checkEntries )
+ResultsListWidget::linkClicked( const QString& link )
 {
-    auto* dialog = new ResultsListDialog( this, checkEntries );
-    dialog->exec();
-    dialog->deleteLater();
+    if ( link == "#details" )
+    {
+        auto* dialog = new ResultsListDialog( this, m_entries );
+        dialog->exec();
+        dialog->deleteLater();
+    }
 }
