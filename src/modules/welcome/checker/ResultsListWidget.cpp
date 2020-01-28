@@ -157,8 +157,8 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
 
-    bool allChecked = true;
-    bool requirementsSatisfied = true;
+    bool requirementsSatisfied = true;  // Give a warning
+    bool mandatorySatisfied = true;  // Give an error
 
     for ( const auto& entry : checkEntries )
     {
@@ -169,10 +169,10 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
             entriesLayout->addWidget( ciw );
             ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
-            allChecked = false;
+            requirementsSatisfied = false;
             if ( entry.mandatory )
             {
-                requirementsSatisfied = false;
+                mandatorySatisfied = false;
             }
 
             ciw->setAutoFillBackground( true );
@@ -191,11 +191,11 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
     entriesLayout->insertWidget( 0, textLabel );
     textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
-    if ( !allChecked )
+    if ( !requirementsSatisfied )
     {
         entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
 
-        if ( !requirementsSatisfied )
+        if ( !mandatorySatisfied )
         {
             CALAMARES_RETRANSLATE( QString message = Calamares::Settings::instance()->isSetupMode()
                                        ? tr( "This computer does not satisfy the minimum "
@@ -230,7 +230,7 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
         }
     }
 
-    if ( allChecked && requirementsSatisfied )
+    if ( requirementsSatisfied && mandatorySatisfied )
     {
         if ( !Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
         {
