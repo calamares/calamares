@@ -215,9 +215,9 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
                                              "might be disabled." );
                                    m_explanation->setText( message.arg( *Calamares::Branding::ShortVersionedName ) ); )
         }
+        mainLayout->addStretch();
     }
-
-    if ( requirementsSatisfied && mandatorySatisfied )
+    else
     {
         if ( !Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
         {
@@ -248,10 +248,6 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
                                                            "set up %2 on your computer." )
                                                            .arg( *Calamares::Branding::ProductName ) );
                                m_explanation->setAlignment( Qt::AlignCenter ); )
-    }
-    else
-    {
-        mainLayout->addStretch();
     }
 
     CALAMARES_RETRANSLATE_SLOT( &ResultsListWidget::retranslate )
