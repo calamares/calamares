@@ -63,6 +63,8 @@ class Config : public QObject
     Q_PROPERTY( QUrl releaseNotesUrl READ releaseNotesUrl CONSTANT FINAL )
     Q_PROPERTY( QUrl donateUrl READ donateUrl CONSTANT FINAL )
 
+    Q_PROPERTY( QString productName MEMBER m_productName CONSTANT FINAL )
+
     Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
 
     Q_PROPERTY( QString countryCode MEMBER m_countryCode NOTIFY countryCodeChanged FINAL )
@@ -87,7 +89,6 @@ public:
     }; Q_ENUM( Alert )
 
     Config( QObject* parent = nullptr );
-    virtual ~Config();
     void setConfigurationMap( const QVariantMap& configurationMap );
     void setCountryCode( const QString &countryCode );
     void setLanguageIcon( const QString languageIcon );
@@ -115,6 +116,7 @@ private:
     bool m_isNextEnabled = false;
     bool m_isBackEnabled = false;
 
+    QString m_productName;
     const QString m_genericWelcomeMessage = "This program will ask you some questions and set up your installation";
 
     const QString m_warningMessage = "This program does not satisfy the minimum requirements for installing.\nInstallation can not continue";

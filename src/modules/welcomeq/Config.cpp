@@ -21,6 +21,27 @@
 
 #include <QDebug>
 
+
+static QString
+jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map, const QString& key )
+{
+    if ( !map.contains( key ) )
+    {
+        return QString();
+    }
+    auto v = map.value( key );
+    if ( v.type() == QVariant::Bool )
+    {
+        return v.toBool() ? ( *e ) : QString();
+    }
+    if ( v.type() == QVariant::String )
+    {
+        return v.toString();
+    }
+
+    return QString();
+}
+
 void RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
 {
     emit beginResetModel();
@@ -69,10 +90,7 @@ QHash<int, QByteArray> RequirementsModel::roleNames() const
 Config::Config( QObject* parent ) : QObject( parent )
     ,m_requirementsModel( new RequirementsModel( this ))
 {
-}
-
-Config::~Config()
-{
+    m_productName = jobOrBrandingSetting( Calamares::Branding::ProductName, m_configurationMap, "productName" );
 }
 
 CalamaresUtils::Locale::LabelModel*
@@ -81,25 +99,6 @@ Config::languagesModel() const
 	return CalamaresUtils::Locale::availableTranslations();
 }
 
-static QString
-jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map, const QString& key )
-{
-	if ( !map.contains( key ) )
-	{
-		return QString();
-	}
-	auto v = map.value( key );
-	if ( v.type() == QVariant::Bool )
-	{
-		return v.toBool() ? ( *e ) : QString();
-	}
-	if ( v.type() == QVariant::String )
-	{
-		return v.toString();
-	}
-
-	return QString();
-}
 
 QUrl
 Config::donateUrl() const

@@ -10,8 +10,8 @@ import QtQuick.Window 2.3
 Page
 {
     id: control
-    width: Screen.width
-    height: Screen.height
+    width: parent.width
+    height: parent.height
 
     Kirigami.Theme.backgroundColor: "#fafafa"
     Kirigami.Theme.textColor: "#333"
@@ -185,8 +185,6 @@ Page
                 onClicked: _requirementsList.currentIndex = index
                 text: model.text
                 icon.name: model.type == 0 ? "emblem-warning" : "emblem-error"
-
-
         }
 
         }
