@@ -45,14 +45,6 @@ WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
 			 &Calamares::ModuleManager::requirementsComplete,
 			 this,
 			 &WelcomeQmlViewStep::nextStatusChanged );
-
-
-
-}
-
-
-WelcomeQmlViewStep::~WelcomeQmlViewStep()
-{
 }
 
 
@@ -146,7 +138,6 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
 	using Calamares::Branding;
 
-	m_config->setConfigurationMap(configurationMap);
 	// TODO: expand Config class and set the remaining fields // with the configurationMap all those properties can be accesed withouth having to declare a property, get and setter for each
 
 	// TODO: figure out how the requirements (held by ModuleManager) should be accessible

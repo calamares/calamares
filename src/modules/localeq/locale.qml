@@ -1,4 +1,4 @@
-import io.calamares.modules.welcome 1.0 as Welcome
+import io.calamares.modules.locale 1.0 as Locale
 import io.calamares.ui 1.0
 
 import QtQuick 2.10
@@ -11,7 +11,8 @@ import QtQuick.Window 2.3
 
 
 Page
-{ id: control
+{
+	id: control
 	width: Screen.width
 	height: Screen.height
 
@@ -79,9 +80,9 @@ Page
 			Button
 			{
 				text: qsTr("Next")
-				enabled: Welcome.Config.isNextEnabled
+				enabled: Locale.Config.isNextEnabled
 				// 			width: _requirementsList.width
-				onClicked: _stackView.push(_langComponent)
+				onClicked: _stackView.push(_zonesListComponent)
 				height: implicitHeight
 			}
 		}
@@ -93,26 +94,11 @@ Page
 		anchors.fill: parent
 		anchors.margins: Kirigami.Units.largeSpacing * 5
 
-		initialItem: ColumnLayout
+		initialItem:  ColumnLayout
 		{
 			width: parent.width
 			spacing:  Kirigami.Units.largeSpacing * 5
 
-			Item
-			{
-				Layout.fillWidth: true
-				Layout.preferredHeight: 100
-
-				Image
-				{
-					anchors.centerIn: parent
-					source: Branding.imagePath(Branding.ProductWelcome)
-					height: Math.max(64, parent.height)
-					width: height
-					sourceSize.width: width
-					sourceSize.height: height
-				}
-			}
 
 			Label
 			{
@@ -120,7 +106,7 @@ Page
 				Layout.preferredHeight: implicitHeight
 				horizontalAlignment: Qt.AlignHCenter
 				wrapMode: Text.NoWrap
-				text: "Welcome to " + Branding.string(Branding.ProductName) + " " + Branding.string(Branding.Version)
+				text: qsTr("Location")
 				color: "white"
 				font.bold: true
 				font.weight: Font.Bold
@@ -133,12 +119,11 @@ Page
 				Layout.preferredHeight: implicitHeight
 				horizontalAlignment: Qt.AlignHCenter
 				wrapMode: Text.NoWrap
-				text: Welcome.Config.genericWelcomeMessage
+				text: qsTr("Pick your preferred location")
 				color: "white"
 				font.weight: Font.Light
 				font.pointSize: 12
 			}
-
 
 			Label
 			{
@@ -147,23 +132,22 @@ Page
 				Layout.preferredHeight: implicitHeight
 				horizontalAlignment: Qt.AlignHCenter
 				wrapMode: Text.NoWrap
-				text: Welcome.Config.warningMessage
+				text: _regionListView.count
 				color: "white"
 				font.weight: Font.Light
 				font.pointSize: 10
 			}
 
-
 			ListView
 			{
-				id: _requirementsList
-
+				id: _regionListView
 				Layout.alignment: Qt.AlignCenter
 				Layout.preferredWidth: Math.min(500, parent.width - 64)
 				Layout.preferredHeight: Math.min(contentHeight, 500)
 				spacing: Kirigami.Units.smallSpacing
 				clip: true
 				boundsBehavior: Flickable.StopAtBounds
+				currentIndex: Locale.Config.currentRegion
 
 				Rectangle
 				{
@@ -174,7 +158,7 @@ Page
 					opacity: 0.5
 				}
 
-				model: Welcome.Config.requirementsModel
+				model: Locale.Config.regionModel
 
 				delegate: ItemDelegate
 				{
@@ -189,110 +173,21 @@ Page
 					width: parent.width
 					height: 48
 
-					contentItem: RowLayout
+					text: model.label
+					onClicked:
 					{
-						width: parent.width
-						height: parent.height
-
-						Item
-						{
-							Layout.fillHeight: true
-							Layout.preferredWidth: height
-
-							Kirigami.Icon
-							{
-								source: model.satisfied ? "checkmark" : (model.mandatory ? "error" : "dialog-warning-symbolic")
-								height:  32
-								width: height
-								anchors.centerIn: parent
-								color: background.color
-							}
-						}
-
-						ColumnLayout
-						{
-							Layout.fillWidth: true
-							Layout.fillHeight: true
-
-							spacing: 0
-
-							Label
-							{
-								Layout.fillWidth: true
-								Layout.fillHeight: true
-								horizontalAlignment: Qt.AlignLeft
-								text: model.name
-							}
-
-							Label
-							{
-								Layout.fillWidth: true
-								Layout.fillHeight: true
-								horizontalAlignment: Qt.AlignLeft
-								text: !model.satisfied ?  model.negatedText : model.details
-								opacity: isCurrentItem ? 1 : 0.7
-								font.weight: Font.Light
-							}
-						}
+						Locale.Config.currentRegion = index
+						_stackView.push(_zonesListComponent)
 					}
+
+
 				}
-			}
-
-			Row
-			{
-				Layout.preferredWidth: implicitWidth
-				Layout.preferredHeight: 64
-				spacing: Kirigami.Units.largeSpacing* 2
-				Layout.alignment:Qt.AlignCenter
-
-				Button
-				{
-					text: "About"
-					icon.name: "documentinfo"
-					Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-					Kirigami.Theme.textColor: "#fff"
-
-					visible: Branding.string(Branding.ProductUrl).length
-					onClicked: Qt.openUrlExternally(Branding.string(Branding.ProductUrl))
-				}
-
-				Button
-				{
-					text: qsTr("Support")
-					icon.name: "help-contents"
-					Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-					Kirigami.Theme.textColor: "#fff"
-					visible: Branding.string(Branding.SupportUrl).length
-					onClicked: Qt.openUrlExternally(Branding.string(Branding.SupportUrl))
-				}
-
-				Button
-				{
-					text: qsTr("Known issues")
-					icon.name: "tools-report-bug"
-					Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-					Kirigami.Theme.textColor: "#fff"
-					visible: Branding.string(Branding.KnownIssuesUrl).length
-					onClicked: Qt.openUrlExternally(Branding.string(Branding.KnownIssuesUrl))
-				}
-
-				Button
-				{
-					text: qsTr("Release notes")
-					icon.name: "answer"
-					Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-					Kirigami.Theme.textColor: "#fff"
-					visible: Branding.string(Branding.ReleaseNotesUrl).length
-					onClicked: Qt.openUrlExternally(Branding.string(Branding.ReleaseNotesUrl))
-				}
-
 			}
 		}
 
-
 		Component
 		{
-			id: _langComponent
+			id: _zonesListComponent
 
 			ColumnLayout
 			{
@@ -305,7 +200,7 @@ Page
 					Layout.preferredHeight: implicitHeight
 					horizontalAlignment: Qt.AlignHCenter
 					wrapMode: Text.NoWrap
-					text: qsTr("Language")
+					text: qsTr("Zone")
 					color: "white"
 					font.bold: true
 					font.weight: Font.Bold
@@ -318,7 +213,7 @@ Page
 					Layout.preferredHeight: implicitHeight
 					horizontalAlignment: Qt.AlignHCenter
 					wrapMode: Text.NoWrap
-					text: qsTr("Select your preferred language to continue with the installation")
+					text: qsTr("Select your preferred zone to continue with the installation")
 					color: "white"
 					font.weight: Font.Light
 					font.pointSize: 12
@@ -326,7 +221,6 @@ Page
 
 				ListView
 				{
-					id: _langList
 					Layout.alignment: Qt.AlignCenter
 					Layout.preferredWidth: Math.min(500, parent.width - 64)
 					Layout.preferredHeight: Math.min(contentHeight, parent.height - 200)
@@ -344,7 +238,7 @@ Page
 						opacity: 0.3
 					}
 
-					model: Welcome.Config.languagesModel
+					model: Locale.Config.zonesModel
 
 					delegate: ItemDelegate
 					{
@@ -367,37 +261,13 @@ Page
 							positionViewAtIndex(index, ListView.Beginning)
 						}
 
-						contentItem: RowLayout
-						{
-							width: parent.width
-							height: parent.height
-							Label
-							{
-								Layout.fillWidth: true
-								Layout.fillHeight: true
-								horizontalAlignment: Qt.AlignLeft
-								text: model.label
-								color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
-							}
-
-							Label
-							{
-								Layout.fillWidth: true
-								Layout.fillHeight: true
-								horizontalAlignment: Qt.AlignRight
-								text: model.englishLabel
-								color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
-
-								opacity: isCurrentItem ? 1 : 0.7
-								font.weight: Font.Light
-							}
-						}
+						text: model.label
+// 						color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
 					}
 				}
 			}
 
 		}
+
 	}
-
-
 }

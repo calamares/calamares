@@ -264,6 +264,12 @@ CStringListModel::data( const QModelIndex& index, int role ) const
     return item ? ( role == Qt::DisplayRole ? item->tr() : item->key() ) : QVariant();
 }
 
+QHash<int, QByteArray>
+CStringListModel::roleNames() const
+{
+    return {{Qt::DisplayRole,"label"}, {Qt::UserRole, "key"}};
+}
+
 const CStringPair*
 CStringListModel::item( int index ) const
 {

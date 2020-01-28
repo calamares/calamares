@@ -16,42 +16,48 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WELCOME_QMLVIEWSTEP_H
-#define WELCOME_QMLVIEWSTEP_H
+#ifndef LOCALE_QMLVIEWSTEP_H
+#define LOCALE_QMLVIEWSTEP_H
 
 #include "Config.h"
-
-#include "modulesystem/Requirement.h"
+#include "geoip/Handler.h"
+#include "geoip/Interface.h"
+#include "utils/PluginFactory.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
-
 #include <PluginDllMacro.h>
 
 #include <QObject>
-#include <QVariantMap>
+
+#include "PluginDllMacro.h"
+
+#include <QFutureWatcher>
+#include <QObject>
+
+#include <memory>
 
 namespace CalamaresUtils
 {
-namespace GeoIP
-{
-class Handler;
-}
+    namespace GeoIP
+    {
+        class Handler;
+    }
 }  // namespace CalamaresUtils
 
-class GeneralRequirements;
+class LocalePage;
 
 class QQmlComponent;
 class QQuickItem;
 class QQuickWidget;
 
+
 // TODO: Needs a generic Calamares::QmlViewStep as base class
 // TODO: refactor and move what makes sense to base class
-class PLUGINDLLEXPORT WelcomeQmlViewStep : public Calamares::ViewStep
+class PLUGINDLLEXPORT LocaleQmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
 public:
-
-    explicit WelcomeQmlViewStep( QObject* parent = nullptr );
+    explicit LocaleQmlViewStep( QObject* parent = nullptr );
 
     QString prettyName() const override;
 
@@ -66,30 +72,28 @@ public:
     Calamares::JobList jobs() const override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
-
-    /** @brief Sets the country that Calamares is running in.
-     *
-     * This (ideally) sets up language and locale settings that are right for
-     * the given 2-letter country code. Uses the handler's information (if
-     * given) for error reporting.
-     */
-    void setCountry( const QString&, CalamaresUtils::GeoIP::Handler* handler );
-
-    Calamares::RequirementsList checkRequirements() override;
     Config* config() const;
 
 private:
     // TODO: a generic QML viewstep should return a config object from a method
     Config *m_config;
-    GeneralRequirements* m_requirementsChecker;
+//     GeneralRequirements* m_requirementsChecker;
 
     // TODO: these need to be in the base class (also a base class of ExecutionViewStep)
     QQuickWidget* m_qmlWidget;
     QQmlComponent* m_qmlComponent;
     QQuickItem* m_qmlItem;
 
+    bool m_nextEnabled;
+    QString m_prettyStatus;
+
+    CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
+    QString m_localeGenPath;
+
+    Calamares::JobList m_jobs;
+    std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
 };
 
-CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeQmlViewStepFactory )
+CALAMARES_PLUGIN_FACTORY_DECLARATION( LocaleQmlViewStepFactory )
 
-#endif  // WELCOME_QMLVIEWSTEP_H
+#endif

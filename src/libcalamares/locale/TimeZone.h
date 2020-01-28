@@ -44,8 +44,9 @@ namespace Locale
  * QPair<QString, QString> because there is API that needs
  * C-style strings.
  */
-class CStringPair
+class CStringPair : public QObject
 {
+    Q_OBJECT
 public:
     /// @brief An empty pair
     CStringPair() {}
@@ -86,6 +87,7 @@ public:
 /// @brief A pair of strings for timezone regions (e.g. "America")
 class TZRegion : public CStringPair
 {
+    Q_OBJECT
 public:
     using CStringPair::CStringPair;
     virtual ~TZRegion() override;
@@ -117,6 +119,7 @@ private:
 /// @brief A pair of strings for specific timezone names (e.g. "New_York")
 class TZZone : public CStringPair
 {
+    Q_OBJECT
 public:
     using CStringPair::CStringPair;
     QString tr() const override;
@@ -137,6 +140,7 @@ protected:
 
 class CStringListModel : public QAbstractListModel
 {
+    Q_OBJECT
 public:
     /// @brief Create empty model
     CStringListModel();
@@ -149,6 +153,7 @@ public:
     QVariant data( const QModelIndex& index, int role ) const override;
 
     const CStringPair* item( int index ) const;
+    QHash<int, QByteArray> roleNames() const override;
 
 private:
     CStringPairList m_list;

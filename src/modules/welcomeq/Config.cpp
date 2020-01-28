@@ -17,29 +17,8 @@
  */
 
 #include "Config.h"
-#include "Branding.h"
 
 #include <QDebug>
-
-static QString
-jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map, const QString& key )
-{
-    if ( !map.contains( key ) )
-    {
-        return QString();
-    }
-    auto v = map.value( key );
-    if ( v.type() == QVariant::Bool )
-    {
-        return v.toBool() ? ( *e ) : QString();
-    }
-    if ( v.type() == QVariant::String )
-    {
-        return v.toString();
-    }
-
-    return QString();
-}
 
 void
 RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
@@ -117,12 +96,6 @@ QString
 Config::languageIcon() const
 {
 	return m_languageIcon;
-}
-
-void
-Config::setConfigurationMap(const QVariantMap& configurationMap)
-{
-	m_configurationMap = configurationMap;
 }
 
 void

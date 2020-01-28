@@ -78,9 +78,7 @@ class Config : public QObject
 
 
 public:
-
     Config( QObject* parent = nullptr );
-    void setConfigurationMap( const QVariantMap& configurationMap );
     void setCountryCode( const QString &countryCode );
     void setLanguageIcon( const QString languageIcon );
     RequirementsModel& requirementsModel () const;
