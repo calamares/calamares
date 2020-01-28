@@ -3,12 +3,13 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.18 (unreleased) #
+# 3.2.18 (2020-01-28) #
 
 This release contains contributions from (alphabetically by first name):
  - Bill Auger
 
 ## Core ##
+ - *Assamese* translation has been added (still in preliminary state).
  - Timezone support code has migrated into the core of Calamares. This
    means that modules now have easier access to timezone information.
    Translations for timezones have also been enabled, so it is **possible**
