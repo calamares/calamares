@@ -47,6 +47,12 @@ else
     last_week() { date -v1w +%s; }
 fi
 
+# Distinguish GNU SHA executables from BSD ones
+if which sha256sum > /dev/null 2>&1 ; then
+    SHA256=sha256sum
+else
+    SHA256=sha256
+fi
 
 ### CHECK WORKING DIRECTORY
 #
@@ -89,14 +95,13 @@ tx_sum()
 	sed -i'' -e '/<location filename/d' "$WORKTREE_NAME/lang/calamares_en.ts"
 	sed -i'' -e '/^#: src..*[0-9]$/d' $WORKTREE_NAME/lang/python.pot $WORKTREE_NAME/src/modules/dummypythonqt/lang/dummypythonqt.pot
 
-	_SUM=$( cd $WORKTREE_NAME && cat $TX_FILE_LIST | sha256sum )
+	_SUM=$( cd $WORKTREE_NAME && cat $TX_FILE_LIST | $SHA256 )
 	echo "$_SUM"
 }
 
 # Check from the translation tag as well
 HEAD_SUM=`tx_sum build-txcheck-head ""` || { echo "$HEAD_SUM" ; exit 1 ; }
 PREV_SUM=`tx_sum build-txcheck-prev translation` || { echo "$HEAD_SUM" ; exit 1 ; }
-echp "$?"
 
 # An error message will have come from the shell function
 test -d build-txcheck-head || { echo "$HEAD_SUM" ; exit 1 ; }
