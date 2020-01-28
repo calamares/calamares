@@ -18,7 +18,11 @@
  */
 
 #include "LocaleConfiguration.h"
+
+#include "utils/Logger.h"
+
 #include <QLocale>
+#include <QRegularExpression>
 
 LocaleConfiguration::LocaleConfiguration()
     : explicit_lang( false )
@@ -53,14 +57,9 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
 {
     QString language = languageLocale.split( '_' ).first();
 
-    QStringList linesForLanguage;
-    for ( const QString& line : availableLocales )
-    {
-        if ( line.startsWith( language ) )
-        {
-            linesForLanguage.append( line );
-        }
-    }
+    // Either an exact match, or the whole language part matches
+    // (followed by .<encoding> or _<country>
+    QStringList linesForLanguage = availableLocales.filter( QRegularExpression( language + "[._]" ) );
 
     QString lang;
     if ( linesForLanguage.length() == 0 || languageLocale.isEmpty() )
