@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019-2020, Adriaan de Groot <groot@kde.org>
  *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -29,6 +29,8 @@
 #include "utils/Retranslator.h"
 #include "widgets/WaitingWidget.h"
 
+#include <QHBoxLayout>
+
 CheckerContainer::CheckerContainer( QWidget* parent )
     : QWidget( parent )
     , m_waitingWidget( new WaitingWidget( QString(), this ) )
@@ -40,10 +42,7 @@ CheckerContainer::CheckerContainer( QWidget* parent )
     CalamaresUtils::unmarginLayout( mainLayout );
 
     mainLayout->addWidget( m_waitingWidget );
-    CALAMARES_RETRANSLATE(
-        if ( m_waitingWidget )
-            m_waitingWidget->setText( tr( "Gathering system information..." ) );
-    )
+    CALAMARES_RETRANSLATE( if ( m_waitingWidget ) m_waitingWidget->setText( tr( "Gathering system information..." ) ); )
 }
 
 CheckerContainer::~CheckerContainer()
@@ -52,32 +51,37 @@ CheckerContainer::~CheckerContainer()
     delete m_checkerWidget;
 }
 
-void CheckerContainer::requirementsComplete( bool ok )
+void
+CheckerContainer::requirementsComplete( bool ok )
 {
 
     layout()->removeWidget( m_waitingWidget );
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;  // Don't delete in destructor
 
-    m_checkerWidget = new ResultsListWidget( this );
-    m_checkerWidget->init( m_requirements );
+    m_checkerWidget = new ResultsListWidget( this, m_requirements );
     layout()->addWidget( m_checkerWidget );
 
     m_verdict = ok;
 }
 
-void CheckerContainer::requirementsChecked(const Calamares::RequirementsList& l)
+void
+CheckerContainer::requirementsChecked( const Calamares::RequirementsList& l )
 {
     m_requirements.append( l );
 }
 
-void CheckerContainer::requirementsProgress(const QString& message)
+void
+CheckerContainer::requirementsProgress( const QString& message )
 {
     if ( m_waitingWidget )
+    {
         m_waitingWidget->setText( message );
+    }
 }
 
-bool CheckerContainer::verdict() const
+bool
+CheckerContainer::verdict() const
 {
     return m_verdict;
 }
