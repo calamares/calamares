@@ -35,17 +35,17 @@
 #include <QLabel>
 
 /** @brief A "details" dialog for the results-list
- * 
+ *
  * This displays the same RequirementsList as ResultsListWidget,
  * but the *details* part rather than the show description.
- * 
+ *
  * This is an internal-to-the-widget class.
  */
 class ResultsListDialog : public QDialog
 {
 public:
     /** @brief Create a dialog for the given @p checkEntries list of requirements.
-     * 
+     *
      * The list must continue to exist for the lifetime of the dialog,
      * or UB happens.
      */
@@ -134,13 +134,14 @@ ResultsListWidget::ResultsListWidget( QWidget* parent )
     m_mainLayout = new QVBoxLayout;
     setLayout( m_mainLayout );
 
+    int paddingSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 4, 128 );
+
     QHBoxLayout* spacerLayout = new QHBoxLayout;
     m_mainLayout->addLayout( spacerLayout );
-    m_paddingSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 4, 128 );
-    spacerLayout->addSpacing( m_paddingSize );
+    spacerLayout->addSpacing( paddingSize );
     m_entriesLayout = new QVBoxLayout;
     spacerLayout->addLayout( m_entriesLayout );
-    spacerLayout->addSpacing( m_paddingSize );
+    spacerLayout->addSpacing( paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
 }
 
@@ -258,7 +259,6 @@ ResultsListWidget::init( const Calamares::RequirementsList& checkEntries )
         m_mainLayout->addStretch();
     }
 }
-
 
 
 void

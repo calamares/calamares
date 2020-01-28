@@ -38,7 +38,6 @@ private:
 
     QBoxLayout* m_mainLayout;
     QBoxLayout* m_entriesLayout;
-    int m_paddingSize;
 };
 
-#endif // CHECKER_RESULTSLISTWIDGET_H
+#endif  // CHECKER_RESULTSLISTWIDGET_H
