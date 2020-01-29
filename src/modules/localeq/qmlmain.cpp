@@ -63,19 +63,7 @@ int main(int argc, char **argv)
     mw.show();
 
     // TODO: this should put the one config object in the context, rather than adding a factory function to share it everywhere
-
-    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
-//     qmlRegisterType< CalamaresUtils::Locale::CStringPairList>();
-
-    qmlRegisterSingletonType< Config >( "io.calamares.modules.locale", 1, 0, "Config", [](QQmlEngine*, QJSEngine*) -> QObject*
-    {
-        auto localeStep = new LocaleQmlViewStep;
-        YAML::Node doc;
-
-        localeStep->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/locale.conf")).toMap());
-
-        return localeStep->config();
-    } );
+    LocaleQmlViewStep locale;
 
     cDebug() << "Loading qml file form @" << "../src/modules/localeq/locale.qml" ;
     qqw.setSource( QUrl::fromLocalFile("../src/modules/localeq/locale.qml") );

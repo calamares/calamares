@@ -33,19 +33,19 @@ class Config : public QObject
     Q_OBJECT
     Q_PROPERTY(CalamaresUtils::Locale::CStringListModel * zonesModel READ zonesModel CONSTANT FINAL)
     Q_PROPERTY(CalamaresUtils::Locale::CStringListModel * regionModel READ regionModel CONSTANT FINAL)
+    Q_PROPERTY(QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL)
 
 public:
     Config( QObject* parent = nullptr );
     ~Config();
     CalamaresUtils::Locale::CStringListModel* regionModel() const;
-    CalamaresUtils::Locale::CStringListModel * zonesModel() const;
+    CalamaresUtils::Locale::CStringListModel* zonesModel() const;
 
     void setLocaleInfo(const QString& initialRegion, const QString& initialZone, const QString& localeGenPath);
 
     Calamares::JobList createJobs();
     QMap< QString, QString > localesMap();
     QString prettyStatus() const;
-
 
 private:
     CalamaresUtils::Locale::CStringPairList m_regionList;
@@ -75,6 +75,9 @@ private:
     void updateLocaleLabels();
 
     const CalamaresUtils::Locale::TZZone* currentLocation() const;
+
+signals:
+    void prettyStatusChanged();
 };
 
 

@@ -33,7 +33,7 @@
 
 #include "Branding.h"
 #include "modulesystem/ModuleManager.h"
-
+#include <QQmlEngine>
 #include <QFutureWatcher>
 #include <QPixmap>
 #include <QVariant>
@@ -43,11 +43,22 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleQmlViewStepFactory, registerPlugin< L
 
 LocaleQmlViewStep::LocaleQmlViewStep( QObject* parent )
 : Calamares::ViewStep( parent )
-, m_config( new Config( this ) )
+, m_config( new Config( nullptr ) ) //qml singleton is the owner
 , m_nextEnabled( false )
 , m_geoip( nullptr )
 {
     emit nextStatusChanged( m_nextEnabled );
+    this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/locale.conf")).toMap());
+
+    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
+    //     qmlRegisterType< CalamaresUtils::Locale::CStringPairList>();
+
+    qmlRegisterSingletonType< Config >( "io.calamares.modules.locale", 1, 0, "Config", [&](QQmlEngine*, QJSEngine*) -> QObject*
+    {
+        YAML::Node doc;
+        return this->config();
+    } );
+
 }
 
 Config*

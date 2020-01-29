@@ -44,6 +44,12 @@ Config::Config(QObject *parent) : QObject(parent)
     connect(m_regionModel, &CalamaresUtils::Locale::CStringListModel::currentIndexChanged, [&]()
     {
         m_zonesModel->setList(static_cast<const CalamaresUtils::Locale::TZRegion*>(m_regionModel->item(m_regionModel->currentIndex()))->zones());
+        updateLocaleLabels();
+    });
+
+    connect(m_zonesModel, &CalamaresUtils::Locale::CStringListModel::currentIndexChanged, [&]()
+    {
+        updateLocaleLabels();
     });
 }
 
@@ -76,7 +82,6 @@ Config::setLocaleInfo(const QString& initialRegion, const QString& initialZone, 
         this->m_regionModel->setCurrentIndex(m_regionModel->indexOf(initialRegion));
         m_zonesModel->setList(region->zones());
         this->m_zonesModel->setCurrentIndex(m_zonesModel->indexOf(initialZone));
-
     }
     else
     {
@@ -184,6 +189,7 @@ Config::setLocaleInfo(const QString& initialRegion, const QString& initialZone, 
         *it = it->simplified();
     }
     updateGlobalStorage();
+    updateLocaleLabels();
 }
 
 void Config::updateGlobalLocale()
@@ -247,6 +253,7 @@ Config::updateLocaleLabels()
     LocaleConfiguration lc
     = m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration() : m_selectedLocaleConfiguration;
     auto labels = prettyLocaleStatus( lc );
+    emit prettyStatusChanged();
 }
 
 
@@ -277,7 +284,7 @@ Calamares::JobList Config::createJobs()
 LocaleConfiguration Config::guessLocaleConfiguration() const
 {
     return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), m_localeGenLines, currentLocation()->country() );
+        QLocale().name(), m_localeGenLines, currentLocation() ? currentLocation()->country() : "" );
 }
 
 QMap<QString, QString> Config::localesMap()
@@ -304,5 +311,4 @@ QString Config::prettyStatus() const
 const CalamaresUtils::Locale::TZZone * Config::currentLocation() const
 {
     return static_cast<const CalamaresUtils::Locale::TZZone*>(m_zonesModel->item(m_zonesModel->currentIndex()));
-    return new CalamaresUtils::Locale::TZZone();
 }

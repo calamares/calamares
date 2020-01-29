@@ -39,7 +39,6 @@ Page
 			cache: true
 
 			source: Branding.imagePath(Branding.ProductWallpaper)
-
 		}
 
 		FastBlur
@@ -144,19 +143,19 @@ Page
 				font.weight: Font.Light
 				font.pointSize: 12
 			}
-/*
+
 			Label
 			{
-				visible: !_requirementsList.model.satisfiedRequirements
+
 				Layout.fillWidth: true
 				Layout.preferredHeight: implicitHeight
 				horizontalAlignment: Qt.AlignHCenter
 				wrapMode: Text.NoWrap
-				text: _stackView.currentItem
+				text: qsTr("Select your preferred zone within your location to continue with the installation")
 				color: "white"
 				font.weight: Font.Light
 				font.pointSize: 10
-			}*/
+			}
 
 			ListView
 			{
@@ -229,7 +228,7 @@ Page
 					Layout.preferredHeight: implicitHeight
 					horizontalAlignment: Qt.AlignHCenter
 					wrapMode: Text.NoWrap
-					text: qsTr("Zone")
+					text: qsTr("Timezone")
 					color: "white"
 					font.bold: true
 					font.weight: Font.Bold
@@ -242,7 +241,7 @@ Page
 					Layout.preferredHeight: implicitHeight
 					horizontalAlignment: Qt.AlignHCenter
 					wrapMode: Text.NoWrap
-					text: qsTr("Select your preferred zone within your location to continue with the installation")
+					text: Locale.Config.prettyStatus
 					color: "white"
 					font.weight: Font.Light
 					font.pointSize: 12

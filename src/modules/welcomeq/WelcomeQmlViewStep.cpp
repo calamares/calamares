@@ -29,6 +29,8 @@
 
 #include "Branding.h"
 #include "modulesystem/ModuleManager.h"
+#include <QQmlEngine>
+#include "utils/Yaml.h"
 
 #include <QFutureWatcher>
 #include <QPixmap>
@@ -39,12 +41,21 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeQmlViewStepFactory, registerPlugin< 
 WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
 	: Calamares::ViewStep( parent )
 	, m_requirementsChecker( new GeneralRequirements( this ) )
-	, m_config( new Config( this ) )
+	, m_config( new Config( nullptr ) ) // qml engine singleton takes ownership
 {
 	connect( Calamares::ModuleManager::instance(),
 			 &Calamares::ModuleManager::requirementsComplete,
 			 this,
 			 &WelcomeQmlViewStep::nextStatusChanged );
+
+    this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/welcome.conf")).toMap());
+
+    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
+
+    qmlRegisterSingletonType< Config >( "io.calamares.modules.welcome", 1, 0, "Config", [&](QQmlEngine*, QJSEngine*) -> QObject*
+    {
+        return this->config();
+    } );
 }
 
 
