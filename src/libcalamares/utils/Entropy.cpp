@@ -26,6 +26,11 @@ CalamaresUtils::EntropySource
 CalamaresUtils::getEntropy( int size, QByteArray& b )
 {
     b.clear();
+    if ( size < 1)
+    {
+        return EntropySource::None;
+    }
+
     b.resize( size );
     char* buffer = b.data();
     std::fill( buffer, buffer + size, 0xcb );
