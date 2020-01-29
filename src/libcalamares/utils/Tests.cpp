@@ -216,6 +216,8 @@ LibCalamaresTests::testPrintableEntropy()
     for ( QChar c : s )
     {
         QVERIFY( c.isPrint() );
-        QCOMPARE( c.cell(), 0 );
+        QCOMPARE( c.row(), 0 );
+        QVERIFY( c.cell() > 32 );  // ASCII SPACE
+        QVERIFY( c.cell() < 127 );
     }
 }
