@@ -185,18 +185,37 @@ LibCalamaresTests::testEntropy()
 
     auto r0 = CalamaresUtils::getEntropy( 0, data );
     QCOMPARE( CalamaresUtils::EntropySource::None, r0 );
-    QCOMPARE( 0, data.size() );
+    QCOMPARE( data.size(), 0 );
 
     auto r1 = CalamaresUtils::getEntropy( 16, data );
     QVERIFY( r1 != CalamaresUtils::EntropySource::None );
-    QCOMPARE( 16, data.size() );
+    QCOMPARE( data.size(), 16 );
     // This can randomly fail (but not often)
     QVERIFY( data.at( data.size() - 1 ) != char( 0xcb ) );
 
     auto r2 = CalamaresUtils::getEntropy( 8, data );
     QVERIFY( r2 != CalamaresUtils::EntropySource::None );
-    QCOMPARE( 8, data.size() );
+    QCOMPARE( data.size(), 8 );
     QCOMPARE( r1, r2 );
     // This can randomly fail (but not often)
     QVERIFY( data.at( data.size() - 1 ) != char( 0xcb ) );
+}
+
+void
+LibCalamaresTests::testPrintableEntropy()
+{
+    QString s;
+
+    auto r0 = CalamaresUtils::getPrintableEntropy( 0, s );
+    QCOMPARE( CalamaresUtils::EntropySource::None, r0 );
+    QCOMPARE( s.length(), 0 );
+
+    auto r1 = CalamaresUtils::getPrintableEntropy( 16, s );
+    QVERIFY( r1 != CalamaresUtils::EntropySource::None );
+    QCOMPARE( s.length(), 16 );
+    for ( QChar c : s )
+    {
+        QVERIFY( c.isPrint() );
+        QCOMPARE( c.cell(), 0 );
+    }
 }

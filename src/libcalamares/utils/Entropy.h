@@ -40,6 +40,14 @@ enum class EntropySource
  * bytes from a suitable source. Returns which source was used.
  */
 DLLEXPORT EntropySource getEntropy( int size, QByteArray& b );
+
+/** @brief Fill string @p s with exactly @p size random printable ASCII characters
+ *
+ * The characters are picked from a set of 64 (2^6). The string
+ * contains 6 * size bits of entropy. * Returns which source was used.
+ * @see getEntropy
+ */
+DLLEXPORT EntropySource getPrintableEntropy( int size, QString& s );
 }  // namespace CalamaresUtils
 
 #endif

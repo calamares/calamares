@@ -26,7 +26,7 @@ CalamaresUtils::EntropySource
 CalamaresUtils::getEntropy( int size, QByteArray& b )
 {
     b.clear();
-    if ( size < 1)
+    if ( size < 1 )
     {
         return EntropySource::None;
     }
@@ -55,7 +55,6 @@ CalamaresUtils::getEntropy( int size, QByteArray& b )
     std::mt19937_64 twister( seed );
 
     std::uint64_t next = 0;
-
     do
     {
         next = twister();
@@ -77,4 +76,49 @@ CalamaresUtils::getEntropy( int size, QByteArray& b )
     } while ( readSize < size );
 
     return EntropySource::Twister;
+}
+
+CalamaresUtils::EntropySource
+CalamaresUtils::getPrintableEntropy( int size, QString& s )
+{
+    s.clear();
+    if ( size < 1 )
+    {
+        return EntropySource::None;
+    }
+
+    static const char salt_chars[] = { '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D',
+                                       'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+                                       'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+                                       'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+    static_assert( sizeof( salt_chars ) == 64, "Missing salt_chars" );
+
+    // Number of bytes we're going to need
+    int byteSize = ( ( size * 6 ) / 8 ) + 1;
+    QByteArray b;
+    EntropySource r = getEntropy( byteSize, b );
+
+    int bitsLeft = 0;
+    int byteOffset = 0;
+    qint64 next = 0;
+    do
+    {
+        if ( bitsLeft < 6 )
+        {
+            next = ( next << 8 ) | b.at( byteOffset++ );
+            bitsLeft += 8;
+        }
+        char c = salt_chars[ next & 0b0111111 ];
+        next >>= 6;
+        bitsLeft -= 6;
+        s.append( c );
+    } while ( ( s.length() < size ) && ( byteOffset < b.size() ) );
+
+    if ( s.length() < size )
+    {
+        // It's incomplete, not really no-entropy
+        return EntropySource::None;
+    }
+
+    return r;
 }
