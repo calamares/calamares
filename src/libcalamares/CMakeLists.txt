@@ -37,6 +37,9 @@ set( libSources
     locale/TimeZone.cpp
     locale/TranslatableConfiguration.cpp
 
+    # Modules
+    modulesystem/InstanceKey.cpp
+    
     # Network service
     network/Manager.cpp
 

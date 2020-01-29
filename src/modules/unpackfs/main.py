@@ -132,6 +132,9 @@ def file_copy(source, entry, progress_cb):
     process = subprocess.Popen(
         args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX
         )
+    # last_num_files_copied trails num_files_copied, and whenever at least 100 more
+    # files have been copied, progress is reported and last_num_files_copied is updated.
+    last_num_files_copied = 0
 
     for line in iter(process.stdout.readline, b''):
         # rsync outputs progress in parentheses. Each line will have an
@@ -157,7 +160,8 @@ def file_copy(source, entry, progress_cb):
             num_files_copied = num_files_total_local - num_files_remaining
 
             # I guess we're updating every 100 files...
-            if num_files_copied % 100 == 0:
+            if num_files_copied - last_num_files_copied >= 100:
+                last_num_files_copied = num_files_copied
                 progress_cb(num_files_copied, num_files_total_local)
 
     process.wait()

@@ -63,7 +63,6 @@ ProcessJobModule::jobs() const
 void
 ProcessJobModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
 

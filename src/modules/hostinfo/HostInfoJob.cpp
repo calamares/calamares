@@ -165,9 +165,4 @@ HostInfoJob::exec()
     return Calamares::JobResult::ok();
 }
 
-void
-HostInfoJob::setConfigurationMap( const QVariantMap& )
-{
-}
-
 CALAMARES_PLUGIN_FACTORY_DEFINITION( HostInfoJobFactory, registerPlugin< HostInfoJob >(); )

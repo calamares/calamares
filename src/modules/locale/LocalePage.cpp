@@ -227,27 +227,23 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
 
     // Assuming we have a list of supported locales, we usually only want UTF-8 ones
     // because it's not 1995.
-    for ( auto it = m_localeGenLines.begin(); it != m_localeGenLines.end(); )
-    {
-        if ( !it->contains( "UTF-8", Qt::CaseInsensitive ) && !it->contains( "utf8", Qt::CaseInsensitive ) )
-        {
-            it = m_localeGenLines.erase( it );
-        }
-        else
-        {
-            ++it;
-        }
-    }
+    auto notUtf8 = []( const QString& s ) {
+        return !s.contains( "UTF-8", Qt::CaseInsensitive ) && !s.contains( "utf8", Qt::CaseInsensitive );
+    };
+    auto it = std::remove_if( m_localeGenLines.begin(), m_localeGenLines.end(), notUtf8 );
+    m_localeGenLines.erase( it, m_localeGenLines.end() );
 
     // We strip " UTF-8" from "en_US.UTF-8 UTF-8" because it's redundant redundant.
-    for ( auto it = m_localeGenLines.begin(); it != m_localeGenLines.end(); ++it )
-    {
-        if ( it->endsWith( " UTF-8" ) )
+    // Also simplify whitespace.
+    auto unredundant = []( QString& s ) {
+        if ( s.endsWith( " UTF-8" ) )
         {
-            it->chop( 6 );
+            s.chop( 6 );
         }
-        *it = it->simplified();
-    }
+        s = s.simplified();
+    };
+    std::for_each( m_localeGenLines.begin(), m_localeGenLines.end(), unredundant );
+
     updateGlobalStorage();
 }
 

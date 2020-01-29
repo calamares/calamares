@@ -113,7 +113,13 @@ DebugWindow::DebugWindow()
     } );
 
     // Modules page
-    QStringListModel* modulesModel = new QStringListModel( ModuleManager::instance()->loadedInstanceKeys() );
+    QStringList modulesKeys;
+    for ( const auto& m : ModuleManager::instance()->loadedInstanceKeys() )
+    {
+        modulesKeys << m.toString();
+    }
+
+    QStringListModel* modulesModel = new QStringListModel( modulesKeys );
     m_ui->modulesListView->setModel( modulesModel );
     m_ui->modulesListView->setSelectionMode( QAbstractItemView::SingleSelection );
 

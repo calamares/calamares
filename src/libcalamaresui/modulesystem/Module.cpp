@@ -27,6 +27,7 @@
 
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Yaml.h"
 
 #ifdef WITH_PYTHON
@@ -48,10 +49,25 @@ static const char EMERGENCY[] = "emergency";
 namespace Calamares
 {
 
+Module::Module()
+    : m_loaded( false )
+{
+}
+
 Module::~Module() {}
 
+void
+Module::initFrom( const Calamares::ModuleSystem::Descriptor& moduleDescriptor, const QString& id )
+{
+    m_key = ModuleSystem::InstanceKey( moduleDescriptor.value( "name" ).toString(), id );
+    if ( moduleDescriptor.contains( EMERGENCY ) )
+    {
+        m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
+    }
+}
+
 Module*
-Module::fromDescriptor( const QVariantMap& moduleDescriptor,
+Module::fromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescriptor,
                         const QString& instanceId,
                         const QString& configFileName,
                         const QString& moduleDirectory )
@@ -131,17 +147,25 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
         return nullptr;
     }
 
-    m->m_instanceId = instanceId;
+    m->initFrom( moduleDescriptor, instanceId );
+    if ( !m->m_key.isValid() )
+    {
+        cError() << "Module" << instanceId << "invalid ID";
+        return nullptr;
+    }
 
     m->initFrom( moduleDescriptor );
-    try
+    if ( !configFileName.isEmpty() )
     {
-        m->loadConfigurationFile( configFileName );
-    }
-    catch ( YAML::Exception& e )
-    {
-        cError() << "YAML parser error " << e.what();
-        return nullptr;
+        try
+        {
+            m->loadConfigurationFile( configFileName );
+        }
+        catch ( YAML::Exception& e )
+        {
+            cError() << "YAML parser error " << e.what();
+            return nullptr;
+        }
     }
     return m.release();
 }
@@ -190,7 +214,7 @@ moduleConfigurationCandidates( bool assumeBuildDir, const QString& moduleName, c
 void Module::loadConfigurationFile( const QString& configFileName )  //throws YAML::Exception
 {
     QStringList configCandidates
-        = moduleConfigurationCandidates( Settings::instance()->debugMode(), m_name, configFileName );
+        = moduleConfigurationCandidates( Settings::instance()->debugMode(), name(), configFileName );
     for ( const QString& path : configCandidates )
     {
         QFile configFile( path );
@@ -219,67 +243,59 @@ void Module::loadConfigurationFile( const QString& configFileName )  //throws YA
             return;
         }
     }
-    cDebug() << "No config file for" << m_name << "found anywhere at" << Logger::DebugList( configCandidates );
+    cDebug() << "No config file for" << name() << "found anywhere at" << Logger::DebugList( configCandidates );
 }
 
 
-QString
-Module::name() const
+static const NamedEnumTable< Module::Type >&
+typeNames()
 {
-    return m_name;
+    using Type = Module::Type;
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< Type > table{
+        { QStringLiteral( "job" ), Type::Job },
+        { QStringLiteral( "view" ), Type::View },
+        { QStringLiteral( "viewmodule" ), Type::View },
+        { QStringLiteral( "jobmodule" ), Type::Job }
+    };
+    // *INDENT-ON*
+    // clang-format on
+    return table;
 }
-
-
-QString
-Module::instanceId() const
-{
-    return m_instanceId;
-}
-
-
-QString
-Module::instanceKey() const
-{
-    return QString( "%1@%2" ).arg( m_name ).arg( m_instanceId );
-}
-
-
-QString
-Module::location() const
-{
-    return m_directory;
-}
-
 
 QString
 Module::typeString() const
 {
-    switch ( type() )
-    {
-    case Type::Job:
-        return "Job Module";
-    case Type::View:
-        return "View Module";
-    }
-    return QString();
+    bool ok = false;
+    QString v = typeNames().find( type(), ok );
+    return ok ? v : QString();
 }
 
+
+static const NamedEnumTable< Module::Interface >&
+interfaceNames()
+{
+    using Interface = Module::Interface;
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< Interface > table {
+        { QStringLiteral("process"), Interface::Process },
+        { QStringLiteral("qtplugin"), Interface::QtPlugin },
+        { QStringLiteral("python"), Interface::Python },
+        { QStringLiteral("pythonqt"), Interface::PythonQt }
+    };
+    // *INDENT-ON*
+    // clang-format on
+    return table;
+}
 
 QString
 Module::interfaceString() const
 {
-    switch ( interface() )
-    {
-    case Interface::Process:
-        return "External process";
-    case Interface::Python:
-        return "Python (Boost.Python)";
-    case Interface::PythonQt:
-        return "Python (experimental)";
-    case Interface::QtPlugin:
-        return "Qt Plugin";
-    }
-    return QString();
+    bool ok = false;
+    QString v = interfaceNames().find( interface(), ok );
+    return ok ? v : QString();
 }
 
 
@@ -289,22 +305,6 @@ Module::configurationMap()
     return m_configurationMap;
 }
 
-
-Module::Module()
-    : m_loaded( false )
-{
-}
-
-
-void
-Module::initFrom( const QVariantMap& moduleDescriptor )
-{
-    m_name = moduleDescriptor.value( "name" ).toString();
-    if ( moduleDescriptor.contains( EMERGENCY ) )
-    {
-        m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
-    }
-}
 
 RequirementsList
 Module::checkRequirements()

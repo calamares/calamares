@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,14 +20,15 @@
 #ifndef VIEWSTEP_H
 #define VIEWSTEP_H
 
-#include <QList>
-#include <QObject>
-#include <QSize>
-
 #include "Job.h"
 #include "UiDllMacro.h"
 
+#include "modulesystem/InstanceKey.h"
 #include "modulesystem/Requirement.h"
+
+#include <QList>
+#include <QObject>
+#include <QSize>
 
 namespace Calamares
 {
@@ -36,9 +37,9 @@ namespace Calamares
  * @brief The ViewStep class is the base class for all view modules.
  * A view module is a Calamares module which has at least one UI page (exposed as
  * ViewStep::widget), and can optionally create Calamares jobs at runtime.
- * As of early 2017, a view module can be implemented by deriving from ViewStep
- * in C++ (as a Qt Plugin) or in Python with the PythonQt interface (which also
- * mimics the ViewStep class).
+ * As of early 2020, a view module can be implemented by deriving from ViewStep
+ * in C++ (as a Qt Plugin or a Qml ViewStep) or in Python with the PythonQt interface
+ * (which also mimics the ViewStep class).
  *
  * A ViewStep can describe itself in human-readable format for the SummaryPage
  * (which shows all of the things which have been collected to be done in the
@@ -129,8 +130,8 @@ public:
      */
     virtual JobList jobs() const = 0;
 
-    void setModuleInstanceKey( const QString& instanceKey );
-    QString moduleInstanceKey() const { return m_instanceKey; }
+    void setModuleInstanceKey( const Calamares::ModuleSystem::InstanceKey& instanceKey );
+    Calamares::ModuleSystem::InstanceKey moduleInstanceKey() const { return m_instanceKey; }
 
     virtual void setConfigurationMap( const QVariantMap& configurationMap );
 
@@ -154,7 +155,7 @@ signals:
     void enlarge( QSize enlarge ) const;
 
 protected:
-    QString m_instanceKey;
+    Calamares::ModuleSystem::InstanceKey m_instanceKey;
 };
 
 using ViewStepList = QList< ViewStep* >;

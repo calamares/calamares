@@ -67,7 +67,7 @@ ViewStepItem::data( int role ) const
             toolTip.append( QString( "<br/>Status:\t%1" ).arg( m_step->prettyStatus() ) );
             toolTip.append(
                 QString( "<br/>Source:\t%1" )
-                    .arg( m_step->moduleInstanceKey().isEmpty() ? "built-in" : m_step->moduleInstanceKey() ) );
+                    .arg( m_step->moduleInstanceKey().isValid() ? m_step->moduleInstanceKey().toString() : QStringLiteral("built-in") ) );
         }
         else
         {

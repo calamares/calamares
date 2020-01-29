@@ -66,7 +66,7 @@ ViewStep::back()
 
 
 void
-ViewStep::setModuleInstanceKey( const QString& instanceKey )
+ViewStep::setModuleInstanceKey( const Calamares::ModuleSystem::InstanceKey& instanceKey )
 {
     m_instanceKey = instanceKey;
 }
