@@ -31,16 +31,16 @@ ResponsiveBase
 	subtitle: stackView.currentItem.subtitle
 	message: stackView.currentItem.message
 
-	Item
+	header: Item
 	{
-		Layout.fillWidth: true
-		Layout.preferredHeight: 100
+		width: parent.width
+		height: 150
 
 		Image
 		{
 			anchors.centerIn: parent
 			source: Branding.imagePath(Branding.ProductWelcome)
-			height: Math.max(64, parent.height)
+			height: Math.min(100, parent.height)
 			width: height
 			sourceSize.width: width
 			sourceSize.height: height
@@ -53,12 +53,21 @@ ResponsiveBase
 		property string subtitle: _welcome.Config.genericWelcomeMessage
 		property string message: _welcome.Config.warningMessage
 
-		ListViewTemplate
+		ListView
 		{
 			id: _requirementsList
 			anchors.centerIn: parent
 			implicitWidth: Math.min(parent.width, 500)
 			implicitHeight: Math.min(contentHeight, 500)
+
+			Rectangle
+			{
+				z: parent.z - 1
+				anchors.fill: parent
+				color: Kirigami.Theme.backgroundColor
+				radius: 5
+				opacity: 0.5
+			}
 
 			model: _welcome.Config.requirementsModel
 

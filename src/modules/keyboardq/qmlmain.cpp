@@ -53,7 +53,7 @@ int main(int argc, char **argv)
     qqw.setResizeMode(QQuickWidget::SizeRootObjectToView);
     qqw.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     mw.setCentralWidget( &qqw );
-    mw.resize( QSize( 400, 400 ) );
+    mw.resize( QSize( 800, 1000 ) );
     mw.show();
 
     qmlRegisterType(QUrl::fromLocalFile("../src/qml/calamares/ResponsiveBase.qml"), "io.calamares.ui", 1, 0, "ResponsiveBase");

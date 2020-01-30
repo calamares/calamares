@@ -10,8 +10,6 @@ ItemDelegate
 {
     id: control
 
-    Kirigami.Theme.backgroundColor: "#fafafa"
-	Kirigami.Theme.textColor: "#333"
 
     property alias label1 : _label1
     property alias label2 : _label2

@@ -51,7 +51,7 @@ int main(int argc, char **argv)
     QMainWindow mw;
     QQuickWidget qqw( &mw );
     mw.setCentralWidget( &qqw );
-    mw.resize( QSize( 400, 400 ) );
+    mw.resize( QSize( 800, 1000 ) );
     mw.show();
 
     // TODO: this should put the one config object in the context, rather than adding a factory function to share it everywhere
