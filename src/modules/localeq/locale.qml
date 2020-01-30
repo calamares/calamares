@@ -1,4 +1,4 @@
-import io.calamares.modules.locale 1.0 as Locale
+import io.calamares.modules 1.0 as Modules
 import io.calamares.ui 1.0
 
 import QtQuick 2.10
@@ -18,6 +18,11 @@ Page
 
 	Kirigami.Theme.backgroundColor: "#fafafa"
 	Kirigami.Theme.textColor: "#333"
+
+	Modules.Locale //locale handler
+	{
+		id: _locale
+	}
 
 	background: Item
 	{
@@ -52,23 +57,9 @@ Page
 		}
 	}
 
-	//     footer: Item
-	//     {
-	//         width: parent.width
-	//         height: 200
-	//
-	//         Button
-	//         {
-	//             anchors.centerIn: parent
-	//             text: Welcome.Config.countryCode
-	//             width: _requirementsList.width
-	//             height: implicitHeight
-	//         }
-	//     }
-
 	footer: Item
 	{
-		height: 300
+		height: 100
 		width: parent.width
 
 		Row
@@ -79,7 +70,7 @@ Page
 			Button
 			{
 				text: qsTr("Back")
-// 				enabled: Locale.Config.isNextEnabled
+				// 				enabled: _locale.isNextEnabled
 				onClicked:
 				{
 					if(_stackView.depth === 0)
@@ -93,7 +84,7 @@ Page
 			Button
 			{
 				text: qsTr("Next")
-// 				enabled: Locale.Config.isNextEnabled
+				// 				enabled: _locale.isNextEnabled
 				// 			width: _requirementsList.width
 				onClicked:
 				{
@@ -177,7 +168,7 @@ Page
 					opacity: 0.5
 				}
 
-				model: Locale.Config.regionModel
+				model: _locale.Config.regionModel
 
 				delegate: ItemDelegate
 				{
@@ -241,7 +232,7 @@ Page
 					Layout.preferredHeight: implicitHeight
 					horizontalAlignment: Qt.AlignHCenter
 					wrapMode: Text.NoWrap
-					text: Locale.Config.prettyStatus
+					text: _locale.Config.prettyStatus
 					color: "white"
 					font.weight: Font.Light
 					font.pointSize: 12
@@ -267,7 +258,7 @@ Page
 						opacity: 0.3
 					}
 
-					model: Locale.Config.zonesModel
+					model: _locale.Config.zonesModel
 
 					delegate: ItemDelegate
 					{

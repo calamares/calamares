@@ -20,12 +20,9 @@
 #include "Branding.h"
 #include "JobQueue.h"
 #include "Settings.h"
-#include "locale/LabelModel.h"
 #include "utils/Logger.h"
 #include "LocaleQmlViewStep.h"
 #include "utils/Yaml.h"
-
-#include "Config.h"
 
 int main(int argc, char **argv)
 {
@@ -49,24 +46,24 @@ int main(int argc, char **argv)
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
 
     Calamares::Branding defaultBrand( "src/branding/nxos/branding.desc" );
-
     QMainWindow mw;
-    QWidget background;
-    QVBoxLayout vl;
-    QLabel l( "Hello, world", &mw );
     QQuickWidget qqw( &mw );
-    vl.addWidget( &qqw );
-//     vl.addWidget( &l );
-    background.setLayout( &vl );
-    mw.setCentralWidget( &background );
+    mw.setCentralWidget( &qqw );
     mw.resize( QSize( 400, 400 ) );
     mw.show();
 
     // TODO: this should put the one config object in the context, rather than adding a factory function to share it everywhere
-    LocaleQmlViewStep locale;
+    qmlRegisterType(QUrl::fromLocalFile("../src/qml/ResponsiveBase.qml"), "io.calamares.ui", 1, 0, "ResponsiveBase");
 
-    cDebug() << "Loading qml file form @" << "../src/modules/localeq/locale.qml" ;
-    qqw.setSource( QUrl::fromLocalFile("../src/modules/localeq/locale.qml") );
+    qmlRegisterType< LocaleQmlViewStep >( "io.calamares.modules", 1, 0, "Locale" );
+    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
 
+    const auto url =  QUrl::fromLocalFile("../src/modules/localeq/locale.qml");
+
+    cDebug() << "Loading qml file form @" << url ;
+
+    qqw.setSource( url );
+    qqw.setResizeMode(QQuickWidget::SizeRootObjectToView);
+    qqw.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     return a.exec();
 }

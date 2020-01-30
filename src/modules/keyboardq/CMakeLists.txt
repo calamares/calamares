@@ -1,6 +1,5 @@
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
-set( _keyboard ${CMAKE_CURRENT_SOURCE_DIR}/../keyboard )
+set( _keyboard ${CMAKE_CURRENT_SOURCE_DIR}/../keyboardq )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui ${CMAKE_CURRENT_SOURCE_DIR}/../../libcalamares ${_keyboard} )
 
@@ -17,10 +16,11 @@ calamares_add_plugin( keyboardq
         keyboard.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
+        ${YAMLCPP_LIBRARY}
     SHARED_LIB
 )
 
-add_executable( keyboardqmltest qmlmain.cpp Config.cpp KeyboardQmlViewStep.cpp )
+add_executable( keyboardqmltest qmlmain.cpp Config.cpp KeyboardQmlViewStep.cpp KeyboardLayoutModel.cpp SetKeyboardLayoutJob.cpp keyboardwidget/keyboardglobal.cpp)
 
 target_link_libraries( keyboardqmltest PRIVATE calamaresui Qt5::Core Qt5::Network Qt5::DBus)
 set_target_properties( keyboardqmltest

@@ -1,4 +1,4 @@
-import io.calamares.modules.welcome 1.0 as Welcome
+import io.calamares.modules 1.0 as Modules
 import io.calamares.ui 1.0
 
 import QtQuick 2.10
@@ -12,11 +12,16 @@ import QtQuick.Window 2.3
 
 Page
 { id: control
-	width: Screen.width
-	height: Screen.height
+	width: parent.width
+	height: parent.height
 
 	Kirigami.Theme.backgroundColor: "#fafafa"
 	Kirigami.Theme.textColor: "#333"
+
+	Modules.Welcome
+	{
+		id: _welcome
+	}
 
 	background: Item
 	{
@@ -68,7 +73,7 @@ Page
 
 	footer: Item
 	{
-		height: 300
+		height: 100
 		width: parent.width
 
 		Row
@@ -79,7 +84,7 @@ Page
 			Button
 			{
 				text: qsTr("Next")
-				enabled: Welcome.Config.isNextEnabled
+				enabled: _welcome.Config.isNextEnabled
 				// 			width: _requirementsList.width
 				onClicked: _stackView.push(_langComponent)
 				height: implicitHeight
@@ -133,12 +138,11 @@ Page
 				Layout.preferredHeight: implicitHeight
 				horizontalAlignment: Qt.AlignHCenter
 				wrapMode: Text.NoWrap
-				text: Welcome.Config.genericWelcomeMessage
+				text: _welcome.Config.genericWelcomeMessage
 				color: "white"
 				font.weight: Font.Light
 				font.pointSize: 12
 			}
-
 
 			Label
 			{
@@ -147,12 +151,11 @@ Page
 				Layout.preferredHeight: implicitHeight
 				horizontalAlignment: Qt.AlignHCenter
 				wrapMode: Text.NoWrap
-				text: Welcome.Config.warningMessage
+				text: _welcome.Config.warningMessage
 				color: "white"
 				font.weight: Font.Light
 				font.pointSize: 10
 			}
-
 
 			ListView
 			{
@@ -174,7 +177,7 @@ Page
 					opacity: 0.5
 				}
 
-				model: Welcome.Config.requirementsModel
+				model: _welcome.Config.requirementsModel
 
 				delegate: ItemDelegate
 				{
@@ -333,7 +336,7 @@ Page
 					spacing: Kirigami.Units.smallSpacing
 					clip: true
 
-					currentIndex: Welcome.Config.localeIndex
+					currentIndex: _welcome.Config.localeIndex
 
 					Rectangle
 					{
@@ -344,7 +347,7 @@ Page
 						opacity: 0.3
 					}
 
-					model: Welcome.Config.languagesModel
+					model: _welcome.Config.languagesModel
 
 					delegate: ItemDelegate
 					{
@@ -363,7 +366,7 @@ Page
 
 						onClicked:
 						{
-							Welcome.Config.localeIndex = index
+							_welcome.Config.localeIndex = index
 							positionViewAtIndex(index, ListView.Beginning)
 						}
 

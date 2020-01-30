@@ -50,9 +50,14 @@ class QQuickWidget;
 
 // TODO: Needs a generic Calamares::QmlViewStep as base class
 // TODO: refactor and move what makes sense to base class
+
 class PLUGINDLLEXPORT LocaleQmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
+    Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
+//     Q_PROPERTY(bool isNextEnabled READ isNextEnabled NOTIFY nextStatusChanged)
+//     Q_PROPERTY(bool isBackEnabled READ isBackEnabled NOTIFY nextStatusChanged)
+
 public:
     explicit LocaleQmlViewStep( QObject* parent = nullptr );
 

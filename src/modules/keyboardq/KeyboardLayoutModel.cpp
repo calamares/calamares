@@ -20,6 +20,7 @@
 #include "KeyboardLayoutModel.h"
 
 #include <algorithm>
+#include "utils/Logger.h"
 
 
 KeyboardLayoutModel::KeyboardLayoutModel( QObject* parent )
@@ -27,7 +28,6 @@ KeyboardLayoutModel::KeyboardLayoutModel( QObject* parent )
 {
     init();
 }
-
 
 int
 KeyboardLayoutModel::rowCount( const QModelIndex& parent ) const
@@ -56,6 +56,14 @@ KeyboardLayoutModel::data( const QModelIndex& index, int role ) const
     return QVariant();
 }
 
+const QPair< QString, KeyboardGlobal::KeyboardInfo >
+KeyboardLayoutModel::item(const int &index) const
+{
+    if(index >= m_layouts.count() || index < 0)
+        return QPair< QString, KeyboardGlobal::KeyboardInfo >();
+
+    return m_layouts.at(index);
+}
 
 void
 KeyboardLayoutModel::init()
@@ -71,4 +79,26 @@ KeyboardLayoutModel::init()
     {
         return a.second.description < b.second.description;
     } );
+}
+
+QHash<int, QByteArray>
+KeyboardLayoutModel::roleNames() const
+{
+    return {{Qt::DisplayRole, "label"}, {KeyboardLayoutKeyRole, "key"}, {KeyboardVariantsRole, "variants"}};
+}
+
+void
+KeyboardLayoutModel::setCurrentIndex(const int &index)
+{
+    if(index >= m_layouts.count() || index < 0)
+        return;
+
+    m_currentIndex = index;
+    emit currentIndexChanged(m_currentIndex);
+}
+
+int
+KeyboardLayoutModel::currentIndex() const
+{
+    return m_currentIndex;
 }

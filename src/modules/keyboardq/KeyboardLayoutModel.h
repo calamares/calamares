@@ -20,7 +20,7 @@
 #define KEYBOARDLAYOUTMODEL_H
 
 #include "keyboardwidget/keyboardglobal.h"
-
+#include <QObject>
 #include <QAbstractListModel>
 #include <QMap>
 #include <QMetaType>
@@ -28,6 +28,7 @@
 class KeyboardLayoutModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int currentIndex WRITE setCurrentIndex READ currentIndex NOTIFY currentIndexChanged )
 
 public:
     enum Roles : int
@@ -42,10 +43,20 @@ public:
 
     QVariant data( const QModelIndex& index, int role ) const override;
 
+    void setCurrentIndex(const int &index);
+     int currentIndex() const;
+     const QPair< QString, KeyboardGlobal::KeyboardInfo > item(const int &index) const;
+
+protected:
+    QHash<int, QByteArray> roleNames() const override;
+
 private:
     void init();
-
+    int m_currentIndex =-1;
     QList< QPair< QString, KeyboardGlobal::KeyboardInfo > > m_layouts;
+
+signals:
+    void currentIndexChanged(int index);
 };
 
 #endif // KEYBOARDLAYOUTMODEL_H

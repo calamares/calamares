@@ -25,14 +25,6 @@
 #include "WelcomeQmlViewStep.h"
 #include "utils/Yaml.h"
 
-#include "Config.h"
-
-static Config* theConfig()
-{
-    static Config* cnf = new Config();
-    return cnf;
-}
-
 int main(int argc, char **argv)
 {
     QApplication a( argc, argv );
@@ -57,22 +49,22 @@ int main(int argc, char **argv)
     Calamares::Branding defaultBrand( "src/branding/nxos/branding.desc" );
 
     QMainWindow mw;
-    QWidget background;
-    QVBoxLayout vl;
-    QLabel l( "Hello, world", &mw );
     QQuickWidget qqw( &mw );
-    vl.addWidget( &qqw );
-//     vl.addWidget( &l );
-    background.setLayout( &vl );
-    mw.setCentralWidget( &background );
+    mw.setCentralWidget( &qqw );
     mw.resize( QSize( 400, 400 ) );
     mw.show();
 
     // TODO: this should put the one config object in the context, rather than adding a factory function to share it everywhere
-    WelcomeQmlViewStep welcome;
 
-    cDebug() << "Loading qml file form @" << "../src/modules/welcomeq/welcome.qml" ;
-    qqw.setSource( QUrl::fromLocalFile("../src/modules/welcomeq/welcome.qml") );
+    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
+    qmlRegisterType< WelcomeQmlViewStep >( "io.calamares.modules", 1, 0, "Welcome");
+
+    const auto url =  QUrl::fromLocalFile("../src/modules/welcomeq/welcome.qml");
+    cDebug() << "Loading qml file form @" << url ;
+
+    qqw.setSource( url );
+    qqw.setResizeMode(QQuickWidget::SizeRootObjectToView);
+    qqw.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     return a.exec();
 }

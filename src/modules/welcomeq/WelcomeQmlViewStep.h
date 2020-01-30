@@ -49,6 +49,8 @@ class QQuickWidget;
 class PLUGINDLLEXPORT WelcomeQmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
+    Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
+
 public:
 
     explicit WelcomeQmlViewStep( QObject* parent = nullptr );

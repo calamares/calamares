@@ -49,13 +49,6 @@ WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
 			 &WelcomeQmlViewStep::nextStatusChanged );
 
     this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/welcome.conf")).toMap());
-
-    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
-
-    qmlRegisterSingletonType< Config >( "io.calamares.modules.welcome", 1, 0, "Config", [&](QQmlEngine*, QJSEngine*) -> QObject*
-    {
-        return this->config();
-    } );
 }
 
 
