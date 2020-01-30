@@ -10,6 +10,9 @@ ItemDelegate
 {
     id: control
 
+    Kirigami.Theme.backgroundColor: "#fafafa"
+	Kirigami.Theme.textColor: "#333"
+
     property alias label1 : _label1
     property alias label2 : _label2
 
@@ -44,8 +47,8 @@ ItemDelegate
             id: _label2
             visible: text.length
             Layout.fillHeight: true
-            Layout.fillWidth: true
-            horizontalAlignment: Qt.AlignLeft
+            Layout.maximumWidth: parent.width * 0.4
+            horizontalAlignment: Qt.AlignRight
             color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
             opacity: isCurrentItem ? 1 : 0.7
             font.weight: Font.Light
