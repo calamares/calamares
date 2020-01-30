@@ -127,6 +127,7 @@ createNewEntropy( int poolSize, const QString& rootMountPoint, const QString& fi
         {
             cWarning() << "Entropy data is" << data.length() << "bytes, rather than poolSize" << poolSize;
         }
+        return Calamares::JobResult::ok();
     }
     return Calamares::JobResult::error(
         QObject::tr( "File not found" ),
