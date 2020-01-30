@@ -3,7 +3,7 @@
  *   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
  *   Copyright 2016, Philip Müller <philm@manjaro.org>
  *   Copyright 2017, Alf Gaida <agaida@siduction.org>
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
 #include "Workers.h"
 
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Entropy.h"
 #include "utils/Logger.h"
 
 #include <QFile>
@@ -83,7 +84,7 @@ getUrandomPoolSize()
         {
             if ( v.endsWith( '\n' ) )
             {
-                v.chop(1);
+                v.chop( 1 );
             }
             bool ok = false;
             poolSize = v.toInt( &ok );
@@ -93,44 +94,42 @@ getUrandomPoolSize()
             }
         }
     }
-    return (poolSize >= minimumPoolSize) ? poolSize : minimumPoolSize;
+    return ( poolSize >= minimumPoolSize ) ? poolSize : minimumPoolSize;
 }
 
 Calamares::JobResult
 createNewEntropy( int poolSize, const QString& rootMountPoint, const QString& fileName )
 {
-    QFile urandom( "/dev/urandom" );
-    if ( urandom.exists() && urandom.open( QIODevice::ReadOnly ) )
+    QFile entropyFile( rootMountPoint + fileName );
+    if ( entropyFile.exists() )
     {
-        QByteArray data = urandom.read( poolSize );
-        urandom.close();
-
-        QFile entropyFile( rootMountPoint + fileName );
-        if ( entropyFile.exists() )
-        {
-            cWarning() << "Entropy file" << ( rootMountPoint + fileName ) << "already exists.";
-            return Calamares::JobResult::ok();  // .. anyway
-        }
-        if ( !entropyFile.open( QIODevice::WriteOnly ) )
-        {
-            return Calamares::JobResult::error(
-                QObject::tr( "File not found" ),
-                QObject::tr( "Could not create new random file <pre>%1</pre>." ).arg( fileName ) );
-        }
-        entropyFile.write( data );
-        entropyFile.close();
-        if ( entropyFile.size() < data.length() )
-        {
-            cWarning() << "Entropy file is" << entropyFile.size() << "bytes, random data was" << data.length();
-        }
-        if ( data.length() < poolSize )
-        {
-            cWarning() << "Entropy data is" << data.length() << "bytes, rather than poolSize" << poolSize;
-        }
+        cWarning() << "Entropy file" << ( rootMountPoint + fileName ) << "already exists.";
+        return Calamares::JobResult::ok();  // .. anyway
     }
-    return Calamares::JobResult::error(
-        QObject::tr( "File not found" ),
-        QObject::tr( "Could not read random file <pre>%1</pre>." ).arg( QStringLiteral( "/dev/urandom" ) ) );
+    if ( !entropyFile.open( QIODevice::WriteOnly ) )
+    {
+        return Calamares::JobResult::error(
+            QObject::tr( "File not found" ),
+            QObject::tr( "Could not create new random file <pre>%1</pre>." ).arg( fileName ) );
+    }
+
+    QByteArray data;
+    CalamaresUtils::EntropySource source = CalamaresUtils::getEntropy( poolSize, data );
+    entropyFile.write( data );
+    entropyFile.close();
+    if ( entropyFile.size() < data.length() )
+    {
+        cWarning() << "Entropy file is" << entropyFile.size() << "bytes, random data was" << data.length();
+    }
+    if ( data.length() < poolSize )
+    {
+        cWarning() << "Entropy data is" << data.length() << "bytes, rather than poolSize" << poolSize;
+    }
+    if ( source != CalamaresUtils::EntropySource::URandom )
+    {
+        cWarning() << "Entropy data for pool is low-quality.";
+    }
+    return Calamares::JobResult::ok();
 }
 
 
