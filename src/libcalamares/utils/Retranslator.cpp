@@ -18,7 +18,9 @@
 
 #include "Retranslator.h"
 
-#include "Logger.h"
+#include "Settings.h"
+#include "utils/Dirs.h"
+#include "utils/Logger.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -125,34 +127,47 @@ BrandingLoader::tryLoad( QTranslator* translator )
     return false;
 }
 
-bool
-CalamaresLoader::tryLoad( QTranslator* translator )
+static bool
+tryLoad( QTranslator* translator, const QString& prefix, const QString& localeName )
 {
-    if ( translator->load( QString( ":/lang/calamares_" ) + m_localeName ) )
+    // In debug-mode, try loading from the current directory
+    if ( Calamares::Settings::instance() && Calamares::Settings::instance()->debugMode() && translator->load( prefix + localeName ) )
     {
-        cDebug() << Logger::SubEntry << "Calamares using locale:" << m_localeName;
+        cDebug() << Logger::SubEntry << "Loaded local translation" << prefix << localeName;
+        return true;
+    }
+
+    // Or load from appDataDir -- often /usr/share/calamares -- subdirectory land/
+    QDir localeData( CalamaresUtils::appDataDir() );
+    if ( localeData.exists() && translator->load( localeData.absolutePath() + QStringLiteral("/lang/") + prefix + localeName) )
+    {
+        cDebug() << Logger::SubEntry << "Loaded appdata translation" << prefix << localeName;
+        return true;
+    }
+
+    // Or from QRC (most common)
+    if ( translator->load( QStringLiteral( ":/lang/") + prefix + localeName ) )
+    {
+        cDebug() << Logger::SubEntry << "Loaded QRC translation" << prefix << localeName;
         return true;
     }
     else
     {
-        cDebug() << Logger::SubEntry << "Calamares using default, system locale not found:" << m_localeName;
-        return translator->load( QString( ":/lang/calamares_en" ) );
+        cDebug() << Logger::SubEntry << "No translation for" << prefix << localeName << "using default (en)";
+        return translator->load( QStringLiteral( ":/lang/" ) + prefix + QStringLiteral( "en" ) );
     }
+}
+
+bool
+CalamaresLoader::tryLoad( QTranslator* translator )
+{
+    return ::tryLoad( translator, QStringLiteral( "calamares_" ), m_localeName );
 }
 
 bool
 TZLoader::tryLoad( QTranslator* translator )
 {
-    if ( translator->load( QString( ":/lang/tz_" ) + m_localeName ) )
-    {
-        cDebug() << Logger::SubEntry << "Calamares Timezones using locale:" << m_localeName;
-        return true;
-    }
-    else
-    {
-        cDebug() << Logger::SubEntry << "Calamares Timezones using default, system locale not found:" << m_localeName;
-        return translator->load( QString( ":/lang/tz_en" ) );
-    }
+    return ::tryLoad( translator, QStringLiteral( "tz_" ), m_localeName );
 }
 
 static void
