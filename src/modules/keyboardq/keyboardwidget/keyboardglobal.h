@@ -34,13 +34,11 @@
 #include <QMap>
 #include <QRegExp>
 #include <QDebug>
-#include <QObject>
 
 class KeyboardGlobal
 {
 public:
     struct KeyboardInfo {
-    public:
         QString description;
         QMap< QString, QString > variants;
     };
