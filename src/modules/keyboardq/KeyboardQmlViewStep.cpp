@@ -34,12 +34,21 @@ KeyboardQmlViewStep::KeyboardQmlViewStep( QObject* parent )
     emit nextStatusChanged( m_nextEnabled );
 }
 
-
 KeyboardQmlViewStep::~KeyboardQmlViewStep()
 {
 
 }
 
+void
+KeyboardQmlViewStep::classBegin()
+{
+}
+
+void
+KeyboardQmlViewStep::componentComplete()
+{
+//     m_config->onActivate();
+}
 
 QString
 KeyboardQmlViewStep::prettyName() const
@@ -100,7 +109,7 @@ KeyboardQmlViewStep::jobs() const
 void
 KeyboardQmlViewStep::onActivate()
 {
-//     m_widget->onActivate();
+    m_config->onActivate();
 }
 
 

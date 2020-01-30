@@ -50,11 +50,15 @@ int main(int argc, char **argv)
 
     QMainWindow mw;
     QQuickWidget qqw( &mw );
+    qqw.setResizeMode(QQuickWidget::SizeRootObjectToView);
+    qqw.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     mw.setCentralWidget( &qqw );
     mw.resize( QSize( 400, 400 ) );
     mw.show();
 
     qmlRegisterType(QUrl::fromLocalFile("../src/qml/calamares/ResponsiveBase.qml"), "io.calamares.ui", 1, 0, "ResponsiveBase");
+    qmlRegisterType(QUrl::fromLocalFile("../src/qml/calamares/ListViewTemplate.qml"), "io.calamares.ui", 1, 0, "ListViewTemplate");
+    qmlRegisterType(QUrl::fromLocalFile("../src/qml/calamares/ListItemDelegate.qml"), "io.calamares.ui", 1, 0, "ListItemDelegate");
 
     // TODO: this should put the one config object in the context, rather than adding a factory function to share it everywhere
     qmlRegisterType< KeyboardQmlViewStep >( "io.calamares.modules", 1, 0, "Keyboard" );
@@ -65,7 +69,6 @@ int main(int argc, char **argv)
     cDebug() << "Loading qml file form @" << url ;
 
     qqw.setSource( url );
-    qqw.setResizeMode(QQuickWidget::SizeRootObjectToView);
-    qqw.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
     return a.exec();
 }

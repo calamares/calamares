@@ -10,290 +10,107 @@ import QtGraphicalEffects 1.0
 import QtQuick.Window 2.3
 
 
-Page
+ResponsiveBase
 {
 	id: control
-	width: Screen.width
-	height: Screen.height
-
-	Kirigami.Theme.backgroundColor: "#fafafa"
-	Kirigami.Theme.textColor: "#333"
 
 	Modules.Locale //locale handler
 	{
 		id: _locale
 	}
 
-	background: Item
+	title: stackView.currentItem.title
+	subtitle: stackView.currentItem.subtitle
+	message: stackView.currentItem.message
+
+	stackView.initialItem:  Item
 	{
-		id: _background
+		id: _regionsListComponent
 
-		Image
+		property string title: qsTr("Region")
+		property string subtitle: qsTr("Pick your preferred region or use the default one based on your current location")
+		property string message:  qsTr("Select your preferred zone within your location to continue with the installation")
+
+		ListViewTemplate
 		{
-			id: _wallpaper
-			height: parent.height
-			width: parent.width
-
-			sourceSize.height: height / 60
-			sourceSize.width: width / 60
-
-			fillMode: Image.PreserveAspectCrop
-			antialiasing: false
-			smooth: false
-			asynchronous: true
-			cache: true
-
-			source: Branding.imagePath(Branding.ProductWallpaper)
-		}
-
-		FastBlur
-		{
-			id: fastBlur
-			anchors.fill: parent
-			source: _wallpaper
-			radius: 130
-			transparentBorder: false
-			cached: true
-		}
-	}
-
-	footer: Item
-	{
-		height: 100
-		width: parent.width
-
-		Row
-		{
-			spacing: Kirigami.Units.largeSpacing
+			id: _regionListView
 			anchors.centerIn: parent
+			implicitWidth: Math.min(parent.width, 500)
+			implicitHeight: Math.min(contentHeight, 500)
+			currentIndex: model.currentIndex
+			model: _locale.Config.regionModel
 
-			Button
+			delegate: ListItemDelegate
 			{
-				text: qsTr("Back")
-				// 				enabled: _locale.isNextEnabled
+				id: _delegate
+				label1.text: model.label
 				onClicked:
 				{
-					if(_stackView.depth === 0)
-						return;
-
-					_stackView.pop()
-				}
-				height: implicitHeight
-			}
-
-			Button
-			{
-				text: qsTr("Next")
-				// 				enabled: _locale.isNextEnabled
-				// 			width: _requirementsList.width
-				onClicked:
-				{
-					if(_stackView.depth >=2)
-						return;
-
+					_regionListView.model.currentIndex = index
 					_stackView.push(_zonesListComponent)
 				}
-				height: implicitHeight
-			}
-		}
-	}
-
-	StackView
-	{
-		id:_stackView
-		anchors.fill: parent
-		anchors.margins: Kirigami.Units.largeSpacing * 5
-
-		initialItem:  ColumnLayout
-		{
-			id: _regionsListComponent
-			width: parent.width
-			spacing:  Kirigami.Units.largeSpacing * 5
-
-			Label
-			{
-				Layout.fillWidth: true
-				Layout.preferredHeight: implicitHeight
-				horizontalAlignment: Qt.AlignHCenter
-				wrapMode: Text.NoWrap
-				text: qsTr("Region")
-				color: "white"
-				font.bold: true
-				font.weight: Font.Bold
-				font.pointSize: 24
 			}
 
-			Label
-			{
-				Layout.fillWidth: true
-				Layout.preferredHeight: implicitHeight
-				horizontalAlignment: Qt.AlignHCenter
-				wrapMode: Text.NoWrap
-				text: qsTr("Pick your preferred region or use the default one based on your current location")
-				color: "white"
-				font.weight: Font.Light
-				font.pointSize: 12
-			}
-
-			Label
-			{
-
-				Layout.fillWidth: true
-				Layout.preferredHeight: implicitHeight
-				horizontalAlignment: Qt.AlignHCenter
-				wrapMode: Text.NoWrap
-				text: qsTr("Select your preferred zone within your location to continue with the installation")
-				color: "white"
-				font.weight: Font.Light
-				font.pointSize: 10
-			}
-
-			ListView
-			{
-				id: _regionListView
-				Layout.alignment: Qt.AlignCenter
-				Layout.preferredWidth: Math.min(500, parent.width - 64)
-				Layout.preferredHeight: Math.min(contentHeight, 500)
-				spacing: Kirigami.Units.smallSpacing
-				clip: true
-				boundsBehavior: Flickable.StopAtBounds
-				currentIndex: model.currentIndex
-
-				Rectangle
-				{
-					z: parent.z - 1
-					anchors.fill: parent
-					color: Kirigami.Theme.backgroundColor
-					radius: 5
-					opacity: 0.5
-				}
-
-				model: _locale.Config.regionModel
-
-				delegate: ItemDelegate
-				{
-					id: _delegate
-
-					hoverEnabled: true
-
-					property bool isCurrentItem: ListView.isCurrentItem
-					background: Rectangle
-					{
-						color: isCurrentItem || hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
-						opacity: isCurrentItem || hovered ? 0.7 : 0.1
-					}
-
-					width: parent.width
-					height: 48
-
-					contentItem: Label
-					{
-						anchors.fill: parent
-						anchors.margins: Kirigami.Units.largeSpacing
-						horizontalAlignment: Qt.AlignLeft
-						text: model.label
-						color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
-					}
-
-					onClicked:
-					{
-						_regionListView.model.currentIndex = index
-						_stackView.push(_zonesListComponent)
-					}
-				}
-			}
-		}
-
-		Component
-		{
-			id: _zonesListComponent
-
-			ColumnLayout
+			footer:  RowLayout
 			{
 				width: parent.width
-				spacing:  Kirigami.Units.largeSpacing * 5
-
-				Label
+				z: 99999
+				Button
 				{
 					Layout.fillWidth: true
-					Layout.preferredHeight: implicitHeight
-					horizontalAlignment: Qt.AlignHCenter
-					wrapMode: Text.NoWrap
-					text: qsTr("Timezone")
-					color: "white"
-					font.bold: true
-					font.weight: Font.Bold
-					font.pointSize: 24
+					text: qsTr("Timezones")
+					icon.name: "go-previous"
+					onClicked: control.stackView.push(_zonesListComponent)
 				}
+			}
+		}
+	}
 
-				Label
+
+	Component
+	{
+		id: _zonesListComponent
+
+		Item
+		{
+			property string title: qsTr("Timezone")
+			property string subtitle: _locale.Config.prettyStatus
+			property string message: ""
+			ListViewTemplate
+			{
+				id: _zonesListView
+				anchors.centerIn: parent
+				implicitWidth: Math.min(parent.width, 500)
+				implicitHeight: Math.min(contentHeight, 500)
+				currentIndex: model.currentIndex
+				model: _locale.Config.zonesModel
+
+				delegate: ListItemDelegate
 				{
-					Layout.fillWidth: true
-					Layout.preferredHeight: implicitHeight
-					horizontalAlignment: Qt.AlignHCenter
-					wrapMode: Text.NoWrap
-					text: _locale.Config.prettyStatus
-					color: "white"
-					font.weight: Font.Light
-					font.pointSize: 12
-				}
-
-				ListView
-				{
-					id: _zonesListView
-					Layout.alignment: Qt.AlignCenter
-					Layout.preferredWidth: Math.min(500, parent.width - 64)
-					Layout.preferredHeight: Math.min(contentHeight, parent.height - 200)
-					spacing: Kirigami.Units.smallSpacing
-					clip: true
-
-					currentIndex: model.currentIndex
-
-					Rectangle
+					id: _delegate
+					label1.text: model.label
+					onClicked:
 					{
-						z: parent.z - 1
-						anchors.fill: parent
-						color: Kirigami.Theme.backgroundColor
-						radius: 5
-						opacity: 0.3
+						_zonesListView.model.currentIndex = index
+						positionViewAtIndex(index, ListView.Center)
 					}
+				}
 
-					model: _locale.Config.zonesModel
+				footer: RowLayout
+				{
+					width: parent.width
+					z: 99999
 
-					delegate: ItemDelegate
+					Button
 					{
-						id: _delegate
-						hoverEnabled: true
-
-						property bool isCurrentItem: ListView.isCurrentItem
-						background: Rectangle
-						{
-							color: isCurrentItem || hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
-							opacity: isCurrentItem || hovered ? 0.7 : 0.1
-						}
-
-						width: parent.width
-						height: 48
-
-						onClicked:
-						{
-							_zonesListView.model.currentIndex = index
-							positionViewAtIndex(index, ListView.Center)
-						}
-
-						contentItem: Label
-						{
-							anchors.fill: parent
-							anchors.margins: Kirigami.Units.largeSpacing
-							horizontalAlignment: Qt.AlignLeft
-							text: model.label
-							color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
-						}
+						Layout.fillWidth: true
+						icon.name: "go-previous"
+						text: qsTr("Regions")
+						onClicked: control.stackView.pop()
 					}
 				}
 			}
-
 		}
-
 	}
 }
+

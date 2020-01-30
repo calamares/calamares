@@ -15,286 +15,191 @@ ResponsiveBase
 		id: _keyboard
 	}
 
-	StackView
+	title: stackView.currentItem.title
+	subtitle: stackView.currentItem.subtitle
+
+
+	stackView.initialItem:  Item
 	{
-		id:_stackView
-		anchors.fill: parent
-		anchors.margins: Kirigami.Units.largeSpacing * 5
+		id: _keyboardModelsComponet
 
-		initialItem:  ColumnLayout
+		property string title: qsTr("Keyboard Model")
+		property string subtitle: qsTr("Pick your preferred keyboard model or use the default one based on the detected hardware")
+
+		ListViewTemplate
 		{
-			id: _regionsListComponent
-			width: parent.width
-			spacing:  Kirigami.Units.largeSpacing * 5
+			id: _keyboardModelListView
 
-			Label
+			anchors.centerIn: parent
+			implicitWidth: Math.min(parent.width, 500)
+			implicitHeight: Math.min(contentHeight, 500)
+			currentIndex: model.currentIndex
+
+			header: ToolButton
 			{
-				Layout.fillWidth: true
-				Layout.preferredHeight: implicitHeight
-				horizontalAlignment: Qt.AlignHCenter
-				wrapMode: Text.NoWrap
-				text: qsTr("Keyboard Model")
-				color: "white"
-				font.bold: true
-				font.weight: Font.Bold
-				font.pointSize: 24
+				icon.name: "view-refresh"
+				onClicked: model.refresh()
+				text: qsTr("Refresh")
+			}
+			footer: RowLayout
+			{
+				width: parent.width
+				z: 99999
+
+				Button
+				{
+					Layout.fillWidth: true
+					text: qsTr("Layouts")
+					icon.name: "go-previous"
+					onClicked: control.stackView.push(_keyboardLayoutsComponent)
+				}
 			}
 
-			Label
-			{
-				Layout.fillWidth: true
-				Layout.preferredHeight: implicitHeight
-				horizontalAlignment: Qt.AlignHCenter
-				wrapMode: Text.NoWrap
-				text: qsTr("Pick your preferred keyboard model or use the default one based on the detected hardware")
-				color: "white"
-				font.weight: Font.Light
-				font.pointSize: 12
-			}
+			model: _keyboard.Config.keyboardModelsModel
 
-			ListView
+			delegate: ListItemDelegate
 			{
-				id: _keyboardModelListView
-				Layout.alignment: Qt.AlignCenter
-				Layout.preferredWidth: Math.min(500, parent.width - 64)
-				Layout.preferredHeight: Math.min(contentHeight, 500)
-				spacing: Kirigami.Units.smallSpacing
-				clip: true
-				boundsBehavior: Flickable.StopAtBounds
+				id: _delegate
+				label1.text: model.label
+				onClicked:
+				{
+					_keyboardModelListView.model.currentIndex = index
+					control.stackView.push(_keyboardLayoutsComponent)
+				}
+			}
+		}
+
+	}
+
+	Component
+	{
+		id: _keyboardLayoutsComponent
+
+		Item
+		{
+			property string title: qsTr("Keyboard Layout")
+			property string subtitle: _keyboard.Config.prettyStatus
+
+			ListViewTemplate
+			{
+				id: _layoutsListView
+
+				anchors.centerIn: parent
+
+				implicitWidth: Math.min(parent.width, 500)
+				implicitHeight: Math.min(contentHeight, 500)
+
+				currentIndex: model.currentIndex
+				footer: RowLayout
+				{
+					width: parent.width
+					z: 99999
+
+					Button
+					{
+						Layout.fillWidth: true
+						icon.name: "go-previous"
+						text: qsTr("Models")
+						onClicked: control.stackView.pop()
+					}
+
+					Button
+					{
+						Layout.fillWidth: true
+						icon.name: "go-next"
+						text: qsTr("Variants")
+						onClicked: control.stackView.push(_keyboardVariantsComponent)
+					}
+				}
+
+				model: _keyboard.Config.keyboardLayoutsModel
+
+				delegate: ListItemDelegate
+				{
+					id: _delegate
+					label1.text: model.label
+					onClicked:
+					{
+						_layoutsListView.model.currentIndex = index
+						_layoutsListView.positionViewAtIndex(index, ListView.Center)
+						control.stackView.push(_keyboardVariantsComponent)
+					}
+				}
+			}
+		}
+
+
+	}
+
+	Component
+	{
+		id: _keyboardVariantsComponent
+
+		Item
+		{
+			property string title: qsTr("Keyboard Layout")
+			property string subtitle: _keyboard.Config.prettyStatus
+
+			ListViewTemplate
+			{
+				id: _variantsListView
+
+				anchors.centerIn: parent
+
+				implicitWidth: Math.min(parent.width, 500)
+				implicitHeight: Math.min(contentHeight, 500)
+
 				currentIndex: model.currentIndex
 
 				footerPositioning: ListView.OverlayFooter
-				footer: ToolButton
+
+				footer: RowLayout
 				{
-					icon.name: "view-refresh"
-					onClicked: model.refresh()
-					text: qsTr("Refresh")
+					z: 99999
+					width: parent.width
+
+					Button
+					{
+						Layout.fillWidth: true
+						text: qsTr("Layouts")
+						icon.name: "go-previous"
+						onClicked: control.stackView.pop()
+					}
 				}
 
-				Rectangle
-				{
-					z: parent.z - 1
-					anchors.fill: parent
-					color: Kirigami.Theme.backgroundColor
-					radius: 5
-					opacity: 0.5
-				}
+				model: _keyboard.Config.keyboardVariantsModel
 
-				model: _keyboard.Config.keyboardModelsModel
-
-				delegate: ItemDelegate
+				delegate: ListItemDelegate
 				{
 					id: _delegate
-
-					hoverEnabled: true
-
-					property bool isCurrentItem: ListView.isCurrentItem
-					background: Rectangle
-					{
-						color: isCurrentItem || hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
-						opacity: isCurrentItem || hovered ? 0.7 : 0.1
-					}
-
-					width: parent.width
-					height: 48
-
-					contentItem: Label
-					{
-						anchors.fill: parent
-						anchors.margins: Kirigami.Units.largeSpacing
-						horizontalAlignment: Qt.AlignLeft
-						text: model.label
-						color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
-					}
-
+					label1.text: model.label
 					onClicked:
 					{
-						_keyboardModelListView.model.currentIndex = index
-						_stackView.push(_keyboardLayoutsComponent)
+						_variantsListView.model.currentIndex = index
+						_variantsListView.positionViewAtIndex(index, ListView.Center)
 					}
 				}
 			}
 		}
 
-		Component
+	}
+
+
+	TextField
+	{
+		placeholderText: qsTr("Test your keyboard")
+		Layout.preferredHeight: 60
+		Layout.maximumWidth:  500
+		Layout.fillWidth: true
+		Layout.alignment: Qt.AlignCenter
+
+		background: Rectangle
 		{
-			id: _keyboardLayoutsComponent
-
-			ColumnLayout
-			{
-				width: parent.width
-				spacing:  Kirigami.Units.largeSpacing * 5
-
-				Label
-				{
-					Layout.fillWidth: true
-					Layout.preferredHeight: implicitHeight
-					horizontalAlignment: Qt.AlignHCenter
-					wrapMode: Text.NoWrap
-					text: qsTr("Keyboard Layout")
-					color: "white"
-					font.bold: true
-					font.weight: Font.Bold
-					font.pointSize: 24
-				}
-
-				Label
-				{
-					Layout.fillWidth: true
-					Layout.preferredHeight: implicitHeight
-					horizontalAlignment: Qt.AlignHCenter
-					wrapMode: Text.NoWrap
-					text: _keyboard.Config.prettyStatus
-					color: "white"
-					font.weight: Font.Light
-					font.pointSize: 12
-				}
-
-				ListView
-				{
-					id: _layoutsListView
-					Layout.alignment: Qt.AlignCenter
-					Layout.preferredWidth: Math.min(500, parent.width - 64)
-					Layout.preferredHeight: Math.min(contentHeight, parent.height - 200)
-					spacing: Kirigami.Units.smallSpacing
-					clip: true
-
-					currentIndex: model.currentIndex
-
-					Rectangle
-					{
-						z: parent.z - 1
-						anchors.fill: parent
-						color: Kirigami.Theme.backgroundColor
-						radius: 5
-						opacity: 0.3
-					}
-
-					model: _keyboard.Config.keyboardLayoutsModel
-
-					delegate: ItemDelegate
-					{
-						id: _delegate
-						hoverEnabled: true
-
-						property bool isCurrentItem: ListView.isCurrentItem
-						background: Rectangle
-						{
-							color: isCurrentItem || hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
-							opacity: isCurrentItem || hovered ? 0.7 : 0.1
-						}
-
-						width: parent.width
-						height: 48
-
-						onClicked:
-						{
-							_layoutsListView.model.currentIndex = index
-							_layoutsListView.positionViewAtIndex(index, ListView.Center)
-							_stackView.push(_keyboardVariantsComponent)
-						}
-
-						contentItem: Label
-						{
-							anchors.fill: parent
-							anchors.margins: Kirigami.Units.largeSpacing
-							horizontalAlignment: Qt.AlignLeft
-							text: model.label
-							color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
-						}
-					}
-				}
-			}
-		}
-
-		Component
-		{
-			id: _keyboardVariantsComponent
-
-			ColumnLayout
-			{
-				width: parent.width
-				spacing:  Kirigami.Units.largeSpacing * 5
-
-				Label
-				{
-					Layout.fillWidth: true
-					Layout.preferredHeight: implicitHeight
-					horizontalAlignment: Qt.AlignHCenter
-					wrapMode: Text.NoWrap
-					text: qsTr("Keyboard Variant")
-					color: "white"
-					font.bold: true
-					font.weight: Font.Bold
-					font.pointSize: 24
-				}
-
-				Label
-				{
-					Layout.fillWidth: true
-					Layout.preferredHeight: implicitHeight
-					horizontalAlignment: Qt.AlignHCenter
-					wrapMode: Text.NoWrap
-					text: _keyboard.Config.prettyStatus
-					color: "white"
-					font.weight: Font.Light
-					font.pointSize: 12
-				}
-
-				ListView
-				{
-					id: _variantsListView
-					Layout.alignment: Qt.AlignCenter
-					Layout.preferredWidth: Math.min(500, parent.width - 64)
-					Layout.preferredHeight: Math.min(contentHeight, parent.height - 200)
-					spacing: Kirigami.Units.smallSpacing
-					clip: true
-
-					currentIndex: model.currentIndex
-
-					Rectangle
-					{
-						z: parent.z - 1
-						anchors.fill: parent
-						color: Kirigami.Theme.backgroundColor
-						radius: 5
-						opacity: 0.3
-					}
-
-					model: _keyboard.Config.keyboardVariantsModel
-
-					delegate: ItemDelegate
-					{
-						id: _delegate
-						hoverEnabled: true
-
-						property bool isCurrentItem: ListView.isCurrentItem
-						background: Rectangle
-						{
-							color: isCurrentItem || hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
-							opacity: isCurrentItem || hovered ? 0.7 : 0.1
-						}
-
-						width: parent.width
-						height: 48
-
-						onClicked:
-						{
-							_variantsListView.model.currentIndex = index
-							_variantsListView.positionViewAtIndex(index, ListView.Center)
-						}
-
-						contentItem: Label
-						{
-							anchors.fill: parent
-							anchors.margins: Kirigami.Units.largeSpacing
-							horizontalAlignment: Qt.AlignLeft
-							text: model.label
-							color: isCurrentItem ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
-						}
-					}
-				}
-			}
+			color: Kirigami.Theme.backgroundColor
+			radius: 5
+			opacity: 0.3
 		}
 	}
+
+
 }

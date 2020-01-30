@@ -26,11 +26,13 @@
 #include <viewpages/ViewStep.h>
 
 #include <PluginDllMacro.h>
+#include <QQmlParserStatus>
 
 class KeyboardPage;
 
-class PLUGINDLLEXPORT KeyboardQmlViewStep : public Calamares::ViewStep
+class PLUGINDLLEXPORT KeyboardQmlViewStep : public Calamares::ViewStep, public QQmlParserStatus
 {
+    Q_INTERFACES(QQmlParserStatus)
     Q_OBJECT
     Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
 
@@ -42,6 +44,9 @@ public:
     QString prettyStatus() const override;
 
     QWidget* widget() override;
+
+    void classBegin() override;
+    void componentComplete() override;
 
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;

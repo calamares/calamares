@@ -20,6 +20,8 @@
 
 #include <QDebug>
 #include <QProcess>
+#include <QApplication>
+#include <QTimer>
 
 #include "keyboardwidget/keyboardpreview.h"
 #include "SetKeyboardLayoutJob.h"
@@ -113,9 +115,7 @@ KeyboardModelsModel::setCurrentIndex(const int& index)
 }
 
 KeyboardVariantsModel::KeyboardVariantsModel(QObject *parent) : QAbstractListModel(parent)
-{
-
-}
+{}
 
 int
 KeyboardVariantsModel::currentIndex() const
@@ -123,7 +123,8 @@ KeyboardVariantsModel::currentIndex() const
     return m_currentIndex;
 }
 
-void KeyboardVariantsModel::setCurrentIndex(const int& index)
+void
+KeyboardVariantsModel::setCurrentIndex(const int& index)
 {
     if(index >= m_list.count() || index < 0)
         return;
@@ -160,13 +161,22 @@ KeyboardVariantsModel::setVariants(QMap< QString, QString > variants)
     beginResetModel();
     for(const auto &key :variants.keys())
     {
-        cDebug() <<  QMap<QString, QString> {{"label", key}, {"key", variants[key]}};
         const auto item = QMap<QString, QString> {{"label", key}, {"key", variants[key]}};
         m_list << item;
     }
     endResetModel();
 }
 
+/* Returns stringlist with suitable setxkbmap command-line arguments
+ * to set the given @p layout and @p variant.
+ */
+static inline QStringList xkbmap_args( const QString& layout, const QString& variant )
+{
+    QStringList r{ "-layout", layout };
+    if ( !variant.isEmpty() )
+        r << "-variant" << variant;
+    return r;
+}
 
 Config::Config(QObject *parent) : QObject(parent)
 , m_keyboardModelsModel(new KeyboardModelsModel(this))
@@ -176,19 +186,45 @@ Config::Config(QObject *parent) : QObject(parent)
     m_setxkbmapTimer.setSingleShot( true );
 
     // Connect signals and slots
-        connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged,
-                 [&](int index)
-                 {
-                     QString model = m_keyboardModelsModel->item(index).value("key", "pc105" );
-//                      Set Xorg keyboard model
-                     QProcess::execute( "setxkbmap", QStringList{ "-model", model } );
-                 } );
+    connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged,
+             [&](int index)
+             {
+                 m_selectedModel = m_keyboardModelsModel->item(index).value("key", "pc105" );
+                 //                      Set Xorg keyboard model
+                 QProcess::execute( "setxkbmap", QStringList{ "-model", m_selectedModel } );
+                 emit prettyStatusChanged();
+             } );
 
-        connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged,
-                 [&](int index)
+    connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged,
+             [&](int index)
+             {
+                 m_selectedLayout =  m_keyboardLayoutsModel->item(index).first;
+                 updateVariants(QPersistentModelIndex(m_keyboardLayoutsModel->index(index)));
+                 emit prettyStatusChanged();
+             } );
+
+    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged,
+             [&](int index)
+             {
+                 m_selectedVariant = m_keyboardVariantsModel->item(index)["key"];
+
+                 // Set Xorg keyboard layout
+                 if ( m_setxkbmapTimer.isActive() )
                  {
-                     updateVariants(QPersistentModelIndex(m_keyboardLayoutsModel->index(index)));
-                 } );
+                     m_setxkbmapTimer.stop();
+                     m_setxkbmapTimer.disconnect( this );
+                 }
+
+                 connect( &m_setxkbmapTimer, &QTimer::timeout,
+                          this, [=]
+                          {
+                              QProcess::execute( "setxkbmap", xkbmap_args( m_selectedLayout, m_selectedVariant ) );
+                              cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
+                              m_setxkbmapTimer.disconnect( this );
+                          } );
+                 m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
+                 emit prettyStatusChanged();
+             } );
 }
 
 KeyboardModelsModel*
@@ -225,7 +261,8 @@ findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
     return currentLayoutItem;
 }
 
-void Config::init()
+void
+Config::init()
 {
     //### Detect current keyboard layout and variant
     QString currentLayout;
@@ -293,75 +330,75 @@ void Config::init()
         m_keyboardLayoutsModel->setCurrentIndex( m_keyboardLayoutsModel->index( 0 ).row() );
 }
 
-QString Config::prettyStatus() const
+QString
+Config::prettyStatus() const
 {
     QString status;
     status += tr( "Set keyboard model to %1.<br/>" ).arg( m_keyboardModelsModel->item(m_keyboardModelsModel->currentIndex())["label"] );
 
     QString layout =  m_keyboardLayoutsModel->item(m_keyboardLayoutsModel->currentIndex()).second.description ;
     QString variant = m_keyboardVariantsModel->currentIndex() >= 0 ?  m_keyboardVariantsModel->item(m_keyboardVariantsModel->currentIndex())["label"]  : QString( "<default>" );
-        status += tr( "Set keyboard layout to %1/%2." ).arg( layout, variant );
+    status += tr( "Set keyboard layout to %1/%2." ).arg( layout, variant );
 
     return status;
 }
 
-Calamares::JobList Config::createJobs(const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard)
+Calamares::JobList
+Config::createJobs(const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard)
 {
     QList< Calamares::job_ptr > list;
-    //     QString selectedModel = m_models.value( ui->comboBoxModel->currentText(),
-    //                                             "pc105" );
-    //
-    //     Calamares::Job* j = new SetKeyboardLayoutJob( selectedModel,
-    //                                                   m_selectedLayout,
-    //                                                   m_selectedVariant,
-    //                                                   xOrgConfFileName,
-    //                                                   convertedKeymapPath,
-    //                                                   writeEtcDefaultKeyboard );
-    //     list.append( Calamares::job_ptr( j ) );
-    //
+
+    Calamares::Job* j = new SetKeyboardLayoutJob( m_selectedModel,
+                                                  m_selectedLayout,
+                                                  m_selectedVariant,
+                                                  xOrgConfFileName,
+                                                  convertedKeymapPath,
+                                                  writeEtcDefaultKeyboard );
+    list.append( Calamares::job_ptr( j ) );
+
     return list;
 }
 
-void Config::guessLayout(const QStringList& langParts)
+void
+Config::guessLayout(const QStringList& langParts)
 {
-    //     const KeyboardLayoutModel* klm = dynamic_cast< KeyboardLayoutModel* >( ui->listLayout->model() );
-    //     bool foundCountryPart = false;
-    //     for ( auto countryPart = langParts.rbegin(); !foundCountryPart && countryPart != langParts.rend(); ++countryPart )
-    //     {
-    //         cDebug() << Logger::SubEntry << "looking for locale part" << *countryPart;
-    //         for ( int i = 0; i < klm->rowCount(); ++i )
-    //         {
-    //             QModelIndex idx = klm->index( i );
-    //             QString name = idx.isValid() ? idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() : QString();
-    //             if ( idx.isValid() && ( name.compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
-    //             {
-    //                 cDebug() << Logger::SubEntry << "matched" << name;
-    //                 ui->listLayout->setCurrentIndex( idx );
-    //                 foundCountryPart = true;
-    //                 break;
-    //             }
-    //         }
-    //         if ( foundCountryPart )
-    //         {
-    //             ++countryPart;
-    //             if ( countryPart != langParts.rend() )
-    //             {
-    //                 cDebug() << "Next level:" << *countryPart;
-    //                 for (int variantnumber = 0; variantnumber < ui->listVariant->count(); ++variantnumber)
-    //                 {
-    //                     LayoutItem *variantdata = dynamic_cast< LayoutItem* >( ui->listVariant->item( variantnumber ) );
-    //                     if ( variantdata && (variantdata->data.compare( *countryPart, Qt::CaseInsensitive ) == 0) )
-    //                     {
-    //                         ui->listVariant->setCurrentItem( variantdata );
-    //                         cDebug() << Logger::SubEntry << "matched variant" << variantdata->data << ' ' << variantdata->text();
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
+    bool foundCountryPart = false;
+    for ( auto countryPart = langParts.rbegin(); !foundCountryPart && countryPart != langParts.rend(); ++countryPart )
+    {
+        cDebug() << Logger::SubEntry << "looking for locale part" << *countryPart;
+        for ( int i = 0; i < m_keyboardLayoutsModel->rowCount(); ++i )
+        {
+            QModelIndex idx = m_keyboardLayoutsModel->index( i );
+            QString name = idx.isValid() ? idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() : QString();
+            if ( idx.isValid() && ( name.compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
+            {
+                cDebug() << Logger::SubEntry << "matched" << name;
+                m_keyboardLayoutsModel->setCurrentIndex( i );
+                foundCountryPart = true;
+                break;
+            }
+        }
+        if ( foundCountryPart )
+        {
+            ++countryPart;
+            if ( countryPart != langParts.rend() )
+            {
+                cDebug() << "Next level:" << *countryPart;
+                for (int variantnumber = 0; variantnumber < m_keyboardVariantsModel->rowCount(); ++variantnumber)
+                {
+                    if ( m_keyboardVariantsModel->item(variantnumber)["key"].compare( *countryPart, Qt::CaseInsensitive ) )
+                    {
+                        m_keyboardVariantsModel->setCurrentIndex( variantnumber );
+                        cDebug() << Logger::SubEntry << "matched variant" << m_keyboardVariantsModel->item(variantnumber)["key"] << ' ' <<m_keyboardVariantsModel->item(variantnumber)["key"];
+                    }
+                }
+            }
+        }
+    }
 }
 
-void Config::onActivate()
+void
+Config::onActivate()
 {
     /* Guessing a keyboard layout based on the locale means
      * mapping between language identifiers in <lang>_<country>
@@ -448,7 +485,8 @@ void Config::onActivate()
     }
 }
 
-void Config::finalize()
+void
+Config::finalize()
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( !m_selectedLayout.isEmpty() )
@@ -460,7 +498,8 @@ void Config::finalize()
     //FIXME: also store keyboard model for something?
 }
 
-void Config::updateVariants(const QPersistentModelIndex& currentItem, QString currentVariant)
+void
+Config::updateVariants(const QPersistentModelIndex& currentItem, QString currentVariant)
 {
     const auto variants = m_keyboardLayoutsModel->item(currentItem.row()).second.variants;
     m_keyboardVariantsModel->setVariants(variants);
@@ -476,11 +515,4 @@ void Config::updateVariants(const QPersistentModelIndex& currentItem, QString cu
         }
     }
 }
-
-
-
-
-
-
-
 

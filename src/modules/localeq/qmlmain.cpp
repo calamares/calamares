@@ -53,7 +53,9 @@ int main(int argc, char **argv)
     mw.show();
 
     // TODO: this should put the one config object in the context, rather than adding a factory function to share it everywhere
-    qmlRegisterType(QUrl::fromLocalFile("../src/qml/ResponsiveBase.qml"), "io.calamares.ui", 1, 0, "ResponsiveBase");
+    qmlRegisterType(QUrl::fromLocalFile("../src/qml/calamares/ResponsiveBase.qml"), "io.calamares.ui", 1, 0, "ResponsiveBase");
+    qmlRegisterType(QUrl::fromLocalFile("../src/qml/calamares/ListViewTemplate.qml"), "io.calamares.ui", 1, 0, "ListViewTemplate");
+    qmlRegisterType(QUrl::fromLocalFile("../src/qml/calamares/ListItemDelegate.qml"), "io.calamares.ui", 1, 0, "ListItemDelegate");
 
     qmlRegisterType< LocaleQmlViewStep >( "io.calamares.modules", 1, 0, "Locale" );
     qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );

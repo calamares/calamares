@@ -34,7 +34,7 @@ class KeyboardModelsModel : public QAbstractListModel
 
 public:
     explicit KeyboardModelsModel(QObject *parent = nullptr);
-    int rowCount(const QModelIndex&) const override;
+    int rowCount(const QModelIndex& = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role) const override;
 
     void setCurrentIndex(const int &index);
@@ -65,7 +65,7 @@ public:
     explicit KeyboardVariantsModel(QObject *parent = nullptr);
     void setVariants(QMap< QString, QString > variants);
 
-    int rowCount(const QModelIndex&) const override;
+    int rowCount(const QModelIndex& = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role) const override;
 
     void setCurrentIndex(const int &index);
@@ -115,6 +115,7 @@ private:
     KeyboardVariantsModel *m_keyboardVariantsModel;
 
     QString m_selectedLayout;
+    QString m_selectedModel;
     QString m_selectedVariant;
     QTimer m_setxkbmapTimer;
 
