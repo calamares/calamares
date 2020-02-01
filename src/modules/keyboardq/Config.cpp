@@ -36,7 +36,8 @@ KeyboardModelsModel::KeyboardModelsModel(QObject* parent) : QAbstractListModel(p
     detectModels();
 }
 
-void KeyboardModelsModel::detectModels()
+void
+KeyboardModelsModel::detectModels()
 {
     beginResetModel();
     const auto models =  KeyboardGlobal::getKeyboardModels();
@@ -52,7 +53,8 @@ void KeyboardModelsModel::detectModels()
     endResetModel();
 }
 
-void KeyboardModelsModel::refresh()
+void
+KeyboardModelsModel::refresh()
 {
     m_list.clear();
     setCurrentIndex(-1);

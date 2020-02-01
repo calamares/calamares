@@ -22,7 +22,6 @@
 #include "Settings.h"
 #include "utils/Logger.h"
 #include "KeyboardQmlViewStep.h"
-#include "KeyboardLayoutModel.h"
 
 
 int main(int argc, char **argv)
