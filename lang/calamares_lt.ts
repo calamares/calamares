@@ -1242,62 +1242,72 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="122"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="126"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>turi bent %1 GiB laisvos vietos diske</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="123"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>Neužtenka vietos diske. Reikia bent %1 GiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="130"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
       <source>has at least %1 GiB working memory</source>
       <translation>turi bent %1 GiB darbinės atminties</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="131"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
       <translation>Sistemai neužtenka darbinės atminties. Reikia bent %1 GiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="138"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="148"/>
       <source>is plugged in to a power source</source>
       <translation>prijungta prie maitinimo šaltinio</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="149"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>Sistema nėra prijungta prie maitinimo šaltinio.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="146"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>is connected to the Internet</source>
       <translation>prijungta prie Interneto</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="147"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
       <source>The system is not connected to the Internet.</source>
       <translation>Sistema nėra prijungta prie Interneto.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
+      <source>is running the installer as an administrator (root)</source>
+      <translation>vykdo diegimo programa administratoriaus (root) teisėmis</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>Sąrankos programa yra vykdoma be administratoriaus teisių.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>Diegimo programa yra vykdoma be administratoriaus teisių.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="166"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="176"/>
+      <source>has a screen large enough to show the whole installer</source>
+      <translation>turi ekraną, pakankamai didelį, kad rodytų visą diegimo programą</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>Ekranas yra per mažas, kad būtų parodyta sąrankos programa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="180"/>
       <source>The screen is too small to display the installer.</source>
       <translation>Ekranas yra per mažas, kad būtų parodyta diegimo programa.</translation>
     </message>
@@ -1536,12 +1546,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="263"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
       <source>The system language will be set to %1.</source>
       <translation>Sistemos kalba bus nustatyta į %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="264"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Skaičių ir datų lokalė bus nustatyta į %1.</translation>
     </message>
@@ -1562,7 +1572,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>K&amp;eisti...</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
       <translation>Nustatyti laiko juostą kaip %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -2797,41 +2807,44 @@ Išvestis:
     </message>
   </context>
   <context>
-    <name>ResultsListWidget</name>
+    <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="99"/>
-      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Šis kompiuteris netenkina minimalių %1 nustatymo reikalavimų.&lt;br/&gt;Sąranka negali būti tęsiama. &lt;a href="#details"&gt;Išsamiau...&lt;/a&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="103"/>
-      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Šis kompiuteris netenkina minimalių %1 diegimo reikalavimų.&lt;br/&gt;Diegimas negali būti tęsiamas. &lt;a href="#details"&gt;Išsamiau...&lt;/a&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="121"/>
-      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation>Šis kompiuteris netenkina kai kurių %1 nustatymui rekomenduojamų reikalavimų.&lt;br/&gt;Sąranką galima tęsti, tačiau kai kurios funkcijos gali būti išjungtos.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="125"/>
-      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation>Šis kompiuteris netenkina kai kurių %1 diegimui rekomenduojamų reikalavimų.&lt;br/&gt;Diegimą galima tęsti, tačiau kai kurios funkcijos gali būti išjungtos.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="163"/>
-      <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation>Programa užduos kelis klausimus ir padės įsidiegti %2.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="184"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>Norėdami pasiekti geriausių rezultatų, įsitikinkite kad šis kompiuteris:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="215"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>System requirements</source>
       <translation>Sistemos reikalavimai</translation>
+    </message>
+  </context>
+  <context>
+    <name>ResultsListWidget</name>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="263"/>
+      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Šis kompiuteris netenkina minimalių %1 nustatymo reikalavimų.&lt;br/&gt;Sąranka negali būti tęsiama. &lt;a href="#details"&gt;Išsamiau...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="267"/>
+      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Šis kompiuteris netenkina minimalių %1 diegimo reikalavimų.&lt;br/&gt;Diegimas negali būti tęsiamas. &lt;a href="#details"&gt;Išsamiau...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="274"/>
+      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
+      <translation>Šis kompiuteris netenkina kai kurių %1 nustatymui rekomenduojamų reikalavimų.&lt;br/&gt;Sąranką galima tęsti, tačiau kai kurios funkcijos gali būti išjungtos.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="278"/>
+      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+      <translation>Šis kompiuteris netenkina kai kurių %1 diegimui rekomenduojamų reikalavimų.&lt;br/&gt;Diegimą galima tęsti, tačiau kai kurios funkcijos gali būti išjungtos.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="287"/>
+      <source>This program will ask you some questions and set up %2 on your computer.</source>
+      <translation>Programa užduos kelis klausimus ir padės įsidiegti %2.</translation>
     </message>
   </context>
   <context>

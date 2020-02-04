@@ -1240,62 +1240,72 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="122"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="126"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>доступно как минимум %1 ГБ свободного дискового пространства</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="123"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>Недостаточно места на дисках. Необходимо как минимум %1 ГБ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="130"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
       <source>has at least %1 GiB working memory</source>
       <translation>доступно как минимум %1 ГБ оперативной памяти</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="131"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
       <translation>Недостаточно оперативной памяти. Необходимо как минимум %1 ГБ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="138"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="148"/>
       <source>is plugged in to a power source</source>
       <translation>подключено сетевое питание</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="149"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>Сетевое питание не подключено.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="146"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>is connected to the Internet</source>
       <translation>присутствует выход в сеть Интернет</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="147"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
       <source>The system is not connected to the Internet.</source>
       <translation>Отсутствует выход в Интернет.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
+      <source>is running the installer as an administrator (root)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>Программа установки запущена без прав администратора.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>Программа установки не запущена с привилегиями администратора.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="166"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="176"/>
+      <source>has a screen large enough to show the whole installer</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>Экран слишком маленький, чтобы отобразить программу установки.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="180"/>
       <source>The screen is too small to display the installer.</source>
       <translation>Слишком маленький экран для окна установщика.</translation>
     </message>
@@ -1534,12 +1544,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="263"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
       <source>The system language will be set to %1.</source>
       <translation>Системным языком будет установлен %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="264"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Региональным форматом чисел и дат будет установлен %1.</translation>
     </message>
@@ -1560,7 +1570,7 @@ The installer will quit and all changes will be lost.</source>
       <translation>И&amp;зменить...</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
       <translation>Установить часовой пояс на %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -2795,41 +2805,44 @@ Output:
     </message>
   </context>
   <context>
-    <name>ResultsListWidget</name>
+    <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="99"/>
-      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Этот компьютер не соответствует минимальным требованиям для установки %1.&lt;br/&gt;Невозможно продолжить установку. &lt;a href="#details"&gt;Подробнее...&lt;/a&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="103"/>
-      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Этот компьютер не соответствует минимальным требованиям для установки %1.&lt;br/&gt;Невозможно продолжить установку. &lt;a href="#details"&gt;Подробнее...&lt;/a&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="121"/>
-      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation>Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="125"/>
-      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation>Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="163"/>
-      <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation>Эта программа задаст вам несколько вопросов и поможет установить %2 на ваш компьютер.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="184"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>Для наилучших результатов, убедитесь, что этот компьютер:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="215"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>System requirements</source>
       <translation>Системные требования</translation>
+    </message>
+  </context>
+  <context>
+    <name>ResultsListWidget</name>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="263"/>
+      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Этот компьютер не соответствует минимальным требованиям для установки %1.&lt;br/&gt;Невозможно продолжить установку. &lt;a href="#details"&gt;Подробнее...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="267"/>
+      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Этот компьютер не соответствует минимальным требованиям для установки %1.&lt;br/&gt;Невозможно продолжить установку. &lt;a href="#details"&gt;Подробнее...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="274"/>
+      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
+      <translation>Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="278"/>
+      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+      <translation>Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="287"/>
+      <source>This program will ask you some questions and set up %2 on your computer.</source>
+      <translation>Эта программа задаст вам несколько вопросов и поможет установить %2 на ваш компьютер.</translation>
     </message>
   </context>
   <context>

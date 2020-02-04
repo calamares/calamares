@@ -1280,7 +1280,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>is running the installer as an administrator (root)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
@@ -1295,7 +1295,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="176"/>
       <source>has a screen large enough to show the whole installer</source>
-      <translation type="unfinished"/>
+      <translation>has a screen large enough to show the whole installer</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
@@ -2807,12 +2807,12 @@ Output:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
       <source>For best results, please ensure that this computer:</source>
-      <translation type="unfinished">For best results, please ensure that this computer:</translation>
+      <translation>For best results, please ensure that this computer:</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>System requirements</source>
-      <translation type="unfinished">System requirements</translation>
+      <translation>System requirements</translation>
     </message>
   </context>
   <context>

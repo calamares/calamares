@@ -1238,62 +1238,72 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="122"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="126"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>tenha pelo menos %1 GiB disponível de espaço no disco</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="123"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>Não há espaço suficiente no disco. Pelo menos %1 GiB é requerido.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="130"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
       <source>has at least %1 GiB working memory</source>
       <translation>tenha pelo menos %1 GiB de memória de trabalho</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="131"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
       <translation>O sistema não tem memória de trabalho o suficiente. Pelo menos %1 GiB é requerido.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="138"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="148"/>
       <source>is plugged in to a power source</source>
       <translation>está conectado a uma fonte de energia</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="149"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>O sistema não está conectado a uma fonte de energia.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="146"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>is connected to the Internet</source>
       <translation>está conectado à Internet</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="147"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
       <source>The system is not connected to the Internet.</source>
       <translation>O sistema não está conectado à Internet.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
+      <source>is running the installer as an administrator (root)</source>
+      <translation>está executando o instalador como administrador (root)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>O programa de configuração não está sendo executado com direitos de administrador.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>O instalador não está sendo executado com permissões de administrador.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="166"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="176"/>
+      <source>has a screen large enough to show the whole installer</source>
+      <translation>tem uma tela grande o suficiente para mostrar todo o instalador</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>A tela é muito pequena para exibir o programa de configuração.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="180"/>
       <source>The screen is too small to display the installer.</source>
       <translation>A tela é muito pequena para exibir o instalador.</translation>
     </message>
@@ -1428,7 +1438,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="22"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Contrato de Licença&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="149"/>
@@ -1438,27 +1448,27 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
       <source>Please review the End User License Agreements (EULAs).</source>
-      <translation type="unfinished"/>
+      <translation>Revise o contrato de licença de usuário final (EULAs).</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
-      <translation type="unfinished"/>
+      <translation>Este procedimento de configuração irá instalar software proprietário que está sujeito aos termos de licença.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>Se não concordar com os termos, o procedimento de configuração não poderá continuar.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="164"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-      <translation type="unfinished"/>
+      <translation>Este procedimento de configuração pode instalar software proprietário sujeito a termos de licenciamento para fornecer recursos adicionais e aprimorar a experiência do usuário.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="169"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation type="unfinished"/>
+      <translation>Se você não concordar com os termos, o software proprietário não será instalado e serão utilizadas as alternativas de código aberto.</translation>
     </message>
   </context>
   <context>
@@ -1474,7 +1484,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="96"/>
       <source>URL: %1</source>
-      <translation type="unfinished"/>
+      <translation>URL: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="117"/>
@@ -1511,17 +1521,17 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="171"/>
       <source>File: %1</source>
-      <translation type="unfinished"/>
+      <translation>Arquivo: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>Mostrar o texto da licença</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
       <source>Open license agreement in browser.</source>
-      <translation type="unfinished"/>
+      <translation>Contrato de licença aberta no navegador.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
@@ -1532,12 +1542,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="263"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
       <source>The system language will be set to %1.</source>
       <translation>O idioma do sistema será definido como %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="264"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>O local dos números e datas será definido como %1.</translation>
     </message>
@@ -1558,7 +1568,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
       <translation>&amp;Mudar...</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
       <translation>Definir o fuso horário para %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -2793,41 +2803,44 @@ Saída:
     </message>
   </context>
   <context>
-    <name>ResultsListWidget</name>
+    <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="99"/>
-      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Este computador não satisfaz os requerimentos mínimos para configurar %1.&lt;br/&gt;A configuração não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="103"/>
-      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Este computador não satisfaz os requisitos mínimos para instalar %1.&lt;br/&gt;A instalação não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="121"/>
-      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation>Este computador não satisfaz alguns dos requerimentos recomendados para configurar %1.&lt;br/&gt;A configuração pode continuar, mas algumas funções podem ser desativadas.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="125"/>
-      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation>Este computador não satisfaz alguns dos requisitos recomendados para instalar %1.&lt;br/&gt;A instalação pode continuar, mas alguns recursos podem ser desativados.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="163"/>
-      <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation>Este programa irá fazer-lhe algumas perguntas e configurar %2 no computador.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="184"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>Para melhores resultados, por favor, certifique-se de que este computador:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="215"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>System requirements</source>
       <translation>Requisitos do sistema</translation>
+    </message>
+  </context>
+  <context>
+    <name>ResultsListWidget</name>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="263"/>
+      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Este computador não satisfaz os requerimentos mínimos para configurar %1.&lt;br/&gt;A configuração não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="267"/>
+      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Este computador não satisfaz os requisitos mínimos para instalar %1.&lt;br/&gt;A instalação não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="274"/>
+      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
+      <translation>Este computador não satisfaz alguns dos requerimentos recomendados para configurar %1.&lt;br/&gt;A configuração pode continuar, mas algumas funções podem ser desativadas.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="278"/>
+      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+      <translation>Este computador não satisfaz alguns dos requisitos recomendados para instalar %1.&lt;br/&gt;A instalação pode continuar, mas alguns recursos podem ser desativados.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="287"/>
+      <source>This program will ask you some questions and set up %2 on your computer.</source>
+      <translation>Este programa irá fazer-lhe algumas perguntas e configurar %2 no computador.</translation>
     </message>
   </context>
   <context>

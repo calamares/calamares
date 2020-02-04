@@ -1238,62 +1238,72 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="122"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="126"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>%1 GiB ഡിസ്ക്സ്പെയ്സ് എങ്കിലും ലഭ്യമായിരിക്കണം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="123"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>ആവശ്യത്തിനു ഡിസ്ക്സ്പെയ്സ് ലഭ്യമല്ല. %1 GiB എങ്കിലും വേണം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="130"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
       <source>has at least %1 GiB working memory</source>
       <translation>%1 GiB RAM എങ്കിലും ലഭ്യമായിരിക്കണം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="131"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
       <translation>സിസ്റ്റത്തിൽ ആവശ്യത്തിനു RAM ലഭ്യമല്ല. %1 GiB എങ്കിലും വേണം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="138"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="148"/>
       <source>is plugged in to a power source</source>
       <translation>ഒരു ഊർജ്ജസ്രോതസ്സുമായി ബന്ധിപ്പിച്ചിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="149"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>സിസ്റ്റം ഒരു ഊർജ്ജസ്രോതസ്സിലേക്ക് ബന്ധിപ്പിച്ചിട്ടില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="146"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>is connected to the Internet</source>
       <translation>ഇന്റർനെറ്റിലേക്ക് ബന്ധിപ്പിച്ചിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="147"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
       <source>The system is not connected to the Internet.</source>
       <translation>സിസ്റ്റം ഇന്റർനെറ്റുമായി ബന്ധിപ്പിച്ചിട്ടില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
+      <source>is running the installer as an administrator (root)</source>
+      <translation>ഇൻസ്റ്റാളർ കാര്യനിർവാഹകരിൽ ഒരാളായിട്ടാണ് (root) പ്രവർത്തിപ്പിക്കുന്നത്</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>സെറ്റപ്പ് പ്രോഗ്രാം അഡ്മിനിസ്ട്രേറ്റർ അവകാശങ്ങൾ ഇല്ലാതെയാണ് പ്രവർത്തിക്കുന്നത്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>ഇൻസ്റ്റാളർ അഡ്മിനിസ്ട്രേറ്റർ അവകാശങ്ങൾ ഇല്ലാതെയാണ് പ്രവർത്തിക്കുന്നത് </translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="166"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="176"/>
+      <source>has a screen large enough to show the whole installer</source>
+      <translation>മുഴുവൻ ഇൻസ്റ്റാളറും കാണിക്കാൻ തക്ക വലിപ്പമുള്ള ഒരു സ്ക്രീനുണ്ട്</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>സജ്ജീകരണ പ്രയോഗം കാണിക്കാൻ തക്ക വലുപ്പം സ്ക്രീനിനില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="180"/>
       <source>The screen is too small to display the installer.</source>
       <translation>ഇൻസ്റ്റാളർ കാണിക്കാൻ തക്ക വലുപ്പം സ്ക്രീനിനില്ല.</translation>
     </message>
@@ -1428,7 +1438,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="22"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;അനുമതിപത്ര നിബന്ധനകൾ&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="149"/>
@@ -1438,27 +1448,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
       <source>Please review the End User License Agreements (EULAs).</source>
-      <translation type="unfinished"/>
+      <translation>എൻഡ് യൂസർ ലൈസൻസ് എഗ്രിമെന്റുകൾ (EULAs) ദയവായി പരിശോധിക്കൂ.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
-      <translation type="unfinished"/>
+      <translation>ഈ സജ്ജീകരണപ്രക്രിയ അനുമതിപത്രനിബന്ധനകൾക്ക് കീഴിലുള്ള കുത്തക സോഫ്റ്റ്‌‌വെയറുകൾ ഇൻസ്റ്റാൾ ചെയ്യും.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>താങ്കൾ ഈ നിബന്ധനകളോട് യോജിക്കുന്നില്ലെങ്കിൽ, സജ്ജീകരണപ്രക്രിയയ്ക്ക് തുടരാനാകില്ല.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="164"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-      <translation type="unfinished"/>
+      <translation>കൂടുതൽ സവിശേഷതകൾ നൽകുന്നതിനും ഉപയോക്താവിന്റെ അനുഭവം കൂടുതൽ മികവുറ്റതാക്കുന്നതിനും ഈ സജ്ജീകരണപ്രക്രിയയ്ക്ക് അനുമതിപത്രനിബന്ധനകൾക്ക് കീഴിലുള്ള കുത്തക സോഫ്റ്റ്‌‌വെയറുകൾ ഇൻസ്റ്റാൾ ചെയ്യാം.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="169"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation type="unfinished"/>
+      <translation>താങ്കൾ ഈ നിബന്ധനകളോട് യോജിക്കുന്നില്ലെങ്കിൽ, കുത്തക സോഫ്റ്റ്‌‌വെയറുകൾ ഇൻസ്റ്റാൾ ചെയ്യപ്പെടില്ല, പകരം സ്വതന്ത്ര ബദലുകൾ ഉപയോഗിക്കും.</translation>
     </message>
   </context>
   <context>
@@ -1474,7 +1484,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="96"/>
       <source>URL: %1</source>
-      <translation type="unfinished"/>
+      <translation>URL: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="117"/>
@@ -1511,17 +1521,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="171"/>
       <source>File: %1</source>
-      <translation type="unfinished"/>
+      <translation>ഫയല്: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>അനുമതിപത്രം കാണിക്കുക</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
       <source>Open license agreement in browser.</source>
-      <translation type="unfinished"/>
+      <translation>അനുമതിപത്രനിബന്ധനകൾ ബ്രൗസറിൽ തുറക്കുക.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
@@ -1532,12 +1542,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="263"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
       <source>The system language will be set to %1.</source>
       <translation>സിസ്റ്റം ഭാഷ %1 ആയി സജ്ജമാക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="264"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>സംഖ്യ &amp; തീയതി രീതി %1 ആയി ക്രമീകരിക്കും.</translation>
     </message>
@@ -1558,7 +1568,7 @@ The installer will quit and all changes will be lost.</source>
       <translation>മാറ്റുക (&amp;C)...</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
       <translation>സമയപദ്ധതി %1/%2 ആയി ക്രമീകരിക്കുക.&lt;br/&gt;</translation>
     </message>
@@ -2793,41 +2803,44 @@ Output:
     </message>
   </context>
   <context>
-    <name>ResultsListWidget</name>
+    <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="99"/>
-      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാനാവില്ല. &lt;a href="#details"&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="103"/>
-      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാനാവില്ല. &lt;a href="#details"&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="121"/>
-      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ചില ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="125"/>
-      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യാൻ ശുപാർശ ചെയ്യപ്പെട്ടിട്ടുള്ള ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="163"/>
-      <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation>ഈ പ്രക്രിയ താങ്കളോട് ചില ചോദ്യങ്ങൾ ചോദിക്കുകയും %2 താങ്കളുടെ കമ്പ്യൂട്ടറിൽ സജ്ജീകരിക്കുകയും ചെയ്യും.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="184"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>മികച്ച ഫലങ്ങൾക്കായി ഈ കമ്പ്യൂട്ടർ താഴെപ്പറയുന്നവ നിറവേറ്റുന്നു എന്നുറപ്പുവരുത്തുക:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="215"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
       <source>System requirements</source>
       <translation>സിസ്റ്റം ആവശ്യകതകൾ</translation>
+    </message>
+  </context>
+  <context>
+    <name>ResultsListWidget</name>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="263"/>
+      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാനാവില്ല. &lt;a href="#details"&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="267"/>
+      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാനാവില്ല. &lt;a href="#details"&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="274"/>
+      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
+      <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ചില ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="278"/>
+      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+      <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യാൻ ശുപാർശ ചെയ്യപ്പെട്ടിട്ടുള്ള ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="287"/>
+      <source>This program will ask you some questions and set up %2 on your computer.</source>
+      <translation>ഈ പ്രക്രിയ താങ്കളോട് ചില ചോദ്യങ്ങൾ ചോദിക്കുകയും %2 താങ്കളുടെ കമ്പ്യൂട്ടറിൽ സജ്ജീകരിക്കുകയും ചെയ്യും.</translation>
     </message>
   </context>
   <context>

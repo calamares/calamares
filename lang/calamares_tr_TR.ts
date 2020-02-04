@@ -1239,63 +1239,73 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="122"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="126"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>En az %1 GB disk sürücü alanı var</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="123"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>Yeterli disk sürücü alanı mevcut değil. En az %1 GB disk alanı gereklidir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="130"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
       <source>has at least %1 GiB working memory</source>
       <translation>En az %1 GB bellek var</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="131"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
       <translation>Yeterli ram bellek gereksinimi karşılanamıyor. En az %1 GB ram bellek gereklidir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="138"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="148"/>
       <source>is plugged in to a power source</source>
       <translation>Bir güç kaynağına takılı olduğundan...</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="149"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>
 Sistem güç kaynağına bağlı değil.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="146"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>is connected to the Internet</source>
       <translation>İnternete bağlı olduğundan...</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="147"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
       <source>The system is not connected to the Internet.</source>
       <translation>Sistem internete bağlı değil.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
+      <source>is running the installer as an administrator (root)</source>
+      <translation>yükleyiciyi yönetici (kök) olarak çalıştırıyor</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>Kurulum uygulaması yönetici haklarıyla çalışmıyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>Sistem yükleyici yönetici haklarına sahip olmadan çalışmıyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="166"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="176"/>
+      <source>has a screen large enough to show the whole installer</source>
+      <translation>yükleyicinin tamamını gösterecek kadar büyük bir ekrana sahip</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>Kurulum uygulamasını görüntülemek için ekran çok küçük.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="180"/>
       <source>The screen is too small to display the installer.</source>
       <translation>Ekran, sistem yükleyiciyi görüntülemek için çok küçük.</translation>
     </message>
@@ -1534,12 +1544,12 @@ Sistem güç kaynağına bağlı değil.</translation>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="263"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
       <source>The system language will be set to %1.</source>
       <translation>Sistem dili %1 olarak ayarlanacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="264"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Sayılar ve günler için sistem yereli %1 olarak ayarlanacak.</translation>
     </message>
@@ -1560,7 +1570,7 @@ Sistem güç kaynağına bağlı değil.</translation>
       <translation>&amp;Değiştir...</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
       <translation>Bölge ve zaman dilimi %1/%2 olarak ayarlandı.&lt;br/&gt;</translation>
     </message>
@@ -2796,43 +2806,46 @@ Output:
     </message>
   </context>
   <context>
+    <name>ResultsListDialog</name>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
+      <source>For best results, please ensure that this computer:</source>
+      <translation>En iyi sonucu elde etmek için bilgisayarınızın aşağıdaki gereksinimleri karşıladığından emin olunuz:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
+      <source>System requirements</source>
+      <translation>Sistem gereksinimleri</translation>
+    </message>
+  </context>
+  <context>
     <name>ResultsListWidget</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="99"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="263"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Bu bilgisayar %1 kurulumu için minimum gereksinimleri karşılamıyor.&lt;br/&gt;Kurulum devam etmeyecek. &lt;a href="#details"&gt;Detaylar...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="103"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="267"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Bu bilgisayara %1 yüklemek için minimum gereksinimler karşılanamadı.
 Kurulum devam edemiyor. &lt;a href="#detaylar"&gt;Detaylar...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="121"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="274"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Bu bilgisayar %1 kurulumu için önerilen gereksinimlerin bazılarına uymuyor. Kurulum devam edebilirsiniz ancak bazı özellikler devre dışı bırakılabilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="125"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="278"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Bu bilgisayara %1 yüklemek için önerilen gereksinimlerin bazıları karşılanamadı.&lt;br/&gt;
 Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="163"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="287"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Bu program size bazı sorular soracak ve bilgisayarınıza %2 kuracak.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="184"/>
-      <source>For best results, please ensure that this computer:</source>
-      <translation>En iyi sonucu elde etmek için bilgisayarınızın aşağıdaki gereksinimleri karşıladığından emin olunuz:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="215"/>
-      <source>System requirements</source>
-      <translation>Sistem gereksinimleri</translation>
     </message>
   </context>
   <context>
