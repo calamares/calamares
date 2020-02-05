@@ -116,11 +116,10 @@ main( int argc, char* argv[] )
     handle_args( a );
     KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
 
-    int returnCode = 0;
     if ( guard.isPrimaryInstance() )
     {
         a.init();
-        returnCode = a.exec();
+        return a.exec();
     }
     else
     {
@@ -135,7 +134,6 @@ main( int argc, char* argv[] )
         {
             qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
         }
+        return 69;  // EX_UNAVAILABLE on FreeBSD
     }
-
-    return returnCode;
 }
