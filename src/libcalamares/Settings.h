@@ -51,11 +51,31 @@ public:
 
     QString brandingComponentName() const;
 
-    bool showPromptBeforeExecution() const;
+    /** @brief Is this a debugging run?
+     * 
+     * Returns true if Calamares is in debug mode. In debug mode,
+     * modules and settings are loaded from more locations, to help
+     * development and debugging.
+     */
+    bool debugMode() const { return m_debug; }
 
-    bool debugMode() const;
+    /** @brief Distinguish "install" from "OEM" modes.
+     * 
+     * Returns true in "install" mode, which is where actions happen
+     * in a chroot -- the target system, which exists separately from
+     * the source system. In "OEM" mode, returns false and most actions
+     * apply to the *current* (host) system.
+     */
+    bool doChroot() const { return m_doChroot; }
 
-    bool doChroot() const;
+    /** @brief Global setting of prompt-before-install.
+     * 
+     * Returns true when the configuration is such that the user
+     * should be prompted one-last-time before any action is taken
+     * that really affects the machine.
+     */
+    bool showPromptBeforeExecution() const { return m_promptInstall; }
+    
     /** @brief Distinguish between "install" and "setup" modes.
      *
      * This influences user-visible strings, for instance using the
@@ -64,9 +84,9 @@ public:
     bool isSetupMode() const { return m_isSetupMode; }
 
     /** @brief Global setting of disable-cancel: can't cancel ever. */
-    bool disableCancel() const;
+    bool disableCancel() const { return m_disableCancel; }
     /** @brief Temporary setting of disable-cancel: can't cancel during exec. */
-    bool disableCancelDuringExec() const;
+    bool disableCancelDuringExec() const { return m_disableCancelDuringExec; }
 
 private:
     static Settings* s_instance;

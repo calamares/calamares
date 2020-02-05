@@ -265,37 +265,4 @@ Settings::brandingComponentName() const
     return m_brandingComponentName;
 }
 
-
-bool
-Settings::showPromptBeforeExecution() const
-{
-    return m_promptInstall;
-}
-
-
-bool
-Settings::debugMode() const
-{
-    return m_debug;
-}
-
-bool
-Settings::doChroot() const
-{
-    return m_doChroot;
-}
-
-bool
-Settings::disableCancel() const
-{
-    return m_disableCancel;
-}
-
-bool
-Settings::disableCancelDuringExec() const
-{
-    return m_disableCancelDuringExec;
-}
-
-
 }  // namespace Calamares
