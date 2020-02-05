@@ -73,8 +73,7 @@ handle_args( CalamaresApplication& a )
 
     parser.process( a );
 
-    a.setDebug( parser.isSet( debugOption ) );
-    Logger::setupLogLevel( a.isDebug() ? Logger::LOGVERBOSE : debug_level( parser, debugLevelOption ) );
+    Logger::setupLogLevel( parser.isSet( debugOption ) ? Logger::LOGVERBOSE : debug_level( parser, debugLevelOption ) );
     if ( parser.isSet( configOption ) )
     {
         CalamaresUtils::setAppDataDir( QDir( parser.value( configOption ) ) );
@@ -83,6 +82,8 @@ handle_args( CalamaresApplication& a )
     {
         CalamaresUtils::setXdgDirs();
     }
+
+    a.init();
 }
 
 int
@@ -110,11 +111,10 @@ main( int argc, char* argv[] )
     // TODO: umount anything in /tmp/calamares-... as an emergency save function
 #endif
 
-    handle_args( a );
     KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
     if ( guard.isPrimaryInstance() )
     {
-        a.init();
+        handle_args( a );
         return a.exec();
     }
     else

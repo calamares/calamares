@@ -42,12 +42,17 @@
 #include <QScreen>
 #include <QTimer>
 
+/// @brief Convenience for "are the settings in debug mode"
+static bool
+isDebug()
+{
+    return Calamares::Settings::instance() && Calamares::Settings::instance()->debugMode();
+}
 
 CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     : QApplication( argc, argv )
     , m_mainwindow( nullptr )
     , m_moduleManager( nullptr )
-    , m_debugMode( false )
 {
     // Setting the organization name makes the default cache
     // directory -- where Calamares stores logs, for instance --
@@ -99,20 +104,6 @@ CalamaresApplication*
 CalamaresApplication::instance()
 {
     return qobject_cast< CalamaresApplication* >( QApplication::instance() );
-}
-
-
-void
-CalamaresApplication::setDebug( bool enabled )
-{
-    m_debugMode = enabled;
-}
-
-
-bool
-CalamaresApplication::isDebug()
-{
-    return m_debugMode;
 }
 
 
