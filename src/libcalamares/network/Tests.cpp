@@ -19,6 +19,7 @@
 #include "Tests.h"
 
 #include "Manager.h"
+#include "utils/Logger.h"
 
 #include <QtTest/QtTest>
 
@@ -43,6 +44,9 @@ NetworkTests::testInstance()
 void
 NetworkTests::testPing()
 {
-    auto& nam = CalamaresUtils::Network::Manager::instance();
-    QVERIFY( nam.synchronousPing( QUrl( "https://www.kde.org" ) ) );
+    using namespace CalamaresUtils::Network;
+    Logger::setupLogLevel( Logger::LOGVERBOSE );
+    auto& nam = Manager::instance();
+    auto r = nam.synchronousPing( QUrl( "https://www.kde.org" ), RequestOptions( RequestOptions::FollowRedirect ) );
+    QVERIFY( r );
 }
