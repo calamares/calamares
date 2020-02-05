@@ -23,6 +23,7 @@
 #include "Settings.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 
 #include "3rdparty/kdsingleapplicationguard/kdsingleapplicationguard.h"
 
@@ -57,6 +58,9 @@ handle_args( CalamaresApplication& a )
                                     "Also look in current directory for configuration. Implies -D8." );
     QCommandLineOption debugLevelOption(
         QStringLiteral( "D" ), "Verbose output for debugging purposes (0-8).", "level" );
+    QCommandLineOption debugTxOption( QStringList { "T", "debug-translation" },
+                                      "Also look in the current directory for translation." );
+
     QCommandLineOption configOption(
         QStringList { "c", "config" }, "Configuration directory to use, for testing purposes.", "config" );
     QCommandLineOption xdgOption( QStringList { "X", "xdg-config" }, "Use XDG_{CONFIG,DATA}_DIRS as well." );
@@ -70,6 +74,7 @@ handle_args( CalamaresApplication& a )
     parser.addOption( debugLevelOption );
     parser.addOption( configOption );
     parser.addOption( xdgOption );
+    parser.addOption( debugTxOption );
 
     parser.process( a );
 
@@ -82,7 +87,7 @@ handle_args( CalamaresApplication& a )
     {
         CalamaresUtils::setXdgDirs();
     }
-
+    CalamaresUtils::setAllowLocalTranslation( parser.isSet( debugOption ) || parser.isSet( debugTxOption ) );
     Calamares::Settings::init( parser.isSet( debugOption ) );
     a.init();
 }

@@ -27,6 +27,8 @@
 #include <QEvent>
 #include <QTranslator>
 
+static bool s_allowLocalTranslations = false;
+
 /** @brief Helper class for loading translations
  *
  * This is used by the loadSingletonTranslator() function to hand off
@@ -131,7 +133,7 @@ static bool
 tryLoad( QTranslator* translator, const QString& prefix, const QString& localeName )
 {
     // In debug-mode, try loading from the current directory
-    if ( Calamares::Settings::instance() && Calamares::Settings::instance()->debugMode() && translator->load( prefix + localeName ) )
+    if ( s_allowLocalTranslations && translator->load( prefix + localeName ) )
     {
         cDebug() << Logger::SubEntry << "Loaded local translation" << prefix << localeName;
         return true;
@@ -139,14 +141,15 @@ tryLoad( QTranslator* translator, const QString& prefix, const QString& localeNa
 
     // Or load from appDataDir -- often /usr/share/calamares -- subdirectory land/
     QDir localeData( CalamaresUtils::appDataDir() );
-    if ( localeData.exists() && translator->load( localeData.absolutePath() + QStringLiteral("/lang/") + prefix + localeName) )
+    if ( localeData.exists()
+         && translator->load( localeData.absolutePath() + QStringLiteral( "/lang/" ) + prefix + localeName ) )
     {
         cDebug() << Logger::SubEntry << "Loaded appdata translation" << prefix << localeName;
         return true;
     }
 
     // Or from QRC (most common)
-    if ( translator->load( QStringLiteral( ":/lang/") + prefix + localeName ) )
+    if ( translator->load( QStringLiteral( ":/lang/" ) + prefix + localeName ) )
     {
         cDebug() << Logger::SubEntry << "Loaded QRC translation" << prefix << localeName;
         return true;
@@ -258,6 +261,12 @@ Retranslator::eventFilter( QObject* obj, QEvent* e )
     }
     // pass the event on to the base
     return QObject::eventFilter( obj, e );
+}
+
+void
+setAllowLocalTranslation( bool allow )
+{
+    s_allowLocalTranslations = allow;
 }
 
 
