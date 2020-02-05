@@ -176,7 +176,7 @@ script:
     if ( !Calamares::JobQueue::instance() )
         (void)new Calamares::JobQueue( nullptr );
     if ( !Calamares::Settings::instance() )
-        (void)new Calamares::Settings( QString(), true );
+        (void)Calamares::Settings::init( QString() );
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QVERIFY( gs != nullptr );

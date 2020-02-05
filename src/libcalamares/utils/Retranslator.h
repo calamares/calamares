@@ -42,6 +42,15 @@ DLLEXPORT void installTranslator( const QLocale& locale, const QString& branding
 
 DLLEXPORT QString translatorLocaleName();
 
+/** @brief Set @p allow to true to load translations from current dir.
+ *
+ * If false, (or never called) the translations are loaded only from
+ * system locations (the AppData dir) and from QRC (compiled in).
+ * Enable local translations to test translations stored in the
+ * current directory.
+ */
+DLLEXPORT void setAllowLocalTranslation( bool allow );
+
 class Retranslator : public QObject
 {
     Q_OBJECT
