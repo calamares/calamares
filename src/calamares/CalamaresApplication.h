@@ -60,8 +60,9 @@ private slots:
     void initFailed( const QStringList& l );
 
 private:
-    void initQmlPath();
+    // Initialization steps happen in this order
     void initSettings();
+    void initQmlPath();
     void initBranding();
     void initModuleManager();
     void initJobQueue();
