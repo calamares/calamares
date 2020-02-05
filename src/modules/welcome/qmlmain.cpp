@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 
     Logger::setupLogLevel( Logger::LOGVERBOSE );
 
-    std::unique_ptr< Calamares::Settings > settings_p( new Calamares::Settings( QString(), true ) );
+    std::unique_ptr< Calamares::Settings > settings_p( Calamares::Settings::init( QString() ) );
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
 
     Calamares::Branding defaultBrand( "src/branding/default/branding.desc" );
