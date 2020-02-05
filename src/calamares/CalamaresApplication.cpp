@@ -76,7 +76,11 @@ CalamaresApplication::init()
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
     cDebug() << "        languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
 
-    initSettings();
+    if ( !Calamares::Settings::instance() )
+    {
+        cError() << "Must create Calamares::Settings before the application.";
+        ::exit( 1 );
+    }
     initQmlPath();
     initBranding();
 
@@ -143,35 +147,6 @@ qmlDirCandidates( bool assumeBuilddir )
 
 
 static QStringList
-settingsFileCandidates( bool assumeBuilddir )
-{
-    static const char settings[] = "settings.conf";
-
-    QStringList settingsPaths;
-    if ( CalamaresUtils::isAppDataDirOverridden() )
-    {
-        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
-    }
-    else
-    {
-        if ( assumeBuilddir )
-        {
-            settingsPaths << QDir::current().absoluteFilePath( settings );
-        }
-        if ( CalamaresUtils::haveExtraDirs() )
-            for ( auto s : CalamaresUtils::extraConfigDirs() )
-            {
-                settingsPaths << ( s + settings );
-            }
-        settingsPaths << CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf";  // String concat
-        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
-    }
-
-    return settingsPaths;
-}
-
-
-static QStringList
 brandingFileCandidates( bool assumeBuilddir, const QString& brandingFilename )
 {
     QStringList brandingPaths;
@@ -233,49 +208,6 @@ CalamaresApplication::initQmlPath()
 
     cDebug() << "Using Calamares QML directory" << importPath.absolutePath();
     CalamaresUtils::setQmlModulesDir( importPath );
-}
-
-
-void
-CalamaresApplication::initSettings()
-{
-    QStringList settingsFileCandidatesByPriority = settingsFileCandidates( isDebug() );
-
-    QFileInfo settingsFile;
-    bool found = false;
-
-    foreach ( const QString& path, settingsFileCandidatesByPriority )
-    {
-        QFileInfo pathFi( path );
-        if ( pathFi.exists() && pathFi.isReadable() )
-        {
-            settingsFile = pathFi;
-            found = true;
-            break;
-        }
-    }
-
-    if ( !found || !settingsFile.exists() || !settingsFile.isReadable() )
-    {
-        cError() << "Cowardly refusing to continue startup without settings."
-                 << Logger::DebugList( settingsFileCandidatesByPriority );
-        if ( CalamaresUtils::isAppDataDirOverridden() )
-        {
-            cError() << "FATAL: explicitly configured application data directory is missing settings.conf";
-        }
-        else
-        {
-            cError() << "FATAL: none of the expected configuration file paths exist.";
-        }
-        ::exit( EXIT_FAILURE );
-    }
-
-    auto* settings = new Calamares::Settings( settingsFile.absoluteFilePath(), isDebug(), this );  // Creates singleton
-    if ( settings->modulesSequence().count() < 1 )
-    {
-        cError() << "FATAL: no sequence set.";
-        ::exit( EXIT_FAILURE );
-    }
 }
 
 

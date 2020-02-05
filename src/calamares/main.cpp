@@ -20,7 +20,7 @@
 
 #include "CalamaresApplication.h"
 
-#include "CalamaresConfig.h"
+#include "Settings.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 
@@ -83,6 +83,7 @@ handle_args( CalamaresApplication& a )
         CalamaresUtils::setXdgDirs();
     }
 
+    Calamares::Settings::init( parser.isSet( debugOption ) );
     a.init();
 }
 

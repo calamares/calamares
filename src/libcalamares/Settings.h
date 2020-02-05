@@ -35,11 +35,14 @@ namespace Calamares
 class DLLEXPORT Settings : public QObject
 {
     Q_OBJECT
+    explicit Settings( const QString& settingsFilePath, bool debugMode );
 public:
-    explicit Settings( const QString& settingsFilePath, bool debugMode, QObject* parent = nullptr );
-
     static Settings* instance();
-
+    /// @brief Find a settings.conf, following @p debugMode
+    static Settings* init( bool debugMode );
+    /// @brief Explicif filename, debug is always true (for testing)
+    static Settings* init( const QString& filename );
+    
     QStringList modulesSearchPaths() const;
 
     using InstanceDescription = QMap< QString, QString >;

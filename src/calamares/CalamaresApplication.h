@@ -61,7 +61,6 @@ private slots:
 
 private:
     // Initialization steps happen in this order
-    void initSettings();
     void initQmlPath();
     void initBranding();
     void initModuleManager();
