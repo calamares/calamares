@@ -35,6 +35,21 @@
 #include <QDebug>
 #include <QDir>
 
+static unsigned int
+debug_level( QCommandLineParser& parser, QCommandLineOption& levelOption )
+{
+    bool ok = true;
+    int l = parser.value( levelOption ).toInt( &ok );
+    if ( !ok || ( l < 0 ) )
+    {
+        return Logger::LOGVERBOSE;
+    }
+    else
+    {
+        return static_cast< unsigned int >( l );  // l >= 0
+    }
+}
+
 static void
 handle_args( CalamaresApplication& a )
 {
@@ -59,25 +74,7 @@ handle_args( CalamaresApplication& a )
     parser.process( a );
 
     a.setDebug( parser.isSet( debugOption ) );
-    if ( parser.isSet( debugOption ) )
-    {
-        Logger::setupLogLevel( Logger::LOGVERBOSE );
-    }
-    else if ( parser.isSet( debugLevelOption ) )
-    {
-        bool ok = true;
-        int l = parser.value( debugLevelOption ).toInt( &ok );
-        unsigned int dlevel = 0;
-        if ( !ok || ( l < 0 ) )
-        {
-            dlevel = Logger::LOGVERBOSE;
-        }
-        else
-        {
-            dlevel = static_cast< unsigned int >( l );  // l >= 0
-        }
-        Logger::setupLogLevel( dlevel );
-    }
+    Logger::setupLogLevel( a.isDebug() ? Logger::LOGVERBOSE : debug_level( parser, debugLevelOption ) );
     if ( parser.isSet( configOption ) )
     {
         CalamaresUtils::setAppDataDir( QDir( parser.value( configOption ) ) );
@@ -115,7 +112,6 @@ main( int argc, char* argv[] )
 
     handle_args( a );
     KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
-
     if ( guard.isPrimaryInstance() )
     {
         a.init();
