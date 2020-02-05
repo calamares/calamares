@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 16:51+0100\n"
+"POT-Creation-Date: 2020-01-29 11:14+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2019\n"
 "Language-Team: Hindi (https://www.transifex.com/calamares/teams/20061/hi/)\n"
@@ -29,8 +29,8 @@ msgstr "GRUB विन्यस्त करना।"
 msgid "Mounting partitions."
 msgstr "विभाजन माउंट करना।"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:187
-#: src/modules/initcpiocfg/main.py:191
+#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:201
+#: src/modules/initcpiocfg/main.py:205
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
@@ -41,7 +41,7 @@ msgstr "विभाजन माउंट करना।"
 msgid "Configuration Error"
 msgstr "विन्यास त्रुटि"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:188
+#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:202
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/fstab/main.py:323
@@ -95,51 +95,51 @@ msgstr "फ़ाइल सिस्टम माउंट से हटाना�
 msgid "Filling up filesystems."
 msgstr "फाइल सिस्टम भरना।"
 
-#: src/modules/unpackfs/main.py:180
+#: src/modules/unpackfs/main.py:184
 msgid "rsync failed with error code {}."
 msgstr "rsync त्रुटि कोड {} के साथ विफल।"
 
-#: src/modules/unpackfs/main.py:241 src/modules/unpackfs/main.py:264
+#: src/modules/unpackfs/main.py:245 src/modules/unpackfs/main.py:268
 msgid "Failed to unpack image \"{}\""
 msgstr "इमेज फ़ाइल \"{}\" को खोलने में विफल"
 
-#: src/modules/unpackfs/main.py:242
+#: src/modules/unpackfs/main.py:246
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
 "unsqaushfs खोजने में विफल, सुनिश्चित करें कि squashfs-tools पैकेज इंस्टॉल है"
 
-#: src/modules/unpackfs/main.py:366
+#: src/modules/unpackfs/main.py:370
 msgid "No mount point for root partition"
 msgstr "रुट विभाजन हेतु कोई माउंट पॉइंट नहीं है"
 
-#: src/modules/unpackfs/main.py:367
+#: src/modules/unpackfs/main.py:371
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr "globalstorage में \"rootMountPoint\" कुंजी नहीं है, कुछ नहीं किया जाएगा"
 
-#: src/modules/unpackfs/main.py:372
+#: src/modules/unpackfs/main.py:376
 msgid "Bad mount point for root partition"
 msgstr "रुट विभाजन हेतु ख़राब माउंट पॉइंट"
 
-#: src/modules/unpackfs/main.py:373
+#: src/modules/unpackfs/main.py:377
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr "रुट माउंट पॉइंट \"{}\" है, जो कि मौजूद नहीं है, कुछ नहीं किया जाएगा"
 
-#: src/modules/unpackfs/main.py:385 src/modules/unpackfs/main.py:389
-#: src/modules/unpackfs/main.py:403
+#: src/modules/unpackfs/main.py:389 src/modules/unpackfs/main.py:393
+#: src/modules/unpackfs/main.py:407
 msgid "Bad unsquash configuration"
 msgstr "ख़राब unsquash विन्यास सेटिंग्स"
 
-#: src/modules/unpackfs/main.py:386
+#: src/modules/unpackfs/main.py:390
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr "\"{}\" ({}) हेतु फ़ाइल सिस्टम समर्थित नहीं है"
 
-#: src/modules/unpackfs/main.py:390
+#: src/modules/unpackfs/main.py:394
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "\"{}\" स्रोत फ़ाइल सिस्टम मौजूद नहीं है"
 
-#: src/modules/unpackfs/main.py:404
+#: src/modules/unpackfs/main.py:408
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "लक्षित सिस्टम में \"{}\" स्थान कोई डायरेक्टरी नहीं है"
 
@@ -199,11 +199,11 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "डिस्प्ले प्रबंधक विन्यास अधूरा था"
 
-#: src/modules/initcpiocfg/main.py:36
+#: src/modules/initcpiocfg/main.py:37
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpio को विन्यस्त करना।"
 
-#: src/modules/initcpiocfg/main.py:192
+#: src/modules/initcpiocfg/main.py:206
 #: src/modules/luksopenswaphookcfg/main.py:100
 #: src/modules/machineid/main.py:50 src/modules/initramfscfg/main.py:99
 #: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:329

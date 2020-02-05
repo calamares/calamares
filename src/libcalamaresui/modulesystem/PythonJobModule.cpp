@@ -49,7 +49,7 @@ PythonJobModule::loadSelf()
         return;
     }
 
-    m_job = Calamares::job_ptr( new PythonJob( m_scriptFileName, m_workingPath, m_configurationMap ) );
+    m_job = Calamares::job_ptr( new PythonJob( instanceKey(), m_scriptFileName, m_workingPath, m_configurationMap ) );
     m_loaded = true;
 }
 
@@ -64,7 +64,6 @@ PythonJobModule::jobs() const
 void
 PythonJobModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
 

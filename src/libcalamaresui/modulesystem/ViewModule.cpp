@@ -91,7 +91,6 @@ ViewModule::jobs() const
 void
 ViewModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     QString load;
     if ( !moduleDescriptor.value( "load" ).toString().isEmpty() )

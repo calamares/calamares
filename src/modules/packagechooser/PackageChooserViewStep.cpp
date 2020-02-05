@@ -192,8 +192,7 @@ PackageChooserViewStep::setConfigurationMap( const QVariantMap& configurationMap
     if ( m_id.isEmpty() )
     {
         // Not set, so use the instance id
-        // TODO: use a stronger type than QString for structured IDs
-        m_id = moduleInstanceKey().split( '@' ).last();
+        m_id = moduleInstanceKey().id();
     }
 
     bool labels_ok = false;

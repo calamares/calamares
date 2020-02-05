@@ -225,7 +225,7 @@ main( int argc, char* argv[] )
         return 1;
     }
 
-    std::unique_ptr< Calamares::Settings > settings_p( new Calamares::Settings( QString(), true ) );
+    std::unique_ptr< Calamares::Settings > settings_p( Calamares::Settings::init( QString() ) );
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
     QMainWindow* mw = nullptr;
 

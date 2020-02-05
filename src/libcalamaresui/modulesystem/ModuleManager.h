@@ -20,6 +20,7 @@
 #ifndef MODULELOADER_H
 #define MODULELOADER_H
 
+#include "modulesystem/Descriptor.h"
 #include "modulesystem/InstanceKey.h"
 
 #include "Requirement.h"
@@ -62,14 +63,14 @@ public:
      * modules.
      * @return a QStringList with the instance keys.
      */
-    QStringList loadedInstanceKeys();
+    QList< ModuleSystem::InstanceKey > loadedInstanceKeys();
 
     /**
      * @brief moduleDescriptor returns the module descriptor structure for a given module.
      * @param name the name of the module for which to return the module descriptor.
      * @return the module descriptor, as a variant map already parsed from YAML.
      */
-    QVariantMap moduleDescriptor( const QString& name );
+    ModuleSystem::Descriptor moduleDescriptor( const QString& name );
 
     /**
      * @brief moduleInstance returns a Module object for a given instance key.
@@ -126,7 +127,7 @@ private:
      */
     bool checkModuleDependencies( const Module& );
 
-    QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
+    QMap< QString, ModuleSystem::Descriptor > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
     QMap< ModuleSystem::InstanceKey, Module* > m_loadedModulesByInstanceKey;
     const QStringList m_paths;
