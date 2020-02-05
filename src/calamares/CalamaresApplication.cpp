@@ -59,8 +59,6 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     setApplicationName( QStringLiteral( CALAMARES_APPLICATION_NAME ) );
     setApplicationVersion( QStringLiteral( CALAMARES_VERSION ) );
 
-    CalamaresUtils::installTranslator( QLocale::system(), QString(), this );
-
     QFont f = font();
     CalamaresUtils::setDefaultFontSize( f.pointSize() );
 }
@@ -73,12 +71,13 @@ CalamaresApplication::init()
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
     cDebug() << "        languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
 
-    setQuitOnLastWindowClosed( false );
-
     initSettings();
     initQmlPath();
     initBranding();
 
+    CalamaresUtils::installTranslator( QLocale::system(), QString(), this );
+
+    setQuitOnLastWindowClosed( false );
     setWindowIcon( QIcon( Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductIcon ) ) );
 
     cDebug() << "STARTUP: initSettings, initQmlPath, initBranding done";
