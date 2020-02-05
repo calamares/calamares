@@ -75,13 +75,13 @@ CalamaresApplication::init()
 
     setQuitOnLastWindowClosed( false );
 
-    initQmlPath();
     initSettings();
+    initQmlPath();
     initBranding();
 
     setWindowIcon( QIcon( Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductIcon ) ) );
 
-    cDebug() << "STARTUP: initQmlPath, initSettings, initBranding done";
+    cDebug() << "STARTUP: initSettings, initQmlPath, initBranding done";
 
     initModuleManager();  //also shows main window
 
