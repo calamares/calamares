@@ -37,18 +37,18 @@ TX_FILE_LIST="lang/calamares_en.ts lang/python.pot src/modules/dummypythonqt/lan
 # normally used much later in the script.
 tx_cleanup()
 {
-    # Cleanup artifacs of checking
-    git worktree remove --force build-txcheck-head
-    git worktree remove --force build-txcheck-prev
-    git branch -D build-txcheck-head > /dev/null 2>&1
+	# Cleanup artifacs of checking
+	git worktree remove --force build-txcheck-head
+	git worktree remove --force build-txcheck-prev
+	git branch -D build-txcheck-head > /dev/null 2>&1
 }
 
 if test "x$1" = "x--cleanup" ; then
-    tx_cleanup
-    exit 0
+	tx_cleanup
+	exit 0
 fi
 if test "x$1" = "x--help" ; then
-    sed -e '1,/USAGE/d' -e '/END.USAGE/,$d' < "$0"
+	sed -e '1,/USAGE/d' -e '/END.USAGE/,$d' < "$0"
 fi
 test -z "$1" || { echo "! Usage: txcheck.sh [--cleanup]" ; exit 1 ; }
 
@@ -59,22 +59,22 @@ test -z "$1" || { echo "! Usage: txcheck.sh [--cleanup]" ; exit 1 ; }
 XMLLINT=""
 for _xmllint in xmllint
 do
-  $_xmllint --version > /dev/null 2>&1 && XMLLINT=$_xmllint
-  test -n "$XMLLINT" && break
+	$_xmllint --version > /dev/null 2>&1 && XMLLINT=$_xmllint
+	test -n "$XMLLINT" && break
 done
 
 # Distinguish GNU date from BSD date
 if date +%s -d "1 week ago" > /dev/null 2>&1 ; then
-    last_week() { date +%s -d "1 week ago" ; }
+	last_week() { date +%s -d "1 week ago" ; }
 else
-    last_week() { date -v1w +%s; }
+	last_week() { date -v1w +%s; }
 fi
 
 # Distinguish GNU SHA executables from BSD ones
 if which sha256sum > /dev/null 2>&1 ; then
-    SHA256=sha256sum
+	SHA256=sha256sum
 else
-    SHA256=sha256
+	SHA256=sha256
 fi
 
 ### CHECK WORKING DIRECTORY
