@@ -80,6 +80,13 @@ TestPaths::testTargetPath()
     QCOMPARE( m_system->targetPath( "/etc/calamares" ), QStringLiteral( "/tmp/etc/calamares" ) );
     QCOMPARE( m_system->targetPath( "//etc//calamares" ), QStringLiteral( "/tmp//etc//calamares" ) );  // extra / are not cleaned up
     QCOMPARE( m_system->targetPath( "etc/calamares" ), QStringLiteral( "/tmp/etc/calamares" ) );  // relative to root
+
+    // Weird Paths
+    QCOMPARE( m_system->targetPath( QString() ), QStringLiteral( "/tmp/" ) );
+
+    // Now break GS
+    Calamares::JobQueue::instance()->globalStorage()->remove( "rootMountPoint" );
+    QCOMPARE( m_system->targetPath( QString() ), QString() );  // Without root, no path
 }
 
 QTEST_GUILESS_MAIN( TestPaths )
