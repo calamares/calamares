@@ -19,10 +19,12 @@
 #include "QmlViewStep.h"
 
 #include "Branding.h"
+#include "ViewManager.h"
 
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
+#include "utils/Qml.h"
 #include "utils/Variant.h"
 #include "widgets/WaitingWidget.h"
 
@@ -48,6 +50,36 @@ searchNames()
     // clang-format on
 
     return names;
+}
+
+/// @brief State-change of the QML, for changeQMLState()
+enum class QMLAction
+{
+    Start,
+    Stop
+};
+
+/** @brief Tells the QML we activated or left it.
+ *
+ * If @p action is @c QMLAction::Start, calls onActivate in the QML.
+ * If @p action is @c QMLAction::Stop, calls onLeave in the QML.
+ *
+ * Sets *activatedInCalamares* property on the QML as well (to true
+ * if @p action is @c QMLAction::Start, false otherwise).
+ */
+static void
+changeQMLState( QMLAction action, QQuickItem* item )
+{
+    static const char propertyName[] = "activatedInCalamares";
+
+    bool activate = action == QMLAction::Start;
+    CalamaresUtils::callQMLFunction( item, activate ? "onActivate" : "onLeave" );
+
+    auto property = item->property( propertyName );
+    if ( property.isValid() && ( property.type() == QVariant::Bool ) && ( property.toBool() != activate ) )
+    {
+        item->setProperty( propertyName, activate );
+    }
 }
 
 namespace Calamares
@@ -80,57 +112,61 @@ QmlViewStep::prettyName() const
 }
 
 
-}  // namespace Calamares
-
 bool
-Calamares::QmlViewStep::isAtBeginning() const
+QmlViewStep::isAtBeginning() const
 {
     return true;
 }
 
 bool
-Calamares::QmlViewStep::isAtEnd() const
+QmlViewStep::isAtEnd() const
 {
     return true;
 }
 bool
-Calamares::QmlViewStep::isBackEnabled() const
+QmlViewStep::isBackEnabled() const
 {
     return true;
 }
 
 bool
-Calamares::QmlViewStep::isNextEnabled() const
+QmlViewStep::isNextEnabled() const
 {
     return true;
 }
 
 Calamares::JobList
-Calamares::QmlViewStep::jobs() const
+QmlViewStep::jobs() const
 {
     return JobList();
 }
 
 void
-Calamares::QmlViewStep::onActivate()
+QmlViewStep::onActivate()
 {
-    // TODO: call into QML
+    if ( m_qmlObject )
+    {
+        changeQMLState( QMLAction::Start, m_qmlObject );
+    }
 }
 
 void
-Calamares::QmlViewStep::onLeave()
+QmlViewStep::onLeave()
 {
-    // TODO: call into QML
+    if ( m_qmlObject )
+    {
+        changeQMLState( QMLAction::Stop, m_qmlObject );
+    }
 }
 
 QWidget*
-Calamares::QmlViewStep::widget()
+QmlViewStep::widget()
 {
     return m_widget;
 }
 
 void
-Calamares::QmlViewStep::loadComplete()
+QmlViewStep::loadComplete()
 {
     cDebug() << "QML component" << m_qmlFileName << m_qmlComponent->status();
     if ( m_qmlComponent->status() == QQmlComponent::Error )
@@ -163,7 +199,7 @@ Calamares::QmlViewStep::loadComplete()
 }
 
 void
-Calamares::QmlViewStep::showQml()
+QmlViewStep::showQml()
 {
     if ( !m_qmlWidget || !m_qmlObject )
     {
@@ -181,6 +217,13 @@ Calamares::QmlViewStep::showQml()
     {
         cDebug() << "showQml() called twice";
     }
+
+    if ( ViewManager::instance()->currentStep() == this )
+    {
+        // We're alreay visible! Must have been slow QML loading, and we
+        // passed onActivate already.
+        changeQMLState( QMLAction::Start, m_qmlObject );
+    }
 }
 
 
@@ -190,7 +233,7 @@ Calamares::QmlViewStep::showQml()
  * is badly configured).
  */
 QString
-searchQmlFile( Calamares::QmlViewStep::QmlSearch method, const QString& configuredName, const QString& moduleName )
+searchQmlFile( QmlViewStep::QmlSearch method, const QString& configuredName, const QString& moduleName )
 {
     using QmlSearch = Calamares::QmlViewStep::QmlSearch;
 
@@ -235,7 +278,7 @@ searchQmlFile( Calamares::QmlViewStep::QmlSearch method, const QString& configur
 }
 
 void
-Calamares::QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool ok = false;
     m_searchMethod = searchNames().find( CalamaresUtils::getString( configurationMap, "search" ), ok );
@@ -270,8 +313,10 @@ Calamares::QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap
 }
 
 void
-Calamares::QmlViewStep::showFailedQml()
+QmlViewStep::showFailedQml()
 {
     cWarning() << "QmlViewStep" << moduleInstanceKey() << "loading failed.";
     m_spinner->setText( prettyName() + ' ' + tr( "Loading failed." ) );
 }
+
+}  // namespace Calamares

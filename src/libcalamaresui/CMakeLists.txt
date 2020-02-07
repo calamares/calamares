@@ -16,6 +16,7 @@ set( calamaresui_SOURCES
     utils/CalamaresUtilsGui.cpp
     utils/ImageRegistry.cpp
     utils/Paste.cpp
+    utils/Qml.cpp
 
     viewpages/BlankViewStep.cpp
     viewpages/ExecutionViewStep.cpp
