@@ -153,6 +153,9 @@ TestPaths::testCreateTargetBasedirs()
         QVERIFY( dirrm.exists() );
     }
     QVERIFY( !QFile( "/tmp/var/lib/dbus" ).exists() );
+
+    // QFileInfo.dir() behaves even when things don't exist
+    QCOMPARE( QFileInfo( "/tmp/var/lib/dbus/bogus" ).dir().path(), QStringLiteral( "/tmp/var/lib/dbus" ) );
 }
 
 QTEST_GUILESS_MAIN( TestPaths )
