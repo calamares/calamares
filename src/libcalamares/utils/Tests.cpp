@@ -24,6 +24,9 @@
 #include "UMask.h"
 #include "Yaml.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
 #include <QTemporaryFile>
 
 #include <QtTest/QtTest>

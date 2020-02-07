@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -263,11 +263,16 @@ System::runCommand( System::RunLocation location,
     return ProcessResult( r, output );
 }
 
+/// @brief Cheap check if a path is absolute.
+static inline bool
+isAbsolutePath( const QString& path )
+{
+    return path.startsWith( '/' );
+}
+
 QString
 System::targetPath( const QString& path ) const
 {
-    QString completePath;
-
     if ( doChroot() )
     {
         Calamares::GlobalStorage* gs
@@ -275,18 +280,17 @@ System::targetPath( const QString& path ) const
 
         if ( !gs || !gs->contains( "rootMountPoint" ) )
         {
-            cWarning() << "No rootMountPoint in global storage, cannot create target file" << path;
+            cWarning() << "No rootMountPoint in global storage, cannot name target file" << path;
             return QString();
         }
 
-        completePath = gs->value( "rootMountPoint" ).toString() + '/' + path;
+        QString root = gs->value( "rootMountPoint" ).toString();
+        return isAbsolutePath( path ) ? ( root + path ) : ( root + '/' + path );
     }
     else
     {
-        completePath = QStringLiteral( "/" ) + path;
+        return isAbsolutePath( path ) ? path : ( QStringLiteral( "/" ) + path );
     }
-
-    return completePath;
 }
 
 QString
@@ -325,6 +329,59 @@ System::createTargetFile( const QString& path, const QByteArray& contents ) cons
 
     f.close();
     return QFileInfo( f ).canonicalFilePath();
+}
+
+void
+System::removeTargetFile( const QString& path ) const
+{
+    if ( !isAbsolutePath( path ) )
+    {
+        cWarning() << "Will not remove non-absolute path" << path;
+        return;
+    }
+    QString target = targetPath( path );
+    if ( !target.isEmpty() )
+    {
+        QFile::remove( target );
+    }
+    // If it was empty, a warning was already printed
+}
+
+bool
+System::createTargetDirs( const QString& path ) const
+{
+    if ( !isAbsolutePath( path ) )
+    {
+        cWarning() << "Will not create basedirs for non-absolute path" << path;
+        return false;
+    }
+
+    QString target = targetPath( path );
+    if ( target.isEmpty() )
+    {
+        // If it was empty, a warning was already printed
+        return false;
+    }
+
+    QString root = Calamares::JobQueue::instance()->globalStorage()->value( "rootMountPoint" ).toString();
+    if ( root.isEmpty() )
+    {
+        return false;
+    }
+
+    QDir d( root );
+    if ( !d.exists() )
+    {
+        cWarning() << "Root mountpoint" << root << "does not exist.";
+        return false;
+    }
+    return d.mkpath( target );  // This re-does everything starting from the **host** /
+}
+
+bool
+System::createTargetParentDirs( const QString& filePath ) const
+{
+    return createTargetDirs( QFileInfo( filePath ).dir().path() );
 }
 
 

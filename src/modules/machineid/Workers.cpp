@@ -36,17 +36,6 @@ isAbsolutePath( const QString& fileName )
     return fileName.startsWith( '/' );
 }
 
-// might need to use a helper to remove the file
-void
-removeFile( const QString& rootMountPoint, const QString& fileName )
-{
-    if ( isAbsolutePath( fileName ) )
-    {
-        QFile::remove( rootMountPoint + fileName );
-    }
-    // Otherwise, do nothing
-}
-
 Calamares::JobResult
 copyFile( const QString& rootMountPoint, const QString& fileName )
 {
@@ -192,7 +181,7 @@ Calamares::JobResult
 createDBusLink( const QString& rootMountPoint, const QString& fileName, const QString& systemdFileName )
 {
     Q_UNUSED( rootMountPoint )
-    return runCmd( QStringList { QStringLiteral( "ln" ), QStringLiteral( "-s" ), systemdFileName, fileName } );
+    return runCmd( QStringList { QStringLiteral( "ln" ), QStringLiteral( "-sf" ), systemdFileName, fileName } );
 }
 
 }  // namespace MachineId

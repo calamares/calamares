@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -245,6 +245,33 @@ public:
      *      possible to be canonical because the file exists).
      */
     DLLEXPORT QString createTargetFile( const QString& path, const QByteArray& contents ) const;
+
+    /** @brief Remove a file from the target system.
+     *
+     * @param path Path to the file; this is interpreted from the root
+     *      of the target system (@see targetPath()).
+     *
+     * Does no error checking to see if the target file was really removed.
+     */
+    DLLEXPORT void removeTargetFile( const QString& path ) const;
+
+    /** @brief Ensure that the directory @p path exists
+     *
+     * @param path a full pathname to a desired directory.
+     *
+     * All the directory components including the last path component are
+     * created, as needed. Returns true on success.
+     *
+     * @see QDir::mkpath
+     */
+    DLLEXPORT bool createTargetDirs( const QString& path ) const;
+
+    /** @brief Convenience to create parent directories of a file path.
+     *
+     * Creates all the parent directories until the last
+     * component of @p filePath . @see createTargetDirs()
+     */
+    DLLEXPORT bool createTargetParentDirs( const QString& filePath ) const;
 
     /**
      * @brief getTotalMemoryB returns the total main memory, in bytes.
