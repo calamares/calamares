@@ -181,7 +181,7 @@ Calamares::JobResult
 createDBusLink( const QString& rootMountPoint, const QString& fileName, const QString& systemdFileName )
 {
     Q_UNUSED( rootMountPoint )
-    return runCmd( QStringList { QStringLiteral( "ln" ), QStringLiteral( "-s" ), systemdFileName, fileName } );
+    return runCmd( QStringList { QStringLiteral( "ln" ), QStringLiteral( "-sf" ), systemdFileName, fileName } );
 }
 
 }  // namespace MachineId
