@@ -280,7 +280,7 @@ System::targetPath( const QString& path ) const
 
         if ( !gs || !gs->contains( "rootMountPoint" ) )
         {
-            cWarning() << "No rootMountPoint in global storage, cannot create target file" << path;
+            cWarning() << "No rootMountPoint in global storage, cannot name target file" << path;
             return QString();
         }
 
