@@ -263,6 +263,13 @@ System::runCommand( System::RunLocation location,
     return ProcessResult( r, output );
 }
 
+/// @brief Cheap check if a path is absolute.
+static inline bool
+isAbsolutePath( const QString& path )
+{
+    return path.startsWith( '/' );
+}
+
 QString
 System::targetPath( const QString& path ) const
 {
@@ -277,19 +284,13 @@ System::targetPath( const QString& path ) const
             return QString();
         }
 
-        return gs->value( "rootMountPoint" ).toString() + '/' + path;
+        QString root = gs->value( "rootMountPoint" ).toString();
+        return isAbsolutePath( path ) ? ( root + path ) : ( root + '/' + path );
     }
     else
     {
-        return QStringLiteral( "/" ) + path;
+        return isAbsolutePath( path ) ? path : ( QStringLiteral( "/" ) + path );
     }
-}
-
-/// @brief Cheap check if a path is absolute.
-static inline bool
-isAbsolutePath( const QString& path )
-{
-    return path.startsWith( '/' );
 }
 
 QString
@@ -347,7 +348,7 @@ System::removeTargetFile( const QString& path ) const
 }
 
 int
-System::createTargetBasedirs(const QString& path) const
+System::createTargetBasedirs( const QString& path ) const
 {
     if ( !isAbsolutePath( path ) )
     {
