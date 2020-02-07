@@ -35,7 +35,6 @@ public:
 private Q_SLOTS:
     void initTestCase();
 
-    void testRemoveFile();
     void testCopyFile();
 
     void testPoolSize();
@@ -82,11 +81,6 @@ MachineIdTests::testCopyFile()
         auto r2 = MachineId::copyFile( tempRoot.path(), tempISOdir.path() + '/' + sampleFile );
         QVERIFY( r2 );
     }
-}
-
-void
-MachineIdTests::testRemoveFile()
-{
 }
 
 void
