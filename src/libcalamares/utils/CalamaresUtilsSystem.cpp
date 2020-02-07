@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -285,6 +285,13 @@ System::targetPath( const QString& path ) const
     }
 }
 
+/// @brief Cheap check if a path is absolute.
+static inline bool
+isAbsolutePath( const QString& path )
+{
+    return path.startsWith( '/' );
+}
+
 QString
 System::createTargetFile( const QString& path, const QByteArray& contents ) const
 {
@@ -321,6 +328,17 @@ System::createTargetFile( const QString& path, const QByteArray& contents ) cons
 
     f.close();
     return QFileInfo( f ).canonicalFilePath();
+}
+
+void
+System::removeTargetFile( const QString& path ) const
+{
+    if ( !isAbsolutePath( path ) )
+    {
+        cWarning() << "Will not remove non-absolute path" << path;
+        return;
+    }
+    QFile::remove( targetPath( path ) );
 }
 
 

@@ -30,9 +30,6 @@ namespace MachineId
  * for moving files around in the target system.
  */
 
-/// @brief Remove @p fileName from the target system at @p rootMountPoint
-void removeFile( const QString& rootMountPoint, const QString& fileName );
-
 /// @brief Copy @p fileName from host into target system at @p rootMountPoint
 Calamares::JobResult copyFile( const QString& rootMountPoint, const QString& fileName );
 

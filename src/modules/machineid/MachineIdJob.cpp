@@ -3,7 +3,7 @@
  *   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
  *   Copyright 2016, Philip Müller <philm@manjaro.org>
  *   Copyright 2017, Alf Gaida <agaida@siduction.org>
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -68,18 +68,20 @@ MachineIdJob::exec()
     QString target_dbus_machineid_file = QStringLiteral( "/var/lib/dbus/machine-id" );
     QString target_entropy_file = QStringLiteral( "/var/lib/urandom/random-seed" );
 
+    const auto* system = CalamaresUtils::System::instance();
+
     // Clear existing files
     if ( m_entropy )
     {
-        MachineId::removeFile( root, target_entropy_file );
+        system->removeTargetFile( target_entropy_file );
     }
     if ( m_dbus )
     {
-        MachineId::removeFile( root, target_dbus_machineid_file );
+        system->removeTargetFile( target_dbus_machineid_file );
     }
     if ( m_systemd )
     {
-        MachineId::removeFile( root, target_systemd_machineid_file );
+        system->removeTargetFile( target_systemd_machineid_file );
     }
 
     //Create new files
