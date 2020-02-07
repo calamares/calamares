@@ -4,7 +4,7 @@
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
-#   Copyright 2016, Philip Müller <philm@manjaro.org>
+#   Copyright 2016,2020 Philip Müller <philm@manjaro.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2019, Adriaan de Groot <groot@kde.org>
 #
@@ -54,6 +54,10 @@ def run():
     enable_symlink = libcalamares.job.configuration["symlink"]
     target_systemd_machineid_file = root_mount_point + "/etc/machine-id"
     target_dbus_machineid_file = root_mount_point + "/var/lib/dbus/machine-id"
+    target_dbus_folder = root_mount_point + "/var/lib/dbus"
+    
+    if not os.path.exists(target_dbus_folder):
+        os.mkdir(target_dbus_folder, 0644)
 
     if os.path.exists(target_dbus_machineid_file):
         os.remove(target_dbus_machineid_file)
