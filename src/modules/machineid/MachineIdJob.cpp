@@ -68,7 +68,7 @@ MachineIdJob::exec()
     QString target_dbus_machineid_file = QStringLiteral( "/var/lib/dbus/machine-id" );
     QString target_entropy_file = QStringLiteral( "/var/lib/urandom/random-seed" );
 
-    const auto* system = CalamaresUtils::System::instance();
+    const CalamaresUtils::System* system = CalamaresUtils::System::instance();
 
     // Clear existing files
     if ( m_entropy )
@@ -106,6 +106,10 @@ MachineIdJob::exec()
     }
     if ( m_dbus )
     {
+        if ( !system->createTargetParentDirs( target_dbus_machineid_file ) )
+        {
+            cWarning() << "Could not create DBus data-directory.";
+        }
         if ( m_dbus_symlink && QFile::exists( root + target_systemd_machineid_file ) )
         {
             auto r = MachineId::createDBusLink( root, target_dbus_machineid_file, target_systemd_machineid_file );
