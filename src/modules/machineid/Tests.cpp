@@ -16,10 +16,13 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "MachineIdJob.h"
 #include "Workers.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
-
 
 #include <QDir>
 #include <QFile>
@@ -38,6 +41,8 @@ private Q_SLOTS:
     void testCopyFile();
 
     void testPoolSize();
+
+    void testJob();
 };
 
 void
@@ -95,6 +100,62 @@ MachineIdTests::testPoolSize()
 #endif
 }
 
+void
+MachineIdTests::testJob()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    // Ensure we have a system object, expect it to be a "bogus" one
+    CalamaresUtils::System* system = CalamaresUtils::System::instance();
+    QVERIFY( system );
+    QVERIFY( system->doChroot() );
+
+    // Ensure we have a system-wide GlobalStorage with /tmp as root
+    if ( !Calamares::JobQueue::instance() )
+    {
+        cDebug() << "Creating new JobQueue";
+        (void)new Calamares::JobQueue();
+    }
+    Calamares::GlobalStorage* gs
+        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    QVERIFY( gs );
+    gs->insert( "rootMountPoint", "/tmp" );
+
+    // Prepare part of the target filesystem
+    QVERIFY( system->createTargetDirs("/etc") );
+    QVERIFY( !(system->createTargetFile( "/etc/machine-id", "Hello" ).isEmpty() ) );
+
+    MachineIdJob job( nullptr );
+    QVERIFY( !job.prettyName().isEmpty() );
+
+    QVariantMap config;
+    config.insert( "dbus", true );
+    job.setConfigurationMap( config );
+
+    {
+        auto r = job.exec();
+        QVERIFY( !r );  // It's supposed to fail, because no dbus-uuidgen executable exists
+        QVERIFY( QFile::exists( "/tmp/var/lib/dbus" ) );  // but the target dir exists
+    }
+
+    config.insert( "dbus-symlink", true );
+    job.setConfigurationMap( config );
+    {
+        auto r = job.exec();
+        QVERIFY( !r );  // It's supposed to fail, because no dbus-uuidgen executable exists
+        QVERIFY( QFile::exists( "/tmp/var/lib/dbus" ) );  // but the target dir exists
+
+        // These all (would) fail, because the chroot isn't viable
+#if 0
+        QVERIFY( QFile::exists( "/tmp/var/lib/dbus/machine-id" ) );
+
+        QFileInfo fi( "/tmp/var/lib/dbus/machine-id" );
+        QVERIFY( fi.exists() );
+        QVERIFY( fi.isSymLink() );
+        QCOMPARE( fi.size(), 5);
+#endif
+    }
+}
 
 QTEST_GUILESS_MAIN( MachineIdTests )
 
