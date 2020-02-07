@@ -21,17 +21,16 @@
 
 #include "ViewManager.h"
 
-#include "viewpages/BlankViewStep.h"
-#include "viewpages/ViewStep.h"
-
 #include "Branding.h"
-#include "ExecutionViewStep.h"
 #include "JobQueue.h"
 #include "Settings.h"
 
 #include "utils/Logger.h"
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
+#include "viewpages/BlankViewStep.h"
+#include "viewpages/ViewStep.h"
+#include "viewpages/ExecutionViewStep.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -159,13 +158,6 @@ void
 ViewManager::insertViewStep( int before, ViewStep* step )
 {
     m_steps.insert( before, step );
-    QLayout* layout = step->widget()->layout();
-    if ( layout )
-    {
-        layout->setContentsMargins( 0, 0, 0, 0 );
-    }
-    m_stack->insertWidget( before, step->widget() );
-
     connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
     connect( step, &ViewStep::nextStatusChanged, this, [this]( bool status ) {
         ViewStep* vs = qobject_cast< ViewStep* >( sender() );
@@ -178,6 +170,17 @@ ViewManager::insertViewStep( int before, ViewStep* step )
         }
     } );
 
+    if ( !step->widget() )
+    {
+        cError() << "ViewStep" << step->moduleInstanceKey() << "has no widget.";
+    }
+
+    QLayout* layout = step->widget()->layout();
+    if ( layout )
+    {
+        layout->setContentsMargins( 0, 0, 0, 0 );
+    }
+    m_stack->insertWidget( before, step->widget() );
     m_stack->setCurrentIndex( 0 );
     step->widget()->setFocus();
 }
