@@ -54,6 +54,10 @@ def run():
     enable_symlink = libcalamares.job.configuration["symlink"]
     target_systemd_machineid_file = root_mount_point + "/etc/machine-id"
     target_dbus_machineid_file = root_mount_point + "/var/lib/dbus/machine-id"
+    target_dbus_folder = root_mount_point + "/var/lib/dbus"
+    
+    if not os.path.exists(target_dbus_folder):
+        os.mkdir(target_dbus_folder, 0644)
 
     if os.path.exists(target_dbus_machineid_file):
         os.remove(target_dbus_machineid_file)
