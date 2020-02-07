@@ -266,8 +266,6 @@ System::runCommand( System::RunLocation location,
 QString
 System::targetPath( const QString& path ) const
 {
-    QString completePath;
-
     if ( doChroot() )
     {
         Calamares::GlobalStorage* gs
@@ -279,14 +277,12 @@ System::targetPath( const QString& path ) const
             return QString();
         }
 
-        completePath = gs->value( "rootMountPoint" ).toString() + '/' + path;
+        return gs->value( "rootMountPoint" ).toString() + '/' + path;
     }
     else
     {
-        completePath = QStringLiteral( "/" ) + path;
+        return QStringLiteral( "/" ) + path;
     }
-
-    return completePath;
 }
 
 QString
