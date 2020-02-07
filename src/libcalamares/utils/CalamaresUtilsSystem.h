@@ -255,16 +255,23 @@ public:
      */
     DLLEXPORT void removeTargetFile( const QString& path ) const;
 
-    /** @brief Ensure that the directories above @p path exist
+    /** @brief Ensure that the directory @p path exists
      *
      * @param path a full pathname to a desired directory.
      *
      * All the directory components including the last path component are
-     * created, as needed, with 0755 permissions. Returns true on success.
+     * created, as needed. Returns true on success.
      *
      * @see QDir::mkpath
      */
     DLLEXPORT bool createTargetDirs( const QString& path ) const;
+
+    /** @brief Convenience to create parent directories of a file path.
+     *
+     * Creates all the parent directories until the last
+     * component of @p filePath . @see createTargetDirs()
+     */
+    DLLEXPORT bool createTargetParentDirs( const QString& filePath ) const;
 
     /**
      * @brief getTotalMemoryB returns the total main memory, in bytes.

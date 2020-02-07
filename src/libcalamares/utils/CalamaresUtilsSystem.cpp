@@ -378,6 +378,12 @@ System::createTargetDirs( const QString& path ) const
     return d.mkpath( target );  // This re-does everything starting from the **host** /
 }
 
+bool
+System::createTargetParentDirs( const QString& filePath ) const
+{
+    return createTargetDirs( QFileInfo( filePath ).dir().path() );
+}
+
 
 QPair< quint64, float >
 System::getTotalMemoryB() const
