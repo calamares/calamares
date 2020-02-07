@@ -255,6 +255,17 @@ public:
      */
     DLLEXPORT void removeTargetFile( const QString& path ) const;
 
+    /** @brief Ensure that the directories above @p path exist
+     *
+     * @param path a full pathname to a desired file.
+     *
+     * All the directory components before the last path component are
+     * created, as needed, with 0755 permissions. Returns the number
+     * of components that needed to be created; 0 if they all already
+     * existed, and < 0 on failure.
+     */
+    DLLEXPORT int createTargetBasedirs( const QString& path ) const;
+
     /**
      * @brief getTotalMemoryB returns the total main memory, in bytes.
      *

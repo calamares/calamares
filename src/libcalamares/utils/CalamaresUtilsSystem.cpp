@@ -338,7 +338,35 @@ System::removeTargetFile( const QString& path ) const
         cWarning() << "Will not remove non-absolute path" << path;
         return;
     }
-    QFile::remove( targetPath( path ) );
+    QString target = targetPath( path );
+    if ( !target.isEmpty() )
+    {
+        QFile::remove( target );
+    }
+    // If it was empty, a warning was already printed
+}
+
+int
+System::createTargetBasedirs(const QString& path) const
+{
+    if ( !isAbsolutePath( path ) )
+    {
+        cWarning() << "Will not create basedirs for non-absolute path" << path;
+        return -1;
+    }
+
+    QString target = targetPath( path );
+    if ( target.isEmpty() )
+    {
+        // If it was empty, a warning was already printed
+        return -1;
+    }
+
+    QString base( "/" );
+    QStringList parts = target.split( '/', QString::SplitBehavior::SkipEmptyParts );
+
+    cDebug() << parts;
+    return -1;
 }
 
 
