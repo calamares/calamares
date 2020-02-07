@@ -78,8 +78,8 @@ TestPaths::testTargetPath()
 {
     // Paths mapped normally
     QCOMPARE( m_system->targetPath( "/etc/calamares" ), QStringLiteral( "/tmp/etc/calamares" ) );
-    QCOMPARE( m_system->targetPath( "//etc//calamares" ), QStringLiteral( "/tmp/etc/calamares" ) );  // extra /
-    QCOMPARE( m_system->targetPath( "etc/calamares" ), QString() );  // NOT ABSOLUTE
+    QCOMPARE( m_system->targetPath( "//etc//calamares" ), QStringLiteral( "/tmp//etc//calamares" ) );  // extra / are not cleaned up
+    QCOMPARE( m_system->targetPath( "etc/calamares" ), QStringLiteral( "/tmp/etc/calamares" ) );  // relative to root
 }
 
 QTEST_GUILESS_MAIN( TestPaths )
