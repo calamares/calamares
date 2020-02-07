@@ -19,6 +19,7 @@
 #include "QmlViewStep.h"
 
 #include "Branding.h"
+#include "ViewManager.h"
 
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
@@ -51,6 +52,36 @@ searchNames()
     return names;
 }
 
+/// @brief State-change of the QML, for changeQMLState()
+enum class QMLAction
+{
+    Start,
+    Stop
+};
+
+/** @brief Tells the QML we activated or left it.
+ *
+ * If @p action is @c QMLAction::Start, calls onActivate in the QML.
+ * If @p action is @c QMLAction::Stop, calls onLeave in the QML.
+ *
+ * Sets *activatedInCalamares* property on the QML as well (to true
+ * if @p action is @c QMLAction::Start, false otherwise).
+ */
+static void
+changeQMLState( QMLAction action, QQuickItem* item )
+{
+    static const char propertyName[] = "activatedInCalamares";
+
+    bool activate = action == QMLAction::Start;
+    CalamaresUtils::callQMLFunction( item, activate ? "onActivate" : "onLeave" );
+
+    auto property = item->property( propertyName );
+    if ( property.isValid() && ( property.type() == QVariant::Bool ) && ( property.toBool() != activate ) )
+    {
+        item->setProperty( propertyName, activate );
+    }
+}
+
 namespace Calamares
 {
 
@@ -79,7 +110,6 @@ QmlViewStep::prettyName() const
     // TODO: query the QML itself
     return tr( "QML Step <i>%1</i>." ).arg( m_name );
 }
-
 
 
 bool
@@ -114,13 +144,19 @@ QmlViewStep::jobs() const
 void
 QmlViewStep::onActivate()
 {
-    // TODO: call into QML
+    if ( m_qmlObject )
+    {
+        changeQMLState( QMLAction::Start, m_qmlObject );
+    }
 }
 
 void
 QmlViewStep::onLeave()
 {
-    // TODO: call into QML
+    if ( m_qmlObject )
+    {
+        changeQMLState( QMLAction::Stop, m_qmlObject );
+    }
 }
 
 QWidget*
@@ -180,6 +216,13 @@ QmlViewStep::showQml()
     else
     {
         cDebug() << "showQml() called twice";
+    }
+
+    if ( ViewManager::instance()->currentStep() == this )
+    {
+        // We're alreay visible! Must have been slow QML loading, and we
+        // passed onActivate already.
+        changeQMLState( QMLAction::Start, m_qmlObject );
     }
 }
 
