@@ -42,12 +42,19 @@ public:
 
 private Q_SLOTS:
     void initTestCase();
+    void init();
+    void cleanupTestCase();
 
     void testTargetPath();
+    void testCreateTarget();
 
 private:
-    CalamaresUtils::System* m_system;  // Points to singleton instance, not owned
+    CalamaresUtils::System* m_system = nullptr;  // Points to singleton instance, not owned
+    Calamares::GlobalStorage* m_gs = nullptr;
 };
+
+static const char testFile[] = "/calamares-testcreate";
+static const char absFile[] = "/tmp/calamares-testcreate";  // With rootMountPoint prepended
 
 void
 TestPaths::initTestCase()
@@ -62,14 +69,28 @@ TestPaths::initTestCase()
     // Ensure we have a system-wide GlobalStorage with /tmp as root
     if ( !Calamares::JobQueue::instance() )
     {
+        cDebug() << "Creating new JobQueue";
         (void)new Calamares::JobQueue();
     }
     Calamares::GlobalStorage* gs
         = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
     QVERIFY( gs );
-    gs->insert( "rootMountPoint", "/tmp" );
 
     m_system = system;
+    m_gs = gs;
+}
+
+void
+TestPaths::cleanupTestCase()
+{
+    QFile::remove( absFile );
+}
+
+void
+TestPaths::init()
+{
+    cDebug() << "Setting rootMountPoint";
+    m_gs->insert( "rootMountPoint", "/tmp" );
 }
 
 
@@ -78,15 +99,31 @@ TestPaths::testTargetPath()
 {
     // Paths mapped normally
     QCOMPARE( m_system->targetPath( "/etc/calamares" ), QStringLiteral( "/tmp/etc/calamares" ) );
-    QCOMPARE( m_system->targetPath( "//etc//calamares" ), QStringLiteral( "/tmp//etc//calamares" ) );  // extra / are not cleaned up
+    QCOMPARE( m_system->targetPath( "//etc//calamares" ),
+              QStringLiteral( "/tmp//etc//calamares" ) );  // extra / are not cleaned up
     QCOMPARE( m_system->targetPath( "etc/calamares" ), QStringLiteral( "/tmp/etc/calamares" ) );  // relative to root
 
     // Weird Paths
     QCOMPARE( m_system->targetPath( QString() ), QStringLiteral( "/tmp/" ) );
 
     // Now break GS
-    Calamares::JobQueue::instance()->globalStorage()->remove( "rootMountPoint" );
+    m_gs->remove( "rootMountPoint" );
     QCOMPARE( m_system->targetPath( QString() ), QString() );  // Without root, no path
+}
+
+
+void
+TestPaths::testCreateTarget()
+{
+    QCOMPARE( m_system->createTargetFile( testFile, "Hello" ), QString( absFile ) );  // Success
+
+    QFileInfo fi( absFile );
+    QVERIFY( fi.exists() );
+    QCOMPARE( fi.size(), 5 );
+
+    m_system->removeTargetFile( testFile );
+    QFileInfo fi2( absFile );  // fi caches information
+    QVERIFY( !fi2.exists() );
 }
 
 QTEST_GUILESS_MAIN( TestPaths )
