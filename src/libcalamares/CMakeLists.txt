@@ -172,6 +172,18 @@ if ( ECM_FOUND AND BUILD_TESTING )
     calamares_automoc( libcalamarestest )
 
     ecm_add_test(
+            utils/TestPaths.cpp
+        TEST_NAME
+            libcalamarestestpaths
+        LINK_LIBRARIES
+            calamares
+            Qt5::Core
+            Qt5::Test
+    )
+    calamares_automoc( libcalamarestestpaths )
+
+
+    ecm_add_test(
             geoip/GeoIPTests.cpp
             ${geoip_src}
         TEST_NAME

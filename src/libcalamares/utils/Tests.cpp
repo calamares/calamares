@@ -224,27 +224,3 @@ LibCalamaresTests::testPrintableEntropy()
         QVERIFY( c.cell() < 127 );
     }
 }
-
-void
-LibCalamaresTests::testTargetPath()
-{
-    // Ensure we have a system object, expect it to be a "bogus" one
-    const CalamaresUtils::System* system = CalamaresUtils::System::instance();
-    QVERIFY( system );
-    QVERIFY( system->doChroot() );
-
-    // Ensure we have a system-wide GlobalStorage with /tmp as root
-    if ( !Calamares::JobQueue::instance() )
-    {
-        (void)new Calamares::JobQueue();
-    }
-    Calamares::GlobalStorage* gs
-        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
-    QVERIFY( gs );
-    gs->insert( "rootMountPoint", "/tmp" );
-
-    // Paths mapped normally
-    QCOMPARE( system->targetPath( "/etc/calamares" ), QStringLiteral( "/tmp/etc/calamares" ) );
-    QCOMPARE( system->targetPath( "//etc//calamares" ), QStringLiteral( "/tmp/etc/calamares" ) );  // extra /
-    QCOMPARE( system->targetPath( "etc/calamares" ), QString() );  // NOT ABSOLUTE
-}
