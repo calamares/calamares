@@ -347,27 +347,35 @@ System::removeTargetFile( const QString& path ) const
     // If it was empty, a warning was already printed
 }
 
-int
-System::createTargetBasedirs( const QString& path ) const
+bool
+System::createTargetDirs( const QString& path ) const
 {
     if ( !isAbsolutePath( path ) )
     {
         cWarning() << "Will not create basedirs for non-absolute path" << path;
-        return -1;
+        return false;
     }
 
     QString target = targetPath( path );
     if ( target.isEmpty() )
     {
         // If it was empty, a warning was already printed
-        return -1;
+        return false;
     }
 
-    QString base( "/" );
-    QStringList parts = target.split( '/', QString::SplitBehavior::SkipEmptyParts );
+    QString root = Calamares::JobQueue::instance()->globalStorage()->value( "rootMountPoint" ).toString();
+    if ( root.isEmpty() )
+    {
+        return false;
+    }
 
-    cDebug() << parts;
-    return -1;
+    QDir d( root );
+    if ( !d.exists() )
+    {
+        cWarning() << "Root mountpoint" << root << "does not exist.";
+        return false;
+    }
+    return d.mkpath( target );  // This re-does everything starting from the **host** /
 }
 
 

@@ -257,14 +257,14 @@ public:
 
     /** @brief Ensure that the directories above @p path exist
      *
-     * @param path a full pathname to a desired file.
+     * @param path a full pathname to a desired directory.
      *
-     * All the directory components before the last path component are
-     * created, as needed, with 0755 permissions. Returns the number
-     * of components that needed to be created; 0 if they all already
-     * existed, and < 0 on failure.
+     * All the directory components including the last path component are
+     * created, as needed, with 0755 permissions. Returns true on success.
+     *
+     * @see QDir::mkpath
      */
-    DLLEXPORT int createTargetBasedirs( const QString& path ) const;
+    DLLEXPORT bool createTargetDirs( const QString& path ) const;
 
     /**
      * @brief getTotalMemoryB returns the total main memory, in bytes.

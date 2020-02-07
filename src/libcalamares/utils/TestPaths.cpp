@@ -25,13 +25,14 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-#include <QTemporaryFile>
+#include <QDir>
+// #include <QTemporaryFile>
 
 #include <QtTest/QtTest>
 
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <unistd.h>
+// #include <fcntl.h>
+// #include <sys/stat.h>
+// #include <unistd.h>
 
 class TestPaths : public QObject
 {
@@ -47,6 +48,7 @@ private Q_SLOTS:
 
     void testTargetPath();
     void testCreateTarget();
+    void testCreateTargetBasedirs();
 
 private:
     CalamaresUtils::System* m_system = nullptr;  // Points to singleton instance, not owned
@@ -124,6 +126,33 @@ TestPaths::testCreateTarget()
     m_system->removeTargetFile( testFile );
     QFileInfo fi2( absFile );  // fi caches information
     QVERIFY( !fi2.exists() );
+}
+
+struct DirRemover
+{
+    DirRemover( const QString& base, const QString& dir )
+        : m_base( base )
+        , m_dir( dir )
+    {
+    }
+    ~DirRemover() { QDir( m_base ).rmpath( m_dir ); }
+
+    bool exists() const { return QDir( m_base ).exists( m_dir ); }
+
+    QString m_base, m_dir;
+};
+
+void
+TestPaths::testCreateTargetBasedirs()
+{
+    {
+        DirRemover dirrm( "/tmp", "var/lib/dbus" );
+        QVERIFY( m_system->createTargetDirs( "/" ) );
+        QVERIFY( m_system->createTargetDirs( "/var/lib/dbus" ) );
+        QVERIFY( QFile( "/tmp/var/lib/dbus" ).exists() );
+        QVERIFY( dirrm.exists() );
+    }
+    QVERIFY( !QFile( "/tmp/var/lib/dbus" ).exists() );
 }
 
 QTEST_GUILESS_MAIN( TestPaths )
