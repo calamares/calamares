@@ -69,11 +69,11 @@ windowPlacement: center
 strings:
     productName:         "@{NAME}"
     shortProductName:    Generic
-    version:             2017.8 LTS
-    shortVersion:        2017.8
-    versionedName:       Generic GNU/Linux 2017.8 LTS "Soapy Sousaphone"
-    shortVersionedName:  Generic 2017.8
-    bootloaderEntryName: Generic
+    version:             2020.2 LTS
+    shortVersion:        2020.2
+    versionedName:       Fancy GNU/Linux 2020.2 LTS "Turgid Tuba"
+    shortVersionedName:  FancyGL 2020.2
+    bootloaderEntryName: FancyGL
     productUrl:          https://calamares.io/
     supportUrl:          https://github.com/calamares/calamares/issues
     knownIssuesUrl:      https://calamares.io/about/
