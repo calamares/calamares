@@ -17,10 +17,18 @@ This release contains contributions from (alphabetically by first name):
    translations without requiring a recompile: helpful for translators
    and possibly for distributions with their own translation style.
    See the translators and deployers wiki for details.
+ - A new `ViewStep` base class, `QmlViewStep`, has been added that loads
+   a configurable QML file and plays it. This is used by the new *notesqml*
+   module -- which is in itself a minimal wrapper around the same that
+   adds only a translatable module name.
 
 ## Modules ##
  - The *machineid* and *users* modules now prefer high-quality random
    data from `/dev/urandom` rather than pseudo-random data. #1254
+ - A new *notesqml* module supports loading QML. This can be used for
+   "fancy" release notes as a QML application, rather than a webview
+   or text widget. Note that this does not replace the slideshow-during-
+   installation module.
 
 
 # 3.2.18 (2020-01-28) #
