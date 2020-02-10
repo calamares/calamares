@@ -37,7 +37,7 @@ The Calamares release process
 
 * Bump version in `CMakeLists.txt`, *CALAMARES_VERSION* variables, and set
   RC to a non-zero value (e.g. doing -rc1, -rc2, ...). Push that.
-* Check `README.md` and everything `ci/HACKING.md`, make sure it's all still
+* Check `README.md` and the [Coding Guide](https://github.com/calamares/calamares/wiki/Develop-Code), make sure it's all still
   relevant. Run `ci/calamaresstyle` to check the C++ code style.
   Run pycodestyle on recently-modified Python modules, fix what makes sense.
 * Check defaults in `settings.conf` and other configuration files.
