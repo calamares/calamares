@@ -32,6 +32,7 @@ Item {
         contentHeight: 800
         
         ScrollBar.vertical: ScrollBar {
+            id: fscrollbar 
             width: 10
             policy: ScrollBar.AlwaysOn
         }
@@ -40,7 +41,7 @@ Item {
             id: intro
             x: 1
             y: 0
-            width: 720
+            width: parent.width - fscrollbar.width
             font.pointSize: 14
             textFormat: Text.RichText
             antialiasing: true
