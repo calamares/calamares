@@ -25,18 +25,14 @@ namespace Locale
 {
 
 Label::Label( QObject* parent )
-    : QObject( parent )
-    , m_locale( QLocale() )
+    : Label( QString(), LabelFormat::IfNeededWithCountry, parent )
 {
-    m_localeId = m_locale.name();
-
-    setLabels( QString(), LabelFormat::IfNeededWithCountry );
 }
 
 Label::Label( const QString& locale, LabelFormat format, QObject* parent )
     : QObject( parent )
     , m_locale( Label::getLocale( locale ) )
-    , m_localeId( locale )
+    , m_localeId( locale.isEmpty() ? m_locale.name() : locale )
 
 {
     setLabels( locale, format );
