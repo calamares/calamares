@@ -34,9 +34,10 @@ Label::Label( QObject* parent )
 }
 
 Label::Label( const QString& locale, LabelFormat format, QObject* parent )
-    : m_locale( Label::getLocale( locale ) )
+    : QObject( parent )
+    , m_locale( Label::getLocale( locale ) )
     , m_localeId( locale )
-    , QObject( parent )
+
 {
     setLabels( locale, format );
 }
