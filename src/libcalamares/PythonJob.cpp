@@ -27,6 +27,8 @@
 #include <QDir>
 
 #undef slots
+#include "utils/boost-warnings.h"
+
 #include <boost/python.hpp>
 #include <boost/python/args.hpp>
 

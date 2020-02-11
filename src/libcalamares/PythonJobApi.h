@@ -25,7 +25,12 @@
 #include "PythonJob.h"
 
 #undef slots
+#include "utils/boost-warnings.h"
 #include <boost/python/dict.hpp>
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 
 namespace CalamaresPython
 {
