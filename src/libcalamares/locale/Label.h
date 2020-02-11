@@ -21,8 +21,8 @@
 #define LOCALE_LABEL_H
 
 #include <QLocale>
-#include <QString>
 #include <QObject>
+#include <QString>
 
 namespace CalamaresUtils
 {
@@ -40,9 +40,9 @@ class Label : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString label READ label NOTIFY labelChanged CONSTANT FINAL)
-    Q_PROPERTY(QString englishLabel READ englishLabel NOTIFY englishLabelChanged CONSTANT FINAL)
-    Q_PROPERTY(QString localeId MEMBER m_localeId NOTIFY localeIdChanged CONSTANT FINAL)
+    Q_PROPERTY( QString label READ label NOTIFY labelChanged CONSTANT FINAL )
+    Q_PROPERTY( QString englishLabel READ englishLabel NOTIFY englishLabelChanged CONSTANT FINAL )
+    Q_PROPERTY( QString localeId MEMBER m_localeId NOTIFY localeIdChanged CONSTANT FINAL )
 
 public:
     /** @brief Formatting option for label -- add (country) to label. */
@@ -53,7 +53,7 @@ public:
     };
 
     /** @brief Empty locale. This uses the system-default locale. */
-    Label(QObject* parent = nullptr);
+    Label( QObject* parent = nullptr );
 
     /** @brief Construct from a locale name.
      *
@@ -61,7 +61,9 @@ public:
      * The @p format determines whether the country name is always present
      * in the label (human-readable form) or only if needed for disambiguation.
      */
-    Label( const QString& localeName, LabelFormat format = LabelFormat::IfNeededWithCountry, QObject* parent = nullptr );
+    Label( const QString& localeName,
+           LabelFormat format = LabelFormat::IfNeededWithCountry,
+           QObject* parent = nullptr );
 
     /** @brief Define a sorting order.
      *
