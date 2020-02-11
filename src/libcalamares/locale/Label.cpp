@@ -75,6 +75,10 @@ Label::setLabels( const QString& locale, LabelFormat format )
 QLocale
 Label::getLocale( const QString& localeName )
 {
+    if ( localeName.isEmpty() )
+    {
+        return QLocale();
+    }
     if ( localeName.contains( "@latin" ) )
     {
         QLocale loc( localeName );  // Ignores @latin
