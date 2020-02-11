@@ -40,9 +40,9 @@ class Label : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY( QString label READ label NOTIFY labelChanged CONSTANT FINAL )
-    Q_PROPERTY( QString englishLabel READ englishLabel NOTIFY englishLabelChanged CONSTANT FINAL )
-    Q_PROPERTY( QString localeId MEMBER m_localeId NOTIFY localeIdChanged CONSTANT FINAL )
+    Q_PROPERTY( QString label READ label CONSTANT FINAL )
+    Q_PROPERTY( QString englishLabel READ englishLabel CONSTANT FINAL )
+    Q_PROPERTY( QString localeId MEMBER m_localeId CONSTANT FINAL )
 
 public:
     /** @brief Formatting option for label -- add (country) to label. */
@@ -103,17 +103,10 @@ public:
     static QLocale getLocale( const QString& localeName );
 
 protected:
-    void setLabels( const QString& name, LabelFormat format );
-
     QLocale m_locale;
     QString m_localeId;  // the locale identifier, e.g. "en_GB"
     QString m_label;  // the native name of the locale
     QString m_englishLabel;
-
-signals:
-    void labelChanged( QString label );
-    void englishLabelChanged( QString englishLabel );
-    void localeIdChanged( QString localeIdChanged );
 };
 
 }  // namespace Locale
