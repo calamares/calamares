@@ -37,7 +37,7 @@
 CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeQmlViewStepFactory, registerPlugin< WelcomeQmlViewStep >(); )
 
 WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
-    : Calamares::ViewStep( parent )
+    : Calamares::QmlViewStep( QStringLiteral( "welcomeq" ), parent )
     , m_requirementsChecker( new GeneralRequirements( this ) )
 {
     connect( Calamares::ModuleManager::instance(),
@@ -51,59 +51,11 @@ WelcomeQmlViewStep::~WelcomeQmlViewStep()
 {
 }
 
-
 QString
 WelcomeQmlViewStep::prettyName() const
 {
     return tr( "Welcome" );
 }
-
-
-QWidget*
-WelcomeQmlViewStep::widget()
-{
-    return nullptr;
-}
-
-
-bool
-WelcomeQmlViewStep::isNextEnabled() const
-{
-    // TODO: should return true
-    return false;
-}
-
-
-bool
-WelcomeQmlViewStep::isBackEnabled() const
-{
-    // TODO: should return true (it's weird that you are not allowed to have welcome *after* anything
-    return false;
-}
-
-
-bool
-WelcomeQmlViewStep::isAtBeginning() const
-{
-    // TODO: adjust to "pages" in the QML
-    return true;
-}
-
-
-bool
-WelcomeQmlViewStep::isAtEnd() const
-{
-    // TODO: adjust to "pages" in the QML
-    return true;
-}
-
-
-Calamares::JobList
-WelcomeQmlViewStep::jobs() const
-{
-    return Calamares::JobList();
-}
-
 
 /** @brief Look up a URL for a button
  *
@@ -140,6 +92,7 @@ jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map
 void
 WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    QmlViewStep::setConfigurationMap( configurationMap );
     using Calamares::Branding;
 
     m_config.setHelpUrl( jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
