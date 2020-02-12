@@ -23,18 +23,11 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "PythonHelper.h"
+#include "PythonJobApi.h"
+#include "utils/BoostPython.h"
 #include "utils/Logger.h"
 
 #include <QDir>
-
-#undef slots
-#include "utils/boost-warnings.h"
-
-#include <boost/python.hpp>
-#include <boost/python/args.hpp>
-
-#include "PythonJobApi.h"
-
 
 namespace bp = boost::python;
 

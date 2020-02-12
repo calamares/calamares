@@ -19,25 +19,16 @@
 
 #include "PythonJobApi.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "PythonHelper.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
 
-#include "GlobalStorage.h"
-#include "JobQueue.h"
-
 #include <QCoreApplication>
 #include <QDir>
 #include <QStandardPaths>
-
-#undef slots
-#include "utils/boost-warnings.h"
-#include <boost/python.hpp>
-
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
 
 namespace bp = boost::python;
 

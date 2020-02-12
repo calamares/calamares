@@ -22,13 +22,7 @@
 
 #include "qglobal.h"  // For qreal
 
-#undef slots
-#include "utils/boost-warnings.h"
-#include <boost/python/dict.hpp>
-
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
+#include "utils/BoostPython.h"
 
 namespace Calamares
 {
