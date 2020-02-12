@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -38,8 +38,8 @@ class TestPaths : public QObject
 {
     Q_OBJECT
 public:
-    TestPaths() {};
-    virtual ~TestPaths() {};
+    TestPaths() {}
+    virtual ~TestPaths() {}
 
 private Q_SLOTS:
     void initTestCase();
