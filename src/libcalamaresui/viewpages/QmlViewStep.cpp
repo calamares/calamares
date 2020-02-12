@@ -35,6 +35,7 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
+
 static const NamedEnumTable< Calamares::QmlViewStep::QmlSearch >&
 searchNames()
 {
@@ -82,6 +83,20 @@ changeQMLState( QMLAction action, QQuickItem* item )
     }
 }
 
+static void
+registerCalamaresModels()
+{
+    static bool done = false;
+    if ( !done )
+    {
+        done = true;
+        qmlRegisterSingletonType< Calamares::Branding >(
+            "calamares.ui", 1, 0, "Branding", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+                return Calamares::Branding::instance();
+            } );
+    }
+}
+
 namespace Calamares
 {
 
@@ -92,6 +107,8 @@ QmlViewStep::QmlViewStep( const QString& name, QObject* parent )
     , m_spinner( new WaitingWidget( tr( "Loading ..." ) ) )
     , m_qmlWidget( new QQuickWidget )
 {
+    registerCalamaresModels();
+
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     layout->addWidget( m_spinner );
 
