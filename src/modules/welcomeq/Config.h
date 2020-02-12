@@ -25,16 +25,27 @@
 class Config : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl )
+    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl FINAL )
+    Q_PROPERTY( QUrl issuesUrl READ issuesUrl WRITE setIssuesUrl FINAL )
+    Q_PROPERTY( QUrl notesUrl READ notesUrl WRITE setNotesUrl FINAL )
+    Q_PROPERTY( QUrl donateUrl READ donateUrl WRITE setDonateUrl FINAL )
 public:
     Config();
     virtual ~Config();
 
-    QUrl helpUrl() const { return m_helpUrl; }
     void setHelpUrl( const QUrl& url ) { m_helpUrl = url; }
+    void setIssuesUrl( const QUrl& url ) { m_issuesUrl = url; }
+    void setNotesUrl( const QUrl& url ) { m_notesUrl = url; }
+    void setDonateUrl( const QUrl& url ) { m_donateUrl = url; }
+
+public slots:
+    QUrl helpUrl() const { return m_helpUrl; }
+    QUrl issuesUrl() const { return m_issuesUrl; }
+    QUrl notesUrl() const { return m_notesUrl; }
+    QUrl donateUrl() const { return m_donateUrl; }
 
 private:
-    QUrl m_helpUrl;
+    QUrl m_helpUrl, m_issuesUrl, m_notesUrl, m_donateUrl;
 };
 
 #endif

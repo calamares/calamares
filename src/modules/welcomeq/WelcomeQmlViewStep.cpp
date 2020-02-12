@@ -47,9 +47,7 @@ WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
 }
 
 
-WelcomeQmlViewStep::~WelcomeQmlViewStep()
-{
-}
+WelcomeQmlViewStep::~WelcomeQmlViewStep() {}
 
 QString
 WelcomeQmlViewStep::prettyName() const
@@ -96,7 +94,9 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     using Calamares::Branding;
 
     m_config.setHelpUrl( jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
-    // TODO: expand Config class and set the remaining fields
+    m_config.setIssuesUrl( jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
+    m_config.setNotesUrl( jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
+    m_config.setDonateUrl( CalamaresUtils::getString( configurationMap, "showDonateUrl" ) );
 
     // TODO: figure out how the requirements (held by ModuleManager) should be accessible
     //          to QML as a odel.
