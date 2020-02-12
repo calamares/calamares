@@ -16,8 +16,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WELCOME_CONFIG_H
-#define WELCOME_CONFIG_H
+#ifndef WELCOMEQ_CONFIG_H
+#define WELCOMEQ_CONFIG_H
 
 #include <QObject>
 #include <QUrl>
@@ -25,7 +25,7 @@
 class Config : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl CONSTANT )
+    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl )
 public:
     Config();
     virtual ~Config();
