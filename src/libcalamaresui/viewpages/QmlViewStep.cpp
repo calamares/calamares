@@ -339,6 +339,10 @@ void
 QmlViewStep::showFailedQml()
 {
     cWarning() << "QmlViewStep" << moduleInstanceKey() << "loading failed.";
+    if ( m_qmlComponent )
+    {
+        cDebug() << Logger::SubEntry << "QML error:" << m_qmlComponent->errorString();
+    }
     m_spinner->setText( prettyName() + ' ' + tr( "Loading failed." ) );
 }
 
