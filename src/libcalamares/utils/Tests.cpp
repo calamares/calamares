@@ -224,3 +224,30 @@ LibCalamaresTests::testPrintableEntropy()
         QVERIFY( c.cell() < 127 );
     }
 }
+
+void
+LibCalamaresTests::testOddSizedPrintable()
+{
+    QString s;
+    for ( int l = 0; l <= 37; ++l )
+    {
+        auto r = CalamaresUtils::getPrintableEntropy( l, s );
+        if ( l == 0 )
+        {
+            QCOMPARE( r, CalamaresUtils::EntropySource::None );
+        }
+        else
+        {
+            QVERIFY( r != CalamaresUtils::EntropySource::None );
+        }
+        QCOMPARE( s.length(), l );
+
+        for ( QChar c : s )
+        {
+            QVERIFY( c.isPrint() );
+            QCOMPARE( c.row(), 0 );
+            QVERIFY( c.cell() > 32 );  // ASCII SPACE
+            QVERIFY( c.cell() < 127 );
+        }
+    }
+}

@@ -43,6 +43,7 @@ private Q_SLOTS:
     /** @brief Tests the entropy functions. */
     void testEntropy();
     void testPrintableEntropy();
+    void testOddSizedPrintable();
 };
 
 #endif
