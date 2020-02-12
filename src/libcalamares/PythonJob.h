@@ -23,7 +23,7 @@
 
 #include "modulesystem/InstanceKey.h"
 
-#include <QVariant>
+#include <QVariantMap>
 
 namespace CalamaresPython
 {
