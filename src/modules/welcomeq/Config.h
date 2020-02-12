@@ -25,10 +25,10 @@
 class Config : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl FINAL )
-    Q_PROPERTY( QUrl issuesUrl READ issuesUrl WRITE setIssuesUrl FINAL )
-    Q_PROPERTY( QUrl notesUrl READ notesUrl WRITE setNotesUrl FINAL )
-    Q_PROPERTY( QUrl donateUrl READ donateUrl WRITE setDonateUrl FINAL )
+    Q_PROPERTY( QUrl helpUrl READ helpUrl CONSTANT FINAL )
+    Q_PROPERTY( QUrl issuesUrl READ issuesUrl CONSTANT FINAL )
+    Q_PROPERTY( QUrl notesUrl READ notesUrl CONSTANT FINAL )
+    Q_PROPERTY( QUrl donateUrl READ donateUrl CONSTANT FINAL )
 public:
     Config();
     virtual ~Config();
