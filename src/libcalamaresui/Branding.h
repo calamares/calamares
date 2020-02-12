@@ -183,9 +183,9 @@ public:
     void setGlobals( GlobalStorage* globalStorage ) const;
 
 public slots:
-    QString string( Branding::StringEntry stringEntry ) const;
-    QString styleString( Branding::StyleEntry styleEntry ) const;
-    QString imagePath( Branding::ImageEntry imageEntry ) const;
+    QString string( StringEntry stringEntry ) const;
+    QString styleString( StyleEntry styleEntry ) const;
+    QString imagePath( ImageEntry imageEntry ) const;
 
 private:
     static Branding* s_instance;
