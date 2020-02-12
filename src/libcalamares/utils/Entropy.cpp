@@ -35,7 +35,7 @@ CalamaresUtils::getEntropy( int size, QByteArray& b )
     char* buffer = b.data();
     std::fill( buffer, buffer + size, 0xcb );
 
-    int readSize = 0;
+    qint64 readSize = 0;
     QFile urandom( "/dev/urandom" );
     if ( urandom.exists() && urandom.open( QIODevice::ReadOnly ) )
     {
@@ -62,7 +62,7 @@ CalamaresUtils::getEntropy( int size, QByteArray& b )
 #define GET_ONE_BYTE \
     if ( readSize < size ) \
     { \
-        buffer[ readSize++ ] = next & 0xff; \
+        buffer[ readSize++ ] = char( next & 0xffU ); \
         next = next >> 8; \
     }
         GET_ONE_BYTE
