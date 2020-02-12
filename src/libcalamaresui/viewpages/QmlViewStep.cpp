@@ -29,6 +29,7 @@
 #include "widgets/WaitingWidget.h"
 
 #include <QQmlComponent>
+#include <QQmlContext>
 #include <QQmlEngine>
 #include <QQuickItem>
 #include <QQuickWidget>
@@ -209,6 +210,11 @@ QmlViewStep::loadComplete()
             // It is marked \internal in the Qt sources, but does exactly
             // what is needed: sets up visual parent by replacing the root
             // item, and handling resizes.
+            QObject* config = this->getConfig();
+            if ( config )
+            {
+                m_qmlWidget->engine()->rootContext()->setContextProperty( "config", config );
+            }
             m_qmlWidget->setContent( QUrl( m_qmlFileName ), m_qmlComponent, m_qmlObject );
             showQml();
         }
@@ -334,6 +340,12 @@ QmlViewStep::showFailedQml()
 {
     cWarning() << "QmlViewStep" << moduleInstanceKey() << "loading failed.";
     m_spinner->setText( prettyName() + ' ' + tr( "Loading failed." ) );
+}
+
+QObject*
+QmlViewStep::getConfig()
+{
+    return nullptr;
 }
 
 }  // namespace Calamares

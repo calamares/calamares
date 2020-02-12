@@ -194,3 +194,9 @@ WelcomeQmlViewStep::setCountry( const QString& countryCode, CalamaresUtils::GeoI
         }
     }
 }
+
+QObject*
+WelcomeQmlViewStep::getConfig()
+{
+    return &m_config;
+}
