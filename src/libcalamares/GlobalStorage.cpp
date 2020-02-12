@@ -29,6 +29,7 @@
 
 #ifdef WITH_PYTHON
 #include "PythonHelper.h"
+namespace bp = boost::python;
 #endif
 
 using CalamaresUtils::operator""_MiB;
