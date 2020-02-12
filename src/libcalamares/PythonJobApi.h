@@ -20,9 +20,7 @@
 #ifndef PYTHONJOBAPI_H
 #define PYTHONJOBAPI_H
 
-#include "CalamaresVersion.h"
-
-#include "PythonJob.h"
+#include "qglobal.h"  // For qreal
 
 #undef slots
 #include "utils/boost-warnings.h"
@@ -31,6 +29,11 @@
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
+
+namespace Calamares
+{
+class PythonJob;
+}
 
 namespace CalamaresPython
 {

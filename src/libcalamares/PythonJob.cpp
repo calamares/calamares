@@ -19,6 +19,7 @@
 
 #include "PythonJob.h"
 
+#include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "PythonHelper.h"
