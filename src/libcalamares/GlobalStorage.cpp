@@ -29,13 +29,6 @@
 
 #ifdef WITH_PYTHON
 #include "PythonHelper.h"
-
-
-#undef slots
-#include <boost/python/list.hpp>
-#include <boost/python/str.hpp>
-
-namespace bp = boost::python;
 #endif
 
 using CalamaresUtils::operator""_MiB;
