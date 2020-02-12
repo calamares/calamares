@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020 Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Camilo Higuita <milo.h@aol.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,7 +18,6 @@
  */
 
 #include "LabelModel.h"
-#include <QDebug>
 
 #include "Lookup.h"
 
@@ -72,6 +72,12 @@ LabelModel::data( const QModelIndex& index, int role ) const
     default:
         return QVariant();
     }
+}
+
+QHash< int, QByteArray >
+LabelModel::roleNames() const
+{
+    return { { LabelRole, "label" }, { EnglishLabelRole, "englishLabel" } };
 }
 
 const Label&
