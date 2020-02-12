@@ -3,6 +3,7 @@
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Raul Rodrigo Segura (raurodse)
+ *   Copyright 2019, Camilo Higuita <milo.h@aol.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -48,7 +49,7 @@ public:
      * e.g. *Branding::ProductName to get the string value for
      * the product name.
      */
-    enum StringEntry : short
+    enum StringEntry
     {
         ProductName,
         Version,
@@ -62,13 +63,16 @@ public:
         KnownIssuesUrl,
         ReleaseNotesUrl
     };
+    Q_ENUM( StringEntry )
 
     enum ImageEntry : short
     {
         ProductLogo,
         ProductIcon,
-        ProductWelcome
+        ProductWelcome,
+        ProductWallpaper
     };
+    Q_ENUM( ImageEntry )
 
     enum StyleEntry : short
     {
@@ -77,6 +81,7 @@ public:
         SidebarTextSelect,
         SidebarTextHighlight
     };
+    Q_ENUM( StyleEntry )
 
     /** @brief Setting for how much the main window may expand. */
     enum class WindowExpansion
@@ -85,6 +90,7 @@ public:
         Fullscreen,
         Fixed
     };
+    Q_ENUM( WindowExpansion )
     /** @brief Setting for the main window size.
      *
      * The units are pixels (Pixies) or something-based-on-fontsize (Fonties), which
@@ -96,6 +102,7 @@ public:
         Pixies,
         Fonties
     };
+    Q_ENUM( WindowDimensionUnit )
     class WindowDimension : public NamedSuffix< WindowDimensionUnit, WindowDimensionUnit::None >
     {
     public:

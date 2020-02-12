@@ -3,6 +3,7 @@
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Raul Rodrigo Segura (raurodse)
+ *   Copyright 2019, Camilo Higuita <milo.h@aol.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -74,7 +75,8 @@ const QStringList Branding::s_imageEntryStrings =
 {
     "productLogo",
     "productIcon",
-    "productWelcome"
+    "productWelcome",
+    "productWallpaper"
 };
 
 const QStringList Branding::s_styleEntryStrings =
