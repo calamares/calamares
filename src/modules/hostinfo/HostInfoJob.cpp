@@ -156,7 +156,8 @@ HostInfoJob::exec()
     gs->insert( "hostOSName", hostOSName() );
     gs->insert( "hostCPU", hostCPU() );
 
-    auto ram = CalamaresUtils::BytesToMiB( CalamaresUtils::System::instance()->getTotalMemoryB().first );
+    // Memory can't be negative, so it's reported as unsigned long.
+    auto ram = CalamaresUtils::BytesToMiB( qint64( CalamaresUtils::System::instance()->getTotalMemoryB().first ) );
     if ( ram )
     {
         gs->insert( "hostRAMMiB", ram );
