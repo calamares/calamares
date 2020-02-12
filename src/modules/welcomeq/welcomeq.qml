@@ -54,5 +54,76 @@ Page
             sourceSize.width: width
             sourceSize.height: height
         }
+
+        RowLayout
+        {
+            id: buttonBar
+            width: parent.width
+            height: 64
+
+            anchors.bottom: parent.bottom
+
+            spacing: Kirigami.Units.largeSpacing* 2
+
+/* Traditionally Calamares has had an "About" button that talks about
+ * Calamares itself, which just isn't a very useful thing in someone
+ * else's installation ISO.
+ */
+            Button
+            {
+                Layout.fillWidth: true
+                text: qsTr("About")
+                icon.name: "documentinfo"
+                Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
+                Kirigami.Theme.textColor: "#fff"
+
+                visible: false
+                onClicked: { } // TODO: show an about-Calamares window
+            }
+            Button
+            {
+                Layout.fillWidth: true
+                text: qsTr("Support")
+                icon.name: "documentinfo"
+                Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
+                Kirigami.Theme.textColor: "#fff"
+
+                visible: config.helpUrl.isValid
+                onClicked: Qt.openUrlExternally(config.helpUrl)
+            }
+            Button
+            {
+                Layout.fillWidth: true
+                text: qsTr("Known issues")
+                icon.name: "documentinfo"
+                Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
+                Kirigami.Theme.textColor: "#fff"
+
+                visible: config.issuesUrl.isValid
+                onClicked: Qt.openUrlExternally(config.issuesUrl)
+            }
+            Button
+            {
+                Layout.fillWidth: true
+                text: qsTr("Release notes")
+                icon.name: "documentinfo"
+                Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
+                Kirigami.Theme.textColor: "#fff"
+
+                visible: config.notesUrl.isValid
+                onClicked: Qt.openUrlExternally(config.notesUrl)
+            }
+            Button
+            {
+                Layout.fillWidth: true
+                text: qsTr("Donate")
+                icon.name: "documentinfo"
+                Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
+                Kirigami.Theme.textColor: "#fff"
+
+                visible: config.donateUrl.isValid
+                onClicked: Qt.openUrlExternally(config.donateUrl)
+            }
+        }
     }
 }
