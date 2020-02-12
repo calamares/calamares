@@ -73,7 +73,7 @@ public:
     /// @brief QML widgets don't produce jobs by default
     virtual JobList jobs() const override;
 
-    /// @brief Configure search paths; subclasses should call this as well
+    /// @brief Configure search paths; subclasses should call this at the **end** of their own implementation
     virtual void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 protected:

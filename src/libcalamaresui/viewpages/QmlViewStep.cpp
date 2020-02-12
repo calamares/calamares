@@ -210,11 +210,6 @@ QmlViewStep::loadComplete()
             // It is marked \internal in the Qt sources, but does exactly
             // what is needed: sets up visual parent by replacing the root
             // item, and handling resizes.
-            QObject* config = this->getConfig();
-            if ( config )
-            {
-                m_qmlWidget->engine()->rootContext()->setContextProperty( "config", config );
-            }
             m_qmlWidget->setContent( QUrl( m_qmlFileName ), m_qmlComponent, m_qmlObject );
             showQml();
         }
@@ -319,6 +314,12 @@ QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( !m_qmlComponent )
     {
         m_qmlFileName = searchQmlFile( m_searchMethod, qmlFile, m_name );
+
+        QObject* config = this->getConfig();
+        if ( config )
+        {
+            m_qmlWidget->engine()->rootContext()->setContextProperty( "config", config );
+        }
 
         cDebug() << "QmlViewStep" << moduleInstanceKey() << "loading" << m_qmlFileName;
         m_qmlComponent = new QQmlComponent(

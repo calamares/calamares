@@ -90,7 +90,6 @@ jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map
 void
 WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    QmlViewStep::setConfigurationMap( configurationMap );
     using Calamares::Branding;
 
     m_config.setHelpUrl( jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
@@ -146,6 +145,8 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             // TODO: figure out where to set this: Config?
         }
     }
+
+    QmlViewStep::setConfigurationMap( configurationMap );  // call parent implementation last
 }
 
 Calamares::RequirementsList
