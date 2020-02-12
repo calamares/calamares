@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,19 +19,12 @@
 
 #include "PythonHelper.h"
 
+#include "GlobalStorage.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 
 #include <QDir>
 #include <QFileInfo>
-
-#undef slots
-#include "utils/boost-warnings.h"
-#include <boost/python.hpp>
-
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
 
 namespace bp = boost::python;
 
@@ -398,5 +391,67 @@ Helper::handleLastError()
     return QString( "<div>%1</div>" ).arg( msgList.join( "</div><div>" ) );
 }
 
+Calamares::GlobalStorage* GlobalStoragePythonWrapper::s_gs_instance = nullptr;
+
+// The special handling for nullptr is only for the testing
+// script for the python bindings, which passes in None;
+// normal use will have a GlobalStorage from JobQueue::instance()
+// passed in. Testing use will leak the allocated GlobalStorage
+// object, but that's OK for testing.
+GlobalStoragePythonWrapper::GlobalStoragePythonWrapper( Calamares::GlobalStorage* gs )
+    : m_gs( gs ? gs : s_gs_instance )
+{
+    if ( !m_gs )
+    {
+        s_gs_instance = new Calamares::GlobalStorage;
+        m_gs = s_gs_instance;
+    }
+}
+
+bool
+GlobalStoragePythonWrapper::contains( const std::string& key ) const
+{
+    return m_gs->contains( QString::fromStdString( key ) );
+}
+
+
+int
+GlobalStoragePythonWrapper::count() const
+{
+    return m_gs->count();
+}
+
+
+void
+GlobalStoragePythonWrapper::insert( const std::string& key, const bp::object& value )
+{
+    m_gs->insert( QString::fromStdString( key ), CalamaresPython::variantFromPyObject( value ) );
+}
+
+bp::list
+GlobalStoragePythonWrapper::keys() const
+{
+    bp::list pyList;
+    const auto keys = m_gs->keys();
+    for ( const QString& key : keys )
+    {
+        pyList.append( key.toStdString() );
+    }
+    return pyList;
+}
+
+
+int
+GlobalStoragePythonWrapper::remove( const std::string& key )
+{
+    return m_gs->remove( QString::fromStdString( key ) );
+}
+
+
+bp::object
+GlobalStoragePythonWrapper::value( const std::string& key ) const
+{
+    return CalamaresPython::variantToPyObject( m_gs->value( QString::fromStdString( key ) ) );
+}
 
 }  // namespace CalamaresPython

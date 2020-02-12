@@ -19,14 +19,10 @@
 
 #include "JobQueue.h"
 
+#include "CalamaresConfig.h"
 #include "GlobalStorage.h"
 #include "Job.h"
 #include "utils/Logger.h"
-
-#include "CalamaresConfig.h"
-#ifdef WITH_PYTHON
-#include "PythonHelper.h"
-#endif
 
 #include <QThread>
 

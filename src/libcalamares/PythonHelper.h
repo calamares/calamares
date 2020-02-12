@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,19 +21,14 @@
 #define CALAMARES_PYTHONJOBHELPER_H
 
 #include "PythonJob.h"
+#include "utils/BoostPython.h"
 
 #include <QStringList>
 
-#undef slots
-#include "utils/boost-warnings.h"
-
-#include <boost/python/dict.hpp>
-#include <boost/python/list.hpp>
-#include <boost/python/object.hpp>
-
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
+namespace Calamares
+{
+class GlobalStorage;
+}
 
 namespace CalamaresPython
 {
@@ -70,6 +65,28 @@ private:
     boost::python::object m_mainNamespace;
 
     QStringList m_pythonPaths;
+};
+
+class GlobalStoragePythonWrapper
+{
+public:
+    explicit GlobalStoragePythonWrapper( Calamares::GlobalStorage* gs );
+
+    bool contains( const std::string& key ) const;
+    int count() const;
+    void insert( const std::string& key, const boost::python::api::object& value );
+    boost::python::list keys() const;
+    int remove( const std::string& key );
+    boost::python::api::object value( const std::string& key ) const;
+
+    // This is a helper for scripts that do not go through
+    // the JobQueue (i.e. the module testpython script),
+    // which allocate their own (singleton) GlobalStorage.
+    static Calamares::GlobalStorage* globalStorageInstance() { return s_gs_instance; }
+
+private:
+    Calamares::GlobalStorage* m_gs;
+    static Calamares::GlobalStorage* s_gs_instance;  // See globalStorageInstance()
 };
 
 }  // namespace CalamaresPython
