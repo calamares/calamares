@@ -89,7 +89,7 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "fs" ] = partition->fileSystem().name( { QStringLiteral("C") } );  // Untranslated
     if ( partition->fileSystem().type() == FileSystem::Luks &&
          dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
-        map[ "fs" ] = dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS()->name();
+        map[ "fs" ] = dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS()->name( { QStringLiteral("C") } );
     map[ "uuid" ] = uuid;
 
     // Debugging for inside the loop in createPartitionList(),
