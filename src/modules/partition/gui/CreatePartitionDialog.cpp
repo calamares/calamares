@@ -93,11 +93,17 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     else
         initGptPartitionTypeUi();
 
-    // File system
-    FileSystem::Type defaultFsType = FileSystem::typeForName(
+    // File system; the config value is translated (best-effort) to a type
+    FileSystem::Type defaultFSType;
+    QString untranslatedFSName = PartUtils::findFS(
                                          Calamares::JobQueue::instance()->
                                          globalStorage()->
-                                         value( "defaultFileSystemType" ).toString() );
+                                         value( "defaultFileSystemType" ).toString(), &defaultFSType );
+    if ( defaultFSType == FileSystem::Type::Unknown )
+    {
+        defaultFSType = FileSystem::Type::Ext4;
+    }
+
     int defaultFsIndex = -1;
     int fsCounter = 0;
     QStringList fsNames;
@@ -107,7 +113,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
              fs->type() != FileSystem::Extended )
         {
             fsNames << KPMHelpers::userVisibleFS( fs );  // This is put into the combobox
-            if ( fs->type() == defaultFsType )
+            if ( fs->type() == defaultFSType )
                 defaultFsIndex = fsCounter;
             fsCounter++;
         }
