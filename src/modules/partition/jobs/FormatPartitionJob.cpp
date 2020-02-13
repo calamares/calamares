@@ -19,6 +19,8 @@
 
 #include "jobs/FormatPartitionJob.h"
 
+#include "core/KPMHelpers.h"
+
 #include "utils/Logger.h"
 
 // KPMcore
@@ -28,6 +30,9 @@
 #include <fs/filesystem.h>
 #include <ops/createfilesystemoperation.h>
 #include <util/report.h>
+
+using KPMHelpers::untranslatedFS;
+using KPMHelpers::userVisibleFS;
 
 FormatPartitionJob::FormatPartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
@@ -40,7 +45,7 @@ FormatPartitionJob::prettyName() const
 {
     return tr( "Format partition %1 (file system: %2, size: %3 MiB) on %4." )
            .arg( m_partition->partitionPath() )
-           .arg( m_partition->fileSystem().name() )
+           .arg( userVisibleFS( m_partition->fileSystem() ) )
            .arg( m_partition->capacity() / 1024 / 1024 )
             .arg( m_device->name() );
 }
@@ -52,7 +57,7 @@ FormatPartitionJob::prettyDescription() const
     return tr( "Format <strong>%3MiB</strong> partition <strong>%1</strong> with "
                "file system <strong>%2</strong>." )
            .arg( m_partition->partitionPath() )
-           .arg( m_partition->fileSystem().name() )
+           .arg( userVisibleFS( m_partition->fileSystem() ) )
             .arg( m_partition->capacity() / 1024 / 1024 );
 }
 
@@ -63,7 +68,7 @@ FormatPartitionJob::prettyStatusMessage() const
     return tr( "Formatting partition %1 with "
                "file system %2." )
            .arg( m_partition->partitionPath() )
-           .arg( m_partition->fileSystem().name() );
+           .arg( userVisibleFS( m_partition->fileSystem() ) );
 }
 
 

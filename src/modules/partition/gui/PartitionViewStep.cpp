@@ -600,7 +600,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     else if ( fsType != FileSystem::Unknown )
         cWarning() << "Partition-module setting *defaultFileSystemType* changed" << fsRealName;
     else
-        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsRealName << ") using ext4.";
+        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName << ") using" << fsRealName << "instead.";
     gs->insert( "defaultFileSystemType", fsRealName );
 
 

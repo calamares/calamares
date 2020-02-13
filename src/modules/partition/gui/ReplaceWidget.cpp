@@ -22,6 +22,7 @@
 #include "ui_ReplaceWidget.h"
 
 #include "core/DeviceModel.h"
+#include "core/KPMHelpers.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionActions.h"
 #include "core/PartitionInfo.h"
@@ -192,8 +193,8 @@ ReplaceWidget::onPartitionSelected()
             return;
         }
 
-        QString prettyName = tr( "Data partition (%1)" )
-                             .arg( partition->fileSystem().name() );
+        QString fsNameForUser = KPMHelpers::userVisibleFS( partition->fileSystem() );
+        QString prettyName = tr( "Data partition (%1)" ).arg( fsNameForUser );
         for ( const QString& line : osproberLines )
         {
             QStringList lineColumns = line.split( ':' );
@@ -210,13 +211,13 @@ ReplaceWidget::onPartitionSelected()
                 if ( osName.isEmpty() )
                 {
                     prettyName = tr( "Unknown system partition (%1)" )
-                                 .arg( partition->fileSystem().name() );
+                                 .arg( fsNameForUser );
                 }
                 else
                 {
                     prettyName = tr ( "%1 system partition (%2)" )
                                  .arg( osName.replace( 0, 1, osName.at( 0 ).toUpper() ) )
-                                 .arg( partition->fileSystem().name() );
+                                 .arg( fsNameForUser );
                 }
                 break;
             }

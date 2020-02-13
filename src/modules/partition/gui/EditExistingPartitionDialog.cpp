@@ -2,7 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Flags handling originally from KDE Partition Manager,
  *   Copyright 2008-2009, Volker Lanz <vl@fidra.de>
@@ -22,21 +22,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gui/EditExistingPartitionDialog.h>
+#include "EditExistingPartitionDialog.h"
 
-#include <core/ColorUtils.h>
-#include <core/PartitionCoreModule.h>
-#include <core/PartitionInfo.h>
+#include "core/ColorUtils.h"
+#include "core/PartitionCoreModule.h"
+#include "core/PartitionInfo.h"
 #include "core/PartUtils.h"
-#include <core/KPMHelpers.h>
+#include "core/KPMHelpers.h"
 #include "gui/PartitionDialogHelpers.h"
-#include <gui/PartitionSizeController.h>
+#include "gui/PartitionSizeController.h"
 
-#include <ui_EditExistingPartitionDialog.h>
+#include "ui_EditExistingPartitionDialog.h"
 
-#include <utils/Logger.h>
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "utils/Logger.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -77,7 +77,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
         m_ui->fileSystemComboBox->setEnabled( doFormat );
 
         if ( !doFormat )
-            m_ui->fileSystemComboBox->setCurrentText( m_partition->fileSystem().name() );
+            m_ui->fileSystemComboBox->setCurrentText( KPMHelpers::userVisibleFS( m_partition->fileSystem() ) );
 
         updateMountPointPicker();
     } );
@@ -93,16 +93,25 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     for ( auto fs : FileSystemFactory::map() )
     {
         if ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended )
-            fsNames << fs->name();
+            fsNames << KPMHelpers::userVisibleFS( fs ); // For the combo box
     }
     m_ui->fileSystemComboBox->addItems( fsNames );
 
-    if ( fsNames.contains( m_partition->fileSystem().name() ) )
-        m_ui->fileSystemComboBox->setCurrentText( m_partition->fileSystem().name() );
+    FileSystem::Type defaultFSType;
+    QString untranslatedFSName = PartUtils::findFS(
+                                         Calamares::JobQueue::instance()->
+                                         globalStorage()->
+                                         value( "defaultFileSystemType" ).toString(), &defaultFSType );
+    if ( defaultFSType == FileSystem::Type::Unknown )
+    {
+        defaultFSType = FileSystem::Type::Ext4;
+    }
+
+    QString thisFSNameForUser = KPMHelpers::userVisibleFS( m_partition->fileSystem() );
+    if ( fsNames.contains( thisFSNameForUser ) )
+        m_ui->fileSystemComboBox->setCurrentText( thisFSNameForUser );
     else
-        m_ui->fileSystemComboBox->setCurrentText( Calamares::JobQueue::instance()->
-                                                      globalStorage()->
-                                                      value( "defaultFileSystemType" ).toString() );
+        m_ui->fileSystemComboBox->setCurrentText( FileSystem::nameForType( defaultFSType ) );
 
     m_ui->fileSystemLabel->setEnabled( m_ui->formatRadioButton->isChecked() );
     m_ui->fileSystemComboBox->setEnabled( m_ui->formatRadioButton->isChecked() );

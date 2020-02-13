@@ -2,7 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Andrius Štikonas <andrius@stikonas.eu>
  *   Copyright 2018, Caio Carvalho <caiojcarvalho@gmail.com>
  *
@@ -93,11 +93,17 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     else
         initGptPartitionTypeUi();
 
-    // File system
-    FileSystem::Type defaultFsType = FileSystem::typeForName(
+    // File system; the config value is translated (best-effort) to a type
+    FileSystem::Type defaultFSType;
+    QString untranslatedFSName = PartUtils::findFS(
                                          Calamares::JobQueue::instance()->
                                          globalStorage()->
-                                         value( "defaultFileSystemType" ).toString() );
+                                         value( "defaultFileSystemType" ).toString(), &defaultFSType );
+    if ( defaultFSType == FileSystem::Type::Unknown )
+    {
+        defaultFSType = FileSystem::Type::Ext4;
+    }
+
     int defaultFsIndex = -1;
     int fsCounter = 0;
     QStringList fsNames;
@@ -106,8 +112,8 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
         if ( fs->supportCreate() != FileSystem::cmdSupportNone &&
              fs->type() != FileSystem::Extended )
         {
-            fsNames << fs->name();
-            if ( fs->type() == defaultFsType )
+            fsNames << KPMHelpers::userVisibleFS( fs );  // This is put into the combobox
+            if ( fs->type() == defaultFSType )
                 defaultFsIndex = fsCounter;
             fsCounter++;
         }
@@ -232,6 +238,7 @@ CreatePartitionDialog::updateMountPointUi()
     bool enabled = m_ui->primaryRadioButton->isChecked();
     if ( enabled )
     {
+        // This maps translated (user-visible) FS names to a type
         FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
         enabled = !s_unmountableFS.contains( type );
 

@@ -2,7 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
 
 #include "jobs/CreatePartitionJob.h"
 
+#include "core/KPMHelpers.h"
+
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
@@ -32,6 +34,9 @@
 #include <kpmcore/ops/newoperation.h>
 #include <kpmcore/util/report.h>
 
+using KPMHelpers::untranslatedFS;
+using KPMHelpers::userVisibleFS;
+
 CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
     , m_device( device )
@@ -42,7 +47,7 @@ QString
 CreatePartitionJob::prettyName() const
 {
     return tr( "Create new %2MiB partition on %4 (%3) with file system %1." )
-            .arg( m_partition->fileSystem().name() )
+            .arg( userVisibleFS( m_partition->fileSystem() ) )
             .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
             .arg( m_device->name() )
             .arg( m_device->deviceNode() );
@@ -54,7 +59,7 @@ CreatePartitionJob::prettyDescription() const
 {
     return tr( "Create new <strong>%2MiB</strong> partition on <strong>%4</strong> "
                "(%3) with file system <strong>%1</strong>." )
-            .arg( m_partition->fileSystem().name() )
+            .arg( userVisibleFS( m_partition->fileSystem() ) )
             .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
             .arg( m_device->name() )
             .arg( m_device->deviceNode() );
@@ -65,7 +70,7 @@ QString
 CreatePartitionJob::prettyStatusMessage() const
 {
     return tr( "Creating new %1 partition on %2." )
-            .arg( m_partition->fileSystem().name() )
+            .arg( userVisibleFS( m_partition->fileSystem() ) )
             .arg( m_device->deviceNode() );
 }
 
