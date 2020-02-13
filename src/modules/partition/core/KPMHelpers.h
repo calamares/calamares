@@ -114,6 +114,19 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
 Partition* clonePartition( Device* device, Partition* partition );
 
 QString prettyNameForFileSystemType( FileSystem::Type t );
+
+static inline QString
+untranslatedFS( FileSystem& fs )
+{
+    return fs.name( { QStringLiteral( "C" ) } );
+}
+
+static inline QString
+untranslatedFS( FileSystem* fs )
+{
+    return fs ? untranslatedFS( *fs ) : QString();
+}
+
 }
 
 #endif /* KPMHELPERS_H */

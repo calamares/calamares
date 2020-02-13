@@ -20,11 +20,12 @@
 
 #include "jobs/FillGlobalStorageJob.h"
 
-#include "GlobalStorage.h"
-#include "JobQueue.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
 #include "core/KPMHelpers.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "Branding.h"
 #include "utils/Logger.h"
 
@@ -39,6 +40,8 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
+
+using KPMHelpers::untranslatedFS;
 
 typedef QHash<QString, QString> UuidForPartitionHash;
 
@@ -85,11 +88,11 @@ mapForPartition( Partition* partition, const QString& uuid )
     QVariantMap map;
     map[ "device" ] = partition->partitionPath();
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
-    map[ "fsName" ] = partition->fileSystem().name();
-    map[ "fs" ] = partition->fileSystem().name( { QStringLiteral("C") } );  // Untranslated
+    map[ "fsName" ] = partition->fileSystem().name();  // User-visible
+    map[ "fs" ] = untranslatedFS( partition->fileSystem() );
     if ( partition->fileSystem().type() == FileSystem::Luks &&
          dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
-        map[ "fs" ] = dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS()->name( { QStringLiteral("C") } );
+        map[ "fs" ] = untranslatedFS( dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() );
     map[ "uuid" ] = uuid;
 
     // Debugging for inside the loop in createPartitionList(),
