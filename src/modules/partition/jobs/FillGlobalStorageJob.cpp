@@ -26,20 +26,15 @@
 #include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-
 #include "partition/FileSystem.h"
 #include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
-#include "Branding.h"
-
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 #include <kpmcore/fs/luks.h>
 
-// Qt
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>

@@ -20,7 +20,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gui/CreatePartitionDialog.h"
+#include "CreatePartitionDialog.h"
+#include "ui_CreatePartitionDialog.h"
 
 #include "core/ColorUtils.h"
 #include "core/PartitionInfo.h"
@@ -29,22 +30,18 @@
 #include "gui/PartitionDialogHelpers.h"
 #include "gui/PartitionSizeController.h"
 
-#include "ui_CreatePartitionDialog.h"
-
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "partition/PartitionQuery.h"
 #include "partition/FileSystem.h"
 #include "utils/Logger.h"
 
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 #include <kpmcore/fs/filesystemfactory.h>
 #include <kpmcore/fs/luks.h>
 
-// Qt
 #include <QComboBox>
 #include <QDir>
 #include <QListWidgetItem>

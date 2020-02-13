@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Based on the SetPartFlagsJob class from KDE Partition Manager,
  *   Copyright 2008, 2010, Volker Lanz <vl@fidra.de>
@@ -21,13 +22,10 @@
 
 #include "SetPartitionFlagsJob.h"
 
-#include "core/KPMHelpers.h"
-
 #include "partition/FileSystem.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>

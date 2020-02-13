@@ -18,15 +18,12 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/CreatePartitionJob.h"
-
-#include "core/KPMHelpers.h"
+#include "CreatePartitionJob.h"
 
 #include "partition/FileSystem.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>

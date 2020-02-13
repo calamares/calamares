@@ -23,28 +23,24 @@
  */
 
 #include "EditExistingPartitionDialog.h"
+#include "ui_EditExistingPartitionDialog.h"
 
 #include "core/ColorUtils.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
 #include "core/PartUtils.h"
-#include "core/KPMHelpers.h"
 #include "gui/PartitionDialogHelpers.h"
 #include "gui/PartitionSizeController.h"
-
-#include "ui_EditExistingPartitionDialog.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "partition/FileSystem.h"
 #include "utils/Logger.h"
 
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystemfactory.h>
 
-// Qt
 #include <QComboBox>
 #include <QDir>
 #include <QPushButton>
