@@ -2,7 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,13 +20,13 @@
 
 #include "jobs/FillGlobalStorageJob.h"
 
+#include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
-#include "core/KPMHelpers.h"
 
+#include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "Branding.h"
 #include "utils/Logger.h"
 
 // KPMcore
@@ -43,16 +43,15 @@
 
 using KPMHelpers::untranslatedFS;
 
-typedef QHash<QString, QString> UuidForPartitionHash;
+typedef QHash< QString, QString > UuidForPartitionHash;
 
 static UuidForPartitionHash
-findPartitionUuids( QList < Device* > devices )
+findPartitionUuids( QList< Device* > devices )
 {
     UuidForPartitionHash hash;
     foreach ( Device* device, devices )
     {
-        for ( auto it = PartitionIterator::begin( device );
-              it != PartitionIterator::end( device ); ++it )
+        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
         {
             Partition* p = *it;
             QString path = p->partitionPath();
@@ -62,7 +61,9 @@ findPartitionUuids( QList < Device* > devices )
     }
 
     if ( hash.isEmpty() )
+    {
         cDebug() << "No UUIDs found for existing partitions.";
+    }
     return hash;
 }
 
@@ -76,7 +77,9 @@ getLuksUuid( const QString& path )
     process.start();
     process.waitForFinished();
     if ( process.exitStatus() != QProcess::NormalExit || process.exitCode() )
+    {
         return QString();
+    }
     QString uuid = QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
     return uuid;
 }
@@ -90,20 +93,20 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fsName" ] = partition->fileSystem().name();  // User-visible
     map[ "fs" ] = untranslatedFS( partition->fileSystem() );
-    if ( partition->fileSystem().type() == FileSystem::Luks &&
-         dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
+    if ( partition->fileSystem().type() == FileSystem::Luks
+         && dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
+    {
         map[ "fs" ] = untranslatedFS( dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() );
+    }
     map[ "uuid" ] = uuid;
 
     // Debugging for inside the loop in createPartitionList(),
     // so indent a bit
     Logger::CDebug deb;
-    using TR = Logger::DebugRow<const char *const, const QString&>;
+    using TR = Logger::DebugRow< const char* const, const QString& >;
     deb << Logger::SubEntry << "mapping for" << partition->partitionPath() << partition->deviceNode()
-        << TR( "mtpoint:", PartitionInfo::mountPoint( partition ) )
-        << TR( "fs:", map[ "fs" ].toString() )
-        << TR( "fsname", map[ "fsName" ].toString() )
-        << TR( "uuid", uuid );
+        << TR( "mtpoint:", PartitionInfo::mountPoint( partition ) ) << TR( "fs:", map[ "fs" ].toString() )
+        << TR( "fsname", map[ "fsName" ].toString() ) << TR( "uuid", uuid );
 
     if ( partition->roles().has( PartitionRole::Luks ) )
     {
@@ -140,7 +143,7 @@ FillGlobalStorageJob::prettyDescription() const
     QStringList lines;
 
     const auto partitionList = createPartitionList().toList();
-    for ( const QVariant &partitionItem : partitionList )
+    for ( const QVariant& partitionItem : partitionList )
     {
         if ( partitionItem.type() == QVariant::Map )
         {
@@ -149,32 +152,42 @@ FillGlobalStorageJob::prettyDescription() const
             QString mountPoint = partitionMap.value( "mountPoint" ).toString();
             QString fsType = partitionMap.value( "fs" ).toString();
             if ( mountPoint.isEmpty() || fsType.isEmpty() )
+            {
                 continue;
+            }
             if ( path.isEmpty() )
             {
                 if ( mountPoint == "/" )
+                {
                     lines.append( tr( "Install %1 on <strong>new</strong> %2 system partition." )
-                                  .arg( *Calamares::Branding::ShortProductName )
-                                  .arg( fsType ) );
+                                      .arg( *Calamares::Branding::ShortProductName )
+                                      .arg( fsType ) );
+                }
                 else
+                {
                     lines.append( tr( "Set up <strong>new</strong> %2 partition with mount point "
                                       "<strong>%1</strong>." )
-                                  .arg( mountPoint )
-                                  .arg( fsType ) );
+                                      .arg( mountPoint )
+                                      .arg( fsType ) );
+                }
             }
             else
             {
                 if ( mountPoint == "/" )
+                {
                     lines.append( tr( "Install %2 on %3 system partition <strong>%1</strong>." )
-                                  .arg( path )
-                                  .arg( *Calamares::Branding::ShortProductName )
-                                  .arg( fsType ) );
+                                      .arg( path )
+                                      .arg( *Calamares::Branding::ShortProductName )
+                                      .arg( fsType ) );
+                }
                 else
+                {
                     lines.append( tr( "Set up %3 partition <strong>%1</strong> with mount point "
                                       "<strong>%2</strong>." )
-                                  .arg( path )
-                                  .arg( mountPoint )
-                                  .arg( fsType ) );
+                                      .arg( path )
+                                      .arg( mountPoint )
+                                      .arg( fsType ) );
+                }
             }
         }
     }
@@ -182,8 +195,7 @@ FillGlobalStorageJob::prettyDescription() const
     QVariant bootloaderMap = createBootLoaderMap();
     if ( !m_bootLoaderPath.isEmpty() )
     {
-        lines.append( tr( "Install boot loader on <strong>%1</strong>." )
-                      .arg( m_bootLoaderPath ) );
+        lines.append( tr( "Install boot loader on <strong>%1</strong>." ).arg( m_bootLoaderPath ) );
     }
     return lines.join( "<br/>" );
 }
@@ -204,7 +216,9 @@ FillGlobalStorageJob::exec()
     {
         QVariant var = createBootLoaderMap();
         if ( !var.isValid() )
+        {
             cDebug() << "Failed to find path for boot loader";
+        }
         cDebug() << "FillGlobalStorageJob writing bootLoader path:" << var;
         storage->insert( "bootLoader", var );
     }
@@ -225,8 +239,7 @@ FillGlobalStorageJob::createPartitionList() const
     for ( auto device : m_devices )
     {
         cDebug() << Logger::SubEntry << "partitions on" << device->deviceNode();
-        for ( auto it = PartitionIterator::begin( device );
-              it != PartitionIterator::end( device ); ++it )
+        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
         {
             // Debug-logging is done when creating the map
             lst << mapForPartition( *it, hash.value( ( *it )->partitionPath() ) );
@@ -244,7 +257,9 @@ FillGlobalStorageJob::createBootLoaderMap() const
     {
         Partition* partition = KPMHelpers::findPartitionByMountPoint( m_devices, path );
         if ( !partition )
+        {
             return QVariant();
+        }
         path = partition->partitionPath();
     }
     map[ "installPath" ] = path;
