@@ -47,7 +47,7 @@ QString
 CreatePartitionJob::prettyName() const
 {
     return tr( "Create new %2MiB partition on %4 (%3) with file system %1." )
-            .arg( userVisibleFS( m_partition->fileSystem() )
+            .arg( userVisibleFS( m_partition->fileSystem() ) )
             .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
             .arg( m_device->name() )
             .arg( m_device->deviceNode() );
