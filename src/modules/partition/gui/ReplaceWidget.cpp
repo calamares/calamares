@@ -30,6 +30,7 @@
 #include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/FileSystem.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
 
@@ -37,6 +38,9 @@
 #include <kpmcore/fs/filesystem.h>
 
 #include <QComboBox>
+
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 ReplaceWidget::ReplaceWidget( PartitionCoreModule* core,
                               QComboBox* devicesComboBox,
@@ -193,7 +197,7 @@ ReplaceWidget::onPartitionSelected()
             return;
         }
 
-        QString fsNameForUser = KPMHelpers::userVisibleFS( partition->fileSystem() );
+        QString fsNameForUser = userVisibleFS( partition->fileSystem() );
         QString prettyName = tr( "Data partition (%1)" ).arg( fsNameForUser );
         for ( const QString& line : osproberLines )
         {

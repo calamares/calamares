@@ -21,6 +21,7 @@
 
 #include "core/KPMHelpers.h"
 
+#include "partition/FileSystem.h"
 #include "utils/Logger.h"
 
 // KPMcore
@@ -31,8 +32,8 @@
 #include <kpmcore/ops/createfilesystemoperation.h>
 #include <kpmcore/util/report.h>
 
-using KPMHelpers::untranslatedFS;
-using KPMHelpers::userVisibleFS;
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 FormatPartitionJob::FormatPartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )

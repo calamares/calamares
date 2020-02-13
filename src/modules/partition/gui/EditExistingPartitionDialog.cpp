@@ -36,6 +36,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/FileSystem.h"
 #include "utils/Logger.h"
 
 // KPMcore
@@ -47,6 +48,9 @@
 #include <QComboBox>
 #include <QDir>
 #include <QPushButton>
+
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget )
     : QDialog( parentWidget )
@@ -77,7 +81,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
         m_ui->fileSystemComboBox->setEnabled( doFormat );
 
         if ( !doFormat )
-            m_ui->fileSystemComboBox->setCurrentText( KPMHelpers::userVisibleFS( m_partition->fileSystem() ) );
+            m_ui->fileSystemComboBox->setCurrentText( userVisibleFS( m_partition->fileSystem() ) );
 
         updateMountPointPicker();
     } );
@@ -93,7 +97,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     for ( auto fs : FileSystemFactory::map() )
     {
         if ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended )
-            fsNames << KPMHelpers::userVisibleFS( fs ); // For the combo box
+            fsNames << userVisibleFS( fs ); // For the combo box
     }
     m_ui->fileSystemComboBox->addItems( fsNames );
 
@@ -107,7 +111,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
         defaultFSType = FileSystem::Type::Ext4;
     }
 
-    QString thisFSNameForUser = KPMHelpers::userVisibleFS( m_partition->fileSystem() );
+    QString thisFSNameForUser = userVisibleFS( m_partition->fileSystem() );
     if ( fsNames.contains( thisFSNameForUser ) )
         m_ui->fileSystemComboBox->setCurrentText( thisFSNameForUser );
     else

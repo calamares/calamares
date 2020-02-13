@@ -34,6 +34,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "partition/PartitionQuery.h"
+#include "partition/FileSystem.h"
 #include "utils/Logger.h"
 
 // KPMcore
@@ -51,6 +52,9 @@
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
 #include <QSet>
+
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 static QSet< FileSystem::Type > s_unmountableFS(
 {
@@ -113,7 +117,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
         if ( fs->supportCreate() != FileSystem::cmdSupportNone &&
              fs->type() != FileSystem::Extended )
         {
-            fsNames << KPMHelpers::userVisibleFS( fs );  // This is put into the combobox
+            fsNames << userVisibleFS( fs );  // This is put into the combobox
             if ( fs->type() == defaultFSType )
                 defaultFsIndex = fsCounter;
             fsCounter++;

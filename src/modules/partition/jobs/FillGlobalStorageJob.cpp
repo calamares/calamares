@@ -27,6 +27,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
+#include "partition/FileSystem.h"
 #include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
@@ -44,8 +45,8 @@
 #include <QFileInfo>
 #include <QProcess>
 
-using KPMHelpers::untranslatedFS;
-using KPMHelpers::userVisibleFS;
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 using CalamaresUtils::Partition::PartitionIterator;
 
 typedef QHash< QString, QString > UuidForPartitionHash;
