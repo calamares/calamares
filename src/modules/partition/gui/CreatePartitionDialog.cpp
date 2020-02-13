@@ -2,7 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Andrius Štikonas <andrius@stikonas.eu>
  *   Copyright 2018, Caio Carvalho <caiojcarvalho@gmail.com>
  *
@@ -106,7 +106,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
         if ( fs->supportCreate() != FileSystem::cmdSupportNone &&
              fs->type() != FileSystem::Extended )
         {
-            fsNames << fs->name();
+            fsNames << KPMHelpers::userVisibleFS( fs );  // This is put into the combobox
             if ( fs->type() == defaultFsType )
                 defaultFsIndex = fsCounter;
             fsCounter++;
@@ -232,6 +232,7 @@ CreatePartitionDialog::updateMountPointUi()
     bool enabled = m_ui->primaryRadioButton->isChecked();
     if ( enabled )
     {
+        // This maps translated (user-visible) FS names to a type
         FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
         enabled = !s_unmountableFS.contains( type );
 
