@@ -117,53 +117,6 @@ System::instance()
 }
 
 
-int
-System::mount( const QString& devicePath,
-               const QString& mountPoint,
-               const QString& filesystemName,
-               const QString& options )
-{
-    if ( devicePath.isEmpty() || mountPoint.isEmpty() )
-    {
-        if ( devicePath.isEmpty() )
-        {
-            cWarning() << "Can't mount an empty device.";
-        }
-        if ( mountPoint.isEmpty() )
-        {
-            cWarning() << "Can't mount on an empty mountpoint.";
-        }
-
-        return static_cast< int >( ProcessResult::Code::NoWorkingDirectory );
-    }
-
-    QDir mountPointDir( mountPoint );
-    if ( !mountPointDir.exists() )
-    {
-        bool ok = mountPointDir.mkpath( mountPoint );
-        if ( !ok )
-        {
-            cWarning() << "Could not create mountpoint" << mountPoint;
-            return static_cast< int >( ProcessResult::Code::NoWorkingDirectory );
-        }
-    }
-
-    QString program( "mount" );
-    QStringList args = { devicePath, mountPoint };
-
-    if ( !filesystemName.isEmpty() )
-    {
-        args << "-t" << filesystemName;
-    }
-
-    if ( !options.isEmpty() )
-    {
-        args << "-o" << options;
-    }
-
-    return QProcess::execute( program, args );
-}
-
 ProcessResult
 System::runCommand( System::RunLocation location,
                     const QStringList& args,

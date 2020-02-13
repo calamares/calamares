@@ -24,12 +24,12 @@
 #include "utils/Logger.h"
 
 // KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/partitiontable.h>
-#include <fs/filesystem.h>
-#include <ops/createfilesystemoperation.h>
-#include <util/report.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/core/partitiontable.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/ops/createfilesystemoperation.h>
+#include <kpmcore/util/report.h>
 
 using KPMHelpers::untranslatedFS;
 using KPMHelpers::userVisibleFS;

@@ -21,7 +21,9 @@
 #include "ClearMountsJob.h"
 
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
+
+#include "partition/Sync.h"
+#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
 // KPMcore
@@ -33,6 +35,7 @@
 #include <QProcess>
 #include <QStringList>
 
+using CalamaresUtils::Partition::PartitionIterator;
 
 ClearMountsJob::ClearMountsJob( Device* device )
     : Calamares::Job()
@@ -57,25 +60,47 @@ ClearMountsJob::prettyStatusMessage() const
 }
 
 
+QStringList
+getPartitionsForDevice( const QString& deviceName )
+{
+    QStringList partitions;
+
+    QFile dev_partitions( "/proc/partitions" );
+    if ( dev_partitions.open( QFile::ReadOnly ) )
+    {
+        cDebug() << "Reading from" << dev_partitions.fileName();
+        QTextStream in( &dev_partitions );
+        (void) in.readLine();  // That's the header line, skip it
+        while ( !in.atEnd() )
+        {
+            // The fourth column (index from 0, so index 3) is the name of the device;
+            // keep it if it is followed by something.
+            QStringList columns = in.readLine().split( ' ', QString::SkipEmptyParts );
+            if ( ( columns.count() >= 4 ) && ( columns[3].startsWith( deviceName ) )  && ( columns[3] != deviceName ) )
+            {
+                partitions.append( columns[3] );
+            }
+        }
+    }
+    else
+    {
+        cDebug() << "Could not open" << dev_partitions.fileName();
+    }
+
+    return partitions;
+}
+
 Calamares::JobResult
 ClearMountsJob::exec()
 {
-    QStringList goodNews;
+    CalamaresUtils::Partition::Syncer s;
 
     QString deviceName = m_device->deviceNode().split( '/' ).last();
 
+    QStringList goodNews;
     QProcess process;
-    process.setProgram( "sh" );
-    process.setArguments( {
-                              "-c",
-                              QString( "echo $(awk '{print $4}' /proc/partitions | sed -e '/name/d' -e '/^$/d' -e '/[1-9]/!d' | grep %1)" )
-                                      .arg( deviceName )
-                          } );
-    process.start();
-    process.waitForFinished();
 
-    const QString partitions = process.readAllStandardOutput();
-    const QStringList partitionsList = partitions.simplified().split( ' ' );
+    QStringList partitionsList = getPartitionsForDevice( deviceName );
 
     // Build a list of partitions of type 82 (Linux swap / Solaris).
     // We then need to clear them just in case they contain something resumable from a

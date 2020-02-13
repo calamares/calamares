@@ -20,22 +20,23 @@
 #include "DeviceList.h"
 
 #include "PartitionCoreModule.h"
-
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
-#include "core/PartitionIterator.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "partition/PartitionIterator.h"
+#include "utils/Logger.h"
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 
-#include <utils/Logger.h>
-#include <JobQueue.h>
-#include <GlobalStorage.h>
-
 #include <QProcess>
 #include <QTemporaryDir>
+
+using CalamaresUtils::Partition::PartitionIterator;
 
 namespace PartUtils
 {
@@ -108,7 +109,7 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
     bool writableOnly = (which == DeviceType::WritableOnly);
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
-#ifdef WITH_KPMCORE331API
+#if defined( WITH_KPMCORE4API )
     DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag(0) );
 #else
     DeviceList devices = backend->scanDevices( /* excludeReadOnly */ true );

@@ -1,6 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -17,39 +16,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONJOB_H
-#define PARTITIONJOB_H
+#include "Sync.h"
 
-#include "Job.h"
-#include "partition/KPMManager.h"
+#include "utils/CalamaresUtilsSystem.h"
+#include "utils/Logger.h"
 
-class Partition;
-
-/**
- * Base class for jobs which affect a partition and which use KPMCore.
- */
-class PartitionJob : public Calamares::Job
+void
+CalamaresUtils::Partition::sync()
 {
-    Q_OBJECT
-public:
-    PartitionJob( Partition* partition );
+    auto r = CalamaresUtils::System::runCommand( { "/sbin/udevadm", "settle" }, std::chrono::seconds( 10 ) );
 
-    Partition* partition() const
+    if ( r.getExitCode() != 0 )
     {
-        return m_partition;
+        cWarning() << "Could not settle disks.";
+        r.explainProcess( "udevadm", std::chrono::seconds( 10 ) );
     }
 
-public slots:
-    /** @brief Translate from KPMCore to Calamares progress.
-     *
-     * KPMCore presents progress as an integer percent from 0 .. 100,
-     * while Calamares uses a qreal from 0 .. 1.00 .
-     */
-    void iprogress( int percent );
-
-protected:
-    CalamaresUtils::Partition::KPMManager m_kpmcore;
-    Partition* m_partition;
-};
-
-#endif /* PARTITIONJOB_H */
+    CalamaresUtils::System::runCommand( { "/bin/sync" }, std::chrono::seconds( 10 ) );
+}

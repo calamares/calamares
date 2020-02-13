@@ -20,7 +20,7 @@
 #ifndef RESIZEPARTITIONJOB_H
 #define RESIZEPARTITIONJOB_H
 
-#include <jobs/PartitionJob.h>
+#include "PartitionJob.h"
 
 class Device;
 class Partition;

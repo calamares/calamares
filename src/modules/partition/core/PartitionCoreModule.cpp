@@ -27,7 +27,6 @@
 #include "core/DeviceList.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
 #include "core/PartitionModel.h"
 #include "core/KPMHelpers.h"
 #include "core/PartUtils.h"
@@ -45,12 +44,13 @@
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
 
-#include "utils/Variant.h"
-
 #ifdef DEBUG_PARTITION_LAME
 #include "JobExample.h"
 #endif
+#include "partition/PartitionIterator.h"
+#include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -70,6 +70,9 @@
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrent>
 
+using CalamaresUtils::Partition::PartitionIterator;
+using CalamaresUtils::Partition::isPartitionFreeSpace;
+using CalamaresUtils::Partition::isPartitionNew;
 
 PartitionCoreModule::RefreshHelper::RefreshHelper(PartitionCoreModule* module)
     : m_module( module )
@@ -144,7 +147,7 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     , m_deviceModel( new DeviceModel( this ) )
     , m_bootLoaderModel( new BootLoaderModel( this ) )
 {
-    if ( !KPMHelpers::initKPMcore() )
+    if ( !m_kpmcore )
         qFatal( "Failed to initialize KPMcore backend" );
 }
 
@@ -395,7 +398,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         // deleting them, so let's play it safe and keep our own list.
         QList< Partition* > lst;
         for ( auto childPartition : partition->children() )
-            if ( !KPMHelpers::isPartitionFreeSpace( childPartition ) )
+            if ( !isPartitionFreeSpace( childPartition ) )
                 lst << childPartition;
 
         for ( auto childPartition : lst )
@@ -653,7 +656,7 @@ PartitionCoreModule::scanForEfiSystemPartitions()
     }
 
     QList< Partition* > efiSystemPartitions =
-        KPMHelpers::findPartitions( devices, PartUtils::isEfiBootable );
+        CalamaresUtils::Partition::findPartitions( devices, PartUtils::isEfiBootable );
 
     if ( efiSystemPartitions.isEmpty() )
         cWarning() << "system is EFI but no EFI system partitions found.";
@@ -688,13 +691,8 @@ PartitionCoreModule::scanForLVMPVs()
     VolumeManagerDevice::scanDevices( physicalDevices );
     for ( auto p : LVM::pvList::list() )
 #else
-#if defined( WITH_KPMCORE331API )
-    LvmDevice::scanSystemLVM( physicalDevices );
-    for ( auto p : LVM::pvList::list() )
-#else
     LvmDevice::scanSystemLVM( physicalDevices );
     for ( auto p : LVM::pvList )
-#endif
 #endif
     {
         m_lvmPVs << p.partition().data();
@@ -728,7 +726,7 @@ PartitionCoreModule::scanForLVMPVs()
                     if ( innerFS && innerFS->type() == FileSystem::Type::Lvm2_PV )
                         m_lvmPVs << p;
                 }
-#ifdef WITH_KPMCORE4API
+#if defined( WITH_KPMCORE4API )
                 else if ( p->fileSystem().type() == FileSystem::Type::Luks2 )
                 {
                     // Encrypted LVM PVs

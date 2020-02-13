@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2014,      Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -17,39 +18,22 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONJOB_H
-#define PARTITIONJOB_H
-
-#include "Job.h"
-#include "partition/KPMManager.h"
-
-class Partition;
-
-/**
- * Base class for jobs which affect a partition and which use KPMCore.
+/*
+ * NOTE: this functionality is only available when Calamares is compiled
+ *       with KPMcore support.
  */
-class PartitionJob : public Calamares::Job
+
+#ifndef PARTITION_FILESYSTEM_H
+#define PARTITION_FILESYSTEM_H
+
+#include <kpmcore/fs/filesystem.h>
+
+namespace CalamaresUtils
 {
-    Q_OBJECT
-public:
-    PartitionJob( Partition* partition );
+namespace Partition
+{
+QString prettyNameForFileSystemType( FileSystem::Type t );
+}  // namespace Partition
+}  // namespace CalamaresUtils
 
-    Partition* partition() const
-    {
-        return m_partition;
-    }
-
-public slots:
-    /** @brief Translate from KPMCore to Calamares progress.
-     *
-     * KPMCore presents progress as an integer percent from 0 .. 100,
-     * while Calamares uses a qreal from 0 .. 1.00 .
-     */
-    void iprogress( int percent );
-
-protected:
-    CalamaresUtils::Partition::KPMManager m_kpmcore;
-    Partition* m_partition;
-};
-
-#endif /* PARTITIONJOB_H */
+#endif  // PARTITION_PARTITIONQUERY_H

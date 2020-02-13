@@ -25,20 +25,25 @@
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "partition/Mount.h"
+#include "partition/PartitionIterator.h"
+#include "partition/PartitionQuery.h"
+#include "utils/CalamaresUtilsSystem.h"
+#include "utils/Logger.h"
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 
-#include <utils/CalamaresUtilsSystem.h>
-#include <utils/Logger.h>
-#include <JobQueue.h>
-#include <GlobalStorage.h>
-
 #include <QProcess>
 #include <QTemporaryDir>
+
+using CalamaresUtils::Partition::isPartitionFreeSpace;
+using CalamaresUtils::Partition::isPartitionNew;
 
 namespace PartUtils
 {
@@ -132,7 +137,7 @@ canBeResized( Partition* candidate )
         return false;
     }
 
-    if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
+    if ( isPartitionFreeSpace( candidate ) )
     {
         cDebug() << Logger::SubEntry << "NO, partition is free space";
         return false;
@@ -205,7 +210,7 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
         for ( int i = 0; i < dm->rowCount(); ++i )
         {
             Device* dev = dm->deviceForIndex( dm->index( i ) );
-            Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, partitionWithOs );
+            Partition* candidate = CalamaresUtils::Partition::findPartitionByPath( { dev }, partitionWithOs );
             if ( candidate )
             {
                 return canBeResized( candidate );
@@ -241,13 +246,11 @@ lookForFstabEntries( const QString& partitionPath )
         << "for fstab (fs=" << r.getOutput() << ')';
 
     FstabEntryList fstabEntries;
-    QTemporaryDir mountsDir;
-    mountsDir.setAutoRemove( false );
 
-    int exit = QProcess::execute( "mount", { "-o", mountOptions.join(','), partitionPath, mountsDir.path() } );
-    if ( !exit ) // if all is well
+    CalamaresUtils::Partition::TemporaryMount mount( partitionPath, QString(), mountOptions.join(',') );
+    if ( mount.isValid() )
     {
-        QFile fstabFile( mountsDir.path() + "/etc/fstab" );
+        QFile fstabFile( mount.path() + "/etc/fstab" );
 
         cDebug() << Logger::SubEntry << "reading" << fstabFile.fileName();
 
@@ -265,9 +268,6 @@ lookForFstabEntries( const QString& partitionPath )
         }
         else
             cWarning() << "Could not read fstab from mounted fs";
-
-        if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) )
-            cWarning() << "Could not unmount" << mountsDir.path();
     }
     else
         cWarning() << "Could not mount existing fs";

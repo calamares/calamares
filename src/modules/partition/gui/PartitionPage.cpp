@@ -40,11 +40,13 @@
 #include "ui_PartitionPage.h"
 #include "ui_CreatePartitionTableDialog.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+
 #include "Branding.h"
-#include "JobQueue.h"
-#include "GlobalStorage.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -132,7 +134,7 @@ PartitionPage::updateButtons()
         Q_ASSERT( model );
         Partition* partition = model->partitionForIndex( index );
         Q_ASSERT( partition );
-        bool isFree = KPMHelpers::isPartitionFreeSpace( partition );
+        bool isFree = CalamaresUtils::Partition::isPartitionFreeSpace( partition );
         bool isExtended = partition->roles().has( PartitionRole::Extended );
 
         bool isInVG = m_core->isInVG( partition );
@@ -392,7 +394,7 @@ PartitionPage::onEditClicked()
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
-    if ( KPMHelpers::isPartitionNew( partition ) )
+    if ( CalamaresUtils::Partition::isPartitionNew( partition ) )
         updatePartitionToCreate( model->device(), partition );
     else
         editExistingPartition( model->device(), partition );
@@ -452,7 +454,7 @@ PartitionPage::onPartitionViewActivated()
     // but I don't expect there will be other occurences of triggering the same
     // action from multiple UI elements in this page, so it does not feel worth
     // the price.
-    if ( KPMHelpers::isPartitionFreeSpace( partition ) )
+    if ( CalamaresUtils::Partition::isPartitionFreeSpace( partition ) )
         m_ui->createButton->click();
     else
         m_ui->editButton->click();

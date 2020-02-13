@@ -274,34 +274,29 @@ class UnpackOperation:
 
     def mount_image(self, entry, imgmountdir):
         """
-        Mount given image as loop device.
+        Mount given @p entry as loop device on @p imgmountdir.
 
         A *file* entry (e.g. one with *sourcefs* set to *file*)
         is not mounted and just ignored.
 
-        :param entry:
-        :param imgmountdir:
+        :param entry: the entry to mount (source is the important property)
+        :param imgmountdir: where to mount it
+
+        :returns: None, but throws if the mount failed
         """
         if entry.is_file():
             return
 
         if os.path.isdir(entry.source):
-            subprocess.check_call(["mount",
-                                   "--bind", entry.source,
-                                   imgmountdir])
+            r = libcalamares.utils.mount(entry.source, imgmountdir, "", "--bind")
         elif os.path.isfile(entry.source):
-            subprocess.check_call(["mount",
-                                   entry.source,
-                                   imgmountdir,
-                                   "-t", entry.sourcefs,
-                                   "-o", "loop"
-                                   ])
+            r = libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "loop")
         else: # entry.source is a device
-            subprocess.check_call(["mount",
-                                   entry.source,
-                                   imgmountdir,
-                                   "-t", entry.sourcefs
-                                   ])
+            r = libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "")
+
+        if r != 0:
+            raise subprocess.CalledProcessError(r, "mount")
+
 
     def unpack_image(self, entry, imgmountdir):
         """

@@ -22,6 +22,9 @@
 #include "core/ColorUtils.h"
 #include "core/PartitionInfo.h"
 #include "core/KPMHelpers.h"
+
+#include "partition/FileSystem.h"
+#include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 
 // CalaPM
@@ -35,6 +38,9 @@
 
 // Qt
 #include <QColor>
+
+using CalamaresUtils::Partition::isPartitionFreeSpace;
+using CalamaresUtils::Partition::isPartitionNew;
 
 //- ResetHelper --------------------------------------------
 PartitionModel::ResetHelper::ResetHelper( PartitionModel* model )
@@ -140,17 +146,17 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         int col = index.column();
         if ( col == NameColumn )
         {
-            if ( KPMHelpers::isPartitionFreeSpace( partition ) )
+            if ( isPartitionFreeSpace( partition ) )
                 return tr( "Free Space" );
             else
             {
-                return KPMHelpers::isPartitionNew( partition )
+                return isPartitionNew( partition )
                        ? tr( "New partition" )
                        : partition->partitionPath();
             }
         }
         if ( col == FileSystemColumn )
-            return KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
+            return CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         if ( col == MountPointColumn )
             return PartitionInfo::mountPoint( partition );
         if ( col == SizeColumn )
@@ -172,16 +178,16 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         QString name;
         if ( col == NameColumn )
         {
-            if ( KPMHelpers::isPartitionFreeSpace( partition ) )
+            if ( isPartitionFreeSpace( partition ) )
                 name = tr( "Free Space" );
             else
             {
-                name = KPMHelpers::isPartitionNew( partition )
+                name = isPartitionNew( partition )
                         ? tr( "New partition" )
                         : partition->partitionPath();
             }
         }
-        QString prettyFileSystem = KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
+        QString prettyFileSystem = CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
         QString prettySize = KFormat().formatByteSize( size );
         return QVariant(name + " " + prettyFileSystem + " " + prettySize);
@@ -189,10 +195,10 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     case SizeRole:
         return ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
     case IsFreeSpaceRole:
-        return KPMHelpers::isPartitionFreeSpace( partition );
+        return isPartitionFreeSpace( partition );
 
     case IsPartitionNewRole:
-        return KPMHelpers::isPartitionNew( partition );
+        return isPartitionNew( partition );
 
     case FileSystemLabelRole:
         if ( partition->fileSystem().supportGetLabel() != FileSystem::cmdSupportNone &&

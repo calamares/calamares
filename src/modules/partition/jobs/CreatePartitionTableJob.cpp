@@ -20,20 +20,21 @@
 
 #include "jobs/CreatePartitionTableJob.h"
 
-#include "core/PartitionIterator.h"
-
+#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
 // KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/partitiontable.h>
-#include <fs/filesystem.h>
-#include <ops/createpartitiontableoperation.h>
-#include <util/report.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/core/partitiontable.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/ops/createpartitiontableoperation.h>
+#include <kpmcore/util/report.h>
 
 // Qt
 #include <QProcess>
+
+using CalamaresUtils::Partition::PartitionIterator;
 
 CreatePartitionTableJob::CreatePartitionTableJob( Device* device, PartitionTable::TableType type )
     : m_device( device )
@@ -99,7 +100,7 @@ CreatePartitionTableJob::exec()
         cDebug() << "lsblk:\n" << lsblk.readAllStandardOutput();
 
         QProcess mount;
-        mount.setProgram( "mount" );
+        mount.setProgram( "mount" );  // Debug output only, not mounting something
         mount.setProcessChannelMode( QProcess::MergedChannels );
         mount.start();
         mount.waitForFinished();
