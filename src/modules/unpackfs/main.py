@@ -30,6 +30,7 @@ import sys
 import tempfile
 
 from libcalamares import *
+from libcalamares.utils import mount
 
 import gettext
 _ = gettext.translation("calamares-python",
@@ -288,11 +289,11 @@ class UnpackOperation:
             return
 
         if os.path.isdir(entry.source):
-            r = libcalamares.utils.mount(entry.source, imgmountdir, "", "--bind")
+            r = mount(entry.source, imgmountdir, "", "--bind")
         elif os.path.isfile(entry.source):
-            r = libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "loop")
+            r = mount(entry.source, imgmountdir, entry.sourcefs, "loop")
         else: # entry.source is a device
-            r = libcalamares.utils.mount(entry.source, imgmountdir, entry.sourcefs, "")
+            r = mount(entry.source, imgmountdir, entry.sourcefs, "")
 
         if r != 0:
             raise subprocess.CalledProcessError(r, "mount")
