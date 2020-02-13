@@ -42,6 +42,7 @@
 #include <QProcess>
 
 using KPMHelpers::untranslatedFS;
+using KPMHelpers::userVisibleFS;
 
 typedef QHash< QString, QString > UuidForPartitionHash;
 
@@ -91,7 +92,7 @@ mapForPartition( Partition* partition, const QString& uuid )
     QVariantMap map;
     map[ "device" ] = partition->partitionPath();
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
-    map[ "fsName" ] = partition->fileSystem().name();  // User-visible
+    map[ "fsName" ] = userVisibleFS( partition->fileSystem() );
     map[ "fs" ] = untranslatedFS( partition->fileSystem() );
     if ( partition->fileSystem().type() == FileSystem::Luks
          && dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
@@ -106,7 +107,7 @@ mapForPartition( Partition* partition, const QString& uuid )
     using TR = Logger::DebugRow< const char* const, const QString& >;
     deb << Logger::SubEntry << "mapping for" << partition->partitionPath() << partition->deviceNode()
         << TR( "mtpoint:", PartitionInfo::mountPoint( partition ) ) << TR( "fs:", map[ "fs" ].toString() )
-        << TR( "fsname", map[ "fsName" ].toString() ) << TR( "uuid", uuid );
+        << TR( "fsName", map[ "fsName" ].toString() ) << TR( "uuid", uuid );
 
     if ( partition->roles().has( PartitionRole::Luks ) )
     {

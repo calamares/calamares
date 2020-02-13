@@ -127,6 +127,18 @@ untranslatedFS( FileSystem* fs )
     return fs ? untranslatedFS( *fs ) : QString();
 }
 
+static inline QString
+userVisibleFS( FileSystem& fs )
+{
+    return fs.name();
+}
+
+static inline QString
+userVisibleFS( FileSystem* fs )
+{
+    return fs ? userVisibleFS( *fs ) : QString();
+}
+
 }
 
 #endif /* KPMHELPERS_H */
