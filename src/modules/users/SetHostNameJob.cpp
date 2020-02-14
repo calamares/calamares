@@ -22,6 +22,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
 #include <QDir>
@@ -71,43 +72,36 @@ SetHostNameJob::exec()
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
-    QFile hostfile( destDir + "/etc/hostname" );
+    CalamaresUtils::System::instance()->createTargetFile( QStringLiteral( "/etc/hostname" ),
+                                                          ( m_hostname + '\n' ).toUtf8() );
+
+#if 0
     if ( !hostfile.open( QFile::WriteOnly ) )
     {
         cError() << "Can't write to hostname file";
         return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
     }
+#endif
 
-    QTextStream hostfileout( &hostfile );
-    hostfileout << m_hostname << "\n";
-    hostfile.close();
+    // The actual hostname gets substituted in at %1
+    static const char etc_hosts[] = R"(# Host addresses
+127.0.0.1  localhost
+127.0.1.1  %1
+::1        localhost ip6-localhost ip6-loopback
+ff02::1    ip6-allnodes
+ff02::2    ip6-allrouters
+)";
 
-    QFile hostsfile( destDir + "/etc/hosts" );
+    CalamaresUtils::System::instance()->createTargetFile( QStringLiteral( "/etc/hosts" ),
+                                                          QString( etc_hosts ).arg( m_hostname ).toUtf8() );
+
+#if 0
     if ( !hostsfile.open( QFile::WriteOnly ) )
     {
         cError() << "Can't write to hosts file";
         return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
     }
-
-    // We also need to write the appropriate entries for /etc/hosts
-    QTextStream hostsfileout( &hostsfile );
-    // ipv4 support
-    hostsfileout << "127.0.0.1"
-                 << "\t"
-                 << "localhost"
-                 << "\n";
-    hostsfileout << "127.0.1.1"
-                 << "\t" << m_hostname << "\n";
-    // ipv6 support
-    hostsfileout << "::1"
-                 << "\t"
-                 << "localhost ip6-localhost ip6-loopback"
-                 << "\n";
-    hostsfileout << "ff02::1 ip6-allnodes"
-                 << "\n"
-                 << "ff02::2 ip6-allrouters"
-                 << "\n";
-    hostsfile.close();
+#endif
 
     return Calamares::JobResult::ok();
 }
