@@ -271,6 +271,38 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
     checkReady( isReady() );
 }
 
+/** @brief Guess the machine's name
+ *
+ * If there is DMI data, use that; otherwise, just call the machine "-pc".
+ * Reads the DMI data just once.
+ */
+static QString
+guessProductName()
+{
+    static bool tried = false;
+    static QString dmiProduct;
+
+    if ( !tried )
+    {
+        // yes validateHostnameText() but these files can be a mess
+        QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
+        QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
+
+        if ( dmiFile.exists() && dmiFile.open( QIODevice::ReadOnly ) )
+        {
+            dmiProduct = QString::fromLocal8Bit( dmiFile.readAll().simplified().data() )
+                             .toLower()
+                             .replace( dmirx, " " )
+                             .remove( ' ' );
+        }
+        if ( dmiProduct.isEmpty() )
+        {
+            dmiProduct = QStringLiteral( "-pc" );
+        }
+        tried = true;
+    }
+    return dmiProduct;
+}
 
 void
 UsersPage::fillSuggestions()
@@ -305,27 +337,9 @@ UsersPage::fillSuggestions()
     {
         if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
         {
-
-            QString dmiProductName;
             QString hostnameSuggestion;
-            // yes validateHostnameText() but these files can be a mess
-            QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
-            QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
-
-            if ( dmiFile.exists() &&
-                 dmiFile.open(QIODevice::ReadOnly))
-            {
-                dmiProductName = QString::fromLocal8Bit( dmiFile.readAll().simplified().data() )
-                                 .toLower().replace(dmirx, " ").remove(' ');
-            }
-            if ( !dmiProductName.isEmpty() )
-            {
-                hostnameSuggestion = QString( "%1-%2" ).arg( cleanParts.first() ).arg( dmiProductName );
-            }
-            else
-            {
-               hostnameSuggestion = QString( "%1-pc" ).arg( cleanParts.first() );
-            }
+            QString productName = guessProductName();
+            hostnameSuggestion = QString( "%1-%2" ).arg( cleanParts.first() ).arg( productName );
             if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
             {
                 ui->textBoxHostname->setText( hostnameSuggestion );
