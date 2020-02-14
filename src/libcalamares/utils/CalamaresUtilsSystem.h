@@ -84,6 +84,41 @@ public:
     }
 };
 
+/** @brief The result of a create*() action, for status
+ *
+ * A CreationResult has a status field, can be converted to bool
+ * (true only on success) and can report the full pathname of
+ * the thing created if it was successful.
+ */
+class CreationResult : public QPair< int, QString >
+{
+public:
+    enum class Code : int
+    {
+        // These are "not failed", but only OK is a success
+        OK = 0,
+        AlreadyExists = 1,
+        // These are "failed"
+        Invalid = -1,
+        Failed = -2
+    };
+
+    CreationResult( Code r )
+        : QPair< int, QString >( static_cast< int >( r ), QString() )
+    {
+    }
+    explicit CreationResult( const QString& path )
+        : QPair< int, QString >( 0, path )
+    {
+    }
+
+    Code code() const { return static_cast< Code >( first ); }
+    QString path() const { return second; }
+
+    bool failed() const { return first < 0; }
+    operator bool() const { return first == 0; }
+};
+
 /**
  * @brief The System class is a singleton with utility functions that perform
  * system-specific operations.
@@ -244,7 +279,7 @@ public:
      *      root of the host system, or empty on failure. (Here, it is
      *      possible to be canonical because the file exists).
      */
-    DLLEXPORT QString createTargetFile( const QString& path, const QByteArray& contents ) const;
+    DLLEXPORT CreationResult createTargetFile( const QString& path, const QByteArray& contents ) const;
 
     /** @brief Remove a file from the target system.
      *

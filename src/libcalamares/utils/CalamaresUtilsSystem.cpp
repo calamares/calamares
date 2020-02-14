@@ -293,19 +293,19 @@ System::targetPath( const QString& path ) const
     }
 }
 
-QString
+CreationResult
 System::createTargetFile( const QString& path, const QByteArray& contents ) const
 {
     QString completePath = targetPath( path );
     if ( completePath.isEmpty() )
     {
-        return QString();
+        return CreationResult( CreationResult::Code::Invalid );
     }
 
     QFile f( completePath );
     if ( f.exists() )
     {
-        return QString();
+        return CreationResult( CreationResult::Code::AlreadyExists );
     }
 
     QIODevice::OpenMode m =
@@ -317,18 +317,18 @@ System::createTargetFile( const QString& path, const QByteArray& contents ) cons
 
     if ( !f.open( m ) )
     {
-        return QString();
+        return CreationResult( CreationResult::Code::Failed );
     }
 
     if ( f.write( contents ) != contents.size() )
     {
         f.close();
         f.remove();
-        return QString();
+        return CreationResult( CreationResult::Code::Failed );
     }
 
     f.close();
-    return QFileInfo( f ).canonicalFilePath();
+    return CreationResult( QFileInfo( f ).canonicalFilePath() );
 }
 
 void
