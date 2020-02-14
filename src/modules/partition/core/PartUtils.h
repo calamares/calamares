@@ -22,8 +22,8 @@
 #define PARTUTILS_H
 
 #include "OsproberEntry.h"
-#include "utils/Units.h"
 #include "utils/NamedSuffix.h"
+#include "utils/Units.h"
 
 // KPMcore
 #include <kpmcore/fs/filesystem.h>
@@ -99,6 +99,6 @@ bool isEfiBootable( const Partition* candidate );
  */
 QString findFS( QString fsName, FileSystem::Type* fsType );
 
-}
+}  // namespace PartUtils
 
-#endif // PARTUTILS_H
+#endif  // PARTUTILS_H

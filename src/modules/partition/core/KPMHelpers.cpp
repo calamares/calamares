@@ -26,10 +26,10 @@
 #include "utils/Logger.h"
 
 // KPMcore
+#include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystemfactory.h>
-#include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/fs/luks.h>
 
 using CalamaresUtils::Partition::PartitionIterator;
@@ -43,7 +43,9 @@ findPartitionByMountPoint( const QList< Device* >& devices, const QString& mount
     for ( auto device : devices )
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
             if ( PartitionInfo::mountPoint( *it ) == mountPoint )
+            {
                 return *it;
+            }
     return nullptr;
 }
 
@@ -57,21 +59,19 @@ createNewPartition( PartitionNode* parent,
                     qint64 lastSector,
                     PartitionTable::Flags flags )
 {
-    FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector
-                                                ,device.logicalSize()
-    );
-    return new Partition(
-               parent,
-               device,
-               role,
-               fs, fs->firstSector(), fs->lastSector(),
-               QString() /* path */,
-               KPM_PARTITION_FLAG(None) /* availableFlags */,
-               QString() /* mountPoint */,
-               false /* mounted */,
-               flags /* activeFlags */,
-               KPM_PARTITION_STATE(New)
-           );
+    FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector, device.logicalSize() );
+    return new Partition( parent,
+                          device,
+                          role,
+                          fs,
+                          fs->firstSector(),
+                          fs->lastSector(),
+                          QString() /* path */,
+                          KPM_PARTITION_FLAG( None ) /* availableFlags */,
+                          QString() /* mountPoint */,
+                          false /* mounted */,
+                          flags /* activeFlags */,
+                          KPM_PARTITION_STATE( New ) );
 }
 
 
@@ -87,14 +87,12 @@ createNewEncryptedPartition( PartitionNode* parent,
 {
     PartitionRole::Roles newRoles = role.roles();
     if ( !role.has( PartitionRole::Luks ) )
+    {
         newRoles |= PartitionRole::Luks;
+    }
 
     FS::luks* fs = dynamic_cast< FS::luks* >(
-                           FileSystemFactory::create( FileSystem::Luks,
-                                                      firstSector,
-                                                      lastSector
-                                                     ,device.logicalSize()
-                                                      ) );
+        FileSystemFactory::create( FileSystem::Luks, firstSector, lastSector, device.logicalSize() ) );
     if ( !fs )
     {
         cError() << "cannot create LUKS filesystem. Giving up.";
@@ -106,13 +104,15 @@ createNewEncryptedPartition( PartitionNode* parent,
     Partition* p = new Partition( parent,
                                   device,
                                   PartitionRole( newRoles ),
-                                  fs, fs->firstSector(), fs->lastSector(),
+                                  fs,
+                                  fs->firstSector(),
+                                  fs->lastSector(),
                                   QString() /* path */,
-                                  KPM_PARTITION_FLAG(None) /* availableFlags */,
+                                  KPM_PARTITION_FLAG( None ) /* availableFlags */,
                                   QString() /* mountPoint */,
                                   false /* mounted */,
                                   flags /* activeFlags */,
-                                  KPM_PARTITION_STATE(New) );
+                                  KPM_PARTITION_STATE( New ) );
     return p;
 }
 
@@ -121,11 +121,7 @@ Partition*
 clonePartition( Device* device, Partition* partition )
 {
     FileSystem* fs = FileSystemFactory::create(
-                         partition->fileSystem().type(),
-                         partition->firstSector(),
-                         partition->lastSector()
-                        ,device->logicalSize()
-                     );
+        partition->fileSystem().type(), partition->firstSector(), partition->lastSector(), device->logicalSize() );
     return new Partition( partition->parent(),
                           *device,
                           partition->roles(),
@@ -136,4 +132,4 @@ clonePartition( Device* device, Partition* partition )
                           partition->activeFlags() );
 }
 
-} // namespace
+}  // namespace KPMHelpers

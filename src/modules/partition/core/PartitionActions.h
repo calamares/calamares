@@ -33,45 +33,49 @@ namespace PartitionActions
  */
 namespace Choices
 {
-    /** @brief Ccchoice of swap (size and type) */
-    enum SwapChoice
+/** @brief Ccchoice of swap (size and type) */
+enum SwapChoice
+{
+    NoSwap,  // don't create any swap, don't use any
+    ReuseSwap,  // don't create, but do use existing
+    SmallSwap,  // up to 8GiB of swap
+    FullSwap,  // ensureSuspendToDisk -- at least RAM size
+    SwapFile  // use a file (if supported)
+};
+
+SwapChoice nameToChoice( QString name, bool& ok );
+QString choiceToName( SwapChoice );
+
+struct ReplacePartitionOptions
+{
+    QString defaultFsType;  // e.g. "ext4" or "btrfs"
+    QString luksPassphrase;  // optional
+
+    ReplacePartitionOptions( const QString& fs, const QString& luks )
+        : defaultFsType( fs )
+        , luksPassphrase( luks )
     {
-        NoSwap,     // don't create any swap, don't use any
-        ReuseSwap,  // don't create, but do use existing
-        SmallSwap,  // up to 8GiB of swap
-        FullSwap,   // ensureSuspendToDisk -- at least RAM size
-        SwapFile    // use a file (if supported)
-    };
+    }
+};
 
-    SwapChoice nameToChoice( QString name, bool& ok );
-    QString choiceToName( SwapChoice );
+struct AutoPartitionOptions : ReplacePartitionOptions
+{
+    QString efiPartitionMountPoint;  // optional, e.g. "/boot"
+    quint64 requiredSpaceB;  // estimated required space for root partition
+    SwapChoice swap;
 
-    struct ReplacePartitionOptions
+    AutoPartitionOptions( const QString& fs,
+                          const QString& luks,
+                          const QString& efi,
+                          qint64 requiredBytes,
+                          SwapChoice s )
+        : ReplacePartitionOptions( fs, luks )
+        , efiPartitionMountPoint( efi )
+        , requiredSpaceB( requiredBytes > 0 ? static_cast< quint64 >( requiredBytes ) : 0 )
+        , swap( s )
     {
-        QString defaultFsType;  // e.g. "ext4" or "btrfs"
-        QString luksPassphrase;  // optional
-
-        ReplacePartitionOptions( const QString& fs, const QString& luks )
-            : defaultFsType( fs )
-            , luksPassphrase( luks )
-        {
-        }
-    };
-
-    struct AutoPartitionOptions : ReplacePartitionOptions
-    {
-        QString efiPartitionMountPoint;  // optional, e.g. "/boot"
-        quint64 requiredSpaceB;  // estimated required space for root partition
-        SwapChoice swap;
-
-        AutoPartitionOptions( const QString& fs, const QString& luks, const QString& efi, qint64 requiredBytes, SwapChoice s )
-            : ReplacePartitionOptions( fs, luks )
-            , efiPartitionMountPoint( efi )
-            , requiredSpaceB( requiredBytes > 0 ? static_cast<quint64>( requiredBytes ) : 0 )
-            , swap( s )
-        {
-        }
-    };
+    }
+};
 
 }  // namespace Choices
 
@@ -81,9 +85,7 @@ namespace Choices
  * @param dev the device to wipe.
  * @param options settings for autopartitioning.
  */
-void doAutopartition( PartitionCoreModule* core,
-                      Device* dev,
-                      Choices::AutoPartitionOptions options );
+void doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionOptions options );
 
 /**
  * @brief doReplacePartition sets up replace-partitioning with the given partition.
@@ -100,4 +102,4 @@ void doReplacePartition( PartitionCoreModule* core,
                          Choices::ReplacePartitionOptions options );
 }  // namespace PartitionActions
 
-#endif // PARTITIONACTIONS_H
+#endif  // PARTITIONACTIONS_H

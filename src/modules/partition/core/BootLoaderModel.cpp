@@ -20,8 +20,8 @@
 
 #include "core/BootLoaderModel.h"
 
-#include "core/PartitionInfo.h"
 #include "core/KPMHelpers.h"
+#include "core/PartitionInfo.h"
 
 #include "utils/Logger.h"
 
@@ -44,9 +44,7 @@ BootLoaderModel::BootLoaderModel( QObject* parent )
 {
 }
 
-BootLoaderModel::~BootLoaderModel()
-{
-}
+BootLoaderModel::~BootLoaderModel() {}
 
 void
 BootLoaderModel::init( const QList< Device* >& devices )
@@ -67,11 +65,8 @@ BootLoaderModel::createMbrItems()
 {
     for ( auto device : m_devices )
     {
-        QString text = tr( "Master Boot Record of %1" )
-                       .arg( device->name() );
-        appendRow(
-            createBootLoaderItem( text, device->deviceNode(), false )
-        );
+        QString text = tr( "Master Boot Record of %1" ).arg( device->name() );
+        appendRow( createBootLoaderItem( text, device->deviceNode(), false ) );
     }
 }
 
@@ -90,23 +85,29 @@ BootLoaderModel::update()
 void
 BootLoaderModel::updateInternal()
 {
-    QMutexLocker lock(&m_lock);
+    QMutexLocker lock( &m_lock );
     clear();
     createMbrItems();
 
     // An empty model is possible if you don't havee permissions: don't crash though.
     if ( rowCount() < 1 )
+    {
         return;
+    }
 
     QString partitionText;
     Partition* partition = KPMHelpers::findPartitionByMountPoint( m_devices, "/boot" );
     if ( partition )
+    {
         partitionText = tr( "Boot Partition" );
+    }
     else
     {
         partition = KPMHelpers::findPartitionByMountPoint( m_devices, "/" );
         if ( partition )
+        {
             partitionText = tr( "System Partition" );
+        }
     }
 
     Q_ASSERT( rowCount() > 0 );
@@ -117,7 +118,9 @@ BootLoaderModel::updateInternal()
     if ( !partition )
     {
         if ( lastIsPartition )
+        {
             takeRow( rowCount() - 1 );
+        }
     }
     else
     {
@@ -129,15 +132,11 @@ BootLoaderModel::updateInternal()
         }
         else
         {
-            appendRow(
-                createBootLoaderItem( partitionText, PartitionInfo::mountPoint( partition ), true )
-            );
+            appendRow( createBootLoaderItem( partitionText, PartitionInfo::mountPoint( partition ), true ) );
         }
 
         // Create "don't install bootloader" item
-        appendRow(
-            createBootLoaderItem( tr( "Do not install a boot loader" ), QString(), false )
-        );
+        appendRow( createBootLoaderItem( tr( "Do not install a boot loader" ), QString(), false ) );
     }
 }
 
@@ -145,13 +144,15 @@ BootLoaderModel::updateInternal()
 QVariant
 BootLoaderModel::data( const QModelIndex& index, int role ) const
 {
-    QMutexLocker lock(&m_lock);
+    QMutexLocker lock( &m_lock );
     if ( role == Qt::DisplayRole )
     {
         QString displayRole = QStandardItemModel::data( index, Qt::DisplayRole ).toString();
         QString pathRole = QStandardItemModel::data( index, BootLoaderModel::BootLoaderPathRole ).toString();
         if ( pathRole.isEmpty() )
+        {
             return displayRole;
+        }
 
         return tr( "%1 (%2)" ).arg( displayRole, pathRole );
     }
@@ -163,14 +164,18 @@ namespace Calamares
 int
 findBootloader( const QAbstractItemModel* model, const QString& path )
 {
-    for ( int i = 0; i < model->rowCount(); ++i)
+    for ( int i = 0; i < model->rowCount(); ++i )
     {
         const auto index = model->index( i, 0, QModelIndex() );
         if ( !index.isValid() )
+        {
             continue;
+        }
         QVariant var = model->data( index, BootLoaderModel::BootLoaderPathRole );
         if ( var.isValid() && var.toString() == path )
+        {
             return i;
+        }
     }
 
     return -1;
@@ -191,7 +196,7 @@ restoreSelectedBootLoader( QComboBox& combo, const QString& path )
     {
         combo.setCurrentIndex( 0 );
     }
-    else if ( (r = findBootloader( model, path )) >= 0 )
+    else if ( ( r = findBootloader( model, path ) ) >= 0 )
     {
         combo.setCurrentIndex( r );
     }
@@ -201,4 +206,4 @@ restoreSelectedBootLoader( QComboBox& combo, const QString& path )
     }
 }
 
-}  // namespace
+}  // namespace Calamares

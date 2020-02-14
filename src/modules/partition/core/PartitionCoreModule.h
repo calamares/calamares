@@ -139,10 +139,10 @@ public:
      * If @p flags is not FlagNone, then the given flags are
      * applied to the newly-created partition.
      */
-    void createPartition( Device* device, Partition* partition,
-                          PartitionTable::Flags flags = KPM_PARTITION_FLAG(None) );
+    void
+    createPartition( Device* device, Partition* partition, PartitionTable::Flags flags = KPM_PARTITION_FLAG( None ) );
 
-    void createVolumeGroup( QString &vgName, QVector< const Partition* > pvList, qint32 peSize );
+    void createVolumeGroup( QString& vgName, QVector< const Partition* > pvList, qint32 peSize );
 
     void resizeVolumeGroup( LvmDevice* device, QVector< const Partition* >& pvList );
 
@@ -166,8 +166,13 @@ public:
     void initLayout();
     void initLayout( const QVariantList& config );
 
-    void layoutApply( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
-    void layoutApply( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase, PartitionNode* parent, const PartitionRole& role );
+    void layoutApply( Device* dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
+    void layoutApply( Device* dev,
+                      qint64 firstSector,
+                      qint64 lastSector,
+                      QString luksPassphrase,
+                      PartitionNode* parent,
+                      const PartitionRole& role );
 
     /**
      * @brief jobs creates and returns a list of jobs which can then apply the changes
@@ -196,19 +201,19 @@ public:
      */
     Partition* findPartitionByMountPoint( const QString& mountPoint ) const;
 
-    void revert();                      // full revert, thread safe, calls doInit
-    void revertAllDevices();            // convenience function, calls revertDevice
+    void revert();  // full revert, thread safe, calls doInit
+    void revertAllDevices();  // convenience function, calls revertDevice
     /** @brief rescans a single Device and updates DeviceInfo
      *
      * When @p individualRevert is true, calls refreshAfterModelChange(),
      * used to reduce number of refreshes when calling revertAllDevices().
      */
-    void revertDevice( Device* dev, bool individualRevert=true );
-    void asyncRevertDevice( Device* dev, std::function< void() > callback ); //like revertDevice, but asynchronous
+    void revertDevice( Device* dev, bool individualRevert = true );
+    void asyncRevertDevice( Device* dev, std::function< void() > callback );  //like revertDevice, but asynchronous
 
-    void clearJobs();   // only clear jobs, the Device* states are preserved
+    void clearJobs();  // only clear jobs, the Device* states are preserved
 
-    bool isDirty();     // true if there are pending changes, otherwise false
+    bool isDirty();  // true if there are pending changes, otherwise false
 
     bool isVGdeactivated( LvmDevice* device );
 
@@ -225,9 +230,9 @@ public:
      */
     QList< SummaryInfo > createSummaryInfo() const;
 
-    void dumpQueue() const; // debug output
+    void dumpQueue() const;  // debug output
 
-    const OsproberEntryList osproberEntries() const;    // os-prober data structure, cached
+    const OsproberEntryList osproberEntries() const;  // os-prober data structure, cached
 
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );

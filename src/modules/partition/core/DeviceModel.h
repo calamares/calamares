@@ -20,8 +20,8 @@
 #define DEVICEMODEL_H
 
 #include <QAbstractListModel>
-#include <QScopedPointer>
 #include <QList>
+#include <QScopedPointer>
 
 class Device;
 class PartitionModel;

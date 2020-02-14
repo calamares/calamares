@@ -35,12 +35,12 @@ class PartitionNode;
 class PartitionRole;
 
 #if defined( WITH_KPMCORE4API )
-#define KPM_PARTITION_FLAG(x) PartitionTable::Flag::x
-#define KPM_PARTITION_STATE(x) Partition::State::x
+#define KPM_PARTITION_FLAG( x ) PartitionTable::Flag::x
+#define KPM_PARTITION_STATE( x ) Partition::State::x
 #define KPM_PARTITION_FLAG_ESP PartitionTable::Flag::Boot
 #else
-#define KPM_PARTITION_FLAG(x) PartitionTable::Flag##x
-#define KPM_PARTITION_STATE(x) Partition::State##x
+#define KPM_PARTITION_FLAG( x ) PartitionTable::Flag##x
+#define KPM_PARTITION_STATE( x ) Partition::State##x
 #define KPM_PARTITION_FLAG_ESP PartitionTable::FlagEsp
 #endif
 
@@ -79,6 +79,6 @@ Partition* createNewEncryptedPartition( PartitionNode* parent,
 
 Partition* clonePartition( Device* device, Partition* partition );
 
-}
+}  // namespace KPMHelpers
 
 #endif /* KPMHELPERS_H */
