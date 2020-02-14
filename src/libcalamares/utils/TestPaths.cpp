@@ -117,7 +117,10 @@ TestPaths::testTargetPath()
 void
 TestPaths::testCreateTarget()
 {
-    QCOMPARE( m_system->createTargetFile( testFile, "Hello" ), QString( absFile ) );  // Success
+    auto r = m_system->createTargetFile( testFile, "Hello" );
+    QVERIFY( !r.failed() );
+    QVERIFY( r );
+    QCOMPARE( r.path(), QString( absFile ) );  // Success
 
     QFileInfo fi( absFile );
     QVERIFY( fi.exists() );
