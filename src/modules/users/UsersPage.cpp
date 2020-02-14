@@ -99,14 +99,12 @@ UsersPage::UsersPage( QWidget* parent )
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
     connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int )
-    {
+    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int ) {
         onPasswordTextChanged( ui->textBoxUserPassword->text() );
         onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
         checkReady( isReady() );
     } );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked )
-    {
+    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
         ui->labelChooseRootPassword->setVisible( !checked );
         ui->labelRootPassword->setVisible( !checked );
         ui->labelRootPasswordError->setVisible( !checked );
@@ -560,10 +558,10 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
     {
         if ( value.toBool() )
         {
-            m_passwordChecks.push_back( PasswordCheck(
-                []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
-                []( const QString& s ) { return !s.isEmpty(); },
-                PasswordCheck::Weight( 1 ) ) );
+            m_passwordChecks.push_back(
+                PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
+                               []( const QString& s ) { return !s.isEmpty(); },
+                               PasswordCheck::Weight( 1 ) ) );
         }
     }
 #ifdef CHECK_PWQUALITY

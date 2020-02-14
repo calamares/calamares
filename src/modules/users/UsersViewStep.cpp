@@ -174,7 +174,8 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     m_widget->setPasswordCheckboxVisible( CalamaresUtils::getBool( configurationMap, "allowWeakPasswords", false ) );
-    m_widget->setValidatePasswordDefault( !CalamaresUtils::getBool( configurationMap, "allowWeakPasswordsDefault", false) );
+    m_widget->setValidatePasswordDefault(
+        !CalamaresUtils::getBool( configurationMap, "allowWeakPasswordsDefault", false ) );
 
     QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
     if ( configurationMap.contains( "userShell" ) )
