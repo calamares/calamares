@@ -72,16 +72,13 @@ SetHostNameJob::exec()
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
-    CalamaresUtils::System::instance()->createTargetFile( QStringLiteral( "/etc/hostname" ),
-                                                          ( m_hostname + '\n' ).toUtf8() );
-
-#if 0
-    if ( !hostfile.open( QFile::WriteOnly ) )
+    if ( CalamaresUtils::System::instance()
+             ->createTargetFile( QStringLiteral( "/etc/hostname" ), ( m_hostname + '\n' ).toUtf8() )
+             .failed() )
     {
         cError() << "Can't write to hostname file";
         return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
     }
-#endif
 
     // The actual hostname gets substituted in at %1
     static const char etc_hosts[] = R"(# Host addresses
@@ -92,16 +89,13 @@ ff02::1    ip6-allnodes
 ff02::2    ip6-allrouters
 )";
 
-    CalamaresUtils::System::instance()->createTargetFile( QStringLiteral( "/etc/hosts" ),
-                                                          QString( etc_hosts ).arg( m_hostname ).toUtf8() );
-
-#if 0
-    if ( !hostsfile.open( QFile::WriteOnly ) )
+    if ( CalamaresUtils::System::instance()
+             ->createTargetFile( QStringLiteral( "/etc/hosts" ), QString( etc_hosts ).arg( m_hostname ).toUtf8() )
+             .failed() )
     {
         cError() << "Can't write to hosts file";
         return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
     }
-#endif
 
     return Calamares::JobResult::ok();
 }
