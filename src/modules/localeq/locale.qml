@@ -23,7 +23,7 @@ ResponsiveBase
 	subtitle: stackView.currentItem.subtitle
 	message: stackView.currentItem.message
 
-	stackView.initialItem:  Item
+	stackView.initialItem: Item
 	{
 		id: _regionsListComponent
 
