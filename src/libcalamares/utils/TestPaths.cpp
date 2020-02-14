@@ -46,6 +46,7 @@ private Q_SLOTS:
     void init();
     void cleanupTestCase();
 
+    void testCreationResult();
     void testTargetPath();
     void testCreateTarget();
     void testCreateTargetBasedirs();
@@ -93,6 +94,42 @@ TestPaths::init()
 {
     cDebug() << "Setting rootMountPoint";
     m_gs->insert( "rootMountPoint", "/tmp" );
+}
+
+void TestPaths::testCreationResult()
+{
+    using Code = CalamaresUtils::CreationResult::Code;
+
+    for( auto c : { Code::OK, Code::AlreadyExists, Code::Failed, Code::Invalid } )
+    {
+        auto r = CalamaresUtils::CreationResult( c );
+        QVERIFY( r.path().isEmpty() );
+        QCOMPARE( r.path(), QString() );
+        // Get a warning from Clang if we're not covering everything
+        switch( r.code() )
+        {
+            case Code::OK:
+                QVERIFY( !r.failed() );
+                QVERIFY( r );
+                break;
+            case Code::AlreadyExists:
+                QVERIFY( !r.failed() );
+                QVERIFY( !r );
+                break;
+            case Code::Failed:
+            case Code::Invalid:
+                QVERIFY( r.failed() );
+                QVERIFY( !r );
+                break;
+        }
+    }
+
+    QString path( "/etc/os-release" );
+    auto r = CalamaresUtils::CreationResult( path );
+    QVERIFY( !r.failed() );
+    QVERIFY( r );
+    QCOMPARE( r.code(), Code::OK );
+    QCOMPARE( r.path(), path );
 }
 
 
