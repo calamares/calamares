@@ -15,13 +15,13 @@ Main:
 * Compiler with C++14 support: GCC >= 5 or Clang >= 3.5.1
 * CMake >= 3.3
 * Qt >= 5.9
-* yaml-cpp >= 0.5.1
+* **yaml-cpp** >= 0.5.1
 * Python >= 3.3 (required for some modules)
-* Boost.Python >= 1.55.0 (required for some modules)
-* KDE extra-cmake-modules >= 5.18 (recommended; required for some modules;
+* **Boost**.Python >= 1.55.0 (required for some modules)
+* KDE **extra-cmake-modules** >= 5.18 (recommended; required for some modules;
   required for some tests)
-* KDE Frameworks KCoreAddons (>= 5.58 recommended)
-* PythonQt (optional, deprecated)
+* KDE Frameworks **KCoreAddons** (>= 5.58 recommended)
+* ~~PythonQt (optional, deprecated)~~
 
 Modules:
 * Individual modules may have their own requirements;
