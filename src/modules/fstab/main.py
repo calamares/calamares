@@ -218,7 +218,6 @@ class FstabGenerator(object):
 
                 else:
                     dct = self.generate_fstab_line_info(partition)
-
                     if dct:
                         self.print_fstab_line(dct, file=fstab_file)
 
@@ -245,6 +244,10 @@ class FstabGenerator(object):
             return None
         if not mount_point:
             mount_point = "swap"
+        # Existing swap partitins should not be used
+        if filesystem == "swap" and not partition["new"]:
+            libcalamares.utils.debug("fstab ignoring old swap {}".format(disk_name))
+            return None
 
         options = self.get_mount_options(filesystem, mount_point)
 
