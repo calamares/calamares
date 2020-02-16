@@ -100,6 +100,7 @@ mapForPartition( Partition* partition, const QString& uuid )
         map[ "fs" ] = untranslatedFS( dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() );
     }
     map[ "uuid" ] = uuid;
+    map[ "new" ] = partition->state() == Partition::StateNew;
 
     // Debugging for inside the loop in createPartitionList(),
     // so indent a bit
