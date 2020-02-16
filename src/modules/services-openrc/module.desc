@@ -1,5 +1,0 @@
----
-type:       "job"
-name:       "services-openrc"
-interface:  "python"
-script:     "main.py"
