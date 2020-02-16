@@ -1,0 +1,7 @@
+# Module metadata file for dummy python jobmodule
+# Syntax is YAML 1.2
+---
+type:       "job"
+name:       "dummypython"
+interface:  "python"
+script:     "main.py"

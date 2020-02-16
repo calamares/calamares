@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "dracut"
+interface:  "python"
+script:     "main.py"
