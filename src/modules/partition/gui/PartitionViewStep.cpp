@@ -648,7 +648,7 @@ PartitionViewStep::checkRequirements()
     {
         QLatin1String( "partitions" ),
         []{ return tr( "has at least one disk device available." ); },
-        []{ return tr( "There are no partitons to install on." ); },
+        []{ return tr( "There are no partitions to install on." ); },
         m_core->deviceModel()->rowCount() > 0,  // satisfied
 #ifdef DEBUG_PARTITION_UNSAFE
              false  // optional
