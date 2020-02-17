@@ -45,6 +45,8 @@ private Q_SLOTS:
     void testEtcHostname();
     void testEtcHosts();
 
+    void cleanup();
+
 private:
     QTemporaryDir m_dir;
 };
@@ -52,12 +54,10 @@ private:
 UsersTests::UsersTests()
     : m_dir( QStringLiteral( "/tmp/calamares-usertest" ) )
 {
-    // Would want to do this if the test fails, automatically.
-    //
-    // m_dir.setAutoRemove( false );
 }
 
-void UsersTests::initTestCase()
+void
+UsersTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
     cDebug() << "Users test started.";
@@ -80,7 +80,8 @@ void UsersTests::initTestCase()
     gs->insert( "rootMountPoint", m_dir.path() );
 }
 
-void UsersTests::testEtcHostname()
+void
+UsersTests::testEtcHostname()
 {
     cDebug() << "Test dir" << m_dir.path();
 
@@ -98,10 +99,11 @@ void UsersTests::testEtcHostname()
     QVERIFY( QFile::exists( m_dir.filePath( "etc/hostname" ) ) );
 
     // 22 for the test string, above, and 1 for the newline
-    QCOMPARE( QFileInfo( m_dir.filePath("etc/hostname") ).size(), 22 + 1);
+    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hostname" ) ).size(), 22 + 1 );
 }
 
-void UsersTests::testEtcHosts()
+void
+UsersTests::testEtcHosts()
 {
     // Assume previous tests did their work
     QVERIFY( QFile::exists( m_dir.path() ) );
@@ -111,9 +113,17 @@ void UsersTests::testEtcHosts()
     QVERIFY( QFile::exists( m_dir.filePath( "etc/hosts" ) ) );
     // The skeleton contains %1 which has the hostname substituted in, so we lose two,
     // and the rest of the blabla is 150 (according to Python)
-    QCOMPARE( QFileInfo( m_dir.filePath("etc/hosts") ).size(), 150 + 22 - 2 );
+    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hosts" ) ).size(), 150 + 22 - 2 );
 }
 
+void
+UsersTests::cleanup()
+{
+    if ( QTest::currentTestFailed() )
+    {
+        m_dir.setAutoRemove( false );
+    }
+}
 
 
 QTEST_GUILESS_MAIN( UsersTests )
@@ -121,4 +131,3 @@ QTEST_GUILESS_MAIN( UsersTests )
 #include "utils/moc-warnings.h"
 
 #include "Tests.moc"
-
