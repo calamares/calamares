@@ -54,7 +54,7 @@ InitramfsJob::exec()
         // First make sure we generate a safe initramfs with suitable permissions.
         static const char confFile[] = "/etc/initramfs-tools/conf.d/calamares-safe-initramfs.conf";
         static const char contents[] = "UMASK=0077\n";
-        if ( CalamaresUtils::System::instance()->createTargetFile( confFile, QByteArray( contents ) ).isEmpty() )
+        if ( CalamaresUtils::System::instance()->createTargetFile( confFile, QByteArray( contents ) ).failed() )
         {
             cWarning() << Logger::SubEntry << "Could not configure safe UMASK for initramfs.";
             // But continue anyway.

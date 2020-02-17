@@ -3,6 +3,7 @@
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   Copyright 2020, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -40,6 +41,7 @@
 #include "utils/String.h"
 
 #include <QBoxLayout>
+#include <QFile>
 #include <QLabel>
 #include <QLineEdit>
 #include <QRegExp>
@@ -97,14 +99,12 @@ UsersPage::UsersPage( QWidget* parent )
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
     connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int )
-    {
+    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int ) {
         onPasswordTextChanged( ui->textBoxUserPassword->text() );
         onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
         checkReady( isReady() );
     } );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked )
-    {
+    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
         ui->labelChooseRootPassword->setVisible( !checked );
         ui->labelRootPassword->setVisible( !checked );
         ui->labelRootPasswordError->setVisible( !checked );
@@ -166,6 +166,37 @@ UsersPage::isReady()
     return readyFields && m_readyRootPassword;
 }
 
+QString
+UsersPage::getHostname() const
+{
+    return ui->textBoxHostname->text();
+}
+
+QString
+UsersPage::getRootPassword() const
+{
+    if ( m_writeRootPassword )
+    {
+        if ( ui->checkBoxReusePassword->isChecked() )
+        {
+            return ui->textBoxUserPassword->text();
+        }
+        else
+        {
+            return ui->textBoxRootPassword->text();
+        }
+    }
+    else
+    {
+        return QString();
+    }
+}
+
+QPair< QString, QString >
+UsersPage::getUserPassword() const
+{
+    return QPair< QString, QString >( ui->textBoxUsername->text(), ui->textBoxUserPassword->text() );
+}
 
 QList< Calamares::job_ptr >
 UsersPage::createJobs( const QStringList& defaultGroupsList )
@@ -186,32 +217,10 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
                            defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
 
-    j = new SetPasswordJob( ui->textBoxUsername->text(), ui->textBoxUserPassword->text() );
-    list.append( Calamares::job_ptr( j ) );
-
     if ( m_writeRootPassword )
     {
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
-        if ( ui->checkBoxReusePassword->isChecked() )
-        {
-            j = new SetPasswordJob( "root", ui->textBoxUserPassword->text() );
-        }
-        else
-        {
-            j = new SetPasswordJob( "root", ui->textBoxRootPassword->text() );
-        }
-        list.append( Calamares::job_ptr( j ) );
     }
-    else
-    {
-        j = new SetPasswordJob( "root",
-                                "" );  //explicitly disable root password
-        list.append( Calamares::job_ptr( j ) );
-    }
-
-    j = new SetHostNameJob( ui->textBoxHostname->text() );
-    list.append( Calamares::job_ptr( j ) );
-
     gs->insert( "hostname", ui->textBoxHostname->text() );
     if ( ui->checkBoxAutoLogin->isChecked() )
     {
@@ -269,6 +278,38 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
     checkReady( isReady() );
 }
 
+/** @brief Guess the machine's name
+ *
+ * If there is DMI data, use that; otherwise, just call the machine "-pc".
+ * Reads the DMI data just once.
+ */
+static QString
+guessProductName()
+{
+    static bool tried = false;
+    static QString dmiProduct;
+
+    if ( !tried )
+    {
+        // yes validateHostnameText() but these files can be a mess
+        QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
+        QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
+
+        if ( dmiFile.exists() && dmiFile.open( QIODevice::ReadOnly ) )
+        {
+            dmiProduct = QString::fromLocal8Bit( dmiFile.readAll().simplified().data() )
+                             .toLower()
+                             .replace( dmirx, " " )
+                             .remove( ' ' );
+        }
+        if ( dmiProduct.isEmpty() )
+        {
+            dmiProduct = QStringLiteral( "-pc" );
+        }
+        tried = true;
+    }
+    return dmiProduct;
+}
 
 void
 UsersPage::fillSuggestions()
@@ -303,7 +344,9 @@ UsersPage::fillSuggestions()
     {
         if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
         {
-            QString hostnameSuggestion = QString( "%1-pc" ).arg( cleanParts.first() );
+            QString hostnameSuggestion;
+            QString productName = guessProductName();
+            hostnameSuggestion = QString( "%1-%2" ).arg( cleanParts.first() ).arg( productName );
             if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
             {
                 ui->textBoxHostname->setText( hostnameSuggestion );
@@ -524,10 +567,10 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
     {
         if ( value.toBool() )
         {
-            m_passwordChecks.push_back( PasswordCheck(
-                []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
-                []( const QString& s ) { return !s.isEmpty(); },
-                PasswordCheck::Weight( 1 ) ) );
+            m_passwordChecks.push_back(
+                PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
+                               []( const QString& s ) { return !s.isEmpty(); },
+                               PasswordCheck::Weight( 1 ) ) );
         }
     }
 #ifdef CHECK_PWQUALITY

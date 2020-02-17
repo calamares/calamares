@@ -125,8 +125,13 @@ MachineIdTests::testJob()
     gs->insert( "rootMountPoint", "/tmp" );
 
     // Prepare part of the target filesystem
-    QVERIFY( system->createTargetDirs("/etc") );
-    QVERIFY( !(system->createTargetFile( "/etc/machine-id", "Hello" ).isEmpty() ) );
+    {
+        QVERIFY( system->createTargetDirs("/etc") );
+        auto r = system->createTargetFile( "/etc/machine-id", "Hello" );
+        QVERIFY( !r.failed() );
+        QVERIFY( r );
+        QVERIFY( !r.path().isEmpty() );
+    }
 
     MachineIdJob job( nullptr );
     QVERIFY( !job.prettyName().isEmpty() );
