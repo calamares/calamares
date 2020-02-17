@@ -209,7 +209,8 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
         list.append( Calamares::job_ptr( j ) );
     }
 
-    j = new SetHostNameJob( ui->textBoxHostname->text() );
+    j = new SetHostNameJob( ui->textBoxHostname->text(),
+                            SetHostNameJob::Action::EtcHostname | SetHostNameJob::Action::EtcHosts );
     list.append( Calamares::job_ptr( j ) );
 
     gs->insert( "hostname", ui->textBoxHostname->text() );

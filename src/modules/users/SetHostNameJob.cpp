@@ -31,9 +31,10 @@
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusReply>
 
-SetHostNameJob::SetHostNameJob( const QString& hostname )
+SetHostNameJob::SetHostNameJob( const QString& hostname, Actions a )
     : Calamares::Job()
     , m_hostname( hostname )
+    , m_actions( a )
 {
 }
 
@@ -127,16 +128,28 @@ SetHostNameJob::exec()
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
-    if ( !setFileHostname( m_hostname ) )
+    if ( m_actions & Action::EtcHostname )
     {
-        cError() << "Can't write to hostname file";
-        return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
+        if ( !setFileHostname( m_hostname ) )
+        {
+            cError() << "Can't write to hostname file";
+            return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
+        }
     }
 
-    if ( !writeFileEtcHosts( m_hostname ) )
+    if ( m_actions & Action::EtcHosts )
     {
-        cError() << "Can't write to hosts file";
-        return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
+        if ( !writeFileEtcHosts( m_hostname ) )
+        {
+            cError() << "Can't write to hosts file";
+            return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
+        }
+    }
+
+    if ( m_actions & Action::SystemdHostname )
+    {
+        // Does its own logging
+        setSystemdHostname( m_hostname );
     }
 
     return Calamares::JobResult::ok();
