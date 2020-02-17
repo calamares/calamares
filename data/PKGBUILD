@@ -19,9 +19,12 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 # Todo : Change URL
-source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
-        )
+#source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
+#         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
+#        )
+# Temp URL
+source+=("https://github.com/SereneTeam/alterlinux-calamares/archive/alterlinux-forked.tar.gz")
+
 # Todo: Check sha256
 #sha256sums=('13bd74bb9bbfd7f9c3a386fe47804ab4d1af41332a028249cf674e8aab8d4460')
 
@@ -40,7 +43,7 @@ prepare() {
     sed -i -e "s|CALAMARES_VERSION_RC 1|CALAMARES_VERSION_RC 0|g" CMakeLists.txt
 
     # change branding
-    sed -i -e "s/default/manjaro/g" src/branding/CMakeLists.txt
+    sed -i -e "s/default/alterlinux/g" src/branding/CMakeLists.txt
 }
 
 build() {
@@ -64,7 +67,7 @@ build() {
 package() {
     cd ${srcdir}/calamares-${pkgver}/build
     make DESTDIR="$pkgdir" install
-    install -Dm644 "../data/manjaro-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
+    install -Dm644 "../data/alterlinux-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
     install -Dm644 "../data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
     install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
     install -Dm644 "../data/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
