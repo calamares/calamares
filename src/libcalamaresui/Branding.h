@@ -22,7 +22,7 @@
 #ifndef BRANDING_H
 #define BRANDING_H
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include "utils/NamedSuffix.h"
 
@@ -40,7 +40,7 @@ namespace Calamares
 
 class GlobalStorage;
 
-class UIDLLEXPORT Branding : public QObject
+class DLLEXPORT Branding : public QObject
 {
     Q_OBJECT
 public:

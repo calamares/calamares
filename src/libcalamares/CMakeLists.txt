@@ -74,7 +74,6 @@ mark_thirdparty_code( ${kdsagSources} )
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${YAMLCPP_INCLUDE_DIR}
 )
 
 ### OPTIONAL Python support
@@ -126,7 +125,7 @@ target_link_libraries( calamares
     LINK_PRIVATE
         ${OPTIONAL_PRIVATE_LIBRARIES}
     LINK_PUBLIC
-        ${YAMLCPP_LIBRARY}
+        yamlcpp
         Qt5::Core
         KF5::CoreAddons
         ${OPTIONAL_PUBLIC_LIBRARIES}
@@ -159,85 +158,51 @@ install( FILES ${utilsHeaders}                      DESTINATION include/libcalam
 ### TESTING
 #
 #
-if ( ECM_FOUND AND BUILD_TESTING )
-    ecm_add_test(
-            utils/Tests.cpp
-        TEST_NAME
-            libcalamarestest
-        LINK_LIBRARIES
-            calamares
-            Qt5::Core
-            Qt5::Test
-    )
-    calamares_automoc( libcalamarestest )
+calamares_add_test(
+    libcalamarestest
+    SOURCES
+        utils/Tests.cpp
+)
 
-    ecm_add_test(
-            utils/TestPaths.cpp
-        TEST_NAME
-            libcalamarestestpaths
-        LINK_LIBRARIES
-            calamares
-            Qt5::Core
-            Qt5::Test
-    )
-    calamares_automoc( libcalamarestestpaths )
+calamares_add_test(
+    libcalamarestestpaths
+    SOURCES
+        utils/TestPaths.cpp
+)
 
+calamares_add_test(
+    geoiptest
+    SOURCES
+        geoip/GeoIPTests.cpp
+        ${geoip_src}
+)
 
-    ecm_add_test(
-            geoip/GeoIPTests.cpp
-            ${geoip_src}
-        TEST_NAME
-            geoiptest
-        LINK_LIBRARIES
-            calamares
-            Qt5::Test
-            ${YAMLCPP_LIBRARY}
-    )
-    calamares_automoc( geoiptest )
+calamares_add_test(
+    libcalamarespartitiontest
+    SOURCES
+        partition/Tests.cpp
+)
 
-    ecm_add_test(
-            partition/Tests.cpp
-        TEST_NAME
-            libcalamarespartitiontest
-        LINK_LIBRARIES
-            calamares
-            Qt5::Test
-    )
-    calamares_automoc( libcalamarespartitiontest )
+calamares_add_test(
+    libcalamareslocaletest
+    SOURCES
+        locale/Tests.cpp
+)
 
-    ecm_add_test(
-            locale/Tests.cpp
-        TEST_NAME
-            libcalamareslocaletest
-        LINK_LIBRARIES
-            calamares
-            Qt5::Test
-    )
-    calamares_automoc( libcalamareslocaletest )
+calamares_add_test(
+    libcalamaresnetworktest
+    SOURCES
+        network/Tests.cpp
+)
 
-    ecm_add_test(
-            network/Tests.cpp
-        TEST_NAME
-            libcalamaresnetworktest
-        LINK_LIBRARIES
-            calamares
-            Qt5::Test
-    )
-    calamares_automoc( libcalamaresnetworktest )
-
-    ecm_add_test(
-            modulesystem/Tests.cpp
-        TEST_NAME
-            libcalamaresmodulesystemtest
-        LINK_LIBRARIES
-            calamares
-            Qt5::Test
-    )
-    calamares_automoc( libcalamaresmodulesystemtest )
-endif()
+calamares_add_test(
+    libcalamaresmodulesystemtest
+    SOURCES
+        modulesystem/Tests.cpp
+)
 
 if( BUILD_TESTING )
     add_executable( test_geoip geoip/test_geoip.cpp ${geoip_src} )
-    target_link_libraries( test_geoip calamares Qt5::Network ${YAMLCPP_LIBRARY} )
+    target_link_libraries( test_geoip calamares Qt5::Network yamlcpp )
     calamares_automoc( test_geoip )
 endif()

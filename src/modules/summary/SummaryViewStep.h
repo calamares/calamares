@@ -24,7 +24,7 @@
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
 
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 
 class SummaryPage;
 

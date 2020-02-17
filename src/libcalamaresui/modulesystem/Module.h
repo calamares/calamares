@@ -22,7 +22,7 @@
 
 #include "Job.h"
 #include "Requirement.h"
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include "modulesystem/Descriptor.h"
 #include "modulesystem/InstanceKey.h"
@@ -40,7 +40,7 @@ namespace Calamares
  * takes care of creating an object of the correct type starting from a module
  * descriptor structure.
  */
-class UIDLLEXPORT Module
+class DLLEXPORT Module
 {
 public:
     /**

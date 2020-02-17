@@ -28,10 +28,10 @@
 
 #include <QPixmap>
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 #include "utils/CalamaresUtilsGui.h"
 
-class UIDLLEXPORT ImageRegistry
+class DLLEXPORT ImageRegistry
 {
 public:
     static ImageRegistry* instance();

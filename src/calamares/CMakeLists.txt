@@ -1,5 +1,3 @@
-add_definitions( -DUIDLLEXPORT_PRO )
-
 set( calamaresSources
     main.cpp
     CalamaresApplication.cpp

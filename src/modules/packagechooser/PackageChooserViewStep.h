@@ -19,7 +19,7 @@
 #ifndef PACKAGECHOOSERVIEWSTEP_H
 #define PACKAGECHOOSERVIEWSTEP_H
 
-#include "PluginDllMacro.h"
+#include "DllMacro.h"
 #include "locale/TranslatableConfiguration.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"

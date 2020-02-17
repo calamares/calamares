@@ -30,21 +30,15 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
         SHARED_LIB
     )
 
-    if( ECM_FOUND AND BUILD_TESTING )
-        ecm_add_test(
-                Tests.cpp
-            TEST_NAME
-                fsresizertest
-            LINK_LIBRARIES
-                ${CALAMARES_LIBRARIES}
-                calamares
-                calamares_job_fsresizer  # From above
-                ${YAMLCPP_LIBRARY}
-                Qt5::Core
-                Qt5::Test
-        )
-        set_target_properties( fsresizertest PROPERTIES AUTOMOC TRUE )
-        target_include_directories( fsresizertest PRIVATE /usr/local/include )
+    calamares_add_test(
+        fsresizertest
+        SOURCES
+            Tests.cpp
+        LIBRARIES
+            calamares_job_fsresizer  # From above
+            yamlcpp
+    )
+    if( TARGET fsresizertest )
         target_compile_definitions( fsresizertest PRIVATE ${_partition_defs} )
     endif()
 else()

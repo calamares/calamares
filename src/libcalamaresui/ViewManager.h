@@ -20,7 +20,7 @@
 #ifndef VIEWMANAGER_H
 #define VIEWMANAGER_H
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 #include "viewpages/ViewStep.h"
 
 #include <QList>
@@ -33,7 +33,7 @@ namespace Calamares
  * @brief The ViewManager class handles progression through view pages.
  * @note Singleton object, only use through ViewManager::instance().
  */
-class UIDLLEXPORT ViewManager : public QObject
+class DLLEXPORT ViewManager : public QObject
 {
     Q_OBJECT
 public:

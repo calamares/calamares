@@ -21,7 +21,7 @@
 #define CALAMARES_VIEWMODULE_H
 
 #include "Module.h"
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 class QPluginLoader;
 
@@ -30,7 +30,7 @@ namespace Calamares
 
 class ViewStep;
 
-class UIDLLEXPORT ViewModule : public Module
+class DLLEXPORT ViewModule : public Module
 {
 public:
     Type type() const override;

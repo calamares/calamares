@@ -66,7 +66,7 @@ endif()
 
 calamares_add_library( calamaresui
     SOURCES ${calamaresui_SOURCES}
-    EXPORT_MACRO UIDLLEXPORT_PRO
+    EXPORT_MACRO DLLEXPORT_PRO
     LINK_PRIVATE_LIBRARIES
         ${OPTIONAL_PYTHON_LIBRARIES}
     LINK_LIBRARIES

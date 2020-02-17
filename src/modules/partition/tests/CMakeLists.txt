@@ -21,16 +21,12 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-if( ECM_FOUND AND BUILD_TESTING )
-    ecm_add_test( ${partitionjobtests_SRCS}
-        TEST_NAME partitionjobtests
-        LINK_LIBRARIES
-            ${CALAMARES_LIBRARIES}
-            kpmcore
-            Qt5::Core
-            Qt5::Test
-    )
-
-    set_target_properties( partitionjobtests PROPERTIES AUTOMOC TRUE )
+calamares_add_test(
+    partitionjobtests
+    SOURCES ${partitionjobtests_SRCS}
+    LIBRARIES
+        kpmcore
+)
+if( TARGET partitionjobtests )
     target_compile_definitions( partitionjobtests PRIVATE ${_partition_defs} )
 endif()
