@@ -54,6 +54,32 @@ SetHostNameJob::prettyStatusMessage() const
     return tr( "Setting hostname %1." ).arg( m_hostname );
 }
 
+static bool
+setFileHostname( const QString& hostname )
+{
+    return !( CalamaresUtils::System::instance()
+                  ->createTargetFile( QStringLiteral( "/etc/hostname" ), ( hostname + '\n' ).toUtf8() )
+                  .failed() );
+}
+
+static bool
+writeFileEtcHosts( const QString& hostname )
+{
+    // The actual hostname gets substituted in at %1
+    static const char etc_hosts[] = R"(# Host addresses
+127.0.0.1  localhost
+127.0.1.1  %1
+::1        localhost ip6-localhost ip6-loopback
+ff02::1    ip6-allnodes
+ff02::2    ip6-allrouters
+)";
+
+    return !( CalamaresUtils::System::instance()
+                  ->createTargetFile( QStringLiteral( "/etc/hosts" ), QString( etc_hosts ).arg( hostname ).toUtf8() )
+                  .failed() );
+}
+
+
 Calamares::JobResult
 SetHostNameJob::exec()
 {
@@ -72,26 +98,13 @@ SetHostNameJob::exec()
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
-    if ( CalamaresUtils::System::instance()
-             ->createTargetFile( QStringLiteral( "/etc/hostname" ), ( m_hostname + '\n' ).toUtf8() )
-             .failed() )
+    if ( !setFileHostname( m_hostname ) )
     {
         cError() << "Can't write to hostname file";
         return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
     }
 
-    // The actual hostname gets substituted in at %1
-    static const char etc_hosts[] = R"(# Host addresses
-127.0.0.1  localhost
-127.0.1.1  %1
-::1        localhost ip6-localhost ip6-loopback
-ff02::1    ip6-allnodes
-ff02::2    ip6-allrouters
-)";
-
-    if ( CalamaresUtils::System::instance()
-             ->createTargetFile( QStringLiteral( "/etc/hosts" ), QString( etc_hosts ).arg( m_hostname ).toUtf8() )
-             .failed() )
+    if ( !writeFileEtcHosts( m_hostname ) )
     {
         cError() << "Can't write to hosts file";
         return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
