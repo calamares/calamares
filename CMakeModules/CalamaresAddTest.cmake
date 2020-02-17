@@ -34,7 +34,7 @@ function( calamares_add_test )
     # parse arguments (name needs to be saved before passing ARGN into the macro)
     set( NAME ${ARGV0} )
     set( options GUI )
-    set( multiValueArgs SOURCES )
+    set( multiValueArgs SOURCES LIBRARIES )
     cmake_parse_arguments( TEST "${options}" "" "${multiValueArgs}" ${ARGN} )
     set( TEST_NAME ${NAME} )
 
@@ -45,13 +45,14 @@ function( calamares_add_test )
                 ${TEST_NAME}
             LINK_LIBRARIES
                 calamares
+                ${TEST_LIBRARIES}
                 Qt5::Core
                 Qt5::Test
             )
         calamares_automoc( ${TEST_NAME} )
         target_compile_definitions( ${TEST_NAME} PRIVATE -DBUILD_AS_TEST )
         if( TEST_GUI )
-            target_link_libraries( ${TEST_NAME} PRIVATE calamaresui Qt5::Gui )
+            target_link_libraries( ${TEST_NAME} calamaresui Qt5::Gui )
         endif()
     endif()
 endfunction()

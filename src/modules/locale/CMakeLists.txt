@@ -31,15 +31,9 @@ calamares_add_plugin( locale
     SHARED_LIB
 )
 
-if( ECM_FOUND AND BUILD_TESTING )
-    ecm_add_test(
-            Tests.cpp
-            LocaleConfiguration.cpp
-        TEST_NAME
-            localetest
-        LINK_LIBRARIES
-            calamares
-            Qt5::Test
-    )
-    calamares_automoc( localetest )
-endif()
+calamares_add_test(
+    localetest
+    SOURCES
+        Tests.cpp
+        LocaleConfiguration.cpp
+)

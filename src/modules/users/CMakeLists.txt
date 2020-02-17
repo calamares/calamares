@@ -39,17 +39,11 @@ calamares_add_plugin( users
     SHARED_LIB
 )
 
-if( ECM_FOUND AND BUILD_TESTING )
-    ecm_add_test(
-            PasswordTests.cpp
-            SetPasswordJob.cpp
-        TEST_NAME
-            passwordtest
-        LINK_LIBRARIES
-            ${CALAMARES_LIBRARIES}
-            Qt5::Core
-            Qt5::Test
-            ${CRYPT_LIBRARIES}
-    )
-    calamares_automoc( passwordtest )
-endif()
+calamares_add_test(
+    passwordtest
+    SOURCES
+        PasswordTests.cpp
+        SetPasswordJob.cpp
+    LIBRARIES
+        ${CRYPT_LIBRARIES}
+)
