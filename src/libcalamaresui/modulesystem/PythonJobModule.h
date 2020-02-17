@@ -26,7 +26,7 @@
 namespace Calamares
 {
 
-class DLLEXPORT PythonJobModule : public Module
+class UIDLLEXPORT PythonJobModule : public Module
 {
 public:
     Type type() const override;

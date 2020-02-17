@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,14 +23,26 @@
 #include <QtCore/qglobal.h>
 
 /*
- * Mark symbols exported from Calamares libraries with DLLEXPORT.
- * These are the public API of the libraries.
+ * Mark symbols exported from Calamares non-GUI library with DLLEXPORT.
+ * These are the public API of libcalamares.
  */
 #ifndef DLLEXPORT
 #if defined( DLLEXPORT_PRO )
 #define DLLEXPORT Q_DECL_EXPORT
 #else
 #define DLLEXPORT Q_DECL_IMPORT
+#endif
+#endif
+
+/*
+ * Mark symbols exported from Calamares GUI library with DLLEXPORT.
+ * These are the public API of libcalamaresui.
+ */
+#ifndef UIDLLEXPORT
+#if defined( UIDLLEXPORT_PRO )
+#define UIDLLEXPORT Q_DECL_EXPORT
+#else
+#define UIDLLEXPORT Q_DECL_IMPORT
 #endif
 #endif
 

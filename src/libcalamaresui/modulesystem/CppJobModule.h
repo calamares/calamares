@@ -29,7 +29,7 @@ class QPluginLoader;
 namespace Calamares
 {
 
-class DLLEXPORT CppJobModule : public Module
+class UIDLLEXPORT CppJobModule : public Module
 {
 public:
     Type type() const override;

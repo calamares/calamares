@@ -31,7 +31,7 @@
 #include "DllMacro.h"
 #include "utils/CalamaresUtilsGui.h"
 
-class DLLEXPORT ImageRegistry
+class UIDLLEXPORT ImageRegistry
 {
 public:
     static ImageRegistry* instance();

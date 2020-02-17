@@ -29,7 +29,7 @@
 namespace Calamares
 {
 
-class DLLEXPORT ProcessJobModule : public Module
+class UIDLLEXPORT ProcessJobModule : public Module
 {
 public:
     Type type() const override;

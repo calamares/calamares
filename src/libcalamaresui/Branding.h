@@ -40,7 +40,7 @@ namespace Calamares
 
 class GlobalStorage;
 
-class DLLEXPORT Branding : public QObject
+class UIDLLEXPORT Branding : public QObject
 {
     Q_OBJECT
 public:

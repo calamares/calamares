@@ -40,7 +40,7 @@ namespace Calamares
  * takes care of creating an object of the correct type starting from a module
  * descriptor structure.
  */
-class DLLEXPORT Module
+class UIDLLEXPORT Module
 {
 public:
     /**

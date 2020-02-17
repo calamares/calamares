@@ -27,7 +27,7 @@ namespace Calamares
 
 class ViewStep;
 
-class DLLEXPORT PythonQtViewModule : public Module
+class UIDLLEXPORT PythonQtViewModule : public Module
 {
 public:
     Type type() const override;

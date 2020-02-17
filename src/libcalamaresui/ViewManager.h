@@ -33,7 +33,7 @@ namespace Calamares
  * @brief The ViewManager class handles progression through view pages.
  * @note Singleton object, only use through ViewManager::instance().
  */
-class DLLEXPORT ViewManager : public QObject
+class UIDLLEXPORT ViewManager : public QObject
 {
     Q_OBJECT
 public:

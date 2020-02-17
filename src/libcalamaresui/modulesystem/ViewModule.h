@@ -30,7 +30,7 @@ namespace Calamares
 
 class ViewStep;
 
-class DLLEXPORT ViewModule : public Module
+class UIDLLEXPORT ViewModule : public Module
 {
 public:
     Type type() const override;
