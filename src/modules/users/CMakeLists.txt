@@ -1,4 +1,4 @@
-find_package( Qt5 COMPONENTS Core REQUIRED )
+find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core DBus Network )
 find_package( Crypt REQUIRED )
 
 # Add optional libraries here
@@ -36,6 +36,7 @@ calamares_add_plugin( users
         calamaresui
         ${CRYPT_LIBRARIES}
         ${USER_EXTRA_LIB}
+        Qt5::DBus
     SHARED_LIB
 )
 

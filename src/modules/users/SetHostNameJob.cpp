@@ -27,6 +27,9 @@
 
 #include <QDir>
 #include <QFile>
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusReply>
 
 SetHostNameJob::SetHostNameJob( const QString& hostname )
     : Calamares::Job()
@@ -77,6 +80,32 @@ ff02::2    ip6-allrouters
     return !( CalamaresUtils::System::instance()
                   ->createTargetFile( QStringLiteral( "/etc/hosts" ), QString( etc_hosts ).arg( hostname ).toUtf8() )
                   .failed() );
+}
+
+static void
+setSystemdHostname( const QString& hostname )
+{
+    QDBusInterface hostnamed( "org.freedesktop.hostname1",
+                              "/org/freedesktop/hostname1",
+                              "org.freedesktop.hostname1",
+                              QDBusConnection::systemBus() );
+
+    // Static, writes /etc/hostname
+    {
+        QDBusReply< uint > r = hostnamed.call( "SetStaticHostname", hostname, false );
+        if ( !r.isValid() )
+        {
+            cWarning() << "Could not set hostname through org.freedesktop.hostname1.SetStaticHostname." << r.error();
+        }
+    }
+    // Dynamic, updates kernel
+    {
+        QDBusReply< uint > r = hostnamed.call( "SetHostname", hostname, false );
+        if ( !r.isValid() )
+        {
+            cWarning() << "Could not set hostname through org.freedesktop.hostname1.SetHostname." << r.error();
+        }
+    }
 }
 
 
