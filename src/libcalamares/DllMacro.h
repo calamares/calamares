@@ -21,6 +21,10 @@
 
 #include <QtCore/qglobal.h>
 
+/*
+ * Mark symbols exported from Calamares libraries with DLLEXPORT.
+ * These are the public API of the libraries.
+ */
 #ifndef DLLEXPORT
 #if defined( DLLEXPORT_PRO )
 #define DLLEXPORT Q_DECL_EXPORT
@@ -29,11 +33,29 @@
 #endif
 #endif
 
+/*
+ * Mark symbols exported from Calamares C++ plugins with PLUGINDLLEXPORT.
+ * These are the public API of the libraries (generally, the plugin
+ * entry point)
+ */
 #ifndef PLUGINDLLEXPORT
 #if defined( PLUGINDLLEXPORT_PRO )
 #define PLUGINDLLEXPORT Q_DECL_EXPORT
 #else
 #define PLUGINDLLEXPORT Q_DECL_IMPORT
+#endif
+#endif
+
+/*
+ * For functions that should be static in production but also need to
+ * be tested, use STATICTEST as linkage specifier. When built as part
+ * of a test, the function will be given normal linkage.
+ */
+#ifndef STATICTEST
+#if defined( BUILD_AS_TEST )
+#define STATICTEST
+#else
+#define STATICTEST static
 #endif
 #endif
 
