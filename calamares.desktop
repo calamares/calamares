@@ -10,7 +10,7 @@ Comment=Alter Linux Installer - by Calamares
 Icon=calamares
 Terminal=false
 StartupNotify=true
-Categories=Qt;AlterLinux;
+Categories=Qt;Sysytem;
 X-AppStream-Ignore=true
 
 Name[ar]=تثبيت النظام 
