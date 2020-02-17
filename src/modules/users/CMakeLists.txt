@@ -41,10 +41,19 @@ calamares_add_plugin( users
 )
 
 calamares_add_test(
-    passwordtest
+    userspasswordtest
     SOURCES
         PasswordTests.cpp
         SetPasswordJob.cpp
     LIBRARIES
         ${CRYPT_LIBRARIES}
+)
+
+calamares_add_test(
+    userstest
+    SOURCES
+        Tests.cpp
+        SetHostNameJob.cpp
+    LIBRARIES
+        Qt5::DBus
 )

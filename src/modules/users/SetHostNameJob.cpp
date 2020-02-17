@@ -58,7 +58,7 @@ SetHostNameJob::prettyStatusMessage() const
     return tr( "Setting hostname %1." ).arg( m_hostname );
 }
 
-static bool
+STATICTEST bool
 setFileHostname( const QString& hostname )
 {
     return !( CalamaresUtils::System::instance()
@@ -66,7 +66,7 @@ setFileHostname( const QString& hostname )
                   .failed() );
 }
 
-static bool
+STATICTEST bool
 writeFileEtcHosts( const QString& hostname )
 {
     // The actual hostname gets substituted in at %1
@@ -83,7 +83,7 @@ ff02::2    ip6-allrouters
                   .failed() );
 }
 
-static void
+STATICTEST void
 setSystemdHostname( const QString& hostname )
 {
     QDBusInterface hostnamed( "org.freedesktop.hostname1",
