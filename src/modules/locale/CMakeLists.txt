@@ -27,7 +27,7 @@ calamares_add_plugin( locale
         calamaresui
         Qt5::Network
         ${geoip_libs}
-        ${YAMLCPP_LIBRARY}
+        yamlcpp
     SHARED_LIB
 )
 

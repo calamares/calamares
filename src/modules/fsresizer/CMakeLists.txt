@@ -36,7 +36,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             Tests.cpp
         LIBRARIES
             calamares_job_fsresizer  # From above
-            ${YAMLCPP_LIBRARY}
+            yamlcpp
     )
     if( TARGET fsresizertest )
         target_compile_definitions( fsresizertest PRIVATE ${_partition_defs} )

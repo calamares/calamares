@@ -10,10 +10,9 @@ calamares_add_plugin( initramfs
 
 calamares_add_test(
     initramfstest
-    GUI  # It's not
     SOURCES
         Tests.cpp
     LIBRARIES
         calamares_job_initramfs # From above
-        ${YAMLCPP_LIBRARY}
+        yamlcpp
 )

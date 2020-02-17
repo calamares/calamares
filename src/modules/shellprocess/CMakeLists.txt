@@ -10,9 +10,8 @@ calamares_add_plugin( shellprocess
 
 calamares_add_test(
     shellprocesstest
-    GUI  # It's not
     SOURCES
         Tests.cpp
     LIBRARIES
-        ${YAMLCPP_LIBRARY}
+        yamlcpp
 )

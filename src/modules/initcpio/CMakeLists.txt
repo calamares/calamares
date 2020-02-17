@@ -10,10 +10,9 @@ calamares_add_plugin( initcpio
 
 calamares_add_test(
     initcpiotest
-    GUI  # It's not
     SOURCES
         Tests.cpp
     LIBRARIES
         calamares_job_initcpio # From above
-        ${YAMLCPP_LIBRARY}
+        yamlcpp
 )

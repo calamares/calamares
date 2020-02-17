@@ -34,10 +34,9 @@ endif()
 
 calamares_add_test(
     hostinfotest
-    GUI  # It's not
     SOURCES
         Tests.cpp
         HostInfoJob.cpp
     LIBRARIES
-        ${YAMLCPP_LIBRARY}
+        yamlcpp
 )

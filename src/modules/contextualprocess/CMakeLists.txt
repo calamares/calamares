@@ -10,10 +10,9 @@ calamares_add_plugin( contextualprocess
 
 calamares_add_test(
     contextualprocesstest
-    GUI  # It's not
     SOURCES
         Tests.cpp
         ContextualProcessJob.cpp  # Builds it a second time
     LIBRARIES
-        ${YAMLCPP_LIBRARY}
+        yamlcpp
 )
