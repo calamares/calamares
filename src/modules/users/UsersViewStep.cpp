@@ -130,6 +130,8 @@ UsersViewStep::onLeave()
 void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    using CalamaresUtils::getBool;
+
     if ( configurationMap.contains( "defaultGroups" )
          && configurationMap.value( "defaultGroups" ).type() == QVariant::List )
     {
@@ -155,25 +157,12 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                                                                   configurationMap.value( "sudoersGroup" ).toString() );
     }
 
-    if ( configurationMap.contains( "setRootPassword" )
-         && configurationMap.value( "setRootPassword" ).type() == QVariant::Bool )
-    {
-        Calamares::JobQueue::instance()->globalStorage()->insert(
-            "setRootPassword", configurationMap.value( "setRootPassword" ).toBool() );
-        m_widget->setWriteRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
-    }
+    bool setRootPassword = getBool( configurationMap, "setRootPassword", true );
+    Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", setRootPassword );
 
-    if ( configurationMap.contains( "doAutologin" )
-         && configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
-    {
-        m_widget->setAutologinDefault( configurationMap.value( "doAutologin" ).toBool() );
-    }
-
-    if ( configurationMap.contains( "doReusePassword" )
-         && configurationMap.value( "doReusePassword" ).type() == QVariant::Bool )
-    {
-        m_widget->setReusePasswordDefault( configurationMap.value( "doReusePassword" ).toBool() );
-    }
+    m_widget->setWriteRootPassword( setRootPassword );
+    m_widget->setAutologinDefault( getBool( configurationMap, "doAutologin", false ) );
+    m_widget->setReusePasswordDefault( getBool( configurationMap, "doReusePassword", false ) );
 
     if ( configurationMap.contains( "passwordRequirements" )
          && configurationMap.value( "passwordRequirements" ).type() == QVariant::Map )
@@ -186,9 +175,8 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
-    m_widget->setPasswordCheckboxVisible( CalamaresUtils::getBool( configurationMap, "allowWeakPasswords", false ) );
-    m_widget->setValidatePasswordDefault(
-        !CalamaresUtils::getBool( configurationMap, "allowWeakPasswordsDefault", false ) );
+    m_widget->setPasswordCheckboxVisible( getBool( configurationMap, "allowWeakPasswords", false ) );
+    m_widget->setValidatePasswordDefault( !getBool( configurationMap, "allowWeakPasswordsDefault", false ) );
 
     QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
     if ( configurationMap.contains( "userShell" ) )
