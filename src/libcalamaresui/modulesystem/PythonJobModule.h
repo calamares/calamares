@@ -21,12 +21,12 @@
 
 #include "Module.h"
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 namespace Calamares
 {
 
-class UIDLLEXPORT PythonJobModule : public Module
+class DLLEXPORT PythonJobModule : public Module
 {
 public:
     Type type() const override;

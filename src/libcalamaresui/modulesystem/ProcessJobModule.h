@@ -22,14 +22,14 @@
 
 #include "Module.h"
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include <chrono>
 
 namespace Calamares
 {
 
-class UIDLLEXPORT ProcessJobModule : public Module
+class DLLEXPORT ProcessJobModule : public Module
 {
 public:
     Type type() const override;

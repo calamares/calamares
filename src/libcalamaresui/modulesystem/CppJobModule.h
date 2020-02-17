@@ -22,14 +22,14 @@
 #define CALAMARES_CPPJOBMODULE_H
 
 #include "Module.h"
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 class QPluginLoader;
 
 namespace Calamares
 {
 
-class UIDLLEXPORT CppJobModule : public Module
+class DLLEXPORT CppJobModule : public Module
 {
 public:
     Type type() const override;

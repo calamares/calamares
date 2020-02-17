@@ -21,7 +21,7 @@
 #define VIEWSTEP_H
 
 #include "Job.h"
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include "modulesystem/InstanceKey.h"
 #include "modulesystem/Requirement.h"
@@ -45,7 +45,7 @@ namespace Calamares
  * (which shows all of the things which have been collected to be done in the
  * next exec-step) through prettyStatus() and createSummaryWidget().
  */
-class UIDLLEXPORT ViewStep : public QObject
+class DLLEXPORT ViewStep : public QObject
 {
     Q_OBJECT
 public:

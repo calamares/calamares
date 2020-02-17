@@ -20,7 +20,7 @@
 #ifndef CALAMARESUTILSGUI_H
 #define CALAMARESUTILSGUI_H
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include <QObject>
 #include <QPixmap>
@@ -83,7 +83,7 @@ enum ImageMode
  * @param size the target pixmap size (default: original SVG size).
  * @return the new pixmap.
  */
-UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
+DLLEXPORT QPixmap defaultPixmap( ImageType type,
                                    ImageMode mode = CalamaresUtils::Original,
                                    const QSize& size = QSize( 0, 0 ) );
 
@@ -95,27 +95,27 @@ UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
  * @return the transformed pixmap.
  * This one is currently unused.
  */
-UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size, float frameWidthPct = 0.20f );
+DLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size, float frameWidthPct = 0.20f );
 
 /**
  * @brief unmarginLayout recursively walks the QLayout tree and removes all margins.
  * @param layout the layout to unmargin.
  */
-UIDLLEXPORT void unmarginLayout( QLayout* layout );
+DLLEXPORT void unmarginLayout( QLayout* layout );
 
 /**
  * @brief clearLayout recursively walks the QLayout tree and deletes all the child
  * widgets and layouts.
  * @param layout the layout to clear.
  */
-UIDLLEXPORT void clearLayout( QLayout* layout );
+DLLEXPORT void clearLayout( QLayout* layout );
 
-UIDLLEXPORT void setDefaultFontSize( int points );
-UIDLLEXPORT int defaultFontSize();  // in points
-UIDLLEXPORT int defaultFontHeight();  // in pixels, DPI-specific
-UIDLLEXPORT QFont defaultFont();
-UIDLLEXPORT QFont largeFont();
-UIDLLEXPORT QSize defaultIconSize();
+DLLEXPORT void setDefaultFontSize( int points );
+DLLEXPORT int defaultFontSize();  // in points
+DLLEXPORT int defaultFontHeight();  // in pixels, DPI-specific
+DLLEXPORT QFont defaultFont();
+DLLEXPORT QFont largeFont();
+DLLEXPORT QSize defaultIconSize();
 
 /**
  * @brief Size constants for the main Calamares window.
