@@ -141,8 +141,7 @@ UsersViewStep::onLeave()
     j = new SetPasswordJob( "root", m_widget->getRootPassword() );
     m_jobs.append( Calamares::job_ptr( j ) );
 
-    j = new SetHostNameJob( m_widget->getHostname(),
-                            SetHostNameJob::Action::EtcHostname | SetHostNameJob::Action::EtcHosts );
+    j = new SetHostNameJob( m_widget->getHostname(), m_actions );
     m_jobs.append( Calamares::job_ptr( j ) );
 }
 
@@ -206,4 +205,21 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Now it might be explicitly set to empty, which is ok
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "userShell", shell );
+
+    using Action = SetHostNameJob::Action;
+
+    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "setHostname" );
+    if ( hostnameActionString.isEmpty() )
+    {
+        hostnameActionString = QStringLiteral( "EtcFile" );
+    }
+    bool ok = false;
+    auto hostnameAction = hostnameActions().find( hostnameActionString, ok );
+    if ( !ok )
+    {
+        hostnameAction = Action::EtcHostname;
+    }
+
+    Action hostsfileAction = getBool( configurationMap, "writeHostsFile", true ) ? Action::EtcHosts : Action::None;
+    m_actions = hostsfileAction | hostnameAction;
 }
