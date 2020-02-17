@@ -1,5 +1,3 @@
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
-
 calamares_add_plugin( netinstall
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -15,6 +13,6 @@ calamares_add_plugin( netinstall
     LINK_PRIVATE_LIBRARIES
         calamaresui
         Qt5::Network
-        ${YAMLCPP_LIBRARY}
+        yamlcpp
     SHARED_LIB
 )
