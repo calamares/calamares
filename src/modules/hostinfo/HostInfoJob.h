@@ -20,7 +20,7 @@
 #define HOSTINFOJOB_H
 
 #include "CppJob.h"
-#include "PluginDllMacro.h"
+#include "DllMacro.h"
 #include "utils/PluginFactory.h"
 
 #include <QObject>

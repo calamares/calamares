@@ -20,7 +20,7 @@
 #define SHELLPROCESSJOB_H
 
 #include "CppJob.h"
-#include "PluginDllMacro.h"
+#include "DllMacro.h"
 
 #include "utils/CommandList.h"
 #include "utils/PluginFactory.h"

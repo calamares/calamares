@@ -27,7 +27,7 @@
 #include "partition/PartitionSize.h"
 #include "utils/PluginFactory.h"
 
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 
 class CoreBackend;  // From KPMCore
 class Device;  // From KPMCore

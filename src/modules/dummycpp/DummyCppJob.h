@@ -27,7 +27,7 @@
 
 #include <utils/PluginFactory.h>
 
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 
 class PLUGINDLLEXPORT DummyCppJob : public Calamares::CppJob
 {

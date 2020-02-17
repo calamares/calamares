@@ -26,7 +26,7 @@
 
 #include <utils/PluginFactory.h>
 
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 
 class PLUGINDLLEXPORT MachineIdJob : public Calamares::CppJob
 {

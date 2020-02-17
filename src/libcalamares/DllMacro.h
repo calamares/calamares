@@ -29,4 +29,12 @@
 #endif
 #endif
 
+#ifndef PLUGINDLLEXPORT
+#if defined( PLUGINDLLEXPORT_PRO )
+#define PLUGINDLLEXPORT Q_DECL_EXPORT
+#else
+#define PLUGINDLLEXPORT Q_DECL_IMPORT
+#endif
+#endif
+
 #endif
