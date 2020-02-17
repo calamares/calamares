@@ -220,6 +220,6 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         hostnameAction = Action::EtcHostname;
     }
 
-    Action hostsfileAction = getBool( configurationMap, "writeHostsFile", true ) ? Action::EtcHosts : Action::None;
+    Action hostsfileAction = getBool( configurationMap, "writeHostsFile", true ) ? Action::WriteEtcHosts : Action::None;
     m_actions = hostsfileAction | hostnameAction;
 }

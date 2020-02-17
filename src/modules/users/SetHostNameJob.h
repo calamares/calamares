@@ -31,7 +31,7 @@ public:
         None = 0x0,
         EtcHostname = 0x1,  // Write to /etc/hostname directly
         SystemdHostname = 0x2,  // Set via hostnamed(1)
-        EtcHosts = 0x4  // Write /etc/hosts (127.0.1.1 is this host)
+        WriteEtcHosts = 0x4  // Write /etc/hosts (127.0.1.1 is this host)
     };
     Q_DECLARE_FLAGS( Actions, Action )
 

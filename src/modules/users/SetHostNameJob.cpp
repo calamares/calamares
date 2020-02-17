@@ -137,7 +137,7 @@ SetHostNameJob::exec()
         }
     }
 
-    if ( m_actions & Action::EtcHosts )
+    if ( m_actions & Action::WriteEtcHosts )
     {
         if ( !writeFileEtcHosts( m_hostname ) )
         {
