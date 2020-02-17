@@ -25,6 +25,7 @@
 #include "UsersPage.h"
 
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Variant.h"
 
 #include "GlobalStorage.h"
@@ -32,9 +33,28 @@
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin< UsersViewStep >(); )
 
+static const NamedEnumTable< SetHostNameJob::Action >&
+hostnameActions()
+{
+    using Action = SetHostNameJob::Action;
+
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< Action > names {
+        { QStringLiteral( "none" ), Action::None },
+        { QStringLiteral( "etcfile" ), Action::EtcHostname },
+        { QStringLiteral( "hostnamed" ), Action::SystemdHostname }
+    };
+    // clang-format on
+    // *INDENT-ON*
+
+    return names;
+}
+
 UsersViewStep::UsersViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new UsersPage() )
+    , m_actions( SetHostNameJob::Action::None )
 {
     emit nextStatusChanged( true );
     connect( m_widget, &UsersPage::checkReady, this, &UsersViewStep::nextStatusChanged );
