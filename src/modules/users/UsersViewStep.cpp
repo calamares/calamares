@@ -20,9 +20,10 @@
 
 #include "UsersViewStep.h"
 
+#include "SetHostNameJob.h"
+#include "SetPasswordJob.h"
 #include "UsersPage.h"
 
-// #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
@@ -109,8 +110,20 @@ void
 UsersViewStep::onLeave()
 {
     m_jobs.clear();
-
     m_jobs.append( m_widget->createJobs( m_defaultGroups ) );
+
+    Calamares::Job* j;
+
+    auto userPW = m_widget->getUserPassword();
+    j = new SetPasswordJob( userPW.first, userPW.second );
+    m_jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetPasswordJob( "root", m_widget->getRootPassword() );
+    m_jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetHostNameJob( m_widget->getHostname(),
+                            SetHostNameJob::Action::EtcHostname | SetHostNameJob::Action::EtcHosts );
+    m_jobs.append( Calamares::job_ptr( j ) );
 }
 
 

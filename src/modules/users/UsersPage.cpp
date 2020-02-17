@@ -217,19 +217,10 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
                            defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
 
-    j = new SetPasswordJob( ui->textBoxUsername->text(), ui->textBoxUserPassword->text() );
-    list.append( Calamares::job_ptr( j ) );
-
     if ( m_writeRootPassword )
     {
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
     }
-    j = new SetPasswordJob( "root", getRootPassword() );
-    list.append( Calamares::job_ptr( j ) );
-
-    j = new SetHostNameJob( getHostname(), SetHostNameJob::Action::EtcHostname | SetHostNameJob::Action::EtcHosts );
-    list.append( Calamares::job_ptr( j ) );
-
     gs->insert( "hostname", ui->textBoxHostname->text() );
     if ( ui->checkBoxAutoLogin->isChecked() )
     {
