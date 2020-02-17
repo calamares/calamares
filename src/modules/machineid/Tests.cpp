@@ -28,6 +28,9 @@
 #include <QFile>
 #include <QtTest/QtTest>
 
+// Internals of Workers.cpp
+extern int getUrandomPoolSize();
+
 class MachineIdTests : public QObject
 {
     Q_OBJECT
@@ -93,10 +96,10 @@ MachineIdTests::testPoolSize()
 {
 #ifdef Q_OS_FREEBSD
     // It hardly makes sense, but also the /proc entry is missing
-    QCOMPARE( MachineId::getUrandomPoolSize(), 512 );
+    QCOMPARE( getUrandomPoolSize(), 512 );
 #else
     // Based on a sample size of 1, Netrunner
-    QCOMPARE( MachineId::getUrandomPoolSize(), 4096 );
+    QCOMPARE( getUrandomPoolSize(), 4096 );
 #endif
 }
 

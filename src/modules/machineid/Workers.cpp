@@ -27,6 +27,34 @@
 
 #include <QFile>
 
+/// @brief Returns a recommended size for the entropy pool (in bytes)
+STATICTEST int
+getUrandomPoolSize()
+{
+    QFile f( "/proc/sys/kernel/random/poolsize" );
+    constexpr const int minimumPoolSize = 512;
+    int poolSize = minimumPoolSize;
+
+    if ( f.exists() && f.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
+        QByteArray v = f.read( 16 );
+        if ( v.length() > 2 )
+        {
+            if ( v.endsWith( '\n' ) )
+            {
+                v.chop( 1 );
+            }
+            bool ok = false;
+            poolSize = v.toInt( &ok );
+            if ( !ok )
+            {
+                poolSize = minimumPoolSize;
+            }
+        }
+    }
+    return ( poolSize >= minimumPoolSize ) ? poolSize : minimumPoolSize;
+}
+
 namespace MachineId
 {
 
@@ -57,33 +85,6 @@ copyFile( const QString& rootMountPoint, const QString& fileName )
         return Calamares::JobResult::error( QObject::tr( "File not found" ), rootMountPoint + fileName );
     }
     return Calamares::JobResult::ok();
-}
-
-int
-getUrandomPoolSize()
-{
-    QFile f( "/proc/sys/kernel/random/poolsize" );
-    constexpr const int minimumPoolSize = 512;
-    int poolSize = minimumPoolSize;
-
-    if ( f.exists() && f.open( QIODevice::ReadOnly | QIODevice::Text ) )
-    {
-        QByteArray v = f.read( 16 );
-        if ( v.length() > 2 )
-        {
-            if ( v.endsWith( '\n' ) )
-            {
-                v.chop( 1 );
-            }
-            bool ok = false;
-            poolSize = v.toInt( &ok );
-            if ( !ok )
-            {
-                poolSize = minimumPoolSize;
-            }
-        }
-    }
-    return ( poolSize >= minimumPoolSize ) ? poolSize : minimumPoolSize;
 }
 
 Calamares::JobResult
