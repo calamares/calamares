@@ -63,6 +63,13 @@ public:
      */
     void addPasswordCheck( const QString& key, const QVariant& value );
 
+    ///@brief Hostname as entered / auto-filled
+    QString getHostname() const;
+    ///@brief Root password, depends on settings, may be empty
+    QString getRootPassword() const;
+    ///@brief User name and password
+    QPair< QString, QString > getUserPassword() const;
+
 protected slots:
     void onFullNameTextEdited( const QString& );
     void fillSuggestions();

@@ -166,6 +166,37 @@ UsersPage::isReady()
     return readyFields && m_readyRootPassword;
 }
 
+QString
+UsersPage::getHostname() const
+{
+    return ui->textBoxHostname->text();
+}
+
+QString
+UsersPage::getRootPassword() const
+{
+    if ( m_writeRootPassword )
+    {
+        if ( ui->checkBoxReusePassword->isChecked() )
+        {
+            return ui->textBoxUserPassword->text();
+        }
+        else
+        {
+            return ui->textBoxRootPassword->text();
+        }
+    }
+    else
+    {
+        return QString();
+    }
+}
+
+QPair< QString, QString >
+UsersPage::getUserPassword() const
+{
+    return QPair< QString, QString >( ui->textBoxUsername->text(), ui->textBoxUserPassword->text() );
+}
 
 QList< Calamares::job_ptr >
 UsersPage::createJobs( const QStringList& defaultGroupsList )
@@ -192,25 +223,11 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
     if ( m_writeRootPassword )
     {
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
-        if ( ui->checkBoxReusePassword->isChecked() )
-        {
-            j = new SetPasswordJob( "root", ui->textBoxUserPassword->text() );
-        }
-        else
-        {
-            j = new SetPasswordJob( "root", ui->textBoxRootPassword->text() );
-        }
-        list.append( Calamares::job_ptr( j ) );
     }
-    else
-    {
-        j = new SetPasswordJob( "root",
-                                "" );  //explicitly disable root password
-        list.append( Calamares::job_ptr( j ) );
-    }
+    j = new SetPasswordJob( "root", getRootPassword() );
+    list.append( Calamares::job_ptr( j ) );
 
-    j = new SetHostNameJob( ui->textBoxHostname->text(),
-                            SetHostNameJob::Action::EtcHostname | SetHostNameJob::Action::EtcHosts );
+    j = new SetHostNameJob( getHostname(), SetHostNameJob::Action::EtcHostname | SetHostNameJob::Action::EtcHosts );
     list.append( Calamares::job_ptr( j ) );
 
     gs->insert( "hostname", ui->textBoxHostname->text() );
