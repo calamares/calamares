@@ -21,8 +21,8 @@
 #define PACKAGETREEITEM_H
 
 #include <QList>
-#include <QVariant>
 #include <QStandardItem>
+#include <QVariant>
 
 class PackageTreeItem : public QStandardItem
 {
@@ -37,6 +37,13 @@ public:
         bool isCritical = false;
         bool isHidden = false;
         Qt::CheckState selected = Qt::Unchecked;
+
+        /** @brief Turns this item into a variant for PackageOperations use
+         *
+         * For "plain" items, this is just the package name; items with
+         * scripts return a map. See the package module for how it's interpreted.
+         */
+        QVariant toOperation() const;
     };
     explicit PackageTreeItem( const ItemData& data, PackageTreeItem* parent = nullptr );
     explicit PackageTreeItem( const QString packageName, PackageTreeItem* parent = nullptr );
@@ -78,11 +85,12 @@ public:
     void setSelected( Qt::CheckState isSelected );
     void setChildrenSelected( Qt::CheckState isSelected );
     int type() const override;
+
 private:
     PackageTreeItem* m_parentItem;
-    QList<PackageTreeItem*> m_childItems;
+    QList< PackageTreeItem* > m_childItems;
     ItemData m_data;
-    const int m_columns = 2; // Name, description
+    const int m_columns = 2;  // Name, description
 };
 
-#endif // PACKAGETREEITEM_H
+#endif  // PACKAGETREEITEM_H

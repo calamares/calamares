@@ -20,15 +20,15 @@
 
 #include "NetInstallViewStep.h"
 
-#include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "JobQueue.h"
 
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
 #include "NetInstallPage.h"
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin<NetInstallViewStep>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin< NetInstallViewStep >(); )
 
 NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -36,15 +36,16 @@ NetInstallViewStep::NetInstallViewStep( QObject* parent )
     , m_nextEnabled( false )
 {
     emit nextStatusChanged( true );
-    connect( m_widget, &NetInstallPage::checkReady,
-             this, &NetInstallViewStep::nextIsReady );
+    connect( m_widget, &NetInstallPage::checkReady, this, &NetInstallViewStep::nextIsReady );
 }
 
 
 NetInstallViewStep::~NetInstallViewStep()
 {
     if ( m_widget && m_widget->parent() == nullptr )
+    {
         m_widget->deleteLater();
+    }
 }
 
 
@@ -110,58 +111,70 @@ NetInstallViewStep::onActivate()
     m_widget->onActivate();
 }
 
-
 void
 NetInstallViewStep::onLeave()
 {
-    cDebug() << "Leaving netinstall, adding packages to be installed"
-             << "to global storage";
-
     PackageModel::PackageItemDataList packages = m_widget->selectedPackages();
+    cDebug() << "Netinstall: Processing" << packages.length() << "packages.";
+
+    static const char PACKAGEOP[] = "packageOperations";
+
+    // Check if there's already a PACAKGEOP entry in GS, and if so we'll
+    // extend that one (overwriting the value in GS at the end of this method)
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    QVariantList packageOperations = gs->contains( PACKAGEOP ) ? gs->value( PACKAGEOP ).toList() : QVariantList();
+    cDebug() << Logger::SubEntry << "Existing package operations length" << packageOperations.length();
+
+    // Clear out existing operations for this module, going backwards:
+    // Sometimes we remove an item, and we don't want the index to
+    // fall off the end of the list.
+    for ( int index = packageOperations.length() - 1; 0 <= index ; index-- )
+    {
+        const QVariantMap op = packageOperations.at(index).toMap();
+        if ( op.contains( "source" ) && op.value( "source" ).toString() == moduleInstanceKey().toString() )
+        {
+            cDebug() << Logger::SubEntry << "Removing existing operations for" << moduleInstanceKey();
+            packageOperations.removeAt( index );
+        }
+    }
+
+    // This netinstall module may add two sub-steps to the packageOperations,
+    // one for installing and one for try-installing.
     QVariantList installPackages;
     QVariantList tryInstallPackages;
-    QVariantList packageOperations;
 
-    cDebug() << "Processing" << packages.length() << "packages from netinstall.";
-
-    for ( auto package : packages )
+    for ( const auto& package : packages )
     {
-        QVariant details( package.packageName );
-        // If it's a package with a pre- or post-script, replace
-        // with the more complicated datastructure.
-        if ( !package.preScript.isEmpty() || !package.postScript.isEmpty() )
-        {
-            QMap<QString, QVariant> sdetails;
-            sdetails.insert( "pre-script", package.preScript );
-            sdetails.insert( "package", package.packageName );
-            sdetails.insert( "post-script", package.postScript );
-            details = sdetails;
-        }
         if ( package.isCritical )
-            installPackages.append( details );
+        {
+            installPackages.append( package.toOperation() );
+        }
         else
-            tryInstallPackages.append( details );
+        {
+            tryInstallPackages.append( package.toOperation() );
+        }
     }
 
     if ( !installPackages.empty() )
     {
-        QMap<QString, QVariant> op;
+        QVariantMap op;
         op.insert( "install", QVariant( installPackages ) );
+        op.insert( "source", moduleInstanceKey().toString() );
         packageOperations.append( op );
         cDebug() << Logger::SubEntry << installPackages.length() << "critical packages.";
     }
     if ( !tryInstallPackages.empty() )
     {
-        QMap<QString, QVariant> op;
+        QVariantMap op;
         op.insert( "try_install", QVariant( tryInstallPackages ) );
+        op.insert( "source", moduleInstanceKey().toString() );
         packageOperations.append( op );
         cDebug() << Logger::SubEntry << tryInstallPackages.length() << "non-critical packages.";
     }
 
     if ( !packageOperations.isEmpty() )
     {
-        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-        gs->insert( "packageOperations", QVariant( packageOperations ) );
+        gs->insert( PACKAGEOP, packageOperations );
     }
 }
 

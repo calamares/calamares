@@ -21,28 +21,52 @@
 
 #include "utils/Logger.h"
 
+QVariant
+PackageTreeItem::ItemData::toOperation() const
+{
+    // If it's a package with a pre- or post-script, replace
+    // with the more complicated datastructure.
+    if ( !preScript.isEmpty() || !postScript.isEmpty() )
+    {
+        QMap< QString, QVariant > sdetails;
+        sdetails.insert( "pre-script", preScript );
+        sdetails.insert( "package", packageName );
+        sdetails.insert( "post-script", postScript );
+        return sdetails;
+    }
+    else
+    {
+        return packageName;
+    }
+}
+
 PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent )
     : m_parentItem( parent )
     , m_data( data )
-{ }
+{
+}
 
-PackageTreeItem::PackageTreeItem( const QString packageName, PackageTreeItem* parent ) :
-    m_parentItem( parent )
+PackageTreeItem::PackageTreeItem( const QString packageName, PackageTreeItem* parent )
+    : m_parentItem( parent )
 {
     m_data.packageName = packageName;
     if ( parent != nullptr )
+    {
         m_data.selected = parent->isSelected();
+    }
     else
+    {
         m_data.selected = Qt::Unchecked;
+    }
 }
 
-PackageTreeItem::PackageTreeItem( PackageTreeItem* parent ) :
-    m_parentItem( parent )
+PackageTreeItem::PackageTreeItem( PackageTreeItem* parent )
+    : m_parentItem( parent )
 {
 }
 
-PackageTreeItem::PackageTreeItem::PackageTreeItem() :
-    PackageTreeItem( QString(), nullptr )
+PackageTreeItem::PackageTreeItem::PackageTreeItem()
+    : PackageTreeItem( QString(), nullptr )
 {
     m_data.selected = Qt::Checked;
     m_data.name = QLatin1String( "<root>" );
@@ -75,7 +99,9 @@ int
 PackageTreeItem::row() const
 {
     if ( m_parentItem )
-        return m_parentItem->m_childItems.indexOf( const_cast<PackageTreeItem*>( this ) );
+    {
+        return m_parentItem->m_childItems.indexOf( const_cast< PackageTreeItem* >( this ) );
+    }
     return 0;
 }
 
@@ -88,13 +114,15 @@ PackageTreeItem::columnCount() const
 QVariant
 PackageTreeItem::data( int column ) const
 {
-    if ( packageName() != nullptr ) // package
+    if ( packageName() != nullptr )  // package
     {
         if ( !column )
+        {
             return QVariant( packageName() );
+        }
         return QVariant();
     }
-    switch ( column ) // group
+    switch ( column )  // group
     {
     case 0:
         return QVariant( prettyName() );
@@ -164,14 +192,18 @@ bool
 PackageTreeItem::hiddenSelected() const
 {
     Q_ASSERT( m_data.isHidden );
-    if (! m_data.selected )
+    if ( !m_data.selected )
+    {
         return false;
+    }
 
     const PackageTreeItem* currentItem = parentItem();
     while ( currentItem != nullptr )
     {
         if ( !currentItem->isHidden() )
+        {
             return currentItem->isSelected() != Qt::Unchecked;
+        }
         currentItem = currentItem->parentItem();
     }
 
@@ -202,8 +234,10 @@ void
 PackageTreeItem::setSelected( Qt::CheckState isSelected )
 {
     if ( parentItem() == nullptr )
-        // This is the root, it is always checked so don't change state
+    // This is the root, it is always checked so don't change state
+    {
         return;
+    }
 
     m_data.selected = isSelected;
     setChildrenSelected( isSelected );
@@ -216,8 +250,10 @@ PackageTreeItem::setSelected( Qt::CheckState isSelected )
         currentItem = currentItem->parentItem();
     }
     if ( currentItem == nullptr )
-        // Reached the root .. don't bother
+    // Reached the root .. don't bother
+    {
         return;
+    }
 
     // Figure out checked-state based on the children
     int childrenSelected = 0;
@@ -225,16 +261,26 @@ PackageTreeItem::setSelected( Qt::CheckState isSelected )
     for ( int i = 0; i < currentItem->childCount(); i++ )
     {
         if ( currentItem->child( i )->isSelected() == Qt::Checked )
+        {
             childrenSelected++;
+        }
         if ( currentItem->child( i )->isSelected() == Qt::PartiallyChecked )
+        {
             childrenPartiallySelected++;
+        }
     }
-    if ( !childrenSelected  && !childrenPartiallySelected)
+    if ( !childrenSelected && !childrenPartiallySelected )
+    {
         currentItem->setSelected( Qt::Unchecked );
+    }
     else if ( childrenSelected == currentItem->childCount() )
+    {
         currentItem->setSelected( Qt::Checked );
+    }
     else
+    {
         currentItem->setSelected( Qt::PartiallyChecked );
+    }
 }
 
 void

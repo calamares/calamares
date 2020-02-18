@@ -34,6 +34,11 @@ This release contains contributions from (alphabetically by first name):
  - The *users* module now has knobs for setting the hostname and writing
    the `/etc/hosts` file. The new configuration options are documented
    in `users.conf`. #1140
+ - Multiple *netinstall* modules can exist side-by-side, and they each
+   control the package installation for their part of the package list.
+   Previously, a netinstall module would overwrite all of the package
+   configuration done by other netinstall modules.
+   #1303
 
 
 # 3.2.18 (2020-01-28) #
