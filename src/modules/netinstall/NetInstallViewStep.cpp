@@ -111,7 +111,6 @@ NetInstallViewStep::onActivate()
     m_widget->onActivate();
 }
 
-
 void
 NetInstallViewStep::onLeave()
 {
@@ -131,26 +130,15 @@ NetInstallViewStep::onLeave()
     QVariantList installPackages;
     QVariantList tryInstallPackages;
 
-    for ( auto package : packages )
+    for ( const auto& package : packages )
     {
-        QVariant details( package.packageName );
-        // If it's a package with a pre- or post-script, replace
-        // with the more complicated datastructure.
-        if ( !package.preScript.isEmpty() || !package.postScript.isEmpty() )
-        {
-            QMap< QString, QVariant > sdetails;
-            sdetails.insert( "pre-script", package.preScript );
-            sdetails.insert( "package", package.packageName );
-            sdetails.insert( "post-script", package.postScript );
-            details = sdetails;
-        }
         if ( package.isCritical )
         {
-            installPackages.append( details );
+            installPackages.append( package.toOperation() );
         }
         else
         {
-            tryInstallPackages.append( details );
+            tryInstallPackages.append( package.toOperation() );
         }
     }
 

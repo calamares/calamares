@@ -21,6 +21,25 @@
 
 #include "utils/Logger.h"
 
+QVariant
+PackageTreeItem::ItemData::toOperation() const
+{
+    // If it's a package with a pre- or post-script, replace
+    // with the more complicated datastructure.
+    if ( !preScript.isEmpty() || !postScript.isEmpty() )
+    {
+        QMap< QString, QVariant > sdetails;
+        sdetails.insert( "pre-script", preScript );
+        sdetails.insert( "package", packageName );
+        sdetails.insert( "post-script", postScript );
+        return sdetails;
+    }
+    else
+    {
+        return packageName;
+    }
+}
+
 PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent )
     : m_parentItem( parent )
     , m_data( data )
