@@ -20,10 +20,10 @@
 #ifndef NETINSTALLVIEWSTEP_H
 #define NETINSTALLVIEWSTEP_H
 
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
-
-#include <DllMacro.h>
+#include "DllMacro.h"
+#include "locale/TranslatableConfiguration.h"
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
 #include <QVariant>
 
@@ -64,7 +64,7 @@ private:
     NetInstallPage* m_widget;
     bool m_nextEnabled;
     QString m_prettyStatus;
-
+    CalamaresUtils::Locale::TranslatedString* m_sidebarLabel;  // As it appears in the sidebar
     QList< Calamares::job_ptr > m_jobs;
 };
 

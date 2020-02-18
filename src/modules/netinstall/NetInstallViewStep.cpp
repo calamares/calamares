@@ -34,6 +34,7 @@ NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new NetInstallPage() )
     , m_nextEnabled( false )
+    , m_sidebarLabel( nullptr )
 {
     emit nextStatusChanged( true );
     connect( m_widget, &NetInstallPage::checkReady, this, &NetInstallViewStep::nextIsReady );
@@ -46,13 +47,14 @@ NetInstallViewStep::~NetInstallViewStep()
     {
         m_widget->deleteLater();
     }
+    delete m_sidebarLabel;
 }
 
 
 QString
 NetInstallViewStep::prettyName() const
 {
-    return tr( "Package selection" );
+    return m_sidebarLabel ? m_sidebarLabel->get() : tr( "Package selection" );
 }
 
 
