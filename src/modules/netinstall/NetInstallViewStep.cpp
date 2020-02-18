@@ -115,15 +115,21 @@ NetInstallViewStep::onActivate()
 void
 NetInstallViewStep::onLeave()
 {
-    cDebug() << "Leaving netinstall, adding packages to be installed"
-             << "to global storage";
-
     PackageModel::PackageItemDataList packages = m_widget->selectedPackages();
+    cDebug() << "Netinstall: Processing" << packages.length() << "packages.";
+
+    static const char PACKAGEOP[] = "packageOperations";
+
+    // Check if there's already a PACAKGEOP entry in GS, and if so we'll
+    // extend that one (overwriting the value in GS at the end of this method)
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    QVariantList packageOperations = gs->contains( PACKAGEOP ) ? gs->value( PACKAGEOP ).toList() : QVariantList();
+    cDebug() << Logger::SubEntry << "Existing package operations length" << packageOperations.length();
+
+    // This netinstall module may add two sub-steps to the packageOperations,
+    // one for installing and one for try-installing.
     QVariantList installPackages;
     QVariantList tryInstallPackages;
-    QVariantList packageOperations;
-
-    cDebug() << "Processing" << packages.length() << "packages from netinstall.";
 
     for ( auto package : packages )
     {
@@ -165,8 +171,7 @@ NetInstallViewStep::onLeave()
 
     if ( !packageOperations.isEmpty() )
     {
-        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-        gs->insert( "packageOperations", QVariant( packageOperations ) );
+        gs->insert( PACKAGEOP, packageOperations );
     }
 }
 
