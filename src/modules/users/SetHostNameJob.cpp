@@ -83,20 +83,27 @@ ff02::2    ip6-allrouters
                   .failed() );
 }
 
-STATICTEST void
+STATICTEST bool
 setSystemdHostname( const QString& hostname )
 {
     QDBusInterface hostnamed( "org.freedesktop.hostname1",
                               "/org/freedesktop/hostname1",
                               "org.freedesktop.hostname1",
                               QDBusConnection::systemBus() );
+    if ( !hostnamed.isValid() )
+    {
+        cWarning() << "Interface" << hostnamed.interface() << "is not valid.";
+        return false;
+    }
 
+    bool success = true;
     // Static, writes /etc/hostname
     {
         QDBusReply< uint > r = hostnamed.call( "SetStaticHostname", hostname, false );
         if ( !r.isValid() )
         {
             cWarning() << "Could not set hostname through org.freedesktop.hostname1.SetStaticHostname." << r.error();
+            success = false;
         }
     }
     // Dynamic, updates kernel
@@ -105,8 +112,11 @@ setSystemdHostname( const QString& hostname )
         if ( !r.isValid() )
         {
             cWarning() << "Could not set hostname through org.freedesktop.hostname1.SetHostname." << r.error();
+            success = false;
         }
     }
+
+    return success;
 }
 
 

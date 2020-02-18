@@ -21,7 +21,7 @@
 // Implementation details
 extern bool setFileHostname( const QString& );
 extern bool writeFileEtcHosts( const QString& );
-extern void setSystemdHostname( const QString& );
+extern bool setSystemdHostname( const QString& );
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -44,6 +44,7 @@ private Q_SLOTS:
 
     void testEtcHostname();
     void testEtcHosts();
+    void testHostnamed();
 
     void cleanup();
 
@@ -115,6 +116,17 @@ UsersTests::testEtcHosts()
     // and the rest of the blabla is 150 (according to Python)
     QCOMPARE( QFileInfo( m_dir.filePath( "etc/hosts" ) ).size(), 150 + 22 - 2 );
 }
+
+void
+UsersTests::testHostnamed()
+{
+    // Since the service might not be running (e.g. non-systemd systems,
+    // FreeBSD, docker, ..) we're not going to fail a test here.
+    // There's also the permissions problem to think of.
+    QEXPECT_FAIL( "", "Hostname changes are access-controlled", Continue );
+    QVERIFY( setSystemdHostname( "tubophone.calamares.io" ) );
+}
+
 
 void
 UsersTests::cleanup()
