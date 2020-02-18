@@ -23,7 +23,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 #         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
 #        )
 # Temp URL
-source+=("https://github.com/SereneTeam/alterlinux-calamares/archive/alterlinux-forked.tar.gz")
+source+=("https://github.com/SereneTeam/alterlinux-calamares/archive/3.19.2-2.tar.gz")
 
 # Todo: Check sha256
 #sha256sums=('13bd74bb9bbfd7f9c3a386fe47804ab4d1af41332a028249cf674e8aab8d4460')
