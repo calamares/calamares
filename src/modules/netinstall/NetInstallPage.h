@@ -39,6 +39,7 @@ class NetInstallPage : public QWidget
     Q_OBJECT
 public:
     NetInstallPage( QWidget* parent = nullptr );
+    virtual ~NetInstallPage();
 
     void onActivate();
 

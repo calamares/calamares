@@ -34,8 +34,6 @@
 #include <QHeaderView>
 #include <QNetworkReply>
 
-using CalamaresUtils::yamlToVariant;
-
 NetInstallPage::NetInstallPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_NetInst )
@@ -43,6 +41,12 @@ NetInstallPage::NetInstallPage( QWidget* parent )
     , m_groups( nullptr )
 {
     ui->setupUi( this );
+}
+
+NetInstallPage::~NetInstallPage()
+{
+    delete m_groups;
+    delete m_reply;
 }
 
 bool
