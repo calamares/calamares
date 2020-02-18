@@ -125,6 +125,19 @@ NetInstallViewStep::onLeave()
     QVariantList packageOperations = gs->contains( PACKAGEOP ) ? gs->value( PACKAGEOP ).toList() : QVariantList();
     cDebug() << Logger::SubEntry << "Existing package operations length" << packageOperations.length();
 
+    // Clear out existing operations for this module, going backwards:
+    // Sometimes we remove an item, and we don't want the index to
+    // fall off the end of the list.
+    for ( int index = packageOperations.length() - 1; 0 <= index ; index-- )
+    {
+        const QVariantMap op = packageOperations.at(index).toMap();
+        if ( op.contains( "source" ) && op.value( "source" ).toString() == moduleInstanceKey().toString() )
+        {
+            cDebug() << Logger::SubEntry << "Removing existing operations for" << moduleInstanceKey();
+            packageOperations.removeAt( index );
+        }
+    }
+
     // This netinstall module may add two sub-steps to the packageOperations,
     // one for installing and one for try-installing.
     QVariantList installPackages;
