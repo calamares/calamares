@@ -25,10 +25,10 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 # Temp URL
 source+=("https://github.com/SereneTeam/alterlinux-calamares/archive/3.19.2-2.tar.gz")
 
-# Todo: Check sha256
 #sha256sums=('13bd74bb9bbfd7f9c3a386fe47804ab4d1af41332a028249cf674e8aab8d4460')
 # Temp sha256
 sha256sums=('2bb6de8e8c4cb463dc78801e908d0015a7ac1400cf418ed1307acae4e6c0e02e')
+
 prepare() {
     mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
     #mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
