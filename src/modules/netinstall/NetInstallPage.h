@@ -64,6 +64,8 @@ public:
 public slots:
     void dataIsHere();
 
+    void retranslate();
+
 signals:
     void checkReady( bool );
 

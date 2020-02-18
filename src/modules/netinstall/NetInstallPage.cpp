@@ -41,12 +41,23 @@ NetInstallPage::NetInstallPage( QWidget* parent )
     , m_groups( nullptr )
 {
     ui->setupUi( this );
+    CALAMARES_RETRANSLATE_SLOT( &NetInstallPage::retranslate );
 }
 
 NetInstallPage::~NetInstallPage()
 {
     delete m_groups;
     delete m_reply;
+}
+
+void
+NetInstallPage::retranslate()
+{
+    if ( m_groups )
+    {
+        m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
+        m_groups->setHeaderData( 1, Qt::Horizontal, tr( "Description" ) );
+    }
 }
 
 bool
@@ -62,8 +73,6 @@ NetInstallPage::readGroups( const QByteArray& yamlData )
         }
         Q_ASSERT( groups.IsSequence() );
         m_groups = new PackageModel( groups );
-        CALAMARES_RETRANSLATE( m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
-                               m_groups->setHeaderData( 1, Qt::Horizontal, tr( "Description" ) ); )
         return true;
     }
     catch ( YAML::Exception& e )
@@ -125,6 +134,7 @@ NetInstallPage::dataIsHere()
         return;
     }
 
+    retranslate();  // For changed model
     ui->groupswidget->setModel( m_groups );
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
     ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
