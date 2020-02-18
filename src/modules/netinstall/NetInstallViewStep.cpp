@@ -173,6 +173,12 @@ NetInstallViewStep::onLeave()
     }
 }
 
+void
+NetInstallViewStep::nextIsReady( bool b )
+{
+    m_nextEnabled = b;
+    emit nextStatusChanged( b );
+}
 
 void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
@@ -187,11 +193,16 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         Calamares::JobQueue::instance()->globalStorage()->insert( "groupsUrl", groupsUrl );
         m_widget->loadGroupList( groupsUrl );
     }
-}
 
-void
-NetInstallViewStep::nextIsReady( bool b )
-{
-    m_nextEnabled = b;
-    emit nextStatusChanged( b );
+    bool bogus = false;
+    auto label = CalamaresUtils::getSubMap( configurationMap, "label", bogus );
+
+    if ( label.contains( "sidebar" ) )
+    {
+        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar" );
+    }
+    if ( label.contains( "title" ) )
+    {
+        // Set that label on the page
+    }
 }
