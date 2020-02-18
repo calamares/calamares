@@ -24,7 +24,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 #        )
 source+=("$url/archive/$pkgver-$pkgrel.tar.gz")
 
-sha256sums=('2bb6de8e8c4cb463dc78801e908d0015a7ac1400cf418ed1307acae4e6c0e02e')
+sha256sums=('78c23e34196f021bac0212d21592ccaeb4cf1fd6ac11597f0fd6c7ba7de0deea')
 
 prepare() {
     mv ${srcdir}/${pkgname}-${pkgver}-${pkgrel} ${srcdir}/${pkgname}-${pkgver}
