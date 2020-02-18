@@ -99,7 +99,7 @@ setSystemdHostname( const QString& hostname )
     bool success = true;
     // Static, writes /etc/hostname
     {
-        QDBusReply< uint > r = hostnamed.call( "SetStaticHostname", hostname, false );
+        QDBusReply< void > r = hostnamed.call( "SetStaticHostname", hostname, false );
         if ( !r.isValid() )
         {
             cWarning() << "Could not set hostname through org.freedesktop.hostname1.SetStaticHostname." << r.error();
@@ -108,7 +108,7 @@ setSystemdHostname( const QString& hostname )
     }
     // Dynamic, updates kernel
     {
-        QDBusReply< uint > r = hostnamed.call( "SetHostname", hostname, false );
+        QDBusReply< void > r = hostnamed.call( "SetHostname", hostname, false );
         if ( !r.isValid() )
         {
             cWarning() << "Could not set hostname through org.freedesktop.hostname1.SetHostname." << r.error();
