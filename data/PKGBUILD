@@ -4,7 +4,7 @@
 # Maintainer: SereneTeam
 
 pkgname=calamares
-pkgver=3.2.19
+pkgver=3.2.19-2
 pkgrel=2
 # _commit=178a11a695a3b38f14285df8f1fd41ea8cfdb03f
 pkgdesc='Distribution-independent installer framework'
@@ -26,16 +26,15 @@ backup=('usr/share/calamares/modules/bootloader.conf'
 #         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
 #        )
 # Temp URL
-source+=("https://github.com/SereneTeam/alterlinux-calamares/archive/3.19.2-2.tar.gz")
+source+=("$url/archive/$pkgver.tar.gz")
 
 #sha256sums=('13bd74bb9bbfd7f9c3a386fe47804ab4d1af41332a028249cf674e8aab8d4460')
 # Temp sha256
 sha256sums=('2bb6de8e8c4cb463dc78801e908d0015a7ac1400cf418ed1307acae4e6c0e02e')
 
 prepare() {
-    mv ${srcdir}/calamares-${_commit} ${srcdir}/calamares-${pkgver}
-    #mv ${srcdir}/calamares-v${pkgver} ${srcdir}/calamares-${pkgver}
-    cd ${srcdir}/calamares-${pkgver}
+    mv ${srcdir}/${pkgver} ${srcdir}/${pkgver}
+    cd ${srcdir}/${pkgver}
     sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
     # patches here
@@ -51,7 +50,7 @@ prepare() {
 }
 
 build() {
-    cd ${srcdir}/calamares-${pkgver}
+    cd ${srcdir}/${pkgver}
 
     mkdir -p build
     cd build
@@ -69,7 +68,7 @@ build() {
 }
 
 package() {
-    cd ${srcdir}/calamares-${pkgver}/build
+    cd ${srcdir}/${pkgver}/build
     make DESTDIR="$pkgdir" install
     install -Dm644 "../data/alterlinux-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
     install -Dm644 "../data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
