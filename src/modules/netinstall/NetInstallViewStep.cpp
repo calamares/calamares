@@ -144,15 +144,17 @@ NetInstallViewStep::onLeave()
 
     if ( !installPackages.empty() )
     {
-        QMap< QString, QVariant > op;
+        QVariantMap op;
         op.insert( "install", QVariant( installPackages ) );
+        op.insert( "source", moduleInstanceKey().toString() );
         packageOperations.append( op );
         cDebug() << Logger::SubEntry << installPackages.length() << "critical packages.";
     }
     if ( !tryInstallPackages.empty() )
     {
-        QMap< QString, QVariant > op;
+        QVariantMap op;
         op.insert( "try_install", QVariant( tryInstallPackages ) );
+        op.insert( "source", moduleInstanceKey().toString() );
         packageOperations.append( op );
         cDebug() << Logger::SubEntry << tryInstallPackages.length() << "non-critical packages.";
     }
