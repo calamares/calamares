@@ -26,6 +26,7 @@ calamares_add_plugin( usersq
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
+		Config.cpp
         CreateUserJob.cpp
         SetPasswordJob.cpp
         UsersQmlViewStep.cpp
@@ -41,7 +42,7 @@ calamares_add_plugin( usersq
 )
 
 add_executable( usersqmltest qmlmain.cpp Config.cpp UsersQmlViewStep.cpp CreateUserJob.cpp SetPasswordJob.cpp SetHostNameJob.cpp CheckPWQuality.cpp )
-target_link_libraries( usersqmltest PRIVATE calamaresui Qt5::Core Qt5::Network Qt5::DBus ${geoip_libs})
+target_link_libraries( usersqmltest PRIVATE calamaresui Qt5::Core Qt5::Network Qt5::DBus ${CRYPT_LIBRARIES} ${USER_EXTRA_LIB})
 set_target_properties( usersqmltest
     PROPERTIES
         ENABLE_EXPORTS TRUE

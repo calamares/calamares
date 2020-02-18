@@ -45,30 +45,27 @@ static constexpr const int USERNAME_MAX_LENGTH = 31;
 static constexpr const int HOSTNAME_MIN_LENGTH = 2;
 static constexpr const int HOSTNAME_MAX_LENGTH = 63;
 
-/** @brief How bad is the error for labelError() ? */
-enum class Badness
-{
-    Fatal,
-    Warning
-};
 
 /** Add an error message and pixmap to a label. */
-static inline void
-labelError( QLabel* pix, QLabel* label, const QString& message, Badness bad = Badness::Fatal )
+void
+Config::labelError(const QString& message, const Status::StatusCode &status )
 {
-    label->setText( message );
-    pix->setPixmap( CalamaresUtils::defaultPixmap( ( bad == Badness::Fatal ) ? CalamaresUtils::StatusError
-    : CalamaresUtils::StatusWarning,
-    CalamaresUtils::Original,
-    label->size() ) );
+    m_status.status = status;
+    m_status.message = message;
+//     m_errorStatus.icon = CalamaresUtils::defaultPixmap( ( bad == Badness::Fatal ) ? CalamaresUtils::StatusError
+//     : CalamaresUtils::StatusWarning,
+//     CalamaresUtils::Original,
+//     16);
+    emit statusChanged();
 }
 
 /** Clear error, indicate OK on a label. */
-static inline void
-labelOk( QLabel* pix, QLabel* label )
+void
+Config::labelOk(const Status::StatusCode &status )
 {
-    label->clear();
-    pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, label->size() ) );
+    m_status.status = status;
+    m_status.message = "";
+//     pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, label->size() ) );
 }
 
 Config::Config(QObject *parent) : QObject(parent)
@@ -299,7 +296,6 @@ Config::fillSuggestions()
     }
 }
 
-
 void
 Config::onUsernameTextEdited( const QString& textRef )
 {
@@ -315,36 +311,30 @@ Config::validateUsernameText( const QString& textRef )
     QRegExpValidator val_start( QRegExp( "[a-z_].*" ) );  // anchors are implicit in QRegExpValidator
     int pos = -1;
 
-//     if ( text.isEmpty() )
-//     {
-//         ui->labelUsernameError->clear();
-//         ui->labelUsername->clear();
-//         m_readyUsername = false;
-//     }
-//     else if ( text.length() > USERNAME_MAX_LENGTH )
-//     {
-//         labelError( ui->labelUsername, ui->labelUsernameError, tr( "Your username is too long." ) );
-//         m_readyUsername = false;
-//     }
-//     else if ( val_start.validate( text, pos ) == QValidator::Invalid )
-//     {
-//         labelError( ui->labelUsername,
-//                     ui->labelUsernameError,
-//                     tr( "Your username must start with a lowercase letter or underscore." ) );
-//         m_readyUsername = false;
-//     }
-//     else if ( val_whole.validate( text, pos ) == QValidator::Invalid )
-//     {
-//         labelError( ui->labelUsername,
-//                     ui->labelUsernameError,
-//                     tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
-//         m_readyUsername = false;
-//     }
-//     else
-//     {
-//         labelOk( ui->labelUsername, ui->labelUsernameError );
-//         m_readyUsername = true;
-//     }
+    if ( text.isEmpty() )
+    {
+        m_readyUsername = false;
+    }
+    else if ( text.length() > USERNAME_MAX_LENGTH )
+    {
+        labelError( tr( "Your username is too long." ) );
+        m_readyUsername = false;
+    }
+    else if ( val_start.validate( text, pos ) == QValidator::Invalid )
+    {
+        labelError( tr( "Your username must start with a lowercase letter or underscore." ) );
+        m_readyUsername = false;
+    }
+    else if ( val_whole.validate( text, pos ) == QValidator::Invalid )
+    {
+        labelError( tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
+        m_readyUsername = false;
+    }
+    else
+    {
+        labelOk( );
+        m_readyUsername = true;
+    }
 
     emit checkReady( isReady() );
 }
@@ -365,49 +355,45 @@ Config::validateHostnameText( const QString& textRef )
     QRegExpValidator val( HOSTNAME_RX );
     int pos = -1;
 
-//     if ( text.isEmpty() )
-//     {
-//         ui->labelHostnameError->clear();
-//         ui->labelHostname->clear();
-//         m_readyHostname = false;
-//     }
-//     else if ( text.length() < HOSTNAME_MIN_LENGTH )
-//     {
-//         labelError( ui->labelHostname, ui->labelHostnameError, tr( "Your hostname is too short." ) );
-//         m_readyHostname = false;
-//     }
-//     else if ( text.length() > HOSTNAME_MAX_LENGTH )
-//     {
-//         labelError( ui->labelHostname, ui->labelHostnameError, tr( "Your hostname is too long." ) );
-//         m_readyHostname = false;
-//     }
-//     else if ( val.validate( text, pos ) == QValidator::Invalid )
-//     {
-//         labelError( ui->labelHostname,
-//                     ui->labelHostnameError,
-//                     tr( "Only letters, numbers, underscore and hyphen are allowed." ) );
-//         m_readyHostname = false;
-//     }
-//     else
-//     {
-//         labelOk( ui->labelHostname, ui->labelHostnameError );
-//         m_readyHostname = true;
-//     }
+    if ( text.isEmpty() )
+    {
+        m_readyHostname = false;
+    }
+    else if ( text.length() < HOSTNAME_MIN_LENGTH )
+    {
+        labelError( tr( "Your hostname is too short." ) );
+        m_readyHostname = false;
+    }
+    else if ( text.length() > HOSTNAME_MAX_LENGTH )
+    {
+        labelError( tr( "Your hostname is too long." ) );
+        m_readyHostname = false;
+    }
+    else if ( val.validate( text, pos ) == QValidator::Invalid )
+    {
+        labelError( tr( "Only letters, numbers, underscore and hyphen are allowed." ) );
+        m_readyHostname = false;
+    }
+    else
+    {
+        labelOk( );
+        m_readyHostname = true;
+    }
 
     emit checkReady( isReady() );
 }
 
 bool
-Config::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message )
+Config::checkPasswordAcceptance( const QString& pw1, const QString& pw2 )
 {
     if ( pw1 != pw2 )
     {
-        labelError( badge, message, tr( "Your passwords do not match!" ) );
+        labelError( tr( "Your passwords do not match!" ) );
         return false;
     }
     else
     {
-        bool failureIsFatal = ui->checkBoxValidatePassword->isChecked();
+        bool failureIsFatal = /*ui->checkBoxValidatePassword->isChecked()*/ false;
         bool failureFound = false;
 
         if ( m_passwordChecksChanged )
@@ -422,7 +408,7 @@ Config::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel*
 
             if ( !s.isEmpty() )
             {
-                labelError( badge, message, s, failureIsFatal ? Badness::Fatal : Badness::Warning );
+                labelError( s, failureIsFatal ? Status::Fatal : Status::Warning );
                 failureFound = true;
                 if ( failureIsFatal )
                 {
@@ -433,7 +419,7 @@ Config::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel*
 
         if ( !failureFound )
         {
-            labelOk( badge, message );
+            labelOk( );
         }
 
         // Here, if failureFound is true then we've found **warnings**,
@@ -445,10 +431,8 @@ Config::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel*
 void
 Config::onPasswordTextChanged( const QString& )
 {
-//     m_readyPassword = checkPasswordAcceptance(m_userPassword,
-//                                                m_userVerifiedPassword,
-//                                                ui->labelUserPassword,
-//                                                ui->labelUserPasswordError );
+    m_readyPassword = checkPasswordAcceptance(m_userPassword,
+                                               m_userVerifiedPassword);
 
     emit checkReady( isReady() );
 }
@@ -457,9 +441,7 @@ void
 Config::onRootPasswordTextChanged( const QString& )
 {
 //     m_readyRootPassword = checkPasswordAcceptance( ui->textBoxRootPassword->text(),
-//                                                    ui->textBoxVerifiedRootPassword->text(),
-//                                                    ui->labelRootPassword,
-//                                                    ui->labelRootPasswordError );
+//                                                    ui->textBoxVerifiedRootPassword->text());
     emit checkReady( isReady() );
 }
 
@@ -467,27 +449,27 @@ Config::onRootPasswordTextChanged( const QString& )
 void
 Config::setPasswordCheckboxVisible( bool visible )
 {
-    ui->checkBoxValidatePassword->setVisible( visible );
+//     ui->checkBoxValidatePassword->setVisible( visible );
 }
 
 void
 Config::setValidatePasswordDefault( bool checked )
 {
-    ui->checkBoxValidatePassword->setChecked( checked );
+//     ui->checkBoxValidatePassword->setChecked( checked );
     emit checkReady( isReady() );
 }
 
 void
 Config::setAutologinDefault( bool checked )
 {
-    ui->checkBoxAutoLogin->setChecked( checked );
+//     ui->checkBoxAutoLogin->setChecked( checked );
     emit checkReady( isReady() );
 }
 
 void
 Config::setReusePasswordDefault( bool checked )
 {
-    ui->checkBoxReusePassword->setChecked( checked );
+//     ui->checkBoxReusePassword->setChecked( checked );
     emit checkReady( isReady() );
 }
 

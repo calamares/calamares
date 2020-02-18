@@ -23,11 +23,34 @@
 #include "CheckPWQuality.h"
 #include "Job.h"
 
+struct Status
+{
+    Q_GADGET
+    Q_PROPERTY(QString message MEMBER message CONSTANT FINAL)
+    Q_PROPERTY(QString icon MEMBER icon CONSTANT FINAL)
+
+public:
+    enum StatusCode
+    {
+        Ok,
+        Fatal,
+        Warning
+
+    } Q_ENUMS(StatusCode);
+
+    StatusCode status;
+    QString message;
+    QString icon;
+};
+
 class Config : public QObject
 {
     Q_OBJECT
-
+//     Q_PROPERTY(bool passwordVisible READ setPasswordVisible WRITE setPasswordVisible NOTIFY passwordVisibleChanged)
+    Q_PROPERTY(Status status READ getStatus NOTIFY statusChanged FINAL)
 public:
+    /** @brief How bad is the error for labelError() ? */
+
     Config( QObject* parent = nullptr );
 
     bool isReady();
@@ -39,9 +62,12 @@ public:
 
     void setWriteRootPassword( bool show );
     void setPasswordCheckboxVisible( bool visible );
+
     void setValidatePasswordDefault( bool checked );
     void setAutologinDefault( bool checked );
     void setReusePasswordDefault( bool checked );
+
+    Status getStatus() const { return m_status; }
 
     /** @brief Process entries in the passwordRequirements config entry
      *
@@ -65,6 +91,11 @@ signals:
     void prettyStatusChanged();
     void checkReady(bool);
 
+    void passwordVisibleChanged();
+
+    void statusChanged();
+    void warningMessageChanged();
+
 private:
     /** @brief Is the password acceptable?
      *
@@ -72,9 +103,11 @@ private:
      * given QLabels. Returns true (and clears the error messages) if the
      * password is acceptable.
      */
-    bool checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message );
+    bool checkPasswordAcceptance( const QString& pw1, const QString& pw2);
 
     void retranslate();
+    void labelError(const QString& message, const Status::StatusCode &status = Status::StatusCode::Fatal );
+    void labelOk(const Status::StatusCode &status = Status::StatusCode::Ok );
 
     PasswordCheckList m_passwordChecks;
     bool m_passwordChecksChanged = false;
@@ -99,8 +132,11 @@ private:
     QString m_rootPassword;
 
     QString m_warningMessage;
+    Status m_status;
 
     bool m_autoLogin;
+    bool m_passwordVisible;
+
 };
 
 
