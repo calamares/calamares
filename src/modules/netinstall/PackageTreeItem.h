@@ -21,8 +21,8 @@
 #define PACKAGETREEITEM_H
 
 #include <QList>
-#include <QVariant>
 #include <QStandardItem>
+#include <QVariant>
 
 class PackageTreeItem : public QStandardItem
 {
@@ -78,11 +78,12 @@ public:
     void setSelected( Qt::CheckState isSelected );
     void setChildrenSelected( Qt::CheckState isSelected );
     int type() const override;
+
 private:
     PackageTreeItem* m_parentItem;
-    QList<PackageTreeItem*> m_childItems;
+    QList< PackageTreeItem* > m_childItems;
     ItemData m_data;
-    const int m_columns = 2; // Name, description
+    const int m_columns = 2;  // Name, description
 };
 
-#endif // PACKAGETREEITEM_H
+#endif  // PACKAGETREEITEM_H

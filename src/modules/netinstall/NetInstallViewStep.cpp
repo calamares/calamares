@@ -20,15 +20,15 @@
 
 #include "NetInstallViewStep.h"
 
-#include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "JobQueue.h"
 
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
 #include "NetInstallPage.h"
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin<NetInstallViewStep>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin< NetInstallViewStep >(); )
 
 NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -36,15 +36,16 @@ NetInstallViewStep::NetInstallViewStep( QObject* parent )
     , m_nextEnabled( false )
 {
     emit nextStatusChanged( true );
-    connect( m_widget, &NetInstallPage::checkReady,
-             this, &NetInstallViewStep::nextIsReady );
+    connect( m_widget, &NetInstallPage::checkReady, this, &NetInstallViewStep::nextIsReady );
 }
 
 
 NetInstallViewStep::~NetInstallViewStep()
 {
     if ( m_widget && m_widget->parent() == nullptr )
+    {
         m_widget->deleteLater();
+    }
 }
 
 
@@ -131,28 +132,32 @@ NetInstallViewStep::onLeave()
         // with the more complicated datastructure.
         if ( !package.preScript.isEmpty() || !package.postScript.isEmpty() )
         {
-            QMap<QString, QVariant> sdetails;
+            QMap< QString, QVariant > sdetails;
             sdetails.insert( "pre-script", package.preScript );
             sdetails.insert( "package", package.packageName );
             sdetails.insert( "post-script", package.postScript );
             details = sdetails;
         }
         if ( package.isCritical )
+        {
             installPackages.append( details );
+        }
         else
+        {
             tryInstallPackages.append( details );
+        }
     }
 
     if ( !installPackages.empty() )
     {
-        QMap<QString, QVariant> op;
+        QMap< QString, QVariant > op;
         op.insert( "install", QVariant( installPackages ) );
         packageOperations.append( op );
         cDebug() << Logger::SubEntry << installPackages.length() << "critical packages.";
     }
     if ( !tryInstallPackages.empty() )
     {
-        QMap<QString, QVariant> op;
+        QMap< QString, QVariant > op;
         op.insert( "try_install", QVariant( tryInstallPackages ) );
         packageOperations.append( op );
         cDebug() << Logger::SubEntry << tryInstallPackages.length() << "non-critical packages.";
