@@ -38,7 +38,6 @@ public:
     virtual ~NetInstallViewStep() override;
 
     QString prettyName() const override;
-    QString prettyStatus() const override;
 
     QWidget* widget() override;
 
@@ -63,7 +62,6 @@ public slots:
 private:
     NetInstallPage* m_widget;
     bool m_nextEnabled;
-    QString m_prettyStatus;
     CalamaresUtils::Locale::TranslatedString* m_sidebarLabel;  // As it appears in the sidebar
     QList< Calamares::job_ptr > m_jobs;
 };

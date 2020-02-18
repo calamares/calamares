@@ -58,13 +58,6 @@ NetInstallViewStep::prettyName() const
 }
 
 
-QString
-NetInstallViewStep::prettyStatus() const
-{
-    return m_prettyStatus;
-}
-
-
 QWidget*
 NetInstallViewStep::widget()
 {
