@@ -16,9 +16,6 @@
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Title of Netinstall Module</string>
-     </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
