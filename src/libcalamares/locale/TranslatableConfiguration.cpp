@@ -23,6 +23,7 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+#include <QCoreApplication>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 
@@ -34,7 +35,9 @@ TranslatedString::TranslatedString( const QString& string )
 {
     m_strings[ QString() ] = string;
 }
-TranslatedString::TranslatedString( const QVariantMap& map, const QString& key )
+
+TranslatedString::TranslatedString( const QVariantMap& map, const QString& key, const char* context )
+    : m_context( context )
 {
     // Get the un-decorated value for the key
     QString value = CalamaresUtils::getString( map, key );
@@ -99,7 +102,17 @@ TranslatedString::get( const QLocale& locale ) const
         }
     }
 
-    return m_strings[ QString() ];
+    // If we're given a context to work with, also try the same string in
+    // the regular translation framework.
+    const QString& s = m_strings[ QString() ];
+    if ( m_context )
+    {
+        return QCoreApplication::translate( m_context, s.toLatin1().constData() );
+    }
+    else
+    {
+        return s;
+    }
 }
 
 

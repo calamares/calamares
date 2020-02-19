@@ -55,6 +55,17 @@ QString
 NetInstallViewStep::prettyName() const
 {
     return m_sidebarLabel ? m_sidebarLabel->get() : tr( "Package selection" );
+
+    // This is a table of "standard" labels for this module. If you use them
+    // in the label: sidebar: section of the config file, the existing
+    // translations can be used.
+    NOTREACHED
+    tr( "Package selection" );
+    tr( "Office software" );
+    tr( "Office package" );
+    tr( "Browser software" );
+    tr( "Browser package" );
+    tr( "Web browser" );
 }
 
 
@@ -199,10 +210,11 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( label.contains( "sidebar" ) )
     {
-        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar" );
+        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar", metaObject()->className() );
     }
     if ( label.contains( "title" ) )
     {
-        m_widget->setPageTitle( new CalamaresUtils::Locale::TranslatedString( label, "title" ) );
+        m_widget->setPageTitle(
+            new CalamaresUtils::Locale::TranslatedString( label, "title", metaObject()->className() ) );
     }
 }

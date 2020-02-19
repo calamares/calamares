@@ -39,8 +39,19 @@ class DLLEXPORT TranslatedString
 {
 public:
     /** @brief Get all the translations connected to @p key
+     *
+     * Gets map[key] as the "untranslated" form, and then all the
+     * keys of the form <key>[lang] are taken as the translation
+     * for <lang> of the untranslated form.
+     *
+     * If @p context is not a nullptr, then that is taken as an
+     * indication to **also** use the regular QObject::tr() translation
+     * mechanism for these strings. It is recommended to pass in
+     * metaObject()->className() as context (from a QObject based class)
+     * to give the TranslatedString the same context as other calls
+     * to tr() within that class.
      */
-    TranslatedString( const QVariantMap& map, const QString& key );
+    TranslatedString( const QVariantMap& map, const QString& key, const char* context = nullptr );
     /** @brief Not-actually-translated string.
      */
     TranslatedString( const QString& string );
@@ -73,6 +84,7 @@ public:
 private:
     // Maps locale name to human-readable string, "" is English
     QMap< QString, QString > m_strings;
+    const char* m_context = nullptr;
 };
 }  // namespace Locale
 }  // namespace CalamaresUtils
