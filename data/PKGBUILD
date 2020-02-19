@@ -18,16 +18,14 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-# Todo : Change URL
-#source+=(#"$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/v$pkgver/calamares-v$pkgver.tar.gz"
-#         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/$_commit/$pkgname-$_commit.tar.gz"
-#        )
 source+=("$url/archive/$pkgver-$pkgrel.tar.gz")
+#source+=("$url/archive/&pkgver.tar.gz")
 
-sha256sums=('78c23e34196f021bac0212d21592ccaeb4cf1fd6ac11597f0fd6c7ba7de0deea')
+sha256sums=('SKIP')
 
 prepare() {
     mv ${srcdir}/${pkgname}-${pkgver}-${pkgrel} ${srcdir}/${pkgname}-${pkgver}
+    # mv ${srcdir}/${pkgname}-${pkgver} ${srcdir}/${pkgname}
     cd ${srcdir}/${pkgname}-${pkgver}
     sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
@@ -40,7 +38,7 @@ prepare() {
     sed -i -e "s|CALAMARES_VERSION_RC 1|CALAMARES_VERSION_RC 0|g" CMakeLists.txt
 
     # change branding
-    sed -i -e "s/default/alterlinux/g" src/branding/CMakeLists.txt
+    sed -i -e "s/default/alter/g" src/branding/CMakeLists.txt
 }
 
 build() {
