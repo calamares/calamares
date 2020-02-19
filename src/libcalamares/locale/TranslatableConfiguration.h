@@ -40,7 +40,7 @@ class DLLEXPORT TranslatedString
 public:
     /** @brief Get all the translations connected to @p key
      */
-    TranslatedString( const QVariantMap& map, const QString& key );
+    TranslatedString( const QVariantMap& map, const QString& key, const char* context = nullptr );
     /** @brief Not-actually-translated string.
      */
     TranslatedString( const QString& string );
@@ -73,6 +73,7 @@ public:
 private:
     // Maps locale name to human-readable string, "" is English
     QMap< QString, QString > m_strings;
+    const char* m_context = nullptr;
 };
 }  // namespace Locale
 }  // namespace CalamaresUtils
