@@ -25,7 +25,6 @@ sha256sums=('SKIP')
 
 prepare() {
     mv ${srcdir}/${pkgname}-${pkgver}-${pkgrel} ${srcdir}/${pkgname}-${pkgver}
-    # mv ${srcdir}/${pkgname}-${pkgver} ${srcdir}/${pkgname}
     cd ${srcdir}/${pkgname}-${pkgver}
     sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 
@@ -62,7 +61,7 @@ build() {
 package() {
     cd ${srcdir}/${pkgname}-${pkgver}/build
     make DESTDIR="$pkgdir" install
-    install -Dm644 "../data/alterlinux-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
+    install -Dm644 "../data/alter-icon.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/calamares.svg"
     install -Dm644 "../data/calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
     install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
     install -Dm644 "../data/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
