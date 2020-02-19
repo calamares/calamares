@@ -37,8 +37,8 @@ This release contains contributions from (alphabetically by first name):
  - Multiple *netinstall* modules can exist side-by-side, and they each
    control the package installation for their part of the package list.
    Previously, a netinstall module would overwrite all of the package
-   configuration done by other netinstall modules.
-   #1303
+   configuration done by other netinstall modules. Translations can be
+   provided in the configuration file, `netinstall.conf`. #1303
 
 
 # 3.2.18 (2020-01-28) #
