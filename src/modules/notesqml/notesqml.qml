@@ -58,26 +58,8 @@ Item {
             wrapMode: Text.WordWrap
 
             text: qsTr("<h3>%1</h3>
-            <p>This an example QML file, showing options in RichText with Flickable content.</p>
-
-            <p>QML with RichText can use HTML tags, Flickable content is useful for touchscreens.</p>
-
-            <p><b>This is bold text</b></p>
-            <p><i>This is italic text</i></p>
-            <p><u>This is underlined text</u></p>
-            <p><center>This text will be center-aligned.</center></p>
-            <p><s>This is strikethrough</s></p>
-
-            <p>Code example:
-            <code>ls -l /home</code></p>
-
-            <p><b>Lists:</b></p>
-            <ul>
-                <li>Intel CPU systems</li>
-                <li>AMD CPU systems</li>
-            </ul>
-
-            <p>The vertical scrollbar is adjustable, current width set to 10.</p>").arg(Branding.string(Branding.VersionedName))
+            <p>These are example release notes.</p>"
+            ).arg(Branding.string(Branding.VersionedName))
 
         }
     }
