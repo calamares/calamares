@@ -31,8 +31,8 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void cleanup();
-    
-    void testCreateHostFile();
+
+    // TODO: this doesn't actually test any of the functionality of this job
     void testCreateTargetFile();
 };
 
