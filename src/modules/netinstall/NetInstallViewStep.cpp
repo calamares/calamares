@@ -199,10 +199,10 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( label.contains( "sidebar" ) )
     {
-        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar" );
+        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar", metaObject()->className() );
     }
     if ( label.contains( "title" ) )
     {
-        m_widget->setPageTitle( new CalamaresUtils::Locale::TranslatedString( label, "title" ) );
+        m_widget->setPageTitle( new CalamaresUtils::Locale::TranslatedString( label, "title", metaObject()->className() ) );
     }
 }
