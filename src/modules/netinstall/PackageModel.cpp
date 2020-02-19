@@ -21,9 +21,11 @@
 
 #include "utils/Yaml.h"
 
+// TODO: see headerData(), remove after 3.2.19
+#include <QCoreApplication>
+
 PackageModel::PackageModel( const YAML::Node& data, QObject* parent )
     : QAbstractItemModel( parent )
-    , m_columnHeadings()
 {
     m_rootItem = new PackageTreeItem();
     setupModelData( data, m_rootItem );
@@ -106,11 +108,7 @@ PackageModel::rowCount( const QModelIndex& parent ) const
 int
 PackageModel::columnCount( const QModelIndex& parent ) const
 {
-    if ( parent.isValid() )
-    {
-        return static_cast< PackageTreeItem* >( parent.internalPointer() )->columnCount();
-    }
-    return m_rootItem->columnCount();
+    return 2;
 }
 
 QVariant
@@ -154,26 +152,6 @@ PackageModel::setData( const QModelIndex& index, const QVariant& value, int role
     return true;
 }
 
-bool
-PackageModel::setHeaderData( int section, Qt::Orientation orientation, const QVariant& value, int role )
-{
-    Q_UNUSED( role )
-
-    if ( orientation == Qt::Horizontal )
-    {
-        if ( m_columnHeadings.value( section ) != QVariant() )
-        {
-            m_columnHeadings.replace( section, value );
-        }
-        else
-        {
-            m_columnHeadings.insert( section, value );
-        }
-        emit headerDataChanged( orientation, section, section );
-    }
-    return true;
-}
-
 Qt::ItemFlags
 PackageModel::flags( const QModelIndex& index ) const
 {
@@ -193,7 +171,12 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
 {
     if ( orientation == Qt::Horizontal && role == Qt::DisplayRole )
     {
-        return m_columnHeadings.value( section );
+        // Unusual translation call uses the existing translation from the NetInstallPage
+        // class (now removed).
+        //
+        // TODO: after 3.2.19, change this to just tr() and push TX
+        return ( section == 0 ) ? QCoreApplication::translate( "NetInstallPage", "Name" )
+                                : QCoreApplication::translate( "NetInstallPage", "Description" );
     }
     return QVariant();
 }

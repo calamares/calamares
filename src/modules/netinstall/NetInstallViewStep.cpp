@@ -2,7 +2,7 @@
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo <shainer@chakraos.org>
  *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new NetInstallPage() )
     , m_nextEnabled( false )
+    , m_sidebarLabel( nullptr )
 {
     emit nextStatusChanged( true );
     connect( m_widget, &NetInstallPage::checkReady, this, &NetInstallViewStep::nextIsReady );
@@ -46,20 +47,14 @@ NetInstallViewStep::~NetInstallViewStep()
     {
         m_widget->deleteLater();
     }
+    delete m_sidebarLabel;
 }
 
 
 QString
 NetInstallViewStep::prettyName() const
 {
-    return tr( "Package selection" );
-}
-
-
-QString
-NetInstallViewStep::prettyStatus() const
-{
-    return m_prettyStatus;
+    return m_sidebarLabel ? m_sidebarLabel->get() : tr( "Package selection" );
 }
 
 
@@ -128,9 +123,9 @@ NetInstallViewStep::onLeave()
     // Clear out existing operations for this module, going backwards:
     // Sometimes we remove an item, and we don't want the index to
     // fall off the end of the list.
-    for ( int index = packageOperations.length() - 1; 0 <= index ; index-- )
+    for ( int index = packageOperations.length() - 1; 0 <= index; index-- )
     {
-        const QVariantMap op = packageOperations.at(index).toMap();
+        const QVariantMap op = packageOperations.at( index ).toMap();
         if ( op.contains( "source" ) && op.value( "source" ).toString() == moduleInstanceKey().toString() )
         {
             cDebug() << Logger::SubEntry << "Removing existing operations for" << moduleInstanceKey();
@@ -178,6 +173,12 @@ NetInstallViewStep::onLeave()
     }
 }
 
+void
+NetInstallViewStep::nextIsReady( bool b )
+{
+    m_nextEnabled = b;
+    emit nextStatusChanged( b );
+}
 
 void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
@@ -192,11 +193,16 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         Calamares::JobQueue::instance()->globalStorage()->insert( "groupsUrl", groupsUrl );
         m_widget->loadGroupList( groupsUrl );
     }
-}
 
-void
-NetInstallViewStep::nextIsReady( bool b )
-{
-    m_nextEnabled = b;
-    emit nextStatusChanged( b );
+    bool bogus = false;
+    auto label = CalamaresUtils::getSubMap( configurationMap, "label", bogus );
+
+    if ( label.contains( "sidebar" ) )
+    {
+        m_sidebarLabel = new CalamaresUtils::Locale::TranslatedString( label, "sidebar" );
+    }
+    if ( label.contains( "title" ) )
+    {
+        m_widget->setPageTitle( new CalamaresUtils::Locale::TranslatedString( label, "title" ) );
+    }
 }

@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -54,7 +54,6 @@ public:
     void appendChild( PackageTreeItem* child );
     PackageTreeItem* child( int row );
     int childCount() const;
-    int columnCount() const;
     QVariant data( int column ) const override;
     int row() const;
 
@@ -90,7 +89,6 @@ private:
     PackageTreeItem* m_parentItem;
     QList< PackageTreeItem* > m_childItems;
     ItemData m_data;
-    const int m_columns = 2;  // Name, description
 };
 
 #endif  // PACKAGETREEITEM_H

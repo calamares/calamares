@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -103,12 +103,6 @@ PackageTreeItem::row() const
         return m_parentItem->m_childItems.indexOf( const_cast< PackageTreeItem* >( this ) );
     }
     return 0;
-}
-
-int
-PackageTreeItem::columnCount() const
-{
-    return m_columns;
 }
 
 QVariant
