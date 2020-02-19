@@ -56,16 +56,23 @@ NetInstallViewStep::prettyName() const
 {
     return m_sidebarLabel ? m_sidebarLabel->get() : tr( "Package selection" );
 
+#if defined(TABLE_OF_TRANSLATIONS)
+    NOTREACHED
     // This is a table of "standard" labels for this module. If you use them
     // in the label: sidebar: section of the config file, the existing
     // translations can be used.
-    NOTREACHED
     tr( "Package selection" );
     tr( "Office software" );
     tr( "Office package" );
     tr( "Browser software" );
     tr( "Browser package" );
     tr( "Web browser" );
+    tr( "Kernel" );
+    tr( "Services" );
+    tr( "Login" );
+    tr( "Desktop" );
+    tr( "Applications" );
+#endif
 }
 
 
