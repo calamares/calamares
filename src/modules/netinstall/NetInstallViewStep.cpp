@@ -203,6 +203,6 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     if ( label.contains( "title" ) )
     {
-        // Set that label on the page
+        m_widget->setPageTitle( new CalamaresUtils::Locale::TranslatedString( label, "title" ) );
     }
 }

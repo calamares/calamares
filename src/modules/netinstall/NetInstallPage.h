@@ -24,8 +24,12 @@
 #include "PackageModel.h"
 #include "PackageTreeItem.h"
 
+#include "locale/TranslatableConfiguration.h"
+
 #include <QString>
 #include <QWidget>
+
+#include <memory>
 
 class QNetworkReply;
 
@@ -40,6 +44,17 @@ class NetInstallPage : public QWidget
 public:
     NetInstallPage( QWidget* parent = nullptr );
     virtual ~NetInstallPage();
+
+    /** @brief Sets the page title
+     *
+     * In situations where there is more than one netinstall page,
+     * or you want some explanatory title above the treeview,
+     * set the page title. This page takes ownership of the
+     * TranslatedString object.
+     *
+     * Set to nullptr to remove the title.
+     */
+    void setPageTitle( CalamaresUtils::Locale::TranslatedString* );
 
     void onActivate();
 
@@ -76,6 +91,8 @@ private:
     bool readGroups( const QByteArray& yamlData );
 
     Ui::Page_NetInst* ui;
+
+    std::unique_ptr< CalamaresUtils::Locale::TranslatedString > m_title;  // Above the treeview
 
     QNetworkReply* m_reply;
     PackageModel* m_groups;

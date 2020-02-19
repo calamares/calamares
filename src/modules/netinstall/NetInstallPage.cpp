@@ -41,6 +41,7 @@ NetInstallPage::NetInstallPage( QWidget* parent )
     , m_groups( nullptr )
 {
     ui->setupUi( this );
+    setPageTitle( nullptr );
     CALAMARES_RETRANSLATE_SLOT( &NetInstallPage::retranslate );
 }
 
@@ -51,12 +52,32 @@ NetInstallPage::~NetInstallPage()
 }
 
 void
+NetInstallPage::setPageTitle( CalamaresUtils::Locale::TranslatedString* t )
+{
+    m_title.reset( t );
+    if ( !m_title )
+    {
+        ui->label->hide();
+    }
+    else
+    {
+        ui->label->show();
+    }
+    retranslate();
+}
+
+
+void
 NetInstallPage::retranslate()
 {
     if ( m_groups )
     {
         m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
         m_groups->setHeaderData( 1, Qt::Horizontal, tr( "Description" ) );
+    }
+    if ( ui && m_title )
+    {
+        ui->label->setText( m_title->get() );  // That's get() on the TranslatedString
     }
 }
 
