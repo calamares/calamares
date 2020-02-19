@@ -54,7 +54,6 @@ public:
     void appendChild( PackageTreeItem* child );
     PackageTreeItem* child( int row );
     int childCount() const;
-    int columnCount() const;
     QVariant data( int column ) const override;
     int row() const;
 
@@ -90,7 +89,6 @@ private:
     PackageTreeItem* m_parentItem;
     QList< PackageTreeItem* > m_childItems;
     ItemData m_data;
-    const int m_columns = 2;  // Name, description
 };
 
 #endif  // PACKAGETREEITEM_H

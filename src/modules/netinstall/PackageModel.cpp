@@ -106,11 +106,7 @@ PackageModel::rowCount( const QModelIndex& parent ) const
 int
 PackageModel::columnCount( const QModelIndex& parent ) const
 {
-    if ( parent.isValid() )
-    {
-        return static_cast< PackageTreeItem* >( parent.internalPointer() )->columnCount();
-    }
-    return m_rootItem->columnCount();
+    return 2;
 }
 
 QVariant

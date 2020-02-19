@@ -105,12 +105,6 @@ PackageTreeItem::row() const
     return 0;
 }
 
-int
-PackageTreeItem::columnCount() const
-{
-    return m_columns;
-}
-
 QVariant
 PackageTreeItem::data( int column ) const
 {
