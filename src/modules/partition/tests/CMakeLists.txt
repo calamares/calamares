@@ -26,10 +26,8 @@ calamares_add_test(
     SOURCES ${partitionjobtests_SRCS}
     LIBRARIES
         kpmcore
+    DEFINITIONS ${_partition_defs}
 )
-if( TARGET partitionjobtests )
-    target_compile_definitions( partitionjobtests PRIVATE ${_partition_defs} )
-endif()
 
 calamares_add_test(
     clearmountsjobtests
@@ -38,8 +36,6 @@ calamares_add_test(
         ClearMountsJobTests.cpp
     LIBRARIES
         kpmcore
+    DEFINITIONS ${_partition_defs}
 )
-if( TARGET clearmountsjobtests )
-    target_compile_definitions( clearmountsjobtests PRIVATE ${_partition_defs} )
-endif()
 

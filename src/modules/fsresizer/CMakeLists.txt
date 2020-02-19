@@ -35,10 +35,8 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
         LIBRARIES
             calamares_job_fsresizer  # From above
             yamlcpp
+        DEFINITIONS ${_partition_defs}
     )
-    if( TARGET fsresizertest )
-        target_compile_definitions( fsresizertest PRIVATE ${_partition_defs} )
-    endif()
 else()
     if ( NOT KPMcore_FOUND )
         calamares_skip_module( "fsresizer (missing suitable KPMcore)" )
