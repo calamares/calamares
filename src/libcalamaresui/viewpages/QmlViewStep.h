@@ -73,8 +73,20 @@ public:
     /// @brief QML widgets don't produce jobs by default
     virtual JobList jobs() const override;
 
-    /// @brief Configure search paths; subclasses should call this as well
+    /// @brief Configure search paths; subclasses should call this at the **end** of their own implementation
     virtual void setConfigurationMap( const QVariantMap& configurationMap ) override;
+
+protected:
+    /** @brief Gets a pointer to the Config of this view step
+     *
+     * Parts of the configuration of the viewstep can be passed to QML
+     * by placing them in a QObject (as properties). The default
+     * implementation returns nullptr, for no-config.
+     *
+     * Ownership of the config object remains with the ViewStep; it is possible
+     * to return a pointer to a member variable.
+     */
+    virtual QObject* getConfig();
 
 private Q_SLOTS:
     void loadComplete();

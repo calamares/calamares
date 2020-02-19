@@ -146,9 +146,6 @@ public:
     QString slideshowPath() const { return m_slideshowPath; }
     int slideshowAPI() const { return m_slideshowAPI; }
 
-    QString string( Branding::StringEntry stringEntry ) const;
-    QString styleString( Branding::StyleEntry styleEntry ) const;
-    QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
 
     /** @brief Look up an image in the branding directory or as an icon
@@ -184,6 +181,11 @@ public:
      * information accessible to the Python modules.
      */
     void setGlobals( GlobalStorage* globalStorage ) const;
+
+public slots:
+    QString string( StringEntry stringEntry ) const;
+    QString styleString( StyleEntry styleEntry ) const;
+    QString imagePath( ImageEntry imageEntry ) const;
 
 private:
     static Branding* s_instance;
