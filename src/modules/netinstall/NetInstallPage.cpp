@@ -66,15 +66,9 @@ NetInstallPage::setPageTitle( CalamaresUtils::Locale::TranslatedString* t )
     retranslate();
 }
 
-
 void
 NetInstallPage::retranslate()
 {
-    if ( m_groups )
-    {
-        m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
-        m_groups->setHeaderData( 1, Qt::Horizontal, tr( "Description" ) );
-    }
     if ( ui && m_title )
     {
         ui->label->setText( m_title->get() );  // That's get() on the TranslatedString
