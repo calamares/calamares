@@ -1,4 +1,4 @@
-find_package( Qt5 COMPONENTS Core REQUIRED )
+find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core DBus Network )
 find_package( Crypt REQUIRED )
 
 # Add optional libraries here
@@ -36,20 +36,24 @@ calamares_add_plugin( users
         calamaresui
         ${CRYPT_LIBRARIES}
         ${USER_EXTRA_LIB}
+        Qt5::DBus
     SHARED_LIB
 )
 
-if( ECM_FOUND AND BUILD_TESTING )
-    ecm_add_test(
-            PasswordTests.cpp
-            SetPasswordJob.cpp
-        TEST_NAME
-            passwordtest
-        LINK_LIBRARIES
-            ${CALAMARES_LIBRARIES}
-            Qt5::Core
-            Qt5::Test
-            ${CRYPT_LIBRARIES}
-    )
-    calamares_automoc( passwordtest )
-endif()
+calamares_add_test(
+    userspasswordtest
+    SOURCES
+        PasswordTests.cpp
+        SetPasswordJob.cpp
+    LIBRARIES
+        ${CRYPT_LIBRARIES}
+)
+
+calamares_add_test(
+    userstest
+    SOURCES
+        Tests.cpp
+        SetHostNameJob.cpp
+    LIBRARIES
+        Qt5::DBus
+)

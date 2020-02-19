@@ -205,7 +205,7 @@ LuksBootKeyFileJob::exec()
         if ( !setupLuks( d ) )
             return Calamares::JobResult::error(
                 tr( "Encrypted rootfs setup error" ),
-                tr( "Could configure LUKS key file on partition %1." ).arg( d.device ) );
+                tr( "Could not configure LUKS key file on partition %1." ).arg( d.device ) );
     }
 
     return Calamares::JobResult::ok();

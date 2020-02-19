@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2020, Anke Boersma <demm@kaosx.us>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,6 +17,14 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* Some Calamares internals are available to all QML modules.
+ * They live in the calamares.ui namespace (filled programmatically
+ * by Calamares). One of the internals that is exposed is the
+ * Branding object, which can be used to retrieve strings and paths
+ * and colors.
+ */
+import calamares.ui 1.0
+
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Window 2.2
@@ -30,9 +39,9 @@ Item {
         id: flick
         anchors.fill: parent
         contentHeight: 800
-        
+
         ScrollBar.vertical: ScrollBar {
-            id: fscrollbar 
+            id: fscrollbar
             width: 10
             policy: ScrollBar.AlwaysOn
         }
@@ -48,27 +57,9 @@ Item {
             activeFocusOnPress: false
             wrapMode: Text.WordWrap
 
-            text: qsTr("<h3>Generic GNU/Linux 2020.2 LTS <quote>Turgid Tuba</quote></h3>
-            <p>This an example QML file, showing options in RichText with Flickable content.</p>
-            
-            <p>QML with RichText can use HTML tags, Flickable content is useful for touchscreens.</p>
-            
-            <p><b>This is bold text</b></p>
-            <p><i>This is italic text</i></p>
-            <p><u>This is underlined text</u></p>
-            <p><center>This text will be center-aligned.</center></p>
-            <p><s>This is strikethrough</s></p>
-            
-            <p>Code example:
-            <code>ls -l /home</code></p>
-            
-            <p><b>Lists:</b></p>
-            <ul>
-                <li>Intel CPU systems</li>
-                <li>AMD CPU systems</li>
-            </ul>
-            
-            <p>The vertical scrollbar is adjustable, current width set to 10.</p>")
+            text: qsTr("<h3>%1</h3>
+            <p>These are example release notes.</p>"
+            ).arg(Branding.string(Branding.VersionedName))
 
         }
     }

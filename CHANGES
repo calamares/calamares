@@ -31,6 +31,14 @@ This release contains contributions from (alphabetically by first name):
    "fancy" release notes as a QML application, rather than a webview
    or text widget. Note that this does not replace the slideshow-during-
    installation module.
+ - The *users* module now has knobs for setting the hostname and writing
+   the `/etc/hosts` file. The new configuration options are documented
+   in `users.conf`. #1140
+ - Multiple *netinstall* modules can exist side-by-side, and they each
+   control the package installation for their part of the package list.
+   Previously, a netinstall module would overwrite all of the package
+   configuration done by other netinstall modules. Translations can be
+   provided in the configuration file, `netinstall.conf`. #1303
 
 
 # 3.2.18 (2020-01-28) #

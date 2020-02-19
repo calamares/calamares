@@ -57,9 +57,12 @@ void InitramfsTests::cleanup()
 
 void InitramfsTests::testCreateHostFile()
 {
-    
+
     CalamaresUtils::System s( false );  // don't chroot
-    QString path = s.createTargetFile( confFile, QByteArray( contents ) );
+    auto r = s.createTargetFile( confFile, QByteArray( contents ) );
+    QVERIFY( !r.failed() );
+    QVERIFY( r );
+    QString path = r.path();
     QVERIFY( !path.isEmpty() );
     QCOMPARE( path, confFile );  // don't chroot, so path create relative to /
     QVERIFY( QFile::exists( confFile ) );
@@ -67,30 +70,33 @@ void InitramfsTests::testCreateHostFile()
     QFileInfo fi( confFile );
     QVERIFY( fi.exists() );
     QCOMPARE( fi.size(), sizeof( contents )-1 );  // don't count trailing NUL
-    
+
     QFile::remove( confFile );
 }
 
 void InitramfsTests::testCreateTargetFile()
 {
     static const char short_confFile[] = "/calamares-safe-umask";
-    
+
     CalamaresUtils::System s( true );
-    QString path = s.createTargetFile( short_confFile, QByteArray( contents ) );
+    auto r = s.createTargetFile( short_confFile, QByteArray( contents ) );
+    QVERIFY( r.failed() );
+    QVERIFY( !r );
+    QString path = r.path();
     QVERIFY( path.isEmpty() );  // because no rootmountpoint is set
-    
+
     Calamares::JobQueue j;
     j.globalStorage()->insert( "rootMountPoint", "/tmp" );
-    
+
     path = s.createTargetFile( short_confFile, QByteArray( contents ) );
-    QVERIFY( path.endsWith( short_confFile ) );  // chroot, so path create relative to 
+    QVERIFY( path.endsWith( short_confFile ) );  // chroot, so path create relative to
     QVERIFY( path.startsWith( "/tmp/" ) );
     QVERIFY( QFile::exists( path ) );
 
     QFileInfo fi( path );
     QVERIFY( fi.exists() );
     QCOMPARE( fi.size(), sizeof( contents )-1 );  // don't count trailing NUL
-    
+
     QFile::remove( path );
 
 }

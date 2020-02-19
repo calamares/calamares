@@ -21,7 +21,7 @@
 #define VIEWSTEP_H
 
 #include "Job.h"
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include "modulesystem/InstanceKey.h"
 #include "modulesystem/Requirement.h"

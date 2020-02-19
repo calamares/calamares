@@ -29,11 +29,13 @@
 #include "widgets/WaitingWidget.h"
 
 #include <QQmlComponent>
+#include <QQmlContext>
 #include <QQmlEngine>
 #include <QQuickItem>
 #include <QQuickWidget>
 #include <QVBoxLayout>
 #include <QWidget>
+
 
 static const NamedEnumTable< Calamares::QmlViewStep::QmlSearch >&
 searchNames()
@@ -82,6 +84,20 @@ changeQMLState( QMLAction action, QQuickItem* item )
     }
 }
 
+static void
+registerCalamaresModels()
+{
+    static bool done = false;
+    if ( !done )
+    {
+        done = true;
+        qmlRegisterSingletonType< Calamares::Branding >(
+            "calamares.ui", 1, 0, "Branding", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+                return Calamares::Branding::instance();
+            } );
+    }
+}
+
 namespace Calamares
 {
 
@@ -92,6 +108,8 @@ QmlViewStep::QmlViewStep( const QString& name, QObject* parent )
     , m_spinner( new WaitingWidget( tr( "Loading ..." ) ) )
     , m_qmlWidget( new QQuickWidget )
 {
+    registerCalamaresModels();
+
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     layout->addWidget( m_spinner );
 
@@ -297,6 +315,12 @@ QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         m_qmlFileName = searchQmlFile( m_searchMethod, qmlFile, m_name );
 
+        QObject* config = this->getConfig();
+        if ( config )
+        {
+            m_qmlWidget->engine()->rootContext()->setContextProperty( "config", config );
+        }
+
         cDebug() << "QmlViewStep" << moduleInstanceKey() << "loading" << m_qmlFileName;
         m_qmlComponent = new QQmlComponent(
             m_qmlWidget->engine(), QUrl( m_qmlFileName ), QQmlComponent::CompilationMode::Asynchronous );
@@ -316,7 +340,17 @@ void
 QmlViewStep::showFailedQml()
 {
     cWarning() << "QmlViewStep" << moduleInstanceKey() << "loading failed.";
+    if ( m_qmlComponent )
+    {
+        cDebug() << Logger::SubEntry << "QML error:" << m_qmlComponent->errorString();
+    }
     m_spinner->setText( prettyName() + ' ' + tr( "Loading failed." ) );
+}
+
+QObject*
+QmlViewStep::getConfig()
+{
+    return nullptr;
 }
 
 }  // namespace Calamares

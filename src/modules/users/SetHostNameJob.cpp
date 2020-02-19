@@ -2,7 +2,7 @@
  *
  *   Copyright 2014, Rohan Garg <rohan@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,14 +22,19 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
 #include <QDir>
 #include <QFile>
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusReply>
 
-SetHostNameJob::SetHostNameJob( const QString& hostname )
+SetHostNameJob::SetHostNameJob( const QString& hostname, Actions a )
     : Calamares::Job()
     , m_hostname( hostname )
+    , m_actions( a )
 {
 }
 
@@ -53,6 +58,68 @@ SetHostNameJob::prettyStatusMessage() const
     return tr( "Setting hostname %1." ).arg( m_hostname );
 }
 
+STATICTEST bool
+setFileHostname( const QString& hostname )
+{
+    return !( CalamaresUtils::System::instance()
+                  ->createTargetFile( QStringLiteral( "/etc/hostname" ), ( hostname + '\n' ).toUtf8() )
+                  .failed() );
+}
+
+STATICTEST bool
+writeFileEtcHosts( const QString& hostname )
+{
+    // The actual hostname gets substituted in at %1
+    static const char etc_hosts[] = R"(# Host addresses
+127.0.0.1  localhost
+127.0.1.1  %1
+::1        localhost ip6-localhost ip6-loopback
+ff02::1    ip6-allnodes
+ff02::2    ip6-allrouters
+)";
+
+    return !( CalamaresUtils::System::instance()
+                  ->createTargetFile( QStringLiteral( "/etc/hosts" ), QString( etc_hosts ).arg( hostname ).toUtf8() )
+                  .failed() );
+}
+
+STATICTEST bool
+setSystemdHostname( const QString& hostname )
+{
+    QDBusInterface hostnamed( "org.freedesktop.hostname1",
+                              "/org/freedesktop/hostname1",
+                              "org.freedesktop.hostname1",
+                              QDBusConnection::systemBus() );
+    if ( !hostnamed.isValid() )
+    {
+        cWarning() << "Interface" << hostnamed.interface() << "is not valid.";
+        return false;
+    }
+
+    bool success = true;
+    // Static, writes /etc/hostname
+    {
+        QDBusReply< void > r = hostnamed.call( "SetStaticHostname", hostname, false );
+        if ( !r.isValid() )
+        {
+            cWarning() << "Could not set hostname through org.freedesktop.hostname1.SetStaticHostname." << r.error();
+            success = false;
+        }
+    }
+    // Dynamic, updates kernel
+    {
+        QDBusReply< void > r = hostnamed.call( "SetHostname", hostname, false );
+        if ( !r.isValid() )
+        {
+            cWarning() << "Could not set hostname through org.freedesktop.hostname1.SetHostname." << r.error();
+            success = false;
+        }
+    }
+
+    return success;
+}
+
+
 Calamares::JobResult
 SetHostNameJob::exec()
 {
@@ -71,43 +138,29 @@ SetHostNameJob::exec()
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
-    QFile hostfile( destDir + "/etc/hostname" );
-    if ( !hostfile.open( QFile::WriteOnly ) )
+    if ( m_actions & Action::EtcHostname )
     {
-        cError() << "Can't write to hostname file";
-        return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
+        if ( !setFileHostname( m_hostname ) )
+        {
+            cError() << "Can't write to hostname file";
+            return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
+        }
     }
 
-    QTextStream hostfileout( &hostfile );
-    hostfileout << m_hostname << "\n";
-    hostfile.close();
-
-    QFile hostsfile( destDir + "/etc/hosts" );
-    if ( !hostsfile.open( QFile::WriteOnly ) )
+    if ( m_actions & Action::WriteEtcHosts )
     {
-        cError() << "Can't write to hosts file";
-        return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
+        if ( !writeFileEtcHosts( m_hostname ) )
+        {
+            cError() << "Can't write to hosts file";
+            return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
+        }
     }
 
-    // We also need to write the appropriate entries for /etc/hosts
-    QTextStream hostsfileout( &hostsfile );
-    // ipv4 support
-    hostsfileout << "127.0.0.1"
-                 << "\t"
-                 << "localhost"
-                 << "\n";
-    hostsfileout << "127.0.1.1"
-                 << "\t" << m_hostname << "\n";
-    // ipv6 support
-    hostsfileout << "::1"
-                 << "\t"
-                 << "localhost ip6-localhost ip6-loopback"
-                 << "\n";
-    hostsfileout << "ff02::1 ip6-allnodes"
-                 << "\n"
-                 << "ff02::2 ip6-allrouters"
-                 << "\n";
-    hostsfile.close();
+    if ( m_actions & Action::SystemdHostname )
+    {
+        // Does its own logging
+        setSystemdHostname( m_hostname );
+    }
 
     return Calamares::JobResult::ok();
 }

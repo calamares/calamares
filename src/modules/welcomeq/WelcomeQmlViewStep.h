@@ -21,11 +21,10 @@
 
 #include "Config.h"
 
+#include "DllMacro.h"
 #include "modulesystem/Requirement.h"
 #include "utils/PluginFactory.h"
-#include "viewpages/ViewStep.h"
-
-#include <PluginDllMacro.h>
+#include "viewpages/QmlViewStep.h"
 
 #include <QObject>
 #include <QVariantMap>
@@ -40,13 +39,7 @@ class Handler;
 
 class GeneralRequirements;
 
-class QQmlComponent;
-class QQuickItem;
-class QQuickWidget;
-
-// TODO: Needs a generic Calamares::QmlViewStep as base class
-// TODO: refactor and move what makes sense to base class
-class PLUGINDLLEXPORT WelcomeQmlViewStep : public Calamares::ViewStep
+class PLUGINDLLEXPORT WelcomeQmlViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT
 
@@ -55,16 +48,6 @@ public:
     virtual ~WelcomeQmlViewStep() override;
 
     QString prettyName() const override;
-
-    QWidget* widget() override;
-
-    bool isNextEnabled() const override;
-    bool isBackEnabled() const override;
-
-    bool isAtBeginning() const override;
-    bool isAtEnd() const override;
-
-    Calamares::JobList jobs() const override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
@@ -78,16 +61,13 @@ public:
 
     Calamares::RequirementsList checkRequirements() override;
 
+protected:
+    QObject* getConfig() override;
+
 private:
     // TODO: a generic QML viewstep should return a config object from a method
     Config m_config;
     GeneralRequirements* m_requirementsChecker;
-
-    // TODO: these need to be in the base class (also a base class of ExecutionViewStep)
-    QQuickWidget* m_qmlWidget;
-    QQmlComponent* m_qmlComponent;
-    QQuickItem* m_qmlItem;
-
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeQmlViewStepFactory )

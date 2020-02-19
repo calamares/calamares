@@ -48,9 +48,6 @@ enum class EntropyGeneration
     CopyFromHost
 };
 
-/// @brief Returns a recommended size for the entropy pool (in bytes)
-int getUrandomPoolSize();
-
 /// @brief Creates a new entropy file @p fileName in the target system at @p rootMountPoint
 Calamares::JobResult createNewEntropy( int poolSize, const QString& rootMountPoint, const QString& fileName );
 

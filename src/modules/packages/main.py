@@ -478,7 +478,10 @@ def run_operations(pkgman, entry):
             else:
                 for package in package_list:
                     pkgman.install_package(package, from_local=True)
-
+        elif key == "source":
+            libcalamares.utils.debug("Package-list from {!s}".format(entry[key]))
+        else:
+            libcalamares.utils.warning("Unknown package-operation key {!s}".format(key))
         completed_packages += len(package_list)
         libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)
         libcalamares.utils.debug(pretty_name())

@@ -20,7 +20,7 @@
 #ifndef NOTESQMLVIEWSTEP_H
 #define NOTESQMLVIEWSTEP_H
 
-#include "PluginDllMacro.h"
+#include "DllMacro.h"
 #include "locale/TranslatableConfiguration.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Variant.h"

@@ -22,7 +22,7 @@
 
 #include "Module.h"
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include <chrono>
 

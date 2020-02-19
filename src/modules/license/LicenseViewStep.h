@@ -20,7 +20,7 @@
 #ifndef LICENSEPAGEPLUGIN_H
 #define LICENSEPAGEPLUGIN_H
 
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
 

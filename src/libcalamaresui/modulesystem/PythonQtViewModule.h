@@ -20,7 +20,7 @@
 #define CALAMARES_PYTHONQTVIEWMODULE_H
 
 #include "Module.h"
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 namespace Calamares
 {

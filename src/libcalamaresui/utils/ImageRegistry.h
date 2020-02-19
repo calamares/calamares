@@ -28,7 +28,7 @@
 
 #include <QPixmap>
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 #include "utils/CalamaresUtilsGui.h"
 
 class UIDLLEXPORT ImageRegistry

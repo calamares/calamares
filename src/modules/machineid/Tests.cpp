@@ -28,6 +28,9 @@
 #include <QFile>
 #include <QtTest/QtTest>
 
+// Internals of Workers.cpp
+extern int getUrandomPoolSize();
+
 class MachineIdTests : public QObject
 {
     Q_OBJECT
@@ -93,10 +96,10 @@ MachineIdTests::testPoolSize()
 {
 #ifdef Q_OS_FREEBSD
     // It hardly makes sense, but also the /proc entry is missing
-    QCOMPARE( MachineId::getUrandomPoolSize(), 512 );
+    QCOMPARE( getUrandomPoolSize(), 512 );
 #else
     // Based on a sample size of 1, Netrunner
-    QCOMPARE( MachineId::getUrandomPoolSize(), 4096 );
+    QCOMPARE( getUrandomPoolSize(), 4096 );
 #endif
 }
 
@@ -122,8 +125,13 @@ MachineIdTests::testJob()
     gs->insert( "rootMountPoint", "/tmp" );
 
     // Prepare part of the target filesystem
-    QVERIFY( system->createTargetDirs("/etc") );
-    QVERIFY( !(system->createTargetFile( "/etc/machine-id", "Hello" ).isEmpty() ) );
+    {
+        QVERIFY( system->createTargetDirs("/etc") );
+        auto r = system->createTargetFile( "/etc/machine-id", "Hello" );
+        QVERIFY( !r.failed() );
+        QVERIFY( r );
+        QVERIFY( !r.path().isEmpty() );
+    }
 
     MachineIdJob job( nullptr );
     QVERIFY( !job.prettyName().isEmpty() );
