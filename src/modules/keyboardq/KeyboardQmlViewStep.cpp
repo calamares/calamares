@@ -20,6 +20,8 @@
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "utils/Yaml.h"
+
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardQmlViewStepFactory, registerPlugin<KeyboardQmlViewStep>(); )
 
@@ -29,6 +31,8 @@ KeyboardQmlViewStep::KeyboardQmlViewStep( QObject* parent )
     , m_nextEnabled( false )
     , m_writeEtcDefaultKeyboard( true )
 {
+    this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/keyboard.conf")).toMap());
+
     m_config->init();
     m_nextEnabled = true;
     emit nextStatusChanged( m_nextEnabled );

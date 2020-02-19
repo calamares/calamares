@@ -52,11 +52,10 @@ PlasmaQmlLnfViewStep::PlasmaQmlLnfViewStep( QObject* parent )
     , m_widget( nullptr)
     , m_config( new Config(this) )
 {
-    connect( m_config, &Config::plasmaThemeSelected, this, &PlasmaQmlLnfViewStep::themeSelected );
-    emit nextStatusChanged( false );
-
     this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/plasmalnf.conf")).toMap());
 
+    connect( m_config, &Config::plasmaThemeSelected, this, &PlasmaQmlLnfViewStep::themeSelected );
+    emit nextStatusChanged( false );
 }
 
 Config * PlasmaQmlLnfViewStep::config() const
