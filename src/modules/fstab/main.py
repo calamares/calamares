@@ -218,7 +218,6 @@ class FstabGenerator(object):
 
                 else:
                     dct = self.generate_fstab_line_info(partition)
-
                     if dct:
                         self.print_fstab_line(dct, file=fstab_file)
 
@@ -233,18 +232,29 @@ class FstabGenerator(object):
                 self.print_fstab_line(dct, file=fstab_file)
 
     def generate_fstab_line_info(self, partition):
-        """ Generates information for each fstab entry. """
+        """
+        Generates information (a dictionary of fstab-fields)
+        for the given @p partition.
+        """
+        # Some "fs" names need special handling in /etc/fstab, so remap them.
         filesystem = partition["fs"].lower()
+        filesystem = FS_MAP.get(filesystem, filesystem)
         has_luks = "luksMapperName" in partition
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
         is_ssd = disk_name in self.ssd_disks
-        filesystem = FS_MAP.get(filesystem, filesystem)
 
+        # Swap partitions are called "linuxswap" by parted.
+        # That "fs" is visible in GS, but that gets mapped
+        # to "swap", above, because that's the spelling needed in /etc/fstab
         if not mount_point and not filesystem == "swap":
             return None
         if not mount_point:
             mount_point = "swap"
+
+        if filesystem == "swap" and not partition.get("claimed", None):
+            libcalamares.utils.debug("Ignoring foreign swap {!s} {!s}".format(disk_name, partition.get("uuid", None)))
+            return None
 
         options = self.get_mount_options(filesystem, mount_point)
 
