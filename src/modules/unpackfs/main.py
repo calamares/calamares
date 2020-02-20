@@ -132,7 +132,8 @@ def file_copy(source, entry, progress_cb):
             args.extend(["--exclude", f])
     args.extend(['--progress', source, dest])
     process = subprocess.Popen(
-        args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX
+        args, env=at_env, universal_newlines=True, bufsize=1,
+        stdout=subprocess.PIPE, close_fds=ON_POSIX
         )
     # last_num_files_copied trails num_files_copied, and whenever at least 100 more
     # files have been copied, progress is reported and last_num_files_copied is updated.
