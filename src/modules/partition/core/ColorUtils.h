@@ -53,6 +53,6 @@ QColor colorForPartitionInFreeSpace( Partition* freeSpacePartition );
  */
 void invalidateCache();
 
-}
+}  // namespace ColorUtils
 
 #endif /* COLORUTILS_H */

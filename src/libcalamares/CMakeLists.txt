@@ -44,7 +44,9 @@ set( libSources
     network/Manager.cpp
 
     # Partition service
+    partition/Mount.cpp
     partition/PartitionSize.cpp
+    partition/Sync.cpp
 
     # Utility service
     utils/CalamaresUtilsSystem.cpp
@@ -108,6 +110,38 @@ find_package(Qt5 COMPONENTS Xml)
 if( Qt5Xml_FOUND )
     list( APPEND libSources geoip/GeoIPXML.cpp )
     list( APPEND OPTIONAL_PUBLIC_LIBRARIES Qt5::Network Qt5::Xml )
+endif()
+
+### OPTIONAL KPMcore support
+#
+#
+find_package( KPMcore 3.3 )
+set_package_properties(
+    KPMcore PROPERTIES
+    URL "https://invent.kde.org/kde/kpmcore"
+    DESCRIPTION "KDE Partitioning library"
+    TYPE RECOMMENDED
+    PURPOSE "For partitioning service"
+)
+
+if ( KPMcore_FOUND )
+    find_package( Qt5 REQUIRED DBus )  # Needed for KPMCore
+    find_package( KF5 REQUIRED I18n WidgetsAddons )  # Needed for KPMCore
+
+    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0" )
+        add_definitions( -DWITH_KPMCORE4API ) # kpmcore 4 with new API
+    elseif( KPMcore_VERSION VERSION_GREATER "3.3.70" )
+        message( FATAL_ERROR "KPMCore beta versions ${KPMcore_VERSION} not supported" )
+    endif()
+
+    include_directories( ${KPMCORE_INCLUDE_DIR} )
+    list( APPEND libSources
+        partition/FileSystem.cpp
+        partition/KPMManager.cpp
+        partition/PartitionIterator.cpp
+        partition/PartitionQuery.cpp
+    )
+    list( APPEND OPTIONAL_PRIVATE_LIBRARIES kpmcore )
 endif()
 
 ### LIBRARY

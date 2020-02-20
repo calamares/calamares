@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@
 
 #include "PythonQtUtilsWrapper.h"
 
+#include "partition/Mount.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
@@ -46,7 +48,7 @@ Utils::mount( const QString& device_path,
               const QString& filesystem_name,
               const QString& options ) const
 {
-    return CalamaresUtils::System::instance()->mount( device_path, mount_point, filesystem_name, options );
+    return CalamaresUtils::Partition::mount( device_path, mount_point, filesystem_name, options );
 }
 
 

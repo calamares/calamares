@@ -20,7 +20,7 @@
 #ifndef FILLGLOBALSTORAGEJOB_H
 #define FILLGLOBALSTORAGEJOB_H
 
-#include <Job.h>
+#include "Job.h"
 
 // Qt
 #include <QList>

@@ -18,31 +18,31 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/FillGlobalStorageJob.h"
+#include "FillGlobalStorageJob.h"
 
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
 
 #include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/FileSystem.h"
+#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
-// KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystem.h>
-#include <fs/luks.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/fs/luks.h>
 
-// Qt
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
 
-using KPMHelpers::untranslatedFS;
-using KPMHelpers::userVisibleFS;
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
+using CalamaresUtils::Partition::PartitionIterator;
 
 typedef QHash< QString, QString > UuidForPartitionHash;
 

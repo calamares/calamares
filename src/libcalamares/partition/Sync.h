@@ -1,6 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -17,39 +16,31 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONJOB_H
-#define PARTITIONJOB_H
+#ifndef PARTITION_SYNC_H
+#define PARTITION_SYNC_H
 
-#include "Job.h"
-#include "partition/KPMManager.h"
-
-class Partition;
-
-/**
- * Base class for jobs which affect a partition and which use KPMCore.
- */
-class PartitionJob : public Calamares::Job
+namespace CalamaresUtils
 {
-    Q_OBJECT
-public:
-    PartitionJob( Partition* partition );
+namespace Partition
+{
 
-    Partition* partition() const
-    {
-        return m_partition;
-    }
+/** @brief Run "udevadm settle" or other disk-sync mechanism.
+ *
+ * Call this after mounting, unmount, toggling swap, or other functions
+ * that might cause the disk to be "busy" for other disk-modifying
+ * actions (in particular, KPMcore actions with the sfdisk backend
+ * are sensitive, and systemd tends to keep disks busy after a change
+ * for a while).
+ */
+void sync();
 
-public slots:
-    /** @brief Translate from KPMCore to Calamares progress.
-     *
-     * KPMCore presents progress as an integer percent from 0 .. 100,
-     * while Calamares uses a qreal from 0 .. 1.00 .
-     */
-    void iprogress( int percent );
-
-protected:
-    CalamaresUtils::Partition::KPMManager m_kpmcore;
-    Partition* m_partition;
+/** @brief RAII class for calling sync() */
+struct Syncer
+{
+    ~Syncer() { sync(); }
 };
 
-#endif /* PARTITIONJOB_H */
+}  // namespace Partition
+}  // namespace CalamaresUtils
+
+#endif

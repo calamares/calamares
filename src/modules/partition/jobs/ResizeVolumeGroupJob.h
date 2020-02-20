@@ -19,7 +19,8 @@
 #ifndef RESIZEVOLUMEGROUPJOB_H
 #define RESIZEVOLUMEGROUPJOB_H
 
-#include <Job.h>
+#include "Job.h"
+#include "partition/KPMManager.h"
 
 #include <QVector>
 
@@ -42,6 +43,7 @@ private:
     QString targetPartitions() const;
 
 private:
+    CalamaresUtils::Partition::KPMManager m_kpmcore;
     LvmDevice* m_device;
     QVector< const Partition* > m_partitionList;
 };

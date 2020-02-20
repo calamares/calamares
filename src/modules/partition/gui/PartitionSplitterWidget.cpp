@@ -19,10 +19,12 @@
 #include "PartitionSplitterWidget.h"
 
 #include "core/ColorUtils.h"
-#include "core/PartitionIterator.h"
 #include "core/KPMHelpers.h"
 
+#include "partition/PartitionIterator.h"
+#include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
+
 #include "utils/CalamaresUtilsGui.h"
 
 #include <kpmcore/core/device.h>
@@ -32,6 +34,8 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QStyleOption>
+
+using CalamaresUtils::Partition::PartitionIterator;
 
 static const int VIEW_HEIGHT = qMax( CalamaresUtils::defaultFontHeight() + 8, // wins out with big fonts
                                      int( CalamaresUtils::defaultFontHeight() * 0.6 ) + 22 ); // wins out with small fonts
@@ -66,7 +70,7 @@ PartitionSplitterWidget::init( Device* dev, bool drawNestedPartitions )
         PartitionSplitterItem newItem = {
             ( *it )->partitionPath(),
             ColorUtils::colorForPartition( *it ),
-            KPMHelpers::isPartitionFreeSpace( *it ),
+            CalamaresUtils::Partition::isPartitionFreeSpace( *it ),
             ( *it )->capacity(),
             PartitionSplitterItem::Normal,
             {}

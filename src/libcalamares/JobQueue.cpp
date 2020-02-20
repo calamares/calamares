@@ -36,12 +36,13 @@ public:
         : QThread( queue )
         , m_queue( queue )
         , m_jobIndex( 0 )
+        , m_jobCount( 0 )
     {
     }
 
     virtual ~JobThread() override;
 
-    void setJobs( const JobList& jobs )
+    void setJobs( JobList&& jobs )
     {
         m_jobs = jobs;
 
@@ -73,7 +74,7 @@ public:
             }
 
             emitProgress();
-            cDebug() << "Starting" << ( anyFailed ? "EMERGENCY JOB" : "job" ) << job->prettyName();
+            cDebug() << "Starting" << ( anyFailed ? "EMERGENCY JOB" : "job" ) << job->prettyName() << " (there are" << m_jobs.count() << " left)";
             connect( job.data(), &Job::progress, this, &JobThread::emitProgress );
             JobResult result = job->exec();
             if ( !anyFailed && !result )
@@ -103,6 +104,7 @@ private:
     QList< qreal > m_jobWeights;
     JobQueue* m_queue;
     int m_jobIndex;
+    int m_jobCount;
 
     void emitProgress( qreal jobPercent = 0 )
     {
@@ -193,7 +195,7 @@ void
 JobQueue::start()
 {
     Q_ASSERT( !m_thread->isRunning() );
-    m_thread->setJobs( m_jobs );
+    m_thread->setJobs( std::move( m_jobs ) );
     m_jobs.clear();
     m_thread->start();
 }
