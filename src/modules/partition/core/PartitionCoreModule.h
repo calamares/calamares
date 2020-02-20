@@ -224,9 +224,9 @@ public:
      */
     QList< SummaryInfo > createSummaryInfo() const;
 
-    void dumpQueue() const; // debug output
-
     const OsproberEntryList osproberEntries() const;    // os-prober data structure, cached
+
+    void dumpQueue() const; // debug output
 
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );

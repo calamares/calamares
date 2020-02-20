@@ -251,9 +251,9 @@ class FstabGenerator(object):
             return None
         if not mount_point:
             mount_point = "swap"
-        # Existing swap partitins should not be used
-        if filesystem == "swap" and not partition["new"]:
-            libcalamares.utils.debug("fstab ignoring old swap {}".format(disk_name))
+
+        if filesystem == "swap" and not partition.get("claimed", None):
+            libcalamares.utils.debug("Ignoring foreign swap {!s} {!s}".format(disk_name, partition.get("uuid", None)))
             return None
 
         options = self.get_mount_options(filesystem, mount_point)
