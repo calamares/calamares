@@ -8,6 +8,8 @@
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2019, Kevin Kofler <kevin.kofler@chello.at>
+#   Copyright 2020, Adriaan de Groot <groot@kde.org>
+#   Copyright 2020, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -385,9 +387,10 @@ def run():
         sourcefs = entry["sourcefs"]
 
         if sourcefs not in supported_filesystems:
-            utils.warning("The filesystem for \"{}\" ({}) is not supported".format(source, sourcefs))
+            utils.warning("The filesystem for \"{}\" ({}) is not supported by your current kernel".format(source, sourcefs))
+            utils.warning(" ... modprobe {} may solve the problem".format(sourcefs))
             return (_("Bad unsquash configuration"),
-                    _("The filesystem for \"{}\" ({}) is not supported").format(source, sourcefs))
+                    _("The filesystem for \"{}\" ({}) is not supported by your current kernel").format(source, sourcefs))
         if not os.path.exists(source):
             utils.warning("The source filesystem \"{}\" does not exist".format(source))
             return (_("Bad unsquash configuration"),
