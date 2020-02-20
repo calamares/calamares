@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Ji-Hyeon Gim <potatogim@potatogim.net>, 2018
-# 이정희 <daemul72@gmail.com>, 2019
+# MarongHappy <daemul72@gmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 11:14+0100\n"
+"POT-Creation-Date: 2020-02-19 17:27+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: 이정희 <daemul72@gmail.com>, 2019\n"
+"Last-Translator: MarongHappy <daemul72@gmail.com>, 2019\n"
 "Language-Team: Korean (https://www.transifex.com/calamares/teams/20061/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,8 +34,8 @@ msgstr "파티션 마운트 중."
 #: src/modules/initcpiocfg/main.py:205
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
-#: src/modules/initramfscfg/main.py:98 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
 #: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:322
 #: src/modules/fstab/main.py:328 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
@@ -204,9 +204,9 @@ msgstr "mkinitcpio 구성 중."
 
 #: src/modules/initcpiocfg/main.py:206
 #: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/machineid/main.py:50 src/modules/initramfscfg/main.py:99
-#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:329
-#: src/modules/localecfg/main.py:145 src/modules/networkcfg/main.py:49
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:329 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre>에서 사용할 루트 마운트 지점이 제공되지 않음."
 
@@ -266,10 +266,6 @@ msgstr "{name!s} 서비스에 대한 경로는 <code>{path!s}</code>이고, 존�
 #: src/modules/plymouthcfg/main.py:36
 msgid "Configure Plymouth theme"
 msgstr "플리머스 테마 구성"
-
-#: src/modules/machineid/main.py:36
-msgid "Generate machine-id."
-msgstr "machine-id를 생성합니다."
 
 #: src/modules/packages/main.py:62
 #, python-format
