@@ -4,17 +4,17 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Wrishiraj Kaushik <wrix@libresoft.in>, 2020
 # Deep Jyoti Choudhury <deep.choudhury@libresoft.in>, 2020
+# Wrishiraj Kaushik <wrix@libresoft.in>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 11:14+0100\n"
+"POT-Creation-Date: 2020-02-19 17:27+0100\n"
 "PO-Revision-Date: 2016-12-16 12:18+0000\n"
-"Last-Translator: Deep Jyoti Choudhury <deep.choudhury@libresoft.in>, 2020\n"
+"Last-Translator: Wrishiraj Kaushik <wrix@libresoft.in>, 2020\n"
 "Language-Team: Assamese (https://www.transifex.com/calamares/teams/20061/as/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,16 +32,16 @@ msgstr "এটা নতুন QLabel।"
 
 #: src/modules/dummypythonqt/main.py:97
 msgid "Dummy PythonQt ViewStep"
-msgstr "ডামী PythonQtৰ পদক্ষেপ চাওক "
+msgstr "ডামী পাইথন-কিউট্ ViewStep"
 
 #: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"
-msgstr "ডামী PythonQtটোৰ কায্য"
+msgstr "ডামী পাইথন-কিউট্ কায্য"
 
 #: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr "এইটোৱে ডামী PythonQt কায্য। ডামী কাৰ্য্যটোৱে কয় যে: {}"
+msgstr "এইটোৱে ডামী পাইথন-কিউট্ কাৰ্য্য। ডামী কাৰ্য্যটোৱে কয় যে: {}"
 
 #: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
-msgstr "ডামী PythonQtকায্যৰ এটা অৱস্থাৰ বাৰ্তা।"
+msgstr "ডামী পাইথন-কিউট্ কায্যৰ বাবে এটা অৱস্থা বাৰ্তা।"
