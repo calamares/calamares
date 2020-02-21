@@ -108,6 +108,10 @@ MachineIdTests::testJob()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
+    QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    tempRoot.setAutoRemove( false );
+    cDebug() << "Temporary files as" << QDir::tempPath();
+
     // Ensure we have a system object, expect it to be a "bogus" one
     CalamaresUtils::System* system = CalamaresUtils::System::instance();
     QVERIFY( system );
@@ -122,7 +126,7 @@ MachineIdTests::testJob()
     Calamares::GlobalStorage* gs
         = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
     QVERIFY( gs );
-    gs->insert( "rootMountPoint", "/tmp" );
+    gs->insert( "rootMountPoint", tempRoot.path() );
 
     // Prepare part of the target filesystem
     {
@@ -143,7 +147,7 @@ MachineIdTests::testJob()
     {
         auto r = job.exec();
         QVERIFY( !r );  // It's supposed to fail, because no dbus-uuidgen executable exists
-        QVERIFY( QFile::exists( "/tmp/var/lib/dbus" ) );  // but the target dir exists
+        QVERIFY( QFile::exists( tempRoot.filePath( "var/lib/dbus" ) ) );  // but the target dir exists
     }
 
     config.insert( "dbus-symlink", true );
@@ -151,7 +155,7 @@ MachineIdTests::testJob()
     {
         auto r = job.exec();
         QVERIFY( !r );  // It's supposed to fail, because no dbus-uuidgen executable exists
-        QVERIFY( QFile::exists( "/tmp/var/lib/dbus" ) );  // but the target dir exists
+        QVERIFY( QFile::exists( tempRoot.filePath( "var/lib/dbus" ) ) );  // but the target dir exists
 
         // These all (would) fail, because the chroot isn't viable
 #if 0
@@ -163,6 +167,7 @@ MachineIdTests::testJob()
         QCOMPARE( fi.size(), 5);
 #endif
     }
+    tempRoot.setAutoRemove( true );  // All tests succeeded
 }
 
 QTEST_GUILESS_MAIN( MachineIdTests )
