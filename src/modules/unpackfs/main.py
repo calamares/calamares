@@ -154,7 +154,7 @@ def file_copy(source, entry, progress_cb):
         # If you're copying directory with some links in it, the xfer#
         # might not be a reliable counter (for one increase of xfer, many
         # files may be created).
-        m = re.findall(r'xfr#(\d+), ..-chk=(\d+)/(\d+)', line.decode())
+        m = re.findall(r'xfr#(\d+), ..-chk=(\d+)/(\d+)', line)
 
         if m:
             # we've got a percentage update
