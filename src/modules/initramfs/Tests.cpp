@@ -79,7 +79,7 @@ void InitramfsTests::testCreateTargetFile()
 
     QFileInfo fi( path );
     QVERIFY( fi.exists() );
-    QCOMPARE( fi.size(), sizeof( contents )-1 );  // don't count trailing NUL
+    QCOMPARE( ulong( fi.size() ), sizeof( contents )-1 );  // don't count trailing NUL
 
     QFile::remove( path );
 
