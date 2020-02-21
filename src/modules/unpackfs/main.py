@@ -133,7 +133,7 @@ def file_copy(source, entry, progress_cb):
             args.extend(["--exclude", f])
     args.extend(['--progress', source, dest])
     process = subprocess.Popen(
-        args, env=at_env, universal_newlines=True, bufsize=1,
+        args, env=at_env,
         stdout=subprocess.PIPE, close_fds=ON_POSIX
         )
     # last_num_files_copied trails num_files_copied, and whenever at least 100 more
@@ -154,7 +154,7 @@ def file_copy(source, entry, progress_cb):
         # If you're copying directory with some links in it, the xfer#
         # might not be a reliable counter (for one increase of xfer, many
         # files may be created).
-        m = re.findall(r'xfr#(\d+), ..-chk=(\d+)/(\d+)', line)
+        m = re.findall(r'xfr#(\d+), ..-chk=(\d+)/(\d+)', line.decode())
 
         if m:
             # we've got a percentage update
