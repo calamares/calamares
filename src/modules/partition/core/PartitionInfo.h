@@ -60,6 +60,6 @@ void reset( Partition* partition );
  */
 bool isDirty( Partition* partition );
 
-};
+};  // namespace PartitionInfo
 
 #endif /* PARTITIONINFO_H */

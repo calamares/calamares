@@ -53,18 +53,12 @@ calamares_add_plugin( packagechooser
     SHARED_LIB
 )
 
-if( ECM_FOUND AND BUILD_TESTING )
-    ecm_add_test(
-            Tests.cpp
-        TEST_NAME
-            packagechoosertest
-        LINK_LIBRARIES
-            ${CALAMARES_LIBRARIES}
-            calamares_viewmodule_packagechooser
-            Qt5::Core
-            Qt5::Test
-            Qt5::Gui
-            ${_extra_libraries}
-    )
-    calamares_automoc( packagechoosertest)
-endif()
+calamares_add_test(
+    packagechoosertest
+    GUI
+    SOURCES
+        Tests.cpp
+    LIBRARIES
+        calamares_viewmodule_packagechooser
+        ${_extra_libraries}
+)

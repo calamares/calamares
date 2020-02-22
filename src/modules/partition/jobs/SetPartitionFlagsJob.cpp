@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Based on the SetPartFlagsJob class from KDE Partition Manager,
  *   Copyright 2008, 2010, Volker Lanz <vl@fidra.de>
@@ -21,21 +22,19 @@
 
 #include "SetPartitionFlagsJob.h"
 
-#include "core/KPMHelpers.h"
-
+#include "partition/FileSystem.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
-// KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystem.h>
-#include <ops/setpartflagsoperation.h>
-#include <util/report.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/ops/setpartflagsoperation.h>
+#include <kpmcore/util/report.h>
 
 using CalamaresUtils::BytesToMiB;
-using KPMHelpers::untranslatedFS;
-using KPMHelpers::userVisibleFS;
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 SetPartFlagsJob::SetPartFlagsJob( Device* device,
                                   Partition* partition,

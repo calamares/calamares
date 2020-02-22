@@ -34,7 +34,7 @@ namespace CalamaresUtils
  *
  * If there is a return value from the QML method, it is logged (but not otherwise used).
  */
-DLLEXPORT void
+UIDLLEXPORT void
 callQMLFunction( QQuickItem* qmlObject, const char* method );
 
 }  // namespace CalamaresUtils

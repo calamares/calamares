@@ -18,14 +18,12 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/CreatePartitionJob.h"
+#include "CreatePartitionJob.h"
 
-#include "core/KPMHelpers.h"
-
+#include "partition/FileSystem.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
@@ -34,8 +32,8 @@
 #include <kpmcore/ops/newoperation.h>
 #include <kpmcore/util/report.h>
 
-using KPMHelpers::untranslatedFS;
-using KPMHelpers::userVisibleFS;
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )

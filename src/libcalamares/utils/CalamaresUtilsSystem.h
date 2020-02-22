@@ -84,6 +84,41 @@ public:
     }
 };
 
+/** @brief The result of a create*() action, for status
+ *
+ * A CreationResult has a status field, can be converted to bool
+ * (true only on success) and can report the full pathname of
+ * the thing created if it was successful.
+ */
+class CreationResult : public QPair< int, QString >
+{
+public:
+    enum class Code : int
+    {
+        // These are "not failed", but only OK is a success
+        OK = 0,
+        AlreadyExists = 1,
+        // These are "failed"
+        Invalid = -1,
+        Failed = -2
+    };
+
+    CreationResult( Code r )
+        : QPair< int, QString >( static_cast< int >( r ), QString() )
+    {
+    }
+    explicit CreationResult( const QString& path )
+        : QPair< int, QString >( 0, path )
+    {
+    }
+
+    Code code() const { return static_cast< Code >( first ); }
+    QString path() const { return second; }
+
+    bool failed() const { return first < 0; }
+    operator bool() const { return first == 0; }
+};
+
 /**
  * @brief The System class is a singleton with utility functions that perform
  * system-specific operations.
@@ -102,23 +137,6 @@ public:
     virtual ~System();
 
     static System* instance();
-
-    /**
-      * Runs the mount utility with the specified parameters.
-      * @param devicePath the path of the partition to mount.
-      * @param mountPoint the full path of the target mount point.
-      * @param filesystemName the name of the filesystem (optional).
-      * @param options any additional options as passed to mount -o (optional).
-      * @returns the program's exit code, or:
-      *             Crashed = QProcess crash
-      *             FailedToStart = QProcess cannot start
-      *             NoWorkingDirectory = bad arguments
-      */
-    DLLEXPORT int mount( const QString& devicePath,
-                         const QString& mountPoint,
-                         const QString& filesystemName = QString(),
-                         const QString& options = QString() );
-
 
     /** (Typed) Boolean describing where a particular command should be run,
      *  whether in the host (live) system or in the (chroot) target system.
@@ -151,6 +169,16 @@ public:
                                                const QString& workingPath = QString(),
                                                const QString& stdInput = QString(),
                                                std::chrono::seconds timeoutSec = std::chrono::seconds( 0 ) );
+
+    /** @brief Convenience wrapper for runCommand()
+     *
+     * Runs the given command-line @p args in the host in the current direcory
+     * with no input, and the given @p timeoutSec for completion.
+     */
+    static inline ProcessResult runCommand( const QStringList& args, std::chrono::seconds timeoutSec )
+    {
+        return runCommand( RunLocation::RunInHost, args, QString(), QString(), timeoutSec );
+    }
 
     /** @brief Convenience wrapper for runCommand().
      *  Runs the command in the location specified through the boolean
@@ -244,7 +272,7 @@ public:
      *      root of the host system, or empty on failure. (Here, it is
      *      possible to be canonical because the file exists).
      */
-    DLLEXPORT QString createTargetFile( const QString& path, const QByteArray& contents ) const;
+    DLLEXPORT CreationResult createTargetFile( const QString& path, const QByteArray& contents ) const;
 
     /** @brief Remove a file from the target system.
      *

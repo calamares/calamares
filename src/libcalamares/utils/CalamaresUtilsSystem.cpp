@@ -117,53 +117,6 @@ System::instance()
 }
 
 
-int
-System::mount( const QString& devicePath,
-               const QString& mountPoint,
-               const QString& filesystemName,
-               const QString& options )
-{
-    if ( devicePath.isEmpty() || mountPoint.isEmpty() )
-    {
-        if ( devicePath.isEmpty() )
-        {
-            cWarning() << "Can't mount an empty device.";
-        }
-        if ( mountPoint.isEmpty() )
-        {
-            cWarning() << "Can't mount on an empty mountpoint.";
-        }
-
-        return static_cast< int >( ProcessResult::Code::NoWorkingDirectory );
-    }
-
-    QDir mountPointDir( mountPoint );
-    if ( !mountPointDir.exists() )
-    {
-        bool ok = mountPointDir.mkpath( mountPoint );
-        if ( !ok )
-        {
-            cWarning() << "Could not create mountpoint" << mountPoint;
-            return static_cast< int >( ProcessResult::Code::NoWorkingDirectory );
-        }
-    }
-
-    QString program( "mount" );
-    QStringList args = { devicePath, mountPoint };
-
-    if ( !filesystemName.isEmpty() )
-    {
-        args << "-t" << filesystemName;
-    }
-
-    if ( !options.isEmpty() )
-    {
-        args << "-o" << options;
-    }
-
-    return QProcess::execute( program, args );
-}
-
 ProcessResult
 System::runCommand( System::RunLocation location,
                     const QStringList& args,
@@ -293,19 +246,19 @@ System::targetPath( const QString& path ) const
     }
 }
 
-QString
+CreationResult
 System::createTargetFile( const QString& path, const QByteArray& contents ) const
 {
     QString completePath = targetPath( path );
     if ( completePath.isEmpty() )
     {
-        return QString();
+        return CreationResult( CreationResult::Code::Invalid );
     }
 
     QFile f( completePath );
     if ( f.exists() )
     {
-        return QString();
+        return CreationResult( CreationResult::Code::AlreadyExists );
     }
 
     QIODevice::OpenMode m =
@@ -317,18 +270,18 @@ System::createTargetFile( const QString& path, const QByteArray& contents ) cons
 
     if ( !f.open( m ) )
     {
-        return QString();
+        return CreationResult( CreationResult::Code::Failed );
     }
 
     if ( f.write( contents ) != contents.size() )
     {
         f.close();
         f.remove();
-        return QString();
+        return CreationResult( CreationResult::Code::Failed );
     }
 
     f.close();
-    return QFileInfo( f ).canonicalFilePath();
+    return CreationResult( QFileInfo( f ).canonicalFilePath() );
 }
 
 void

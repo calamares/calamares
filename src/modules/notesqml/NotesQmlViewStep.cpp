@@ -36,9 +36,7 @@ NotesQmlViewStep::prettyName() const
 
 void
 NotesQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
-{ 
-    Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation
-    
+{
     bool qmlLabel_ok = false;
     auto qmlLabel = CalamaresUtils::getSubMap( configurationMap, "qmlLabel", qmlLabel_ok );
 
@@ -46,7 +44,8 @@ NotesQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         m_notesName = new CalamaresUtils::Locale::TranslatedString( qmlLabel, "notes" );
     }
-    
+
+    Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( NotesQmlViewStepFactory, registerPlugin< NotesQmlViewStep >(); )

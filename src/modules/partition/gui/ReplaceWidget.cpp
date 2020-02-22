@@ -2,7 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@
 #include "ui_ReplaceWidget.h"
 
 #include "core/DeviceModel.h"
-#include "core/KPMHelpers.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionActions.h"
 #include "core/PartitionInfo.h"
@@ -30,6 +29,7 @@
 #include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/FileSystem.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
 
@@ -37,6 +37,9 @@
 #include <kpmcore/fs/filesystem.h>
 
 #include <QComboBox>
+
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 ReplaceWidget::ReplaceWidget( PartitionCoreModule* core,
                               QComboBox* devicesComboBox,
@@ -193,7 +196,7 @@ ReplaceWidget::onPartitionSelected()
             return;
         }
 
-        QString fsNameForUser = KPMHelpers::userVisibleFS( partition->fileSystem() );
+        QString fsNameForUser = userVisibleFS( partition->fileSystem() );
         QString prettyName = tr( "Data partition (%1)" ).arg( fsNameForUser );
         for ( const QString& line : osproberLines )
         {

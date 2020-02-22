@@ -16,13 +16,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Config.h"
+#include "Sync.h"
 
-Config::Config()
-    : m_helpUrl( "https://www.kde.org/" )
-{
-}
+#include "utils/CalamaresUtilsSystem.h"
+#include "utils/Logger.h"
 
-Config::~Config()
+void
+CalamaresUtils::Partition::sync()
 {
+    auto r = CalamaresUtils::System::runCommand( { "/sbin/udevadm", "settle" }, std::chrono::seconds( 10 ) );
+
+    if ( r.getExitCode() != 0 )
+    {
+        cWarning() << "Could not settle disks.";
+        r.explainProcess( "udevadm", std::chrono::seconds( 10 ) );
+    }
+
+    CalamaresUtils::System::runCommand( { "/bin/sync" }, std::chrono::seconds( 10 ) );
 }

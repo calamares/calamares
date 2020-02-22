@@ -16,25 +16,31 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WELCOME_CONFIG_H
-#define WELCOME_CONFIG_H
+#ifndef PARTITION_SYNC_H
+#define PARTITION_SYNC_H
 
-#include <QObject>
-#include <QUrl>
-
-class Config : public QObject
+namespace CalamaresUtils
 {
-    Q_OBJECT
-    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl CONSTANT )
-public:
-    Config();
-    virtual ~Config();
+namespace Partition
+{
 
-    QUrl helpUrl() const { return m_helpUrl; }
-    void setHelpUrl( const QUrl& url ) { m_helpUrl = url; }
+/** @brief Run "udevadm settle" or other disk-sync mechanism.
+ *
+ * Call this after mounting, unmount, toggling swap, or other functions
+ * that might cause the disk to be "busy" for other disk-modifying
+ * actions (in particular, KPMcore actions with the sfdisk backend
+ * are sensitive, and systemd tends to keep disks busy after a change
+ * for a while).
+ */
+void sync();
 
-private:
-    QUrl m_helpUrl;
+/** @brief RAII class for calling sync() */
+struct Syncer
+{
+    ~Syncer() { sync(); }
 };
+
+}  // namespace Partition
+}  // namespace CalamaresUtils
 
 #endif

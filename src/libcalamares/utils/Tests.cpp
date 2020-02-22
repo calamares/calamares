@@ -162,7 +162,7 @@ LibCalamaresTests::testUmask()
     // m gets the previous value of the mask (depends on the environment the
     // test is run in, might be 002, might be 077), ..
     mode_t m = CalamaresUtils::setUMask( 022 );
-    QCOMPARE( CalamaresUtils::setUMask( m ), 022 );  // But now most recently set was 022
+    QCOMPARE( CalamaresUtils::setUMask( m ), mode_t( 022 ) );  // But now most recently set was 022
 
     for ( mode_t i = 0; i <= 0777 /* octal! */; ++i )
     {
@@ -178,7 +178,7 @@ LibCalamaresTests::testUmask()
         QCOMPARE( unlink( name ), 0 );
     }
     QCOMPARE( CalamaresUtils::setUMask( 022 ), m );
-    QCOMPARE( CalamaresUtils::setUMask( m ), 022 );
+    QCOMPARE( CalamaresUtils::setUMask( m ), mode_t( 022 ) );
 }
 
 void
@@ -219,7 +219,7 @@ LibCalamaresTests::testPrintableEntropy()
     for ( QChar c : s )
     {
         QVERIFY( c.isPrint() );
-        QCOMPARE( c.row(), 0 );
+        QCOMPARE( c.row(), uchar( 0 ) );
         QVERIFY( c.cell() > 32 );  // ASCII SPACE
         QVERIFY( c.cell() < 127 );
     }
@@ -245,7 +245,7 @@ LibCalamaresTests::testOddSizedPrintable()
         for ( QChar c : s )
         {
             QVERIFY( c.isPrint() );
-            QCOMPARE( c.row(), 0 );
+            QCOMPARE( c.row(), uchar( 0 ) );
             QVERIFY( c.cell() > 32 );  // ASCII SPACE
             QVERIFY( c.cell() < 127 );
         }

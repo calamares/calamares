@@ -120,3 +120,16 @@
   text *not released yet*.
 * Commit and push that, usually with the message
   *Changes: post-release housekeeping*.
+
+```
+# 3.2.XX (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+```

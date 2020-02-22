@@ -18,31 +18,31 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/FillGlobalStorageJob.h"
+#include "FillGlobalStorageJob.h"
 
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
 
 #include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/FileSystem.h"
+#include "partition/PartitionIterator.h"
 #include "utils/Logger.h"
 
-// KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystem.h>
-#include <fs/luks.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/fs/luks.h>
 
-// Qt
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QProcess>
 
-using KPMHelpers::untranslatedFS;
-using KPMHelpers::userVisibleFS;
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
+using CalamaresUtils::Partition::PartitionIterator;
 
 typedef QHash< QString, QString > UuidForPartitionHash;
 
@@ -100,14 +100,18 @@ mapForPartition( Partition* partition, const QString& uuid )
         map[ "fs" ] = untranslatedFS( dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() );
     }
     map[ "uuid" ] = uuid;
+    map[ "claimed" ] = PartitionInfo::format( partition );  // If we formatted it, it's ours
 
     // Debugging for inside the loop in createPartitionList(),
     // so indent a bit
     Logger::CDebug deb;
     using TR = Logger::DebugRow< const char* const, const QString& >;
     deb << Logger::SubEntry << "mapping for" << partition->partitionPath() << partition->deviceNode()
-        << TR( "mtpoint:", PartitionInfo::mountPoint( partition ) ) << TR( "fs:", map[ "fs" ].toString() )
-        << TR( "fsName", map[ "fsName" ].toString() ) << TR( "uuid", uuid );
+        << TR( "mtpoint:", PartitionInfo::mountPoint( partition ) )
+        << TR( "fs:", map[ "fs" ].toString() )
+        << TR( "fsName", map[ "fsName" ].toString() )
+        << TR( "uuid", uuid )
+        << TR( "claimed", map[ "claimed" ].toString() );
 
     if ( partition->roles().has( PartitionRole::Luks ) )
     {
@@ -213,6 +217,7 @@ FillGlobalStorageJob::exec()
 {
     Calamares::GlobalStorage* storage = Calamares::JobQueue::instance()->globalStorage();
     storage->insert( "partitions", createPartitionList() );
+    cDebug() << "Saving partition information map to GlobalStorage[\"partitions\"]";
     if ( !m_bootLoaderPath.isEmpty() )
     {
         QVariant var = createBootLoaderMap();
@@ -236,7 +241,7 @@ FillGlobalStorageJob::createPartitionList() const
 {
     UuidForPartitionHash hash = findPartitionUuids( m_devices );
     QVariantList lst;
-    cDebug() << "Writing to GlobalStorage[\"partitions\"]";
+    cDebug() << "Building partition information map";
     for ( auto device : m_devices )
     {
         cDebug() << Logger::SubEntry << "partitions on" << device->deviceNode();

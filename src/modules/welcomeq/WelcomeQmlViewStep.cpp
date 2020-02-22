@@ -37,7 +37,7 @@
 CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeQmlViewStepFactory, registerPlugin< WelcomeQmlViewStep >(); )
 
 WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
-    : Calamares::ViewStep( parent )
+    : Calamares::QmlViewStep( QStringLiteral( "welcomeq" ), parent )
     , m_requirementsChecker( new GeneralRequirements( this ) )
 {
     connect( Calamares::ModuleManager::instance(),
@@ -47,63 +47,13 @@ WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
 }
 
 
-WelcomeQmlViewStep::~WelcomeQmlViewStep()
-{
-}
-
+WelcomeQmlViewStep::~WelcomeQmlViewStep() {}
 
 QString
 WelcomeQmlViewStep::prettyName() const
 {
     return tr( "Welcome" );
 }
-
-
-QWidget*
-WelcomeQmlViewStep::widget()
-{
-    return nullptr;
-}
-
-
-bool
-WelcomeQmlViewStep::isNextEnabled() const
-{
-    // TODO: should return true
-    return false;
-}
-
-
-bool
-WelcomeQmlViewStep::isBackEnabled() const
-{
-    // TODO: should return true (it's weird that you are not allowed to have welcome *after* anything
-    return false;
-}
-
-
-bool
-WelcomeQmlViewStep::isAtBeginning() const
-{
-    // TODO: adjust to "pages" in the QML
-    return true;
-}
-
-
-bool
-WelcomeQmlViewStep::isAtEnd() const
-{
-    // TODO: adjust to "pages" in the QML
-    return true;
-}
-
-
-Calamares::JobList
-WelcomeQmlViewStep::jobs() const
-{
-    return Calamares::JobList();
-}
-
 
 /** @brief Look up a URL for a button
  *
@@ -143,7 +93,9 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     using Calamares::Branding;
 
     m_config.setHelpUrl( jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
-    // TODO: expand Config class and set the remaining fields
+    m_config.setIssuesUrl( jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
+    m_config.setNotesUrl( jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
+    m_config.setDonateUrl( CalamaresUtils::getString( configurationMap, "showDonateUrl" ) );
 
     // TODO: figure out how the requirements (held by ModuleManager) should be accessible
     //          to QML as a odel.
@@ -193,6 +145,8 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             // TODO: figure out where to set this: Config?
         }
     }
+
+    QmlViewStep::setConfigurationMap( configurationMap );  // call parent implementation last
 }
 
 Calamares::RequirementsList
@@ -240,4 +194,10 @@ WelcomeQmlViewStep::setCountry( const QString& countryCode, CalamaresUtils::GeoI
             // TODO: update Config to point to selected language
         }
     }
+}
+
+QObject*
+WelcomeQmlViewStep::getConfig()
+{
+    return &m_config;
 }

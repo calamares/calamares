@@ -20,10 +20,12 @@
 
 #include "UsersViewStep.h"
 
+#include "SetHostNameJob.h"
+#include "SetPasswordJob.h"
 #include "UsersPage.h"
 
-// #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Variant.h"
 
 #include "GlobalStorage.h"
@@ -31,9 +33,28 @@
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin< UsersViewStep >(); )
 
+static const NamedEnumTable< SetHostNameJob::Action >&
+hostnameActions()
+{
+    using Action = SetHostNameJob::Action;
+
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< Action > names {
+        { QStringLiteral( "none" ), Action::None },
+        { QStringLiteral( "etcfile" ), Action::EtcHostname },
+        { QStringLiteral( "hostnamed" ), Action::SystemdHostname }
+    };
+    // clang-format on
+    // *INDENT-ON*
+
+    return names;
+}
+
 UsersViewStep::UsersViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new UsersPage() )
+    , m_actions( SetHostNameJob::Action::None )
 {
     emit nextStatusChanged( true );
     connect( m_widget, &UsersPage::checkReady, this, &UsersViewStep::nextStatusChanged );
@@ -109,14 +130,27 @@ void
 UsersViewStep::onLeave()
 {
     m_jobs.clear();
-
     m_jobs.append( m_widget->createJobs( m_defaultGroups ) );
+
+    Calamares::Job* j;
+
+    auto userPW = m_widget->getUserPassword();
+    j = new SetPasswordJob( userPW.first, userPW.second );
+    m_jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetPasswordJob( "root", m_widget->getRootPassword() );
+    m_jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetHostNameJob( m_widget->getHostname(), m_actions );
+    m_jobs.append( Calamares::job_ptr( j ) );
 }
 
 
 void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    using CalamaresUtils::getBool;
+
     if ( configurationMap.contains( "defaultGroups" )
          && configurationMap.value( "defaultGroups" ).type() == QVariant::List )
     {
@@ -142,25 +176,12 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                                                                   configurationMap.value( "sudoersGroup" ).toString() );
     }
 
-    if ( configurationMap.contains( "setRootPassword" )
-         && configurationMap.value( "setRootPassword" ).type() == QVariant::Bool )
-    {
-        Calamares::JobQueue::instance()->globalStorage()->insert(
-            "setRootPassword", configurationMap.value( "setRootPassword" ).toBool() );
-        m_widget->setWriteRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
-    }
+    bool setRootPassword = getBool( configurationMap, "setRootPassword", true );
+    Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", setRootPassword );
 
-    if ( configurationMap.contains( "doAutologin" )
-         && configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
-    {
-        m_widget->setAutologinDefault( configurationMap.value( "doAutologin" ).toBool() );
-    }
-
-    if ( configurationMap.contains( "doReusePassword" )
-         && configurationMap.value( "doReusePassword" ).type() == QVariant::Bool )
-    {
-        m_widget->setReusePasswordDefault( configurationMap.value( "doReusePassword" ).toBool() );
-    }
+    m_widget->setWriteRootPassword( setRootPassword );
+    m_widget->setAutologinDefault( getBool( configurationMap, "doAutologin", false ) );
+    m_widget->setReusePasswordDefault( getBool( configurationMap, "doReusePassword", false ) );
 
     if ( configurationMap.contains( "passwordRequirements" )
          && configurationMap.value( "passwordRequirements" ).type() == QVariant::Map )
@@ -173,8 +194,8 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
-    m_widget->setPasswordCheckboxVisible( CalamaresUtils::getBool( configurationMap, "allowWeakPasswords", false ) );
-    m_widget->setValidatePasswordDefault( !CalamaresUtils::getBool( configurationMap, "allowWeakPasswordsDefault", false) );
+    m_widget->setPasswordCheckboxVisible( getBool( configurationMap, "allowWeakPasswords", false ) );
+    m_widget->setValidatePasswordDefault( !getBool( configurationMap, "allowWeakPasswordsDefault", false ) );
 
     QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
     if ( configurationMap.contains( "userShell" ) )
@@ -184,4 +205,21 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Now it might be explicitly set to empty, which is ok
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "userShell", shell );
+
+    using Action = SetHostNameJob::Action;
+
+    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "setHostname" );
+    if ( hostnameActionString.isEmpty() )
+    {
+        hostnameActionString = QStringLiteral( "EtcFile" );
+    }
+    bool ok = false;
+    auto hostnameAction = hostnameActions().find( hostnameActionString, ok );
+    if ( !ok )
+    {
+        hostnameAction = Action::EtcHostname;
+    }
+
+    Action hostsfileAction = getBool( configurationMap, "writeHostsFile", true ) ? Action::WriteEtcHosts : Action::None;
+    m_actions = hostsfileAction | hostnameAction;
 }

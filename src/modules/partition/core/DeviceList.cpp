@@ -20,22 +20,23 @@
 #include "DeviceList.h"
 
 #include "PartitionCoreModule.h"
-
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
-#include "core/PartitionIterator.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "partition/PartitionIterator.h"
+#include "utils/Logger.h"
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 
-#include <utils/Logger.h>
-#include <JobQueue.h>
-#include <GlobalStorage.h>
-
 #include <QProcess>
 #include <QTemporaryDir>
+
+using CalamaresUtils::Partition::PartitionIterator;
 
 namespace PartUtils
 {
@@ -49,7 +50,9 @@ hasRootPartition( Device* device )
 {
     for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
         if ( ( *it )->mountPoint() == "/" )
+        {
             return true;
+        }
     return false;
 }
 
@@ -68,17 +71,22 @@ isIso9660( const Device* device )
 {
     const QString path = device->deviceNode();
     if ( path.isEmpty() )
+    {
         return false;
+    }
     if ( blkIdCheckIso9660( path ) )
+    {
         return true;
+    }
 
-    if ( device->partitionTable() &&
-            !device->partitionTable()->children().isEmpty() )
+    if ( device->partitionTable() && !device->partitionTable()->children().isEmpty() )
     {
         for ( const Partition* partition : device->partitionTable()->children() )
         {
             if ( blkIdCheckIso9660( partition->partitionPath() ) )
+            {
                 return true;
+            }
         }
     }
     return false;
@@ -86,7 +94,7 @@ isIso9660( const Device* device )
 
 
 static inline QDebug&
-operator <<( QDebug& s, QList< Device* >::iterator& it )
+operator<<( QDebug& s, QList< Device* >::iterator& it )
 {
     s << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
     return s;
@@ -95,7 +103,7 @@ operator <<( QDebug& s, QList< Device* >::iterator& it )
 using DeviceList = QList< Device* >;
 
 static inline DeviceList::iterator
-erase(DeviceList& l, DeviceList::iterator& it)
+erase( DeviceList& l, DeviceList::iterator& it )
 {
     Device* p = *it;
     auto r = l.erase( it );
@@ -103,13 +111,14 @@ erase(DeviceList& l, DeviceList::iterator& it)
     return r;
 }
 
-QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
+QList< Device* >
+getDevices( DeviceType which, qint64 minimumSize )
 {
-    bool writableOnly = (which == DeviceType::WritableOnly);
+    bool writableOnly = ( which == DeviceType::WritableOnly );
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
-#ifdef WITH_KPMCORE331API
-    DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag(0) );
+#if defined( WITH_KPMCORE4API )
+    DeviceList devices = backend->scanDevices( /* not includeReadOnly, not includeLoopback */ ScanFlag( 0 ) );
 #else
     DeviceList devices = backend->scanDevices( /* excludeReadOnly */ true );
 #endif
@@ -127,14 +136,12 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
         if ( !( *it ) )
         {
             cDebug() << Logger::SubEntry << "Skipping nullptr device";
-            it = erase( devices, it);
+            it = erase( devices, it );
         }
-        else if ( ( *it )->deviceNode().startsWith( "/dev/zram" )
-        )
+        else if ( ( *it )->deviceNode().startsWith( "/dev/zram" ) )
         {
             cDebug() << Logger::SubEntry << "Removing zram" << it;
             it = erase( devices, it );
-
         }
         else if ( writableOnly && hasRootPartition( *it ) )
         {
@@ -146,13 +153,15 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
             cDebug() << Logger::SubEntry << "Removing device with iso9660 filesystem (probably a CD) on it" << it;
             it = erase( devices, it );
         }
-        else if ( (minimumSize >= 0) && !( (*it)->capacity() > minimumSize ) )
+        else if ( ( minimumSize >= 0 ) && !( ( *it )->capacity() > minimumSize ) )
         {
             cDebug() << Logger::SubEntry << "Removing too-small" << it;
             it = erase( devices, it );
         }
         else
+        {
             ++it;
+        }
 #endif
 
     return devices;

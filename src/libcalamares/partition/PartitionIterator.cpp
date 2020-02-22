@@ -2,7 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,12 +25,19 @@
 #include <kpmcore/core/partition.h>
 #include <kpmcore/core/partitiontable.h>
 
+namespace CalamaresUtils
+{
+namespace Partition
+{
+
+using Partition = ::Partition;
+
 PartitionIterator::PartitionIterator( PartitionTable* table )
     : m_table( table )
-{}
+{
+}
 
-Partition*
-PartitionIterator::operator*() const
+Partition* PartitionIterator::operator*() const
 {
     return m_current;
 }
@@ -39,7 +46,9 @@ void
 PartitionIterator::operator++()
 {
     if ( !m_current )
+    {
         return;
+    }
     if ( m_current->hasChildren() )
     {
         // Go to the first child
@@ -78,18 +87,21 @@ PartitionIterator::operator==( const PartitionIterator& other ) const
 bool
 PartitionIterator::operator!=( const PartitionIterator& other ) const
 {
-    return ! ( *this == other );
+    return !( *this == other );
 }
 
 PartitionIterator
 PartitionIterator::begin( Device* device )
 {
     if ( !device )
+    {
         return PartitionIterator( nullptr );
-    Q_ASSERT(device);
+    }
     PartitionTable* table = device->partitionTable();
     if ( !table )
+    {
         return PartitionIterator( nullptr );
+    }
     return PartitionIterator::begin( table );
 }
 
@@ -101,7 +113,9 @@ PartitionIterator::begin( PartitionTable* table )
     // Does not usually happen, but it did happen on a tiny (10MiB) disk with an MBR
     // partition table.
     if ( children.isEmpty() )
+    {
         return it;
+    }
     it.m_current = children.first();
     return it;
 }
@@ -110,10 +124,14 @@ PartitionIterator
 PartitionIterator::end( Device* device )
 {
     if ( !device )
+    {
         return PartitionIterator( nullptr );
+    }
     PartitionTable* table = device->partitionTable();
     if ( !table )
+    {
         return PartitionIterator( nullptr );
+    }
 
     return PartitionIterator::end( table );
 }
@@ -123,3 +141,6 @@ PartitionIterator::end( PartitionTable* table )
 {
     return PartitionIterator( table );
 }
+
+}  // namespace Partition
+}  // namespace CalamaresUtils

@@ -32,7 +32,7 @@ struct FstabEntry
     int pass;
 
     /// Does this entry make sense and is it complete?
-    bool isValid() const; // implemented in Partutils.cpp
+    bool isValid() const;  // implemented in Partutils.cpp
 
     /** @brief Create an entry from a live of /etc/fstab
      *
@@ -41,7 +41,7 @@ struct FstabEntry
      * If the string isn't valid (e.g. comment-line, or broken
      * fstab entry) then the entry that is returned is invalid.
      */
-    static FstabEntry fromEtcFstab( const QString& ); // implemented in Partutils.cpp
+    static FstabEntry fromEtcFstab( const QString& );  // implemented in Partutils.cpp
 };
 
 typedef QList< FstabEntry > FstabEntryList;
@@ -59,4 +59,4 @@ struct OsproberEntry
 
 typedef QList< OsproberEntry > OsproberEntryList;
 
-#endif // OSPROBERENTRY_H
+#endif  // OSPROBERENTRY_H

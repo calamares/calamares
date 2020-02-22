@@ -3,7 +3,19 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.19 (unreleased) #
+# 3.2.20 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
+# 3.2.19 (2020-02-21) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
@@ -31,6 +43,18 @@ This release contains contributions from (alphabetically by first name):
    "fancy" release notes as a QML application, rather than a webview
    or text widget. Note that this does not replace the slideshow-during-
    installation module.
+ - The *users* module now has knobs for setting the hostname and writing
+   the `/etc/hosts` file. The new configuration options are documented
+   in `users.conf`. #1140
+ - Multiple *netinstall* modules can exist side-by-side, and they each
+   control the package installation for their part of the package list.
+   Previously, a netinstall module would overwrite all of the package
+   configuration done by other netinstall modules. Translations can be
+   provided in the configuration file, `netinstall.conf`. #1303
+ - The *fstab* module no longer "claims" all the swap partitions it finds
+   on disk. It only uses swap specified for the current installation.
+   This means that "replace" and "alongside" installations will have
+   no swap configured in the target system.
 
 
 # 3.2.18 (2020-01-28) #

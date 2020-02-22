@@ -24,10 +24,11 @@
 
 #include <CppJob.h>
 
+#include "partition/KPMManager.h"
 #include "partition/PartitionSize.h"
 #include "utils/PluginFactory.h"
 
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 
 class CoreBackend;  // From KPMCore
 class Device;  // From KPMCore
@@ -72,6 +73,7 @@ public:
     }
 
 private:
+    CalamaresUtils::Partition::KPMManager m_kpmcore;
     PartitionSize m_size;
     PartitionSize m_atleast;
     QString m_fsname;  // Either this, or devicename, is set, not both
@@ -79,8 +81,8 @@ private:
     bool m_required;
 
     using PartitionMatch = QPair<Device*, Partition*>;
-    /** @brief Find the configured FS using KPMCore @p backend */
-    PartitionMatch findPartition( CoreBackend* backend );
+    /** @brief Find the configured FS */
+    PartitionMatch findPartition();
 
     /** @brief Return a new end-sector for the given dev-part pair. */
     qint64 findGrownEnd( PartitionMatch );

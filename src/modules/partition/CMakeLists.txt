@@ -20,7 +20,7 @@ find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 find_package( KPMcore 3.3 )
 set_package_properties(
     KPMcore PROPERTIES
-    PURPOSE "For partitioning module"
+    PURPOSE "For partition module"
 )
 find_package( KF5Config CONFIG )
 find_package( KF5I18n CONFIG )
@@ -51,7 +51,6 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
             core/PartitionActions.cpp
             core/PartitionCoreModule.cpp
             core/PartitionInfo.cpp
-            core/PartitionIterator.cpp
             core/PartitionLayout.cpp
             core/PartitionModel.cpp
             core/PartUtils.cpp

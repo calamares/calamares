@@ -8,18 +8,11 @@ calamares_add_plugin( initcpio
     SHARED_LIB
 )
 
-if( ECM_FOUND AND BUILD_TESTING )
-    ecm_add_test(
-            Tests.cpp
-        TEST_NAME
-            initcpiotest
-        LINK_LIBRARIES
-            ${CALAMARES_LIBRARIES}
-            calamares
-            calamares_job_initcpio # From above
-            ${YAMLCPP_LIBRARY}
-            Qt5::Core
-            Qt5::Test
-    )
-    calamares_automoc( initcpiotest )
-endif()
+calamares_add_test(
+    initcpiotest
+    SOURCES
+        Tests.cpp
+    LIBRARIES
+        calamares_job_initcpio # From above
+        yamlcpp
+)

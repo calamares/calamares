@@ -20,7 +20,7 @@
 #ifndef CALAMARESUTILSGUI_H
 #define CALAMARESUTILSGUI_H
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include <QObject>
 #include <QPixmap>

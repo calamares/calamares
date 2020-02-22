@@ -27,7 +27,7 @@
 
 #include <utils/PluginFactory.h>
 
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 
 class PLUGINDLLEXPORT DracutLuksCfgJob : public Calamares::CppJob
 {

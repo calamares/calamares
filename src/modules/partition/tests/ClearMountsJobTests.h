@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,17 +16,19 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef UIDLLMACRO_H
-#define UIDLLMACRO_H
+#ifndef CLEARMOUNTSJOBTESTS_H
+#define CLEARMOUNTSJOBTESTS_H
 
-#include <QtCore/qglobal.h>
+#include <QObject>
 
-#ifndef UIDLLEXPORT
-#if defined( UIDLLEXPORT_PRO )
-#define UIDLLEXPORT Q_DECL_EXPORT
-#else
-#define UIDLLEXPORT Q_DECL_IMPORT
-#endif
-#endif
+class ClearMountsJobTests : public QObject
+{
+    Q_OBJECT
+public:
+    ClearMountsJobTests();
+
+private Q_SLOTS:
+    void testFindPartitions();
+};
 
 #endif

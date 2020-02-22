@@ -20,7 +20,8 @@
 #ifndef CREATEPARTITIONTABLEJOB_H
 #define CREATEPARTITIONTABLEJOB_H
 
-#include <Job.h>
+#include "Job.h"
+#include "partition/KPMManager.h"
 
 // KPMcore
 #include <kpmcore/core/partitiontable.h>
@@ -50,6 +51,7 @@ public:
     }
 
 private:
+    CalamaresUtils::Partition::KPMManager m_kpmcore;
     Device* m_device;
     PartitionTable::TableType m_type;
     PartitionTable* createTable();

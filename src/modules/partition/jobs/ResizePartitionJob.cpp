@@ -23,9 +23,9 @@
 #include "utils/Units.h"
 
 // KPMcore
-#include <core/device.h>
-#include <ops/resizeoperation.h>
-#include <util/report.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/ops/resizeoperation.h>
+#include <kpmcore/util/report.h>
 
 using CalamaresUtils::BytesToMiB;
 

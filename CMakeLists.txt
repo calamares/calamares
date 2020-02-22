@@ -40,7 +40,7 @@
 
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.19
+    VERSION 3.2.20
     LANGUAGES C CXX )
 
 set( CALAMARES_VERSION_RC 0 )  # Set to 0 during release cycle, 1 during development
@@ -549,10 +549,11 @@ install(
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
-        "CMakeModules/CalamaresAddPlugin.cmake"
-        "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
-        "CMakeModules/CalamaresAddLibrary.cmake"
         "CMakeModules/CalamaresAddBrandingSubdirectory.cmake"
+        "CMakeModules/CalamaresAddLibrary.cmake"
+        "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
+        "CMakeModules/CalamaresAddPlugin.cmake"
+        "CMakeModules/CalamaresAddTest.cmake"
         "CMakeModules/CalamaresAddTranslations.cmake"
         "CMakeModules/CalamaresAutomoc.cmake"
         "CMakeModules/CMakeColors.cmake"

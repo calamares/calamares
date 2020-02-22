@@ -26,9 +26,9 @@
 #include "core/PartitionLayout.h"
 
 #include "core/KPMHelpers.h"
+#include "core/PartUtils.h"
 #include "core/PartitionActions.h"
 #include "core/PartitionInfo.h"
-#include "core/PartUtils.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
@@ -42,9 +42,11 @@ getDefaultFileSystemType()
 
     if ( gs->contains( "defaultFileSystemType" ) )
     {
-        PartUtils::findFS( gs->value( "defaultFileSystemType" ).toString(),  &defaultFS);
+        PartUtils::findFS( gs->value( "defaultFileSystemType" ).toString(), &defaultFS );
         if ( defaultFS == FileSystem::Unknown )
+        {
             defaultFS = FileSystem::Ext4;
+        }
     }
 
     return defaultFS;
@@ -67,9 +69,7 @@ PartitionLayout::PartitionLayout( const PartitionLayout& layout )
 {
 }
 
-PartitionLayout::~PartitionLayout()
-{
-}
+PartitionLayout::~PartitionLayout() {}
 
 bool
 PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
@@ -117,7 +117,12 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
 }
 
 bool
-PartitionLayout::addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min, const QString& max )
+PartitionLayout::addEntry( const QString& label,
+                           const QString& mountPoint,
+                           const QString& fs,
+                           const QString& size,
+                           const QString& min,
+                           const QString& max )
 {
     PartitionLayout::PartitionEntry entry( size, min, max );
 
@@ -136,7 +141,9 @@ PartitionLayout::addEntry( const QString& label, const QString& mountPoint, cons
     entry.partMountPoint = mountPoint;
     PartUtils::findFS( fs, &entry.partFileSystem );
     if ( entry.partFileSystem == FileSystem::Unknown )
+    {
         entry.partFileSystem = m_defaultFsType;
+    }
 
     m_partLayout.append( entry );
 
@@ -144,8 +151,10 @@ PartitionLayout::addEntry( const QString& label, const QString& mountPoint, cons
 }
 
 QList< Partition* >
-PartitionLayout::execute( Device *dev, qint64 firstSector,
-                          qint64 lastSector, QString luksPassphrase,
+PartitionLayout::execute( Device* dev,
+                          qint64 firstSector,
+                          qint64 lastSector,
+                          QString luksPassphrase,
                           PartitionNode* parent,
                           const PartitionRole& role )
 {
@@ -157,9 +166,9 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
     // TODO: Refine partition sizes to make sure there is room for every partition
     // Use a default (200-500M ?) minimum size for partition without minSize
 
-    foreach( const PartitionLayout::PartitionEntry& part, m_partLayout )
+    foreach ( const PartitionLayout::PartitionEntry& part, m_partLayout )
     {
-        Partition *currentPartition = nullptr;
+        Partition* currentPartition = nullptr;
 
         qint64 size = -1;
         // Calculate partition size
@@ -169,67 +178,67 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
         }
         else
         {
-            cWarning() << "Partition" << part.partMountPoint << "size ("
-                << size <<  "sectors) is invalid, skipping...";
+            cWarning() << "Partition" << part.partMountPoint << "size (" << size << "sectors) is invalid, skipping...";
             continue;
         }
 
         if ( part.partMinSize.isValid() )
+        {
             minSize = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
+        }
         else
+        {
             minSize = 0;
+        }
 
         if ( part.partMaxSize.isValid() )
+        {
             maxSize = part.partMaxSize.toSectors( totalSize, dev->logicalSize() );
+        }
         else
+        {
             maxSize = availableSize;
+        }
 
         // Make sure we never go under minSize once converted to sectors
         if ( maxSize < minSize )
         {
-            cWarning() << "Partition" << part.partMountPoint << "max size (" << maxSize
-                <<  "sectors) is < min size (" << minSize << "sectors), using min size";
+            cWarning() << "Partition" << part.partMountPoint << "max size (" << maxSize << "sectors) is < min size ("
+                       << minSize << "sectors), using min size";
             maxSize = minSize;
         }
 
         // Adjust partition size based on user-defined boundaries and available space
         if ( size < minSize )
+        {
             size = minSize;
+        }
         if ( size > maxSize )
+        {
             size = maxSize;
+        }
         if ( size > availableSize )
+        {
             size = availableSize;
+        }
         end = firstSector + size - 1;
 
         if ( luksPassphrase.isEmpty() )
         {
             currentPartition = KPMHelpers::createNewPartition(
-                parent,
-                *dev,
-                role,
-                part.partFileSystem,
-                firstSector,
-                end,
-                KPM_PARTITION_FLAG(None)
-            );
+                parent, *dev, role, part.partFileSystem, firstSector, end, KPM_PARTITION_FLAG( None ) );
         }
         else
         {
             currentPartition = KPMHelpers::createNewEncryptedPartition(
-                parent,
-                *dev,
-                role,
-                part.partFileSystem,
-                firstSector,
-                end,
-                luksPassphrase,
-                KPM_PARTITION_FLAG(None)
-            );
+                parent, *dev, role, part.partFileSystem, firstSector, end, luksPassphrase, KPM_PARTITION_FLAG( None ) );
         }
         PartitionInfo::setFormat( currentPartition, true );
         PartitionInfo::setMountPoint( currentPartition, part.partMountPoint );
         if ( !part.partLabel.isEmpty() )
+        {
             currentPartition->fileSystem().setLabel( part.partLabel );
+        }
         // Some buggy (legacy) BIOSes test if the bootflag of at least one partition is set.
         // Otherwise they ignore the device in boot-order, so add it here.
         partList.append( currentPartition );

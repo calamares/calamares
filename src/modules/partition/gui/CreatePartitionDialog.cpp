@@ -20,7 +20,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gui/CreatePartitionDialog.h"
+#include "CreatePartitionDialog.h"
+#include "ui_CreatePartitionDialog.h"
 
 #include "core/ColorUtils.h"
 #include "core/PartitionInfo.h"
@@ -29,20 +30,18 @@
 #include "gui/PartitionDialogHelpers.h"
 #include "gui/PartitionSizeController.h"
 
-#include "ui_CreatePartitionDialog.h"
-
-#include "utils/Logger.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/PartitionQuery.h"
+#include "partition/FileSystem.h"
+#include "utils/Logger.h"
 
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 #include <kpmcore/fs/filesystemfactory.h>
 #include <kpmcore/fs/luks.h>
 
-// Qt
 #include <QComboBox>
 #include <QDir>
 #include <QListWidgetItem>
@@ -50,6 +49,9 @@
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
 #include <QSet>
+
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 static QSet< FileSystem::Type > s_unmountableFS(
 {
@@ -112,7 +114,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
         if ( fs->supportCreate() != FileSystem::cmdSupportNone &&
              fs->type() != FileSystem::Extended )
         {
-            fsNames << KPMHelpers::userVisibleFS( fs );  // This is put into the combobox
+            fsNames << userVisibleFS( fs );  // This is put into the combobox
             if ( fs->type() == defaultFSType )
                 defaultFsIndex = fsCounter;
             fsCounter++;
@@ -279,7 +281,7 @@ CreatePartitionDialog::checkMountPointSelection()
 void
 CreatePartitionDialog::initPartResizerWidget( Partition* partition )
 {
-    QColor color = KPMHelpers::isPartitionFreeSpace( partition )
+    QColor color = CalamaresUtils::Partition::isPartitionFreeSpace( partition )
                    ? ColorUtils::colorForPartitionInFreeSpace( partition )
                    : ColorUtils::colorForPartition( partition );
     m_partitionSizeController->init( m_device, partition, color );

@@ -20,7 +20,7 @@
 #ifndef VIEWMANAGER_H
 #define VIEWMANAGER_H
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 #include "viewpages/ViewStep.h"
 
 #include <QList>

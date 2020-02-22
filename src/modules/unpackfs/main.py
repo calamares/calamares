@@ -8,6 +8,8 @@
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2019, Kevin Kofler <kevin.kofler@chello.at>
+#   Copyright 2020, Adriaan de Groot <groot@kde.org>
+#   Copyright 2020, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -30,6 +32,7 @@ import sys
 import tempfile
 
 from libcalamares import *
+from libcalamares.utils import mount
 
 import gettext
 _ = gettext.translation("calamares-python",
@@ -130,7 +133,8 @@ def file_copy(source, entry, progress_cb):
             args.extend(["--exclude", f])
     args.extend(['--progress', source, dest])
     process = subprocess.Popen(
-        args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX
+        args, env=at_env,
+        stdout=subprocess.PIPE, close_fds=ON_POSIX
         )
     # last_num_files_copied trails num_files_copied, and whenever at least 100 more
     # files have been copied, progress is reported and last_num_files_copied is updated.
@@ -274,34 +278,29 @@ class UnpackOperation:
 
     def mount_image(self, entry, imgmountdir):
         """
-        Mount given image as loop device.
+        Mount given @p entry as loop device on @p imgmountdir.
 
         A *file* entry (e.g. one with *sourcefs* set to *file*)
         is not mounted and just ignored.
 
-        :param entry:
-        :param imgmountdir:
+        :param entry: the entry to mount (source is the important property)
+        :param imgmountdir: where to mount it
+
+        :returns: None, but throws if the mount failed
         """
         if entry.is_file():
             return
 
         if os.path.isdir(entry.source):
-            subprocess.check_call(["mount",
-                                   "--bind", entry.source,
-                                   imgmountdir])
+            r = mount(entry.source, imgmountdir, "", "--bind")
         elif os.path.isfile(entry.source):
-            subprocess.check_call(["mount",
-                                   entry.source,
-                                   imgmountdir,
-                                   "-t", entry.sourcefs,
-                                   "-o", "loop"
-                                   ])
+            r = mount(entry.source, imgmountdir, entry.sourcefs, "loop")
         else: # entry.source is a device
-            subprocess.check_call(["mount",
-                                   entry.source,
-                                   imgmountdir,
-                                   "-t", entry.sourcefs
-                                   ])
+            r = mount(entry.source, imgmountdir, entry.sourcefs, "")
+
+        if r != 0:
+            raise subprocess.CalledProcessError(r, "mount")
+
 
     def unpack_image(self, entry, imgmountdir):
         """
@@ -385,9 +384,10 @@ def run():
         sourcefs = entry["sourcefs"]
 
         if sourcefs not in supported_filesystems:
-            utils.warning("The filesystem for \"{}\" ({}) is not supported".format(source, sourcefs))
+            utils.warning("The filesystem for \"{}\" ({}) is not supported by your current kernel".format(source, sourcefs))
+            utils.warning(" ... modprobe {} may solve the problem".format(sourcefs))
             return (_("Bad unsquash configuration"),
-                    _("The filesystem for \"{}\" ({}) is not supported").format(source, sourcefs))
+                    _("The filesystem for \"{}\" ({}) is not supported by your current kernel").format(source, sourcefs))
         if not os.path.exists(source):
             utils.warning("The source filesystem \"{}\" does not exist".format(source))
             return (_("Bad unsquash configuration"),

@@ -28,7 +28,6 @@
 #include "core/PartitionActions.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
-#include "core/PartitionIterator.h"
 #include "core/PartitionModel.h"
 
 #include "BootInfoWidget.h"
@@ -40,14 +39,16 @@
 #include "ReplaceWidget.h"
 #include "ScanningDialog.h"
 
-#include "utils/CalamaresUtilsGui.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "partition/PartitionIterator.h"
+#include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/Units.h"
 
 #include "Branding.h"
-#include "GlobalStorage.h"
-#include "JobQueue.h"
+#include "utils/CalamaresUtilsGui.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
@@ -65,6 +66,9 @@
 #include <QtConcurrent/QtConcurrent>
 
 using PartitionActions::Choices::SwapChoice;
+using CalamaresUtils::Partition::PartitionIterator;
+using CalamaresUtils::Partition::isPartitionFreeSpace;
+using CalamaresUtils::Partition::findPartitionByPath;
 
 /** @brief Given a set of swap choices, return a sensible value from it.
  *
@@ -691,7 +695,7 @@ ChoicePage::doAlongsideApply()
     for ( int i = 0; i < dm->rowCount(); ++i )
     {
         Device* dev = dm->deviceForIndex( dm->index( i ) );
-        Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, path );
+        Partition* candidate = findPartitionByPath( { dev }, path );
         if ( candidate )
         {
             qint64 firstSector = candidate->firstSector();
@@ -754,7 +758,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
         Partition* selectedPartition =
             static_cast< Partition* >( current.data( PartitionModel::PartitionPtrRole )
                                        .value< void* >() );
-        if ( KPMHelpers::isPartitionFreeSpace( selectedPartition ) )
+        if ( isPartitionFreeSpace( selectedPartition ) )
         {
             //NOTE: if the selected partition is free space, we don't deal with
             //      a separate /home partition at all because there's no existing
@@ -768,7 +772,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                 if ( parent && parent->roles().has( PartitionRole::Extended ) )
                 {
                     newRoles = PartitionRole( PartitionRole::Logical );
-                    newParent = KPMHelpers::findPartitionByPath( { selectedDevice() }, parent->partitionPath() );
+                    newParent = findPartitionByPath( { selectedDevice() }, parent->partitionPath() );
                 }
             }
 
@@ -782,7 +786,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
             // We can't use the PartitionPtrRole because we need to make changes to the
             // main DeviceModel, not the immutable copy.
             QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
-            selectedPartition = KPMHelpers::findPartitionByPath( { selectedDevice() },
+            selectedPartition = findPartitionByPath( { selectedDevice() },
                                                                  partPath );
             if ( selectedPartition )
             {
@@ -805,7 +809,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                         gs->value( "defaultFileSystemType" ).toString(),
                         m_encryptWidget->passphrase()
                     } );
-                Partition* homePartition = KPMHelpers::findPartitionByPath( { selectedDevice() },
+                Partition* homePartition = findPartitionByPath( { selectedDevice() },
                                                                             *homePartitionPath );
 
                 if ( homePartition && doReuseHomePartition )
