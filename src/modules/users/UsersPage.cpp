@@ -105,6 +105,16 @@ UsersPage::UsersPage( QWidget* parent )
         checkReady( isReady() );
     } );
     connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+        /* When "reuse" is checked, hide the fields for explicitly
+         * entering the root password. However, if we're going to
+         * disable the root password anyway, hide them all regardless of
+         * the checkbox -- so when writeRoot is false, checked needs
+         * to be true, to hide them all.
+         */
+        if ( !m_writeRootPassword )
+        {
+            checked = true;
+        }
         ui->labelChooseRootPassword->setVisible( !checked );
         ui->labelRootPassword->setVisible( !checked );
         ui->labelRootPasswordError->setVisible( !checked );
@@ -246,8 +256,8 @@ UsersPage::onActivate()
 void
 UsersPage::setWriteRootPassword( bool write )
 {
-    ui->checkBoxReusePassword->setVisible( write );
     m_writeRootPassword = write;
+    ui->checkBoxReusePassword->setVisible( write );
 }
 
 
