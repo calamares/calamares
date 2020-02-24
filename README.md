@@ -17,7 +17,7 @@ Main:
 * [yaml-cpp](https://www.archlinux.jp/packages/community/x86_64/yaml-cpp/) >= 0.5.1
 * [Python](https://www.archlinux.jp/packages/extra/x86_64/python/) >= 3.3 (required for some modules)
 * [Boost.Python](https://www.archlinux.jp/packages/extra/x86_64/boost/) and [Boost-libs](https://www.archlinux.jp/packages/extra/x86_64/boost-libs/) >= 1.55.0 (required for some modules)
-* [KDE extra-cmake-modules](https://www.archlinux.jp/packages/?name=extra-cmake-modules) >= 5.18 (recommended; required for some modules;
+* [KDE extra-cmake-modules](https://www.archlinux.jp/packages/extra/any/extra-cmake-modules/) >= 5.18 (recommended; required for some modules;
   required for some tests)
 * [KDE Frameworks KCoreAddons](https://www.archlinux.jp/packages/extra/x86_64/kcoreaddons/) (>= 5.58 recommended)
 * ~~PythonQt (optional, deprecated)~~ (Not available)
