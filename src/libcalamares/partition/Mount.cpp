@@ -117,7 +117,7 @@ TemporaryMount::~TemporaryMount()
 {
     if ( m_d )
     {
-        int r = unmount( m_d->m_devicePath, { "-R" } );
+        int r = unmount( m_d->m_mountDir.path(), { "-R" } );
         if ( r )
         {
             cWarning() << "UnMount of temporary" << m_d->m_devicePath << "on" << m_d->m_mountDir.path()
