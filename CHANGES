@@ -3,16 +3,14 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.20 (unreleased) #
+# 3.2.19.1 (unreleased) #
 
-This release contains contributions from (alphabetically by first name):
- - No external contributors yet
-
-## Core ##
- - No core changes yet
+This is a hotfix release for bugs in the *users* module.
+Reported by Philip Mueller and Walter Lapchynski.
 
 ## Modules ##
- - No module changes yet
+ - The *users* module no longer wrote `/etc/hostname` at all.
+ - The *users* module erroneously shows the root password input fields.
 
 
 # 3.2.19 (2020-02-21) #
