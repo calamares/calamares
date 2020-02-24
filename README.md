@@ -1,7 +1,7 @@
 ### Calamares: Distribution-Independent Installer Framework
 ---------
 
-[![GitHub release](https://img.shields.io/github/release/sereneteam/alterlinux-calamares.svg)](https://github.com/calamares/calamares/releases)
+[![GitHub release](https://img.shields.io/github/release/alterlinux-calamares/alterlinux-calamares.svg)](https://github.com/calamares/calamares/releases)
 [![Travis Build Status](https://travis-ci.org/calamares/calamares.svg?branch=master)](https://travis-ci.org/calamares/calamares)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5389/badge.svg)](https://scan.coverity.com/projects/5389)
 [![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/master/LICENSE)
