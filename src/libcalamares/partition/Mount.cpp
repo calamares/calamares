@@ -105,8 +105,9 @@ TemporaryMount::TemporaryMount( const QString& devicePath, const QString& filesy
     m_d->m_devicePath = devicePath;
     m_d->m_mountDir.setAutoRemove( false );
     int r = mount( devicePath, m_d->m_mountDir.path(), filesystemName, options );
-    if ( !r )
+    if ( r )
     {
+        cWarning() << "Mount of" << devicePath << "on" << m_d->m_mountDir.path() << "failed, code" << r;
         delete m_d;
         m_d = nullptr;
     }
@@ -116,7 +117,12 @@ TemporaryMount::~TemporaryMount()
 {
     if ( m_d )
     {
-        unmount( m_d->m_devicePath, { "-R" } );
+        int r = unmount( m_d->m_devicePath, { "-R" } );
+        if ( r )
+        {
+            cWarning() << "UnMount of temporary" << m_d->m_devicePath << "on" << m_d->m_mountDir.path()
+                       << "failed, code" << r;
+        }
         delete m_d;
         m_d = nullptr;
     }
