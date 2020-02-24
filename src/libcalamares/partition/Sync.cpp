@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,7 +24,14 @@
 void
 CalamaresUtils::Partition::sync()
 {
-    auto r = CalamaresUtils::System::runCommand( { "/sbin/udevadm", "settle" }, std::chrono::seconds( 10 ) );
+    /* I would normally use full paths here, e.g. /sbin/udevadm and /bin/sync,
+     * but there's enough variation / opinion on where these executables
+     * should live, that full paths would need to be configurable.
+     * Instead, just run them and assume they're found in PATH;
+     * either chroot(8) or env(1) is used to run the command,
+     * and they do suitable lookup.
+     */
+    auto r = CalamaresUtils::System::runCommand( { "udevadm", "settle" }, std::chrono::seconds( 10 ) );
 
     if ( r.getExitCode() != 0 )
     {
@@ -32,5 +39,5 @@ CalamaresUtils::Partition::sync()
         r.explainProcess( "udevadm", std::chrono::seconds( 10 ) );
     }
 
-    CalamaresUtils::System::runCommand( { "/bin/sync" }, std::chrono::seconds( 10 ) );
+    CalamaresUtils::System::runCommand( { "sync" }, std::chrono::seconds( 10 ) );
 }
