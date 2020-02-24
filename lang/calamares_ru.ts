@@ -1333,7 +1333,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="51"/>
       <source>Collecting information about your machine.</source>
-      <translation type="unfinished"/>
+      <translation>Сбор информации о вашем компьютере.</translation>
     </message>
   </context>
   <context>
@@ -1458,7 +1458,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="22"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Лицензионное соглашение&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="149"/>
@@ -1541,17 +1541,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="171"/>
       <source>File: %1</source>
-      <translation type="unfinished"/>
+      <translation>Файл: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>Показать текст лицензии</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
       <source>Open license agreement in browser.</source>
-      <translation type="unfinished"/>
+      <translation>Открыть лицензионное соглашение в браузере.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
@@ -1714,12 +1714,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation>Веб-браузер</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>Ядро</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
@@ -1739,7 +1739,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>Приложения</translation>
     </message>
   </context>
   <context>
@@ -2026,7 +2026,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>Пустой пароль</translation>
     </message>
   </context>
   <context>
@@ -2124,7 +2124,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>Ваше полное имя</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
@@ -2139,19 +2139,19 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>Имя компьютера</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Пароль</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>Повторите пароль</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
@@ -2647,17 +2647,17 @@ Output:
       <location filename="../src/modules/machineid/Workers.cpp" line="85"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="102"/>
       <source>File not found</source>
-      <translation type="unfinished"/>
+      <translation>Файл не найден</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="74"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation type="unfinished"/>
+      <translation>Путь &lt;pre&gt;%1&lt;/pre&gt; должен быть абсолютным путём.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Не удалось создать новый случайный файл &lt;pre&gt;%1&lt;/pre&gt;.</translation>
     </message>
   </context>
   <context>
@@ -2795,12 +2795,12 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Файловая система %1 не обнаружена в этой системе, поэтому её размер невозможно изменить.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="208"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Устройство %1 не обнаружено в этой системе, поэтому его размер невозможно изменить.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="216"/>
@@ -3319,12 +3319,12 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="399"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Допускаются только строчные буквы, числа, символы подчёркивания и дефисы.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="447"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Допускаются только буквы, цифры, символы подчёркивания и дефисы.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="435"/>
@@ -3373,7 +3373,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
       <source>List of Physical Volumes</source>
-      <translation type="unfinished"/>
+      <translation>Список физических томов</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="30"/>

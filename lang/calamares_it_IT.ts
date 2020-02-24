@@ -106,7 +106,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="113"/>
       <source>Widget Tree</source>
-      <translation type="unfinished"/>
+      <translation>Albero dei Widget</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="231"/>
@@ -137,7 +137,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="40"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation type="unfinished"/>
+      <translation>Il fallimento dell'operazione programmata è stato richiesto esplicitamente.</translation>
     </message>
   </context>
   <context>
@@ -153,7 +153,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="27"/>
       <source>Example job (%1)</source>
-      <translation type="unfinished"/>
+      <translation>Operazione d'esempio (%1)</translation>
     </message>
   </context>
   <context>
@@ -212,12 +212,12 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>Caricamento ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>QML Progresso &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="347"/>
@@ -238,9 +238,9 @@
     <message numerus="yes">
       <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
       <source>(%n second(s))</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>(%n secondo)</numerusform>
+        <numerusform>(%n secondi)</numerusform>
       </translation>
     </message>
     <message>
@@ -292,12 +292,12 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
       <source>Install Log Paste URL</source>
-      <translation type="unfinished"/>
+      <translation>Incolla URL Log di Installazione</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="241"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
-      <translation type="unfinished"/>
+      <translation>Il caricamento è fallito. Non è stato eseguito web-paste.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
@@ -454,7 +454,8 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="34"/>
       <source>Install log posted to:
 %1</source>
-      <translation type="unfinished"/>
+      <translation>Log di installazione caricato:
+%1</translation>
     </message>
   </context>
   <context>
@@ -779,7 +780,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Creare nuova partizione di &lt;strong&gt;%2MiB&lt;/strong&gt; su &lt;strong&gt;%4&lt;/strong&gt; (%3) con file system &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="72"/>
@@ -1162,7 +1163,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
       <source>&lt;Restart checkbox tooltip&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1172,7 +1173,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Tutto eseguito.&lt;/h1&gt;&lt;br/&gt;%1 è stato configurato sul tuo computer.&lt;br/&gt;Adesso puoi iniziare a utilizzare il tuo nuovo sistema.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
@@ -1187,7 +1188,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="71"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quando questa casella è selezionata, il tuo sistema si riavvierà immediatamente quando clicchi su &lt;span style="font-style:italic;"&gt;Fatto&lt;/span&gt; o chiudi il programma di installazione.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="133"/>
@@ -1296,7 +1297,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>sta eseguendo il programma di installazione come amministratore (root)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
@@ -1311,7 +1312,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="176"/>
       <source>has a screen large enough to show the whole installer</source>
-      <translation type="unfinished"/>
+      <translation>ha uno schermo abbastanza grande da mostrare l'intero programma di installazione</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
@@ -1329,7 +1330,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="51"/>
       <source>Collecting information about your machine.</source>
-      <translation type="unfinished"/>
+      <translation>Raccogliendo informazioni sulla tua macchina.</translation>
     </message>
   </context>
   <context>
@@ -1340,7 +1341,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
       <location filename="../src/modules/oemid/IDJob.cpp" line="59"/>
       <location filename="../src/modules/oemid/IDJob.cpp" line="67"/>
       <source>OEM Batch Identifier</source>
-      <translation type="unfinished"/>
+      <translation>Codice Batch OEM</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="48"/>
@@ -1454,7 +1455,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="22"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Accordo di Licenza&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="149"/>
@@ -1464,27 +1465,27 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
       <source>Please review the End User License Agreements (EULAs).</source>
-      <translation type="unfinished"/>
+      <translation>Si prega di leggere l'Accordo di Licenza per l'Utente Finale (EULAs).</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
-      <translation type="unfinished"/>
+      <translation>Questa procedura di configurazione installerà software proprietario che è soggetto ai termini di licenza.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>Se non accetti i termini, la procedura di configurazione non può continuare.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="164"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-      <translation type="unfinished"/>
+      <translation>Questa procedura di configurazione installerà software proprietario sottoposto a termini di licenza, per fornire caratteristiche aggiuntive e migliorare l'esperienza utente.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="169"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation type="unfinished"/>
+      <translation>Se non se ne accettano i termini, il software proprietario non verrà installato e al suo posto saranno utilizzate alternative open source. </translation>
     </message>
   </context>
   <context>
@@ -1500,7 +1501,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="96"/>
       <source>URL: %1</source>
-      <translation type="unfinished"/>
+      <translation>URL: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="117"/>
@@ -1537,17 +1538,17 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="171"/>
       <source>File: %1</source>
-      <translation type="unfinished"/>
+      <translation>File: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>Mostra il testo della licenza</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
       <source>Open license agreement in browser.</source>
-      <translation type="unfinished"/>
+      <translation>Apri l'accordo di licenza nel browser.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
@@ -1602,7 +1603,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="39"/>
       <source>Configuring LUKS key file.</source>
-      <translation type="unfinished"/>
+      <translation>Configurazione in corso del file chiave LUKS.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
@@ -1615,22 +1616,22 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="199"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="207"/>
       <source>Encrypted rootfs setup error</source>
-      <translation type="unfinished"/>
+      <translation>Errore nella configurazione del rootfs crittato</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-      <translation type="unfinished"/>
+      <translation>La partizione root %1 è LUKS ma non sono state configurate passphrase.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
       <source>Could not create LUKS key file for root partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Impossibile creare il file chiave LUKS per la partizione root %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
       <source>Could not configure LUKS key file on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Impossibile configurare il file chiave LUKS per la partizione %1.</translation>
     </message>
   </context>
   <context>
@@ -1643,12 +1644,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="62"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>Errore di Configurazione</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="63"/>
       <source>No root mount point is set for MachineId.</source>
-      <translation type="unfinished"/>
+      <translation>Non è impostato alcun punto di montaggio root per MachineId</translation>
     </message>
   </context>
   <context>
@@ -1676,7 +1677,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="187"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation type="unfinished"/>
+      <translation>Installazione di rete. (Disabilitato: Configurazione scorretta)</translation>
     </message>
   </context>
   <context>
@@ -1690,52 +1691,52 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office software</source>
-      <translation type="unfinished"/>
+      <translation>Software per ufficio</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Office package</source>
-      <translation type="unfinished"/>
+      <translation>Pacchetto per ufficio</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Browser software</source>
-      <translation type="unfinished"/>
+      <translation>Software navigazione web</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Browser package</source>
-      <translation type="unfinished"/>
+      <translation>Pacchetto navigazione web</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation>Browser web</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>Kernel</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>Servizi</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Login</source>
-      <translation type="unfinished"/>
+      <translation>Accesso</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>Ambiente desktop</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>Applicazioni</translation>
     </message>
   </context>
   <context>
@@ -1743,7 +1744,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
       <source>Notes</source>
-      <translation type="unfinished"/>
+      <translation>Note</translation>
     </message>
   </context>
   <context>
@@ -1751,17 +1752,17 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="28"/>
       <source>Ba&amp;tch:</source>
-      <translation type="unfinished"/>
+      <translation>Lo&amp;amp;tto</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="38"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a batch-identifier here. This will be stored in the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Inserire un identificatore per il lotto. Questo verrà salvato nel sistema di destinazione.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="48"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM Configuration&lt;/h1&gt;&lt;p&gt;Calamares will use OEM settings while configuring the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;Configurazione OEM&lt;/h1&gt;&lt;p&gt;Calamares userà le impostazioni OEM nella configurazione del sistema di destinazione.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
   </context>
   <context>
@@ -1769,12 +1770,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="121"/>
       <source>OEM Configuration</source>
-      <translation type="unfinished"/>
+      <translation>Configurazione OEM</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="126"/>
       <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Impostare l'Identificatore del Lotto OEM a &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
   </context>
   <context>
@@ -2022,7 +2023,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>Password vuota</translation>
     </message>
   </context>
   <context>
@@ -2035,7 +2036,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="40"/>
       <source>Product Name</source>
-      <translation type="unfinished"/>
+      <translation>Nome Prodotto</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="53"/>
@@ -2045,17 +2046,17 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="69"/>
       <source>Long Product Description</source>
-      <translation type="unfinished"/>
+      <translation>Descrizione Estesa del Prodotto</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
       <source>Package Selection</source>
-      <translation type="unfinished"/>
+      <translation>Selezione del Pacchetto</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation type="unfinished"/>
+      <translation>Si prega di scegliere un prodotto dalla lista. Il prodotto selezionato verrà installato.</translation>
     </message>
   </context>
   <context>
@@ -2063,7 +2064,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
       <source>Packages</source>
-      <translation type="unfinished"/>
+      <translation>Pacchetti</translation>
     </message>
   </context>
   <context>
@@ -2120,12 +2121,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>Nome Completo</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
       <source>login</source>
-      <translation type="unfinished"/>
+      <translation>accesso</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
@@ -2135,29 +2136,29 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>Nome Computer</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Password</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>Ripetere Password</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation type="unfinished"/>
+      <translation>Quando questa casella è selezionata, la robustezza della password viene verificata e non sarà possibile utilizzare password deboli.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="454"/>
       <source>Require strong passwords.</source>
-      <translation type="unfinished"/>
+      <translation>È richiesta una password robusta.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="461"/>
@@ -2443,7 +2444,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="651"/>
       <source>There are no partitions to install on.</source>
-      <translation type="unfinished"/>
+      <translation>Non ci sono partizioni su cui installare.</translation>
     </message>
   </context>
   <context>
@@ -2630,7 +2631,7 @@ Output:
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
       <source>No product</source>
-      <translation type="unfinished"/>
+      <translation>Nessun prodotto</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
@@ -2643,17 +2644,17 @@ Output:
       <location filename="../src/modules/machineid/Workers.cpp" line="85"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="102"/>
       <source>File not found</source>
-      <translation type="unfinished"/>
+      <translation>File non trovato</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="74"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation type="unfinished"/>
+      <translation>Il percorso &lt;pre&gt;%1&lt;/pre&gt; deve essere un percorso assoluto.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Impossibile creare un nuovo file random &lt;pre&gt;%1&lt;/pre&gt;.</translation>
     </message>
   </context>
   <context>
@@ -2672,7 +2673,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Il programma di installazione non è riuscito a rimuovere il gruppo di volumi denominato '%1'.</translation>
     </message>
   </context>
   <context>
@@ -2771,7 +2772,7 @@ Output:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="197"/>
       <source>KPMCore not Available</source>
-      <translation type="unfinished"/>
+      <translation>KPMCore non Disponibile</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
@@ -3533,7 +3534,8 @@ Output:
       <location filename="../src/modules/notesqml/notesqml.qml" line="60"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Questo è un esempio di note di rilascio.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3541,32 +3543,32 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
       <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>Informazioni su</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>Supporto</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>Problemi conosciuti</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>Note di rilascio</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Donazioni</translation>
     </message>
   </context>
 </TS>
