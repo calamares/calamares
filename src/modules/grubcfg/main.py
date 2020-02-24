@@ -72,6 +72,12 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     swap_uuid = ""
     swap_outer_uuid = ""
     swap_outer_mappername = None
+    no_save_default = False
+
+    for partition in partitions:
+        if partition["mountPoint"] in ("/", "/boot") and partition["fs"] in ("btrfs", "f2fs"):
+            no_save_default = True
+            break
 
     if have_plymouth:
         use_splash = "splash"
@@ -191,6 +197,9 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                     # We're not updating because of *keepDistributor*, but if
                     # this was a comment line, then it's still not been set.
                     have_distributor_line = have_distributor_line or not lines[i].startswith("#")
+            # If btrfs or f2fs is used, don't save default
+            if no_save_default and lines[i].startswith("GRUB_SAVEDEFAULT="):
+                lines[i] = "#GRUB_SAVEDEFAULT=\"true\""
     else:
         lines = []
 
