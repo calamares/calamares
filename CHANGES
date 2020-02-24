@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.19.1 (unreleased) #
+# 3.2.19.1 (2020-02-24) #
 
 This is a hotfix release for bugs in the *users* module.
 Reported by Philip Mueller and Walter Lapchynski.
@@ -11,6 +11,11 @@ Reported by Philip Mueller and Walter Lapchynski.
 ## Modules ##
  - The *users* module no longer wrote `/etc/hostname` at all.
  - The *users* module erroneously shows the root password input fields.
+ - The *initramfs* module sets a resume-hook even when there is no swap.
+ - The partitioning service expects *udevadm* in `/sbin`, but some
+   distro's place it elsewhere.
+ - The mount service didn't unmount directories properly, leading to
+   blocked installations.
 
 
 # 3.2.19 (2020-02-21) #
