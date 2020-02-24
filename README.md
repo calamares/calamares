@@ -2,7 +2,7 @@
 ---------
 
 [![GitHub release](https://img.shields.io/github/v/release/sereneteam/alterlinux-calamares?color=%234169e1&include_prereleases&style=flat-square)](https://github.com/sereneteam/alterlinux-calamares/releases)
-[![GitHub license](https://img.shields.io/github/license/sereneteam/alterlinux-calamares?style=flat-square)](https://github.com/sereneteam/alterlinux-calamares/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/sereneteam/alterlinux-calamares?style=flat-square&logo=gnu)](https://github.com/sereneteam/alterlinux-calamares/blob/master/LICENSE)
 
 [If you find a Bug, please report a Bug](https://github.com/SereneTeam/alterlinux-calamares/issues/new/choose)
 
