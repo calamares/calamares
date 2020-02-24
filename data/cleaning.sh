@@ -14,8 +14,15 @@ function remove () {
     done
 }
 
+while getopts 'u:' arg; do
+    case "${arg}" in
+        u) user="${OPTARG}";;
+    esac
+done
+
 remove /etc/skel/Desktop
 remove /etc/systemd/system/getty@tty1.service.d/autologin.conf
 remove /root/.automated_script.sh
 remove /etc/mkinitcpio-archiso.conf
 remove /etc/initcpio
+remove /home/${user}/Desktop/calamares.desktop
