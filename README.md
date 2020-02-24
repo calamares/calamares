@@ -5,7 +5,8 @@
 [![GitHub license](https://img.shields.io/github/license/sereneteam/alterlinux-calamares?style=flat-square)](https://github.com/sereneteam/alterlinux-calamares/blob/master/LICENSE)
 
 [Report a Bug](https://github.com/sereneteam/alterlinux-calamares/issues/new)
-|:-----------------------------------------:|:----------------------:|:-----------------------:|:--------------------------:|:--------------------------:|
+
+***
 
 ### Dependencies
 
