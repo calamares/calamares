@@ -20,4 +20,53 @@ ResponsiveBase
 	title: qsTr("Users")
 	subtitle: qsTr("Pick your user name and credentials to login and perform admin tasks")
 
+	stackView.initialItem: Flickable
+	{
+		clip: true
+
+		contentWidth: width
+		contentHeight: _formLayout.implicitHeight
+
+		ColumnLayout
+		{
+			id: _formLayout
+			anchors.centerIn: parent
+			width: parent.width
+
+			TextField
+			{
+				Layout.fillWidth: true
+				placeholderText: qsTr("User name")
+			}
+
+
+			TextField
+			{
+				Layout.fillWidth: true
+				placeholderText: qsTr("User name")
+			}
+
+
+			TextField
+			{
+				Layout.fillWidth: true
+				placeholderText: qsTr("User name")
+			}
+
+
+			TextField
+			{
+				Layout.fillWidth: true
+				placeholderText: qsTr("User name")
+			}
+
+
+			TextField
+			{
+				Layout.fillWidth: true
+				placeholderText: qsTr("User name")
+			}
+		}
+	}
+
 }
