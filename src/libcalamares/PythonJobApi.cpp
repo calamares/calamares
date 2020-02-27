@@ -148,7 +148,7 @@ check_target_env_output( const bp::list& args, const std::string& stdin, int tim
 void
 debug( const std::string& s )
 {
-    cDebug() << "[PYTHON JOB]: " << QString::fromStdString( s );
+    Logger::CDebug( Logger::LOGDEBUG ) << "[PYTHON JOB]: " << QString::fromStdString( s );
 }
 
 void
