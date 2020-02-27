@@ -59,6 +59,6 @@ ContextualProcessTests::testProcessListSampleConfig()
     ContextualProcessJob job;
     job.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc ).toMap() );
 
-    QCOMPARE( job.count(), 1 );  // Only "firmwareType"
+    QCOMPARE( job.count(), 2 );  // Only "firmwareType" and "branding.shortVersion"
     QCOMPARE( job.count( "firmwareType" ), 4 );
 }
