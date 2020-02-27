@@ -5,6 +5,7 @@
 # 
 # Translators:
 # Jan-Olof Svensson, 2019
+# Luna Jernberg <bittin@cafe8bitar.se>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-19 17:27+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Jan-Olof Svensson, 2019\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>, 2020\n"
 "Language-Team: Swedish (https://www.transifex.com/calamares/teams/20061/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,11 +24,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "Konfigurera GRUB."
 
 #: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Monterar partitioner."
 
 #: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:201
 #: src/modules/initcpiocfg/main.py:205
@@ -39,23 +40,23 @@ msgstr ""
 #: src/modules/fstab/main.py:328 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
-msgstr ""
+msgstr "Konfigurationsfel"
 
 #: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:202
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/fstab/main.py:323
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Inga partitioner är definerade för <pre>{!s}</pre> att använda."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
-msgstr ""
+msgstr "Konfigurera systemd tjänster"
 
 #: src/modules/services-systemd/main.py:68
 #: src/modules/services-openrc/main.py:102
 msgid "Cannot modify service"
-msgstr ""
+msgstr "Kunde inte modifiera tjänst"
 
 #: src/modules/services-systemd/main.py:69
 msgid ""
@@ -65,7 +66,7 @@ msgstr ""
 #: src/modules/services-systemd/main.py:72
 #: src/modules/services-systemd/main.py:76
 msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr ""
+msgstr "Kunde inte aktivera systemd tjänst <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:74
 msgid "Cannot enable systemd target <code>{name!s}</code>."
@@ -87,15 +88,15 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "Avmontera filsystem."
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Packar upp filsystem."
 
 #: src/modules/unpackfs/main.py:184
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "rsync misslyckades med felkod {}."
 
 #: src/modules/unpackfs/main.py:245 src/modules/unpackfs/main.py:268
 msgid "Failed to unpack image \"{}\""
@@ -109,7 +110,7 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:370
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "Ingen monteringspunkt för root partition"
 
 #: src/modules/unpackfs/main.py:371
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
@@ -117,7 +118,7 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:376
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "Dålig monteringspunkt för root partition"
 
 #: src/modules/unpackfs/main.py:377
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
@@ -126,11 +127,11 @@ msgstr ""
 #: src/modules/unpackfs/main.py:389 src/modules/unpackfs/main.py:393
 #: src/modules/unpackfs/main.py:407
 msgid "Bad unsquash configuration"
-msgstr ""
+msgstr "Dålig unsquash konfiguration"
 
 #: src/modules/unpackfs/main.py:390
 msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr ""
+msgstr "Filsystemet för \"{}\" ({})  stöds inte"
 
 #: src/modules/unpackfs/main.py:394
 msgid "The source filesystem \"{}\" does not exist"
@@ -142,31 +143,31 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
-msgstr ""
+msgstr "Misslyckades med att skriva KDM konfigurationsfil"
 
 #: src/modules/displaymanager/main.py:516
 msgid "KDM config file {!s} does not exist"
-msgstr ""
+msgstr "KDM konfigurationsfil {!s} existerar inte"
 
 #: src/modules/displaymanager/main.py:577
 msgid "Cannot write LXDM configuration file"
-msgstr ""
+msgstr "Misslyckades med att skriva LXDM konfigurationsfil"
 
 #: src/modules/displaymanager/main.py:578
 msgid "LXDM config file {!s} does not exist"
-msgstr ""
+msgstr "LXDM konfigurationsfil {!s} existerar inte"
 
 #: src/modules/displaymanager/main.py:661
 msgid "Cannot write LightDM configuration file"
-msgstr ""
+msgstr "Misslyckades med att skriva LightDM konfigurationsfil"
 
 #: src/modules/displaymanager/main.py:662
 msgid "LightDM config file {!s} does not exist"
-msgstr ""
+msgstr "LightDM konfigurationsfil {!s} existerar inte"
 
 #: src/modules/displaymanager/main.py:736
 msgid "Cannot configure LightDM"
-msgstr ""
+msgstr "Kunde inte konfigurera LightDM"
 
 #: src/modules/displaymanager/main.py:737
 msgid "No LightDM greeter installed."
@@ -174,11 +175,11 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:768
 msgid "Cannot write SLIM configuration file"
-msgstr ""
+msgstr "Misslyckades med att SLIM konfigurationsfil"
 
 #: src/modules/displaymanager/main.py:769
 msgid "SLIM config file {!s} does not exist"
-msgstr ""
+msgstr "SLIM konfigurationsfil {!s} existerar inte"
 
 #: src/modules/displaymanager/main.py:895
 msgid "No display managers selected for the displaymanager module."
@@ -196,7 +197,7 @@ msgstr ""
 
 #: src/modules/initcpiocfg/main.py:37
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Konfigurerar mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:206
 #: src/modules/luksopenswaphookcfg/main.py:100
@@ -208,7 +209,7 @@ msgstr ""
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "Konfigurerar krypterad swap."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
@@ -216,7 +217,7 @@ msgstr "Installerar data."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
-msgstr ""
+msgstr "Konfigurera OpenRC tjänster"
 
 #: src/modules/services-openrc/main.py:66
 msgid "Cannot add service {name!s} to run-level {level!s}."
@@ -259,7 +260,7 @@ msgstr ""
 
 #: src/modules/plymouthcfg/main.py:36
 msgid "Configure Plymouth theme"
-msgstr ""
+msgstr "Konfigurera Plymouth tema"
 
 #: src/modules/packages/main.py:62
 #, python-format
@@ -286,7 +287,7 @@ msgstr[1] "Tar bort %(num)d paket."
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr ""
+msgstr "Installera starthanterare."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
@@ -298,7 +299,7 @@ msgstr "Ställer hårdvaruklockan."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "Skapar initramfs med dracut."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
@@ -310,11 +311,11 @@ msgstr ""
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "Konfigurerar initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "Konfigurerar OpenRC dmcrypt tjänst."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
@@ -330,8 +331,8 @@ msgstr ""
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr ""
+msgstr "Konfigurerar språkinställningar"
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Sparar nätverkskonfiguration."
