@@ -153,7 +153,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="27"/>
       <source>Example job (%1)</source>
-      <translation type="unfinished"/>
+      <translation>Exempel jobb (%1)</translation>
     </message>
   </context>
   <context>
@@ -212,12 +212,12 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>Laddar ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>QML steg &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="347"/>
@@ -327,22 +327,22 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>&amp;Set up now</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Installera nu </translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
       <source>&amp;Set up</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Installera</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
       <source>&amp;Install</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Installera</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
       <source>Setup is complete. Close the setup program.</source>
-      <translation type="unfinished"/>
+      <translation>Installationen är klar. Du kan avsluta installationsprogrammet.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
@@ -371,18 +371,18 @@ Alla ändringar kommer att gå förlorade.</translation>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="220"/>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="497"/>
       <source>&amp;Yes</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Ja</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="221"/>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="498"/>
       <source>&amp;No</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Nej</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="227"/>
       <source>&amp;Close</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Stäng</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
@@ -407,7 +407,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="415"/>
       <source>&amp;Done</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Klar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
@@ -462,7 +462,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="72"/>
       <source>%1 Setup Program</source>
-      <translation type="unfinished"/>
+      <translation>%1 Installationsprogram</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="73"/>
@@ -574,12 +574,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1501"/>
       <source>No Swap</source>
-      <translation type="unfinished"/>
+      <translation>Ingen Swap</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1506"/>
       <source>Reuse Swap</source>
-      <translation type="unfinished"/>
+      <translation>Återanvänd Swap</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1509"/>
@@ -701,7 +701,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
       <source> MiB</source>
-      <translation type="unfinished"/>
+      <translation>MiB</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
@@ -726,7 +726,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
       <source>LVM LV name</source>
-      <translation type="unfinished"/>
+      <translation>LVM LV namn</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
@@ -774,12 +774,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="49"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-      <translation type="unfinished"/>
+      <translation>Skapa ny %2MiB partition på %4 (%3) med filsystem %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Skapa ny &lt;strong&gt;%2MiB&lt;/strong&gt;partition på &lt;strong&gt;%4&lt;/strong&gt; (%3) med filsystem &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="72"/>
@@ -1007,7 +1007,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="136"/>
       <source>Write LUKS configuration for Dracut to %1</source>
-      <translation type="unfinished"/>
+      <translation>Skriv LUKS konfiguration för Dracut till %1</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="140"/>
@@ -1068,7 +1068,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
       <source> MiB</source>
-      <translation type="unfinished"/>
+      <translation>MiB</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
@@ -1096,7 +1096,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
       <source>En&amp;crypt system</source>
-      <translation type="unfinished"/>
+      <translation>Kryptera system</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="42"/>
@@ -1124,7 +1124,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="163"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-      <translation type="unfinished"/>
+      <translation>Installera %1 på &lt;strong&gt;ny&lt;/strong&gt; %2 system partition.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="169"/>
@@ -1134,7 +1134,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Installera %2 på %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
@@ -1233,12 +1233,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="46"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation type="unfinished"/>
+      <translation>Formatera partition %1 (filsystem: %2, storlek: %3 MiB) på %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="57"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Formatera &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; med filsystem &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="68"/>
@@ -1256,7 +1256,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="126"/>
       <source>has at least %1 GiB available drive space</source>
-      <translation type="unfinished"/>
+      <translation>har minst %1 GiB tillgängligt på hårddisken</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
@@ -1266,7 +1266,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
       <source>has at least %1 GiB working memory</source>
-      <translation type="unfinished"/>
+      <translation>har minst %1 GiB arbetsminne</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
@@ -1329,7 +1329,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="51"/>
       <source>Collecting information about your machine.</source>
-      <translation type="unfinished"/>
+      <translation>Samlar in information om din maskin.</translation>
     </message>
   </context>
   <context>
@@ -1345,17 +1345,17 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="48"/>
       <source>Could not create directories &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte skapa mappar &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="60"/>
       <source>Could not open file &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte öppna fil &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="68"/>
       <source>Could not write to file &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte skriva till fil &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
   </context>
   <context>
@@ -1363,7 +1363,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="40"/>
       <source>Creating initramfs with mkinitcpio.</source>
-      <translation type="unfinished"/>
+      <translation>Skapar initramfs med mkinitcpio.</translation>
     </message>
   </context>
   <context>
@@ -1371,7 +1371,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="37"/>
       <source>Creating initramfs.</source>
-      <translation type="unfinished"/>
+      <translation>Skapar initramfs.</translation>
     </message>
   </context>
   <context>
@@ -1454,7 +1454,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="22"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Licensavtal&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="149"/>
@@ -1500,7 +1500,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="96"/>
       <source>URL: %1</source>
-      <translation type="unfinished"/>
+      <translation>URL: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="117"/>
@@ -1537,22 +1537,22 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="171"/>
       <source>File: %1</source>
-      <translation type="unfinished"/>
+      <translation>Fil: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>Visa licens text</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
       <source>Open license agreement in browser.</source>
-      <translation type="unfinished"/>
+      <translation>Öppna licensavtal i en webbläsare.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Hide license text</source>
-      <translation type="unfinished"/>
+      <translation>Dölj licens text </translation>
     </message>
   </context>
   <context>
@@ -1602,13 +1602,13 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="39"/>
       <source>Configuring LUKS key file.</source>
-      <translation type="unfinished"/>
+      <translation>Konfigurerar LUKS nyckel fil.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
       <source>No partitions are defined.</source>
-      <translation type="unfinished"/>
+      <translation>Inga partitioner är definerade.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
@@ -1638,12 +1638,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="46"/>
       <source>Generate machine-id.</source>
-      <translation type="unfinished"/>
+      <translation>Generera maskin-id.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="62"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>Konfigurationsfel</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="63"/>
@@ -1690,12 +1690,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office software</source>
-      <translation type="unfinished"/>
+      <translation>Kontors programvara</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Office package</source>
-      <translation type="unfinished"/>
+      <translation>Kontors paket</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
@@ -1710,32 +1710,32 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation>Webbläsare</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>Kärna</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>Tjänster</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Login</source>
-      <translation type="unfinished"/>
+      <translation>Inloggning</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>Skrivbord</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>Program</translation>
     </message>
   </context>
   <context>
@@ -1743,7 +1743,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
       <source>Notes</source>
-      <translation type="unfinished"/>
+      <translation>Anteckningar</translation>
     </message>
   </context>
   <context>
@@ -1769,7 +1769,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="121"/>
       <source>OEM Configuration</source>
-      <translation type="unfinished"/>
+      <translation>OEM Konfiguration</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="126"/>
@@ -1782,17 +1782,17 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="57"/>
       <source>Password is too short</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet är för kort </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="73"/>
       <source>Password is too long</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet är för långt </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="149"/>
       <source>Password is too weak</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet är för svagt </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="157"/>
@@ -1802,7 +1802,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
       <source>Memory allocation error</source>
-      <translation type="unfinished"/>
+      <translation>Minnesallokerings fel</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
@@ -1812,7 +1812,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
       <source>The password is a palindrome</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet är en palindrom</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
@@ -1887,7 +1887,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
       <source>The password is too short</source>
-      <translation type="unfinished"/>
+      <translation>Detta lösenordet är för kort </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
@@ -1937,7 +1937,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="250"/>
       <source>No password supplied</source>
-      <translation type="unfinished"/>
+      <translation>Inget lösenord angivit</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
@@ -1962,12 +1962,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
       <source>Unknown setting - %1</source>
-      <translation type="unfinished"/>
+      <translation>Okänd inställning - %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
       <source>Unknown setting</source>
-      <translation type="unfinished"/>
+      <translation>Okänd inställning</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
@@ -1977,27 +1977,27 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
       <source>Bad integer value</source>
-      <translation type="unfinished"/>
+      <translation>Dåligt heltals värde</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="284"/>
       <source>Setting %1 is not of integer type</source>
-      <translation type="unfinished"/>
+      <translation>Inställning %1 är inte av heltals typ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="289"/>
       <source>Setting is not of integer type</source>
-      <translation type="unfinished"/>
+      <translation>Inställning är inte av heltals typ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="293"/>
       <source>Setting %1 is not of string type</source>
-      <translation type="unfinished"/>
+      <translation>Inställning %1 är inte av sträng typ </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
       <source>Setting is not of string type</source>
-      <translation type="unfinished"/>
+      <translation>Inställning %1 är inte av sträng typ </translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
@@ -2017,7 +2017,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
       <source>Unknown error</source>
-      <translation type="unfinished"/>
+      <translation>Okänt fel </translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
@@ -2035,7 +2035,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="40"/>
       <source>Product Name</source>
-      <translation type="unfinished"/>
+      <translation>Produktnamn</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="53"/>
@@ -2045,12 +2045,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="69"/>
       <source>Long Product Description</source>
-      <translation type="unfinished"/>
+      <translation>Lång produktbeskrivning</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
       <source>Package Selection</source>
-      <translation type="unfinished"/>
+      <translation>Paketval</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
@@ -2063,7 +2063,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
       <source>Packages</source>
-      <translation type="unfinished"/>
+      <translation>Paket</translation>
     </message>
   </context>
   <context>
@@ -2125,7 +2125,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
       <source>login</source>
-      <translation type="unfinished"/>
+      <translation>inloggning</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
@@ -2135,19 +2135,19 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>Datornamn</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Lösenord</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>Repetera Lösenord</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
@@ -2157,7 +2157,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="454"/>
       <source>Require strong passwords.</source>
-      <translation type="unfinished"/>
+      <translation>Kräv starkt lösenord.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="461"/>
@@ -2285,7 +2285,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
       <source>Cre&amp;ate</source>
-      <translation type="unfinished"/>
+      <translation>Skapa</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
@@ -2300,27 +2300,27 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
       <source>New Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Ny volymgrupp</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
       <source>Resize Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Ändra storlek på volymgrupp</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
       <source>Deactivate Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Deaktivera volymgrupp</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
       <source>Remove Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Ta bort volymgrupp</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
       <source>I&amp;nstall boot loader on:</source>
-      <translation type="unfinished"/>
+      <translation>Installera uppstartshanterare på:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="209"/>
@@ -2330,7 +2330,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="238"/>
       <source>Can not create new partition</source>
-      <translation type="unfinished"/>
+      <translation>Kan inte skapa ny partition</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="239"/>
@@ -2418,7 +2418,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="429"/>
       <source>EFI system partition flag not set</source>
-      <translation type="unfinished"/>
+      <translation>EFI system partitionsflagga inte satt</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="430"/>
@@ -2428,7 +2428,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="465"/>
       <source>Boot partition not encrypted</source>
-      <translation type="unfinished"/>
+      <translation>Boot partition inte krypterad</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="466"/>
@@ -2491,7 +2491,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="84"/>
       <source>Saving files for later ...</source>
-      <translation type="unfinished"/>
+      <translation>Sparar filer tills senare ...</translation>
     </message>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="122"/>
@@ -2517,17 +2517,19 @@ There was no output from the command.</source>
       <source>
 Output:
 </source>
-      <translation type="unfinished"/>
+      <translation>
+Utdata:
+</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="469"/>
       <source>External command crashed.</source>
-      <translation type="unfinished"/>
+      <translation>Externt kommando kraschade.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="470"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
-      <translation type="unfinished"/>
+      <translation>Kommando &lt;i&gt;%1&lt;/i&gt; kraschade.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="475"/>
@@ -2537,7 +2539,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="476"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
-      <translation type="unfinished"/>
+      <translation>Kommando &lt;i&gt;%1&lt;/i&gt; misslyckades med att starta. </translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="480"/>
@@ -2601,7 +2603,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="213"/>
       <source>swap</source>
-      <translation type="unfinished"/>
+      <translation>swap</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
@@ -2611,7 +2613,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
       <source>(no mount point)</source>
-      <translation type="unfinished"/>
+      <translation>(ingen monteringspunkt)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="65"/>
@@ -2627,7 +2629,7 @@ Output:
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
       <source>No product</source>
-      <translation type="unfinished"/>
+      <translation>Ingen produkt</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
@@ -2640,7 +2642,7 @@ Output:
       <location filename="../src/modules/machineid/Workers.cpp" line="85"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="102"/>
       <source>File not found</source>
-      <translation type="unfinished"/>
+      <translation>Filen hittades inte </translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="74"/>
@@ -2650,7 +2652,7 @@ Output:
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte skapa ny slumpmässig fil &lt;pre&gt;%1&lt;/pre&gt;.</translation>
     </message>
   </context>
   <context>
@@ -2757,7 +2759,7 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="172"/>
       <source>Invalid configuration</source>
-      <translation type="unfinished"/>
+      <translation>Ogiltig konfiguration</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="173"/>
@@ -2846,7 +2848,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="39"/>
       <source>Resize Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>Ändra storlek på volymgrupp</translation>
     </message>
   </context>
   <context>
@@ -2987,57 +2989,57 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="53"/>
       <source>Set flags on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Sätt flaggor på partition %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="57"/>
       <source>Set flags on %1MiB %2 partition.</source>
-      <translation type="unfinished"/>
+      <translation>Sätt flaggor på %1MiB %2 partition.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="61"/>
       <source>Set flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>Sätt flaggor på ny partition.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="72"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Rensa flaggor på partition &lt;strong&gt;%1&lt;/strong&gt;,</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="77"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>Rensa flaggor på %1MiB &lt;strong&gt;%2&lt;/strong&gt;partition.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="92"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Flagga %1MiB &lt;strong&gt;%2&lt;/strong&gt;partition som &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="115"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>Rensa flaggor på %1MiB &lt;strong&gt;%2&lt;/strong&gt;partition.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation type="unfinished"/>
+      <translation>Sätter flaggor &lt;strong&gt;%3&lt;/strong&gt; på  %11MiB &lt;strong&gt;%2&lt;/strong&gt;partition.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="81"/>
       <source>Clear flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>Rensa flaggor på ny partition.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="85"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Flagga partition &lt;strong&gt;%1&lt;/strong&gt; som &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Flagga ny partition som &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
@@ -3090,7 +3092,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
       <source>Cannot disable root account.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte inaktivera root konto.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
@@ -3160,7 +3162,7 @@ Output:
       <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="36"/>
       <source>%L1 / %L2</source>
       <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
-      <translation type="unfinished"/>
+      <translation>%L1 / %L2</translation>
     </message>
   </context>
   <context>
@@ -3212,12 +3214,12 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="80"/>
       <source>Machine feedback</source>
-      <translation type="unfinished"/>
+      <translation>Maskin feedback</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="92"/>
       <source>Configuring machine feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Konfigurerar maskin feedback</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="117"/>
@@ -3228,12 +3230,12 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="118"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte konfigurera maskin feedback korrekt, script fel %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte konfigurera maskin feedback korrekt, Calamares fel  %1.</translation>
     </message>
   </context>
   <context>
@@ -3284,7 +3286,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="64"/>
       <source>Feedback</source>
-      <translation type="unfinished"/>
+      <translation>Feedback</translation>
     </message>
   </context>
   <context>
@@ -3307,17 +3309,17 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="392"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
-      <translation type="unfinished"/>
+      <translation>Ditt användarnamn måste börja med en liten bokstav eller ett understreck.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="399"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Endast små bokstäver, nummer, understreck och bindestreck är tillåtet.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="447"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>Endast bokstäver, nummer, understreck och bindestreck är tillåtet. </translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="435"/>
@@ -3366,17 +3368,17 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
       <source>List of Physical Volumes</source>
-      <translation type="unfinished"/>
+      <translation>Lista på fysiska volymer</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="30"/>
       <source>Volume Group Name:</source>
-      <translation type="unfinished"/>
+      <translation>Volymgrupp namn:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="43"/>
       <source>Volume Group Type:</source>
-      <translation type="unfinished"/>
+      <translation>Volymgrupp typ:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
@@ -3386,22 +3388,22 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
       <source> MiB</source>
-      <translation type="unfinished"/>
+      <translation>MiB</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="82"/>
       <source>Total Size:</source>
-      <translation type="unfinished"/>
+      <translation>Total storlek:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="102"/>
       <source>Used Size:</source>
-      <translation type="unfinished"/>
+      <translation>Använd storlek:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="122"/>
       <source>Total Sectors:</source>
-      <translation type="unfinished"/>
+      <translation>Totala sektorer:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
@@ -3420,7 +3422,7 @@ Output:
       <location filename="../src/modules/welcome/WelcomePage.ui" line="69"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="82"/>
       <source>Select application and system language</source>
-      <translation type="unfinished"/>
+      <translation>Välj program och system språk </translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3430,7 +3432,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
       <source>&amp;Donate</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Donera</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
@@ -3530,7 +3532,8 @@ Output:
       <location filename="../src/modules/notesqml/notesqml.qml" line="60"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Detta är exempel versionsinformation.</translation>
     </message>
   </context>
   <context>
@@ -3538,32 +3541,32 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
       <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>Om</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>Support</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>Kända problem</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>Versionsinformation</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Donera</translation>
     </message>
   </context>
 </TS>
