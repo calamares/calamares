@@ -3,10 +3,10 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.20 (unreleased) #
+# 3.2.20 (2020-02-27) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Bart Ribbers
 
 ## Core ##
  - When logging level is set to 8 (eight), for instance via the `-D8`
@@ -18,9 +18,14 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - The *partition* module now stores which filesystems are in use in
-   global storage. While this is currently incompatible with the
-   *contextualprocess* module, a custom module can make use of that
-   to optimise the target system for the filesystems that are present.
+   global storage.
+ - The *contextualprocess* module now understands "compound variable
+   names", where a dot (.) is used to index into structured data
+   stored in global storage. This allows it to use the map stored
+   by the partition module (but also other things, like looking into
+   the branding information).
+ - The *packages* module now understands "apk", the Alpine Linux
+   package manager.
 
 
 # 3.2.19.1 (2020-02-24) #
