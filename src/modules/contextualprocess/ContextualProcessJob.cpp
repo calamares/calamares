@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -49,14 +49,18 @@ struct ValueCheck : public QPair< QString, CalamaresUtils::CommandList* >
     CalamaresUtils::CommandList* commands() const { return second; }
 };
 
-struct ContextualProcessBinding
+class ContextualProcessBinding
 {
+public:
     ContextualProcessBinding( const QString& varname )
-        : variable( varname )
+        : m_variable( varname )
     {
     }
 
     ~ContextualProcessBinding();
+
+    QString variable() const { return m_variable; }
+    int count() const { return m_checks.count(); }
 
     /**
      * @brief add commands to be executed when @p value is matched.
@@ -65,16 +69,16 @@ struct ContextualProcessBinding
      */
     void append( const QString& value, CalamaresUtils::CommandList* commands )
     {
-        checks.append( ValueCheck( value, commands ) );
+        m_checks.append( ValueCheck( value, commands ) );
         if ( value == QString( "*" ) )
         {
-            wildcard = commands;
+            m_wildcard = commands;
         }
     }
 
     Calamares::JobResult run( const QString& value ) const
     {
-        for ( const auto& c : checks )
+        for ( const auto& c : m_checks )
         {
             if ( value == c.value() )
             {
@@ -82,24 +86,69 @@ struct ContextualProcessBinding
             }
         }
 
-        if ( wildcard )
+        if ( m_wildcard )
         {
-            return wildcard->run();
+            return m_wildcard->run();
         }
 
         return Calamares::JobResult::ok();
     }
 
-    QString variable;
-    QList< ValueCheck > checks;
-    CalamaresUtils::CommandList* wildcard { nullptr };
+    /** @brief Tries to obtain this binding's value from GS
+     *
+     * Stores the value in @p value and returns true if a value
+     * was found (e.g. @p storage contains the variable this binding
+     * is for) and false otherwise.
+     */
+    bool fetch( Calamares::GlobalStorage* storage, QString& value ) const
+    {
+        value.clear();
+        if ( !storage )
+        {
+            return false;
+        }
+        if ( m_variable.contains( '.' ) )
+        {
+            QStringList steps = m_variable.split( '.' );
+            return fetch( value, steps, 1, storage->value( steps.first() ) );
+        }
+        else
+        {
+            value = storage->value( m_variable ).toString();
+            return storage->contains( m_variable );
+        }
+    }
+
+private:
+    static bool fetch( QString& value, QStringList& selector, int index, const QVariant& v )
+    {
+        if ( !v.canConvert( QMetaType::QVariantMap ) )
+        {
+            return false;
+        }
+        const QVariantMap map = v.toMap();
+        const QString& key = selector.at( index );
+        if ( index == selector.length() )
+        {
+            value = map.value( key ).toString();
+            return map.contains( key );
+        }
+        else
+        {
+            return fetch( value, selector, index + 1, map.value( key ) );
+        }
+    }
+
+    QString m_variable;
+    QList< ValueCheck > m_checks;
+    CalamaresUtils::CommandList* m_wildcard = nullptr;
 };
 
 
 ContextualProcessBinding::~ContextualProcessBinding()
 {
-    wildcard = nullptr;
-    for ( const auto& c : checks )
+    m_wildcard = nullptr;
+    for ( const auto& c : m_checks )
     {
         delete c.commands();
     }
@@ -131,9 +180,10 @@ ContextualProcessJob::exec()
 
     for ( const ContextualProcessBinding* binding : m_commands )
     {
-        if ( gs->contains( binding->variable ) )
+        QString value;
+        if ( binding->fetch( gs, value ) )
         {
-            Calamares::JobResult r = binding->run( gs->value( binding->variable ).toString() );
+            Calamares::JobResult r = binding->run( value );
             if ( !r )
             {
                 return r;
@@ -141,7 +191,7 @@ ContextualProcessJob::exec()
         }
         else
         {
-            cWarning() << "ContextualProcess checks for unknown variable" << binding->variable;
+            cWarning() << "ContextualProcess checks for unknown variable" << binding->variable();
         }
     }
     return Calamares::JobResult::ok();
@@ -203,10 +253,12 @@ int
 ContextualProcessJob::count( const QString& variableName )
 {
     for ( const ContextualProcessBinding* binding : m_commands )
-        if ( binding->variable == variableName )
+    {
+        if ( binding->variable() == variableName )
         {
-            return binding->checks.count();
+            return binding->count();
         }
+    }
     return -1;
 }
 
