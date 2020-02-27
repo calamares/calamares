@@ -147,7 +147,7 @@ FillGlobalStorageJob::prettyDescription() const
 {
     QStringList lines;
 
-    const auto partitionList = createPartitionList().toList();
+    const auto partitionList = createPartitionList();
     for ( const QVariant& partitionItem : partitionList )
     {
         if ( partitionItem.type() == QVariant::Map )
@@ -218,6 +218,7 @@ FillGlobalStorageJob::exec()
     Calamares::GlobalStorage* storage = Calamares::JobQueue::instance()->globalStorage();
     storage->insert( "partitions", createPartitionList() );
     cDebug() << "Saving partition information map to GlobalStorage[\"partitions\"]";
+
     if ( !m_bootLoaderPath.isEmpty() )
     {
         QVariant var = createBootLoaderMap();
@@ -236,7 +237,7 @@ FillGlobalStorageJob::exec()
     return Calamares::JobResult::ok();
 }
 
-QVariant
+QVariantList
 FillGlobalStorageJob::createPartitionList() const
 {
     UuidForPartitionHash hash = findPartitionUuids( m_devices );
