@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -36,9 +36,21 @@
 #include <QDebug>
 #include <QDir>
 
+/** @brief Gets debug-level from -D command-line-option
+ *
+ * If unset, use LOGERROR (corresponding to -D1), although
+ * effectively -D2 is the lowest level you can set for
+ * logging-to-the-console, and everything always gets
+ * logged to the session file).
+ */
 static unsigned int
 debug_level( QCommandLineParser& parser, QCommandLineOption& levelOption )
 {
+    if ( !parser.isSet( levelOption ) )
+    {
+        return Logger::LOGERROR;
+    }
+
     bool ok = true;
     int l = parser.value( levelOption ).toInt( &ok );
     if ( !ok || ( l < 0 ) )
