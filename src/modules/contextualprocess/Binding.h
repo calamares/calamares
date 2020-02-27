@@ -22,6 +22,8 @@
 #ifndef CONTEXTUALPROCESSJOB_BINDING_H
 #define CONTEXTUALPROCESSJOB_BINDING_H
 
+#include "Job.h"
+
 #include <QList>
 #include <QPair>
 #include <QString>

@@ -32,6 +32,9 @@ private Q_SLOTS:
     void initTestCase();
     // Check the sample config file is processed correctly
     void testProcessListSampleConfig();
+
+    // Variable binding lookup
+    void testFetch();
 };
 
 #endif
