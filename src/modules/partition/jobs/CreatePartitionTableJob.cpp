@@ -69,7 +69,7 @@ CreatePartitionTableJob::prettyStatusMessage() const
 
 
 static inline QDebug&
-operator <<( QDebug&& s, PartitionIterator& it )
+operator <<( QDebug& s, PartitionIterator& it )
 {
     s << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
     return s;

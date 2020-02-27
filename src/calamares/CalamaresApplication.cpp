@@ -99,8 +99,8 @@ CalamaresApplication::init()
 
 CalamaresApplication::~CalamaresApplication()
 {
-    cDebug( Logger::LOGVERBOSE ) << "Shutting down Calamares...";
-    cDebug( Logger::LOGVERBOSE ) << Logger::SubEntry << "Finished shutdown.";
+    Logger::CDebug( Logger::LOGVERBOSE ) << "Shutting down Calamares...";
+    Logger::CDebug( Logger::LOGVERBOSE ) << Logger::SubEntry << "Finished shutdown.";
 }
 
 
@@ -266,22 +266,22 @@ CalamaresApplication::initModuleManager()
 }
 
 /** @brief centers the widget @p w on (a) screen
- * 
+ *
  * This tries to duplicate the (deprecated) qApp->desktop()->availableGeometry()
  * placement by iterating over screens and putting Calamares in the first
  * one where it fits; this is *generally* the primary screen.
- * 
+ *
  * With debugging, it would look something like this (2 screens attached,
  * primary at +1080+240 because I have a very strange X setup). Before
  * being mapped, the Calamares window is at +0+0 but does have a size.
  * The first screen's geometry includes the offset from the origin in
  * screen coordinates.
- * 
- *  Proposed window size: 1024 520 
- *  Window QRect(0,0 1024x520) 
- *  Screen QRect(1080,240 2560x1440) 
- *  Moving QPoint(1848,700) 
- *  Screen QRect(0,0 1080x1920) 
+ *
+ *  Proposed window size: 1024 520
+ *  Window QRect(0,0 1024x520)
+ *  Screen QRect(1080,240 2560x1440)
+ *  Moving QPoint(1848,700)
+ *  Screen QRect(0,0 1080x1920)
  *
  */
 static void

@@ -219,7 +219,7 @@ operator<<( QDebug& s, const DebugMap& t )
 }
 }  // namespace Logger
 
-#define cDebug Logger::CDebug
+#define cDebug() (Logger::CDebug( Logger::LOGDEBUG ) << Q_FUNC_INFO << Logger::Continuation)
 #define cWarning() Logger::CDebug( Logger::LOGWARNING )
 #define cError() Logger::CDebug( Logger::LOGERROR )
 
