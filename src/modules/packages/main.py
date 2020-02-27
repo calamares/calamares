@@ -364,6 +364,24 @@ class PMPisi(PackageManager):
         pass
 
 
+class PMApk(PackageManager):
+    backend = "apk"
+
+    def install(self, pkgs, from_local=False):
+        for pkg in pkgs:
+            check_target_env_call(["apk", "add", pkg])
+
+    def remove(self, pkgs):
+        for pkg in pkgs:
+            check_target_env_call(["apk", "del", pkg])
+
+    def update_db(self):
+        check_target_env_call(["apk", "update"])
+
+    def update_system(self):
+        check_target_env_call(["apk", "upgrade", "--available"])
+
+
 # Collect all the subclasses of PackageManager defined above,
 # and index them based on the backend property of each class.
 backend_managers = [
