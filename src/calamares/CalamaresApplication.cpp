@@ -42,12 +42,17 @@
 #include <QScreen>
 #include <QTimer>
 
+/// @brief Convenience for "are the settings in debug mode"
+static bool
+isDebug()
+{
+    return Calamares::Settings::instance() && Calamares::Settings::instance()->debugMode();
+}
 
 CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     : QApplication( argc, argv )
     , m_mainwindow( nullptr )
     , m_moduleManager( nullptr )
-    , m_debugMode( false )
 {
     // Setting the organization name makes the default cache
     // directory -- where Calamares stores logs, for instance --
@@ -58,8 +63,6 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     setOrganizationDomain( QStringLiteral( CALAMARES_ORGANIZATION_DOMAIN ) );
     setApplicationName( QStringLiteral( CALAMARES_APPLICATION_NAME ) );
     setApplicationVersion( QStringLiteral( CALAMARES_VERSION ) );
-
-    CalamaresUtils::installTranslator( QLocale::system(), QString(), this );
 
     QFont f = font();
     CalamaresUtils::setDefaultFontSize( f.pointSize() );
@@ -73,15 +76,20 @@ CalamaresApplication::init()
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
     cDebug() << "        languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
 
-    setQuitOnLastWindowClosed( false );
-
+    if ( !Calamares::Settings::instance() )
+    {
+        cError() << "Must create Calamares::Settings before the application.";
+        ::exit( 1 );
+    }
     initQmlPath();
-    initSettings();
     initBranding();
 
+    CalamaresUtils::installTranslator( QLocale::system(), QString(), this );
+
+    setQuitOnLastWindowClosed( false );
     setWindowIcon( QIcon( Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductIcon ) ) );
 
-    cDebug() << "STARTUP: initQmlPath, initSettings, initBranding done";
+    cDebug() << "STARTUP: initSettings, initQmlPath, initBranding done";
 
     initModuleManager();  //also shows main window
 
@@ -100,20 +108,6 @@ CalamaresApplication*
 CalamaresApplication::instance()
 {
     return qobject_cast< CalamaresApplication* >( QApplication::instance() );
-}
-
-
-void
-CalamaresApplication::setDebug( bool enabled )
-{
-    m_debugMode = enabled;
-}
-
-
-bool
-CalamaresApplication::isDebug()
-{
-    return m_debugMode;
 }
 
 
@@ -149,35 +143,6 @@ qmlDirCandidates( bool assumeBuilddir )
     }
 
     return qmlDirs;
-}
-
-
-static QStringList
-settingsFileCandidates( bool assumeBuilddir )
-{
-    static const char settings[] = "settings.conf";
-
-    QStringList settingsPaths;
-    if ( CalamaresUtils::isAppDataDirOverridden() )
-    {
-        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
-    }
-    else
-    {
-        if ( assumeBuilddir )
-        {
-            settingsPaths << QDir::current().absoluteFilePath( settings );
-        }
-        if ( CalamaresUtils::haveExtraDirs() )
-            for ( auto s : CalamaresUtils::extraConfigDirs() )
-            {
-                settingsPaths << ( s + settings );
-            }
-        settingsPaths << CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf";  // String concat
-        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
-    }
-
-    return settingsPaths;
 }
 
 
@@ -243,49 +208,6 @@ CalamaresApplication::initQmlPath()
 
     cDebug() << "Using Calamares QML directory" << importPath.absolutePath();
     CalamaresUtils::setQmlModulesDir( importPath );
-}
-
-
-void
-CalamaresApplication::initSettings()
-{
-    QStringList settingsFileCandidatesByPriority = settingsFileCandidates( isDebug() );
-
-    QFileInfo settingsFile;
-    bool found = false;
-
-    foreach ( const QString& path, settingsFileCandidatesByPriority )
-    {
-        QFileInfo pathFi( path );
-        if ( pathFi.exists() && pathFi.isReadable() )
-        {
-            settingsFile = pathFi;
-            found = true;
-            break;
-        }
-    }
-
-    if ( !found || !settingsFile.exists() || !settingsFile.isReadable() )
-    {
-        cError() << "Cowardly refusing to continue startup without settings."
-                 << Logger::DebugList( settingsFileCandidatesByPriority );
-        if ( CalamaresUtils::isAppDataDirOverridden() )
-        {
-            cError() << "FATAL: explicitly configured application data directory is missing settings.conf";
-        }
-        else
-        {
-            cError() << "FATAL: none of the expected configuration file paths exist.";
-        }
-        ::exit( EXIT_FAILURE );
-    }
-
-    auto* settings = new Calamares::Settings( settingsFile.absoluteFilePath(), isDebug(), this );  // Creates singleton
-    if ( settings->modulesSequence().count() < 1 )
-    {
-        cError() << "FATAL: no sequence set.";
-        ::exit( EXIT_FAILURE );
-    }
 }
 
 

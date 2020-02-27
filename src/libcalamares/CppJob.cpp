@@ -32,7 +32,7 @@ CppJob::~CppJob() {}
 
 
 void
-CppJob::setModuleInstanceKey( const QString& instanceKey )
+CppJob::setModuleInstanceKey( const Calamares::ModuleSystem::InstanceKey& instanceKey )
 {
     m_instanceKey = instanceKey;
 }

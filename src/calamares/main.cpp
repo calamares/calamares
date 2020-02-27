@@ -20,9 +20,10 @@
 
 #include "CalamaresApplication.h"
 
-#include "CalamaresConfig.h"
+#include "Settings.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 
 #include "3rdparty/kdsingleapplicationguard/kdsingleapplicationguard.h"
 
@@ -35,6 +36,21 @@
 #include <QDebug>
 #include <QDir>
 
+static unsigned int
+debug_level( QCommandLineParser& parser, QCommandLineOption& levelOption )
+{
+    bool ok = true;
+    int l = parser.value( levelOption ).toInt( &ok );
+    if ( !ok || ( l < 0 ) )
+    {
+        return Logger::LOGVERBOSE;
+    }
+    else
+    {
+        return static_cast< unsigned int >( l );  // l >= 0
+    }
+}
+
 static void
 handle_args( CalamaresApplication& a )
 {
@@ -42,6 +58,9 @@ handle_args( CalamaresApplication& a )
                                     "Also look in current directory for configuration. Implies -D8." );
     QCommandLineOption debugLevelOption(
         QStringLiteral( "D" ), "Verbose output for debugging purposes (0-8).", "level" );
+    QCommandLineOption debugTxOption( QStringList { "T", "debug-translation" },
+                                      "Also look in the current directory for translation." );
+
     QCommandLineOption configOption(
         QStringList { "c", "config" }, "Configuration directory to use, for testing purposes.", "config" );
     QCommandLineOption xdgOption( QStringList { "X", "xdg-config" }, "Use XDG_{CONFIG,DATA}_DIRS as well." );
@@ -55,29 +74,11 @@ handle_args( CalamaresApplication& a )
     parser.addOption( debugLevelOption );
     parser.addOption( configOption );
     parser.addOption( xdgOption );
+    parser.addOption( debugTxOption );
 
     parser.process( a );
 
-    a.setDebug( parser.isSet( debugOption ) );
-    if ( parser.isSet( debugOption ) )
-    {
-        Logger::setupLogLevel( Logger::LOGVERBOSE );
-    }
-    else if ( parser.isSet( debugLevelOption ) )
-    {
-        bool ok = true;
-        int l = parser.value( debugLevelOption ).toInt( &ok );
-        unsigned int dlevel = 0;
-        if ( !ok || ( l < 0 ) )
-        {
-            dlevel = Logger::LOGVERBOSE;
-        }
-        else
-        {
-            dlevel = static_cast< unsigned int >( l );  // l >= 0
-        }
-        Logger::setupLogLevel( dlevel );
-    }
+    Logger::setupLogLevel( parser.isSet( debugOption ) ? Logger::LOGVERBOSE : debug_level( parser, debugLevelOption ) );
     if ( parser.isSet( configOption ) )
     {
         CalamaresUtils::setAppDataDir( QDir( parser.value( configOption ) ) );
@@ -86,6 +87,9 @@ handle_args( CalamaresApplication& a )
     {
         CalamaresUtils::setXdgDirs();
     }
+    CalamaresUtils::setAllowLocalTranslation( parser.isSet( debugOption ) || parser.isSet( debugTxOption ) );
+    Calamares::Settings::init( parser.isSet( debugOption ) );
+    a.init();
 }
 
 int
@@ -113,14 +117,11 @@ main( int argc, char* argv[] )
     // TODO: umount anything in /tmp/calamares-... as an emergency save function
 #endif
 
-    handle_args( a );
     KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
-
-    int returnCode = 0;
     if ( guard.isPrimaryInstance() )
     {
-        a.init();
-        returnCode = a.exec();
+        handle_args( a );
+        return a.exec();
     }
     else
     {
@@ -135,7 +136,6 @@ main( int argc, char* argv[] )
         {
             qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
         }
+        return 69;  // EX_UNAVAILABLE on FreeBSD
     }
-
-    return returnCode;
 }

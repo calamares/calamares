@@ -3,12 +3,33 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.18 (unreleased) #
+# 3.2.19 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No other contributors this time around.
+
+## Core ##
+ - *Assamese* translation has been completed.
+ - Translations are now loaded from more places: instead of **only**
+   being compiled in to the Calamares executable, they can now be
+   read from the current directory (when Calamares is run in developer
+   mode) and from the application data directory.This allows updating the
+   translations without requiring a recompile: helpful for translators
+   and possibly for distributions with their own translation style.
+   See the translators and deployers wiki for details.
+
+## Modules ##
+ - The *machineid* and *users* modules now prefer high-quality random
+   data from `/dev/urandom` rather than pseudo-random data. #1254
+
+
+# 3.2.18 (2020-01-28) #
 
 This release contains contributions from (alphabetically by first name):
  - Bill Auger
 
 ## Core ##
+ - *Assamese* translation has been added (still in preliminary state).
  - Timezone support code has migrated into the core of Calamares. This
    means that modules now have easier access to timezone information.
    Translations for timezones have also been enabled, so it is **possible**
@@ -18,6 +39,11 @@ This release contains contributions from (alphabetically by first name):
    `branding.desc` specifies *center* or *free* placement.
 
 ## Modules ##
+ - All modules can now set a new key in `module.desc` called *noconfig*.
+   If this key is set to `true` (the default is `false), no configuration
+   file is searched-for or loaded, and no warning is printed if the
+   configuration is missing. This should tidy up some unnecessary warnings
+   on startup. #1302 #1301
  - The *license* module has seen a significant change to its looks.
    Actions are now labeled more clearly, and the URL (or filename)
    for each license is displayed.
@@ -25,6 +51,10 @@ This release contains contributions from (alphabetically by first name):
    location names (e.g. "Berlin" is "Berlijn" in Dutch).
  - *Packagechooser* is a little more careful with displaying
    default and empty package names. (thanks to Bill Auger)
+ - The *unpackfs* module now carries a larger weight in the overall
+   progress of the installation, which should resolve downstream reports
+   like "progress stops at 24% for a long time". This is currently
+   hard-coded, but will become configurable in a future release. #1176
 
 
 # 3.2.17.1 (2019-12-02) #

@@ -19,16 +19,16 @@
 #ifndef SHELLPROCESSJOB_H
 #define SHELLPROCESSJOB_H
 
+#include "CppJob.h"
+#include "PluginDllMacro.h"
+
+#include "utils/CommandList.h"
+#include "utils/PluginFactory.h"
+
 #include <QObject>
 #include <QVariantMap>
 
-#include <CppJob.h>
-
-#include <utils/CommandList.h>
-#include <utils/PluginFactory.h>
-
-#include <PluginDllMacro.h>
-
+#include <memory>
 
 class PLUGINDLLEXPORT ShellProcessJob : public Calamares::CppJob
 {
@@ -45,7 +45,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    CalamaresUtils::CommandList* m_commands;
+    std::unique_ptr< CalamaresUtils::CommandList > m_commands;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ShellProcessJobFactory )

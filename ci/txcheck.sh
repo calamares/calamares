@@ -8,6 +8,13 @@
 #
 # Use --cleanup as an argument to clean things up.
 
+# The files that are translated; should match the contents of .tx/config
+TX_FILE_LIST="lang/calamares_en.ts lang/python.pot src/modules/dummypythonqt/lang/dummypythonqt.pot calamares.desktop"
+
+### COMMAND ARGUMENTS
+#
+# We need to define tx_cleanup for the --cleanup argument, although it's
+# normally used much later in the script.
 tx_cleanup()
 {
     # Cleanup artifacs of checking
@@ -22,6 +29,34 @@ if test "x$1" = "x--cleanup" ; then
 fi
 test -z "$1" || { echo "! Usage: txcheck.sh [--cleanup]" ; exit 1 ; }
 
+
+### FIND EXECUTABLES
+#
+#
+XMLLINT=""
+for _xmllint in xmllint
+do
+  $_xmllint --version > /dev/null 2>&1 && XMLLINT=$_xmllint
+  test -n "$XMLLINT" && break
+done
+
+# Distinguish GNU date from BSD date
+if date +%s -d "1 week ago" > /dev/null 2>&1 ; then
+    last_week() { date +%s -d "1 week ago" ; }
+else
+    last_week() { date -v1w +%s; }
+fi
+
+# Distinguish GNU SHA executables from BSD ones
+if which sha256sum > /dev/null 2>&1 ; then
+    SHA256=sha256sum
+else
+    SHA256=sha256
+fi
+
+### CHECK WORKING DIRECTORY
+#
+#
 if git describe translation > /dev/null 2>&1 ; then
 	:
 else
@@ -37,13 +72,11 @@ else
 fi
 # No unsaved changes; enforce a string freeze of one week
 DATE_PREV=$( git log -1 translation --date=unix | sed -e '/^Date:/s+.*:++p' -e d )
-DATE_HEAD=$( date +%s -d "1 week ago" )
+DATE_HEAD=$( last_week )
 test "$DATE_PREV" -le "$DATE_HEAD" || { echo "! Translation tag has not aged enough." ; git log -1 translation ; exit 1 ; }
 
 # Tag is good, do real work of checking strings: collect names of relevant files
 test -f ".tx/config" || { echo "! No Transifex configuration is present." ; exit 1 ; }
-# Print part after = for each source_file line and delete all the rest
-TX_FILE_LIST=$( sed -e '/^source_file/s+.*=++p' -e d .tx/config )
 for f in $TX_FILE_LIST ; do
 	test -f $f || { echo "! Translation file '$f' does not exist." ; exit 1 ; }
 done
@@ -51,19 +84,24 @@ done
 # The state of translations
 tx_sum()
 {
+	CURDIR=`pwd`
 	WORKTREE_NAME="$1"
 	WORKTREE_TAG="$2"
 
 	git worktree add $WORKTREE_NAME $WORKTREE_TAG > /dev/null 2>&1 || { echo "! Could not create worktree." ; exit 1 ; }
-	( cd $WORKTREE_NAME && sh ci/txpush.sh --no-tx ) > /dev/null 2>&1 || { echo "! Could not re-create translations." ; exit 1 ; }
-	( cd $WORKTREE_NAME && sed -i'' -e '/<location filename/d' $TX_FILE_LIST )
-	_SUM=$( cd $WORKTREE_NAME && cat $TX_FILE_LIST | sha256sum )
+	( cd $WORKTREE_NAME && sh "$CURDIR"/ci/txpush.sh --no-tx ) > /dev/null 2>&1 || { echo "! Could not re-create translations." ; exit 1 ; }
+
+	# Remove linenumbers from .ts (XML) and .pot
+	sed -i'' -e '/<location filename/d' "$WORKTREE_NAME/lang/calamares_en.ts"
+	sed -i'' -e '/^#: src..*[0-9]$/d' $WORKTREE_NAME/lang/python.pot $WORKTREE_NAME/src/modules/dummypythonqt/lang/dummypythonqt.pot
+
+	_SUM=$( cd $WORKTREE_NAME && cat $TX_FILE_LIST | $SHA256 )
 	echo "$_SUM"
 }
 
 # Check from the translation tag as well
-HEAD_SUM=`tx_sum build-txcheck-head ""`
-PREV_SUM=`tx_sum build-txcheck-prev translation`
+HEAD_SUM=`tx_sum build-txcheck-head ""` || { echo "$HEAD_SUM" ; exit 1 ; }
+PREV_SUM=`tx_sum build-txcheck-prev translation` || { echo "$HEAD_SUM" ; exit 1 ; }
 
 # An error message will have come from the shell function
 test -d build-txcheck-head || { echo "$HEAD_SUM" ; exit 1 ; }
@@ -77,9 +115,9 @@ else
 		echo "! $f"
 		diff -u build-txcheck-prev/$f build-txcheck-head/$f
 	done
+	echo "! Run 'txcheck.sh --cleanup' to clean-up before next run"
 	exit 1
 fi
 
 tx_cleanup
-
 exit 0

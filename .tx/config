@@ -7,12 +7,6 @@ source_file = lang/calamares_en.ts
 source_lang = en
 type = QT
 
-[calamares.tz]
-file_filter = lang/tz_<lang>.ts
-source_file = lang/tz_en.ts
-source_lang = en
-type = QT
-
 [calamares.dummypythonqt]
 file_filter = src/modules/dummypythonqt/lang/<lang>/LC_MESSAGES/dummypythonqt.po
 source_file = src/modules/dummypythonqt/lang/dummypythonqt.pot

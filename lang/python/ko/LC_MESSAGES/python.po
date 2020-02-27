@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 16:51+0100\n"
+"POT-Creation-Date: 2020-01-29 11:14+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: 이정희 <daemul72@gmail.com>, 2019\n"
 "Language-Team: Korean (https://www.transifex.com/calamares/teams/20061/ko/)\n"
@@ -30,8 +30,8 @@ msgstr "GRUB 구성"
 msgid "Mounting partitions."
 msgstr "파티션 마운트 중."
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:187
-#: src/modules/initcpiocfg/main.py:191
+#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:201
+#: src/modules/initcpiocfg/main.py:205
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
@@ -42,7 +42,7 @@ msgstr "파티션 마운트 중."
 msgid "Configuration Error"
 msgstr "구성 오류"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:188
+#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:202
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/fstab/main.py:323
@@ -96,50 +96,50 @@ msgstr "파일 시스템 마운트를 해제합니다."
 msgid "Filling up filesystems."
 msgstr "파일 시스템을 채우는 중."
 
-#: src/modules/unpackfs/main.py:180
+#: src/modules/unpackfs/main.py:184
 msgid "rsync failed with error code {}."
 msgstr "rsync가 {} 오류 코드로 실패했습니다."
 
-#: src/modules/unpackfs/main.py:241 src/modules/unpackfs/main.py:264
+#: src/modules/unpackfs/main.py:245 src/modules/unpackfs/main.py:268
 msgid "Failed to unpack image \"{}\""
 msgstr "\"{}\" 이미지의 압축을 풀지 못했습니다."
 
-#: src/modules/unpackfs/main.py:242
+#: src/modules/unpackfs/main.py:246
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr "unsquashfs를 찾지 못했습니다. squashfs-tools 패키지가 설치되어 있는지 확인하십시오."
 
-#: src/modules/unpackfs/main.py:366
+#: src/modules/unpackfs/main.py:370
 msgid "No mount point for root partition"
 msgstr "루트 파티션에 대한 마운트 위치 없음"
 
-#: src/modules/unpackfs/main.py:367
+#: src/modules/unpackfs/main.py:371
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr "globalstorage에는 \"rootMountPoint \" 키가 포함되어 있지 않으며 아무 작업도 수행하지 않습니다."
 
-#: src/modules/unpackfs/main.py:372
+#: src/modules/unpackfs/main.py:376
 msgid "Bad mount point for root partition"
 msgstr "루트 파티션에 대한 잘못된 마운트 위치"
 
-#: src/modules/unpackfs/main.py:373
+#: src/modules/unpackfs/main.py:377
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr "rootMountPoint는 \"{}\"이고, 존재하지 않으며, 아무 작업도 수행하지 않습니다."
 
-#: src/modules/unpackfs/main.py:385 src/modules/unpackfs/main.py:389
-#: src/modules/unpackfs/main.py:403
+#: src/modules/unpackfs/main.py:389 src/modules/unpackfs/main.py:393
+#: src/modules/unpackfs/main.py:407
 msgid "Bad unsquash configuration"
 msgstr "잘못된 unsquash 구성"
 
-#: src/modules/unpackfs/main.py:386
+#: src/modules/unpackfs/main.py:390
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr "\"{}\" ({})의 파일시스템은 지원되지 않습니다."
 
-#: src/modules/unpackfs/main.py:390
+#: src/modules/unpackfs/main.py:394
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "\"{}\" 소스 파일시스템은 존재하지 않습니다."
 
-#: src/modules/unpackfs/main.py:404
+#: src/modules/unpackfs/main.py:408
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "대상 시스템의 \"{}\" 목적지가 디렉토리가 아닙니다."
 
@@ -198,11 +198,11 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "디스플레이 관리자 구성이 완료되지 않았습니다."
 
-#: src/modules/initcpiocfg/main.py:36
+#: src/modules/initcpiocfg/main.py:37
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpio 구성 중."
 
-#: src/modules/initcpiocfg/main.py:192
+#: src/modules/initcpiocfg/main.py:206
 #: src/modules/luksopenswaphookcfg/main.py:100
 #: src/modules/machineid/main.py:50 src/modules/initramfscfg/main.py:99
 #: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:329

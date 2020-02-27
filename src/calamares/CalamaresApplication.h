@@ -50,16 +50,6 @@ public:
     static CalamaresApplication* instance();
 
     /**
-     * @brief setDebug controls whether debug mode is enabled
-     */
-    void setDebug( bool enabled );
-
-    /**
-     * @brief isDebug returns true if running in debug mode, otherwise false.
-     */
-    bool isDebug();
-
-    /**
      * @brief mainWindow returns the Calamares application main window.
      */
     CalamaresWindow* mainWindow();
@@ -70,16 +60,14 @@ private slots:
     void initFailed( const QStringList& l );
 
 private:
+    // Initialization steps happen in this order
     void initQmlPath();
-    void initSettings();
     void initBranding();
     void initModuleManager();
     void initJobQueue();
 
     CalamaresWindow* m_mainwindow;
     Calamares::ModuleManager* m_moduleManager;
-
-    bool m_debugMode;
 };
 
 #endif  // CALAMARESAPPLICATION_H

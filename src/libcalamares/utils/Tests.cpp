@@ -19,6 +19,7 @@
 #include "Tests.h"
 
 #include "CalamaresUtilsSystem.h"
+#include "Entropy.h"
 #include "Logger.h"
 #include "UMask.h"
 #include "Yaml.h"
@@ -175,4 +176,48 @@ LibCalamaresTests::testUmask()
     }
     QCOMPARE( CalamaresUtils::setUMask( 022 ), m );
     QCOMPARE( CalamaresUtils::setUMask( m ), 022 );
+}
+
+void
+LibCalamaresTests::testEntropy()
+{
+    QByteArray data;
+
+    auto r0 = CalamaresUtils::getEntropy( 0, data );
+    QCOMPARE( CalamaresUtils::EntropySource::None, r0 );
+    QCOMPARE( data.size(), 0 );
+
+    auto r1 = CalamaresUtils::getEntropy( 16, data );
+    QVERIFY( r1 != CalamaresUtils::EntropySource::None );
+    QCOMPARE( data.size(), 16 );
+    // This can randomly fail (but not often)
+    QVERIFY( data.at( data.size() - 1 ) != char( 0xcb ) );
+
+    auto r2 = CalamaresUtils::getEntropy( 8, data );
+    QVERIFY( r2 != CalamaresUtils::EntropySource::None );
+    QCOMPARE( data.size(), 8 );
+    QCOMPARE( r1, r2 );
+    // This can randomly fail (but not often)
+    QVERIFY( data.at( data.size() - 1 ) != char( 0xcb ) );
+}
+
+void
+LibCalamaresTests::testPrintableEntropy()
+{
+    QString s;
+
+    auto r0 = CalamaresUtils::getPrintableEntropy( 0, s );
+    QCOMPARE( CalamaresUtils::EntropySource::None, r0 );
+    QCOMPARE( s.length(), 0 );
+
+    auto r1 = CalamaresUtils::getPrintableEntropy( 16, s );
+    QVERIFY( r1 != CalamaresUtils::EntropySource::None );
+    QCOMPARE( s.length(), 16 );
+    for ( QChar c : s )
+    {
+        QVERIFY( c.isPrint() );
+        QCOMPARE( c.row(), 0 );
+        QVERIFY( c.cell() > 32 );  // ASCII SPACE
+        QVERIFY( c.cell() < 127 );
+    }
 }

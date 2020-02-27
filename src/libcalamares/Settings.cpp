@@ -21,6 +21,7 @@
 
 #include "Settings.h"
 
+#include "CalamaresConfig.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
@@ -193,8 +194,8 @@ interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSeque
     }
 }
 
-Settings::Settings( const QString& settingsFilePath, bool debugMode, QObject* parent )
-    : QObject( parent )
+Settings::Settings( const QString& settingsFilePath, bool debugMode )
+    : QObject()
     , m_debug( debugMode )
     , m_doChroot( true )
     , m_promptInstall( false )
@@ -265,37 +266,93 @@ Settings::brandingComponentName() const
     return m_brandingComponentName;
 }
 
-
-bool
-Settings::showPromptBeforeExecution() const
+static QStringList
+settingsFileCandidates( bool assumeBuilddir )
 {
-    return m_promptInstall;
+    static const char settings[] = "settings.conf";
+
+    QStringList settingsPaths;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+    {
+        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
+    }
+    else
+    {
+        if ( assumeBuilddir )
+        {
+            settingsPaths << QDir::current().absoluteFilePath( settings );
+        }
+        if ( CalamaresUtils::haveExtraDirs() )
+            for ( auto s : CalamaresUtils::extraConfigDirs() )
+            {
+                settingsPaths << ( s + settings );
+            }
+        settingsPaths << CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf";  // String concat
+        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
+    }
+
+    return settingsPaths;
 }
 
-
-bool
-Settings::debugMode() const
+Settings*
+Settings::init( bool debugMode )
 {
-    return m_debug;
+    if ( s_instance )
+    {
+        cWarning() << "Calamares::Settings already created";
+        return s_instance;
+    }
+    
+    QStringList settingsFileCandidatesByPriority = settingsFileCandidates( debugMode );
+
+    QFileInfo settingsFile;
+    bool found = false;
+
+    foreach ( const QString& path, settingsFileCandidatesByPriority )
+    {
+        QFileInfo pathFi( path );
+        if ( pathFi.exists() && pathFi.isReadable() )
+        {
+            settingsFile = pathFi;
+            found = true;
+            break;
+        }
+    }
+
+    if ( !found || !settingsFile.exists() || !settingsFile.isReadable() )
+    {
+        cError() << "Cowardly refusing to continue startup without settings."
+                 << Logger::DebugList( settingsFileCandidatesByPriority );
+        if ( CalamaresUtils::isAppDataDirOverridden() )
+        {
+            cError() << "FATAL: explicitly configured application data directory is missing settings.conf";
+        }
+        else
+        {
+            cError() << "FATAL: none of the expected configuration file paths exist.";
+        }
+        ::exit( EXIT_FAILURE );
+    }
+
+    auto* settings = new Calamares::Settings( settingsFile.absoluteFilePath(), debugMode );  // Creates singleton
+    if ( settings->modulesSequence().count() < 1 )
+    {
+        cError() << "FATAL: no sequence set.";
+        ::exit( EXIT_FAILURE );
+    }
+    
+    return settings;
 }
 
-bool
-Settings::doChroot() const
+Settings*
+Settings::init( const QString& path )
 {
-    return m_doChroot;
+    if ( s_instance )
+    {
+        cWarning() << "Calamares::Settings already created";
+        return s_instance;
+    }
+    return new Calamares::Settings( path, true );
 }
-
-bool
-Settings::disableCancel() const
-{
-    return m_disableCancel;
-}
-
-bool
-Settings::disableCancelDuringExec() const
-{
-    return m_disableCancelDuringExec;
-}
-
 
 }  // namespace Calamares

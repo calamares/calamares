@@ -5,16 +5,16 @@
 # 
 # Translators:
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2019
-# Guilherme <guimarcalsilva@gmail.com>, 2019
+# Guilherme, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-28 16:51+0100\n"
+"POT-Creation-Date: 2020-01-29 11:14+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Guilherme <guimarcalsilva@gmail.com>, 2019\n"
+"Last-Translator: Guilherme, 2019\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/calamares/teams/20061/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,8 +30,8 @@ msgstr "Configurar GRUB."
 msgid "Mounting partitions."
 msgstr "Montando partições."
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:187
-#: src/modules/initcpiocfg/main.py:191
+#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:201
+#: src/modules/initcpiocfg/main.py:205
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/machineid/main.py:49 src/modules/initramfscfg/main.py:94
@@ -42,7 +42,7 @@ msgstr "Montando partições."
 msgid "Configuration Error"
 msgstr "Erro de Configuração."
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:188
+#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:202
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/fstab/main.py:323
@@ -98,15 +98,15 @@ msgstr "Desmontar os sistemas de arquivos."
 msgid "Filling up filesystems."
 msgstr "Preenchendo sistemas de arquivos."
 
-#: src/modules/unpackfs/main.py:180
+#: src/modules/unpackfs/main.py:184
 msgid "rsync failed with error code {}."
 msgstr "O rsync falhou com o código de erro {}."
 
-#: src/modules/unpackfs/main.py:241 src/modules/unpackfs/main.py:264
+#: src/modules/unpackfs/main.py:245 src/modules/unpackfs/main.py:268
 msgid "Failed to unpack image \"{}\""
 msgstr "Ocorreu uma falha ao descompactar a imagem \"{}\""
 
-#: src/modules/unpackfs/main.py:242
+#: src/modules/unpackfs/main.py:246
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
@@ -114,36 +114,36 @@ msgstr ""
 "Ocorreu uma falha ao localizar o unsquashfs, certifique-se de que o pacote "
 "squashfs-tools esteja instalado"
 
-#: src/modules/unpackfs/main.py:366
+#: src/modules/unpackfs/main.py:370
 msgid "No mount point for root partition"
 msgstr "Nenhum ponto de montagem para a partição root"
 
-#: src/modules/unpackfs/main.py:367
+#: src/modules/unpackfs/main.py:371
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr "O globalstorage não contém uma chave \"rootMountPoint\". Nada foi feito."
 
-#: src/modules/unpackfs/main.py:372
+#: src/modules/unpackfs/main.py:376
 msgid "Bad mount point for root partition"
 msgstr "Ponto de montagem incorreto para a partição root"
 
-#: src/modules/unpackfs/main.py:373
+#: src/modules/unpackfs/main.py:377
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr "O rootMountPoint é \"{}\", mas ele não existe. Nada foi feito."
 
-#: src/modules/unpackfs/main.py:385 src/modules/unpackfs/main.py:389
-#: src/modules/unpackfs/main.py:403
+#: src/modules/unpackfs/main.py:389 src/modules/unpackfs/main.py:393
+#: src/modules/unpackfs/main.py:407
 msgid "Bad unsquash configuration"
 msgstr "Configuração incorreta do unsquash"
 
-#: src/modules/unpackfs/main.py:386
+#: src/modules/unpackfs/main.py:390
 msgid "The filesystem for \"{}\" ({}) is not supported"
 msgstr "O sistema de arquivos para \"{}\" ({}) não é suportado"
 
-#: src/modules/unpackfs/main.py:390
+#: src/modules/unpackfs/main.py:394
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "O sistema de arquivos de origem \"{}\" não existe"
 
-#: src/modules/unpackfs/main.py:404
+#: src/modules/unpackfs/main.py:408
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "A destinação \"{}\" no sistema de destino não é um diretório"
 
@@ -204,11 +204,11 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "A configuração do gerenciador de exibição está incompleta"
 
-#: src/modules/initcpiocfg/main.py:36
+#: src/modules/initcpiocfg/main.py:37
 msgid "Configuring mkinitcpio."
 msgstr "Configurando mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:192
+#: src/modules/initcpiocfg/main.py:206
 #: src/modules/luksopenswaphookcfg/main.py:100
 #: src/modules/machineid/main.py:50 src/modules/initramfscfg/main.py:99
 #: src/modules/openrcdmcryptcfg/main.py:83 src/modules/fstab/main.py:329

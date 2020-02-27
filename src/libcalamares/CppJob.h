@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2016, Kevin Kofler <kevin.kofler@chello.at>
+ *   Copyright 2020, Adriaan de Groor <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,11 +21,13 @@
 #ifndef CALAMARES_CPPJOB_H
 #define CALAMARES_CPPJOB_H
 
-#include <QObject>
-#include <QVariant>
-
 #include "DllMacro.h"
 #include "Job.h"
+
+#include "modulesystem/InstanceKey.h"
+
+#include <QObject>
+#include <QVariant>
 
 namespace Calamares
 {
@@ -36,13 +39,13 @@ public:
     explicit CppJob( QObject* parent = nullptr );
     virtual ~CppJob();
 
-    void setModuleInstanceKey( const QString& instanceKey );
-    QString moduleInstanceKey() const { return m_instanceKey; }
+    void setModuleInstanceKey( const Calamares::ModuleSystem::InstanceKey& instanceKey );
+    Calamares::ModuleSystem::InstanceKey moduleInstanceKey() const { return m_instanceKey; }
 
     virtual void setConfigurationMap( const QVariantMap& configurationMap );
 
 protected:
-    QString m_instanceKey;
+    Calamares::ModuleSystem::InstanceKey m_instanceKey;
 };
 
 }  // namespace Calamares

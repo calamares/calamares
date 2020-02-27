@@ -39,6 +39,10 @@ private Q_SLOTS:
 
     /** @brief Test that all the UMask objects work correctly. */
     void testUmask();
+
+    /** @brief Tests the entropy functions. */
+    void testEntropy();
+    void testPrintableEntropy();
 };
 
 #endif

@@ -37,6 +37,9 @@ set( libSources
     locale/TimeZone.cpp
     locale/TranslatableConfiguration.cpp
 
+    # Modules
+    modulesystem/InstanceKey.cpp
+
     # Network service
     network/Manager.cpp
 
@@ -47,6 +50,7 @@ set( libSources
     utils/CalamaresUtilsSystem.cpp
     utils/CommandList.cpp
     utils/Dirs.cpp
+    utils/Entropy.cpp
     utils/Logger.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp

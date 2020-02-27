@@ -2,6 +2,11 @@
 #
 # Uses the Transifex API to get a list of enabled languages,
 # and outputs CMake settings for inclusion into CMakeLists.txt.
+#
+# This is a Python3 script.
+#
+# Run it with a -v command-line option to get extra output on
+# actual translation percentages.
 import sys
 
 def get_tx_credentials():
@@ -42,12 +47,14 @@ def output_langs(all_langs, label, filterfunc):
         prefix = "    "
     print("%s%s" % (prefix, out))
 
-def get_tx_stats(token):
+def get_tx_stats(token, verbose):
     """
     Does an API request to Transifex with the given API @p token, getting
     the translation statistics for the main body of texts. Then prints
     out CMake settings to replace the _tx_* variables in CMakeLists.txt
     according to standard criteria.
+
+    If @p verbose is True, prints out language stats as well.
     """
     import requests
 
@@ -58,8 +65,12 @@ def get_tx_stats(token):
     suppressed_languages = ( "es_ES", )  # In Transifex, but not used
     # Some languages go into the "incomplete" list by definition,
     # regardless of their completion status: this can have various reasons.
+    #
+    # Note that Esperanto (eo) is special-cased in CMakeLists.txt
+    # during the build; recent Qt releases *do* support the language,
+    # and it's at-the-least ok.
     incomplete_languages = (
-        "eo",   # Not supported by QLocale
+        "eo",   # Not supported by QLocale < 5.12.1
         )
 
     all_langs = []
@@ -71,10 +82,16 @@ def get_tx_stats(token):
         if lang_name in suppressed_languages:
             continue
         stats = languages[lang_name]["translated"]["percentage"]
+        # Make the by-definition-incomplete languages have a percentage
+        # lower than zero; this way they end up sorted (in -v output)
+        # at the bottom but you can still determine the "actual" percentage.
         if lang_name in incomplete_languages:
-            stats = 0.0
+            stats = -stats
         all_langs.append((stats, lang_name))
 
+    if verbose:
+        for s, l in sorted(all_langs, reverse=True):
+            print("#  %16s\t%6.2f" % (l, s * 100.0))
     output_langs(all_langs, "complete", lambda s : s == 1.0)
     output_langs(all_langs, "good", lambda s : 1.0 > s >= 0.75)
     output_langs(all_langs, "ok", lambda s : 0.75 > s >= 0.05)
@@ -84,9 +101,10 @@ def get_tx_stats(token):
 
 
 def main():
+    verbose = (sys.argv[-1] == "-v")
     cred = get_tx_credentials()
     if cred:
-        return get_tx_stats(cred)
+        return get_tx_stats(cred, verbose)
     else:
         print("! Could not find API token in ~/.transifexrc")
         return 1

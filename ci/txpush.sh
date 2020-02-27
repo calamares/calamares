@@ -41,27 +41,54 @@ else
   # txtag is used to tag in git to measure changes
   txtag() {
     git tag -f translation
+    git push --force origin translation
   }
 fi
+
+
+### FIND EXECUTABLES
+#
+#
+LUPDATE=""
+for _lupdate in lupdate-qt5 lupdate
+do
+  export QT_SELECT=5
+  $_lupdate -version > /dev/null 2>&1 || export QT_SELECT=qt5
+  $_lupdate -version > /dev/null 2>&1 && LUPDATE=$_lupdate
+  test -n "$LUPDATE" && break
+done
+test -n "$LUPDATE" || { echo "! No working lupdate" ; lupdate -version ; exit 1 ; }
+
+XMLLINT=""
+for _xmllint in xmllint
+do
+  $_xmllint --version > /dev/null 2>&1 && XMLLINT=$_xmllint
+  test -n "$XMLLINT" && break
+done
+# XMLLINT is optional
+
 
 ### CREATE TRANSLATIONS
 #
 # Use local tools (depending on type of source) to create translation
 # sources, then push to Transifex
 
-export QT_SELECT=5
-lupdate -version > /dev/null 2>&1 || export QT_SELECT=qt5
-lupdate -version > /dev/null 2>&1 || { echo "! No working lupdate" ; lupdate -version ; exit 1 ; }
-
 # Don't pull branding translations in,
 # those are done separately.
 _srcdirs="src/calamares src/libcalamares src/libcalamaresui src/modules src/qml"
-lupdate -no-obsolete $_srcdirs -ts lang/calamares_en.ts
-lupdate -no-obsolete -extensions cxxtr src/libcalamares/locale -ts lang/tz_en.ts
+$LUPDATE -no-obsolete $_srcdirs -ts lang/calamares_en.ts
+# Updating the TZ only needs to happen when the TZ themselves are updated,
+# very-very-rarely.
+# $LUPDATE -no-obsolete -extensions cxxtr src/libcalamares/locale -ts lang/tz_en.ts
+
+if test -n "$XMLLINT" ; then
+  TS_FILE="lang/calamares_en.ts"
+  $XMLLINT --c14n11 "$TS_FILE" | { echo "<!DOCTYPE TS>" ; cat - ; } | $XMLLINT --format --encode utf-8 -o "$TS_FILE".new - && mv "$TS_FILE".new "$TS_FILE"
+fi
 
 tx push --source --no-interactive -r calamares.calamares-master
-tx push --source --no-interactive -r calamares.tz
 tx push --source --no-interactive -r calamares.fdo
+
 
 ### PYTHON MODULES
 #

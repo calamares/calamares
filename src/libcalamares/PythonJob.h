@@ -21,6 +21,8 @@
 
 #include "Job.h"
 
+#include "modulesystem/InstanceKey.h"
+
 #include <QVariant>
 
 namespace CalamaresPython
@@ -36,7 +38,8 @@ class PythonJob : public Job
 {
     Q_OBJECT
 public:
-    explicit PythonJob( const QString& scriptFile,
+    explicit PythonJob( const ModuleSystem::InstanceKey& instance,
+                        const QString& scriptFile,
                         const QString& workingPath,
                         const QVariantMap& moduleConfiguration = QVariantMap(),
                         QObject* parent = nullptr );
@@ -45,6 +48,8 @@ public:
     QString prettyName() const override;
     QString prettyStatusMessage() const override;
     JobResult exec() override;
+
+    virtual qreal getJobWeight() const override;
 
 private:
     friend class CalamaresPython::Helper;
@@ -56,6 +61,7 @@ private:
     QString m_workingPath;
     QString m_description;
     QVariantMap m_configurationMap;
+    qreal m_weight;
 };
 
 }  // namespace Calamares
