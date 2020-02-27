@@ -79,6 +79,7 @@ Config::Config(QObject *parent) : QObject(parent)
 , m_readyRootPassword( false )
 , m_writeRootPassword( true )
 , m_reusePassword( true )
+, m_reusePasswordVisible( false )
 , m_autologin( false )
 , m_validatePasswords( true )
 , m_validatePasswordsVisible( false )
@@ -193,7 +194,10 @@ Config::onActivate()
 void
 Config::setWriteRootPassword( bool write )
 {
+    m_reusePasswordVisible = write;
     m_writeRootPassword = write;
+
+    emit reusePasswordVisibleChanged();
 }
 
 void

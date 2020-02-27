@@ -243,6 +243,7 @@ ResponsiveBase
 
 				CheckBox
 				{
+					visible: _users.Config.resusePasswordVisible
 					text: qsTr("Reuse user password as root password")
 					checked: _users.Config.resusePassword
 					onToggled:  _users.Config.resusePassword = !_users.Config.resusePassword

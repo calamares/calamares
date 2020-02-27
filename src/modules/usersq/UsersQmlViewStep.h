@@ -23,25 +23,22 @@
 #include <QObject>
 
 #include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include <viewpages/QmlViewStep.h>
 
 #include <PluginDllMacro.h>
 
 #include <QVariant>
 #include "Config.h"
 
-class PLUGINDLLEXPORT UsersQmlViewStep : public Calamares::ViewStep
+class PLUGINDLLEXPORT UsersQmlViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT
     Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
 
 public:
     explicit UsersQmlViewStep( QObject* parent = nullptr );
-    virtual ~UsersQmlViewStep() override;
 
     QString prettyName() const override;
-
-    QWidget* widget() override;
 
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;
@@ -63,7 +60,6 @@ public:
 
 private:
     Config *m_config;
-    QWidget* m_widget;
     QList< Calamares::job_ptr > m_jobs;
 
     QStringList m_defaultGroups;

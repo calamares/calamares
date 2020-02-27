@@ -38,6 +38,7 @@ namespace Calamares
 class QmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
+    Q_PROPERTY(bool isNextEnabled READ isNextEnabled NOTIFY nextStatusChanged FINAL)
 
 public:
     enum class QmlSearch
@@ -78,6 +79,10 @@ public:
 
 private Q_SLOTS:
     void loadComplete();
+
+signals:
+    /// @brief Tells the viewmanager to enable the *next* button according to @p status
+    void nextStatusChanged( bool status );
 
 private:
     /// @brief Swap out the spinner for the QQuickWidget

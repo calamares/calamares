@@ -31,9 +31,8 @@
 CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersQmlViewStepFactory, registerPlugin< UsersQmlViewStep >(); )
 
 UsersQmlViewStep::UsersQmlViewStep( QObject* parent )
-: Calamares::ViewStep( parent )
+: Calamares::QmlViewStep("users.qml", parent )
 , m_config( new Config(this) )
-, m_widget( nullptr )
 {
     this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/users.conf")).toMap());
 
@@ -42,25 +41,11 @@ UsersQmlViewStep::UsersQmlViewStep( QObject* parent )
 }
 
 
-UsersQmlViewStep::~UsersQmlViewStep()
-{
-
-}
-
-
 QString
 UsersQmlViewStep::prettyName() const
 {
     return tr( "Users" );
 }
-
-
-QWidget*
-UsersQmlViewStep::widget()
-{
-    return m_widget;
-}
-
 
 bool
 UsersQmlViewStep::isNextEnabled() const

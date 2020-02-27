@@ -69,6 +69,9 @@ class Config : public QObject
 
     Q_PROPERTY(bool resusePassword READ reusePassword WRITE setReusePasswordDefault NOTIFY reusePasswordChanged)
 
+    Q_PROPERTY(bool resusePasswordVisible MEMBER m_reusePasswordVisible NOTIFY reusePasswordVisibleChanged FINAL)
+
+
 public:
 
     Config( QObject* parent = nullptr );
@@ -133,6 +136,8 @@ signals:
 
     void autologinChanged();
     void reusePasswordChanged();
+    void reusePasswordVisibleChanged();
+
     void validatePasswordsChanged();
     void validatePasswordsVisibleChanged();
 
@@ -163,6 +168,7 @@ private:
     bool m_writeRootPassword;
 
     bool m_reusePassword;
+    bool m_reusePasswordVisible;
 
     QString m_userName;
     QString m_hostName;
