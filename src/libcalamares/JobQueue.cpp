@@ -36,7 +36,6 @@ public:
         : QThread( queue )
         , m_queue( queue )
         , m_jobIndex( 0 )
-        , m_jobCount( 0 )
     {
     }
 
@@ -104,7 +103,6 @@ private:
     QList< qreal > m_jobWeights;
     JobQueue* m_queue;
     int m_jobIndex;
-    int m_jobCount;
 
     void emitProgress( qreal jobPercent = 0 )
     {
