@@ -35,8 +35,8 @@ Page
 				height: parent.height
 				width: parent.width
 
-				sourceSize.height: height / 60
-				sourceSize.width: width / 60
+				sourceSize.height: 600
+				sourceSize.width: 800
 
 				fillMode: Image.PreserveAspectCrop
 				antialiasing: false

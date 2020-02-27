@@ -33,6 +33,7 @@
 class PLUGINDLLEXPORT UsersQmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
+    Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
 
 public:
     explicit UsersQmlViewStep( QObject* parent = nullptr );
@@ -54,6 +55,11 @@ public:
     void onLeave() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
+
+    Config * config() const
+    {
+        return m_config;
+    }
 
 private:
     Config *m_config;

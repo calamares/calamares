@@ -23,6 +23,7 @@
 // #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
+#include "utils/Yaml.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -34,6 +35,8 @@ UsersQmlViewStep::UsersQmlViewStep( QObject* parent )
 , m_config( new Config(this) )
 , m_widget( nullptr )
 {
+    this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/users.conf")).toMap());
+
     emit nextStatusChanged( true );
     connect( m_config, &Config::checkReady, this, &UsersQmlViewStep::nextStatusChanged );
 }

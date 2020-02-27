@@ -30,6 +30,7 @@ struct Status
     Q_PROPERTY(QString icon MEMBER icon CONSTANT FINAL)
 
 public:
+    /** @brief How bad is the error for labelError() ? */
     enum StatusCode
     {
         Ok,
@@ -41,15 +42,34 @@ public:
     StatusCode status;
     QString message;
     QString icon;
-};
+
+}; Q_DECLARE_METATYPE(Status)
+
 
 class Config : public QObject
 {
     Q_OBJECT
 //     Q_PROPERTY(bool passwordVisible READ setPasswordVisible WRITE setPasswordVisible NOTIFY passwordVisibleChanged)
     Q_PROPERTY(Status status READ getStatus NOTIFY statusChanged FINAL)
+    Q_PROPERTY(QString userName MEMBER m_userName NOTIFY userNameChanged FINAL)
+    Q_PROPERTY(bool userNameReady MEMBER m_readyUsername NOTIFY userNameReadyChanged FINAL)
+    Q_PROPERTY(QString hostName MEMBER m_hostName NOTIFY hostNameChanged FINAL)
+    Q_PROPERTY(bool hostNameReady MEMBER m_readyHostname NOTIFY hostNameReadyChanged FINAL)
+    Q_PROPERTY(QString fullName MEMBER m_fullName NOTIFY fullNameChanged FINAL)
+    Q_PROPERTY(bool fullNameReady MEMBER m_readyFullName NOTIFY fullNameReadyChanged FINAL)
+
+    Q_PROPERTY(bool passwordReady MEMBER m_readyPassword NOTIFY passwordReadyChanged FINAL )
+    Q_PROPERTY(bool rootPasswordReady MEMBER m_readyRootPassword NOTIFY rootPasswordReadyChanged FINAL )
+
+    Q_PROPERTY(bool autologin READ autologinDefault WRITE setAutologinDefault NOTIFY autologinChanged)
+
+    Q_PROPERTY(bool validatePasswords READ validatePasswords WRITE setValidatePasswordDefault NOTIFY validatePasswordsChanged)
+
+    Q_PROPERTY(bool validatePasswordsVisible MEMBER m_validatePasswordsVisible NOTIFY validatePasswordsVisibleChanged FINAL)
+
+    Q_PROPERTY(bool resusePassword READ reusePassword WRITE setReusePasswordDefault NOTIFY reusePasswordChanged)
+
 public:
-    /** @brief How bad is the error for labelError() ? */
 
     Config( QObject* parent = nullptr );
 
@@ -64,8 +84,13 @@ public:
     void setPasswordCheckboxVisible( bool visible );
 
     void setValidatePasswordDefault( bool checked );
+    bool validatePasswords () const { return m_validatePasswords; }
+
     void setAutologinDefault( bool checked );
+    bool autologinDefault () const {return m_autologin;};
+
     void setReusePasswordDefault( bool checked );
+    bool reusePassword() const { return m_reusePassword; }
 
     Status getStatus() const { return m_status; }
 
@@ -77,15 +102,15 @@ public:
      */
     void addPasswordCheck( const QString& key, const QVariant& value );
 
-protected slots:
+public slots:
     void onFullNameTextEdited( const QString& );
     void fillSuggestions();
     void onUsernameTextEdited( const QString& );
     void validateUsernameText( const QString& );
     void onHostnameTextEdited( const QString& );
     void validateHostnameText( const QString& );
-    void onPasswordTextChanged( const QString& );
-    void onRootPasswordTextChanged( const QString& );
+    void onPasswordTextChanged( const QString&, const QString&  );
+    void onRootPasswordTextChanged( const QString&, const QString&  );
 
 signals:
     void prettyStatusChanged();
@@ -95,6 +120,21 @@ signals:
 
     void statusChanged();
     void warningMessageChanged();
+
+    void fullNameChanged();
+    void userNameChanged();
+    void hostNameChanged();
+
+    void fullNameReadyChanged();
+    void userNameReadyChanged();
+    void hostNameReadyChanged();
+    void passwordReadyChanged();
+    void rootPasswordReadyChanged();
+
+    void autologinChanged();
+    void reusePasswordChanged();
+    void validatePasswordsChanged();
+    void validatePasswordsVisibleChanged();
 
 private:
     /** @brief Is the password acceptable?
@@ -130,13 +170,13 @@ private:
     QString m_userPassword;
     QString m_userVerifiedPassword;
     QString m_rootPassword;
+    QString m_rootVerifiedPassword;
 
-    QString m_warningMessage;
     Status m_status;
 
-    bool m_autoLogin;
-    bool m_passwordVisible;
-
+    bool m_autologin;
+    bool m_validatePasswords;
+    bool m_validatePasswordsVisible;
 };
 
 

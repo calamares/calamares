@@ -47,6 +47,8 @@ namespace Calamares
 class UIDLLEXPORT ViewStep : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(bool isNextEnabled READ isNextEnabled NOTIFY nextStatusChanged FINAL)
+
 public:
     explicit ViewStep( QObject* parent = nullptr );
     virtual ~ViewStep() override;

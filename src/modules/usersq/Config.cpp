@@ -50,12 +50,12 @@ static constexpr const int HOSTNAME_MAX_LENGTH = 63;
 void
 Config::labelError(const QString& message, const Status::StatusCode &status )
 {
+    cDebug()<< "Settign error" << message << status;
     m_status.status = status;
     m_status.message = message;
-//     m_errorStatus.icon = CalamaresUtils::defaultPixmap( ( bad == Badness::Fatal ) ? CalamaresUtils::StatusError
+//     m_status.icon = CalamaresUtils::defaultPixmapUrl( ( status == Status::StatusCode::Fatal ) ? CalamaresUtils::StatusError
 //     : CalamaresUtils::StatusWarning,
-//     CalamaresUtils::Original,
-//     16);
+//     CalamaresUtils::Original);
     emit statusChanged();
 }
 
@@ -65,51 +65,25 @@ Config::labelOk(const Status::StatusCode &status )
 {
     m_status.status = status;
     m_status.message = "";
+    emit statusChanged();
 //     pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, label->size() ) );
 }
 
 Config::Config(QObject *parent) : QObject(parent)
 , m_readyFullName( false )
 , m_readyUsername( false )
+, m_customUsername ( false )
 , m_readyHostname( false )
+, m_customHostname ( false )
 , m_readyPassword( false )
 , m_readyRootPassword( false )
 , m_writeRootPassword( true )
+, m_reusePassword( true )
+, m_autologin( false )
+, m_validatePasswords( true )
+, m_validatePasswordsVisible( false )
+
 {
-
-    // Connect signals and slots
-//     connect( ui->textBoxFullName, &QLineEdit::textEdited, this, &Config::onFullNameTextEdited );
-//     connect( ui->textBoxUsername, &QLineEdit::textEdited, this, &Config::onUsernameTextEdited );
-//     connect( ui->textBoxHostname, &QLineEdit::textEdited, this, &Config::onHostnameTextEdited );
-//     connect( ui->textBoxUserPassword, &QLineEdit::textChanged, this, &Config::onPasswordTextChanged );
-//     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &Config::onPasswordTextChanged );
-//     connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &Config::onRootPasswordTextChanged );
-//     connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged, this, &Config::onRootPasswordTextChanged );
-//     connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int )
-//     {
-//         onPasswordTextChanged( ui->textBoxUserPassword->text() );
-//         onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
-//         checkReady( isReady() );
-//     } );
-//     connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked )
-//     {
-//         ui->labelChooseRootPassword->setVisible( !checked );
-//         ui->labelRootPassword->setVisible( !checked );
-//         ui->labelRootPasswordError->setVisible( !checked );
-//         ui->textBoxRootPassword->setVisible( !checked );
-//         ui->textBoxVerifiedRootPassword->setVisible( !checked );
-//         checkReady( isReady() );
-//     } );
-//
-    m_customUsername = false;
-    m_customHostname = false;
-
-    setWriteRootPassword( true );
-//     ui->checkBoxReusePassword->setChecked( true );
-//     ui->checkBoxValidatePassword->setChecked( true );
-//
-    setPasswordCheckboxVisible( false );
-
     CALAMARES_RETRANSLATE_SLOT( &Config::retranslate );
 }
 
@@ -133,8 +107,8 @@ Config::retranslate()
     // Re-do password checks (with output messages) as well.
     // .. the password-checking methods get their values from the text boxes,
     //    not from their parameters.
-//     onPasswordTextChanged( QString() );
-//     onRootPasswordTextChanged( QString() );
+    onPasswordTextChanged( m_userPassword, m_userPassword );
+    onRootPasswordTextChanged( m_rootPassword, m_rootVerifiedPassword );
 }
 
 
@@ -166,7 +140,7 @@ Config::createJobs( const QStringList& defaultGroupsList )
     j = new CreateUserJob( m_userName,
                           m_fullName.isEmpty() ? m_userName
                            :m_fullName,
-                           m_autoLogin,
+                           m_autologin,
                            defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
 
@@ -197,7 +171,7 @@ Config::createJobs( const QStringList& defaultGroupsList )
     list.append( Calamares::job_ptr( j ) );
 
     gs->insert( "hostname",m_hostName );
-    if ( m_autoLogin )
+    if ( m_autologin )
     {
         gs->insert( "autologinUser", m_userName );
     }
@@ -212,24 +186,21 @@ Config::createJobs( const QStringList& defaultGroupsList )
 void
 Config::onActivate()
 {
-    onPasswordTextChanged( QString() );
-    onRootPasswordTextChanged( QString() );
+    onPasswordTextChanged( m_userPassword, m_userPassword );
+    onRootPasswordTextChanged( m_rootPassword, m_rootVerifiedPassword );
 }
 
 void
 Config::setWriteRootPassword( bool write )
 {
-//     ui->checkBoxReusePassword->setVisible( write );
     m_writeRootPassword = write;
 }
-
 
 void
 Config::onFullNameTextEdited( const QString& textRef )
 {
     if ( textRef.isEmpty() )
     {
-        m_warningMessage.clear();
         m_fullName.clear();
         if ( !m_customUsername )
         {
@@ -243,14 +214,14 @@ Config::onFullNameTextEdited( const QString& textRef )
     }
     else
     {
-//         ui->labelFullName->setPixmap(
-//             CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, ui->labelFullName->size() ) );
+        m_fullName = textRef;
         m_readyFullName = true;
         fillSuggestions();
     }
+
+    emit fullNameReadyChanged();
     checkReady( isReady() );
 }
-
 
 void
 Config::fillSuggestions()
@@ -275,6 +246,7 @@ Config::fillSuggestions()
             if ( USERNAME_RX.indexIn( usernameSuggestion ) != -1 )
             {
                 m_userName = usernameSuggestion;
+                emit userNameChanged();
                 validateUsernameText( usernameSuggestion );
                 m_customUsername = false;
             }
@@ -289,6 +261,7 @@ Config::fillSuggestions()
             if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
             {
                 m_hostName = hostnameSuggestion;
+                emit hostNameChanged();
                 validateHostnameText( hostnameSuggestion );
                 m_customHostname = false;
             }
@@ -299,7 +272,8 @@ Config::fillSuggestions()
 void
 Config::onUsernameTextEdited( const QString& textRef )
 {
-    m_customUsername = true;
+    m_userName = textRef;
+    m_customUsername = !textRef.isEmpty();
     validateUsernameText( textRef );
 }
 
@@ -336,6 +310,7 @@ Config::validateUsernameText( const QString& textRef )
         m_readyUsername = true;
     }
 
+    emit userNameReadyChanged();
     emit checkReady( isReady() );
 }
 
@@ -343,10 +318,10 @@ Config::validateUsernameText( const QString& textRef )
 void
 Config::onHostnameTextEdited( const QString& textRef )
 {
+    m_hostName = textRef;
     m_customHostname = true;
     validateHostnameText( textRef );
 }
-
 
 void
 Config::validateHostnameText( const QString& textRef )
@@ -380,6 +355,7 @@ Config::validateHostnameText( const QString& textRef )
         m_readyHostname = true;
     }
 
+    emit hostNameReadyChanged();
     emit checkReady( isReady() );
 }
 
@@ -393,7 +369,7 @@ Config::checkPasswordAcceptance( const QString& pw1, const QString& pw2 )
     }
     else
     {
-        bool failureIsFatal = /*ui->checkBoxValidatePassword->isChecked()*/ false;
+        bool failureIsFatal = m_validatePasswords;
         bool failureFound = false;
 
         if ( m_passwordChecksChanged )
@@ -429,19 +405,28 @@ Config::checkPasswordAcceptance( const QString& pw1, const QString& pw2 )
 }
 
 void
-Config::onPasswordTextChanged( const QString& )
+Config::onPasswordTextChanged( const QString& textRef, const QString& textRefV )
 {
+    m_userPassword = textRef;
+    m_userVerifiedPassword = textRefV;
+
     m_readyPassword = checkPasswordAcceptance(m_userPassword,
                                                m_userVerifiedPassword);
 
+    emit passwordReadyChanged();
     emit checkReady( isReady() );
 }
 
 void
-Config::onRootPasswordTextChanged( const QString& )
+Config::onRootPasswordTextChanged( const QString& textRef, const QString& textRefV )
 {
-//     m_readyRootPassword = checkPasswordAcceptance( ui->textBoxRootPassword->text(),
-//                                                    ui->textBoxVerifiedRootPassword->text());
+    m_rootPassword = textRef;
+    m_rootVerifiedPassword = textRefV;
+
+    m_readyRootPassword = checkPasswordAcceptance( m_rootPassword,
+                                                   m_rootVerifiedPassword);
+
+    emit rootPasswordReadyChanged();
     emit checkReady( isReady() );
 }
 
@@ -449,27 +434,41 @@ Config::onRootPasswordTextChanged( const QString& )
 void
 Config::setPasswordCheckboxVisible( bool visible )
 {
-//     ui->checkBoxValidatePassword->setVisible( visible );
+    m_validatePasswordsVisible = visible;
+    emit validatePasswordsVisibleChanged();
 }
 
 void
 Config::setValidatePasswordDefault( bool checked )
 {
-//     ui->checkBoxValidatePassword->setChecked( checked );
+    if(checked == m_validatePasswords)
+        return;
+
+    m_validatePasswords = checked;
+    emit validatePasswordsChanged();
+
+    onPasswordTextChanged( m_userPassword, m_userVerifiedPassword );
+    onRootPasswordTextChanged( m_rootPassword, m_rootVerifiedPassword );
+
     emit checkReady( isReady() );
 }
 
 void
 Config::setAutologinDefault( bool checked )
 {
-//     ui->checkBoxAutoLogin->setChecked( checked );
+    m_autologin = checked;
+    emit autologinChanged();
     emit checkReady( isReady() );
 }
 
 void
 Config::setReusePasswordDefault( bool checked )
 {
-//     ui->checkBoxReusePassword->setChecked( checked );
+    if(checked == m_reusePassword)
+        return;
+
+    m_reusePassword = checked;
+    emit reusePasswordChanged();
     emit checkReady( isReady() );
 }
 
