@@ -88,6 +88,8 @@ ContextualProcessTests::testProcessListSampleConfig()
 
 void ContextualProcessTests::testFetch()
 {
+    Logger::setupLogLevel( Logger::LOGVERBOSE );
+
     QVariantMap m;
     // Some keys without sub-map
     m.insert( QStringLiteral( "carrot" ), true );
@@ -150,7 +152,7 @@ void ContextualProcessTests::testFetch()
         ContextualProcessBinding b( QStringLiteral( "berries" ) );
         QString s;
         QVERIFY( b.fetch( gs, s ) );
-        QVERIFY( s.contains( QStringLiteral( "QVariant" ) ) );
+        QVERIFY( s.isEmpty() );  // No string representation
     }
     {
         // Compound lookup

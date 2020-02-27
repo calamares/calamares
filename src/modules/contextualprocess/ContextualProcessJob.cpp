@@ -77,7 +77,7 @@ fetch( QString& value, QStringList& selector, int index, const QVariant& v )
     }
     const QVariantMap map = v.toMap();
     const QString& key = selector.at( index );
-    if ( index == selector.length() )
+    if ( index == selector.length() - 1)
     {
         value = map.value( key ).toString();
         return map.contains( key );
