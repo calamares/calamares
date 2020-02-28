@@ -21,26 +21,21 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 #include "utils/Yaml.h"
-
+#include <QQmlEngine>
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardQmlViewStepFactory, registerPlugin<KeyboardQmlViewStep>(); )
 
 KeyboardQmlViewStep::KeyboardQmlViewStep( QObject* parent )
-    : Calamares::ViewStep( parent )
+    : Calamares::QmlViewStep( "keyboard", parent )
     , m_config( new Config(this) )
     , m_nextEnabled( false )
     , m_writeEtcDefaultKeyboard( true )
 {
-    this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/keyboard.conf")).toMap());
-
     m_config->init();
     m_nextEnabled = true;
     emit nextStatusChanged( m_nextEnabled );
-}
 
-KeyboardQmlViewStep::~KeyboardQmlViewStep()
-{
-
+    qmlRegisterSingletonType< Config >( "io.calamares.module", 1, 0, "Keyboard", [&](QQmlEngine*, QJSEngine*) -> QObject* { return m_config; } );
 }
 
 void
@@ -67,20 +62,11 @@ KeyboardQmlViewStep::prettyStatus() const
     return m_prettyStatus;
 }
 
-
-QWidget*
-KeyboardQmlViewStep::widget()
-{
-    return nullptr;
-}
-
-
 bool
 KeyboardQmlViewStep::isNextEnabled() const
 {
     return m_nextEnabled;
 }
-
 
 bool
 KeyboardQmlViewStep::isBackEnabled() const
@@ -88,13 +74,11 @@ KeyboardQmlViewStep::isBackEnabled() const
     return true;
 }
 
-
 bool
 KeyboardQmlViewStep::isAtBeginning() const
 {
     return true;
 }
-
 
 bool
 KeyboardQmlViewStep::isAtEnd() const
@@ -102,20 +86,17 @@ KeyboardQmlViewStep::isAtEnd() const
     return true;
 }
 
-
 QList< Calamares::job_ptr >
 KeyboardQmlViewStep::jobs() const
 {
     return m_jobs;
 }
 
-
 void
 KeyboardQmlViewStep::onActivate()
 {
     m_config->onActivate();
 }
-
 
 void
 KeyboardQmlViewStep::onLeave()
@@ -160,4 +141,6 @@ KeyboardQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         m_writeEtcDefaultKeyboard = configurationMap.value( "writeEtcDefaultKeyboard" ).toBool();
     else
         m_writeEtcDefaultKeyboard = true;
+
+    Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
 }

@@ -17,8 +17,12 @@
  */
 
 #include "Config.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
+#include "Branding.h"
+#include "Settings.h"
 
-#include <QDebug>
+#include <QApplication>
 
 void
 RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
@@ -27,11 +31,11 @@ RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requi
     m_requierements = requirements;
     m_satisfiedRequirements = true;
 
-    for(const auto requirement : m_requierements)
+    for(const auto &requirement : m_requierements)
     {
         if(requirement.mandatory && !requirement.satisfied)
         {
-//             m_satisfiedRequirements = false;
+            m_satisfiedRequirements = false;
             break;
         }
     }
@@ -81,15 +85,45 @@ RequirementsModel::roleNames() const
 }
 
 Config::Config( QObject* parent ) : QObject( parent )
-    ,m_requirementsModel( new RequirementsModel( this ))
+    , m_requirementsModel( new RequirementsModel( this ))
+    , m_languages( CalamaresUtils::Locale::availableTranslations() )
 {
     connect(m_requirementsModel, &RequirementsModel::satisfiedRequirementsChanged, this, &Config::setIsNextEnabled);
+
+    initLanguages();
+
+    CALAMARES_RETRANSLATE_SLOT( &Config::retranslate )
+
+}
+
+void
+Config::retranslate()
+{
+    QString message;
+
+    if ( Calamares::Settings::instance()->isSetupMode() )
+    {
+        message = Calamares::Branding::instance()->welcomeStyleCalamares()
+        ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
+        : tr( "<h1>Welcome to %1 setup.</h1>" );
+    }
+    else
+    {
+        message = Calamares::Branding::instance()->welcomeStyleCalamares()
+        ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
+        : tr( "<h1>Welcome to the %1 installer.</h1>" );
+    }
+
+    m_genericWelcomeMessage = message.arg( *Calamares::Branding::VersionedName );
+    emit genericWelcomeMessageChanged();
+
+//     ui->supportButton->setText( tr( "%1 support" ).arg( *Calamares::Branding::ShortProductName ) );
 }
 
 CalamaresUtils::Locale::LabelModel*
 Config::languagesModel() const
 {
-	return CalamaresUtils::Locale::availableTranslations();
+	return m_languages;
 }
 
 QString
@@ -99,13 +133,59 @@ Config::languageIcon() const
 }
 
 void
+Config::initLanguages()
+{
+    // Find the best initial translation
+    QLocale defaultLocale = QLocale( QLocale::system().name() );
+
+    cDebug() << "Matching locale" << defaultLocale;
+    int matchedLocaleIndex = m_languages->find( [&]( const QLocale& x ) {
+        return x.language() == defaultLocale.language() && x.country() == defaultLocale.country();
+    } );
+
+    if ( matchedLocaleIndex < 0 )
+    {
+        cDebug() << Logger::SubEntry << "Matching approximate locale" << defaultLocale.language();
+
+        matchedLocaleIndex
+        = m_languages->find( [&]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
+    }
+
+    if ( matchedLocaleIndex < 0 )
+    {
+        QLocale en_us( QLocale::English, QLocale::UnitedStates );
+
+        cDebug() << Logger::SubEntry << "Matching English (US)";
+        matchedLocaleIndex = m_languages->find( en_us );
+
+        // Now, if it matched, because we didn't match the system locale, switch to the one found
+        if ( matchedLocaleIndex >= 0 )
+        {
+            QLocale::setDefault( m_languages->locale( matchedLocaleIndex ).locale() );
+        }
+    }
+
+    if ( matchedLocaleIndex >= 0 )
+    {
+        QString name = m_languages->locale( matchedLocaleIndex ).name();
+        cDebug() << Logger::SubEntry << "Matched with index" << matchedLocaleIndex << name;
+
+        CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsDirectory(), qApp );
+       setLocaleIndex( matchedLocaleIndex );
+    }
+    else
+    {
+        cWarning() << "No available translation matched" << defaultLocale;
+    }
+}
+
+void
 Config::setCountryCode( const QString& countryCode )
 {
 	m_countryCode = countryCode;
-	m_localeIndex = CalamaresUtils::Locale::availableTranslations()->find( m_countryCode );
+    setLocaleIndex(CalamaresUtils::Locale::availableTranslations()->find( m_countryCode ));
 
 	emit countryCodeChanged( m_countryCode );
-	emit localeIndexChanged( m_localeIndex );
 }
 
 void
@@ -114,17 +194,28 @@ Config::setLanguageIcon( const QString languageIcon )
 	m_languageIcon = languageIcon;
 }
 
+void
+Config::setLocaleIndex(const int& index)
+{
+    if(index ==  m_localeIndex || index > CalamaresUtils::Locale::availableTranslations()->rowCount(QModelIndex()) || index < 0)
+        return;
+
+    m_localeIndex = index;
+
+    const auto& selectedLocale = m_languages->locale( m_localeIndex ).locale();
+    cDebug() << "Selected locale" << selectedLocale;
+
+    QLocale::setDefault( selectedLocale );
+    CalamaresUtils::installTranslator(
+        selectedLocale, Calamares::Branding::instance()->translationsDirectory(), qApp );
+
+    emit localeIndexChanged( m_localeIndex );
+}
+
 RequirementsModel&
 Config::requirementsModel() const
 {
     return *m_requirementsModel;
-}
-
-void
-Config::setIsBackEnabled( const bool& isBackEnabled )
-{
-    m_isBackEnabled = isBackEnabled;
-    emit isBackEnabledChanged( m_isBackEnabled );
 }
 
 void

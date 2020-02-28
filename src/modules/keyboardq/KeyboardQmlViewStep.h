@@ -23,27 +23,23 @@
 #include <QObject>
 #include "Config.h"
 #include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include <viewpages/QmlViewStep.h>
 
 #include <PluginDllMacro.h>
 #include <QQmlParserStatus>
 
 class KeyboardPage;
 
-class PLUGINDLLEXPORT KeyboardQmlViewStep : public Calamares::ViewStep, public QQmlParserStatus
+class PLUGINDLLEXPORT KeyboardQmlViewStep : public Calamares::QmlViewStep, public QQmlParserStatus
 {
     Q_INTERFACES(QQmlParserStatus)
     Q_OBJECT
-    Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
 
 public:
     explicit KeyboardQmlViewStep( QObject* parent = nullptr );
-    virtual ~KeyboardQmlViewStep() override;
 
     QString prettyName() const override;
     QString prettyStatus() const override;
-
-    QWidget* widget() override;
 
     void classBegin() override;
     void componentComplete() override;

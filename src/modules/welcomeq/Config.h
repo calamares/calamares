@@ -67,14 +67,12 @@ class Config : public QObject
     Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
 
     Q_PROPERTY( QString countryCode MEMBER m_countryCode NOTIFY countryCodeChanged FINAL )
-    Q_PROPERTY (int localeIndex MEMBER m_localeIndex NOTIFY localeIndexChanged)
+    Q_PROPERTY (int localeIndex READ localeIndex WRITE setLocaleIndex NOTIFY localeIndexChanged)
 
-    Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage CONSTANT FINAL )
+    Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage NOTIFY genericWelcomeMessageChanged FINAL )
     Q_PROPERTY( QString warningMessage MEMBER m_warningMessage CONSTANT FINAL )
 
     Q_PROPERTY( bool isNextEnabled MEMBER m_isNextEnabled NOTIFY isNextEnabledChanged FINAL )
-
-    Q_PROPERTY( bool isBackEnabled MEMBER m_isBackEnabled NOTIFY isBackEnabledChanged FINAL )
 
 
 public:
@@ -84,31 +82,34 @@ public:
     RequirementsModel& requirementsModel () const;
 
     void setIsNextEnabled( const bool& isNextEnabled );
-    void setIsBackEnabled( const bool& isBackEnabled );
+
+    void setLocaleIndex(const int &index);
+    int localeIndex() const { return m_localeIndex; }
 
 public slots:
     CalamaresUtils::Locale::LabelModel* languagesModel() const;
-
+    void retranslate();
     QString languageIcon() const;
 
 private:
+    void initLanguages();
     QVariantMap m_configurationMap;
     RequirementsModel* m_requirementsModel;
     QString m_languageIcon;
     QString m_countryCode;
     int m_localeIndex = 0;
     bool m_isNextEnabled = false;
-    bool m_isBackEnabled = false;
+    CalamaresUtils::Locale::LabelModel* m_languages;
 
-    const QString m_genericWelcomeMessage = tr("This program will ask you some questions and set up your installation");
+    QString m_genericWelcomeMessage = tr("This program will ask you some questions and set up your installation");
 
-    const QString m_warningMessage = tr("This program does not satisfy the minimum requirements for installing.\nInstallation can not continue");
+    QString m_warningMessage = tr("This program does not satisfy the minimum requirements for installing.\nInstallation can not continue");
 
 signals:
     void countryCodeChanged( QString countryCode );
     void localeIndexChanged( int localeIndex );
     void isNextEnabledChanged( bool isNextEnabled );
-    void isBackEnabledChanged( bool isBackEnabled );
+    void genericWelcomeMessageChanged();
 };
 
 #endif

@@ -42,14 +42,15 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleQmlViewStepFactory, registerPlugin< L
 
 
 LocaleQmlViewStep::LocaleQmlViewStep( QObject* parent )
-: Calamares::ViewStep( parent )
-, m_config( new Config( this ) )
+: Calamares::QmlViewStep("locale", parent )
+, m_config( new Config( ) )
 , m_nextEnabled( false )
 , m_geoip( nullptr )
 {
     cDebug() << "instance of Locale qml view srep";
     emit nextStatusChanged( m_nextEnabled );
-    this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/locale.conf")).toMap());
+
+    qmlRegisterSingletonType< Config >( "io.calamares.module", 1, 0, "Locale", [&](QQmlEngine*, QJSEngine*) -> QObject* { return m_config; } );
 }
 
 Config*
@@ -101,26 +102,18 @@ LocaleQmlViewStep::prettyName() const
     return tr( "Location" );
 }
 
-
-QWidget*
-LocaleQmlViewStep::widget()
-{
-    return nullptr;
-}
-
 bool
 LocaleQmlViewStep::isNextEnabled() const
 {
     // TODO: should return true
-    return false;
+    return true;
 }
-
 
 bool
 LocaleQmlViewStep::isBackEnabled() const
 {
     // TODO: should return true (it's weird that you are not allowed to have welcome *after* anything
-    return false;
+    return true;
 }
 
 
@@ -209,8 +202,5 @@ void LocaleQmlViewStep::setConfigurationMap(const QVariantMap& configurationMap)
     }
 
     checkRequirements();
-
+    Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
 }
-
-
-

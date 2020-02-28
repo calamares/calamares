@@ -15,8 +15,9 @@ calamares_add_plugin( localeq
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         ${geoip_src}
-        LCLocaleDialog.cpp
+        LocaleQmlViewStep.cpp
         LocaleConfiguration.cpp
+        Config.cpp
         SetTimezoneJob.cpp
         timezonewidget/localeglobal.cpp
     RESOURCES

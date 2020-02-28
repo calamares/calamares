@@ -26,6 +26,7 @@
 #include "locale/Lookup.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
+#include "utils/Dirs.h"
 
 #include "Branding.h"
 #include "modulesystem/ModuleManager.h"
@@ -39,16 +40,19 @@
 CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeQmlViewStepFactory, registerPlugin< WelcomeQmlViewStep >(); )
 
 WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
-	: Calamares::ViewStep( parent )
-	, m_requirementsChecker( new GeneralRequirements( this ) )
-	, m_config( new Config( nullptr ) ) // qml engine singleton takes ownership
-{
-	connect( Calamares::ModuleManager::instance(),
-			 &Calamares::ModuleManager::requirementsComplete,
-			 this,
-			 &WelcomeQmlViewStep::nextStatusChanged );
+: Calamares::QmlViewStep("welcome", parent )
+	, m_config( new Config(  ) ) // the qml singleton takes ownership and deletes it
+//     , m_nextEnabled( false )
+    , m_requirementsChecker( new GeneralRequirements( this ) )
 
-    this->setConfigurationMap(CalamaresUtils::yamlMapToVariant(YAML::LoadFile("src/modules/welcome.conf")).toMap());
+{
+// 	connect( m_config,
+//              &Config::isNextEnabledChanged,
+// 			 this,
+// 			 &WelcomeQmlViewStep::nextStatusChanged );
+//     emit nextStatusChanged(true);
+    qmlRegisterSingletonType< Config >( "io.calamares.module", 1, 0, "Welcome", [&](QQmlEngine*, QJSEngine*) -> QObject* { return m_config; } );
+    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
 }
 
 
@@ -58,21 +62,13 @@ WelcomeQmlViewStep::prettyName() const
 	return tr( "Welcome" );
 }
 
-
-QWidget*
-WelcomeQmlViewStep::widget()
-{
-	return nullptr;
-}
-
-
 bool
 WelcomeQmlViewStep::isNextEnabled() const
 {
 	// TODO: should return true
-	return false;
+//     return m_config->property("isNextEnabled").toBool();
+    return true;
 }
-
 
 bool
 WelcomeQmlViewStep::isBackEnabled() const
@@ -102,39 +98,6 @@ Calamares::JobList
 WelcomeQmlViewStep::jobs() const
 {
 	return Calamares::JobList();
-}
-
-
-/** @brief Look up a URL for a button
- *
- * Looks up @p key in @p map; if it is a *boolean* value, then
- * assume an old-style configuration, and fetch the string from
- * the branding settings @p e. If it is a string, not a boolean,
- * use it as-is. If not found, or a weird type, returns empty.
- *
- * This allows switching the showKnownIssuesUrl and similar settings
- * in welcome.conf from a boolean (deferring to branding) to an
- * actual string for immediate use. Empty strings, as well as
- * "false" as a setting, will hide the buttons as before.
- */
-static QString
-jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map, const QString& key )
-{
-	if ( !map.contains( key ) )
-	{
-		return QString();
-	}
-	auto v = map.value( key );
-	if ( v.type() == QVariant::Bool )
-	{
-		return v.toBool() ? ( *e ) : QString();
-	}
-	if ( v.type() == QVariant::String )
-	{
-		return v.toString();
-	}
-
-	return QString();
 }
 
 void
@@ -194,6 +157,8 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 			m_config->setLanguageIcon(language);
 		}
 	}
+
+    Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
 }
 
 Calamares::RequirementsList

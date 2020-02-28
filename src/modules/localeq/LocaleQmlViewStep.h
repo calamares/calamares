@@ -23,47 +23,24 @@
 #include "geoip/Handler.h"
 #include "geoip/Interface.h"
 #include "utils/PluginFactory.h"
-#include "viewpages/ViewStep.h"
+#include "viewpages/QmlViewStep.h"
 #include <PluginDllMacro.h>
-
-#include <QObject>
 
 #include <QFutureWatcher>
 #include <QObject>
 
 #include <memory>
 
-namespace CalamaresUtils
-{
-    namespace GeoIP
-    {
-        class Handler;
-    }
-}  // namespace CalamaresUtils
 
-class LocalePage;
-
-class QQmlComponent;
-class QQuickItem;
-class QQuickWidget;
-
-
-// TODO: Needs a generic Calamares::QmlViewStep as base class
-// TODO: refactor and move what makes sense to base class
-
-class PLUGINDLLEXPORT LocaleQmlViewStep : public Calamares::ViewStep
+class PLUGINDLLEXPORT LocaleQmlViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT
     Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
-//     Q_PROPERTY(bool isNextEnabled READ isNextEnabled NOTIFY nextStatusChanged)
-//     Q_PROPERTY(bool isBackEnabled READ isBackEnabled NOTIFY nextStatusChanged)
 
 public:
     explicit LocaleQmlViewStep( QObject* parent = nullptr );
 
     QString prettyName() const override;
-
-    QWidget* widget() override;
 
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;
@@ -83,11 +60,6 @@ public:
 private:
     // TODO: a generic QML viewstep should return a config object from a method
     Config *m_config;
-
-    // TODO: these need to be in the base class (also a base class of ExecutionViewStep)
-    QQuickWidget* m_qmlWidget;
-    QQmlComponent* m_qmlComponent;
-    QQuickItem* m_qmlItem;
 
     bool m_nextEnabled;
     QString m_prettyStatus;
