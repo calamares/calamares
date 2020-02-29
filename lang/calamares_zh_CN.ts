@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation>这个系统的&lt;strong&gt;引导环境&lt;/strong&gt;。&lt;br&gt;&lt;br&gt;较旧的 x86 系统只支持 &lt;strong&gt;BIOS&lt;/strong&gt;。&lt;br&gt;现代的系统则通常使用 &lt;strong&gt;EFI&lt;/strong&gt;，但若引导时使用了兼容模式，也可以显示为 BIOS。</translation>
+      <translation>这个系统的&lt;strong&gt;引导环境&lt;/strong&gt;。&lt;br&gt;&lt;br&gt;较旧的 x86 系统只支持 &lt;strong&gt;BIOS&lt;/strong&gt;。&lt;br&gt;现代的系统则通常使用 &lt;strong&gt;EFI&lt;/strong&gt;，但若引导时使用了兼容模式，也可以变为 BIOS。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="81"/>
@@ -138,7 +138,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="40"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation type="unfinished"/>
+      <translation>出现明确抛出的任务执行失败。</translation>
     </message>
   </context>
   <context>
@@ -154,7 +154,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="27"/>
       <source>Example job (%1)</source>
-      <translation type="unfinished"/>
+      <translation>示例任务 (%1)</translation>
     </message>
   </context>
   <context>
@@ -162,12 +162,12 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
       <source>Run command '%1' in target system.</source>
-      <translation type="unfinished"/>
+      <translation>在目标系统上执行 '%1'。</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
       <source> Run command '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>运行命令 '%1'.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="59"/>
@@ -213,17 +213,17 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>正在加载...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>QML 步骤 &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="347"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>加载失败。</translation>
     </message>
   </context>
   <context>
@@ -231,21 +231,21 @@
     <message numerus="yes">
       <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="166"/>
       <source>Waiting for %n module(s).</source>
-      <translation type="unfinished">
-        <numerusform/>
+      <translation>
+        <numerusform>等待 %n 模块。</numerusform>
       </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
       <source>(%n second(s))</source>
-      <translation type="unfinished">
-        <numerusform/>
+      <translation>
+        <numerusform>(%n 秒)</numerusform>
       </translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="172"/>
       <source>System-requirements checking is complete.</source>
-      <translation type="unfinished"/>
+      <translation>已经完成系统需求检查。</translation>
     </message>
   </context>
   <context>
@@ -271,7 +271,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
       <source>Cancel setup without changing the system.</source>
-      <translation type="unfinished"/>
+      <translation>取消安装，保持系统不变。</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
@@ -281,22 +281,22 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="199"/>
       <source>Setup Failed</source>
-      <translation type="unfinished"/>
+      <translation>安装失败</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="200"/>
       <source>Would you like to paste the install log to the web?</source>
-      <translation type="unfinished"/>
+      <translation>需要将安装日志粘贴到网页吗？</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
       <source>Install Log Paste URL</source>
-      <translation type="unfinished"/>
+      <translation>安装日志粘贴 URL</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="241"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
-      <translation type="unfinished"/>
+      <translation>上传失败，未完成网页粘贴。</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
@@ -316,22 +316,22 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
       <source>Continue with installation?</source>
-      <translation type="unfinished"/>
+      <translation>继续安装？</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>为了安装%2, %1 安装程序即将对磁盘进行更改。&lt;br/&gt;&lt;strong&gt;这些更改无法撤销。&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>&amp;Set up now</source>
-      <translation type="unfinished"/>
+      <translation>现在安装(&amp;S)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
       <source>&amp;Set up</source>
-      <translation type="unfinished"/>
+      <translation>安装(&amp;S)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
@@ -341,12 +341,12 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
       <source>Setup is complete. Close the setup program.</source>
-      <translation type="unfinished"/>
+      <translation>安装完成。关闭安装程序。</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
       <source>Cancel setup?</source>
-      <translation type="unfinished"/>
+      <translation>取消安装？</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
@@ -357,7 +357,8 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="491"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>确定要取消当前安装吗?
+安装程序将会退出，所有修改都会丢失。</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="493"/>
@@ -453,7 +454,8 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="34"/>
       <source>Install log posted to:
 %1</source>
-      <translation type="unfinished"/>
+      <translation>安装日志发布到：
+%1</translation>
     </message>
   </context>
   <context>
@@ -461,7 +463,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="72"/>
       <source>%1 Setup Program</source>
-      <translation type="unfinished"/>
+      <translation>%1 安装程序</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="73"/>
@@ -530,7 +532,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="967"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-      <translation type="unfinished"/>
+      <translation>%1 将会缩减未 %2MiB，然后为 %4 创建一个 %3MiB 分区。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
@@ -573,27 +575,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1501"/>
       <source>No Swap</source>
-      <translation type="unfinished"/>
+      <translation>无交换分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1506"/>
       <source>Reuse Swap</source>
-      <translation type="unfinished"/>
+      <translation>重用交换分区</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1509"/>
       <source>Swap (no Hibernate)</source>
-      <translation type="unfinished"/>
+      <translation>交换分区(无休眠)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1512"/>
       <source>Swap (with Hibernate)</source>
-      <translation type="unfinished"/>
+      <translation>交换分区(带休眠)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1515"/>
       <source>Swap to file</source>
-      <translation type="unfinished"/>
+      <translation>交换到文件</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
@@ -773,7 +775,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="49"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-      <translation type="unfinished"/>
+      <translation>在 %4 (%3) 上创建新的 %2MiB 分区，文件系统为 %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
@@ -885,7 +887,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="37"/>
       <source>Create Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>创建存储组</translation>
     </message>
   </context>
   <context>
@@ -893,7 +895,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
       <source>Create new volume group named %1.</source>
-      <translation type="unfinished"/>
+      <translation>创建新存储组 %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
@@ -999,7 +1001,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/DeviceModel.cpp" line="103"/>
       <source>%1 - (%2)</source>
       <extracomment>device[name] - (device-node[name])</extracomment>
-      <translation type="unfinished"/>
+      <translation>%1 - (%2)</translation>
     </message>
   </context>
   <context>
@@ -1162,7 +1164,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
       <source>&lt;Restart checkbox tooltip&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1210,7 +1212,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="132"/>
       <source>Setup Complete</source>
-      <translation type="unfinished"/>
+      <translation>安装完成</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="133"/>
@@ -1220,7 +1222,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="135"/>
       <source>The setup of %1 is complete.</source>
-      <translation type="unfinished"/>
+      <translation>%1 安装完成。</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
@@ -1500,7 +1502,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="96"/>
       <source>URL: %1</source>
-      <translation type="unfinished"/>
+      <translation>URL: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="117"/>
@@ -1537,22 +1539,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="171"/>
       <source>File: %1</source>
-      <translation type="unfinished"/>
+      <translation>文件：%1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>显示协议文本</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
       <source>Open license agreement in browser.</source>
-      <translation type="unfinished"/>
+      <translation>在浏览器中打开许可协议。</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Hide license text</source>
-      <translation type="unfinished"/>
+      <translation>隐藏协议文本</translation>
     </message>
   </context>
   <context>
@@ -1602,13 +1604,13 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="39"/>
       <source>Configuring LUKS key file.</source>
-      <translation type="unfinished"/>
+      <translation>配置 LUKS key 文件。</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
       <source>No partitions are defined.</source>
-      <translation type="unfinished"/>
+      <translation>未定义分区。</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
@@ -1643,7 +1645,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="62"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>配置错误</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="63"/>
@@ -1690,52 +1692,52 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office software</source>
-      <translation type="unfinished"/>
+      <translation>办公软件</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Office package</source>
-      <translation type="unfinished"/>
+      <translation>办公软件包</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Browser software</source>
-      <translation type="unfinished"/>
+      <translation>浏览器软件</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Browser package</source>
-      <translation type="unfinished"/>
+      <translation>浏览器安装包</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation>网页浏览器</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>内核</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>服务</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Login</source>
-      <translation type="unfinished"/>
+      <translation>登录</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>桌面</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>应用程序</translation>
     </message>
   </context>
   <context>
@@ -1743,7 +1745,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
       <source>Notes</source>
-      <translation type="unfinished"/>
+      <translation>备注</translation>
     </message>
   </context>
   <context>
@@ -1751,7 +1753,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="28"/>
       <source>Ba&amp;tch:</source>
-      <translation type="unfinished"/>
+      <translation>批量(&amp;T)：</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="38"/>
@@ -1769,7 +1771,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="121"/>
       <source>OEM Configuration</source>
-      <translation type="unfinished"/>
+      <translation>OEM 配置</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="126"/>
@@ -2022,7 +2024,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>密码是空</translation>
     </message>
   </context>
   <context>
@@ -2035,7 +2037,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="40"/>
       <source>Product Name</source>
-      <translation type="unfinished"/>
+      <translation>产品名称</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="53"/>
@@ -2045,12 +2047,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="69"/>
       <source>Long Product Description</source>
-      <translation type="unfinished"/>
+      <translation>长产品描述</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
       <source>Package Selection</source>
-      <translation type="unfinished"/>
+      <translation>软件包选择</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
@@ -2063,7 +2065,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
       <source>Packages</source>
-      <translation type="unfinished"/>
+      <translation>软件包</translation>
     </message>
   </context>
   <context>
@@ -2120,12 +2122,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>全名</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
       <source>login</source>
-      <translation type="unfinished"/>
+      <translation>登录</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
@@ -2135,19 +2137,19 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>计算机名称</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>密码</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>重复密码</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
@@ -3364,7 +3366,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
       <source>Create Volume Group</source>
-      <translation type="unfinished"/>
+      <translation>创建存储组</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
@@ -3433,17 +3435,17 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
       <source>&amp;Donate</source>
-      <translation type="unfinished"/>
+      <translation>捐赠(&amp;D)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>Open help and support website</source>
-      <translation type="unfinished"/>
+      <translation>打开帮助和支持页面</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
-      <translation type="unfinished"/>
+      <translation>打开问题追踪网站</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
@@ -3541,32 +3543,32 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
       <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>关于</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>支持</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>已知问题</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>发行说明</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>捐赠</translation>
     </message>
   </context>
 </TS>

@@ -132,7 +132,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
       <source>Job failed (%1)</source>
-      <translation>(% 1) 작업 실패</translation>
+      <translation>(%1) 작업 실패</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="40"/>
@@ -212,17 +212,17 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>로딩 중 ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>QML 단계 &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="347"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>로딩하지 못했습니다.</translation>
     </message>
   </context>
   <context>
@@ -1630,7 +1630,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
       <source>Could not configure LUKS key file on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>파티션 %1에 LUKS 키 파일을 설정할 수 없습니다.</translation>
     </message>
   </context>
   <context>
@@ -1690,52 +1690,52 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office software</source>
-      <translation type="unfinished"/>
+      <translation>오피스 소프트웨어</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Office package</source>
-      <translation type="unfinished"/>
+      <translation>오피스 패키지</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Browser software</source>
-      <translation type="unfinished"/>
+      <translation>브라우저 소프트웨어</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Browser package</source>
-      <translation type="unfinished"/>
+      <translation>브라우저 패키지</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation>웹 브라우저</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>커널</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>서비스</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Login</source>
-      <translation type="unfinished"/>
+      <translation>로그인</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>데스크탑</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>애플리케이션</translation>
     </message>
   </context>
   <context>
@@ -1743,7 +1743,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
       <source>Notes</source>
-      <translation type="unfinished"/>
+      <translation>노트</translation>
     </message>
   </context>
   <context>
@@ -2443,7 +2443,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="651"/>
       <source>There are no partitions to install on.</source>
-      <translation type="unfinished"/>
+      <translation>설치를 위한 파티션이 없습니다.</translation>
     </message>
   </context>
   <context>
@@ -3533,7 +3533,8 @@ Output:
       <location filename="../src/modules/notesqml/notesqml.qml" line="60"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;릴리즈 노트의 예제입니다.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3541,32 +3542,32 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
       <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>Calamares에 대하여</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>지원</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>알려진 이슈들</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>릴리즈 노트</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>기부</translation>
     </message>
   </context>
 </TS>

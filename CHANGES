@@ -3,16 +3,44 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.20 (unreleased) #
+# 3.2.20 (2020-02-27) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Bart Ribbers
 
 ## Core ##
- - No core changes yet
+ - When logging level is set to 8 (eight), for instance via the `-D8`
+   logging flag, or the `-d` debug flag, the *Show debug information*
+   button will appear in the progress view. This helps with debugging
+   issues where the `-d` flag would be inappropriate.
+ - Calamares now starts at logging level 1 (warnings and errors to
+   the console) by default. Previously it (wrongly) started at level 8.
 
 ## Modules ##
- - No module changes yet
+ - The *partition* module now stores which filesystems are in use in
+   global storage.
+ - The *contextualprocess* module now understands "compound variable
+   names", where a dot (.) is used to index into structured data
+   stored in global storage. This allows it to use the map stored
+   by the partition module (but also other things, like looking into
+   the branding information).
+ - The *packages* module now understands "apk", the Alpine Linux
+   package manager.
+
+
+# 3.2.19.1 (2020-02-24) #
+
+This is a hotfix release for bugs in the *users* module.
+Reported by Philip Mueller and Walter Lapchynski.
+
+## Modules ##
+ - The *users* module no longer wrote `/etc/hostname` at all.
+ - The *users* module erroneously shows the root password input fields.
+ - The *initramfs* module sets a resume-hook even when there is no swap.
+ - The partitioning service expects *udevadm* in `/sbin`, but some
+   distro's place it elsewhere.
+ - The mount service didn't unmount directories properly, leading to
+   blocked installations.
 
 
 # 3.2.19 (2020-02-21) #

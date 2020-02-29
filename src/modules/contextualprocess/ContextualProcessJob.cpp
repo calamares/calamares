@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,9 +18,7 @@
 
 #include "ContextualProcessJob.h"
 
-#include <QDateTime>
-#include <QProcess>
-#include <QThread>
+#include "Binding.h"
 
 #include "CalamaresVersion.h"
 #include "GlobalStorage.h"
@@ -30,80 +28,87 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
-struct ValueCheck : public QPair< QString, CalamaresUtils::CommandList* >
-{
-    ValueCheck( const QString& value, CalamaresUtils::CommandList* commands )
-        : QPair< QString, CalamaresUtils::CommandList* >( value, commands )
-    {
-    }
-
-    // ~ValueCheck()
-    //
-    // There is no destructor.
-    //
-    // We don't own the commandlist, the binding holding this valuecheck
-    // does, so don't delete. This is closely tied to (temporaries created
-    // by) pass-by-value in QList::append().
-
-    QString value() const { return first; }
-    CalamaresUtils::CommandList* commands() const { return second; }
-};
-
-struct ContextualProcessBinding
-{
-    ContextualProcessBinding( const QString& varname )
-        : variable( varname )
-    {
-    }
-
-    ~ContextualProcessBinding();
-
-    /**
-     * @brief add commands to be executed when @p value is matched.
-     *
-     * Ownership of the CommandList passes to this binding.
-     */
-    void append( const QString& value, CalamaresUtils::CommandList* commands )
-    {
-        checks.append( ValueCheck( value, commands ) );
-        if ( value == QString( "*" ) )
-        {
-            wildcard = commands;
-        }
-    }
-
-    Calamares::JobResult run( const QString& value ) const
-    {
-        for ( const auto& c : checks )
-        {
-            if ( value == c.value() )
-            {
-                return c.commands()->run();
-            }
-        }
-
-        if ( wildcard )
-        {
-            return wildcard->run();
-        }
-
-        return Calamares::JobResult::ok();
-    }
-
-    QString variable;
-    QList< ValueCheck > checks;
-    CalamaresUtils::CommandList* wildcard { nullptr };
-};
-
 
 ContextualProcessBinding::~ContextualProcessBinding()
 {
-    wildcard = nullptr;
-    for ( const auto& c : checks )
+    m_wildcard = nullptr;
+    for ( const auto& c : m_checks )
     {
         delete c.commands();
     }
 }
+
+void
+ContextualProcessBinding::append( const QString& value, CalamaresUtils::CommandList* commands )
+{
+    m_checks.append( ValueCheck( value, commands ) );
+    if ( value == QString( "*" ) )
+    {
+        m_wildcard = commands;
+    }
+}
+
+Calamares::JobResult
+ContextualProcessBinding::run( const QString& value ) const
+{
+    for ( const auto& c : m_checks )
+    {
+        if ( value == c.value() )
+        {
+            return c.commands()->run();
+        }
+    }
+
+    if ( m_wildcard )
+    {
+        return m_wildcard->run();
+    }
+
+    return Calamares::JobResult::ok();
+}
+
+///@brief Implementation of fetch() for recursively looking up dotted selector parts.
+static bool
+fetch( QString& value, QStringList& selector, int index, const QVariant& v )
+{
+    if ( !v.canConvert( QMetaType::QVariantMap ) )
+    {
+        return false;
+    }
+    const QVariantMap map = v.toMap();
+    const QString& key = selector.at( index );
+    if ( index == selector.length() - 1)
+    {
+        value = map.value( key ).toString();
+        return map.contains( key );
+    }
+    else
+    {
+        return fetch( value, selector, index + 1, map.value( key ) );
+    }
+}
+
+
+bool
+ContextualProcessBinding::fetch( Calamares::GlobalStorage* storage, QString& value ) const
+{
+    value.clear();
+    if ( !storage )
+    {
+        return false;
+    }
+    if ( m_variable.contains( '.' ) )
+    {
+        QStringList steps = m_variable.split( '.' );
+        return ::fetch( value, steps, 1, storage->value( steps.first() ) );
+    }
+    else
+    {
+        value = storage->value( m_variable ).toString();
+        return storage->contains( m_variable );
+    }
+}
+
 
 ContextualProcessJob::ContextualProcessJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -131,9 +136,10 @@ ContextualProcessJob::exec()
 
     for ( const ContextualProcessBinding* binding : m_commands )
     {
-        if ( gs->contains( binding->variable ) )
+        QString value;
+        if ( binding->fetch( gs, value ) )
         {
-            Calamares::JobResult r = binding->run( gs->value( binding->variable ).toString() );
+            Calamares::JobResult r = binding->run( value );
             if ( !r )
             {
                 return r;
@@ -141,7 +147,7 @@ ContextualProcessJob::exec()
         }
         else
         {
-            cWarning() << "ContextualProcess checks for unknown variable" << binding->variable;
+            cWarning() << "ContextualProcess checks for unknown variable" << binding->variable();
         }
     }
     return Calamares::JobResult::ok();
@@ -203,10 +209,12 @@ int
 ContextualProcessJob::count( const QString& variableName )
 {
     for ( const ContextualProcessBinding* binding : m_commands )
-        if ( binding->variable == variableName )
+    {
+        if ( binding->variable() == variableName )
         {
-            return binding->checks.count();
+            return binding->count();
         }
+    }
     return -1;
 }
 

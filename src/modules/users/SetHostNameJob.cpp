@@ -31,6 +31,8 @@
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusReply>
 
+using WriteMode = CalamaresUtils::System::WriteMode;
+
 SetHostNameJob::SetHostNameJob( const QString& hostname, Actions a )
     : Calamares::Job()
     , m_hostname( hostname )
@@ -61,9 +63,8 @@ SetHostNameJob::prettyStatusMessage() const
 STATICTEST bool
 setFileHostname( const QString& hostname )
 {
-    return !( CalamaresUtils::System::instance()
-                  ->createTargetFile( QStringLiteral( "/etc/hostname" ), ( hostname + '\n' ).toUtf8() )
-                  .failed() );
+    return CalamaresUtils::System::instance()->createTargetFile(
+        QStringLiteral( "/etc/hostname" ), ( hostname + '\n' ).toUtf8(), WriteMode::Overwrite );
 }
 
 STATICTEST bool
@@ -78,9 +79,8 @@ ff02::1    ip6-allnodes
 ff02::2    ip6-allrouters
 )";
 
-    return !( CalamaresUtils::System::instance()
-                  ->createTargetFile( QStringLiteral( "/etc/hosts" ), QString( etc_hosts ).arg( hostname ).toUtf8() )
-                  .failed() );
+    return CalamaresUtils::System::instance()->createTargetFile(
+        QStringLiteral( "/etc/hosts" ), QString( etc_hosts ).arg( hostname ).toUtf8(), WriteMode::Overwrite );
 }
 
 STATICTEST bool

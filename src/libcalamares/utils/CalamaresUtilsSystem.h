@@ -258,6 +258,12 @@ public:
      */
     DLLEXPORT QString targetPath( const QString& path ) const;
 
+    enum class WriteMode
+    {
+        KeepExisting,
+        Overwrite
+    };
+
     /** @brief Create a (small-ish) file in the target system.
      *
      * @param path Path to the file; this is interpreted
@@ -265,14 +271,18 @@ public:
      *      but / in the chroot, or / in OEM modes).
      * @param contents Actual content of the file.
      *
-     * Will not overwrite files. Returns an empty string if the
-     * target file already exists.
+     * If the target already exists:
+     *  - returns AlreadyExists as a result (and does not overwrite),
+     *  - **unless** @p mode is set to Overwrite, then it tries writing as
+     *    usual and will not return AlreadyExists.
      *
      * @return The complete canonical path to the target file from the
      *      root of the host system, or empty on failure. (Here, it is
      *      possible to be canonical because the file exists).
      */
-    DLLEXPORT CreationResult createTargetFile( const QString& path, const QByteArray& contents ) const;
+    DLLEXPORT CreationResult createTargetFile( const QString& path,
+                                               const QByteArray& contents,
+                                               WriteMode mode = WriteMode::KeepExisting ) const;
 
     /** @brief Remove a file from the target system.
      *

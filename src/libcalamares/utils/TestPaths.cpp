@@ -49,6 +49,8 @@ private Q_SLOTS:
     void testCreationResult();
     void testTargetPath();
     void testCreateTarget();
+    void testCreateTargetExists();
+    void testCreateTargetOverwrite();
     void testCreateTargetBasedirs();
 
 private:
@@ -96,31 +98,32 @@ TestPaths::init()
     m_gs->insert( "rootMountPoint", "/tmp" );
 }
 
-void TestPaths::testCreationResult()
+void
+TestPaths::testCreationResult()
 {
     using Code = CalamaresUtils::CreationResult::Code;
 
-    for( auto c : { Code::OK, Code::AlreadyExists, Code::Failed, Code::Invalid } )
+    for ( auto c : { Code::OK, Code::AlreadyExists, Code::Failed, Code::Invalid } )
     {
         auto r = CalamaresUtils::CreationResult( c );
         QVERIFY( r.path().isEmpty() );
         QCOMPARE( r.path(), QString() );
         // Get a warning from Clang if we're not covering everything
-        switch( r.code() )
+        switch ( r.code() )
         {
-            case Code::OK:
-                QVERIFY( !r.failed() );
-                QVERIFY( r );
-                break;
-            case Code::AlreadyExists:
-                QVERIFY( !r.failed() );
-                QVERIFY( !r );
-                break;
-            case Code::Failed:
-            case Code::Invalid:
-                QVERIFY( r.failed() );
-                QVERIFY( !r );
-                break;
+        case Code::OK:
+            QVERIFY( !r.failed() );
+            QVERIFY( r );
+            break;
+        case Code::AlreadyExists:
+            QVERIFY( !r.failed() );
+            QVERIFY( !r );
+            break;
+        case Code::Failed:
+        case Code::Invalid:
+            QVERIFY( r.failed() );
+            QVERIFY( !r );
+            break;
         }
     }
 
@@ -167,6 +170,75 @@ TestPaths::testCreateTarget()
     QFileInfo fi2( absFile );  // fi caches information
     QVERIFY( !fi2.exists() );
 }
+
+struct GSRollback
+{
+    GSRollback( const QString& key )
+        : m_key( key )
+        , m_value( Calamares::JobQueue::instance()->globalStorage()->value( key ) )
+    {
+    }
+    ~GSRollback() { Calamares::JobQueue::instance()->globalStorage()->insert( m_key, m_value ); }
+    QString m_key;
+    QVariant m_value;
+};
+
+
+void
+TestPaths::testCreateTargetExists()
+{
+    static const char ltestFile[] = "cala-test-world";
+    GSRollback g( QStringLiteral( "rootMountPoint" ) );
+
+    QTemporaryDir d;
+    d.setAutoRemove( true );
+    Calamares::JobQueue::instance()->globalStorage()->insert( QStringLiteral( "rootMountPoint" ), d.path() );
+
+    QVERIFY( QFileInfo( d.path() ).exists() );
+    auto r = m_system->createTargetFile( ltestFile, "Hello" );
+    QVERIFY( r );
+    QVERIFY( r.path().endsWith( QString( ltestFile ) ) );
+    QCOMPARE( QFileInfo( d.filePath( QString( ltestFile ) ) ).size(), 5 );
+
+    r = m_system->createTargetFile( ltestFile, "Goodbye" );
+    QVERIFY( !r.failed() );  // It didn't fail!
+    QVERIFY( !r );  // But not unqualified success, either
+
+    QVERIFY( r.path().isEmpty() );
+    QCOMPARE( QFileInfo( d.filePath( QString( ltestFile ) ) ).size(), 5 );  // Unchanged!
+}
+
+void
+TestPaths::testCreateTargetOverwrite()
+{
+    static const char ltestFile[] = "cala-test-world";
+    GSRollback g( QStringLiteral( "rootMountPoint" ) );
+
+    QTemporaryDir d;
+    d.setAutoRemove( true );
+    Calamares::JobQueue::instance()->globalStorage()->insert( QStringLiteral( "rootMountPoint" ), d.path() );
+
+    QVERIFY( QFileInfo( d.path() ).exists() );
+    auto r = m_system->createTargetFile( ltestFile, "Hello" );
+    QVERIFY( r );
+    QVERIFY( r.path().endsWith( QString( ltestFile ) ) );
+    QCOMPARE( QFileInfo( d.filePath( QString( ltestFile ) ) ).size(), 5 );
+
+    r = m_system->createTargetFile( ltestFile, "Goodbye", CalamaresUtils::System::WriteMode::KeepExisting );
+    QVERIFY( !r.failed() );  // It didn't fail!
+    QVERIFY( !r );  // But not unqualified success, either
+
+    QVERIFY( r.path().isEmpty() );
+    QCOMPARE( QFileInfo( d.filePath( QString( ltestFile ) ) ).size(), 5 );  // Unchanged!
+
+    r = m_system->createTargetFile( ltestFile, "Goodbye", CalamaresUtils::System::WriteMode::Overwrite );
+    QVERIFY( !r.failed() );  // It didn't fail!
+    QVERIFY( r );  // Total success
+
+    QVERIFY( r.path().endsWith( QString( ltestFile ) ) );
+    QCOMPARE( QFileInfo( d.filePath( QString( ltestFile ) ) ).size(), 7 );
+}
+
 
 struct DirRemover
 {

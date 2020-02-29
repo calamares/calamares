@@ -135,7 +135,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     sideLayout->addWidget( tv );
     tv->setFocusPolicy( Qt::NoFocus );
 
-    if ( Calamares::Settings::instance()->debugMode() )
+    if ( Calamares::Settings::instance()->debugMode() || ( Logger::logLevel() >= Logger::LOGVERBOSE ) )
     {
         QPushButton* debugWindowBtn = new QPushButton;
         debugWindowBtn->setObjectName( "debugButton" );
