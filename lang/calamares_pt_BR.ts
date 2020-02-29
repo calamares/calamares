@@ -212,17 +212,17 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>Carregando ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Passo QML &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="347"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>Carregamento falhou.</translation>
     </message>
   </context>
   <context>
@@ -1632,7 +1632,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
       <source>Could not configure LUKS key file on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Não foi possível configurar a chave LUKS na partição %1.</translation>
     </message>
   </context>
   <context>
@@ -1692,52 +1692,52 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office software</source>
-      <translation type="unfinished"/>
+      <translation>Software de office</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Office package</source>
-      <translation type="unfinished"/>
+      <translation>Pacote office</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Browser software</source>
-      <translation type="unfinished"/>
+      <translation>Softwares de browser</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Browser package</source>
-      <translation type="unfinished"/>
+      <translation>Pacote de browser</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation>Navegador web</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>Kernel</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>Seriços</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Login</source>
-      <translation type="unfinished"/>
+      <translation>Login</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>Área de trabalho</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>Aplicações</translation>
     </message>
   </context>
   <context>
@@ -1745,7 +1745,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
       <source>Notes</source>
-      <translation type="unfinished"/>
+      <translation>Notas</translation>
     </message>
   </context>
   <context>
@@ -2445,7 +2445,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="651"/>
       <source>There are no partitions to install on.</source>
-      <translation type="unfinished"/>
+      <translation>Não há partições para instalar.</translation>
     </message>
   </context>
   <context>
@@ -3535,7 +3535,8 @@ Saída:
       <location filename="../src/modules/notesqml/notesqml.qml" line="60"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;These are example release notes.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3543,32 +3544,32 @@ Saída:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
       <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>Sobre</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>Suporte</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>Problemas conhecidos</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>Notas de lançamento</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Faça uma doação</translation>
     </message>
   </context>
 </TS>

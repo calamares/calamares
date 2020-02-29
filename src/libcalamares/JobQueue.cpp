@@ -36,7 +36,6 @@ public:
         : QThread( queue )
         , m_queue( queue )
         , m_jobIndex( 0 )
-        , m_jobCount( 0 )
     {
     }
 
@@ -104,7 +103,6 @@ private:
     QList< qreal > m_jobWeights;
     JobQueue* m_queue;
     int m_jobIndex;
-    int m_jobCount;
 
     void emitProgress( qreal jobPercent = 0 )
     {
@@ -125,9 +123,9 @@ private:
 
         if ( m_jobIndex < jobCount )
         {
-            cDebug( Logger::LOGVERBOSE ) << "[JOBQUEUE]: Progress for Job[" << m_jobIndex
+            Logger::CDebug( Logger::LOGVERBOSE ) << "[JOBQUEUE]: Progress for Job[" << m_jobIndex
                                          << "]: " << ( jobPercent * 100 ) << "% completed";
-            cDebug( Logger::LOGVERBOSE ) << "[JOBQUEUE]: Progress Overall: " << ( cumulativeProgress * 100 )
+            Logger::CDebug( Logger::LOGVERBOSE ) << "[JOBQUEUE]: Progress Overall: " << ( cumulativeProgress * 100 )
                                          << "% (accumulated) + "
                                          << ( ( ( m_jobWeights.at( m_jobIndex ) ) * jobPercent ) * 100 )
                                          << "% (this job) = " << ( percent * 100 ) << "% (total)";

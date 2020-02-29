@@ -134,14 +134,32 @@ public:
  * will produce a single timestamped debug line with continuations.
  * Each element of the list of strings will be logged on a separate line.
  */
-struct DebugList
+/* TODO: Calamares 3.3, bump requirements to C++17, and rename
+ *       this to DebugList, dropping the convenience-definition
+ *       below. In C++17, class template argument deduction is
+ *       added, so `DebugList( whatever )` determines the right
+ *       type already (also for QStringList).
+ */
+template < typename T >
+struct DebugListT
 {
-    explicit DebugList( const QStringList& l )
+    using list_t = QList< T >;
+
+    explicit DebugListT( const list_t& l )
         : list( l )
     {
     }
 
-    const QStringList& list;
+    const list_t& list;
+};
+
+///@brief Convenience for QStringList, needs no template parameters
+struct DebugList : public DebugListT< QString >
+{
+    explicit DebugList( const list_t& l )
+        : DebugListT( l )
+    {
+    }
 };
 
 /**
@@ -174,9 +192,10 @@ operator<<( QDebug& s, const DebugRow< T, U >& t )
     return s;
 }
 
-/** @brief output operator for DebugList */
+/** @brief output operator for DebugList, assuming operator<< for T exists */
+template < typename T = QString >
 inline QDebug&
-operator<<( QDebug& s, const DebugList& c )
+operator<<( QDebug& s, const DebugListT< T >& c )
 {
     for ( const auto& i : c.list )
     {
@@ -200,7 +219,7 @@ operator<<( QDebug& s, const DebugMap& t )
 }
 }  // namespace Logger
 
-#define cDebug Logger::CDebug
+#define cDebug() (Logger::CDebug( Logger::LOGDEBUG ) << Q_FUNC_INFO << Logger::Continuation)
 #define cWarning() Logger::CDebug( Logger::LOGWARNING )
 #define cError() Logger::CDebug( Logger::LOGERROR )
 

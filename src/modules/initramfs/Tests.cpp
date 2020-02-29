@@ -46,7 +46,7 @@ InitramfsTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
-    auto* j = new Calamares::JobQueue();
+    (void) new Calamares::JobQueue();
     (void) new CalamaresUtils::System( true );
 }
 

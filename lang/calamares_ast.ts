@@ -212,7 +212,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>Cargando...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
@@ -222,7 +222,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="347"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>Falló la carga.</translation>
     </message>
   </context>
   <context>
@@ -532,7 +532,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="967"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-      <translation>%1 va redimensionase a %2MB y va crease una partición nueva de %3MB pa %4.</translation>
+      <translation>%1 va redimensionase a %2MB y va crease una partición de %3MB pa %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
@@ -785,7 +785,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="72"/>
       <source>Creating new %1 partition on %2.</source>
-      <translation>Creando una partición %1 nueva en %2.</translation>
+      <translation>Creando una partición %1 en %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="84"/>
@@ -803,7 +803,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
       <source>Creating a new partition table will delete all existing data on the disk.</source>
-      <translation>Crear una tabla de particiones nueva va desaniciar tolos datos esistentes nel discu.</translation>
+      <translation>Crear una tabla de particiones va desaniciar tolos datos esistentes nel discu.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
@@ -831,12 +831,12 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
       <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-      <translation>Va crease una tabla de particiones nueva &lt;strong&gt;%1&lt;/strong&gt; en &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+      <translation>Va crease una tabla de particiones &lt;strong&gt;%1&lt;/strong&gt; en &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="64"/>
       <source>Creating new %1 partition table on %2.</source>
-      <translation>Creando una tabla de particiones nueva %1 en %2.</translation>
+      <translation>Creando una tabla de particiones %1 en %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="82"/>
@@ -895,17 +895,17 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
       <source>Create new volume group named %1.</source>
-      <translation>Creación d'un grupu nuevu de volúmenes col nome %1.</translation>
+      <translation>Creación d'un grupu de volúmenes col nome %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Va crease un grupu nuevu de volúmenes col nome &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>Va crease un grupu de volúmenes col nome &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
       <source>Creating new volume group named %1.</source>
-      <translation>Creando un grupu nuevu de volúmenes col nome %1.</translation>
+      <translation>Creando un grupu de volúmenes col nome %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
@@ -975,7 +975,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="122"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation>Esti instalador &lt;strong&gt;nun pue deteutar una tabla de particiones&lt;/strong&gt; nel preséu d'almacenamientu esbilláu.&lt;br&gt;&lt;br&gt;El preséu nun tien una tabla de particiones, la tabla de particiones ta toyida o ye d'una triba desconocida.&lt;br&gt;Esti instalador pue crear una tabla de particiones nueva por ti, automáticamente o pente la páxina de particionáu manual.</translation>
+      <translation>Esti instalador &lt;strong&gt;nun pue deteutar una tabla de particiones&lt;/strong&gt; nel preséu d'almacenamientu esbilláu.&lt;br&gt;&lt;br&gt;El preséu nun tien una tabla de particiones porque ta toyida o ye d'una triba desconocida.&lt;br&gt;Esti instalador pue crear una tabla de particiones nueva por ti, automáticamente o pente la páxina de particionáu manual.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="132"/>
@@ -1470,22 +1470,22 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
-      <translation type="unfinished"/>
+      <translation>Esti procedimientu va instalar software privativu que ta suxetu a términos de llicencia.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>Si nun aceutes los términos, el procedimientu de configuración nun pue siguir.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="164"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-      <translation type="unfinished"/>
+      <translation>Esti procedimientu de configuración pue instalar software privativu que ta suxetu a términos de llicencia pa fornir carauterístiques adicionales y ameyorar la esperiencia d'usuariu.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="169"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation type="unfinished"/>
+      <translation>Si nun aceutes los términos, el software privativu nun va instalase y van usase les alternatives de códigu abiertu.</translation>
     </message>
   </context>
   <context>
@@ -1501,7 +1501,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="96"/>
       <source>URL: %1</source>
-      <translation type="unfinished"/>
+      <translation>URL: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="117"/>
@@ -1538,7 +1538,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="171"/>
       <source>File: %1</source>
-      <translation type="unfinished"/>
+      <translation>Ficheru: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
@@ -1691,12 +1691,12 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office software</source>
-      <translation type="unfinished"/>
+      <translation>Software ofimáticu</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Office package</source>
-      <translation type="unfinished"/>
+      <translation>Paquete ofimáticu</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
@@ -1711,17 +1711,17 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation>Restolador web</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>Kernel</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>Servicios</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
@@ -1731,12 +1731,12 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>Escritoriu</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>Aplicaciones</translation>
     </message>
   </context>
   <context>
@@ -1744,7 +1744,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
       <source>Notes</source>
-      <translation type="unfinished"/>
+      <translation>Notes</translation>
     </message>
   </context>
   <context>
@@ -2023,7 +2023,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>La contraseña ta balera</translation>
     </message>
   </context>
   <context>
@@ -2064,7 +2064,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
       <source>Packages</source>
-      <translation type="unfinished"/>
+      <translation>Paquetes</translation>
     </message>
   </context>
   <context>
@@ -2142,7 +2142,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Contraseña</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
@@ -2301,22 +2301,22 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
       <source>New Volume Group</source>
-      <translation>Grupu de volúmenes nuevu</translation>
+      <translation>Grupu nuevu</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
       <source>Resize Volume Group</source>
-      <translation>Redimensionar el grupu de volúmenes</translation>
+      <translation>Redimensionar el grupu</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
       <source>Deactivate Volume Group</source>
-      <translation>Desactivar el grupu de volúmenes</translation>
+      <translation>Desactivar el grupu</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
       <source>Remove Volume Group</source>
-      <translation>Desaniciar el grupu de volúmenes</translation>
+      <translation>Desaniciar el grupu</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
@@ -2439,12 +2439,12 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="650"/>
       <source>has at least one disk device available.</source>
-      <translation>tien polo menos un preséu con espaciu disponible en discu</translation>
+      <translation>tien polo menos un preséu disponible d'almacenamientu</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="651"/>
       <source>There are no partitions to install on.</source>
-      <translation type="unfinished"/>
+      <translation>Nun hai particiones nes qu'instalar.</translation>
     </message>
   </context>
   <context>
@@ -2649,7 +2649,7 @@ Salida:
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="74"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation type="unfinished"/>
+      <translation>El camín &lt;pre&gt;%1&lt;/pre&gt; ha ser absolutu.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
@@ -2850,7 +2850,7 @@ Salida:
     <message>
       <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="39"/>
       <source>Resize Volume Group</source>
-      <translation>Redimensionar el grupu de volúmenes</translation>
+      <translation>Redimensionar el grupu</translation>
     </message>
   </context>
   <context>
@@ -3542,7 +3542,7 @@ Salida:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
       <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
@@ -3557,12 +3557,12 @@ Salida:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>Problemes conocíos</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>Notes del llanzamientu</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>

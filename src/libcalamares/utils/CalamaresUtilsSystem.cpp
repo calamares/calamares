@@ -247,7 +247,7 @@ System::targetPath( const QString& path ) const
 }
 
 CreationResult
-System::createTargetFile( const QString& path, const QByteArray& contents ) const
+System::createTargetFile( const QString& path, const QByteArray& contents, WriteMode mode ) const
 {
     QString completePath = targetPath( path );
     if ( completePath.isEmpty() )
@@ -256,7 +256,7 @@ System::createTargetFile( const QString& path, const QByteArray& contents ) cons
     }
 
     QFile f( completePath );
-    if ( f.exists() )
+    if ( ( mode == WriteMode::KeepExisting ) && f.exists() )
     {
         return CreationResult( CreationResult::Code::AlreadyExists );
     }
@@ -264,7 +264,7 @@ System::createTargetFile( const QString& path, const QByteArray& contents ) cons
     QIODevice::OpenMode m =
 #if QT_VERSION >= QT_VERSION_CHECK( 5, 11, 0 )
         // New flag from Qt 5.11, implies WriteOnly
-        QIODevice::NewOnly |
+        ( mode == WriteMode::KeepExisting ? QIODevice::NewOnly : QIODevice::WriteOnly ) |
 #endif
         QIODevice::WriteOnly | QIODevice::Truncate;
 
