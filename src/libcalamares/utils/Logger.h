@@ -44,12 +44,13 @@ enum
 class DLLEXPORT CDebug : public QDebug
 {
 public:
-    explicit CDebug( unsigned int debugLevel = LOGDEBUG );
+    explicit CDebug( unsigned int debugLevel = LOGDEBUG, const char* func = nullptr );
     virtual ~CDebug();
 
 private:
     QString m_msg;
     unsigned int m_debugLevel;
+    const char* m_funcinfo = nullptr;
 };
 
 /**
@@ -201,8 +202,8 @@ operator<<( QDebug& s, const DebugMap& t )
 }
 }  // namespace Logger
 
-#define cDebug() ( Logger::CDebug( Logger::LOGDEBUG ) << Q_FUNC_INFO << Logger::Continuation )
-#define cWarning() Logger::CDebug( Logger::LOGWARNING )
-#define cError() Logger::CDebug( Logger::LOGERROR )
+#define cDebug() Logger::CDebug( Logger::LOGDEBUG, Q_FUNC_INFO )
+#define cWarning() Logger::CDebug( Logger::LOGWARNING, Q_FUNC_INFO )
+#define cError() Logger::CDebug( Logger::LOGERROR, Q_FUNC_INFO )
 
 #endif

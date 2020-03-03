@@ -172,9 +172,10 @@ setupLogfile()
     qInstallMessageHandler( CalamaresLogHandler );
 }
 
-CDebug::CDebug( unsigned int debugLevel )
+CDebug::CDebug( unsigned int debugLevel, const char* func )
     : QDebug( &m_msg )
     , m_debugLevel( debugLevel )
+    , m_funcinfo( func )
 {
     if ( debugLevel <= LOGERROR )
     {
@@ -189,6 +190,11 @@ CDebug::CDebug( unsigned int debugLevel )
 
 CDebug::~CDebug()
 {
+    if ( m_funcinfo )
+    {
+        m_msg.prepend( Continuation );
+        m_msg.prepend( m_funcinfo );
+    }
     log( m_msg.toUtf8().data(), m_debugLevel );
 }
 
