@@ -59,7 +59,7 @@ RemoveUserJob::exec()
                                     m_username } );
     if ( r.getExitCode() != 0 )
     {
-        cWarning() << "Cannot remove user `" << m_username << "`. userdel terminated with exit code" << r.getExitCode();
+        cWarning() << "Cannot remove user" << m_username << "userdel terminated with exit code" << r.getExitCode();
     }
     return Calamares::JobResult::ok();
 }
