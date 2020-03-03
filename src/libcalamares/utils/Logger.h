@@ -41,33 +41,15 @@ enum
     LOGVERBOSE = 8
 };
 
-class DLLEXPORT CLog : public QDebug
+class DLLEXPORT CDebug : public QDebug
 {
 public:
-    explicit CLog( unsigned int debugLevel );
-    virtual ~CLog();
+    explicit CDebug( unsigned int debugLevel = LOGDEBUG );
+    virtual ~CDebug();
 
 private:
     QString m_msg;
     unsigned int m_debugLevel;
-};
-
-class DLLEXPORT CDebug : public CLog
-{
-public:
-    CDebug( unsigned int debugLevel = LOGDEBUG )
-        : CLog( debugLevel )
-    {
-        if ( debugLevel <= LOGERROR )
-        {
-            *this << "ERROR:";
-        }
-        else if ( debugLevel <= LOGWARNING )
-        {
-            *this << "WARNING:";
-        }
-    }
-    virtual ~CDebug();
 };
 
 /**
@@ -219,7 +201,7 @@ operator<<( QDebug& s, const DebugMap& t )
 }
 }  // namespace Logger
 
-#define cDebug() (Logger::CDebug( Logger::LOGDEBUG ) << Q_FUNC_INFO << Logger::Continuation)
+#define cDebug() ( Logger::CDebug( Logger::LOGDEBUG ) << Q_FUNC_INFO << Logger::Continuation )
 #define cWarning() Logger::CDebug( Logger::LOGWARNING )
 #define cError() Logger::CDebug( Logger::LOGERROR )
 

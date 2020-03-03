@@ -172,19 +172,25 @@ setupLogfile()
     qInstallMessageHandler( CalamaresLogHandler );
 }
 
-CLog::CLog( unsigned int debugLevel )
+CDebug::CDebug( unsigned int debugLevel )
     : QDebug( &m_msg )
     , m_debugLevel( debugLevel )
 {
+    if ( debugLevel <= LOGERROR )
+    {
+        m_msg = QStringLiteral( "ERROR:" );
+    }
+    else if ( debugLevel <= LOGWARNING )
+    {
+        m_msg = QStringLiteral( "WARNING:" );
+    }
 }
 
 
-CLog::~CLog()
+CDebug::~CDebug()
 {
     log( m_msg.toUtf8().data(), m_debugLevel );
 }
-
-CDebug::~CDebug() {}
 
 const char Continuation[] = "\n    ";
 const char SubEntry[] = " .. ";
