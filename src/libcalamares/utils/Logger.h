@@ -27,8 +27,14 @@
 
 namespace Logger
 {
-DLLEXPORT extern const char Continuation[];
-DLLEXPORT extern const char SubEntry[];
+struct FuncSuppressor
+{
+    explicit constexpr FuncSuppressor( const char[] );
+    const char* m_s;
+};
+
+DLLEXPORT extern const FuncSuppressor Continuation;
+DLLEXPORT extern const FuncSuppressor SubEntry;
 
 enum
 {
@@ -47,11 +53,26 @@ public:
     explicit CDebug( unsigned int debugLevel = LOGDEBUG, const char* func = nullptr );
     virtual ~CDebug();
 
+    friend QDebug& operator<<( CDebug&&, const FuncSuppressor& );
+
 private:
     QString m_msg;
     unsigned int m_debugLevel;
     const char* m_funcinfo = nullptr;
 };
+
+inline QDebug&
+operator<<( CDebug&& s, const FuncSuppressor& f )
+{
+    s.m_funcinfo = nullptr;
+    return s << f.m_s;
+}
+
+inline QDebug&
+operator<<( QDebug& s, const FuncSuppressor& f )
+{
+    return s << f.m_s;
+}
 
 /**
  * @brief The full path of the log file.

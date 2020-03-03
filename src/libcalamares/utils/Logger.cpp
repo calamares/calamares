@@ -44,6 +44,10 @@ static unsigned int s_threshold =
 #endif
 static QMutex s_mutex;
 
+static const char s_Continuation[] = "\n    ";
+static const char s_SubEntry[] = " .. ";
+
+
 namespace Logger
 {
 
@@ -192,14 +196,19 @@ CDebug::~CDebug()
 {
     if ( m_funcinfo )
     {
-        m_msg.prepend( Continuation );
+        m_msg.prepend( s_Continuation );  // Prepending, so back-to-front
         m_msg.prepend( m_funcinfo );
     }
     log( m_msg.toUtf8().data(), m_debugLevel );
 }
 
-const char Continuation[] = "\n    ";
-const char SubEntry[] = " .. ";
+constexpr FuncSuppressor::FuncSuppressor( const char s[] )
+    : m_s( s )
+{
+}
+
+const constexpr FuncSuppressor Continuation( s_Continuation );
+const constexpr FuncSuppressor SubEntry( s_SubEntry );
 
 QString
 toString( const QVariant& v )
