@@ -44,6 +44,10 @@ static unsigned int s_threshold =
 #endif
 static QMutex s_mutex;
 
+static const char s_Continuation[] = "\n    ";
+static const char s_SubEntry[] = " .. ";
+
+
 namespace Logger
 {
 
@@ -172,22 +176,39 @@ setupLogfile()
     qInstallMessageHandler( CalamaresLogHandler );
 }
 
-CLog::CLog( unsigned int debugLevel )
+CDebug::CDebug( unsigned int debugLevel, const char* func )
     : QDebug( &m_msg )
     , m_debugLevel( debugLevel )
+    , m_funcinfo( func )
 {
+    if ( debugLevel <= LOGERROR )
+    {
+        m_msg = QStringLiteral( "ERROR:" );
+    }
+    else if ( debugLevel <= LOGWARNING )
+    {
+        m_msg = QStringLiteral( "WARNING:" );
+    }
 }
 
 
-CLog::~CLog()
+CDebug::~CDebug()
 {
+    if ( m_funcinfo )
+    {
+        m_msg.prepend( s_Continuation );  // Prepending, so back-to-front
+        m_msg.prepend( m_funcinfo );
+    }
     log( m_msg.toUtf8().data(), m_debugLevel );
 }
 
-CDebug::~CDebug() {}
+constexpr FuncSuppressor::FuncSuppressor( const char s[] )
+    : m_s( s )
+{
+}
 
-const char Continuation[] = "\n    ";
-const char SubEntry[] = " .. ";
+const constexpr FuncSuppressor Continuation( s_Continuation );
+const constexpr FuncSuppressor SubEntry( s_SubEntry );
 
 QString
 toString( const QVariant& v )
