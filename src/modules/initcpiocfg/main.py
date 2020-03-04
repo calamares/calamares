@@ -127,10 +127,9 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     hooks = ["base", "udev"]
     # It is important that the plymouth hook comes before any encrypt hook
     if detect_plymouth():
-        hooks.append("plymouth")
+        hooks += ["plymouth"]
 
-    hooks.append("autodetect", "modconf", "block", "keyboard",
-             "keymap")
+    hooks += ["autodetect", "modconf", "block", "keyboard","keymap"]
 
     modules = []
     files = []
