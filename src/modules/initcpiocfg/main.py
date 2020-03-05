@@ -124,17 +124,18 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     swap_uuid = ""
     btrfs = ""
     lvm2 = ""
-    hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard",
-             "keymap"]
+    hooks = ["base", "udev"]
+    # It is important that the plymouth hook comes before any encrypt hook
+    if detect_plymouth():
+        hooks += ["plymouth"]
+
+    hooks += ["autodetect", "modconf", "block", "keyboard","keymap"]
+
     modules = []
     files = []
     encrypt_hook = False
     openswap_hook = False
     unencrypted_separate_boot = False
-
-    # It is important that the plymouth hook comes before any encrypt hook
-    if detect_plymouth():
-        hooks.append("plymouth")
 
     for partition in partitions:
         if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
