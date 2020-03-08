@@ -76,9 +76,9 @@ set( USE_services "" CACHE STRING "Select the services module to use" )
 
 ### Calamares application info
 #
-set( CALAMARES_ORGANIZATION_NAME "Calamares" )
-set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
-set( CALAMARES_APPLICATION_NAME  "Calamares" )
+set( CALAMARES_ORGANIZATION_NAME "Fascode Network" )
+set( CALAMARES_ORGANIZATION_DOMAIN "github.com/SereneTeam" )
+set( CALAMARES_APPLICATION_NAME  "Calamares for AlterLinux" )
 set( CALAMARES_DESCRIPTION_SUMMARY
     "The distribution-independent installer framework" )
 
