@@ -68,7 +68,7 @@ windowPlacement: center
 # are set to "true" (they can also be overridden).
 strings:
     productName:         Alter Linux
-    shortProductName:    Generic
+    shortProductName:    Alter Linux
     version:
     shortVersion:
     versionedName:       Alter Linux
