@@ -43,6 +43,10 @@ _ = gettext.translation("calamares-python",
 def pretty_name():
     return _("Dummy python job.")
 
+status = _("Dummy python step {}").format(0)
+
+def pretty_status_message():
+    return status
 
 def run():
     """Dummy python job."""
@@ -92,8 +96,10 @@ def run():
     except KeyError:
         configlist = ["no list"]
 
+    global status
     c = 1
     for k in configlist:
+        status = _("Dummy python step {}").format(str(c) + ":" + repr(k))
         libcalamares.utils.debug(_("Dummy python step {}").format(str(k)))
         sleep(1)
         libcalamares.job.setprogress(c * 1.0 / len(configlist))
