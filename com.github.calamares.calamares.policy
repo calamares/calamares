@@ -4,8 +4,8 @@
 "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
 <policyconfig>
 
- <vendor>Calamares</vendor>
- <vendor_url>https://github.com/calamares</vendor_url>
+ <vendor>Fascode Network</vendor>
+ <vendor_url>https://github.com/SereneTeam</vendor_url>
 
  <action id="com.github.calamares.calamares.pkexec.run">
     <description>Run Installer</description>
