@@ -165,6 +165,11 @@ BOOST_PYTHON_MODULE( libcalamares )
 namespace Calamares
 {
 
+struct PythonJob::Private
+{
+    bp::object m_prettyStatusMessage;
+    bp::object m_prettyName;
+};
 
 PythonJob::PythonJob( const ModuleSystem::InstanceKey& instance,
                       const QString& scriptFile,
@@ -172,6 +177,7 @@ PythonJob::PythonJob( const ModuleSystem::InstanceKey& instance,
                       const QVariantMap& moduleConfiguration,
                       QObject* parent )
     : Job( parent )
+    , m_d( std::make_unique< Private >() )
     , m_scriptFile( scriptFile )
     , m_workingPath( workingPath )
     , m_description()
