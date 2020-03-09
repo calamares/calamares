@@ -168,7 +168,6 @@ namespace Calamares
 struct PythonJob::Private
 {
     bp::object m_prettyStatusMessage;
-    bp::object m_prettyName;
 };
 
 PythonJob::PythonJob( const ModuleSystem::InstanceKey& instance,
@@ -205,6 +204,21 @@ PythonJob::prettyName() const
 QString
 PythonJob::prettyStatusMessage() const
 {
+    if ( m_d && !m_d->m_prettyStatusMessage.is_none() )
+    {
+        cDebug() << "Getting dynamic message";
+        QString r;
+        bp::extract< std::string > result( m_d->m_prettyStatusMessage() );
+        r = result.check() ? QString::fromStdString( result() ).trimmed() : QString();
+        if ( !r.isEmpty() )
+        {
+            return r;
+        }
+    }
+    else
+    {
+        cDebug() << "Getting static message";
+    }
     if ( m_description.isEmpty() )
     {
         return tr( "Running %1 operation." ).arg( QDir( m_workingPath ).dirName() );
