@@ -233,7 +233,7 @@ PythonJob::exec()
 
     try
     {
-        bp::dict scriptNamespace = helper()->createCleanNamespace();
+        bp::dict scriptNamespace = CalamaresPython::Helper::instance()->createCleanNamespace();
 
         bp::object calamaresModule = bp::import( "libcalamares" );
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
@@ -299,7 +299,7 @@ PythonJob::exec()
         QString msg;
         if ( PyErr_Occurred() )
         {
-            msg = helper()->handleLastError();
+            msg = CalamaresPython::Helper::instance()->handleLastError();
         }
         bp::handle_exception();
         PyErr_Clear();
@@ -314,18 +314,5 @@ PythonJob::emitProgress( qreal progressValue )
 {
     emit progress( progressValue );
 }
-
-
-CalamaresPython::Helper*
-PythonJob::helper()
-{
-    auto ptr = CalamaresPython::Helper::s_instance;
-    if ( !ptr )
-    {
-        ptr = new CalamaresPython::Helper;
-    }
-    return ptr;
-}
-
 
 }  // namespace Calamares
