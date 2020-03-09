@@ -56,6 +56,10 @@ def _change_mode(mode):
 
 
 def pretty_name():
+    return _("Install packages.")
+
+
+def pretty_status_message():
     if not group_packages:
         if (total_packages > 0):
             # Outside the context of an operation
