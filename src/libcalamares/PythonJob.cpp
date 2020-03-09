@@ -215,6 +215,18 @@ PythonJob::prettyStatusMessage() const
     }
 }
 
+static QString
+pythonStringMethod( bp::dict& script, const char* funcName )
+{
+    bp::object func = script.get( funcName, bp::object() );
+    if ( !func.is_none() )
+    {
+        bp::extract< std::string > result( func() );
+        return result.check() ? QString::fromStdString( result() ).trimmed() : QString();
+    }
+    return QString();
+}
+
 
 JobResult
 PythonJob::exec()
@@ -248,27 +260,12 @@ PythonJob::exec()
         calamaresNamespace[ "globalstorage" ]
             = CalamaresPython::GlobalStoragePythonWrapper( JobQueue::instance()->globalStorage() );
 
+        cDebug() << "Job file" << scriptFI.absoluteFilePath();
         bp::object execResult
             = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(), scriptNamespace, scriptNamespace );
-
         bp::object entryPoint = scriptNamespace[ "run" ];
-        bp::object prettyNameFunc = scriptNamespace.get( "pretty_name", bp::object() );
 
-        cDebug() << "Job file" << scriptFI.absoluteFilePath();
-        if ( !prettyNameFunc.is_none() )
-        {
-            bp::extract< std::string > prettyNameResult( prettyNameFunc() );
-            if ( prettyNameResult.check() )
-            {
-                m_description = QString::fromStdString( prettyNameResult() ).trimmed();
-            }
-            if ( !m_description.isEmpty() )
-            {
-                cDebug() << "Job description from pretty_name" << prettyName() << "=" << m_description;
-                emit progress( 0 );
-            }
-        }
-
+        m_description = pythonStringMethod( scriptNamespace, "pretty_name" );
         if ( m_description.isEmpty() )
         {
             bp::extract< std::string > entryPoint_doc_attr( entryPoint.attr( "__doc__" ) );
@@ -281,10 +278,14 @@ PythonJob::exec()
                 {
                     m_description.truncate( i_newline );
                 }
-                cDebug() << "Job description from __doc__" << prettyName() << "=" << m_description;
-                emit progress( 0 );
+                cDebug() << "Job description from __doc__" << prettyName() << '=' << m_description;
             }
         }
+        else
+        {
+            cDebug() << "Job description from pretty_name" << prettyName() << '=' << m_description;
+        }
+        emit progress( 0 );
 
         bp::object runResult = entryPoint();
 
