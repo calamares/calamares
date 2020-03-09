@@ -204,21 +204,7 @@ PythonJob::prettyName() const
 QString
 PythonJob::prettyStatusMessage() const
 {
-    if ( m_d && !m_d->m_prettyStatusMessage.is_none() )
-    {
-        cDebug() << "Getting dynamic message";
-        QString r;
-        bp::extract< std::string > result( m_d->m_prettyStatusMessage() );
-        r = result.check() ? QString::fromStdString( result() ).trimmed() : QString();
-        if ( !r.isEmpty() )
-        {
-            return r;
-        }
-    }
-    else
-    {
-        cDebug() << "Getting static message";
-    }
+    // The description is updated when progress is reported, see emitProgress()
     if ( m_description.isEmpty() )
     {
         return tr( "Running %1 operation." ).arg( QDir( m_workingPath ).dirName() );
@@ -279,6 +265,7 @@ PythonJob::exec()
             = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(), scriptNamespace, scriptNamespace );
         bp::object entryPoint = scriptNamespace[ "run" ];
 
+        m_d->m_prettyStatusMessage = scriptNamespace.get( "pretty_status_message", bp::object() );
         m_description = pythonStringMethod( scriptNamespace, "pretty_name" );
         if ( m_description.isEmpty() )
         {
@@ -333,6 +320,20 @@ PythonJob::exec()
 void
 PythonJob::emitProgress( qreal progressValue )
 {
+    // This is called from the JobApi (and only from there) from the Job thread,
+    // so it is safe to call into the Python interpreter. Update the description
+    // as needed (don't call this from prettyStatusMessage(), which can be
+    // called from other threads as well).
+    if ( m_d && !m_d->m_prettyStatusMessage.is_none() )
+    {
+        QString r;
+        bp::extract< std::string > result( m_d->m_prettyStatusMessage() );
+        r = result.check() ? QString::fromStdString( result() ).trimmed() : QString();
+        if ( !r.isEmpty() )
+        {
+            m_description = r;
+        }
+    }
     emit progress( progressValue );
 }
 
