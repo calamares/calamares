@@ -204,8 +204,6 @@ variantHashFromPyDict( const boost::python::dict& pyDict )
 }
 
 
-Helper* Helper::s_instance = nullptr;
-
 static inline void
 add_if_lib_exists( const QDir& dir, const char* name, QStringList& list )
 {
@@ -221,48 +219,46 @@ add_if_lib_exists( const QDir& dir, const char* name, QStringList& list )
     }
 }
 
-Helper::Helper( QObject* parent )
-    : QObject( parent )
+Helper::Helper()
+    : QObject( nullptr )
 {
     // Let's make extra sure we only call Py_Initialize once
-    if ( !s_instance )
+    if ( !Py_IsInitialized() )
     {
-        if ( !Py_IsInitialized() )
-        {
-            Py_Initialize();
-        }
-
-        m_mainModule = bp::import( "__main__" );
-        m_mainNamespace = m_mainModule.attr( "__dict__" );
-
-        // If we're running from the build dir
-        add_if_lib_exists( QDir::current(), "libcalamares.so", m_pythonPaths );
-
-        QDir calaPythonPath( CalamaresUtils::systemLibDir().absolutePath() + QDir::separator() + "calamares" );
-        add_if_lib_exists( calaPythonPath, "libcalamares.so", m_pythonPaths );
-
-        bp::object sys = bp::import( "sys" );
-
-        foreach ( QString path, m_pythonPaths )
-        {
-            bp::str dir = path.toLocal8Bit().data();
-            sys.attr( "path" ).attr( "append" )( dir );
-        }
-    }
-    else
-    {
-        cWarning() << "creating PythonHelper more than once. This is very bad.";
-        return;
+        Py_Initialize();
     }
 
-    s_instance = this;
+    m_mainModule = bp::import( "__main__" );
+    m_mainNamespace = m_mainModule.attr( "__dict__" );
+
+    // If we're running from the build dir
+    add_if_lib_exists( QDir::current(), "libcalamares.so", m_pythonPaths );
+
+    QDir calaPythonPath( CalamaresUtils::systemLibDir().absolutePath() + QDir::separator() + "calamares" );
+    add_if_lib_exists( calaPythonPath, "libcalamares.so", m_pythonPaths );
+
+    bp::object sys = bp::import( "sys" );
+
+    foreach ( QString path, m_pythonPaths )
+    {
+        bp::str dir = path.toLocal8Bit().data();
+        sys.attr( "path" ).attr( "append" )( dir );
+    }
 }
 
-Helper::~Helper()
+Helper::~Helper() {}
+
+Helper*
+Helper::instance()
 {
-    s_instance = nullptr;
-}
+    static Helper* s_helper = nullptr;
 
+    if ( !s_helper )
+    {
+        s_helper = new Helper;
+    }
+    return s_helper;
+}
 
 boost::python::dict
 Helper::createCleanNamespace()

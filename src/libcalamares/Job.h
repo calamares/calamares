@@ -97,7 +97,7 @@ public:
     virtual ~Job();
 
     /** @brief The job's (relative) weight.
-     * 
+     *
      * The default implementation returns 1.0, which gives all jobs
      * the same weight, so they advance the overall progress the same
      * amount. This is nonsense, since some jobs take much longer than
@@ -105,8 +105,20 @@ public:
      * how much work is (relatively) done.
      */
     virtual qreal getJobWeight() const;
+    /** @brief The human-readable name of this job
+     *
+     * This should be a very short statement of what the job does.
+     * For status and state information, see prettyStatusMessage().
+     */
     virtual QString prettyName() const = 0;
+    // TODO: Unused
     virtual QString prettyDescription() const;
+    /** @brief A human-readable status for progress reporting
+     *
+     * This is called from the JobQueue when progress is made, and should
+     * return a not-too-long description of the job's status. This
+     * is made visible in the progress bar of the execution view step.
+     */
     virtual QString prettyStatusMessage() const;
     virtual JobResult exec() = 0;
 
