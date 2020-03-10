@@ -117,7 +117,7 @@ PackageModel::data( const QModelIndex& index, int role ) const
     }
 
     PackageTreeItem* item = static_cast< PackageTreeItem* >( index.internalPointer() );
-    if ( index.column() == 0 && role == Qt::CheckStateRole )
+    if ( index.column() == NameColumn && role == Qt::CheckStateRole )
     {
         return item->isSelected();
     }
@@ -156,7 +156,7 @@ PackageModel::flags( const QModelIndex& index ) const
     {
         return Qt::ItemFlags();
     }
-    if ( index.column() == 0 )
+    if ( index.column() == NameColumn )
     {
         return Qt::ItemIsUserCheckable | QAbstractItemModel::flags( index );
     }
@@ -168,7 +168,7 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
 {
     if ( orientation == Qt::Horizontal && role == Qt::DisplayRole )
     {
-        return ( section == 0 ) ? tr( "Name" ) : tr( "Description" );
+        return ( section == NameColumn ) ? tr( "Name" ) : tr( "Description" );
     }
     return QVariant();
 }
