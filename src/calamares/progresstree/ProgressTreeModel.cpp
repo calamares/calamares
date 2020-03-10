@@ -19,84 +19,17 @@
 
 #include "ProgressTreeModel.h"
 
-#include "ViewStepItem.h"
-
+#include "Settings.h"
 #include "ViewManager.h"
 
 ProgressTreeModel::ProgressTreeModel( QObject* parent )
-    : QAbstractItemModel( parent )
-    , m_rootItem( nullptr )
+    : QAbstractListModel( parent )
 {
-    setupModelData();
 }
 
 
 ProgressTreeModel::~ProgressTreeModel()
 {
-    delete m_rootItem;
-}
-
-
-Qt::ItemFlags
-ProgressTreeModel::flags( const QModelIndex& index ) const
-{
-    if ( !index.isValid() )
-    {
-        return Qt::ItemFlags();
-    }
-
-    return Qt::ItemIsEnabled;
-}
-
-
-QModelIndex
-ProgressTreeModel::index( int row, int column, const QModelIndex& parent ) const
-{
-    if ( !hasIndex( row, column, parent ) )
-    {
-        return QModelIndex();
-    }
-
-    ProgressTreeItem* parentItem;
-
-    if ( !parent.isValid() )
-    {
-        parentItem = m_rootItem;
-    }
-    else
-    {
-        parentItem = static_cast< ProgressTreeItem* >( parent.internalPointer() );
-    }
-
-    ProgressTreeItem* childItem = parentItem->child( row );
-    if ( childItem )
-    {
-        return createIndex( row, column, childItem );
-    }
-    else
-    {
-        return QModelIndex();
-    }
-}
-
-
-QModelIndex
-ProgressTreeModel::parent( const QModelIndex& index ) const
-{
-    if ( !index.isValid() )
-    {
-        return QModelIndex();
-    }
-
-    ProgressTreeItem* childItem = static_cast< ProgressTreeItem* >( index.internalPointer() );
-    ProgressTreeItem* parentItem = childItem->parent();
-
-    if ( parentItem == m_rootItem )
-    {
-        return QModelIndex();
-    }
-
-    return createIndex( parentItem->row(), 0, parentItem );
 }
 
 
@@ -108,70 +41,54 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    ProgressTreeItem* item = static_cast< ProgressTreeItem* >( index.internalPointer() );
+    const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
+    if ( !vm)
+        return QVariant();
 
-    return item->data( role );
-}
+    const auto steps = vm->viewSteps();
+    if ( (index.row() < 0 ) || (index.row() >= steps.length() ) )
+        return QVariant();
 
+    const auto* step = steps.at(index.row());
 
-QVariant
-ProgressTreeModel::headerData( int section, Qt::Orientation orientation, int role ) const
-{
-    Q_UNUSED( section )
-    Q_UNUSED( orientation )
-    Q_UNUSED( role )
-
+    if ( role == Qt::DisplayRole )
+    {
+        return step->prettyName();
+    }
+    if ( Calamares::Settings::instance()->debugMode() && role == Qt::ToolTipRole )
+    {
+        QString toolTip( "<b>Debug information</b>" );
+        if ( step )
+        {
+            toolTip.append( "<br/>Type:\tViewStep" );
+            toolTip.append( QString( "<br/>Pretty:\t%1" ).arg( step->prettyName() ) );
+            toolTip.append( QString( "<br/>Status:\t%1" ).arg( step->prettyStatus() ) );
+            toolTip.append( QString( "<br/>Source:\t%1" )
+                                .arg( step->moduleInstanceKey().isValid() ? step->moduleInstanceKey().toString()
+                                                                            : QStringLiteral( "built-in" ) ) );
+        }
+        else
+        {
+            toolTip.append( "<br/>Type:\tDelegate" );
+        }
+        return toolTip;
+    }
+    if ( role == ProgressTreeModel::ProgressTreeItemCurrentRole )
+    {
+        return step && (Calamares::ViewManager::instance()->currentStep() == step);
+    }
     return QVariant();
 }
+
 
 
 int
 ProgressTreeModel::rowCount( const QModelIndex& parent ) const
 {
-    ProgressTreeItem* parentItem;
     if ( parent.column() > 0 )
     {
         return 0;
     }
-
-    if ( !parent.isValid() )
-    {
-        parentItem = m_rootItem;
-    }
-    else
-    {
-        parentItem = static_cast< ProgressTreeItem* >( parent.internalPointer() );
-    }
-
-    return parentItem->childCount();
-}
-
-
-int
-ProgressTreeModel::columnCount( const QModelIndex& parent ) const
-{
-    if ( parent.isValid() )
-    {
-        return static_cast< ProgressTreeItem* >( parent.internalPointer() )->columnCount();
-    }
-    else
-    {
-        return m_rootItem->columnCount();
-    }
-}
-
-
-void
-ProgressTreeModel::setupModelData()
-{
-    delete m_rootItem;
-
-    m_rootItem = new ProgressTreeRoot();
     const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
-
-    const auto steps = vm->viewSteps();
-    for ( const Calamares::ViewStep* step : steps )
-    {
-        m_rootItem->appendChild( new ViewStepItem( step, m_rootItem ) );
-    }
+    return vm ? vm->viewSteps().length() : 0;
 }

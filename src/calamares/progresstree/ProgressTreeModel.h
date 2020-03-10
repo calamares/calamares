@@ -20,7 +20,7 @@
 #ifndef PROGRESSTREEMODEL_H
 #define PROGRESSTREEMODEL_H
 
-#include <QAbstractItemModel>
+#include <QAbstractListModel>
 
 class ProgressTreeRoot;
 class ProgressTreeItem;
@@ -29,7 +29,7 @@ class ProgressTreeItem;
 /**
  * @brief The ProgressTreeModel class implements a model for the ProgressTreeView.
  */
-class ProgressTreeModel : public QAbstractItemModel
+class ProgressTreeModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
@@ -41,19 +41,8 @@ public:
     explicit ProgressTreeModel( QObject* parent = nullptr );
     virtual ~ProgressTreeModel() override;
 
-    // Reimplemented from QAbstractItemModel
-    Qt::ItemFlags flags( const QModelIndex& index ) const override;
-    QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const override;
-    QModelIndex parent( const QModelIndex& index ) const override;
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
-    QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const override;
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
-    int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
-
-private:
-    void setupModelData();
-
-    ProgressTreeRoot* m_rootItem;
 };
 
 #endif  // PROGRESSTREEMODEL_H
