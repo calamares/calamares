@@ -9,10 +9,12 @@ This release contains contributions from (alphabetically by first name):
  - No external contributors yet
 
 ## Core ##
- - No core changes yet
+ - Python job modules (such as *unpackfs* or *packages*) can now provide
+   a `pretty_status_message()` function, like the existing `pretty_name()`
+   function, that is used to update the status during install. #1330
 
 ## Modules ##
- - No module changes yet
+ - *packages* now reports more details in the installation progress-bar.
 
 
 # 3.2.20 (2020-02-27) #
