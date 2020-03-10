@@ -52,7 +52,6 @@ public:
 
 private:
     void setupModelData();
-    QModelIndex indexFromItem( ProgressTreeItem* item );
 
     ProgressTreeRoot* m_rootItem;
 };
