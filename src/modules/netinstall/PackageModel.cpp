@@ -247,20 +247,24 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
         PackageTreeItem* item = new PackageTreeItem( itemData, parent );
 
         if ( itemDefinition[ "selected" ] )
-            item->setSelected( CalamaresUtils::yamlToVariant( itemDefinition[ "selected" ] ).toBool() ? Qt::Checked
-                                                                                                      : Qt::Unchecked );
+        {
+            item->setSelected( getBool( itemDefinition, "selected" ) ? Qt::Checked : Qt::Unchecked );
+        }
         else
         {
             item->setSelected( parent->isSelected() );  // Inherit from it's parent
         }
 
         if ( itemDefinition[ "packages" ] )
+        {
             for ( YAML::const_iterator packageIt = itemDefinition[ "packages" ].begin();
                   packageIt != itemDefinition[ "packages" ].end();
                   ++packageIt )
+            {
                 item->appendChild(
                     new PackageTreeItem( CalamaresUtils::yamlToVariant( *packageIt ).toString(), item ) );
-
+            }
+        }
         if ( itemDefinition[ "subgroups" ] )
         {
             setupModelData( itemDefinition[ "subgroups" ], item );
