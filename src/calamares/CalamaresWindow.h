@@ -51,6 +51,8 @@ protected:
     virtual void closeEvent( QCloseEvent* e ) override;
 
 private:
+    QWidget* getWidgetSidebar( int desiredWidth );
+
     QPointer< Calamares::DebugWindow > m_debugWindow;  // Managed by self
     Calamares::ViewManager* m_viewManager;
 };

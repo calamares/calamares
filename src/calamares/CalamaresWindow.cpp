@@ -57,58 +57,19 @@ windowDimensionToPixels( const Calamares::Branding::WindowDimension& u )
     return 0;
 }
 
-CalamaresWindow::CalamaresWindow( QWidget* parent )
-    : QWidget( parent )
-    , m_debugWindow( nullptr )
-    , m_viewManager( nullptr )
+
+QWidget*
+CalamaresWindow::getWidgetSidebar( int desiredWidth )
 {
-    // If we can never cancel, don't show the window-close button
-    if ( Calamares::Settings::instance()->disableCancel() )
-    {
-        setWindowFlag( Qt::WindowCloseButtonHint, false );
-    }
-
-    CALAMARES_RETRANSLATE( setWindowTitle( Calamares::Settings::instance()->isSetupMode()
-                                               ? tr( "%1 Setup Program" ).arg( *Calamares::Branding::ProductName )
-                                               : tr( "%1 Installer" ).arg( *Calamares::Branding::ProductName ) ); )
-
     const Calamares::Branding* const branding = Calamares::Branding::instance();
-
-    using CalamaresUtils::windowMinimumHeight;
-    using CalamaresUtils::windowMinimumWidth;
-    using CalamaresUtils::windowPreferredHeight;
-    using CalamaresUtils::windowPreferredWidth;
-
-    // Needs to match what's checked in DebugWindow
-    this->setObjectName( "mainApp" );
-
-    QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
-    QSize minimumSize( qBound( windowMinimumWidth, availableSize.width(), windowPreferredWidth ),
-                       qBound( windowMinimumHeight, availableSize.height(), windowPreferredHeight ) );
-    setMinimumSize( minimumSize );
-
-    cDebug() << "Available desktop" << availableSize << "minimum size" << minimumSize;
-
-    auto brandingSizes = branding->windowSize();
-
-    int w = qBound( minimumSize.width(), windowDimensionToPixels( brandingSizes.first ), availableSize.width() );
-    int h = qBound( minimumSize.height(), windowDimensionToPixels( brandingSizes.second ), availableSize.height() );
-
-    cDebug() << Logger::SubEntry << "Proposed window size:" << w << h;
-    resize( w, h );
-
-    QBoxLayout* mainLayout = new QHBoxLayout;
-    setLayout( mainLayout );
 
     QWidget* sideBox = new QWidget( this );
     sideBox->setObjectName( "sidebarApp" );
-    mainLayout->addWidget( sideBox );
 
     QBoxLayout* sideLayout = new QVBoxLayout;
     sideBox->setLayout( sideLayout );
     // Set this attribute into qss file
-    sideBox->setFixedWidth(
-        qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+    sideBox->setFixedWidth( desiredWidth );
     sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     QHBoxLayout* logoLayout = new QHBoxLayout;
@@ -164,6 +125,60 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     }
 
     CalamaresUtils::unmarginLayout( sideLayout );
+    return sideBox;
+}
+
+
+CalamaresWindow::CalamaresWindow( QWidget* parent )
+    : QWidget( parent )
+    , m_debugWindow( nullptr )
+    , m_viewManager( nullptr )
+{
+    // If we can never cancel, don't show the window-close button
+    if ( Calamares::Settings::instance()->disableCancel() )
+    {
+        setWindowFlag( Qt::WindowCloseButtonHint, false );
+    }
+
+    CALAMARES_RETRANSLATE( setWindowTitle( Calamares::Settings::instance()->isSetupMode()
+                                               ? tr( "%1 Setup Program" ).arg( *Calamares::Branding::ProductName )
+                                               : tr( "%1 Installer" ).arg( *Calamares::Branding::ProductName ) ); )
+
+    const Calamares::Branding* const branding = Calamares::Branding::instance();
+
+    using CalamaresUtils::windowMinimumHeight;
+    using CalamaresUtils::windowMinimumWidth;
+    using CalamaresUtils::windowPreferredHeight;
+    using CalamaresUtils::windowPreferredWidth;
+
+    // Needs to match what's checked in DebugWindow
+    this->setObjectName( "mainApp" );
+
+    QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
+    QSize minimumSize( qBound( windowMinimumWidth, availableSize.width(), windowPreferredWidth ),
+                       qBound( windowMinimumHeight, availableSize.height(), windowPreferredHeight ) );
+    setMinimumSize( minimumSize );
+
+    cDebug() << "Available desktop" << availableSize << "minimum size" << minimumSize;
+
+    auto brandingSizes = branding->windowSize();
+
+    int w = qBound( minimumSize.width(), windowDimensionToPixels( brandingSizes.first ), availableSize.width() );
+    int h = qBound( minimumSize.height(), windowDimensionToPixels( brandingSizes.second ), availableSize.height() );
+
+    cDebug() << Logger::SubEntry << "Proposed window size:" << w << h;
+    resize( w, h );
+
+    QBoxLayout* mainLayout = new QHBoxLayout;
+    setLayout( mainLayout );
+
+    QWidget* sideBox = getWidgetSidebar(
+        qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+    if ( sideBox )
+    {
+        mainLayout->addWidget( sideBox );
+    }
+
     CalamaresUtils::unmarginLayout( mainLayout );
 
     m_viewManager = Calamares::ViewManager::instance( this );
