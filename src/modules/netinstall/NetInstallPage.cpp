@@ -154,6 +154,13 @@ NetInstallPage::dataIsHere()
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
     ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
 
+    cDebug() << "Groups info rows=" << m_groups->rowCount();
+    for ( int i = 0; i < m_groups->rowCount(); ++i )
+    {
+        auto index = m_groups->index(i,0);
+        cDebug() << Logger::SubEntry << i << m_groups->data(index, Qt::DisplayRole);
+    }
+
     emit checkReady( true );
 }
 

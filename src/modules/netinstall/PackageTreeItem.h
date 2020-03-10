@@ -36,6 +36,7 @@ public:
         QString postScript;
         bool isCritical = false;
         bool isHidden = false;
+        bool startExpanded = false;  // Only for groups
         Qt::CheckState selected = Qt::Unchecked;
 
         /** @brief Turns this item into a variant for PackageOperations use
