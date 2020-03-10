@@ -27,11 +27,7 @@ ProgressTreeModel::ProgressTreeModel( QObject* parent )
 {
 }
 
-
-ProgressTreeModel::~ProgressTreeModel()
-{
-}
-
+ProgressTreeModel::~ProgressTreeModel() {}
 
 QVariant
 ProgressTreeModel::data( const QModelIndex& index, int role ) const
@@ -42,14 +38,18 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
     }
 
     const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
-    if ( !vm)
+    if ( !vm )
+    {
         return QVariant();
+    }
 
     const auto steps = vm->viewSteps();
-    if ( (index.row() < 0 ) || (index.row() >= steps.length() ) )
+    if ( ( index.row() < 0 ) || ( index.row() >= steps.length() ) )
+    {
         return QVariant();
+    }
 
-    const auto* step = steps.at(index.row());
+    const auto* step = steps.at( index.row() );
 
     if ( role == Qt::DisplayRole )
     {
@@ -65,7 +65,7 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
             toolTip.append( QString( "<br/>Status:\t%1" ).arg( step->prettyStatus() ) );
             toolTip.append( QString( "<br/>Source:\t%1" )
                                 .arg( step->moduleInstanceKey().isValid() ? step->moduleInstanceKey().toString()
-                                                                            : QStringLiteral( "built-in" ) ) );
+                                                                          : QStringLiteral( "built-in" ) ) );
         }
         else
         {
@@ -75,11 +75,10 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
     }
     if ( role == ProgressTreeModel::ProgressTreeItemCurrentRole )
     {
-        return step && (Calamares::ViewManager::instance()->currentStep() == step);
+        return step && ( Calamares::ViewManager::instance()->currentStep() == step );
     }
     return QVariant();
 }
-
 
 
 int
