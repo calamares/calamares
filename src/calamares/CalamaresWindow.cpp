@@ -172,8 +172,12 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
 
-    QWidget* sideBox = getWidgetSidebar(
-        qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+    QWidget* sideBox = nullptr;
+    if ( branding->sidebarFlavor() == Calamares::Branding::SidebarFlavor::Widget )
+    {
+        sideBox = getWidgetSidebar(
+            qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+    }
     if ( sideBox )
     {
         mainLayout->addWidget( sideBox );

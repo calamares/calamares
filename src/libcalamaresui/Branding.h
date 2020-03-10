@@ -184,6 +184,9 @@ public:
     }
     bool windowPlacementCentered() const { return m_windowPlacement == WindowPlacement::Center; }
 
+    ///@brief Which sidebar flavor is configured
+    SidebarFlavor sidebarFlavor() const { return m_sidebarFlavor; }
+
     /**
      * Creates a map called "branding" in the global storage, and inserts an
      * entry for each of the branding strings. This makes the branding
