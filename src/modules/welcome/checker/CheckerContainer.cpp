@@ -28,14 +28,16 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "widgets/WaitingWidget.h"
+#include "Config.h"
 
 #include <QHBoxLayout>
 
-CheckerContainer::CheckerContainer( QWidget* parent )
+CheckerContainer::CheckerContainer( const RequirementsModel &model, QWidget* parent )
     : QWidget( parent )
     , m_waitingWidget( new WaitingWidget( QString(), this ) )
     , m_checkerWidget( nullptr )
     , m_verdict( false )
+    , m_model( model )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
@@ -59,7 +61,7 @@ CheckerContainer::requirementsComplete( bool ok )
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;  // Don't delete in destructor
 
-    m_checkerWidget = new ResultsListWidget( this, m_requirements );
+    m_checkerWidget = new ResultsListWidget( m_model, this);
     layout()->addWidget( m_checkerWidget );
 
     m_verdict = ok;
@@ -68,7 +70,7 @@ CheckerContainer::requirementsComplete( bool ok )
 void
 CheckerContainer::requirementsChecked( const Calamares::RequirementsList& l )
 {
-    m_requirements.append( l );
+//     m_requirements.append( l );
 }
 
 void
