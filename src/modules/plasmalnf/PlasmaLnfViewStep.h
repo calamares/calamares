@@ -19,9 +19,9 @@
 #ifndef PLASMALNFVIEWSTEP_H
 #define PLASMALNFVIEWSTEP_H
 
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
-#include <DllMacro.h>
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
+#include "DllMacro.h"
 
 #include <QObject>
 #include <QUrl>

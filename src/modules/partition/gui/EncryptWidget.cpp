@@ -19,7 +19,7 @@
 
 #include "EncryptWidget.h"
 
-#include <utils/CalamaresUtilsGui.h>
+#include "utils/CalamaresUtilsGui.h"
 
 EncryptWidget::EncryptWidget( QWidget* parent )
     : QWidget( parent )

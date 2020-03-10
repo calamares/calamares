@@ -22,13 +22,13 @@
 #include <QObject>
 #include <QVariantMap>
 
-#include <CppJob.h>
+#include "CppJob.h"
 
 #include "partition/KPMManager.h"
 #include "partition/PartitionSize.h"
 #include "utils/PluginFactory.h"
 
-#include <DllMacro.h>
+#include "DllMacro.h"
 
 class CoreBackend;  // From KPMCore
 class Device;  // From KPMCore

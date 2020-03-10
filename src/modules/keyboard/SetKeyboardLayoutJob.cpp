@@ -22,7 +22,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <SetKeyboardLayoutJob.h>
+#include "SetKeyboardLayoutJob.h"
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
