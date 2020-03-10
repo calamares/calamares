@@ -108,3 +108,12 @@ ProgressTreeModel::rowCount( const QModelIndex& parent ) const
     const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
     return vm ? vm->viewSteps().length() : 0;
 }
+
+QHash< int, QByteArray >
+ProgressTreeModel::roleNames() const
+{
+    auto h = QAbstractListModel::roleNames();
+    h.insert( ProgressTreeItemCurrentRole, "current" );
+    h.insert( ProgressTreeItemCompletedRole, "completed" );
+    return h;
+}
