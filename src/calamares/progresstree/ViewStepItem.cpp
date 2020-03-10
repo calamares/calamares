@@ -65,9 +65,9 @@ ViewStepItem::data( int role ) const
             toolTip.append( "<br/>Type:\tViewStep" );
             toolTip.append( QString( "<br/>Pretty:\t%1" ).arg( m_step->prettyName() ) );
             toolTip.append( QString( "<br/>Status:\t%1" ).arg( m_step->prettyStatus() ) );
-            toolTip.append(
-                QString( "<br/>Source:\t%1" )
-                    .arg( m_step->moduleInstanceKey().isValid() ? m_step->moduleInstanceKey().toString() : QStringLiteral("built-in") ) );
+            toolTip.append( QString( "<br/>Source:\t%1" )
+                                .arg( m_step->moduleInstanceKey().isValid() ? m_step->moduleInstanceKey().toString()
+                                                                            : QStringLiteral( "built-in" ) ) );
         }
         else
         {
@@ -77,7 +77,9 @@ ViewStepItem::data( int role ) const
         return toolTip;
     }
     if ( role == ProgressTreeModel::ProgressTreeItemCurrentRole )
+    {
         return m_step ? ( Calamares::ViewManager::instance()->currentStep() == m_step )
                       : ( Calamares::ViewManager::instance()->currentStep() == m_accessor() );
+    }
     return QVariant();
 }
