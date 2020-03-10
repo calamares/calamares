@@ -117,14 +117,14 @@ PackageModel::data( const QModelIndex& index, int role ) const
     }
 
     PackageTreeItem* item = static_cast< PackageTreeItem* >( index.internalPointer() );
-    switch( role )
+    switch ( role )
     {
-        case Qt::CheckStateRole:
-            return index.column() == NameColumn ? item->isSelected() : QVariant();
-        case Qt::DisplayRole:
-            return item->isHidden() ? QVariant() : item->data( index.column() );
-        default:
-            return QVariant();
+    case Qt::CheckStateRole:
+        return index.column() == NameColumn ? item->isSelected() : QVariant();
+    case Qt::DisplayRole:
+        return item->isHidden() ? QVariant() : item->data( index.column() );
+    default:
+        return QVariant();
     }
 }
 
@@ -212,6 +212,18 @@ PackageModel::getItemPackages( PackageTreeItem* item ) const
     return selectedPackages;
 }
 
+static QString
+getString( const YAML::Node& itemDefinition, const char* key )
+{
+    return itemDefinition[ key ] ? CalamaresUtils::yamlToVariant( itemDefinition[ key ] ).toString() : QString();
+}
+
+static bool
+getBool( const YAML::Node& itemDefinition, const char* key )
+{
+    return itemDefinition[ key ] ? CalamaresUtils::yamlToVariant( itemDefinition[ key ] ).toBool() : false;
+}
+
 void
 PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
 {
@@ -226,22 +238,11 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
         itemData.name = name;
         itemData.description = description;
 
-        if ( itemDefinition[ "pre-install" ] )
-        {
-            itemData.preScript = CalamaresUtils::yamlToVariant( itemDefinition[ "pre-install" ] ).toString();
-        }
-        if ( itemDefinition[ "post-install" ] )
-        {
-            itemData.postScript = CalamaresUtils::yamlToVariant( itemDefinition[ "post-install" ] ).toString();
-        }
-        if ( itemDefinition[ "critical" ] )
-        {
-            itemData.isCritical = CalamaresUtils::yamlToVariant( itemDefinition[ "critical" ] ).toBool();
-        }
-        if ( itemDefinition[ "hidden" ] )
-        {
-            itemData.isHidden = CalamaresUtils::yamlToVariant( itemDefinition[ "hidden" ] ).toBool();
-        }
+        itemData.preScript = getString( itemDefinition, "pre-install" );
+        itemData.postScript = getString( itemDefinition, "post-install" );
+        itemData.isCritical = getBool( itemDefinition, "critical" );
+        itemData.isHidden = getBool( itemDefinition, "hidden" );
+        itemData.startExpanded = getBool( itemDefinition, "expanded" );
 
         PackageTreeItem* item = new PackageTreeItem( itemData, parent );
 
@@ -252,8 +253,6 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
         {
             item->setSelected( parent->isSelected() );  // Inherit from it's parent
         }
-
-
 
         if ( itemDefinition[ "packages" ] )
             for ( YAML::const_iterator packageIt = itemDefinition[ "packages" ].begin();
