@@ -181,12 +181,6 @@ PackageTreeItem::isHidden() const
     return m_data.isHidden;
 }
 
-void
-PackageTreeItem::setHidden( bool isHidden )
-{
-    m_data.isHidden = isHidden;
-}
-
 bool
 PackageTreeItem::hiddenSelected() const
 {

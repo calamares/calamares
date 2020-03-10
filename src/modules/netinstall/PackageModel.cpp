@@ -238,6 +238,11 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
         {
             itemData.isCritical = CalamaresUtils::yamlToVariant( itemDefinition[ "critical" ] ).toBool();
         }
+        if ( itemDefinition[ "hidden" ] )
+        {
+            itemData.isHidden = CalamaresUtils::yamlToVariant( itemDefinition[ "hidden" ] ).toBool();
+        }
+
         PackageTreeItem* item = new PackageTreeItem( itemData, parent );
 
         if ( itemDefinition[ "selected" ] )
@@ -248,10 +253,6 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
             item->setSelected( parent->isSelected() );  // Inherit from it's parent
         }
 
-        if ( itemDefinition[ "hidden" ] )
-        {
-            item->setHidden( CalamaresUtils::yamlToVariant( itemDefinition[ "hidden" ] ).toBool() );
-        }
 
 
         if ( itemDefinition[ "packages" ] )

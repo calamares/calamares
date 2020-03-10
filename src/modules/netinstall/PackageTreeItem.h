@@ -68,7 +68,6 @@ public:
     QString postScript() const;
 
     bool isHidden() const;
-    void setHidden( bool isHidden );
     /**
      * @brief Is this hidden item, considered "selected"?
      *
