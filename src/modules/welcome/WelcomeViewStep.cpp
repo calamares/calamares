@@ -45,9 +45,10 @@ WelcomeViewStep::WelcomeViewStep( QObject* parent )
 			 &Calamares::ModuleManager::requirementsComplete,
 			 this,
 			 &WelcomeViewStep::nextStatusChanged );
+
+    // the instance of the qqc2 or qwidgets page
 	m_widget = new WelcomePage(m_conf);
 }
-
 
 WelcomeViewStep::~WelcomeViewStep()
 {
@@ -193,6 +194,7 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         m_conf->setLanguageIcon( language );
 	}
 
+	//here init the qml or qwidgets needed bits
 	m_widget->init();
 }
 
@@ -239,7 +241,6 @@ WelcomeViewStep::setCountry( const QString& countryCode, CalamaresUtils::GeoIP::
 		if ( ( r >= 0 ) && m_conf )
 		{
             m_conf->setCountryCode( countryCode );
-//             m_conf->setLocaleIndex(r); //TODO check if it si works
         }
 	}
 }

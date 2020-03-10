@@ -147,7 +147,7 @@ ResultsListDialog::retranslate()
         {
             m_resultWidgets[ i ]->setText( entry.enumerationText() );
         }
-    } //TODO needs to be translated from the model
+    }
 }
 
 
@@ -247,7 +247,7 @@ ResultsListWidget::retranslate()
         {
             m_resultWidgets[ i ]->setText( entry.negatedText() );
         }
-    }  //TODO on the model the transalations
+    }
 
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
