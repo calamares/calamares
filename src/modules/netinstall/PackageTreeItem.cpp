@@ -217,12 +217,6 @@ PackageTreeItem::isCritical() const
     return m_data.isCritical;
 }
 
-void
-PackageTreeItem::setCritical( bool isCritical )
-{
-    m_data.isCritical = isCritical;
-}
-
 Qt::CheckState
 PackageTreeItem::isSelected() const
 {

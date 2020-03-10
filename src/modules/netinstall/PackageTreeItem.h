@@ -79,7 +79,6 @@ public:
     bool hiddenSelected() const;
 
     bool isCritical() const;
-    void setCritical( bool isCritical );
 
     Qt::CheckState isSelected() const;
     void setSelected( Qt::CheckState isSelected );

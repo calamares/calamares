@@ -234,6 +234,10 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
         {
             itemData.postScript = CalamaresUtils::yamlToVariant( itemDefinition[ "post-install" ] ).toString();
         }
+        if ( itemDefinition[ "critical" ] )
+        {
+            itemData.isCritical = CalamaresUtils::yamlToVariant( itemDefinition[ "critical" ] ).toBool();
+        }
         PackageTreeItem* item = new PackageTreeItem( itemData, parent );
 
         if ( itemDefinition[ "selected" ] )
@@ -249,10 +253,6 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
             item->setHidden( CalamaresUtils::yamlToVariant( itemDefinition[ "hidden" ] ).toBool() );
         }
 
-        if ( itemDefinition[ "critical" ] )
-        {
-            item->setCritical( CalamaresUtils::yamlToVariant( itemDefinition[ "critical" ] ).toBool() );
-        }
 
         if ( itemDefinition[ "packages" ] )
             for ( YAML::const_iterator packageIt = itemDefinition[ "packages" ].begin();
