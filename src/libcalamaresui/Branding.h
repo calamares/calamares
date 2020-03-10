@@ -122,6 +122,15 @@ public:
         Center,
         Free
     };
+    Q_ENUM( WindowPlacement )
+    ///@brief What kind of sidebar to use in the main window
+    enum class SidebarFlavor
+    {
+        None,
+        Widget,
+        Qml
+    };
+    Q_ENUM( SidebarFlavor )
 
     static Branding* instance();
 
@@ -214,6 +223,8 @@ private:
     WindowExpansion m_windowExpansion;
     WindowDimension m_windowHeight, m_windowWidth;
     WindowPlacement m_windowPlacement;
+
+    SidebarFlavor m_sidebarFlavor = SidebarFlavor::Widget;
 };
 
 template < typename U >
