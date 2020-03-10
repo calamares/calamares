@@ -31,7 +31,8 @@ class ProgressTreeModel : public QAbstractListModel
 public:
     enum Role
     {
-        ProgressTreeItemCurrentRole = Qt::UserRole + 11
+        ProgressTreeItemCurrentRole = Qt::UserRole + 11,  ///< Is this the *current* step?
+        ProgressTreeItemCompletedRole = Qt::UserRole + 12  ///< Are we past this one?
     };
 
     explicit ProgressTreeModel( QObject* parent = nullptr );

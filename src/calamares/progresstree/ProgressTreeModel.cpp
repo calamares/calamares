@@ -50,34 +50,51 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
     }
 
     const auto* step = steps.at( index.row() );
-
-    if ( role == Qt::DisplayRole )
+    if ( !step )
     {
-        return step->prettyName();
+        return QVariant();
     }
-    if ( Calamares::Settings::instance()->debugMode() && role == Qt::ToolTipRole )
+
+    switch ( role )
     {
-        QString toolTip( "<b>Debug information</b>" );
-        if ( step )
+    case Qt::DisplayRole:
+        return step->prettyName();
+    case Qt::ToolTipRole:
+        if ( Calamares::Settings::instance()->debugMode() )
         {
+            auto key = step->moduleInstanceKey();
+            QString toolTip( "<b>Debug information</b>" );
             toolTip.append( "<br/>Type:\tViewStep" );
             toolTip.append( QString( "<br/>Pretty:\t%1" ).arg( step->prettyName() ) );
             toolTip.append( QString( "<br/>Status:\t%1" ).arg( step->prettyStatus() ) );
-            toolTip.append( QString( "<br/>Source:\t%1" )
-                                .arg( step->moduleInstanceKey().isValid() ? step->moduleInstanceKey().toString()
-                                                                          : QStringLiteral( "built-in" ) ) );
+            toolTip.append(
+                QString( "<br/>Source:\t%1" ).arg( key.isValid() ? key.toString() : QStringLiteral( "built-in" ) ) );
+            return toolTip;
         }
         else
         {
-            toolTip.append( "<br/>Type:\tDelegate" );
+            return QVariant();
         }
-        return toolTip;
+    case ProgressTreeItemCurrentRole:
+        return vm->currentStep() == step;
+    case ProgressTreeItemCompletedRole:
+        // Every step *before* the current step is considered "complete"
+        for ( const auto* otherstep : steps )
+        {
+            if ( otherstep == vm->currentStep() )
+            {
+                break;
+            }
+            if ( otherstep == step )
+            {
+                return true;
+            }
+        }
+        // .. and the others (including current) are not.
+        return false;
+    default:
+        return QVariant();
     }
-    if ( role == ProgressTreeModel::ProgressTreeItemCurrentRole )
-    {
-        return step && ( Calamares::ViewManager::instance()->currentStep() == step );
-    }
-    return QVariant();
 }
 
 
