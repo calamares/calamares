@@ -108,22 +108,27 @@ PackageTreeItem::row() const
 QVariant
 PackageTreeItem::data( int column ) const
 {
-    if ( packageName() != nullptr )  // package
+    if ( !packageName().isEmpty() )  // packages have a packagename, groups don't
     {
-        if ( !column )
+        switch ( column )
         {
+        case 0:
             return QVariant( packageName() );
+        default:
+            return QVariant();
         }
-        return QVariant();
     }
-    switch ( column )  // group
+    else
     {
-    case 0:
-        return QVariant( prettyName() );
-    case 1:
-        return QVariant( description() );
-    default:
-        return QVariant();
+        switch ( column )  // group
+        {
+        case 0:
+            return QVariant( prettyName() );
+        case 1:
+            return QVariant( description() );
+        default:
+            return QVariant();
+        }
     }
 }
 
