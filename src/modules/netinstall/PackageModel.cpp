@@ -117,21 +117,15 @@ PackageModel::data( const QModelIndex& index, int role ) const
     }
 
     PackageTreeItem* item = static_cast< PackageTreeItem* >( index.internalPointer() );
-    if ( index.column() == NameColumn && role == Qt::CheckStateRole )
+    switch( role )
     {
-        return item->isSelected();
+        case Qt::CheckStateRole:
+            return index.column() == NameColumn ? item->isSelected() : QVariant();
+        case Qt::DisplayRole:
+            return item->isHidden() ? QVariant() : item->data( index.column() );
+        default:
+            return QVariant();
     }
-
-    if ( item->isHidden() && role == Qt::DisplayRole )  // Hidden group
-    {
-        return QVariant();
-    }
-
-    if ( role == Qt::DisplayRole )
-    {
-        return item->data( index.column() );
-    }
-    return QVariant();
 }
 
 bool
