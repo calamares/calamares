@@ -1,16 +1,16 @@
 # Netinstall module
 
 The netinstall module allows distribution maintainers to ship minimal ISOs with
-only a basic set of preinstall packages. At installation time, the user is
+only a basic set of preinstalled packages. At installation time, the user is
 presented with the choice to install groups of packages from a predefined list.
 
-Calamares will then invoke the correct backend to install the packages.
+Calamares will then use the *packages* module to install the packages.
 
 
 ## Module Configuration
 
 The `netinstall.conf` file is self-describing, and at the very
-lease should contain a *groupsUrl* key:
+least should contain a *groupsUrl* key:
 
 ```
     ----
@@ -18,13 +18,13 @@ lease should contain a *groupsUrl* key:
 ```
 
 The URL must point to a YAML file, the *groups* file. See below for
-the format of that groups file. The URL may be a local file.
+the format of that groups file. The URL may be a local file (e.g.
+scheme `file:///`) or a regular HTTP(s) URL.
 
 
 ## Groups Configuration
 
- Here is a short example
-of how the YAML file should look.
+Here is a short example of how the YAML file should look.
 
 ```
     - name: "Group name"
@@ -45,9 +45,11 @@ More keys (per group) are supported:
 
  - *hidden*: if true, do not show the group on the page. Defaults to false.
  - *selected*: if true, display the group as selected. Defaults to false.
- - critical*: if true, make the installation process fail if installing
+ - *critical*: if true, make the installation process fail if installing
    any of the packages in the group fails. Otherwise, just log a warning.
    Defaults to false.
+ - *expanded*: if true, the group is shown in an expanded form (that is,
+   not-collapsed) in the treeview on start.
  - *subgroups*: if present this follows the same structure as the top level
    of the YAML file, allowing there to be sub-groups of packages to an
    arbitary depth
