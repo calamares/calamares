@@ -21,9 +21,6 @@
 
 #include "utils/Yaml.h"
 
-// TODO: see headerData(), remove after 3.2.19
-#include <QCoreApplication>
-
 PackageModel::PackageModel( const YAML::Node& data, QObject* parent )
     : QAbstractItemModel( parent )
 {
@@ -171,12 +168,7 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
 {
     if ( orientation == Qt::Horizontal && role == Qt::DisplayRole )
     {
-        // Unusual translation call uses the existing translation from the NetInstallPage
-        // class (now removed).
-        //
-        // TODO: after 3.2.19, change this to just tr() and push TX
-        return ( section == 0 ) ? QCoreApplication::translate( "NetInstallPage", "Name" )
-                                : QCoreApplication::translate( "NetInstallPage", "Description" );
+        return ( section == 0 ) ? tr( "Name" ) : tr( "Description" );
     }
     return QVariant();
 }
