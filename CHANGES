@@ -15,6 +15,9 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - *packages* now reports more details in the installation progress-bar.
+ - *netinstall* module supports and `expanded` key, which will pre-expand
+   a group (as if the user had pressed the arrow-button in the tree-view).
+   This only affects the UI.
 
 
 # 3.2.20 (2020-02-27) #
