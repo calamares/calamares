@@ -187,7 +187,7 @@ Config::setCountryCode( const QString& countryCode )
 }
 
 void
-Config::setLanguageIcon( const QString languageIcon )
+Config::setLanguageIcon(const QString &languageIcon )
 {
 	m_languageIcon = languageIcon;
 }

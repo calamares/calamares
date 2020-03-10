@@ -101,13 +101,15 @@ class Config : public QObject
     Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage NOTIFY genericWelcomeMessageChanged FINAL )
     Q_PROPERTY( QString warningMessage MEMBER m_warningMessage CONSTANT FINAL )
 
-    Q_PROPERTY( bool isNextEnabled MEMBER m_isNextEnabled NOTIFY isNextEnabledChanged FINAL )
-
+    Q_PROPERTY(QString supportUrl MEMBER m_supportUrl CONSTANT FINAL)
+    Q_PROPERTY(QString knownIssuesUrl MEMBER m_knownIssuesUrl CONSTANT FINAL)
+    Q_PROPERTY(QString releaseNotesUrl MEMBER m_releaseNotesUrl CONSTANT FINAL)
+    Q_PROPERTY(QString donateUrl MEMBER m_donateUrl CONSTANT FINAL)
 
 public:
     Config( QObject* parent = nullptr );
     void setCountryCode( const QString &countryCode );
-    void setLanguageIcon( const QString languageIcon );
+    void setLanguageIcon( const QString &languageIcon );
     RequirementsModel& requirementsModel () const;
 
     void setIsNextEnabled( const bool& isNextEnabled );
@@ -150,7 +152,6 @@ private:
     QString m_knownIssuesUrl;
     QString m_releaseNotesUrl;
     QString m_donateUrl;
-
 
 signals:
     void countryCodeChanged( QString countryCode );
