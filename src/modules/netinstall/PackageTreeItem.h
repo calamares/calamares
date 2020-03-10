@@ -67,9 +67,14 @@ public:
     QString packageName() const;
     QString postScript() const;
 
+    /** @brief Is this item hidden?
+     *
+     * Hidden items (generally only groups) are maintained separately,
+     * not shown to the user, but do enter into the package-installation process.
+     */
     bool isHidden() const;
-    /**
-     * @brief Is this hidden item, considered "selected"?
+
+    /** @brief Is this hidden item, considered "selected"?
      *
      * This asserts when called on a non-hidden item.
      * A hidden item has its own selected state, but really
@@ -77,7 +82,20 @@ public:
      */
     bool hiddenSelected() const;
 
+    /** @brief Is this group critical?
+     *
+     * A critical group must be successfully installed, for the Calamares
+     * installation to continue.
+     */
     bool isCritical() const;
+
+    /** @brief Is this group expanded on start?
+     *
+     * This does not affect installation, only the UI. A group
+     * that expands on start is shown expanded (not collapsed)
+     * in the treeview when the page is loaded.
+     */
+    bool expandOnStart() const { return m_data.startExpanded; }
 
     Qt::CheckState isSelected() const;
     void setSelected( Qt::CheckState isSelected );

@@ -123,6 +123,8 @@ PackageModel::data( const QModelIndex& index, int role ) const
         return index.column() == NameColumn ? item->isSelected() : QVariant();
     case Qt::DisplayRole:
         return item->isHidden() ? QVariant() : item->data( index.column() );
+    case MetaExpandRole:
+        return item->isHidden() ? false : item->expandOnStart();
     default:
         return QVariant();
     }

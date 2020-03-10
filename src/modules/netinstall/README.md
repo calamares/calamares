@@ -48,6 +48,8 @@ More keys (per group) are supported:
  - *critical*: if true, make the installation process fail if installing
    any of the packages in the group fails. Otherwise, just log a warning.
    Defaults to false.
+ - *expanded*: if true, the group is shown in an expanded form (that is,
+   not-collapsed) in the treeview on start.
  - *subgroups*: if present this follows the same structure as the top level
    of the YAML file, allowing there to be sub-groups of packages to an
    arbitary depth

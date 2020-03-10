@@ -154,11 +154,10 @@ NetInstallPage::dataIsHere()
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
     ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
 
-    cDebug() << "Groups info rows=" << m_groups->rowCount();
+    // Go backwards because expanding a group may cause rows to appear below it
     for ( int i = m_groups->rowCount() - 1; i >= 0; --i )
     {
         auto index = m_groups->index(i,0);
-        cDebug() << Logger::SubEntry << i << m_groups->data(index, Qt::DisplayRole);
         if ( m_groups->data(index, PackageModel::MetaExpandRole).toBool() )
         {
             ui->groupswidget->setExpanded(index, true);
