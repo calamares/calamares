@@ -25,6 +25,7 @@
 #include "DebugWindow.h"
 #include "Settings.h"
 #include "ViewManager.h"
+#include "progresstree/ProgressTreeModel.h"
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -93,8 +94,9 @@ CalamaresWindow::getWidgetSidebar( int desiredWidth )
     logoLayout->addStretch();
 
     ProgressTreeView* tv = new ProgressTreeView( sideBox );
-    sideLayout->addWidget( tv );
+    tv->setModel( new ProgressTreeModel );
     tv->setFocusPolicy( Qt::NoFocus );
+    sideLayout->addWidget( tv );
 
     if ( Calamares::Settings::instance()->debugMode() || ( Logger::logLevel() >= Logger::LOGVERBOSE ) )
     {
@@ -169,6 +171,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     cDebug() << Logger::SubEntry << "Proposed window size:" << w << h;
     resize( w, h );
 
+    m_viewManager = Calamares::ViewManager::instance( this );
+
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
 
@@ -183,9 +187,6 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
         mainLayout->addWidget( sideBox );
     }
 
-    CalamaresUtils::unmarginLayout( mainLayout );
-
-    m_viewManager = Calamares::ViewManager::instance( this );
     if ( branding->windowExpands() )
     {
         connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
@@ -200,6 +201,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     //       event, which is also the ViewManager's responsibility.
 
     mainLayout->addWidget( m_viewManager->centralWidget() );
+    CalamaresUtils::unmarginLayout( mainLayout );
     setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }
 

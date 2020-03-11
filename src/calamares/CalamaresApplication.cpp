@@ -339,8 +339,8 @@ CalamaresApplication::initViewSteps()
         m_mainwindow->show();
     }
 
-    ProgressTreeModel* m = new ProgressTreeModel( nullptr );
-    ProgressTreeView::instance()->setModel( m );
+    // ProgressTreeModel* m = new ProgressTreeModel( nullptr );
+    // ProgressTreeView::instance()->setModel( m );
     cDebug() << "STARTUP: Window now visible and ProgressTreeView populated";
 
     const auto steps = Calamares::ViewManager::instance()->viewSteps();
