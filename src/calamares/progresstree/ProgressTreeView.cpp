@@ -23,37 +23,18 @@
 #include "Branding.h"
 #include "ViewManager.h"
 
-ProgressTreeView* ProgressTreeView::s_instance = nullptr;
-
-ProgressTreeView*
-ProgressTreeView::instance()
-{
-    return s_instance;
-}
-
 ProgressTreeView::ProgressTreeView( QWidget* parent )
-    : QTreeView( parent )
+    : QListView( parent )
 {
-    s_instance = this;  //FIXME: should assert when s_instance gets written and it wasn't nullptr
-
     this->setObjectName( "sidebarMenuApp" );
     setFrameShape( QFrame::NoFrame );
     setContentsMargins( 0, 0, 0, 0 );
 
-    setHeaderHidden( true );
-    setRootIsDecorated( true );
-    setExpandsOnDoubleClick( true );
-
     setSelectionMode( QAbstractItemView::NoSelection );
     setDragDropMode( QAbstractItemView::NoDragDrop );
     setAcceptDrops( false );
-    setUniformRowHeights( false );
 
-    setIndentation( 0 );
-    setSortingEnabled( false );
-
-    m_delegate = new ProgressTreeDelegate( this );
-    setItemDelegate( m_delegate );
+    setItemDelegate( new ProgressTreeDelegate( this ) );
 
     QPalette plt = palette();
     plt.setColor( QPalette::Base,
@@ -73,8 +54,7 @@ ProgressTreeView::setModel( QAbstractItemModel* model )
         return;
     }
 
-    QTreeView::setModel( model );
-    expandAll();
+    QListView::setModel( model );
 
     connect(
         Calamares::ViewManager::instance(),

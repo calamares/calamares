@@ -7,10 +7,7 @@ set( calamaresSources
     VariantModel.cpp
 
     progresstree/ProgressTreeDelegate.cpp
-    progresstree/ProgressTreeItem.cpp
-    progresstree/ProgressTreeModel.cpp
     progresstree/ProgressTreeView.cpp
-    progresstree/ViewStepItem.cpp
 )
 
 include_directories(
