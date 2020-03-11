@@ -201,6 +201,8 @@ WelcomePage::setLanguageIcon( QPixmap i )
 void
 WelcomePage::retranslate()
 {
+    cDebug() << "Restanslate WLEOCME";
+
     QString message;
 
     if ( Calamares::Settings::instance()->isSetupMode() )

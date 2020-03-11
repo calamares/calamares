@@ -30,8 +30,8 @@ class RequirementsModel : public QAbstractListModel
     Q_OBJECT
     using QAbstractListModel::QAbstractListModel;
     Q_PROPERTY(bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL)
-
     Q_PROPERTY(bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL)
+    Q_PROPERTY( QString warningMessage READ warningMessage NOTIFY warningMessageChanged FINAL )
 
 public:
     enum Roles : short
@@ -56,12 +56,10 @@ public:
 
     const Calamares::RequirementEntry& getEntry(const int& index) const
     {
-
         if(index > count() ||  index < 0)
             return *(new Calamares::RequirementEntry());
 
         return m_requierements.at(index);
-
     }
 
     void setRequirementsList( const Calamares::RequirementsList& requirements );
@@ -70,6 +68,13 @@ public:
     {
         return m_requierements.count();
     }
+
+    QString warningMessage() const
+    {
+        return m_warningMessage;
+    }
+
+    void retranslate();
 
     QVariant data(const QModelIndex& index, int role) const override;
 
@@ -81,11 +86,13 @@ private:
     bool m_satisfiedRequirements = false;
     bool m_satisfiedMandatory = false;
 
+    QString m_warningMessage;
+
 signals:
     void satisfiedRequirementsChanged(bool value);
     void satisfiedMandatoryChanged();
+    void warningMessageChanged();
 };
-
 
 class Config : public QObject
 {
@@ -99,12 +106,11 @@ class Config : public QObject
     Q_PROPERTY (int localeIndex READ localeIndex WRITE setLocaleIndex NOTIFY localeIndexChanged)
 
     Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage NOTIFY genericWelcomeMessageChanged FINAL )
-    Q_PROPERTY( QString warningMessage MEMBER m_warningMessage CONSTANT FINAL )
 
-    Q_PROPERTY(QString supportUrl MEMBER m_supportUrl CONSTANT FINAL)
-    Q_PROPERTY(QString knownIssuesUrl MEMBER m_knownIssuesUrl CONSTANT FINAL)
-    Q_PROPERTY(QString releaseNotesUrl MEMBER m_releaseNotesUrl CONSTANT FINAL)
-    Q_PROPERTY(QString donateUrl MEMBER m_donateUrl CONSTANT FINAL)
+    Q_PROPERTY( QString supportUrl MEMBER m_supportUrl NOTIFY supportUrlChanged FINAL )
+    Q_PROPERTY( QString knownIssuesUrl MEMBER m_knownIssuesUrl NOTIFY knownIssuesUrlChanged FINAL )
+    Q_PROPERTY( QString releaseNotesUrl MEMBER m_releaseNotesUrl NOTIFY releaseNotesUrlChanged FINAL )
+    Q_PROPERTY (QString donateUrl MEMBER m_donateUrl NOTIFY donateUrlChanged FINAL )
 
 public:
     Config( QObject* parent = nullptr );
@@ -144,9 +150,7 @@ private:
     bool m_isNextEnabled = false;
     CalamaresUtils::Locale::LabelModel* m_languages;
 
-    QString m_genericWelcomeMessage = tr("This program will ask you some questions and set up your installation");
-
-    QString m_warningMessage = tr("This program does not satisfy the minimum requirements for installing.\nInstallation can not continue");
+    QString m_genericWelcomeMessage;
 
     QString m_supportUrl;
     QString m_knownIssuesUrl;
@@ -158,6 +162,11 @@ signals:
     void localeIndexChanged( int localeIndex );
     void isNextEnabledChanged( bool isNextEnabled );
     void genericWelcomeMessageChanged();
+
+    void supportUrlChanged();
+    void knownIssuesUrlChanged();
+    void releaseNotesUrlChanged();
+    void donateUrlChanged();
 };
 
 #endif
