@@ -37,23 +37,6 @@
 #include <QWidget>
 
 
-static const NamedEnumTable< Calamares::QmlViewStep::QmlSearch >&
-searchNames()
-{
-    using Search = Calamares::QmlViewStep::QmlSearch;
-    // *INDENT-OFF*
-    // clang-format off
-    static NamedEnumTable< Search > names {
-        { QStringLiteral( "both" ), Search::Both },
-        { QStringLiteral( "qrc" ), Search::QrcOnly },
-        { QStringLiteral( "branding" ), Search::BrandingOnly }
-    };
-    // *INDENT-ON*
-    // clang-format on
-
-    return names;
-}
-
 /// @brief State-change of the QML, for changeQMLState()
 enum class QMLAction
 {
@@ -244,66 +227,12 @@ QmlViewStep::showQml()
 }
 
 
-/** @brief Find a suitable QML file, given the search method and name hints
- *
- * Returns QString() if nothing is found (which would mean the module
- * is badly configured).
- */
-QString
-searchQmlFile( QmlViewStep::QmlSearch method, const QString& configuredName, const Calamares::ModuleSystem::InstanceKey& i )
-{
-    using QmlSearch = Calamares::QmlViewStep::QmlSearch;
-
-    QString bPath( QStringLiteral( "%1/%2.qml" ) );
-    QString qrPath( QStringLiteral( ":/%1.qml" ) );
-
-    cDebug() << "Looking for QML for" << i.toString();
-    QStringList candidates;
-    if ( configuredName.startsWith( '/' ) )
-    {
-        candidates << configuredName;
-    }
-    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::BrandingOnly ) )
-    {
-        QString brandDir = Calamares::Branding::instance()->componentDirectory();
-        candidates << ( configuredName.isEmpty() ? QString()
-                                                 : bPath.arg( brandDir, configuredName ) )
-                   << bPath.arg( brandDir, i.toString() )
-                   << bPath.arg( brandDir, i.module() );
-    }
-    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
-    {
-        candidates << ( configuredName.isEmpty() ? QString() : qrPath.arg( configuredName ) )
-                   << qrPath.arg( i.toString() )
-                   << qrPath.arg( i.module() );
-    }
-    for ( const QString& candidate : candidates )
-    {
-        if ( candidate.isEmpty() )
-        {
-            continue;
-        }
-        cDebug() << Logger::SubEntry << "Looking at QML file" << candidate;
-        if ( QFile::exists( candidate ) )
-        {
-            if ( candidate.startsWith( ':' ) )
-            {
-                // Inconsistency: QFile only sees the file with :,
-                // but QML needs an explicit scheme (of qrc:)
-                return QStringLiteral( "qrc" ) + candidate;
-            }
-            return candidate;
-        }
-    }
-    cDebug() << Logger::SubEntry << "None found.";
-    return QString();
-}
-
 void
 QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool ok = false;
-    m_searchMethod = searchNames().find( CalamaresUtils::getString( configurationMap, "qmlSearch" ), ok );
+    m_searchMethod
+        = CalamaresUtils::qmlSearchNames().find( CalamaresUtils::getString( configurationMap, "qmlSearch" ), ok );
     if ( !ok )
     {
         cDebug() << "Bad QML search mode.";

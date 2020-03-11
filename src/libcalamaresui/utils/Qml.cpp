@@ -18,11 +18,13 @@
 
 #include "Qml.h"
 
+#include "Branding.h"
 #include "utils/Logger.h"
 
 #include <QByteArray>
 #include <QObject>
 #include <QQuickItem>
+#include <QString>
 #include <QVariant>
 
 namespace CalamaresUtils
@@ -48,5 +50,68 @@ callQMLFunction( QQuickItem* qmlObject, const char* method )
         cDebug() << "QML" << methodSignature << "is missing.";
     }
 }
+
+
+QString
+searchQmlFile( QmlSearch method, const QString& configuredName, const Calamares::ModuleSystem::InstanceKey& i )
+{
+    QString bPath( QStringLiteral( "%1/%2.qml" ) );
+    QString qrPath( QStringLiteral( ":/%1.qml" ) );
+
+    cDebug() << "Looking for QML for" << i.toString();
+    QStringList candidates;
+    if ( configuredName.startsWith( '/' ) )
+    {
+        candidates << configuredName;
+    }
+    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::BrandingOnly ) )
+    {
+        QString brandDir = Calamares::Branding::instance()->componentDirectory();
+        candidates << ( configuredName.isEmpty() ? QString() : bPath.arg( brandDir, configuredName ) )
+                   << bPath.arg( brandDir, i.toString() ) << bPath.arg( brandDir, i.module() );
+    }
+    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
+    {
+        candidates << ( configuredName.isEmpty() ? QString() : qrPath.arg( configuredName ) )
+                   << qrPath.arg( i.toString() ) << qrPath.arg( i.module() );
+    }
+    for ( const QString& candidate : candidates )
+    {
+        if ( candidate.isEmpty() )
+        {
+            continue;
+        }
+        cDebug() << Logger::SubEntry << "Looking at QML file" << candidate;
+        if ( QFile::exists( candidate ) )
+        {
+            if ( candidate.startsWith( ':' ) )
+            {
+                // Inconsistency: QFile only sees the file with :,
+                // but QML needs an explicit scheme (of qrc:)
+                return QStringLiteral( "qrc" ) + candidate;
+            }
+            return candidate;
+        }
+    }
+    cDebug() << Logger::SubEntry << "None found.";
+    return QString();
+}
+
+const NamedEnumTable< QmlSearch >&
+qmlSearchNames()
+{
+    // *INDENT-OFF*
+    // clang-format off
+    static NamedEnumTable< QmlSearch > names {
+        { QStringLiteral( "both" ), QmlSearch::Both },
+        { QStringLiteral( "qrc" ), QmlSearch::QrcOnly },
+        { QStringLiteral( "branding" ), QmlSearch::BrandingOnly }
+    };
+    // *INDENT-ON*
+    // clang-format on
+
+    return names;
+}
+
 
 }  // namespace CalamaresUtils

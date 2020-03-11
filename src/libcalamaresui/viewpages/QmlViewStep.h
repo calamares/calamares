@@ -19,6 +19,7 @@
 #ifndef QMLVIEWSTEP_H
 #define QMLVIEWSTEP_H
 
+#include "utils/Qml.h"
 #include "viewpages/ViewStep.h"
 
 class QQmlComponent;
@@ -38,15 +39,7 @@ namespace Calamares
 class QmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-
 public:
-    enum class QmlSearch
-    {
-        QrcOnly,
-        BrandingOnly,
-        Both
-    };
-
     /** @brief Creates a QML view step
      *
      * The search behavior for the actial QML depends on a QmlSearch value.
@@ -98,7 +91,7 @@ private:
     void showFailedQml();
 
     /// @brief Controls where m_name is searched
-    QmlSearch m_searchMethod;
+    CalamaresUtils::QmlSearch m_searchMethod;
 
     QString m_name;
     QString m_qmlFileName;
