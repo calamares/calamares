@@ -251,9 +251,12 @@ QmlViewStep::showQml()
  * is badly configured).
  */
 QString
-searchQmlFile( QmlViewStep::QmlSearch method, const QString& configuredName, const QString& moduleName )
+searchQmlFile( QmlViewStep::QmlSearch method, const QString& configuredName, const QString& moduleName, const Calamares::ModuleSystem::InstanceKey& i )
 {
     using QmlSearch = Calamares::QmlViewStep::QmlSearch;
+
+    QString bPath( QStringLiteral( "%1/%2.qml" ) );
+    QString qrPath( QStringLiteral( ":/%1.qml" ) );
 
     cDebug() << "Looking for QML for" << moduleName;
     QStringList candidates;
@@ -265,13 +268,17 @@ searchQmlFile( QmlViewStep::QmlSearch method, const QString& configuredName, con
     {
         QString brandDir = Calamares::Branding::instance()->componentDirectory();
         candidates << ( configuredName.isEmpty() ? QString()
-                                                 : QStringLiteral( "%1/%2.qml" ).arg( brandDir, configuredName ) )
-                   << ( moduleName.isEmpty() ? QString() : QStringLiteral( "%1/%2.qml" ).arg( brandDir, moduleName ) );
+                                                 : bPath.arg( brandDir, configuredName ) )
+                   << ( moduleName.isEmpty() ? QString() : bPath.arg( brandDir, moduleName ) )
+                   << bPath.arg( brandDir, i.toString() )
+                   << bPath.arg( brandDir, i.module() );
     }
     if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
     {
-        candidates << ( configuredName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( configuredName ) )
-                   << ( moduleName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( moduleName ) );
+        candidates << ( configuredName.isEmpty() ? QString() : qrPath.arg( configuredName ) )
+                   << ( moduleName.isEmpty() ? QString() : qrPath.arg( moduleName ) )
+                   << qrPath.arg( i.toString() )
+                   << qrPath.arg( i.module() );
     }
     for ( const QString& candidate : candidates )
     {
@@ -306,14 +313,9 @@ QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     QString qmlFile = CalamaresUtils::getString( configurationMap, "qmlFilename" );
-    if ( qmlFile.isEmpty() )
-    {
-        // TODO use the module instance
-    }
-
     if ( !m_qmlComponent )
     {
-        m_qmlFileName = searchQmlFile( m_searchMethod, qmlFile, m_name );
+        m_qmlFileName = searchQmlFile( m_searchMethod, qmlFile, m_name, moduleInstanceKey() );
 
         QObject* config = this->getConfig();
         if ( config )
