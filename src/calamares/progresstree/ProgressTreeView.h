@@ -20,15 +20,13 @@
 #ifndef PROGRESSTREEVIEW_H
 #define PROGRESSTREEVIEW_H
 
-#include <QTreeView>
-
-class ProgressTreeDelegate;
+#include <QListView>
 
 /**
  * @brief The ProgressTreeView class is a modified QTreeView which displays the
  * available view steps and the user's progress through them.
  */
-class ProgressTreeView : public QTreeView
+class ProgressTreeView : public QListView
 {
     Q_OBJECT
 public:
@@ -39,9 +37,6 @@ public:
      * @brief setModel assigns a model to this view.
      */
     void setModel( QAbstractItemModel* model ) override;
-
-private:
-    ProgressTreeDelegate* m_delegate;
 };
 
 #endif  // PROGRESSTREEVIEW_H

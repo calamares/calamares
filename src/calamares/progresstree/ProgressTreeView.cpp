@@ -24,26 +24,17 @@
 #include "ViewManager.h"
 
 ProgressTreeView::ProgressTreeView( QWidget* parent )
-    : QTreeView( parent )
+    : QListView( parent )
 {
     this->setObjectName( "sidebarMenuApp" );
     setFrameShape( QFrame::NoFrame );
     setContentsMargins( 0, 0, 0, 0 );
 
-    setHeaderHidden( true );
-    setRootIsDecorated( true );
-    setExpandsOnDoubleClick( true );
-
     setSelectionMode( QAbstractItemView::NoSelection );
     setDragDropMode( QAbstractItemView::NoDragDrop );
     setAcceptDrops( false );
-    setUniformRowHeights( false );
 
-    setIndentation( 0 );
-    setSortingEnabled( false );
-
-    m_delegate = new ProgressTreeDelegate( this );
-    setItemDelegate( m_delegate );
+    setItemDelegate( new ProgressTreeDelegate( this ) );
 
     QPalette plt = palette();
     plt.setColor( QPalette::Base,
@@ -63,8 +54,7 @@ ProgressTreeView::setModel( QAbstractItemModel* model )
         return;
     }
 
-    QTreeView::setModel( model );
-    expandAll();
+    QListView::setModel( model );
 
     connect(
         Calamares::ViewManager::instance(),
