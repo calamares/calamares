@@ -49,12 +49,12 @@ public:
 
     /** @brief Creates a QML view step
      *
-     * The name should not have an extension or schema or anything;
-     * just the plain name, which will be searched as "/<name>.qml" in
-     * QRC files, or "<name>.qml" in suitable branding paths.
-     * The search behavior depends on a QmlSearch value.
+     * The search behavior for the actial QML depends on a QmlSearch value.
+     * This is set through common configuration key *qmlSearch*.
+     * The filename used comes from the module identifier, or can be
+     * set in the configuration file through *qmlFilename*.
      */
-    QmlViewStep( const QString& name, QObject* parent = nullptr );
+    QmlViewStep( QObject* parent = nullptr );
     virtual ~QmlViewStep() override;
 
     virtual QString prettyName() const override;
