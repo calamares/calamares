@@ -299,13 +299,13 @@ void
 QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool ok = false;
-    m_searchMethod = searchNames().find( CalamaresUtils::getString( configurationMap, "search" ), ok );
+    m_searchMethod = searchNames().find( CalamaresUtils::getString( configurationMap, "qmlSearch" ), ok );
     if ( !ok )
     {
         cDebug() << "Bad QML search mode.";
     }
 
-    QString qmlFile = CalamaresUtils::getString( configurationMap, "filename" );
+    QString qmlFile = CalamaresUtils::getString( configurationMap, "qmlFilename" );
     if ( qmlFile.isEmpty() )
     {
         // TODO use the module instance
