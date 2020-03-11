@@ -37,6 +37,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
+#include <QQuickWidget>
 #include <QTreeView>
 
 static inline int
@@ -129,6 +130,13 @@ CalamaresWindow::getWidgetSidebar( int desiredWidth )
     return sideBox;
 }
 
+QWidget*
+CalamaresWindow::getQmlSidebar( int desiredWidth )
+{
+    QQuickWidget* w = new QQuickWidget( this );
+    w->setSource( QUrl( ":/sidebar.qml" ) );
+    return w;
+}
 
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
@@ -176,10 +184,18 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     setLayout( mainLayout );
 
     QWidget* sideBox = nullptr;
-    if ( branding->sidebarFlavor() == Calamares::Branding::SidebarFlavor::Widget )
+    switch ( branding->sidebarFlavor() )
     {
+    case Calamares::Branding::SidebarFlavor::Widget:
         sideBox = getWidgetSidebar(
             qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+        break;
+    case Calamares::Branding::SidebarFlavor::Qml:
+        sideBox = getQmlSidebar(
+            qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+        break;
+    default:
+        sideBox = nullptr;
     }
     if ( sideBox )
     {

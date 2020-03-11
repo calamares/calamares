@@ -52,6 +52,7 @@ protected:
 
 private:
     QWidget* getWidgetSidebar( int desiredWidth );
+    QWidget* getQmlSidebar( int desiredWidth );
 
     QPointer< Calamares::DebugWindow > m_debugWindow;  // Managed by self
     Calamares::ViewManager* m_viewManager;
