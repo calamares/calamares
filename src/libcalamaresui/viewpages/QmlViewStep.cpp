@@ -74,9 +74,16 @@ registerCalamaresModels()
     if ( !done )
     {
         done = true;
+        // Because branding and viewmanager have a parent (CalamaresApplication
+        // and CalamaresWindow), they will not be deleted by QmlEngine.
+        //   https://doc.qt.io/qt-5/qtqml-cppintegration-data.html#data-ownership
         qmlRegisterSingletonType< Calamares::Branding >(
-            "calamares.ui", 1, 0, "Branding", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+            "io.calamares.ui", 1, 0, "Branding", []( QQmlEngine*, QJSEngine* ) -> QObject* {
                 return Calamares::Branding::instance();
+            } );
+        qmlRegisterSingletonType< Calamares::Branding >(
+            "io.calamares.core", 1, 0, "ViewManager", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+                return Calamares::ViewManager::instance();
             } );
     }
 }

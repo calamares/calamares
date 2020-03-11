@@ -52,7 +52,6 @@ WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
 // 			 &WelcomeQmlViewStep::nextStatusChanged );
 //     emit nextStatusChanged(true);
     qmlRegisterSingletonType< Config >( "io.calamares.module", 1, 0, "Welcome", [&](QQmlEngine*, QJSEngine*) -> QObject* { return m_config; } );
-    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
 }
 
 
