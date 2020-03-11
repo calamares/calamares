@@ -28,6 +28,8 @@ calamares_add_plugin( welcome
     SOURCES
         ${CHECKER_SOURCES}
         WelcomeViewStep.cpp
+        Config.cpp
+        Config.h
         WelcomePage.cpp
     UI
         WelcomePage.ui

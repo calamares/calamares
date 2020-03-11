@@ -19,16 +19,19 @@
 #ifndef WELCOMEPAGEPLUGIN_H
 #define WELCOMEPAGEPLUGIN_H
 
-#include "DllMacro.h"
-#include "utils/PluginFactory.h"
-#include "viewpages/ViewStep.h"
-
 #include <QObject>
+
+#include <modulesystem/Requirement.h>
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <DllMacro.h>
+
 #include <QVariantMap>
 
 class WelcomePage;
 class GeneralRequirements;
-
+class Config;
 namespace CalamaresUtils
 {
 namespace GeoIP
@@ -72,6 +75,7 @@ public:
 private:
     WelcomePage* m_widget;
     GeneralRequirements* m_requirementsChecker;
+    Config *m_conf;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )

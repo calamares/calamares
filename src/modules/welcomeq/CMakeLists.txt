@@ -3,7 +3,7 @@
 
 set( _welcome ${CMAKE_CURRENT_SOURCE_DIR}/../welcome )
 
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui ${_welcome} )
+include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui ${CMAKE_CURRENT_SOURCE_DIR}/../../libcalamares ${_welcome} )
 
 # DUPLICATED WITH WELCOME MODULE
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED DBus Network )
@@ -19,10 +19,7 @@ else()
 endif()
 
 set( CHECKER_SOURCES
-    ${_welcome}/checker/CheckerContainer.cpp
     ${_welcome}/checker/GeneralRequirements.cpp
-    ${_welcome}/checker/ResultWidget.cpp
-    ${_welcome}/checker/ResultsListWidget.cpp
     ${PARTMAN_SRC}
 )
 
@@ -32,7 +29,7 @@ calamares_add_plugin( welcomeq
     SOURCES
         ${CHECKER_SOURCES}
         WelcomeQmlViewStep.cpp
-        Config.cpp
+        ${_welcome}/Config.cpp
     RESOURCES
         welcomeq.qrc
     LINK_PRIVATE_LIBRARIES
@@ -42,3 +39,13 @@ calamares_add_plugin( welcomeq
         Qt5::Network
     SHARED_LIB
 )
+
+# add_executable( welcomeqmltest qmlmain.cpp Config.cpp WelcomeQmlViewStep.cpp ${CHECKER_SOURCES} )
+# target_link_libraries( welcomeqmltest PRIVATE calamaresui Qt5::Core Qt5::Network Qt5::DBus ${CHECKER_LINK_LIBRARIES})
+# set_target_properties( welcomeqmltest
+#     PROPERTIES
+#         ENABLE_EXPORTS TRUE
+#         RUNTIME_OUTPUT_NAME welcomeqmltest
+# )
+# calamares_automoc( welcomeqmltest )
+# calamares_autouic( welcomeqmltest )
