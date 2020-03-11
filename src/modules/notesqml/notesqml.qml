@@ -23,7 +23,7 @@
  * Branding object, which can be used to retrieve strings and paths
  * and colors.
  */
-import calamares.ui 1.0
+import io.calamares.ui 1.0
 
 import QtQuick 2.7
 import QtQuick.Controls 2.2
