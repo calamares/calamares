@@ -25,7 +25,6 @@
 #include "DebugWindow.h"
 #include "Settings.h"
 #include "ViewManager.h"
-#include "progresstree/ProgressTreeModel.h"
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -94,7 +93,7 @@ CalamaresWindow::getWidgetSidebar( int desiredWidth )
     logoLayout->addStretch();
 
     ProgressTreeView* tv = new ProgressTreeView( sideBox );
-    tv->setModel( new ProgressTreeModel );
+    tv->setModel( Calamares::ViewManager::instance() );
     tv->setFocusPolicy( Qt::NoFocus );
     sideLayout->addWidget( tv );
 

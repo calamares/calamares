@@ -21,7 +21,6 @@
 #include "CalamaresConfig.h"
 #include "CalamaresVersion.h"
 #include "CalamaresWindow.h"
-#include "progresstree/ProgressTreeModel.h"
 #include "progresstree/ProgressTreeView.h"
 
 #include "Branding.h"
