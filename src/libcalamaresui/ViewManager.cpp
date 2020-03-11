@@ -157,6 +157,7 @@ ViewManager::addViewStep( ViewStep* step )
 void
 ViewManager::insertViewStep( int before, ViewStep* step )
 {
+    emit beginInsertRows( QModelIndex(), before, before );
     m_steps.insert( before, step );
     connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
     connect( step, &ViewStep::nextStatusChanged, this, [this]( bool status ) {
@@ -183,6 +184,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     m_stack->insertWidget( before, step->widget() );
     m_stack->setCurrentIndex( 0 );
     step->widget()->setFocus();
+    emit endInsertRows();
 }
 
 
