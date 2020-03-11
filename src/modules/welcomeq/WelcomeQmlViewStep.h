@@ -71,7 +71,7 @@ public:
     void setCountry( const QString&, CalamaresUtils::GeoIP::Handler* handler );
 
     Calamares::RequirementsList checkRequirements() override;
-    Config* config() const;
+    QObject* getConfig() override;
 
 private:
     // TODO: a generic QML viewstep should return a config object from a method

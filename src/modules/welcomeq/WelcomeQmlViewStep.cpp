@@ -167,8 +167,8 @@ WelcomeQmlViewStep::checkRequirements()
 	return m_requirementsChecker->checkRequirements();
 }
 
-Config*
-WelcomeQmlViewStep::config() const
+QObject*
+WelcomeQmlViewStep::getConfig()
 {
 	return m_config;
 }
