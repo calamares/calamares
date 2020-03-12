@@ -19,6 +19,7 @@
 #include "Qml.h"
 
 #include "Branding.h"
+#include "ViewManager.h"
 #include "utils/Logger.h"
 
 #include <QByteArray>
@@ -113,5 +114,25 @@ qmlSearchNames()
     return names;
 }
 
+void
+registerCalamaresModels()
+{
+    static bool done = false;
+    if ( !done )
+    {
+        done = true;
+        // Because branding and viewmanager have a parent (CalamaresApplication
+        // and CalamaresWindow), they will not be deleted by QmlEngine.
+        //   https://doc.qt.io/qt-5/qtqml-cppintegration-data.html#data-ownership
+        qmlRegisterSingletonType< Calamares::Branding >(
+            "io.calamares.ui", 1, 0, "Branding", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+                return Calamares::Branding::instance();
+            } );
+        qmlRegisterSingletonType< Calamares::Branding >(
+            "io.calamares.core", 1, 0, "ViewManager", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+                return Calamares::ViewManager::instance();
+            } );
+    }
+}
 
 }  // namespace CalamaresUtils

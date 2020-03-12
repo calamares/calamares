@@ -28,6 +28,7 @@
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/Qml.h"
 #include "utils/Retranslator.h"
 
 #include <QApplication>
@@ -133,6 +134,7 @@ CalamaresWindow::getWidgetSidebar( int desiredWidth )
 QWidget*
 CalamaresWindow::getQmlSidebar( int desiredWidth )
 {
+    CalamaresUtils::registerCalamaresModels();
     QQuickWidget* w = new QQuickWidget( this );
     w->setSource( QUrl( ":/sidebar.qml" ) );
     return w;

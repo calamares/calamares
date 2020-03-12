@@ -28,6 +28,12 @@ class QQuickItem;
 
 namespace CalamaresUtils
 {
+/** @brief Sets up global Calamares models for QML
+ *
+ * This needs to be called at least once to make the global Calamares
+ * models (Branding, ViewManager, ...) available to QML.
+ */
+UIDLLEXPORT void registerCalamaresModels();
 
 /** @brief Calls the QML method @p method on @p qmlObject
  *
@@ -53,17 +59,17 @@ enum class QmlSearch
     Both
 };
 
+///@brief Names for the search terms (in config files)
+UIDLLEXPORT const NamedEnumTable< QmlSearch >& qmlSearchNames();
+
 /** @brief Find a suitable QML file, given the search method and name hints
  *
  * Returns QString() if nothing is found (which would mean the module
  * is badly configured).
  */
-QString searchQmlFile( QmlSearch method,
-                       const QString& configuredName,
-                       const Calamares::ModuleSystem::InstanceKey& i = Calamares::ModuleSystem::InstanceKey() );
-
-///@brief Names for the search terms (in config files)
-const NamedEnumTable< QmlSearch >& qmlSearchNames();
+UIDLLEXPORT QString searchQmlFile( QmlSearch method,
+                                   const QString& configuredName,
+                                   const Calamares::ModuleSystem::InstanceKey& i );
 
 }  // namespace CalamaresUtils
 
