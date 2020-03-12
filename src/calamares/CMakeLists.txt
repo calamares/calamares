@@ -20,6 +20,7 @@ include_directories(
 # Translations
 include( CalamaresAddTranslations )
 add_calamares_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
+qt5_add_resources( calamaresRc calamares.qrc )
 
 add_executable( calamares_bin ${calamaresSources} ${calamaresRc} ${trans_outfile} )
 target_include_directories( calamares_bin PRIVATE ${CMAKE_SOURCE_DIR} )
