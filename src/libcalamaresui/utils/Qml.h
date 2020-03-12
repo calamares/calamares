@@ -70,6 +70,7 @@ UIDLLEXPORT const NamedEnumTable< QmlSearch >& qmlSearchNames();
 UIDLLEXPORT QString searchQmlFile( QmlSearch method,
                                    const QString& configuredName,
                                    const Calamares::ModuleSystem::InstanceKey& i );
+UIDLLEXPORT QString searchQmlFile( QmlSearch method, const QString& fileNameNoSuffix );
 
 }  // namespace CalamaresUtils
 
