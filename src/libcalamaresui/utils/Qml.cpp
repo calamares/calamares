@@ -52,30 +52,48 @@ callQMLFunction( QQuickItem* qmlObject, const char* method )
     }
 }
 
-
-QString
-searchQmlFile( QmlSearch method, const QString& configuredName, const Calamares::ModuleSystem::InstanceKey& i )
+/** @brief Appends to @p candidates suitable expansions of @p names
+ *
+ * Depending on @p method, adds search expansions for branding, or QRC,
+ * or both (with branding having precedence).
+ */
+static void
+addExpansions( QmlSearch method, QStringList& candidates, const QStringList& names )
 {
     QString bPath( QStringLiteral( "%1/%2.qml" ) );
     QString qrPath( QStringLiteral( ":/%1.qml" ) );
 
-    cDebug() << "Looking for QML for" << i.toString();
+    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::BrandingOnly ) )
+    {
+        QString brandDir = Calamares::Branding::instance()->componentDirectory();
+        std::transform( names.constBegin(),
+                        names.constEnd(),
+                        std::back_inserter( candidates ),
+                        [&]( const QString& s ) { return s.isEmpty() ? QString() : bPath.arg( brandDir, s ); } );
+    }
+    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
+    {
+        std::transform( names.constBegin(),
+                        names.constEnd(),
+                        std::back_inserter( candidates ),
+                        [&]( const QString& s ) { return s.isEmpty() ? QString() : qrPath.arg( s ); } );
+    }
+}
+
+/** @brief Does actual search and returns result.
+ *
+ * Empty items in @p candidates are ignored.
+ */
+static QString
+searchQmlFile( QmlSearch method, const QString& configuredName, const QStringList& hints )
+{
     QStringList candidates;
     if ( configuredName.startsWith( '/' ) )
     {
         candidates << configuredName;
     }
-    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::BrandingOnly ) )
-    {
-        QString brandDir = Calamares::Branding::instance()->componentDirectory();
-        candidates << ( configuredName.isEmpty() ? QString() : bPath.arg( brandDir, configuredName ) )
-                   << bPath.arg( brandDir, i.toString() ) << bPath.arg( brandDir, i.module() );
-    }
-    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
-    {
-        candidates << ( configuredName.isEmpty() ? QString() : qrPath.arg( configuredName ) )
-                   << qrPath.arg( i.toString() ) << qrPath.arg( i.module() );
-    }
+    addExpansions( method, candidates, hints );
+
     for ( const QString& candidate : candidates )
     {
         if ( candidate.isEmpty() )
@@ -96,6 +114,20 @@ searchQmlFile( QmlSearch method, const QString& configuredName, const Calamares:
     }
     cDebug() << Logger::SubEntry << "None found.";
     return QString();
+}
+
+QString
+searchQmlFile( QmlSearch method, const QString& configuredName, const Calamares::ModuleSystem::InstanceKey& i )
+{
+    cDebug() << "Looking for QML for" << i.toString();
+    return searchQmlFile( method, configuredName, { configuredName, i.toString(), i.module() } );
+}
+
+QString
+searchQmlFile( QmlSearch method, const QString& configuredName )
+{
+    cDebug() << "Looking for QML for" << configuredName;
+    return searchQmlFile( method, configuredName, { configuredName } );
 }
 
 const NamedEnumTable< QmlSearch >&
