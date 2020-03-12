@@ -18,10 +18,11 @@
  */
 
 /* Some Calamares internals are available to all QML modules.
- * They live in the calamares.ui namespace (filled programmatically
- * by Calamares). One of the internals that is exposed is the
- * Branding object, which can be used to retrieve strings and paths
- * and colors.
+ * They live in the io.calamares namespace (filled programmatically
+ * by Calamares). One of the internals that is exposed in the sub-
+ * namespace io.calamares.ui is the Branding object, which can be used
+ * to retrieve strings and paths and colors. For a full list, see
+ * the documentation of the QmlViewStep base-class.
  */
 import io.calamares.ui 1.0
 
