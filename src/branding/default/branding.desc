@@ -45,7 +45,7 @@ windowPlacement: center
 #  - "widget" or unset, use traditional sidebar (logo, items)
 #  - "none", hide it entirely
 #  - "qml", use sidebar.qml from branding folder
-sidebar: none
+sidebar: widget
 
 # These are strings shown to the user in the user interface.
 # There is no provision for translating them -- since they
