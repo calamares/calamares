@@ -136,7 +136,8 @@ CalamaresWindow::getQmlSidebar( int desiredWidth )
 {
     CalamaresUtils::registerCalamaresModels();
     QQuickWidget* w = new QQuickWidget( this );
-    w->setSource( QUrl( ":/sidebar.qml" ) );
+    w->setSource( QUrl(
+        CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-sidebar" ) ) ) );
     return w;
 }
 
