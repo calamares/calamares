@@ -18,7 +18,7 @@ This release contains contributions from (alphabetically by first name):
    `import` for Calamares parts looks like
    > ```import io.calamares.ui 1.0```
    A complete list of objects available from Calamares van be found in the
-   documentation for the *QmlViewStep* base class.
+   documentation in `Qml.h`.
  - The sidebar (which shows overall progress in the installation) is now
    more configurable: the branding key *sidebar* controls it. The sidebar
    can be shown as a widget (default, as it has been), hidden, or use a

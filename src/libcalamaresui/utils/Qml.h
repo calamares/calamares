@@ -32,6 +32,12 @@ namespace CalamaresUtils
  *
  * This needs to be called at least once to make the global Calamares
  * models (Branding, ViewManager, ...) available to QML.
+ *
+ * The following objects are made available globally:
+ *  - `io.calamares.ui.Branding` (an object, see Branding.h)
+ *  - `io.calamares.core.ViewManager` (a model, see ViewManager.h)
+ * Additionally, modules based on QmlViewStep have a context
+ * property `config` referring to that module's configuration (if any).
  */
 UIDLLEXPORT void registerCalamaresModels();
 

@@ -46,6 +46,8 @@ public:
      * This is set through common configuration key *qmlSearch*.
      * The filename used comes from the module identifier, or can be
      * set in the configuration file through *qmlFilename*.
+     *
+     * @see Qml.h for available Calamares internals.
      */
     QmlViewStep( QObject* parent = nullptr );
     virtual ~QmlViewStep() override;
@@ -78,6 +80,8 @@ protected:
      *
      * Ownership of the config object remains with the ViewStep; it is possible
      * to return a pointer to a member variable.
+     *
+     * This object is made available as a context-property *config* in QML.
      */
     virtual QObject* getConfig();
 

@@ -22,7 +22,7 @@
  * by Calamares). One of the internals that is exposed in the sub-
  * namespace io.calamares.ui is the Branding object, which can be used
  * to retrieve strings and paths and colors. For a full list, see
- * the documentation of the QmlViewStep base-class.
+ * the documentation in `Qml.h`.
  */
 import io.calamares.ui 1.0
 
