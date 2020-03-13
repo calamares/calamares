@@ -32,6 +32,12 @@
 namespace Calamares
 {
 
+class DLLEXPORT InstanceDescription
+{
+public:
+    InstanceDescription( const QVariantMap& );
+};
+
 class DLLEXPORT Settings : public QObject
 {
     Q_OBJECT
@@ -42,10 +48,9 @@ public:
     static Settings* init( bool debugMode );
     /// @brief Explicif filename, debug is always true (for testing)
     static Settings* init( const QString& filename );
-    
+
     QStringList modulesSearchPaths() const;
 
-    using InstanceDescription = QMap< QString, QString >;
     using InstanceDescriptionList = QList< InstanceDescription >;
     InstanceDescriptionList customModuleInstances() const;
 
@@ -55,7 +60,7 @@ public:
     QString brandingComponentName() const;
 
     /** @brief Is this a debugging run?
-     * 
+     *
      * Returns true if Calamares is in debug mode. In debug mode,
      * modules and settings are loaded from more locations, to help
      * development and debugging.
@@ -63,7 +68,7 @@ public:
     bool debugMode() const { return m_debug; }
 
     /** @brief Distinguish "install" from "OEM" modes.
-     * 
+     *
      * Returns true in "install" mode, which is where actions happen
      * in a chroot -- the target system, which exists separately from
      * the source system. In "OEM" mode, returns false and most actions
@@ -72,13 +77,13 @@ public:
     bool doChroot() const { return m_doChroot; }
 
     /** @brief Global setting of prompt-before-install.
-     * 
+     *
      * Returns true when the configuration is such that the user
      * should be prompted one-last-time before any action is taken
      * that really affects the machine.
      */
     bool showPromptBeforeExecution() const { return m_promptInstall; }
-    
+
     /** @brief Distinguish between "install" and "setup" modes.
      *
      * This influences user-visible strings, for instance using the
