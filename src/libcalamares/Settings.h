@@ -39,6 +39,7 @@ struct DLLEXPORT InstanceDescription
     QString module;  ///< Module name (e.g. "welcome")
     QString id;  ///< Id, to distinguish multiple instances (e.g. "one", for "welcome@one")
     QString config;  ///< Config-file name (for multiple instances)
+    int weight;
 };
 
 class DLLEXPORT Settings : public QObject

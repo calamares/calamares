@@ -75,6 +75,7 @@ InstanceDescription::InstanceDescription( const QVariantMap& m )
     : module( m.value( "module" ).toString() )
     , id( m.value( "id" ).toString() )
     , config( m.value( "config" ).toString() )
+    , weight( m.value( "weight" ).toInt() )
 {
     if ( id.isEmpty() )
     {
@@ -84,6 +85,8 @@ InstanceDescription::InstanceDescription( const QVariantMap& m )
     {
         config = module + QStringLiteral( ".conf" );
     }
+
+    weight = qBound( 1, weight, 100 );
 }
 
 Settings* Settings::s_instance = nullptr;
