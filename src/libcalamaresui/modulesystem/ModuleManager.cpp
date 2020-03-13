@@ -129,9 +129,8 @@ ModuleManager::doInit()
     }
     // At this point m_availableDescriptorsByModuleName is filled with
     // the modules that were found in the search paths.
-    cDebug() << "Found"
-        << m_availableDescriptorsByModuleName.count() << "modules"
-        << m_moduleDirectoriesByModuleName.count() << "names";
+    cDebug() << "Found" << m_availableDescriptorsByModuleName.count() << "modules"
+             << m_moduleDirectoriesByModuleName.count() << "names";
     emit initDone();
 }
 
@@ -167,7 +166,7 @@ findCustomInstance( const Settings::InstanceDescriptionList& customInstances, co
     for ( int i = 0; i < customInstances.count(); ++i )
     {
         const auto& thisInstance = customInstances[ i ];
-        if ( thisInstance.value( "module" ) == m.module() && thisInstance.value( "id" ) == m.id() )
+        if ( thisInstance.module == m.module() && thisInstance.id == m.id() )
         {
             return i;
         }
@@ -196,7 +195,7 @@ getConfigFileName( const Settings::InstanceDescriptionList& customInstances,
             return QString();
         }
 
-        return customInstances[ found ].value( "config" );
+        return customInstances[ found ].config;
     }
     else
     {

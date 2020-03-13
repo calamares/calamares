@@ -72,7 +72,18 @@ namespace Calamares
 {
 
 InstanceDescription::InstanceDescription( const QVariantMap& m )
+    : module( m.value( "module" ).toString() )
+    , id( m.value( "id" ).toString() )
+    , config( m.value( "config" ).toString() )
 {
+    if ( id.isEmpty() )
+    {
+        id = module;
+    }
+    if ( config.isEmpty() )
+    {
+        config = module + QStringLiteral( ".conf" );
+    }
 }
 
 Settings* Settings::s_instance = nullptr;

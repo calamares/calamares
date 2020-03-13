@@ -32,16 +32,20 @@
 namespace Calamares
 {
 
-class DLLEXPORT InstanceDescription
+struct DLLEXPORT InstanceDescription
 {
-public:
     InstanceDescription( const QVariantMap& );
+
+    QString module;  ///< Module name (e.g. "welcome")
+    QString id;  ///< Id, to distinguish multiple instances (e.g. "one", for "welcome@one")
+    QString config;  ///< Config-file name (for multiple instances)
 };
 
 class DLLEXPORT Settings : public QObject
 {
     Q_OBJECT
     explicit Settings( const QString& settingsFilePath, bool debugMode );
+
 public:
     static Settings* instance();
     /// @brief Find a settings.conf, following @p debugMode
