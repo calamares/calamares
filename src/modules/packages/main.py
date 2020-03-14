@@ -287,6 +287,8 @@ class PMPacman(PackageManager):
         check_target_env_call(["pacman", "-Rsnc", "--noconfirm"] + pkgs)
 
     def update_db(self):
+        check_target_env_call(["pacman-key", "--init"])
+        # check_target_env_call(["pacman-key", "--populate alterlinux"])
         check_target_env_call(["pacman", "-Syy"])
 
     def update_system(self):
