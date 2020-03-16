@@ -33,6 +33,9 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
     if ( KPMcore_VERSION VERSION_GREATER "3.90")
         list( APPEND _partition_defs WITH_KPMCORE4API) # kpmcore 4 with new API
     endif()
+    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.2" )
+        list( APPEND _partition_defs WITH_KPMCORE42API) # kpmcore 4.2 with new API
+    endif()
 
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )

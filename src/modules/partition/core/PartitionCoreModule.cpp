@@ -834,6 +834,7 @@ PartitionCoreModule::initLayout()
 void
 PartitionCoreModule::initLayout( const QVariantList& config )
 {
+    bool ok;
     QString sizeString;
     QString minSizeString;
     QString maxSizeString;
@@ -884,6 +885,7 @@ PartitionCoreModule::initLayout( const QVariantList& config )
         if ( !m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
                                       CalamaresUtils::getString( pentry, "mountPoint" ),
                                       CalamaresUtils::getString( pentry, "filesystem" ),
+                                      CalamaresUtils::getSubMap( pentry, "features", ok ),
                                       sizeString,
                                       minSizeString,
                                       maxSizeString ) )
