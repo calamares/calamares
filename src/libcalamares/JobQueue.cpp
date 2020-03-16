@@ -73,7 +73,8 @@ public:
             }
 
             emitProgress();
-            cDebug() << "Starting" << ( anyFailed ? "EMERGENCY JOB" : "job" ) << job->prettyName() << " (there are" << m_jobs.count() << " left)";
+            cDebug() << "Starting" << ( anyFailed ? "EMERGENCY JOB" : "job" ) << job->prettyName() << " (there are"
+                     << m_jobs.count() << " left)";
             connect( job.data(), &Job::progress, this, &JobThread::emitProgress );
             JobResult result = job->exec();
             if ( !anyFailed && !result )
@@ -113,22 +114,22 @@ private:
         int jobCount = m_jobs.size();
         QString message = m_jobIndex < jobCount ? m_jobs.at( m_jobIndex )->prettyStatusMessage() : tr( "Done" );
 
-        qreal cumulativeProgress = 0.0;
-        for ( auto jobWeight : m_jobWeights.mid( 0, m_jobIndex ) )
-        {
-            cumulativeProgress += jobWeight;
-        }
-        qreal percent
-            = m_jobIndex < jobCount ? cumulativeProgress + ( ( m_jobWeights.at( m_jobIndex ) ) * jobPercent ) : 1.0;
-
+        qreal percent = 1.0;  // Pretend we're done, since the if will reset it
         if ( m_jobIndex < jobCount )
         {
-            Logger::CDebug( Logger::LOGVERBOSE ) << "[JOBQUEUE]: Progress for Job[" << m_jobIndex
-                                         << "]: " << ( jobPercent * 100 ) << "% completed";
-            Logger::CDebug( Logger::LOGVERBOSE ) << "[JOBQUEUE]: Progress Overall: " << ( cumulativeProgress * 100 )
-                                         << "% (accumulated) + "
-                                         << ( ( ( m_jobWeights.at( m_jobIndex ) ) * jobPercent ) * 100 )
-                                         << "% (this job) = " << ( percent * 100 ) << "% (total)";
+            qreal cumulativeProgress = 0.0;
+            for ( auto jobWeight : m_jobWeights.mid( 0, m_jobIndex ) )
+            {
+                cumulativeProgress += jobWeight;
+            }
+            percent = cumulativeProgress + ( ( m_jobWeights.at( m_jobIndex ) ) * jobPercent );
+
+            Logger::CDebug( Logger::LOGVERBOSE )
+                << "[JOBQUEUE]: Progress for Job[" << m_jobIndex << "]: " << ( jobPercent * 100 ) << "% completed";
+            Logger::CDebug( Logger::LOGVERBOSE )
+                << "[JOBQUEUE]: Progress Overall: " << ( cumulativeProgress * 100 ) << "% (accumulated) + "
+                << ( ( ( m_jobWeights.at( m_jobIndex ) ) * jobPercent ) * 100 )
+                << "% (this job) = " << ( percent * 100 ) << "% (total)";
         }
         QMetaObject::invokeMethod(
             m_queue, "progress", Qt::QueuedConnection, Q_ARG( qreal, percent ), Q_ARG( QString, message ) );
