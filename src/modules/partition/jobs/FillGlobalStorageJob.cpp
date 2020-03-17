@@ -107,7 +107,7 @@ mapForPartition( Partition* partition, const QString& uuid )
     Logger::CDebug deb;
     using TR = Logger::DebugRow< const char* const, const QString& >;
     deb << Logger::SubEntry << "mapping for" << partition->partitionPath() << partition->deviceNode()
-        << TR( "mtpoint:", PartitionInfo::mountPoint( partition ) ) << TR( "fs:", map[ "fs" ].toString() )
+        << TR( "mountPoint:", PartitionInfo::mountPoint( partition ) ) << TR( "fs:", map[ "fs" ].toString() )
         << TR( "fsName", map[ "fsName" ].toString() ) << TR( "uuid", uuid )
         << TR( "claimed", map[ "claimed" ].toString() );
 
