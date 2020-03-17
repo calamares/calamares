@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,41 +21,46 @@
 #ifndef ENCRYPTWIDGET_H
 #define ENCRYPTWIDGET_H
 
-#include "ui_EncryptWidget.h"
+#include <QWidget>
 
-class EncryptWidget : public QWidget, private Ui::EncryptWidget
+namespace Ui
+{
+    class EncryptWidget;
+}
+
+class EncryptWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    enum State : unsigned short
+    enum class Encryption : unsigned short
     {
-        EncryptionDisabled = 0,
-        EncryptionUnconfirmed,
-        EncryptionConfirmed
+        Disabled = 0,
+        Unconfirmed,
+        Confirmed
     };
 
     explicit EncryptWidget( QWidget* parent = nullptr );
 
     void reset();
 
-    State state() const;
+    Encryption state() const;
     void setText( const QString& text );
 
     QString passphrase() const;
 
-signals:
-    void stateChanged( State );
+    void retranslate();
 
-protected:
-    void changeEvent( QEvent* e );
+signals:
+    void stateChanged( Encryption );
 
 private:
     void updateState();
     void onPassphraseEdited();
-    void onCheckBoxStateChanged( int state );
+    void onCheckBoxStateChanged( int checked );
 
-    State m_state;
+    Ui::EncryptWidget* m_ui;
+    Encryption m_state;
 };
 
-#endif // ENCRYPTWIDGET_H
+#endif  // ENCRYPTWIDGET_H

@@ -21,10 +21,11 @@
 
 #include "Config.h"
 
-#include "DllMacro.h"
 #include "modulesystem/Requirement.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/QmlViewStep.h"
+
+#include <DllMacro.h>
 
 #include <QObject>
 #include <QVariantMap>
@@ -39,15 +40,25 @@ class Handler;
 
 class GeneralRequirements;
 
+// TODO: Needs a generic Calamares::QmlViewStep as base class
+// TODO: refactor and move what makes sense to base class
 class PLUGINDLLEXPORT WelcomeQmlViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT
 
 public:
+
     explicit WelcomeQmlViewStep( QObject* parent = nullptr );
-    virtual ~WelcomeQmlViewStep() override;
 
     QString prettyName() const override;
+
+    bool isNextEnabled() const override;
+    bool isBackEnabled() const override;
+
+    bool isAtBeginning() const override;
+    bool isAtEnd() const override;
+
+    Calamares::JobList jobs() const override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
@@ -60,13 +71,11 @@ public:
     void setCountry( const QString&, CalamaresUtils::GeoIP::Handler* handler );
 
     Calamares::RequirementsList checkRequirements() override;
-
-protected:
     QObject* getConfig() override;
 
 private:
     // TODO: a generic QML viewstep should return a config object from a method
-    Config m_config;
+    Config *m_config;
     GeneralRequirements* m_requirementsChecker;
 };
 

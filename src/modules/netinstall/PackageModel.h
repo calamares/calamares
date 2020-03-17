@@ -39,6 +39,16 @@ class PackageModel : public QAbstractItemModel
 public:
     using PackageItemDataList = QList< PackageTreeItem::ItemData >;
 
+    // Names for columns (unused in the code)
+    static constexpr const int NameColumn = 0;
+    static constexpr const int DescriptionColumn = 1;
+
+    /* The only interesting roles are DisplayRole (with text depending
+     * on the column, and MetaExpandRole which tells if an index
+     * should be initially expanded.
+     */
+    static constexpr const int MetaExpandRole = Qt::UserRole + 1;
+
     explicit PackageModel( const YAML::Node& data, QObject* parent = nullptr );
     ~PackageModel() override;
 

@@ -22,17 +22,15 @@
 
 #include "ResultWidget.h"
 
-#include "modulesystem/Requirement.h"
-
+#include "Config.h"
 #include <QWidget>
 
 class QLabel;
-
 class ResultsListWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ResultsListWidget( QWidget* parent, const Calamares::RequirementsList& checkEntries );
+    explicit ResultsListWidget(const RequirementsModel  &model,  QWidget* parent);
 
 private:
     /// @brief A link in the explanatory text has been clicked
@@ -40,7 +38,7 @@ private:
     void retranslate();
 
     QLabel* m_explanation = nullptr;  ///< Explanatory text above the list, with link
-    const Calamares::RequirementsList& m_entries;
+    const RequirementsModel &m_model;
     QList< ResultWidget* > m_resultWidgets;  ///< One widget for each unsatisfied entry
 };
 

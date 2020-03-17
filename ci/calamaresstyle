@@ -6,6 +6,11 @@
 # You can pass in directory names, in which case the files
 # in that directory (NOT below it) are processed.
 #
+LANG=C
+LC_ALL=C
+LC_NUMERIC=C
+export LANG LC_ALL LC_NUMERIC
+
 AS=$( which astyle )
 
 for _cf in clang-format-7 clang-format-8 clang-format70 clang-format80 clang-format

@@ -122,6 +122,15 @@ public:
         Center,
         Free
     };
+    Q_ENUM( WindowPlacement )
+    ///@brief What kind of sidebar to use in the main window
+    enum class SidebarFlavor
+    {
+        None,
+        Widget,
+        Qml
+    };
+    Q_ENUM( SidebarFlavor )
 
     static Branding* instance();
 
@@ -175,6 +184,9 @@ public:
     }
     bool windowPlacementCentered() const { return m_windowPlacement == WindowPlacement::Center; }
 
+    ///@brief Which sidebar flavor is configured
+    SidebarFlavor sidebarFlavor() const { return m_sidebarFlavor; }
+
     /**
      * Creates a map called "branding" in the global storage, and inserts an
      * entry for each of the branding strings. This makes the branding
@@ -214,6 +226,8 @@ private:
     WindowExpansion m_windowExpansion;
     WindowDimension m_windowHeight, m_windowWidth;
     WindowPlacement m_windowPlacement;
+
+    SidebarFlavor m_sidebarFlavor = SidebarFlavor::Widget;
 };
 
 template < typename U >

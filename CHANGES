@@ -3,6 +3,39 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.21 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - Python job modules (such as *unpackfs* or *packages*) can now provide
+   a `pretty_status_message()` function, like the existing `pretty_name()`
+   function, that is used to update the status during install. #1330
+ - QML support-modules and objects are now registered into the io.calamares
+   namespace. This affects modules using Calamares models inside their
+   QML UI (at this point, very few). With this release, the necessary
+   `import` for Calamares parts looks like
+   > ```import io.calamares.ui 1.0```
+   A complete list of objects available from Calamares van be found in the
+   documentation in `Qml.h`.
+ - The sidebar (which shows overall progress in the installation) is now
+   more configurable: the branding key *sidebar* controls it. The sidebar
+   can be shown as a widget (default, as it has been), hidden, or use a
+   new QML view which is more easily customised.
+
+## Modules ##
+ - *packages* now reports more details in the installation progress-bar.
+ - *netinstall* module supports and `expanded` key, which will pre-expand
+   a group (as if the user had pressed the arrow-button in the tree-view).
+   This only affects the UI.
+ - Modules that use QML need a new import line. The QML file for the
+   module is configured through new keys *qmlSearch* and *qmlFilename*
+   (previously those were without the `qml` prefix, which invites name
+   collisions). The full module identifier is also used as a filename,
+   so that multiple instances of a module can use different QML files.
+
+
 # 3.2.20 (2020-02-27) #
 
 This release contains contributions from (alphabetically by first name):

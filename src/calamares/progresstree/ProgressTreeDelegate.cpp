@@ -18,11 +18,10 @@
  */
 
 #include "ProgressTreeDelegate.h"
-#include "ProgressTreeModel.h"
 
 #include "CalamaresApplication.h"
 #include "CalamaresWindow.h"
-
+#include "ViewManager.h"
 #include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
 
@@ -87,7 +86,7 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
     painter->setFont( font );
 
     bool isCurrent = false;
-    isCurrent = index.data( ProgressTreeModel::ProgressTreeItemCurrentRole ).toBool();
+    isCurrent = index.data( Calamares::ViewManager::ProgressTreeItemCurrentRole ).toBool();
 
     if ( isCurrent )
     {

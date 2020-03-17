@@ -23,9 +23,9 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 
-#include <KF5/KService/kservice.h>
-#include <KF5/KParts/kde_terminal_interface.h>
-#include <KF5/KParts/kparts/readonlypart.h>
+#include <KService>
+#include <KParts/kde_terminal_interface.h>
+#include <KParts/ReadOnlyPart>
 
 #include <QApplication>
 #include <QDir>

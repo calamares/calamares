@@ -53,11 +53,12 @@ public:
     virtual qreal getJobWeight() const override;
 
 private:
-    friend class CalamaresPython::Helper;
+    struct Private;
+
     friend class CalamaresPython::PythonJobInterface;
     void emitProgress( double progressValue );
 
-    CalamaresPython::Helper* helper();
+    std::unique_ptr< Private > m_d;
     QString m_scriptFile;
     QString m_workingPath;
     QString m_description;

@@ -7,29 +7,23 @@ set( calamaresSources
     VariantModel.cpp
 
     progresstree/ProgressTreeDelegate.cpp
-    progresstree/ProgressTreeItem.cpp
-    progresstree/ProgressTreeModel.cpp
     progresstree/ProgressTreeView.cpp
-    progresstree/ViewStepItem.cpp
 )
 
 include_directories(
-    .
-    ${CMAKE_CURRENT_BINARY_DIR}
-    ${CMAKE_CURRENT_BINARY_DIR}/../libcalamares
-
     ${CMAKE_SOURCE_DIR}/src/libcalamares
-    ${CMAKE_SOURCE_DIR}/src//libcalamaresui
-    ${CMAKE_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/src/libcalamaresui
+    ${CMAKE_BINARY_DIR}/src/libcalamares
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 # Translations
 include( CalamaresAddTranslations )
 add_calamares_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
+qt5_add_resources( calamaresRc calamares.qrc )
 
-set( final_src ${calamaresSources} ${calamaresRc} ${trans_outfile} )
-
-add_executable( calamares_bin ${final_src} )
+add_executable( calamares_bin ${calamaresSources} ${calamaresRc} ${trans_outfile} )
+target_include_directories( calamares_bin PRIVATE ${CMAKE_SOURCE_DIR} )
 set_target_properties(calamares_bin
     PROPERTIES
         ENABLE_EXPORTS TRUE
@@ -40,7 +34,7 @@ calamares_autouic( calamares_bin )
 
 target_link_libraries( calamares_bin
     PRIVATE
-        ${CALAMARES_LIBRARIES}
+        calamares
         calamaresui
         Qt5::Core
         Qt5::Widgets
@@ -66,6 +60,6 @@ install( FILES ${CMAKE_SOURCE_DIR}/data/images/squid.svg
 
 if( BUILD_TESTING )
     add_executable( loadmodule testmain.cpp )
-    target_link_libraries( loadmodule ${CALAMARES_LIBRARIES} Qt5::Core Qt5::Widgets calamaresui )
+    target_link_libraries( loadmodule PRIVATE Qt5::Core Qt5::Widgets calamares calamaresui )
     # Don't install, it's just for enable_testing
 endif()

@@ -75,7 +75,7 @@ setButtonIcon( QPushButton* button, const QString& name )
 }
 
 ViewManager::ViewManager( QObject* parent )
-    : QObject( parent )
+    : QAbstractListModel( parent )
     , m_currentStep( 0 )
     , m_widget( new QWidget() )
 {
@@ -157,6 +157,7 @@ ViewManager::addViewStep( ViewStep* step )
 void
 ViewManager::insertViewStep( int before, ViewStep* step )
 {
+    emit beginInsertRows( QModelIndex(), before, before );
     m_steps.insert( before, step );
     connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
     connect( step, &ViewStep::nextStatusChanged, this, [this]( bool status ) {
@@ -183,6 +184,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     m_stack->insertWidget( before, step->widget() );
     m_stack->setCurrentIndex( 0 );
     step->widget()->setFocus();
+    emit endInsertRows();
 }
 
 
@@ -505,6 +507,87 @@ ViewManager::updateCancelEnabled( bool enabled )
 {
     m_quit->setEnabled( enabled );
     emit cancelEnabled( enabled );
+}
+
+QVariant
+ViewManager::data( const QModelIndex& index, int role ) const
+{
+    if ( !index.isValid() )
+    {
+        return QVariant();
+    }
+
+    if ( ( index.row() < 0 ) || ( index.row() >= m_steps.length() ) )
+    {
+        return QVariant();
+    }
+
+    const auto* step = m_steps.at( index.row() );
+    if ( !step )
+    {
+        return QVariant();
+    }
+
+    switch ( role )
+    {
+    case Qt::DisplayRole:
+        return step->prettyName();
+    case Qt::ToolTipRole:
+        if ( Calamares::Settings::instance()->debugMode() )
+        {
+            auto key = step->moduleInstanceKey();
+            QString toolTip( "<b>Debug information</b>" );
+            toolTip.append( "<br/>Type:\tViewStep" );
+            toolTip.append( QString( "<br/>Pretty:\t%1" ).arg( step->prettyName() ) );
+            toolTip.append( QString( "<br/>Status:\t%1" ).arg( step->prettyStatus() ) );
+            toolTip.append(
+                QString( "<br/>Source:\t%1" ).arg( key.isValid() ? key.toString() : QStringLiteral( "built-in" ) ) );
+            return toolTip;
+        }
+        else
+        {
+            return QVariant();
+        }
+    case ProgressTreeItemCurrentRole:
+        return currentStep() == step;
+    case ProgressTreeItemCompletedRole:
+        // Every step *before* the current step is considered "complete"
+        for ( const auto* otherstep : m_steps )
+        {
+            if ( otherstep == currentStep() )
+            {
+                break;
+            }
+            if ( otherstep == step )
+            {
+                return true;
+            }
+        }
+        // .. and the others (including current) are not.
+        return false;
+    default:
+        return QVariant();
+    }
+}
+
+
+int
+ViewManager::rowCount( const QModelIndex& parent ) const
+{
+    if ( parent.column() > 0 )
+    {
+        return 0;
+    }
+    return m_steps.length();
+}
+
+QHash< int, QByteArray >
+ViewManager::roleNames() const
+{
+    auto h = QAbstractListModel::roleNames();
+    h.insert( ProgressTreeItemCurrentRole, "current" );
+    h.insert( ProgressTreeItemCompletedRole, "completed" );
+    return h;
 }
 
 }  // namespace Calamares

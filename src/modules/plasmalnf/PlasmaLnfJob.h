@@ -22,7 +22,7 @@
 #include <QObject>
 #include <QVariantMap>
 
-#include <Job.h>
+#include "Job.h"
 
 class PlasmaLnfJob : public Calamares::Job
 {

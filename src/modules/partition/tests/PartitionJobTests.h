@@ -19,7 +19,7 @@
 #ifndef PARTITIONJOBTESTS_H
 #define PARTITIONJOBTESTS_H
 
-#include <JobQueue.h>
+#include "JobQueue.h"
 
 // CalaPM
 #include <core/device.h>

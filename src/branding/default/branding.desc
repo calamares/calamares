@@ -41,6 +41,12 @@ windowSize: 800px,520px
 # *windowExpanding* set to "fullscreen").
 windowPlacement: center
 
+# Kind of sidebar (panel on the left, showing progress).
+#  - "widget" or unset, use traditional sidebar (logo, items)
+#  - "none", hide it entirely
+#  - "qml", use sidebar.qml from branding folder
+sidebar: widget
+
 # These are strings shown to the user in the user interface.
 # There is no provision for translating them -- since they
 # are names, the string is included as-is.

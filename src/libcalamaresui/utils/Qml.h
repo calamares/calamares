@@ -21,10 +21,25 @@
 
 #include "DllMacro.h"
 
+#include "modulesystem/InstanceKey.h"
+#include "utils/NamedEnum.h"
+
 class QQuickItem;
 
 namespace CalamaresUtils
 {
+/** @brief Sets up global Calamares models for QML
+ *
+ * This needs to be called at least once to make the global Calamares
+ * models (Branding, ViewManager, ...) available to QML.
+ *
+ * The following objects are made available globally:
+ *  - `io.calamares.ui.Branding` (an object, see Branding.h)
+ *  - `io.calamares.core.ViewManager` (a model, see ViewManager.h)
+ * Additionally, modules based on QmlViewStep have a context
+ * property `config` referring to that module's configuration (if any).
+ */
+UIDLLEXPORT void registerCalamaresModels();
 
 /** @brief Calls the QML method @p method on @p qmlObject
  *
@@ -34,8 +49,34 @@ namespace CalamaresUtils
  *
  * If there is a return value from the QML method, it is logged (but not otherwise used).
  */
-UIDLLEXPORT void
-callQMLFunction( QQuickItem* qmlObject, const char* method );
+UIDLLEXPORT void callQMLFunction( QQuickItem* qmlObject, const char* method );
+
+/** @brief Search modes for loading Qml files.
+ *
+ * A QML file could be compiled into QRC, or it could live
+ * in the branding directory (and, in debug-runs, in
+ * the current-directory). Modules have some control
+ * over where the search is done.
+ */
+enum class QmlSearch
+{
+    QrcOnly,
+    BrandingOnly,
+    Both
+};
+
+///@brief Names for the search terms (in config files)
+UIDLLEXPORT const NamedEnumTable< QmlSearch >& qmlSearchNames();
+
+/** @brief Find a suitable QML file, given the search method and name hints
+ *
+ * Returns QString() if nothing is found (which would mean the module
+ * is badly configured).
+ */
+UIDLLEXPORT QString searchQmlFile( QmlSearch method,
+                                   const QString& configuredName,
+                                   const Calamares::ModuleSystem::InstanceKey& i );
+UIDLLEXPORT QString searchQmlFile( QmlSearch method, const QString& fileNameNoSuffix );
 
 }  // namespace CalamaresUtils
 

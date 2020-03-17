@@ -20,7 +20,7 @@
 #ifndef SETPASSWORDJOB_H
 #define SETPASSWORDJOB_H
 
-#include <Job.h>
+#include "Job.h"
 
 
 class SetPasswordJob : public Calamares::Job

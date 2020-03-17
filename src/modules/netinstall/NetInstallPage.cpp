@@ -154,6 +154,16 @@ NetInstallPage::dataIsHere()
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
     ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
 
+    // Go backwards because expanding a group may cause rows to appear below it
+    for ( int i = m_groups->rowCount() - 1; i >= 0; --i )
+    {
+        auto index = m_groups->index(i,0);
+        if ( m_groups->data(index, PackageModel::MetaExpandRole).toBool() )
+        {
+            ui->groupswidget->setExpanded(index, true);
+        }
+    }
+
     emit checkReady( true );
 }
 

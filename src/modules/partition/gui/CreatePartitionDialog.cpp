@@ -204,7 +204,7 @@ CreatePartitionDialog::createPartition()
 
     Partition* partition = nullptr;
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
-    if ( m_ui->encryptWidget->state() == EncryptWidget::EncryptionConfirmed &&
+    if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed &&
          !luksPassphrase.isEmpty() )
     {
         partition = KPMHelpers::createNewEncryptedPartition(

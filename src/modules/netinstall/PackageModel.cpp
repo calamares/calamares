@@ -21,9 +21,6 @@
 
 #include "utils/Yaml.h"
 
-// TODO: see headerData(), remove after 3.2.19
-#include <QCoreApplication>
-
 PackageModel::PackageModel( const YAML::Node& data, QObject* parent )
     : QAbstractItemModel( parent )
 {
@@ -120,21 +117,17 @@ PackageModel::data( const QModelIndex& index, int role ) const
     }
 
     PackageTreeItem* item = static_cast< PackageTreeItem* >( index.internalPointer() );
-    if ( index.column() == 0 && role == Qt::CheckStateRole )
+    switch ( role )
     {
-        return item->isSelected();
-    }
-
-    if ( item->isHidden() && role == Qt::DisplayRole )  // Hidden group
-    {
+    case Qt::CheckStateRole:
+        return index.column() == NameColumn ? item->isSelected() : QVariant();
+    case Qt::DisplayRole:
+        return item->isHidden() ? QVariant() : item->data( index.column() );
+    case MetaExpandRole:
+        return item->isHidden() ? false : item->expandOnStart();
+    default:
         return QVariant();
     }
-
-    if ( role == Qt::DisplayRole )
-    {
-        return item->data( index.column() );
-    }
-    return QVariant();
 }
 
 bool
@@ -159,7 +152,7 @@ PackageModel::flags( const QModelIndex& index ) const
     {
         return Qt::ItemFlags();
     }
-    if ( index.column() == 0 )
+    if ( index.column() == NameColumn )
     {
         return Qt::ItemIsUserCheckable | QAbstractItemModel::flags( index );
     }
@@ -171,12 +164,7 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
 {
     if ( orientation == Qt::Horizontal && role == Qt::DisplayRole )
     {
-        // Unusual translation call uses the existing translation from the NetInstallPage
-        // class (now removed).
-        //
-        // TODO: after 3.2.19, change this to just tr() and push TX
-        return ( section == 0 ) ? QCoreApplication::translate( "NetInstallPage", "Name" )
-                                : QCoreApplication::translate( "NetInstallPage", "Description" );
+        return ( section == NameColumn ) ? tr( "Name" ) : tr( "Description" );
     }
     return QVariant();
 }
@@ -226,6 +214,18 @@ PackageModel::getItemPackages( PackageTreeItem* item ) const
     return selectedPackages;
 }
 
+static QString
+getString( const YAML::Node& itemDefinition, const char* key )
+{
+    return itemDefinition[ key ] ? CalamaresUtils::yamlToVariant( itemDefinition[ key ] ).toString() : QString();
+}
+
+static bool
+getBool( const YAML::Node& itemDefinition, const char* key )
+{
+    return itemDefinition[ key ] ? CalamaresUtils::yamlToVariant( itemDefinition[ key ] ).toBool() : false;
+}
+
 void
 PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
 {
@@ -240,41 +240,33 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
         itemData.name = name;
         itemData.description = description;
 
-        if ( itemDefinition[ "pre-install" ] )
-        {
-            itemData.preScript = CalamaresUtils::yamlToVariant( itemDefinition[ "pre-install" ] ).toString();
-        }
-        if ( itemDefinition[ "post-install" ] )
-        {
-            itemData.postScript = CalamaresUtils::yamlToVariant( itemDefinition[ "post-install" ] ).toString();
-        }
+        itemData.preScript = getString( itemDefinition, "pre-install" );
+        itemData.postScript = getString( itemDefinition, "post-install" );
+        itemData.isCritical = getBool( itemDefinition, "critical" );
+        itemData.isHidden = getBool( itemDefinition, "hidden" );
+        itemData.startExpanded = getBool( itemDefinition, "expanded" );
+
         PackageTreeItem* item = new PackageTreeItem( itemData, parent );
 
         if ( itemDefinition[ "selected" ] )
-            item->setSelected( CalamaresUtils::yamlToVariant( itemDefinition[ "selected" ] ).toBool() ? Qt::Checked
-                                                                                                      : Qt::Unchecked );
+        {
+            item->setSelected( getBool( itemDefinition, "selected" ) ? Qt::Checked : Qt::Unchecked );
+        }
         else
         {
             item->setSelected( parent->isSelected() );  // Inherit from it's parent
         }
 
-        if ( itemDefinition[ "hidden" ] )
-        {
-            item->setHidden( CalamaresUtils::yamlToVariant( itemDefinition[ "hidden" ] ).toBool() );
-        }
-
-        if ( itemDefinition[ "critical" ] )
-        {
-            item->setCritical( CalamaresUtils::yamlToVariant( itemDefinition[ "critical" ] ).toBool() );
-        }
-
         if ( itemDefinition[ "packages" ] )
+        {
             for ( YAML::const_iterator packageIt = itemDefinition[ "packages" ].begin();
                   packageIt != itemDefinition[ "packages" ].end();
                   ++packageIt )
+            {
                 item->appendChild(
                     new PackageTreeItem( CalamaresUtils::yamlToVariant( *packageIt ).toString(), item ) );
-
+            }
+        }
         if ( itemDefinition[ "subgroups" ] )
         {
             setupModelData( itemDefinition[ "subgroups" ], item );

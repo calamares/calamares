@@ -587,19 +587,19 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
 void
 ChoicePage::onEncryptWidgetStateChanged()
 {
-    EncryptWidget::State state = m_encryptWidget->state();
+    EncryptWidget::Encryption state = m_encryptWidget->state();
     if ( m_choice == Erase )
     {
-        if ( state == EncryptWidget::EncryptionConfirmed ||
-             state == EncryptWidget::EncryptionDisabled )
+        if ( state == EncryptWidget::Encryption::Confirmed ||
+             state == EncryptWidget::Encryption::Disabled )
             applyActionChoice( m_choice );
     }
     else if ( m_choice == Replace )
     {
         if ( m_beforePartitionBarsView &&
              m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() &&
-             ( state == EncryptWidget::EncryptionConfirmed ||
-               state == EncryptWidget::EncryptionDisabled ) )
+             ( state == EncryptWidget::Encryption::Confirmed ||
+               state == EncryptWidget::Encryption::Disabled ) )
         {
             doReplaceSelectedPartition( m_beforePartitionBarsView->
                                             selectionModel()->
@@ -1474,7 +1474,7 @@ ChoicePage::updateNextEnabled()
 
     if ( m_choice != Manual &&
          m_encryptWidget->isVisible() &&
-         m_encryptWidget->state() == EncryptWidget::EncryptionUnconfirmed )
+         m_encryptWidget->state() == EncryptWidget::Encryption::Unconfirmed )
         enabled = false;
 
     if ( enabled == m_nextEnabled )

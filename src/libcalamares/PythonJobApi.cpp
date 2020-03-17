@@ -171,7 +171,7 @@ PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
 void
 PythonJobInterface::setprogress( qreal progress )
 {
-    if ( progress >= 0 && progress <= 1 )
+    if ( progress >= 0.0 && progress <= 1.0 )
     {
         m_parent->emitProgress( progress );
     }
