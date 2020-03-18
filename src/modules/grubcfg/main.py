@@ -80,7 +80,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             break
 
     if have_plymouth:
-        use_splash = "splash"
+        use_splash = "splash", "loglevel=3","udev.log-priority=3"
 
     cryptdevice_params = []
 
