@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-import calamares.ui 1.0
+import io.calamares.ui 1.0
 
 import QtQuick 2.10
 import QtQuick.Controls 2.10
