@@ -85,6 +85,12 @@ protected:
      */
     virtual QObject* getConfig();
 
+    /** @brief Adds a context property for this QML file
+     *
+     * Does not take ownership.
+     */
+    void setContextProperty( const char* name, QObject* property );
+
 private Q_SLOTS:
     void loadComplete();
 
