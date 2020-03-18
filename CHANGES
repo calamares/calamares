@@ -6,7 +6,7 @@ website will have to do for older versions.
 # 3.2.21 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Camilo Higuita
 
 ## Core ##
  - Python job modules (such as *unpackfs* or *packages*) can now provide
