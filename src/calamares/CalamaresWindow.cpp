@@ -136,6 +136,8 @@ CalamaresWindow::getQmlSidebar( int desiredWidth )
 {
     CalamaresUtils::registerCalamaresModels();
     QQuickWidget* w = new QQuickWidget( this );
+    w->setFixedWidth( desiredWidth );
+    w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-sidebar" ) ) ) );
     return w;
@@ -197,7 +199,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
         sideBox = getQmlSidebar(
             qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
         break;
-    default:
+    case Calamares::Branding::SidebarFlavor::None:
         sideBox = nullptr;
     }
     if ( sideBox )

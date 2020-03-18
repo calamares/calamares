@@ -117,6 +117,7 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
 
     partitions = libcalamares.globalstorage.value("partitions")
     swap_uuid = ""
+    swap_outer_mappername = None
 
     cryptdevice_params = []
 
@@ -124,9 +125,14 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
     #  - unencrypted swap partition sets swap_uuid
     #  - encrypted root sets cryptdevice_params
     for partition in partitions:
+        if partition["fs"] == "linuxswap" and not partition.get("claimed", None):
+            continue
         has_luks = "luksMapperName" in partition
         if partition["fs"] == "linuxswap" and not has_luks:
             swap_uuid = partition["uuid"]
+
+        if (partition["fs"] == "linuxswap" and has_luks):
+            swap_outer_mappername = partition["luksMapperName"]
 
         if partition["mountPoint"] == "/" and has_luks:
             cryptdevice_params = ["cryptdevice=UUID="
@@ -134,8 +140,6 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
                                   + ":"
                                   + partition["luksMapperName"],
                                   "root=/dev/mapper/"
-                                  + partition["luksMapperName"],
-                                  "resume=/dev/mapper/"
                                   + partition["luksMapperName"]]
 
     if cryptdevice_params:
@@ -145,6 +149,10 @@ def create_systemd_boot_conf(install_path, efi_dir, uuid, entry, entry_name, ker
 
     if swap_uuid:
         kernel_params.append("resume=UUID={!s}".format(swap_uuid))
+
+    if swap_outer_mappername:
+        kernel_params.append("resume=/dev/mapper/{!s}".format(
+            swap_outer_mappername))
 
     kernel_line = get_kernel_line(kernel_type)
     libcalamares.utils.debug("Configure: \"{!s}\"".format(kernel_line))

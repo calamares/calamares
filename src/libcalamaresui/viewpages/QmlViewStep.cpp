@@ -232,7 +232,7 @@ QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         QObject* config = this->getConfig();
         if ( config )
         {
-            m_qmlWidget->engine()->rootContext()->setContextProperty( "config", config );
+            setContextProperty( "config", config );
         }
 
         cDebug() << "QmlViewStep" << moduleInstanceKey() << "loading" << m_qmlFileName;
@@ -265,6 +265,12 @@ QObject*
 QmlViewStep::getConfig()
 {
     return nullptr;
+}
+
+void
+QmlViewStep::setContextProperty( const char* name, QObject* property )
+{
+    m_qmlWidget->engine()->rootContext()->setContextProperty( name, property );
 }
 
 }  // namespace Calamares
