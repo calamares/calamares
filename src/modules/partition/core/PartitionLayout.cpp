@@ -237,6 +237,7 @@ PartitionLayout::execute( Device* dev,
         PartitionInfo::setMountPoint( currentPartition, part.partMountPoint );
         if ( !part.partLabel.isEmpty() )
         {
+            currentPartition->setLabel( part.partLabel );
             currentPartition->fileSystem().setLabel( part.partLabel );
         }
         // Some buggy (legacy) BIOSes test if the bootflag of at least one partition is set.
