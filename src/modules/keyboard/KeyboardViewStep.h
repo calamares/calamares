@@ -22,10 +22,10 @@
 
 #include <QObject>
 
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
-#include <DllMacro.h>
+#include "DllMacro.h"
 
 class KeyboardPage;
 

@@ -24,8 +24,7 @@
 #define CHECKERCONTAINER_H
 
 #include <QWidget>
-
-#include "modulesystem/Requirement.h"
+#include "Config.h"
 
 class ResultsListWidget;
 class WaitingWidget;
@@ -36,18 +35,17 @@ class WaitingWidget;
  * a (list) diplay of the results, plus some explanation of the
  * overall state of the entire list of results.
  */
+
 class CheckerContainer : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CheckerContainer( QWidget* parent = nullptr );
+    explicit CheckerContainer(const RequirementsModel &model, QWidget* parent = nullptr );
     virtual ~CheckerContainer();
 
     bool verdict() const;
 
 public slots:
-    void requirementsChecked( const Calamares::RequirementsList& );
-
     /** @brief All the requirements are complete, switch to list view */
     void requirementsComplete( bool );
 
@@ -57,8 +55,10 @@ protected:
     WaitingWidget *m_waitingWidget;
     ResultsListWidget *m_checkerWidget;
 
-    Calamares::RequirementsList m_requirements;
     bool m_verdict;
+
+private:
+    const RequirementsModel &m_model;
 } ;
 
 #endif

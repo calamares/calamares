@@ -108,22 +108,27 @@ PackageTreeItem::row() const
 QVariant
 PackageTreeItem::data( int column ) const
 {
-    if ( packageName() != nullptr )  // package
+    if ( !packageName().isEmpty() )  // packages have a packagename, groups don't
     {
-        if ( !column )
+        switch ( column )
         {
+        case 0:
             return QVariant( packageName() );
+        default:
+            return QVariant();
         }
-        return QVariant();
     }
-    switch ( column )  // group
+    else
     {
-    case 0:
-        return QVariant( prettyName() );
-    case 1:
-        return QVariant( description() );
-    default:
-        return QVariant();
+        switch ( column )  // group
+        {
+        case 0:
+            return QVariant( prettyName() );
+        case 1:
+            return QVariant( description() );
+        default:
+            return QVariant();
+        }
     }
 }
 
@@ -176,12 +181,6 @@ PackageTreeItem::isHidden() const
     return m_data.isHidden;
 }
 
-void
-PackageTreeItem::setHidden( bool isHidden )
-{
-    m_data.isHidden = isHidden;
-}
-
 bool
 PackageTreeItem::hiddenSelected() const
 {
@@ -210,12 +209,6 @@ bool
 PackageTreeItem::isCritical() const
 {
     return m_data.isCritical;
-}
-
-void
-PackageTreeItem::setCritical( bool isCritical )
-{
-    m_data.isCritical = isCritical;
 }
 
 Qt::CheckState

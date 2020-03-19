@@ -31,7 +31,7 @@
 
 class WelcomePage;
 class GeneralRequirements;
-
+class Config;
 namespace CalamaresUtils
 {
 namespace GeoIP
@@ -75,6 +75,7 @@ public:
 private:
     WelcomePage* m_widget;
     GeneralRequirements* m_requirementsChecker;
+    Config *m_conf;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )

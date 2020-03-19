@@ -21,9 +21,9 @@
 
 #include "TrackingType.h"
 
-#include <DllMacro.h>
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include "DllMacro.h"
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
 #include <QObject>
 #include <QUrl>

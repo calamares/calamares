@@ -18,16 +18,14 @@
  */
 #include "gui/PartitionBarsView.h"
 
-#include <core/PartitionModel.h>
-#include <core/ColorUtils.h>
+#include "core/PartitionModel.h"
+#include "core/ColorUtils.h"
+
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
 
 #include <kpmcore/core/device.h>
 
-#include <utils/CalamaresUtilsGui.h>
-#include <utils/Logger.h>
-
-
-// Qt
 #include <QDebug>
 #include <QGuiApplication>
 #include <QMouseEvent>

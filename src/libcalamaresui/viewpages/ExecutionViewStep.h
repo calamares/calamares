@@ -20,7 +20,7 @@
 #ifndef EXECUTIONVIEWSTEP_H
 #define EXECUTIONVIEWSTEP_H
 
-#include <viewpages/ViewStep.h>
+#include "ViewStep.h"
 
 #include <QStringList>
 
