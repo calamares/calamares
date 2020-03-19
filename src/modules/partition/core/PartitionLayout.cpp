@@ -118,6 +118,7 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
 
 bool
 PartitionLayout::addEntry( const QString& label,
+                           const QString& type,
                            const QString& mountPoint,
                            const QString& fs,
                            const QString& size,
@@ -138,6 +139,7 @@ PartitionLayout::addEntry( const QString& label,
     }
 
     entry.partLabel = label;
+    entry.partType = type;
     entry.partMountPoint = mountPoint;
     PartUtils::findFS( fs, &entry.partFileSystem );
     if ( entry.partFileSystem == FileSystem::Unknown )
@@ -238,6 +240,14 @@ PartitionLayout::execute( Device* dev,
         if ( !part.partLabel.isEmpty() )
         {
             currentPartition->fileSystem().setLabel( part.partLabel );
+        }
+        if ( !part.partType.isEmpty() )
+        {
+#if defined( WITH_KPMCORE42API )
+            currentPartition->setType( part.partType );
+#else
+            cWarning() << "Ignoring type; requires KPMcore >= 4.2.0.";
+#endif
         }
         // Some buggy (legacy) BIOSes test if the bootflag of at least one partition is set.
         // Otherwise they ignore the device in boot-order, so add it here.

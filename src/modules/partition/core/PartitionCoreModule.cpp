@@ -882,6 +882,7 @@ PartitionCoreModule::initLayout( const QVariantList& config )
         }
 
         if ( !m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
+                                      CalamaresUtils::getString( pentry, "type" ),
                                       CalamaresUtils::getString( pentry, "mountPoint" ),
                                       CalamaresUtils::getString( pentry, "filesystem" ),
                                       sizeString,
