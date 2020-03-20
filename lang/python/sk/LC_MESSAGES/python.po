@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Dušan Kazik <prescott66@gmail.com>, 2019
+# Dušan Kazik <prescott66@gmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-19 17:27+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>, 2019\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>, 2020\n"
 "Language-Team: Slovak (https://www.transifex.com/calamares/teams/20061/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,11 +23,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "Konfigurácia zavádzača GRUB."
 
 #: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Pripájanie oddielov."
 
 #: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:201
 #: src/modules/initcpiocfg/main.py:205
@@ -46,16 +46,16 @@ msgstr "Chyba konfigurácie"
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/fstab/main.py:323
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nie sú určené žiadne oddiely na použitie pre <pre>{!s}</pre>."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
-msgstr ""
+msgstr "Konfigurácia služieb systemd"
 
 #: src/modules/services-systemd/main.py:68
 #: src/modules/services-openrc/main.py:102
 msgid "Cannot modify service"
-msgstr ""
+msgstr "Nedá sa upraviť služba"
 
 #: src/modules/services-systemd/main.py:69
 msgid ""
@@ -91,7 +91,7 @@ msgstr "Odpojenie súborových systémov."
 
 #: src/modules/unpackfs/main.py:41
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Napĺňanie súborových systémov."
 
 #: src/modules/unpackfs/main.py:184
 msgid "rsync failed with error code {}."
@@ -99,7 +99,7 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:245 src/modules/unpackfs/main.py:268
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "Zlyhalo rozbalenie obrazu „{}“"
 
 #: src/modules/unpackfs/main.py:246
 msgid ""
@@ -109,7 +109,7 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:370
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "Žiadny bod pripojenia pre koreňový oddiel"
 
 #: src/modules/unpackfs/main.py:371
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
@@ -117,7 +117,7 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:376
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "Zlý bod pripojenia pre koreňový oddiel"
 
 #: src/modules/unpackfs/main.py:377
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
@@ -170,7 +170,7 @@ msgstr "Nedá s nakonfigurovať správca LightDM"
 
 #: src/modules/displaymanager/main.py:737
 msgid "No LightDM greeter installed."
-msgstr ""
+msgstr "Nie je nainštalovaný žiadny vítací nástroj LightDM."
 
 #: src/modules/displaymanager/main.py:768
 msgid "Cannot write SLIM configuration file"
@@ -196,7 +196,7 @@ msgstr "Konfigurácia správcu zobrazenia nebola úplná"
 
 #: src/modules/initcpiocfg/main.py:37
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Konfigurácia mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:206
 #: src/modules/luksopenswaphookcfg/main.py:100
@@ -204,19 +204,19 @@ msgstr ""
 #: src/modules/fstab/main.py:329 src/modules/localecfg/main.py:145
 #: src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nie je zadaný žiadny bod pripojenia na použitie pre <pre>{!s}</pre>."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "Konfigurácia zašifrovaného odkladacieho priestoru."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr ""
+msgstr "Inštalácia údajov."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
-msgstr ""
+msgstr "Konfigurácia služieb OpenRC"
 
 #: src/modules/services-openrc/main.py:66
 msgid "Cannot add service {name!s} to run-level {level!s}."
@@ -249,17 +249,17 @@ msgstr ""
 
 #: src/modules/services-openrc/main.py:119
 msgid "Target service does not exist"
-msgstr ""
+msgstr "Cieľová služba neexistuje"
 
 #: src/modules/services-openrc/main.py:120
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
-msgstr ""
+msgstr "Cesta k službe {name!s} je <code>{path!s}</code>, ale neexistuje."
 
 #: src/modules/plymouthcfg/main.py:36
 msgid "Configure Plymouth theme"
-msgstr ""
+msgstr "Konfigurácia motívu služby Plymouth"
 
 #: src/modules/packages/main.py:62
 #, python-format
@@ -290,31 +290,31 @@ msgstr[3] "Odstraňuje sa %(num)d balíkov."
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr ""
+msgstr "Inštalácia zavádzača."
 
 #: src/modules/removeuser/main.py:34
 msgid "Remove live user from target system"
-msgstr ""
+msgstr "Odstránenie live používateľa z cieľového systému"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "Nastavovanie hardvérových hodín."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "Vytváranie initramfs pomocou nástroja dracut."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "Zlyhalo spustenie nástroja dracut v cieli"
 
 #: src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "Kód skončenia bol {}"
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "Konfigurácia initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
@@ -322,7 +322,7 @@ msgstr ""
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "Zapisovanie fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -334,8 +334,8 @@ msgstr "Fiktívny krok {} jazyka python"
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr ""
+msgstr "Konfigurácia miestnych nastavení."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Ukladanie sieťovej konfigurácie."

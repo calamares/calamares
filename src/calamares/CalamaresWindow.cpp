@@ -28,6 +28,7 @@
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/Qml.h"
 #include "utils/Retranslator.h"
 
 #include <QApplication>
@@ -37,6 +38,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
+#include <QQuickWidget>
 #include <QTreeView>
 
 static inline int
@@ -55,6 +57,90 @@ windowDimensionToPixels( const Calamares::Branding::WindowDimension& u )
         return static_cast< int >( u.value() * CalamaresUtils::defaultFontHeight() );
     }
     return 0;
+}
+
+
+QWidget*
+CalamaresWindow::getWidgetSidebar( int desiredWidth )
+{
+    const Calamares::Branding* const branding = Calamares::Branding::instance();
+
+    QWidget* sideBox = new QWidget( this );
+    sideBox->setObjectName( "sidebarApp" );
+
+    QBoxLayout* sideLayout = new QVBoxLayout;
+    sideBox->setLayout( sideLayout );
+    // Set this attribute into qss file
+    sideBox->setFixedWidth( desiredWidth );
+    sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+
+    QHBoxLayout* logoLayout = new QHBoxLayout;
+    sideLayout->addLayout( logoLayout );
+    logoLayout->addStretch();
+    QLabel* logoLabel = new QLabel( sideBox );
+    logoLabel->setObjectName( "logoApp" );
+    //Define all values into qss file
+    {
+        QPalette plt = sideBox->palette();
+        sideBox->setAutoFillBackground( true );
+        plt.setColor( sideBox->backgroundRole(), branding->styleString( Calamares::Branding::SidebarBackground ) );
+        plt.setColor( sideBox->foregroundRole(), branding->styleString( Calamares::Branding::SidebarText ) );
+        sideBox->setPalette( plt );
+        logoLabel->setPalette( plt );
+    }
+    logoLabel->setAlignment( Qt::AlignCenter );
+    logoLabel->setFixedSize( 80, 80 );
+    logoLabel->setPixmap( branding->image( Calamares::Branding::ProductLogo, logoLabel->size() ) );
+    logoLayout->addWidget( logoLabel );
+    logoLayout->addStretch();
+
+    ProgressTreeView* tv = new ProgressTreeView( sideBox );
+    tv->setModel( Calamares::ViewManager::instance() );
+    tv->setFocusPolicy( Qt::NoFocus );
+    sideLayout->addWidget( tv );
+
+    if ( Calamares::Settings::instance()->debugMode() || ( Logger::logLevel() >= Logger::LOGVERBOSE ) )
+    {
+        QPushButton* debugWindowBtn = new QPushButton;
+        debugWindowBtn->setObjectName( "debugButton" );
+        CALAMARES_RETRANSLATE( debugWindowBtn->setText( tr( "Show debug information" ) ); )
+        sideLayout->addWidget( debugWindowBtn );
+        debugWindowBtn->setFlat( true );
+        debugWindowBtn->setCheckable( true );
+        connect( debugWindowBtn, &QPushButton::clicked, this, [=]( bool checked ) {
+            if ( checked )
+            {
+                m_debugWindow = new Calamares::DebugWindow();
+                m_debugWindow->show();
+                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [=]() {
+                    m_debugWindow->deleteLater();
+                    debugWindowBtn->setChecked( false );
+                } );
+            }
+            else
+            {
+                if ( m_debugWindow )
+                {
+                    m_debugWindow->deleteLater();
+                }
+            }
+        } );
+    }
+
+    CalamaresUtils::unmarginLayout( sideLayout );
+    return sideBox;
+}
+
+QWidget*
+CalamaresWindow::getQmlSidebar( int desiredWidth )
+{
+    CalamaresUtils::registerCalamaresModels();
+    QQuickWidget* w = new QQuickWidget( this );
+    w->setFixedWidth( desiredWidth );
+    w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    w->setSource( QUrl(
+        CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-sidebar" ) ) ) );
+    return w;
 }
 
 CalamaresWindow::CalamaresWindow( QWidget* parent )
@@ -97,76 +183,30 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     cDebug() << Logger::SubEntry << "Proposed window size:" << w << h;
     resize( w, h );
 
+    m_viewManager = Calamares::ViewManager::instance( this );
+
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
 
-    QWidget* sideBox = new QWidget( this );
-    sideBox->setObjectName( "sidebarApp" );
-    mainLayout->addWidget( sideBox );
-
-    QBoxLayout* sideLayout = new QVBoxLayout;
-    sideBox->setLayout( sideLayout );
-    // Set this attribute into qss file
-    sideBox->setFixedWidth(
-        qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
-    sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-
-    QHBoxLayout* logoLayout = new QHBoxLayout;
-    sideLayout->addLayout( logoLayout );
-    logoLayout->addStretch();
-    QLabel* logoLabel = new QLabel( sideBox );
-    logoLabel->setObjectName( "logoApp" );
-    //Define all values into qss file
+    QWidget* sideBox = nullptr;
+    switch ( branding->sidebarFlavor() )
     {
-        QPalette plt = sideBox->palette();
-        sideBox->setAutoFillBackground( true );
-        plt.setColor( sideBox->backgroundRole(), branding->styleString( Calamares::Branding::SidebarBackground ) );
-        plt.setColor( sideBox->foregroundRole(), branding->styleString( Calamares::Branding::SidebarText ) );
-        sideBox->setPalette( plt );
-        logoLabel->setPalette( plt );
+    case Calamares::Branding::SidebarFlavor::Widget:
+        sideBox = getWidgetSidebar(
+            qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+        break;
+    case Calamares::Branding::SidebarFlavor::Qml:
+        sideBox = getQmlSidebar(
+            qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+        break;
+    case Calamares::Branding::SidebarFlavor::None:
+        sideBox = nullptr;
     }
-    logoLabel->setAlignment( Qt::AlignCenter );
-    logoLabel->setFixedSize( 80, 80 );
-    logoLabel->setPixmap( branding->image( Calamares::Branding::ProductLogo, logoLabel->size() ) );
-    logoLayout->addWidget( logoLabel );
-    logoLayout->addStretch();
-
-    ProgressTreeView* tv = new ProgressTreeView( sideBox );
-    sideLayout->addWidget( tv );
-    tv->setFocusPolicy( Qt::NoFocus );
-
-    if ( Calamares::Settings::instance()->debugMode() || ( Logger::logLevel() >= Logger::LOGVERBOSE ) )
+    if ( sideBox )
     {
-        QPushButton* debugWindowBtn = new QPushButton;
-        debugWindowBtn->setObjectName( "debugButton" );
-        CALAMARES_RETRANSLATE( debugWindowBtn->setText( tr( "Show debug information" ) ); )
-        sideLayout->addWidget( debugWindowBtn );
-        debugWindowBtn->setFlat( true );
-        debugWindowBtn->setCheckable( true );
-        connect( debugWindowBtn, &QPushButton::clicked, this, [=]( bool checked ) {
-            if ( checked )
-            {
-                m_debugWindow = new Calamares::DebugWindow();
-                m_debugWindow->show();
-                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [=]() {
-                    m_debugWindow->deleteLater();
-                    debugWindowBtn->setChecked( false );
-                } );
-            }
-            else
-            {
-                if ( m_debugWindow )
-                {
-                    m_debugWindow->deleteLater();
-                }
-            }
-        } );
+        mainLayout->addWidget( sideBox );
     }
 
-    CalamaresUtils::unmarginLayout( sideLayout );
-    CalamaresUtils::unmarginLayout( mainLayout );
-
-    m_viewManager = Calamares::ViewManager::instance( this );
     if ( branding->windowExpands() )
     {
         connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
@@ -181,6 +221,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     //       event, which is also the ViewManager's responsibility.
 
     mainLayout->addWidget( m_viewManager->centralWidget() );
+    CalamaresUtils::unmarginLayout( mainLayout );
     setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }
 

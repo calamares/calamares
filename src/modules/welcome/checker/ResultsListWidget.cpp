@@ -87,6 +87,7 @@ createResultWidgets( QLayout* layout,
  */
 class ResultsListDialog : public QDialog
 {
+    Q_OBJECT
 public:
     /** @brief Create a dialog for the given @p checkEntries list of requirements.
      *
@@ -249,3 +250,5 @@ ResultsListWidget::retranslate()
 
     m_explanation->setText( m_model.warningMessage());
 }
+
+#include "ResultsListWidget.moc"

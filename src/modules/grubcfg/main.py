@@ -110,15 +110,15 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             if partition["fs"] == "linuxswap" and not has_luks:
                 swap_uuid = partition["uuid"]
 
+            if (partition["fs"] == "linuxswap" and has_luks):
+                swap_outer_mappername = partition["luksMapperName"]
+
             if (partition["mountPoint"] == "/" and has_luks):
                 cryptdevice_params = [
                     "cryptdevice=UUID={!s}:{!s}".format(
                         partition["luksUuid"], partition["luksMapperName"]
                         ),
                     "root=/dev/mapper/{!s}".format(
-                        partition["luksMapperName"]
-                        ),
-                    "resume=/dev/mapper/{!s}".format(
                         partition["luksMapperName"]
                         )
                 ]
@@ -136,7 +136,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     if have_dracut and swap_outer_uuid:
         kernel_params.append("rd.luks.uuid={!s}".format(swap_outer_uuid))
-    if have_dracut and swap_outer_mappername:
+    if swap_outer_mappername:
         kernel_params.append("resume=/dev/mapper/{!s}".format(
             swap_outer_mappername))
 

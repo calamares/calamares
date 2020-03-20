@@ -21,10 +21,11 @@
 #define CALAMARES_PYTHONJOB_H
 
 #include "Job.h"
-
 #include "modulesystem/InstanceKey.h"
 
 #include <QVariantMap>
+
+#include <memory>
 
 namespace CalamaresPython
 {

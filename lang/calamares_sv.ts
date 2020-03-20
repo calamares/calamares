@@ -101,7 +101,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="106"/>
       <source>Reload Stylesheet</source>
-      <translation type="unfinished"/>
+      <translation>Ladda om stilmall</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="113"/>
@@ -1025,7 +1025,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
       <source>Dummy C++ Job</source>
-      <translation type="unfinished"/>
+      <translation>Exempel C++ jobb</translation>
     </message>
   </context>
   <context>
@@ -1129,7 +1129,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="169"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Skapa &lt;strong&gt; ny &lt;/strong&gt; %2 partition med monteringspunkt &lt;strong&gt; %1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
@@ -1139,7 +1139,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Skapa %3 partition &lt;strong&gt;%1&lt;/strong&gt; med monteringspunkt &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="199"/>
@@ -1197,7 +1197,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Installationen misslyckades&lt;/h1&gt; &lt;br/&gt;%1 har inte blivit installerad på din dator. &lt;br/&gt;Felmeddelandet var: %2</translation>
     </message>
   </context>
   <context>
@@ -1384,7 +1384,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="54"/>
       <source>Please install KDE Konsole and try again!</source>
-      <translation type="unfinished"/>
+      <translation>Installera KDE Konsole och försök igen!</translation>
     </message>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="116"/>
@@ -1625,12 +1625,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
       <source>Could not create LUKS key file for root partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte skapa LUKS nyckelfil för root partition %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
       <source>Could not configure LUKS key file on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte konfigurera LUKS nyckelfil på partition %1.</translation>
     </message>
   </context>
   <context>
@@ -1676,7 +1676,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="187"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation type="unfinished"/>
+      <translation>Nätverksinstallation. (Inaktiverad: inkorrekt konfiguration)</translation>
     </message>
   </context>
   <context>
@@ -1827,7 +1827,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
       <source>The password contains the user name in some form</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller ditt användarnamn i någon form</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
@@ -1837,7 +1837,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="177"/>
       <source>The password contains forbidden words in some form</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller förbjudna ord i någon form</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="181"/>
@@ -1847,7 +1847,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
       <source>The password contains too few digits</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller för få siffror</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
@@ -1857,7 +1857,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
       <source>The password contains too few uppercase letters</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller för få stora bokstäver</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
@@ -1867,7 +1867,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
       <source>The password contains too few lowercase letters</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller för få små bokstäver</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
@@ -1882,7 +1882,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
       <source>The password is shorter than %1 characters</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet är kortare än %1 tecken</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
@@ -2007,7 +2007,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="302"/>
       <source>The configuration file is malformed</source>
-      <translation type="unfinished"/>
+      <translation>Konfigurationsfilen är felaktig</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="304"/>
@@ -2022,7 +2022,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet är blankt</translation>
     </message>
   </context>
   <context>
@@ -2534,7 +2534,7 @@ Utdata:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="475"/>
       <source>External command failed to start.</source>
-      <translation type="unfinished"/>
+      <translation>Externt kommando misslyckades med att starta</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="476"/>
@@ -2559,7 +2559,7 @@ Utdata:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="486"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
-      <translation type="unfinished"/>
+      <translation>Kommando &lt;i&gt;%1&lt;/i&gt; misslyckades att slutföras på %2 sekunder.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="493"/>
@@ -2770,7 +2770,7 @@ Utdata:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="197"/>
       <source>KPMCore not Available</source>
-      <translation type="unfinished"/>
+      <translation>KPMCore inte tillgänglig</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
@@ -2785,7 +2785,7 @@ Utdata:
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="237"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="254"/>
       <source>Resize Failed</source>
-      <translation type="unfinished"/>
+      <translation>Storleksändringen misslyckades</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
@@ -2981,7 +2981,7 @@ Utdata:
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="331"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-      <translation>Misslyckades med att skriva tangentbordskonfiguration till den existerande mappen /etc/default.</translation>
+      <translation>Misslyckades med att skriva tangentbordskonfiguration till den existerande katalogen /etc/default.</translation>
     </message>
   </context>
   <context>
@@ -3044,22 +3044,22 @@ Utdata:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Rensar flaggor på partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
       <source>Clearing flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>Rensar flaggor på ny partition.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Sätter flaggor &lt;strong&gt;%2&lt;/strong&gt; på partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>Sätter flaggor &lt;strong&gt;%1&lt;/strong&gt; på ny partition</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="153"/>
@@ -3482,12 +3482,12 @@ Utdata:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Välkommen till Calamares installationsprogrammet för %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="248"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Välkommen till %1 installation.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>
