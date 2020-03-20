@@ -21,55 +21,26 @@
 
 #include "utils/Logger.h"
 
-QVariant
-PackageTreeItem::ItemData::toOperation() const
-{
-    // If it's a package with a pre- or post-script, replace
-    // with the more complicated datastructure.
-    if ( !preScript.isEmpty() || !postScript.isEmpty() )
-    {
-        QMap< QString, QVariant > sdetails;
-        sdetails.insert( "pre-script", preScript );
-        sdetails.insert( "package", packageName );
-        sdetails.insert( "post-script", postScript );
-        return sdetails;
-    }
-    else
-    {
-        return packageName;
-    }
-}
-
-PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent )
-    : m_parentItem( parent )
-    , m_data( data )
-{
-}
-
-PackageTreeItem::PackageTreeItem( const QString packageName, PackageTreeItem* parent )
+PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* parent )
     : m_parentItem( parent )
 {
-    m_data.packageName = packageName;
+    m_packageName = packageName;
     if ( parent != nullptr )
     {
-        m_data.selected = parent->isSelected();
+        // Avoid partially-checked .. a package can't be partial
+        m_selected = parent->isSelected() == Qt::Unchecked ? Qt::Unchecked : Qt::Checked;
     }
     else
     {
-        m_data.selected = Qt::Unchecked;
+        m_selected = Qt::Unchecked;
     }
-}
-
-PackageTreeItem::PackageTreeItem( PackageTreeItem* parent )
-    : m_parentItem( parent )
-{
 }
 
 PackageTreeItem::PackageTreeItem::PackageTreeItem()
     : PackageTreeItem( QString(), nullptr )
 {
-    m_data.selected = Qt::Checked;
-    m_data.name = QLatin1String( "<root>" );
+    m_selected = Qt::Checked;
+    m_name = QLatin1String( "<root>" );
 }
 
 PackageTreeItem::~PackageTreeItem()
@@ -123,7 +94,7 @@ PackageTreeItem::data( int column ) const
         switch ( column )  // group
         {
         case 0:
-            return QVariant( prettyName() );
+            return QVariant( name() );
         case 1:
             return QVariant( description() );
         default:
@@ -145,47 +116,15 @@ PackageTreeItem::parentItem() const
 }
 
 
-QString
-PackageTreeItem::prettyName() const
-{
-    return m_data.name;
-}
-
-QString
-PackageTreeItem::description() const
-{
-    return m_data.description;
-}
-
-QString
-PackageTreeItem::preScript() const
-{
-    return m_data.preScript;
-}
-
-QString
-PackageTreeItem::packageName() const
-{
-    return m_data.packageName;
-}
-
-QString
-PackageTreeItem::postScript() const
-{
-    return m_data.postScript;
-}
-
-bool
-PackageTreeItem::isHidden() const
-{
-    return m_data.isHidden;
-}
-
 bool
 PackageTreeItem::hiddenSelected() const
 {
-    Q_ASSERT( m_data.isHidden );
-    if ( !m_data.selected )
+    if ( !m_isHidden )
+    {
+        return m_selected;
+    }
+
+    if ( !m_selected )
     {
         return false;
     }
@@ -201,32 +140,20 @@ PackageTreeItem::hiddenSelected() const
     }
 
     /* Has no non-hiddent parents */
-    return m_data.selected;
+    return m_selected;
 }
 
-
-bool
-PackageTreeItem::isCritical() const
-{
-    return m_data.isCritical;
-}
-
-Qt::CheckState
-PackageTreeItem::isSelected() const
-{
-    return m_data.selected;
-}
 
 void
 PackageTreeItem::setSelected( Qt::CheckState isSelected )
 {
     if ( parentItem() == nullptr )
-    // This is the root, it is always checked so don't change state
     {
+        // This is the root, it is always checked so don't change state
         return;
     }
 
-    m_data.selected = isSelected;
+    m_selected = isSelected;
     setChildrenSelected( isSelected );
 
     // Look for suitable parent item which may change checked-state
@@ -277,7 +204,7 @@ PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
         // Children are never root; don't need to use setSelected on them.
         for ( auto child : m_childItems )
         {
-            child->m_data.selected = isSelected;
+            child->m_selected = isSelected;
             child->setChildrenSelected( isSelected );
         }
 }
@@ -286,4 +213,23 @@ int
 PackageTreeItem::type() const
 {
     return QStandardItem::UserType;
+}
+
+QVariant
+PackageTreeItem::toOperation() const
+{
+    // If it's a package with a pre- or post-script, replace
+    // with the more complicated datastructure.
+    if ( !m_preScript.isEmpty() || !m_postScript.isEmpty() )
+    {
+        QMap< QString, QVariant > sdetails;
+        sdetails.insert( "pre-script", m_preScript );
+        sdetails.insert( "package", m_packageName );
+        sdetails.insert( "post-script", m_postScript );
+        return sdetails;
+    }
+    else
+    {
+        return m_packageName;
+    }
 }
