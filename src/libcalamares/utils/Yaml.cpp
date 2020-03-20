@@ -89,7 +89,7 @@ yamlScalarToVariant( const YAML::Node& scalarNode )
 }
 
 
-QVariant
+QVariantList
 yamlSequenceToVariant( const YAML::Node& sequenceNode )
 {
     QVariantList vl;
@@ -101,7 +101,7 @@ yamlSequenceToVariant( const YAML::Node& sequenceNode )
 }
 
 
-QVariant
+QVariantMap
 yamlMapToVariant( const YAML::Node& mapNode )
 {
     QVariantMap vm;
