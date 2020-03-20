@@ -167,7 +167,7 @@ NetInstallPage::dataIsHere()
     emit checkReady( true );
 }
 
-PackageModel::PackageItemDataList
+PackageTreeItem::List
 NetInstallPage::selectedPackages() const
 {
     if ( m_groups )
@@ -177,7 +177,7 @@ NetInstallPage::selectedPackages() const
     else
     {
         cWarning() << "no netinstall groups are available.";
-        return PackageModel::PackageItemDataList();
+        return PackageTreeItem::List();
     }
 }
 

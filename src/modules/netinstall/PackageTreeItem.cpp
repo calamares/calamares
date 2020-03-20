@@ -20,21 +20,42 @@
 #include "PackageTreeItem.h"
 
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
-PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* parent )
-    : m_parentItem( parent )
+static Qt::CheckState
+parentCheckState( PackageTreeItem* parent )
 {
-    m_packageName = packageName;
-    if ( parent != nullptr )
+    if ( parent )
     {
         // Avoid partially-checked .. a package can't be partial
-        m_selected = parent->isSelected() == Qt::Unchecked ? Qt::Unchecked : Qt::Checked;
+        return parent->isSelected() == Qt::Unchecked ? Qt::Unchecked : Qt::Checked;
     }
     else
     {
-        m_selected = Qt::Unchecked;
+        return Qt::Unchecked;
     }
 }
+
+PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* parent )
+    : m_parentItem( parent )
+    , m_packageName( packageName )
+    , m_selected( parentCheckState( parent ) )
+{
+}
+
+PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTreeItem* parent )
+    : m_parentItem( parent )
+    , m_name( CalamaresUtils::getString( groupData, "name" ) )
+    , m_selected( parentCheckState( parent ) )
+    , m_description( CalamaresUtils::getString( groupData, "description" ) )
+    , m_preScript( CalamaresUtils::getString( groupData, "pre-install" ) )
+    , m_postScript( CalamaresUtils::getString( groupData, "post-install" ) )
+    , m_isCritical( CalamaresUtils::getBool( groupData, "critical", false ) )
+    , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
+    , m_startExpanded( CalamaresUtils::getBool( groupData, "expanded", false ) )
+{
+}
+
 
 PackageTreeItem::PackageTreeItem::PackageTreeItem()
     : PackageTreeItem( QString(), nullptr )

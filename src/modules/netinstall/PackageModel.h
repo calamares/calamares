@@ -37,8 +37,6 @@ class PackageModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    using PackageItemDataList = QList< PackageTreeItem::ItemData >;
-
     // Names for columns (unused in the code)
     static constexpr const int NameColumn = 0;
     static constexpr const int DescriptionColumn = 1;
@@ -63,14 +61,14 @@ public:
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
 
-    PackageItemDataList getPackages() const;
-    QList< PackageTreeItem* > getItemPackages( PackageTreeItem* item ) const;
+    PackageTreeItem::List getPackages() const;
+    PackageTreeItem::List getItemPackages( PackageTreeItem* item ) const;
 
 private:
     void setupModelData( const YAML::Node& data, PackageTreeItem* parent );
 
     PackageTreeItem* m_rootItem;
-    QList< PackageTreeItem* > m_hiddenItems;
+    PackageTreeItem::List m_hiddenItems;
 };
 
 #endif  // PACKAGEMODEL_H

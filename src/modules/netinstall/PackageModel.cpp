@@ -169,29 +169,21 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
     return QVariant();
 }
 
-QList< PackageTreeItem::ItemData >
+PackageTreeItem::List
 PackageModel::getPackages() const
 {
-    QList< PackageTreeItem* > items = getItemPackages( m_rootItem );
+    auto items = getItemPackages( m_rootItem );
     for ( auto package : m_hiddenItems )
+    {
         if ( package->hiddenSelected() )
         {
             items.append( getItemPackages( package ) );
         }
-    QList< PackageTreeItem::ItemData > packages;
-    for ( auto item : items )
-    {
-        PackageTreeItem::ItemData itemData;
-        itemData.preScript = item->parentItem()->preScript();  // Only groups have hooks
-        itemData.packageName = item->packageName();  // this seg faults
-        itemData.postScript = item->parentItem()->postScript();  // Only groups have hooks
-        itemData.isCritical = item->parentItem()->isCritical();  // Only groups are critical
-        packages.append( itemData );
     }
-    return packages;
+    return items;
 }
 
-QList< PackageTreeItem* >
+PackageTreeItem::List
 PackageModel::getItemPackages( PackageTreeItem* item ) const
 {
     QList< PackageTreeItem* > selectedPackages;
@@ -232,21 +224,7 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
     for ( YAML::const_iterator it = data.begin(); it != data.end(); ++it )
     {
         const YAML::Node itemDefinition = *it;
-
-        QString name( tr( CalamaresUtils::yamlToVariant( itemDefinition[ "name" ] ).toByteArray() ) );
-        QString description( tr( CalamaresUtils::yamlToVariant( itemDefinition[ "description" ] ).toByteArray() ) );
-
-        PackageTreeItem::ItemData itemData;
-        itemData.name = name;
-        itemData.description = description;
-
-        itemData.preScript = getString( itemDefinition, "pre-install" );
-        itemData.postScript = getString( itemDefinition, "post-install" );
-        itemData.isCritical = getBool( itemDefinition, "critical" );
-        itemData.isHidden = getBool( itemDefinition, "hidden" );
-        itemData.startExpanded = getBool( itemDefinition, "expanded" );
-
-        PackageTreeItem* item = new PackageTreeItem( itemData, parent );
+        PackageTreeItem* item = new PackageTreeItem( CalamaresUtils::yamlMapToVariant( itemDefinition ), parent );
 
         if ( itemDefinition[ "selected" ] )
         {

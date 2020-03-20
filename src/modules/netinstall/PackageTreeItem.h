@@ -27,10 +27,12 @@
 class PackageTreeItem : public QStandardItem
 {
 public:
-    using PackageList = QList< PackageTreeItem* >;
+    using List = QList< PackageTreeItem* >;
 
     ///@brief A package (individual package)
     explicit PackageTreeItem( const QString& packageName, PackageTreeItem* parent = nullptr );
+    ///@brief A group (sub-items and sub-groups are ignored)
+    explicit PackageTreeItem( const QVariantMap& groupData, PackageTreeItem* parent = nullptr );
     ///@brief A root item, always selected, named "<root>"
     explicit PackageTreeItem();
     ~PackageTreeItem() override;
@@ -81,6 +83,12 @@ public:
      */
     bool expandOnStart() const { return m_startExpanded; }
 
+    /** @brief is this item selected?
+     *
+     * Groups may be partially selected; packages are only on or off.
+     */
+    Qt::CheckState isSelected() const { return m_selected; }
+
     /** @brief Turns this item into a variant for PackageOperations use
      *
      * For "plain" items, this is just the package name; items with
@@ -88,7 +96,6 @@ public:
      */
     QVariant toOperation() const;
 
-    Qt::CheckState isSelected() const;
     void setSelected( Qt::CheckState isSelected );
     void setChildrenSelected( Qt::CheckState isSelected );
 
@@ -97,7 +104,7 @@ public:
 
 private:
     PackageTreeItem* m_parentItem;
-    PackageList m_childItems;
+    List m_childItems;
 
     // An entry can be a packkage, or a group.
     QString m_name;
