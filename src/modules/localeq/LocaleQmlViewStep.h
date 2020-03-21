@@ -24,7 +24,7 @@
 #include "geoip/Interface.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/QmlViewStep.h"
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 
 #include <QFutureWatcher>
 #include <QObject>
@@ -35,7 +35,6 @@
 class PLUGINDLLEXPORT LocaleQmlViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT
-    Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
 
 public:
     explicit LocaleQmlViewStep( QObject* parent = nullptr );
@@ -53,7 +52,7 @@ public:
     void onLeave() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
-    Config* config() const;
+    QObject* getConfig() override;
 
     virtual Calamares::RequirementsList checkRequirements() override;
 

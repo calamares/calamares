@@ -41,7 +41,7 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeQmlViewStepFactory, registerPlugin< 
 
 WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
 : Calamares::QmlViewStep(parent )
-	, m_config( new Config(  ) ) // the qml singleton takes ownership and deletes it
+	, m_config( new Config( this ) ) // the qml singleton takes ownership and deletes it
 //     , m_nextEnabled( false )
     , m_requirementsChecker( new GeneralRequirements( this ) )
 

@@ -56,7 +56,7 @@ public:
     void onLeave() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
-    Config* config() const;
+    QObject* getConfig() override;
 
 private:
     Config * m_config;

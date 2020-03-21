@@ -20,8 +20,8 @@
 #define PLASMAQMLLNFVIEWSTEP_H
 
 #include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
-#include <PluginDllMacro.h>
+#include <viewpages/QmlViewStep.h>
+#include <DllMacro.h>
 
 #include <Config.h>
 
@@ -29,10 +29,9 @@
 #include <QUrl>
 #include <QVariantMap>
 
-class PLUGINDLLEXPORT PlasmaQmlLnfViewStep : public Calamares::ViewStep
+class PLUGINDLLEXPORT PlasmaQmlLnfViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT
-    Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
 
 public:
     explicit PlasmaQmlLnfViewStep( QObject* parent = nullptr );
@@ -50,7 +49,7 @@ public:
     void onLeave() override;
 
     Calamares::JobList jobs() const override;
-    Config* config() const;
+    QObject* getConfig() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 

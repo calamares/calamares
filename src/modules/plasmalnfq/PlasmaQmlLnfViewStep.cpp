@@ -48,7 +48,7 @@ currentPlasmaTheme()
 }
 
 PlasmaQmlLnfViewStep::PlasmaQmlLnfViewStep( QObject* parent )
-    : Calamares::ViewStep( parent )
+    : Calamares::QmlViewStep( parent )
     , m_widget( nullptr)
     , m_config( new Config(this) )
 {
@@ -58,7 +58,8 @@ PlasmaQmlLnfViewStep::PlasmaQmlLnfViewStep( QObject* parent )
     emit nextStatusChanged( false );
 }
 
-Config * PlasmaQmlLnfViewStep::config() const
+QObject *
+PlasmaQmlLnfViewStep::getConfig()
 {
     return m_config;
 }

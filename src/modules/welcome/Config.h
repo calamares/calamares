@@ -112,7 +112,6 @@ class Config : public QObject
     Q_PROPERTY( QString knownIssuesUrl MEMBER m_knownIssuesUrl NOTIFY knownIssuesUrlChanged FINAL )
     Q_PROPERTY( QString releaseNotesUrl MEMBER m_releaseNotesUrl NOTIFY releaseNotesUrlChanged FINAL )
     Q_PROPERTY (QString donateUrl MEMBER m_donateUrl NOTIFY donateUrlChanged FINAL )
-    Q_PROPERTY( QString warningMessage MEMBER m_warningMessage CONSTANT FINAL )
 
     Q_PROPERTY( bool isNextEnabled MEMBER m_isNextEnabled NOTIFY isNextEnabledChanged FINAL )
 

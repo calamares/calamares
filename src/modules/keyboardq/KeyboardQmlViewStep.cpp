@@ -26,7 +26,7 @@
 CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardQmlViewStepFactory, registerPlugin<KeyboardQmlViewStep>(); )
 
 KeyboardQmlViewStep::KeyboardQmlViewStep( QObject* parent )
-    : Calamares::QmlViewStep( "keyboard", parent )
+    : Calamares::QmlViewStep(parent )
     , m_config( new Config(this) )
     , m_nextEnabled( false )
     , m_writeEtcDefaultKeyboard( true )
@@ -34,8 +34,6 @@ KeyboardQmlViewStep::KeyboardQmlViewStep( QObject* parent )
     m_config->init();
     m_nextEnabled = true;
     emit nextStatusChanged( m_nextEnabled );
-
-    qmlRegisterSingletonType< Config >( "io.calamares.module", 1, 0, "Keyboard", [&](QQmlEngine*, QJSEngine*) -> QObject* { return m_config; } );
 }
 
 void
@@ -108,7 +106,8 @@ KeyboardQmlViewStep::onLeave()
     m_prettyStatus = m_config->prettyStatus();
 }
 
-Config * KeyboardQmlViewStep::config() const
+QObject *
+KeyboardQmlViewStep::getConfig()
 {
     return m_config;
 }
@@ -143,4 +142,5 @@ KeyboardQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         m_writeEtcDefaultKeyboard = true;
 
     Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
+    setContextProperty( "Keyboard", m_config );
 }

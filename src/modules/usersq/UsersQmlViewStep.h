@@ -25,7 +25,7 @@
 #include <utils/PluginFactory.h>
 #include <viewpages/QmlViewStep.h>
 
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 
 #include <QVariant>
 #include "Config.h"
@@ -33,7 +33,6 @@
 class PLUGINDLLEXPORT UsersQmlViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT
-    Q_PROPERTY(Config * Config READ config CONSTANT FINAL)
 
 public:
     explicit UsersQmlViewStep( QObject* parent = nullptr );
@@ -53,7 +52,7 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
-    Config * config() const
+    QObject * getConfig() override
     {
         return m_config;
     }

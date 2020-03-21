@@ -42,19 +42,17 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleQmlViewStepFactory, registerPlugin< L
 
 
 LocaleQmlViewStep::LocaleQmlViewStep( QObject* parent )
-: Calamares::QmlViewStep("locale", parent )
-, m_config( new Config( ) )
+: Calamares::QmlViewStep( parent )
+, m_config( new Config( this ) )
 , m_nextEnabled( false )
 , m_geoip( nullptr )
 {
     cDebug() << "instance of Locale qml view srep";
     emit nextStatusChanged( m_nextEnabled );
-
-    qmlRegisterSingletonType< Config >( "io.calamares.module", 1, 0, "Locale", [&](QQmlEngine*, QJSEngine*) -> QObject* { return m_config; } );
 }
 
-Config*
-LocaleQmlViewStep::config() const
+QObject*
+LocaleQmlViewStep::getConfig()
 {
     return m_config;
 }
@@ -203,4 +201,5 @@ void LocaleQmlViewStep::setConfigurationMap(const QVariantMap& configurationMap)
 
     checkRequirements();
     Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
+    setContextProperty( "Locale", m_config );
 }
