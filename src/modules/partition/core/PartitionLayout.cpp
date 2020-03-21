@@ -119,6 +119,7 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
 bool
 PartitionLayout::addEntry( const QString& label,
                            const QString& type,
+                           quint64 attributes,
                            const QString& mountPoint,
                            const QString& fs,
                            const QVariantMap& features,
@@ -141,6 +142,7 @@ PartitionLayout::addEntry( const QString& label,
 
     entry.partLabel = label;
     entry.partType = type;
+    entry.partAttributes = attributes;
     entry.partMountPoint = mountPoint;
     PartUtils::findFS( fs, &entry.partFileSystem );
     if ( entry.partFileSystem == FileSystem::Unknown )
@@ -250,6 +252,14 @@ PartitionLayout::execute( Device* dev,
             currentPartition->setType( part.partType );
 #else
             cWarning() << "Ignoring type; requires KPMcore >= 4.2.0.";
+#endif
+        }
+        if ( part.partAttributes )
+        {
+#if defined( WITH_KPMCORE42API )
+            currentPartition->setAttributes( part.partAttributes );
+#else
+            cWarning() << "Ignoring attributes; requires KPMcore >= 4.2.0.";
 #endif
         }
         if ( !part.partFeatures.isEmpty() )
