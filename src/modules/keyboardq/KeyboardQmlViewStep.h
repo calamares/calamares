@@ -25,7 +25,7 @@
 #include <utils/PluginFactory.h>
 #include <viewpages/QmlViewStep.h>
 
-#include <PluginDllMacro.h>
+#include <DllMacro.h>
 #include <QQmlParserStatus>
 
 class KeyboardPage;
