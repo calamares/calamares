@@ -27,6 +27,7 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "widgets/FixedAspectRatioLabel.h"
+#include "Config.h"
 
 #include <QAbstractButton>
 #include <QDialog>

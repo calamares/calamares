@@ -94,6 +94,7 @@ signals:
     void warningMessageChanged();
 };
 
+
 class Config : public QObject
 {
     Q_OBJECT
@@ -111,11 +112,15 @@ class Config : public QObject
     Q_PROPERTY( QString knownIssuesUrl MEMBER m_knownIssuesUrl NOTIFY knownIssuesUrlChanged FINAL )
     Q_PROPERTY( QString releaseNotesUrl MEMBER m_releaseNotesUrl NOTIFY releaseNotesUrlChanged FINAL )
     Q_PROPERTY (QString donateUrl MEMBER m_donateUrl NOTIFY donateUrlChanged FINAL )
+    Q_PROPERTY( QString warningMessage MEMBER m_warningMessage CONSTANT FINAL )
+
+    Q_PROPERTY( bool isNextEnabled MEMBER m_isNextEnabled NOTIFY isNextEnabledChanged FINAL )
 
 public:
     Config( QObject* parent = nullptr );
     void setCountryCode( const QString &countryCode );
     void setLanguageIcon( const QString &languageIcon );
+
     RequirementsModel& requirementsModel () const;
 
     void setIsNextEnabled( const bool& isNextEnabled );
@@ -162,11 +167,11 @@ signals:
     void localeIndexChanged( int localeIndex );
     void isNextEnabledChanged( bool isNextEnabled );
     void genericWelcomeMessageChanged();
-
     void supportUrlChanged();
     void knownIssuesUrlChanged();
     void releaseNotesUrlChanged();
     void donateUrlChanged();
+
 };
 
 #endif

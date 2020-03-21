@@ -91,6 +91,7 @@ public:
         Fixed
     };
     Q_ENUM( WindowExpansion )
+
     /** @brief Setting for the main window size.
      *
      * The units are pixels (Pixies) or something-based-on-fontsize (Fonties), which
@@ -103,6 +104,7 @@ public:
         Fonties
     };
     Q_ENUM( WindowDimensionUnit )
+
     class WindowDimension : public NamedSuffix< WindowDimensionUnit, WindowDimensionUnit::None >
     {
     public:
@@ -176,8 +178,7 @@ public:
 
     bool welcomeStyleCalamares() const { return m_welcomeStyleCalamares; }
     bool welcomeExpandingLogo() const { return m_welcomeExpandingLogo; }
-    bool windowMaximize() const { return m_windowExpansion == WindowExpansion::Fullscreen; }
-    bool windowExpands() const { return m_windowExpansion != WindowExpansion::Fixed; }
+
     QPair< WindowDimension, WindowDimension > windowSize() const
     {
         return QPair< WindowDimension, WindowDimension >( m_windowWidth, m_windowHeight );
@@ -198,6 +199,9 @@ public slots:
     QString string( StringEntry stringEntry ) const;
     QString styleString( StyleEntry styleEntry ) const;
     QString imagePath( ImageEntry imageEntry ) const;
+
+    bool windowMaximize() const { return m_windowExpansion == WindowExpansion::Fullscreen; }
+    bool windowExpands() const { return m_windowExpansion != WindowExpansion::Fixed; }
 
 private:
     static Branding* s_instance;

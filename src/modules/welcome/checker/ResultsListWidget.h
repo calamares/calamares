@@ -23,6 +23,7 @@
 #include "ResultWidget.h"
 
 #include "Config.h"
+
 #include <QWidget>
 
 class QLabel;

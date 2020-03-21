@@ -136,6 +136,99 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
     return pixmap;
 }
 
+QString
+defaultPixmapUrl( ImageType type, ImageMode mode)
+{
+    Q_UNUSED( mode )
+    QString url;
+
+    switch ( type )
+    {
+        case Yes:
+            url = QString( RESPATH "images/yes.svgz" );
+            break;
+
+        case No:
+            url = QString( RESPATH "images/no.svgz" );
+            break;
+
+        case Information:
+            url = QString( RESPATH "images/information.svgz" );
+            break;
+
+        case Fail:
+            url = QString( RESPATH "images/fail.svgz" );
+            break;
+
+        case Bugs:
+            url = QString( RESPATH "images/bugs.svg" );
+            break;
+
+        case Help:
+            url = QString( RESPATH "images/help.svg" );
+            break;
+
+        case Release:
+            url = QString( RESPATH "images/release.svg" );
+            break;
+
+        case Donate:
+            url = QString( RESPATH "images/donate.svg" );
+            break;
+
+        case PartitionDisk:
+            url = QString( RESPATH "images/partition-disk.svg" );
+            break;
+
+        case PartitionPartition:
+            url = QString( RESPATH "images/partition-partition.svg" );
+            break;
+
+        case PartitionAlongside:
+            url = QString( RESPATH "images/partition-alongside.svg" );
+            break;
+
+        case PartitionEraseAuto:
+            url = QString( RESPATH "images/partition-erase-auto.svg" );
+            break;
+
+        case PartitionManual:
+            url = QString( RESPATH "images/partition-manual.svg" );
+            break;
+
+        case PartitionReplaceOs:
+            url = QString( RESPATH "images/partition-replace-os.svg" );
+            break;
+
+        case PartitionTable:
+            url = QString( RESPATH "images/partition-table.svg" );
+            break;
+
+        case BootEnvironment:
+            url = QString( RESPATH "images/boot-environment.svg" );
+            break;
+
+        case Squid:
+            url = QString( RESPATH "images/squid.svg" );
+            break;
+
+        case StatusOk:
+            url = QString( RESPATH "images/state-ok.svg" );
+            break;
+
+        case StatusWarning:
+            url = QString( RESPATH "images/state-warning.svg" );
+            break;
+
+        case StatusError:
+            url = QString( RESPATH "images/state-error.svg" );
+            break;
+    }
+
+
+    return url;
+}
+
 
 QPixmap
 createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPct )

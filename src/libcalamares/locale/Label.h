@@ -23,6 +23,7 @@
 #include <QLocale>
 #include <QObject>
 #include <QString>
+#include <QObject>
 
 namespace CalamaresUtils
 {
@@ -64,6 +65,7 @@ public:
     Label( const QString& localeName,
            LabelFormat format = LabelFormat::IfNeededWithCountry,
            QObject* parent = nullptr );
+
 
     /** @brief Define a sorting order.
      *
@@ -107,6 +109,11 @@ protected:
     QString m_localeId;  // the locale identifier, e.g. "en_GB"
     QString m_label;  // the native name of the locale
     QString m_englishLabel;
+
+signals:
+    void labelChanged( QString label );
+    void englishLabelChanged( QString englishLabel );
+    void localeIdChanged( QString localeIdChanged );
 };
 
 }  // namespace Locale

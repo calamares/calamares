@@ -28,6 +28,7 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "widgets/WaitingWidget.h"
+#include "Config.h"
 
 #include <QHBoxLayout>
 

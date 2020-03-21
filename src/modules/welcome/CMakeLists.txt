@@ -12,8 +12,6 @@ else()
     add_definitions( -DWITHOUT_LIBPARTED )
 endif()
 
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
-
 set( CHECKER_SOURCES
     checker/CheckerContainer.cpp
     checker/GeneralRequirements.cpp

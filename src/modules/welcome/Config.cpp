@@ -311,4 +311,3 @@ void RequirementsModel::retranslate()
 
     emit warningMessageChanged();
 }
-
