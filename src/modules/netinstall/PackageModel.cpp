@@ -19,9 +19,17 @@
 
 #include "PackageModel.h"
 
+#include "utils/Variant.h"
 #include "utils/Yaml.h"
 
 PackageModel::PackageModel( const YAML::Node& data, QObject* parent )
+    : QAbstractItemModel( parent )
+{
+    m_rootItem = new PackageTreeItem();
+    setupModelData( data, m_rootItem );
+}
+
+PackageModel::PackageModel( const QVariantList& data, QObject* parent )
     : QAbstractItemModel( parent )
 {
     m_rootItem = new PackageTreeItem();
@@ -206,16 +214,53 @@ PackageModel::getItemPackages( PackageTreeItem* item ) const
     return selectedPackages;
 }
 
-static QString
-getString( const YAML::Node& itemDefinition, const char* key )
-{
-    return itemDefinition[ key ] ? CalamaresUtils::yamlToVariant( itemDefinition[ key ] ).toString() : QString();
-}
-
 static bool
 getBool( const YAML::Node& itemDefinition, const char* key )
 {
     return itemDefinition[ key ] ? CalamaresUtils::yamlToVariant( itemDefinition[ key ] ).toBool() : false;
+}
+
+void
+PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* parent )
+{
+    for ( const auto& group : groupList )
+    {
+        QVariantMap groupMap = group.toMap();
+        if ( groupMap.isEmpty() )
+        {
+            continue;
+        }
+
+        PackageTreeItem* item = new PackageTreeItem( groupMap, parent );
+        if ( groupMap.contains( "selected" ) )
+        {
+            item->setSelected( CalamaresUtils::getBool( groupMap, "selected", false ) ? Qt::Checked : Qt::Unchecked );
+        }
+        if ( groupMap.contains( "packages" ) )
+        {
+            for ( const auto& packageName : groupMap.value( "packages" ).toStringList() )
+            {
+                item->appendChild( new PackageTreeItem( packageName, item ) );
+            }
+        }
+        if ( groupMap.contains( "subgroups" ) )
+        {
+            QVariantList subgroups = groupMap.value( "subgroups" ).toList();
+            if ( !subgroups.isEmpty() )
+            {
+                setupModelData( subgroups, item );
+            }
+        }
+        if ( item->isHidden() )
+        {
+            m_hiddenItems.append( item );
+        }
+        else
+        {
+            item->setCheckable( true );
+            parent->appendChild( item );
+        }
+    }
 }
 
 void

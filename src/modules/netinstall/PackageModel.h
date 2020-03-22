@@ -48,6 +48,7 @@ public:
     static constexpr const int MetaExpandRole = Qt::UserRole + 1;
 
     explicit PackageModel( const YAML::Node& data, QObject* parent = nullptr );
+    explicit PackageModel( const QVariantList& data, QObject* parent = nullptr );
     ~PackageModel() override;
 
     QVariant data( const QModelIndex& index, int role ) const override;
@@ -66,6 +67,7 @@ public:
 
 private:
     void setupModelData( const YAML::Node& data, PackageTreeItem* parent );
+    void setupModelData( const QVariantList& l, PackageTreeItem* parent );
 
     PackageTreeItem* m_rootItem;
     PackageTreeItem::List m_hiddenItems;
