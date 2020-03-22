@@ -3536,7 +3536,7 @@ Saída:
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;%1&lt;/h3&gt;
-            &lt;p&gt;These are example release notes.&lt;/p&gt;</translation>
+            &lt;p&gt;Estes são exemplos de notas.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>

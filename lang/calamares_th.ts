@@ -212,7 +212,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>กำลังโหลด ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
@@ -496,12 +496,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="330"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;กำหนดพาร์ทิชันด้วยตนเอง&lt;/strong&gt;&lt;br/&gt;คุณสามารถสร้างหรือเปลี่ยนขนาดของพาร์ทิชันได้ด้วยตนเอง</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
       <source>Boot loader location:</source>
-      <translation type="unfinished"/>
+      <translation>ที่อยู่บูตโหลดเดอร์:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="152"/>
@@ -514,7 +514,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="996"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1082"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>ปัจจุบัน:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="827"/>
@@ -567,7 +567,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1297"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการ %1 อยู่ คุณต้องการทำอย่างไร?&lt;br/&gt; คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1501"/>
@@ -600,7 +600,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1326"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1352"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;ติดตั้งควบคู่กับระบบปฏิบัติการเดิม&lt;/strong&gt;&lt;br/&gt;ตัวติดตั้งจะลดเนื้อที่พาร์ทิชันเพื่อให้มีเนื้อที่สำหรับ %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
@@ -608,12 +608,12 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;แทนที่พาร์ทิชัน&lt;/strong&gt;&lt;br/&gt;แทนที่พาร์ทิชันด้วย %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1321"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการอยู่แล้ว คุณต้องการทำอย่างไร?&lt;br/&gt; คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
@@ -1160,7 +1160,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
       <source>&lt;Restart checkbox tooltip&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1195,7 +1195,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;การติดตั้งไม่สำเร็จ&lt;/h1&gt;&lt;br/&gt;%1 ไม่ได้ถูกติดตั้งลงบนคอมพิวเตอร์ของคุณ&lt;br/&gt;ข้อความข้อผิดพลาดคือ: %2</translation>
     </message>
   </context>
   <context>
@@ -1213,7 +1213,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="133"/>
       <source>Installation Complete</source>
-      <translation type="unfinished"/>
+      <translation>การติดตั้งเสร็จสิ้น</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="135"/>
@@ -1223,7 +1223,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
       <source>The installation of %1 is complete.</source>
-      <translation type="unfinished"/>
+      <translation>การติดตั้ง %1 เสร็จสิ้น</translation>
     </message>
   </context>
   <context>
@@ -1284,12 +1284,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>is connected to the Internet</source>
-      <translation>เชื่อมต่อกับอินเตอร์เน็ต</translation>
+      <translation>เชื่อมต่อกับอินเทอร์เน็ต</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
       <source>The system is not connected to the Internet.</source>
-      <translation type="unfinished"/>
+      <translation>ระบบไม่ได้เชื่อมต่อกับอินเทอร์เน็ต</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
@@ -1558,7 +1558,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
       <source>The system language will be set to %1.</source>
-      <translation type="unfinished"/>
+      <translation>ภาษาของระบบจะถูกตั้งค่าเป็น %1</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
@@ -1659,7 +1659,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/PackageModel.cpp" line="179"/>
       <source>Description</source>
-      <translation type="unfinished"/>
+      <translation>คำอธิบาย</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="137"/>
@@ -1713,12 +1713,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>เคอร์เนล</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>บริการ</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
@@ -1780,17 +1780,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="57"/>
       <source>Password is too short</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านสั้นเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="73"/>
       <source>Password is too long</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านยาวเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="149"/>
       <source>Password is too weak</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านอ่อนเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="157"/>
@@ -1805,7 +1805,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
       <source>The password is the same as the old one</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านเหมือนกับรหัสผ่านเก่า</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
@@ -1820,7 +1820,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
       <source>The password is too similar to the old one</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านคล้ายกับรหัสผ่านเก่าจนเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
@@ -1885,7 +1885,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
       <source>The password is too short</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านสั้นเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
@@ -1935,7 +1935,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="250"/>
       <source>No password supplied</source>
-      <translation type="unfinished"/>
+      <translation>ไม่ได้กำหนดรหัสผ่าน</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
@@ -2015,12 +2015,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
       <source>Unknown error</source>
-      <translation type="unfinished"/>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านว่าง</translation>
     </message>
   </context>
   <context>
@@ -2118,12 +2118,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>ชื่อเต็มของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
       <source>login</source>
-      <translation type="unfinished"/>
+      <translation>เข้าสู่ระบบ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
@@ -2133,19 +2133,19 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>ชื่อคอมพิวเตอร์</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่าน</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>กรอกรหัสผ่านซ้ำ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
@@ -2351,7 +2351,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
-      <translation type="unfinished"/>
+      <translation>ติดตั้ง %1 &lt;strong&gt;ควบคู่&lt;/strong&gt;กับระบบปฏิบัติการเดิม</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
@@ -2396,7 +2396,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="248"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>ปัจจุบัน:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="265"/>
@@ -2630,7 +2630,7 @@ Output:
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
       <source>No description provided.</source>
-      <translation type="unfinished"/>
+      <translation>ไม่ได้ระบุคำอธิบาย</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="73"/>
@@ -2638,7 +2638,7 @@ Output:
       <location filename="../src/modules/machineid/Workers.cpp" line="85"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="102"/>
       <source>File not found</source>
-      <translation type="unfinished"/>
+      <translation>ไม่พบไฟล์</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="74"/>
@@ -2899,7 +2899,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="278"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation>ขณะที่กำลังติดตั้ง ตัวติดตั้งฟ้องว่า คอมพิวเตอร์มีความต้องการไม่เพียงพอที่จะติดตั้ง %1&lt;br/&gt;ไม่สามารถทำการติดตั้งต่อไปได้ และฟีเจอร์บางอย่างจะถูกปิดไว้</translation>
+      <translation>คอมพิวเตอร์มีความต้องการไม่เพียงพอที่จะติดตั้ง %1&lt;br/&gt;สามารถทำการติดตั้งต่อไปได้ แต่ฟีเจอร์บางอย่างจะถูกปิดไว้</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="287"/>
@@ -2912,7 +2912,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
       <source>Scanning storage devices...</source>
-      <translation type="unfinished"/>
+      <translation>กำลังสแกนอุปกรณ์จัดเก็บข้อมูล...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="85"/>
@@ -3433,7 +3433,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>Open help and support website</source>
-      <translation type="unfinished"/>
+      <translation>เปิดเว็บไซต์ช่วยเหลือและสนับสนุน</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
@@ -3453,12 +3453,12 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
       <source>&amp;Known issues</source>
-      <translation type="unfinished"/>
+      <translation>&amp;K ปัญหาที่รู้จัก</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
       <source>&amp;Support</source>
-      <translation type="unfinished"/>
+      <translation>&amp;S ช่วยเหลือ</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
@@ -3468,12 +3468,12 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="254"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;ยินดีต้อนรับสู่ตัวติดตั้ง %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="253"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;ยินดีต้อนรับสู่ตัวติดตั้ง Calamares สำหรับ %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
@@ -3541,7 +3541,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>เกี่ยวกับ</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>

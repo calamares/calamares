@@ -87,6 +87,7 @@ createResultWidgets( QLayout* layout,
  */
 class ResultsListDialog : public QDialog
 {
+    Q_OBJECT
 public:
     /** @brief Create a dialog for the given @p checkEntries list of requirements.
      *
@@ -286,3 +287,5 @@ ResultsListWidget::retranslate()
                                     .arg( *Calamares::Branding::ProductName ) );
     }
 }
+
+#include "ResultsListWidget.moc"
