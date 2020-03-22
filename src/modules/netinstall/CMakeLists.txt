@@ -16,3 +16,14 @@ calamares_add_plugin( netinstall
         yamlcpp
     SHARED_LIB
 )
+
+calamares_add_test(
+    netinstalltest
+    SOURCES
+        Tests.cpp
+        PackageTreeItem.cpp
+        PackageModel.cpp
+    LIBRARIES
+        Qt5::Gui
+)
+
