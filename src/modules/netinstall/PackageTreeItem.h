@@ -117,6 +117,7 @@ private:
     QString m_postScript;
     bool m_isCritical = false;
     bool m_isHidden = false;
+    bool m_showReadOnly = false;
     bool m_startExpanded = false;
 };
 

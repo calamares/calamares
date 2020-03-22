@@ -48,8 +48,12 @@ More keys (per group) are supported:
  - *critical*: if true, make the installation process fail if installing
    any of the packages in the group fails. Otherwise, just log a warning.
    Defaults to false.
+ - *immutable*: if true, the state of the group (and all its subgroups)
+   cannot be changed; it really only makes sense in combination
+   with *selected* set to true. This only affects the user-interface.
  - *expanded*: if true, the group is shown in an expanded form (that is,
-   not-collapsed) in the treeview on start.
+   not-collapsed) in the treeview on start. This only affects the user-
+   interface.
  - *subgroups*: if present this follows the same structure as the top level
    of the YAML file, allowing there to be sub-groups of packages to an
    arbitary depth

@@ -52,6 +52,7 @@ PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTreeItem*
     , m_postScript( CalamaresUtils::getString( groupData, "post-install" ) )
     , m_isCritical( CalamaresUtils::getBool( groupData, "critical", false ) )
     , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
+    , m_showReadOnly( CalamaresUtils::getBool( groupData, "immutable", false ) )
     , m_startExpanded( CalamaresUtils::getBool( groupData, "expanded", false ) )
 {
 }
