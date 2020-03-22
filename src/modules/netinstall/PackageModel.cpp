@@ -230,10 +230,6 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
         {
             item->setSelected( getBool( itemDefinition, "selected" ) ? Qt::Checked : Qt::Unchecked );
         }
-        else
-        {
-            item->setSelected( parent->isSelected() );  // Inherit from it's parent
-        }
 
         if ( itemDefinition[ "packages" ] )
         {
