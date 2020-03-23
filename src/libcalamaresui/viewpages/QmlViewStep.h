@@ -39,7 +39,6 @@ namespace Calamares
 class QmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-
 public:
     /** @brief Creates a QML view step
      *

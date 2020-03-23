@@ -23,7 +23,6 @@
 #include <QLocale>
 #include <QObject>
 #include <QString>
-#include <QObject>
 
 namespace CalamaresUtils
 {
@@ -105,11 +104,6 @@ protected:
     QString m_localeId;  // the locale identifier, e.g. "en_GB"
     QString m_label;  // the native name of the locale
     QString m_englishLabel;
-
-signals:
-    void labelChanged( QString label );
-    void englishLabelChanged( QString englishLabel );
-    void localeIdChanged( QString localeIdChanged );
 };
 
 }  // namespace Locale
