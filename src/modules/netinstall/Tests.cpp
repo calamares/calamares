@@ -55,6 +55,7 @@ ItemTests::testRoot()
     QCOMPARE( r.isSelected(), Qt::Checked );
     QCOMPARE( r.name(), QStringLiteral( "<root>" ) );
     QCOMPARE( r.parentItem(), nullptr );
+    QVERIFY( r.isGroup() );
 }
 
 void
@@ -69,6 +70,8 @@ ItemTests::testPackage()
     QCOMPARE( p.childCount(), 0 );
     QVERIFY( !p.isHidden() );
     QVERIFY( !p.isCritical() );
+    QVERIFY( !p.isGroup() );
+    QVERIFY( p.isPackage() );
 
     // This doesn't happen in normal constructions,
     // because a package can't have children.
@@ -77,6 +80,8 @@ ItemTests::testPackage()
     QCOMPARE( c.packageName(), QStringLiteral( "zsh" ) );
     QVERIFY( c.name().isEmpty() );  // not a group
     QCOMPARE( c.parentItem(), &p );
+    QVERIFY( !c.isGroup() );
+    QVERIFY( c.isPackage() );
 
     QCOMPARE( p.childCount(), 0 );  // not noticed it has a child
 }
@@ -109,6 +114,8 @@ ItemTests::testGroup()
     QVERIFY( !p.isCritical() );
     // The item-constructor doesn't consider the packages: list
     QCOMPARE( p.childCount(), 0 );
+    QVERIFY( p.isGroup() );
+    QVERIFY( !p.isPackage() );
 }
 
 QTEST_GUILESS_MAIN( ItemTests )

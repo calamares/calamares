@@ -40,6 +40,7 @@ PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* p
     : m_parentItem( parent )
     , m_packageName( packageName )
     , m_selected( parentCheckState( parent ) )
+    , m_isGroup( false )
 {
 }
 
@@ -50,6 +51,7 @@ PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTreeItem*
     , m_description( CalamaresUtils::getString( groupData, "description" ) )
     , m_preScript( CalamaresUtils::getString( groupData, "pre-install" ) )
     , m_postScript( CalamaresUtils::getString( groupData, "post-install" ) )
+    , m_isGroup( true )
     , m_isCritical( CalamaresUtils::getBool( groupData, "critical", false ) )
     , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
     , m_showReadOnly( CalamaresUtils::getBool( groupData, "immutable", false ) )
@@ -57,12 +59,12 @@ PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTreeItem*
 {
 }
 
-
 PackageTreeItem::PackageTreeItem::PackageTreeItem()
-    : PackageTreeItem( QString(), nullptr )
+    : m_parentItem( nullptr )
+    , m_name( QStringLiteral( "<root>" ) )
+    , m_selected( Qt::Checked )
+    , m_isGroup( true )
 {
-    m_selected = Qt::Checked;
-    m_name = QLatin1String( "<root>" );
 }
 
 PackageTreeItem::~PackageTreeItem()

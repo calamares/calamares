@@ -53,6 +53,20 @@ public:
     QString preScript() const { return m_preScript; }
     QString postScript() const { return m_postScript; }
 
+    /** @brief Is this item a group-item?
+     *
+     * Groups have a (possibly empty) list of packages, and a
+     * (possibly empty) list of sub-groups, and can be marked
+     * critical, hidden, etc. Packages, on the other hand, only
+     * have a meaningful packageName() and selection status.
+     *
+     * Root is a group.
+     */
+    bool isGroup() const { return m_isGroup; }
+
+    /// @brief Is this item a single package?
+    bool isPackage() const { return !isGroup(); }
+
     /** @brief Is this item hidden?
      *
      * Hidden items (generally only groups) are maintained separately,
@@ -106,7 +120,7 @@ private:
     PackageTreeItem* m_parentItem;
     List m_childItems;
 
-    // An entry can be a packkage, or a group.
+    // An entry can be a package, or a group.
     QString m_name;
     QString m_packageName;
     Qt::CheckState m_selected = Qt::Unchecked;
@@ -115,6 +129,7 @@ private:
     QString m_description;
     QString m_preScript;
     QString m_postScript;
+    bool m_isGroup = false;
     bool m_isCritical = false;
     bool m_isHidden = false;
     bool m_showReadOnly = false;
