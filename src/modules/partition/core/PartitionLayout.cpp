@@ -239,6 +239,7 @@ PartitionLayout::execute( Device* dev,
         PartitionInfo::setMountPoint( currentPartition, part.partMountPoint );
         if ( !part.partLabel.isEmpty() )
         {
+            currentPartition->setLabel( part.partLabel );
             currentPartition->fileSystem().setLabel( part.partLabel );
         }
         if ( !part.partFeatures.isEmpty() )
