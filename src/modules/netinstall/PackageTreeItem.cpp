@@ -145,10 +145,10 @@ PackageTreeItem::hiddenSelected() const
 {
     if ( !m_isHidden )
     {
-        return m_selected;
+        return m_selected != Qt::Unchecked;
     }
 
-    if ( !m_selected )
+    if ( m_selected == Qt::Unchecked )
     {
         return false;
     }
@@ -163,8 +163,8 @@ PackageTreeItem::hiddenSelected() const
         currentItem = currentItem->parentItem();
     }
 
-    /* Has no non-hiddent parents */
-    return m_selected;
+    /* Has no non-hidden parents */
+    return m_selected != Qt::Unchecked;
 }
 
 
@@ -188,8 +188,8 @@ PackageTreeItem::setSelected( Qt::CheckState isSelected )
         currentItem = currentItem->parentItem();
     }
     if ( currentItem == nullptr )
-    // Reached the root .. don't bother
     {
+        // Reached the root .. don't bother
         return;
     }
 
