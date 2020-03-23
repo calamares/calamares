@@ -103,7 +103,7 @@ PackageTreeItem::row() const
 QVariant
 PackageTreeItem::data( int column ) const
 {
-    if ( !packageName().isEmpty() )  // packages have a packagename, groups don't
+    if ( isPackage() )  // packages have a packagename, groups don't
     {
         switch ( column )
         {
