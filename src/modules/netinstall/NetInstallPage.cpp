@@ -157,10 +157,10 @@ NetInstallPage::dataIsHere()
     // Go backwards because expanding a group may cause rows to appear below it
     for ( int i = m_groups->rowCount() - 1; i >= 0; --i )
     {
-        auto index = m_groups->index(i,0);
-        if ( m_groups->data(index, PackageModel::MetaExpandRole).toBool() )
+        auto index = m_groups->index( i, 0 );
+        if ( m_groups->data( index, PackageModel::MetaExpandRole ).toBool() )
         {
-            ui->groupswidget->setExpanded(index, true);
+            ui->groupswidget->setExpanded( index, true );
         }
     }
 
