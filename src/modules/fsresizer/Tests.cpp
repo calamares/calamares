@@ -64,7 +64,7 @@ void FSResizerTests::testConfigurationRobust()
 size: 100%
 atleast: 600MiB
 )" );
-    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
+    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ) );
     QVERIFY( j.name().isEmpty() );
     QCOMPARE( j.size().unit(), SizeUnit::None );
     QCOMPARE( j.minimumSize().unit(), SizeUnit::None );
@@ -82,7 +82,7 @@ fs: /
 size: 100%
 atleast: 600MiB
 )" );
-    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
+    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ) );
     QVERIFY( !j.name().isEmpty() );
     QCOMPARE( j.name(), QString("/") );
     QCOMPARE( j.size().unit(), SizeUnit::Percent );
@@ -97,7 +97,7 @@ dev: /dev/m00
 size: 72  MiB
 atleast: 127 %
 )" );
-    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
+    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ) );
     QVERIFY( !j.name().isEmpty() );
     QCOMPARE( j.name(), QString("/") );
     QCOMPARE( j.size().unit(), SizeUnit::MiB );
@@ -111,7 +111,7 @@ dev: /dev/m00
 size: 72  MiB
 atleast: 127 %
 )" );
-    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
+    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ) );
     QVERIFY( !j.name().isEmpty() );
     QCOMPARE( j.name(), QString("/dev/m00") );
     QCOMPARE( j.size().unit(), SizeUnit::MiB );
@@ -126,7 +126,7 @@ fs: /
 size: 71MiB
 # atleast: 127%
 )" );
-    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ).toMap() );
+    j.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc0 ) );
     QVERIFY( !j.name().isEmpty() );
     QCOMPARE( j.name(), QString("/") );
     QCOMPARE( j.size().unit(), SizeUnit::MiB );

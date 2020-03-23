@@ -31,6 +31,7 @@
 // Qt
 #include <QList>
 #include <QObject>
+#include <QVariantMap>
 
 class Partition;
 
@@ -43,6 +44,7 @@ public:
         QString partType;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
+        QVariantMap partFeatures;
         CalamaresUtils::Partition::PartitionSize partSize;
         CalamaresUtils::Partition::PartitionSize partMinSize;
         CalamaresUtils::Partition::PartitionSize partMaxSize;
@@ -77,6 +79,7 @@ public:
                    const QString& type,
                    const QString& mountPoint,
                    const QString& fs,
+                   const QVariantMap& features,
                    const QString& size,
                    const QString& min = QString(),
                    const QString& max = QString() );

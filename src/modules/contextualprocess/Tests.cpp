@@ -79,14 +79,15 @@ ContextualProcessTests::testProcessListSampleConfig()
     }
 
     ContextualProcessJob job;
-    job.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc ).toMap() );
+    job.setConfigurationMap( CalamaresUtils::yamlMapToVariant( doc ) );
 
     QCOMPARE( job.count(), 2 );  // Only "firmwareType" and "branding.shortVersion"
     QCOMPARE( job.count( "firmwareType" ), 4 );
     QCOMPARE( job.count( "branding.shortVersion" ), 2 );  // in the example config
 }
 
-void ContextualProcessTests::testFetch()
+void
+ContextualProcessTests::testFetch()
 {
     Logger::setupLogLevel( Logger::LOGVERBOSE );
 
@@ -187,5 +188,4 @@ void ContextualProcessTests::testFetch()
         QCOMPARE( s, QString() );
         QVERIFY( s.isEmpty() );
     }
-
 }
