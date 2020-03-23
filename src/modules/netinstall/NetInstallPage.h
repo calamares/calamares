@@ -64,6 +64,8 @@ public:
      * displaying the page.
      */
     void loadGroupList( const QString& url );
+    /// @brief Retrieve pre-processed and fetched group data
+    void loadGroupList( const QVariantList& l );
 
     // Sets the "required" state of netinstall data. Influences whether
     // corrupt or unavailable data causes checkReady() to be emitted
@@ -89,6 +91,13 @@ private:
     // m_groups and m_groupOrder internal structures. See the README.md
     // of this module to know the format expected of the YAML files.
     bool readGroups( const QByteArray& yamlData );
+
+    /** @brief Expand entries that should be pre-expanded
+     *
+     * Follows the *expanded* key / the startExpanded field in the
+     * group entries of the model. Call this after filling up the model.
+     */
+    void expandGroups();
 
     Ui::Page_NetInst* ui;
 

@@ -154,6 +154,14 @@ NetInstallPage::dataIsHere()
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
     ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
 
+    expandGroups();
+
+    emit checkReady( true );
+}
+
+void
+NetInstallPage::expandGroups()
+{
     // Go backwards because expanding a group may cause rows to appear below it
     for ( int i = m_groups->rowCount() - 1; i >= 0; --i )
     {
@@ -163,8 +171,6 @@ NetInstallPage::dataIsHere()
             ui->groupswidget->setExpanded( index, true );
         }
     }
-
-    emit checkReady( true );
 }
 
 PackageTreeItem::List
@@ -202,6 +208,23 @@ NetInstallPage::loadGroupList( const QString& confUrl )
         connect( reply, &QNetworkReply::finished, this, &NetInstallPage::dataIsHere );
     }
 }
+
+void
+NetInstallPage::loadGroupList( const QVariantList& l )
+{
+    // This short-cuts through loading and just uses the data,
+    // containing cruft from dataIsHere() and readGroups().
+    m_groups = new PackageModel( l );
+    retranslate();  // For changed model
+    ui->groupswidget->setModel( m_groups );
+    ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
+    ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
+
+    expandGroups();
+
+    emit checkReady( true );
+}
+
 
 void
 NetInstallPage::setRequired( bool b )

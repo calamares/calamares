@@ -209,7 +209,15 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         // Keep putting groupsUrl into the global storage,
         // even though it's no longer used for in-module data-passing.
         Calamares::JobQueue::instance()->globalStorage()->insert( "groupsUrl", groupsUrl );
-        m_widget->loadGroupList( groupsUrl );
+        if ( groupsUrl == QStringLiteral( "local" ) )
+        {
+            QVariantList l = configurationMap.value( "groups" ).toList();
+            m_widget->loadGroupList( l );
+        }
+        else
+        {
+            m_widget->loadGroupList( groupsUrl );
+        }
     }
 
     bool bogus = false;
