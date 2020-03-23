@@ -16,6 +16,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "PackageModel.h"
 #include "PackageTreeItem.h"
 
 #include "utils/Logger.h"
@@ -31,6 +32,10 @@ public:
     ItemTests();
     virtual ~ItemTests() {}
 
+private:
+    void checkAllSelected( PackageTreeItem* p );
+    void recursiveCompare( PackageTreeItem*, PackageTreeItem* );
+
 private Q_SLOTS:
     void initTestCase();
 
@@ -38,6 +43,8 @@ private Q_SLOTS:
     void testPackage();
     void testGroup();
     void testCompare();
+    void testModel();
+    void testExampleFiles();
 };
 
 ItemTests::ItemTests() {}
@@ -106,6 +113,15 @@ static const char doc_no_packages[] =
 "- name: \"CCR\"\n"
 "  description: \"Tools for the Chakra Community Repository\"\n"
 "  packages: []\n";
+
+static const char doc_with_expanded[] =
+"- name: \"CCR\"\n"
+"  description: \"Tools for the Chakra Community Repository\"\n"
+"  expanded: true\n"
+"  packages:\n"
+"    - ccr\n"
+"    - base-devel\n"
+"    - bash\n";
 // *INDENT-ON*
 // clang-format on
 
@@ -177,20 +193,91 @@ ItemTests::testCompare()
     QVERIFY( p3 == p4 );
     PackageTreeItem p5( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc_no_packages ) )[ 0 ].toMap(), nullptr );
     QVERIFY( p3 == p5 );
+}
 
-#if 0
+void
+ItemTests::checkAllSelected( PackageTreeItem* p )
+{
+    QVERIFY( p->isSelected() );
+    for ( int i = 0; i < p->childCount(); ++i )
+    {
+        checkAllSelected( p->child( i ) );
+    }
+}
+
+void
+ItemTests::recursiveCompare( PackageTreeItem* l, PackageTreeItem* r )
+{
+    QVERIFY( l && r );
+    QVERIFY( *l == *r );
+    QCOMPARE( l->childCount(), r->childCount() );
+
+    for ( int i = 0; i < l->childCount(); ++i )
+    {
+        QCOMPARE( l->childCount(), r->childCount() );
+        recursiveCompare( l->child( i ), r->child( i ) );
+    }
+}
+
+void
+ItemTests::testModel()
+{
+    YAML::Node yamldoc = YAML::Load( doc );  // See testGroup()
+    QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
+    QCOMPARE( yamlContents.length(), 1 );
+
+    PackageModel m0( yamlContents, nullptr );
+    PackageModel m1( yamldoc, nullptr );
+
+    QCOMPARE( m0.rowCount(), m1.rowCount() );
+    QCOMPARE( m0.m_hiddenItems.count(), 0 );  // Nothing hidden
+    QCOMPARE( m1.m_hiddenItems.count(), 0 );
+    QCOMPARE( m0.rowCount(), 1 );  // Group, the packages are invisible
+    QCOMPARE( m0.rowCount( m0.index( 0, 0 ) ), 3 );  // The packages
+    QCOMPARE( m1.rowCount( m1.index( 0, 0 ) ), 3 );  // The packages
+
+    checkAllSelected( m0.m_rootItem );
+    checkAllSelected( m1.m_rootItem );
+
+    PackageModel m2( YAML::Load( doc_with_expanded ), nullptr );
+    QCOMPARE( m2.m_hiddenItems.count(), 0 );
+    QCOMPARE( m2.rowCount(), 1 );  // Group, now the packages expanded but not counted
+    QCOMPARE( m2.rowCount( m2.index( 0, 0 ) ), 3 );  // The packages
+    checkAllSelected( m2.m_rootItem );
+
+    PackageTreeItem r;
+    QVERIFY( r == *m0.m_rootItem );
+    QVERIFY( r == *m1.m_rootItem );
+
+    QCOMPARE( m0.m_rootItem->childCount(), 1 );
+
+    PackageTreeItem* group = m0.m_rootItem->child( 0 );
+    QVERIFY( group->isGroup() );
+    QCOMPARE( group->name(), QStringLiteral( "CCR" ) );
+    QCOMPARE( group->childCount(), 3 );
+
+    PackageTreeItem bash( "bash", nullptr );
     // Check that the sub-packages loaded correctly
     bool found_one_bash = false;
-    for ( int i = 0; i < p3.childCount(); ++i )
+    for ( int i = 0; i < group->childCount(); ++i )
     {
-        QVERIFY( p3.child( i )->isPackage() );
-        if ( p0 == *p3.child( i ) )
+        QVERIFY( group->child( i )->isPackage() );
+        if ( bash == *( group->child( i ) ) )
         {
             found_one_bash = true;
         }
     }
     QVERIFY( found_one_bash );
-#endif
+
+    recursiveCompare( m0.m_rootItem, m1.m_rootItem );
+
+    // But m2 has "expanded" set which the others do no
+    QVERIFY( *( m2.m_rootItem->child( 0 ) ) != *group );
+}
+
+void
+ItemTests::testExampleFiles()
+{
 }
 
 
