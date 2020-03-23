@@ -68,7 +68,6 @@ public:
 private:
     friend class ItemTests;
 
-    void setupModelData( const YAML::Node& data, PackageTreeItem* parent );
     void setupModelData( const QVariantList& l, PackageTreeItem* parent );
 
     PackageTreeItem* m_rootItem;

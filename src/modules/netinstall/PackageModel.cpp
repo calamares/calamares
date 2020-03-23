@@ -26,7 +26,7 @@ PackageModel::PackageModel( const YAML::Node& data, QObject* parent )
     : QAbstractItemModel( parent )
 {
     m_rootItem = new PackageTreeItem();
-    setupModelData( data, m_rootItem );
+    setupModelData( CalamaresUtils::yamlSequenceToVariant( data ), m_rootItem );
 }
 
 PackageModel::PackageModel( const QVariantList& data, QObject* parent )
@@ -251,46 +251,6 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
                 setupModelData( subgroups, item );
             }
         }
-        if ( item->isHidden() )
-        {
-            m_hiddenItems.append( item );
-        }
-        else
-        {
-            item->setCheckable( true );
-            parent->appendChild( item );
-        }
-    }
-}
-
-void
-PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
-{
-    for ( YAML::const_iterator it = data.begin(); it != data.end(); ++it )
-    {
-        const YAML::Node itemDefinition = *it;
-        PackageTreeItem* item = new PackageTreeItem( CalamaresUtils::yamlMapToVariant( itemDefinition ), parent );
-
-        if ( itemDefinition[ "selected" ] )
-        {
-            item->setSelected( getBool( itemDefinition, "selected" ) ? Qt::Checked : Qt::Unchecked );
-        }
-
-        if ( itemDefinition[ "packages" ] )
-        {
-            for ( YAML::const_iterator packageIt = itemDefinition[ "packages" ].begin();
-                  packageIt != itemDefinition[ "packages" ].end();
-                  ++packageIt )
-            {
-                item->appendChild(
-                    new PackageTreeItem( CalamaresUtils::yamlToVariant( *packageIt ).toString(), item ) );
-            }
-        }
-        if ( itemDefinition[ "subgroups" ] )
-        {
-            setupModelData( itemDefinition[ "subgroups" ], item );
-        }
-
         if ( item->isHidden() )
         {
             m_hiddenItems.append( item );
