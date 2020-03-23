@@ -128,7 +128,12 @@ if ( KPMcore_FOUND )
     find_package( Qt5 REQUIRED DBus )  # Needed for KPMCore
     find_package( KF5 REQUIRED I18n WidgetsAddons )  # Needed for KPMCore
 
-    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0" )
+    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.2" )
+        add_definitions(
+            -DWITH_KPMCORE42API
+            -DWITH_KPMCORE4API
+        ) # kpmcore 4.2 with new API
+    elseif( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0" )
         add_definitions( -DWITH_KPMCORE4API ) # kpmcore 4 with new API
     elseif( KPMcore_VERSION VERSION_GREATER "3.3.70" )
         message( FATAL_ERROR "KPMCore beta versions ${KPMcore_VERSION} not supported" )
