@@ -34,8 +34,6 @@ Label::Label( const QString& locale, LabelFormat format, QObject* parent )
     , m_locale( Label::getLocale( locale ) )
     , m_localeId( locale.isEmpty() ? m_locale.name() : locale )
 {
-    emit localeIdChanged(m_localeId);
-    //: language[name] (country[name])
     QString longFormat = QObject::tr( "%1 (%2)" );
 
     QString languageName = m_locale.nativeLanguageName();
@@ -55,10 +53,8 @@ Label::Label( const QString& locale, LabelFormat format, QObject* parent )
         countryName = m_locale.nativeCountryName();
     }
     m_label = needsCountryName ? longFormat.arg( languageName, countryName ) : languageName;
-    emit labelChanged(m_label);
     m_englishLabel = needsCountryName ? longFormat.arg( englishName, QLocale::countryToString( m_locale.country() ) )
                                       : englishName;
-    emit englishLabelChanged(m_englishLabel);
 }
 
 QLocale

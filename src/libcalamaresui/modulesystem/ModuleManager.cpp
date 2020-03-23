@@ -289,7 +289,6 @@ ModuleManager::loadModules()
                                                      instanceKey.id(),
                                                      configFileName,
                                                      m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
-                cDebug() << "THE FMB" << instanceKey.id() << descriptor;
 
                 if ( !thisModule )
                 {

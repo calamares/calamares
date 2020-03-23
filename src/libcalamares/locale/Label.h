@@ -41,10 +41,6 @@ class Label : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY( QString label READ label CONSTANT FINAL )
-    Q_PROPERTY( QString englishLabel READ englishLabel CONSTANT FINAL )
-    Q_PROPERTY( QString localeId MEMBER m_localeId CONSTANT FINAL )
-
 public:
     /** @brief Formatting option for label -- add (country) to label. */
     enum class LabelFormat
