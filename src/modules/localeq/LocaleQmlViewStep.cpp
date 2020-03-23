@@ -199,5 +199,5 @@ void LocaleQmlViewStep::setConfigurationMap(const QVariantMap& configurationMap)
 
     checkRequirements();
     Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
-    setContextProperty( "Locale", m_config );
+    setContextProperty( "Localeq", m_config );
 }

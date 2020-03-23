@@ -57,8 +57,8 @@ int main(int argc, char **argv)
     qmlRegisterType(QUrl::fromLocalFile("../src/qml/calamares/ListViewTemplate.qml"), "io.calamares.ui", 1, 0, "ListViewTemplate");
     qmlRegisterType(QUrl::fromLocalFile("../src/qml/calamares/ListItemDelegate.qml"), "io.calamares.ui", 1, 0, "ListItemDelegate");
 
-    qmlRegisterType< LocaleQmlViewStep >( "io.calamares.modules", 1, 0, "Locale" );
-    qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
+//     qmlRegisterType< LocaleQmlViewStep >( "io.calamares.modules", 1, 0, "Locale" );
+//     qmlRegisterSingletonType< Calamares::Branding >( "io.calamares.ui", 1, 0, "Branding", [](QQmlEngine*, QJSEngine*) -> QObject* { return Calamares::Branding::instance(); } );
 
     const auto url =  QUrl::fromLocalFile("../src/modules/localeq/locale.qml");
 
