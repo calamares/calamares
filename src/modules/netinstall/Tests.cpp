@@ -37,6 +37,7 @@ private Q_SLOTS:
     void testRoot();
     void testPackage();
     void testGroup();
+    void testCompare();
 };
 
 ItemTests::ItemTests() {}
@@ -56,6 +57,8 @@ ItemTests::testRoot()
     QCOMPARE( r.name(), QStringLiteral( "<root>" ) );
     QCOMPARE( r.parentItem(), nullptr );
     QVERIFY( r.isGroup() );
+
+    QVERIFY( r == r );
 }
 
 void
@@ -72,6 +75,7 @@ ItemTests::testPackage()
     QVERIFY( !p.isCritical() );
     QVERIFY( !p.isGroup() );
     QVERIFY( p.isPackage() );
+    QVERIFY( p == p );
 
     // This doesn't happen in normal constructions,
     // because a package can't have children.
@@ -82,6 +86,8 @@ ItemTests::testPackage()
     QCOMPARE( c.parentItem(), &p );
     QVERIFY( !c.isGroup() );
     QVERIFY( c.isPackage() );
+    QVERIFY( c == c );
+    QVERIFY( c != p );
 
     QCOMPARE( p.childCount(), 0 );  // not noticed it has a child
 }
@@ -93,7 +99,13 @@ static const char doc[] =
 "  description: \"Tools for the Chakra Community Repository\"\n"
 "  packages:\n"
 "    - ccr\n"
-"    - base-devel\n";
+"    - base-devel\n"
+"    - bash\n";
+
+static const char doc_no_packages[] =
+"- name: \"CCR\"\n"
+"  description: \"Tools for the Chakra Community Repository\"\n"
+"  packages: []\n";
 // *INDENT-ON*
 // clang-format on
 
@@ -116,7 +128,71 @@ ItemTests::testGroup()
     QCOMPARE( p.childCount(), 0 );
     QVERIFY( p.isGroup() );
     QVERIFY( !p.isPackage() );
+    QVERIFY( p == p );
+
+    PackageTreeItem c( "zsh", nullptr );
+    QVERIFY( p != c );
 }
+
+void
+ItemTests::testCompare()
+{
+    PackageTreeItem p0( "bash", nullptr );
+    PackageTreeItem p1( "bash", &p0 );
+    PackageTreeItem p2( "bash", nullptr );
+
+    QVERIFY( p0 == p1 );  // Parent doesn't matter
+    QVERIFY( p0 == p2 );
+
+    p2.setSelected( Qt::Checked );
+    p1.setSelected( Qt::Unchecked );
+    QVERIFY( p0 == p1 );  // Neither does selected state
+    QVERIFY( p0 == p2 );
+
+    PackageTreeItem r0( nullptr );
+    QVERIFY( p0 != r0 );
+    QVERIFY( p1 != r0 );
+    QVERIFY( r0 == r0 );
+    PackageTreeItem r1( nullptr );
+    QVERIFY( r0 == r1 );  // Different roots are still equal
+
+    PackageTreeItem r2( "<root>", nullptr );  // Fake root
+    QVERIFY( r0 != r2 );
+    QVERIFY( r1 != r2 );
+    QVERIFY( p0 != r2 );
+    PackageTreeItem r3( "<root>", nullptr );
+    QVERIFY( r3 == r2 );
+
+    YAML::Node yamldoc = YAML::Load( doc );  // See testGroup()
+    QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
+    QCOMPARE( yamlContents.length(), 1 );
+
+    PackageTreeItem p3( yamlContents[ 0 ].toMap(), nullptr );
+    QVERIFY( p3 == p3 );
+    QVERIFY( p3 != p1 );
+    QVERIFY( p1 != p3 );
+    QCOMPARE( p3.childCount(), 0 );  // Doesn't load the packages: list
+
+    PackageTreeItem p4( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc ) )[ 0 ].toMap(), nullptr );
+    QVERIFY( p3 == p4 );
+    PackageTreeItem p5( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc_no_packages ) )[ 0 ].toMap(), nullptr );
+    QVERIFY( p3 == p5 );
+
+#if 0
+    // Check that the sub-packages loaded correctly
+    bool found_one_bash = false;
+    for ( int i = 0; i < p3.childCount(); ++i )
+    {
+        QVERIFY( p3.child( i )->isPackage() );
+        if ( p0 == *p3.child( i ) )
+        {
+            found_one_bash = true;
+        }
+    }
+    QVERIFY( found_one_bash );
+#endif
+}
+
 
 QTEST_GUILESS_MAIN( ItemTests )
 

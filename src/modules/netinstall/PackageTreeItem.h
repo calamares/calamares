@@ -116,6 +116,16 @@ public:
     // QStandardItem methods
     int type() const override;
 
+    /** @brief Are two items equal
+     *
+     * This **disregards** parent-item and the child-items, and compares
+     * only the fields for the items-proper (name, .. expanded). Note
+     * also that *isSelected()* is a run-time state, and is **not**
+     * compared either.
+     */
+    bool operator==( const PackageTreeItem& rhs ) const;
+    bool operator!=( const PackageTreeItem& rhs ) const { return !( *this == rhs ); }
+
 private:
     PackageTreeItem* m_parentItem;
     List m_childItems;

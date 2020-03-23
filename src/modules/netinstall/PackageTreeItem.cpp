@@ -257,3 +257,24 @@ PackageTreeItem::toOperation() const
         return m_packageName;
     }
 }
+
+bool
+PackageTreeItem::operator==( const PackageTreeItem& rhs ) const
+{
+    if ( isGroup() != rhs.isGroup() )
+    {
+        // Different kinds
+        return false;
+    }
+
+    if ( isGroup() )
+    {
+        return name() == rhs.name() && description() == rhs.description() && preScript() == rhs.preScript()
+            && postScript() == rhs.postScript() && isCritical() == rhs.isCritical() && isHidden() == rhs.isHidden()
+            && m_showReadOnly == rhs.m_showReadOnly && expandOnStart() == rhs.expandOnStart();
+    }
+    else
+    {
+        return packageName() == rhs.packageName();
+    }
+}
