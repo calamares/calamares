@@ -8,6 +8,7 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Camilo Higuita
  - Gabriel Craciunescu
+ - Gaël PORTAY
 
 ## Core ##
  - Python job modules (such as *unpackfs* or *packages*) can now provide
@@ -35,6 +36,8 @@ This release contains contributions from (alphabetically by first name):
    (previously those were without the `qml` prefix, which invites name
    collisions). The full module identifier is also used as a filename,
    so that multiple instances of a module can use different QML files.
+ - *partition* module has a number of new features and settings for
+   type, UUID, and filesystem characteristics. Thanks to Gaël.
 
 
 # 3.2.20 (2020-02-27) #
