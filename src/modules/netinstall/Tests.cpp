@@ -35,6 +35,7 @@ public:
 private:
     void checkAllSelected( PackageTreeItem* p );
     void recursiveCompare( PackageTreeItem*, PackageTreeItem* );
+    void recursiveCompare( PackageModel&, PackageModel& );
 
 private Q_SLOTS:
     void initTestCase();
@@ -220,6 +221,13 @@ ItemTests::recursiveCompare( PackageTreeItem* l, PackageTreeItem* r )
 }
 
 void
+ItemTests::recursiveCompare( PackageModel& l, PackageModel& r )
+{
+    return recursiveCompare( l.m_rootItem, r.m_rootItem );
+}
+
+
+void
 ItemTests::testModel()
 {
     YAML::Node yamldoc = YAML::Load( doc );  // See testGroup()
@@ -269,7 +277,7 @@ ItemTests::testModel()
     }
     QVERIFY( found_one_bash );
 
-    recursiveCompare( m0.m_rootItem, m1.m_rootItem );
+    recursiveCompare( m0, m1 );
 
     // But m2 has "expanded" set which the others do no
     QVERIFY( *( m2.m_rootItem->child( 0 ) ) != *group );
@@ -278,6 +286,25 @@ ItemTests::testModel()
 void
 ItemTests::testExampleFiles()
 {
+    QVERIFY( QStringLiteral( BUILD_AS_TEST ).endsWith( "/netinstall" ) );
+
+    QDir d( BUILD_AS_TEST );
+
+    for ( const QString& filename : QStringList { "netinstall.yaml" } )
+    {
+        QFile f( d.filePath( filename ) );
+        QVERIFY( f.exists() );
+        QVERIFY( f.open( QIODevice::ReadOnly ) );
+        QByteArray contents = f.readAll();
+        QVERIFY( !contents.isEmpty() );
+
+        YAML::Node yamldoc = YAML::Load( contents.constData() );
+        QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
+
+        PackageModel m0( yamldoc, nullptr );
+        PackageModel m1( yamlContents, nullptr );
+        recursiveCompare( m0, m1 );
+    }
 }
 
 
