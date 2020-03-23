@@ -31,7 +31,6 @@
 
 #include <memory>
 
-
 class PLUGINDLLEXPORT LocaleQmlViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT

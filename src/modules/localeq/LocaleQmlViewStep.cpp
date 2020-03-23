@@ -40,14 +40,12 @@
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleQmlViewStepFactory, registerPlugin< LocaleQmlViewStep >(); )
 
-
 LocaleQmlViewStep::LocaleQmlViewStep( QObject* parent )
 : Calamares::QmlViewStep( parent )
 , m_config( new Config( this ) )
 , m_nextEnabled( false )
 , m_geoip( nullptr )
 {
-    cDebug() << "instance of Locale qml view srep";
     emit nextStatusChanged( m_nextEnabled );
 }
 
