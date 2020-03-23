@@ -20,7 +20,7 @@
 #define KEYBOARDLAYOUTMODEL_H
 
 #include "keyboardwidget/keyboardglobal.h"
-
+#include <QObject>
 #include <QAbstractListModel>
 #include <QMap>
 #include <QMetaType>
@@ -44,8 +44,8 @@ public:
     QVariant data( const QModelIndex& index, int role ) const override;
 
     void setCurrentIndex(const int &index);
-    int currentIndex() const;
-    const QPair< QString, KeyboardGlobal::KeyboardInfo > item(const int &index) const;
+     int currentIndex() const;
+     const QPair< QString, KeyboardGlobal::KeyboardInfo > item(const int &index) const;
 
 protected:
     QHash<int, QByteArray> roleNames() const override;
