@@ -8,7 +8,9 @@ set( _partition_defs "" )
 if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND )
     include_directories( ${KPMCORE_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/src/modules/partition )
 
-    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0" )
+    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.2" )
+        list( APPEND _partition_defs WITH_KPMCORE42API WITH_KPMCORE4API ) # kpmcore 4.2 with new API
+    elseif( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0" )
         list( APPEND _partition_defs WITH_KPMCORE4API ) # kpmcore 4 with new API
     elseif( KPMcore_VERSION VERSION_GREATER "3.3.70" )
         message( FATAL_ERROR "KPMCore beta versions ${KPMcore_VERSION} are not supported" )

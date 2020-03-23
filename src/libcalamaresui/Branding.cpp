@@ -123,7 +123,7 @@ loadStrings( QMap< QString, QString >& map,
         throw YAML::Exception( YAML::Mark(), std::string( "Branding configuration is not a map: " ) + key );
     }
 
-    const auto& config = CalamaresUtils::yamlMapToVariant( doc[ key ] ).toMap();
+    const auto& config = CalamaresUtils::yamlMapToVariant( doc[ key ] );
 
     map.clear();
     for ( auto it = config.constBegin(); it != config.constEnd(); ++it )

@@ -22,6 +22,8 @@
 
 #include <QStringList>
 #include <QVariant>
+#include <QVariantList>
+#include <QVariantMap>
 
 class QByteArray;
 class QFileInfo;
@@ -60,8 +62,8 @@ QVariantMap loadYaml( const QFileInfo&, bool* ok = nullptr );
 
 QVariant yamlToVariant( const YAML::Node& node );
 QVariant yamlScalarToVariant( const YAML::Node& scalarNode );
-QVariant yamlSequenceToVariant( const YAML::Node& sequenceNode );
-QVariant yamlMapToVariant( const YAML::Node& mapNode );
+QVariantList yamlSequenceToVariant( const YAML::Node& sequenceNode );
+QVariantMap yamlMapToVariant( const YAML::Node& mapNode );
 
 /// @brief Returns all the elements of @p listNode in a StringList
 QStringList yamlToStringList( const YAML::Node& listNode );
