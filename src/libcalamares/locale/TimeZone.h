@@ -170,7 +170,8 @@ public:
 
         if ( it != m_list.constEnd() )
         {
-            return std::distance( m_list.constBegin(), it );
+            // distance() is usually a long long
+            return int( std::distance( m_list.constBegin(), it ) );
         }
         else
         {
