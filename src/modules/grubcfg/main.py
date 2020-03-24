@@ -129,7 +129,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         kernel_params.extend(cryptdevice_params)
 
     if use_splash:
-        kernel_params.append(use_splash)
+        kernel_params.extend(use_splash)
 
     if swap_uuid:
         kernel_params.append("resume=UUID={!s}".format(swap_uuid))
