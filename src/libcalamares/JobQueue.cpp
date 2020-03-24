@@ -69,6 +69,7 @@ public:
             if ( anyFailed && !job->isEmergency() )
             {
                 cDebug() << "Skipping non-emergency job" << job->prettyName();
+                ++m_jobIndex;
                 continue;
             }
 
@@ -83,10 +84,8 @@ public:
                 message = result.message();
                 details = result.details();
             }
-            if ( !anyFailed )
-            {
-                ++m_jobIndex;
-            }
+            emitProgress( 1.0 );
+            ++m_jobIndex;
         }
         if ( anyFailed )
         {
