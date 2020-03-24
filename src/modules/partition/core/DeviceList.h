@@ -28,7 +28,11 @@ class Device;
 namespace PartUtils
 {
 
-enum class DeviceType { All, WritableOnly };
+enum class DeviceType
+{
+    All,
+    WritableOnly
+};
 
 /**
  * @brief Gets a list of storage devices.
@@ -43,6 +47,6 @@ enum class DeviceType { All, WritableOnly };
  */
 QList< Device* > getDevices( DeviceType which = DeviceType::All, qint64 minimumSize = -1 );
 
-}
+}  // namespace PartUtils
 
-#endif // DEVICELIST_H
+#endif  // DEVICELIST_H

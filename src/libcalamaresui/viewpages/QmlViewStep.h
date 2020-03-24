@@ -19,6 +19,7 @@
 #ifndef QMLVIEWSTEP_H
 #define QMLVIEWSTEP_H
 
+#include "utils/Qml.h"
 #include "viewpages/ViewStep.h"
 
 class QQmlComponent;
@@ -38,23 +39,17 @@ namespace Calamares
 class QmlViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-
 public:
-    enum class QmlSearch
-    {
-        QrcOnly,
-        BrandingOnly,
-        Both
-    };
-
     /** @brief Creates a QML view step
      *
-     * The name should not have an extension or schema or anything;
-     * just the plain name, which will be searched as "/<name>.qml" in
-     * QRC files, or "<name>.qml" in suitable branding paths.
-     * The search behavior depends on a QmlSearch value.
+     * The search behavior for the actial QML depends on a QmlSearch value.
+     * This is set through common configuration key *qmlSearch*.
+     * The filename used comes from the module identifier, or can be
+     * set in the configuration file through *qmlFilename*.
+     *
+     * @see Qml.h for available Calamares internals.
      */
-    QmlViewStep( const QString& name, QObject* parent = nullptr );
+    QmlViewStep( QObject* parent = nullptr );
     virtual ~QmlViewStep() override;
 
     virtual QString prettyName() const override;
@@ -73,8 +68,28 @@ public:
     /// @brief QML widgets don't produce jobs by default
     virtual JobList jobs() const override;
 
-    /// @brief Configure search paths; subclasses should call this as well
+    /// @brief Configure search paths; subclasses should call this at the **end** of their own implementation
     virtual void setConfigurationMap( const QVariantMap& configurationMap ) override;
+
+protected:
+    /** @brief Gets a pointer to the Config of this view step
+     *
+     * Parts of the configuration of the viewstep can be passed to QML
+     * by placing them in a QObject (as properties). The default
+     * implementation returns nullptr, for no-config.
+     *
+     * Ownership of the config object remains with the ViewStep; it is possible
+     * to return a pointer to a member variable.
+     *
+     * This object is made available as a context-property *config* in QML.
+     */
+    virtual QObject* getConfig();
+
+    /** @brief Adds a context property for this QML file
+     *
+     * Does not take ownership.
+     */
+    void setContextProperty( const char* name, QObject* property );
 
 private Q_SLOTS:
     void loadComplete();
@@ -86,7 +101,7 @@ private:
     void showFailedQml();
 
     /// @brief Controls where m_name is searched
-    QmlSearch m_searchMethod;
+    CalamaresUtils::QmlSearch m_searchMethod;
 
     QString m_name;
     QString m_qmlFileName;

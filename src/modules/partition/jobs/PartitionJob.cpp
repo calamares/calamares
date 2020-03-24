@@ -16,7 +16,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <jobs/PartitionJob.h>
+#include "PartitionJob.h"
 
 PartitionJob::PartitionJob( Partition* partition )
     : m_partition( partition )

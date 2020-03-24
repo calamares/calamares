@@ -31,18 +31,20 @@
 // Qt
 #include <QList>
 #include <QObject>
+#include <QVariantMap>
 
 class Partition;
 
 class PartitionLayout
 {
 public:
-
     struct PartitionEntry
     {
         QString partLabel;
+        QString partType;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
+        QVariantMap partFeatures;
         CalamaresUtils::Partition::PartitionSize partSize;
         CalamaresUtils::Partition::PartitionSize partMinSize;
         CalamaresUtils::Partition::PartitionSize partMaxSize;
@@ -54,9 +56,11 @@ public:
 
         bool isValid() const
         {
-            if ( !partSize.isValid() ||
-                 ( partMinSize.isValid() && partMaxSize.isValid() && partMinSize > partMaxSize ) )
+            if ( !partSize.isValid()
+                 || ( partMinSize.isValid() && partMaxSize.isValid() && partMinSize > partMaxSize ) )
+            {
                 return false;
+            }
             return true;
         }
     };
@@ -67,14 +71,29 @@ public:
     ~PartitionLayout();
 
     bool addEntry( PartitionEntry entry );
-    bool addEntry( const QString& mountPoint, const QString& size, const QString& min = QString(), const QString& max = QString() );
-    bool addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min = QString(), const QString& max = QString() );
+    bool addEntry( const QString& mountPoint,
+                   const QString& size,
+                   const QString& min = QString(),
+                   const QString& max = QString() );
+    bool addEntry( const QString& label,
+                   const QString& type,
+                   const QString& mountPoint,
+                   const QString& fs,
+                   const QVariantMap& features,
+                   const QString& size,
+                   const QString& min = QString(),
+                   const QString& max = QString() );
 
     /**
      * @brief Apply the current partition layout to the selected drive space.
      * @return  A list of Partition objects.
      */
-    QList< Partition* > execute( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase, PartitionNode* parent, const PartitionRole& role );
+    QList< Partition* > execute( Device* dev,
+                                 qint64 firstSector,
+                                 qint64 lastSector,
+                                 QString luksPassphrase,
+                                 PartitionNode* parent,
+                                 const PartitionRole& role );
 
 private:
     FileSystem::Type m_defaultFsType;

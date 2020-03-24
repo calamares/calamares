@@ -3,6 +3,7 @@
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Raul Rodrigo Segura (raurodse)
+ *   Copyright 2019, Camilo Higuita <milo.h@aol.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,7 +22,7 @@
 #ifndef BRANDING_H
 #define BRANDING_H
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include "utils/NamedSuffix.h"
 
@@ -48,7 +49,7 @@ public:
      * e.g. *Branding::ProductName to get the string value for
      * the product name.
      */
-    enum StringEntry : short
+    enum StringEntry
     {
         ProductName,
         Version,
@@ -62,13 +63,16 @@ public:
         KnownIssuesUrl,
         ReleaseNotesUrl
     };
+    Q_ENUM( StringEntry )
 
     enum ImageEntry : short
     {
         ProductLogo,
         ProductIcon,
-        ProductWelcome
+        ProductWelcome,
+        ProductWallpaper
     };
+    Q_ENUM( ImageEntry )
 
     enum StyleEntry : short
     {
@@ -77,6 +81,7 @@ public:
         SidebarTextSelect,
         SidebarTextHighlight
     };
+    Q_ENUM( StyleEntry )
 
     /** @brief Setting for how much the main window may expand. */
     enum class WindowExpansion
@@ -85,6 +90,7 @@ public:
         Fullscreen,
         Fixed
     };
+    Q_ENUM( WindowExpansion )
     /** @brief Setting for the main window size.
      *
      * The units are pixels (Pixies) or something-based-on-fontsize (Fonties), which
@@ -96,6 +102,7 @@ public:
         Pixies,
         Fonties
     };
+    Q_ENUM( WindowDimensionUnit )
     class WindowDimension : public NamedSuffix< WindowDimensionUnit, WindowDimensionUnit::None >
     {
     public:
@@ -115,6 +122,15 @@ public:
         Center,
         Free
     };
+    Q_ENUM( WindowPlacement )
+    ///@brief What kind of sidebar to use in the main window
+    enum class SidebarFlavor
+    {
+        None,
+        Widget,
+        Qml
+    };
+    Q_ENUM( SidebarFlavor )
 
     static Branding* instance();
 
@@ -139,9 +155,6 @@ public:
     QString slideshowPath() const { return m_slideshowPath; }
     int slideshowAPI() const { return m_slideshowAPI; }
 
-    QString string( Branding::StringEntry stringEntry ) const;
-    QString styleString( Branding::StyleEntry styleEntry ) const;
-    QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
 
     /** @brief Look up an image in the branding directory or as an icon
@@ -171,12 +184,20 @@ public:
     }
     bool windowPlacementCentered() const { return m_windowPlacement == WindowPlacement::Center; }
 
+    ///@brief Which sidebar flavor is configured
+    SidebarFlavor sidebarFlavor() const { return m_sidebarFlavor; }
+
     /**
      * Creates a map called "branding" in the global storage, and inserts an
      * entry for each of the branding strings. This makes the branding
      * information accessible to the Python modules.
      */
     void setGlobals( GlobalStorage* globalStorage ) const;
+
+public slots:
+    QString string( StringEntry stringEntry ) const;
+    QString styleString( StyleEntry styleEntry ) const;
+    QString imagePath( ImageEntry imageEntry ) const;
 
 private:
     static Branding* s_instance;
@@ -205,6 +226,8 @@ private:
     WindowExpansion m_windowExpansion;
     WindowDimension m_windowHeight, m_windowWidth;
     WindowPlacement m_windowPlacement;
+
+    SidebarFlavor m_sidebarFlavor = SidebarFlavor::Widget;
 };
 
 template < typename U >

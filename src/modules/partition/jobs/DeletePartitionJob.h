@@ -20,7 +20,7 @@
 #ifndef DELETEPARTITIONJOB_H
 #define DELETEPARTITIONJOB_H
 
-#include <jobs/PartitionJob.h>
+#include "PartitionJob.h"
 
 class Device;
 class Partition;

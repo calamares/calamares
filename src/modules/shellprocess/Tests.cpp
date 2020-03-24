@@ -62,7 +62,7 @@ ShellProcessTests::testProcessListSampleConfig()
         }
     }
 
-    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).value( "script" ) );
     QVERIFY( !cl.isEmpty() );
     QCOMPARE( cl.count(), 3 );
 
@@ -79,7 +79,7 @@ script:
     - "ls /nonexistent"
     - "/bin/false"
 )" );
-    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).value( "script" ) );
     QVERIFY( !cl.isEmpty() );
     QCOMPARE( cl.count(), 3 );
 
@@ -90,7 +90,7 @@ script:
     - false
     - "ls /nonexistent"
 )" );
-    CommandList cl1( CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    CommandList cl1( CalamaresUtils::yamlMapToVariant( doc ).value( "script" ) );
     QVERIFY( !cl1.isEmpty() );
     QCOMPARE( cl1.count(), 2 );  // One element ignored
 }
@@ -101,7 +101,7 @@ ShellProcessTests::testProcessListFromString()
     YAML::Node doc = YAML::Load( R"(---
 script: "ls /tmp"
 )" );
-    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).value( "script" ) );
 
     QVERIFY( !cl.isEmpty() );
     QCOMPARE( cl.count(), 1 );
@@ -112,7 +112,7 @@ script: "ls /tmp"
     doc = YAML::Load( R"(---
 script: false
 )" );
-    CommandList cl1( CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    CommandList cl1( CalamaresUtils::yamlMapToVariant( doc ).value( "script" ) );
     QVERIFY( cl1.isEmpty() );
     QCOMPARE( cl1.count(), 0 );
 }
@@ -125,7 +125,7 @@ script:
     command: "ls /tmp"
     timeout: 20
 )" );
-    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).value( "script" ) );
 
     QVERIFY( !cl.isEmpty() );
     QCOMPARE( cl.count(), 1 );
@@ -142,7 +142,7 @@ script:
       timeout: 12
     - "-/bin/false"
 )" );
-    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    CommandList cl( CalamaresUtils::yamlMapToVariant( doc ).value( "script" ) );
     QVERIFY( !cl.isEmpty() );
     QCOMPARE( cl.count(), 2 );
     QCOMPARE( cl.at( 0 ).timeout(), 12s );
@@ -157,12 +157,11 @@ ShellProcessTests::testRootSubstitution()
 script:
     - "ls /tmp"
 )" );
-    QVariant plainScript = CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" );
+    QVariant plainScript = CalamaresUtils::yamlMapToVariant( doc ).value( "script" );
     QVariant rootScript = CalamaresUtils::yamlMapToVariant( YAML::Load( R"(---
 script:
     - "ls @@ROOT@@"
 )" ) )
-                              .toMap()
                               .value( "script" );
     QVariant userScript = CalamaresUtils::yamlMapToVariant( YAML::Load( R"(---
 script:
@@ -170,7 +169,6 @@ script:
     - "chown @@USER@@ @@ROOT@@/calatest*"
     - rm -rf @@ROOT@@/calatest*
 )" ) )
-                              .toMap()
                               .value( "script" );
 
     if ( !Calamares::JobQueue::instance() )

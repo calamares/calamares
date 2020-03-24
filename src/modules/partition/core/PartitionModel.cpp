@@ -20,8 +20,11 @@
 #include "core/PartitionModel.h"
 
 #include "core/ColorUtils.h"
-#include "core/PartitionInfo.h"
 #include "core/KPMHelpers.h"
+#include "core/PartitionInfo.h"
+
+#include "partition/FileSystem.h"
+#include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 
 // CalaPM
@@ -35,6 +38,9 @@
 
 // Qt
 #include <QColor>
+
+using CalamaresUtils::Partition::isPartitionFreeSpace;
+using CalamaresUtils::Partition::isPartitionNew;
 
 //- ResetHelper --------------------------------------------
 PartitionModel::ResetHelper::ResetHelper( PartitionModel* model )
@@ -61,9 +67,9 @@ PartitionModel::PartitionModel( QObject* parent )
 }
 
 void
-PartitionModel::init( Device* device , const OsproberEntryList& osproberEntries )
+PartitionModel::init( Device* device, const OsproberEntryList& osproberEntries )
 {
-    QMutexLocker lock(&m_lock);
+    QMutexLocker lock( &m_lock );
     beginResetModel();
     m_device = device;
     m_osproberEntries = osproberEntries;
@@ -81,7 +87,9 @@ PartitionModel::rowCount( const QModelIndex& parent ) const
 {
     Partition* parentPartition = partitionForIndex( parent );
     if ( parentPartition )
+    {
         return parentPartition->children().count();
+    }
     PartitionTable* table = m_device->partitionTable();
     return table ? table->children().count() : 0;
 }
@@ -89,16 +97,21 @@ PartitionModel::rowCount( const QModelIndex& parent ) const
 QModelIndex
 PartitionModel::index( int row, int column, const QModelIndex& parent ) const
 {
-    PartitionNode* parentPartition = parent.isValid()
-                                     ? static_cast< PartitionNode* >( partitionForIndex( parent ) )
-                                     : static_cast< PartitionNode* >( m_device->partitionTable() );
+    PartitionNode* parentPartition = parent.isValid() ? static_cast< PartitionNode* >( partitionForIndex( parent ) )
+                                                      : static_cast< PartitionNode* >( m_device->partitionTable() );
     if ( !parentPartition )
+    {
         return QModelIndex();
+    }
     auto lst = parentPartition->children();
     if ( row < 0 || row >= lst.count() )
+    {
         return QModelIndex();
+    }
     if ( column < 0 || column >= ColumnCount )
+    {
         return QModelIndex();
+    }
     Partition* partition = parentPartition->children().at( row );
     return createIndex( row, column, partition );
 }
@@ -107,19 +120,27 @@ QModelIndex
 PartitionModel::parent( const QModelIndex& child ) const
 {
     if ( !child.isValid() )
+    {
         return QModelIndex();
+    }
     Partition* partition = partitionForIndex( child );
     if ( !partition )
+    {
         return QModelIndex();
+    }
     PartitionNode* parentNode = partition->parent();
     if ( parentNode == m_device->partitionTable() )
+    {
         return QModelIndex();
+    }
 
     int row = 0;
     for ( auto p : m_device->partitionTable()->children() )
     {
         if ( parentNode == p )
+        {
             return createIndex( row, 0, parentNode );
+        }
         ++row;
     }
     cWarning() << "No parent found!";
@@ -131,7 +152,9 @@ PartitionModel::data( const QModelIndex& index, int role ) const
 {
     Partition* partition = partitionForIndex( index );
     if ( !partition )
+    {
         return QVariant();
+    }
 
     switch ( role )
     {
@@ -140,19 +163,23 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         int col = index.column();
         if ( col == NameColumn )
         {
-            if ( KPMHelpers::isPartitionFreeSpace( partition ) )
+            if ( isPartitionFreeSpace( partition ) )
+            {
                 return tr( "Free Space" );
+            }
             else
             {
-                return KPMHelpers::isPartitionNew( partition )
-                       ? tr( "New partition" )
-                       : partition->partitionPath();
+                return isPartitionNew( partition ) ? tr( "New partition" ) : partition->partitionPath();
             }
         }
         if ( col == FileSystemColumn )
-            return KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
+        {
+            return CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
+        }
         if ( col == MountPointColumn )
+        {
             return PartitionInfo::mountPoint( partition );
+        }
         if ( col == SizeColumn )
         {
             qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
@@ -163,41 +190,48 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     }
     case Qt::DecorationRole:
         if ( index.column() == NameColumn )
+        {
             return ColorUtils::colorForPartition( partition );
+        }
         else
+        {
             return QVariant();
+        }
     case Qt::ToolTipRole:
     {
         int col = index.column();
         QString name;
         if ( col == NameColumn )
         {
-            if ( KPMHelpers::isPartitionFreeSpace( partition ) )
+            if ( isPartitionFreeSpace( partition ) )
+            {
                 name = tr( "Free Space" );
+            }
             else
             {
-                name = KPMHelpers::isPartitionNew( partition )
-                        ? tr( "New partition" )
-                        : partition->partitionPath();
+                name = isPartitionNew( partition ) ? tr( "New partition" ) : partition->partitionPath();
             }
         }
-        QString prettyFileSystem = KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
+        QString prettyFileSystem
+            = CalamaresUtils::Partition::prettyNameForFileSystemType( partition->fileSystem().type() );
         qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
         QString prettySize = KFormat().formatByteSize( size );
-        return QVariant(name + " " + prettyFileSystem + " " + prettySize);
+        return QVariant( name + " " + prettyFileSystem + " " + prettySize );
     }
     case SizeRole:
         return ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
     case IsFreeSpaceRole:
-        return KPMHelpers::isPartitionFreeSpace( partition );
+        return isPartitionFreeSpace( partition );
 
     case IsPartitionNewRole:
-        return KPMHelpers::isPartitionNew( partition );
+        return isPartitionNew( partition );
 
     case FileSystemLabelRole:
-        if ( partition->fileSystem().supportGetLabel() != FileSystem::cmdSupportNone &&
-             !partition->fileSystem().label().isEmpty() )
+        if ( partition->fileSystem().supportGetLabel() != FileSystem::cmdSupportNone
+             && !partition->fileSystem().label().isEmpty() )
+        {
             return partition->fileSystem().label();
+        }
         return QVariant();
 
     case FileSystemTypeRole:
@@ -212,40 +246,45 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     // Osprober roles:
     case OsproberNameRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
-                 !partition->fileSystem().uuid().isEmpty() &&
-                 osproberEntry.uuid == partition->fileSystem().uuid() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
+                 && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
+            {
                 return osproberEntry.prettyName;
+            }
         return QVariant();
     case OsproberPathRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
-                 !partition->fileSystem().uuid().isEmpty() &&
-                 osproberEntry.uuid == partition->fileSystem().uuid() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
+                 && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
+            {
                 return osproberEntry.path;
+            }
         return QVariant();
     case OsproberCanBeResizedRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
-                 !partition->fileSystem().uuid().isEmpty() &&
-                 osproberEntry.uuid == partition->fileSystem().uuid() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
+                 && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
+            {
                 return osproberEntry.canBeResized;
+            }
         return QVariant();
     case OsproberRawLineRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
-                 !partition->fileSystem().uuid().isEmpty() &&
-                 osproberEntry.uuid == partition->fileSystem().uuid() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
+                 && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
+            {
                 return osproberEntry.line;
+            }
         return QVariant();
     case OsproberHomePartitionPathRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
-                 !partition->fileSystem().uuid().isEmpty() &&
-                 osproberEntry.uuid == partition->fileSystem().uuid() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone
+                 && !partition->fileSystem().uuid().isEmpty() && osproberEntry.uuid == partition->fileSystem().uuid() )
+            {
                 return osproberEntry.homePath;
+            }
         return QVariant();
-    // end Osprober roles.
+        // end Osprober roles.
 
     default:
         return QVariant();
@@ -256,7 +295,9 @@ QVariant
 PartitionModel::headerData( int section, Qt::Orientation, int role ) const
 {
     if ( role != Qt::DisplayRole )
+    {
         return QVariant();
+    }
 
     switch ( section )
     {
@@ -277,9 +318,11 @@ PartitionModel::headerData( int section, Qt::Orientation, int role ) const
 Partition*
 PartitionModel::partitionForIndex( const QModelIndex& index ) const
 {
-    QMutexLocker lock(&m_lock);
+    QMutexLocker lock( &m_lock );
     if ( !index.isValid() )
+    {
         return nullptr;
+    }
     return reinterpret_cast< Partition* >( index.internalPointer() );
 }
 

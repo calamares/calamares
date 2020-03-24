@@ -23,11 +23,11 @@
 #include <QObject>
 #include <QVariantMap>
 
-#include <CppJob.h>
+#include "CppJob.h"
 
-#include <utils/PluginFactory.h>
+#include "utils/PluginFactory.h"
 
-#include <PluginDllMacro.h>
+#include "DllMacro.h"
 
 class PLUGINDLLEXPORT DracutLuksCfgJob : public Calamares::CppJob
 {

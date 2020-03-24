@@ -22,7 +22,7 @@
 
 #include "Job.h"
 #include "Requirement.h"
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include "modulesystem/Descriptor.h"
 #include "modulesystem/InstanceKey.h"

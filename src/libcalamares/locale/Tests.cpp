@@ -128,8 +128,8 @@ LocaleTests::testTranslatableConfig1()
     QCOMPARE( ts1.count(), 1 );
     QVERIFY( !ts1.isEmpty() );
 
-    QCOMPARE( ts1.get(), "Hello" );
-    QCOMPARE( ts1.get( QLocale( "nl" ) ), "Hello" );
+    QCOMPARE( ts1.get(), QStringLiteral( "Hello" ) );
+    QCOMPARE( ts1.get( QLocale( "nl" ) ), QStringLiteral( "Hello" ) );
 
     QVariantMap map;
     map.insert( "description", "description (no language)" );
@@ -137,8 +137,8 @@ LocaleTests::testTranslatableConfig1()
     QCOMPARE( ts2.count(), 1 );
     QVERIFY( !ts2.isEmpty() );
 
-    QCOMPARE( ts2.get(), "description (no language)" );
-    QCOMPARE( ts2.get( QLocale( "nl" ) ), "description (no language)" );
+    QCOMPARE( ts2.get(), QStringLiteral( "description (no language)" ) );
+    QCOMPARE( ts2.get( QLocale( "nl" ) ), QStringLiteral( "description (no language)" ) );
 }
 
 /** @bref Test strings with translations.
@@ -173,8 +173,8 @@ LocaleTests::testTranslatableConfig2()
     QCOMPARE( ts1.count(), someLanguages().count() + 1 );
     QVERIFY( !ts1.isEmpty() );
 
-    QCOMPARE( ts1.get(), "description (no language)" );  // it wasn't set
-    QCOMPARE( ts1.get( QLocale( "nl" ) ), "description (language nl)" );
+    QCOMPARE( ts1.get(), QStringLiteral( "description (no language)" ) );  // it wasn't set
+    QCOMPARE( ts1.get( QLocale( "nl" ) ), QStringLiteral( "description (language nl)" ) );
     for ( const auto& language : someLanguages() )
     {
         // Skip Serbian (latin) because QLocale() constructed with it
@@ -188,7 +188,7 @@ LocaleTests::testTranslatableConfig2()
                   language );
     }
     QCOMPARE( ts1.get( QLocale( QLocale::Language::Serbian, QLocale::Script::LatinScript, QLocale::Country::Serbia ) ),
-              "description (language sr@latin)" );
+              QStringLiteral( "description (language sr@latin)" ) );
 
     CalamaresUtils::Locale::TranslatedString ts2( map, "name" );
     // We skipped dutch this time

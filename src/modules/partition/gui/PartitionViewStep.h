@@ -21,10 +21,10 @@
 #ifndef PARTITIONVIEWSTEP_H
 #define PARTITIONVIEWSTEP_H
 
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
-#include <PluginDllMacro.h>
+#include "DllMacro.h"
 
 #include "core/PartitionActions.h"
 
@@ -35,6 +35,7 @@ class ChoicePage;
 class PartitionPage;
 class PartitionCoreModule;
 class QStackedWidget;
+class WaitingWidget;
 
 template<typename T> class QFutureWatcher;
 
@@ -82,7 +83,7 @@ private:
     ChoicePage*       m_choicePage;
     PartitionPage*    m_manualPartitionPage;
 
-    QWidget*          m_waitingWidget;
+    WaitingWidget* m_waitingWidget;
     QFutureWatcher<void>* m_future;
 
     QSet< PartitionActions::Choices::SwapChoice > m_swapChoices;

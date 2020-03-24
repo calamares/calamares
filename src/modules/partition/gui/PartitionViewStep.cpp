@@ -75,7 +75,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 
     m_waitingWidget = new WaitingWidget( QString() );
     m_widget->addWidget( m_waitingWidget );
-    CALAMARES_RETRANSLATE( qobject_cast< WaitingWidget* >( m_waitingWidget )->setText( tr( "Gathering system information..." ) ); )
+    CALAMARES_RETRANSLATE( m_waitingWidget->setText( tr( "Gathering system information..." ) ); )
 
     m_core = new PartitionCoreModule( this ); // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
@@ -600,7 +600,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     else if ( fsType != FileSystem::Unknown )
         cWarning() << "Partition-module setting *defaultFileSystemType* changed" << fsRealName;
     else
-        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsRealName << ") using ext4.";
+        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName << ") using" << fsRealName << "instead.";
     gs->insert( "defaultFileSystemType", fsRealName );
 
 
@@ -648,7 +648,7 @@ PartitionViewStep::checkRequirements()
     {
         QLatin1String( "partitions" ),
         []{ return tr( "has at least one disk device available." ); },
-        []{ return tr( "There are no partitons to install on." ); },
+        []{ return tr( "There are no partitions to install on." ); },
         m_core->deviceModel()->rowCount() > 0,  // satisfied
 #ifdef DEBUG_PARTITION_UNSAFE
              false  // optional

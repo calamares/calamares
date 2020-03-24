@@ -57,15 +57,19 @@ setFormat( Partition* partition, bool value )
     partition->setProperty( FORMAT_PROPERTY, value );
 }
 
-PartitionTable::Flags flags(const Partition* partition)
+PartitionTable::Flags
+flags( const Partition* partition )
 {
     auto v = partition->property( FLAGS_PROPERTY );
-    if (v.type() == QVariant::Int )
-        return static_cast<PartitionTable::Flags>( v.toInt() );
+    if ( v.type() == QVariant::Int )
+    {
+        return static_cast< PartitionTable::Flags >( v.toInt() );
+    }
     return partition->activeFlags();
 }
 
-void setFlags(Partition* partition, PartitionTable::Flags f)
+void
+setFlags( Partition* partition, PartitionTable::Flags f )
 {
     partition->setProperty( FLAGS_PROPERTY, PartitionTable::Flags::Int( f ) );
 }
@@ -82,11 +86,11 @@ bool
 isDirty( Partition* partition )
 {
     if ( LvmDevice::s_DirtyPVs.contains( partition ) )
+    {
         return true;
+    }
 
-    return !mountPoint( partition ).isEmpty()
-           || format( partition )
-           || flags( partition ) != partition->activeFlags();
+    return !mountPoint( partition ).isEmpty() || format( partition ) || flags( partition ) != partition->activeFlags();
 }
 
-} // namespace
+}  // namespace PartitionInfo

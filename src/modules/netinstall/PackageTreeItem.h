@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,8 +21,8 @@
 #define PACKAGETREEITEM_H
 
 #include <QList>
-#include <QVariant>
 #include <QStandardItem>
+#include <QVariant>
 
 class PackageTreeItem : public QStandardItem
 {
@@ -36,7 +36,15 @@ public:
         QString postScript;
         bool isCritical = false;
         bool isHidden = false;
+        bool startExpanded = false;  // Only for groups
         Qt::CheckState selected = Qt::Unchecked;
+
+        /** @brief Turns this item into a variant for PackageOperations use
+         *
+         * For "plain" items, this is just the package name; items with
+         * scripts return a map. See the package module for how it's interpreted.
+         */
+        QVariant toOperation() const;
     };
     explicit PackageTreeItem( const ItemData& data, PackageTreeItem* parent = nullptr );
     explicit PackageTreeItem( const QString packageName, PackageTreeItem* parent = nullptr );
@@ -47,7 +55,6 @@ public:
     void appendChild( PackageTreeItem* child );
     PackageTreeItem* child( int row );
     int childCount() const;
-    int columnCount() const;
     QVariant data( int column ) const override;
     int row() const;
 
@@ -60,10 +67,14 @@ public:
     QString packageName() const;
     QString postScript() const;
 
+    /** @brief Is this item hidden?
+     *
+     * Hidden items (generally only groups) are maintained separately,
+     * not shown to the user, but do enter into the package-installation process.
+     */
     bool isHidden() const;
-    void setHidden( bool isHidden );
-    /**
-     * @brief Is this hidden item, considered "selected"?
+
+    /** @brief Is this hidden item, considered "selected"?
      *
      * This asserts when called on a non-hidden item.
      * A hidden item has its own selected state, but really
@@ -71,18 +82,30 @@ public:
      */
     bool hiddenSelected() const;
 
+    /** @brief Is this group critical?
+     *
+     * A critical group must be successfully installed, for the Calamares
+     * installation to continue.
+     */
     bool isCritical() const;
-    void setCritical( bool isCritical );
+
+    /** @brief Is this group expanded on start?
+     *
+     * This does not affect installation, only the UI. A group
+     * that expands on start is shown expanded (not collapsed)
+     * in the treeview when the page is loaded.
+     */
+    bool expandOnStart() const { return m_data.startExpanded; }
 
     Qt::CheckState isSelected() const;
     void setSelected( Qt::CheckState isSelected );
     void setChildrenSelected( Qt::CheckState isSelected );
     int type() const override;
+
 private:
     PackageTreeItem* m_parentItem;
-    QList<PackageTreeItem*> m_childItems;
+    QList< PackageTreeItem* > m_childItems;
     ItemData m_data;
-    const int m_columns = 2; // Name, description
 };
 
-#endif // PACKAGETREEITEM_H
+#endif  // PACKAGETREEITEM_H

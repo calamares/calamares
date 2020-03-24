@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020 Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Camilo Higuita <milo.h@aol.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -36,7 +37,7 @@ LabelModel::LabelModel( const QStringList& locales, QObject* parent )
 
     for ( const auto& l : locales )
     {
-        m_locales.push_back( Label( l ) );
+        m_locales.push_back( new Label( l, Label::LabelFormat::IfNeededWithCountry, this ) );
     }
 }
 
@@ -65,12 +66,18 @@ LabelModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case LabelRole:
-        return locale.label();
+        return locale->label();
     case EnglishLabelRole:
-        return locale.englishLabel();
+        return locale->englishLabel();
     default:
         return QVariant();
     }
+}
+
+QHash< int, QByteArray >
+LabelModel::roleNames() const
+{
+    return { { LabelRole, "label" }, { EnglishLabelRole, "englishLabel" } };
 }
 
 const Label&
@@ -79,13 +86,13 @@ LabelModel::locale( int row ) const
     if ( ( row < 0 ) || ( row >= m_locales.count() ) )
     {
         for ( const auto& l : m_locales )
-            if ( l.isEnglish() )
+            if ( l->isEnglish() )
             {
-                return l;
+                return *l;
             }
-        return m_locales[ 0 ];
+        return *m_locales[ 0 ];
     }
-    return m_locales[ row ];
+    return *m_locales[ row ];
 }
 
 int
@@ -93,7 +100,7 @@ LabelModel::find( std::function< bool( const Label& ) > predicate ) const
 {
     for ( int row = 0; row < m_locales.count(); ++row )
     {
-        if ( predicate( m_locales[ row ] ) )
+        if ( predicate( *m_locales[ row ] ) )
         {
             return row;
         }

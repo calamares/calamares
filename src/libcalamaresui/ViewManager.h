@@ -20,9 +20,10 @@
 #ifndef VIEWMANAGER_H
 #define VIEWMANAGER_H
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 #include "viewpages/ViewStep.h"
 
+#include <QAbstractListModel>
 #include <QList>
 #include <QPushButton>
 #include <QStackedWidget>
@@ -33,7 +34,7 @@ namespace Calamares
  * @brief The ViewManager class handles progression through view pages.
  * @note Singleton object, only use through ViewManager::instance().
  */
-class UIDLLEXPORT ViewManager : public QObject
+class UIDLLEXPORT ViewManager : public QAbstractListModel
 {
     Q_OBJECT
 public:
@@ -131,12 +132,6 @@ private:
     void updateButtonLabels();
     void updateCancelEnabled( bool enabled );
 
-    bool isAtVeryEnd() const
-    {
-        return ( m_currentStep >= m_steps.count() )
-            || ( m_currentStep == m_steps.count() - 1 && m_steps.last()->isAtEnd() );
-    }
-
     static ViewManager* s_instance;
 
     ViewStepList m_steps;
@@ -147,6 +142,23 @@ private:
     QPushButton* m_back;
     QPushButton* m_next;
     QPushButton* m_quit;
+
+public:
+    /** @section Model
+     *
+     * These are the methods and enums used for the as-a-model part
+     * of the ViewManager.
+     */
+    enum Role
+    {
+        ProgressTreeItemCurrentRole = Qt::UserRole + 11,  ///< Is this the *current* step?
+        ProgressTreeItemCompletedRole = Qt::UserRole + 12  ///< Are we past this one?
+    };
+
+    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
+    int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
+
+    QHash< int, QByteArray > roleNames() const override;
 };
 
 }  // namespace Calamares

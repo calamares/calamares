@@ -117,12 +117,12 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="120"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
       <source>Set up</source>
       <translation>Ujdise</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="120"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
       <source>Install</source>
       <translation>Instaloje</translation>
     </message>
@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="118"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="114"/>
       <source>Done</source>
       <translation>U bë</translation>
     </message>
@@ -177,34 +177,52 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="208"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="204"/>
       <source>Running %1 operation.</source>
       <translation>Po xhirohet %1 veprim.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="225"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
       <source>Bad working directory path</source>
       <translation>Shteg i gabuar drejtorie pune</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="226"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>Drejtoria e punës %1 për aktin python %2 s’është e lexueshme.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="232"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
       <source>Bad main script file</source>
       <translation>Kartelë kryesore programthi e dëmtuar</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="233"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>Kartela kryesore e programthit file %1 për aktin python %2 s’është e lexueshme.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="311"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="307"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>Gabim Boost.Python tek akti \"%1\".</translation>
+    </message>
+  </context>
+  <context>
+    <name>Calamares::QmlViewStep</name>
+    <message>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
+      <source>Loading ...</source>
+      <translation>Po ngarkohet …</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
+      <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
+      <translation>Hapi QML &lt;i&gt;%1&lt;/i&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="347"/>
+      <source>Loading failed.</source>
+      <translation>Ngarkimi dështoi.</translation>
     </message>
   </context>
   <context>
@@ -234,176 +252,176 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="93"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="92"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="410"/>
       <source>&amp;Back</source>
       <translation>&amp;Mbrapsht</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="95"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="94"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="405"/>
       <source>&amp;Next</source>
       <translation>Pas&amp;uesi</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="427"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="96"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="430"/>
       <source>&amp;Cancel</source>
       <translation>&amp;Anuloje</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
       <source>Cancel setup without changing the system.</source>
       <translation>Anuloje rregullimin pa ndryshuar sistemin.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>Cancel installation without changing the system.</source>
       <translation>Anuloje instalimin pa ndryshuar sistemin.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="199"/>
       <source>Setup Failed</source>
       <translation>Rregullimi Dështoi</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="200"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Do të donit të hidhet në web regjistri i instalimit?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="235"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
       <source>Install Log Paste URL</source>
       <translation>URL Ngjitjeje Regjistri Instalimi</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="241"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation>Ngarkimi s’qe i suksesshëm. S’u bë hedhje në web.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="254"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
       <source>Calamares Initialization Failed</source>
       <translation>Gatitja e Calamares-it Dështoi</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="255"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="258"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <translation>%1 s’mund të instalohet. Calamares s’qe në gjendje të ngarkonte krejt modulet e konfiguruar. Ky është një problem që lidhet me mënyrën se si përdoret Calamares nga shpërndarja.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <translation>&lt;br/&gt;S’u ngarkuan dot modulet vijues:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="322"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
       <source>Continue with installation?</source>
       <translation>Të vazhdohet me instalimin?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="324"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>Programi i rregullimit %1 është një hap larg nga bërja e ndryshimeve në diskun tuaj, që të mund të rregullojë %2.&lt;br/&gt;&lt;strong&gt;S’do të jeni në gjendje t’i zhbëni këto ndryshime.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>&amp;Set up now</source>
       <translation>&amp;Rregulloje tani</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
       <source>&amp;Set up</source>
       <translation>&amp;Rregulloje</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
       <source>&amp;Install</source>
       <translation>&amp;Instaloje</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="388"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>Rregullimi është i plotë. Mbylleni programin e rregullimit.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="487"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
       <source>Cancel setup?</source>
       <translation>Të anulohet rregullimi?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="487"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
       <source>Cancel installation?</source>
       <translation>Të anulohet instalimi?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="488"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="491"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>Doni vërtet të anulohet procesi i tanishëm i rregullimit?
 Programi i rregullimit do të mbyllet dhe krejt ndryshimet do të humbin.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="493"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>Doni vërtet të anulohet procesi i tanishëm i instalimit?
 Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="217"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="494"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="220"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="497"/>
       <source>&amp;Yes</source>
       <translation>&amp;Po</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="221"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="498"/>
       <source>&amp;No</source>
       <translation>&amp;Jo</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="227"/>
       <source>&amp;Close</source>
       <translation>&amp;Mbylle</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="322"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
       <source>Continue with setup?</source>
       <translation>Të vazhdohet me rregullimin?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>Instaluesi %1 është një hap larg nga bërja e ndryshimeve në diskun tuaj, që të mund të instalojë %2.&lt;br/&gt;&lt;strong&gt;S’do të jeni në gjendje t’i zhbëni këto ndryshime.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>&amp;Install now</source>
       <translation>&amp;Instaloje tani</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
       <source>Go &amp;back</source>
       <translation>Kthehu &amp;mbrapsht</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="415"/>
       <source>&amp;Done</source>
       <translation>&amp;U bë</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>The installation is complete. Close the installer.</source>
       <translation>Instalimi u plotësua. Mbylle instaluesin.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="210"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="213"/>
       <source>Error</source>
       <translation>Gabim</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="199"/>
       <source>Installation Failed</source>
       <translation>Instalimi Dështoi</translation>
     </message>
@@ -411,22 +429,22 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>CalamaresPython::Helper</name>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="308"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="301"/>
       <source>Unknown exception type</source>
       <translation>Lloj i panjohur përjashtimi</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="326"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="319"/>
       <source>unparseable Python error</source>
       <translation>Gabim kodi Python të papërtypshëm</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="370"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="363"/>
       <source>unparseable Python traceback</source>
       <translation>&lt;i&gt;Traceback&lt;/i&gt; Python i papërtypshëm</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="377"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="370"/>
       <source>Unfetchable Python error.</source>
       <translation>Gabim Python mosprurjeje kodi.</translation>
     </message>
@@ -733,22 +751,22 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>&amp;Fshehtëzoje</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="151"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="157"/>
       <source>Logical</source>
       <translation>Logjik</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="156"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="162"/>
       <source>Primary</source>
       <translation>Parësor</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="179"/>
       <source>GPT</source>
       <translation>GPT</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="262"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="269"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <translation>Pikë montimi tashmë e përdorur. Ju lutemi, përzgjidhni një tjetër.</translation>
     </message>
@@ -756,22 +774,22 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>CreatePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="44"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="49"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
       <translation>Krijo pjesë të re %2MiB te %4 (%3) me sistem kartelash %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Krijo pjesë të re &lt;strong&gt;%2MiB&lt;/strong&gt; te &lt;strong&gt;%4&lt;/strong&gt; (%3) me sistem kartelash &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="67"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="72"/>
       <source>Creating new %1 partition on %2.</source>
       <translation>Po krijohet pjesë e re %1 te %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="84"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <translation>Instaluesi s’arriti të krijojë pjesë në diskun '%1'.</translation>
     </message>
@@ -1065,7 +1083,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>Flamurka:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="269"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="278"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <translation>Pikë montimi tashmë e përdorur. Ju lutemi, përzgjidhni një tjetër.</translation>
     </message>
@@ -1101,37 +1119,37 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>FillGlobalStorageJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="130"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="137"/>
       <source>Set partition information</source>
       <translation>Caktoni të dhëna pjese</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="153"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="163"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
       <translation>Instaloje %1 në pjesë sistemi &lt;strong&gt;të re&lt;/strong&gt; %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="157"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="169"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Rregullo pjesë të &lt;strong&gt;re&lt;/strong&gt; %2 me pikë montimi &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="165"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Instaloje %2 te pjesa e sistemit %3 &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="170"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Rregullo pjesë %3 &lt;strong&gt;%1&lt;/strong&gt; me pikë montimi &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="182"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="199"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Instalo ngarkues nisjesh në &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="192"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="208"/>
       <source>Setting up mount points.</source>
       <translation>Po rregullohen pika montimesh.</translation>
     </message>
@@ -1215,22 +1233,22 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>FormatPartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="41"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="46"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
       <translation>Formatoje pjesën %1 (sistem kartelash: %2, madhësi: %3 MiB) në %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="57"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Formato pjesën &lt;strong&gt;%3MiB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; me sistem kartelash &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="68"/>
       <source>Formatting partition %1 with file system %2.</source>
       <translation>Po formatohet pjesa %1 me sistem kartelash %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="77"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
       <translation>Instaluesi s’arriti të formatojë pjesën %1 në diskun '%2'.</translation>
     </message>
@@ -1613,8 +1631,8 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
-      <source>Could configure LUKS key file on partition %1.</source>
-      <translation>Mund të formësohej kartelë kyçesh LUKS në pjesën %1.</translation>
+      <source>Could not configure LUKS key file on partition %1.</source>
+      <translation>S’u formësua dot kartelë kyçesh LUKS te pjesën %1.</translation>
     </message>
   </context>
   <context>
@@ -1638,27 +1656,27 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>NetInstallPage</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="61"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="178"/>
       <source>Name</source>
       <translation>Emër</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="179"/>
       <source>Description</source>
       <translation>Përshkrim</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="109"/>
+      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="137"/>
       <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
       <translation>Instalim Nga Rrjeti. (U çaktivizua: S’arrihet të sillen lista paketash, kontrolloni lidhjen tuaj në rrjet)</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="119"/>
+      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="147"/>
       <source>Network Installation. (Disabled: Received invalid groups data)</source>
       <translation>Instalim Nga Rrjeti. (U çaktivizua: U morën të dhëna të pavlefshme grupesh)</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="158"/>
+      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="187"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
       <translation>Instalim Nga Rrjeti. (E çaktivizuar: Formësim i pasaktë)</translation>
     </message>
@@ -1666,9 +1684,68 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>NetInstallViewStep</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Package selection</source>
       <translation>Përzgjedhje paketash</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
+      <source>Office software</source>
+      <translation>Software zyrash</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
+      <source>Office package</source>
+      <translation>Paketë zyrash</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
+      <source>Browser software</source>
+      <translation>Software shfletuesi</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
+      <source>Browser package</source>
+      <translation>Paketë shfletuesi</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
+      <source>Web browser</source>
+      <translation>Shfletues</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
+      <source>Kernel</source>
+      <translation>Kernel</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
+      <source>Services</source>
+      <translation>Shërbime</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
+      <source>Login</source>
+      <translation>Hyrje</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
+      <source>Desktop</source>
+      <translation>Desktop</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
+      <source>Applications</source>
+      <translation>Aplikacione</translation>
+    </message>
+  </context>
+  <context>
+    <name>NotesQmlViewStep</name>
+    <message>
+      <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
+      <source>Notes</source>
+      <translation>Shënime</translation>
     </message>
   </context>
   <context>
@@ -1945,7 +2022,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>Gabim i panjohur</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="528"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
       <source>Password is empty</source>
       <translation>Fjalëkalimi është i zbrazët</translation>
     </message>
@@ -2367,7 +2444,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="651"/>
-      <source>There are no partitons to install on.</source>
+      <source>There are no partitions to install on.</source>
       <translation>S’ka pjesë ku të instalohet.</translation>
     </message>
   </context>
@@ -2432,14 +2509,14 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="407"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="464"/>
       <source>
 There was no output from the command.</source>
       <translation>
 S’pati përfundim nga urdhri.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="408"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="465"/>
       <source>
 Output:
 </source>
@@ -2448,52 +2525,52 @@ Përfundim:
 </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="412"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="469"/>
       <source>External command crashed.</source>
       <translation>Urdhri i jashtëm u vithis.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="413"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="470"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation>Urdhri &lt;i&gt;%1&lt;/i&gt; u vithis.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="475"/>
       <source>External command failed to start.</source>
       <translation>Dështoi nisja e urdhrit të jashtëm.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="419"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="476"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation>Dështoi nisja e urdhrit &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="480"/>
       <source>Internal error when starting command.</source>
       <translation>Gabim i brendshëm kur niset urdhri.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="424"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="481"/>
       <source>Bad parameters for process job call.</source>
       <translation>Parametra të gabuar për thirrje akti procesi.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="428"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="485"/>
       <source>External command failed to finish.</source>
       <translation>S’u arrit të përfundohej urdhër i jashtëm.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="486"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation>Urdhri &lt;i&gt;%1&lt;/i&gt; s’arriti të përfundohej në %2 sekonda.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="436"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="493"/>
       <source>External command finished with errors.</source>
       <translation>Urdhri i jashtë përfundoi me gabime.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="437"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="494"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation>Urdhri &lt;i&gt;%1&lt;/i&gt; përfundoi me kod daljeje %2.</translation>
     </message>
@@ -2547,7 +2624,7 @@ Përfundim:
       <translation>Kontrolli i domosdoshmërive për modulin &lt;i&gt;%1&lt;/i&gt; u plotësua.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="46"/>
+      <location filename="../src/libcalamares/locale/Label.cpp" line="39"/>
       <source>%1 (%2)</source>
       <extracomment>language[name] (country[name])</extracomment>
       <translation>%1 (%2)</translation>
@@ -2563,28 +2640,22 @@ Përfundim:
       <translation>S’u dha përshkrim.</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="55"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="63"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="67"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="117"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="132"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="73"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="81"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="85"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="102"/>
       <source>File not found</source>
       <translation>S’u gjet kartelë</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="56"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="74"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
       <translation>Shtegu &lt;pre&gt;%1&lt;/pre&gt; duhet të jetë shteg absolut.</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="118"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>S’u krijua dot kartelë e re kuturu &lt;pre&gt;%1&lt;/pre&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="133"/>
-      <source>Could not read random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
-      <translation>S’u lexua dot kartelë kuturu &lt;pre&gt;%1&lt;/pre&gt;.</translation>
     </message>
   </context>
   <context>
@@ -2614,69 +2685,69 @@ Përfundim:
       <translation>Formular</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="135"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="136"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>Përzgjidhni ku të instalohet %1.&lt;br/&gt;&lt;font color=\"red\"&gt;Kujdes: &lt;/font&gt;kjo do të sjellë fshirjen e krejt kartelave në pjesën e përzgjedhur.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="162"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>Objekti i përzgjedhur s’duket se është pjesë e vlefshme.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="170"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>%1 s’mund të instalohet në hapësirë të zbrazët. Ju lutemi, përzgjidhni një pjesë ekzistuese.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>%1 s’mund të instalohet në një pjesë të llojit extended. Ju lutemi, përzgjidhni një pjesë parësore ose logjike ekzistuese.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="189"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="190"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>%1 s’mund të instalohet në këtë pjesë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="195"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="197"/>
       <source>Data partition (%1)</source>
       <translation>Pjesë të dhënash (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="212"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="213"/>
       <source>Unknown system partition (%1)</source>
       <translation>Pjesë sistemi e panjohur (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="217"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>%1 system partition (%2)</source>
       <translation>Pjesë sistemi %1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="228"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="229"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Ndarja %1 është shumë e vogël për %2. Ju lutemi, përzgjidhni një pjesë me kapacitet të paktën %3 GiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="252"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Në këtë sistem s’gjendet dot ndonjë pjesë sistemi EFI. Ju lutemi, që të rregulloni %1, kthehuni mbrapsht dhe përdorni procesin e pjesëzimit dorazi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="262"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="279"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="303"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="280"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="304"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 do të instalohet në %2.&lt;br/&gt;&lt;font color=\"red\"&gt;Kujdes: &lt;/font&gt;krejt të dhënat në pjesën %2 do të humbin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="272"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>Për nisjen e %2 do të përdoret ndarja EFI e sistemit te %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="287"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
       <source>EFI system partition:</source>
       <translation>Pjesë Sistemi EFI:</translation>
     </message>
@@ -2859,29 +2930,29 @@ Përfundim:
   <context>
     <name>SetHostNameJob</name>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="39"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
       <source>Set hostname %1</source>
       <translation>Cakto strehëemër %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Cakto strehëemër &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="53"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="58"/>
       <source>Setting hostname %1.</source>
       <translation>Po caktohet strehëemri %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="64"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="71"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="131"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="138"/>
       <source>Internal Error</source>
       <translation>Gabim i Brendshëm</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="78"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="89"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="155"/>
       <source>Cannot write hostname to target system</source>
       <translation>S’shkruhet dot strehëemër te sistemi i synuar</translation>
     </message>
@@ -2919,82 +2990,82 @@ Përfundim:
   <context>
     <name>SetPartFlagsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="49"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="53"/>
       <source>Set flags on partition %1.</source>
       <translation>Vendos flamurka në pjesën %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="57"/>
       <source>Set flags on %1MiB %2 partition.</source>
       <translation>Vendos flamurka në pjesën %1MiB %2.`</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="61"/>
       <source>Set flags on new partition.</source>
       <translation>Vendos flamurka në pjesë të re.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="67"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="72"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Hiqi flamurkat te ndarja &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="77"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Hiqi flamurkat te pjesa %1MiB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="85"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="92"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>Vëri flamurkë pjesës %1MiB &lt;strong&gt;%2&lt;/strong&gt; si &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="115"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Po hiqen flamurkat në pjesën %1MiB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="121"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Po vihen flamurkat &lt;strong&gt;%3&lt;/strong&gt; në pjesën %1MiB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="81"/>
       <source>Clear flags on new partition.</source>
       <translation>Hiqi flamurkat te ndarja e re.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="79"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="85"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Vëri flamurkë pjesës &lt;strong&gt;%1&lt;/strong&gt; si &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="91"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Vëri flamurkë pjesës së re si &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="103"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Po hiqen flamurkat në pjesën &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="111"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
       <source>Clearing flags on new partition.</source>
       <translation>Po hiqen flamurkat në pjesën e re.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="115"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Po vihen flamurkat &lt;strong&gt;%2&lt;/strong&gt; në pjesën &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="127"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
       <translation>Po vihen flamurkat &lt;strong&gt;%1&lt;/strong&gt; në pjesën e re.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="144"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="153"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>Instaluesi s’arriti të vërë flamurka në pjesën %1.</translation>
     </message>
@@ -3002,42 +3073,42 @@ Përfundim:
   <context>
     <name>SetPasswordJob</name>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="48"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
       <source>Set password for user %1</source>
       <translation>Caktoni fjalëkalim për përdoruesin %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="55"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="56"/>
       <source>Setting password for user %1.</source>
       <translation>Po caktohet fjalëkalim për përdoruesin %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="112"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
       <source>Bad destination system path.</source>
       <translation>Shteg i gabuar destinacioni sistemi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="113"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="91"/>
       <source>rootMountPoint is %1</source>
       <translation>rootMountPoint është %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
       <source>Cannot disable root account.</source>
       <translation>S’mund të çaktivizohet llogaria rrënjë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="120"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
       <source>passwd terminated with error code %1.</source>
       <translation>passwd përfundoi me kod gabimi %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="128"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="106"/>
       <source>Cannot set password for user %1.</source>
       <translation>S’caktohet dot fjalëkalim për përdoruesin %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="129"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="107"/>
       <source>usermod terminated with error code %1.</source>
       <translation>usermod përfundoi me kod gabimi %1.</translation>
     </message>
@@ -3234,37 +3305,37 @@ Përfundim:
       <translation>&lt;small&gt;Nëse këtë kompjuter do ta përdorë më shumë se një person, mund të krijoni disa llogari, pas instalimit.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="342"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="385"/>
       <source>Your username is too long.</source>
       <translation>Emri juaj i përdoruesit është shumë i gjatë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="349"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="392"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Emri juaj i përdoruesit duhet të fillojë me një shkronjë të vogël ose nënvijë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="356"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="399"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Lejohen vetëm shkronja të vogla, numra, nënvijë dhe vijë ndarëse.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="404"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="447"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Lejohen vetëm shkronja, numra, nënvijë dhe vijë ndarëse.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="392"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="435"/>
       <source>Your hostname is too short.</source>
       <translation>Strehëemri juaj është shumë i shkurtër.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="397"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="440"/>
       <source>Your hostname is too long.</source>
       <translation>Strehëemri juaj është shumë i gjatë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="421"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="464"/>
       <source>Your passwords do not match!</source>
       <translation>Fjalëkalimet tuaj s’përputhen!</translation>
     </message>
@@ -3272,7 +3343,7 @@ Përfundim:
   <context>
     <name>UsersViewStep</name>
     <message>
-      <location filename="../src/modules/users/UsersViewStep.cpp" line="55"/>
+      <location filename="../src/modules/users/UsersViewStep.cpp" line="76"/>
       <source>Users</source>
       <translation>Përdorues</translation>
     </message>
@@ -3443,11 +3514,62 @@ Përfundim:
     </message>
   </context>
   <context>
+    <name>WelcomeQmlViewStep</name>
+    <message>
+      <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="55"/>
+      <source>Welcome</source>
+      <translation>Mirë se vini</translation>
+    </message>
+  </context>
+  <context>
     <name>WelcomeViewStep</name>
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="62"/>
       <source>Welcome</source>
       <translation>Mirë se vini</translation>
+    </message>
+  </context>
+  <context>
+    <name>notesqml</name>
+    <message>
+      <location filename="../src/modules/notesqml/notesqml.qml" line="60"/>
+      <source>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Ky është një shembull shënimesh hedhjeje në qarkullim.&lt;/p&gt;</translation>
+    </message>
+  </context>
+  <context>
+    <name>welcomeq</name>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
+      <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
+      <source>About</source>
+      <translation>Mbi</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>
+      <source>Support</source>
+      <translation>Asistencë</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
+      <source>Known issues</source>
+      <translation>Probleme të njohura</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
+      <source>Release notes</source>
+      <translation>Shënime hedhjeje në qarkullim</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
+      <source>Donate</source>
+      <translation>Dhuroni</translation>
     </message>
   </context>
 </TS>

@@ -45,6 +45,11 @@ public:
     void enqueue( const JobList& jobs );
     void start();
 
+    bool isRunning() const { return !m_finished; }
+
+public slots:
+    void finish();
+
 signals:
     void queueChanged( const JobList& jobs );
     void progress( qreal percent, const QString& prettyName );
@@ -57,6 +62,7 @@ private:
     JobList m_jobs;
     JobThread* m_thread;
     GlobalStorage* m_storage;
+    bool m_finished = true;  ///< Initially, not running
 };
 
 }  // namespace Calamares

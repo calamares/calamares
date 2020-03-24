@@ -40,7 +40,7 @@
 
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.19
+    VERSION 3.2.21
     LANGUAGES C CXX )
 
 set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
@@ -135,10 +135,11 @@ set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 if( POLICY CMP0057 )
     cmake_policy( SET CMP0057 NEW )
 endif()
-# CMake 3.9, 3.10 compatibility
+# Let ``AUTOMOC`` and ``AUTOUIC`` process ``GENERATED`` files.
 if( POLICY CMP0071 )
     cmake_policy( SET CMP0071 NEW )
 endif()
+# Recognize more macros to trigger automoc
 if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
     list(APPEND CMAKE_AUTOMOC_MACRO_NAMES
         "K_PLUGIN_FACTORY_WITH_JSON"
@@ -549,10 +550,11 @@ install(
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
-        "CMakeModules/CalamaresAddPlugin.cmake"
-        "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
-        "CMakeModules/CalamaresAddLibrary.cmake"
         "CMakeModules/CalamaresAddBrandingSubdirectory.cmake"
+        "CMakeModules/CalamaresAddLibrary.cmake"
+        "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
+        "CMakeModules/CalamaresAddPlugin.cmake"
+        "CMakeModules/CalamaresAddTest.cmake"
         "CMakeModules/CalamaresAddTranslations.cmake"
         "CMakeModules/CalamaresAutomoc.cmake"
         "CMakeModules/CMakeColors.cmake"

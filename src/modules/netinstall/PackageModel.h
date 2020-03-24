@@ -29,7 +29,7 @@
 
 namespace YAML
 {
-    class Node;
+class Node;
 }
 
 class PackageModel : public QAbstractItemModel
@@ -39,31 +39,38 @@ class PackageModel : public QAbstractItemModel
 public:
     using PackageItemDataList = QList< PackageTreeItem::ItemData >;
 
+    // Names for columns (unused in the code)
+    static constexpr const int NameColumn = 0;
+    static constexpr const int DescriptionColumn = 1;
+
+    /* The only interesting roles are DisplayRole (with text depending
+     * on the column, and MetaExpandRole which tells if an index
+     * should be initially expanded.
+     */
+    static constexpr const int MetaExpandRole = Qt::UserRole + 1;
+
     explicit PackageModel( const YAML::Node& data, QObject* parent = nullptr );
     ~PackageModel() override;
 
     QVariant data( const QModelIndex& index, int role ) const override;
-    bool setData( const QModelIndex& index, const QVariant& value,
-                  int role = Qt::EditRole ) override;
-    bool setHeaderData( int section, Qt::Orientation orientation,
-                        const QVariant& value, int role = Qt::EditRole ) override;
+    bool setData( const QModelIndex& index, const QVariant& value, int role = Qt::EditRole ) override;
     Qt::ItemFlags flags( const QModelIndex& index ) const override;
-    QVariant headerData( int section, Qt::Orientation orientation,
-                         int role = Qt::DisplayRole ) const override;
-    QModelIndex index( int row, int column,
-                       const QModelIndex& parent = QModelIndex() ) const override;
+
+    QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const override;
     QModelIndex parent( const QModelIndex& index ) const override;
+
+    QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const override;
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
+
     PackageItemDataList getPackages() const;
-    QList<PackageTreeItem*> getItemPackages( PackageTreeItem* item ) const;
+    QList< PackageTreeItem* > getItemPackages( PackageTreeItem* item ) const;
 
 private:
     void setupModelData( const YAML::Node& data, PackageTreeItem* parent );
 
     PackageTreeItem* m_rootItem;
-    QList<PackageTreeItem*> m_hiddenItems;
-    QVariantList m_columnHeadings;
+    QList< PackageTreeItem* > m_hiddenItems;
 };
 
-#endif // PACKAGEMODEL_H
+#endif  // PACKAGEMODEL_H

@@ -45,6 +45,9 @@ void
 InitramfsTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    (void) new Calamares::JobQueue();
+    (void) new CalamaresUtils::System( true );
 }
 
 static const char contents[] = "UMASK=0077\n";
@@ -55,42 +58,29 @@ void InitramfsTests::cleanup()
     QFile::remove( confFile );
 }
 
-void InitramfsTests::testCreateHostFile()
-{
-    
-    CalamaresUtils::System s( false );  // don't chroot
-    QString path = s.createTargetFile( confFile, QByteArray( contents ) );
-    QVERIFY( !path.isEmpty() );
-    QCOMPARE( path, confFile );  // don't chroot, so path create relative to /
-    QVERIFY( QFile::exists( confFile ) );
-
-    QFileInfo fi( confFile );
-    QVERIFY( fi.exists() );
-    QCOMPARE( fi.size(), sizeof( contents )-1 );  // don't count trailing NUL
-    
-    QFile::remove( confFile );
-}
-
 void InitramfsTests::testCreateTargetFile()
 {
     static const char short_confFile[] = "/calamares-safe-umask";
-    
-    CalamaresUtils::System s( true );
-    QString path = s.createTargetFile( short_confFile, QByteArray( contents ) );
+
+    auto* s = CalamaresUtils::System::instance();
+    auto r = s->createTargetFile( short_confFile, QByteArray( contents ) );
+    QVERIFY( r.failed() );
+    QVERIFY( !r );
+    QString path = r.path();
     QVERIFY( path.isEmpty() );  // because no rootmountpoint is set
-    
-    Calamares::JobQueue j;
-    j.globalStorage()->insert( "rootMountPoint", "/tmp" );
-    
-    path = s.createTargetFile( short_confFile, QByteArray( contents ) );
-    QVERIFY( path.endsWith( short_confFile ) );  // chroot, so path create relative to 
+
+    Calamares::JobQueue::instance()->globalStorage()->insert( "rootMountPoint", "/tmp" );
+
+    path = s->createTargetFile( short_confFile, QByteArray( contents ) ).path();
+    QCOMPARE( path, QString( confFile ) );
+    QVERIFY( path.endsWith( short_confFile ) );  // chroot, so path create relative to
     QVERIFY( path.startsWith( "/tmp/" ) );
     QVERIFY( QFile::exists( path ) );
 
     QFileInfo fi( path );
     QVERIFY( fi.exists() );
-    QCOMPARE( fi.size(), sizeof( contents )-1 );  // don't count trailing NUL
-    
+    QCOMPARE( ulong( fi.size() ), sizeof( contents )-1 );  // don't count trailing NUL
+
     QFile::remove( path );
 
 }

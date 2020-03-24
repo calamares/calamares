@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,17 +16,31 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef UIDLLMACRO_H
-#define UIDLLMACRO_H
+#ifndef PARTITION_SYNC_H
+#define PARTITION_SYNC_H
 
-#include <QtCore/qglobal.h>
+namespace CalamaresUtils
+{
+namespace Partition
+{
 
-#ifndef UIDLLEXPORT
-#if defined( UIDLLEXPORT_PRO )
-#define UIDLLEXPORT Q_DECL_EXPORT
-#else
-#define UIDLLEXPORT Q_DECL_IMPORT
-#endif
-#endif
+/** @brief Run "udevadm settle" or other disk-sync mechanism.
+ *
+ * Call this after mounting, unmount, toggling swap, or other functions
+ * that might cause the disk to be "busy" for other disk-modifying
+ * actions (in particular, KPMcore actions with the sfdisk backend
+ * are sensitive, and systemd tends to keep disks busy after a change
+ * for a while).
+ */
+void sync();
+
+/** @brief RAII class for calling sync() */
+struct Syncer
+{
+    ~Syncer() { sync(); }
+};
+
+}  // namespace Partition
+}  // namespace CalamaresUtils
 
 #endif

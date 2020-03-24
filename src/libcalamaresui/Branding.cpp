@@ -3,6 +3,7 @@
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Raul Rodrigo Segura (raurodse)
+ *   Copyright 2019, Camilo Higuita <milo.h@aol.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -74,7 +75,8 @@ const QStringList Branding::s_imageEntryStrings =
 {
     "productLogo",
     "productIcon",
-    "productWelcome"
+    "productWelcome",
+    "productWallpaper"
 };
 
 const QStringList Branding::s_styleEntryStrings =
@@ -86,6 +88,7 @@ const QStringList Branding::s_styleEntryStrings =
 };
 // clang-format on
 // *INDENT-ON*
+
 
 const NamedEnumTable< Branding::WindowDimensionUnit >&
 Branding::WindowDimension::suffixes()
@@ -120,7 +123,7 @@ loadStrings( QMap< QString, QString >& map,
         throw YAML::Exception( YAML::Mark(), std::string( "Branding configuration is not a map: " ) + key );
     }
 
-    const auto& config = CalamaresUtils::yamlMapToVariant( doc[ key ] ).toMap();
+    const auto& config = CalamaresUtils::yamlMapToVariant( doc[ key ] );
 
     map.clear();
     for ( auto it = config.constBegin(); it != config.constEnd(); ++it )
@@ -405,14 +408,24 @@ getString( const YAML::Node& doc, const char* key )
 void
 Branding::initSimpleSettings( const YAML::Node& doc )
 {
+    // *INDENT-OFF*
+    // clang-format off
     static const NamedEnumTable< WindowExpansion > expansionNames {
         { QStringLiteral( "normal" ), WindowExpansion::Normal },
         { QStringLiteral( "fullscreen" ), WindowExpansion::Fullscreen },
         { QStringLiteral( "noexpand" ), WindowExpansion::Fixed }
     };
     static const NamedEnumTable< WindowPlacement > placementNames {
-        { QStringLiteral( "free" ), WindowPlacement::Free }, { QStringLiteral( "center" ), WindowPlacement::Center }
+        { QStringLiteral( "free" ), WindowPlacement::Free },
+        { QStringLiteral( "center" ), WindowPlacement::Center }
     };
+    static const NamedEnumTable< SidebarFlavor > sidebarFlavorNames {
+        { QStringLiteral( "widget" ), SidebarFlavor::Widget },
+        { QStringLiteral( "none" ), SidebarFlavor::None },
+        { QStringLiteral( "qml" ), SidebarFlavor::Qml }
+    };
+    // clang-format on
+    // *INDENT-ON*
     bool ok = false;
 
     m_welcomeStyleCalamares = doc[ "welcomeStyleCalamares" ].as< bool >( false );
@@ -428,6 +441,12 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     {
         cWarning() << "Branding module-setting *windowPlacement* interpreted as"
                    << placementNames.find( m_windowPlacement, ok );
+    }
+    m_sidebarFlavor = sidebarFlavorNames.find( getString( doc, "sidebar" ), ok );
+    if ( !ok )
+    {
+        cWarning() << "Branding module-setting *sidebar* interpreted as"
+                   << sidebarFlavorNames.find( m_sidebarFlavor, ok );
     }
 
     QString windowSize = getString( doc, "windowSize" );

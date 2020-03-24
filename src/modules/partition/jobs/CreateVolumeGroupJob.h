@@ -19,11 +19,12 @@
 #ifndef CREATEVOLUMEGROUPJOB_H
 #define CREATEVOLUMEGROUPJOB_H
 
-#include <Job.h>
-
-#include <kpmcore/core/partition.h>
+#include "Job.h"
+#include "partition/KPMManager.h"
 
 #include <QVector>
+
+class Partition;
 
 class CreateVolumeGroupJob : public Calamares::Job
 {
@@ -40,6 +41,7 @@ public:
     void undoPreview();
 
 private:
+    CalamaresUtils::Partition::KPMManager m_kpmcore;
     QString m_vgName;
     QVector< const Partition* > m_pvList;
     qint32 m_peSize;

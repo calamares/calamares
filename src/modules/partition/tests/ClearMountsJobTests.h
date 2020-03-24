@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,25 +16,19 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WELCOME_CONFIG_H
-#define WELCOME_CONFIG_H
+#ifndef CLEARMOUNTSJOBTESTS_H
+#define CLEARMOUNTSJOBTESTS_H
 
 #include <QObject>
-#include <QUrl>
 
-class Config : public QObject
+class ClearMountsJobTests : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY( QUrl helpUrl READ helpUrl WRITE setHelpUrl CONSTANT )
 public:
-    Config();
-    virtual ~Config();
+    ClearMountsJobTests();
 
-    QUrl helpUrl() const { return m_helpUrl; }
-    void setHelpUrl( const QUrl& url ) { m_helpUrl = url; }
-
-private:
-    QUrl m_helpUrl;
+private Q_SLOTS:
+    void testFindPartitions();
 };
 
 #endif

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,10 +21,11 @@
 #define CALAMARES_PYTHONJOB_H
 
 #include "Job.h"
-
 #include "modulesystem/InstanceKey.h"
 
-#include <QVariant>
+#include <QVariantMap>
+
+#include <memory>
 
 namespace CalamaresPython
 {
@@ -52,11 +54,12 @@ public:
     virtual qreal getJobWeight() const override;
 
 private:
-    friend class CalamaresPython::Helper;
+    struct Private;
+
     friend class CalamaresPython::PythonJobInterface;
     void emitProgress( double progressValue );
 
-    CalamaresPython::Helper* helper();
+    std::unique_ptr< Private > m_d;
     QString m_scriptFile;
     QString m_workingPath;
     QString m_description;

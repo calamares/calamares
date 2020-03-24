@@ -117,12 +117,12 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="120"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
       <source>Set up</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="120"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
       <source>Install</source>
       <translation>ติดตั้ง</translation>
     </message>
@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="118"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="114"/>
       <source>Done</source>
       <translation>เสร็จสิ้น</translation>
     </message>
@@ -177,34 +177,52 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="208"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="204"/>
       <source>Running %1 operation.</source>
       <translation>การปฏิบัติการ %1 กำลังทำงาน</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="225"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
       <source>Bad working directory path</source>
       <translation>เส้นทางไดเรคทอรีที่ใช้ทำงานไม่ถูกต้อง</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="226"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>ไม่สามารถอ่านไดเรคทอรีที่ใช้ทำงาน %1 สำหรับ python %2 ได้</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="232"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
       <source>Bad main script file</source>
       <translation>ไฟล์สคริปต์หลักไม่ถูกต้อง</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="233"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>ไม่สามารถอ่านไฟล์สคริปต์หลัก %1 สำหรับ python %2 ได้</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="311"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="307"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>Boost.Python ผิดพลาดที่งาน "%1".</translation>
+    </message>
+  </context>
+  <context>
+    <name>Calamares::QmlViewStep</name>
+    <message>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
+      <source>Loading ...</source>
+      <translation>กำลังโหลด ...</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
+      <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="347"/>
+      <source>Loading failed.</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -232,175 +250,175 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="93"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="92"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="410"/>
       <source>&amp;Back</source>
       <translation>&amp;B ย้อนกลับ</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="95"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="94"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="405"/>
       <source>&amp;Next</source>
       <translation>&amp;N ถัดไป</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="427"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="96"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="430"/>
       <source>&amp;Cancel</source>
       <translation>&amp;C ยกเลิก</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
       <source>Cancel setup without changing the system.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>Cancel installation without changing the system.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="199"/>
       <source>Setup Failed</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="197"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="200"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="235"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
       <source>Install Log Paste URL</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="241"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="254"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
       <source>Calamares Initialization Failed</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="255"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="258"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="322"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
       <source>Continue with installation?</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="324"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>&amp;Set up now</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
       <source>&amp;Set up</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="386"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
       <source>&amp;Install</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="388"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="487"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
       <source>Cancel setup?</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="487"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
       <source>Cancel installation?</source>
       <translation>ยกเลิกการติดตั้ง?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="488"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="491"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="493"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>คุณต้องการยกเลิกกระบวนการติดตั้งที่กำลังดำเนินการอยู่หรือไม่?
 ตัวติดตั้งจะสิ้นสุดการทำงานและไม่บันทึกการเปลี่ยนแปลงที่ได้ดำเนินการก่อนหน้านี้</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="217"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="494"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="220"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="497"/>
       <source>&amp;Yes</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="221"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="498"/>
       <source>&amp;No</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="227"/>
       <source>&amp;Close</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="322"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
       <source>Continue with setup?</source>
       <translation>ดำเนินการติดตั้งต่อหรือไม่?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>ตัวติดตั้ง %1 กำลังพยายามที่จะทำการเปลี่ยนแปลงในดิสก์ของคุณเพื่อติดตั้ง %2&lt;br/&gt;&lt;strong&gt;คุณจะไม่สามารถยกเลิกการเปลี่ยนแปลงเหล่านี้ได้&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>&amp;Install now</source>
       <translation>&amp;ติดตั้งตอนนี้</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
       <source>Go &amp;back</source>
       <translation>กลั&amp;บไป</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="415"/>
       <source>&amp;Done</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>The installation is complete. Close the installer.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="210"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="213"/>
       <source>Error</source>
       <translation>ข้อผิดพลาด</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="199"/>
       <source>Installation Failed</source>
       <translation>การติดตั้งล้มเหลว</translation>
     </message>
@@ -408,22 +426,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresPython::Helper</name>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="308"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="301"/>
       <source>Unknown exception type</source>
       <translation>ข้อผิดพลาดไม่ทราบประเภท</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="326"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="319"/>
       <source>unparseable Python error</source>
       <translation>ข้อผิดพลาด unparseable Python</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="370"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="363"/>
       <source>unparseable Python traceback</source>
       <translation>ประวัติย้อนหลัง unparseable Python</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="377"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="370"/>
       <source>Unfetchable Python error.</source>
       <translation>ข้อผิดพลาด Unfetchable Python</translation>
     </message>
@@ -478,12 +496,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="330"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;กำหนดพาร์ทิชันด้วยตนเอง&lt;/strong&gt;&lt;br/&gt;คุณสามารถสร้างหรือเปลี่ยนขนาดของพาร์ทิชันได้ด้วยตนเอง</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
       <source>Boot loader location:</source>
-      <translation type="unfinished"/>
+      <translation>ที่อยู่บูตโหลดเดอร์:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="152"/>
@@ -496,7 +514,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="996"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1082"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>ปัจจุบัน:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="827"/>
@@ -549,7 +567,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1297"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการ %1 อยู่ คุณต้องการทำอย่างไร?&lt;br/&gt; คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1501"/>
@@ -582,7 +600,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1326"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1352"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;ติดตั้งควบคู่กับระบบปฏิบัติการเดิม&lt;/strong&gt;&lt;br/&gt;ตัวติดตั้งจะลดเนื้อที่พาร์ทิชันเพื่อให้มีเนื้อที่สำหรับ %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
@@ -590,12 +608,12 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;แทนที่พาร์ทิชัน&lt;/strong&gt;&lt;br/&gt;แทนที่พาร์ทิชันด้วย %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1321"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการอยู่แล้ว คุณต้องการทำอย่างไร?&lt;br/&gt; คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
@@ -729,22 +747,22 @@ The installer will quit and all changes will be lost.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="151"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="157"/>
       <source>Logical</source>
       <translation>โลจิคอล</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="156"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="162"/>
       <source>Primary</source>
       <translation>หลัก</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="179"/>
       <source>GPT</source>
       <translation>GPT</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="262"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="269"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <translation type="unfinished"/>
     </message>
@@ -752,22 +770,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CreatePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="44"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="49"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="67"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="72"/>
       <source>Creating new %1 partition on %2.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="84"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <translation>ตัวติดตั้งไม่สามารถสร้างพาร์ทิชันบนดิสก์ '%1'</translation>
     </message>
@@ -1061,7 +1079,7 @@ The installer will quit and all changes will be lost.</source>
       <translation>Flags:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="269"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="278"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <translation type="unfinished"/>
     </message>
@@ -1097,37 +1115,37 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>FillGlobalStorageJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="130"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="137"/>
       <source>Set partition information</source>
       <translation>ตั้งค่าข้อมูลพาร์ทิชัน</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="153"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="163"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="157"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="169"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="165"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="170"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="182"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="199"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="192"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="208"/>
       <source>Setting up mount points.</source>
       <translation type="unfinished"/>
     </message>
@@ -1142,7 +1160,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
       <source>&lt;Restart checkbox tooltip&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1177,7 +1195,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;การติดตั้งไม่สำเร็จ&lt;/h1&gt;&lt;br/&gt;%1 ไม่ได้ถูกติดตั้งลงบนคอมพิวเตอร์ของคุณ&lt;br/&gt;ข้อความข้อผิดพลาดคือ: %2</translation>
     </message>
   </context>
   <context>
@@ -1195,7 +1213,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="133"/>
       <source>Installation Complete</source>
-      <translation type="unfinished"/>
+      <translation>การติดตั้งเสร็จสิ้น</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="135"/>
@@ -1205,28 +1223,28 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
       <source>The installation of %1 is complete.</source>
-      <translation type="unfinished"/>
+      <translation>การติดตั้ง %1 เสร็จสิ้น</translation>
     </message>
   </context>
   <context>
     <name>FormatPartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="41"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="46"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="57"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="68"/>
       <source>Formatting partition %1 with file system %2.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="77"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
       <translation>ตัวติดตั้งไม่สามารถฟอร์แมทพาร์ทิชัน %1 บนดิสก์ '%2'</translation>
     </message>
@@ -1266,12 +1284,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
       <source>is connected to the Internet</source>
-      <translation>เชื่อมต่อกับอินเตอร์เน็ต</translation>
+      <translation>เชื่อมต่อกับอินเทอร์เน็ต</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
       <source>The system is not connected to the Internet.</source>
-      <translation type="unfinished"/>
+      <translation>ระบบไม่ได้เชื่อมต่อกับอินเทอร์เน็ต</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
@@ -1540,7 +1558,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
       <source>The system language will be set to %1.</source>
-      <translation type="unfinished"/>
+      <translation>ภาษาของระบบจะถูกตั้งค่าเป็น %1</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
@@ -1609,7 +1627,7 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
-      <source>Could configure LUKS key file on partition %1.</source>
+      <source>Could not configure LUKS key file on partition %1.</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -1634,27 +1652,27 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>NetInstallPage</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="61"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="178"/>
       <source>Name</source>
       <translation>ชื่อ</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="62"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="179"/>
       <source>Description</source>
-      <translation type="unfinished"/>
+      <translation>คำอธิบาย</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="109"/>
+      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="137"/>
       <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="119"/>
+      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="147"/>
       <source>Network Installation. (Disabled: Received invalid groups data)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="158"/>
+      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="187"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
       <translation type="unfinished"/>
     </message>
@@ -1662,8 +1680,67 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>NetInstallViewStep</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Package selection</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
+      <source>Office software</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
+      <source>Office package</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
+      <source>Browser software</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
+      <source>Browser package</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
+      <source>Web browser</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
+      <source>Kernel</source>
+      <translation>เคอร์เนล</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
+      <source>Services</source>
+      <translation>บริการ</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
+      <source>Login</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
+      <source>Desktop</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
+      <source>Applications</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>NotesQmlViewStep</name>
+    <message>
+      <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
+      <source>Notes</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -1703,17 +1780,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="57"/>
       <source>Password is too short</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านสั้นเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="73"/>
       <source>Password is too long</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านยาวเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="149"/>
       <source>Password is too weak</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านอ่อนเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="157"/>
@@ -1728,7 +1805,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
       <source>The password is the same as the old one</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านเหมือนกับรหัสผ่านเก่า</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
@@ -1743,7 +1820,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
       <source>The password is too similar to the old one</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านคล้ายกับรหัสผ่านเก่าจนเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
@@ -1808,7 +1885,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
       <source>The password is too short</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านสั้นเกินไป</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
@@ -1858,7 +1935,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="250"/>
       <source>No password supplied</source>
-      <translation type="unfinished"/>
+      <translation>ไม่ได้กำหนดรหัสผ่าน</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
@@ -1938,12 +2015,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
       <source>Unknown error</source>
-      <translation type="unfinished"/>
+      <translation>ข้อผิดพลาดที่ไม่รู้จัก</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="528"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่านว่าง</translation>
     </message>
   </context>
   <context>
@@ -2041,12 +2118,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>ชื่อเต็มของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
       <source>login</source>
-      <translation type="unfinished"/>
+      <translation>เข้าสู่ระบบ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
@@ -2056,19 +2133,19 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>ชื่อคอมพิวเตอร์</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>รหัสผ่าน</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>กรอกรหัสผ่านซ้ำ</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
@@ -2274,7 +2351,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
-      <translation type="unfinished"/>
+      <translation>ติดตั้ง %1 &lt;strong&gt;ควบคู่&lt;/strong&gt;กับระบบปฏิบัติการเดิม</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
@@ -2319,7 +2396,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="248"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>ปัจจุบัน:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="265"/>
@@ -2363,7 +2440,7 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="651"/>
-      <source>There are no partitons to install on.</source>
+      <source>There are no partitions to install on.</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -2428,65 +2505,65 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="407"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="464"/>
       <source>
 There was no output from the command.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="408"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="465"/>
       <source>
 Output:
 </source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="412"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="469"/>
       <source>External command crashed.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="413"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="470"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="475"/>
       <source>External command failed to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="419"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="476"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="480"/>
       <source>Internal error when starting command.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="424"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="481"/>
       <source>Bad parameters for process job call.</source>
       <translation>พารามิเตอร์ไม่ถูกต้องสำหรับการเรียกการทำงาน</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="428"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="485"/>
       <source>External command failed to finish.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="486"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="436"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="493"/>
       <source>External command finished with errors.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="437"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="494"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation type="unfinished"/>
     </message>
@@ -2540,7 +2617,7 @@ Output:
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="46"/>
+      <location filename="../src/libcalamares/locale/Label.cpp" line="39"/>
       <source>%1 (%2)</source>
       <extracomment>language[name] (country[name])</extracomment>
       <translation>%1 (%2)</translation>
@@ -2553,30 +2630,24 @@ Output:
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
       <source>No description provided.</source>
-      <translation type="unfinished"/>
+      <translation>ไม่ได้ระบุคำอธิบาย</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="55"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="63"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="67"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="117"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="132"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="73"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="81"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="85"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="102"/>
       <source>File not found</source>
-      <translation type="unfinished"/>
+      <translation>ไม่พบไฟล์</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="56"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="74"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="118"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="133"/>
-      <source>Could not read random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -2607,69 +2678,69 @@ Output:
       <translation>ฟอร์ม</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="135"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="136"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>เลือกที่ที่จะติดตั้ง %1&lt;br/&gt;&lt;font color="red"&gt;คำเตือน: &lt;/font&gt;ตัวเลือกนี้จะลบไฟล์ทั้งหมดบนพาร์ทิชันที่เลือก</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="162"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>ไอเทมที่เลือกไม่ใช่พาร์ทิชันที่ถูกต้อง</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="170"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>ไม่สามารถติดตั้ง %1 บนพื้นที่ว่าง กรุณาเลือกพาร์ทิชันที่มี</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>ไม่สามารถติดตั้ง %1 บนพาร์ทิชัน extended กรุณาเลือกพาร์ทิชันหลักหรือพาร์ทิชันโลจิคัลที่มีอยู่ </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="189"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="190"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>ไม่สามารถติดตั้ง %1 บนพาร์ทิชันนี้</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="195"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="197"/>
       <source>Data partition (%1)</source>
       <translation>พาร์ทิชันข้อมูล (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="212"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="213"/>
       <source>Unknown system partition (%1)</source>
       <translation>พาร์ทิชันระบบที่ไม่รู้จัก (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="217"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
       <source>%1 system partition (%2)</source>
       <translation>%1 พาร์ทิชันระบบ (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="228"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="229"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="252"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="262"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="279"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="303"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="280"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="304"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="272"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>พาร์ทิชันสำหรับระบบ EFI ที่ %1 จะถูกใช้เพื่อเริ่มต้น %2</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="287"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
       <source>EFI system partition:</source>
       <translation>พาร์ทิชันสำหรับระบบ EFI:</translation>
     </message>
@@ -2828,7 +2899,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="278"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation>ขณะที่กำลังติดตั้ง ตัวติดตั้งฟ้องว่า คอมพิวเตอร์มีความต้องการไม่เพียงพอที่จะติดตั้ง %1&lt;br/&gt;ไม่สามารถทำการติดตั้งต่อไปได้ และฟีเจอร์บางอย่างจะถูกปิดไว้</translation>
+      <translation>คอมพิวเตอร์มีความต้องการไม่เพียงพอที่จะติดตั้ง %1&lt;br/&gt;สามารถทำการติดตั้งต่อไปได้ แต่ฟีเจอร์บางอย่างจะถูกปิดไว้</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="287"/>
@@ -2841,7 +2912,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
       <source>Scanning storage devices...</source>
-      <translation type="unfinished"/>
+      <translation>กำลังสแกนอุปกรณ์จัดเก็บข้อมูล...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="85"/>
@@ -2852,29 +2923,29 @@ Output:
   <context>
     <name>SetHostNameJob</name>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="39"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
       <source>Set hostname %1</source>
       <translation>ตั้งค่าชื่อโฮสต์ %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="53"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="58"/>
       <source>Setting hostname %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="64"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="71"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="131"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="138"/>
       <source>Internal Error</source>
       <translation>ข้อผิดพลาดภายใน</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="78"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="89"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="155"/>
       <source>Cannot write hostname to target system</source>
       <translation>ไม่สามารถเขียนชื่อโฮสต์ไปที่ระบบเป้าหมาย</translation>
     </message>
@@ -2912,82 +2983,82 @@ Output:
   <context>
     <name>SetPartFlagsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="49"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="53"/>
       <source>Set flags on partition %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="57"/>
       <source>Set flags on %1MiB %2 partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="61"/>
       <source>Set flags on new partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="67"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="72"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="77"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="85"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="92"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="115"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="121"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="81"/>
       <source>Clear flags on new partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="79"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="85"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="91"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="103"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="111"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
       <source>Clearing flags on new partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="115"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="127"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="144"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="153"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation type="unfinished"/>
     </message>
@@ -2995,42 +3066,42 @@ Output:
   <context>
     <name>SetPasswordJob</name>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="48"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
       <source>Set password for user %1</source>
       <translation>ตั้งรหัสผ่านสำหรับผู้ใช้ %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="55"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="56"/>
       <source>Setting password for user %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="112"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
       <source>Bad destination system path.</source>
       <translation>path ของระบบเป้าหมายไม่ถูกต้อง</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="113"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="91"/>
       <source>rootMountPoint is %1</source>
       <translation>rootMountPoint คือ %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
       <source>Cannot disable root account.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="120"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
       <source>passwd terminated with error code %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="128"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="106"/>
       <source>Cannot set password for user %1.</source>
       <translation>ไม่สามารถตั้งค่ารหัสผ่านสำหรับผู้ใช้ %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="129"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="107"/>
       <source>usermod terminated with error code %1.</source>
       <translation>usermod จบด้วยโค้ดข้อผิดพลาด %1</translation>
     </message>
@@ -3227,37 +3298,37 @@ Output:
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="342"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="385"/>
       <source>Your username is too long.</source>
       <translation>ชื่อผู้ใช้ของคุณยาวเกินไป</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="349"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="392"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="356"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="399"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="404"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="447"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="392"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="435"/>
       <source>Your hostname is too short.</source>
       <translation>ชื่อโฮสต์ของคุณสั้นเกินไป</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="397"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="440"/>
       <source>Your hostname is too long.</source>
       <translation>ชื่อโฮสต์ของคุณยาวเกินไป</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="421"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="464"/>
       <source>Your passwords do not match!</source>
       <translation>รหัสผ่านของคุณไม่ตรงกัน!</translation>
     </message>
@@ -3265,7 +3336,7 @@ Output:
   <context>
     <name>UsersViewStep</name>
     <message>
-      <location filename="../src/modules/users/UsersViewStep.cpp" line="55"/>
+      <location filename="../src/modules/users/UsersViewStep.cpp" line="76"/>
       <source>Users</source>
       <translation>ผู้ใช้</translation>
     </message>
@@ -3362,7 +3433,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>Open help and support website</source>
-      <translation type="unfinished"/>
+      <translation>เปิดเว็บไซต์ช่วยเหลือและสนับสนุน</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
@@ -3382,12 +3453,12 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
       <source>&amp;Known issues</source>
-      <translation type="unfinished"/>
+      <translation>&amp;K ปัญหาที่รู้จัก</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
       <source>&amp;Support</source>
-      <translation type="unfinished"/>
+      <translation>&amp;S ช่วยเหลือ</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
@@ -3397,12 +3468,12 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="254"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;ยินดีต้อนรับสู่ตัวติดตั้ง %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="253"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;ยินดีต้อนรับสู่ตัวติดตั้ง Calamares สำหรับ %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
@@ -3436,11 +3507,61 @@ Output:
     </message>
   </context>
   <context>
+    <name>WelcomeQmlViewStep</name>
+    <message>
+      <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="55"/>
+      <source>Welcome</source>
+      <translation>ยินดีต้อนรับ</translation>
+    </message>
+  </context>
+  <context>
     <name>WelcomeViewStep</name>
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="62"/>
       <source>Welcome</source>
       <translation>ยินดีต้อนรับ</translation>
+    </message>
+  </context>
+  <context>
+    <name>notesqml</name>
+    <message>
+      <location filename="../src/modules/notesqml/notesqml.qml" line="60"/>
+      <source>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>welcomeq</name>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
+      <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
+      <source>About</source>
+      <translation>เกี่ยวกับ</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>
+      <source>Support</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
+      <source>Known issues</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
+      <source>Release notes</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
+      <source>Donate</source>
+      <translation type="unfinished"/>
     </message>
   </context>
 </TS>

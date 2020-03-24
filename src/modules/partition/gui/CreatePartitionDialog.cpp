@@ -2,7 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Andrius Štikonas <andrius@stikonas.eu>
  *   Copyright 2018, Caio Carvalho <caiojcarvalho@gmail.com>
  *
@@ -20,7 +20,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gui/CreatePartitionDialog.h"
+#include "CreatePartitionDialog.h"
+#include "ui_CreatePartitionDialog.h"
 
 #include "core/ColorUtils.h"
 #include "core/PartitionInfo.h"
@@ -29,20 +30,18 @@
 #include "gui/PartitionDialogHelpers.h"
 #include "gui/PartitionSizeController.h"
 
-#include "ui_CreatePartitionDialog.h"
-
-#include "utils/Logger.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "partition/PartitionQuery.h"
+#include "partition/FileSystem.h"
+#include "utils/Logger.h"
 
-// KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 #include <kpmcore/fs/filesystemfactory.h>
 #include <kpmcore/fs/luks.h>
 
-// Qt
 #include <QComboBox>
 #include <QDir>
 #include <QListWidgetItem>
@@ -50,6 +49,9 @@
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
 #include <QSet>
+
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 static QSet< FileSystem::Type > s_unmountableFS(
 {
@@ -93,11 +95,17 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     else
         initGptPartitionTypeUi();
 
-    // File system
-    FileSystem::Type defaultFsType = FileSystem::typeForName(
+    // File system; the config value is translated (best-effort) to a type
+    FileSystem::Type defaultFSType;
+    QString untranslatedFSName = PartUtils::findFS(
                                          Calamares::JobQueue::instance()->
                                          globalStorage()->
-                                         value( "defaultFileSystemType" ).toString() );
+                                         value( "defaultFileSystemType" ).toString(), &defaultFSType );
+    if ( defaultFSType == FileSystem::Type::Unknown )
+    {
+        defaultFSType = FileSystem::Type::Ext4;
+    }
+
     int defaultFsIndex = -1;
     int fsCounter = 0;
     QStringList fsNames;
@@ -106,8 +114,8 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
         if ( fs->supportCreate() != FileSystem::cmdSupportNone &&
              fs->type() != FileSystem::Extended )
         {
-            fsNames << fs->name();
-            if ( fs->type() == defaultFsType )
+            fsNames << userVisibleFS( fs );  // This is put into the combobox
+            if ( fs->type() == defaultFSType )
                 defaultFsIndex = fsCounter;
             fsCounter++;
         }
@@ -196,7 +204,7 @@ CreatePartitionDialog::createPartition()
 
     Partition* partition = nullptr;
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
-    if ( m_ui->encryptWidget->state() == EncryptWidget::EncryptionConfirmed &&
+    if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed &&
          !luksPassphrase.isEmpty() )
     {
         partition = KPMHelpers::createNewEncryptedPartition(
@@ -232,6 +240,7 @@ CreatePartitionDialog::updateMountPointUi()
     bool enabled = m_ui->primaryRadioButton->isChecked();
     if ( enabled )
     {
+        // This maps translated (user-visible) FS names to a type
         FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
         enabled = !s_unmountableFS.contains( type );
 
@@ -272,7 +281,7 @@ CreatePartitionDialog::checkMountPointSelection()
 void
 CreatePartitionDialog::initPartResizerWidget( Partition* partition )
 {
-    QColor color = KPMHelpers::isPartitionFreeSpace( partition )
+    QColor color = CalamaresUtils::Partition::isPartitionFreeSpace( partition )
                    ? ColorUtils::colorForPartitionInFreeSpace( partition )
                    : ColorUtils::colorForPartition( partition );
     m_partitionSizeController->init( m_device, partition, color );

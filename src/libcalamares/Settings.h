@@ -32,20 +32,30 @@
 namespace Calamares
 {
 
+struct DLLEXPORT InstanceDescription
+{
+    InstanceDescription( const QVariantMap& );
+
+    QString module;  ///< Module name (e.g. "welcome")
+    QString id;  ///< Id, to distinguish multiple instances (e.g. "one", for "welcome@one")
+    QString config;  ///< Config-file name (for multiple instances)
+    int weight;
+};
+
 class DLLEXPORT Settings : public QObject
 {
     Q_OBJECT
     explicit Settings( const QString& settingsFilePath, bool debugMode );
+
 public:
     static Settings* instance();
     /// @brief Find a settings.conf, following @p debugMode
     static Settings* init( bool debugMode );
     /// @brief Explicif filename, debug is always true (for testing)
     static Settings* init( const QString& filename );
-    
+
     QStringList modulesSearchPaths() const;
 
-    using InstanceDescription = QMap< QString, QString >;
     using InstanceDescriptionList = QList< InstanceDescription >;
     InstanceDescriptionList customModuleInstances() const;
 
@@ -55,7 +65,7 @@ public:
     QString brandingComponentName() const;
 
     /** @brief Is this a debugging run?
-     * 
+     *
      * Returns true if Calamares is in debug mode. In debug mode,
      * modules and settings are loaded from more locations, to help
      * development and debugging.
@@ -63,7 +73,7 @@ public:
     bool debugMode() const { return m_debug; }
 
     /** @brief Distinguish "install" from "OEM" modes.
-     * 
+     *
      * Returns true in "install" mode, which is where actions happen
      * in a chroot -- the target system, which exists separately from
      * the source system. In "OEM" mode, returns false and most actions
@@ -72,13 +82,13 @@ public:
     bool doChroot() const { return m_doChroot; }
 
     /** @brief Global setting of prompt-before-install.
-     * 
+     *
      * Returns true when the configuration is such that the user
      * should be prompted one-last-time before any action is taken
      * that really affects the machine.
      */
     bool showPromptBeforeExecution() const { return m_promptInstall; }
-    
+
     /** @brief Distinguish between "install" and "setup" modes.
      *
      * This influences user-visible strings, for instance using the
@@ -90,6 +100,9 @@ public:
     bool disableCancel() const { return m_disableCancel; }
     /** @brief Temporary setting of disable-cancel: can't cancel during exec. */
     bool disableCancelDuringExec() const { return m_disableCancelDuringExec; }
+
+    /** @brief Is quit-at-end set? (Quit automatically when done) */
+    bool quitAtEnd() const { return m_quitAtEnd; }
 
 private:
     static Settings* s_instance;
@@ -107,6 +120,7 @@ private:
     bool m_promptInstall;
     bool m_disableCancel;
     bool m_disableCancelDuringExec;
+    bool m_quitAtEnd;
 };
 
 }  // namespace Calamares

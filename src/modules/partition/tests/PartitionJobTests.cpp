@@ -17,21 +17,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <PartitionJobTests.h>
+#include "PartitionJobTests.h"
 
+#include "core/KPMHelpers.h"
+#include "jobs/CreatePartitionJob.h"
+#include "jobs/CreatePartitionTableJob.h"
+#include "jobs/ResizePartitionJob.h"
+
+#include "partition/KPMManager.h"
+#include "partition/PartitionQuery.h"
+#include "utils/Logger.h"
 #include "utils/Units.h"
 
-#include <jobs/CreatePartitionJob.h>
-#include <jobs/CreatePartitionTableJob.h>
-#include <jobs/ResizePartitionJob.h>
-#include <core/KPMHelpers.h>
-
-// CalaPM
 #include <backend/corebackend.h>
-#include <backend/corebackendmanager.h>
 #include <fs/filesystemfactory.h>
 
-// Qt
 #include <QEventLoop>
 #include <QProcess>
 #include <QtTest/QtTest>
@@ -40,6 +40,7 @@ QTEST_GUILESS_MAIN( PartitionJobTests )
 
 using namespace Calamares;
 using CalamaresUtils::operator""_MiB;
+using CalamaresUtils::Partition::isPartitionFreeSpace;
 
 class PartitionMounter
 {
@@ -56,15 +57,14 @@ public:
     ~PartitionMounter()
     {
         if ( !m_mounted )
+        {
             return;
+        }
         int ret = QProcess::execute( "umount", QStringList() << m_mountPointDir.path() );
         QCOMPARE( ret, 0 );
     }
 
-    QString mountPoint() const
-    {
-        return m_mounted ? m_mountPointDir.path() : QString();
-    }
+    QString mountPoint() const { return m_mounted ? m_mountPointDir.path() : QString(); }
 
 private:
     QString m_devicePath;
@@ -77,9 +77,9 @@ static QByteArray
 generateTestData( qint64 size )
 {
     QByteArray ba;
-    ba.resize( static_cast<int>( size ) );
+    ba.resize( static_cast< int >( size ) );
     // Fill the array explicitly to keep Valgrind happy
-    for ( auto it = ba.data() ; it < ba.data() + size ; ++it )
+    for ( auto it = ba.data(); it < ba.data() + size; ++it )
     {
         *it = char( rand() & 0xff );
     }
@@ -102,9 +102,9 @@ writeFile( const QString& path, const QByteArray data )
         if ( count < 0 )
         {
             QString msg = QString( "Writing file failed. Only %1 bytes written out of %2. Error: '%3'." )
-                .arg( ptr - data.constData() )
-                .arg( data.size() )
-                .arg( file.errorString() );
+                              .arg( ptr - data.constData() )
+                              .arg( data.size() )
+                              .arg( file.errorString() );
             QFAIL( qPrintable( msg ) );
         }
         ptr += count;
@@ -114,9 +114,11 @@ writeFile( const QString& path, const QByteArray data )
 static Partition*
 firstFreePartition( PartitionNode* parent )
 {
-    for( auto child : parent->children() )
-        if ( KPMHelpers::isPartitionFreeSpace( child ) )
+    for ( auto child : parent->children() )
+        if ( isPartitionFreeSpace( child ) )
+        {
             return child;
+        }
     return nullptr;
 }
 
@@ -143,7 +145,9 @@ QueueRunner::run()
     m_queue->start();
     QEventLoop loop;
     while ( !m_finished )
+    {
         loop.processEvents();
+    }
     return m_success;
 }
 
@@ -161,10 +165,13 @@ QueueRunner::onFailed( const QString& message, const QString& details )
     QFAIL( qPrintable( msg ) );
 }
 
+CalamaresUtils::Partition::KPMManager* kpmcore = nullptr;
+
 //- PartitionJobTests ------------------------------------------------------------------
 PartitionJobTests::PartitionJobTests()
     : m_runner( &m_queue )
-{}
+{
+}
 
 void
 PartitionJobTests::initTestCase()
@@ -173,21 +180,27 @@ PartitionJobTests::initTestCase()
     if ( devicePath.isEmpty() )
     {
         // The 0 is to keep the macro parameters happy
-        QSKIP( "Skipping test, CALAMARES_TEST_DISK is not set. It should point to a disk which can be safely formatted", 0 );
+        QSKIP( "Skipping test, CALAMARES_TEST_DISK is not set. It should point to a disk which can be safely formatted",
+               0 );
     }
 
-    QVERIFY( KPMHelpers::initKPMcore() );
+    kpmcore = new CalamaresUtils::Partition::KPMManager();
     FileSystemFactory::init();
 
     refreshDevice();
 }
 
 void
+PartitionJobTests::cleanupTestCase()
+{
+    delete kpmcore;
+}
+
+void
 PartitionJobTests::refreshDevice()
 {
     QString devicePath = qgetenv( "CALAMARES_TEST_DISK" );
-    CoreBackend* backend = CoreBackendManager::self()->backend();
-    m_device.reset( backend->scanDevice( devicePath ) );
+    m_device.reset( kpmcore->backend()->scanDevice( devicePath ) );
     QVERIFY( !m_device.isNull() );
 }
 
@@ -206,7 +219,7 @@ PartitionJobTests::testPartitionTable()
 }
 
 void
-PartitionJobTests::queuePartitionTableCreation( PartitionTable::TableType type)
+PartitionJobTests::queuePartitionTableCreation( PartitionTable::TableType type )
 {
     auto job = new CreatePartitionTableJob( m_device.data(), type );
     job->updatePreview();
@@ -214,7 +227,10 @@ PartitionJobTests::queuePartitionTableCreation( PartitionTable::TableType type)
 }
 
 CreatePartitionJob*
-PartitionJobTests::newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole role, FileSystem::Type type, qint64 size )
+PartitionJobTests::newCreatePartitionJob( Partition* freeSpacePartition,
+                                          PartitionRole role,
+                                          FileSystem::Type type,
+                                          qint64 size )
 {
     Q_ASSERT( freeSpacePartition );
 
@@ -222,25 +238,27 @@ PartitionJobTests::newCreatePartitionJob( Partition* freeSpacePartition, Partiti
     qint64 lastSector;
 
     if ( size > 0 )
+    {
         lastSector = firstSector + size / m_device->logicalSize();
+    }
     else
+    {
         lastSector = freeSpacePartition->lastSector();
-    FileSystem* fs = FileSystemFactory::create( type, firstSector, lastSector
-        ,m_device->logicalSize()
-    );
+    }
+    FileSystem* fs = FileSystemFactory::create( type, firstSector, lastSector, m_device->logicalSize() );
 
-    Partition* partition = new Partition(
-        freeSpacePartition->parent(),
-        *m_device,
-        role,
-        fs, firstSector, lastSector,
-        QString() /* path */,
-        KPM_PARTITION_FLAG(None) /* availableFlags */,
-        QString() /* mountPoint */,
-        false /* mounted */,
-        KPM_PARTITION_FLAG(None) /* activeFlags */,
-        KPM_PARTITION_STATE(New)
-    );
+    Partition* partition = new Partition( freeSpacePartition->parent(),
+                                          *m_device,
+                                          role,
+                                          fs,
+                                          firstSector,
+                                          lastSector,
+                                          QString() /* path */,
+                                          KPM_PARTITION_FLAG( None ) /* availableFlags */,
+                                          QString() /* mountPoint */,
+                                          false /* mounted */,
+                                          KPM_PARTITION_FLAG( None ) /* activeFlags */,
+                                          KPM_PARTITION_STATE( New ) );
     return new CreatePartitionJob( m_device.data(), partition );
 }
 
@@ -253,7 +271,7 @@ PartitionJobTests::testCreatePartition()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 1_MiB);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 1_MiB );
     Partition* partition1 = job->partition();
     QVERIFY( partition1 );
     job->updatePreview();
@@ -261,7 +279,7 @@ PartitionJobTests::testCreatePartition()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::LinuxSwap, 1_MiB);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::LinuxSwap, 1_MiB );
     Partition* partition2 = job->partition();
     QVERIFY( partition2 );
     job->updatePreview();
@@ -269,7 +287,7 @@ PartitionJobTests::testCreatePartition()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Fat32, 1_MiB);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Fat32, 1_MiB );
     Partition* partition3 = job->partition();
     QVERIFY( partition3 );
     job->updatePreview();
@@ -294,7 +312,7 @@ PartitionJobTests::testCreatePartitionExtended()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 10_MiB);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 10_MiB );
     Partition* partition1 = job->partition();
     QVERIFY( partition1 );
     job->updatePreview();
@@ -302,14 +320,15 @@ PartitionJobTests::testCreatePartitionExtended()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Extended ), FileSystem::Extended, 10_MiB);
+    job = newCreatePartitionJob(
+        freePartition, PartitionRole( PartitionRole::Extended ), FileSystem::Extended, 10_MiB );
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
     Partition* extendedPartition = job->partition();
 
     freePartition = firstFreePartition( extendedPartition );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Logical ), FileSystem::Ext4, 0);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Logical ), FileSystem::Ext4, 0 );
     Partition* partition2 = job->partition();
     QVERIFY( partition2 );
     job->updatePreview();
@@ -333,10 +352,10 @@ PartitionJobTests::testResizePartition_data()
     QTest::addColumn< unsigned int >( "newStartMiB" );
     QTest::addColumn< unsigned int >( "newSizeMiB" );
 
-    QTest::newRow("grow")      << 10 << 50 << 10 << 70;
-    QTest::newRow("shrink")    << 10 << 70 << 10 << 50;
-    QTest::newRow("moveLeft")  << 10 << 50 << 8 << 50;
-    QTest::newRow("moveRight") << 10 << 50 << 12 << 50;
+    QTest::newRow( "grow" ) << 10 << 50 << 10 << 70;
+    QTest::newRow( "shrink" ) << 10 << 70 << 10 << 50;
+    QTest::newRow( "moveLeft" ) << 10 << 50 << 8 << 50;
+    QTest::newRow( "moveRight" ) << 10 << 50 << 12 << 50;
 }
 
 void
@@ -350,9 +369,9 @@ PartitionJobTests::testResizePartition()
     const qint64 sectorsPerMiB = 1_MiB / m_device->logicalSize();
 
     qint64 oldFirst = sectorsPerMiB * oldStartMiB;
-    qint64 oldLast  = oldFirst + sectorsPerMiB * oldSizeMiB - 1;
+    qint64 oldLast = oldFirst + sectorsPerMiB * oldSizeMiB - 1;
     qint64 newFirst = sectorsPerMiB * newStartMiB;
-    qint64 newLast  = newFirst + sectorsPerMiB * newSizeMiB - 1;
+    qint64 newLast = newFirst + sectorsPerMiB * newSizeMiB - 1;
 
     // Make the test data file smaller than the full size of the partition to
     // accomodate for the file system overhead
@@ -366,15 +385,13 @@ PartitionJobTests::testResizePartition()
 
         Partition* freePartition = firstFreePartition( m_device->partitionTable() );
         QVERIFY( freePartition );
-        Partition* partition = KPMHelpers::createNewPartition(
-            freePartition->parent(),
-            *m_device,
-            PartitionRole( PartitionRole::Primary ),
-            FileSystem::Ext4,
-            oldFirst,
-            oldLast,
-            KPM_PARTITION_FLAG(None)
-        );
+        Partition* partition = KPMHelpers::createNewPartition( freePartition->parent(),
+                                                               *m_device,
+                                                               PartitionRole( PartitionRole::Primary ),
+                                                               FileSystem::Ext4,
+                                                               oldFirst,
+                                                               oldLast,
+                                                               KPM_PARTITION_FLAG( None ) );
         CreatePartitionJob* job = new CreatePartitionJob( m_device.data(), partition );
         job->updatePreview();
         m_queue.enqueue( job_ptr( job ) );
@@ -386,7 +403,8 @@ PartitionJobTests::testResizePartition()
         // Write a test file in the partition
         refreshDevice();
         QVERIFY( m_device->partitionTable() );
-        Partition* partition = m_device->partitionTable()->findPartitionBySector( oldFirst, PartitionRole( PartitionRole::Primary ) );
+        Partition* partition
+            = m_device->partitionTable()->findPartitionBySector( oldFirst, PartitionRole( PartitionRole::Primary ) );
         QVERIFY( partition );
         QCOMPARE( partition->firstSector(), oldFirst );
         QCOMPARE( partition->lastSector(), oldLast );
@@ -411,7 +429,8 @@ PartitionJobTests::testResizePartition()
     {
         refreshDevice();
         QVERIFY( m_device->partitionTable() );
-        Partition* partition = m_device->partitionTable()->findPartitionBySector( newFirst, PartitionRole( PartitionRole::Primary ) );
+        Partition* partition
+            = m_device->partitionTable()->findPartitionBySector( newFirst, PartitionRole( PartitionRole::Primary ) );
         QVERIFY( partition );
         QCOMPARE( partition->firstSector(), newFirst );
         QCOMPARE( partition->lastSector(), newLast );

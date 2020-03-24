@@ -23,11 +23,11 @@
 #include <QVariantMap>
 
 #include "CppJob.h"
-#include "PluginDllMacro.h"
+#include "DllMacro.h"
 
 #include "utils/PluginFactory.h"
 
-struct ContextualProcessBinding;
+class ContextualProcessBinding;
 
 class PLUGINDLLEXPORT ContextualProcessJob : public Calamares::CppJob
 {

@@ -26,20 +26,6 @@
 #include <QString>
 #include <QVariantMap>
 
-#ifdef WITH_PYTHON
-namespace boost
-{
-namespace python
-{
-namespace api
-{
-class object;
-}
-class list;
-}  // namespace python
-}  // namespace boost
-#endif
-
 namespace Calamares
 {
 
@@ -105,34 +91,5 @@ private:
 };
 
 }  // namespace Calamares
-
-#ifdef WITH_PYTHON
-namespace CalamaresPython
-{
-
-class GlobalStoragePythonWrapper
-{
-public:
-    explicit GlobalStoragePythonWrapper( Calamares::GlobalStorage* gs );
-
-    bool contains( const std::string& key ) const;
-    int count() const;
-    void insert( const std::string& key, const boost::python::api::object& value );
-    boost::python::list keys() const;
-    int remove( const std::string& key );
-    boost::python::api::object value( const std::string& key ) const;
-
-    // This is a helper for scripts that do not go through
-    // the JobQueue (i.e. the module testpython script),
-    // which allocate their own (singleton) GlobalStorage.
-    static Calamares::GlobalStorage* globalStorageInstance() { return s_gs_instance; }
-
-private:
-    Calamares::GlobalStorage* m_gs;
-    static Calamares::GlobalStorage* s_gs_instance;  // See globalStorageInstance()
-};
-
-}  // namespace CalamaresPython
-#endif
 
 #endif  // CALAMARES_GLOBALSTORAGE_H

@@ -29,28 +29,13 @@
 #include "widgets/WaitingWidget.h"
 
 #include <QQmlComponent>
+#include <QQmlContext>
 #include <QQmlEngine>
 #include <QQuickItem>
 #include <QQuickWidget>
 #include <QVBoxLayout>
 #include <QWidget>
 
-static const NamedEnumTable< Calamares::QmlViewStep::QmlSearch >&
-searchNames()
-{
-    using Search = Calamares::QmlViewStep::QmlSearch;
-    // *INDENT-OFF*
-    // clang-format off
-    static NamedEnumTable< Search > names {
-        { QStringLiteral( "both" ), Search::Both },
-        { QStringLiteral( "qrc" ), Search::QrcOnly },
-        { QStringLiteral( "branding" ), Search::BrandingOnly }
-    };
-    // *INDENT-ON*
-    // clang-format on
-
-    return names;
-}
 
 /// @brief State-change of the QML, for changeQMLState()
 enum class QMLAction
@@ -85,13 +70,14 @@ changeQMLState( QMLAction action, QQuickItem* item )
 namespace Calamares
 {
 
-QmlViewStep::QmlViewStep( const QString& name, QObject* parent )
+QmlViewStep::QmlViewStep( QObject* parent )
     : ViewStep( parent )
-    , m_name( name )
     , m_widget( new QWidget )
     , m_spinner( new WaitingWidget( tr( "Loading ..." ) ) )
     , m_qmlWidget( new QQuickWidget )
 {
+    CalamaresUtils::registerCalamaresModels();
+
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     layout->addWidget( m_spinner );
 
@@ -108,7 +94,7 @@ QString
 QmlViewStep::prettyName() const
 {
     // TODO: query the QML itself
-    return tr( "QML Step <i>%1</i>." ).arg( m_name );
+    return tr( "QML Step <i>%1</i>." ).arg( moduleInstanceKey().module() );
 }
 
 
@@ -227,75 +213,27 @@ QmlViewStep::showQml()
 }
 
 
-/** @brief Find a suitable QML file, given the search method and name hints
- *
- * Returns QString() if nothing is found (which would mean the module
- * is badly configured).
- */
-QString
-searchQmlFile( QmlViewStep::QmlSearch method, const QString& configuredName, const QString& moduleName )
-{
-    using QmlSearch = Calamares::QmlViewStep::QmlSearch;
-
-    cDebug() << "Looking for QML for" << moduleName;
-    QStringList candidates;
-    if ( configuredName.startsWith( '/' ) )
-    {
-        candidates << configuredName;
-    }
-    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::BrandingOnly ) )
-    {
-        QString brandDir = Calamares::Branding::instance()->componentDirectory();
-        candidates << ( configuredName.isEmpty() ? QString()
-                                                 : QStringLiteral( "%1/%2.qml" ).arg( brandDir, configuredName ) )
-                   << ( moduleName.isEmpty() ? QString() : QStringLiteral( "%1/%2.qml" ).arg( brandDir, moduleName ) );
-    }
-    if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
-    {
-        candidates << ( configuredName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( configuredName ) )
-                   << ( moduleName.isEmpty() ? QString() : QStringLiteral( ":/%1.qml" ).arg( moduleName ) );
-    }
-    for ( const QString& candidate : candidates )
-    {
-        if ( candidate.isEmpty() )
-        {
-            continue;
-        }
-        cDebug() << Logger::SubEntry << "Looking at QML file" << candidate;
-        if ( QFile::exists( candidate ) )
-        {
-            if ( candidate.startsWith( ':' ) )
-            {
-                // Inconsistency: QFile only sees the file with :,
-                // but QML needs an explicit scheme (of qrc:)
-                return QStringLiteral( "qrc" ) + candidate;
-            }
-            return candidate;
-        }
-    }
-    cDebug() << Logger::SubEntry << "None found.";
-    return QString();
-}
-
 void
 QmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool ok = false;
-    m_searchMethod = searchNames().find( CalamaresUtils::getString( configurationMap, "search" ), ok );
+    m_searchMethod
+        = CalamaresUtils::qmlSearchNames().find( CalamaresUtils::getString( configurationMap, "qmlSearch" ), ok );
     if ( !ok )
     {
         cDebug() << "Bad QML search mode.";
     }
 
-    QString qmlFile = CalamaresUtils::getString( configurationMap, "filename" );
-    if ( qmlFile.isEmpty() )
-    {
-        // TODO use the module instance
-    }
-
+    QString qmlFile = CalamaresUtils::getString( configurationMap, "qmlFilename" );
     if ( !m_qmlComponent )
     {
-        m_qmlFileName = searchQmlFile( m_searchMethod, qmlFile, m_name );
+        m_qmlFileName = searchQmlFile( m_searchMethod, qmlFile, moduleInstanceKey() );
+
+        QObject* config = this->getConfig();
+        if ( config )
+        {
+            setContextProperty( "config", config );
+        }
 
         cDebug() << "QmlViewStep" << moduleInstanceKey() << "loading" << m_qmlFileName;
         m_qmlComponent = new QQmlComponent(
@@ -316,7 +254,23 @@ void
 QmlViewStep::showFailedQml()
 {
     cWarning() << "QmlViewStep" << moduleInstanceKey() << "loading failed.";
+    if ( m_qmlComponent )
+    {
+        cDebug() << Logger::SubEntry << "QML error:" << m_qmlComponent->errorString();
+    }
     m_spinner->setText( prettyName() + ' ' + tr( "Loading failed." ) );
+}
+
+QObject*
+QmlViewStep::getConfig()
+{
+    return nullptr;
+}
+
+void
+QmlViewStep::setContextProperty( const char* name, QObject* property )
+{
+    m_qmlWidget->engine()->rootContext()->setContextProperty( name, property );
 }
 
 }  // namespace Calamares

@@ -47,14 +47,16 @@
 static void
 createResultWidgets( QLayout* layout,
                      QList< ResultWidget* >& resultWidgets,
-                     const Calamares::RequirementsList& checkEntries,
-                     std::function< bool( const Calamares::RequirementEntry& ) > predicate )
+                     const RequirementsModel &model,
+                     std::function< bool( const Calamares::RequirementEntry& ) > predicate
+                   )
 {
     resultWidgets.clear();
-    resultWidgets.reserve( checkEntries.count() );
-    for ( const auto& entry : checkEntries )
+    resultWidgets.reserve( model.count() );
+    for ( auto i = 0; i < model.count(); i++ )
     {
-        if ( !predicate( entry ) )
+        const auto &entry = model.getEntry(i);
+        if ( !predicate(entry))
         {
             resultWidgets.append( nullptr );
             continue;
@@ -85,33 +87,34 @@ createResultWidgets( QLayout* layout,
  */
 class ResultsListDialog : public QDialog
 {
+    Q_OBJECT
 public:
     /** @brief Create a dialog for the given @p checkEntries list of requirements.
      *
      * The list must continue to exist for the lifetime of the dialog,
      * or UB happens.
      */
-    ResultsListDialog( QWidget* parent, const Calamares::RequirementsList& checkEntries );
+    ResultsListDialog( const RequirementsModel& model, QWidget* parent );
     virtual ~ResultsListDialog();
 
 private:
     QLabel* m_title;
     QList< ResultWidget* > m_resultWidgets;  ///< One widget for each entry with details available
-    const Calamares::RequirementsList& m_entries;
+    const RequirementsModel& m_model;
 
     void retranslate();
 };
 
-ResultsListDialog::ResultsListDialog( QWidget* parent, const Calamares::RequirementsList& checkEntries )
+ResultsListDialog::ResultsListDialog( const RequirementsModel& model, QWidget* parent)
     : QDialog( parent )
-    , m_entries( checkEntries )
+    , m_model( model )
 {
     auto* mainLayout = new QVBoxLayout;
     auto* entriesLayout = new QVBoxLayout;
 
     m_title = new QLabel( this );
 
-    createResultWidgets( entriesLayout, m_resultWidgets, checkEntries, []( const Calamares::RequirementEntry& e ) {
+    createResultWidgets( entriesLayout, m_resultWidgets, model, []( const Calamares::RequirementEntry& e ) {
         return e.hasDetails();
     } );
 
@@ -137,21 +140,20 @@ ResultsListDialog::retranslate()
     m_title->setText( tr( "For best results, please ensure that this computer:" ) );
     setWindowTitle( tr( "System requirements" ) );
 
-    int i = 0;
-    for ( const auto& entry : m_entries )
+    for ( auto i = 0; i < m_model.count(); i++ )
     {
+        const auto &entry = m_model.getEntry(i);
         if ( m_resultWidgets[ i ] )
         {
             m_resultWidgets[ i ]->setText( entry.enumerationText() );
         }
-        i++;
     }
 }
 
 
-ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::RequirementsList& checkEntries )
+ResultsListWidget::ResultsListWidget( const RequirementsModel &model, QWidget* parent )
     : QWidget( parent )
-    , m_entries( checkEntries )
+    , m_model( model )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
@@ -178,10 +180,11 @@ ResultsListWidget::ResultsListWidget( QWidget* parent, const Calamares::Requirem
 
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
-    auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
-    const bool requirementsSatisfied = std::none_of( checkEntries.begin(), checkEntries.end(), isUnSatisfied );
 
-    createResultWidgets( entriesLayout, m_resultWidgets, checkEntries, isUnSatisfied );
+    const bool requirementsSatisfied = m_model.satisfiedRequirements();
+    auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
+
+    createResultWidgets( entriesLayout, m_resultWidgets, model, isUnSatisfied );
 
     if ( !requirementsSatisfied )
     {
@@ -228,7 +231,7 @@ ResultsListWidget::linkClicked( const QString& link )
 {
     if ( link == "#details" )
     {
-        auto* dialog = new ResultsListDialog( this, m_entries );
+        auto* dialog = new ResultsListDialog( m_model, this );
         dialog->exec();
         dialog->deleteLater();
     }
@@ -237,28 +240,23 @@ ResultsListWidget::linkClicked( const QString& link )
 void
 ResultsListWidget::retranslate()
 {
-    int i = 0;
-    for ( const auto& entry : m_entries )
+    for ( auto i = 0; i < m_model.count(); i++ )
     {
+        const auto &entry = m_model.getEntry(i);
         if ( m_resultWidgets[ i ] )
         {
             m_resultWidgets[ i ]->setText( entry.negatedText() );
         }
-        i++;
     }
 
     // Check that all are satisfied (gives warnings if not) and
     // all *mandatory* entries are satisfied (gives errors if not).
-    auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
-    auto isMandatoryAndUnSatisfied = []( const Calamares::RequirementEntry& e ) { return e.mandatory && !e.satisfied; };
-    const bool requirementsSatisfied = std::none_of( m_entries.begin(), m_entries.end(), isUnSatisfied );
-    const bool mandatorySatisfied = std::none_of( m_entries.begin(), m_entries.end(), isMandatoryAndUnSatisfied );
 
-    if ( !requirementsSatisfied )
+    if ( !m_model.satisfiedRequirements() )
     {
         QString message;
         const bool setup = Calamares::Settings::instance()->isSetupMode();
-        if ( !mandatorySatisfied )
+        if ( !m_model.satisfiedMandatory() )
         {
             message = setup ? tr( "This computer does not satisfy the minimum "
                                   "requirements for setting up %1.<br/>"
@@ -289,3 +287,7 @@ ResultsListWidget::retranslate()
                                     .arg( *Calamares::Branding::ProductName ) );
     }
 }
+
+#include "utils/moc-warnings.h"
+
+#include "ResultsListWidget.moc"

@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,19 +19,15 @@
 
 #include "PythonJob.h"
 
+#include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "PythonHelper.h"
+#include "PythonJobApi.h"
+#include "utils/BoostPython.h"
 #include "utils/Logger.h"
 
 #include <QDir>
-
-#undef slots
-#include <boost/python.hpp>
-#include <boost/python/args.hpp>
-
-#include "PythonJobApi.h"
-
 
 namespace bp = boost::python;
 
@@ -169,6 +165,10 @@ BOOST_PYTHON_MODULE( libcalamares )
 namespace Calamares
 {
 
+struct PythonJob::Private
+{
+    bp::object m_prettyStatusMessage;
+};
 
 PythonJob::PythonJob( const ModuleSystem::InstanceKey& instance,
                       const QString& scriptFile,
@@ -176,11 +176,12 @@ PythonJob::PythonJob( const ModuleSystem::InstanceKey& instance,
                       const QVariantMap& moduleConfiguration,
                       QObject* parent )
     : Job( parent )
+    , m_d( std::make_unique< Private >() )
     , m_scriptFile( scriptFile )
     , m_workingPath( workingPath )
     , m_description()
     , m_configurationMap( moduleConfiguration )
-    , m_weight( (instance.module() == QStringLiteral( "unpackfs" )) ? 12.0 : 1.0 )
+    , m_weight( ( instance.module() == QStringLiteral( "unpackfs" ) ) ? 12.0 : 1.0 )
 {
 }
 
@@ -203,6 +204,7 @@ PythonJob::prettyName() const
 QString
 PythonJob::prettyStatusMessage() const
 {
+    // The description is updated when progress is reported, see emitProgress()
     if ( m_description.isEmpty() )
     {
         return tr( "Running %1 operation." ).arg( QDir( m_workingPath ).dirName() );
@@ -211,6 +213,18 @@ PythonJob::prettyStatusMessage() const
     {
         return m_description;
     }
+}
+
+static QString
+pythonStringMethod( bp::dict& script, const char* funcName )
+{
+    bp::object func = script.get( funcName, bp::object() );
+    if ( !func.is_none() )
+    {
+        bp::extract< std::string > result( func() );
+        return result.check() ? QString::fromStdString( result() ).trimmed() : QString();
+    }
+    return QString();
 }
 
 
@@ -237,7 +251,7 @@ PythonJob::exec()
 
     try
     {
-        bp::dict scriptNamespace = helper()->createCleanNamespace();
+        bp::dict scriptNamespace = CalamaresPython::Helper::instance()->createCleanNamespace();
 
         bp::object calamaresModule = bp::import( "libcalamares" );
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
@@ -246,27 +260,13 @@ PythonJob::exec()
         calamaresNamespace[ "globalstorage" ]
             = CalamaresPython::GlobalStoragePythonWrapper( JobQueue::instance()->globalStorage() );
 
+        cDebug() << "Job file" << scriptFI.absoluteFilePath();
         bp::object execResult
             = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(), scriptNamespace, scriptNamespace );
-
         bp::object entryPoint = scriptNamespace[ "run" ];
-        bp::object prettyNameFunc = scriptNamespace.get( "pretty_name", bp::object() );
 
-        cDebug() << "Job file" << scriptFI.absoluteFilePath();
-        if ( !prettyNameFunc.is_none() )
-        {
-            bp::extract< std::string > prettyNameResult( prettyNameFunc() );
-            if ( prettyNameResult.check() )
-            {
-                m_description = QString::fromStdString( prettyNameResult() ).trimmed();
-            }
-            if ( !m_description.isEmpty() )
-            {
-                cDebug() << "Job description from pretty_name" << prettyName() << "=" << m_description;
-                emit progress( 0 );
-            }
-        }
-
+        m_d->m_prettyStatusMessage = scriptNamespace.get( "pretty_status_message", bp::object() );
+        m_description = pythonStringMethod( scriptNamespace, "pretty_name" );
         if ( m_description.isEmpty() )
         {
             bp::extract< std::string > entryPoint_doc_attr( entryPoint.attr( "__doc__" ) );
@@ -279,10 +279,14 @@ PythonJob::exec()
                 {
                     m_description.truncate( i_newline );
                 }
-                cDebug() << "Job description from __doc__" << prettyName() << "=" << m_description;
-                emit progress( 0 );
+                cDebug() << "Job description from __doc__" << prettyName() << '=' << m_description;
             }
         }
+        else
+        {
+            cDebug() << "Job description from pretty_name" << prettyName() << '=' << m_description;
+        }
+        emit progress( 0 );
 
         bp::object runResult = entryPoint();
 
@@ -303,7 +307,7 @@ PythonJob::exec()
         QString msg;
         if ( PyErr_Occurred() )
         {
-            msg = helper()->handleLastError();
+            msg = CalamaresPython::Helper::instance()->handleLastError();
         }
         bp::handle_exception();
         PyErr_Clear();
@@ -316,20 +320,21 @@ PythonJob::exec()
 void
 PythonJob::emitProgress( qreal progressValue )
 {
+    // This is called from the JobApi (and only from there) from the Job thread,
+    // so it is safe to call into the Python interpreter. Update the description
+    // as needed (don't call this from prettyStatusMessage(), which can be
+    // called from other threads as well).
+    if ( m_d && !m_d->m_prettyStatusMessage.is_none() )
+    {
+        QString r;
+        bp::extract< std::string > result( m_d->m_prettyStatusMessage() );
+        r = result.check() ? QString::fromStdString( result() ).trimmed() : QString();
+        if ( !r.isEmpty() )
+        {
+            m_description = r;
+        }
+    }
     emit progress( progressValue );
 }
-
-
-CalamaresPython::Helper*
-PythonJob::helper()
-{
-    auto ptr = CalamaresPython::Helper::s_instance;
-    if ( !ptr )
-    {
-        ptr = new CalamaresPython::Helper;
-    }
-    return ptr;
-}
-
 
 }  // namespace Calamares

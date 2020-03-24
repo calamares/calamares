@@ -2,6 +2,7 @@ include( CalamaresAddPlugin )
 include( CalamaresAddModuleSubdirectory )
 include( CalamaresAddLibrary )
 include( CalamaresAddBrandingSubdirectory )
+include( CalamaresAddTest )
 
 # library
 add_subdirectory( libcalamares )

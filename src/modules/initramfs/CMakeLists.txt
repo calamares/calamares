@@ -8,18 +8,11 @@ calamares_add_plugin( initramfs
     SHARED_LIB
 )
 
-if( ECM_FOUND AND BUILD_TESTING )
-    ecm_add_test(
-            Tests.cpp
-        TEST_NAME
-            initramfstest
-        LINK_LIBRARIES
-            ${CALAMARES_LIBRARIES}
-            calamares
-            calamares_job_initramfs # From above
-            ${YAMLCPP_LIBRARY}
-            Qt5::Core
-            Qt5::Test
-    )
-    calamares_automoc( initramfstest )
-endif()
+calamares_add_test(
+    initramfstest
+    SOURCES
+        Tests.cpp
+    LIBRARIES
+        calamares_job_initramfs # From above
+        yamlcpp
+)

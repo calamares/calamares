@@ -2,7 +2,7 @@
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo     <shainer@chakraos.org>
  *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
  *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -34,8 +34,6 @@
 #include <QHeaderView>
 #include <QNetworkReply>
 
-using CalamaresUtils::yamlToVariant;
-
 NetInstallPage::NetInstallPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_NetInst )
@@ -43,6 +41,38 @@ NetInstallPage::NetInstallPage( QWidget* parent )
     , m_groups( nullptr )
 {
     ui->setupUi( this );
+    setPageTitle( nullptr );
+    CALAMARES_RETRANSLATE_SLOT( &NetInstallPage::retranslate );
+}
+
+NetInstallPage::~NetInstallPage()
+{
+    delete m_groups;
+    delete m_reply;
+}
+
+void
+NetInstallPage::setPageTitle( CalamaresUtils::Locale::TranslatedString* t )
+{
+    m_title.reset( t );
+    if ( !m_title )
+    {
+        ui->label->hide();
+    }
+    else
+    {
+        ui->label->show();
+    }
+    retranslate();
+}
+
+void
+NetInstallPage::retranslate()
+{
+    if ( ui && m_title )
+    {
+        ui->label->setText( m_title->get() );  // That's get() on the TranslatedString
+    }
 }
 
 bool
@@ -58,8 +88,6 @@ NetInstallPage::readGroups( const QByteArray& yamlData )
         }
         Q_ASSERT( groups.IsSequence() );
         m_groups = new PackageModel( groups );
-        CALAMARES_RETRANSLATE( m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
-                               m_groups->setHeaderData( 1, Qt::Horizontal, tr( "Description" ) ); )
         return true;
     }
     catch ( YAML::Exception& e )
@@ -121,9 +149,20 @@ NetInstallPage::dataIsHere()
         return;
     }
 
+    retranslate();  // For changed model
     ui->groupswidget->setModel( m_groups );
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
     ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
+
+    // Go backwards because expanding a group may cause rows to appear below it
+    for ( int i = m_groups->rowCount() - 1; i >= 0; --i )
+    {
+        auto index = m_groups->index(i,0);
+        if ( m_groups->data(index, PackageModel::MetaExpandRole).toBool() )
+        {
+            ui->groupswidget->setExpanded(index, true);
+        }
+    }
 
     emit checkReady( true );
 }
@@ -148,7 +187,7 @@ NetInstallPage::loadGroupList( const QString& confUrl )
     using namespace CalamaresUtils::Network;
 
     cDebug() << "NetInstall loading groups from" << confUrl;
-    QNetworkReply* reply = Manager::instance().asynchronouseGet(
+    QNetworkReply* reply = Manager::instance().asynchronousGet(
         QUrl( confUrl ),
         RequestOptions( RequestOptions::FakeUserAgent | RequestOptions::FollowRedirect, std::chrono::seconds( 30 ) ) );
 

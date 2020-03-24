@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,25 +19,17 @@
 
 #include "PythonJobApi.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "PythonHelper.h"
+#include "partition/Mount.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
 
-#include "GlobalStorage.h"
-#include "JobQueue.h"
-
 #include <QCoreApplication>
 #include <QDir>
 #include <QStandardPaths>
-
-#undef slots
-#include "utils/boost-warnings.h"
-#include <boost/python.hpp>
-
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
 
 namespace bp = boost::python;
 
@@ -72,10 +64,10 @@ mount( const std::string& device_path,
        const std::string& filesystem_name,
        const std::string& options )
 {
-    return CalamaresUtils::System::instance()->mount( QString::fromStdString( device_path ),
-                                                      QString::fromStdString( mount_point ),
-                                                      QString::fromStdString( filesystem_name ),
-                                                      QString::fromStdString( options ) );
+    return CalamaresUtils::Partition::mount( QString::fromStdString( device_path ),
+                  QString::fromStdString( mount_point ),
+                  QString::fromStdString( filesystem_name ),
+                  QString::fromStdString( options ) );
 }
 
 
@@ -156,7 +148,7 @@ check_target_env_output( const bp::list& args, const std::string& stdin, int tim
 void
 debug( const std::string& s )
 {
-    cDebug() << "[PYTHON JOB]: " << QString::fromStdString( s );
+    Logger::CDebug( Logger::LOGDEBUG ) << "[PYTHON JOB]: " << QString::fromStdString( s );
 }
 
 void
@@ -179,7 +171,7 @@ PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
 void
 PythonJobInterface::setprogress( qreal progress )
 {
-    if ( progress >= 0 && progress <= 1 )
+    if ( progress >= 0.0 && progress <= 1.0 )
     {
         m_parent->emitProgress( progress );
     }

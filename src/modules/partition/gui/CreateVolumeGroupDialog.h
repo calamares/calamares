@@ -23,6 +23,7 @@
 
 class CreateVolumeGroupDialog : public VolumeGroupBaseDialog
 {
+    Q_OBJECT
 public:
     CreateVolumeGroupDialog( QString& vgName,
                              QVector< const Partition* >& selectedPVs,

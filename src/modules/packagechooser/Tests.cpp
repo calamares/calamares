@@ -71,21 +71,21 @@ PackageChooserTests::testAppData()
 #ifdef HAVE_XML
     PackageItem p1 = fromAppData( m );
     QVERIFY( p1.isValid() );
-    QCOMPARE( p1.id, "io.calamares.calamares.desktop" );
-    QCOMPARE( p1.name.get(), "Calamares" );
+    QCOMPARE( p1.id, QStringLiteral( "io.calamares.calamares.desktop" ) );
+    QCOMPARE( p1.name.get(), QStringLiteral( "Calamares" ) );
     // The <description> entry has precedence
-    QCOMPARE( p1.description.get(), "Calamares is an installer program for Linux distributions." );
+    QCOMPARE( p1.description.get(), QStringLiteral( "Calamares is an installer program for Linux distributions." ) );
     // .. but en_GB doesn't have an entry in description, so uses <summary>
-    QCOMPARE( p1.description.get( QLocale( "en_GB" ) ), "Calamares Linux Installer" );
-    QCOMPARE( p1.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
+    QCOMPARE( p1.description.get( QLocale( "en_GB" ) ), QStringLiteral( "Calamares Linux Installer" ) );
+    QCOMPARE( p1.description.get( QLocale( "nl" ) ), QStringLiteral( "Calamares is een installatieprogramma voor Linux distributies." ) );
     QVERIFY( p1.screenshot.isNull() );
 
     m.insert( "id", "calamares" );
     m.insert( "screenshot", ":/images/calamares.png" );
     PackageItem p2 = fromAppData( m );
     QVERIFY( p2.isValid() );
-    QCOMPARE( p2.id, "calamares" );
-    QCOMPARE( p2.description.get( QLocale( "nl" ) ), "Calamares is een installatieprogramma voor Linux distributies." );
+    QCOMPARE( p2.id, QStringLiteral( "calamares" ) );
+    QCOMPARE( p2.description.get( QLocale( "nl" ) ), QStringLiteral( "Calamares is een installatieprogramma voor Linux distributies." ) );
     QVERIFY( !p2.screenshot.isNull() );
 #endif
 }

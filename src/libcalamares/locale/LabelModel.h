@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Camilo Higuita <milo.h@aol.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -33,6 +34,8 @@ namespace Locale
 
 class DLLEXPORT LabelModel : public QAbstractListModel
 {
+    Q_OBJECT
+
 public:
     enum
     {
@@ -46,6 +49,7 @@ public:
     int rowCount( const QModelIndex& parent ) const override;
 
     QVariant data( const QModelIndex& index, int role ) const override;
+    QHash< int, QByteArray > roleNames() const override;
 
     /** @brief Gets locale information for entry #n
      *
@@ -69,7 +73,7 @@ public:
     int find( const QString& countryCode ) const;
 
 private:
-    QVector< Label > m_locales;
+    QVector< Label* > m_locales;
     QStringList m_localeIds;
 };
 

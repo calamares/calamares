@@ -237,7 +237,7 @@ void Module::loadConfigurationFile( const QString& configFileName )  //throws YA
             }
 
             cDebug() << "Loaded module configuration" << path;
-            m_configurationMap = CalamaresUtils::yamlMapToVariant( doc ).toMap();
+            m_configurationMap = CalamaresUtils::yamlMapToVariant( doc );
             m_emergency = m_maybe_emergency && m_configurationMap.contains( EMERGENCY )
                 && m_configurationMap[ EMERGENCY ].toBool();
             return;

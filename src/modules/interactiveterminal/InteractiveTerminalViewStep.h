@@ -22,10 +22,10 @@
 
 #include <QObject>
 
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
-#include <PluginDllMacro.h>
+#include "DllMacro.h"
 
 class InteractiveTerminalPage;
 

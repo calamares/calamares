@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,17 +18,20 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/FormatPartitionJob.h"
+#include "FormatPartitionJob.h"
 
+#include "partition/FileSystem.h"
 #include "utils/Logger.h"
 
-// KPMcore
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/partitiontable.h>
-#include <fs/filesystem.h>
-#include <ops/createfilesystemoperation.h>
-#include <util/report.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/core/partitiontable.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/ops/createfilesystemoperation.h>
+#include <kpmcore/util/report.h>
+
+using CalamaresUtils::Partition::untranslatedFS;
+using CalamaresUtils::Partition::userVisibleFS;
 
 FormatPartitionJob::FormatPartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
@@ -40,7 +44,7 @@ FormatPartitionJob::prettyName() const
 {
     return tr( "Format partition %1 (file system: %2, size: %3 MiB) on %4." )
            .arg( m_partition->partitionPath() )
-           .arg( m_partition->fileSystem().name() )
+           .arg( userVisibleFS( m_partition->fileSystem() ) )
            .arg( m_partition->capacity() / 1024 / 1024 )
             .arg( m_device->name() );
 }
@@ -52,7 +56,7 @@ FormatPartitionJob::prettyDescription() const
     return tr( "Format <strong>%3MiB</strong> partition <strong>%1</strong> with "
                "file system <strong>%2</strong>." )
            .arg( m_partition->partitionPath() )
-           .arg( m_partition->fileSystem().name() )
+           .arg( userVisibleFS( m_partition->fileSystem() ) )
             .arg( m_partition->capacity() / 1024 / 1024 );
 }
 
@@ -63,7 +67,7 @@ FormatPartitionJob::prettyStatusMessage() const
     return tr( "Formatting partition %1 with "
                "file system %2." )
            .arg( m_partition->partitionPath() )
-           .arg( m_partition->fileSystem().name() );
+           .arg( userVisibleFS( m_partition->fileSystem() ) );
 }
 
 

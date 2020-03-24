@@ -19,7 +19,7 @@
 #ifndef PARTITIONJOBTESTS_H
 #define PARTITIONJOBTESTS_H
 
-#include <JobQueue.h>
+#include "JobQueue.h"
 
 // CalaPM
 #include <core/device.h>
@@ -59,6 +59,7 @@ public:
 
 private Q_SLOTS:
     void initTestCase();
+    void cleanupTestCase();
     void testPartitionTable();
     void testCreatePartition();
     void testCreatePartitionExtended();
@@ -71,7 +72,8 @@ private:
     QueueRunner m_runner;
 
     void queuePartitionTableCreation( PartitionTable::TableType type );
-    CreatePartitionJob* newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole, FileSystem::Type type, qint64 size );
+    CreatePartitionJob*
+    newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole, FileSystem::Type type, qint64 size );
     void refreshDevice();
 };
 

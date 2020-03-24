@@ -56,6 +56,10 @@ def _change_mode(mode):
 
 
 def pretty_name():
+    return _("Install packages.")
+
+
+def pretty_status_message():
     if not group_packages:
         if (total_packages > 0):
             # Outside the context of an operation
@@ -332,19 +336,23 @@ class PMDummy(PackageManager):
     backend = "dummy"
 
     def install(self, pkgs, from_local=False):
-        libcalamares.utils.debug("Installing " + str(pkgs))
+        from time import sleep
+        libcalamares.utils.debug("Dummy backend: Installing " + str(pkgs))
+        sleep(3)
 
     def remove(self, pkgs):
-        libcalamares.utils.debug("Removing " + str(pkgs))
+        from time import sleep
+        libcalamares.utils.debug("Dummy backend: Removing " + str(pkgs))
+        sleep(3)
 
     def update_db(self):
-        libcalamares.utils.debug("Updating DB")
+        libcalamares.utils.debug("Dummy backend: Updating DB")
 
     def update_system(self):
-        libcalamares.utils.debug("Updating System")
+        libcalamares.utils.debug("Dummy backend: Updating System")
 
     def run(self, script):
-        libcalamares.utils.debug("Running script '" + str(script) + "'")
+        libcalamares.utils.debug("Dummy backend: Running script '" + str(script) + "'")
 
 
 class PMPisi(PackageManager):
@@ -362,6 +370,24 @@ class PMPisi(PackageManager):
     def update_system(self):
         # Doesn't need to update the system explicitly
         pass
+
+
+class PMApk(PackageManager):
+    backend = "apk"
+
+    def install(self, pkgs, from_local=False):
+        for pkg in pkgs:
+            check_target_env_call(["apk", "add", pkg])
+
+    def remove(self, pkgs):
+        for pkg in pkgs:
+            check_target_env_call(["apk", "del", pkg])
+
+    def update_db(self):
+        check_target_env_call(["apk", "update"])
+
+    def update_system(self):
+        check_target_env_call(["apk", "upgrade", "--available"])
 
 
 # Collect all the subclasses of PackageManager defined above,
@@ -478,10 +504,13 @@ def run_operations(pkgman, entry):
             else:
                 for package in package_list:
                     pkgman.install_package(package, from_local=True)
-
+        elif key == "source":
+            libcalamares.utils.debug("Package-list from {!s}".format(entry[key]))
+        else:
+            libcalamares.utils.warning("Unknown package-operation key {!s}".format(key))
         completed_packages += len(package_list)
         libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)
-        libcalamares.utils.debug(pretty_name())
+        libcalamares.utils.debug("Pretty name: {!s}, setting progress..".format(pretty_name()))
 
     group_packages = 0
     _change_mode(None)

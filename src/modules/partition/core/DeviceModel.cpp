@@ -30,8 +30,8 @@
 // KF5
 #include <KFormat>
 
-#include <QStandardItemModel>
 #include <QIcon>
+#include <QStandardItemModel>
 
 // STL
 #include <algorithm>
@@ -39,8 +39,7 @@
 static void
 sortDevices( DeviceModel::DeviceList& l )
 {
-   std::sort( l.begin(), l.end(), []( const Device* dev1, const Device* dev2 )
-    {
+    std::sort( l.begin(), l.end(), []( const Device* dev1, const Device* dev2 ) {
         return dev1->deviceNode() < dev2->deviceNode();
     } );
 }
@@ -50,9 +49,7 @@ DeviceModel::DeviceModel( QObject* parent )
 {
 }
 
-DeviceModel::~DeviceModel()
-{
-}
+DeviceModel::~DeviceModel() {}
 
 void
 DeviceModel::init( const DeviceList& devices )
@@ -74,7 +71,9 @@ DeviceModel::data( const QModelIndex& index, int role ) const
 {
     int row = index.row();
     if ( row < 0 || row >= m_devices.count() )
+    {
         return QVariant();
+    }
 
     Device* device = m_devices.at( row );
 
@@ -83,16 +82,18 @@ DeviceModel::data( const QModelIndex& index, int role ) const
     case Qt::DisplayRole:
     case Qt::ToolTipRole:
         if ( device->name().isEmpty() )
+        {
             return device->deviceNode();
+        }
         else
         {
             if ( device->logicalSize() >= 0 && device->totalLogical() >= 0 )
             {
                 //: device[name] - size[number] (device-node[name])
                 return tr( "%1 - %2 (%3)" )
-                       .arg( device->name() )
-                       .arg( KFormat().formatByteSize( device->capacity() ) )
-                       .arg( device->deviceNode() );
+                    .arg( device->name() )
+                    .arg( KFormat().formatByteSize( device->capacity() ) )
+                    .arg( device->deviceNode() );
             }
             else
             {
@@ -100,16 +101,14 @@ DeviceModel::data( const QModelIndex& index, int role ) const
                 // always has 1B capacity), so don't show it for a while.
                 //
                 //: device[name] - (device-node[name])
-                return tr( "%1 - (%2)" )
-                        .arg( device->name() )
-                        .arg( device->deviceNode() );
+                return tr( "%1 - (%2)" ).arg( device->name() ).arg( device->deviceNode() );
             }
-         }
+        }
     case Qt::DecorationRole:
-        return CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionDisk,
-                                              CalamaresUtils::Original,
-                                              QSize( CalamaresUtils::defaultIconSize().width() * 3,
-                                                     CalamaresUtils::defaultIconSize().height() * 3 ) );
+        return CalamaresUtils::defaultPixmap(
+            CalamaresUtils::PartitionDisk,
+            CalamaresUtils::Original,
+            QSize( CalamaresUtils::defaultIconSize().width() * 3, CalamaresUtils::defaultIconSize().height() * 3 ) );
     default:
         return QVariant();
     }
@@ -121,7 +120,9 @@ DeviceModel::deviceForIndex( const QModelIndex& index ) const
 {
     int row = index.row();
     if ( row < 0 || row >= m_devices.count() )
+    {
         return nullptr;
+    }
     return m_devices.at( row );
 }
 
@@ -134,7 +135,9 @@ DeviceModel::swapDevice( Device* oldDevice, Device* newDevice )
 
     int indexOfOldDevice = m_devices.indexOf( oldDevice );
     if ( indexOfOldDevice < 0 )
+    {
         return;
+    }
 
     m_devices[ indexOfOldDevice ] = newDevice;
 
@@ -142,7 +145,7 @@ DeviceModel::swapDevice( Device* oldDevice, Device* newDevice )
 }
 
 void
-DeviceModel::addDevice( Device *device )
+DeviceModel::addDevice( Device* device )
 {
     beginResetModel();
     m_devices << device;
@@ -151,7 +154,7 @@ DeviceModel::addDevice( Device *device )
 }
 
 void
-DeviceModel::removeDevice( Device *device )
+DeviceModel::removeDevice( Device* device )
 {
     beginResetModel();
     m_devices.removeAll( device );

@@ -2,12 +2,11 @@
 ---------
 
 [![GitHub release](https://img.shields.io/github/release/calamares/calamares.svg)](https://github.com/calamares/calamares/releases)
-[![Build Status](https://calamares.io/ci/buildStatus/icon?job=calamares-post_commit)](https://calamares.io/ci/job/calamares-post_commit/)
 [![Travis Build Status](https://travis-ci.org/calamares/calamares.svg?branch=master)](https://travis-ci.org/calamares/calamares)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5389/badge.svg)](https://scan.coverity.com/projects/5389)
 [![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/master/LICENSE)
 
-| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Contribute](https://github.com/calamares/calamares/blob/master/ci/HACKING.md) | [Translate](https://www.transifex.com/projects/p/calamares/) | Freenode (IRC): #calamares | [Wiki](https://github.com/calamares/calamares/wiki) |
+| [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](https://github.com/calamares/calamares/wiki/Develop-Guide) | Freenode (IRC): #calamares | [Wiki](https://github.com/calamares/calamares/wiki) |
 |:-----------------------------------------:|:----------------------:|:-----------------------:|:--------------------------:|:--------------------------:|
 
 ### Dependencies
