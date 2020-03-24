@@ -13,6 +13,7 @@ calamares_add_plugin( locale
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         ${geoip_src}
+        Config.cpp
         LCLocaleDialog.cpp
         LocaleConfiguration.cpp
         LocalePage.cpp
