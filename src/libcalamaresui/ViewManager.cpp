@@ -29,8 +29,8 @@
 #include "utils/Paste.h"
 #include "utils/Retranslator.h"
 #include "viewpages/BlankViewStep.h"
-#include "viewpages/ViewStep.h"
 #include "viewpages/ExecutionViewStep.h"
+#include "viewpages/ViewStep.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -309,6 +309,13 @@ stepIsExecute( const ViewStepList& steps, int index )
         && ( qobject_cast< ExecutionViewStep* >( steps.at( index ) ) != nullptr );
 }
 
+static inline bool
+isAtVeryEnd( const ViewStepList& steps, int index )
+
+{
+    return ( index >= steps.count() ) || ( index == steps.count() - 1 && steps.last()->isAtEnd() );
+}
+
 void
 ViewManager::next()
 {
@@ -412,7 +419,7 @@ ViewManager::updateButtonLabels()
     m_back->setText( tr( "&Back" ) );
 
     // Cancel button changes label at the end
-    if ( isAtVeryEnd() )
+    if ( isAtVeryEnd( m_steps, m_currentStep ) )
     {
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( quitOnCompleteTooltip );
@@ -473,7 +480,7 @@ ViewManager::confirmCancelInstallation()
     const auto* const settings = Calamares::Settings::instance();
 
     // When we're at the very end, then it's always OK to exit.
-    if ( isAtVeryEnd() )
+    if ( isAtVeryEnd( m_steps, m_currentStep ) )
     {
         return true;
     }

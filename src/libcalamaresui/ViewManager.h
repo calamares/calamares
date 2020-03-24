@@ -132,12 +132,6 @@ private:
     void updateButtonLabels();
     void updateCancelEnabled( bool enabled );
 
-    bool isAtVeryEnd() const
-    {
-        return ( m_currentStep >= m_steps.count() )
-            || ( m_currentStep == m_steps.count() - 1 && m_steps.last()->isAtEnd() );
-    }
-
     static ViewManager* s_instance;
 
     ViewStepList m_steps;
