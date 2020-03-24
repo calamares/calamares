@@ -11,12 +11,12 @@
 ### Dependencies
 
 Main:
-* Compiler with C++14 support: [GCC](https://www.archlinux.org/packages/core/x86_64/gcc/) >= 5 or [Clang](https://www.archlinux.jp/packages/extra/x86_64/clang/) >= 3.5.1
+* Compiler with C++14 support: [GCC](https://www.archlinux.org/packages/core/x86_64/gcc/) >= 5 or [Clang](https://www.archlinux.org/packages/extra/x86_64/clang/) >= 3.5.1
 * [CMake](https://www.archlinux.org/packages/extra/x86_64/cmake/) >= 3.3
 * [Qt](https://www.archlinux.org/packages/extra/x86_64/qt5-base/) >= 5.9
 * [yaml-cpp](https://www.archlinux.org/packages/community/x86_64/yaml-cpp/) >= 0.5.1
 * [Python](https://www.archlinux.org/packages/extra/x86_64/python/) >= 3.3 (required for some modules)
-* [Boost.Python](https://www.archlinux.org/packages/extra/x86_64/boost/) and [Boost-libs](https://www.archlinux.jp/packages/extra/x86_64/boost-libs/) >= 1.55.0 (required for some modules)
+* [Boost.Python](https://www.archlinux.org/packages/extra/x86_64/boost/) and [Boost-libs](https://www.archlinux.org/packages/extra/x86_64/boost-libs/) >= 1.55.0 (required for some modules)
 * [KDE extra-cmake-modules](https://www.archlinux.org/packages/extra/any/extra-cmake-modules/) >= 5.18 (recommended; required for some modules;
   required for some tests)
 * [KDE Frameworks KCoreAddons](https://www.archlinux.org/packages/extra/x86_64/kcoreaddons/) (>= 5.58 recommended)
