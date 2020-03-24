@@ -234,20 +234,17 @@ ItemTests::testModel()
     QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
     QCOMPARE( yamlContents.length(), 1 );
 
-    PackageModel m0( yamlContents, nullptr );
-    PackageModel m1( yamldoc, nullptr );
+    PackageModel m0( nullptr );
+    m0.setupModelData( yamlContents );
 
-    QCOMPARE( m0.rowCount(), m1.rowCount() );
     QCOMPARE( m0.m_hiddenItems.count(), 0 );  // Nothing hidden
-    QCOMPARE( m1.m_hiddenItems.count(), 0 );
     QCOMPARE( m0.rowCount(), 1 );  // Group, the packages are invisible
     QCOMPARE( m0.rowCount( m0.index( 0, 0 ) ), 3 );  // The packages
-    QCOMPARE( m1.rowCount( m1.index( 0, 0 ) ), 3 );  // The packages
 
     checkAllSelected( m0.m_rootItem );
-    checkAllSelected( m1.m_rootItem );
 
-    PackageModel m2( YAML::Load( doc_with_expanded ), nullptr );
+    PackageModel m2( nullptr );
+    m2.setupModelData( CalamaresUtils::yamlSequenceToVariant( YAML::Load( doc_with_expanded ) ) );
     QCOMPARE( m2.m_hiddenItems.count(), 0 );
     QCOMPARE( m2.rowCount(), 1 );  // Group, now the packages expanded but not counted
     QCOMPARE( m2.rowCount( m2.index( 0, 0 ) ), 3 );  // The packages
@@ -255,7 +252,6 @@ ItemTests::testModel()
 
     PackageTreeItem r;
     QVERIFY( r == *m0.m_rootItem );
-    QVERIFY( r == *m1.m_rootItem );
 
     QCOMPARE( m0.m_rootItem->childCount(), 1 );
 
@@ -276,8 +272,6 @@ ItemTests::testModel()
         }
     }
     QVERIFY( found_one_bash );
-
-    recursiveCompare( m0, m1 );
 
     // But m2 has "expanded" set which the others do no
     QVERIFY( *( m2.m_rootItem->child( 0 ) ) != *group );
@@ -301,9 +295,10 @@ ItemTests::testExampleFiles()
         YAML::Node yamldoc = YAML::Load( contents.constData() );
         QVariantList yamlContents = CalamaresUtils::yamlSequenceToVariant( yamldoc );
 
-        PackageModel m0( yamldoc, nullptr );
-        PackageModel m1( yamlContents, nullptr );
-        recursiveCompare( m0, m1 );
+        PackageModel m1( nullptr );
+        m1.setupModelData( yamlContents );
+
+        // TODO: should test *something* about this file :/
     }
 }
 

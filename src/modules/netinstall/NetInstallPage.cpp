@@ -87,7 +87,8 @@ NetInstallPage::readGroups( const QByteArray& yamlData )
             cWarning() << "netinstall groups data does not form a sequence.";
         }
         Q_ASSERT( groups.IsSequence() );
-        m_groups = new PackageModel( groups );
+        m_groups = new PackageModel();
+        m_groups->setupModelData( CalamaresUtils::yamlSequenceToVariant( groups ) );
         return true;
     }
     catch ( YAML::Exception& e )
@@ -214,7 +215,8 @@ NetInstallPage::loadGroupList( const QVariantList& l )
 {
     // This short-cuts through loading and just uses the data,
     // containing cruft from dataIsHere() and readGroups().
-    m_groups = new PackageModel( l );
+    m_groups = new PackageModel();
+    m_groups->setupModelData( l );
     retranslate();  // For changed model
     ui->groupswidget->setModel( m_groups );
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );

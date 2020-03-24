@@ -22,18 +22,9 @@
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
 
-PackageModel::PackageModel( const YAML::Node& data, QObject* parent )
+PackageModel::PackageModel( QObject* parent )
     : QAbstractItemModel( parent )
 {
-    m_rootItem = new PackageTreeItem();
-    setupModelData( CalamaresUtils::yamlSequenceToVariant( data ), m_rootItem );
-}
-
-PackageModel::PackageModel( const QVariantList& data, QObject* parent )
-    : QAbstractItemModel( parent )
-{
-    m_rootItem = new PackageTreeItem();
-    setupModelData( data, m_rootItem );
 }
 
 PackageModel::~PackageModel()
@@ -44,7 +35,7 @@ PackageModel::~PackageModel()
 QModelIndex
 PackageModel::index( int row, int column, const QModelIndex& parent ) const
 {
-    if ( !hasIndex( row, column, parent ) )
+    if ( !m_rootItem || !hasIndex( row, column, parent ) )
     {
         return QModelIndex();
     }
@@ -74,7 +65,7 @@ PackageModel::index( int row, int column, const QModelIndex& parent ) const
 QModelIndex
 PackageModel::parent( const QModelIndex& index ) const
 {
-    if ( !index.isValid() )
+    if ( !m_rootItem || !index.isValid() )
     {
         return QModelIndex();
     }
@@ -92,7 +83,7 @@ PackageModel::parent( const QModelIndex& index ) const
 int
 PackageModel::rowCount( const QModelIndex& parent ) const
 {
-    if ( parent.column() > 0 )
+    if ( !m_rootItem || ( parent.column() > 0 ) )
     {
         return 0;
     }
@@ -119,7 +110,7 @@ PackageModel::columnCount( const QModelIndex& ) const
 QVariant
 PackageModel::data( const QModelIndex& index, int role ) const
 {
-    if ( !index.isValid() )
+    if ( !m_rootItem || !index.isValid() )
     {
         return QVariant();
     }
@@ -141,6 +132,11 @@ PackageModel::data( const QModelIndex& index, int role ) const
 bool
 PackageModel::setData( const QModelIndex& index, const QVariant& value, int role )
 {
+    if ( !m_rootItem )
+    {
+        return false;
+    }
+
     if ( role == Qt::CheckStateRole && index.isValid() )
     {
         PackageTreeItem* item = static_cast< PackageTreeItem* >( index.internalPointer() );
@@ -156,7 +152,7 @@ PackageModel::setData( const QModelIndex& index, const QVariant& value, int role
 Qt::ItemFlags
 PackageModel::flags( const QModelIndex& index ) const
 {
-    if ( !index.isValid() )
+    if ( !m_rootItem || !index.isValid() )
     {
         return Qt::ItemFlags();
     }
@@ -180,6 +176,11 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
 PackageTreeItem::List
 PackageModel::getPackages() const
 {
+    if ( !m_rootItem )
+    {
+        return PackageTreeItem::List();
+    }
+
     auto items = getItemPackages( m_rootItem );
     for ( auto package : m_hiddenItems )
     {
@@ -194,7 +195,7 @@ PackageModel::getPackages() const
 PackageTreeItem::List
 PackageModel::getItemPackages( PackageTreeItem* item ) const
 {
-    QList< PackageTreeItem* > selectedPackages;
+    PackageTreeItem::List selectedPackages;
     for ( int i = 0; i < item->childCount(); i++ )
     {
         if ( item->child( i )->isSelected() == Qt::Unchecked )
@@ -255,4 +256,14 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
             parent->appendChild( item );
         }
     }
+}
+
+void
+PackageModel::setupModelData( const QVariantList& l )
+{
+    emit beginResetModel();
+    delete m_rootItem;
+    m_rootItem = new PackageTreeItem();
+    setupModelData( l, m_rootItem );
+    emit endResetModel();
 }
