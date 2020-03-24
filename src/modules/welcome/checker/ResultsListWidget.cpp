@@ -288,4 +288,6 @@ ResultsListWidget::retranslate()
     }
 }
 
+#include "utils/moc-warnings.h"
+
 #include "ResultsListWidget.moc"
