@@ -239,7 +239,8 @@ CStringListModel::CStringListModel( CStringPairList l )
 {
 }
 
-void CStringListModel::setList(CalamaresUtils::Locale::CStringPairList l)
+void
+CStringListModel::setList( CalamaresUtils::Locale::CStringPairList l )
 {
     beginResetModel();
     m_list = l;
@@ -270,10 +271,12 @@ CStringListModel::data( const QModelIndex& index, int role ) const
 }
 
 void
-CStringListModel::setCurrentIndex(const int &index)
+CStringListModel::setCurrentIndex( const int& index )
 {
     if ( ( index < 0 ) || ( index >= m_list.count() ) )
+    {
         return;
+    }
 
     m_currentIndex = index;
     emit currentIndexChanged();
@@ -285,10 +288,10 @@ CStringListModel::currentIndex() const
     return m_currentIndex;
 }
 
-QHash<int, QByteArray>
+QHash< int, QByteArray >
 CStringListModel::roleNames() const
 {
-    return {{Qt::DisplayRole,"label"}, {Qt::UserRole, "key"}};
+    return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
 }
 
 const CStringPair*
