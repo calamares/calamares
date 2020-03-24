@@ -140,7 +140,7 @@ private:
             m_queue, "failed", Qt::QueuedConnection, Q_ARG( QString, message ), Q_ARG( QString, details ) );
     }
 
-    void emitFinished() { QMetaObject::invokeMethod( m_queue, "finished", Qt::QueuedConnection ); }
+    void emitFinished() { QMetaObject::invokeMethod( m_queue, "finish", Qt::QueuedConnection ); }
 };
 
 JobThread::~JobThread() {}
@@ -195,6 +195,7 @@ JobQueue::start()
     Q_ASSERT( !m_thread->isRunning() );
     m_thread->setJobs( std::move( m_jobs ) );
     m_jobs.clear();
+    m_finished = false;
     m_thread->start();
 }
 
@@ -214,6 +215,13 @@ JobQueue::enqueue( const JobList& jobs )
     Q_ASSERT( !m_thread->isRunning() );
     m_jobs.append( jobs );
     emit queueChanged( m_jobs );
+}
+
+void
+JobQueue::finish()
+{
+    m_finished = true;
+    emit finished();
 }
 
 }  // namespace Calamares
