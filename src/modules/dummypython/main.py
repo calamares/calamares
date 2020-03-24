@@ -102,7 +102,7 @@ def run():
         status = _("Dummy python step {}").format(str(c) + ":" + repr(k))
         libcalamares.utils.debug(_("Dummy python step {}").format(str(k)))
         sleep(1)
-        libcalamares.job.setprogress(c * 1.0 / len(configlist))
+        libcalamares.job.setprogress(c * 1.0 / (len(configlist)+1))
         c += 1
 
     sleep(3)

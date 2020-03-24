@@ -136,7 +136,7 @@ ExecutionViewStep::isAtBeginning() const
 bool
 ExecutionViewStep::isAtEnd() const
 {
-    return true;
+    return !JobQueue::instance()->isRunning();
 }
 
 void
