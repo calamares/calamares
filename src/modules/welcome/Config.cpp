@@ -27,9 +27,10 @@
 void
 RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
 {
+    CALAMARES_RETRANSLATE_SLOT( &RequirementsModel::retranslate )
+
     emit beginResetModel();
     m_requierements = requirements;
-    m_satisfiedRequirements = true;
 
     auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
     auto isMandatoryAndUnSatisfied = []( const Calamares::RequirementEntry& e ) { return e.mandatory && !e.satisfied; };
@@ -115,7 +116,7 @@ Config::retranslate()
     m_genericWelcomeMessage = message.arg( *Calamares::Branding::VersionedName );
     emit genericWelcomeMessageChanged();
 
-//     ui->supportButton->setText( tr( "%1 support" ).arg( *Calamares::Branding::ShortProductName ) );
+    m_requirementsModel->retranslate();
 }
 
 CalamaresUtils::Locale::LabelModel*
@@ -231,6 +232,7 @@ QString Config::donateUrl() const
 void Config::setDonateUrl(const QString& url)
 {
     m_donateUrl = url;
+    emit donateUrlChanged();
 }
 
 QString Config::knownIssuesUrl() const
@@ -241,11 +243,13 @@ QString Config::knownIssuesUrl() const
 void Config::setKnownIssuesUrl(const QString& url)
 {
     m_knownIssuesUrl = url;
+    emit knownIssuesUrlChanged();
 }
 
 void Config::setReleaseNotesUrl(const QString& url)
 {
   m_releaseNotesUrl = url;
+  emit releaseNotesUrlChanged();
 }
 
 QString Config::releaseNotesUrl() const
@@ -261,13 +265,46 @@ QString Config::supportUrl() const
 void Config::setSupportUrl(const QString& url)
 {
     m_supportUrl = url;
+    emit supportUrlChanged();
 }
 
+void RequirementsModel::retranslate()
+{
+    if ( !m_satisfiedRequirements )
+    {
+        QString message;
+        const bool setup = Calamares::Settings::instance()->isSetupMode();
 
+        if ( !m_satisfiedMandatory )
+        {
+            message = setup ? tr( "This computer does not satisfy the minimum "
+            "requirements for setting up %1.<br/>"
+            "Setup cannot continue. "
+            "<a href=\"#details\">Details...</a>" )
+            : tr( "This computer does not satisfy the minimum "
+            "requirements for installing %1.<br/>"
+            "Installation cannot continue. "
+            "<a href=\"#details\">Details...</a>" );
 
+        }else
+        {
+            message = setup ? tr( "This computer does not satisfy some of the "
+            "recommended requirements for setting up %1.<br/>"
+            "Setup can continue, but some features "
+            "might be disabled." )
+            : tr( "This computer does not satisfy some of the "
+            "recommended requirements for installing %1.<br/>"
+            "Installation can continue, but some features "
+            "might be disabled." );
+        }
 
+        m_warningMessage = message.arg( *Calamares::Branding::ShortVersionedName );
+    }else
+    {
+        m_warningMessage = tr( "This program will ask you some questions and "
+        "set up %2 on your computer." )
+        .arg( *Calamares::Branding::ProductName );
+    }
 
-
-
-
-
+    emit warningMessageChanged();
+}
