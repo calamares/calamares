@@ -61,7 +61,7 @@ public:
         if(index > count() ||  index < 0)
             return *(new Calamares::RequirementEntry());
 
-        return m_requierements.at(index);
+        return m_requirements.at(index);
 
     }
 
@@ -69,7 +69,7 @@ public:
     int rowCount(const QModelIndex&) const override;
     int count() const
     {
-        return m_requierements.count();
+        return m_requirements.count();
     }
 
     QString warningMessage() const
@@ -85,7 +85,7 @@ protected:
     QHash<int, QByteArray> roleNames() const override;
 
 private:
-    Calamares::RequirementsList m_requierements;
+    Calamares::RequirementsList m_requirements;
     bool m_satisfiedRequirements = false;
     bool m_satisfiedMandatory = false;
 
@@ -140,6 +140,9 @@ public:
 
     QString donateUrl() const;
     void setDonateUrl(const QString &url);
+
+    QString genericWelcomeMessage();
+
 
 public slots:
     CalamaresUtils::Locale::LabelModel* languagesModel() const;
