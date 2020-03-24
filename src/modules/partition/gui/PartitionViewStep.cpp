@@ -22,16 +22,16 @@
 #include "gui/PartitionViewStep.h"
 
 #include "core/DeviceModel.h"
-#include "core/PartitionActions.h"
-#include "core/PartitionCoreModule.h"
-#include "core/PartitionModel.h"
 #include "core/KPMHelpers.h"
 #include "core/OsproberEntry.h"
 #include "core/PartUtils.h"
+#include "core/PartitionActions.h"
+#include "core/PartitionCoreModule.h"
+#include "core/PartitionModel.h"
 #include "gui/ChoicePage.h"
-#include "gui/PartitionPage.h"
 #include "gui/PartitionBarsView.h"
 #include "gui/PartitionLabelsView.h"
+#include "gui/PartitionPage.h"
 
 #include "Branding.h"
 #include "CalamaresVersion.h"
@@ -55,13 +55,13 @@
 #include <QApplication>
 #include <QDir>
 #include <QFormLayout>
+#include <QFutureWatcher>
 #include <QLabel>
 #include <QMessageBox>
 #include <QProcess>
 #include <QStackedWidget>
 #include <QTimer>
 #include <QtConcurrent/QtConcurrent>
-#include <QFutureWatcher>
 
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -77,7 +77,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     m_widget->addWidget( m_waitingWidget );
     CALAMARES_RETRANSLATE( m_waitingWidget->setText( tr( "Gathering system information..." ) ); )
 
-    m_core = new PartitionCoreModule( this ); // Unusable before init is complete!
+    m_core = new PartitionCoreModule( this );  // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
 }
 
@@ -108,19 +108,21 @@ PartitionViewStep::continueLoading()
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;
 
-    connect( m_core,            &PartitionCoreModule::hasRootMountPointChanged,
-             this,              &PartitionViewStep::nextStatusChanged );
-    connect( m_choicePage,      &ChoicePage::nextStatusChanged,
-             this,              &PartitionViewStep::nextStatusChanged );
+    connect( m_core, &PartitionCoreModule::hasRootMountPointChanged, this, &PartitionViewStep::nextStatusChanged );
+    connect( m_choicePage, &ChoicePage::nextStatusChanged, this, &PartitionViewStep::nextStatusChanged );
 }
 
 
 PartitionViewStep::~PartitionViewStep()
 {
     if ( m_choicePage && m_choicePage->parent() == nullptr )
+    {
         m_choicePage->deleteLater();
+    }
     if ( m_manualPartitionPage && m_manualPartitionPage->parent() == nullptr )
+    {
         m_manualPartitionPage->deleteLater();
+    }
 }
 
 
@@ -154,7 +156,7 @@ PartitionViewStep::createSummaryWidget() const
     mainLayout->addLayout( formLayout );
 
     QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
-    if ( list.length() > 1 ) // There are changes on more than one disk
+    if ( list.length() > 1 )  // There are changes on more than one disk
     {
         //NOTE: all of this should only happen when Manual partitioning is active.
         //      Any other choice should result in a list.length() == 1.
@@ -165,15 +167,15 @@ PartitionViewStep::createSummaryWidget() const
         {
         case ChoicePage::Alongside:
             modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
-                       .arg( *Calamares::Branding::ShortVersionedName );
+                           .arg( *Calamares::Branding::ShortVersionedName );
             break;
         case ChoicePage::Erase:
-            modeText = tr( "<strong>Erase</strong> disk and install %1." )
-                       .arg( *Calamares::Branding::ShortVersionedName );
+            modeText
+                = tr( "<strong>Erase</strong> disk and install %1." ).arg( *Calamares::Branding::ShortVersionedName );
             break;
         case ChoicePage::Replace:
-            modeText = tr( "<strong>Replace</strong> a partition with %1." )
-                       .arg( *Calamares::Branding::ShortVersionedName );
+            modeText
+                = tr( "<strong>Replace</strong> a partition with %1." ).arg( *Calamares::Branding::ShortVersionedName );
             break;
         case ChoicePage::NoChoice:
         case ChoicePage::Manual:
@@ -184,42 +186,42 @@ PartitionViewStep::createSummaryWidget() const
     for ( const auto& info : list )
     {
         QLabel* diskInfoLabel = new QLabel;
-        if ( list.length() == 1 ) // this is the only disk preview
+        if ( list.length() == 1 )  // this is the only disk preview
         {
             QString modeText;
             switch ( choice )
             {
             case ChoicePage::Alongside:
-                modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk <strong>%2</strong> (%3)." )
-                           .arg( *Calamares::Branding::ShortVersionedName )
-                           .arg( info.deviceNode )
-                           .arg( info.deviceName );
+                modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk "
+                               "<strong>%2</strong> (%3)." )
+                               .arg( *Calamares::Branding::ShortVersionedName )
+                               .arg( info.deviceNode )
+                               .arg( info.deviceName );
                 break;
             case ChoicePage::Erase:
                 modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
-                           .arg( *Calamares::Branding::ShortVersionedName )
-                           .arg( info.deviceNode )
-                           .arg( info.deviceName );
+                               .arg( *Calamares::Branding::ShortVersionedName )
+                               .arg( info.deviceNode )
+                               .arg( info.deviceName );
                 break;
             case ChoicePage::Replace:
                 modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
-                           .arg( *Calamares::Branding::ShortVersionedName )
-                           .arg( info.deviceNode )
-                           .arg( info.deviceName );
+                               .arg( *Calamares::Branding::ShortVersionedName )
+                               .arg( info.deviceNode )
+                               .arg( info.deviceName );
                 break;
             case ChoicePage::NoChoice:
             case ChoicePage::Manual:
                 modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
-                           .arg( info.deviceNode )
-                           .arg( info.deviceName );
+                               .arg( info.deviceNode )
+                               .arg( info.deviceName );
             }
             diskInfoLabel->setText( modeText );
         }
-        else // multiple disk previews!
+        else  // multiple disk previews!
         {
-            diskInfoLabel->setText( tr( "Disk <strong>%1</strong> (%2)" )
-                                    .arg( info.deviceNode )
-                                    .arg( info.deviceName ) );
+            diskInfoLabel->setText(
+                tr( "Disk <strong>%1</strong> (%2)" ).arg( info.deviceNode ).arg( info.deviceName ) );
         }
         formLayout->addRow( diskInfoLabel );
 
@@ -227,10 +229,10 @@ PartitionViewStep::createSummaryWidget() const
         PartitionLabelsView* previewLabels;
         QVBoxLayout* field;
 
-        PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
-                value( "drawNestedPartitions" ).toBool() ?
-                PartitionBarsView::DrawNestedPartitions :
-                PartitionBarsView::NoNestedPartitions;
+        PartitionBarsView::NestedPartitionsMode mode
+            = Calamares::JobQueue::instance()->globalStorage()->value( "drawNestedPartitions" ).toBool()
+            ? PartitionBarsView::DrawNestedPartitions
+            : PartitionBarsView::NoNestedPartitions;
         preview = new PartitionBarsView;
         preview->setNestedPartitionsMode( mode );
         previewLabels = new PartitionLabelsView;
@@ -268,7 +270,9 @@ PartitionViewStep::createSummaryWidget() const
     foreach ( const Calamares::job_ptr& job, jobs() )
     {
         if ( !job->prettyDescription().isEmpty() )
+        {
             jobsLines.append( job->prettyDescription() );
+        }
     }
     if ( !jobsLines.isEmpty() )
     {
@@ -301,7 +305,9 @@ PartitionViewStep::next()
             m_widget->setCurrentWidget( m_manualPartitionPage );
             m_manualPartitionPage->selectDeviceByIndex( m_choicePage->lastSelectedDeviceIndex() );
             if ( m_core->isDirty() )
+            {
                 m_manualPartitionPage->onRevertClicked();
+            }
         }
         cDebug() << "Choice applied: " << m_choicePage->currentChoice();
     }
@@ -329,10 +335,14 @@ bool
 PartitionViewStep::isNextEnabled() const
 {
     if ( m_choicePage && m_widget->currentWidget() == m_choicePage )
+    {
         return m_choicePage->isNextEnabled();
+    }
 
     if ( m_manualPartitionPage && m_widget->currentWidget() == m_manualPartitionPage )
+    {
         return m_core->hasRootMountPoint();
+    }
 
     return false;
 }
@@ -349,7 +359,9 @@ bool
 PartitionViewStep::isAtBeginning() const
 {
     if ( m_widget->currentWidget() != m_choicePage )
+    {
         return false;
+    }
     return true;
 }
 
@@ -359,10 +371,11 @@ PartitionViewStep::isAtEnd() const
 {
     if ( m_widget->currentWidget() == m_choicePage )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::Erase ||
-                m_choicePage->currentChoice() == ChoicePage::Replace ||
-                m_choicePage->currentChoice() == ChoicePage::Alongside )
+        if ( m_choicePage->currentChoice() == ChoicePage::Erase || m_choicePage->currentChoice() == ChoicePage::Replace
+             || m_choicePage->currentChoice() == ChoicePage::Alongside )
+        {
             return true;
+        }
         return false;
     }
     return true;
@@ -381,11 +394,10 @@ PartitionViewStep::onActivate()
     }
 
     // if we're coming back to PVS from the next VS
-    if ( m_widget->currentWidget() == m_choicePage &&
-            m_choicePage->currentChoice() == ChoicePage::Alongside )
+    if ( m_widget->currentWidget() == m_choicePage && m_choicePage->currentChoice() == ChoicePage::Alongside )
     {
         m_choicePage->applyActionChoice( ChoicePage::Alongside );
-//        m_choicePage->reset();
+        //        m_choicePage->reset();
         //FIXME: ReplaceWidget should be reset maybe?
     }
 }
@@ -404,12 +416,14 @@ PartitionViewStep::onLeave()
     {
         bool isEfi = false;
         if ( PartUtils::isEfiSystem() )
+        {
             isEfi = true;
-        
+        }
+
         if ( isEfi )
         {
-            QString espMountPoint = Calamares::JobQueue::instance()->globalStorage()->
-                                    value( "efiSystemPartition" ).toString();
+            QString espMountPoint
+                = Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
             Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
             QString message;
@@ -425,8 +439,8 @@ PartitionViewStep::onLeave()
                                   "<strong>%2</strong>.<br/><br/>"
                                   "You can continue without setting up an EFI system "
                                   "partition but your system may fail to start." )
-                              .arg( *Calamares::Branding::ShortProductName )
-                              .arg( espMountPoint );
+                                  .arg( *Calamares::Branding::ShortProductName )
+                                  .arg( espMountPoint );
             }
             else if ( esp && !PartUtils::isEfiBootable( esp ) )
             {
@@ -440,24 +454,22 @@ PartitionViewStep::onLeave()
                                   "<br/><br/>"
                                   "You can continue without setting the flag but your "
                                   "system may fail to start." )
-                              .arg( *Calamares::Branding::ShortProductName )
-                              .arg( espMountPoint );
+                                  .arg( *Calamares::Branding::ShortProductName )
+                                  .arg( espMountPoint );
             }
 
             if ( !message.isEmpty() )
             {
                 cWarning() << message;
-                QMessageBox::warning( m_manualPartitionPage,
-                                      message,
-                                      description );
+                QMessageBox::warning( m_manualPartitionPage, message, description );
             }
         }
-            
+
         if ( !isEfi )
         {
-            
+
             cDebug() << "device: BIOS";
-            
+
             Partition* bios_p = m_core->findPartitionByMountPoint( "" );
             QString message;
             QString description;
@@ -474,17 +486,14 @@ PartitionViewStep::onLeave()
                               "<strong>bios_grub</strong> flag enabled.<br/><br/>"
                               "An unformatted 8 MB partition is necessary "
                               "to start %1 on a BIOS system with GPT." )
-                          .arg( Calamares::Branding::instance()->
-                                string( Calamares::Branding::ShortProductName ) );
-            
+                              .arg( Calamares::Branding::instance()->string( Calamares::Branding::ShortProductName ) );
+
             if ( !message.isEmpty() )
             {
-                QMessageBox::information( m_manualPartitionPage,
-                                      message,
-                                      description );
+                QMessageBox::information( m_manualPartitionPage, message, description );
             }
         }
-        
+
         Partition* root_p = m_core->findPartitionByMountPoint( "/" );
         Partition* boot_p = m_core->findPartitionByMountPoint( "/boot" );
 
@@ -495,8 +504,7 @@ PartitionViewStep::onLeave()
 
             // If the root partition is encrypted, and there's a separate boot
             // partition which is not encrypted
-            if ( root_p->fileSystem().type() == FileSystem::Luks &&
-                    boot_p->fileSystem().type() != FileSystem::Luks )
+            if ( root_p->fileSystem().type() == FileSystem::Luks && boot_p->fileSystem().type() != FileSystem::Luks )
             {
                 message = tr( "Boot partition not encrypted" );
                 description = tr( "A separate boot partition was set up together with "
@@ -512,9 +520,7 @@ PartitionViewStep::onLeave()
                                   "recreate it, selecting <strong>Encrypt</strong> "
                                   "in the partition creation window." );
 
-                QMessageBox::warning( m_manualPartitionPage,
-                                      message,
-                                      description );
+                QMessageBox::warning( m_manualPartitionPage, message, description );
             }
         }
     }
@@ -529,7 +535,9 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     QString efiSP = CalamaresUtils::getString( configurationMap, "efiSystemPartition" );
     if ( efiSP.isEmpty() )
+    {
         efiSP = QStringLiteral( "/boot/efi" );
+    }
     gs->insert( "efiSystemPartition", efiSP );
 
     // Set up firmwareType global storage entry. This is used, e.g. by the bootloader module.
@@ -547,16 +555,22 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     //
     // This is a bit convoluted because there's legacy settings to handle as well
     // as the new-style list of choices, with mapping back-and-forth.
-    if ( configurationMap.contains( "userSwapChoices" ) &&
-        ( configurationMap.contains( "ensureSuspendToDisk" ) || configurationMap.contains( "neverCreateSwap" ) ) )
+    if ( configurationMap.contains( "userSwapChoices" )
+         && ( configurationMap.contains( "ensureSuspendToDisk" ) || configurationMap.contains( "neverCreateSwap" ) ) )
+    {
         cError() << "Partition-module configuration mixes old- and new-style swap settings.";
+    }
 
     if ( configurationMap.contains( "ensureSuspendToDisk" ) )
+    {
         cWarning() << "Partition-module setting *ensureSuspendToDisk* is deprecated.";
+    }
     bool ensureSuspendToDisk = CalamaresUtils::getBool( configurationMap, "ensureSuspendToDisk", true );
 
     if ( configurationMap.contains( "neverCreateSwap" ) )
+    {
         cWarning() << "Partition-module setting *neverCreateSwap* is deprecated.";
+    }
     bool neverCreateSwap = CalamaresUtils::getBool( configurationMap, "neverCreateSwap", false );
 
     QSet< PartitionActions::Choices::SwapChoice > choices;  // Available swap choices
@@ -571,7 +585,9 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             bool ok = false;
             auto v = PartitionActions::Choices::nameToChoice( item, ok );
             if ( ok )
+            {
                 choices.insert( v );
+            }
         }
 
         if ( choices.isEmpty() )
@@ -589,19 +605,28 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         // Convert the legacy settings into a single setting for now.
         if ( neverCreateSwap )
+        {
             choices.insert( PartitionActions::Choices::SwapChoice::NoSwap );
+        }
         else if ( ensureSuspendToDisk )
+        {
             choices.insert( PartitionActions::Choices::SwapChoice::FullSwap );
+        }
         else
+        {
             choices.insert( PartitionActions::Choices::SwapChoice::SmallSwap );
+        }
     }
 
     // Not all are supported right now // FIXME
     static const char unsupportedSetting[] = "Partition-module does not support *userSwapChoices* setting";
 
-#define COMPLAIN_UNSUPPORTED(x) \
+#define COMPLAIN_UNSUPPORTED( x ) \
     if ( choices.contains( x ) ) \
-    { cWarning() << unsupportedSetting << PartitionActions::Choices::choiceToName( x ); choices.remove( x ); }
+    { \
+        cWarning() << unsupportedSetting << PartitionActions::Choices::choiceToName( x ); \
+        choices.remove( x ); \
+    }
 
     COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::SwapFile )
     COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::ReuseSwap )
@@ -620,23 +645,35 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // OTHER SETTINGS
     //
     gs->insert( "drawNestedPartitions", CalamaresUtils::getBool( configurationMap, "drawNestedPartitions", false ) );
-    gs->insert( "alwaysShowPartitionLabels", CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
-    gs->insert( "enableLuksAutomatedPartitioning", CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
-    gs->insert( "allowManualPartitioning", CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
+    gs->insert( "alwaysShowPartitionLabels",
+                CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
+    gs->insert( "enableLuksAutomatedPartitioning",
+                CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
+    gs->insert( "allowManualPartitioning",
+                CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
 
     // The defaultFileSystemType setting needs a bit more processing,
     // as we want to cover various cases (such as different cases)
     QString fsName = CalamaresUtils::getString( configurationMap, "defaultFileSystemType" );
     FileSystem::Type fsType;
     if ( fsName.isEmpty() )
-            cWarning() << "Partition-module setting *defaultFileSystemType* is missing, will use ext4";
+    {
+        cWarning() << "Partition-module setting *defaultFileSystemType* is missing, will use ext4";
+    }
     QString fsRealName = PartUtils::findFS( fsName, &fsType );
     if ( fsRealName == fsName )
+    {
         cDebug() << "Partition-module setting *defaultFileSystemType*" << fsRealName;
+    }
     else if ( fsType != FileSystem::Unknown )
+    {
         cWarning() << "Partition-module setting *defaultFileSystemType* changed" << fsRealName;
+    }
     else
-        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName << ") using" << fsRealName << "instead.";
+    {
+        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << fsName << ") using" << fsRealName
+                   << "instead.";
+    }
     gs->insert( "defaultFileSystemType", fsRealName );
 
 
@@ -644,21 +681,18 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // because it could take a while. Then when it's done, we can set up the widgets
     // and remove the spinner.
     m_future = new QFutureWatcher< void >();
-    connect( m_future, &QFutureWatcher< void >::finished,
-             this, [ this ]
-    {
+    connect( m_future, &QFutureWatcher< void >::finished, this, [this] {
         continueLoading();
         this->m_future->deleteLater();
         this->m_future = nullptr;
     } );
 
-    QFuture< void > future =
-        QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
+    QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
     if ( configurationMap.contains( "partitionLayout" ) )
     {
-        m_core->initLayout( configurationMap.values( "partitionLayout" ).at(0).toList() );
+        m_core->initLayout( configurationMap.values( "partitionLayout" ).at( 0 ).toList() );
     }
     else
     {
@@ -677,19 +711,20 @@ Calamares::RequirementsList
 PartitionViewStep::checkRequirements()
 {
     if ( m_future )
+    {
         m_future->waitForFinished();
+    }
 
     Calamares::RequirementsList l;
-    l.append(
-    {
+    l.append( {
         QLatin1String( "partitions" ),
-        []{ return tr( "has at least one disk device available." ); },
-        []{ return tr( "There are no partitions to install on." ); },
+        [] { return tr( "has at least one disk device available." ); },
+        [] { return tr( "There are no partitions to install on." ); },
         m_core->deviceModel()->rowCount() > 0,  // satisfied
 #ifdef DEBUG_PARTITION_UNSAFE
-             false  // optional
+        false  // optional
 #else
-             true   // required
+        true  // required
 #endif
     } );
 
@@ -697,4 +732,4 @@ PartitionViewStep::checkRequirements()
 }
 
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( PartitionViewStepFactory, registerPlugin<PartitionViewStep>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( PartitionViewStepFactory, registerPlugin< PartitionViewStep >(); )
