@@ -402,7 +402,11 @@ PartitionViewStep::onLeave()
 
     if ( m_widget->currentWidget() == m_manualPartitionPage )
     {
+        bool isEfi = false;
         if ( PartUtils::isEfiSystem() )
+            isEfi = true;
+        
+        if ( isEfi )
         {
             QString espMountPoint = Calamares::JobQueue::instance()->globalStorage()->
                                     value( "efiSystemPartition" ).toString();
@@ -448,7 +452,39 @@ PartitionViewStep::onLeave()
                                       description );
             }
         }
+            
+        if ( !isEfi )
+        {
+            
+            cDebug() << "device: BIOS";
+            
+            Partition* bios_p = m_core->findPartitionByMountPoint( "" );
+            QString message;
+            QString description;
 
+            message = tr( "Option to use GPT on BIOS" );
+            description = tr( "A GPT partition table is the best option for all "
+                              "systems. This installer supports such a setup for "
+                              "BIOS systems too."
+                              "<br/><br/>"
+                              "To configure a GPT partition table on BIOS, "
+                              "(if not done so already) go back "
+                              "and set the partion table to GPT, next create a 8 MB "
+                              "unformatted partition with the "
+                              "<strong>bios_grub</strong> flag enabled.<br/><br/>"
+                              "An unformatted 8 MB partition is necessary "
+                              "to start %1 on a BIOS system with GPT." )
+                          .arg( Calamares::Branding::instance()->
+                                string( Calamares::Branding::ShortProductName ) );
+            
+            if ( !message.isEmpty() )
+            {
+                QMessageBox::information( m_manualPartitionPage,
+                                      message,
+                                      description );
+            }
+        }
+        
         Partition* root_p = m_core->findPartitionByMountPoint( "/" );
         Partition* boot_p = m_core->findPartitionByMountPoint( "/boot" );
 
