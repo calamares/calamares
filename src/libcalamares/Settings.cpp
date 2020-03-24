@@ -232,6 +232,7 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
             m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
             m_disableCancel = requireBool( config, "disable-cancel", false );
             m_disableCancelDuringExec = requireBool( config, "disable-cancel-during-exec", false );
+            m_quitAtEnd = requireBool( config, "quit-at-end", false );
         }
         catch ( YAML::Exception& e )
         {

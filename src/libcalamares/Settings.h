@@ -101,6 +101,9 @@ public:
     /** @brief Temporary setting of disable-cancel: can't cancel during exec. */
     bool disableCancelDuringExec() const { return m_disableCancelDuringExec; }
 
+    /** @brief Is quit-at-end set? (Quit automatically when done) */
+    bool quitAtEnd() const { return m_quitAtEnd; }
+
 private:
     static Settings* s_instance;
 
@@ -117,6 +120,7 @@ private:
     bool m_promptInstall;
     bool m_disableCancel;
     bool m_disableCancelDuringExec;
+    bool m_quitAtEnd;
 };
 
 }  // namespace Calamares

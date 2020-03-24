@@ -426,6 +426,10 @@ ViewManager::updateButtonLabels()
         m_quit->setVisible( true );  // At end, always visible and enabled.
         setButtonIcon( m_quit, "dialog-ok-apply" );
         updateCancelEnabled( true );
+        if ( settings->quitAtEnd() )
+        {
+            m_quit->click();
+        }
     }
     else
     {
