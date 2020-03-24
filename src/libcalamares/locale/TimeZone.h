@@ -145,7 +145,7 @@ class CStringListModel : public QAbstractListModel
 
 public:
     /// @brief Create empty model
-    CStringListModel() {};
+    CStringListModel() {}
     /// @brief Create model from list (non-owning)
     CStringListModel( CStringPairList );
 
