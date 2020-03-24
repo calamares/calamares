@@ -2,8 +2,9 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018-2019, 2020, Adriaan de Groot <groot@kde.org>
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   Copyright 2020, Anke Boersma <demm@kaosx.us
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -38,7 +39,6 @@
 #include "GlobalStorage.h"
 #include "Job.h"
 #include "JobQueue.h"
-
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
@@ -51,7 +51,6 @@
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 
-// Qt
 #include <QApplication>
 #include <QDir>
 #include <QFormLayout>
@@ -414,13 +413,7 @@ PartitionViewStep::onLeave()
 
     if ( m_widget->currentWidget() == m_manualPartitionPage )
     {
-        bool isEfi = false;
         if ( PartUtils::isEfiSystem() )
-        {
-            isEfi = true;
-        }
-
-        if ( isEfi )
         {
             QString espMountPoint
                 = Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
@@ -464,18 +457,15 @@ PartitionViewStep::onLeave()
                 QMessageBox::warning( m_manualPartitionPage, message, description );
             }
         }
-
-        if ( !isEfi )
+        else
         {
 
             cDebug() << "device: BIOS";
+            // TODO: this *always* warns, which might be annoying, so it'd be
+            //       best to find a way to detect that bios_grub partition.
 
-            Partition* bios_p = m_core->findPartitionByMountPoint( "" );
-            QString message;
-            QString description;
-
-            message = tr( "Option to use GPT on BIOS" );
-            description = tr( "A GPT partition table is the best option for all "
+            QString message = tr( "Option to use GPT on BIOS" );
+            QString description = tr( "A GPT partition table is the best option for all "
                               "systems. This installer supports such a setup for "
                               "BIOS systems too."
                               "<br/><br/>"
@@ -486,12 +476,9 @@ PartitionViewStep::onLeave()
                               "<strong>bios_grub</strong> flag enabled.<br/><br/>"
                               "An unformatted 8 MB partition is necessary "
                               "to start %1 on a BIOS system with GPT." )
-                              .arg( Calamares::Branding::instance()->string( Calamares::Branding::ShortProductName ) );
+                              .arg( *Calamares::Branding::ShortProductName );
 
-            if ( !message.isEmpty() )
-            {
-                QMessageBox::information( m_manualPartitionPage, message, description );
-            }
+            QMessageBox::information( m_manualPartitionPage, message, description );
         }
 
         Partition* root_p = m_core->findPartitionByMountPoint( "/" );
