@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -212,12 +212,6 @@ PackageModel::getItemPackages( PackageTreeItem* item ) const
         }
     }
     return selectedPackages;
-}
-
-static bool
-getBool( const YAML::Node& itemDefinition, const char* key )
-{
-    return itemDefinition[ key ] ? CalamaresUtils::yamlToVariant( itemDefinition[ key ] ).toBool() : false;
 }
 
 void
