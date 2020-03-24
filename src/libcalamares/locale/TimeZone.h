@@ -156,7 +156,7 @@ public:
     const CStringPair* item( int index ) const;
     QHash< int, QByteArray > roleNames() const override;
 
-    void setCurrentIndex( const int& index );
+    void setCurrentIndex( int index );
     int currentIndex() const;
 
     void setList( CStringPairList );
