@@ -21,14 +21,115 @@
 
 #include "Config.h"
 
+#include "network/Manager.h"
+#include "utils/Logger.h"
+#include "utils/Yaml.h"
+
+#include <QNetworkReply>
+
 Config::Config( QObject* parent )
-    : m_model( nullptr )
+    : QObject( parent )
+    , m_model( new PackageModel( this ) )
 {
 }
+
+Config::~Config() {}
 
 void
 Config::setStatus( const QString& s )
 {
     m_status = s;
     emit statusChanged( m_status );
+}
+
+void
+Config::loadGroupList( const QVariantList& groupData )
+{
+    m_model->setupModelData( groupData );
+}
+
+void
+Config::loadGroupList( const QUrl& url )
+{
+    if ( !url.isValid() )
+    {
+        setStatus( tr( "Network Installation. (Disabled: Incorrect configuration)" ) );
+    }
+
+    using namespace CalamaresUtils::Network;
+
+    cDebug() << "NetInstall loading groups from" << url;
+    QNetworkReply* reply = Manager::instance().asynchronouseGet(
+        url,
+        RequestOptions( RequestOptions::FakeUserAgent | RequestOptions::FollowRedirect, std::chrono::seconds( 30 ) ) );
+
+    if ( !reply )
+    {
+        cDebug() << Logger::Continuation << "request failed immediately.";
+        setStatus( tr( "Network Installation. (Disabled: Incorrect configuration)" ) );
+    }
+    else
+    {
+        m_reply = reply;
+        connect( reply, &QNetworkReply::finished, this, &Config::receivedGroupData );
+    }
+}
+
+/// @brief Convenience to zero out and deleteLater on the reply, used in dataIsHere
+struct ReplyDeleter
+{
+    QNetworkReply*& p;
+
+    ~ReplyDeleter()
+    {
+        if ( p )
+        {
+            p->deleteLater();
+        }
+        p = nullptr;
+    }
+};
+
+void
+Config::receivedGroupData()
+{
+    if ( !m_reply || !m_reply->isFinished() )
+    {
+        cWarning() << "NetInstall data called too early.";
+        setStatus( tr( "Network Installation. (Disabled: internal error)" ) );
+        return;
+    }
+
+    cDebug() << "NetInstall group data received" << m_reply->size() << "bytes from" << m_reply->url();
+
+    ReplyDeleter d { m_reply };
+
+    // If m_required is *false* then we still say we're ready
+    // even if the reply is corrupt or missing.
+    if ( m_reply->error() != QNetworkReply::NoError )
+    {
+        cWarning() << "unable to fetch netinstall package lists.";
+        cDebug() << Logger::SubEntry << "Netinstall reply error: " << m_reply->error();
+        cDebug() << Logger::SubEntry << "Request for url: " << m_reply->url().toString()
+                 << " failed with: " << m_reply->errorString();
+        setStatus( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
+        return;
+    }
+
+    QByteArray yamlData = m_reply->readAll();
+    try
+    {
+        YAML::Node groups = YAML::Load( yamlData.constData() );
+
+        if ( !groups.IsSequence() )
+        {
+            cWarning() << "NetInstall groups data does not form a sequence.";
+        }
+        loadGroupList( CalamaresUtils::yamlSequenceToVariant( groups ) );
+    }
+    catch ( YAML::Exception& e )
+    {
+        CalamaresUtils::explainYamlException( e, yamlData, "netinstall groups data" );
+        setStatus( tr( "Network Installation. (Disabled: Received invalid groups data)" ) );
+    }
 }

@@ -24,6 +24,9 @@
 #include "PackageModel.h"
 
 #include <QObject>
+#include <QUrl>
+
+class QNetworkReply;
 
 class Config : public QObject
 {
@@ -35,16 +38,35 @@ class Config : public QObject
 
 public:
     Config( QObject* parent = nullptr );
+    virtual ~Config();
 
     QString status() const { return m_status; }
     void setStatus( const QString& s );
 
+    /** @brief Retrieves the groups, with name, description and packages
+     *
+     * Loads data from the given URL. Once done, the data is parsed
+     * and passed on to the other loadGroupList() method.
+     */
+    void loadGroupList( const QUrl& url );
+
+    /** @brief Fill model from parsed data.
+     *
+     * Fills the model with a list of groups -- which can contain
+     * subgroups and packages -- from @p groupData.
+     */
+    void loadGroupList( const QVariantList& groupData );
+
 signals:
     void statusChanged( QString status );
 
+private slots:
+    void receivedGroupData();  ///< From async-loading group data
+
 private:
     QString m_status;
-    PackageModel* m_model = nullptr;
+    PackageModel* m_model;
+    QNetworkReply* m_reply = nullptr;  // For fetching data
 };
 
 #endif
