@@ -276,7 +276,7 @@ Manager::synchronousGet( const QUrl& url, const RequestOptions& options )
 }
 
 QNetworkReply*
-Manager::asynchronouseGet( const QUrl& url, const CalamaresUtils::Network::RequestOptions& options )
+Manager::asynchronousGet( const QUrl& url, const CalamaresUtils::Network::RequestOptions& options )
 {
     return asynchronousRun( d->nam(), url, options );
 }

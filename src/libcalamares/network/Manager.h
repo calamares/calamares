@@ -146,7 +146,7 @@ public:
      * This may be a nullptr if an error occurs immediately.
      * The caller is responsible for cleaning up the reply (eventually).
      */
-    QNetworkReply* asynchronouseGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
+    QNetworkReply* asynchronousGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
 
 private:
     class Private;

@@ -187,7 +187,7 @@ NetInstallPage::loadGroupList( const QString& confUrl )
     using namespace CalamaresUtils::Network;
 
     cDebug() << "NetInstall loading groups from" << confUrl;
-    QNetworkReply* reply = Manager::instance().asynchronouseGet(
+    QNetworkReply* reply = Manager::instance().asynchronousGet(
         QUrl( confUrl ),
         RequestOptions( RequestOptions::FakeUserAgent | RequestOptions::FollowRedirect, std::chrono::seconds( 30 ) ) );
 
