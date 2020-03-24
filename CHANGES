@@ -25,6 +25,11 @@ This release contains contributions from (alphabetically by first name):
    more configurable: the branding key *sidebar* controls it. The sidebar
    can be shown as a widget (default, as it has been), hidden, or use a
    new QML view which is more easily customised.
+ - A new `settings.conf` key *quit-at-end* will automatically close
+   Calamares (by clicking on the *Done* button) when the end of the
+   sequence is reached. If *finished* is the last module in the sequence,
+   this will run whatever it is configured for; you can also leave out
+   the finished page and Calamares will close after the exec parts.
 
 ## Modules ##
  - *packages* now reports more details in the installation progress-bar.
