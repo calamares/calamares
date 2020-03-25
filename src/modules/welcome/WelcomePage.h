@@ -36,7 +36,7 @@ class WelcomePage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit WelcomePage( Config *conf,  QWidget* parent = nullptr );
+    explicit WelcomePage( Config* conf, QWidget* parent = nullptr );
 
     enum class Button
     {
@@ -75,7 +75,7 @@ private:
     CheckerContainer* m_checkingWidget;
     CalamaresUtils::Locale::LabelModel* m_languages;
 
-    Config *m_conf;
+    Config* m_conf;
 };
 
 /** @brief Delegate to display language information in two columns.

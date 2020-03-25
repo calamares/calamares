@@ -75,7 +75,7 @@ public:
 private:
     WelcomePage* m_widget;
     GeneralRequirements* m_requirementsChecker;
-    Config *m_conf;
+    Config* m_conf;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )

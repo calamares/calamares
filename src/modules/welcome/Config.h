@@ -19,9 +19,9 @@
 #ifndef WELCOME_CONFIG_H
 #define WELCOME_CONFIG_H
 
+#include "modulesystem/Requirement.h"
 #include <QObject>
 #include <QUrl>
-#include "modulesystem/Requirement.h"
 
 #include "locale/LabelModel.h"
 
@@ -29,9 +29,9 @@ class RequirementsModel : public QAbstractListModel
 {
     Q_OBJECT
     using QAbstractListModel::QAbstractListModel;
-    Q_PROPERTY(bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL)
+    Q_PROPERTY( bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL )
 
-    Q_PROPERTY(bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL)
+    Q_PROPERTY( bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL )
     Q_PROPERTY( QString warningMessage READ warningMessage NOTIFY warningMessageChanged FINAL )
 
 public:
@@ -45,44 +45,33 @@ public:
         HasDetails
     };
 
-    bool satisfiedRequirements() const
-    {
-        return m_satisfiedRequirements;
-    }
+    bool satisfiedRequirements() const { return m_satisfiedRequirements; }
 
-    bool satisfiedMandatory() const
-    {
-        return m_satisfiedMandatory;
-    }
+    bool satisfiedMandatory() const { return m_satisfiedMandatory; }
 
-    const Calamares::RequirementEntry& getEntry(const int& index) const
+    const Calamares::RequirementEntry& getEntry( const int& index ) const
     {
 
-        if(index > count() ||  index < 0)
-            return *(new Calamares::RequirementEntry());
+        if ( index > count() || index < 0 )
+        {
+            return *( new Calamares::RequirementEntry() );
+        }
 
-        return m_requirements.at(index);
-
+        return m_requirements.at( index );
     }
 
     void setRequirementsList( const Calamares::RequirementsList& requirements );
-    int rowCount(const QModelIndex&) const override;
-    int count() const
-    {
-        return m_requirements.count();
-    }
+    int rowCount( const QModelIndex& ) const override;
+    int count() const { return m_requirements.count(); }
 
-    QString warningMessage() const
-    {
-        return m_warningMessage;
-    }
+    QString warningMessage() const { return m_warningMessage; }
 
     void retranslate();
 
-    QVariant data(const QModelIndex& index, int role) const override;
+    QVariant data( const QModelIndex& index, int role ) const override;
 
 protected:
-    QHash<int, QByteArray> roleNames() const override;
+    QHash< int, QByteArray > roleNames() const override;
 
 private:
     Calamares::RequirementsList m_requirements;
@@ -92,7 +81,7 @@ private:
     QString m_warningMessage;
 
 signals:
-    void satisfiedRequirementsChanged(bool value);
+    void satisfiedRequirementsChanged( bool value );
     void satisfiedMandatoryChanged();
     void warningMessageChanged();
 };
@@ -101,45 +90,45 @@ signals:
 class Config : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL)
+    Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL )
     Q_PROPERTY( RequirementsModel* requirementsModel MEMBER m_requirementsModel CONSTANT FINAL )
 
     Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
 
     Q_PROPERTY( QString countryCode MEMBER m_countryCode NOTIFY countryCodeChanged FINAL )
-    Q_PROPERTY (int localeIndex READ localeIndex WRITE setLocaleIndex NOTIFY localeIndexChanged)
+    Q_PROPERTY( int localeIndex READ localeIndex WRITE setLocaleIndex NOTIFY localeIndexChanged )
 
     Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage NOTIFY genericWelcomeMessageChanged FINAL )
 
     Q_PROPERTY( QString supportUrl MEMBER m_supportUrl NOTIFY supportUrlChanged FINAL )
     Q_PROPERTY( QString knownIssuesUrl MEMBER m_knownIssuesUrl NOTIFY knownIssuesUrlChanged FINAL )
     Q_PROPERTY( QString releaseNotesUrl MEMBER m_releaseNotesUrl NOTIFY releaseNotesUrlChanged FINAL )
-    Q_PROPERTY (QString donateUrl MEMBER m_donateUrl NOTIFY donateUrlChanged FINAL )
+    Q_PROPERTY( QString donateUrl MEMBER m_donateUrl NOTIFY donateUrlChanged FINAL )
 
     Q_PROPERTY( bool isNextEnabled MEMBER m_isNextEnabled NOTIFY isNextEnabledChanged FINAL )
 
 public:
     Config( QObject* parent = nullptr );
-    void setCountryCode( const QString &countryCode );
-    void setLanguageIcon( const QString &languageIcon );
-    RequirementsModel& requirementsModel () const;
+    void setCountryCode( const QString& countryCode );
+    void setLanguageIcon( const QString& languageIcon );
+    RequirementsModel& requirementsModel() const;
 
     void setIsNextEnabled( const bool& isNextEnabled );
 
-    void setLocaleIndex(const int &index);
+    void setLocaleIndex( const int& index );
     int localeIndex() const { return m_localeIndex; }
 
     QString supportUrl() const;
-    void setSupportUrl(const QString &url);
+    void setSupportUrl( const QString& url );
 
     QString knownIssuesUrl() const;
-    void setKnownIssuesUrl(const QString &url);
+    void setKnownIssuesUrl( const QString& url );
 
     QString releaseNotesUrl() const;
-    void setReleaseNotesUrl(const QString &url);
+    void setReleaseNotesUrl( const QString& url );
 
     QString donateUrl() const;
-    void setDonateUrl(const QString &url);
+    void setDonateUrl( const QString& url );
 
     QString genericWelcomeMessage();
 
@@ -175,7 +164,6 @@ signals:
     void knownIssuesUrlChanged();
     void releaseNotesUrlChanged();
     void donateUrlChanged();
-
 };
 
 #endif
