@@ -83,7 +83,7 @@ CalamaresApplication::init()
     initQmlPath();
     initBranding();
 
-    CalamaresUtils::installTranslator( QLocale::system(), QString(), this );
+    CalamaresUtils::installTranslator( QLocale::system(), QString() );
 
     setQuitOnLastWindowClosed( false );
     setWindowIcon( QIcon( Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductIcon ) ) );

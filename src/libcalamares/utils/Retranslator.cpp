@@ -197,7 +197,7 @@ static QTranslator* s_tztranslator = nullptr;
 static QString s_translatorLocaleName;
 
 void
-installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix, QObject* )
+installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix )
 {
     loadSingletonTranslator( BrandingLoader( locale, brandingTranslationsPrefix ), s_brandingTranslator );
     loadSingletonTranslator( TZLoader( locale ), s_tztranslator );
