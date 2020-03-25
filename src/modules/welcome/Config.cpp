@@ -27,15 +27,16 @@
 void
 RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
 {
+    CALAMARES_RETRANSLATE_SLOT( &RequirementsModel::retranslate )
+
     emit beginResetModel();
-    m_requierements = requirements;
-    m_satisfiedRequirements = true;
+    m_requirements = requirements;
 
     auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
     auto isMandatoryAndUnSatisfied = []( const Calamares::RequirementEntry& e ) { return e.mandatory && !e.satisfied; };
 
-    m_satisfiedRequirements = std::none_of( m_requierements.begin(), m_requierements.end(), isUnSatisfied );
-    m_satisfiedMandatory = std::none_of( m_requierements.begin(), m_requierements.end(), isMandatoryAndUnSatisfied );
+    m_satisfiedRequirements = std::none_of( m_requirements.begin(), m_requirements.end(), isUnSatisfied );
+    m_satisfiedMandatory = std::none_of( m_requirements.begin(), m_requirements.end(), isMandatoryAndUnSatisfied );
 
     emit satisfiedRequirementsChanged(m_satisfiedRequirements);
     emit satisfiedMandatoryChanged();
@@ -45,13 +46,13 @@ RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requi
 int
 RequirementsModel::rowCount( const QModelIndex& ) const
 {
-    return m_requierements.count();
+    return m_requirements.count();
 }
 
 QVariant
 RequirementsModel::data( const QModelIndex& index, int role ) const
 {
-    const auto requirement = m_requierements.at( index.row() );
+    const auto requirement = m_requirements.at( index.row() );
 
 	switch ( role )
 	{
@@ -91,31 +92,15 @@ Config::Config( QObject* parent ) : QObject( parent )
     initLanguages();
 
     CALAMARES_RETRANSLATE_SLOT( &Config::retranslate )
-
 }
 
 void
 Config::retranslate()
 {
-    QString message;
-
-    if ( Calamares::Settings::instance()->isSetupMode() )
-    {
-        message = Calamares::Branding::instance()->welcomeStyleCalamares()
-        ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
-        : tr( "<h1>Welcome to %1 setup.</h1>" );
-    }
-    else
-    {
-        message = Calamares::Branding::instance()->welcomeStyleCalamares()
-        ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
-        : tr( "<h1>Welcome to the %1 installer.</h1>" );
-    }
-
-    m_genericWelcomeMessage = message.arg( *Calamares::Branding::VersionedName );
+    m_genericWelcomeMessage = genericWelcomeMessage().arg( *Calamares::Branding::VersionedName );
     emit genericWelcomeMessageChanged();
 
-//     ui->supportButton->setText( tr( "%1 support" ).arg( *Calamares::Branding::ShortProductName ) );
+    m_requirementsModel->retranslate();
 }
 
 CalamaresUtils::Locale::LabelModel*
@@ -223,51 +208,118 @@ Config::setIsNextEnabled( const bool& isNextEnabled )
     emit isNextEnabledChanged( m_isNextEnabled );
 }
 
-QString Config::donateUrl() const
+QString
+Config::donateUrl() const
 {
     return m_donateUrl;
 }
 
-void Config::setDonateUrl(const QString& url)
+void
+Config::setDonateUrl(const QString& url)
 {
     m_donateUrl = url;
+    emit donateUrlChanged();
 }
 
-QString Config::knownIssuesUrl() const
+QString
+Config::knownIssuesUrl() const
 {
     return m_knownIssuesUrl;
 }
 
-void Config::setKnownIssuesUrl(const QString& url)
+void
+Config::setKnownIssuesUrl(const QString& url)
 {
     m_knownIssuesUrl = url;
+    emit knownIssuesUrlChanged();
 }
 
-void Config::setReleaseNotesUrl(const QString& url)
+void
+Config::setReleaseNotesUrl(const QString& url)
 {
   m_releaseNotesUrl = url;
+  emit releaseNotesUrlChanged();
 }
 
-QString Config::releaseNotesUrl() const
+QString
+Config::releaseNotesUrl() const
 {
     return m_releaseNotesUrl;
 }
 
-QString Config::supportUrl() const
+QString
+Config::supportUrl() const
 {
     return m_supportUrl;
 }
 
-void Config::setSupportUrl(const QString& url)
+void
+Config::setSupportUrl(const QString& url)
 {
     m_supportUrl = url;
+    emit supportUrlChanged();
 }
 
+void
+RequirementsModel::retranslate()
+{
+    if ( !m_satisfiedRequirements )
+    {
+        QString message;
+        const bool setup = Calamares::Settings::instance()->isSetupMode();
 
+        if ( !m_satisfiedMandatory )
+        {
+            message = setup ? tr( "This computer does not satisfy the minimum "
+            "requirements for setting up %1.<br/>"
+            "Setup cannot continue. "
+            "<a href=\"#details\">Details...</a>" )
+            : tr( "This computer does not satisfy the minimum "
+            "requirements for installing %1.<br/>"
+            "Installation cannot continue. "
+            "<a href=\"#details\">Details...</a>" );
 
+        }else
+        {
+            message = setup ? tr( "This computer does not satisfy some of the "
+            "recommended requirements for setting up %1.<br/>"
+            "Setup can continue, but some features "
+            "might be disabled." )
+            : tr( "This computer does not satisfy some of the "
+            "recommended requirements for installing %1.<br/>"
+            "Installation can continue, but some features "
+            "might be disabled." );
+        }
 
+        m_warningMessage = message.arg( *Calamares::Branding::ShortVersionedName );
+    }else
+    {
+        m_warningMessage = tr( "This program will ask you some questions and "
+        "set up %2 on your computer." )
+        .arg( *Calamares::Branding::ProductName );
+    }
 
+    emit warningMessageChanged();
+}
 
+QString
+Config::genericWelcomeMessage()
+{
+    QString message;
 
+    if ( Calamares::Settings::instance()->isSetupMode() )
+    {
+        message = Calamares::Branding::instance()->welcomeStyleCalamares()
+        ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
+        : tr( "<h1>Welcome to %1 setup.</h1>" );
+    }
+    else
+    {
+        message = Calamares::Branding::instance()->welcomeStyleCalamares()
+        ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
+        : tr( "<h1>Welcome to the %1 installer.</h1>" );
+    }
 
+    return message;
+}
 
