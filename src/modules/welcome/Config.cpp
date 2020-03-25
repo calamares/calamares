@@ -23,8 +23,6 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#include <QApplication>
-
 void
 RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
 {
@@ -155,7 +153,7 @@ Config::initLanguages()
         QString name = m_languages->locale( matchedLocaleIndex ).name();
         cDebug() << Logger::SubEntry << "Matched with index" << matchedLocaleIndex << name;
 
-        CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsDirectory(), qApp );
+        CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsDirectory() );
         setLocaleIndex( matchedLocaleIndex );
     }
     else
@@ -194,7 +192,7 @@ Config::setLocaleIndex( const int& index )
     cDebug() << "Selected locale" << selectedLocale;
 
     QLocale::setDefault( selectedLocale );
-    CalamaresUtils::installTranslator( selectedLocale, Calamares::Branding::instance()->translationsDirectory(), qApp );
+    CalamaresUtils::installTranslator( selectedLocale, Calamares::Branding::instance()->translationsDirectory() );
 
     emit localeIndexChanged( m_localeIndex );
 }
