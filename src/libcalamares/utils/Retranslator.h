@@ -36,9 +36,8 @@ namespace CalamaresUtils
  * @brief installTranslator changes the application language.
  * @param locale the new locale.
  * @param brandingTranslationsPrefix the branding path prefix, from Calamares::Branding.
- * @param parent the parent QObject.
  */
-DLLEXPORT void installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix, QObject* parent );
+DLLEXPORT void installTranslator( const QLocale& locale, const QString& brandingTranslationsPrefix );
 
 DLLEXPORT QString translatorLocaleName();
 

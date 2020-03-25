@@ -44,8 +44,9 @@ namespace Locale
  * QPair<QString, QString> because there is API that needs
  * C-style strings.
  */
-class CStringPair
+class CStringPair : public QObject
 {
+    Q_OBJECT
 public:
     /// @brief An empty pair
     CStringPair() {}
@@ -86,6 +87,7 @@ public:
 /// @brief A pair of strings for timezone regions (e.g. "America")
 class TZRegion : public CStringPair
 {
+    Q_OBJECT
 public:
     using CStringPair::CStringPair;
     virtual ~TZRegion() override;
@@ -117,6 +119,7 @@ private:
 /// @brief A pair of strings for specific timezone names (e.g. "New_York")
 class TZZone : public CStringPair
 {
+    Q_OBJECT
 public:
     using CStringPair::CStringPair;
     QString tr() const override;
@@ -137,21 +140,52 @@ protected:
 
 class CStringListModel : public QAbstractListModel
 {
+    Q_OBJECT
+    Q_PROPERTY( int currentIndex READ currentIndex WRITE setCurrentIndex NOTIFY currentIndexChanged )
+
 public:
     /// @brief Create empty model
-    CStringListModel();
+    CStringListModel() {}
     /// @brief Create model from list (non-owning)
     CStringListModel( CStringPairList );
-    virtual ~CStringListModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
 
     QVariant data( const QModelIndex& index, int role ) const override;
 
     const CStringPair* item( int index ) const;
+    QHash< int, QByteArray > roleNames() const override;
+
+    void setCurrentIndex( int index );
+    int currentIndex() const;
+
+    void setList( CStringPairList );
+
+    inline int indexOf( const QString& key )
+    {
+        const auto it = std::find_if(
+            m_list.constBegin(), m_list.constEnd(), [&]( const CalamaresUtils::Locale::CStringPair* item ) -> bool {
+                return item->key() == key;
+            } );
+
+        if ( it != m_list.constEnd() )
+        {
+            // distance() is usually a long long
+            return int( std::distance( m_list.constBegin(), it ) );
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
 
 private:
     CStringPairList m_list;
+    int m_currentIndex = -1;
+
+signals:
+    void currentIndexChanged();
 };
 
 }  // namespace Locale
