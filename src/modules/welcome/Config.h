@@ -20,21 +20,22 @@
 #define WELCOME_CONFIG_H
 
 #include "modulesystem/Requirement.h"
+#include "locale/LabelModel.h"
+
 #include <QObject>
 #include <QUrl>
 
-#include "locale/LabelModel.h"
-
+// TODO: move this (and modulesystem/Requirement) to libcalamares
 class RequirementsModel : public QAbstractListModel
 {
     Q_OBJECT
-    using QAbstractListModel::QAbstractListModel;
     Q_PROPERTY( bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL )
-
     Q_PROPERTY( bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL )
     Q_PROPERTY( QString warningMessage READ warningMessage NOTIFY warningMessageChanged FINAL )
 
 public:
+    using QAbstractListModel::QAbstractListModel;
+
     enum Roles : short
     {
         Name,
@@ -51,7 +52,6 @@ public:
 
     const Calamares::RequirementEntry& getEntry( const int& index ) const
     {
-
         if ( index > count() || index < 0 )
         {
             return *( new Calamares::RequirementEntry() );

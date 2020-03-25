@@ -17,6 +17,7 @@
  */
 
 #include "Config.h"
+
 #include "Branding.h"
 #include "Settings.h"
 #include "utils/Logger.h"
