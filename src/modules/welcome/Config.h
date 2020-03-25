@@ -19,21 +19,23 @@
 #ifndef WELCOME_CONFIG_H
 #define WELCOME_CONFIG_H
 
-#include <QObject>
-#include <QUrl>
 #include "modulesystem/Requirement.h"
-
 #include "locale/LabelModel.h"
 
+#include <QObject>
+#include <QUrl>
+
+// TODO: move this (and modulesystem/Requirement) to libcalamares
 class RequirementsModel : public QAbstractListModel
 {
     Q_OBJECT
-    using QAbstractListModel::QAbstractListModel;
-    Q_PROPERTY(bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL)
-
-    Q_PROPERTY(bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL)
+    Q_PROPERTY( bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL )
+    Q_PROPERTY( bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL )
+    Q_PROPERTY( QString warningMessage READ warningMessage NOTIFY warningMessageChanged FINAL )
 
 public:
+    using QAbstractListModel::QAbstractListModel;
+
     enum Roles : short
     {
         Name,
@@ -44,90 +46,92 @@ public:
         HasDetails
     };
 
-    bool satisfiedRequirements() const
+    bool satisfiedRequirements() const { return m_satisfiedRequirements; }
+
+    bool satisfiedMandatory() const { return m_satisfiedMandatory; }
+
+    const Calamares::RequirementEntry& getEntry( const int& index ) const
     {
-        return m_satisfiedRequirements;
-    }
+        if ( index > count() || index < 0 )
+        {
+            return *( new Calamares::RequirementEntry() );
+        }
 
-    bool satisfiedMandatory() const
-    {
-        return m_satisfiedMandatory;
-    }
-
-    const Calamares::RequirementEntry& getEntry(const int& index) const
-    {
-
-        if(index > count() ||  index < 0)
-            return *(new Calamares::RequirementEntry());
-
-        return m_requierements.at(index);
-
+        return m_requirements.at( index );
     }
 
     void setRequirementsList( const Calamares::RequirementsList& requirements );
-    int rowCount(const QModelIndex&) const override;
-    int count() const
-    {
-        return m_requierements.count();
-    }
+    int rowCount( const QModelIndex& ) const override;
+    int count() const { return m_requirements.count(); }
 
-    QVariant data(const QModelIndex& index, int role) const override;
+    QString warningMessage() const { return m_warningMessage; }
+
+    void retranslate();
+
+    QVariant data( const QModelIndex& index, int role ) const override;
 
 protected:
-    QHash<int, QByteArray> roleNames() const override;
+    QHash< int, QByteArray > roleNames() const override;
 
 private:
-    Calamares::RequirementsList m_requierements;
+    Calamares::RequirementsList m_requirements;
     bool m_satisfiedRequirements = false;
     bool m_satisfiedMandatory = false;
 
+    QString m_warningMessage;
+
 signals:
-    void satisfiedRequirementsChanged(bool value);
+    void satisfiedRequirementsChanged( bool value );
     void satisfiedMandatoryChanged();
+    void warningMessageChanged();
 };
 
 
 class Config : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL)
+    Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL )
     Q_PROPERTY( RequirementsModel* requirementsModel MEMBER m_requirementsModel CONSTANT FINAL )
 
     Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
 
     Q_PROPERTY( QString countryCode MEMBER m_countryCode NOTIFY countryCodeChanged FINAL )
-    Q_PROPERTY (int localeIndex READ localeIndex WRITE setLocaleIndex NOTIFY localeIndexChanged)
+    Q_PROPERTY( int localeIndex READ localeIndex WRITE setLocaleIndex NOTIFY localeIndexChanged )
 
     Q_PROPERTY( QString genericWelcomeMessage MEMBER m_genericWelcomeMessage NOTIFY genericWelcomeMessageChanged FINAL )
-    Q_PROPERTY( QString warningMessage MEMBER m_warningMessage CONSTANT FINAL )
 
-    Q_PROPERTY(QString supportUrl MEMBER m_supportUrl CONSTANT FINAL)
-    Q_PROPERTY(QString knownIssuesUrl MEMBER m_knownIssuesUrl CONSTANT FINAL)
-    Q_PROPERTY(QString releaseNotesUrl MEMBER m_releaseNotesUrl CONSTANT FINAL)
-    Q_PROPERTY(QString donateUrl MEMBER m_donateUrl CONSTANT FINAL)
+    Q_PROPERTY( QString supportUrl MEMBER m_supportUrl NOTIFY supportUrlChanged FINAL )
+    Q_PROPERTY( QString knownIssuesUrl MEMBER m_knownIssuesUrl NOTIFY knownIssuesUrlChanged FINAL )
+    Q_PROPERTY( QString releaseNotesUrl MEMBER m_releaseNotesUrl NOTIFY releaseNotesUrlChanged FINAL )
+    Q_PROPERTY( QString donateUrl MEMBER m_donateUrl NOTIFY donateUrlChanged FINAL )
+
+    Q_PROPERTY( bool isNextEnabled MEMBER m_isNextEnabled NOTIFY isNextEnabledChanged FINAL )
 
 public:
     Config( QObject* parent = nullptr );
-    void setCountryCode( const QString &countryCode );
-    void setLanguageIcon( const QString &languageIcon );
-    RequirementsModel& requirementsModel () const;
+    void setCountryCode( const QString& countryCode );
+    void setLanguageIcon( const QString& languageIcon );
+    RequirementsModel& requirementsModel() const;
 
     void setIsNextEnabled( const bool& isNextEnabled );
 
-    void setLocaleIndex(const int &index);
+    void setLocaleIndex( const int& index );
     int localeIndex() const { return m_localeIndex; }
 
     QString supportUrl() const;
-    void setSupportUrl(const QString &url);
+    void setSupportUrl( const QString& url );
 
     QString knownIssuesUrl() const;
-    void setKnownIssuesUrl(const QString &url);
+    void setKnownIssuesUrl( const QString& url );
 
     QString releaseNotesUrl() const;
-    void setReleaseNotesUrl(const QString &url);
+    void setReleaseNotesUrl( const QString& url );
 
     QString donateUrl() const;
-    void setDonateUrl(const QString &url);
+    void setDonateUrl( const QString& url );
+
+    QString genericWelcomeMessage();
+
 
 public slots:
     CalamaresUtils::Locale::LabelModel* languagesModel() const;
@@ -144,9 +148,7 @@ private:
     bool m_isNextEnabled = false;
     CalamaresUtils::Locale::LabelModel* m_languages;
 
-    QString m_genericWelcomeMessage = tr("This program will ask you some questions and set up your installation");
-
-    QString m_warningMessage = tr("This program does not satisfy the minimum requirements for installing.\nInstallation can not continue");
+    QString m_genericWelcomeMessage;
 
     QString m_supportUrl;
     QString m_knownIssuesUrl;
@@ -158,6 +160,10 @@ signals:
     void localeIndexChanged( int localeIndex );
     void isNextEnabledChanged( bool isNextEnabled );
     void genericWelcomeMessageChanged();
+    void supportUrlChanged();
+    void knownIssuesUrlChanged();
+    void releaseNotesUrlChanged();
+    void donateUrlChanged();
 };
 
 #endif
