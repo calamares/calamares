@@ -18,18 +18,17 @@
  */
 
 #include "WelcomeViewStep.h"
-#include "Config.h"
 
+#include "Config.h"
 #include "WelcomePage.h"
 #include "checker/GeneralRequirements.h"
 
+#include "Branding.h"
 #include "geoip/Handler.h"
 #include "locale/Lookup.h"
+#include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
-
-#include "Branding.h"
-#include "modulesystem/ModuleManager.h"
 
 #include <QFutureWatcher>
 #include <QVariant>
