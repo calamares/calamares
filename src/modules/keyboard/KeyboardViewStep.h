@@ -20,12 +20,11 @@
 #ifndef KEYBOARDVIEWSTEP_H
 #define KEYBOARDVIEWSTEP_H
 
-#include <QObject>
-
+#include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
-#include "DllMacro.h"
+#include <QObject>
 
 class KeyboardPage;
 
@@ -48,7 +47,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     void onActivate() override;
     void onLeave() override;
@@ -64,9 +63,9 @@ private:
     QString m_convertedKeymapPath;
     bool m_writeEtcDefaultKeyboard;
 
-    QList< Calamares::job_ptr > m_jobs;
+    Calamares::JobList m_jobs;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( KeyboardViewStepFactory )
 
-#endif // KEYBOARDVIEWSTEP_H
+#endif  // KEYBOARDVIEWSTEP_H
