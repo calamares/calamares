@@ -22,9 +22,9 @@
 
 #include "Config.h"
 
+#include <DllMacro.h>
 #include <utils/PluginFactory.h>
 #include <viewpages/QmlViewStep.h>
-#include <DllMacro.h>
 
 #include <QObject>
 
@@ -55,7 +55,7 @@ public:
     QObject* getConfig() override;
 
 private:
-    Config * m_config;
+    Config* m_config;
     bool m_nextEnabled;
     QString m_prettyStatus;
 
@@ -68,4 +68,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( KeyboardQmlViewStepFactory )
 
-#endif // KEYBOARDQMLVIEWSTEP_H
+#endif  // KEYBOARDQMLVIEWSTEP_H

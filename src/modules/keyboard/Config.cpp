@@ -19,19 +19,20 @@
 
 #include "Config.h"
 
-#include "keyboardwidget/keyboardpreview.h"
 #include "SetKeyboardLayoutJob.h"
+#include "keyboardwidget/keyboardpreview.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#include <QProcess>
 #include <QApplication>
+#include <QProcess>
 #include <QTimer>
 
-KeyboardModelsModel::KeyboardModelsModel(QObject* parent) : QAbstractListModel(parent)
+KeyboardModelsModel::KeyboardModelsModel( QObject* parent )
+    : QAbstractListModel( parent )
 {
     detectModels();
 }
@@ -40,15 +41,16 @@ void
 KeyboardModelsModel::detectModels()
 {
     beginResetModel();
-    const auto models =  KeyboardGlobal::getKeyboardModels();
+    const auto models = KeyboardGlobal::getKeyboardModels();
     auto index = -1;
-    for(const auto &key :models.keys())
+    for ( const auto& key : models.keys() )
     {
         index++;
-        m_list << QMap<QString, QString> {{"label", key}, {"key", models[key]}};
-        if ( models[key] == "pc105" )
-            this->setCurrentIndex(index);
-
+        m_list << QMap< QString, QString > { { "label", key }, { "key", models[ key ] } };
+        if ( models[ key ] == "pc105" )
+        {
+            this->setCurrentIndex( index );
+        }
     }
     endResetModel();
 }
@@ -57,29 +59,31 @@ void
 KeyboardModelsModel::refresh()
 {
     m_list.clear();
-    setCurrentIndex(-1);
+    setCurrentIndex( -1 );
     detectModels();
 }
 
 QVariant
-KeyboardModelsModel::data(const QModelIndex& index, int role) const
+KeyboardModelsModel::data( const QModelIndex& index, int role ) const
 {
-    if(!index.isValid())
+    if ( !index.isValid() )
+    {
         return QVariant();
-    const auto item = m_list.at(index.row());
-    return role == Qt::DisplayRole ?  item["label"] : item["key"];
+    }
+    const auto item = m_list.at( index.row() );
+    return role == Qt::DisplayRole ? item[ "label" ] : item[ "key" ];
 }
 
 int
-KeyboardModelsModel::rowCount(const QModelIndex&) const
+KeyboardModelsModel::rowCount( const QModelIndex& ) const
 {
     return m_list.count();
 }
 
-QHash<int, QByteArray>
+QHash< int, QByteArray >
 KeyboardModelsModel::roleNames() const
 {
-    return {{Qt::DisplayRole, "label"}, {Qt::UserRole, "key"}};
+    return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
 }
 
 int
@@ -88,36 +92,44 @@ KeyboardModelsModel::currentIndex() const
     return m_currentIndex;
 }
 
-const QMap<QString, QString>
-KeyboardModelsModel::item(const int &index) const
+const QMap< QString, QString >
+KeyboardModelsModel::item( const int& index ) const
 {
-    if(index >= m_list.count() || index < 0)
-        return QMap<QString, QString>();
+    if ( index >= m_list.count() || index < 0 )
+    {
+        return QMap< QString, QString >();
+    }
 
-    return m_list.at(index);
+    return m_list.at( index );
 }
 
-const QMap<QString, QString>
-KeyboardVariantsModel::item(const int &index) const
+const QMap< QString, QString >
+KeyboardVariantsModel::item( const int& index ) const
 {
-    if(index >= m_list.count() || index < 0)
-        return QMap<QString, QString>();
+    if ( index >= m_list.count() || index < 0 )
+    {
+        return QMap< QString, QString >();
+    }
 
-    return m_list.at(index);
+    return m_list.at( index );
 }
 
 void
-KeyboardModelsModel::setCurrentIndex(const int& index)
+KeyboardModelsModel::setCurrentIndex( const int& index )
 {
-    if(index >= m_list.count() || index < 0)
+    if ( index >= m_list.count() || index < 0 )
+    {
         return;
+    }
 
     m_currentIndex = index;
-    emit currentIndexChanged(m_currentIndex);
+    emit currentIndexChanged( m_currentIndex );
 }
 
-KeyboardVariantsModel::KeyboardVariantsModel(QObject *parent) : QAbstractListModel(parent)
-{}
+KeyboardVariantsModel::KeyboardVariantsModel( QObject* parent )
+    : QAbstractListModel( parent )
+{
+}
 
 int
 KeyboardVariantsModel::currentIndex() const
@@ -126,44 +138,48 @@ KeyboardVariantsModel::currentIndex() const
 }
 
 void
-KeyboardVariantsModel::setCurrentIndex(const int& index)
+KeyboardVariantsModel::setCurrentIndex( const int& index )
 {
-    if(index >= m_list.count() || index < 0)
+    if ( index >= m_list.count() || index < 0 )
+    {
         return;
+    }
 
     m_currentIndex = index;
-    emit currentIndexChanged(m_currentIndex);
+    emit currentIndexChanged( m_currentIndex );
 }
 
 QVariant
-KeyboardVariantsModel::data(const QModelIndex& index, int role) const
+KeyboardVariantsModel::data( const QModelIndex& index, int role ) const
 {
-    if(!index.isValid())
+    if ( !index.isValid() )
+    {
         return QVariant();
-    const auto item = m_list.at(index.row());
-    return role == Qt::DisplayRole ?  item["label"] : item["key"];
+    }
+    const auto item = m_list.at( index.row() );
+    return role == Qt::DisplayRole ? item[ "label" ] : item[ "key" ];
 }
 
 int
-KeyboardVariantsModel::rowCount(const QModelIndex&) const
+KeyboardVariantsModel::rowCount( const QModelIndex& ) const
 {
     return m_list.count();
 }
 
-QHash<int, QByteArray>
+QHash< int, QByteArray >
 KeyboardVariantsModel::roleNames() const
 {
-    return {{Qt::DisplayRole, "label"}, {Qt::UserRole, "key"}};
+    return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
 }
 
 void
-KeyboardVariantsModel::setVariants(QMap< QString, QString > variants)
+KeyboardVariantsModel::setVariants( QMap< QString, QString > variants )
 {
     m_list.clear();
     beginResetModel();
-    for(const auto &key :variants.keys())
+    for ( const auto& key : variants.keys() )
     {
-        const auto item = QMap<QString, QString> {{"label", key}, {"key", variants[key]}};
+        const auto item = QMap< QString, QString > { { "label", key }, { "key", variants[ key ] } };
         m_list << item;
     }
     endResetModel();
@@ -172,61 +188,57 @@ KeyboardVariantsModel::setVariants(QMap< QString, QString > variants)
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p layout and @p variant.
  */
-static inline QStringList xkbmap_args( const QString& layout, const QString& variant )
+static inline QStringList
+xkbmap_args( const QString& layout, const QString& variant )
 {
-    QStringList r{ "-layout", layout };
+    QStringList r { "-layout", layout };
     if ( !variant.isEmpty() )
+    {
         r << "-variant" << variant;
+    }
     return r;
 }
 
-Config::Config(QObject *parent) : QObject(parent)
-, m_keyboardModelsModel(new KeyboardModelsModel(this))
-, m_keyboardLayoutsModel(new KeyboardLayoutModel(this))
-, m_keyboardVariantsModel(new KeyboardVariantsModel(this))
+Config::Config( QObject* parent )
+    : QObject( parent )
+    , m_keyboardModelsModel( new KeyboardModelsModel( this ) )
+    , m_keyboardLayoutsModel( new KeyboardLayoutModel( this ) )
+    , m_keyboardVariantsModel( new KeyboardVariantsModel( this ) )
 {
     m_setxkbmapTimer.setSingleShot( true );
 
     // Connect signals and slots
-    connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged,
-             [&](int index)
-             {
-                 m_selectedModel = m_keyboardModelsModel->item(index).value("key", "pc105" );
-                 //                      Set Xorg keyboard model
-                 QProcess::execute( "setxkbmap", QStringList{ "-model", m_selectedModel } );
-                 emit prettyStatusChanged();
-             } );
+    connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, [&]( int index ) {
+        m_selectedModel = m_keyboardModelsModel->item( index ).value( "key", "pc105" );
+        //                      Set Xorg keyboard model
+        QProcess::execute( "setxkbmap", QStringList { "-model", m_selectedModel } );
+        emit prettyStatusChanged();
+    } );
 
-    connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged,
-             [&](int index)
-             {
-                 m_selectedLayout =  m_keyboardLayoutsModel->item(index).first;
-                 updateVariants(QPersistentModelIndex(m_keyboardLayoutsModel->index(index)));
-                 emit prettyStatusChanged();
-             } );
+    connect( m_keyboardLayoutsModel, &KeyboardLayoutModel::currentIndexChanged, [&]( int index ) {
+        m_selectedLayout = m_keyboardLayoutsModel->item( index ).first;
+        updateVariants( QPersistentModelIndex( m_keyboardLayoutsModel->index( index ) ) );
+        emit prettyStatusChanged();
+    } );
 
-    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged,
-             [&](int index)
-             {
-                 m_selectedVariant = m_keyboardVariantsModel->item(index)["key"];
+    connect( m_keyboardVariantsModel, &KeyboardVariantsModel::currentIndexChanged, [&]( int index ) {
+        m_selectedVariant = m_keyboardVariantsModel->item( index )[ "key" ];
 
-                 // Set Xorg keyboard layout
-                 if ( m_setxkbmapTimer.isActive() )
-                 {
-                     m_setxkbmapTimer.stop();
-                     m_setxkbmapTimer.disconnect( this );
-                 }
+        // Set Xorg keyboard layout
+        if ( m_setxkbmapTimer.isActive() )
+        {
+            m_setxkbmapTimer.stop();
+            m_setxkbmapTimer.disconnect( this );
+        }
 
-                 connect( &m_setxkbmapTimer, &QTimer::timeout,
-                          this, [=]
-                          {
-                              QProcess::execute( "setxkbmap", xkbmap_args( m_selectedLayout, m_selectedVariant ) );
-                              cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
-                              m_setxkbmapTimer.disconnect( this );
-                          } );
-                 m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
-                 emit prettyStatusChanged();
-             } );
+        connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
+            QProcess::execute( "setxkbmap", xkbmap_args( m_selectedLayout, m_selectedVariant ) );
+            cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
+            m_setxkbmapTimer.disconnect( this );
+        } );
+        m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
+        emit prettyStatusChanged();
+    } );
 }
 
 KeyboardModelsModel*
@@ -255,9 +267,10 @@ findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
     for ( int i = 0; i < klm->rowCount(); ++i )
     {
         QModelIndex idx = klm->index( i );
-        if ( idx.isValid() &&
-            idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() == currentLayout )
+        if ( idx.isValid() && idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() == currentLayout )
+        {
             currentLayoutItem = idx;
+        }
     }
 
     return currentLayoutItem;
@@ -274,18 +287,17 @@ Config::init()
 
     if ( process.waitForFinished() )
     {
-        const QStringList list = QString( process.readAll() )
-        .split( "\n", QString::SkipEmptyParts );
+        const QStringList list = QString( process.readAll() ).split( "\n", QString::SkipEmptyParts );
 
         for ( QString line : list )
         {
             line = line.trimmed();
             if ( !line.startsWith( "xkb_symbols" ) )
+            {
                 continue;
+            }
 
-            line = line.remove( "}" )
-            .remove( "{" )
-            .remove( ";" );
+            line = line.remove( "}" ).remove( "{" ).remove( ";" );
             line = line.mid( line.indexOf( "\"" ) + 1 );
 
             QStringList split = line.split( "+", QString::SkipEmptyParts );
@@ -296,12 +308,9 @@ Config::init()
                 if ( currentLayout.contains( "(" ) )
                 {
                     int parenthesisIndex = currentLayout.indexOf( "(" );
-                    currentVariant = currentLayout.mid( parenthesisIndex + 1 )
-                    .trimmed();
+                    currentVariant = currentLayout.mid( parenthesisIndex + 1 ).trimmed();
                     currentVariant.chop( 1 );
-                    currentLayout = currentLayout
-                    .mid( 0, parenthesisIndex )
-                    .trimmed();
+                    currentLayout = currentLayout.mid( 0, parenthesisIndex ).trimmed();
                 }
 
                 break;
@@ -311,9 +320,7 @@ Config::init()
 
     //### Layouts and Variants
     QPersistentModelIndex currentLayoutItem = findLayout( m_keyboardLayoutsModel, currentLayout );
-    if ( !currentLayoutItem.isValid() && (
-        ( currentLayout == "latin" )
-        || ( currentLayout == "pc" ) ) )
+    if ( !currentLayoutItem.isValid() && ( ( currentLayout == "latin" ) || ( currentLayout == "pc" ) ) )
     {
         currentLayout = "us";
         currentLayoutItem = findLayout( m_keyboardLayoutsModel, currentLayout );
@@ -329,24 +336,29 @@ Config::init()
     // Default to the first available layout if none was set
     // Do this after unblocking signals so we get the default variant handling.
     if ( !currentLayoutItem.isValid() && m_keyboardLayoutsModel->rowCount() > 0 )
+    {
         m_keyboardLayoutsModel->setCurrentIndex( m_keyboardLayoutsModel->index( 0 ).row() );
+    }
 }
 
 QString
 Config::prettyStatus() const
 {
     QString status;
-    status += tr( "Set keyboard model to %1.<br/>" ).arg( m_keyboardModelsModel->item(m_keyboardModelsModel->currentIndex())["label"] );
+    status += tr( "Set keyboard model to %1.<br/>" )
+                  .arg( m_keyboardModelsModel->item( m_keyboardModelsModel->currentIndex() )[ "label" ] );
 
-    QString layout =  m_keyboardLayoutsModel->item(m_keyboardLayoutsModel->currentIndex()).second.description ;
-    QString variant = m_keyboardVariantsModel->currentIndex() >= 0 ?  m_keyboardVariantsModel->item(m_keyboardVariantsModel->currentIndex())["label"]  : QString( "<default>" );
+    QString layout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).second.description;
+    QString variant = m_keyboardVariantsModel->currentIndex() >= 0
+        ? m_keyboardVariantsModel->item( m_keyboardVariantsModel->currentIndex() )[ "label" ]
+        : QString( "<default>" );
     status += tr( "Set keyboard layout to %1/%2." ).arg( layout, variant );
 
     return status;
 }
 
 Calamares::JobList
-Config::createJobs(const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard)
+Config::createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard )
 {
     QList< Calamares::job_ptr > list;
 
@@ -362,7 +374,7 @@ Config::createJobs(const QString& xOrgConfFileName, const QString& convertedKeym
 }
 
 void
-Config::guessLayout(const QStringList& langParts)
+Config::guessLayout( const QStringList& langParts )
 {
     bool foundCountryPart = false;
     for ( auto countryPart = langParts.rbegin(); !foundCountryPart && countryPart != langParts.rend(); ++countryPart )
@@ -371,7 +383,8 @@ Config::guessLayout(const QStringList& langParts)
         for ( int i = 0; i < m_keyboardLayoutsModel->rowCount(); ++i )
         {
             QModelIndex idx = m_keyboardLayoutsModel->index( i );
-            QString name = idx.isValid() ? idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() : QString();
+            QString name
+                = idx.isValid() ? idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() : QString();
             if ( idx.isValid() && ( name.compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
             {
                 cDebug() << Logger::SubEntry << "matched" << name;
@@ -386,12 +399,15 @@ Config::guessLayout(const QStringList& langParts)
             if ( countryPart != langParts.rend() )
             {
                 cDebug() << "Next level:" << *countryPart;
-                for (int variantnumber = 0; variantnumber < m_keyboardVariantsModel->rowCount(); ++variantnumber)
+                for ( int variantnumber = 0; variantnumber < m_keyboardVariantsModel->rowCount(); ++variantnumber )
                 {
-                    if ( m_keyboardVariantsModel->item(variantnumber)["key"].compare( *countryPart, Qt::CaseInsensitive ) )
+                    if ( m_keyboardVariantsModel->item( variantnumber )[ "key" ].compare( *countryPart,
+                                                                                          Qt::CaseInsensitive ) )
                     {
                         m_keyboardVariantsModel->setCurrentIndex( variantnumber );
-                        cDebug() << Logger::SubEntry << "matched variant" << m_keyboardVariantsModel->item(variantnumber)["key"] << ' ' <<m_keyboardVariantsModel->item(variantnumber)["key"];
+                        cDebug() << Logger::SubEntry << "matched variant"
+                                 << m_keyboardVariantsModel->item( variantnumber )[ "key" ] << ' '
+                                 << m_keyboardVariantsModel->item( variantnumber )[ "key" ];
                     }
                 }
             }
@@ -417,7 +433,7 @@ Config::onActivate()
      * like <layout>_<country>.
      */
     static constexpr char arabic[] = "ara";
-    static const auto specialCaseMap = QMap<std::string, std::string>( {
+    static const auto specialCaseMap = QMap< std::string, std::string >( {
         /* Most Arab countries map to Arabic keyboard (Default) */
         { "ar_AE", arabic },
         { "ar_BH", arabic },
@@ -441,8 +457,8 @@ Config::onActivate()
         { "ca_ES", "cat_ES" }, /* Catalan */
         { "as_ES", "ast_ES" }, /* Asturian */
         { "en_CA", "eng_CA" }, /* Canadian English */
-        { "el_CY", "gr" },     /* Greek in Cyprus */
-        { "el_GR", "gr" },     /* Greek in Greeze */
+        { "el_CY", "gr" }, /* Greek in Cyprus */
+        { "el_GR", "gr" }, /* Greek in Greeze */
         { "ig_NG", "igbo_NG" }, /* Igbo in Nigeria */
         { "ha_NG", "hausa_NG" } /* Hausa */
     } );
@@ -457,10 +473,14 @@ Config::onActivate()
         // Chop off .codeset and @modifier
         int index = lang.indexOf( '.' );
         if ( index >= 0 )
+        {
             lang.truncate( index );
+        }
         index = lang.indexOf( '@' );
         if ( index >= 0 )
+        {
             lang.truncate( index );
+        }
 
         lang.replace( '-', '_' );  // Normalize separators
     }
@@ -494,27 +514,26 @@ Config::finalize()
     if ( !m_selectedLayout.isEmpty() )
     {
         gs->insert( "keyboardLayout", m_selectedLayout );
-        gs->insert( "keyboardVariant", m_selectedVariant ); //empty means default variant
+        gs->insert( "keyboardVariant", m_selectedVariant );  //empty means default variant
     }
 
     //FIXME: also store keyboard model for something?
 }
 
 void
-Config::updateVariants(const QPersistentModelIndex& currentItem, QString currentVariant)
+Config::updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant )
 {
-    const auto variants = m_keyboardLayoutsModel->item(currentItem.row()).second.variants;
-    m_keyboardVariantsModel->setVariants(variants);
+    const auto variants = m_keyboardLayoutsModel->item( currentItem.row() ).second.variants;
+    m_keyboardVariantsModel->setVariants( variants );
 
     auto index = -1;
-    for(const auto &key : variants.keys())
+    for ( const auto& key : variants.keys() )
     {
         index++;
-        if(variants[key] == currentVariant)
+        if ( variants[ key ] == currentVariant )
         {
-            m_keyboardVariantsModel->setCurrentIndex(index);
+            m_keyboardVariantsModel->setCurrentIndex( index );
             return;
         }
     }
 }
-
