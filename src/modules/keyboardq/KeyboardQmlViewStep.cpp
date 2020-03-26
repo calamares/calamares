@@ -72,7 +72,7 @@ KeyboardQmlViewStep::isAtEnd() const
     return true;
 }
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 KeyboardQmlViewStep::jobs() const
 {
     return m_jobs;
