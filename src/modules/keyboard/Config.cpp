@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2020, Camilo Higuita <milo.h@aol.com> *
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,11 +19,6 @@
 
 #include "Config.h"
 
-#include <QDebug>
-#include <QProcess>
-#include <QApplication>
-#include <QTimer>
-
 #include "keyboardwidget/keyboardpreview.h"
 #include "SetKeyboardLayoutJob.h"
 
@@ -30,6 +26,10 @@
 #include "JobQueue.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+
+#include <QProcess>
+#include <QApplication>
+#include <QTimer>
 
 KeyboardModelsModel::KeyboardModelsModel(QObject* parent) : QAbstractListModel(parent)
 {

@@ -7,6 +7,7 @@ calamares_add_plugin( keyboardq
         ${_keyboard}/Config.cpp
         ${_keyboard}/KeyboardLayoutModel.cpp
         ${_keyboard}/SetKeyboardLayoutJob.cpp
+        ${_keyboard}/keyboardwidget/keyboardglobal.cpp
     RESOURCES
         ${_keyboard}/keyboard.qrc
     LINK_PRIVATE_LIBRARIES

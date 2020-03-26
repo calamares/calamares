@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2020, Camilo Higuita <milo.h@aol.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,13 +20,14 @@
 #ifndef KEYBOARD_CONFIG_H
 #define KEYBOARD_CONFIG_H
 
+#include "Job.h"
+#include "KeyboardLayoutModel.h"
+
 #include <QObject>
 #include <QUrl>
 #include <QTimer>
 #include <QMap>
-#include "Job.h"
 #include <QAbstractListModel>
-#include "KeyboardLayoutModel.h"
 
 class KeyboardModelsModel : public QAbstractListModel
 {
