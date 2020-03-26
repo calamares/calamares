@@ -18,12 +18,12 @@
 
 #include "KeyboardViewStep.h"
 
-#include "JobQueue.h"
-#include "GlobalStorage.h"
-
 #include "KeyboardPage.h"
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardViewStepFactory, registerPlugin<KeyboardViewStep>(); )
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
+CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardViewStepFactory, registerPlugin< KeyboardViewStep >(); )
 
 KeyboardViewStep::KeyboardViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -40,7 +40,9 @@ KeyboardViewStep::KeyboardViewStep( QObject* parent )
 KeyboardViewStep::~KeyboardViewStep()
 {
     if ( m_widget && m_widget->parent() == nullptr )
+    {
         m_widget->deleteLater();
+    }
 }
 
 
@@ -111,9 +113,7 @@ void
 KeyboardViewStep::onLeave()
 {
     m_widget->finalize();
-    m_jobs = m_widget->createJobs( m_xOrgConfFileName,
-                                   m_convertedKeymapPath,
-                                   m_writeEtcDefaultKeyboard );
+    m_jobs = m_widget->createJobs( m_xOrgConfFileName, m_convertedKeymapPath, m_writeEtcDefaultKeyboard );
     m_prettyStatus = m_widget->prettyStatus();
 }
 
@@ -121,29 +121,35 @@ KeyboardViewStep::onLeave()
 void
 KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "xOrgConfFileName" ) &&
-            configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
-            !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
+    if ( configurationMap.contains( "xOrgConfFileName" )
+         && configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String
+         && !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
     {
-        m_xOrgConfFileName = configurationMap.value( "xOrgConfFileName" )
-                             .toString();
+        m_xOrgConfFileName = configurationMap.value( "xOrgConfFileName" ).toString();
     }
     else
+    {
         m_xOrgConfFileName = "00-keyboard.conf";
+    }
 
-    if ( configurationMap.contains( "convertedKeymapPath" ) &&
-            configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String &&
-            !configurationMap.value( "convertedKeymapPath" ).toString().isEmpty() )
+    if ( configurationMap.contains( "convertedKeymapPath" )
+         && configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String
+         && !configurationMap.value( "convertedKeymapPath" ).toString().isEmpty() )
     {
-        m_convertedKeymapPath = configurationMap.value( "convertedKeymapPath" )
-                                .toString();
+        m_convertedKeymapPath = configurationMap.value( "convertedKeymapPath" ).toString();
     }
     else
+    {
         m_convertedKeymapPath = QString();
+    }
 
-    if ( configurationMap.contains( "writeEtcDefaultKeyboard" ) &&
-            configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
+    if ( configurationMap.contains( "writeEtcDefaultKeyboard" )
+         && configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
+    {
         m_writeEtcDefaultKeyboard = configurationMap.value( "writeEtcDefaultKeyboard" ).toBool();
+    }
     else
+    {
         m_writeEtcDefaultKeyboard = true;
+    }
 }
