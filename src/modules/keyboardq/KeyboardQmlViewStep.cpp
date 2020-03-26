@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2020, Camilo Higuita <milo.h@aol.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,8 +21,7 @@
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
-#include "utils/Yaml.h"
-#include <QQmlEngine>
+#include "utils/Variant.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardQmlViewStepFactory, registerPlugin<KeyboardQmlViewStep>(); )
 
@@ -36,23 +36,11 @@ KeyboardQmlViewStep::KeyboardQmlViewStep( QObject* parent )
     emit nextStatusChanged( m_nextEnabled );
 }
 
-void
-KeyboardQmlViewStep::classBegin()
-{
-}
-
-void
-KeyboardQmlViewStep::componentComplete()
-{
-//     m_config->onActivate();
-}
-
 QString
 KeyboardQmlViewStep::prettyName() const
 {
     return tr( "Keyboard" );
 }
-
 
 QString
 KeyboardQmlViewStep::prettyStatus() const
@@ -115,32 +103,31 @@ KeyboardQmlViewStep::getConfig()
 void
 KeyboardQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    using namespace CalamaresUtils;
+
     if ( configurationMap.contains( "xOrgConfFileName" ) &&
-            configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
-            !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
+        configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
+        !getString( configurationMap, "xOrgConfFileName" ).isEmpty() )
     {
-        m_xOrgConfFileName = configurationMap.value( "xOrgConfFileName" )
-                             .toString();
+        m_xOrgConfFileName = getString( configurationMap, "xOrgConfFileName" );
     }
     else
         m_xOrgConfFileName = "00-keyboard.conf";
 
     if ( configurationMap.contains( "convertedKeymapPath" ) &&
-            configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String &&
-            !configurationMap.value( "convertedKeymapPath" ).toString().isEmpty() )
+        configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String &&
+        !getString( configurationMap, "convertedKeymapPath" ).isEmpty() )
     {
-        m_convertedKeymapPath = configurationMap.value( "convertedKeymapPath" )
-                                .toString();
+        m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
     }
     else
         m_convertedKeymapPath = QString();
 
     if ( configurationMap.contains( "writeEtcDefaultKeyboard" ) &&
-            configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
-        m_writeEtcDefaultKeyboard = configurationMap.value( "writeEtcDefaultKeyboard" ).toBool();
+        configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
+        m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true);
     else
         m_writeEtcDefaultKeyboard = true;
 
-    Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
-    setContextProperty( "Keyboard", m_config );
+    Calamares::QmlViewStep::setConfigurationMap( configurationMap );
 }

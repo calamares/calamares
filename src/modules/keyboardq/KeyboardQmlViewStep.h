@@ -20,17 +20,17 @@
 #ifndef KEYBOARDQMLVIEWSTEP_H
 #define KEYBOARDQMLVIEWSTEP_H
 
-#include <QObject>
 #include "Config.h"
+
 #include <utils/PluginFactory.h>
 #include <viewpages/QmlViewStep.h>
-
 #include <DllMacro.h>
-#include <QQmlParserStatus>
+
+#include <QObject>
 
 class KeyboardPage;
 
-class PLUGINDLLEXPORT KeyboardQmlViewStep : public Calamares::QmlViewStep, public QQmlParserStatus
+class PLUGINDLLEXPORT KeyboardQmlViewStep : public Calamares::QmlViewStep
 {
     Q_INTERFACES(QQmlParserStatus)
     Q_OBJECT
@@ -40,9 +40,6 @@ public:
 
     QString prettyName() const override;
     QString prettyStatus() const override;
-
-    void classBegin() override;
-    void componentComplete() override;
 
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;
