@@ -32,7 +32,6 @@ class KeyboardPage;
 
 class PLUGINDLLEXPORT KeyboardQmlViewStep : public Calamares::QmlViewStep
 {
-    Q_INTERFACES(QQmlParserStatus)
     Q_OBJECT
 
 public:
