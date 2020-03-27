@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-19 17:27+0100\n"
+"POT-Creation-Date: 2020-03-19 00:13+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Pietro F. Fontana, 2020\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/calamares/teams/20061/it_IT/)\n"
@@ -31,22 +31,22 @@ msgstr ""
 msgid "Mounting partitions."
 msgstr ""
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:201
-#: src/modules/initcpiocfg/main.py:205
+#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
 #: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:322
-#: src/modules/fstab/main.py:328 src/modules/localecfg/main.py:144
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "Errore di Configurazione"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:202
+#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:323
+#: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr ""
 
@@ -91,19 +91,19 @@ msgstr ""
 msgid "Unmount file systems."
 msgstr "Smonta i file system."
 
-#: src/modules/unpackfs/main.py:41
+#: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
 msgstr ""
 
-#: src/modules/unpackfs/main.py:184
+#: src/modules/unpackfs/main.py:188
 msgid "rsync failed with error code {}."
 msgstr "rsync fallita con codice d'errore {}."
 
-#: src/modules/unpackfs/main.py:245 src/modules/unpackfs/main.py:268
+#: src/modules/unpackfs/main.py:249 src/modules/unpackfs/main.py:272
 msgid "Failed to unpack image \"{}\""
 msgstr "Estrazione dell'immagine \"{}\" fallita"
 
-#: src/modules/unpackfs/main.py:246
+#: src/modules/unpackfs/main.py:250
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
@@ -111,19 +111,19 @@ msgstr ""
 "Impossibile trovare unsquashfs, assicurati di aver installato il pacchetto "
 "squashfs-tools"
 
-#: src/modules/unpackfs/main.py:370
+#: src/modules/unpackfs/main.py:369
 msgid "No mount point for root partition"
 msgstr "Nessun punto di montaggio per la partizione di root"
 
-#: src/modules/unpackfs/main.py:371
+#: src/modules/unpackfs/main.py:370
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
 
-#: src/modules/unpackfs/main.py:376
+#: src/modules/unpackfs/main.py:375
 msgid "Bad mount point for root partition"
 msgstr "Punto di montaggio per la partizione di root errato"
 
-#: src/modules/unpackfs/main.py:377
+#: src/modules/unpackfs/main.py:376
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr ""
 
@@ -133,8 +133,8 @@ msgid "Bad unsquash configuration"
 msgstr "Configurazione unsquash errata"
 
 #: src/modules/unpackfs/main.py:390
-msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr "Il filesystem per \"{}\" ({}) non è supportato"
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr ""
 
 #: src/modules/unpackfs/main.py:394
 msgid "The source filesystem \"{}\" does not exist"
@@ -205,10 +205,10 @@ msgstr "La configurazione del display manager è incompleta"
 msgid "Configuring mkinitcpio."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:206
+#: src/modules/initcpiocfg/main.py:210
 #: src/modules/luksopenswaphookcfg/main.py:100
 #: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:329 src/modules/localecfg/main.py:145
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
 #: src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
@@ -270,23 +270,24 @@ msgstr ""
 msgid "Configure Plymouth theme"
 msgstr "Configura il tema Plymouth"
 
-#: src/modules/packages/main.py:62
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Installa pacchetti."
+
+#: src/modules/packages/main.py:66
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "Elaborazione dei pacchetti (%(count)d / %(total)d)"
 
-#: src/modules/packages/main.py:64 src/modules/packages/main.py:74
-msgid "Install packages."
-msgstr "Installa pacchetti."
-
-#: src/modules/packages/main.py:67
+#: src/modules/packages/main.py:71
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "Installando un pacchetto."
 msgstr[1] "Installazione di %(num)d pacchetti."
 
-#: src/modules/packages/main.py:70
+#: src/modules/packages/main.py:74
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
@@ -296,10 +297,6 @@ msgstr[1] "Rimozione di %(num)d pacchetti."
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
 msgstr ""
-
-#: src/modules/removeuser/main.py:34
-msgid "Remove live user from target system"
-msgstr "Rimuovi l'utente live dal sistema di destinazione"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
@@ -333,7 +330,8 @@ msgstr ""
 msgid "Dummy python job."
 msgstr "Job python fittizio."
 
-#: src/modules/dummypython/main.py:97
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
 msgid "Dummy python step {}"
 msgstr "Python step {} fittizio"
 
