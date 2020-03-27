@@ -119,7 +119,7 @@ PackageModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case Qt::CheckStateRole:
-        return index.column() == NameColumn ? item->isSelected() : QVariant();
+        return index.column() == NameColumn ? ( item->isImmutable() ? QVariant() : item->isSelected() ) : QVariant();
     case Qt::DisplayRole:
         return item->isHidden() ? QVariant() : item->data( index.column() );
     case MetaExpandRole:
@@ -158,6 +158,11 @@ PackageModel::flags( const QModelIndex& index ) const
     }
     if ( index.column() == NameColumn )
     {
+        PackageTreeItem* item = static_cast< PackageTreeItem* >( index.internalPointer() );
+        if ( item->isImmutable() )
+        {
+            return QAbstractItemModel::flags( index );  //Qt::NoItemFlags;
+        }
         return Qt::ItemIsUserCheckable | QAbstractItemModel::flags( index );
     }
     return QAbstractItemModel::flags( index );

@@ -97,6 +97,13 @@ public:
      */
     bool expandOnStart() const { return m_startExpanded; }
 
+    /** @brief Is this an immutable item?
+     *
+     * Groups can be immutable: then you can't toggle the selected
+     * state of any of its items.
+     */
+    bool isImmutable() const { return m_showReadOnly; }
+
     /** @brief is this item selected?
      *
      * Groups may be partially selected; packages are only on or off.

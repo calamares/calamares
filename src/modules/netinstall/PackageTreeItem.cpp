@@ -41,6 +41,7 @@ PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* p
     , m_packageName( packageName )
     , m_selected( parentCheckState( parent ) )
     , m_isGroup( false )
+    , m_showReadOnly( parent ? parent->isImmutable() : false )
 {
 }
 
