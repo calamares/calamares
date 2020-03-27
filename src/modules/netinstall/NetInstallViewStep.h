@@ -20,6 +20,8 @@
 #ifndef NETINSTALLVIEWSTEP_H
 #define NETINSTALLVIEWSTEP_H
 
+#include "Config.h"
+
 #include "DllMacro.h"
 #include "locale/TranslatableConfiguration.h"
 #include "utils/PluginFactory.h"
@@ -60,9 +62,11 @@ public slots:
     void nextIsReady( bool );
 
 private:
+    Config m_config;
+
     NetInstallPage* m_widget;
-    bool m_nextEnabled;
     CalamaresUtils::Locale::TranslatedString* m_sidebarLabel;  // As it appears in the sidebar
+    bool m_nextEnabled;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( NetInstallViewStepFactory )

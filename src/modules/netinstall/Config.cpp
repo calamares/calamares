@@ -29,7 +29,6 @@
 
 Config::Config( QObject* parent )
     : QObject( parent )
-    , m_status( Status::Ok )
     , m_model( new PackageModel( this ) )
 {
 }

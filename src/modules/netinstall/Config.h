@@ -51,6 +51,9 @@ public:
     QString status() const;
     void setStatus( Status s );
 
+    bool required() const { return m_required; }
+    void setRequired( bool r ) { m_required = r; }
+
     /** @brief Retrieves the groups, with name, description and packages
      *
      * Loads data from the given URL. Once done, the data is parsed
@@ -65,6 +68,8 @@ public:
      */
     void loadGroupList( const QVariantList& groupData );
 
+    PackageModel* model() const { return m_model; }
+
 signals:
     void statusChanged( QString status );
 
@@ -72,9 +77,10 @@ private slots:
     void receivedGroupData();  ///< From async-loading group data
 
 private:
-    Status m_status;
-    PackageModel* m_model;
+    PackageModel* m_model = nullptr;
     QNetworkReply* m_reply = nullptr;  // For fetching data
+    Status m_status = Status::Ok;
+    bool m_required = false;
 };
 
 #endif

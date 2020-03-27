@@ -56,56 +56,27 @@ public:
      */
     void setPageTitle( CalamaresUtils::Locale::TranslatedString* );
 
+    /** @brief Sets the model of packages to display
+     *
+     * While setting up the UI, expand entries that should be pre-expanded.
+     *
+     * Follows the *expanded* key / the startExpanded field in the
+     * group entries of the model. Call this after filling up the model.
+     */
+    void setModel( QAbstractItemModel* );
+
     void onActivate();
 
-    /** @brief Retrieves the groups, with name, description and packages
-     *
-     * Loads data from the given URL. This should be called before
-     * displaying the page.
-     */
-    void loadGroupList( const QString& url );
-    /// @brief Retrieve pre-processed and fetched group data
-    void loadGroupList( const QVariantList& l );
-
-    // Sets the "required" state of netinstall data. Influences whether
-    // corrupt or unavailable data causes checkReady() to be emitted
-    // true (not-required) or false.
-    void setRequired( bool );
-    bool getRequired() const { return m_required; }
-
-    // Returns the list of packages belonging to groups that are
-    // selected in the view in this given moment. No data is cached here, so
-    // this function does not have constant time.
-    PackageTreeItem::List selectedPackages() const;
-
 public slots:
-    void dataIsHere();
-
     void retranslate();
 
 signals:
     void checkReady( bool );
 
 private:
-    // Takes the YAML data representing the groups and reads them into the
-    // m_groups and m_groupOrder internal structures. See the README.md
-    // of this module to know the format expected of the YAML files.
-    bool readGroups( const QByteArray& yamlData );
-
-    /** @brief Expand entries that should be pre-expanded
-     *
-     * Follows the *expanded* key / the startExpanded field in the
-     * group entries of the model. Call this after filling up the model.
-     */
-    void expandGroups();
-
     Ui::Page_NetInst* ui;
 
     std::unique_ptr< CalamaresUtils::Locale::TranslatedString > m_title;  // Above the treeview
-
-    QNetworkReply* m_reply;
-    PackageModel* m_groups;
-    bool m_required;
 };
 
 #endif  // NETINSTALLPAGE_H

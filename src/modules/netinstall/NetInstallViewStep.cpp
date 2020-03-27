@@ -33,8 +33,8 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin< 
 NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new NetInstallPage() )
-    , m_nextEnabled( false )
     , m_sidebarLabel( nullptr )
+    , m_nextEnabled( false )
 {
     emit nextStatusChanged( true );
     connect( m_widget, &NetInstallPage::checkReady, this, &NetInstallViewStep::nextIsReady );
@@ -127,7 +127,7 @@ NetInstallViewStep::onActivate()
 void
 NetInstallViewStep::onLeave()
 {
-    auto packages = m_widget->selectedPackages();
+    auto packages = m_config.model()->getPackages();
     cDebug() << "Netinstall: Processing" << packages.length() << "packages.";
 
     static const char PACKAGEOP[] = "packageOperations";
@@ -201,7 +201,8 @@ NetInstallViewStep::nextIsReady( bool b )
 void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_widget->setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
+    m_config.setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
+    m_widget->setModel( m_config.model() );
 
     QString groupsUrl = CalamaresUtils::getString( configurationMap, "groupsUrl" );
     if ( !groupsUrl.isEmpty() )
@@ -212,11 +213,11 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         if ( groupsUrl == QStringLiteral( "local" ) )
         {
             QVariantList l = configurationMap.value( "groups" ).toList();
-            m_widget->loadGroupList( l );
+            m_config.loadGroupList( l );
         }
         else
         {
-            m_widget->loadGroupList( groupsUrl );
+            m_config.loadGroupList( groupsUrl );
         }
     }
 
