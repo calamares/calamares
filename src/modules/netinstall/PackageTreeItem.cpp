@@ -22,6 +22,7 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+/** @brief Should a package be selected, given its parent's state? */
 static Qt::CheckState
 parentCheckState( PackageTreeItem* parent )
 {
@@ -34,6 +35,20 @@ parentCheckState( PackageTreeItem* parent )
     {
         return Qt::Unchecked;
     }
+}
+
+/** @brief Should a subgroup be marked critical?
+ *
+ * If set explicitly, then use that, otherwise use the parent's critical-ness.
+ */
+static bool
+parentCriticality( const QVariantMap& groupData, PackageTreeItem* parent )
+{
+    if ( groupData.contains( "critical" ) )
+    {
+        return CalamaresUtils::getBool( groupData, "critical", false );
+    }
+    return parent ? parent->isCritical() : false;
 }
 
 PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* parent )
@@ -54,7 +69,7 @@ PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTreeItem*
     , m_preScript( CalamaresUtils::getString( groupData, "pre-install" ) )
     , m_postScript( CalamaresUtils::getString( groupData, "post-install" ) )
     , m_isGroup( true )
-    , m_isCritical( CalamaresUtils::getBool( groupData, "critical", false ) )
+    , m_isCritical( parentCriticality( groupData, parent ) )
     , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
     , m_showReadOnly( CalamaresUtils::getBool( groupData, "immutable", false ) )
     , m_startExpanded( CalamaresUtils::getBool( groupData, "expanded", false ) )
