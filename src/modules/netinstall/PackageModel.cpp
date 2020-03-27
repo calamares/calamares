@@ -203,18 +203,19 @@ PackageModel::getItemPackages( PackageTreeItem* item ) const
     PackageTreeItem::List selectedPackages;
     for ( int i = 0; i < item->childCount(); i++ )
     {
-        if ( item->child( i )->isSelected() == Qt::Unchecked )
+        auto* child = item->child( i );
+        if ( child->isSelected() == Qt::Unchecked )
         {
             continue;
         }
 
-        if ( !item->child( i )->childCount() )  // package
+        if ( child->isPackage() )  // package
         {
-            selectedPackages.append( item->child( i ) );
+            selectedPackages.append( child );
         }
         else
         {
-            selectedPackages.append( getItemPackages( item->child( i ) ) );
+            selectedPackages.append( getItemPackages( child ) );
         }
     }
     return selectedPackages;
