@@ -33,15 +33,23 @@ class Config : public QObject
     Q_OBJECT
 
     Q_PROPERTY( PackageModel* packageModel MEMBER m_model FINAL )
-
-    Q_PROPERTY( QString status READ status WRITE setStatus NOTIFY statusChanged FINAL )
+    Q_PROPERTY( QString status READ status NOTIFY statusChanged FINAL )
 
 public:
     Config( QObject* parent = nullptr );
     virtual ~Config();
 
-    QString status() const { return m_status; }
-    void setStatus( const QString& s );
+    enum class Status
+    {
+        Ok,
+        FailedBadConfiguration,
+        FailedInternalError,
+        FailedNetworkError,
+        FailedBadData
+    };
+
+    QString status() const;
+    void setStatus( Status s );
 
     /** @brief Retrieves the groups, with name, description and packages
      *
@@ -64,7 +72,7 @@ private slots:
     void receivedGroupData();  ///< From async-loading group data
 
 private:
-    QString m_status;
+    Status m_status;
     PackageModel* m_model;
     QNetworkReply* m_reply = nullptr;  // For fetching data
 };

@@ -29,17 +29,38 @@
 
 Config::Config( QObject* parent )
     : QObject( parent )
+    , m_status( Status::Ok )
     , m_model( new PackageModel( this ) )
 {
 }
 
 Config::~Config() {}
 
+QString
+Config::status() const
+{
+    switch ( m_status )
+    {
+    case Status::Ok:
+        return QString();
+    case Status::FailedBadConfiguration:
+        return tr( "Network Installation. (Disabled: Incorrect configuration)" );
+    case Status::FailedBadData:
+        return tr( "Network Installation. (Disabled: Received invalid groups data)" );
+    case Status::FailedInternalError:
+        return tr( "Network Installation. (Disabled: internal error)" );
+    case Status::FailedNetworkError:
+        return tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" );
+    }
+    NOTREACHED return QString();
+}
+
+
 void
-Config::setStatus( const QString& s )
+Config::setStatus( Status s )
 {
     m_status = s;
-    emit statusChanged( m_status );
+    emit statusChanged( status() );
 }
 
 void
@@ -53,7 +74,7 @@ Config::loadGroupList( const QUrl& url )
 {
     if ( !url.isValid() )
     {
-        setStatus( tr( "Network Installation. (Disabled: Incorrect configuration)" ) );
+        setStatus( Status::FailedBadConfiguration );
     }
 
     using namespace CalamaresUtils::Network;
@@ -66,7 +87,7 @@ Config::loadGroupList( const QUrl& url )
     if ( !reply )
     {
         cDebug() << Logger::Continuation << "request failed immediately.";
-        setStatus( tr( "Network Installation. (Disabled: Incorrect configuration)" ) );
+        setStatus( Status::FailedBadConfiguration );
     }
     else
     {
@@ -96,7 +117,7 @@ Config::receivedGroupData()
     if ( !m_reply || !m_reply->isFinished() )
     {
         cWarning() << "NetInstall data called too early.";
-        setStatus( tr( "Network Installation. (Disabled: internal error)" ) );
+        setStatus( Status::FailedInternalError );
         return;
     }
 
@@ -112,7 +133,7 @@ Config::receivedGroupData()
         cDebug() << Logger::SubEntry << "Netinstall reply error: " << m_reply->error();
         cDebug() << Logger::SubEntry << "Request for url: " << m_reply->url().toString()
                  << " failed with: " << m_reply->errorString();
-        setStatus( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
+        setStatus( Status::FailedNetworkError );
         return;
     }
 
@@ -130,6 +151,6 @@ Config::receivedGroupData()
     catch ( YAML::Exception& e )
     {
         CalamaresUtils::explainYamlException( e, yamlData, "netinstall groups data" );
-        setStatus( tr( "Network Installation. (Disabled: Received invalid groups data)" ) );
+        setStatus( Status::FailedBadData );
     }
 }
