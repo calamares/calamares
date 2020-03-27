@@ -249,6 +249,10 @@ PackageModel::setupModelData( const QVariantList& groupList, PackageTreeItem* pa
             if ( !subgroups.isEmpty() )
             {
                 setupModelData( subgroups, item );
+                // The children might be checked while the parent isn't (yet).
+                // Children are added to their parent (below) without affecting
+                // the checked-state -- do it manually.
+                item->updateSelected();
             }
         }
         if ( item->isHidden() )

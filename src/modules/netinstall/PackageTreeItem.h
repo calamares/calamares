@@ -120,6 +120,13 @@ public:
     void setSelected( Qt::CheckState isSelected );
     void setChildrenSelected( Qt::CheckState isSelected );
 
+    /** @brief Update selectedness based on the children's states
+     *
+     * This only makes sense for groups, which might have packages
+     * or subgroups; it checks only direct children.
+     */
+    void updateSelected();
+
     // QStandardItem methods
     int type() const override;
 

@@ -194,33 +194,40 @@ PackageTreeItem::setSelected( Qt::CheckState isSelected )
         return;
     }
 
+    currentItem->updateSelected();
+}
+
+void
+PackageTreeItem::updateSelected()
+{
     // Figure out checked-state based on the children
     int childrenSelected = 0;
     int childrenPartiallySelected = 0;
-    for ( int i = 0; i < currentItem->childCount(); i++ )
+    for ( int i = 0; i < childCount(); i++ )
     {
-        if ( currentItem->child( i )->isSelected() == Qt::Checked )
+        if ( child( i )->isSelected() == Qt::Checked )
         {
             childrenSelected++;
         }
-        if ( currentItem->child( i )->isSelected() == Qt::PartiallyChecked )
+        if ( child( i )->isSelected() == Qt::PartiallyChecked )
         {
             childrenPartiallySelected++;
         }
     }
     if ( !childrenSelected && !childrenPartiallySelected )
     {
-        currentItem->setSelected( Qt::Unchecked );
+        setSelected( Qt::Unchecked );
     }
-    else if ( childrenSelected == currentItem->childCount() )
+    else if ( childrenSelected == childCount() )
     {
-        currentItem->setSelected( Qt::Checked );
+        setSelected( Qt::Checked );
     }
     else
     {
-        currentItem->setSelected( Qt::PartiallyChecked );
+        setSelected( Qt::PartiallyChecked );
     }
 }
+
 
 void
 PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
