@@ -32,12 +32,11 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin< 
 
 NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new NetInstallPage() )
-    , m_nextEnabled( false )
+    , m_widget( new NetInstallPage( &m_config ) )
     , m_sidebarLabel( nullptr )
+    , m_nextEnabled( false )
 {
-    emit nextStatusChanged( true );
-    connect( m_widget, &NetInstallPage::checkReady, this, &NetInstallViewStep::nextIsReady );
+    connect( &m_config, &Config::statusReady, this, &NetInstallViewStep::nextIsReady );
 }
 
 
@@ -56,7 +55,7 @@ NetInstallViewStep::prettyName() const
 {
     return m_sidebarLabel ? m_sidebarLabel->get() : tr( "Package selection" );
 
-#if defined(TABLE_OF_TRANSLATIONS)
+#if defined( TABLE_OF_TRANSLATIONS )
     NOTREACHED
     // This is a table of "standard" labels for this module. If you use them
     // in the label: sidebar: section of the config file, the existing
@@ -86,7 +85,7 @@ NetInstallViewStep::widget()
 bool
 NetInstallViewStep::isNextEnabled() const
 {
-    return m_nextEnabled;
+    return !m_config.required() || m_nextEnabled;
 }
 
 
@@ -111,10 +110,10 @@ NetInstallViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 NetInstallViewStep::jobs() const
 {
-    return m_jobs;
+    return Calamares::JobList();
 }
 
 
@@ -127,7 +126,7 @@ NetInstallViewStep::onActivate()
 void
 NetInstallViewStep::onLeave()
 {
-    PackageModel::PackageItemDataList packages = m_widget->selectedPackages();
+    auto packages = m_config.model()->getPackages();
     cDebug() << "Netinstall: Processing" << packages.length() << "packages.";
 
     static const char PACKAGEOP[] = "packageOperations";
@@ -158,13 +157,13 @@ NetInstallViewStep::onLeave()
 
     for ( const auto& package : packages )
     {
-        if ( package.isCritical )
+        if ( package->isCritical() )
         {
-            installPackages.append( package.toOperation() );
+            installPackages.append( package->toOperation() );
         }
         else
         {
-            tryInstallPackages.append( package.toOperation() );
+            tryInstallPackages.append( package->toOperation() );
         }
     }
 
@@ -192,16 +191,16 @@ NetInstallViewStep::onLeave()
 }
 
 void
-NetInstallViewStep::nextIsReady( bool b )
+NetInstallViewStep::nextIsReady()
 {
-    m_nextEnabled = b;
-    emit nextStatusChanged( b );
+    m_nextEnabled = true;
+    emit nextStatusChanged( true );
 }
 
 void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_widget->setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
+    m_config.setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
 
     QString groupsUrl = CalamaresUtils::getString( configurationMap, "groupsUrl" );
     if ( !groupsUrl.isEmpty() )
@@ -209,7 +208,15 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         // Keep putting groupsUrl into the global storage,
         // even though it's no longer used for in-module data-passing.
         Calamares::JobQueue::instance()->globalStorage()->insert( "groupsUrl", groupsUrl );
-        m_widget->loadGroupList( groupsUrl );
+        if ( groupsUrl == QStringLiteral( "local" ) )
+        {
+            QVariantList l = configurationMap.value( "groups" ).toList();
+            m_config.loadGroupList( l );
+        }
+        else
+        {
+            m_config.loadGroupList( groupsUrl );
+        }
     }
 
     bool bogus = false;

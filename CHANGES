@@ -34,9 +34,15 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - *packages* now reports more details in the installation progress-bar.
- - *netinstall* module supports and `expanded` key, which will pre-expand
+ - *netinstall* module supports an `expanded` key, which will pre-expand
    a group (as if the user had pressed the arrow-button in the tree-view).
-   This only affects the UI.
+   This only affects the UI, and only the **outermost** level of groups.
+ - *netinstall* module now supports a special value for *groupsUrl*.
+   Setting this to *local* will read the groups directly from the
+   configuration file.
+ - *netinstall* groups now support a new key `immutable` which prevents
+   their check-state from being changed (they are shown, or hidden,
+   as usual and can be expanded).
  - Modules that use QML need a new import line. The QML file for the
    module is configured through new keys *qmlSearch* and *qmlFilename*
    (previously those were without the `qml` prefix, which invites name
