@@ -111,10 +111,10 @@ NetInstallViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 NetInstallViewStep::jobs() const
 {
-    return m_jobs;
+    return Calamares::JobList();
 }
 
 

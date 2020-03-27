@@ -47,7 +47,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     void onActivate() override;
 
@@ -63,7 +63,6 @@ private:
     NetInstallPage* m_widget;
     bool m_nextEnabled;
     CalamaresUtils::Locale::TranslatedString* m_sidebarLabel;  // As it appears in the sidebar
-    QList< Calamares::job_ptr > m_jobs;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( NetInstallViewStepFactory )
