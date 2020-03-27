@@ -34,11 +34,16 @@
 #include <QHeaderView>
 #include <QNetworkReply>
 
-NetInstallPage::NetInstallPage( QWidget* parent )
+NetInstallPage::NetInstallPage( Config* c, QWidget* parent )
     : QWidget( parent )
+    , m_config( c )
     , ui( new Ui::Page_NetInst )
 {
     ui->setupUi( this );
+    ui->groupswidget->setModel( c->model() );
+    connect( c, &Config::statusChanged, this, &NetInstallPage::setStatus );
+    connect( c, &Config::statusReady, this, &NetInstallPage::expandGroups );
+
     setPageTitle( nullptr );
     CALAMARES_RETRANSLATE_SLOT( &NetInstallPage::retranslate );
 }
@@ -63,16 +68,17 @@ NetInstallPage::setPageTitle( CalamaresUtils::Locale::TranslatedString* t )
 void
 NetInstallPage::retranslate()
 {
-    if ( ui && m_title )
+    if ( m_title )
     {
         ui->label->setText( m_title->get() );  // That's get() on the TranslatedString
     }
+    ui->netinst_status->setText( m_config->status() );
 }
 
 void
-NetInstallPage::setModel( QAbstractItemModel* model )
+NetInstallPage::expandGroups()
 {
-    ui->groupswidget->setModel( model );
+    auto* model = m_config->model();
     // Go backwards because expanding a group may cause rows to appear below it
     for ( int i = model->rowCount() - 1; i >= 0; --i )
     {
@@ -84,6 +90,11 @@ NetInstallPage::setModel( QAbstractItemModel* model )
     }
 }
 
+void
+NetInstallPage::setStatus( QString s )
+{
+    ui->netinst_status->setText( s );
+}
 
 void
 NetInstallPage::onActivate()

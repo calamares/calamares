@@ -32,12 +32,11 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin< 
 
 NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new NetInstallPage() )
+    , m_widget( new NetInstallPage( &m_config ) )
     , m_sidebarLabel( nullptr )
     , m_nextEnabled( false )
 {
-    emit nextStatusChanged( true );
-    connect( m_widget, &NetInstallPage::checkReady, this, &NetInstallViewStep::nextIsReady );
+    connect( &m_config, &Config::statusReady, this, &NetInstallViewStep::nextIsReady );
 }
 
 
@@ -86,7 +85,7 @@ NetInstallViewStep::widget()
 bool
 NetInstallViewStep::isNextEnabled() const
 {
-    return m_nextEnabled;
+    return !m_config.required() || m_nextEnabled;
 }
 
 
@@ -192,17 +191,16 @@ NetInstallViewStep::onLeave()
 }
 
 void
-NetInstallViewStep::nextIsReady( bool b )
+NetInstallViewStep::nextIsReady()
 {
-    m_nextEnabled = b;
-    emit nextStatusChanged( b );
+    m_nextEnabled = true;
+    emit nextStatusChanged( true );
 }
 
 void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config.setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
-    m_widget->setModel( m_config.model() );
 
     QString groupsUrl = CalamaresUtils::getString( configurationMap, "groupsUrl" );
     if ( !groupsUrl.isEmpty() )

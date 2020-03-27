@@ -66,6 +66,7 @@ void
 Config::loadGroupList( const QVariantList& groupData )
 {
     m_model->setupModelData( groupData );
+    emit statusReady();
 }
 
 void

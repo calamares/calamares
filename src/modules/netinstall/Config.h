@@ -71,7 +71,8 @@ public:
     PackageModel* model() const { return m_model; }
 
 signals:
-    void statusChanged( QString status );
+    void statusChanged( QString status );  ///< Something changed
+    void statusReady();  ///< Loading groups is complete
 
 private slots:
     void receivedGroupData();  ///< From async-loading group data

@@ -59,14 +59,14 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 public slots:
-    void nextIsReady( bool );
+    void nextIsReady();
 
 private:
     Config m_config;
 
     NetInstallPage* m_widget;
     CalamaresUtils::Locale::TranslatedString* m_sidebarLabel;  // As it appears in the sidebar
-    bool m_nextEnabled;
+    bool m_nextEnabled = false;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( NetInstallViewStepFactory )

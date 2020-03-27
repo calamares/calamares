@@ -21,6 +21,7 @@
 #ifndef NETINSTALLPAGE_H
 #define NETINSTALLPAGE_H
 
+#include "Config.h"
 #include "PackageModel.h"
 #include "PackageTreeItem.h"
 
@@ -42,7 +43,7 @@ class NetInstallPage : public QWidget
 {
     Q_OBJECT
 public:
-    NetInstallPage( QWidget* parent = nullptr );
+    NetInstallPage( Config* config, QWidget* parent = nullptr );
     virtual ~NetInstallPage();
 
     /** @brief Sets the page title
@@ -56,24 +57,21 @@ public:
      */
     void setPageTitle( CalamaresUtils::Locale::TranslatedString* );
 
-    /** @brief Sets the model of packages to display
-     *
-     * While setting up the UI, expand entries that should be pre-expanded.
-     *
-     * Follows the *expanded* key / the startExpanded field in the
-     * group entries of the model. Call this after filling up the model.
-     */
-    void setModel( QAbstractItemModel* );
-
     void onActivate();
 
 public slots:
     void retranslate();
+    void setStatus( QString s );
 
-signals:
-    void checkReady( bool );
+    /** @brief Expand entries that should be pre-expanded.
+     *
+     * Follows the *expanded* key / the startExpanded field in the
+     * group entries of the model. Call this after filling up the model.
+     */
+    void expandGroups();
 
 private:
+    Config* m_config;
     Ui::Page_NetInst* ui;
 
     std::unique_ptr< CalamaresUtils::Locale::TranslatedString > m_title;  // Above the treeview
