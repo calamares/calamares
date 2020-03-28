@@ -19,7 +19,9 @@ least should contain a *groupsUrl* key:
 
 The URL must point to a YAML file, the *groups* file. See below for
 the format of that groups file. The URL may be a local file (e.g.
-scheme `file:///`) or a regular HTTP(s) URL.
+scheme `file:///`) or a regular HTTP(s) URL. The URL has one special
+case: the literal string `local` is used to indicate that the groups
+data is contained in the `netinstall.conf` file itself.
 
 
 ## Groups Configuration
@@ -47,13 +49,16 @@ More keys (per group) are supported:
  - *selected*: if true, display the group as selected. Defaults to false.
  - *critical*: if true, make the installation process fail if installing
    any of the packages in the group fails. Otherwise, just log a warning.
-   Defaults to false.
+   Defaults to false. If not set in a subgroup (see below), inherits from
+   the parent group.
  - *immutable*: if true, the state of the group (and all its subgroups)
    cannot be changed; it really only makes sense in combination
    with *selected* set to true. This only affects the user-interface.
  - *expanded*: if true, the group is shown in an expanded form (that is,
    not-collapsed) in the treeview on start. This only affects the user-
-   interface.
+   interface. Only top-level groups are show expanded-initially.
+ - *immutable*: if true, the group cannot be changed (packages selected
+   or deselected) and no checkboxes are shown for the group.
  - *subgroups*: if present this follows the same structure as the top level
    of the YAML file, allowing there to be sub-groups of packages to an
    arbitary depth
