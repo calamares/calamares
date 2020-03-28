@@ -471,7 +471,7 @@ PartitionViewStep::onLeave()
                               "<br/><br/>"
                               "To configure a GPT partition table on BIOS, "
                               "(if not done so already) go back "
-                              "and set the partion table to GPT, next create a 8 MB "
+                              "and set the partition table to GPT, next create a 8 MB "
                               "unformatted partition with the "
                               "<strong>bios_grub</strong> flag enabled.<br/><br/>"
                               "An unformatted 8 MB partition is necessary "
