@@ -23,6 +23,7 @@
 
 #include "network/Manager.h"
 #include "utils/Logger.h"
+#include "utils/RAII.h"
 #include "utils/Yaml.h"
 
 #include <QNetworkReply>
@@ -96,21 +97,6 @@ Config::loadGroupList( const QUrl& url )
     }
 }
 
-/// @brief Convenience to zero out and deleteLater on the reply, used in dataIsHere
-struct ReplyDeleter
-{
-    QNetworkReply*& p;
-
-    ~ReplyDeleter()
-    {
-        if ( p )
-        {
-            p->deleteLater();
-        }
-        p = nullptr;
-    }
-};
-
 void
 Config::receivedGroupData()
 {
@@ -123,7 +109,7 @@ Config::receivedGroupData()
 
     cDebug() << "NetInstall group data received" << m_reply->size() << "bytes from" << m_reply->url();
 
-    ReplyDeleter d { m_reply };
+    cqDeleter< QNetworkReply > d{ m_reply };
 
     // If m_required is *false* then we still say we're ready
     // even if the reply is corrupt or missing.
