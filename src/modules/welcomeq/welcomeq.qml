@@ -31,7 +31,7 @@ Page
     header: Item
     {
         width: parent.width
-        height: 150
+        height: parent.height
 
         Text
         {
@@ -39,7 +39,7 @@ Page
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             // In QML, QString::arg() only takes one argument
-            text: qsTr("<h3>%1 <quote>%2</quote></h3>").arg(Branding.string(Branding.ProductName)).arg(Branding.string(Branding.Version))
+            text: qsTr("<h3>Welcome to the %1 <quote>%2</quote> installer</h3>").arg(Branding.string(Branding.ProductName)).arg(Branding.string(Branding.Version))
         }
         Image
         {
@@ -49,10 +49,9 @@ Page
             // .. otherwise the path is interpreted relative to the "call site", which
             // .. might be the QRC file.
             source: "file:/" + Branding.imagePath(Branding.ProductWelcome)
-            height: Math.min(100, parent.height)
-            width: height
             sourceSize.width: width
             sourceSize.height: height
+            fillMode: Image.PreserveAspectFit
         }
 
         RowLayout
@@ -73,9 +72,9 @@ Page
             {
                 Layout.fillWidth: true
                 text: qsTr("About")
-                icon.name: "documentinfo"
+                icon.name: "dialog-information"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
                 visible: false
                 onClicked: { } // TODO: show an about-Calamares window
@@ -84,9 +83,9 @@ Page
             {
                 Layout.fillWidth: true
                 text: qsTr("Support")
-                icon.name: "documentinfo"
+                icon.name: "system-help"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
                 visible: config.helpUrl.isValid
                 onClicked: Qt.openUrlExternally(config.helpUrl)
@@ -95,9 +94,9 @@ Page
             {
                 Layout.fillWidth: true
                 text: qsTr("Known issues")
-                icon.name: "documentinfo"
+                icon.name: "tools-report-bug"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
                 visible: config.issuesUrl.isValid
                 onClicked: Qt.openUrlExternally(config.issuesUrl)
@@ -106,9 +105,9 @@ Page
             {
                 Layout.fillWidth: true
                 text: qsTr("Release notes")
-                icon.name: "documentinfo"
+                icon.name: "folder-text"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
                 visible: config.notesUrl.isValid
                 onClicked: Qt.openUrlExternally(config.notesUrl)
@@ -117,9 +116,9 @@ Page
             {
                 Layout.fillWidth: true
                 text: qsTr("Donate")
-                icon.name: "documentinfo"
+                icon.name: "taxes-finances"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
                 visible: config.donateUrl.isValid
                 onClicked: Qt.openUrlExternally(config.donateUrl)
