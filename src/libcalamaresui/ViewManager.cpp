@@ -559,6 +559,8 @@ ViewManager::data( const QModelIndex& index, int role ) const
         {
             return QVariant();
         }
+    case ProgressTreeItemCurrentIndex:
+        return m_currentStep;
     case ProgressTreeItemCurrentRole:
         return currentStep() == step;
     case ProgressTreeItemCompletedRole:
