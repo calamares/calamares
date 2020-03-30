@@ -3,7 +3,19 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.21 (unreleased) #
+# 3.2.22 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
+# 3.2.21 (2020-03-27) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
@@ -34,9 +46,15 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
  - *packages* now reports more details in the installation progress-bar.
- - *netinstall* module supports and `expanded` key, which will pre-expand
+ - *netinstall* module supports an `expanded` key, which will pre-expand
    a group (as if the user had pressed the arrow-button in the tree-view).
-   This only affects the UI.
+   This only affects the UI, and only the **outermost** level of groups.
+ - *netinstall* module now supports a special value for *groupsUrl*.
+   Setting this to *local* will read the groups directly from the
+   configuration file.
+ - *netinstall* groups now support a new key `immutable` which prevents
+   their check-state from being changed (they are shown, or hidden,
+   as usual and can be expanded).
  - Modules that use QML need a new import line. The QML file for the
    module is configured through new keys *qmlSearch* and *qmlFilename*
    (previously those were without the `qml` prefix, which invites name

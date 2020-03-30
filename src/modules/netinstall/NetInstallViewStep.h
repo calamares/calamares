@@ -20,6 +20,8 @@
 #ifndef NETINSTALLVIEWSTEP_H
 #define NETINSTALLVIEWSTEP_H
 
+#include "Config.h"
+
 #include "DllMacro.h"
 #include "locale/TranslatableConfiguration.h"
 #include "utils/PluginFactory.h"
@@ -47,7 +49,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    Calamares::JobList jobs() const override;
 
     void onActivate() override;
 
@@ -57,13 +59,14 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 public slots:
-    void nextIsReady( bool );
+    void nextIsReady();
 
 private:
+    Config m_config;
+
     NetInstallPage* m_widget;
-    bool m_nextEnabled;
     CalamaresUtils::Locale::TranslatedString* m_sidebarLabel;  // As it appears in the sidebar
-    QList< Calamares::job_ptr > m_jobs;
+    bool m_nextEnabled = false;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( NetInstallViewStepFactory )

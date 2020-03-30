@@ -26,7 +26,8 @@ Repeater {
         color: "black"
 
         Text {
-            color: completed ? "green" : "yellow"
+            anchors.centerIn: parent
+            color: index == ViewManager.currentStepIndex ? "green" : "yellow"
             text: display
         }
     }

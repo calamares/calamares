@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Lovro Kudelić <lovro.kudelic@outlook.com>, 2019
+# Lovro Kudelić <lovro.kudelic@outlook.com>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-19 17:27+0100\n"
+"POT-Creation-Date: 2020-03-19 00:13+0100\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>, 2019\n"
+"Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>, 2020\n"
 "Language-Team: Croatian (https://www.transifex.com/calamares/teams/20061/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,22 +29,22 @@ msgstr "Konfigurirajte GRUB."
 msgid "Mounting partitions."
 msgstr "Montiranje particija."
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:201
-#: src/modules/initcpiocfg/main.py:205
+#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
 #: src/modules/luksopenswaphookcfg/main.py:95
 #: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
 #: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
 #: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:322
-#: src/modules/fstab/main.py:328 src/modules/localecfg/main.py:144
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "Greška konfiguracije"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:202
+#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:323
+#: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Nema definiranih particija za <pre>{!s}</pre> korištenje."
 
@@ -93,19 +93,19 @@ msgstr ""
 msgid "Unmount file systems."
 msgstr "Odmontiraj datotečne sustave."
 
-#: src/modules/unpackfs/main.py:41
+#: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
 msgstr "Popunjavanje datotečnih sustava."
 
-#: src/modules/unpackfs/main.py:184
+#: src/modules/unpackfs/main.py:188
 msgid "rsync failed with error code {}."
 msgstr "rsync nije uspio s kodom pogreške {}."
 
-#: src/modules/unpackfs/main.py:245 src/modules/unpackfs/main.py:268
+#: src/modules/unpackfs/main.py:249 src/modules/unpackfs/main.py:272
 msgid "Failed to unpack image \"{}\""
 msgstr "Otpakiravnje slike nije uspjelo \"{}\""
 
-#: src/modules/unpackfs/main.py:246
+#: src/modules/unpackfs/main.py:250
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
@@ -113,19 +113,19 @@ msgstr ""
 "Neuspješno pronalaženje unsquashfs, provjerite imate li instaliran paket "
 "squashfs-tools"
 
-#: src/modules/unpackfs/main.py:370
+#: src/modules/unpackfs/main.py:369
 msgid "No mount point for root partition"
 msgstr "Nema točke montiranja za root particiju"
 
-#: src/modules/unpackfs/main.py:371
+#: src/modules/unpackfs/main.py:370
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr "globalstorage ne sadrži ključ \"rootMountPoint\", ne radi ništa"
 
-#: src/modules/unpackfs/main.py:376
+#: src/modules/unpackfs/main.py:375
 msgid "Bad mount point for root partition"
 msgstr "Neispravna točka montiranja za root particiju"
 
-#: src/modules/unpackfs/main.py:377
+#: src/modules/unpackfs/main.py:376
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr "rootMountPoint je \"{}\", što ne postoji, ne radi ništa"
 
@@ -135,8 +135,8 @@ msgid "Bad unsquash configuration"
 msgstr "Neispravna unsquash konfiguracija"
 
 #: src/modules/unpackfs/main.py:390
-msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr "Datotečni sustav za \"{}\" ({}) nije podržan"
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "Datotečni sustav za \"{}\" ({}) nije podržan na vašem trenutnom kernelu"
 
 #: src/modules/unpackfs/main.py:394
 msgid "The source filesystem \"{}\" does not exist"
@@ -206,10 +206,10 @@ msgstr "Konfiguracija upravitelja zaslona nije bila potpuna"
 msgid "Configuring mkinitcpio."
 msgstr "Konfiguriranje mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:206
+#: src/modules/initcpiocfg/main.py:210
 #: src/modules/luksopenswaphookcfg/main.py:100
 #: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:329 src/modules/localecfg/main.py:145
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
 #: src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
@@ -277,16 +277,17 @@ msgstr ""
 msgid "Configure Plymouth theme"
 msgstr "Konfigurirajte Plymouth temu"
 
-#: src/modules/packages/main.py:62
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Instaliraj pakete."
+
+#: src/modules/packages/main.py:66
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "Obrađujem pakete (%(count)d / %(total)d)"
 
-#: src/modules/packages/main.py:64 src/modules/packages/main.py:74
-msgid "Install packages."
-msgstr "Instaliraj pakete."
-
-#: src/modules/packages/main.py:67
+#: src/modules/packages/main.py:71
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
@@ -294,7 +295,7 @@ msgstr[0] "Instaliram paket."
 msgstr[1] "Instaliram %(num)d pakete."
 msgstr[2] "Instaliram %(num)d pakete."
 
-#: src/modules/packages/main.py:70
+#: src/modules/packages/main.py:74
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
@@ -305,10 +306,6 @@ msgstr[2] "Uklanjam %(num)d pakete."
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
 msgstr "Instaliram bootloader."
-
-#: src/modules/removeuser/main.py:34
-msgid "Remove live user from target system"
-msgstr "Uklonite live korisnika iz ciljnog sustava"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
@@ -342,7 +339,8 @@ msgstr "Zapisujem fstab."
 msgid "Dummy python job."
 msgstr "Testni python posao."
 
-#: src/modules/dummypython/main.py:97
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
 msgid "Dummy python step {}"
 msgstr "Testni python korak {}"
 

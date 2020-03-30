@@ -22,12 +22,12 @@
   <context>
     <name>BootLoaderModel</name>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="70"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="68"/>
       <source>Master Boot Record of %1</source>
       <translation> %1 paleidimo įrašas (MBR)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="104"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="102"/>
       <source>Boot Partition</source>
       <translation>Paleidimo skaidinys</translation>
     </message>
@@ -42,7 +42,7 @@
       <translation>Nediegti paleidyklės</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="156"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="157"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="114"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="115"/>
       <source>Done</source>
       <translation>Atlikta</translation>
     </message>
@@ -177,32 +177,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="204"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="210"/>
       <source>Running %1 operation.</source>
       <translation>Vykdoma %1 operacija.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="221"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="239"/>
       <source>Bad working directory path</source>
       <translation>Netinkama darbinio katalogo vieta</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="240"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>Darbinis %1 python katalogas  dėl %2 užduoties yra neskaitomas</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="228"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="246"/>
       <source>Bad main script file</source>
       <translation>Prastas pagrindinio skripto failas</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="247"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>Pagrindinis scenarijus %1  dėl python %2 užduoties yra neskaitomas</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="307"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="315"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>Boost.Python klaida užduotyje "%1".</translation>
     </message>
@@ -210,17 +210,17 @@
   <context>
     <name>Calamares::QmlViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="108"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="76"/>
       <source>Loading ...</source>
       <translation>Įkeliama...</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="129"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="97"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
       <translation>QML &lt;i&gt;%1&lt;/i&gt; žingsnis.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="347"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="261"/>
       <source>Loading failed.</source>
       <translation>Įkėlimas nepavyko.</translation>
     </message>
@@ -257,175 +257,175 @@
     <name>Calamares::ViewManager</name>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="92"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="410"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
       <source>&amp;Back</source>
       <translation>&amp;Atgal</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="94"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="405"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
       <source>&amp;Next</source>
       <translation>&amp;Toliau</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="96"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="430"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="432"/>
       <source>&amp;Cancel</source>
       <translation>A&amp;tsisakyti</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
       <source>Cancel setup without changing the system.</source>
       <translation>Atsisakyti sąrankos, nieko sistemoje nekeičiant.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
       <source>Cancel installation without changing the system.</source>
       <translation>Atsisakyti diegimo, nieko sistemoje nekeičiant.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="199"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
       <source>Setup Failed</source>
       <translation>Sąranka patyrė nesėkmę</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="200"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="202"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Ar norėtumėte įdėti diegimo žurnalą į saityną?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="240"/>
       <source>Install Log Paste URL</source>
       <translation>Diegimo žurnalo įdėjimo URL</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="241"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="243"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation>Įkėlimas buvo nesėkmingas. Nebuvo atlikta jokio įdėjimo į saityną.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="259"/>
       <source>Calamares Initialization Failed</source>
       <translation>Calamares inicijavimas nepavyko</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="258"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <translation>Nepavyksta įdiegti %1. Calamares nepavyko įkelti visų sukonfigūruotų modulių. Tai yra problema, susijusi su tuo, kaip distribucija naudoja diegimo programą Calamares.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="266"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <translation>&lt;br/&gt;Nepavyko įkelti šių modulių:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
       <source>Continue with installation?</source>
       <translation>Tęsti diegimą?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="329"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%1 sąrankos programa, siekdama nustatyti %2, ketina atlikti pakeitimus diske.&lt;br/&gt;&lt;strong&gt;Šių pakeitimų nebegalėsite atšaukti.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
       <source>&amp;Set up now</source>
       <translation>Nu&amp;statyti dabar</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
       <source>&amp;Set up</source>
       <translation>Nu&amp;statyti</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="389"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
       <source>&amp;Install</source>
       <translation>Į&amp;diegti</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>Sąranka užbaigta. Užverkite sąrankos programą.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="492"/>
       <source>Cancel setup?</source>
       <translation>Atsisakyti sąrankos?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="490"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="492"/>
       <source>Cancel installation?</source>
       <translation>Atsisakyti diegimo?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="491"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="493"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>Ar tikrai norite atsisakyti dabartinio sąrankos proceso?
 Sąrankos programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="493"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>Ar tikrai norite atsisakyti dabartinio diegimo proceso?
 Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="220"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="497"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="499"/>
       <source>&amp;Yes</source>
       <translation>&amp;Taip</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="221"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="498"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="223"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="500"/>
       <source>&amp;No</source>
       <translation>&amp;Ne</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="227"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="229"/>
       <source>&amp;Close</source>
       <translation>&amp;Užverti</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
       <source>Continue with setup?</source>
       <translation>Tęsti sąranką?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%1 diegimo programa, siekdama įdiegti %2, ketina atlikti pakeitimus diske.&lt;br/&gt;&lt;strong&gt;Šių pakeitimų nebegalėsite atšaukti.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
       <source>&amp;Install now</source>
       <translation>Į&amp;diegti dabar</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="340"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="342"/>
       <source>Go &amp;back</source>
       <translation>&amp;Grįžti</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="415"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
       <source>&amp;Done</source>
       <translation>A&amp;tlikta</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
       <source>The installation is complete. Close the installer.</source>
       <translation>Diegimas užbaigtas. Užverkite diegimo programą.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="213"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="215"/>
       <source>Error</source>
       <translation>Klaida</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="199"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
       <source>Installation Failed</source>
       <translation>Diegimas nepavyko</translation>
     </message>
@@ -433,22 +433,22 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>CalamaresPython::Helper</name>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="301"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="297"/>
       <source>Unknown exception type</source>
       <translation>Nežinomas išimties tipas</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="319"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="315"/>
       <source>unparseable Python error</source>
       <translation>Nepalyginama Python klaida</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="363"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="359"/>
       <source>unparseable Python traceback</source>
       <translation>Nepalyginamas Python atsekimas</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="370"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="366"/>
       <source>Unfetchable Python error.</source>
       <translation>Neatgaunama Python klaida.</translation>
     </message>
@@ -466,17 +466,17 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="72"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="158"/>
       <source>%1 Setup Program</source>
       <translation>%1 sąrankos programa</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="73"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="159"/>
       <source>%1 Installer</source>
       <translation>%1 diegimo programa</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="142"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="106"/>
       <source>Show debug information</source>
       <translation>Rodyti derinimo informaciją</translation>
     </message>
@@ -484,7 +484,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>CheckerContainer</name>
     <message>
-      <location filename="../src/modules/welcome/checker/CheckerContainer.cpp" line="45"/>
+      <location filename="../src/modules/welcome/checker/CheckerContainer.cpp" line="46"/>
       <source>Gathering system information...</source>
       <translation>Renkama sistemos informacija...</translation>
     </message>
@@ -497,134 +497,134 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Forma</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
       <source>After:</source>
       <translation>Po:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="330"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Rankinis skaidymas&lt;/strong&gt;&lt;br/&gt;Galite patys kurti ar keisti skaidinių dydžius.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
       <source>Boot loader location:</source>
       <translation>Paleidyklės vieta:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="152"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Pasirinkite atminties įr&amp;enginį:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="153"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="951"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="996"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1082"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="157"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="955"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
       <source>Current:</source>
       <translation>Dabartinis:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="827"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Pakartotinai naudoti %1 kaip namų skaidinį, skirtą %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Pasirinkite, kurį skaidinį sumažinti, o tuomet vilkite juostą, kad pakeistumėte skaidinio dydį&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="967"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="971"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 bus sumažintas iki %2MiB ir naujas %3MiB skaidinys bus sukurtas sistemai %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Pasirinkite kuriame skaidinyje įdiegti&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Šioje sistemoje niekur nepavyko rasti EFI skaidinio. Prašome grįžti ir naudoti rankinį skaidymą, kad nustatytumėte %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%2 paleidimui bus naudojamas EFI sistemos skaidinys, esantis ties %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1146"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
       <source>EFI system partition:</source>
       <translation>EFI sistemos skaidinys:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Atrodo, kad šiame įrenginyje nėra operacinės sistemos. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1269"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1311"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Ištrinti diską&lt;/strong&gt;&lt;br/&gt;Tai &lt;font color="red"&gt;ištrins&lt;/font&gt; visus, pasirinktame atminties įrenginyje, esančius duomenis.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1297"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Šiame atminties įrenginyje jau yra %1. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1501"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1505"/>
       <source>No Swap</source>
       <translation>Be sukeitimų skaidinio</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1506"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1510"/>
       <source>Reuse Swap</source>
       <translation>Iš naujo naudoti sukeitimų skaidinį</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1509"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
       <source>Swap (no Hibernate)</source>
       <translation>Sukeitimų skaidinys (be užmigdymo)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1512"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1516"/>
       <source>Swap (with Hibernate)</source>
       <translation>Sukeitimų skaidinys (su užmigdymu)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1515"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1519"/>
       <source>Swap to file</source>
       <translation>Sukeitimų failas</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1303"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1326"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1352"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Įdiegti šalia&lt;/strong&gt;&lt;br/&gt;Diegimo programa sumažins skaidinį, kad atlaisvintų vietą sistemai %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1312"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1316"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Pakeisti skaidinį&lt;/strong&gt;&lt;br/&gt;Pakeičia skaidinį ir įrašo %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1321"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Šiame atminties įrenginyje jau yra operacinė sistema. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Šiame atminties įrenginyje jau yra kelios operacinės sistemos. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
@@ -632,17 +632,17 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>ClearMountsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="47"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="50"/>
       <source>Clear mounts for partitioning operations on %1</source>
       <translation>Išvalyti prijungimus, siekiant atlikti skaidymo operacijas skaidiniuose %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="58"/>
       <source>Clearing mounts for partitioning operations on %1.</source>
       <translation>Išvalomi prijungimai, siekiant atlikti skaidymo operacijas skaidiniuose %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="192"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="217"/>
       <source>Cleared all mounts for %1</source>
       <translation>Visi %1 prijungimai išvalyti</translation>
     </message>
@@ -690,9 +690,32 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
   </context>
   <context>
+    <name>Config</name>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="105"/>
+      <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;Jus sveikina Calamares sąrankos programa, skirta %1 sistemai.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="106"/>
+      <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;Jus sveikina %1 sąranka.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="111"/>
+      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;Jus sveikina Calamares diegimo programa, skirta %1 sistemai.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="112"/>
+      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;Jus sveikina %1 diegimo programa.&lt;/h1&gt;</translation>
+    </message>
+  </context>
+  <context>
     <name>ContextualProcessJob</name>
     <message>
-      <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="123"/>
+      <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="128"/>
       <source>Contextual Processes Job</source>
       <translation>Konteksto procesų užduotis</translation>
     </message>
@@ -750,27 +773,27 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>D&amp;ydis:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="72"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="74"/>
       <source>En&amp;crypt</source>
       <translation>Užši&amp;fruoti</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="157"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="159"/>
       <source>Logical</source>
       <translation>Loginis</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="162"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="164"/>
       <source>Primary</source>
       <translation>Pirminis</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="181"/>
       <source>GPT</source>
       <translation>GPT</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="269"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="271"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <translation>Prijungimo taškas jau yra naudojamas. Prašome pasirinkti kitą.</translation>
     </message>
@@ -778,22 +801,22 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>CreatePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="49"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="47"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
       <translation>Sukurti naują %2MiB skaidinį diske %4 (%3) su %1 failų sistema.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="58"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Sukurti naują &lt;strong&gt;%2MiB&lt;/strong&gt; skaidinį diske &lt;strong&gt;%4&lt;/strong&gt; (%3) su &lt;strong&gt;%1&lt;/strong&gt; failų sistema.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="72"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="70"/>
       <source>Creating new %1 partition on %2.</source>
       <translation>Kuriamas naujas %1 skaidinys ties %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="84"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="82"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <translation>Diegimo programai nepavyko sukurti skaidinio diske '%1'.</translation>
     </message>
@@ -829,22 +852,22 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>CreatePartitionTableJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
       <source>Create new %1 partition table on %2.</source>
       <translation>Sukurti naują %1 skaidinių lentelę ties %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
       <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Sukurti naują &lt;strong&gt;%1&lt;/strong&gt; skaidinių lentelę diske &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="64"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="65"/>
       <source>Creating new %1 partition table on %2.</source>
       <translation>Kuriama nauja %1 skaidinių lentelė ties %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="82"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="83"/>
       <source>The installer failed to create a partition table on %1.</source>
       <translation>Diegimo programai nepavyko %1 sukurti skaidinių lentelės.</translation>
     </message>
@@ -996,13 +1019,13 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>DeviceModel</name>
     <message>
-      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="92"/>
+      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="93"/>
       <source>%1 - %2 (%3)</source>
       <extracomment>device[name] - size[number] (device-node[name])</extracomment>
       <translation>%1 - %2 (%3)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="103"/>
+      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="104"/>
       <source>%1 - (%2)</source>
       <extracomment>device[name] - (device-node[name])</extracomment>
       <translation>%1 - (%2)</translation>
@@ -1115,7 +1138,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Patvirtinkite slaptafrazę</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="151"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Prašome abiejuose langeliuose įrašyti tą pačią slaptafrazę.</translation>
     </message>
@@ -1123,37 +1146,37 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>FillGlobalStorageJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="137"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="139"/>
       <source>Set partition information</source>
       <translation>Nustatyti skaidinio informaciją</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="163"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="165"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
       <translation>Įdiegti %1 &lt;strong&gt;naujame&lt;/strong&gt; %2 sistemos skaidinyje.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="169"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="171"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Nustatyti &lt;strong&gt;naują&lt;/strong&gt; %2 skaidinį su prijungimo tašku &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="181"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Diegti %2 sistemą, %3 sistemos skaidinyje &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="188"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Nustatyti %3 skaidinį &lt;strong&gt;%1&lt;/strong&gt; su prijungimo tašku &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="199"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="201"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Diegti paleidyklę skaidinyje &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="208"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="210"/>
       <source>Setting up mount points.</source>
       <translation>Nustatomi prijungimo taškai.</translation>
     </message>
@@ -1237,22 +1260,22 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>FormatPartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="46"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="45"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
       <translation>Formatuoti skaidinį %1 (failų sistema: %2, dydis: %3 MiB) diske %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="57"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="56"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Formatuoti &lt;strong&gt;%3MiB&lt;/strong&gt; skaidinį &lt;strong&gt;%1&lt;/strong&gt; su &lt;strong&gt;%2&lt;/strong&gt; failų sistema.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="68"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
       <source>Formatting partition %1 with file system %2.</source>
       <translation>Formatuojamas skaidinys %1 su %2 failų sistema.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="81"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
       <translation>Diegimo programai nepavyko formatuoti „%2“ disko skaidinio %1.</translation>
     </message>
@@ -1660,16 +1683,6 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>NetInstallPage</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="178"/>
-      <source>Name</source>
-      <translation>Pavadinimas</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="179"/>
-      <source>Description</source>
-      <translation>Aprašas</translation>
-    </message>
-    <message>
       <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="137"/>
       <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
       <translation>Tinklo diegimas. (Išjungta: Nepavyksta gauti paketų sąrašus, patikrinkite savo tinklo ryšį)</translation>
@@ -1680,7 +1693,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Tinklo diegimas. (Išjungtas: Gauti neteisingi grupių duomenys)</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="187"/>
+      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="197"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
       <translation>Tinklo diegimas. (Išjungtas: Neteisinga konfigūracija)</translation>
     </message>
@@ -2026,7 +2039,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Nežinoma klaida</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="571"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="581"/>
       <source>Password is empty</source>
       <translation>Slaptažodis yra tuščias</translation>
     </message>
@@ -2070,6 +2083,19 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
       <source>Packages</source>
       <translation>Paketai</translation>
+    </message>
+  </context>
+  <context>
+    <name>PackageModel</name>
+    <message>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <source>Name</source>
+      <translation>Pavadinimas</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <source>Description</source>
+      <translation>Aprašas</translation>
     </message>
   </context>
   <context>
@@ -2234,34 +2260,34 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>PartitionModel</name>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="144"/>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="176"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="168"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="208"/>
       <source>Free Space</source>
       <translation>Laisva vieta</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="148"/>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="180"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="172"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="212"/>
       <source>New partition</source>
       <translation>Naujas skaidinys</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="264"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="305"/>
       <source>Name</source>
       <translation>Pavadinimas</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="266"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
       <source>File System</source>
       <translation>Failų sistema</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="268"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="309"/>
       <source>Mount Point</source>
       <translation>Prijungimo vieta</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="270"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="311"/>
       <source>Size</source>
       <translation>Dydis</translation>
     </message>
@@ -2329,17 +2355,17 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
       <translation>Į&amp;diegti paleidyklę skaidinyje:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="209"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="211"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
       <translation>Ar tikrai %1 norite sukurti naują skaidinių lentelę?</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="238"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="240"/>
       <source>Can not create new partition</source>
       <translation>Nepavyksta sukurti naują skaidinį</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="239"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="241"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
       <translation>Skaidinių lentelėje ties %1 jau yra %2 pirminiai skaidiniai ir daugiau nebegali būti pridėta. Pašalinkite vieną pirminį skaidinį ir vietoj jo, pridėkite išplėstą skaidinį.</translation>
     </message>
@@ -2513,14 +2539,14 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="464"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="417"/>
       <source>
 There was no output from the command.</source>
       <translation>
 Nebuvo jokios išvesties iš komandos.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="465"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
       <source>
 Output:
 </source>
@@ -2529,52 +2555,52 @@ Išvestis:
 </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="469"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="422"/>
       <source>External command crashed.</source>
       <translation>Išorinė komanda užstrigo.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="470"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation>Komanda &lt;i&gt;%1&lt;/i&gt; užstrigo.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="475"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="428"/>
       <source>External command failed to start.</source>
       <translation>Nepavyko paleisti išorinės komandos.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="476"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation>Nepavyko paleisti komandos &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="480"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="433"/>
       <source>Internal error when starting command.</source>
       <translation>Paleidžiant komandą, įvyko vidinė klaida.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="481"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
       <source>Bad parameters for process job call.</source>
       <translation>Blogi parametrai proceso užduoties iškvietai.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="485"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="438"/>
       <source>External command failed to finish.</source>
       <translation>Nepavyko pabaigti išorinės komandos.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="486"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="439"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation>Nepavyko per %2 sek. pabaigti komandos &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="493"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="446"/>
       <source>External command finished with errors.</source>
       <translation>Išorinė komanda pabaigta su klaidomis.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="494"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation>Komanda &lt;i&gt;%1&lt;/i&gt; pabaigta su išėjimo kodu %2.</translation>
     </message>
@@ -2593,22 +2619,22 @@ Išvestis:
       <translation>Numatytasis</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="36"/>
       <source>unknown</source>
       <translation>nežinoma</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="209"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="38"/>
       <source>extended</source>
       <translation>išplėsta</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="211"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="40"/>
       <source>unformatted</source>
       <translation>nesutvarkyta</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="213"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="42"/>
       <source>swap</source>
       <translation>sukeitimų (swap)</translation>
     </message>
@@ -2663,6 +2689,14 @@ Išvestis:
     </message>
   </context>
   <context>
+    <name>RemoveUserJob</name>
+    <message>
+      <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="43"/>
+      <source>Remove live user from target system</source>
+      <translation>Šalinti demonstracinį naudotoją iš paskirties sistemos</translation>
+    </message>
+  </context>
+  <context>
     <name>RemoveVolumeGroupJob</name>
     <message>
       <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
@@ -2689,140 +2723,153 @@ Išvestis:
       <translation>Forma</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="136"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="139"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>Pasirinkite, kur norėtumėte įdiegti %1.&lt;br/&gt;&lt;font color="red"&gt;Įspėjimas: &lt;/font&gt;tai ištrins visus, pasirinktame skaidinyje esančius, failus.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="162"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="165"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>Pasirinktas elementas neatrodo kaip teisingas skaidinys.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="170"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="173"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>%1 negali būti įdiegta laisvoje vietoje. Prašome pasirinkti esamą skaidinį.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>%1 negali būti įdiegta išplėstame skaidinyje. Prašome pasirinkti esamą pirminį ar loginį skaidinį.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="190"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="193"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>%1 negali būti įdiegta šiame skaidinyje.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="197"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="200"/>
       <source>Data partition (%1)</source>
       <translation>Duomenų skaidinys (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="213"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="216"/>
       <source>Unknown system partition (%1)</source>
       <translation>Nežinomas sistemos skaidinys (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="218"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="221"/>
       <source>%1 system partition (%2)</source>
       <translation>%1 sistemos skaidinys (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="229"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="232"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Skaidinys %1 yra pernelyg mažas sistemai %2. Prašome pasirinkti skaidinį, kurio dydis siektų bent %3 GiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="252"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Šioje sistemoje niekur nepavyko rasti EFI skaidinio. Prašome grįžti ir naudoti rankinį skaidymą, kad nustatytumėte %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="280"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="304"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="266"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="283"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="307"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 sistema bus įdiegta skaidinyje %2.&lt;br/&gt;&lt;font color="red"&gt;Įspėjimas: &lt;/font&gt;visi duomenys skaidinyje %2 bus prarasti.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="272"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%2 paleidimui bus naudojamas EFI sistemos skaidinys, esantis %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="291"/>
       <source>EFI system partition:</source>
       <translation>EFI sistemos skaidinys:</translation>
     </message>
   </context>
   <context>
+    <name>RequirementsModel</name>
+    <message>
+      <location filename="../src/modules/welcome/Config.h" line="147"/>
+      <source>This program will ask you some questions and set up your installation</source>
+      <translation>Ši programa užduos jums kelis klausimus ir padės nusistatyti diegimą</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.h" line="149"/>
+      <source>This program does not satisfy the minimum requirements for installing.
+Installation can not continue</source>
+      <translation>Ši programa netenkina minimalių diegimo reikalavimų.
+Diegimas negali būti tęsiamas</translation>
+    </message>
+  </context>
+  <context>
     <name>ResizeFSJob</name>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="59"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="57"/>
       <source>Resize Filesystem Job</source>
       <translation>Failų sistemos dydžio keitimo užduotis</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="172"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>Invalid configuration</source>
       <translation>Neteisinga konfigūracija</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="173"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="171"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
       <translation>Failų sistemos dydžio keitimo užduotyje yra neteisinga konfigūracija ir užduotis nebus paleista.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="197"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="177"/>
       <source>KPMCore not Available</source>
       <translation>KPMCore neprieinama</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="198"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="178"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
       <translation>Diegimo programai Calamares nepavyksta paleisti KPMCore, kuri skirta failų sistemos dydžio keitimo užduočiai.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="215"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="228"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="237"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="254"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="208"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="217"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="234"/>
       <source>Resize Failed</source>
       <translation>Dydžio pakeisti nepavyko</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
       <translation>Šioje sistemoje nepavyko rasti %1 failų sistemos ir nepavyko pakeisti jos dydį.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="208"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
       <translation>Šioje sistemoje nepavyko rasti %1 įrenginio ir nepavyko pakeisti jo dydį.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="216"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="229"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="209"/>
       <source>The filesystem %1 cannot be resized.</source>
       <translation>%1 failų sistemos dydis negali būti pakeistas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="217"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="230"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="197"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="210"/>
       <source>The device %1 cannot be resized.</source>
       <translation>%1 įrenginio dydis negali būti pakeistas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="238"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="218"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
       <translation>%1 failų sistemos dydis privalo būti pakeistas, tačiau tai negali būti atlikta.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="239"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="219"/>
       <source>The device %1 must be resized, but cannot</source>
       <translation>%1 įrenginio dydis privalo būti pakeistas, tačiau tai negali būti atlikta</translation>
     </message>
@@ -2880,12 +2927,12 @@ Išvestis:
   <context>
     <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="137"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="139"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>Norėdami pasiekti geriausių rezultatų, įsitikinkite kad šis kompiuteris:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="138"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="140"/>
       <source>System requirements</source>
       <translation>Sistemos reikalavimai</translation>
     </message>
@@ -2893,27 +2940,27 @@ Išvestis:
   <context>
     <name>ResultsListWidget</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="263"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="260"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Šis kompiuteris netenkina minimalių %1 nustatymo reikalavimų.&lt;br/&gt;Sąranka negali būti tęsiama. &lt;a href="#details"&gt;Išsamiau...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="267"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="264"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Šis kompiuteris netenkina minimalių %1 diegimo reikalavimų.&lt;br/&gt;Diegimas negali būti tęsiamas. &lt;a href="#details"&gt;Išsamiau...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="274"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="271"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Šis kompiuteris netenkina kai kurių %1 nustatymui rekomenduojamų reikalavimų.&lt;br/&gt;Sąranką galima tęsti, tačiau kai kurios funkcijos gali būti išjungtos.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="278"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="275"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Šis kompiuteris netenkina kai kurių %1 diegimui rekomenduojamų reikalavimų.&lt;br/&gt;Diegimą galima tęsti, tačiau kai kurios funkcijos gali būti išjungtos.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="287"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="284"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Programa užduos kelis klausimus ir padės įsidiegti %2.</translation>
     </message>
@@ -2934,17 +2981,17 @@ Išvestis:
   <context>
     <name>SetHostNameJob</name>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
       <source>Set hostname %1</source>
       <translation>Nustatyti kompiuterio vardą %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="53"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Nustatyti kompiuterio vardą &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="58"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
       <source>Setting hostname %1.</source>
       <translation>Nustatomas kompiuterio vardas %1.</translation>
     </message>
@@ -2994,82 +3041,82 @@ Išvestis:
   <context>
     <name>SetPartFlagsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="53"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="52"/>
       <source>Set flags on partition %1.</source>
       <translation>Nustatyti vėliavėles skaidinyje %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="57"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
       <source>Set flags on %1MiB %2 partition.</source>
       <translation>Nustatyti vėliavėles %1MiB skaidinyje %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="60"/>
       <source>Set flags on new partition.</source>
       <translation>Nustatyti vėliavėles naujame skaidinyje.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="72"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Išvalyti vėliavėles skaidinyje &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="77"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="76"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Išvalyti vėliavėles %1MiB skaidinyje &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="92"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="91"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>Pažymėti vėliavėle %1MiB skaidinį &lt;strong&gt;%2&lt;/strong&gt; kaip &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="115"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="114"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Išvalomos vėliavėlės %1MiB skaidinyje&lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="129"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Nustatomos vėliavėlės &lt;strong&gt;%3&lt;/strong&gt;, %1MiB skaidinyje &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="81"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Clear flags on new partition.</source>
       <translation>Išvalyti vėliavėles naujame skaidinyje.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="85"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Pažymėti vėliavėle skaidinį &lt;strong&gt;%1&lt;/strong&gt; kaip &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="97"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Pažymėti vėliavėle naują skaidinį kaip &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="109"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Išvalomos vėliavėlės skaidinyje &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="118"/>
       <source>Clearing flags on new partition.</source>
       <translation>Išvalomos vėliavėlės naujame skaidinyje.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Nustatomos &lt;strong&gt;%2&lt;/strong&gt; vėliavėlės skaidinyje &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="135"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
       <translation>Nustatomos vėliavėlės &lt;strong&gt;%1&lt;/strong&gt; naujame skaidinyje.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="153"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="152"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>Diegimo programai nepavyko nustatyti vėliavėlių skaidinyje %1.</translation>
     </message>
@@ -3299,47 +3346,47 @@ Išvestis:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="139"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="149"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Jei šiuo kompiuteriu naudosis keli žmonės, po sąrankos galite sukurti papildomas paskyras.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="145"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="155"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Jei šiuo kompiuteriu naudosis keli žmonės, po diegimo galite sukurti papildomas paskyras.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="385"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="395"/>
       <source>Your username is too long.</source>
       <translation>Jūsų naudotojo vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="392"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="402"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Jūsų naudotojo vardas privalo prasidėti mažąja raide arba pabraukimo brūkšniu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="399"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="409"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Yra leidžiamos tik mažosios raidės, skaitmenys, pabraukimo brūkšniai ir brūkšneliai.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="447"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="457"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Yra leidžiamos tik raidės, skaitmenys, pabraukimo brūkšniai ir brūkšneliai.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="435"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="445"/>
       <source>Your hostname is too short.</source>
       <translation>Jūsų kompiuterio vardas yra pernelyg trumpas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="440"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="450"/>
       <source>Your hostname is too long.</source>
       <translation>Jūsų kompiuterio vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="464"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="474"/>
       <source>Your passwords do not match!</source>
       <translation>Jūsų slaptažodžiai nesutampa!</translation>
     </message>
@@ -3477,42 +3524,42 @@ Išvestis:
       <translation>&amp;Apie</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="254"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Jus sveikina %1 diegimo programa.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="253"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="215"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Jus sveikina Calamares diegimo programa, skirta %1 sistemai.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="209"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Jus sveikina Calamares sąrankos programa, skirta %1 sistemai.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="248"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="210"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Jus sveikina %1 sąranka.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
       <source>About %1 setup</source>
       <translation>Apie %1 sąranką</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="266"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
       <source>About %1 installer</source>
       <translation>Apie %1 diegimo programą</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="269"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
       <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;skirta %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Autorių teisės 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Autorių teisės 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Dėkojame &lt;a href="https://calamares.io/team/"&gt;Calamares komandai&lt;/a&gt; bei &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares vertėjų komandai&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; plėtojimą remia &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Išlaisvinanti programinė įrangą.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="259"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="221"/>
       <source>%1 support</source>
       <translation>%1 palaikymas</translation>
     </message>
@@ -3520,7 +3567,7 @@ Išvestis:
   <context>
     <name>WelcomeQmlViewStep</name>
     <message>
-      <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="55"/>
+      <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="60"/>
       <source>Welcome</source>
       <translation>Pasisveikinimas</translation>
     </message>
@@ -3528,7 +3575,7 @@ Išvestis:
   <context>
     <name>WelcomeViewStep</name>
     <message>
-      <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="62"/>
+      <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="64"/>
       <source>Welcome</source>
       <translation>Pasisveikinimas</translation>
     </message>
@@ -3536,7 +3583,7 @@ Išvestis:
   <context>
     <name>notesqml</name>
     <message>
-      <location filename="../src/modules/notesqml/notesqml.qml" line="60"/>
+      <location filename="../src/modules/notesqml/notesqml.qml" line="61"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;%1&lt;/h3&gt;

@@ -34,22 +34,21 @@
 #include <QHeaderView>
 #include <QNetworkReply>
 
-NetInstallPage::NetInstallPage( QWidget* parent )
+NetInstallPage::NetInstallPage( Config* c, QWidget* parent )
     : QWidget( parent )
+    , m_config( c )
     , ui( new Ui::Page_NetInst )
-    , m_reply( nullptr )
-    , m_groups( nullptr )
 {
     ui->setupUi( this );
+    ui->groupswidget->setModel( c->model() );
+    connect( c, &Config::statusChanged, this, &NetInstallPage::setStatus );
+    connect( c, &Config::statusReady, this, &NetInstallPage::expandGroups );
+
     setPageTitle( nullptr );
     CALAMARES_RETRANSLATE_SLOT( &NetInstallPage::retranslate );
 }
 
-NetInstallPage::~NetInstallPage()
-{
-    delete m_groups;
-    delete m_reply;
-}
+NetInstallPage::~NetInstallPage() {}
 
 void
 NetInstallPage::setPageTitle( CalamaresUtils::Locale::TranslatedString* t )
@@ -69,146 +68,33 @@ NetInstallPage::setPageTitle( CalamaresUtils::Locale::TranslatedString* t )
 void
 NetInstallPage::retranslate()
 {
-    if ( ui && m_title )
+    if ( m_title )
     {
         ui->label->setText( m_title->get() );  // That's get() on the TranslatedString
     }
+    ui->netinst_status->setText( m_config->status() );
 }
-
-bool
-NetInstallPage::readGroups( const QByteArray& yamlData )
-{
-    try
-    {
-        YAML::Node groups = YAML::Load( yamlData.constData() );
-
-        if ( !groups.IsSequence() )
-        {
-            cWarning() << "netinstall groups data does not form a sequence.";
-        }
-        Q_ASSERT( groups.IsSequence() );
-        m_groups = new PackageModel( groups );
-        return true;
-    }
-    catch ( YAML::Exception& e )
-    {
-        CalamaresUtils::explainYamlException( e, yamlData, "netinstall groups data" );
-        return false;
-    }
-}
-
-/// @brief Convenience to zero out and deleteLater on the reply, used in dataIsHere
-struct ReplyDeleter
-{
-    QNetworkReply*& p;
-
-    ~ReplyDeleter()
-    {
-        if ( p )
-        {
-            p->deleteLater();
-        }
-        p = nullptr;
-    }
-};
 
 void
-NetInstallPage::dataIsHere()
+NetInstallPage::expandGroups()
 {
-    if ( !m_reply || !m_reply->isFinished() )
-    {
-        cWarning() << "NetInstall data called too early.";
-        return;
-    }
-
-    cDebug() << "NetInstall group data received" << m_reply->url();
-
-    ReplyDeleter d { m_reply };
-
-    // If m_required is *false* then we still say we're ready
-    // even if the reply is corrupt or missing.
-    if ( m_reply->error() != QNetworkReply::NoError )
-    {
-        cWarning() << "unable to fetch netinstall package lists.";
-        cDebug() << Logger::SubEntry << "Netinstall reply error: " << m_reply->error();
-        cDebug() << Logger::SubEntry << "Request for url: " << m_reply->url().toString()
-                 << " failed with: " << m_reply->errorString();
-        ui->netinst_status->setText(
-            tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
-        emit checkReady( !m_required );
-        return;
-    }
-
-    if ( !readGroups( m_reply->readAll() ) )
-    {
-        cWarning() << "netinstall groups data was received, but invalid.";
-        cDebug() << Logger::SubEntry << "Url:     " << m_reply->url().toString();
-        cDebug() << Logger::SubEntry << "Headers: " << m_reply->rawHeaderList();
-        ui->netinst_status->setText( tr( "Network Installation. (Disabled: Received invalid groups data)" ) );
-        emit checkReady( !m_required );
-        return;
-    }
-
-    retranslate();  // For changed model
-    ui->groupswidget->setModel( m_groups );
-    ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
-    ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
-
+    auto* model = m_config->model();
     // Go backwards because expanding a group may cause rows to appear below it
-    for ( int i = m_groups->rowCount() - 1; i >= 0; --i )
+    for ( int i = model->rowCount() - 1; i >= 0; --i )
     {
-        auto index = m_groups->index(i,0);
-        if ( m_groups->data(index, PackageModel::MetaExpandRole).toBool() )
+        auto index = model->index( i, 0 );
+        if ( model->data( index, PackageModel::MetaExpandRole ).toBool() )
         {
-            ui->groupswidget->setExpanded(index, true);
+            ui->groupswidget->setExpanded( index, true );
         }
     }
-
-    emit checkReady( true );
-}
-
-PackageModel::PackageItemDataList
-NetInstallPage::selectedPackages() const
-{
-    if ( m_groups )
-    {
-        return m_groups->getPackages();
-    }
-    else
-    {
-        cWarning() << "no netinstall groups are available.";
-        return PackageModel::PackageItemDataList();
-    }
 }
 
 void
-NetInstallPage::loadGroupList( const QString& confUrl )
+NetInstallPage::setStatus( QString s )
 {
-    using namespace CalamaresUtils::Network;
-
-    cDebug() << "NetInstall loading groups from" << confUrl;
-    QNetworkReply* reply = Manager::instance().asynchronousGet(
-        QUrl( confUrl ),
-        RequestOptions( RequestOptions::FakeUserAgent | RequestOptions::FollowRedirect, std::chrono::seconds( 30 ) ) );
-
-    if ( !reply )
-    {
-        cDebug() << Logger::Continuation << "request failed immediately.";
-        ui->netinst_status->setText( tr( "Network Installation. (Disabled: Incorrect configuration)" ) );
-    }
-    else
-    {
-        m_reply = reply;
-        connect( reply, &QNetworkReply::finished, this, &NetInstallPage::dataIsHere );
-    }
+    ui->netinst_status->setText( s );
 }
-
-void
-NetInstallPage::setRequired( bool b )
-{
-    m_required = b;
-}
-
 
 void
 NetInstallPage::onActivate()
