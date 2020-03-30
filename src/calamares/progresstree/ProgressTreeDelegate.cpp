@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, 2019-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,10 +19,10 @@
 
 #include "ProgressTreeDelegate.h"
 
+#include "Branding.h"
 #include "CalamaresApplication.h"
 #include "CalamaresWindow.h"
 #include "ViewManager.h"
-#include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
 
 #include <QPainter>
@@ -85,10 +85,7 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
     font.setBold( false );
     painter->setFont( font );
 
-    bool isCurrent = false;
-    isCurrent = index.data( Calamares::ViewManager::ProgressTreeItemCurrentRole ).toBool();
-
-    if ( isCurrent )
+    if ( index.row() == index.data( Calamares::ViewManager::ProgressTreeItemCurrentIndex ).toInt() )
     {
         painter->setPen( Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarTextSelect ) );
         QString textHighlight

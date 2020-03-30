@@ -3,7 +3,7 @@
  *   Copyright 2019, Dominic Hayes <ferenosdev@outlook.com>
  *   Copyright 2019, Gabriel Craciunescu <crazy@frugalware.org>
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -559,23 +559,8 @@ ViewManager::data( const QModelIndex& index, int role ) const
         {
             return QVariant();
         }
-    case ProgressTreeItemCurrentRole:
-        return currentStep() == step;
-    case ProgressTreeItemCompletedRole:
-        // Every step *before* the current step is considered "complete"
-        for ( const auto* otherstep : m_steps )
-        {
-            if ( otherstep == currentStep() )
-            {
-                break;
-            }
-            if ( otherstep == step )
-            {
-                return true;
-            }
-        }
-        // .. and the others (including current) are not.
-        return false;
+    case ProgressTreeItemCurrentIndex:
+        return m_currentStep;
     default:
         return QVariant();
     }
@@ -590,15 +575,6 @@ ViewManager::rowCount( const QModelIndex& parent ) const
         return 0;
     }
     return m_steps.length();
-}
-
-QHash< int, QByteArray >
-ViewManager::roleNames() const
-{
-    auto h = QAbstractListModel::roleNames();
-    h.insert( ProgressTreeItemCurrentRole, "current" );
-    h.insert( ProgressTreeItemCompletedRole, "completed" );
-    return h;
 }
 
 }  // namespace Calamares
