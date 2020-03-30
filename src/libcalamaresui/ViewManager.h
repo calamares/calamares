@@ -37,6 +37,8 @@ namespace Calamares
 class UIDLLEXPORT ViewManager : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY( int currentStepIndex READ currentStepIndex NOTIFY currentStepChanged FINAL )
+
 public:
     /**
      * @brief instance access to the ViewManager singleton.
