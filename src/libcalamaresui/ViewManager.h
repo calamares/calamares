@@ -153,15 +153,11 @@ public:
      */
     enum Role
     {
-        ProgressTreeItemCurrentRole = Qt::UserRole + 11,  ///< Is this the *current* step?
-        ProgressTreeItemCompletedRole = Qt::UserRole + 12,  ///< Are we past this one?
         ProgressTreeItemCurrentIndex = Qt::UserRole + 13  ///< Index (row) of the current step
     };
 
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
-
-    QHash< int, QByteArray > roleNames() const override;
 };
 
 }  // namespace Calamares

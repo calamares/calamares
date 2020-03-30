@@ -85,10 +85,7 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
     font.setBold( false );
     painter->setFont( font );
 
-    bool isCurrent = false;
-    isCurrent = index.data( Calamares::ViewManager::ProgressTreeItemCurrentRole ).toBool();
-
-    if ( isCurrent )
+    if ( index.row() == index.data( Calamares::ViewManager::ProgressTreeItemCurrentIndex ).toInt() )
     {
         painter->setPen( Calamares::Branding::instance()->styleString( Calamares::Branding::SidebarTextSelect ) );
         QString textHighlight

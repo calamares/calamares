@@ -561,23 +561,6 @@ ViewManager::data( const QModelIndex& index, int role ) const
         }
     case ProgressTreeItemCurrentIndex:
         return m_currentStep;
-    case ProgressTreeItemCurrentRole:
-        return currentStep() == step;
-    case ProgressTreeItemCompletedRole:
-        // Every step *before* the current step is considered "complete"
-        for ( const auto* otherstep : m_steps )
-        {
-            if ( otherstep == currentStep() )
-            {
-                break;
-            }
-            if ( otherstep == step )
-            {
-                return true;
-            }
-        }
-        // .. and the others (including current) are not.
-        return false;
     default:
         return QVariant();
     }
@@ -592,15 +575,6 @@ ViewManager::rowCount( const QModelIndex& parent ) const
         return 0;
     }
     return m_steps.length();
-}
-
-QHash< int, QByteArray >
-ViewManager::roleNames() const
-{
-    auto h = QAbstractListModel::roleNames();
-    h.insert( ProgressTreeItemCurrentRole, "current" );
-    h.insert( ProgressTreeItemCompletedRole, "completed" );
-    return h;
 }
 
 }  // namespace Calamares
