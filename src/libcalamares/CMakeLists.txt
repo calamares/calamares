@@ -41,6 +41,7 @@ set( libSources
     modulesystem/InstanceKey.cpp
     modulesystem/Module.cpp
     modulesystem/Requirement.cpp
+    modulesystem/RequirementsChecker.cpp
 
     # Network service
     network/Manager.cpp

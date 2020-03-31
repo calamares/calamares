@@ -19,11 +19,11 @@
 
 #include "ModuleManager.h"
 
-#include "RequirementsChecker.h"
-#include "Settings.h"
 #include "ViewManager.h"
 
+#include "Settings.h"
 #include "modulesystem/Module.h"
+#include "modulesystem/RequirementsChecker.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
 #include "viewpages/ExecutionViewStep.h"

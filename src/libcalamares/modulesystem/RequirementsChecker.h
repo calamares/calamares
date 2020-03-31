@@ -25,7 +25,6 @@
 #include <QTimer>
 #include <QVector>
 
-
 namespace Calamares
 {
 
@@ -44,7 +43,7 @@ public:
     RequirementsChecker( QVector< Module* > modules, QObject* parent = nullptr );
     virtual ~RequirementsChecker() override;
 
-public slots:
+public Q_SLOTS:
     /// @brief Start checking all the requirements
     void run();
 
