@@ -20,12 +20,12 @@
 #ifndef CALAMARES_MODULE_H
 #define CALAMARES_MODULE_H
 
-#include "Job.h"
-#include "Requirement.h"
 #include "DllMacro.h"
+#include "Job.h"
 
 #include "modulesystem/Descriptor.h"
 #include "modulesystem/InstanceKey.h"
+#include "modulesystem/Requirement.h"
 
 #include <QStringList>
 #include <QVariant>

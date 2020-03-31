@@ -18,6 +18,8 @@
 #ifndef CALAMARES_REQUIREMENT_H
 #define CALAMARES_REQUIREMENT_H
 
+#include "DllMacro.h"
+
 #include <QList>
 #include <QMetaType>
 #include <QString>

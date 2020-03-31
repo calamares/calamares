@@ -18,7 +18,7 @@
 #ifndef CALAMARES_REQUIREMENTSCHECKER_H
 #define CALAMARES_REQUIREMENTSCHECKER_H
 
-#include "Requirement.h"
+#include "modulesystem/Requirement.h"
 
 #include <QFutureWatcher>
 #include <QObject>

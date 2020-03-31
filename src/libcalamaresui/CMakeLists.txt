@@ -9,7 +9,6 @@ set( calamaresui_SOURCES
     modulesystem/Module.cpp
     modulesystem/ModuleManager.cpp
     modulesystem/ProcessJobModule.cpp
-    modulesystem/Requirement.cpp
     modulesystem/RequirementsChecker.cpp
     modulesystem/ViewModule.cpp
 
