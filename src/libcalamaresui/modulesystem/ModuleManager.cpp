@@ -285,10 +285,11 @@ ModuleManager::loadModules()
             }
             else
             {
-                thisModule = Module::fromDescriptor( descriptor,
-                                                     instanceKey.id(),
-                                                     configFileName,
-                                                     m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
+                thisModule
+                    = Calamares::moduleFromDescriptor( descriptor,
+                                                       instanceKey.id(),
+                                                       configFileName,
+                                                       m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
                 if ( !thisModule )
                 {
                     cError() << "Module" << instanceKey.toString() << "cannot be created from descriptor"

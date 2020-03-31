@@ -66,111 +66,6 @@ Module::initFrom( const Calamares::ModuleSystem::Descriptor& moduleDescriptor, c
     }
 }
 
-Module*
-Module::fromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescriptor,
-                        const QString& instanceId,
-                        const QString& configFileName,
-                        const QString& moduleDirectory )
-{
-    std::unique_ptr< Module > m;
-
-    QString typeString = moduleDescriptor.value( "type" ).toString();
-    QString intfString = moduleDescriptor.value( "interface" ).toString();
-
-    if ( typeString.isEmpty() || intfString.isEmpty() )
-    {
-        cError() << "Bad module descriptor format" << instanceId;
-        return nullptr;
-    }
-    if ( ( typeString == "view" ) || ( typeString == "viewmodule" ) )
-    {
-        if ( intfString == "qtplugin" )
-        {
-            m.reset( new ViewModule() );
-        }
-        else if ( intfString == "pythonqt" )
-        {
-#ifdef WITH_PYTHONQT
-            m.reset( new PythonQtViewModule() );
-#else
-            cError() << "PythonQt view modules are not supported in this version of Calamares.";
-#endif
-        }
-        else
-        {
-            cError() << "Bad interface" << intfString << "for module type" << typeString;
-        }
-    }
-    else if ( typeString == "job" )
-    {
-        if ( intfString == "qtplugin" )
-        {
-            m.reset( new CppJobModule() );
-        }
-        else if ( intfString == "process" )
-        {
-            m.reset( new ProcessJobModule() );
-        }
-        else if ( intfString == "python" )
-        {
-#ifdef WITH_PYTHON
-            m.reset( new PythonJobModule() );
-#else
-            cError() << "Python modules are not supported in this version of Calamares.";
-#endif
-        }
-        else
-        {
-            cError() << "Bad interface" << intfString << "for module type" << typeString;
-        }
-    }
-    else
-    {
-        cError() << "Bad module type" << typeString;
-    }
-
-    if ( !m )
-    {
-        cError() << "Bad module type (" << typeString << ") or interface string (" << intfString << ") for module "
-                 << instanceId;
-        return nullptr;
-    }
-
-    QDir moduleDir( moduleDirectory );
-    if ( moduleDir.exists() && moduleDir.isReadable() )
-    {
-        m->m_directory = moduleDir.absolutePath();
-    }
-    else
-    {
-        cError() << "Bad module directory" << moduleDirectory << "for" << instanceId;
-        return nullptr;
-    }
-
-    m->initFrom( moduleDescriptor, instanceId );
-    if ( !m->m_key.isValid() )
-    {
-        cError() << "Module" << instanceId << "invalid ID";
-        return nullptr;
-    }
-
-    m->initFrom( moduleDescriptor );
-    if ( !configFileName.isEmpty() )
-    {
-        try
-        {
-            m->loadConfigurationFile( configFileName );
-        }
-        catch ( YAML::Exception& e )
-        {
-            cError() << "YAML parser error " << e.what();
-            return nullptr;
-        }
-    }
-    return m.release();
-}
-
-
 static QStringList
 moduleConfigurationCandidates( bool assumeBuildDir, const QString& moduleName, const QString& configFileName )
 {
@@ -211,7 +106,8 @@ moduleConfigurationCandidates( bool assumeBuildDir, const QString& moduleName, c
     return paths;
 }
 
-void Module::loadConfigurationFile( const QString& configFileName )  //throws YAML::Exception
+void
+Module::loadConfigurationFile( const QString& configFileName )  //throws YAML::Exception
 {
     QStringList configCandidates
         = moduleConfigurationCandidates( Settings::instance()->debugMode(), name(), configFileName );

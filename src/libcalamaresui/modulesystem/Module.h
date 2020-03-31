@@ -33,6 +33,12 @@
 
 namespace Calamares
 {
+class Module;
+Module* moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
+                              const QString& instanceId,
+                              const QString& configFileName,
+                              const QString& moduleDirectory );
+
 
 /**
  * @brief The Module class is a common supertype for Calamares modules.
@@ -68,18 +74,6 @@ public:
         PythonQt  // Views only, available as enum even if PythonQt isn't used
     };
 
-    /**
-     * @brief fromDescriptor creates a new Module object of the correct type.
-     * @param moduleDescriptor a module descriptor, already parsed into a variant map.
-     * @param instanceId the instance id of the new module instance.
-     * @param configFileName the name of the configuration file to read.
-     * @param moduleDirectory the path to the directory with this module's files.
-     * @return a pointer to an object of a subtype of Module.
-     */
-    static Module* fromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
-                                   const QString& instanceId,
-                                   const QString& configFileName,
-                                   const QString& moduleDirectory );
     virtual ~Module();
 
     /**
@@ -193,6 +187,11 @@ private:
 
     QString m_directory;
     ModuleSystem::InstanceKey m_key;
+
+    friend Module* Calamares::moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
+                                                    const QString& instanceId,
+                                                    const QString& configFileName,
+                                                    const QString& moduleDirectory );
 };
 
 }  // namespace Calamares

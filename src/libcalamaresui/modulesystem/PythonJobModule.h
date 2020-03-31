@@ -39,13 +39,17 @@ protected:
     void initFrom( const QVariantMap& moduleDescriptor ) override;
 
 private:
-    friend class Module;
     explicit PythonJobModule();
     virtual ~PythonJobModule() override;
 
     QString m_scriptFileName;
     QString m_workingPath;
     job_ptr m_job;
+
+    friend Module* Calamares::moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
+                                                    const QString& instanceId,
+                                                    const QString& configFileName,
+                                                    const QString& moduleDirectory );
 };
 
 }  // namespace Calamares

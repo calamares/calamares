@@ -42,7 +42,6 @@ protected:
     void initFrom( const QVariantMap& moduleDescriptor ) override;
 
 private:
-    friend class Module;
     explicit ProcessJobModule();
     virtual ~ProcessJobModule() override;
 
@@ -51,6 +50,11 @@ private:
     std::chrono::seconds m_secondsTimeout;
     bool m_runInChroot;
     job_ptr m_job;
+
+    friend Module* Calamares::moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
+                                                    const QString& instanceId,
+                                                    const QString& configFileName,
+                                                    const QString& moduleDirectory );
 };
 
 }  // namespace Calamares

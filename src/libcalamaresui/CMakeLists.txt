@@ -7,6 +7,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/src/libcalamares ${CMAKE_BINARY_DIR}/sr
 set( calamaresui_SOURCES
     modulesystem/CppJobModule.cpp
     modulesystem/Module.cpp
+    modulesystem/ModuleFactory.cpp
     modulesystem/ModuleManager.cpp
     modulesystem/ProcessJobModule.cpp
     modulesystem/RequirementsChecker.cpp
