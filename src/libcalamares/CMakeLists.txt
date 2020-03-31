@@ -39,6 +39,7 @@ set( libSources
 
     # Modules
     modulesystem/InstanceKey.cpp
+    modulesystem/Module.cpp
     modulesystem/Requirement.cpp
 
     # Network service

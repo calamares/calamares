@@ -19,9 +19,8 @@
 #ifndef CALAMARES_PYTHONJOBMODULE_H
 #define CALAMARES_PYTHONJOBMODULE_H
 
-#include "Module.h"
-
 #include "DllMacro.h"
+#include "modulesystem/Module.h"
 
 namespace Calamares
 {

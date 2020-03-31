@@ -20,29 +20,17 @@
 #include "Module.h"
 
 #include "CalamaresConfig.h"
-#include "CppJobModule.h"
-#include "ProcessJobModule.h"
 #include "Settings.h"
-#include "ViewModule.h"
 
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Yaml.h"
 
-#ifdef WITH_PYTHON
-#include "PythonJobModule.h"
-#endif
-
-#ifdef WITH_PYTHONQT
-#include "PythonQtViewModule.h"
-#endif
-
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QString>
-
 
 static const char EMERGENCY[] = "emergency";
 

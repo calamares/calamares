@@ -22,7 +22,7 @@
 #define CALAMARES_CPPJOBMODULE_H
 
 #include "DllMacro.h"
-#include "Module.h"
+#include "modulesystem/Module.h"
 
 class QPluginLoader;
 

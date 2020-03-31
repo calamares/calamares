@@ -18,8 +18,7 @@
 
 #include "RequirementsChecker.h"
 
-#include "Module.h"
-
+#include "modulesystem/Module.h"
 #include "modulesystem/Requirement.h"
 #include "utils/Logger.h"
 

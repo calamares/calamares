@@ -20,9 +20,8 @@
 #ifndef CALAMARES_PROCESSJOBMODULE_H
 #define CALAMARES_PROCESSJOBMODULE_H
 
-#include "Module.h"
-
 #include "DllMacro.h"
+#include "modulesystem/Module.h"
 
 #include <chrono>
 

@@ -21,7 +21,7 @@
 #define CALAMARES_VIEWMODULE_H
 
 #include "DllMacro.h"
-#include "Module.h"
+#include "modulesystem/Module.h"
 
 class QPluginLoader;
 
