@@ -33,7 +33,7 @@ Page
     {
         width: parent.width
         height: parent.height
-        
+
         Text
         {
             id: welcomeTopText
@@ -77,7 +77,7 @@ Page
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
                 
-                visible: true
+                visible: false
                 onClicked: { 
                     //onClicked: load.source = "file:/usr/share/calamares/branding/kaos_branding/show.qml"
                     onClicked: load.source = "about.qml"
