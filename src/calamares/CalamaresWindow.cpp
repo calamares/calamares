@@ -191,15 +191,15 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     QWidget* sideBox = nullptr;
     switch ( branding->sidebarFlavor() )
     {
-    case Calamares::Branding::SidebarFlavor::Widget:
+    case Calamares::Branding::PanelFlavor::Widget:
         sideBox = getWidgetSidebar(
             qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
         break;
-    case Calamares::Branding::SidebarFlavor::Qml:
+    case Calamares::Branding::PanelFlavor::Qml:
         sideBox = getQmlSidebar(
             qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
         break;
-    case Calamares::Branding::SidebarFlavor::None:
+    case Calamares::Branding::PanelFlavor::None:
         sideBox = nullptr;
     }
     if ( sideBox )

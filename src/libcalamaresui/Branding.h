@@ -124,13 +124,13 @@ public:
     };
     Q_ENUM( WindowPlacement )
     ///@brief What kind of sidebar to use in the main window
-    enum class SidebarFlavor
+    enum class PanelFlavor
     {
         None,
         Widget,
         Qml
     };
-    Q_ENUM( SidebarFlavor )
+    Q_ENUM( PanelFlavor )
 
     static Branding* instance();
 
@@ -185,7 +185,9 @@ public:
     bool windowPlacementCentered() const { return m_windowPlacement == WindowPlacement::Center; }
 
     ///@brief Which sidebar flavor is configured
-    SidebarFlavor sidebarFlavor() const { return m_sidebarFlavor; }
+    PanelFlavor sidebarFlavor() const { return m_sidebarFlavor; }
+    ///@brief Which navigation flavor is configured
+    PanelFlavor navigationFlavor() const { return m_navigationFlavor; }
 
     /**
      * Creates a map called "branding" in the global storage, and inserts an
@@ -227,7 +229,8 @@ private:
     WindowDimension m_windowHeight, m_windowWidth;
     WindowPlacement m_windowPlacement;
 
-    SidebarFlavor m_sidebarFlavor = SidebarFlavor::Widget;
+    PanelFlavor m_sidebarFlavor = PanelFlavor::Widget;
+    PanelFlavor m_navigationFlavor = PanelFlavor::Widget;
 };
 
 template < typename U >
