@@ -123,8 +123,6 @@ ViewManager::ViewManager( QObject* parent )
     {
         m_quit->setVisible( false );
     }
-
-    // onInstallationFailed( "Title of Failure", "Body of Failure");  // for testing paste functionality
 }
 
 
