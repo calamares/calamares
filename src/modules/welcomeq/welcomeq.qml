@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2020, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2020, Anke Boersma <demm@kaosx.us>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -32,7 +33,7 @@ Page
     {
         width: parent.width
         height: parent.height
-
+        
         Text
         {
             id: welcomeTopText
@@ -75,9 +76,12 @@ Page
                 icon.name: "dialog-information"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
-
-                visible: false
-                onClicked: { } // TODO: show an about-Calamares window
+                
+                visible: true
+                onClicked: { 
+                    //onClicked: load.source = "file:/usr/share/calamares/branding/kaos_branding/show.qml"
+                    onClicked: load.source = "about.qml"
+                }
             }
             Button
             {
@@ -123,6 +127,11 @@ Page
                 visible: config.donateUrl.isValid
                 onClicked: Qt.openUrlExternally(config.donateUrl)
             }
+        }
+        Loader
+        { 
+            id:load 
+            anchors.fill: parent
         }
     }
 }
