@@ -143,6 +143,43 @@ CalamaresWindow::getQmlSidebar( int desiredWidth )
     return w;
 }
 
+/** @brief Get a button-sized icon. */
+static inline QPixmap
+getButtonIcon( const QString& name )
+{
+    return Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
+}
+
+QWidget*
+CalamaresWindow::getWidgetNavigation()
+{
+    QWidget* navigation = new QWidget( this );
+
+    // Create buttons and sets an initial icon; the icons may change
+    auto* back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), navigation );
+    back->setObjectName( "view-button-back" );
+    auto* next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), navigation );
+    next->setObjectName( "view-button-next" );
+    auto* quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), navigation );
+    quit->setObjectName( "view-button-cancel" );
+
+    QBoxLayout* bottomLayout = new QHBoxLayout;
+    bottomLayout->addStretch();
+    bottomLayout->addWidget( back );
+    bottomLayout->addWidget( next );
+    bottomLayout->addSpacing( 12 );
+    bottomLayout->addWidget( quit );
+
+    navigation->setLayout( bottomLayout );
+    return navigation;
+}
+
+QWidget*
+CalamaresWindow::getQmlNavigation()
+{
+    return nullptr;
+}
+
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
     , m_debugWindow( nullptr )
@@ -219,9 +256,29 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     //       and requires an extra show() (at least with KWin/X11) which
     //       is too annoying. Instead, leave it up to ignoring-the-quit-
     //       event, which is also the ViewManager's responsibility.
+    QBoxLayout* contentsLayout = new QVBoxLayout;
+    contentsLayout->addWidget( m_viewManager->centralWidget() );
+    QWidget* navigation = nullptr;
+    switch ( branding->navigationFlavor() )
+    {
+    case Calamares::Branding::PanelFlavor::Widget:
+        navigation = getWidgetNavigation();
+        break;
+    case Calamares::Branding::PanelFlavor::Qml:
+        navigation = getQmlNavigation();
+        break;
+    case Calamares::Branding::PanelFlavor::None:
+        navigation = nullptr;
+    }
+    if ( navigation )
+    {
+        contentsLayout->addWidget( navigation );
+    }
 
-    mainLayout->addWidget( m_viewManager->centralWidget() );
+    mainLayout->addLayout( contentsLayout );
+
     CalamaresUtils::unmarginLayout( mainLayout );
+    CalamaresUtils::unmarginLayout( contentsLayout );
     setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }
 
