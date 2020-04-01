@@ -179,6 +179,8 @@ CalamaresWindow::getQmlNavigation()
 {
     CalamaresUtils::registerCalamaresModels();
     QQuickWidget* w = new QQuickWidget( this );
+    w->setFixedHeight( 64 );
+    w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-navigation" ) ) ) );
     return w;
