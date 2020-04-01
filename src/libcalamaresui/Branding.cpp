@@ -422,6 +422,7 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     static const NamedEnumTable< SidebarFlavor > sidebarFlavorNames {
         { QStringLiteral( "widget" ), SidebarFlavor::Widget },
         { QStringLiteral( "none" ), SidebarFlavor::None },
+        { QStringLiteral( "hidden" ), SidebarFlavor::None },
         { QStringLiteral( "qml" ), SidebarFlavor::Qml }
     };
     // clang-format on
