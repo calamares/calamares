@@ -108,14 +108,9 @@ ViewManager::ViewManager( QObject* parent )
 
     connect( m_next, &QPushButton::clicked, this, &ViewManager::next );
     connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
+    connect( m_quit, &QPushButton::clicked, this, &ViewManager::quit );
     m_back->setEnabled( false );
 
-    connect( m_quit, &QPushButton::clicked, this, [this]() {
-        if ( this->confirmCancelInstallation() )
-        {
-            qApp->quit();
-        }
-    } );
     connect( JobQueue::instance(), &JobQueue::failed, this, &ViewManager::onInstallationFailed );
     connect( JobQueue::instance(), &JobQueue::finished, this, &ViewManager::next );
 
@@ -474,6 +469,16 @@ ViewManager::back()
     }
 
     updateButtonLabels();
+}
+
+
+void
+ViewManager::quit()
+{
+    if ( confirmCancelInstallation() )
+    {
+        qApp->quit();
+    }
 }
 
 bool

@@ -92,7 +92,7 @@ public:
      */
     bool confirmCancelInstallation();
 
-public slots:
+public Q_SLOTS:
     /**
      * @brief next moves forward to the next page of the current ViewStep (if any),
      * or to the first page of the next ViewStep if the current ViewStep doesn't
@@ -106,6 +106,13 @@ public slots:
      * have any pages before the current one.
      */
     void back();
+
+    /**
+     * @brief Probably quit
+     *
+     * Asks for confirmation if necessary. Terminates the application.
+     */
+    void quit();
 
     /**
      * @brief onInstallationFailed displays an error message when a fatal failure

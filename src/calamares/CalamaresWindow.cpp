@@ -158,10 +158,13 @@ CalamaresWindow::getWidgetNavigation()
     // Create buttons and sets an initial icon; the icons may change
     auto* back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), navigation );
     back->setObjectName( "view-button-back" );
+    connect( back, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::back );
     auto* next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), navigation );
     next->setObjectName( "view-button-next" );
+    connect( next, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::next );
     auto* quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), navigation );
     quit->setObjectName( "view-button-cancel" );
+    connect( quit, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::quit );
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
     bottomLayout->addStretch();
