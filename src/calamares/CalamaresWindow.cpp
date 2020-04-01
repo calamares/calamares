@@ -186,6 +186,31 @@ CalamaresWindow::getQmlNavigation()
     return w;
 }
 
+/**@brief Picks one of two methods to call
+ *
+ * Calls method (member function) @p widget or @p qml with arguments @p a
+ * on the given window, based on the flavor.
+ */
+template < typename widgetMaker, typename... args >
+QWidget*
+flavoredWidget( Calamares::Branding::PanelFlavor flavor,
+                CalamaresWindow* w,
+                widgetMaker widget,
+                widgetMaker qml,
+                args... a )
+{
+    // Member-function calling syntax is (object.*member)(args)
+    switch ( flavor )
+    {
+    case Calamares::Branding::PanelFlavor::Widget:
+        return ( w->*widget )( a... );
+    case Calamares::Branding::PanelFlavor::Qml:
+        return ( w->*qml )( a... );
+    case Calamares::Branding::PanelFlavor::None:
+        return nullptr;
+    }
+}
+
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
     , m_debugWindow( nullptr )
@@ -231,20 +256,12 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
 
-    QWidget* sideBox = nullptr;
-    switch ( branding->sidebarFlavor() )
-    {
-    case Calamares::Branding::PanelFlavor::Widget:
-        sideBox = getWidgetSidebar(
-            qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
-        break;
-    case Calamares::Branding::PanelFlavor::Qml:
-        sideBox = getQmlSidebar(
-            qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
-        break;
-    case Calamares::Branding::PanelFlavor::None:
-        sideBox = nullptr;
-    }
+    QWidget* sideBox = flavoredWidget(
+        branding->sidebarFlavor(),
+        this,
+        &CalamaresWindow::getWidgetSidebar,
+        &CalamaresWindow::getQmlSidebar,
+        qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
     if ( sideBox )
     {
         mainLayout->addWidget( sideBox );
@@ -264,18 +281,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     //       event, which is also the ViewManager's responsibility.
     QBoxLayout* contentsLayout = new QVBoxLayout;
     contentsLayout->addWidget( m_viewManager->centralWidget() );
-    QWidget* navigation = nullptr;
-    switch ( branding->navigationFlavor() )
-    {
-    case Calamares::Branding::PanelFlavor::Widget:
-        navigation = getWidgetNavigation();
-        break;
-    case Calamares::Branding::PanelFlavor::Qml:
-        navigation = getQmlNavigation();
-        break;
-    case Calamares::Branding::PanelFlavor::None:
-        navigation = nullptr;
-    }
+    QWidget* navigation = flavoredWidget(
+        branding->navigationFlavor(), this, &CalamaresWindow::getWidgetNavigation, &CalamaresWindow::getQmlNavigation );
     if ( navigation )
     {
         contentsLayout->addWidget( navigation );
