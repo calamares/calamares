@@ -63,23 +63,6 @@ ViewManager::instance( QObject* parent )
     return s_instance;
 }
 
-/** @brief Get a button-sized icon. */
-static inline QPixmap
-getButtonIcon( const QString& name )
-{
-    return Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
-}
-
-static inline void
-setButtonIcon( QPushButton* button, const QString& name )
-{
-    auto icon = getButtonIcon( name );
-    if ( button && !icon.isNull() )
-    {
-        button->setIcon( icon );
-    }
-}
-
 ViewManager::ViewManager( QObject* parent )
     : QAbstractListModel( parent )
     , m_currentStep( 0 )
