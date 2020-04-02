@@ -4,44 +4,54 @@ import io.calamares.core 1.0
 import QtQuick 2.3
 import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
-import org.kde.kirigami 2.7 as Kirigami
 
-Row {
-            id: buttonBar
-            height: 64
+Rectangle {
+    id: navigationBar;
+    color: Branding.styleString( Branding.SidebarBackground );
 
-            Button
-            {
-                Layout.fillWidth: true
-                text: qsTr("Back")
-                icon.name: "next"
-                Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: Kirigami.Theme.textColor
+    RowLayout {
+        id: buttonBar
+        height: 64;
+        anchors.fill: parent;
 
-                visible: true
-                onClicked: { }
-            }
-            Button
-            {
-                Layout.fillWidth: true
-                text: qsTr("Next")
-                icon.name: "next"
-                Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: Kirigami.Theme.textColor
+        Item
+        {
+            Layout.fillWidth: true;
+        }
 
-                visible: true
-                onClicked: { }
-            }
-            Button
-            {
-                Layout.fillWidth: true
-                text: qsTr("Quit")
-                icon.name: "quit"
-                Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: Kirigami.Theme.textColor
+        Button
+        {
+            text: ViewManager.backLabel;
+            icon.name: ViewManager.backIcon;
 
-                visible: true
-                onClicked: { }
-            }
+            enabled: ViewManager.backEnabled;
+            visible: true;
+            onClicked: { ViewManager.back(); }
+        }
+        Button
+        {
+            text: ViewManager.nextLabel;
+            icon.name: ViewManager.nextIcon;
 
+            enabled: ViewManager.nextEnabled;
+            visible: true;
+            onClicked: { ViewManager.next(); }
+        }
+        Button
+        {
+            Layout.leftMargin: 3 * buttonBar.spacing;  // little gap from back/next
+            Layout.rightMargin: 2 * buttonBar.spacing
+            text: ViewManager.quitLabel;
+            icon.name: ViewManager.quitIcon;
+
+            ToolTip.visible: hovered
+            ToolTip.timeout: 5000
+            ToolTip.delay: 1000
+            ToolTip.text: ViewManager.quitTooltip;
+
+            enabled: ViewManager.quitEnabled;
+            visible: ViewManager.quitVisible;
+            onClicked: { ViewManager.quit(); }
+        }
+    }
 }
