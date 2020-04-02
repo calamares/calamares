@@ -78,6 +78,19 @@ public slots:
     void retranslate();
     QString languageIcon() const;
 
+signals:
+    void countryCodeChanged( QString countryCode );
+    void localeIndexChanged( int localeIndex );
+    void isNextEnabledChanged( bool isNextEnabled );
+
+    void genericWelcomeMessageChanged( QString message );
+    void warningMessageChanged( QString message );
+
+    void supportUrlChanged();
+    void knownIssuesUrlChanged();
+    void releaseNotesUrlChanged();
+    void donateUrlChanged();
+
 private:
     void initLanguages();
     QVariantMap m_configurationMap;
@@ -95,19 +108,6 @@ private:
     QString m_knownIssuesUrl;
     QString m_releaseNotesUrl;
     QString m_donateUrl;
-
-signals:
-    void countryCodeChanged( QString countryCode );
-    void localeIndexChanged( int localeIndex );
-    void isNextEnabledChanged( bool isNextEnabled );
-
-    void genericWelcomeMessageChanged();
-    void warningMessageChanged();
-
-    void supportUrlChanged();
-    void knownIssuesUrlChanged();
-    void releaseNotesUrlChanged();
-    void donateUrlChanged();
 };
 
 #endif

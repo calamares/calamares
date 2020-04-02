@@ -42,7 +42,7 @@ void
 Config::retranslate()
 {
     m_genericWelcomeMessage = genericWelcomeMessage().arg( *Calamares::Branding::VersionedName );
-    emit genericWelcomeMessageChanged();
+    emit genericWelcomeMessageChanged( m_genericWelcomeMessage );
 
     if ( !m_requirementsModel->satisfiedRequirements() )
     {
@@ -81,7 +81,7 @@ Config::retranslate()
                                .arg( *Calamares::Branding::ProductName );
     }
 
-    emit warningMessageChanged();
+    emit warningMessageChanged( m_warningMessage );
 }
 
 CalamaresUtils::Locale::LabelModel*
