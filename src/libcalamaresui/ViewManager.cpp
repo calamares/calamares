@@ -94,12 +94,12 @@ ViewManager::ViewManager( QObject* parent )
     m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
-    CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels )
+    updateButtonLabels();
 
     connect( JobQueue::instance(), &JobQueue::failed, this, &ViewManager::onInstallationFailed );
     connect( JobQueue::instance(), &JobQueue::finished, this, &ViewManager::next );
 
-    UPDATE_BUTTON_PROPERTY( quitVisible, !Calamares::Settings::instance()->disableCancel() )
+    CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels )
 }
 
 
