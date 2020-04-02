@@ -138,6 +138,7 @@ CalamaresWindow::getQmlSidebar( int desiredWidth )
     QQuickWidget* w = new QQuickWidget( this );
     w->setFixedWidth( desiredWidth );
     w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-sidebar" ) ) ) );
     return w;
@@ -218,6 +219,7 @@ CalamaresWindow::getQmlNavigation()
     QQuickWidget* w = new QQuickWidget( this );
     w->setFixedHeight( 64 );
     w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-navigation" ) ) ) );
     return w;
