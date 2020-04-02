@@ -19,9 +19,8 @@
 #ifndef CALAMARES_PYTHONJOBMODULE_H
 #define CALAMARES_PYTHONJOBMODULE_H
 
-#include "Module.h"
-
 #include "DllMacro.h"
+#include "modulesystem/Module.h"
 
 namespace Calamares
 {
@@ -39,13 +38,17 @@ protected:
     void initFrom( const QVariantMap& moduleDescriptor ) override;
 
 private:
-    friend class Module;
     explicit PythonJobModule();
     virtual ~PythonJobModule() override;
 
     QString m_scriptFileName;
     QString m_workingPath;
     job_ptr m_job;
+
+    friend Module* Calamares::moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
+                                                    const QString& instanceId,
+                                                    const QString& configFileName,
+                                                    const QString& moduleDirectory );
 };
 
 }  // namespace Calamares

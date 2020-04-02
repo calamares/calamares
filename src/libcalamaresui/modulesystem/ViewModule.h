@@ -20,8 +20,8 @@
 #ifndef CALAMARES_VIEWMODULE_H
 #define CALAMARES_VIEWMODULE_H
 
-#include "Module.h"
 #include "DllMacro.h"
+#include "modulesystem/Module.h"
 
 class QPluginLoader;
 
@@ -45,12 +45,16 @@ protected:
     void initFrom( const QVariantMap& moduleDescriptor ) override;
 
 private:
-    friend class Module;  //so only the superclass can instantiate
     explicit ViewModule();
     virtual ~ViewModule() override;
 
     QPluginLoader* m_loader;
     ViewStep* m_viewStep = nullptr;
+
+    friend Module* Calamares::moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
+                                                    const QString& instanceId,
+                                                    const QString& configFileName,
+                                                    const QString& moduleDirectory );
 };
 
 }  // namespace Calamares

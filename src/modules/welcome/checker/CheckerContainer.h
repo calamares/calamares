@@ -40,7 +40,7 @@ class CheckerContainer : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CheckerContainer(const RequirementsModel &model, QWidget* parent = nullptr );
+    explicit CheckerContainer(const Calamares::RequirementsModel &model, QWidget* parent = nullptr );
     virtual ~CheckerContainer();
 
     bool verdict() const;
@@ -58,7 +58,7 @@ protected:
     bool m_verdict;
 
 private:
-    const RequirementsModel &m_model;
+    const Calamares::RequirementsModel &m_model;
 } ;
 
 #endif

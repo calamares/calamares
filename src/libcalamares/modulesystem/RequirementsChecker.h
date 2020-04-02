@@ -18,13 +18,12 @@
 #ifndef CALAMARES_REQUIREMENTSCHECKER_H
 #define CALAMARES_REQUIREMENTSCHECKER_H
 
-#include "Requirement.h"
+#include "modulesystem/Requirement.h"
 
 #include <QFutureWatcher>
 #include <QObject>
 #include <QTimer>
 #include <QVector>
-
 
 namespace Calamares
 {
@@ -44,7 +43,7 @@ public:
     RequirementsChecker( QVector< Module* > modules, QObject* parent = nullptr );
     virtual ~RequirementsChecker() override;
 
-public slots:
+public Q_SLOTS:
     /// @brief Start checking all the requirements
     void run();
 

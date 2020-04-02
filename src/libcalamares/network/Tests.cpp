@@ -47,6 +47,7 @@ NetworkTests::testPing()
     using namespace CalamaresUtils::Network;
     Logger::setupLogLevel( Logger::LOGVERBOSE );
     auto& nam = Manager::instance();
-    auto canPing_www_kde_org = nam.synchronousPing( QUrl( "https://www.kde.org" ), RequestOptions( RequestOptions::FollowRedirect ) );
+    auto canPing_www_kde_org
+        = nam.synchronousPing( QUrl( "https://www.kde.org" ), RequestOptions( RequestOptions::FollowRedirect ) );
     QVERIFY( canPing_www_kde_org );
 }

@@ -47,6 +47,7 @@ WelcomeViewStep::WelcomeViewStep( QObject* parent )
 
     // the instance of the qqc2 or qwidgets page
     m_widget = new WelcomePage( m_conf );
+    connect( m_conf, &Config::localeIndexChanged, m_widget, &WelcomePage::externallySelectedLanguage );
 }
 
 WelcomeViewStep::~WelcomeViewStep()

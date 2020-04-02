@@ -138,4 +138,5 @@ ModuleSystemTests::testBadFromStringCases()
 QTEST_GUILESS_MAIN( ModuleSystemTests )
 
 #include "utils/moc-warnings.h"
+
 #include "Tests.moc"

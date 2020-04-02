@@ -24,14 +24,14 @@
 #include <type_traits>
 
 /// @brief Convenience to zero out and deleteLater of any QObject-derived-class
-template< typename T >
+template < typename T >
 struct cqDeleter
 {
     T*& p;
 
     ~cqDeleter()
     {
-        static_assert( std::is_base_of<QObject, T>::value, "Not a QObject-class" );
+        static_assert( std::is_base_of< QObject, T >::value, "Not a QObject-class" );
         if ( p )
         {
             p->deleteLater();

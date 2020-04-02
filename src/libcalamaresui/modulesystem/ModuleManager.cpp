@@ -19,11 +19,11 @@
 
 #include "ModuleManager.h"
 
-#include "Module.h"
-#include "RequirementsChecker.h"
-#include "Settings.h"
 #include "ViewManager.h"
 
+#include "Settings.h"
+#include "modulesystem/Module.h"
+#include "modulesystem/RequirementsChecker.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
 #include "viewpages/ExecutionViewStep.h"
@@ -285,10 +285,11 @@ ModuleManager::loadModules()
             }
             else
             {
-                thisModule = Module::fromDescriptor( descriptor,
-                                                     instanceKey.id(),
-                                                     configFileName,
-                                                     m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
+                thisModule
+                    = Calamares::moduleFromDescriptor( descriptor,
+                                                       instanceKey.id(),
+                                                       configFileName,
+                                                       m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
                 if ( !thisModule )
                 {
                     cError() << "Module" << instanceKey.toString() << "cannot be created from descriptor"

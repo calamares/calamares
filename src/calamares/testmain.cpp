@@ -183,7 +183,7 @@ load_module( const ModuleConfig& moduleConfig )
 
     cDebug() << "Module" << moduleName << "job-configuration:" << configFile;
 
-    Calamares::Module* module = Calamares::Module::fromDescriptor( descriptor, name, configFile, moduleDirectory );
+    Calamares::Module* module = Calamares::moduleFromDescriptor( descriptor, name, configFile, moduleDirectory );
 
     return module;
 }

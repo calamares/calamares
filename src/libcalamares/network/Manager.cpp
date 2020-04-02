@@ -286,4 +286,5 @@ Manager::asynchronousGet( const QUrl& url, const CalamaresUtils::Network::Reques
 }  // namespace CalamaresUtils
 
 #include "utils/moc-warnings.h"
+
 #include "Manager.moc"

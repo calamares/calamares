@@ -94,8 +94,7 @@ private:
     }
 };
 
-QDebug&
-operator <<( QDebug& s, const Calamares::ModuleSystem::InstanceKey& i );
+QDebug& operator<<( QDebug& s, const Calamares::ModuleSystem::InstanceKey& i );
 
 }  // namespace ModuleSystem
 }  // namespace Calamares
