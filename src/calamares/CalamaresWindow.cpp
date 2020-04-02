@@ -171,6 +171,7 @@ CalamaresWindow::getWidgetNavigation()
     {
         auto* back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), navigation );
         back->setObjectName( "view-button-back" );
+        back->setEnabled( m_viewManager->backEnabled() );
         connect( back, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::back );
         connect( m_viewManager, &Calamares::ViewManager::backEnabledChanged, back, &QPushButton::setEnabled );
         connect( m_viewManager, &Calamares::ViewManager::backLabelChanged, back, &QPushButton::setText );
@@ -182,6 +183,7 @@ CalamaresWindow::getWidgetNavigation()
     {
         auto* next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), navigation );
         next->setObjectName( "view-button-next" );
+        next->setEnabled( m_viewManager->nextEnabled() );
         connect( next, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::next );
         connect( m_viewManager, &Calamares::ViewManager::nextEnabledChanged, next, &QPushButton::setEnabled );
         connect( m_viewManager, &Calamares::ViewManager::nextLabelChanged, next, &QPushButton::setText );
