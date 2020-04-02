@@ -1,5 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
   <file alias="welcomeq.qml">welcomeq.qml</file>
+  <file alias="about.qml">about.qml</file>
+  <file>img/squid.png</file>
+  <file>img/chevron-left-solid.svg</file>
 </qresource>
 </RCC>
