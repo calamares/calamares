@@ -38,9 +38,14 @@ class UIDLLEXPORT ViewManager : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY( int currentStepIndex READ currentStepIndex NOTIFY currentStepChanged FINAL )
+
     Q_PROPERTY( bool nextEnabled READ nextEnabled NOTIFY nextEnabledChanged FINAL )
     Q_PROPERTY( QString nextLabel READ nextLabel NOTIFY nextLabelChanged FINAL )
     Q_PROPERTY( QString nextIcon READ nextIcon NOTIFY nextIconChanged FINAL )
+
+    Q_PROPERTY( bool backEnabled READ backEnabled NOTIFY backEnabledChanged FINAL )
+    Q_PROPERTY( QString backLabel READ backLabel NOTIFY backLabelChanged FINAL )
+    Q_PROPERTY( QString backIcon READ backIcon NOTIFY backIconChanged FINAL )
 
 public:
     /**
@@ -121,6 +126,18 @@ public Q_SLOTS:
      * have any pages before the current one.
      */
     void back();
+    bool backEnabled() const
+    {
+        return m_backEnabled;  ///< Is the back-button to be enabled
+    }
+    QString backLabel() const
+    {
+        return m_backLabel;  ///< What should be displayed on the back-button
+    }
+    QString backIcon() const
+    {
+        return m_backIcon;  ///< Name of the icon to show
+    }
 
     /**
      * @brief Probably quit
@@ -152,6 +169,10 @@ signals:
     void nextLabelChanged( QString ) const;
     void nextIconChanged( QString ) const;
 
+    void backEnabledChanged( bool ) const;
+    void backLabelChanged( QString ) const;
+    void backIconChanged( QString ) const;
+
 private:
     explicit ViewManager( QObject* parent = nullptr );
     virtual ~ViewManager() override;
@@ -167,12 +188,15 @@ private:
 
     QWidget* m_widget;
     QStackedWidget* m_stack;
-    QPushButton* m_back;
     QPushButton* m_quit;
 
     bool m_nextEnabled = false;
     QString m_nextLabel;
     QString m_nextIcon;  ///< Name of icon to show on button
+
+    bool m_backEnabled = false;
+    QString m_backLabel;
+    QString m_backIcon;
 
 public:
     /** @section Model

@@ -164,28 +164,39 @@ QWidget*
 CalamaresWindow::getWidgetNavigation()
 {
     QWidget* navigation = new QWidget( this );
-
-    // Create buttons and sets an initial icon; the icons may change
-    auto* back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), navigation );
-    back->setObjectName( "view-button-back" );
-    connect( back, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::back );
-    auto* next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), navigation );
-    next->setObjectName( "view-button-next" );
-    connect( next, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::next );
-    connect( m_viewManager, &Calamares::ViewManager::nextEnabledChanged, next, &QPushButton::setEnabled );
-    connect( m_viewManager, &Calamares::ViewManager::nextLabelChanged, next, &QPushButton::setText );
-    connect(
-        m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [=]( QString n ) { setButtonIcon( next, n ); } );
-    auto* quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), navigation );
-    quit->setObjectName( "view-button-cancel" );
-    connect( quit, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::quit );
-
     QBoxLayout* bottomLayout = new QHBoxLayout;
     bottomLayout->addStretch();
-    bottomLayout->addWidget( back );
-    bottomLayout->addWidget( next );
+
+    // Create buttons and sets an initial icon; the icons may change
+    {
+        auto* back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), navigation );
+        back->setObjectName( "view-button-back" );
+        connect( back, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::back );
+        connect( m_viewManager, &Calamares::ViewManager::backEnabledChanged, back, &QPushButton::setEnabled );
+        connect( m_viewManager, &Calamares::ViewManager::backLabelChanged, back, &QPushButton::setText );
+        connect( m_viewManager, &Calamares::ViewManager::backIconChanged, this, [=]( QString n ) {
+            setButtonIcon( back, n );
+        } );
+        bottomLayout->addWidget( back );
+    }
+    {
+        auto* next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), navigation );
+        next->setObjectName( "view-button-next" );
+        connect( next, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::next );
+        connect( m_viewManager, &Calamares::ViewManager::nextEnabledChanged, next, &QPushButton::setEnabled );
+        connect( m_viewManager, &Calamares::ViewManager::nextLabelChanged, next, &QPushButton::setText );
+        connect( m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [=]( QString n ) {
+            setButtonIcon( next, n );
+        } );
+        bottomLayout->addWidget( next );
+    }
     bottomLayout->addSpacing( 12 );
-    bottomLayout->addWidget( quit );
+    {
+        auto* quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), navigation );
+        quit->setObjectName( "view-button-cancel" );
+        connect( quit, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::quit );
+        bottomLayout->addWidget( quit );
+    }
 
     navigation->setLayout( bottomLayout );
     return navigation;

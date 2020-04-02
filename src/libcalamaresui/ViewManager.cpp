@@ -38,6 +38,12 @@
 #include <QMessageBox>
 #include <QMetaObject>
 
+#define UPDATE_BUTTON_PROPERTY( name, value ) \
+    { \
+        m_##name = value; \
+        emit name##Changed( m_##name ); \
+    }
+
 namespace Calamares
 {
 
@@ -89,8 +95,6 @@ ViewManager::ViewManager( QObject* parent )
     mainLayout->addWidget( m_stack );
 
     // Create buttons and sets an initial icon; the icons may change
-    m_back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), m_widget );
-    m_back->setObjectName( "view-button-back" );
     m_quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), m_widget );
     m_quit->setObjectName( "view-button-cancel" );
 
@@ -99,13 +103,9 @@ ViewManager::ViewManager( QObject* parent )
     QBoxLayout* bottomLayout = new QHBoxLayout;
     mainLayout->addLayout( bottomLayout );
     bottomLayout->addStretch();
-    bottomLayout->addWidget( m_back );
-    bottomLayout->addSpacing( 12 );
     bottomLayout->addWidget( m_quit );
 
-    connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
     connect( m_quit, &QPushButton::clicked, this, &ViewManager::quit );
-    m_back->setEnabled( false );
 
     connect( JobQueue::instance(), &JobQueue::failed, this, &ViewManager::onInstallationFailed );
     connect( JobQueue::instance(), &JobQueue::finished, this, &ViewManager::next );
@@ -363,9 +363,8 @@ ViewManager::next()
         {
             // Reached the end in a weird state (e.g. no finished step after an exec)
             executing = false;
-            m_nextEnabled = false;
-            emit nextEnabledChanged( m_nextEnabled );
-            m_back->setEnabled( false );
+            UPDATE_BUTTON_PROPERTY( nextEnabled, false )
+            UPDATE_BUTTON_PROPERTY( backEnabled, false )
         }
         updateCancelEnabled( !settings->disableCancel() && !( executing && settings->disableCancelDuringExec() ) );
     }
@@ -376,9 +375,8 @@ ViewManager::next()
 
     if ( m_currentStep < m_steps.count() )
     {
-        m_nextEnabled = !executing && m_steps.at( m_currentStep )->isNextEnabled();
-        emit nextEnabledChanged( m_nextEnabled );
-        m_back->setEnabled( !executing && m_steps.at( m_currentStep )->isBackEnabled() );
+        UPDATE_BUTTON_PROPERTY( nextEnabled, !executing && m_steps.at( m_currentStep )->isNextEnabled() )
+        UPDATE_BUTTON_PROPERTY( backEnabled, !executing && m_steps.at( m_currentStep )->isBackEnabled() )
     }
 
     updateButtonLabels();
@@ -400,21 +398,17 @@ ViewManager::updateButtonLabels()
     // If we're going into the execution step / install phase, other message
     if ( stepIsExecute( m_steps, m_currentStep + 1 ) )
     {
-        m_nextLabel = nextIsInstallationStep;
-        m_nextIcon = "run-install";
-        emit nextLabelChanged( m_nextLabel );
-        emit nextIconChanged( m_nextIcon );
+        UPDATE_BUTTON_PROPERTY( nextLabel, nextIsInstallationStep )
+        UPDATE_BUTTON_PROPERTY( nextIcon, "run-install" )
     }
     else
     {
-        m_nextLabel = tr( "&Next" );
-        m_nextIcon = "go-next";
-        emit nextLabelChanged( m_nextLabel );
-        emit nextIconChanged( m_nextIcon );
+        UPDATE_BUTTON_PROPERTY( nextLabel, tr( "&Next" ) )
+        UPDATE_BUTTON_PROPERTY( nextIcon, "go-next" )
     }
 
     // Going back is always simple
-    m_back->setText( tr( "&Back" ) );
+    UPDATE_BUTTON_PROPERTY( backLabel, tr( "&Back" ) )
 
     // Cancel button changes label at the end
     if ( isAtVeryEnd( m_steps, m_currentStep ) )
@@ -465,14 +459,11 @@ ViewManager::back()
         return;
     }
 
-    m_nextEnabled = m_steps.at( m_currentStep )->isNextEnabled();
-    emit nextEnabledChanged( m_nextEnabled );
-    m_back->setEnabled( m_steps.at( m_currentStep )->isBackEnabled() );
-
-    if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
-    {
-        m_back->setEnabled( false );
-    }
+    UPDATE_BUTTON_PROPERTY( nextEnabled, m_steps.at( m_currentStep )->isNextEnabled() )
+    UPDATE_BUTTON_PROPERTY( backEnabled,
+                            ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
+                                ? false
+                                : m_steps.at( m_currentStep )->isBackEnabled() )
 
     updateButtonLabels();
 }
