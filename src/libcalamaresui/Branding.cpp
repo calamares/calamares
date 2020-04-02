@@ -419,10 +419,11 @@ Branding::initSimpleSettings( const YAML::Node& doc )
         { QStringLiteral( "free" ), WindowPlacement::Free },
         { QStringLiteral( "center" ), WindowPlacement::Center }
     };
-    static const NamedEnumTable< SidebarFlavor > sidebarFlavorNames {
-        { QStringLiteral( "widget" ), SidebarFlavor::Widget },
-        { QStringLiteral( "none" ), SidebarFlavor::None },
-        { QStringLiteral( "qml" ), SidebarFlavor::Qml }
+    static const NamedEnumTable< PanelFlavor > sidebarFlavorNames {
+        { QStringLiteral( "widget" ), PanelFlavor::Widget },
+        { QStringLiteral( "none" ), PanelFlavor::None },
+        { QStringLiteral( "hidden" ), PanelFlavor::None },
+        { QStringLiteral( "qml" ), PanelFlavor::Qml }
     };
     // clang-format on
     // *INDENT-ON*
@@ -447,6 +448,12 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     {
         cWarning() << "Branding module-setting *sidebar* interpreted as"
                    << sidebarFlavorNames.find( m_sidebarFlavor, ok );
+    }
+    m_navigationFlavor = sidebarFlavorNames.find( getString( doc, "navigation" ), ok);
+    if ( !ok )
+    {
+        cWarning() << "Branding module-setting *navigation* interpreted as"
+                   << sidebarFlavorNames.find( m_navigationFlavor, ok );
     }
 
     QString windowSize = getString( doc, "windowSize" );

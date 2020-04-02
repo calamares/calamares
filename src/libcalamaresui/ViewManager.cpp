@@ -38,6 +38,12 @@
 #include <QMessageBox>
 #include <QMetaObject>
 
+#define UPDATE_BUTTON_PROPERTY( name, value ) \
+    { \
+        m_##name = value; \
+        emit name##Changed( m_##name ); \
+    }
+
 namespace Calamares
 {
 
@@ -88,43 +94,12 @@ ViewManager::ViewManager( QObject* parent )
     m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
-    // Create buttons and sets an initial icon; the icons may change
-    m_back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), m_widget );
-    m_back->setObjectName( "view-button-back" );
-    m_next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), m_widget );
-    m_next->setObjectName( "view-button-next" );
-    m_quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), m_widget );
-    m_quit->setObjectName( "view-button-cancel" );
+    updateButtonLabels();
 
-    CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels )
-
-    QBoxLayout* bottomLayout = new QHBoxLayout;
-    mainLayout->addLayout( bottomLayout );
-    bottomLayout->addStretch();
-    bottomLayout->addWidget( m_back );
-    bottomLayout->addWidget( m_next );
-    bottomLayout->addSpacing( 12 );
-    bottomLayout->addWidget( m_quit );
-
-    connect( m_next, &QPushButton::clicked, this, &ViewManager::next );
-    connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
-    m_back->setEnabled( false );
-
-    connect( m_quit, &QPushButton::clicked, this, [this]() {
-        if ( this->confirmCancelInstallation() )
-        {
-            qApp->quit();
-        }
-    } );
     connect( JobQueue::instance(), &JobQueue::failed, this, &ViewManager::onInstallationFailed );
     connect( JobQueue::instance(), &JobQueue::finished, this, &ViewManager::next );
 
-    if ( Calamares::Settings::instance()->disableCancel() )
-    {
-        m_quit->setVisible( false );
-    }
-
-    // onInstallationFailed( "Title of Failure", "Body of Failure");  // for testing paste functionality
+    CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels )
 }
 
 
@@ -149,7 +124,8 @@ ViewManager::addViewStep( ViewStep* step )
     // If this is the first inserted view step, update status of "Next" button
     if ( m_steps.count() == 1 )
     {
-        m_next->setEnabled( step->isNextEnabled() );
+        m_nextEnabled = step->isNextEnabled();
+        emit nextEnabledChanged( m_nextEnabled );
     }
 }
 
@@ -160,13 +136,15 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     emit beginInsertRows( QModelIndex(), before, before );
     m_steps.insert( before, step );
     connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
+    // TODO: this can be a regular slot
     connect( step, &ViewStep::nextStatusChanged, this, [this]( bool status ) {
         ViewStep* vs = qobject_cast< ViewStep* >( sender() );
         if ( vs )
         {
             if ( vs == m_steps.at( m_currentStep ) )
             {
-                m_next->setEnabled( status );
+                m_nextEnabled = status;
+                emit nextEnabledChanged( m_nextEnabled );
             }
         }
     } );
@@ -371,8 +349,8 @@ ViewManager::next()
         {
             // Reached the end in a weird state (e.g. no finished step after an exec)
             executing = false;
-            m_next->setEnabled( false );
-            m_back->setEnabled( false );
+            UPDATE_BUTTON_PROPERTY( nextEnabled, false )
+            UPDATE_BUTTON_PROPERTY( backEnabled, false )
         }
         updateCancelEnabled( !settings->disableCancel() && !( executing && settings->disableCancelDuringExec() ) );
     }
@@ -383,8 +361,8 @@ ViewManager::next()
 
     if ( m_currentStep < m_steps.count() )
     {
-        m_next->setEnabled( !executing && m_steps.at( m_currentStep )->isNextEnabled() );
-        m_back->setEnabled( !executing && m_steps.at( m_currentStep )->isBackEnabled() );
+        UPDATE_BUTTON_PROPERTY( nextEnabled, !executing && m_steps.at( m_currentStep )->isNextEnabled() )
+        UPDATE_BUTTON_PROPERTY( backEnabled, !executing && m_steps.at( m_currentStep )->isBackEnabled() )
     }
 
     updateButtonLabels();
@@ -406,43 +384,43 @@ ViewManager::updateButtonLabels()
     // If we're going into the execution step / install phase, other message
     if ( stepIsExecute( m_steps, m_currentStep + 1 ) )
     {
-        m_next->setText( nextIsInstallationStep );
-        setButtonIcon( m_next, "run-install" );
+        UPDATE_BUTTON_PROPERTY( nextLabel, nextIsInstallationStep )
+        UPDATE_BUTTON_PROPERTY( nextIcon, "run-install" )
     }
     else
     {
-        m_next->setText( tr( "&Next" ) );
-        setButtonIcon( m_next, "go-next" );
+        UPDATE_BUTTON_PROPERTY( nextLabel, tr( "&Next" ) )
+        UPDATE_BUTTON_PROPERTY( nextIcon, "go-next" )
     }
 
     // Going back is always simple
-    m_back->setText( tr( "&Back" ) );
+    UPDATE_BUTTON_PROPERTY( backLabel, tr( "&Back" ) )
 
     // Cancel button changes label at the end
     if ( isAtVeryEnd( m_steps, m_currentStep ) )
     {
-        m_quit->setText( tr( "&Done" ) );
-        m_quit->setToolTip( quitOnCompleteTooltip );
-        m_quit->setVisible( true );  // At end, always visible and enabled.
-        setButtonIcon( m_quit, "dialog-ok-apply" );
+        UPDATE_BUTTON_PROPERTY( quitLabel, tr( "&Done" ) )
+        UPDATE_BUTTON_PROPERTY( quitTooltip, quitOnCompleteTooltip )
+        UPDATE_BUTTON_PROPERTY( quitVisible, true )
+        UPDATE_BUTTON_PROPERTY( quitIcon, "dialog-ok-apply" )
         updateCancelEnabled( true );
         if ( settings->quitAtEnd() )
         {
-            m_quit->click();
+            quit();
         }
     }
     else
     {
         if ( settings->disableCancel() )
         {
-            m_quit->setVisible( false );  // In case we went back from final
+            UPDATE_BUTTON_PROPERTY( quitVisible, false )
         }
         updateCancelEnabled( !settings->disableCancel()
                              && !( stepIsExecute( m_steps, m_currentStep ) && settings->disableCancelDuringExec() ) );
 
-        m_quit->setText( tr( "&Cancel" ) );
-        m_quit->setToolTip( cancelBeforeInstallationTooltip );
-        setButtonIcon( m_quit, "dialog-cancel" );
+        UPDATE_BUTTON_PROPERTY( quitLabel, tr( "&Cancel" ) )
+        UPDATE_BUTTON_PROPERTY( quitTooltip, cancelBeforeInstallationTooltip )
+        UPDATE_BUTTON_PROPERTY( quitIcon, "dialog-cancel" )
     }
 }
 
@@ -467,15 +445,23 @@ ViewManager::back()
         return;
     }
 
-    m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
-    m_back->setEnabled( m_steps.at( m_currentStep )->isBackEnabled() );
-
-    if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
-    {
-        m_back->setEnabled( false );
-    }
+    UPDATE_BUTTON_PROPERTY( nextEnabled, m_steps.at( m_currentStep )->isNextEnabled() )
+    UPDATE_BUTTON_PROPERTY( backEnabled,
+                            ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
+                                ? false
+                                : m_steps.at( m_currentStep )->isBackEnabled() )
 
     updateButtonLabels();
+}
+
+
+void
+ViewManager::quit()
+{
+    if ( confirmCancelInstallation() )
+    {
+        qApp->quit();
+    }
 }
 
 bool
@@ -516,7 +502,7 @@ ViewManager::confirmCancelInstallation()
 void
 ViewManager::updateCancelEnabled( bool enabled )
 {
-    m_quit->setEnabled( enabled );
+    UPDATE_BUTTON_PROPERTY( quitEnabled, enabled )
     emit cancelEnabled( enabled );
 }
 

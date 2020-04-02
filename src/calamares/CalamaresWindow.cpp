@@ -138,9 +138,116 @@ CalamaresWindow::getQmlSidebar( int desiredWidth )
     QQuickWidget* w = new QQuickWidget( this );
     w->setFixedWidth( desiredWidth );
     w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-sidebar" ) ) ) );
     return w;
+}
+
+/** @brief Get a button-sized icon. */
+static inline QPixmap
+getButtonIcon( const QString& name )
+{
+    return Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
+}
+
+static inline void
+setButtonIcon( QPushButton* button, const QString& name )
+{
+    auto icon = getButtonIcon( name );
+    if ( button && !icon.isNull() )
+    {
+        button->setIcon( icon );
+    }
+}
+
+QWidget*
+CalamaresWindow::getWidgetNavigation()
+{
+    QWidget* navigation = new QWidget( this );
+    QBoxLayout* bottomLayout = new QHBoxLayout;
+    bottomLayout->addStretch();
+
+    // Create buttons and sets an initial icon; the icons may change
+    {
+        auto* back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), navigation );
+        back->setObjectName( "view-button-back" );
+        back->setEnabled( m_viewManager->backEnabled() );
+        connect( back, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::back );
+        connect( m_viewManager, &Calamares::ViewManager::backEnabledChanged, back, &QPushButton::setEnabled );
+        connect( m_viewManager, &Calamares::ViewManager::backLabelChanged, back, &QPushButton::setText );
+        connect( m_viewManager, &Calamares::ViewManager::backIconChanged, this, [=]( QString n ) {
+            setButtonIcon( back, n );
+        } );
+        bottomLayout->addWidget( back );
+    }
+    {
+        auto* next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), navigation );
+        next->setObjectName( "view-button-next" );
+        next->setEnabled( m_viewManager->nextEnabled() );
+        connect( next, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::next );
+        connect( m_viewManager, &Calamares::ViewManager::nextEnabledChanged, next, &QPushButton::setEnabled );
+        connect( m_viewManager, &Calamares::ViewManager::nextLabelChanged, next, &QPushButton::setText );
+        connect( m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [=]( QString n ) {
+            setButtonIcon( next, n );
+        } );
+        bottomLayout->addWidget( next );
+    }
+    bottomLayout->addSpacing( 12 );
+    {
+        auto* quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), navigation );
+        quit->setObjectName( "view-button-cancel" );
+        connect( quit, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::quit );
+        connect( m_viewManager, &Calamares::ViewManager::quitEnabledChanged, quit, &QPushButton::setEnabled );
+        connect( m_viewManager, &Calamares::ViewManager::quitLabelChanged, quit, &QPushButton::setText );
+        connect( m_viewManager, &Calamares::ViewManager::quitIconChanged, this, [=]( QString n ) {
+            setButtonIcon( quit, n );
+        } );
+        connect( m_viewManager, &Calamares::ViewManager::quitTooltipChanged, quit, &QPushButton::setToolTip );
+        connect( m_viewManager, &Calamares::ViewManager::quitVisibleChanged, quit, &QPushButton::setVisible );
+        bottomLayout->addWidget( quit );
+    }
+
+    navigation->setLayout( bottomLayout );
+    return navigation;
+}
+
+QWidget*
+CalamaresWindow::getQmlNavigation()
+{
+    CalamaresUtils::registerCalamaresModels();
+    QQuickWidget* w = new QQuickWidget( this );
+    w->setFixedHeight( 64 );
+    w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    w->setResizeMode( QQuickWidget::SizeRootObjectToView );
+    w->setSource( QUrl(
+        CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-navigation" ) ) ) );
+    return w;
+}
+
+/**@brief Picks one of two methods to call
+ *
+ * Calls method (member function) @p widget or @p qml with arguments @p a
+ * on the given window, based on the flavor.
+ */
+template < typename widgetMaker, typename... args >
+QWidget*
+flavoredWidget( Calamares::Branding::PanelFlavor flavor,
+                CalamaresWindow* w,
+                widgetMaker widget,
+                widgetMaker qml,
+                args... a )
+{
+    // Member-function calling syntax is (object.*member)(args)
+    switch ( flavor )
+    {
+    case Calamares::Branding::PanelFlavor::Widget:
+        return ( w->*widget )( a... );
+    case Calamares::Branding::PanelFlavor::Qml:
+        return ( w->*qml )( a... );
+    case Calamares::Branding::PanelFlavor::None:
+        return nullptr;
+    }
 }
 
 CalamaresWindow::CalamaresWindow( QWidget* parent )
@@ -188,20 +295,12 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
 
-    QWidget* sideBox = nullptr;
-    switch ( branding->sidebarFlavor() )
-    {
-    case Calamares::Branding::SidebarFlavor::Widget:
-        sideBox = getWidgetSidebar(
-            qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
-        break;
-    case Calamares::Branding::SidebarFlavor::Qml:
-        sideBox = getQmlSidebar(
-            qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
-        break;
-    case Calamares::Branding::SidebarFlavor::None:
-        sideBox = nullptr;
-    }
+    QWidget* sideBox = flavoredWidget(
+        branding->sidebarFlavor(),
+        this,
+        &CalamaresWindow::getWidgetSidebar,
+        &CalamaresWindow::getQmlSidebar,
+        qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
     if ( sideBox )
     {
         mainLayout->addWidget( sideBox );
@@ -219,9 +318,19 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     //       and requires an extra show() (at least with KWin/X11) which
     //       is too annoying. Instead, leave it up to ignoring-the-quit-
     //       event, which is also the ViewManager's responsibility.
+    QBoxLayout* contentsLayout = new QVBoxLayout;
+    contentsLayout->addWidget( m_viewManager->centralWidget() );
+    QWidget* navigation = flavoredWidget(
+        branding->navigationFlavor(), this, &CalamaresWindow::getWidgetNavigation, &CalamaresWindow::getQmlNavigation );
+    if ( navigation )
+    {
+        contentsLayout->addWidget( navigation );
+    }
 
-    mainLayout->addWidget( m_viewManager->centralWidget() );
+    mainLayout->addLayout( contentsLayout );
+
     CalamaresUtils::unmarginLayout( mainLayout );
+    CalamaresUtils::unmarginLayout( contentsLayout );
     setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }
 

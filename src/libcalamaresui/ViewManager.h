@@ -39,6 +39,21 @@ class UIDLLEXPORT ViewManager : public QAbstractListModel
     Q_OBJECT
     Q_PROPERTY( int currentStepIndex READ currentStepIndex NOTIFY currentStepChanged FINAL )
 
+    Q_PROPERTY( bool nextEnabled READ nextEnabled NOTIFY nextEnabledChanged FINAL )
+    Q_PROPERTY( QString nextLabel READ nextLabel NOTIFY nextLabelChanged FINAL )
+    Q_PROPERTY( QString nextIcon READ nextIcon NOTIFY nextIconChanged FINAL )
+
+    Q_PROPERTY( bool backEnabled READ backEnabled NOTIFY backEnabledChanged FINAL )
+    Q_PROPERTY( QString backLabel READ backLabel NOTIFY backLabelChanged FINAL )
+    Q_PROPERTY( QString backIcon READ backIcon NOTIFY backIconChanged FINAL )
+
+    Q_PROPERTY( bool quitEnabled READ quitEnabled NOTIFY quitEnabledChanged FINAL )
+    Q_PROPERTY( QString quitLabel READ quitLabel NOTIFY quitLabelChanged FINAL )
+    Q_PROPERTY( QString quitIcon READ quitIcon NOTIFY quitIconChanged FINAL )
+    Q_PROPERTY( QString quitTooltip READ quitTooltip NOTIFY quitTooltipChanged FINAL )
+
+    Q_PROPERTY( bool quitVisible READ quitVisible NOTIFY quitVisibleChanged FINAL )
+
 public:
     /**
      * @brief instance access to the ViewManager singleton.
@@ -92,13 +107,25 @@ public:
      */
     bool confirmCancelInstallation();
 
-public slots:
+public Q_SLOTS:
     /**
      * @brief next moves forward to the next page of the current ViewStep (if any),
      * or to the first page of the next ViewStep if the current ViewStep doesn't
      * have any more pages.
      */
     void next();
+    bool nextEnabled() const
+    {
+        return m_nextEnabled;  ///< Is the next-button to be enabled
+    }
+    QString nextLabel() const
+    {
+        return m_nextLabel;  ///< What should be displayed on the next-button
+    }
+    QString nextIcon() const
+    {
+        return m_nextIcon;  ///< Name of the icon to show
+    }
 
     /**
      * @brief back moves backward to the previous page of the current ViewStep (if any),
@@ -106,6 +133,42 @@ public slots:
      * have any pages before the current one.
      */
     void back();
+    bool backEnabled() const
+    {
+        return m_backEnabled;  ///< Is the back-button to be enabled
+    }
+    QString backLabel() const
+    {
+        return m_backLabel;  ///< What should be displayed on the back-button
+    }
+    QString backIcon() const
+    {
+        return m_backIcon;  ///< Name of the icon to show
+    }
+
+    /**
+     * @brief Probably quit
+     *
+     * Asks for confirmation if necessary. Terminates the application.
+     */
+    void quit();
+    bool quitEnabled() const
+    {
+        return m_quitEnabled;  ///< Is the quit-button to be enabled
+    }
+    QString quitLabel() const
+    {
+        return m_quitLabel;  ///< What should be displayed on the quit-button
+    }
+    QString quitIcon() const
+    {
+        return m_quitIcon;  ///< Name of the icon to show
+    }
+    bool quitVisible() const
+    {
+        return m_quitVisible;  ///< Should the quit-button be visible
+    }
+    QString quitTooltip() const { return m_quitTooltip; }
 
     /**
      * @brief onInstallationFailed displays an error message when a fatal failure
@@ -126,6 +189,20 @@ signals:
     void enlarge( QSize enlarge ) const;  // See ViewStep::enlarge()
     void cancelEnabled( bool enabled ) const;
 
+    void nextEnabledChanged( bool ) const;
+    void nextLabelChanged( QString ) const;
+    void nextIconChanged( QString ) const;
+
+    void backEnabledChanged( bool ) const;
+    void backLabelChanged( QString ) const;
+    void backIconChanged( QString ) const;
+
+    void quitEnabledChanged( bool ) const;
+    void quitLabelChanged( QString ) const;
+    void quitIconChanged( QString ) const;
+    void quitVisibleChanged( bool ) const;
+    void quitTooltipChanged( QString ) const;
+
 private:
     explicit ViewManager( QObject* parent = nullptr );
     virtual ~ViewManager() override;
@@ -141,9 +218,20 @@ private:
 
     QWidget* m_widget;
     QStackedWidget* m_stack;
-    QPushButton* m_back;
-    QPushButton* m_next;
-    QPushButton* m_quit;
+
+    bool m_nextEnabled = false;
+    QString m_nextLabel;
+    QString m_nextIcon;  ///< Name of icon to show on button
+
+    bool m_backEnabled = false;
+    QString m_backLabel;
+    QString m_backIcon;
+
+    bool m_quitEnabled = false;
+    QString m_quitLabel;
+    QString m_quitIcon;
+    QString m_quitTooltip;
+    bool m_quitVisible = true;
 
 public:
     /** @section Model
