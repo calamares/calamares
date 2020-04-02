@@ -93,13 +93,14 @@ signals:
 
 private:
     void initLanguages();
-    QVariantMap m_configurationMap;
+
     Calamares::RequirementsModel* m_requirementsModel;
+    CalamaresUtils::Locale::LabelModel* m_languages;
+
     QString m_languageIcon;
     QString m_countryCode;
     int m_localeIndex = 0;
     bool m_isNextEnabled = false;
-    CalamaresUtils::Locale::LabelModel* m_languages;
 
     QString m_genericWelcomeMessage;
     QString m_warningMessage;
