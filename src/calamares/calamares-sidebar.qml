@@ -13,10 +13,12 @@ Rectangle {
         spacing: 0;
 
         Image {
-            id: logo
+            Layout.topMargin: 12;
+            Layout.bottomMargin: 12;
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            id: logo;
             width: 80;
             height: width;  // square
-            anchors.horizontalCenter: parent.horizontalCenter;
             source: "file:/" + Branding.imagePath(Branding.ProductLogo);
             sourceSize.width: width;
             sourceSize.height: height;
@@ -25,12 +27,15 @@ Rectangle {
         Repeater {
             model: ViewManager
             Rectangle {
-                width: 200;
-                height: 75;
+                Layout.leftMargin: 12;
+                width: parent.width - 24;
+                height: 35;
+                radius: 6;
                 color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextHighlight : Branding.SidebarBackground );
 
                 Text {
-                    anchors.centerIn: parent;
+                    anchors.verticalCenter: parent.verticalCenter;
+                    x: parent.x + 12;
                     color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextSelect : Branding.SidebarText );
                     text: display;
                 }
