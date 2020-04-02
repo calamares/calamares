@@ -404,13 +404,10 @@ ViewManager::updateButtonLabels()
         UPDATE_BUTTON_PROPERTY( quitVisible, true )
         UPDATE_BUTTON_PROPERTY( quitIcon, "dialog-ok-apply" )
         updateCancelEnabled( true );
-        // FIXME
-#if 0
         if ( settings->quitAtEnd() )
         {
-            m_quit->click();
+            quit();
         }
-#endif
     }
     else
     {
