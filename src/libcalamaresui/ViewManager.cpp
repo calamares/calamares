@@ -272,8 +272,13 @@ stepIsExecute( const ViewStepList& steps, int index )
 
 static inline bool
 isAtVeryEnd( const ViewStepList& steps, int index )
-
 {
+    // If we have an empty list, then there's no point right now
+    // in checking if we're at the end.
+    if ( steps.count() == 0 )
+    {
+        return false;
+    }
     return ( index >= steps.count() ) || ( index == steps.count() - 1 && steps.last()->isAtEnd() );
 }
 
