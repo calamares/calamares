@@ -28,7 +28,10 @@ Config::Config( QObject* parent )
     , m_requirementsModel( new Calamares::RequirementsModel( this ) )
     , m_languages( CalamaresUtils::Locale::availableTranslations() )
 {
-    connect( m_requirementsModel, &Calamares::RequirementsModel::satisfiedRequirementsChanged, this, &Config::setIsNextEnabled );
+    connect( m_requirementsModel,
+             &Calamares::RequirementsModel::satisfiedRequirementsChanged,
+             this,
+             &Config::setIsNextEnabled );
 
     initLanguages();
 
@@ -261,7 +264,8 @@ Config::genericWelcomeMessage() const
     return message;
 }
 
-QString Config::warningMessage() const
+QString
+Config::warningMessage() const
 {
     return m_warningMessage;
 }
