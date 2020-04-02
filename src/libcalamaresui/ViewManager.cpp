@@ -91,8 +91,6 @@ ViewManager::ViewManager( QObject* parent )
     // Create buttons and sets an initial icon; the icons may change
     m_back = new QPushButton( getButtonIcon( QStringLiteral( "go-previous" ) ), tr( "&Back" ), m_widget );
     m_back->setObjectName( "view-button-back" );
-    m_next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), m_widget );
-    m_next->setObjectName( "view-button-next" );
     m_quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), m_widget );
     m_quit->setObjectName( "view-button-cancel" );
 
@@ -102,11 +100,9 @@ ViewManager::ViewManager( QObject* parent )
     mainLayout->addLayout( bottomLayout );
     bottomLayout->addStretch();
     bottomLayout->addWidget( m_back );
-    bottomLayout->addWidget( m_next );
     bottomLayout->addSpacing( 12 );
     bottomLayout->addWidget( m_quit );
 
-    connect( m_next, &QPushButton::clicked, this, &ViewManager::next );
     connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
     connect( m_quit, &QPushButton::clicked, this, &ViewManager::quit );
     m_back->setEnabled( false );
@@ -142,7 +138,8 @@ ViewManager::addViewStep( ViewStep* step )
     // If this is the first inserted view step, update status of "Next" button
     if ( m_steps.count() == 1 )
     {
-        m_next->setEnabled( step->isNextEnabled() );
+        m_nextEnabled = step->isNextEnabled();
+        emit nextEnabledChanged( m_nextEnabled );
     }
 }
 
@@ -153,13 +150,15 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     emit beginInsertRows( QModelIndex(), before, before );
     m_steps.insert( before, step );
     connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
+    // TODO: this can be a regular slot
     connect( step, &ViewStep::nextStatusChanged, this, [this]( bool status ) {
         ViewStep* vs = qobject_cast< ViewStep* >( sender() );
         if ( vs )
         {
             if ( vs == m_steps.at( m_currentStep ) )
             {
-                m_next->setEnabled( status );
+                m_nextEnabled = status;
+                emit nextEnabledChanged( m_nextEnabled );
             }
         }
     } );
@@ -364,7 +363,8 @@ ViewManager::next()
         {
             // Reached the end in a weird state (e.g. no finished step after an exec)
             executing = false;
-            m_next->setEnabled( false );
+            m_nextEnabled = false;
+            emit nextEnabledChanged( m_nextEnabled );
             m_back->setEnabled( false );
         }
         updateCancelEnabled( !settings->disableCancel() && !( executing && settings->disableCancelDuringExec() ) );
@@ -376,7 +376,8 @@ ViewManager::next()
 
     if ( m_currentStep < m_steps.count() )
     {
-        m_next->setEnabled( !executing && m_steps.at( m_currentStep )->isNextEnabled() );
+        m_nextEnabled = !executing && m_steps.at( m_currentStep )->isNextEnabled();
+        emit nextEnabledChanged( m_nextEnabled );
         m_back->setEnabled( !executing && m_steps.at( m_currentStep )->isBackEnabled() );
     }
 
@@ -399,13 +400,17 @@ ViewManager::updateButtonLabels()
     // If we're going into the execution step / install phase, other message
     if ( stepIsExecute( m_steps, m_currentStep + 1 ) )
     {
-        m_next->setText( nextIsInstallationStep );
-        setButtonIcon( m_next, "run-install" );
+        m_nextLabel = nextIsInstallationStep;
+        m_nextIcon = "run-install";
+        emit nextLabelChanged( m_nextLabel );
+        emit nextIconChanged( m_nextIcon );
     }
     else
     {
-        m_next->setText( tr( "&Next" ) );
-        setButtonIcon( m_next, "go-next" );
+        m_nextLabel = tr( "&Next" );
+        m_nextIcon = "go-next";
+        emit nextLabelChanged( m_nextLabel );
+        emit nextIconChanged( m_nextIcon );
     }
 
     // Going back is always simple
@@ -460,7 +465,8 @@ ViewManager::back()
         return;
     }
 
-    m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
+    m_nextEnabled = m_steps.at( m_currentStep )->isNextEnabled();
+    emit nextEnabledChanged( m_nextEnabled );
     m_back->setEnabled( m_steps.at( m_currentStep )->isBackEnabled() );
 
     if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )

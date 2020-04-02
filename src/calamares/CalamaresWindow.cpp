@@ -150,6 +150,16 @@ getButtonIcon( const QString& name )
     return Calamares::Branding::instance()->image( name, QSize( 22, 22 ) );
 }
 
+static inline void
+setButtonIcon( QPushButton* button, const QString& name )
+{
+    auto icon = getButtonIcon( name );
+    if ( button && !icon.isNull() )
+    {
+        button->setIcon( icon );
+    }
+}
+
 QWidget*
 CalamaresWindow::getWidgetNavigation()
 {
@@ -162,6 +172,10 @@ CalamaresWindow::getWidgetNavigation()
     auto* next = new QPushButton( getButtonIcon( QStringLiteral( "go-next" ) ), tr( "&Next" ), navigation );
     next->setObjectName( "view-button-next" );
     connect( next, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::next );
+    connect( m_viewManager, &Calamares::ViewManager::nextEnabledChanged, next, &QPushButton::setEnabled );
+    connect( m_viewManager, &Calamares::ViewManager::nextLabelChanged, next, &QPushButton::setText );
+    connect(
+        m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [=]( QString n ) { setButtonIcon( next, n ); } );
     auto* quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), navigation );
     quit->setObjectName( "view-button-cancel" );
     connect( quit, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::quit );

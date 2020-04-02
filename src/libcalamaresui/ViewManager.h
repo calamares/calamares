@@ -38,6 +38,9 @@ class UIDLLEXPORT ViewManager : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY( int currentStepIndex READ currentStepIndex NOTIFY currentStepChanged FINAL )
+    Q_PROPERTY( bool nextEnabled READ nextEnabled NOTIFY nextEnabledChanged FINAL )
+    Q_PROPERTY( QString nextLabel READ nextLabel NOTIFY nextLabelChanged FINAL )
+    Q_PROPERTY( QString nextIcon READ nextIcon NOTIFY nextIconChanged FINAL )
 
 public:
     /**
@@ -99,6 +102,18 @@ public Q_SLOTS:
      * have any more pages.
      */
     void next();
+    bool nextEnabled() const
+    {
+        return m_nextEnabled;  ///< Is the next-button to be enabled
+    }
+    QString nextLabel() const
+    {
+        return m_nextLabel;  ///< What should be displayed on the next-button
+    }
+    QString nextIcon() const
+    {
+        return m_nextIcon;  ///< Name of the icon to show
+    }
 
     /**
      * @brief back moves backward to the previous page of the current ViewStep (if any),
@@ -133,6 +148,10 @@ signals:
     void enlarge( QSize enlarge ) const;  // See ViewStep::enlarge()
     void cancelEnabled( bool enabled ) const;
 
+    void nextEnabledChanged( bool ) const;
+    void nextLabelChanged( QString ) const;
+    void nextIconChanged( QString ) const;
+
 private:
     explicit ViewManager( QObject* parent = nullptr );
     virtual ~ViewManager() override;
@@ -149,8 +168,11 @@ private:
     QWidget* m_widget;
     QStackedWidget* m_stack;
     QPushButton* m_back;
-    QPushButton* m_next;
     QPushButton* m_quit;
+
+    bool m_nextEnabled = false;
+    QString m_nextLabel;
+    QString m_nextIcon;  ///< Name of icon to show on button
 
 public:
     /** @section Model
