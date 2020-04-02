@@ -248,6 +248,7 @@ flavoredWidget( Calamares::Branding::PanelFlavor flavor,
     case Calamares::Branding::PanelFlavor::None:
         return nullptr;
     }
+    NOTREACHED return nullptr;  // All enum values handled above
 }
 
 CalamaresWindow::CalamaresWindow( QWidget* parent )
