@@ -46,6 +46,7 @@ public:
         NegatedText,
         HasDetails
     };
+    // No Q_ENUM because these are exposed through roleNames()
 
     bool satisfiedRequirements() const { return m_satisfiedRequirements; }
     bool satisfiedMandatory() const { return m_satisfiedMandatory; }
@@ -76,7 +77,7 @@ private:
 
 signals:
     void satisfiedRequirementsChanged( bool value );
-    void satisfiedMandatoryChanged();
+    void satisfiedMandatoryChanged( bool value );
     void warningMessageChanged();
 };
 

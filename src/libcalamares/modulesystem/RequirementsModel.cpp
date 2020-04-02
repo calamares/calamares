@@ -34,7 +34,7 @@ RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requi
     m_satisfiedMandatory = std::none_of( m_requirements.begin(), m_requirements.end(), isMandatoryAndUnSatisfied );
 
     emit satisfiedRequirementsChanged( m_satisfiedRequirements );
-    emit satisfiedMandatoryChanged();
+    emit satisfiedMandatoryChanged( m_satisfiedMandatory );
     emit endResetModel();
 }
 
