@@ -159,7 +159,7 @@ Config::setLanguageIcon( const QString& languageIcon )
 }
 
 void
-Config::setLocaleIndex( const int& index )
+Config::setLocaleIndex( int index )
 {
     if ( index == m_localeIndex || index > CalamaresUtils::Locale::availableTranslations()->rowCount( QModelIndex() )
          || index < 0 )
@@ -170,7 +170,7 @@ Config::setLocaleIndex( const int& index )
     m_localeIndex = index;
 
     const auto& selectedLocale = m_languages->locale( m_localeIndex ).locale();
-    cDebug() << "Selected locale" << selectedLocale;
+    cDebug() << "Index" << index << "Selected locale" << selectedLocale;
 
     QLocale::setDefault( selectedLocale );
     CalamaresUtils::installTranslator( selectedLocale, Calamares::Branding::instance()->translationsDirectory() );
@@ -185,7 +185,7 @@ Config::requirementsModel() const
 }
 
 void
-Config::setIsNextEnabled( const bool& isNextEnabled )
+Config::setIsNextEnabled( bool isNextEnabled )
 {
     m_isNextEnabled = isNextEnabled;
     emit isNextEnabledChanged( m_isNextEnabled );

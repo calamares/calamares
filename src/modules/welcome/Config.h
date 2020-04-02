@@ -49,13 +49,17 @@ class Config : public QObject
 
 public:
     Config( QObject* parent = nullptr );
-    void setCountryCode( const QString& countryCode );
-    void setLanguageIcon( const QString& languageIcon );
+
     Calamares::RequirementsModel& requirementsModel() const;
 
-    void setIsNextEnabled( const bool& isNextEnabled );
+    void setCountryCode( const QString& countryCode );
 
-    void setLocaleIndex( const int& index );
+    QString languageIcon() const;
+    void setLanguageIcon( const QString& languageIcon );
+
+    void setIsNextEnabled( bool isNextEnabled );
+
+    void setLocaleIndex( int index );
     int localeIndex() const { return m_localeIndex; }
 
     QString supportUrl() const;
@@ -76,7 +80,6 @@ public:
 public slots:
     CalamaresUtils::Locale::LabelModel* languagesModel() const;
     void retranslate();
-    QString languageIcon() const;
 
 signals:
     void countryCodeChanged( QString countryCode );
