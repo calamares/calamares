@@ -94,26 +94,12 @@ ViewManager::ViewManager( QObject* parent )
     m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
-    // Create buttons and sets an initial icon; the icons may change
-    m_quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), m_widget );
-    m_quit->setObjectName( "view-button-cancel" );
-
     CALAMARES_RETRANSLATE_SLOT( &ViewManager::updateButtonLabels )
-
-    QBoxLayout* bottomLayout = new QHBoxLayout;
-    mainLayout->addLayout( bottomLayout );
-    bottomLayout->addStretch();
-    bottomLayout->addWidget( m_quit );
-
-    connect( m_quit, &QPushButton::clicked, this, &ViewManager::quit );
 
     connect( JobQueue::instance(), &JobQueue::failed, this, &ViewManager::onInstallationFailed );
     connect( JobQueue::instance(), &JobQueue::finished, this, &ViewManager::next );
 
-    if ( Calamares::Settings::instance()->disableCancel() )
-    {
-        m_quit->setVisible( false );
-    }
+    UPDATE_BUTTON_PROPERTY( quitVisible, !Calamares::Settings::instance()->disableCancel() )
 }
 
 
@@ -413,28 +399,31 @@ ViewManager::updateButtonLabels()
     // Cancel button changes label at the end
     if ( isAtVeryEnd( m_steps, m_currentStep ) )
     {
-        m_quit->setText( tr( "&Done" ) );
-        m_quit->setToolTip( quitOnCompleteTooltip );
-        m_quit->setVisible( true );  // At end, always visible and enabled.
-        setButtonIcon( m_quit, "dialog-ok-apply" );
+        UPDATE_BUTTON_PROPERTY( quitLabel, tr( "&Done" ) )
+        UPDATE_BUTTON_PROPERTY( quitTooltip, quitOnCompleteTooltip )
+        UPDATE_BUTTON_PROPERTY( quitVisible, true )
+        UPDATE_BUTTON_PROPERTY( quitIcon, "dialog-ok-apply" )
         updateCancelEnabled( true );
+        // FIXME
+#if 0
         if ( settings->quitAtEnd() )
         {
             m_quit->click();
         }
+#endif
     }
     else
     {
         if ( settings->disableCancel() )
         {
-            m_quit->setVisible( false );  // In case we went back from final
+            UPDATE_BUTTON_PROPERTY( quitVisible, false )
         }
         updateCancelEnabled( !settings->disableCancel()
                              && !( stepIsExecute( m_steps, m_currentStep ) && settings->disableCancelDuringExec() ) );
 
-        m_quit->setText( tr( "&Cancel" ) );
-        m_quit->setToolTip( cancelBeforeInstallationTooltip );
-        setButtonIcon( m_quit, "dialog-cancel" );
+        UPDATE_BUTTON_PROPERTY( quitLabel, tr( "&Cancel" ) )
+        UPDATE_BUTTON_PROPERTY( quitTooltip, cancelBeforeInstallationTooltip )
+        UPDATE_BUTTON_PROPERTY( quitIcon, "dialog-cancel" )
     }
 }
 
@@ -516,7 +505,7 @@ ViewManager::confirmCancelInstallation()
 void
 ViewManager::updateCancelEnabled( bool enabled )
 {
-    m_quit->setEnabled( enabled );
+    UPDATE_BUTTON_PROPERTY( quitEnabled, enabled )
     emit cancelEnabled( enabled );
 }
 

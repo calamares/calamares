@@ -47,6 +47,13 @@ class UIDLLEXPORT ViewManager : public QAbstractListModel
     Q_PROPERTY( QString backLabel READ backLabel NOTIFY backLabelChanged FINAL )
     Q_PROPERTY( QString backIcon READ backIcon NOTIFY backIconChanged FINAL )
 
+    Q_PROPERTY( bool quitEnabled READ quitEnabled NOTIFY quitEnabledChanged FINAL )
+    Q_PROPERTY( QString quitLabel READ quitLabel NOTIFY quitLabelChanged FINAL )
+    Q_PROPERTY( QString quitIcon READ quitIcon NOTIFY quitIconChanged FINAL )
+    Q_PROPERTY( QString quitTooltip READ quitTooltip NOTIFY quitTooltipChanged FINAL )
+
+    Q_PROPERTY( bool quitVisible READ quitVisible NOTIFY quitVisibleChanged FINAL )
+
 public:
     /**
      * @brief instance access to the ViewManager singleton.
@@ -145,6 +152,23 @@ public Q_SLOTS:
      * Asks for confirmation if necessary. Terminates the application.
      */
     void quit();
+    bool quitEnabled() const
+    {
+        return m_quitEnabled;  ///< Is the quit-button to be enabled
+    }
+    QString quitLabel() const
+    {
+        return m_quitLabel;  ///< What should be displayed on the quit-button
+    }
+    QString quitIcon() const
+    {
+        return m_quitIcon;  ///< Name of the icon to show
+    }
+    bool quitVisible() const
+    {
+        return m_quitVisible;  ///< Should the quit-button be visible
+    }
+    QString quitTooltip() const { return m_quitTooltip; }
 
     /**
      * @brief onInstallationFailed displays an error message when a fatal failure
@@ -173,6 +197,12 @@ signals:
     void backLabelChanged( QString ) const;
     void backIconChanged( QString ) const;
 
+    void quitEnabledChanged( bool ) const;
+    void quitLabelChanged( QString ) const;
+    void quitIconChanged( QString ) const;
+    void quitVisibleChanged( bool ) const;
+    void quitTooltipChanged( QString ) const;
+
 private:
     explicit ViewManager( QObject* parent = nullptr );
     virtual ~ViewManager() override;
@@ -188,7 +218,6 @@ private:
 
     QWidget* m_widget;
     QStackedWidget* m_stack;
-    QPushButton* m_quit;
 
     bool m_nextEnabled = false;
     QString m_nextLabel;
@@ -197,6 +226,12 @@ private:
     bool m_backEnabled = false;
     QString m_backLabel;
     QString m_backIcon;
+
+    bool m_quitEnabled = false;
+    QString m_quitLabel;
+    QString m_quitIcon;
+    QString m_quitTooltip;
+    bool m_quitVisible = true;
 
 public:
     /** @section Model

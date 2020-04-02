@@ -197,6 +197,13 @@ CalamaresWindow::getWidgetNavigation()
         auto* quit = new QPushButton( getButtonIcon( QStringLiteral( "dialog-cancel" ) ), tr( "&Cancel" ), navigation );
         quit->setObjectName( "view-button-cancel" );
         connect( quit, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::quit );
+        connect( m_viewManager, &Calamares::ViewManager::quitEnabledChanged, quit, &QPushButton::setEnabled );
+        connect( m_viewManager, &Calamares::ViewManager::quitLabelChanged, quit, &QPushButton::setText );
+        connect( m_viewManager, &Calamares::ViewManager::quitIconChanged, this, [=]( QString n ) {
+            setButtonIcon( quit, n );
+        } );
+        connect( m_viewManager, &Calamares::ViewManager::quitTooltipChanged, quit, &QPushButton::setToolTip );
+        connect( m_viewManager, &Calamares::ViewManager::quitVisibleChanged, quit, &QPushButton::setVisible );
         bottomLayout->addWidget( quit );
     }
 
