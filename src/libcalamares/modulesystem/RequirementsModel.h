@@ -51,13 +51,8 @@ public:
     bool satisfiedRequirements() const { return m_satisfiedRequirements; }
     bool satisfiedMandatory() const { return m_satisfiedMandatory; }
 
-    const Calamares::RequirementEntry& getEntry( const int& index ) const
+    const Calamares::RequirementEntry& getEntry( int index ) const
     {
-        if ( index > count() || index < 0 )
-        {
-            return *( new Calamares::RequirementEntry() );
-        }
-
         return m_requirements.at( index );
     }
 
@@ -67,6 +62,10 @@ public:
     int rowCount( const QModelIndex& ) const override;
     int count() const { return m_requirements.count(); }
 
+signals:
+    void satisfiedRequirementsChanged( bool value );
+    void satisfiedMandatoryChanged( bool value );
+
 protected:
     QHash< int, QByteArray > roleNames() const override;
 
@@ -75,10 +74,6 @@ private:
     bool m_satisfiedRequirements = false;
     bool m_satisfiedMandatory = false;
 
-signals:
-    void satisfiedRequirementsChanged( bool value );
-    void satisfiedMandatoryChanged( bool value );
-    void warningMessageChanged();
 };
 
 }  // namespace Calamares
