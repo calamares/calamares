@@ -31,7 +31,7 @@
 
 #include <QHBoxLayout>
 
-CheckerContainer::CheckerContainer( const RequirementsModel &model, QWidget* parent )
+CheckerContainer::CheckerContainer( const Calamares::RequirementsModel &model, QWidget* parent )
     : QWidget( parent )
     , m_waitingWidget( new WaitingWidget( QString(), this ) )
     , m_checkerWidget( nullptr )

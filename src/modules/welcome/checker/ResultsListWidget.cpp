@@ -47,7 +47,7 @@
 static void
 createResultWidgets( QLayout* layout,
                      QList< ResultWidget* >& resultWidgets,
-                     const RequirementsModel &model,
+                     const Calamares::RequirementsModel &model,
                      std::function< bool( const Calamares::RequirementEntry& ) > predicate
                    )
 {
@@ -94,18 +94,18 @@ public:
      * The list must continue to exist for the lifetime of the dialog,
      * or UB happens.
      */
-    ResultsListDialog( const RequirementsModel& model, QWidget* parent );
+    ResultsListDialog( const Calamares::RequirementsModel& model, QWidget* parent );
     virtual ~ResultsListDialog();
 
 private:
     QLabel* m_title;
     QList< ResultWidget* > m_resultWidgets;  ///< One widget for each entry with details available
-    const RequirementsModel& m_model;
+    const Calamares::RequirementsModel& m_model;
 
     void retranslate();
 };
 
-ResultsListDialog::ResultsListDialog( const RequirementsModel& model, QWidget* parent)
+ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model, QWidget* parent)
     : QDialog( parent )
     , m_model( model )
 {
@@ -151,7 +151,7 @@ ResultsListDialog::retranslate()
 }
 
 
-ResultsListWidget::ResultsListWidget( const RequirementsModel &model, QWidget* parent )
+ResultsListWidget::ResultsListWidget( const Calamares::RequirementsModel &model, QWidget* parent )
     : QWidget( parent )
     , m_model( model )
 {
