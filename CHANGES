@@ -6,13 +6,20 @@ website will have to do for older versions.
 # 3.2.22 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Anke Boersma
 
 ## Core ##
- - No core changes yet
+ - Both the sidebar (on the left) and the navigation buttons (along the
+   bottom of the window) can now be configured to use the traditional
+   *widgets*, to use *qml*, or *hidden* from view (hiding the navigation
+   is not recommended unless you have a pure-QML UI to run inside
+   Calamares). The example QML that is compiled into Calamares has
+   been improved. To use your own QML, put files `calamares-sidebar.qml`
+   or `calamares-navigation.qml` into the branding directory.
 
 ## Modules ##
- - No module changes yet
+ - The *welcomeq* module has been improved with better layout and
+   nicer buttons in the example QML form. (Thanks to Anke Boersma)
 
 
 # 3.2.21 (2020-03-27) #
