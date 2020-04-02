@@ -91,8 +91,8 @@ Page
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
-                visible: config.helpUrl.isValid
-                onClicked: Qt.openUrlExternally(config.helpUrl)
+                visible: config.supportUrl !== ""
+                onClicked: Qt.openUrlExternally(config.supportUrl)
             }
             Button
             {
@@ -102,8 +102,8 @@ Page
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
-                visible: config.issuesUrl.isValid
-                onClicked: Qt.openUrlExternally(config.issuesUrl)
+                visible: config.knownIssuesUrl !== ""
+                onClicked: Qt.openUrlExternally(config.knownIssuesUrl)
             }
             Button
             {
@@ -113,8 +113,8 @@ Page
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
-                visible: config.notesUrl.isValid
-                onClicked: Qt.openUrlExternally(config.notesUrl)
+                visible: config.releaseNotesUrl !== ""
+                onClicked: Qt.openUrlExternally(config.releaseNotesUrl)
             }
             Button
             {
@@ -124,7 +124,7 @@ Page
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
-                visible: config.donateUrl.isValid
+                visible: config.donateUrl !== ""
                 onClicked: Qt.openUrlExternally(config.donateUrl)
             }
         }

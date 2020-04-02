@@ -139,10 +139,10 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_config->setReleaseNotesUrl( jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
     m_config->setDonateUrl( CalamaresUtils::getString( configurationMap, "showDonateUrl" ) );
 
-	// TODO: expand Config class and set the remaining fields // with the configurationMap all those properties can be accesed withouth having to declare a property, get and setter for each
+	// TODO: expand Config class and set the remaining fields // with the configurationMap all those properties can be accessed without having to declare a property, get and setter for each
 
 	// TODO: figure out how the requirements (held by ModuleManager) should be accessible
-	//          to QML as a odel. //will be model as a qvariantmap containing a alert level and the message string
+	//          to QML as a model. //will be model as a qvariantmap containing a alert level and the message string
 	if ( configurationMap.contains( "requirements" )
 		 && configurationMap.value( "requirements" ).type() == QVariant::Map )
 	{
