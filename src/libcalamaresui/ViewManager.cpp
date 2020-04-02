@@ -395,6 +395,7 @@ ViewManager::updateButtonLabels()
 
     // Going back is always simple
     UPDATE_BUTTON_PROPERTY( backLabel, tr( "&Back" ) )
+    UPDATE_BUTTON_PROPERTY( backIcon, "go-back" )
 
     // Cancel button changes label at the end
     if ( isAtVeryEnd( m_steps, m_currentStep ) )
