@@ -16,6 +16,9 @@ This release contains contributions from (alphabetically by first name):
    Calamares). The example QML that is compiled into Calamares has
    been improved. To use your own QML, put files `calamares-sidebar.qml`
    or `calamares-navigation.qml` into the branding directory.
+ - The sidebar and navigation can now be placed on any side of the
+   main window. This is probably only useful for QML-based UIs.
+   See `branding.desc` for details.
 
 ## Modules ##
  - The *welcomeq* module has been improved with better layout and
