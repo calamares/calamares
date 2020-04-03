@@ -12,7 +12,7 @@ calamares_add_plugin( keyboardq
         ${_keyboard}/SetKeyboardLayoutJob.cpp
         ${_keyboard}/keyboardwidget/keyboardglobal.cpp
     RESOURCES
-        ${_keyboard}/keyboard.qrc
+        keyboardq.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
     SHARED_LIB
