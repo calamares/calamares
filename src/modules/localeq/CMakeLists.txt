@@ -21,7 +21,7 @@ calamares_add_plugin( localeq
         ${_locale}/SetTimezoneJob.cpp
         ${_locale}/timezonewidget/localeglobal.cpp
     RESOURCES
-        ${_locale}/locale.qrc
+        localeq.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
         Qt5::Network
