@@ -405,6 +405,79 @@ getString( const YAML::Node& doc, const char* key )
     return QString();
 }
 
+static inline void
+flavorAndSide( const YAML::Node& doc, const char* key, Branding::PanelFlavor& flavor, Branding::PanelSide& side )
+{
+    using PanelFlavor = Branding::PanelFlavor;
+    using PanelSide = Branding::PanelSide;
+
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< PanelFlavor > sidebarFlavorNames {
+        { QStringLiteral( "widget" ), PanelFlavor::Widget },
+        { QStringLiteral( "none" ), PanelFlavor::None },
+        { QStringLiteral( "hidden" ), PanelFlavor::None },
+        { QStringLiteral( "qml" ), PanelFlavor::Qml }
+    };
+    static const NamedEnumTable< PanelSide > panelSideNames {
+        { QStringLiteral( "left" ), PanelSide::Left },
+        { QStringLiteral( "right" ), PanelSide::Right },
+        { QStringLiteral( "top" ), PanelSide::Top },
+        { QStringLiteral( "bottom" ), PanelSide::Bottom }
+    };
+    // clang-format on
+    // *INDENT-ON*
+
+    bool ok = false;
+    QString configValue = getString( doc, key );
+    if ( configValue.isEmpty() )
+    {
+        // Complain with the original values
+        cWarning() << "Branding setting for" << key << "is missing, using" << sidebarFlavorNames.find( flavor, ok )
+                   << panelSideNames.find( side, ok );
+        return;
+    }
+
+    QStringList parts = configValue.split( ',' );
+    if ( parts.length() == 1 )
+    {
+        PanelFlavor f = sidebarFlavorNames.find( configValue, ok );
+        if ( ok )
+        {
+            flavor = f;
+        }
+        else
+        {
+            // Complain with the original value
+            cWarning() << "Branding setting for" << key << "interpreted as" << sidebarFlavorNames.find( flavor, ok )
+                       << panelSideNames.find( side, ok );
+        }
+        return;
+    }
+
+    for ( const QString& spart : parts )
+    {
+        bool isFlavor = false;
+        bool isSide = false;
+        PanelFlavor f = sidebarFlavorNames.find( spart, isFlavor );
+        PanelSide s = panelSideNames.find( spart, isSide );
+        if ( isFlavor )
+        {
+            flavor = f;
+        }
+        else if ( isSide )
+        {
+            side = s;
+        }
+        else
+        {
+            cWarning() << "Branding setting for" << key << "contains unknown" << spart << "interpreted as"
+                       << sidebarFlavorNames.find( flavor, ok ) << panelSideNames.find( side, ok );
+            return;
+        }
+    }
+}
+
 void
 Branding::initSimpleSettings( const YAML::Node& doc )
 {
@@ -418,12 +491,6 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     static const NamedEnumTable< WindowPlacement > placementNames {
         { QStringLiteral( "free" ), WindowPlacement::Free },
         { QStringLiteral( "center" ), WindowPlacement::Center }
-    };
-    static const NamedEnumTable< PanelFlavor > sidebarFlavorNames {
-        { QStringLiteral( "widget" ), PanelFlavor::Widget },
-        { QStringLiteral( "none" ), PanelFlavor::None },
-        { QStringLiteral( "hidden" ), PanelFlavor::None },
-        { QStringLiteral( "qml" ), PanelFlavor::Qml }
     };
     // clang-format on
     // *INDENT-ON*
@@ -443,18 +510,8 @@ Branding::initSimpleSettings( const YAML::Node& doc )
         cWarning() << "Branding module-setting *windowPlacement* interpreted as"
                    << placementNames.find( m_windowPlacement, ok );
     }
-    m_sidebarFlavor = sidebarFlavorNames.find( getString( doc, "sidebar" ), ok );
-    if ( !ok )
-    {
-        cWarning() << "Branding module-setting *sidebar* interpreted as"
-                   << sidebarFlavorNames.find( m_sidebarFlavor, ok );
-    }
-    m_navigationFlavor = sidebarFlavorNames.find( getString( doc, "navigation" ), ok);
-    if ( !ok )
-    {
-        cWarning() << "Branding module-setting *navigation* interpreted as"
-                   << sidebarFlavorNames.find( m_navigationFlavor, ok );
-    }
+    flavorAndSide( doc, "sidebar", m_sidebarFlavor, m_sidebarSide );
+    flavorAndSide( doc, "navigation", m_navigationFlavor, m_navigationSide );
 
     QString windowSize = getString( doc, "windowSize" );
     if ( !windowSize.isEmpty() )

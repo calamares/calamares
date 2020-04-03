@@ -45,12 +45,25 @@ windowPlacement: center
 #  - "widget" or unset, use traditional sidebar (logo, items)
 #  - "none", hide it entirely
 #  - "qml", use calamares-sidebar.qml from branding folder
+# In addition, you **may** specify a side, separated by a comma,
+# from the kind. Valid sides are:
+#  - "left" (if not specified, uses this)
+#  - "right"
+#  - "top"
+#  - "bottom"
+# For instance, "widget,right" is valid; so is "qml", which defaults
+# to putting the sidebar on the left. Also valid is "qml,top".
+# While "widget,top" is valid, the widgets code is **not** flexible
+# and results will be terrible.
 sidebar: widget
 
 # Kind of navigation (button panel on the bottom).
 #  - "widget" or unset, use traditional navigation
 #  - "none", hide it entirely
 #  - "qml", use calamares-navigation.qml from branding folder
+# In addition, you **may** specify a side, separated by a comma,
+# from the kind. The same sides are valid as for *sidebar*,
+# except the default is *bottom*.
 navigation: widget
 
 # These are strings shown to the user in the user interface.
