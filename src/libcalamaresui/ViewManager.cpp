@@ -119,18 +119,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     emit beginInsertRows( QModelIndex(), before, before );
     m_steps.insert( before, step );
     connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
-    // TODO: this can be a regular slot
-    connect( step, &ViewStep::nextStatusChanged, this, [this]( bool status ) {
-        ViewStep* vs = qobject_cast< ViewStep* >( sender() );
-        if ( vs && currentStepValid() )
-        {
-            if ( vs == m_steps.at( m_currentStep ) )
-            {
-                m_nextEnabled = status;
-                emit nextEnabledChanged( m_nextEnabled );
-            }
-        }
-    } );
+    connect( step, &ViewStep::nextStatusChanged, this, &ViewManager::updateNextStatus );
 
     if ( !step->widget() )
     {
@@ -249,6 +238,21 @@ ViewManager::onInitComplete()
         m_steps.first()->onActivate();
     }
 }
+
+void
+ViewManager::updateNextStatus( bool status )
+{
+    ViewStep* vs = qobject_cast< ViewStep* >( sender() );
+    if ( vs && currentStepValid() )
+    {
+        if ( vs == m_steps.at( m_currentStep ) )
+        {
+            m_nextEnabled = status;
+            emit nextEnabledChanged( m_nextEnabled );
+        }
+    }
+}
+
 
 ViewStepList
 ViewManager::viewSteps() const

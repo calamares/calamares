@@ -190,6 +190,9 @@ public Q_SLOTS:
      */
     void onInitComplete();
 
+    /// @brief Connected to ViewStep::nextStatusChanged for all steps
+    void updateNextStatus( bool enabled );
+
 signals:
     void currentStepChanged();
     void enlarge( QSize enlarge ) const;  // See ViewStep::enlarge()
