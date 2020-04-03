@@ -123,7 +123,7 @@ public:
         Free
     };
     Q_ENUM( WindowPlacement )
-    ///@brief What kind of sidebar to use in the main window
+    ///@brief What kind of panel (sidebar, navigation) to use in the main window
     enum class PanelFlavor
     {
         None,
@@ -131,6 +131,16 @@ public:
         Qml
     };
     Q_ENUM( PanelFlavor )
+    ///@brief Where to place a panel (sidebar, navigation)
+    enum class PanelSide
+    {
+        None,
+        Left,
+        Right,
+        Top,
+        Bottom
+    };
+    Q_ENUM( PanelSide )
 
     static Branding* instance();
 
@@ -201,6 +211,9 @@ public slots:
     QString styleString( StyleEntry styleEntry ) const;
     QString imagePath( ImageEntry imageEntry ) const;
 
+    PanelSide sidebarSide() const { return m_sidebarSide; }
+    PanelSide navigationSide() const { return m_navigationSide; }
+
 private:
     static Branding* s_instance;
 
@@ -231,6 +244,8 @@ private:
 
     PanelFlavor m_sidebarFlavor = PanelFlavor::Widget;
     PanelFlavor m_navigationFlavor = PanelFlavor::Widget;
+    PanelSide m_sidebarSide = PanelSide::Left;
+    PanelSide m_navigationSide = PanelSide::Bottom;
 };
 
 template < typename U >
