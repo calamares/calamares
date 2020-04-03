@@ -132,11 +132,10 @@ CalamaresWindow::getWidgetSidebar( int desiredWidth )
 }
 
 QWidget*
-CalamaresWindow::getQmlSidebar( int desiredWidth )
+CalamaresWindow::getQmlSidebar( int )
 {
     CalamaresUtils::registerCalamaresModels();
     QQuickWidget* w = new QQuickWidget( this );
-    w->setFixedWidth( desiredWidth );
     w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
@@ -217,7 +216,6 @@ CalamaresWindow::getQmlNavigation()
 {
     CalamaresUtils::registerCalamaresModels();
     QQuickWidget* w = new QQuickWidget( this );
-    w->setFixedHeight( 64 );
     w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
@@ -251,6 +249,28 @@ flavoredWidget( Calamares::Branding::PanelFlavor flavor,
     NOTREACHED return nullptr;  // All enum values handled above
 }
 
+/** @brief Adds widgets to @p layout if they belong on this @p side
+ */
+static inline void
+insertIf( QBoxLayout* layout,
+          Calamares::Branding::PanelSide side,
+          QWidget* first,
+          Calamares::Branding::PanelSide firstSide )
+{
+    if ( first && side == firstSide )
+    {
+        if ( ( side == Calamares::Branding::PanelSide::Left ) || ( side == Calamares::Branding::PanelSide::Right ) )
+        {
+            first->setMinimumWidth( qMax( first->minimumWidth(), 64 ) );
+        }
+        else
+        {
+            first->setMinimumHeight( qMax( first->minimumHeight(), 64 ) );
+        }
+        layout->addWidget( first );
+    }
+}
+
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
     , m_debugWindow( nullptr )
@@ -273,6 +293,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     using CalamaresUtils::windowPreferredHeight;
     using CalamaresUtils::windowPreferredWidth;
 
+    using PanelSide = Calamares::Branding::PanelSide;
+
     // Needs to match what's checked in DebugWindow
     this->setObjectName( "mainApp" );
 
@@ -292,21 +314,6 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     resize( w, h );
 
     m_viewManager = Calamares::ViewManager::instance( this );
-
-    QBoxLayout* mainLayout = new QHBoxLayout;
-    setLayout( mainLayout );
-
-    QWidget* sideBox = flavoredWidget(
-        branding->sidebarFlavor(),
-        this,
-        &CalamaresWindow::getWidgetSidebar,
-        &CalamaresWindow::getQmlSidebar,
-        qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
-    if ( sideBox )
-    {
-        mainLayout->addWidget( sideBox );
-    }
-
     if ( branding->windowExpands() )
     {
         connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
@@ -319,16 +326,35 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     //       and requires an extra show() (at least with KWin/X11) which
     //       is too annoying. Instead, leave it up to ignoring-the-quit-
     //       event, which is also the ViewManager's responsibility.
+
+    QBoxLayout* mainLayout = new QHBoxLayout;
     QBoxLayout* contentsLayout = new QVBoxLayout;
-    contentsLayout->addWidget( m_viewManager->centralWidget() );
+
+    setLayout( mainLayout );
+
+    QWidget* sideBox = flavoredWidget(
+        branding->sidebarFlavor(),
+        this,
+        &CalamaresWindow::getWidgetSidebar,
+        &CalamaresWindow::getQmlSidebar,
+        qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
     QWidget* navigation = flavoredWidget(
         branding->navigationFlavor(), this, &CalamaresWindow::getWidgetNavigation, &CalamaresWindow::getQmlNavigation );
-    if ( navigation )
-    {
-        contentsLayout->addWidget( navigation );
-    }
 
+    // Build up the contentsLayout (a VBox) top-to-bottom
+    // .. note that the bottom is mirrored wrt. the top
+    insertIf( contentsLayout, PanelSide::Top, sideBox, branding->sidebarSide() );
+    insertIf( contentsLayout, PanelSide::Top, navigation, branding->navigationSide() );
+    contentsLayout->addWidget( m_viewManager->centralWidget() );
+    insertIf( contentsLayout, PanelSide::Bottom, navigation, branding->navigationSide() );
+    insertIf( contentsLayout, PanelSide::Bottom, sideBox, branding->sidebarSide() );
+
+    // .. and then the mainLayout left-to-right
+    insertIf( mainLayout, PanelSide::Left, sideBox, branding->sidebarSide() );
+    insertIf( mainLayout, PanelSide::Left, navigation, branding->navigationSide() );
     mainLayout->addLayout( contentsLayout );
+    insertIf( mainLayout, PanelSide::Right, navigation, branding->navigationSide() );
+    insertIf( mainLayout, PanelSide::Right, sideBox, branding->sidebarSide() );
 
     CalamaresUtils::unmarginLayout( mainLayout );
     CalamaresUtils::unmarginLayout( contentsLayout );
