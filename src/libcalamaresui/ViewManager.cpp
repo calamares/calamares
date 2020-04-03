@@ -65,7 +65,7 @@ ViewManager::instance( QObject* parent )
 
 ViewManager::ViewManager( QObject* parent )
     : QAbstractListModel( parent )
-    , m_currentStep( 0 )
+    , m_currentStep( -1 )
     , m_widget( new QWidget() )
 {
     Q_ASSERT( !s_instance );
@@ -122,7 +122,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     // TODO: this can be a regular slot
     connect( step, &ViewStep::nextStatusChanged, this, [this]( bool status ) {
         ViewStep* vs = qobject_cast< ViewStep* >( sender() );
-        if ( vs )
+        if ( vs && currentStepValid() )
         {
             if ( vs == m_steps.at( m_currentStep ) )
             {
@@ -238,6 +238,18 @@ ViewManager::onInitFailed( const QStringList& modules )
     insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ProductName ), detailString ) );
 }
 
+void
+ViewManager::onInitComplete()
+{
+    m_currentStep = 0;
+
+    // Tell the first view that it's been shown.
+    if ( m_steps.count() > 0 )
+    {
+        m_steps.first()->onActivate();
+    }
+}
+
 ViewStepList
 ViewManager::viewSteps() const
 {
@@ -248,7 +260,7 @@ ViewManager::viewSteps() const
 ViewStep*
 ViewManager::currentStep() const
 {
-    return m_steps.value( m_currentStep );
+    return currentStepValid() ? m_steps.value( m_currentStep ) : nullptr;
 }
 
 
@@ -279,12 +291,22 @@ isAtVeryEnd( const ViewStepList& steps, int index )
     {
         return false;
     }
+    // .. and if the index is invalid, ignore it too
+    if ( !( ( 0 <= index ) && ( index < steps.count() ) ) )
+    {
+        return false;
+    }
     return ( index >= steps.count() ) || ( index == steps.count() - 1 && steps.last()->isAtEnd() );
 }
 
 void
 ViewManager::next()
 {
+    if ( !currentStepValid() )
+    {
+        return;
+    }
+
     ViewStep* step = m_steps.at( m_currentStep );
     bool executing = false;
     if ( step->isAtEnd() )
@@ -416,6 +438,11 @@ ViewManager::updateButtonLabels()
 void
 ViewManager::back()
 {
+    if ( !currentStepValid() )
+    {
+        return;
+    }
+
     ViewStep* step = m_steps.at( m_currentStep );
     if ( step->isAtBeginning() && m_currentStep > 0 )
     {

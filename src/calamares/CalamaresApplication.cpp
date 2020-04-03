@@ -339,14 +339,8 @@ CalamaresApplication::initViewSteps()
     }
 
     cDebug() << "STARTUP: Window now visible and ProgressTreeView populated";
-
-    const auto& steps = Calamares::ViewManager::instance()->viewSteps();
-    cDebug() << Logger::SubEntry << steps.count() << "view steps loaded.";
-    // Tell the first view that it's been shown.
-    if ( steps.count() > 0 )
-    {
-        steps.first()->onActivate();
-    }
+    cDebug() << Logger::SubEntry << Calamares::ViewManager::instance()->viewSteps().count() << "view steps loaded.";
+    Calamares::ViewManager::instance()->onInitComplete();
 }
 
 void
