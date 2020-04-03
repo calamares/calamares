@@ -1,0 +1,7 @@
+<RCC>
+    <qresource>
+        <file alias="kbd-model-map">../keyboard/kbd-model-map</file>
+        <file alias="images/restore.png">../keyboard/images/restore.png</file>
+        <file>keyboardq.qml</file>
+    </qresource>
+</RCC>

@@ -40,8 +40,7 @@ public:
 private:
     QString findConvertedKeymap( const QString& convertedKeymapPath ) const;
     QString findLegacyKeymap() const;
-    bool writeVConsoleData( const QString& vconsoleConfPath,
-                            const QString& convertedKeymapPath ) const;
+    bool writeVConsoleData( const QString& vconsoleConfPath, const QString& convertedKeymapPath ) const;
     bool writeX11Data( const QString& keyboardConfPath ) const;
     bool writeDefaultKeyboardData( const QString& defaultKeyboardPath ) const;
 
