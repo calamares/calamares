@@ -269,19 +269,27 @@ class UnpackOperation:
         """
         progress = float(0)
 
-        done = 0
+        done = 0  # Done and total apply to the entry now-unpacking
         total = 0
-        complete = 0
+        complete = 0  # This many are already finished
         for entry in self.entries:
             if entry.total == 0:
+                # Total 0 hasn't counted yet
                 continue
-            total += entry.total
-            done += entry.copied
             if entry.total == entry.copied:
                 complete += 1
+            else:
+                # There is at most *one* entry in-progress
+                total = entry.total
+                done = entry.copied
+                break
 
         if done > 0 and total > 0:
-            progress = 0.05 + (0.90 * done / total) + (0.05 * complete / len(self.entries))
+            # Pretend that each entry represents an equal amount of work;
+            # the complete ones count as 100% of their own fraction
+            # (and have *not* been counted in total or done), while
+            # total/done represents the fraction of the current fraction.
+            progress = ( 1.0 * complete / len(self.entries) ) + ( ( 1.0 / len(self.entries) ) * done / total )
 
         job.setprogress(progress)
 
