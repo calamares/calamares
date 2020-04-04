@@ -77,6 +77,33 @@ class UnpackEntry:
     def is_file(self):
         return self.sourcefs == "file"
 
+    def do_count(self, imgmountdir):
+        fslist = ""
+
+        if self.sourcefs == "squashfs":
+            if shutil.which("unsquashfs") is None:
+                utils.warning("Failed to find unsquashfs")
+
+                return (_("Failed to unpack image \"{}\"").format(self.source),
+                        _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed"))
+
+            fslist = subprocess.check_output(
+                ["unsquashfs", "-l", self.source]
+                )
+
+        elif self.sourcefs == "ext4":
+            fslist = subprocess.check_output(
+                ["find", imgmountdir, "-type", "f"]
+                )
+
+        elif self.is_file():
+            # Hasn't been mounted, copy directly; find handles both
+            # files and directories.
+            fslist = subprocess.check_output(["find", self.source, "-type", "f"])
+
+        self.total = len(fslist.splitlines())
+        return self.total
+
 
 ON_POSIX = 'posix' in sys.builtin_module_names
 
@@ -240,30 +267,7 @@ class UnpackOperation:
 
                 self.mount_image(entry, imgmountdir)
 
-                fslist = ""
-
-                if entry.sourcefs == "squashfs":
-                    if shutil.which("unsquashfs") is None:
-                        utils.warning("Failed to find unsquashfs")
-
-                        return (_("Failed to unpack image \"{}\"").format(entry.source),
-                                _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed"))
-
-                    fslist = subprocess.check_output(
-                        ["unsquashfs", "-l", entry.source]
-                        )
-
-                elif entry.sourcefs == "ext4":
-                    fslist = subprocess.check_output(
-                        ["find", imgmountdir, "-type", "f"]
-                        )
-
-                elif entry.is_file():
-                    # Hasn't been mounted, copy directly; find handles both
-                    # files and directories.
-                    fslist = subprocess.check_output(["find", entry.source, "-type", "f"])
-
-                entry.total = len(fslist.splitlines())
+                entry.do_count(imgmountdir)  # Fill in the entry.total
 
                 self.report_progress()
                 error_msg = self.unpack_image(entry, imgmountdir)
