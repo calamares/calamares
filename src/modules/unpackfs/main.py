@@ -52,7 +52,8 @@ class UnpackEntry:
     :param sourcefs:
     :param destination:
     """
-    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile']
+    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile',
+                 'mountPoint']
 
     def __init__(self, source, sourcefs, destination):
         """
@@ -73,6 +74,7 @@ class UnpackEntry:
         self.excludeFile = None
         self.copied = 0
         self.total = 0
+        self.mountPoint = None
 
     def is_file(self):
         return self.sourcefs == "file"
@@ -103,6 +105,39 @@ class UnpackEntry:
 
         self.total = len(fslist.splitlines())
         return self.total
+
+    def do_mount(self, base):
+        """
+        Mount given @p entry as loop device underneath @p base
+
+        A *file* entry (e.g. one with *sourcefs* set to *file*)
+        is not mounted and just ignored.
+
+        :param entry: the entry to mount (source is the important property)
+        :param imgmountdir: where to mount it
+
+        :returns: None, but throws if the mount failed
+        """
+        imgbasename = os.path.splitext(
+            os.path.basename(self.source))[0]
+        imgmountdir = os.path.join(base, imgbasename)
+        os.makedirs(imgmountdir, exist_ok=True)
+
+        # This is where it *would* go (files bail out before actually mounting)
+        self.mountPoint = imgmountdir
+
+        if self.is_file():
+            return
+
+        if os.path.isdir(self.source):
+            r = mount(self.source, imgmountdir, "", "--bind")
+        elif os.path.isfile(self.source):
+            r = mount(self.source, imgmountdir, self.sourcefs, "loop")
+        else: # self.source is a device
+            r = mount(self.source, imgmountdir, self.sourcefs, "")
+
+        if r != 0:
+            raise subprocess.CalledProcessError(r, "mount")
 
 
 ON_POSIX = 'posix' in sys.builtin_module_names
@@ -260,17 +295,11 @@ class UnpackOperation:
 
         try:
             for entry in self.entries:
-                imgbasename = os.path.splitext(
-                    os.path.basename(entry.source))[0]
-                imgmountdir = os.path.join(source_mount_path, imgbasename)
-                os.makedirs(imgmountdir, exist_ok=True)
-
-                self.mount_image(entry, imgmountdir)
-
+                entry.do_mount(source_mount_path)
                 entry.do_count(imgmountdir)  # Fill in the entry.total
 
                 self.report_progress()
-                error_msg = self.unpack_image(entry, imgmountdir)
+                error_msg = self.unpack_image(entry, entry.mountPoint)
 
                 if error_msg:
                     return (_("Failed to unpack image \"{}\"").format(entry.source),
@@ -279,31 +308,6 @@ class UnpackOperation:
             return None
         finally:
             shutil.rmtree(source_mount_path, ignore_errors=True, onerror=None)
-
-    def mount_image(self, entry, imgmountdir):
-        """
-        Mount given @p entry as loop device on @p imgmountdir.
-
-        A *file* entry (e.g. one with *sourcefs* set to *file*)
-        is not mounted and just ignored.
-
-        :param entry: the entry to mount (source is the important property)
-        :param imgmountdir: where to mount it
-
-        :returns: None, but throws if the mount failed
-        """
-        if entry.is_file():
-            return
-
-        if os.path.isdir(entry.source):
-            r = mount(entry.source, imgmountdir, "", "--bind")
-        elif os.path.isfile(entry.source):
-            r = mount(entry.source, imgmountdir, entry.sourcefs, "loop")
-        else: # entry.source is a device
-            r = mount(entry.source, imgmountdir, entry.sourcefs, "")
-
-        if r != 0:
-            raise subprocess.CalledProcessError(r, "mount")
 
 
     def unpack_image(self, entry, imgmountdir):
