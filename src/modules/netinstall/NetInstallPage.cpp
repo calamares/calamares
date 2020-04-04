@@ -88,6 +88,8 @@ NetInstallPage::expandGroups()
             ui->groupswidget->setExpanded( index, true );
         }
     }
+    // Make sure all the group names are visible
+    ui->groupswidget->resizeColumnToContents(0);
 }
 
 void
