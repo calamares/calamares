@@ -27,9 +27,9 @@ RowLayout
         Layout.fillWidth: true
         ColumnLayout {
             id: zones
-            Repeater {
+            ListView {
                 model: config.zonesModel
-                Text {
+                delegate: Text { 
                     text: label
                 }
             }
