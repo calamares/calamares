@@ -181,7 +181,7 @@ System::runCommand( System::RunLocation location,
     process.start();
     if ( !process.waitForStarted() )
     {
-        cWarning() << "Process failed to start" << process.error();
+        cWarning() << "Process" << args.first() << "failed to start" << process.error();
         return ProcessResult::Code::FailedToStart;
     }
 
@@ -195,7 +195,7 @@ System::runCommand( System::RunLocation location,
                                        ? ( static_cast< int >( std::chrono::milliseconds( timeoutSec ).count() ) )
                                        : -1 ) )
     {
-        cWarning().noquote().nospace() << "Timed out. Output so far:\n" << process.readAllStandardOutput();
+        cWarning().noquote().nospace() << "Process" << args.first() << "timed out. Output so far:\n" << process.readAllStandardOutput();
         return ProcessResult::Code::TimedOut;
     }
 
@@ -203,7 +203,7 @@ System::runCommand( System::RunLocation location,
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cWarning().noquote().nospace() << "Process crashed. Output so far:\n" << output;
+        cWarning().noquote().nospace() << "Process" << args.first() << "crashed. Output so far:\n" << output;
         return ProcessResult::Code::Crashed;
     }
 
