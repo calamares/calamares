@@ -137,7 +137,7 @@ System::runCommand( System::RunLocation location,
 
     QProcess process;
     QString program;
-    QStringList arguments;
+    QStringList arguments( args );
 
     if ( location == System::RunLocation::RunInTarget )
     {
@@ -149,13 +149,11 @@ System::runCommand( System::RunLocation location,
         }
 
         program = "chroot";
-        arguments = QStringList( { destDir } );
-        arguments << args;
+        arguments.prepend( destDir );
     }
     else
     {
         program = "env";
-        arguments << args;
     }
 
     process.setProgram( program );
