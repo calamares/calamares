@@ -43,6 +43,11 @@ _ = gettext.translation("calamares-python",
 def pretty_name():
     return _("Filling up filesystems.")
 
+# This is going to be changed from various methods
+status = pretty_name()
+
+def pretty_status_message():
+    return status
 
 class UnpackEntry:
     """
@@ -229,6 +234,9 @@ def file_copy(source, entry, progress_cb):
     process.wait()
     progress_cb(num_files_copied, num_files_total_local)  # Push towards 100%
 
+    # Mark this entry as really done
+    entry.copied = entry.total
+
     # 23 is the return code rsync returns if it cannot write extended
     # attributes (with -X) because the target file system does not support it,
     # e.g., the FAT EFI system partition. We need -X because distributions
@@ -280,13 +288,15 @@ class UnpackOperation:
                 done = entry.copied
                 break
 
-        if done > 0 and total > 0:
+        if total > 0:
             # Pretend that each entry represents an equal amount of work;
             # the complete ones count as 100% of their own fraction
             # (and have *not* been counted in total or done), while
             # total/done represents the fraction of the current fraction.
-            progress = ( 1.0 * complete / len(self.entries) ) + ( ( 1.0 / len(self.entries) ) * done / total )
+            progress = ( ( 1.0 * complete ) / len(self.entries) ) + ( ( 1.0 / len(self.entries) ) * ( 1.0 * done / total ) )
 
+        global status
+        status = _("Unpacking image {}/{}, file {}/{}").format((complete+1),len(self.entries),done, total)
         job.setprogress(progress)
 
     def run(self):
@@ -295,10 +305,14 @@ class UnpackOperation:
 
         :return:
         """
+        global status
         source_mount_path = tempfile.mkdtemp()
 
         try:
+            job.setprogress(0.0)
             for entry in self.entries:
+                status = _("Starting to unpack {}").format(entry.source)
+                job.setprogress(0.0)
                 entry.do_mount(source_mount_path)
                 entry.do_count()  # Fill in the entry.total
 
