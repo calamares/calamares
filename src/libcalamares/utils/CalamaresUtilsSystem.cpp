@@ -195,7 +195,7 @@ System::runCommand( System::RunLocation location,
                                        ? ( static_cast< int >( std::chrono::milliseconds( timeoutSec ).count() ) )
                                        : -1 ) )
     {
-        cWarning().noquote().nospace() << "Process" << args.first() << "timed out. Output so far:\n" << process.readAllStandardOutput();
+        ( cWarning() << "Process" << args.first() << "timed out after" << timeoutSec.count() << "s. Output so far:\n" ).noquote().nospace() << process.readAllStandardOutput();
         return ProcessResult::Code::TimedOut;
     }
 
@@ -203,7 +203,7 @@ System::runCommand( System::RunLocation location,
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cWarning().noquote().nospace() << "Process" << args.first() << "crashed. Output so far:\n" << output;
+        ( cWarning() << "Process" << args.first() << "crashed. Output so far:\n" ).noquote().nospace() << output;
         return ProcessResult::Code::Crashed;
     }
 
@@ -212,8 +212,7 @@ System::runCommand( System::RunLocation location,
     bool showDebug = ( !Calamares::Settings::instance() ) || ( Calamares::Settings::instance()->debugMode() );
     if ( ( r != 0 ) || showDebug )
     {
-        cDebug() << "Target cmd:" << RedactedList( args );
-        cDebug().noquote().nospace() << "Target output:\n" << output;
+        ( cDebug() << "Target cmd:" << RedactedList( args ) << "output:\n" ).noquote().nospace() << output;
     }
     return ProcessResult( r, output );
 }
