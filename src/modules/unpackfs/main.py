@@ -202,6 +202,9 @@ def file_copy(source, entry, progress_cb):
     # last_num_files_copied trails num_files_copied, and whenever at least 100 more
     # files have been copied, progress is reported and last_num_files_copied is updated.
     last_num_files_copied = 0
+    file_count_chunk = entry.total / 100
+    if file_count_chunk < 100:
+        file_count_chunk = 100
 
     for line in iter(process.stdout.readline, b''):
         # rsync outputs progress in parentheses. Each line will have an
@@ -226,8 +229,8 @@ def file_copy(source, entry, progress_cb):
             # adjusting the offset so that progressbar can be continuesly drawn
             num_files_copied = num_files_total_local - num_files_remaining
 
-            # I guess we're updating every 100 files...
-            if num_files_copied - last_num_files_copied >= 100:
+            # Update about once every 1% of this entry
+            if num_files_copied - last_num_files_copied >= file_count_chunk:
                 last_num_files_copied = num_files_copied
                 progress_cb(num_files_copied, num_files_total_local)
 
