@@ -43,6 +43,11 @@ _ = gettext.translation("calamares-python",
 def pretty_name():
     return _("Filling up filesystems.")
 
+# This is going to be changed from various methods
+status = pretty_name()
+
+def pretty_status_message():
+    return status
 
 class UnpackEntry:
     """
@@ -52,7 +57,8 @@ class UnpackEntry:
     :param sourcefs:
     :param destination:
     """
-    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile']
+    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile',
+                 'mountPoint']
 
     def __init__(self, source, sourcefs, destination):
         """
@@ -73,9 +79,66 @@ class UnpackEntry:
         self.excludeFile = None
         self.copied = 0
         self.total = 0
+        self.mountPoint = None
 
     def is_file(self):
         return self.sourcefs == "file"
+
+    def do_count(self):
+        """
+        Counts the number of files this entry has.
+        """
+        fslist = ""
+
+        if self.sourcefs == "squashfs":
+            fslist = subprocess.check_output(
+                ["unsquashfs", "-l", self.source]
+                )
+
+        elif self.sourcefs == "ext4":
+            fslist = subprocess.check_output(
+                ["find", self.mountPoint, "-type", "f"]
+                )
+
+        elif self.is_file():
+            # Hasn't been mounted, copy directly; find handles both
+            # files and directories.
+            fslist = subprocess.check_output(["find", self.source, "-type", "f"])
+
+        self.total = len(fslist.splitlines())
+        return self.total
+
+    def do_mount(self, base):
+        """
+        Mount given @p entry as loop device underneath @p base
+
+        A *file* entry (e.g. one with *sourcefs* set to *file*)
+        is not mounted and just ignored.
+
+        :param base: directory to place all the mounts in.
+
+        :returns: None, but throws if the mount failed
+        """
+        imgbasename = os.path.splitext(
+            os.path.basename(self.source))[0]
+        imgmountdir = os.path.join(base, imgbasename)
+        os.makedirs(imgmountdir, exist_ok=True)
+
+        # This is where it *would* go (files bail out before actually mounting)
+        self.mountPoint = imgmountdir
+
+        if self.is_file():
+            return
+
+        if os.path.isdir(self.source):
+            r = mount(self.source, imgmountdir, "", "--bind")
+        elif os.path.isfile(self.source):
+            r = mount(self.source, imgmountdir, self.sourcefs, "loop")
+        else: # self.source is a device
+            r = mount(self.source, imgmountdir, self.sourcefs, "")
+
+        if r != 0:
+            raise subprocess.CalledProcessError(r, "mount")
 
 
 ON_POSIX = 'posix' in sys.builtin_module_names
@@ -139,6 +202,9 @@ def file_copy(source, entry, progress_cb):
     # last_num_files_copied trails num_files_copied, and whenever at least 100 more
     # files have been copied, progress is reported and last_num_files_copied is updated.
     last_num_files_copied = 0
+    file_count_chunk = entry.total / 100
+    if file_count_chunk < 100:
+        file_count_chunk = 100
 
     for line in iter(process.stdout.readline, b''):
         # rsync outputs progress in parentheses. Each line will have an
@@ -163,13 +229,16 @@ def file_copy(source, entry, progress_cb):
             # adjusting the offset so that progressbar can be continuesly drawn
             num_files_copied = num_files_total_local - num_files_remaining
 
-            # I guess we're updating every 100 files...
-            if num_files_copied - last_num_files_copied >= 100:
+            # Update about once every 1% of this entry
+            if num_files_copied - last_num_files_copied >= file_count_chunk:
                 last_num_files_copied = num_files_copied
                 progress_cb(num_files_copied, num_files_total_local)
 
     process.wait()
     progress_cb(num_files_copied, num_files_total_local)  # Push towards 100%
+
+    # Mark this entry as really done
+    entry.copied = entry.total
 
     # 23 is the return code rsync returns if it cannot write extended
     # attributes (with -X) because the target file system does not support it,
@@ -207,20 +276,30 @@ class UnpackOperation:
         """
         progress = float(0)
 
-        done = 0
+        done = 0  # Done and total apply to the entry now-unpacking
         total = 0
-        complete = 0
+        complete = 0  # This many are already finished
         for entry in self.entries:
             if entry.total == 0:
+                # Total 0 hasn't counted yet
                 continue
-            total += entry.total
-            done += entry.copied
             if entry.total == entry.copied:
                 complete += 1
+            else:
+                # There is at most *one* entry in-progress
+                total = entry.total
+                done = entry.copied
+                break
 
-        if done > 0 and total > 0:
-            progress = 0.05 + (0.90 * done / total) + (0.05 * complete / len(self.entries))
+        if total > 0:
+            # Pretend that each entry represents an equal amount of work;
+            # the complete ones count as 100% of their own fraction
+            # (and have *not* been counted in total or done), while
+            # total/done represents the fraction of the current fraction.
+            progress = ( ( 1.0 * complete ) / len(self.entries) ) + ( ( 1.0 / len(self.entries) ) * ( 1.0 * done / total ) )
 
+        global status
+        status = _("Unpacking image {}/{}, file {}/{}").format((complete+1),len(self.entries),done, total)
         job.setprogress(progress)
 
     def run(self):
@@ -229,77 +308,28 @@ class UnpackOperation:
 
         :return:
         """
+        global status
         source_mount_path = tempfile.mkdtemp()
 
         try:
+            complete = 0
             for entry in self.entries:
-                imgbasename = os.path.splitext(
-                    os.path.basename(entry.source))[0]
-                imgmountdir = os.path.join(source_mount_path, imgbasename)
-                os.makedirs(imgmountdir, exist_ok=True)
-
-                self.mount_image(entry, imgmountdir)
-
-                fslist = ""
-
-                if entry.sourcefs == "squashfs":
-                    if shutil.which("unsquashfs") is None:
-                        utils.warning("Failed to find unsquashfs")
-
-                        return (_("Failed to unpack image \"{}\"").format(entry.source),
-                                _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed"))
-
-                    fslist = subprocess.check_output(
-                        ["unsquashfs", "-l", entry.source]
-                        )
-
-                elif entry.sourcefs == "ext4":
-                    fslist = subprocess.check_output(
-                        ["find", imgmountdir, "-type", "f"]
-                        )
-
-                elif entry.is_file():
-                    # Hasn't been mounted, copy directly; find handles both
-                    # files and directories.
-                    fslist = subprocess.check_output(["find", entry.source, "-type", "f"])
-
-                entry.total = len(fslist.splitlines())
+                status = _("Starting to unpack {}").format(entry.source)
+                job.setprogress( ( 1.0 * complete ) / len(self.entries) )
+                entry.do_mount(source_mount_path)
+                entry.do_count()  # Fill in the entry.total
 
                 self.report_progress()
-                error_msg = self.unpack_image(entry, imgmountdir)
+                error_msg = self.unpack_image(entry, entry.mountPoint)
 
                 if error_msg:
                     return (_("Failed to unpack image \"{}\"").format(entry.source),
                             error_msg)
+                complete += 1
 
             return None
         finally:
             shutil.rmtree(source_mount_path, ignore_errors=True, onerror=None)
-
-    def mount_image(self, entry, imgmountdir):
-        """
-        Mount given @p entry as loop device on @p imgmountdir.
-
-        A *file* entry (e.g. one with *sourcefs* set to *file*)
-        is not mounted and just ignored.
-
-        :param entry: the entry to mount (source is the important property)
-        :param imgmountdir: where to mount it
-
-        :returns: None, but throws if the mount failed
-        """
-        if entry.is_file():
-            return
-
-        if os.path.isdir(entry.source):
-            r = mount(entry.source, imgmountdir, "", "--bind")
-        elif os.path.isfile(entry.source):
-            r = mount(entry.source, imgmountdir, entry.sourcefs, "loop")
-        else: # entry.source is a device
-            r = mount(entry.source, imgmountdir, entry.sourcefs, "")
-
-        if r != 0:
-            raise subprocess.CalledProcessError(r, "mount")
 
 
     def unpack_image(self, entry, imgmountdir):
@@ -379,6 +409,9 @@ def run():
     supported_filesystems = get_supported_filesystems()
 
     # Bail out before we start when there are obvious problems
+    #   - unsupported filesystems
+    #   - non-existent sources
+    #   - missing tools for specific FS
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
         sourcefs = entry["sourcefs"]
@@ -392,6 +425,12 @@ def run():
             utils.warning("The source filesystem \"{}\" does not exist".format(source))
             return (_("Bad unsquash configuration"),
                     _("The source filesystem \"{}\" does not exist").format(source))
+        if sourcefs == "squashfs":
+            if shutil.which("unsquashfs") is None:
+                utils.warning("Failed to find unsquashfs")
+
+                return (_("Failed to unpack image \"{}\"").format(self.source),
+                        _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed"))
 
     unpack = list()
 

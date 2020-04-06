@@ -124,7 +124,11 @@ System::runCommand( System::RunLocation location,
                     const QString& stdInput,
                     std::chrono::seconds timeoutSec )
 {
-    QString output;
+    if ( args.isEmpty() )
+    {
+        cWarning() << "Cannot run an empty program list";
+        return ProcessResult::Code::FailedToStart;
+    }
 
     Calamares::GlobalStorage* gs
         = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
@@ -135,9 +139,8 @@ System::runCommand( System::RunLocation location,
         return ProcessResult::Code::NoWorkingDirectory;
     }
 
-    QProcess process;
     QString program;
-    QStringList arguments;
+    QStringList arguments( args );
 
     if ( location == System::RunLocation::RunInTarget )
     {
@@ -149,15 +152,14 @@ System::runCommand( System::RunLocation location,
         }
 
         program = "chroot";
-        arguments = QStringList( { destDir } );
-        arguments << args;
+        arguments.prepend( destDir );
     }
     else
     {
         program = "env";
-        arguments << args;
     }
 
+    QProcess process;
     process.setProgram( program );
     process.setArguments( arguments );
     process.setProcessChannelMode( QProcess::MergedChannels );
@@ -179,7 +181,7 @@ System::runCommand( System::RunLocation location,
     process.start();
     if ( !process.waitForStarted() )
     {
-        cWarning() << "Process failed to start" << process.error();
+        cWarning() << "Process" << args.first() << "failed to start" << process.error();
         return ProcessResult::Code::FailedToStart;
     }
 
@@ -193,15 +195,15 @@ System::runCommand( System::RunLocation location,
                                        ? ( static_cast< int >( std::chrono::milliseconds( timeoutSec ).count() ) )
                                        : -1 ) )
     {
-        cWarning().noquote().nospace() << "Timed out. Output so far:\n" << process.readAllStandardOutput();
+        ( cWarning() << "Process" << args.first() << "timed out after" << timeoutSec.count() << "s. Output so far:\n" ).noquote().nospace() << process.readAllStandardOutput();
         return ProcessResult::Code::TimedOut;
     }
 
-    output.append( QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed() );
+    QString output = QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cWarning().noquote().nospace() << "Process crashed. Output so far:\n" << output;
+        ( cWarning() << "Process" << args.first() << "crashed. Output so far:\n" ).noquote().nospace() << output;
         return ProcessResult::Code::Crashed;
     }
 
@@ -210,8 +212,7 @@ System::runCommand( System::RunLocation location,
     bool showDebug = ( !Calamares::Settings::instance() ) || ( Calamares::Settings::instance()->debugMode() );
     if ( ( r != 0 ) || showDebug )
     {
-        cDebug() << "Target cmd:" << RedactedList( args );
-        cDebug().noquote().nospace() << "Target output:\n" << output;
+        ( cDebug() << "Target cmd:" << RedactedList( args ) << "output:\n" ).noquote().nospace() << output;
     }
     return ProcessResult( r, output );
 }
