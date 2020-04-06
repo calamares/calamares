@@ -86,12 +86,6 @@ class UnpackEntry:
         fslist = ""
 
         if self.sourcefs == "squashfs":
-            if shutil.which("unsquashfs") is None:
-                utils.warning("Failed to find unsquashfs")
-
-                return (_("Failed to unpack image \"{}\"").format(self.source),
-                        _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed"))
-
             fslist = subprocess.check_output(
                 ["unsquashfs", "-l", self.source]
                 )
@@ -397,6 +391,9 @@ def run():
     supported_filesystems = get_supported_filesystems()
 
     # Bail out before we start when there are obvious problems
+    #   - unsupported filesystems
+    #   - non-existent sources
+    #   - missing tools for specific FS
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
         sourcefs = entry["sourcefs"]
@@ -410,6 +407,12 @@ def run():
             utils.warning("The source filesystem \"{}\" does not exist".format(source))
             return (_("Bad unsquash configuration"),
                     _("The source filesystem \"{}\" does not exist").format(source))
+        if sourcefs == "squashfs":
+            if shutil.which("unsquashfs") is None:
+                utils.warning("Failed to find unsquashfs")
+
+                return (_("Failed to unpack image \"{}\"").format(self.source),
+                        _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed"))
 
     unpack = list()
 
