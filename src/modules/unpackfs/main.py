@@ -79,7 +79,10 @@ class UnpackEntry:
     def is_file(self):
         return self.sourcefs == "file"
 
-    def do_count(self, imgmountdir):
+    def do_count(self):
+        """
+        Counts the number of files this entry has.
+        """
         fslist = ""
 
         if self.sourcefs == "squashfs":
@@ -95,7 +98,7 @@ class UnpackEntry:
 
         elif self.sourcefs == "ext4":
             fslist = subprocess.check_output(
-                ["find", imgmountdir, "-type", "f"]
+                ["find", self.mountPoint, "-type", "f"]
                 )
 
         elif self.is_file():
@@ -113,8 +116,7 @@ class UnpackEntry:
         A *file* entry (e.g. one with *sourcefs* set to *file*)
         is not mounted and just ignored.
 
-        :param entry: the entry to mount (source is the important property)
-        :param imgmountdir: where to mount it
+        :param base: directory to place all the mounts in.
 
         :returns: None, but throws if the mount failed
         """
@@ -304,7 +306,7 @@ class UnpackOperation:
         try:
             for entry in self.entries:
                 entry.do_mount(source_mount_path)
-                entry.do_count(imgmountdir)  # Fill in the entry.total
+                entry.do_count()  # Fill in the entry.total
 
                 self.report_progress()
                 error_msg = self.unpack_image(entry, entry.mountPoint)
