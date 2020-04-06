@@ -325,6 +325,7 @@ class UnpackOperation:
                 if error_msg:
                     return (_("Failed to unpack image \"{}\"").format(entry.source),
                             error_msg)
+                complete += 1
 
             return None
         finally:
