@@ -309,10 +309,10 @@ class UnpackOperation:
         source_mount_path = tempfile.mkdtemp()
 
         try:
-            job.setprogress(0.0)
+            complete = 0
             for entry in self.entries:
                 status = _("Starting to unpack {}").format(entry.source)
-                job.setprogress(0.0)
+                job.setprogress( ( 1.0 * complete ) / len(self.entries) )
                 entry.do_mount(source_mount_path)
                 entry.do_count()  # Fill in the entry.total
 
