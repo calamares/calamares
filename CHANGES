@@ -7,6 +7,7 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
+ - Camilo Higuita
 
 ## Core ##
  - Both the sidebar (on the left) and the navigation buttons (along the
@@ -23,6 +24,11 @@ This release contains contributions from (alphabetically by first name):
 ## Modules ##
  - The *welcomeq* module has been improved with better layout and
    nicer buttons in the example QML form. (Thanks to Anke Boersma)
+ - The *keyboardq* and *localeq* modules now provide some QML for
+   configuring these parts, although they are still very primitive.
+ - *netinstall* has had some minor layout fixes.
+ - *unpackfs* has much more detailed progress reporting and no
+   longer jumps around strangely in overall progress.
 
 
 # 3.2.21 (2020-03-27) #
