@@ -71,6 +71,14 @@ NetInstallViewStep::prettyName() const
     tr( "Login" );
     tr( "Desktop" );
     tr( "Applications" );
+    tr( "Communication" );
+    tr( "Development" );
+    tr( "Office" );
+    tr( "Multimedia" );
+    tr( "Internet" );
+    tr( "Theming" );
+    tr( "Gaming" );
+    tr( "Utilities" );
 #endif
 }
 
