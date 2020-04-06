@@ -124,7 +124,11 @@ System::runCommand( System::RunLocation location,
                     const QString& stdInput,
                     std::chrono::seconds timeoutSec )
 {
-    QString output;
+    if ( args.isEmpty() )
+    {
+        cWarning() << "Cannot run an empty program list";
+        return ProcessResult::Code::FailedToStart;
+    }
 
     Calamares::GlobalStorage* gs
         = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
@@ -135,7 +139,6 @@ System::runCommand( System::RunLocation location,
         return ProcessResult::Code::NoWorkingDirectory;
     }
 
-    QProcess process;
     QString program;
     QStringList arguments( args );
 
@@ -156,6 +159,7 @@ System::runCommand( System::RunLocation location,
         program = "env";
     }
 
+    QProcess process;
     process.setProgram( program );
     process.setArguments( arguments );
     process.setProcessChannelMode( QProcess::MergedChannels );
@@ -195,7 +199,7 @@ System::runCommand( System::RunLocation location,
         return ProcessResult::Code::TimedOut;
     }
 
-    output.append( QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed() );
+    QString output = QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
