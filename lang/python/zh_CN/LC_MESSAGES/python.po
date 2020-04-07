@@ -7,15 +7,16 @@
 # Mingcong Bai <jeffbai@aosc.xyz>, 2017
 # plantman <weihanlin@live.com>, 2017
 # Feng Chao <chaofeng111@qq.com>, 2020
+# Bobby Rong <rjl931189261@126.com>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-19 00:13+0100\n"
+"POT-Creation-Date: 2020-04-07 22:12+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Feng Chao <chaofeng111@qq.com>, 2020\n"
+"Last-Translator: Bobby Rong <rjl931189261@126.com>, 2020\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/calamares/teams/20061/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,50 +98,58 @@ msgstr "卸载文件系统。"
 msgid "Filling up filesystems."
 msgstr "写入文件系统。"
 
-#: src/modules/unpackfs/main.py:188
+#: src/modules/unpackfs/main.py:257
 msgid "rsync failed with error code {}."
 msgstr "rsync 报错，错误码 {}."
 
-#: src/modules/unpackfs/main.py:249 src/modules/unpackfs/main.py:272
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
 msgid "Failed to unpack image \"{}\""
 msgstr "解压镜像失败 \"{}\""
 
-#: src/modules/unpackfs/main.py:250
+#: src/modules/unpackfs/main.py:399
+msgid "No mount point for root partition"
+msgstr "无 root 分区挂载点"
+
+#: src/modules/unpackfs/main.py:400
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage 未包含 \"rootMountPoint\"，跳过"
+
+#: src/modules/unpackfs/main.py:405
+msgid "Bad mount point for root partition"
+msgstr "错误的 root 分区挂载点"
+
+#: src/modules/unpackfs/main.py:406
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint 是 \"{}\"，不存在此位置，跳过"
+
+#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
+#: src/modules/unpackfs/main.py:446
+msgid "Bad unsquash configuration"
+msgstr "错误的 unsquash 配置"
+
+#: src/modules/unpackfs/main.py:423
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "你当前的内核不支持文件系统 \"{}\" ({})"
+
+#: src/modules/unpackfs/main.py:427
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "源文件系统 \"{}\" 不存在"
+
+#: src/modules/unpackfs/main.py:433
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr "未找到 unsquashfs，请确保安装了 squashfs-tools 软件包"
 
-#: src/modules/unpackfs/main.py:369
-msgid "No mount point for root partition"
-msgstr "无 root 分区挂载点"
-
-#: src/modules/unpackfs/main.py:370
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage 未包含 \"rootMountPoint\"，跳过"
-
-#: src/modules/unpackfs/main.py:375
-msgid "Bad mount point for root partition"
-msgstr "错误的 root 分区挂载点"
-
-#: src/modules/unpackfs/main.py:376
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint 是 \"{}\"，不存在此位置，跳过"
-
-#: src/modules/unpackfs/main.py:389 src/modules/unpackfs/main.py:393
-#: src/modules/unpackfs/main.py:407
-msgid "Bad unsquash configuration"
-msgstr "错误的 unsquash 配置"
-
-#: src/modules/unpackfs/main.py:390
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:394
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "源文件系统 \"{}\" 不存在"
-
-#: src/modules/unpackfs/main.py:408
+#: src/modules/unpackfs/main.py:447
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "目标系统中的 \"{}\" 不是一个目录"
 

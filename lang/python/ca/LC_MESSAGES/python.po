@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-19 00:13+0100\n"
+"POT-Creation-Date: 2020-04-07 22:12+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/calamares/teams/20061/ca/)\n"
@@ -97,15 +97,52 @@ msgstr "Desmunta els sistemes de fitxers."
 msgid "Filling up filesystems."
 msgstr "S'omplen els sistemes de fitxers."
 
-#: src/modules/unpackfs/main.py:188
+#: src/modules/unpackfs/main.py:257
 msgid "rsync failed with error code {}."
 msgstr "Ha fallat rsync amb el codi d'error {}."
 
-#: src/modules/unpackfs/main.py:249 src/modules/unpackfs/main.py:272
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Es desempaqueta la imatge {}/{}, fitxer {}/{}"
+
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "Es comença a desempaquetar {}"
+
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
 msgid "Failed to unpack image \"{}\""
 msgstr "Ha fallat desempaquetar la imatge \"{}\"."
 
-#: src/modules/unpackfs/main.py:250
+#: src/modules/unpackfs/main.py:399
+msgid "No mount point for root partition"
+msgstr "No hi ha punt de muntatge per a la partició d'arrel."
+
+#: src/modules/unpackfs/main.py:400
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage no conté cap clau de \"rootMountPoint\". No es fa res."
+
+#: src/modules/unpackfs/main.py:405
+msgid "Bad mount point for root partition"
+msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
+
+#: src/modules/unpackfs/main.py:406
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
+
+#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
+#: src/modules/unpackfs/main.py:446
+msgid "Bad unsquash configuration"
+msgstr "Configuració incorrecta d'unsquash."
+
+#: src/modules/unpackfs/main.py:423
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "El sistema de fitxers per a {} ({}) no és admès pel nucli actual."
+
+#: src/modules/unpackfs/main.py:427
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "El sistema de fitxers font \"{}\" no existeix."
+
+#: src/modules/unpackfs/main.py:433
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
@@ -113,36 +150,7 @@ msgstr ""
 "Ha fallat trobar unsquashfs, assegureu-vos que tingueu el paquet squashfs-"
 "tools instal·lat."
 
-#: src/modules/unpackfs/main.py:369
-msgid "No mount point for root partition"
-msgstr "No hi ha punt de muntatge per a la partició d'arrel."
-
-#: src/modules/unpackfs/main.py:370
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage no conté cap clau de \"rootMountPoint\". No es fa res."
-
-#: src/modules/unpackfs/main.py:375
-msgid "Bad mount point for root partition"
-msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
-
-#: src/modules/unpackfs/main.py:376
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
-
-#: src/modules/unpackfs/main.py:389 src/modules/unpackfs/main.py:393
-#: src/modules/unpackfs/main.py:407
-msgid "Bad unsquash configuration"
-msgstr "Configuració incorrecta d'unsquash."
-
-#: src/modules/unpackfs/main.py:390
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "El sistema de fitxers per a {} ({}) no és admès pel nucli actual."
-
-#: src/modules/unpackfs/main.py:394
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "El sistema de fitxers font \"{}\" no existeix."
-
-#: src/modules/unpackfs/main.py:408
+#: src/modules/unpackfs/main.py:447
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
 

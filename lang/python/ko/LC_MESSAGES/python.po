@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-19 00:13+0100\n"
+"POT-Creation-Date: 2020-04-07 22:12+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: MarongHappy <daemul72@gmail.com>, 2020\n"
 "Language-Team: Korean (https://www.transifex.com/calamares/teams/20061/ko/)\n"
@@ -96,50 +96,58 @@ msgstr "파일 시스템 마운트를 해제합니다."
 msgid "Filling up filesystems."
 msgstr "파일 시스템을 채우는 중."
 
-#: src/modules/unpackfs/main.py:188
+#: src/modules/unpackfs/main.py:257
 msgid "rsync failed with error code {}."
 msgstr "rsync가 {} 오류 코드로 실패했습니다."
 
-#: src/modules/unpackfs/main.py:249 src/modules/unpackfs/main.py:272
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
 msgid "Failed to unpack image \"{}\""
 msgstr "\"{}\" 이미지의 압축을 풀지 못했습니다."
 
-#: src/modules/unpackfs/main.py:250
+#: src/modules/unpackfs/main.py:399
+msgid "No mount point for root partition"
+msgstr "루트 파티션에 대한 마운트 위치 없음"
+
+#: src/modules/unpackfs/main.py:400
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage에는 \"rootMountPoint \" 키가 포함되어 있지 않으며 아무 작업도 수행하지 않습니다."
+
+#: src/modules/unpackfs/main.py:405
+msgid "Bad mount point for root partition"
+msgstr "루트 파티션에 대한 잘못된 마운트 위치"
+
+#: src/modules/unpackfs/main.py:406
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint는 \"{}\"이고, 존재하지 않으며, 아무 작업도 수행하지 않습니다."
+
+#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
+#: src/modules/unpackfs/main.py:446
+msgid "Bad unsquash configuration"
+msgstr "잘못된 unsquash 구성"
+
+#: src/modules/unpackfs/main.py:423
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "\"{}\" ({})에 대한 파일 시스템은 현재 커널에서 지원되지 않습니다."
+
+#: src/modules/unpackfs/main.py:427
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "\"{}\" 소스 파일시스템은 존재하지 않습니다."
+
+#: src/modules/unpackfs/main.py:433
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr "unsquashfs를 찾지 못했습니다. squashfs-tools 패키지가 설치되어 있는지 확인하십시오."
 
-#: src/modules/unpackfs/main.py:369
-msgid "No mount point for root partition"
-msgstr "루트 파티션에 대한 마운트 위치 없음"
-
-#: src/modules/unpackfs/main.py:370
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage에는 \"rootMountPoint \" 키가 포함되어 있지 않으며 아무 작업도 수행하지 않습니다."
-
-#: src/modules/unpackfs/main.py:375
-msgid "Bad mount point for root partition"
-msgstr "루트 파티션에 대한 잘못된 마운트 위치"
-
-#: src/modules/unpackfs/main.py:376
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint는 \"{}\"이고, 존재하지 않으며, 아무 작업도 수행하지 않습니다."
-
-#: src/modules/unpackfs/main.py:389 src/modules/unpackfs/main.py:393
-#: src/modules/unpackfs/main.py:407
-msgid "Bad unsquash configuration"
-msgstr "잘못된 unsquash 구성"
-
-#: src/modules/unpackfs/main.py:390
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "\"{}\" ({})에 대한 파일 시스템은 현재 커널에서 지원되지 않습니다."
-
-#: src/modules/unpackfs/main.py:394
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "\"{}\" 소스 파일시스템은 존재하지 않습니다."
-
-#: src/modules/unpackfs/main.py:408
+#: src/modules/unpackfs/main.py:447
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "대상 시스템의 \"{}\" 목적지가 디렉토리가 아닙니다."
 
