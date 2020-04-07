@@ -44,6 +44,7 @@ public:
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
+
 private:
     QList< Device* > m_devices;
     QString m_bootLoaderPath;

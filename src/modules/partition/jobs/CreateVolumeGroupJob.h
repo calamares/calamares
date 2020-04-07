@@ -47,4 +47,4 @@ private:
     qint32 m_peSize;
 };
 
-#endif // CREATEVOLUMEGROUPJOB_H
+#endif  // CREATEVOLUMEGROUPJOB_H

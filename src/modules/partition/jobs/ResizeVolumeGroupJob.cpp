@@ -28,34 +28,33 @@ ResizeVolumeGroupJob::ResizeVolumeGroupJob( LvmDevice* device, QVector< const Pa
     : m_device( device )
     , m_partitionList( partitionList )
 {
-
 }
 
 QString
 ResizeVolumeGroupJob::prettyName() const
 {
     return tr( "Resize volume group named %1 from %2 to %3." )
-            .arg( m_device->name() )
-            .arg( currentPartitions() )
-            .arg( targetPartitions() );
+        .arg( m_device->name() )
+        .arg( currentPartitions() )
+        .arg( targetPartitions() );
 }
 
 QString
 ResizeVolumeGroupJob::prettyDescription() const
 {
     return tr( "Resize volume group named <strong>%1</strong> from <strong>%2</strong> to <strong>%3</strong>." )
-            .arg( m_device->name() )
-            .arg( currentPartitions() )
-            .arg( targetPartitions() );
+        .arg( m_device->name() )
+        .arg( currentPartitions() )
+        .arg( targetPartitions() );
 }
 
 QString
 ResizeVolumeGroupJob::prettyStatusMessage() const
 {
     return tr( "Resize volume group named %1 from %2 to %3." )
-            .arg( m_device->name() )
-            .arg( currentPartitions() )
-            .arg( targetPartitions() );
+        .arg( m_device->name() )
+        .arg( currentPartitions() )
+        .arg( targetPartitions() );
 }
 
 Calamares::JobResult
@@ -69,7 +68,9 @@ ResizeVolumeGroupJob::exec()
 
     QString message = tr( "The installer failed to resize a volume group named '%1'." ).arg( m_device->name() );
     if ( op.execute( report ) )
+    {
         return Calamares::JobResult::ok();
+    }
 
     return Calamares::JobResult::error( message, report.toText() );
 }
@@ -79,10 +80,12 @@ ResizeVolumeGroupJob::currentPartitions() const
 {
     QString result;
 
-    for ( const Partition *p : m_device->physicalVolumes() )
+    for ( const Partition* p : m_device->physicalVolumes() )
+    {
         result += p->deviceNode() + ", ";
+    }
 
-    result.chop(2);
+    result.chop( 2 );
 
     return result;
 }
@@ -92,10 +95,12 @@ ResizeVolumeGroupJob::targetPartitions() const
 {
     QString result;
 
-    for ( const Partition *p : m_partitionList )
+    for ( const Partition* p : m_partitionList )
+    {
         result += p->deviceNode() + ", ";
+    }
 
-    result.chop(2);
+    result.chop( 2 );
 
     return result;
 }

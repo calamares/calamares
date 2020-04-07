@@ -42,10 +42,7 @@ public:
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
-    Device* device() const
-    {
-        return m_device;
-    }
+    Device* device() const { return m_device; }
 
 private:
     Device* m_device;

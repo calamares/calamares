@@ -18,7 +18,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/ResizePartitionJob.h"
+#include "ResizePartitionJob.h"
 
 #include "utils/Units.h"
 
@@ -33,7 +33,8 @@ using CalamaresUtils::BytesToMiB;
 ResizePartitionJob::ResizePartitionJob( Device* device, Partition* partition, qint64 firstSector, qint64 lastSector )
     : PartitionJob( partition )
     , m_device( device )
-    , m_oldFirstSector( partition->firstSector() ) // Keep a copy of old sectors because they will be overwritten in updatePreview()
+    , m_oldFirstSector(
+          partition->firstSector() )  // Keep a copy of old sectors because they will be overwritten in updatePreview()
     , m_oldLastSector( partition->lastSector() )
     , m_newFirstSector( firstSector )
     , m_newLastSector( lastSector )
@@ -54,9 +55,9 @@ ResizePartitionJob::prettyDescription() const
 {
     return tr( "Resize <strong>%2MiB</strong> partition <strong>%1</strong> to "
                "<strong>%3MiB</strong>." )
-            .arg( partition()->partitionPath() )
-            .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
-            .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
+        .arg( partition()->partitionPath() )
+        .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
+        .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
 }
 
 
@@ -65,30 +66,32 @@ ResizePartitionJob::prettyStatusMessage() const
 {
     return tr( "Resizing %2MiB partition %1 to "
                "%3MiB." )
-            .arg( partition()->partitionPath() )
-            .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
-            .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
+        .arg( partition()->partitionPath() )
+        .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
+        .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
 }
 
 
 Calamares::JobResult
 ResizePartitionJob::exec()
 {
-    Report report (nullptr);
+    Report report( nullptr );
     // Restore partition sectors that were modified for preview
     m_partition->setFirstSector( m_oldFirstSector );
     m_partition->setLastSector( m_oldLastSector );
-    ResizeOperation op(*m_device, *m_partition, m_newFirstSector, m_newLastSector);
-    op.setStatus(Operation::StatusRunning);
-    connect(&op, &Operation::progress, this, &ResizePartitionJob::iprogress );
+    ResizeOperation op( *m_device, *m_partition, m_newFirstSector, m_newLastSector );
+    op.setStatus( Operation::StatusRunning );
+    connect( &op, &Operation::progress, this, &ResizePartitionJob::iprogress );
 
     QString errorMessage = tr( "The installer failed to resize partition %1 on disk '%2'." )
-                       .arg( m_partition->partitionPath() )
-                       .arg( m_device->name() );
-    if (op.execute(report))
+                               .arg( m_partition->partitionPath() )
+                               .arg( m_device->name() );
+    if ( op.execute( report ) )
+    {
         return Calamares::JobResult::ok();
+    }
 
-    return Calamares::JobResult::error(errorMessage, report.toText());
+    return Calamares::JobResult::error( errorMessage, report.toText() );
 }
 
 void

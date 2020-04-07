@@ -49,4 +49,4 @@ private:
     PartitionTable::Flags m_flags;
 };
 
-#endif // SETPARTITIONFLAGSJOB_H
+#endif  // SETPARTITIONFLAGSJOB_H
