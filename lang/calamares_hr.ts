@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="115"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="114"/>
       <source>Done</source>
       <translation>Gotovo</translation>
     </message>
@@ -228,7 +228,7 @@
   <context>
     <name>Calamares::RequirementsChecker</name>
     <message numerus="yes">
-      <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="166"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="164"/>
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>Čekam %1 modul(a).</numerusform>
@@ -237,7 +237,7 @@
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="165"/>
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%n sekunda(e))</numerusform>
@@ -246,7 +246,7 @@
       </translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="172"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="170"/>
       <source>System-requirements checking is complete.</source>
       <translation>Provjera zahtjeva za instalaciju sustava je dovršena.</translation>
     </message>
@@ -254,156 +254,153 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="92"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
       <source>&amp;Back</source>
       <translation>&amp;Natrag</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="94"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
       <source>&amp;Next</source>
       <translation>&amp;Sljedeće </translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="96"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="432"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="436"/>
       <source>&amp;Cancel</source>
       <translation>&amp;Odustani</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>Cancel setup without changing the system.</source>
       <translation>Odustanite od instalacije bez promjena na sustavu.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
       <source>Cancel installation without changing the system.</source>
       <translation>Odustanite od instalacije bez promjena na sustavu.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
       <source>Setup Failed</source>
       <translation>Instalacija nije uspjela</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="202"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="152"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Želite li objaviti dnevnik instaliranja na web?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="240"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
       <source>Install Log Paste URL</source>
       <translation>URL za objavu dnevnika instaliranja</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="243"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="193"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation>Objava dnevnika instaliranja na web nije uspjela.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="259"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="209"/>
       <source>Calamares Initialization Failed</source>
       <translation>Inicijalizacija Calamares-a nije uspjela</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="210"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <translation>%1 se ne može se instalirati. Calamares nije mogao učitati sve konfigurirane module. Ovo je problem s načinom na koji se Calamares koristi u distribuciji.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="266"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="216"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <translation>&lt;br/&gt;Sljedeći moduli se nisu mogli učitati:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
       <source>Continue with installation?</source>
       <translation>Nastaviti sa instalacijom?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="329"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>Instalacijski program %1 će izvršiti promjene na vašem disku kako bi postavio %2. &lt;br/&gt;&lt;strong&gt;Ne možete poništiti te promjene.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
       <source>&amp;Set up now</source>
       <translation>&amp;Postaviti odmah</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="390"/>
       <source>&amp;Set up</source>
       <translation>&amp;Postaviti</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="390"/>
       <source>&amp;Install</source>
       <translation>&amp;Instaliraj</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>Instalacija je završena. Zatvorite instalacijski program.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="492"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="509"/>
       <source>Cancel setup?</source>
       <translation>Prekinuti instalaciju?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="492"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="509"/>
       <source>Cancel installation?</source>
       <translation>Prekinuti instalaciju?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="493"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="510"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>Stvarno želite prekinuti instalacijski proces?
 Instalacijski program će izaći i sve promjene će biti izgubljene.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>Stvarno želite prekinuti instalacijski proces?
 Instalacijski program će izaći i sve promjene će biti izgubljene.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="499"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
       <source>&amp;Yes</source>
       <translation>&amp;Da</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="223"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="500"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
       <source>&amp;No</source>
       <translation>&amp;Ne</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="229"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
       <source>&amp;Close</source>
       <translation>&amp;Zatvori</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
       <source>Continue with setup?</source>
       <translation>Nastaviti s postavljanjem?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%1 instalacijski program će napraviti promjene na disku kako bi instalirao %2.&lt;br/&gt;&lt;strong&gt;Nećete moći vratiti te promjene.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
       <source>&amp;Install now</source>
       <translation>&amp;Instaliraj sada</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="342"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
       <source>Go &amp;back</source>
       <translation>Idi &amp;natrag</translation>
     </message>
@@ -413,17 +410,17 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
       <translation>&amp;Gotovo</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
       <source>The installation is complete. Close the installer.</source>
       <translation>Instalacija je završena. Zatvorite instalacijski program.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="215"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
       <source>Error</source>
       <translation>Greška</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
       <source>Installation Failed</source>
       <translation>Instalacija nije uspjela</translation>
     </message>
@@ -464,12 +461,27 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="158"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
+      <source>&amp;Back</source>
+      <translation>&amp;Natrag</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="184"/>
+      <source>&amp;Next</source>
+      <translation>&amp;Sljedeće </translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="197"/>
+      <source>&amp;Cancel</source>
+      <translation>&amp;Odustani</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="286"/>
       <source>%1 Setup Program</source>
       <translation>%1 instalacijski program</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="159"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="287"/>
       <source>%1 Installer</source>
       <translation>%1 Instalacijski program</translation>
     </message>
@@ -500,12 +512,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
       <translation>Poslije:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
-      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;Ručno particioniranje&lt;/strong&gt;&lt;br/&gt;Možete sami stvoriti ili promijeniti veličine particija.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
       <source>Boot loader location:</source>
       <translation>Lokacija boot učitavača:</translation>
     </message>
@@ -516,113 +523,118 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="157"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="955"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1002"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1088"/>
       <source>Current:</source>
       <translation>Trenutni:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
+      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
+      <translation>&lt;strong&gt;Ručno particioniranje&lt;/strong&gt;&lt;br/&gt;Možete sami kreirati ili promijeniti veličinu particija. Potrebno je imati GPT tablicu particija i &lt;strong&gt;FAT32 particiju /boot veličine 512MB za UEFI instalacije&lt;/strong&gt;; moguće je koristiti postojeću ili stvoriti novu.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Koristi %1 kao home particiju za %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Odaberite particiju za smanjivanje, te povlačenjem donjeg pokazivača odaberite promjenu veličine&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="971"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="973"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 će se smanjiti na %2MB i stvorit će se nova %3MB particija za %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Odaberite particiju za instalaciju&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>EFI particija ne postoji na ovom sustavu. Vratite se natrag i koristite ručno particioniranje da bi ste postavili %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1144"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>EFI particija na %1 će se koristiti za pokretanje %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1152"/>
       <source>EFI system partition:</source>
       <translation>EFI particija:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1270"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Izgleda da na ovom disku nema operacijskog sustava. Što želite učiniti?&lt;br/&gt;Moći ćete provjeriti i potvrditi vaš odabir prije bilo kakvih promjena na disku.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1311"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1275"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1336"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1362"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Obriši disk&lt;/strong&gt;&lt;br/&gt;To će &lt;font color="red"&gt;obrisati&lt;/font&gt; sve podatke na odabranom disku.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1303"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Ovaj disk ima %1. Što želite učiniti?&lt;br/&gt;Moći ćete provjeriti i potvrditi vaš odabir prije bilo kakvih promjena na disku.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1505"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1507"/>
       <source>No Swap</source>
       <translation>Bez swap-a</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1510"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1512"/>
       <source>Reuse Swap</source>
       <translation>Iskoristi postojeći swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1515"/>
       <source>Swap (no Hibernate)</source>
       <translation>Swap (bez hibernacije)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1516"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1518"/>
       <source>Swap (with Hibernate)</source>
       <translation>Swap (sa hibernacijom)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1519"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1521"/>
       <source>Swap to file</source>
       <translation>Swap datoteka</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1332"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1358"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Instaliraj uz postojeće&lt;/strong&gt;&lt;br/&gt;Instalacijski program će smanjiti particiju da bi napravio mjesto za %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1316"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1283"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1318"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Zamijeni particiju&lt;/strong&gt;&lt;br/&gt;Zamijenjuje particiju sa %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Ovaj disk već ima operacijski sustav. Što želite učiniti?&lt;br/&gt;Moći ćete provjeriti i potvrditi vaš odabir prije bilo kakvih promjena na disku.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Ovaj disk ima više operacijskih sustava. Što želite učiniti?&lt;br/&gt;Moći ćete provjeriti i potvrditi vaš odabir prije bilo kakvih promjena na disku.</translation>
     </message>
@@ -635,12 +647,12 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
       <translation>Ukloni montiranja za operacije s particijama na %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="58"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="57"/>
       <source>Clearing mounts for partitioning operations on %1.</source>
       <translation>Uklanjam montiranja za operacija s particijama na %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="217"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="232"/>
       <source>Cleared all mounts for %1</source>
       <translation>Uklonjena sva montiranja za %1</translation>
     </message>
@@ -658,12 +670,12 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
       <translation>Uklanjam sva privremena montiranja.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="60"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="61"/>
       <source>Cannot get list of temporary mounts.</source>
       <translation>Ne mogu dohvatiti popis privremenih montiranja.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="99"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="102"/>
       <source>Cleared all temporary mounts.</source>
       <translation>Uklonjena sva privremena montiranja.</translation>
     </message>
@@ -690,24 +702,94 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="105"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="54"/>
+      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Ovo računalo ne zadovoljava minimalne zahtjeve za instalaciju %1.&lt;br/&gt;Instalacija se ne može nastaviti.&lt;a href="#details"&gt;Detalji...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="58"/>
+      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Ovo računalo ne zadovoljava minimalne uvijete za instalaciju %1.&lt;br/&gt;Instalacija se ne može nastaviti.&lt;a href="#details"&gt;Detalji...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="65"/>
+      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
+      <translation>Računalo ne zadovoljava neke od preporučenih uvjeta za instalaciju %1.&lt;br/&gt;Instalacija se može nastaviti, ali neke značajke možda neće biti dostupne.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="69"/>
+      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+      <translation>Računalo ne zadovoljava neke od preporučenih uvjeta za instalaciju %1.&lt;br/&gt;Instalacija se može nastaviti, ali neke značajke možda neće biti dostupne.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="79"/>
+      <source>This program will ask you some questions and set up %2 on your computer.</source>
+      <translation>Ovaj program će vam postaviti neka pitanja i instalirati %2 na vaše računalo.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="254"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Dobrodošli u Calamares instalacijski program za %1.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="106"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="255"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Dobrodošli u %1 instalacijski program.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="111"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="260"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
       <translation>Dobrodošli u Calamares instalacijski program za %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="112"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="261"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Dobrodošli u %1 instalacijski program.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="348"/>
+      <source>Set keyboard model to %1.&lt;br/&gt;</source>
+      <translation>Postavi model tipkovnice na %1.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
+      <source>Set keyboard layout to %1/%2.</source>
+      <translation>Postavi raspored tipkovnice na %1%2.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="272"/>
+      <source>The system language will be set to %1.</source>
+      <translation>Jezik sustava će se postaviti na %1.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="273"/>
+      <source>The numbers and dates locale will be set to %1.</source>
+      <translation>Jezična shema brojeva i datuma će se postaviti na %1.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="306"/>
+      <source>Set timezone to %1/%2.&lt;br/&gt;</source>
+      <translation>Postavi vremesku zonu na %1%2.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
+      <source>Network Installation. (Disabled: Incorrect configuration)</source>
+      <translation>Mrežna instalacija. (Onemogućeno: Neispravna konfiguracija)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
+      <source>Network Installation. (Disabled: Received invalid groups data)</source>
+      <translation>Mrežna instalacija. (Onemogućeno: Primanje nevažećih podataka o grupama)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
+      <source>Network Installation. (Disabled: internal error)</source>
+      <translation>Mrežna instalacija. (Onemogućeno: unutarnja pogreška)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
+      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
+      <translation>Mrežna instalacija. (Onemogućeno: Ne mogu dohvatiti listu paketa, provjerite da li ste spojeni na mrežu)</translation>
     </message>
   </context>
   <context>
@@ -855,17 +937,17 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
       <translation>Stvori novu %1 particijsku tablicu na %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
       <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Stvori novu &lt;strong&gt;%1&lt;/strong&gt; particijsku tablicu na &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="65"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
       <source>Creating new %1 partition table on %2.</source>
       <translation>Stvaram novu %1 particijsku tablicu na %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="83"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
       <source>The installer failed to create a partition table on %1.</source>
       <translation>Instalacijski program nije uspio stvoriti particijsku tablicu na %1.</translation>
     </message>
@@ -919,22 +1001,22 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
       <source>Create new volume group named %1.</source>
       <translation>Stvori novu volume grupu pod nazivom %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Stvori novu volume grupu pod nazivom &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="49"/>
       <source>Creating new volume group named %1.</source>
       <translation>Stvaram novu volume grupu pod nazivom %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="61"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation>Instalacijski program nije uspio stvoriti volume grupu pod nazivom '%1'.</translation>
     </message>
@@ -942,18 +1024,18 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
   <context>
     <name>DeactivateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="34"/>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="33"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="45"/>
       <source>Deactivate volume group named %1.</source>
       <translation>Deaktiviraj volume grupu pod nazivom %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="41"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="39"/>
       <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Deaktiviraj volume grupu pod nazivom &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="57"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
       <translation>Instalacijski program nije uspio deaktivirati volume grupu pod nazivom %1.</translation>
     </message>
@@ -966,17 +1048,17 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
       <translation>Obriši particiju %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="47"/>
       <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Obriši particiju &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
       <source>Deleting partition %1.</source>
       <translation>Brišem particiju %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="68"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="65"/>
       <source>The installer failed to delete partition %1.</source>
       <translation>Instalacijski program nije uspio izbrisati particiju %1.</translation>
     </message>
@@ -1185,11 +1267,6 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
       <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
       <source>Form</source>
       <translation>Oblik</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
-      <source>&lt;Restart checkbox tooltip&gt;</source>
-      <translation>&lt;Restart checkbox tooltip&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1430,20 +1507,28 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
   <context>
     <name>KeyboardPage</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="219"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="213"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Postavi model tipkovnice na %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="223"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="217"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Postavi raspored tipkovnice na %1%2.</translation>
     </message>
   </context>
   <context>
+    <name>KeyboardQmlViewStep</name>
+    <message>
+      <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="42"/>
+      <source>Keyboard</source>
+      <translation>Tipkovnica</translation>
+    </message>
+  </context>
+  <context>
     <name>KeyboardViewStep</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="50"/>
+      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="54"/>
       <source>Keyboard</source>
       <translation>Tipkovnica</translation>
     </message>
@@ -1617,6 +1702,14 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     </message>
   </context>
   <context>
+    <name>LocaleQmlViewStep</name>
+    <message>
+      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="98"/>
+      <source>Location</source>
+      <translation>Lokacija</translation>
+    </message>
+  </context>
+  <context>
     <name>LocaleViewStep</name>
     <message>
       <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
@@ -1679,80 +1772,102 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     </message>
   </context>
   <context>
-    <name>NetInstallPage</name>
-    <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="137"/>
-      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-      <translation>Mrežna instalacija. (Onemogućeno: Ne mogu dohvatiti listu paketa, provjerite da li ste spojeni na mrežu)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="147"/>
-      <source>Network Installation. (Disabled: Received invalid groups data)</source>
-      <translation>Mrežna instalacija. (Onemogućeno: Primanje nevažećih podataka o grupama)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="197"/>
-      <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation>Mrežna instalacija. (Onemogućeno: Neispravna konfiguracija)</translation>
-    </message>
-  </context>
-  <context>
     <name>NetInstallViewStep</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
       <source>Package selection</source>
       <translation>Odabir paketa</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Office software</source>
       <translation>Uredski softver</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office package</source>
       <translation>Uredski paket</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Browser software</source>
       <translation>Preglednici</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Browser package</source>
       <translation>Paket preglednika</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Web browser</source>
       <translation>Web preglednik</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Kernel</source>
       <translation>Kernel</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Services</source>
       <translation>Servisi</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Login</source>
       <translation>Prijava</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Desktop</source>
       <translation>Radna površina</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Applications</source>
       <translation>Aplikacije</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
+      <source>Communication</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="75"/>
+      <source>Development</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="76"/>
+      <source>Office</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="77"/>
+      <source>Multimedia</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="78"/>
+      <source>Internet</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="79"/>
+      <source>Theming</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="80"/>
+      <source>Gaming</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="81"/>
+      <source>Utilities</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -2086,12 +2201,12 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
       <source>Name</source>
       <translation>Ime</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
       <source>Description</source>
       <translation>Opis</translation>
     </message>
@@ -2371,107 +2486,117 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="78"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="77"/>
       <source>Gathering system information...</source>
       <translation>Skupljanje informacija o sustavu...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="130"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="131"/>
       <source>Partitions</source>
       <translation>Particije</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="168"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
       <translation>Instaliraj %1 &lt;strong&gt;uz postojeći&lt;/strong&gt; operacijski sustav.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="173"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
       <translation>&lt;strong&gt;Obriši&lt;/strong&gt; disk i instaliraj %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
       <translation>&lt;strong&gt;Zamijeni&lt;/strong&gt; particiju s %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="180"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="181"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
       <translation>&lt;strong&gt;Ručno&lt;/strong&gt; particioniranje.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="193"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Instaliraj %1 &lt;strong&gt;uz postojeći&lt;/strong&gt; operacijski sustav na disku &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="201"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
       <translation>&lt;strong&gt;Obriši&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) i instaliraj %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="205"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="207"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
       <translation>&lt;strong&gt;Zamijeni&lt;/strong&gt; particiju na disku &lt;strong&gt;%2&lt;/strong&gt; (%3) s %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="212"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="214"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
       <translation>&lt;strong&gt;Ručno&lt;/strong&gt; particioniram disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="220"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="223"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <translation>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="248"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="249"/>
       <source>Current:</source>
       <translation>Trenutni:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="265"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="266"/>
       <source>After:</source>
       <translation>Poslije:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="415"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
       <source>No EFI system partition configured</source>
       <translation>EFI particija nije konfigurirana</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="416"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>EFI particija je potrebna za pokretanje %1.&lt;br/&gt;&lt;br/&gt;Da bi ste konfigurirali EFI particiju, idite natrag i odaberite ili stvorite FAT32 datotečni sustav s omogućenom &lt;strong&gt;esp&lt;/strong&gt; oznakom i točkom montiranja &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Možete nastaviti bez postavljanja EFI particije, ali vaš sustav se možda neće moći pokrenuti.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="429"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
       <source>EFI system partition flag not set</source>
       <translation>Oznaka EFI particije nije postavljena</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="430"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation>EFI particija je potrebna za pokretanje %1.&lt;br&gt;&lt;br/&gt;Particija je konfigurirana s točkom montiranja &lt;strong&gt;%2&lt;/strong&gt; ali njezina &lt;strong&gt;esp&lt;/strong&gt; oznaka nije postavljena.&lt;br/&gt;Za postavljanje oznake, vratite se i uredite postavke particije.&lt;br/&gt;&lt;br/&gt;Možete nastaviti bez postavljanja oznake, ali vaš sustav se možda neće moći pokrenuti.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="465"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
+      <source>Option to use GPT on BIOS</source>
+      <translation>Mogućnost korištenja GPT-a na BIOS-u</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation>GPT tablica particija je najbolja opcija za sve sustave. Ovaj instalacijski program podržava takvo postavljanje i za BIOS sustave. &lt;br/&gt;&lt;br/&gt;Da biste konfigurirali GPT particijsku tablicu za BIOS sustave, (ako to već nije učinjeno) vratite se natrag i postavite particijsku tablicu na GPT, a zatim stvorite neformatiranu particiju od 8 MB s omogućenom zastavicom &lt;strong&gt;bios_grub&lt;/strong&gt;. &lt;br/&gt;&lt;br/&gt;Neformirana particija od 8 MB potrebna je za pokretanje %1 na BIOS sustavu s GPT-om.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
       <source>Boot partition not encrypted</source>
       <translation>Boot particija nije kriptirana</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="466"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Odvojena boot particija je postavljena zajedno s kriptiranom root particijom, ali boot particija nije kriptirana.&lt;br/&gt;&lt;br/&gt;Zabrinuti smo za vašu sigurnost jer su važne datoteke sustava na nekriptiranoj particiji.&lt;br/&gt;Možete nastaviti ako želite, ali datotečni sustav će se otključati kasnije tijekom pokretanja sustava.&lt;br/&gt;Da bi ste kriptirali boot particiju, vratite se natrag i napravite ju, odabirom opcije &lt;strong&gt;Kriptiraj&lt;/strong&gt; u prozoru za stvaranje prarticije.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="650"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="708"/>
       <source>has at least one disk device available.</source>
       <translation>ima barem jedan disk dostupan.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="651"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="709"/>
       <source>There are no partitions to install on.</source>
       <translation>Ne postoje particije na koje bi se instalirao sustav.</translation>
     </message>
@@ -2537,14 +2662,14 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="417"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
       <source>
 There was no output from the command.</source>
       <translation>
 Nema izlazne informacije od naredbe.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="419"/>
       <source>
 Output:
 </source>
@@ -2553,52 +2678,52 @@ Izlaz:
 </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="422"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
       <source>External command crashed.</source>
       <translation>Vanjska naredba je prekinula s radom.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="424"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation>Naredba &lt;i&gt;%1&lt;/i&gt; je prekinula s radom.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="428"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
       <source>External command failed to start.</source>
       <translation>Vanjska naredba nije uspješno pokrenuta.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="430"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation>Naredba &lt;i&gt;%1&lt;/i&gt; nije uspješno pokrenuta.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="433"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
       <source>Internal error when starting command.</source>
       <translation>Unutrašnja greška pri pokretanju naredbe.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="435"/>
       <source>Bad parameters for process job call.</source>
       <translation>Krivi parametri za proces poziva posla.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="438"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="439"/>
       <source>External command failed to finish.</source>
       <translation>Vanjska naredba se nije uspjela izvršiti.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="439"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="440"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation>Naredba &lt;i&gt;%1&lt;/i&gt; nije uspjela završiti za %2 sekundi.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="446"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
       <source>External command finished with errors.</source>
       <translation>Vanjska naredba je završila sa pogreškama.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="448"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation>Naredba &lt;i&gt;%1&lt;/i&gt; je završila sa izlaznim kodom %2.</translation>
     </message>
@@ -2647,14 +2772,13 @@ Izlaz:
       <translation>(nema točke montiranja)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="65"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
       <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
       <translation>Provjera zahtjeva za modul &lt;i&gt;%1&lt;/i&gt; je dovršena.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="39"/>
+      <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
       <source>%1 (%2)</source>
-      <extracomment>language[name] (country[name])</extracomment>
       <translation>%1 (%2)</translation>
     </message>
     <message>
@@ -2697,18 +2821,18 @@ Izlaz:
   <context>
     <name>RemoveVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="33"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="45"/>
       <source>Remove Volume Group named %1.</source>
       <translation>Ukloni volume grupu pod nazivom %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="41"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="39"/>
       <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Ukloni volume grupu pod nazivom &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="57"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
       <translation>Instalacijski program nije uspio ukloniti volume grupu pod nazivom '%1'.</translation>
     </message>
@@ -2789,21 +2913,6 @@ Izlaz:
     </message>
   </context>
   <context>
-    <name>RequirementsModel</name>
-    <message>
-      <location filename="../src/modules/welcome/Config.h" line="147"/>
-      <source>This program will ask you some questions and set up your installation</source>
-      <translation>Ovaj program će vam postaviti neka pitanja i postaviti vašu instalaciju.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/Config.h" line="149"/>
-      <source>This program does not satisfy the minimum requirements for installing.
-Installation can not continue</source>
-      <translation>Ovaj program ne zadovoljava minimalne uvijete za instalaciju.
-Instalacija se ne može nastaviti</translation>
-    </message>
-  </context>
-  <context>
     <name>ResizeFSJob</name>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="57"/>
@@ -2875,22 +2984,22 @@ Instalacija se ne može nastaviti</translation>
   <context>
     <name>ResizePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="49"/>
       <source>Resize partition %1.</source>
       <translation>Promijeni veličinu particije %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="56"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
       <translation>Promijeni veličinu od &lt;strong&gt;%2MB&lt;/strong&gt; particije &lt;strong&gt;%1&lt;/strong&gt; na &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="66"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="67"/>
       <source>Resizing %2MiB partition %1 to %3MiB.</source>
       <translation>Mijenjam veličinu od %2MB particije %1 na %3MB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="86"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
       <translation>Instalacijski program nije uspio promijeniti veličinu particije %1 na disku '%2'.</translation>
     </message>
@@ -2906,18 +3015,18 @@ Instalacija se ne može nastaviti</translation>
   <context>
     <name>ResizeVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="36"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="54"/>
       <source>Resize volume group named %1 from %2 to %3.</source>
       <translation>Promijeni veličinu volume grupi pod nazivom %1 sa %2 na %3.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="45"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>Promijeni veličinu volume grupi pod nazivom &lt;strong&gt;%1&lt;/strong&gt; sa &lt;strong&gt;%2&lt;/strong&gt; na &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="69"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
       <translation>Instalacijski program nije uspio promijeniti veličinu volume grupi pod nazivom '%1'.</translation>
     </message>
@@ -2925,12 +3034,12 @@ Instalacija se ne može nastaviti</translation>
   <context>
     <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="139"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="140"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>Za najbolje rezultate, pobrinite se da ovo računalo:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="140"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="141"/>
       <source>System requirements</source>
       <translation>Zahtjevi sustava</translation>
     </message>
@@ -2938,27 +3047,27 @@ Instalacija se ne može nastaviti</translation>
   <context>
     <name>ResultsListWidget</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="260"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="261"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Ovo računalo ne zadovoljava minimalne zahtjeve za instalaciju %1.&lt;br/&gt;Instalacija se ne može nastaviti.&lt;a href="#details"&gt;Detalji...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="264"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="265"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Ovo računalo ne zadovoljava minimalne uvijete za instalaciju %1.&lt;br/&gt;Instalacija se ne može nastaviti.&lt;a href="#details"&gt;Detalji...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="271"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="272"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Računalo ne zadovoljava neke od preporučenih uvjeta za instalaciju %1.&lt;br/&gt;Instalacija se može nastaviti, ali neke značajke možda neće biti dostupne.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="275"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="276"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Računalo ne zadovoljava neke od preporučenih uvjeta za instalaciju %1.&lt;br/&gt;Instalacija se može nastaviti, ali neke značajke možda neće biti dostupne.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="284"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="285"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Ovaj program će vam postaviti neka pitanja i instalirati %2 na vaše računalo.</translation>
     </message>
@@ -3014,24 +3123,24 @@ Instalacija se ne može nastaviti</translation>
       <translation>Postavi model tpkovnice na %1, raspored na %2-%3</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="321"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="351"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation>Neuspješno pisanje konfiguracije tipkovnice za virtualnu konzolu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="326"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="332"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="352"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="363"/>
       <source>Failed to write to %1</source>
       <translation>Neuspješno pisanje na %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="325"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="355"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation>Neuspješno pisanje konfiguracije tipkovnice za X11.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="331"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="362"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation>Neuspješno pisanje konfiguracije tipkovnice u postojeći /etc/default direktorij.</translation>
     </message>
@@ -3044,77 +3153,77 @@ Instalacija se ne može nastaviti</translation>
       <translation>Postavi oznake na particiji %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="58"/>
       <source>Set flags on %1MiB %2 partition.</source>
       <translation>Postavi oznake na %1MB %2 particiji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="60"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="62"/>
       <source>Set flags on new partition.</source>
       <translation>Postavi oznake na novoj particiji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="74"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Obriši oznake na particiji &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="76"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Obriši oznake na %1MB &lt;strong&gt;%2&lt;/strong&gt; particiji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="91"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>Označi %1MB &lt;strong&gt;%2&lt;/strong&gt; particiju kao &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="114"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Brišem oznake na %1MB &lt;strong&gt;%2&lt;/strong&gt; particiji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="129"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Postavljam oznake &lt;strong&gt;%3&lt;/strong&gt; na %1MB &lt;strong&gt;%2&lt;/strong&gt; particiji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
       <source>Clear flags on new partition.</source>
       <translation>Obriši oznake na novoj particiji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Označi particiju &lt;strong&gt;%1&lt;/strong&gt; kao &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="97"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Označi novu particiju kao &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="109"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Brišem oznake na particiji &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="118"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="128"/>
       <source>Clearing flags on new partition.</source>
       <translation>Brišem oznake na novoj particiji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Postavljam oznake &lt;strong&gt;%2&lt;/strong&gt; na particiji &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="135"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
       <translation>Postavljam oznake &lt;strong&gt;%1&lt;/strong&gt; na novoj particiji.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="152"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="165"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>Instalacijski program nije uspio postaviti oznake na particiji %1.</translation>
     </message>
@@ -3522,42 +3631,42 @@ Instalacija se ne može nastaviti</translation>
       <translation>&amp;O programu</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="219"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Dobrodošli u %1 instalacijski program.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="215"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="218"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
       <translation>Dobrodošli u Calamares instalacijski program za %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="209"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Dobrodošli u Calamares instalacijski program za %1.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="210"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="213"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Dobrodošli u %1 instalacijski program.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
       <source>About %1 setup</source>
       <translation>O %1 instalacijskom programu</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
       <source>About %1 installer</source>
       <translation>O %1 instalacijskom programu</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
-      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;za %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Autorska prava 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Autorska prava 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt; Hvala &lt;a href="https://calamares.io/team/"&gt;Calamares timu&lt;/a&gt; i &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares timu za prevođenje&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; sponzorira &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
+      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;za %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Autorska prava 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Autorska prava 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt; Hvala &lt;a href="https://calamares.io/team/"&gt;Calamares timu&lt;/a&gt; i &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares timu za prevođenje&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; sponzorira &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software. {1&gt;?} {1&lt;?} {1&gt;?} {2&lt;?} {3&lt;?} {2014-2017 ?} {2017-2020 ?}</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="221"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="224"/>
       <source>%1 support</source>
       <translation>%1 podrška</translation>
     </message>
@@ -3579,6 +3688,75 @@ Instalacija se ne može nastaviti</translation>
     </message>
   </context>
   <context>
+    <name>about</name>
+    <message>
+      <location filename="../src/modules/welcomeq/about.qml" line="56"/>
+      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Thanks to &lt;a href='https://calamares.io/team/'&gt;the Calamares team&lt;/a&gt; 
+                        and the &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 
+                        translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        development is sponsored by &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        Liberating Software.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/about.qml" line="105"/>
+      <source>Back</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>keyboardq</name>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="25"/>
+      <source>Keyboard Model</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="26"/>
+      <source>Pick your preferred keyboard model or use the default one based on the detected hardware</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="41"/>
+      <source>Refresh</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="51"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="163"/>
+      <source>Layouts</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="79"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="139"/>
+      <source>Keyboard Layout</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="101"/>
+      <source>Models</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="109"/>
+      <source>Variants</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="189"/>
+      <source>Test your keyboard</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>notesqml</name>
     <message>
       <location filename="../src/modules/notesqml/notesqml.qml" line="61"/>
@@ -3591,9 +3769,9 @@ Instalacija se ne može nastaviti</translation>
   <context>
     <name>welcomeq</name>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
-      <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
-      <translation>&lt;h3&gt;%1&lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="43"/>
+      <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
@@ -3601,22 +3779,22 @@ Instalacija se ne može nastaviti</translation>
       <translation>O programu</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="89"/>
       <source>Support</source>
       <translation>Podrška</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Known issues</source>
       <translation>Poznati problemi</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="111"/>
       <source>Release notes</source>
       <translation>Bilješke o izdanju</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="122"/>
       <source>Donate</source>
       <translation>Doniraj</translation>
     </message>

@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="115"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="114"/>
       <source>Done</source>
       <translation>Klar</translation>
     </message>
@@ -161,7 +161,7 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
       <source>Run command '%1' in target system.</source>
-      <translation type="unfinished"/>
+      <translation>Kör kommandot '%1'. på målsystem.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
@@ -228,7 +228,7 @@
   <context>
     <name>Calamares::RequirementsChecker</name>
     <message numerus="yes">
-      <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="166"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="164"/>
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>Väntar på %n modul(er).</numerusform>
@@ -236,7 +236,7 @@
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="167"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="165"/>
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%n sekund(er))</numerusform>
@@ -244,7 +244,7 @@
       </translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="172"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="170"/>
       <source>System-requirements checking is complete.</source>
       <translation type="unfinished"/>
     </message>
@@ -252,155 +252,152 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="92"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="412"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
       <source>&amp;Back</source>
       <translation>&amp;Bakåt</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="94"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
       <source>&amp;Next</source>
       <translation>&amp;Nästa</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="96"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="432"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="436"/>
       <source>&amp;Cancel</source>
       <translation>Avbryt</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>Cancel setup without changing the system.</source>
       <translation>Avbryt inställningarna utan att förändra systemet.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
       <source>Cancel installation without changing the system.</source>
       <translation>Avbryt installationen utan att förändra systemet.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
       <source>Setup Failed</source>
       <translation>Inställningarna misslyckades</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="202"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="152"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="240"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
       <source>Install Log Paste URL</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="243"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="193"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation>Sändningen misslyckades. Ingenting sparades på webbplatsen.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="259"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="209"/>
       <source>Calamares Initialization Failed</source>
       <translation>Initieringen av Calamares misslyckades</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="210"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="266"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="216"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <translation>&lt;br/&gt;Följande moduler kunde inte hämtas:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
       <source>Continue with installation?</source>
       <translation>Vill du fortsätta med installationen?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="329"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
       <source>&amp;Set up now</source>
       <translation>&amp;Installera nu </translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="390"/>
       <source>&amp;Set up</source>
       <translation>&amp;Installera</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="391"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="390"/>
       <source>&amp;Install</source>
       <translation>&amp;Installera</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>Installationen är klar. Du kan avsluta installationsprogrammet.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="492"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="509"/>
       <source>Cancel setup?</source>
       <translation>Avbryt inställningarna?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="492"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="509"/>
       <source>Cancel installation?</source>
       <translation>Avbryt installation?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="493"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="510"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="495"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>Är du säker på att du vill avsluta installationen i förtid?
 Alla ändringar kommer att gå förlorade.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="499"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
       <source>&amp;Yes</source>
       <translation>&amp;Ja</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="223"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="500"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
       <source>&amp;No</source>
       <translation>&amp;Nej</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="229"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
       <source>&amp;Close</source>
       <translation>&amp;Stäng</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
       <source>Continue with setup?</source>
       <translation>Fortsätt med installation?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%1-installeraren är på väg att göra ändringar för att installera %2.&lt;br/&gt;&lt;strong&gt;Du kommer inte att kunna ångra dessa ändringar.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
       <source>&amp;Install now</source>
       <translation>&amp;Installera nu</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="342"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
       <source>Go &amp;back</source>
       <translation>Gå &amp;bakåt</translation>
     </message>
@@ -410,17 +407,17 @@ Alla ändringar kommer att gå förlorade.</translation>
       <translation>&amp;Klar</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
       <source>The installation is complete. Close the installer.</source>
       <translation>Installationen är klar. Du kan avsluta installationshanteraren.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="215"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
       <source>Error</source>
       <translation>Fel</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
       <source>Installation Failed</source>
       <translation>Installationen misslyckades</translation>
     </message>
@@ -454,18 +451,34 @@ Alla ändringar kommer att gå förlorade.</translation>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="34"/>
       <source>Install log posted to:
 %1</source>
-      <translation type="unfinished"/>
+      <translation>Installationslogg postad till:
+%1</translation>
     </message>
   </context>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="158"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
+      <source>&amp;Back</source>
+      <translation>&amp;Bakåt</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="184"/>
+      <source>&amp;Next</source>
+      <translation>&amp;Nästa</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="197"/>
+      <source>&amp;Cancel</source>
+      <translation>&amp;Avsluta</translation>
+    </message>
+    <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="286"/>
       <source>%1 Setup Program</source>
       <translation>%1 Installationsprogram</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="159"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="287"/>
       <source>%1 Installer</source>
       <translation>%1-installationsprogram</translation>
     </message>
@@ -496,12 +509,7 @@ Alla ändringar kommer att gå förlorade.</translation>
       <translation>Efter:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
-      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;Manuell partitionering&lt;/strong&gt;&lt;br/&gt;Du kan själv skapa och ändra storlek på partitionerna.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
       <source>Boot loader location:</source>
       <translation>Sökväg till starthanterare:</translation>
     </message>
@@ -512,113 +520,118 @@ Alla ändringar kommer att gå förlorade.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="157"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="955"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1002"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1088"/>
       <source>Current:</source>
       <translation>Nuvarande:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
+      <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Återanvänd %1 som hempartition för %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Välj en partition att minska, sen dra i nedre fältet för att ändra storlek&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="971"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="973"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-      <translation type="unfinished"/>
+      <translation>%1 kommer att förminskas till %2MiB och en ny %3MiB partition kommer att skapas för %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Välj en partition att installera på&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Ingen EFI-partition kunde inte hittas på systemet. Gå tillbaka och partitionera din lagringsenhet manuellt för att ställa in %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1144"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>EFI-partitionen %1 kommer att användas för att starta %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1152"/>
       <source>EFI system partition:</source>
       <translation>EFI-partition:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1270"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Denna lagringsenhet ser inte ut att ha ett operativsystem installerat. Vad vill du göra?&lt;br/&gt;Du kommer kunna granska och bekräfta dina val innan någon ändring görs på lagringseneheten.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1311"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1275"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1336"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1362"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Rensa lagringsenhet&lt;/strong&gt;&lt;br/&gt;Detta kommer &lt;font color="red"&gt;radera&lt;/font&gt; all existerande data på den valda lagringsenheten.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1303"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Denna lagringsenhet har %1 på sig. Vad vill du göra?&lt;br/&gt;Du kommer kunna granska och bekräfta dina val innan någon ändring görs på lagringsenheten.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1505"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1507"/>
       <source>No Swap</source>
       <translation>Ingen Swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1510"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1512"/>
       <source>Reuse Swap</source>
       <translation>Återanvänd Swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1515"/>
       <source>Swap (no Hibernate)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1516"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1518"/>
       <source>Swap (with Hibernate)</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1519"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1521"/>
       <source>Swap to file</source>
       <translation>Använd en fil som växlingsenhet</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1332"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1358"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Installera på sidan om&lt;/strong&gt;&lt;br/&gt;Installationshanteraren kommer krympa en partition för att göra utrymme för %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1316"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1283"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1318"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Ersätt en partition&lt;/strong&gt;&lt;br/&gt;Ersätter en partition med %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Denna lagringsenhet har redan ett operativsystem på sig. Vad vill du göra?&lt;br/&gt;Du kommer kunna granska och bekräfta dina val innan någon ändring sker på lagringsenheten.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Denna lagringsenhet har flera operativsystem på sig. Vad vill du göra?&lt;br/&gt;Du kommer kunna granska och bekräfta dina val innan någon ändring sker på lagringsenheten.</translation>
     </message>
@@ -631,12 +644,12 @@ Alla ändringar kommer att gå förlorade.</translation>
       <translation>Rensa monteringspunkter för partitionering på %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="58"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="57"/>
       <source>Clearing mounts for partitioning operations on %1.</source>
       <translation>Rensar monteringspunkter för partitionering på %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="217"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="232"/>
       <source>Cleared all mounts for %1</source>
       <translation>Rensade alla monteringspunkter för %1</translation>
     </message>
@@ -654,12 +667,12 @@ Alla ändringar kommer att gå förlorade.</translation>
       <translation>Rensar alla tillfälliga monteringspunkter.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="60"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="61"/>
       <source>Cannot get list of temporary mounts.</source>
       <translation>Kunde inte hämta tillfälliga monteringspunkter.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="99"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="102"/>
       <source>Cleared all temporary mounts.</source>
       <translation>Rensade alla tillfälliga monteringspunkter</translation>
     </message>
@@ -680,30 +693,100 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="164"/>
       <source>The command needs to know the user's name, but no username is defined.</source>
-      <translation type="unfinished"/>
+      <translation>Kommandot behöver veta användarnamnet, men inget användarnamn är definerat.</translation>
     </message>
   </context>
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="105"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="54"/>
+      <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Datorn uppfyller inte minimikraven för inställning av %1.&lt;br/&gt;Inga inställningar kan inte göras. &lt;a href="#details"&gt;Detaljer...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="58"/>
+      <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
+      <translation>Denna dator uppfyller inte minimikraven för att installera %1.&lt;br/&gt;Installationen kan inte fortsätta. &lt;a href="#details"&gt;Detaljer...&lt;/a&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="65"/>
+      <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
+      <translation>Några av kraven för inställning av %1 uppfylls inte av datorn.&lt;br/&gt;Inställningarna kan ändå göras men vissa funktioner kommer kanske inte att kunna användas.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="69"/>
+      <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+      <translation>Denna dator uppfyller inte alla rekommenderade krav för att installera %1.&lt;br/&gt;Installationen kan fortsätta, men alla alternativ och funktioner kanske inte kan användas.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="79"/>
+      <source>This program will ask you some questions and set up %2 on your computer.</source>
+      <translation>Detta program kommer att ställa dig några frågor och installera %2 på din dator.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/Config.cpp" line="254"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Välkommen till Calamares installationsprogrammet för %1.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="106"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="255"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Välkommen till %1 installation.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="111"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="260"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Välkommen till installationsprogrammet Calamares för %1.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="112"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="261"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Välkommen till %1-installeraren.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="348"/>
+      <source>Set keyboard model to %1.&lt;br/&gt;</source>
+      <translation>Sätt tangenbordsmodell till %1.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
+      <source>Set keyboard layout to %1/%2.</source>
+      <translation>Sätt tangentbordslayout till %1/%2.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="272"/>
+      <source>The system language will be set to %1.</source>
+      <translation>Systemspråket kommer ändras till %1.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="273"/>
+      <source>The numbers and dates locale will be set to %1.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="306"/>
+      <source>Set timezone to %1/%2.&lt;br/&gt;</source>
+      <translation>Sätt tidszon till %1/%2.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
+      <source>Network Installation. (Disabled: Incorrect configuration)</source>
+      <translation>Nätverksinstallation. (Inaktiverad: inkorrekt konfiguration)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
+      <source>Network Installation. (Disabled: Received invalid groups data)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
+      <source>Network Installation. (Disabled: internal error)</source>
+      <translation>Nätverksinstallation. (Inaktiverad: internt fel)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
+      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
+      <translation>Nätverksinstallation. (Inaktiverad: Kan inte hämta paketlistor, kontrollera nätverksanslutningen)</translation>
     </message>
   </context>
   <context>
@@ -851,17 +934,17 @@ Alla ändringar kommer att gå förlorade.</translation>
       <translation>Skapa ny %1 partitionstabell på %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
       <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Skapa ny &lt;strong&gt;%1&lt;/strong&gt; partitionstabell på &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="65"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
       <source>Creating new %1 partition table on %2.</source>
       <translation>Skapar ny %1 partitionstabell på %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="83"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
       <source>The installer failed to create a partition table on %1.</source>
       <translation>Installationsprogrammet kunde inte skapa en partitionstabell på %1.</translation>
     </message>
@@ -915,22 +998,22 @@ Alla ändringar kommer att gå förlorade.</translation>
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
       <source>Create new volume group named %1.</source>
       <translation>Skapa ny volymgrupp med namnet %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Skapa ny volymgrupp med namnet &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="49"/>
       <source>Creating new volume group named %1.</source>
       <translation>Skapa ny volymgrupp med namnet %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="61"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation>Installationsprogrammet kunde inte skapa en volymgrupp med namnet '%1'.</translation>
     </message>
@@ -938,18 +1021,18 @@ Alla ändringar kommer att gå förlorade.</translation>
   <context>
     <name>DeactivateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="34"/>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="33"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="45"/>
       <source>Deactivate volume group named %1.</source>
       <translation>Deaktivera volymgruppen med namnet %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="41"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="39"/>
       <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Deaktivera volymgruppen med namnet &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="57"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
       <translation>Installationsprogrammet kunde inte deaktivera volymgruppen med namnet %1.</translation>
     </message>
@@ -962,17 +1045,17 @@ Alla ändringar kommer att gå förlorade.</translation>
       <translation>Ta bort partition %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="47"/>
       <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Ta bort partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
       <source>Deleting partition %1.</source>
       <translation>Tar bort partition %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="68"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="65"/>
       <source>The installer failed to delete partition %1.</source>
       <translation>Installationsprogrammet kunde inte ta bort partition %1.</translation>
     </message>
@@ -1035,7 +1118,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="140"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
-      <translation type="unfinished"/>
+      <translation>Skippa att skriva LUKS konfiguration för Dracut "/" partition är inte krypterad</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="157"/>
@@ -1183,11 +1266,6 @@ Alla ändringar kommer att gå förlorade.</translation>
       <translation>Formulär</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
-      <source>&lt;Restart checkbox tooltip&gt;</source>
-      <translation>&lt;Restart checkbox tooltip&gt;</translation>
-    </message>
-    <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
       <source>&amp;Restart now</source>
       <translation>Sta&amp;rta om nu</translation>
@@ -1195,7 +1273,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Allt klart.&lt;/h1&gt;&lt;br/&gt;%1 har installerats på din dator.&lt;br/&gt;Du kan nu börja använda ditt nya system.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
@@ -1215,7 +1293,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="133"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Installationen misslyckades&lt;/h1&gt; &lt;br/&gt;%1 har inte blivit installerad på din dator. &lt;br/&gt;Felmeddelandet var: %2</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>
@@ -1284,7 +1362,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>Det finns inte tillräckligt med hårddiskutrymme. Minst %1 GiB krävs.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
@@ -1294,7 +1372,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>Systemet har inte tillräckligt med fungerande minne. Minst %1 GiB krävs.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="148"/>
@@ -1319,7 +1397,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>körs installationsprogammet med administratörsrättigheter (root)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
@@ -1426,20 +1504,28 @@ Alla ändringar kommer att gå förlorade.</translation>
   <context>
     <name>KeyboardPage</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="219"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="213"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Sätt tangenbordsmodell till %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="223"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="217"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Sätt tangentbordslayout till %1/%2.</translation>
     </message>
   </context>
   <context>
+    <name>KeyboardQmlViewStep</name>
+    <message>
+      <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="42"/>
+      <source>Keyboard</source>
+      <translation>Tangentbord</translation>
+    </message>
+  </context>
+  <context>
     <name>KeyboardViewStep</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="50"/>
+      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="54"/>
       <source>Keyboard</source>
       <translation>Tangentbord</translation>
     </message>
@@ -1613,6 +1699,14 @@ Alla ändringar kommer att gå förlorade.</translation>
     </message>
   </context>
   <context>
+    <name>LocaleQmlViewStep</name>
+    <message>
+      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="98"/>
+      <source>Location</source>
+      <translation>Plats</translation>
+    </message>
+  </context>
+  <context>
     <name>LocaleViewStep</name>
     <message>
       <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
@@ -1643,7 +1737,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-      <translation type="unfinished"/>
+      <translation>Root partition %1 är LUKS men ingen lösenfras har ställts in.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
@@ -1671,84 +1765,106 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="63"/>
       <source>No root mount point is set for MachineId.</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
-    <name>NetInstallPage</name>
-    <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="137"/>
-      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-      <translation>Nätverksinstallation. (Inaktiverad: Kan inte hämta paketlistor, kontrollera nätverksanslutningen)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="147"/>
-      <source>Network Installation. (Disabled: Received invalid groups data)</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="197"/>
-      <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation>Nätverksinstallation. (Inaktiverad: inkorrekt konfiguration)</translation>
+      <translation>Ingen root monteringspunkt är satt för MachineId.</translation>
     </message>
   </context>
   <context>
     <name>NetInstallViewStep</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
       <source>Package selection</source>
       <translation>Paketval</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Office software</source>
       <translation>Kontors programvara</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office package</source>
       <translation>Kontors paket</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Browser software</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Browser package</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Web browser</source>
       <translation>Webbläsare</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Kernel</source>
       <translation>Kärna</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Services</source>
       <translation>Tjänster</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Login</source>
       <translation>Inloggning</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Desktop</source>
       <translation>Skrivbord</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Applications</source>
       <translation>Program</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
+      <source>Communication</source>
+      <translation>Kommunikation</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="75"/>
+      <source>Development</source>
+      <translation>Utveckling</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="76"/>
+      <source>Office</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="77"/>
+      <source>Multimedia</source>
+      <translation>Multimedia</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="78"/>
+      <source>Internet</source>
+      <translation>Internet</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="79"/>
+      <source>Theming</source>
+      <translation>Teman</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="80"/>
+      <source>Gaming</source>
+      <translation>Gaming</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="81"/>
+      <source>Utilities</source>
+      <translation>Verktyg</translation>
     </message>
   </context>
   <context>
@@ -1774,7 +1890,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="48"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM Configuration&lt;/h1&gt;&lt;p&gt;Calamares will use OEM settings while configuring the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM-konfiguration&lt;/h1&gt;&lt;p&gt;Calamares kommer att använda OEM inställningar när målsystemet konfigureras.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
   </context>
   <context>
@@ -1820,7 +1936,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
       <source>The password is the same as the old one</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet är samma som det gamla</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
@@ -1835,7 +1951,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
       <source>The password is too similar to the old one</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet liknar för mycket det gamla</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
@@ -1890,7 +2006,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
       <source>The password contains too few non-alphanumeric characters</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller för få icke-alfanumeriska tecken</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
@@ -1925,7 +2041,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="230"/>
       <source>The password contains too many same characters consecutively</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller för många liknande tecken efter varandra</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
@@ -2015,7 +2131,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
       <source>Opening the configuration file failed</source>
-      <translation type="unfinished"/>
+      <translation>Öppnande av konfigurationsfilen misslyckades</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="302"/>
@@ -2025,7 +2141,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="304"/>
       <source>Fatal failure</source>
-      <translation type="unfinished"/>
+      <translation>Fatalt fel</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
@@ -2053,7 +2169,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="53"/>
       <source>TextLabel</source>
-      <translation type="unfinished"/>
+      <translation>TextLabel</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="69"/>
@@ -2082,12 +2198,12 @@ Alla ändringar kommer att gå förlorade.</translation>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
       <source>Name</source>
       <translation>Namn</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
       <source>Description</source>
       <translation>Beskrivning</translation>
     </message>
@@ -2146,7 +2262,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>Ditt Fullständiga namn </translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
@@ -2367,107 +2483,117 @@ Alla ändringar kommer att gå förlorade.</translation>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="78"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="77"/>
       <source>Gathering system information...</source>
       <translation>Samlar systeminformation...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="130"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="131"/>
       <source>Partitions</source>
       <translation>Partitioner</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="168"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
       <translation>Installera %1 &lt;strong&gt;bredvid&lt;/strong&gt; ett annat operativsystem.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="173"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
       <translation>&lt;strong&gt;Rensa&lt;/strong&gt; disken och installera %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
       <translation>&lt;strong&gt;Ersätt&lt;/strong&gt; en partition med %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="180"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="181"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
       <translation>&lt;strong&gt;Manuell&lt;/strong&gt; partitionering.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="193"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Installera %1 &lt;strong&gt;bredvid&lt;/strong&gt; ett annat operativsystem på disken &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="199"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="201"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
       <translation>&lt;strong&gt;Rensa&lt;/strong&gt; disken &lt;strong&gt;%2&lt;/strong&gt; (%3) och installera %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="205"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="207"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
       <translation>&lt;strong&gt;Ersätt&lt;/strong&gt; en partition på disken &lt;strong&gt;%2&lt;/strong&gt; (%3) med %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="212"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="214"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
       <translation>&lt;strong&gt;Manuell&lt;/strong&gt; partitionering på disken &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="220"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="223"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <translation>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="248"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="249"/>
       <source>Current:</source>
       <translation>Nuvarande:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="265"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="266"/>
       <source>After:</source>
       <translation>Efter:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="415"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
       <source>No EFI system partition configured</source>
       <translation>Ingen EFI system partition konfigurerad</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="416"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="429"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="440"/>
       <source>EFI system partition flag not set</source>
       <translation>EFI system partitionsflagga inte satt</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="430"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="465"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
+      <source>Option to use GPT on BIOS</source>
+      <translation>Alternativ för att använda GPT på BIOS</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
+      <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
       <source>Boot partition not encrypted</source>
       <translation>Boot partition inte krypterad</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="466"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="650"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="708"/>
       <source>has at least one disk device available.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="651"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="709"/>
       <source>There are no partitions to install on.</source>
       <translation>Det finns inga partitioner att installera på.</translation>
     </message>
@@ -2522,24 +2648,25 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="122"/>
       <source>No files configured to save for later.</source>
-      <translation type="unfinished"/>
+      <translation>Inga filer konfigurerade att spara till senare.</translation>
     </message>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="176"/>
       <source>Not all of the configured files could be preserved.</source>
-      <translation type="unfinished"/>
+      <translation>Inte alla av konfigurationsfilerna kunde bevaras.</translation>
     </message>
   </context>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="417"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
       <source>
 There was no output from the command.</source>
-      <translation type="unfinished"/>
+      <translation>
+Det kom ingen utdata från kommandot.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="419"/>
       <source>
 Output:
 </source>
@@ -2548,54 +2675,54 @@ Utdata:
 </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="422"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
       <source>External command crashed.</source>
       <translation>Externt kommando kraschade.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="424"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation>Kommando &lt;i&gt;%1&lt;/i&gt; kraschade.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="428"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
       <source>External command failed to start.</source>
       <translation>Externt kommando misslyckades med att starta</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="430"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation>Kommando &lt;i&gt;%1&lt;/i&gt; misslyckades med att starta. </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="433"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
       <source>Internal error when starting command.</source>
-      <translation type="unfinished"/>
+      <translation>Internt fel under kommandostart.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="435"/>
       <source>Bad parameters for process job call.</source>
       <translation>Ogiltiga parametrar för processens uppgiftsanrop.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="438"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="439"/>
       <source>External command failed to finish.</source>
-      <translation type="unfinished"/>
+      <translation>Fel inträffade när externt kommando kördes.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="439"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="440"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation>Kommando &lt;i&gt;%1&lt;/i&gt; misslyckades att slutföras på %2 sekunder.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="446"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
       <source>External command finished with errors.</source>
-      <translation type="unfinished"/>
+      <translation>Externt kommando kördes färdigt med fel.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="448"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
-      <translation type="unfinished"/>
+      <translation>Kommando &lt;i&gt;%1&lt;/i&gt;avslutades under körning med avslutningskod %2.</translation>
     </message>
   </context>
   <context>
@@ -2642,14 +2769,13 @@ Utdata:
       <translation>(ingen monteringspunkt)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/modulesystem/RequirementsChecker.cpp" line="65"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
       <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="39"/>
+      <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
       <source>%1 (%2)</source>
-      <extracomment>language[name] (country[name])</extracomment>
       <translation>%1 (%2)</translation>
     </message>
     <message>
@@ -2660,7 +2786,7 @@ Utdata:
     <message>
       <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
       <source>No description provided.</source>
-      <translation type="unfinished"/>
+      <translation>Ingen beskrivning tillhandahålls.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="73"/>
@@ -2692,20 +2818,20 @@ Utdata:
   <context>
     <name>RemoveVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="33"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="45"/>
       <source>Remove Volume Group named %1.</source>
       <translation>Ta bort volymgrupp med namnet %1. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="41"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="39"/>
       <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Ta bort volymgrupp med namnet &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="57"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Installationsprogrammet misslyckades att ta bort en volymgrupp med namnet '%1'.</translation>
     </message>
   </context>
   <context>
@@ -2784,20 +2910,6 @@ Utdata:
     </message>
   </context>
   <context>
-    <name>RequirementsModel</name>
-    <message>
-      <location filename="../src/modules/welcome/Config.h" line="147"/>
-      <source>This program will ask you some questions and set up your installation</source>
-      <translation type="unfinished"/>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/Config.h" line="149"/>
-      <source>This program does not satisfy the minimum requirements for installing.
-Installation can not continue</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
     <name>ResizeFSJob</name>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="57"/>
@@ -2869,22 +2981,22 @@ Installation can not continue</source>
   <context>
     <name>ResizePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="49"/>
       <source>Resize partition %1.</source>
       <translation>Ändra storlek på partition %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="56"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
       <translation>Ändra &lt;strong&gt;%2MiB&lt;/strong&gt;-partitionen &lt;strong&gt;%1&lt;/strong&gt; till &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="66"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="67"/>
       <source>Resizing %2MiB partition %1 to %3MiB.</source>
       <translation>Ändrar storlek på partitionen %1 från %2MB till %3MB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="86"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
       <translation>Installationsprogrammet misslyckades med att ändra storleken på partition %1 på disk '%2'.</translation>
     </message>
@@ -2900,31 +3012,31 @@ Installation can not continue</source>
   <context>
     <name>ResizeVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="55"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="36"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="54"/>
       <source>Resize volume group named %1 from %2 to %3.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="45"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Byt storlek på volymgrupp med namn &lt;strong&gt;%1&lt;/strong&gt;  från &lt;strong&gt;%2&lt;/strong&gt;till &lt;strong&gt;%3&lt;/strong&gt;. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="69"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Installationsprogrammet misslyckades att byta storlek på en volymgrupp med namn '%1'.</translation>
     </message>
   </context>
   <context>
     <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="139"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="140"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>För bästa resultat, vänligen se till att datorn:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="140"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="141"/>
       <source>System requirements</source>
       <translation>Systemkrav</translation>
     </message>
@@ -2932,27 +3044,27 @@ Installation can not continue</source>
   <context>
     <name>ResultsListWidget</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="260"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="261"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Datorn uppfyller inte minimikraven för inställning av %1.&lt;br/&gt;Inga inställningar kan inte göras. &lt;a href="#details"&gt;Detaljer...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="264"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="265"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Denna dator uppfyller inte minimikraven för att installera %1.&lt;br/&gt;Installationen kan inte fortsätta. &lt;a href="#details"&gt;Detaljer...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="271"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="272"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Några av kraven för inställning av %1 uppfylls inte av datorn.&lt;br/&gt;Inställningarna kan ändå göras men vissa funktioner kommer kanske inte att kunna användas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="275"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="276"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Denna dator uppfyller inte alla rekommenderade krav för att installera %1.&lt;br/&gt;Installationen kan fortsätta, men alla alternativ och funktioner kanske inte kan användas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="284"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="285"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Detta program kommer att ställa dig några frågor och installera %2 på din dator.</translation>
     </message>
@@ -3008,24 +3120,24 @@ Installation can not continue</source>
       <translation>Sätt tangentbordsmodell till %1, layout till %2-%3</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="321"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="351"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation>Misslyckades med att skriva tangentbordskonfiguration för konsolen.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="326"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="332"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="352"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="363"/>
       <source>Failed to write to %1</source>
       <translation>Misslyckades med att skriva %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="325"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="355"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation>Misslyckades med att skriva tangentbordskonfiguration för X11.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="331"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="362"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation>Misslyckades med att skriva tangentbordskonfiguration till den existerande katalogen /etc/default.</translation>
     </message>
@@ -3038,77 +3150,77 @@ Installation can not continue</source>
       <translation>Sätt flaggor på partition %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="58"/>
       <source>Set flags on %1MiB %2 partition.</source>
       <translation>Sätt flaggor på %1MiB %2 partition.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="60"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="62"/>
       <source>Set flags on new partition.</source>
       <translation>Sätt flaggor på ny partition.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="74"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Rensa flaggor på partition &lt;strong&gt;%1&lt;/strong&gt;,</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="76"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Rensa flaggor på %1MiB &lt;strong&gt;%2&lt;/strong&gt;partition.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="91"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>Flagga %1MiB &lt;strong&gt;%2&lt;/strong&gt;partition som &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="114"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Rensa flaggor på %1MiB &lt;strong&gt;%2&lt;/strong&gt;partition.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="129"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Sätter flaggor &lt;strong&gt;%3&lt;/strong&gt; på  %11MiB &lt;strong&gt;%2&lt;/strong&gt;partition.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
       <source>Clear flags on new partition.</source>
       <translation>Rensa flaggor på ny partition.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Flagga partition &lt;strong&gt;%1&lt;/strong&gt; som &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="97"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Flagga ny partition som &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="109"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Rensar flaggor på partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="118"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="128"/>
       <source>Clearing flags on new partition.</source>
       <translation>Rensar flaggor på ny partition.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Sätter flaggor &lt;strong&gt;%2&lt;/strong&gt; på partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="135"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
       <translation>Sätter flaggor &lt;strong&gt;%1&lt;/strong&gt; på ny partition</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="152"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="165"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>Installationsprogrammet misslyckades med att sätta flaggor på partition %1. </translation>
     </message>
@@ -3473,7 +3585,7 @@ Installation can not continue</source>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>Open donations website</source>
-      <translation type="unfinished"/>
+      <translation>Besök webbplatsen för donationer</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
@@ -3516,42 +3628,42 @@ Installation can not continue</source>
       <translation>Om, &amp;A</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="219"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Välkommen till %1-installeraren.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="215"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="218"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Välkommen till installationsprogrammet Calamares för %1.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="209"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Välkommen till Calamares installationsprogrammet för %1.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="210"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="213"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Välkommen till %1 installation.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
       <source>About %1 setup</source>
       <translation>Om inställningarna för %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
       <source>About %1 installer</source>
       <translation>Om %1-installationsprogrammet</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
-      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
+      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="221"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="224"/>
       <source>%1 support</source>
       <translation>%1-support</translation>
     </message>
@@ -3573,6 +3685,75 @@ Installation can not continue</source>
     </message>
   </context>
   <context>
+    <name>about</name>
+    <message>
+      <location filename="../src/modules/welcomeq/about.qml" line="56"/>
+      <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Thanks to &lt;a href='https://calamares.io/team/'&gt;the Calamares team&lt;/a&gt; 
+                        and the &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 
+                        translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        development is sponsored by &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        Liberating Software.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/about.qml" line="105"/>
+      <source>Back</source>
+      <translation>Bakåt</translation>
+    </message>
+  </context>
+  <context>
+    <name>keyboardq</name>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="25"/>
+      <source>Keyboard Model</source>
+      <translation>Tangentbordsmodell</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="26"/>
+      <source>Pick your preferred keyboard model or use the default one based on the detected hardware</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="41"/>
+      <source>Refresh</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="51"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="163"/>
+      <source>Layouts</source>
+      <translation>Layouter</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="79"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="139"/>
+      <source>Keyboard Layout</source>
+      <translation>Tangentbordslayout</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="101"/>
+      <source>Models</source>
+      <translation>Modeller</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="109"/>
+      <source>Variants</source>
+      <translation>Varianter</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="189"/>
+      <source>Test your keyboard</source>
+      <translation>Testa ditt tangentbord</translation>
+    </message>
+  </context>
+  <context>
     <name>notesqml</name>
     <message>
       <location filename="../src/modules/notesqml/notesqml.qml" line="61"/>
@@ -3585,9 +3766,9 @@ Installation can not continue</source>
   <context>
     <name>welcomeq</name>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="42"/>
-      <source>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</source>
-      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="43"/>
+      <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
@@ -3595,22 +3776,22 @@ Installation can not continue</source>
       <translation>Om</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="86"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="89"/>
       <source>Support</source>
       <translation>Support</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="97"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Known issues</source>
       <translation>Kända problem</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="108"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="111"/>
       <source>Release notes</source>
       <translation>Versionsinformation</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="122"/>
       <source>Donate</source>
       <translation>Donera</translation>
     </message>

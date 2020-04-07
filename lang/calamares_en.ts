@@ -461,17 +461,17 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
       <source>&amp;Back</source>
-      <translation type="unfinished">&amp;Back</translation>
+      <translation>&amp;Back</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="184"/>
       <source>&amp;Next</source>
-      <translation type="unfinished">&amp;Next</translation>
+      <translation>&amp;Next</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="197"/>
       <source>&amp;Cancel</source>
-      <translation type="unfinished">&amp;Cancel</translation>
+      <translation>&amp;Cancel</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="286"/>
@@ -530,7 +530,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
@@ -702,27 +702,27 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="54"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation type="unfinished">This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</translation>
+      <translation>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="58"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation type="unfinished">This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</translation>
+      <translation>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="65"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation type="unfinished">This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</translation>
+      <translation>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="69"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation type="unfinished">This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</translation>
+      <translation>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="79"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation type="unfinished">This program will ask you some questions and set up %2 on your computer.</translation>
+      <translation>This program will ask you some questions and set up %2 on your computer.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="254"/>
@@ -747,47 +747,47 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/keyboard/Config.cpp" line="348"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation type="unfinished">Set keyboard model to %1.&lt;br/&gt;</translation>
+      <translation>Set keyboard model to %1.&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
       <source>Set keyboard layout to %1/%2.</source>
-      <translation type="unfinished">Set keyboard layout to %1/%2.</translation>
+      <translation>Set keyboard layout to %1/%2.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="272"/>
       <source>The system language will be set to %1.</source>
-      <translation type="unfinished">The system language will be set to %1.</translation>
+      <translation>The system language will be set to %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="273"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation type="unfinished">The numbers and dates locale will be set to %1.</translation>
+      <translation>The numbers and dates locale will be set to %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="306"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-      <translation type="unfinished">Set timezone to %1/%2.&lt;br/&gt;</translation>
+      <translation>Set timezone to %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation type="unfinished">Network Installation. (Disabled: Incorrect configuration)</translation>
+      <translation>Network Installation. (Disabled: Incorrect configuration)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
       <source>Network Installation. (Disabled: Received invalid groups data)</source>
-      <translation type="unfinished">Network Installation. (Disabled: Received invalid groups data)</translation>
+      <translation>Network Installation. (Disabled: Received invalid groups data)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
       <source>Network Installation. (Disabled: internal error)</source>
-      <translation type="unfinished"/>
+      <translation>Network Installation. (Disabled: internal error)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
       <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-      <translation type="unfinished">Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</translation>
+      <translation>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</translation>
     </message>
   </context>
   <context>
@@ -1520,7 +1520,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="42"/>
       <source>Keyboard</source>
-      <translation type="unfinished">Keyboard</translation>
+      <translation>Keyboard</translation>
     </message>
   </context>
   <context>
@@ -1704,7 +1704,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="98"/>
       <source>Location</source>
-      <translation type="unfinished">Location</translation>
+      <translation>Location</translation>
     </message>
   </context>
   <context>
@@ -1830,42 +1830,42 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Communication</source>
-      <translation type="unfinished"/>
+      <translation>Communication</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="75"/>
       <source>Development</source>
-      <translation type="unfinished"/>
+      <translation>Development</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="76"/>
       <source>Office</source>
-      <translation type="unfinished"/>
+      <translation>Office</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="77"/>
       <source>Multimedia</source>
-      <translation type="unfinished"/>
+      <translation>Multimedia</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="78"/>
       <source>Internet</source>
-      <translation type="unfinished"/>
+      <translation>Internet</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="79"/>
       <source>Theming</source>
-      <translation type="unfinished"/>
+      <translation>Theming</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="80"/>
       <source>Gaming</source>
-      <translation type="unfinished"/>
+      <translation>Gaming</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="81"/>
       <source>Utilities</source>
-      <translation type="unfinished"/>
+      <translation>Utilities</translation>
     </message>
   </context>
   <context>
@@ -2571,12 +2571,12 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
       <source>Option to use GPT on BIOS</source>
-      <translation type="unfinished"/>
+      <translation>Option to use GPT on BIOS</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
@@ -3661,7 +3661,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished">&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software. {1&gt;?} {1&lt;?} {1&gt;?} {2&lt;?} {3&lt;?} {2014-2017 ?} {2017-2020 ?}</translation>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software. {1&gt;?} {1&lt;?} {1&gt;?} {2&lt;?} {3&lt;?} {2014-2017 ?} {2017-2020 ?}</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="224"/>
@@ -3701,12 +3701,23 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Thanks to &lt;a href='https://calamares.io/team/'&gt;the Calamares team&lt;/a&gt; 
+                        and the &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 
+                        translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        development is sponsored by &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="105"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Back</translation>
     </message>
   </context>
   <context>
@@ -3714,44 +3725,44 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="25"/>
       <source>Keyboard Model</source>
-      <translation type="unfinished"/>
+      <translation>Keyboard Model</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="26"/>
       <source>Pick your preferred keyboard model or use the default one based on the detected hardware</source>
-      <translation type="unfinished"/>
+      <translation>Pick your preferred keyboard model or use the default one based on the detected hardware</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="41"/>
       <source>Refresh</source>
-      <translation type="unfinished"/>
+      <translation>Refresh</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="51"/>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="163"/>
       <source>Layouts</source>
-      <translation type="unfinished"/>
+      <translation>Layouts</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="79"/>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="139"/>
       <source>Keyboard Layout</source>
-      <translation type="unfinished"/>
+      <translation>Keyboard Layout</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="101"/>
       <source>Models</source>
-      <translation type="unfinished"/>
+      <translation>Models</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="109"/>
       <source>Variants</source>
-      <translation type="unfinished"/>
+      <translation>Variants</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="189"/>
       <source>Test your keyboard</source>
-      <translation type="unfinished"/>
+      <translation>Test your keyboard</translation>
     </message>
   </context>
   <context>
@@ -3769,7 +3780,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="43"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
