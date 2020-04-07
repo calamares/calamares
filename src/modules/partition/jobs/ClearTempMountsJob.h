@@ -37,4 +37,4 @@ public:
     Calamares::JobResult exec() override;
 };
 
-#endif // CLEARTEMPMOUNTSJOB_H
+#endif  // CLEARTEMPMOUNTSJOB_H

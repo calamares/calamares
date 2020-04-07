@@ -35,6 +35,7 @@ public:
     QString prettyName() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
+
 private:
     QString tryUmount( const QString& partPath );
     QString tryClearSwap( const QString& partPath );
@@ -43,4 +44,4 @@ private:
     Device* m_device;
 };
 
-#endif // CLEARMOUNTSJOB_H
+#endif  // CLEARMOUNTSJOB_H

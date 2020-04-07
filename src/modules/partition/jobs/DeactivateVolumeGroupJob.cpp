@@ -25,28 +25,24 @@
 DeactivateVolumeGroupJob::DeactivateVolumeGroupJob( LvmDevice* device )
     : m_device( device )
 {
-
 }
 
 QString
 DeactivateVolumeGroupJob::prettyName() const
 {
-    return tr( "Deactivate volume group named %1." )
-            .arg( m_device->name() );
+    return tr( "Deactivate volume group named %1." ).arg( m_device->name() );
 }
 
 QString
 DeactivateVolumeGroupJob::prettyDescription() const
 {
-    return tr( "Deactivate volume group named <strong>%1</strong>." )
-            .arg( m_device->name() );
+    return tr( "Deactivate volume group named <strong>%1</strong>." ).arg( m_device->name() );
 }
 
 QString
 DeactivateVolumeGroupJob::prettyStatusMessage() const
 {
-    return tr( "Deactivate volume group named %1." )
-            .arg( m_device->name() );
+    return tr( "Deactivate volume group named %1." ).arg( m_device->name() );
 }
 
 Calamares::JobResult
@@ -65,5 +61,5 @@ DeactivateVolumeGroupJob::exec()
         return Calamares::JobResult::ok();
     }
 
-    return Calamares::JobResult::error(message, report.toText());
+    return Calamares::JobResult::error( message, report.toText() );
 }

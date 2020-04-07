@@ -40,4 +40,4 @@ private:
     LvmDevice* m_device;
 };
 
-#endif // DEACTIVATEVOLUMEGROUPJOB_H
+#endif  // DEACTIVATEVOLUMEGROUPJOB_H

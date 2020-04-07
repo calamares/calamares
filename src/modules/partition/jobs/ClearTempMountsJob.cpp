@@ -54,13 +54,15 @@ Calamares::JobResult
 ClearTempMountsJob::exec()
 {
     // Fetch a list of current mounts to Calamares temporary directories.
-    QList< QPair < QString, QString > > lst;
+    QList< QPair< QString, QString > > lst;
     QFile mtab( "/etc/mtab" );
     if ( !mtab.open( QFile::ReadOnly | QFile::Text ) )
+    {
         return Calamares::JobResult::error( tr( "Cannot get list of temporary mounts." ) );
+    }
 
     cDebug() << "Opened mtab. Lines:";
-    QTextStream in(&mtab);
+    QTextStream in( &mtab );
     QString lineIn = in.readLine();
     while ( !lineIn.isNull() )
     {
@@ -76,11 +78,10 @@ ClearTempMountsJob::exec()
         lineIn = in.readLine();
     }
 
-    std::sort ( lst.begin(), lst.end(), []( const QPair< QString, QString >& a,
-                                       const QPair< QString, QString >& b ) -> bool
-    {
-        return a.first > b.first;
-    } );
+    std::sort(
+        lst.begin(), lst.end(), []( const QPair< QString, QString >& a, const QPair< QString, QString >& b ) -> bool {
+            return a.first > b.first;
+        } );
 
     QStringList goodNews;
     QProcess process;
@@ -92,7 +93,9 @@ ClearTempMountsJob::exec()
         process.start( "umount", { "-lv", partPath } );
         process.waitForFinished();
         if ( process.exitCode() == 0 )
+        {
             goodNews.append( QString( "Successfully unmounted %1." ).arg( partPath ) );
+        }
     }
 
     Calamares::JobResult ok = Calamares::JobResult::ok();
