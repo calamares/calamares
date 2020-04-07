@@ -920,13 +920,16 @@ PartitionCoreModule::layoutApply( Device* dev,
     // TODO: perhaps the partition that holds the bootloader?
     const QString boot = QStringLiteral( "/boot" );
     const QString root = QStringLiteral( "/" );
-    const auto is_boot = [&](Partition*p) -> bool {return PartitionInfo::mountPoint(p) == boot || p->mountPoint() == boot;};
-    const auto is_root = [&](Partition*p) -> bool {return PartitionInfo::mountPoint(p) == root || p->mountPoint() == root;};
+    const auto is_boot
+        = [&]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == boot || p->mountPoint() == boot; };
+    const auto is_root
+        = [&]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == root || p->mountPoint() == root; };
 
-    const bool separate_boot_partition = std::find_if(partList.constBegin(), partList.constEnd(), is_boot) != partList.constEnd();
-    for( Partition* part : partList )
+    const bool separate_boot_partition
+        = std::find_if( partList.constBegin(), partList.constEnd(), is_boot ) != partList.constEnd();
+    for ( Partition* part : partList )
     {
-        if (  ( separate_boot_partition && is_boot(part)) || (!separate_boot_partition && is_root(part)))
+        if ( ( separate_boot_partition && is_boot( part ) ) || ( !separate_boot_partition && is_root( part ) ) )
         {
             createPartition(
                 dev, part, part->activeFlags() | ( isEfi ? KPM_PARTITION_FLAG( None ) : KPM_PARTITION_FLAG( Boot ) ) );

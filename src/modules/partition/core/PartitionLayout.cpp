@@ -257,7 +257,7 @@ PartitionLayout::execute( Device* dev,
 #if defined( WITH_KPMCORE42API )
             for ( const auto& k : part.partFeatures.keys() )
             {
-                currentPartition->fileSystem().addFeature( k, part.partFeatures.value(k) );
+                currentPartition->fileSystem().addFeature( k, part.partFeatures.value( k ) );
             }
 #else
             cWarning() << "Ignoring features; requires KPMcore >= 4.2.0.";
