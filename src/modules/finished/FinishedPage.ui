@@ -92,7 +92,7 @@
        <item>
         <widget class="QCheckBox" name="restartCheckBox">
          <property name="toolTip">
-          <string>&lt;Restart checkbox tooltip&gt;</string>
+          <string notr="true">&lt;Restart checkbox tooltip&gt;</string>
          </property>
          <property name="text">
           <string>&amp;Restart now</string>
