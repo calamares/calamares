@@ -18,7 +18,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/ResizePartitionJob.h"
+#include "ResizePartitionJob.h"
 
 #include "utils/Units.h"
 

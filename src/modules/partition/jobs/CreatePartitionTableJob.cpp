@@ -18,7 +18,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/CreatePartitionTableJob.h"
+#include "CreatePartitionTableJob.h"
 
 #include "partition/PartitionIterator.h"
 #include "utils/Logger.h"

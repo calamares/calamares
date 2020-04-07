@@ -18,7 +18,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/DeletePartitionJob.h"
+#include "DeletePartitionJob.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
