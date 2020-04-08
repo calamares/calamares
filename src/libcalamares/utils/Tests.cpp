@@ -109,16 +109,49 @@ findConf( const QDir& d )
     return mine;
 }
 
+void LibCalamaresTests::recursiveCompareMap(const QVariantMap& a, const QVariantMap& b, int depth )
+{
+    cDebug() << "Comparing depth" << depth << a.count() << b.count();
+    QCOMPARE( a.keys(), b.keys() );
+    for ( const auto& k : a.keys() )
+    {
+        cDebug() << Logger::SubEntry << k;
+        const auto& av = a[k];
+        const auto& bv = b[k];
+
+        if ( av.typeName() != bv.typeName() )
+        {
+            cDebug() << Logger::SubEntry << "a type" << av.typeName() << av;
+            cDebug() << Logger::SubEntry << "b type" << bv.typeName() << bv;
+        }
+        QCOMPARE( av.typeName(), bv.typeName() );
+        if ( av.canConvert<QVariantMap>() )
+        {
+            recursiveCompareMap( av.toMap(), bv.toMap(), depth+1 );
+        }
+        else
+        {
+            QCOMPARE( av, bv );
+        }
+    }
+}
+
 
 void
 LibCalamaresTests::testLoadSaveYamlExtended()
 {
+    bool loaded_ok;
     for ( const auto& confname : findConf( QDir( "../src" ) ) )
     {
+        loaded_ok = true;
         cDebug() << "Testing" << confname;
-        auto map = CalamaresUtils::loadYaml( confname );
+        auto map = CalamaresUtils::loadYaml( confname, &loaded_ok );
+        QVERIFY( loaded_ok );
         QVERIFY( CalamaresUtils::saveYaml( "out.yaml", map ) );
-        auto othermap = CalamaresUtils::loadYaml( "out.yaml" );
+        auto othermap = CalamaresUtils::loadYaml( "out.yaml", &loaded_ok );
+        QVERIFY( loaded_ok );
+        QCOMPARE( map.keys(), othermap.keys() );
+        recursiveCompareMap( map, othermap, 0 );
         QCOMPARE( map, othermap );
     }
     QFile::remove( "out.yaml" );
