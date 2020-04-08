@@ -103,11 +103,11 @@ msgstr "rsync נכשל עם קוד השגיאה {}."
 
 #: src/modules/unpackfs/main.py:302
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "התמונה נפרסת {}/{}, קובץ {}/{}"
 
 #: src/modules/unpackfs/main.py:317
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "הפריסה של {} מתחילה"
 
 #: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
 msgid "Failed to unpack image \"{}\""
