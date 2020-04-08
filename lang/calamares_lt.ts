@@ -3723,7 +3723,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="26"/>
       <source>Pick your preferred keyboard model or use the default one based on the detected hardware</source>
-      <translation type="unfinished"/>
+      <translation>Pasirinkite pageidaujamą klaviatūros modelį arba naudokite numatytąjį remiantis aptikta aparatine įranga</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="41"/>
