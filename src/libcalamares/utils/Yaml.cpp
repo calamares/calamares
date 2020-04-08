@@ -266,7 +266,7 @@ dumpYamlElement( QFile& f, const QVariant& value, int indent )
     }
     else if ( value.type() == QVariant::Type::Double )
     {
-        f.write( QString::number( value.toDouble() ).toUtf8() );
+        f.write( QString::number( value.toDouble(), 'f', 2 ).toUtf8() );
     }
     else if ( value.canConvert( QVariant::Type::ULongLong ) )
     {
