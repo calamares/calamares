@@ -260,9 +260,19 @@ dumpYamlElement( QFile& f, const QVariant& value, int indent )
     {
         f.write( QString::number( value.toInt() ).toUtf8() );
     }
+    else if ( value.type() == QVariant::Type::LongLong )
+    {
+        f.write( QString::number( value.toLongLong() ).toUtf8() );
+    }
     else if ( value.type() == QVariant::Type::Double )
     {
         f.write( QString::number( value.toDouble() ).toUtf8() );
+    }
+    else if ( value.canConvert( QVariant::Type::ULongLong ) )
+    {
+        // This one needs to be *after* bool, int, double to avoid this branch
+        // .. grabbing those convertible types un-necessarily.
+        f.write( QString::number( value.toULongLong() ).toUtf8() );
     }
     else if ( value.type() == QVariant::Type::List )
     {
