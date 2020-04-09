@@ -16,6 +16,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
+import io.calamares.core 1.0
 import io.calamares.ui 1.0
 
 import QtQuick 2.10
@@ -58,10 +59,11 @@ Page
         RowLayout
         {
             id: buttonBar
-            width: parent.width
+            Layout.fillWidth: true
             height: 64
 
             anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
 
             spacing: Kirigami.Units.largeSpacing* 2
 
@@ -71,7 +73,7 @@ Page
  */
             Button
             {
-                Layout.fillWidth: true
+                width: parent.width /6
                 text: qsTr("About")
                 icon.name: "dialog-information"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
@@ -85,7 +87,7 @@ Page
             }
             Button
             {
-                Layout.fillWidth: true
+                width: parent.width /6
                 text: qsTr("Support")
                 icon.name: "system-help"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
@@ -96,7 +98,7 @@ Page
             }
             Button
             {
-                Layout.fillWidth: true
+                width: parent.width /6
                 text: qsTr("Known issues")
                 icon.name: "tools-report-bug"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
@@ -107,7 +109,7 @@ Page
             }
             Button
             {
-                Layout.fillWidth: true
+                width: parent.width /6
                 text: qsTr("Release notes")
                 icon.name: "folder-text"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
@@ -118,7 +120,7 @@ Page
             }
             Button
             {
-                Layout.fillWidth: true
+                width: parent.width /6
                 text: qsTr("Donate")
                 icon.name: "taxes-finances"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
@@ -126,6 +128,38 @@ Page
 
                 visible: config.donateUrl !== ""
                 onClicked: Qt.openUrlExternally(config.donateUrl)
+            }
+        }
+        RowLayout
+        {
+            id: languageBar
+            width: parent.width /1.2
+            height: 48
+            
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: parent.height /7
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: Kirigami.Units.largeSpacing* 4
+            
+            Rectangle {
+                width: parent.width
+                Layout.fillWidth: true
+                focus: true
+                Image {
+                    id: image
+                    height: 48
+                    fillMode: Image.PreserveAspectFit
+                    source: "img/language-icon-48px.png"
+                }
+                
+                ComboBox {
+                    id: languages
+                    anchors.left: image.right
+                    width: languageBar.width /1.1
+                    textRole: "label"
+                    currentIndex: 4
+                    model: config.languagesModel
+                }
             }
         }
         Loader
