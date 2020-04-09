@@ -6,6 +6,8 @@ if( DEBUG_TIMEZONES )
     add_definitions( -DDEBUG_TIMEZONES )
 endif()
 
+find_package(Marble CONFIG REQUIRED)
+
 # Because we're sharing sources with the regular locale module
 set( _locale ${CMAKE_CURRENT_SOURCE_DIR}/../locale )
 

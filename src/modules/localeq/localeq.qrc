@@ -43,5 +43,6 @@
     </qresource>
     <qresource>
         <file>localeq.qml</file>
+        <file>Marble.qml</file>
     </qresource>
 </RCC>
