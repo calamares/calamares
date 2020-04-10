@@ -43,6 +43,7 @@
     </qresource>
     <qresource>
         <file>localeq.qml</file>
-        <file>Marble.qml</file>
+        <file>Map.qml</file>
+        <file>pin.svg</file>
     </qresource>
 </RCC>

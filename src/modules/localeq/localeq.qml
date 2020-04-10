@@ -8,7 +8,7 @@ import org.kde.kirigami 2.7 as Kirigami
 
 Page
 {
-    Marble  {
+    Map  {
         id: image
         anchors.horizontalCenter: parent.horizontalCenter
     }

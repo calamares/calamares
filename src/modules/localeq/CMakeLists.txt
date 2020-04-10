@@ -6,7 +6,8 @@ if( DEBUG_TIMEZONES )
     add_definitions( -DDEBUG_TIMEZONES )
 endif()
 
-find_package(Marble CONFIG REQUIRED)
+find_package(Qt5Location CONFIG REQUIRED)
+find_package(Qt5Positioning CONFIG REQUIRED)
 
 # Because we're sharing sources with the regular locale module
 set( _locale ${CMAKE_CURRENT_SOURCE_DIR}/../locale )
