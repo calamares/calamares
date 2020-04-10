@@ -15,7 +15,7 @@ Rectangle {
 
     Plugin {
         id: mapPlugin
-        name: "mapboxgl" // "mapboxgl", "esri", "osm"
+        name: "esri" // "mapboxgl", "esri", "osm"
     }
 
     Map {
