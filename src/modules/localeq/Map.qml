@@ -8,24 +8,24 @@ import QtLocation 5.14
 import QtPositioning 5.14
 
 
-
 Rectangle {
     width: parent.width
     height: 300
 
     Plugin {
         id: mapPlugin
-        name: "esri" // "mapboxgl", "esri", "osm"
+        name: "esri" // "esri", "here", "itemsoverlay", "mapbox", "mapboxgl",  "osm"
     }
 
     Map {
         id: map
         anchors.fill: parent
         plugin: mapPlugin
-        activeMapType: supportedMapTypes[5]
+        activeMapType: supportedMapTypes[0]
         center: QtPositioning.coordinate(40.730610, -73.935242) // New York
         zoomLevel: 6
         bearing: 0
+        tilt: 0
         copyrightsVisible : true
         fieldOfView : 90
 
@@ -44,10 +44,17 @@ Rectangle {
         }
         MouseArea {
 			acceptedButtons: Qt.LeftButton | Qt.RightButton
-            anchors.fill: parent
-			onClicked: {
-                //marker.coordinate: QtPositioning.coordinate(59.9485, 10.7686)
-			}
+            anchors.fill: map
+			hoverEnabled: true
+            property var coordinate: map.toCoordinate(Qt.point(mouseX, mouseY))
+            Label {
+                x: parent.mouseX - width
+                y: parent.mouseY - height - 5
+                text: "%1, %2".arg(parent.coordinate.latitude).arg(parent.coordinate.longitude)
+            }
+            onClicked: {
+                marker.coordinate = map.toCoordinate(Qt.point(mouse.x,mouse.y))
+            }
 		}
     }
     Column {

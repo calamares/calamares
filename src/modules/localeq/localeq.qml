@@ -24,7 +24,7 @@ Page
 
             ComboBox {
                 Kirigami.FormData.label: qsTr("Region: ")
-                currentIndex: 1
+                currentIndex: model.currentIndex
                 textRole: "label"
                 model: config.regionModel
             }
@@ -45,7 +45,7 @@ Page
 
             ComboBox {
                 Kirigami.FormData.label: qsTr("Zone: ")
-                currentIndex: 1
+                currentIndex: model.currentIndex
                 textRole: "label"
                 model: config.zonesModel
             }
