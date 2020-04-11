@@ -22,8 +22,8 @@ Rectangle {
         anchors.fill: parent
         plugin: mapPlugin
         activeMapType: supportedMapTypes[0]
-        center: QtPositioning.coordinate(40.730610, -73.935242) // New York
-        zoomLevel: 6
+        center: marker.coordinate
+        zoomLevel: 5
         bearing: 0
         tilt: 0
         copyrightsVisible : true
@@ -33,7 +33,7 @@ Rectangle {
             id: marker
             anchorPoint.x: image.width/4
             anchorPoint.y: image.height
-            coordinate: QtPositioning.coordinate(40.730610, -73.935242)
+            coordinate: QtPositioning.coordinate(40.730610, -73.935242) // New York
 
             sourceItem: Image {
                 id: image
@@ -43,19 +43,20 @@ Rectangle {
             }
         }
         MouseArea {
-			acceptedButtons: Qt.LeftButton | Qt.RightButton
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
             anchors.fill: map
-			hoverEnabled: true
+            hoverEnabled: true
             property var coordinate: map.toCoordinate(Qt.point(mouseX, mouseY))
             Label {
                 x: parent.mouseX - width
                 y: parent.mouseY - height - 5
                 text: "%1, %2".arg(parent.coordinate.latitude).arg(parent.coordinate.longitude)
             }
+            
             onClicked: {
-                marker.coordinate = map.toCoordinate(Qt.point(mouse.x,mouse.y))
+                marker.coordinate = coordinate
             }
-		}
+        }
     }
     Column {
         anchors.top: parent.top
@@ -63,18 +64,20 @@ Rectangle {
         anchors.topMargin: 10
         anchors.rightMargin: 10
         
-        Button {
-            width: 40
-            icon.name: "arrow-up"
+        RoundButton {
+            width: 25
+            height:38
+            text: "+"
 
             onClicked: map.zoomLevel++
         }
-        Button {
-            width: 40
-            icon.name: "arrow-down"
+        RoundButton {
+            width: 25
+            height:38
+            text: "-"
+            font { pointSize: 20 }
 
             onClicked: map.zoomLevel--
         }
     }
-    
 }

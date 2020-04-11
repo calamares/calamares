@@ -27,6 +27,7 @@ Page
                 currentIndex: model.currentIndex
                 textRole: "label"
                 model: config.regionModel
+                onCurrentIndexChanged: console.debug(currentIndex)
             }
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
@@ -48,6 +49,7 @@ Page
                 currentIndex: model.currentIndex
                 textRole: "label"
                 model: config.zonesModel
+                onCurrentIndexChanged: console.debug(currentIndex)
             }
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
