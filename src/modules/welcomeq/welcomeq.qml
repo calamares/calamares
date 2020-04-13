@@ -30,21 +30,18 @@ Page
 {
     id: welcome
 
-    header: Item
-    {
+    header: Item {
         width: parent.width
         height: parent.height
 
-        Text
-        {
+        Text {
             id: welcomeTopText
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             // In QML, QString::arg() only takes one argument
             text: qsTr("<h3>Welcome to the %1 <quote>%2</quote> installer</h3>").arg(Branding.string(Branding.ProductName)).arg(Branding.string(Branding.Version))
         }
-        Image
-        {
+        Image {
             id: welcomeImage
             anchors.centerIn: parent
             // imagePath() returns a full pathname, so make it refer to the filesystem
@@ -56,8 +53,7 @@ Page
             fillMode: Image.PreserveAspectFit
         }
 
-        RowLayout
-        {
+        RowLayout {
             id: buttonBar
             Layout.fillWidth: true
             height: 64
@@ -71,22 +67,23 @@ Page
  * Calamares itself, which just isn't a very useful thing in someone
  * else's installation ISO.
  */
-            Button
-            {
+            Button {
+                Layout.fillWidth: true
                 width: parent.width /6
                 text: qsTr("About")
                 icon.name: "dialog-information"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
                 
-                visible: false
+                visible: true
                 onClicked: { 
                     //onClicked: load.source = "file:/usr/share/calamares/branding/kaos_branding/show.qml"
                     onClicked: load.source = "about.qml"
                 }
             }
-            Button
-            {
+            
+            Button {
+                Layout.fillWidth: true
                 width: parent.width /6
                 text: qsTr("Support")
                 icon.name: "system-help"
@@ -96,8 +93,9 @@ Page
                 visible: config.supportUrl !== ""
                 onClicked: Qt.openUrlExternally(config.supportUrl)
             }
-            Button
-            {
+            
+            Button {
+                Layout.fillWidth: true
                 width: parent.width /6
                 text: qsTr("Known issues")
                 icon.name: "tools-report-bug"
@@ -107,8 +105,9 @@ Page
                 visible: config.knownIssuesUrl !== ""
                 onClicked: Qt.openUrlExternally(config.knownIssuesUrl)
             }
-            Button
-            {
+            
+            Button {
+                Layout.fillWidth: true
                 width: parent.width /6
                 text: qsTr("Release notes")
                 icon.name: "folder-text"
@@ -118,8 +117,9 @@ Page
                 visible: config.releaseNotesUrl !== ""
                 onClicked: Qt.openUrlExternally(config.releaseNotesUrl)
             }
-            Button
-            {
+            
+            Button {
+                Layout.fillWidth: true
                 width: parent.width /6
                 text: qsTr("Donate")
                 icon.name: "taxes-finances"
@@ -130,8 +130,8 @@ Page
                 onClicked: Qt.openUrlExternally(config.donateUrl)
             }
         }
-        RowLayout
-        {
+        
+        RowLayout {
             id: languageBar
             width: parent.width /1.2
             height: 48
@@ -157,13 +157,14 @@ Page
                     anchors.left: image.right
                     width: languageBar.width /1.1
                     textRole: "label"
-                    currentIndex: 4
+                    currentIndex: 4 //model.currentIndex
                     model: config.languagesModel
+                    onCurrentIndexChanged: console.debug(currentText, currentIndex)
                 }
             }
         }
-        Loader
-        { 
+        
+        Loader { 
             id:load 
             anchors.fill: parent
         }
