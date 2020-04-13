@@ -1,3 +1,22 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2020, Anke Boersma <demm@kaosx.us>
+ *
+ *   Calamares is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Calamares is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import io.calamares.core 1.0
 import io.calamares.ui 1.0
 
@@ -18,16 +37,18 @@ Page
         anchors.top: image.bottom
         anchors.topMargin: 5
         width: parent.width
+        
         Kirigami.FormLayout {
-            id: layout
+            id: region
             Layout.fillWidth: true
 
             ComboBox {
                 Kirigami.FormData.label: qsTr("Region: ")
+                id: regionIndex
                 currentIndex: model.currentIndex
                 textRole: "label"
                 model: config.regionModel
-                onCurrentIndexChanged: console.debug(currentIndex)
+                onCurrentIndexChanged: console.debug(currentText, currentIndex)
             }
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
@@ -46,10 +67,11 @@ Page
 
             ComboBox {
                 Kirigami.FormData.label: qsTr("Zone: ")
+                id: zoneIndex
                 currentIndex: model.currentIndex
                 textRole: "label"
                 model: config.zonesModel
-                onCurrentIndexChanged: console.debug(currentIndex)
+                onCurrentIndexChanged: console.debug(currentText, currentIndex)
             }
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
