@@ -118,6 +118,12 @@ strings:
 # productLogo is used as the logo at the top of the left-hand column
 #       which shows the steps to be taken. The image should be square,
 #       and is displayed at 80x80 pixels (also on HiDPI).
+# productWallpaper is an optional image, which if present, will replace
+#       the normal solid background on every page of the application.
+#       It can be any size and proportion,                        # FIXME: is this true?
+#       and will be scaled to fit inside the window.              # FIXME: is this true?
+#       and will be tiled and/or scaled to fit inside the window. # FIXME: is this true?
+#       Recommended height is ?.                                  # FIXME: ... when ready
 # productWelcome is shown on the welcome page of the application in
 #       the middle of the window, below the welcome text. It can be
 #       any size and proportion, and will be scaled to fit inside
@@ -129,6 +135,9 @@ images:
     # productBanner:       "banner.png"
     productIcon:         "squid.png"
     productLogo:         "squid.png"
+    productIcon:         "squid.png"
+    productLogo:         "squid.png"
+    productWallpaper:    "wallpaper.png"
     productWelcome:      "languages.png"
 
 # The slideshow is displayed during execution steps (e.g. when the
