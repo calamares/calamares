@@ -53,8 +53,8 @@ Rectangle {
             query: Address {
                 id: address
                 //street: "14th Street"
-                city: regionIndex.currentIndex
-                country: zoneIndex.currentIndex
+                city: zoneIndex.currentIndex
+                country: regionIndex.currentIndex
                 //countryCode: "US"
             }
             
