@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 
 #include "Tests.h"
 #include "LocaleConfiguration.h"
+
+#include "locale/TimeZone.h"
 
 #include <QtTest/QtTest>
 
@@ -76,4 +78,21 @@ LocaleTests::testSplitLocaleConfiguration()
     QVERIFY( !lc3.isEmpty() );
     QCOMPARE( lc3.toBcp47(), QStringLiteral( "da" ) );
     QCOMPARE( lc3.lc_numeric, QStringLiteral( "de_DE.UTF-8" ) );
+}
+
+void
+LocaleTests::testTZImages()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+    using namespace CalamaresUtils::Locale;
+    const CStringPairList& regions = TZRegion::fromZoneTab();
+
+    for ( const auto* pr : regions )
+    {
+        const TZRegion* region = dynamic_cast< const TZRegion* >( pr );
+        if ( region )
+        {
+            cDebug() << "Region" << region->region() << "zones #" << region->zones().count();
+        }
+    }
 }
