@@ -29,8 +29,6 @@
 #include "utils/Variant.h"
 #include "utils/Yaml.h"
 
-#include "timezonewidget/localeglobal.h"
-
 #include "Branding.h"
 #include "modulesystem/ModuleManager.h"
 #include <QQmlEngine>
@@ -72,7 +70,6 @@ LocaleQmlViewStep::fetchGeoIpTimezone()
 
 Calamares::RequirementsList LocaleQmlViewStep::checkRequirements()
 {
-    LocaleGlobal::init();
     if ( m_geoip && m_geoip->isValid() )
     {
         auto& network = CalamaresUtils::Network::Manager::instance();

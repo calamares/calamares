@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -35,6 +35,9 @@ private Q_SLOTS:
     void testEmptyLocaleConfiguration();
     void testDefaultLocaleConfiguration();
     void testSplitLocaleConfiguration();
+
+    // Check the TZ images for consistency
+    void testTZImages();
 };
 
 #endif

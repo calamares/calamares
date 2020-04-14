@@ -19,7 +19,6 @@ calamares_add_plugin( localeq
         ${_locale}/LocaleConfiguration.cpp
         ${_locale}/Config.cpp
         ${_locale}/SetTimezoneJob.cpp
-        ${_locale}/timezonewidget/localeglobal.cpp
     RESOURCES
         localeq.qrc
     LINK_PRIVATE_LIBRARIES

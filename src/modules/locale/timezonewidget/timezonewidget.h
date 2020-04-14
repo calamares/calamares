@@ -24,15 +24,13 @@
 #ifndef TIMEZONEWIDGET_H
 #define TIMEZONEWIDGET_H
 
-#include "localeglobal.h"
+#include "TimeZoneImage.h"
 
 #include "locale/TimeZone.h"
 
 #include <QFile>
 #include <QFont>
 #include <QFontMetrics>
-#include <QImage>
-#include <QList>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QStringList>
@@ -58,11 +56,13 @@ signals:
 private:
     QFont font;
     QImage background, pin, currentZoneImage;
-    QList< QImage > timeZoneImages;
+    TimeZoneImageList timeZoneImages;
     const TZZone* m_currentLocation = nullptr;  // Not owned by me
 
-    QPoint getLocationPosition( const TZZone* l ) { return getLocationPosition( l->longitude(), l->latitude() ); }
-    QPoint getLocationPosition( double longitude, double latitude );
+    QPoint getLocationPosition( const TZZone* l )
+    {
+        return timeZoneImages.getLocationPosition( l->longitude(), l->latitude() );
+    }
 
     void paintEvent( QPaintEvent* event );
     void mousePressEvent( QMouseEvent* event );

@@ -21,7 +21,6 @@
 #define LOCALEPAGE_H
 
 #include "LocaleConfiguration.h"
-#include "timezonewidget/localeglobal.h"
 
 #include "Job.h"
 #include "locale/TimeZone.h"
