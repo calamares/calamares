@@ -37,7 +37,7 @@ constexpr static double MATH_PI = 3.14159265;
 
 #ifdef DEBUG_TIMEZONES
 // Adds a label to the timezone with this name
-constexpr static QLatin1String ZONE_NAME( "zone" );
+#define ZONE_NAME QStringLiteral( "zone" )
 #endif
 
 TimeZoneWidget::TimeZoneWidget( QWidget* parent )
