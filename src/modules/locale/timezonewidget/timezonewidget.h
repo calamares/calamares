@@ -24,8 +24,6 @@
 #ifndef TIMEZONEWIDGET_H
 #define TIMEZONEWIDGET_H
 
-#include "localeglobal.h"
-
 #include "locale/TimeZone.h"
 
 #include <QFile>

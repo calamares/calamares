@@ -20,7 +20,6 @@ calamares_add_plugin( locale
         LocaleViewStep.cpp
         SetTimezoneJob.cpp
         timezonewidget/timezonewidget.cpp
-        timezonewidget/localeglobal.cpp
     UI
     RESOURCES
         locale.qrc

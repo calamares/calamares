@@ -209,7 +209,13 @@ Config::updateGlobalStorage()
     const auto* location = currentLocation();
     bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
         || ( location->zone() != gs->value( "locationZone" ) );
-
+#ifdef DEBUG_TIMEZONES
+    if ( locationChanged )
+    {
+        cDebug() << "Location changed" << gs->value( "locationRegion" ) << ',' << gs->value( "locationZone" ) << "to"
+                 << location->region() << ',' << location->zone();
+    }
+#endif
     gs->insert( "locationRegion", location->region() );
     gs->insert( "locationZone", location->zone() );
 
