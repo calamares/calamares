@@ -42,6 +42,7 @@ constexpr static double MATH_PI = 3.14159265;
 
 TimeZoneWidget::TimeZoneWidget( QWidget* parent )
     : QWidget( parent )
+    , timeZoneImages( TimeZoneImageList::fromQRC() )
 {
     setMouseTracking( false );
     setCursor( Qt::PointingHandCursor );
@@ -64,22 +65,6 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent )
     // Set size
     setMinimumSize( background.size() );
     setMaximumSize( background.size() );
-
-    // Zone images
-    for ( const auto* zoneName :
-          { "0.0",  "1.0",  "2.0",  "3.0",  "3.5",  "4.0",  "4.5",  "5.0",  "5.5",   "5.75", "6.0",   "6.5",  "7.0",
-            "8.0",  "9.0",  "9.5",  "10.0", "10.5", "11.0", "11.5", "12.0", "12.75", "13.0", "-1.0",  "-2.0", "-3.0",
-            "-3.5", "-4.0", "-4.5", "-5.0", "-5.5", "-6.0", "-7.0", "-8.0", "-9.0",  "-9.5", "-10.0", "-11.0" } )
-    {
-        timeZoneImages.append( QImage( QStringLiteral( ":/images/timezone_" ) + zoneName + ".png" ) );
-#ifdef DEBUG_TIMEZONES
-        if ( timeZoneImages.last().size() != background.size() )
-        {
-            cWarning() << "Timezone image size mismatch" << zoneName << timeZoneImages.last().size();
-        }
-        timeZoneImages.last().setText( ZONE_NAME, zoneName );
-#endif
-    }
 }
 
 
