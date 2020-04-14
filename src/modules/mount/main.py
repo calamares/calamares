@@ -91,12 +91,33 @@ def mount_partition(root_mount_point, partition, partitions):
                 has_home_mount_point = True
                 break
 
+        for p in partitions:
+            if "mountPoint" not in p or not p["mountPoint"]:
+                continue
+            if p["mountPoint"] == "/var/log":
+                has_log_mount_point = True
+                break
+
+        for p in partitions:
+            if "mountPoint" not in p or not p["mountPoint"]:
+                continue
+            if p["mountPoint"] == "/var/cache":
+                has_cache_mount_point = True
+                break
+
         subprocess.check_call(['btrfs', 'subvolume', 'create',
                                root_mount_point + '/@'])
 
         if not has_home_mount_point:
             subprocess.check_call(['btrfs', 'subvolume', 'create',
                                    root_mount_point + '/@home'])
+
+        if not has_log_mount_point:
+            subprocess.check_call(['btrfs', 'subvolume', 'create',
+                                   root_mount_point + '/@log'])
+        if not has_cache_mount_point:
+            subprocess.check_call(['btrfs', 'subvolume', 'create',
+                                   root_mount_point + '/@cache'])
 
         subprocess.check_call(["umount", "-v", root_mount_point])
 
@@ -130,6 +151,22 @@ def mount_partition(root_mount_point, partition, partitions):
                     fstype,
                     ",".join(
                         ["subvol=@home", partition.get("options", "")]),
+                    )
+            if not has_home_mount_point:
+                libcalamares.utils.mount(
+                    partition["device"],
+                    root_mount_point + "/var/log",
+                    fstype,
+                    ",".join(
+                        ["subvol=@log", partition.get("options", "")]),
+                    )
+            if not has_home_mount_point:
+                libcalamares.utils.mount(
+                    partition["device"],
+                    root_mount_point + "/var/cache",
+                    fstype,
+                    ",".join(
+                        ["subvol=@cache", partition.get("options", "")]),
                     )
 
 
