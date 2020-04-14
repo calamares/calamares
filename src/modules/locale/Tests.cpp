@@ -84,6 +84,9 @@ LocaleTests::testSplitLocaleConfiguration()
 void
 LocaleTests::testTZImages()
 {
+    // This test messes around with log-levels a lot so
+    // that it produces useful output (e.g. listing the problems,
+    // not every check it ever does).
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
     // Number of zone images
@@ -118,6 +121,7 @@ LocaleTests::testTZImages()
         const TZRegion* region = dynamic_cast< const TZRegion* >( pr );
         QVERIFY( region );
 
+        Logger::setupLogLevel( Logger::LOGDEBUG );
         cDebug() << "Region" << region->region() << "zones #" << region->zones().count();
         Logger::setupLogLevel( Logger::LOGERROR );
 
