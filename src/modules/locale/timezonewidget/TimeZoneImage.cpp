@@ -144,12 +144,11 @@ TimeZoneImageList::getLocationPosition( double longitude, double latitude )
 static constexpr const int RGB_TRANSPARENT = 0;
 
 int
-TimeZoneImageList::index( QPoint pos, int& overlap ) const
+TimeZoneImageList::index( QPoint pos, int& count ) const
 {
-    overlap = 0;
+    count = 0;
 
 #ifdef DEBUG_TIMEZONES
-    bool found = false;
     for ( int i = 0; i < size(); ++i )
     {
         const QImage& zone = at( i );
@@ -159,19 +158,18 @@ TimeZoneImageList::index( QPoint pos, int& overlap ) const
         {
             // Log *all* the zones that contain this point,
             // but only pick the first.
-            if ( !found )
+            if ( !count )
             {
-                found = true;
                 cDebug() << Logger::SubEntry << "First zone found" << i << zone.text( ZONE_NAME );
             }
             else
             {
                 cDebug() << Logger::SubEntry << "Also in zone" << i << zone.text( ZONE_NAME );
-                overlap++;
             }
+            count++;
         }
     }
-    if ( !found )
+    if ( !count )
     {
         return -1;
     }

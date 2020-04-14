@@ -56,8 +56,24 @@ public:
      */
     static QPoint getLocationPosition( double longitude, double latitude );
 
+    /** @brief Find the index of the image claiming point @p p
+     *
+     * This maps a point (presumably from getLocationPosition(), so
+     * originating from a longitude and latitude) to a specific zone
+     * image index. Returns -1 if no image claims the point (e.g. if
+     * it is out of bounds).
+     */
     int index( QPoint p ) const;
-    int index( QPoint p, int& overlap ) const;
+    /** @brief Find the index of the image claiming point @p p
+     *
+     * As `index(p)`, but also fills in @p count with the number of
+     * zones that claim the point.
+     */
+    int index( QPoint p, int& count ) const;
+    /** @brief Get image of the zone claiming @p p
+     *
+     * Can return a null image, if the point is unclaimed or invalid.
+     */
     QImage find( QPoint p ) const;
 
     /// @brief The **expected** number of zones in the list.

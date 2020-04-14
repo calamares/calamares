@@ -112,12 +112,34 @@ LocaleTests::testTZImages()
     using namespace CalamaresUtils::Locale;
     const CStringPairList& regions = TZRegion::fromZoneTab();
 
+    int overlapcount = 0;
     for ( const auto* pr : regions )
     {
         const TZRegion* region = dynamic_cast< const TZRegion* >( pr );
-        if ( region )
+        QVERIFY( region );
+
+        cDebug() << "Region" << region->region() << "zones #" << region->zones().count();
+        Logger::setupLogLevel( Logger::LOGERROR );
+
+        const auto zones = region->zones();
+        for ( const auto* pz : zones )
         {
-            cDebug() << "Region" << region->region() << "zones #" << region->zones().count();
+            const TZZone* zone = dynamic_cast< const TZZone* >( pz );
+            QVERIFY( zone );
+
+            int overlap = 0;
+            auto pos = images.getLocationPosition( zone->longitude(), zone->latitude() );
+            QVERIFY( images.index( pos, overlap ) >= 0 );
+            if ( overlap > 1 )
+            {
+                Logger::setupLogLevel( Logger::LOGDEBUG );
+                cDebug() << Logger::SubEntry << "Zone" << zone->zone() << pos;
+                (void)images.index( pos, overlap );
+                Logger::setupLogLevel( Logger::LOGERROR );
+                overlapcount++;
+            }
         }
     }
+
+    QCOMPARE( overlapcount, 0 );
 }
