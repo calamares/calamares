@@ -111,7 +111,8 @@ TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* locati
     QPoint pos = getLocationPosition( location );
 
 #ifdef DEBUG_TIMEZONES
-    cDebug() << "Setting location" << location->region() << location->zone() << '(' << location->country() << '@' << location->latitude() << 'N' << location->longitude() << 'E' << ')';
+    cDebug() << "Setting location" << location->region() << location->zone() << '(' << location->country() << '@'
+             << location->latitude() << 'N' << location->longitude() << 'E' << ')';
     cDebug() << Logger::SubEntry << "pixel x" << pos.x() << "pixel y" << pos.y();
 
     bool found = false;
@@ -230,8 +231,6 @@ TimeZoneWidget::getLocationPosition( double longitude, double latitude )
 void
 TimeZoneWidget::paintEvent( QPaintEvent* )
 {
-    const int width = this->width();
-    const int height = this->height();
     QFontMetrics fontMetrics( font );
     QPainter painter( this );
 
@@ -253,18 +252,15 @@ TimeZoneWidget::paintEvent( QPaintEvent* )
         p.setWidth( 0 );
         painter.setPen( p );
         QPoint latLine0( getLocationPosition( 0, y_lat ) );
-        int llx = latLine0.x() + ( ( y_lat & 1 ) ? -10 : 0 );
-        int lly = latLine0.y();
-
-        for ( int c = 0; c < width; ++c )
-        {
-            painter.drawPoint( c, lly );
-        }
+        painter.drawLine( 0, latLine0.y(), this->width() - 1, latLine0.y() );
     }
     // Just a dot in the selected location, no label
     painter.setPen( Qt::red );
     painter.drawPoint( point );
 #else
+    const int width = this->width();
+    const int height = this->height();
+
     // Draw pin at current location
     QPoint point = getLocationPosition( m_currentLocation );
 
