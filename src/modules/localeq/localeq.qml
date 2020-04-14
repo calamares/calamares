@@ -35,7 +35,6 @@ Page
     RowLayout {
  
         anchors.top: image.bottom
-        anchors.topMargin: 5
         width: parent.width
         
         Kirigami.FormLayout {
@@ -43,7 +42,7 @@ Page
             Layout.fillWidth: true
 
             ComboBox {
-                Kirigami.FormData.label: qsTr("Region: ")
+                Kirigami.FormData.label: qsTr("Country: ")
                 id: regionIndex
                 currentIndex: model.currentIndex
                 textRole: "label"
@@ -66,7 +65,7 @@ Page
             Layout.fillWidth: true
 
             ComboBox {
-                Kirigami.FormData.label: qsTr("Zone: ")
+                Kirigami.FormData.label: qsTr("City: ")
                 id: zoneIndex
                 currentIndex: model.currentIndex
                 textRole: "label"

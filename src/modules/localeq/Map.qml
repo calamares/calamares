@@ -25,105 +25,121 @@ import org.kde.kirigami 2.7 as Kirigami
 import QtLocation 5.14
 import QtPositioning 5.14
 
-
-Rectangle {
+Column {
     width: parent.width
-    height: 300
+    
+    Rectangle {
+        width: parent.width
+        height: 270
+        
+        Plugin {
+            id: mapPlugin
+            name: "esri" // "esri", "here", "itemsoverlay", "mapbox", "mapboxgl",  "osm"
+        }
 
-    Plugin {
-        id: mapPlugin
-        name: "esri" // "esri", "here", "itemsoverlay", "mapbox", "mapboxgl",  "osm"
-    }
-
-    Map {
-        id: map
-        anchors.fill: parent
-        plugin: mapPlugin
-        activeMapType: supportedMapTypes[0]
-        zoomLevel: 5
-        bearing: 0
-        tilt: 0
-        copyrightsVisible : true
-        fieldOfView : 0
-
-        GeocodeModel {
-            id: geocodeModel
+        Map {
+            id: map
+            anchors.fill: parent
             plugin: mapPlugin
-            autoUpdate: true
-            query: Address {
-                id: address
-                //street: "14th Street"
-                city: zoneIndex.currentIndex
-                country: regionIndex.currentIndex
-                //countryCode: "US"
+            activeMapType: supportedMapTypes[0]
+            zoomLevel: 5
+            bearing: 0
+            tilt: 0
+            copyrightsVisible : true
+            fieldOfView : 0
+
+            GeocodeModel {
+                id: geocodeModel
+                plugin: mapPlugin
+                autoUpdate: true
+                query: Address {
+                    id: address
+                    //street: "14th Street"
+                    city: zoneIndex.currentIndex
+                    country: regionIndex.currentIndex
+                    //countryCode: "US"
+                }
+                
+                onLocationsChanged: {
+                    if (count == 1) {
+                        map.center.latitude = get(0).coordinate.latitude
+                        map.center.longitude = get(0).coordinate.longitude
+                    }
+                }
             }
             
-            onLocationsChanged: {
-                if (count == 1) {
-                    map.center.latitude = get(0).coordinate.latitude
-                    map.center.longitude = get(0).coordinate.longitude
+            MapQuickItem {
+                id: marker
+                anchorPoint.x: image.width/4
+                anchorPoint.y: image.height
+                coordinate: QtPositioning.coordinate(
+                    map.center.latitude, 
+                    map.center.longitude)
+                //coordinate: QtPositioning.coordinate(40.730610, -73.935242) // New York
+
+                sourceItem: Image {
+                    id: image
+                    width: 48
+                    height: 48
+                    source: "pin.svg"
+                }
+            }
+            
+            MouseArea {
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                anchors.fill: map
+                hoverEnabled: true
+                property var coordinate: map.toCoordinate(Qt.point(mouseX, mouseY))
+                Label {
+                    x: parent.mouseX - width
+                    y: parent.mouseY - height - 5
+                    text: "%1, %2".arg(
+                        parent.coordinate.latitude).arg(parent.coordinate.longitude)
+                }
+                
+                onClicked: {
+                    marker.coordinate = coordinate
+                    map.center.latitude = coordinate.latitude
+                    map.center.longitude = coordinate.longitude
+                    console.log(coordinate.latitude, coordinate.longitude)
                 }
             }
         }
         
-        MapQuickItem {
-            id: marker
-            anchorPoint.x: image.width/4
-            anchorPoint.y: image.height
-            coordinate: QtPositioning.coordinate(
-                map.center.latitude, 
-                map.center.longitude)
-            //coordinate: QtPositioning.coordinate(40.730610, -73.935242) // New York
+        Column {
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.topMargin: 10
+            anchors.rightMargin: 10
+            
+            RoundButton {
+                width: 25
+                height:38
+                text: "+"
 
-            sourceItem: Image {
-                id: image
-                width: 48
-                height: 48
-                source: "pin.svg"
-            }
-        }
-        
-        MouseArea {
-            acceptedButtons: Qt.LeftButton | Qt.RightButton
-            anchors.fill: map
-            hoverEnabled: true
-            property var coordinate: map.toCoordinate(Qt.point(mouseX, mouseY))
-            Label {
-                x: parent.mouseX - width
-                y: parent.mouseY - height - 5
-                text: "%1, %2".arg(
-                    parent.coordinate.latitude).arg(parent.coordinate.longitude)
+                onClicked: map.zoomLevel++
             }
             
-            onClicked: {
-                marker.coordinate = coordinate
-                map.center.latitude = coordinate.latitude
-                map.center.longitude = coordinate.longitude
-                console.log(coordinate.latitude, coordinate.longitude)
+            RoundButton {
+                width: 25
+                height:38
+                text: "-"
+
+                onClicked: map.zoomLevel--
             }
         }
     }
-    
-    Column {
-        anchors.top: parent.top
-        anchors.right: parent.right
-        anchors.topMargin: 10
-        anchors.rightMargin: 10
-        
-        RoundButton {
-            width: 25
-            height:38
-            text: "+"
 
-            onClicked: map.zoomLevel++
-        }
-        
-        RoundButton {
-            width: 25
-            height:38
-            text: "-"
+    Rectangle {
+        width: parent.width / 1.2
+        height: 70
+        anchors.horizontalCenter: parent.horizontalCenter
 
-            onClicked: map.zoomLevel--
+        Text {
+            width: parent.width
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            text: qsTr("Please select your preferred location on the map so the installer can suggest the locale and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.")
         }
     }
 }
