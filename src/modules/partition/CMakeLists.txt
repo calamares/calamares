@@ -1,9 +1,14 @@
 # When debugging the partitioning widget, or experimenting, you may
 # want to allow unsafe partitioning choices (e.g. doing things to the
 # current disk). Set DEBUG_PARTITION_UNSAFE to allow that (it turns off
-# some filtering of devices).
+# some filtering of devices). If you **do** allow unsafe partitioning,
+# it will error out unless you **also** switch **off** DEBUG_PARTITION_LAME,
+# at which point you are welcome to shoot yourself in the foot.
 option( DEBUG_PARTITION_UNSAFE "Allow unsafe partitioning choices." OFF )
 option( DEBUG_PARTITION_LAME   "Unsafe partitioning will error out on exec." ON )
+
+# This is very chatty, useful mostly if you don't know what KPMCore offers.
+option( DEBUG_FILESYSTEMS      "Log all available Filesystems from KPMCore." OFF )
 
 include_directories( ${CMAKE_SOURCE_DIR} )  # For 3rdparty
 
@@ -13,6 +18,9 @@ if( DEBUG_PARTITION_UNSAFE )
         list( APPEND _partition_defs DEBUG_PARTITION_LAME )
     endif()
     list( APPEND _partition_defs DEBUG_PARTITION_UNSAFE )
+endif()
+if ( DEBUG_FILESYSTEMS )
+    list( APPEND _partition_defs DEBUG_FILESYSTEMS )
 endif()
 
 find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
