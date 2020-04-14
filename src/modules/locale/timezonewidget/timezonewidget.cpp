@@ -57,7 +57,7 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent )
 #ifdef DEBUG_TIMEZONES
     if ( background.size() != QSize( 780, 340 ) )
     {
-        cWarning() << "Timezone background size mitsmatch" << background.size();
+        cWarning() << "Timezone background size mismatch" << background.size();
     }
 #endif
 
