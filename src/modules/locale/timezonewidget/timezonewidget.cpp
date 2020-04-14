@@ -55,13 +55,6 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent )
     background = QImage( ":/images/bg.png" );
     pin = QImage( ":/images/pin.png" );
 
-#ifdef DEBUG_TIMEZONES
-    if ( background.size() != QSize( 780, 340 ) )
-    {
-        cWarning() << "Timezone background size mismatch" << background.size();
-    }
-#endif
-
     // Set size
     setMinimumSize( background.size() );
     setMaximumSize( background.size() );

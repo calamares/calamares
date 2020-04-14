@@ -19,12 +19,13 @@
 
 #include "Tests.h"
 #include "LocaleConfiguration.h"
+#include "timezonewidget/TimeZoneImage.h"
 
 #include "locale/TimeZone.h"
 
 #include <QtTest/QtTest>
 
-QTEST_GUILESS_MAIN( LocaleTests )
+QTEST_MAIN( LocaleTests )
 
 
 LocaleTests::LocaleTests() {}
@@ -84,6 +85,31 @@ void
 LocaleTests::testTZImages()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    // Number of zone images
+    //
+    //
+    auto images = TimeZoneImageList::fromDirectory( SOURCE_DIR );
+    QCOMPARE( images.count(), images.zoneCount() );
+    QCOMPARE( images.count(), 38 );  // counted by hand
+
+    // All image sizes consistent
+    //
+    //
+    const QSize windowSize( 780, 340 );
+    {
+        QImage background( SOURCE_DIR "/bg.png" );
+        QVERIFY( !background.isNull() );
+        QCOMPARE( background.size(), windowSize );
+    }
+    for ( const auto& image : images )
+    {
+        QCOMPARE( image.size(), windowSize );
+    }
+
+    // Check zones are uniquely-claimed
+    //
+    //
     using namespace CalamaresUtils::Locale;
     const CStringPairList& regions = TZRegion::fromZoneTab();
 
