@@ -29,6 +29,8 @@ static const char* zoneNames[]
 static_assert( TimeZoneImageList::zoneCount == ( sizeof( zoneNames ) / sizeof( zoneNames[ 0 ] ) ),
                "Incorrect number of zones" );
 
+#define ZONE_NAME QStringLiteral( "zone" )
+
 TimeZoneImageList::TimeZoneImageList() {}
 
 TimeZoneImageList
@@ -38,7 +40,7 @@ TimeZoneImageList::fromQRC()
     for ( const auto* zoneName : zoneNames )
     {
         l.append( QImage( QStringLiteral( ":/images/timezone_" ) + zoneName + ".png" ) );
-        l.last().setText( QStringLiteral( "zone" ), zoneName );
+        l.last().setText( ZONE_NAME, zoneName );
     }
 
     return l;
@@ -58,7 +60,7 @@ TimeZoneImageList::fromDirectory( const QString& dirName )
     for ( const auto* zoneName : zoneNames )
     {
         l.append( QImage( dir.filePath( QStringLiteral( "timezone_" ) + zoneName + ".png" ) ) );
-        l.last().setText( QStringLiteral( "zone" ), zoneName );
+        l.last().setText( ZONE_NAME, zoneName );
     }
 
     return l;
@@ -136,4 +138,70 @@ TimeZoneImageList::getLocationPosition( double longitude, double latitude )
     }
 
     return QPoint( int( x ), int( y ) );
+}
+
+// Pixel value indicating that a spot is outside of a zone
+static constexpr const int RGB_TRANSPARENT = 0;
+
+int
+TimeZoneImageList::index( QPoint pos, int& overlap ) const
+{
+    overlap = 0;
+
+#ifdef DEBUG_TIMEZONES
+    bool found = false;
+    for ( int i = 0; i < size(); ++i )
+    {
+        const QImage& zone = at( i );
+
+        // If not transparent set as current
+        if ( zone.pixel( pos ) != RGB_TRANSPARENT )
+        {
+            // Log *all* the zones that contain this point,
+            // but only pick the first.
+            if ( !found )
+            {
+                found = true;
+                cDebug() << Logger::SubEntry << "First zone found" << i << zone.text( ZONE_NAME );
+            }
+            else
+            {
+                cDebug() << Logger::SubEntry << "Also in zone" << i << zone.text( ZONE_NAME );
+                overlap++;
+            }
+        }
+    }
+    if ( !found )
+    {
+        return -1;
+    }
+#endif
+    return index( pos );
+}
+
+int
+TimeZoneImageList::index( QPoint pos ) const
+{
+    for ( int i = 0; i < size(); ++i )
+    {
+        const QImage& zone = at( i );
+
+        // If not transparent set as current
+        if ( zone.pixel( pos ) != RGB_TRANSPARENT )
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+QImage
+TimeZoneImageList::find( QPoint p ) const
+{
+    int i = index( p );
+    if ( i < 0 || size() <= i )
+    {
+        return QImage();
+    }
+    return at( i );
 }

@@ -28,9 +28,6 @@
 
 #include "timezonewidget.h"
 
-// Pixel value indicating that a spot is outside of a zone
-#define RGB_TRANSPARENT 0
-
 #ifdef DEBUG_TIMEZONES
 // Adds a label to the timezone with this name
 #define ZONE_NAME QStringLiteral( "zone" )
@@ -88,37 +85,9 @@ TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* locati
     cDebug() << "Setting location" << location->region() << location->zone() << '(' << location->country() << '@'
              << location->latitude() << 'N' << location->longitude() << 'E' << ')';
     cDebug() << Logger::SubEntry << "pixel x" << pos.x() << "pixel y" << pos.y();
-
-    bool found = false;
 #endif
 
-
-    for ( int i = 0; i < timeZoneImages.size(); ++i )
-    {
-        QImage zone = timeZoneImages[ i ];
-
-        // If not transparent set as current
-        if ( zone.pixel( pos ) != RGB_TRANSPARENT )
-        {
-#ifdef DEBUG_TIMEZONES
-            // Log *all* the zones that contain this point,
-            // but only pick the first.
-            if ( !found )
-            {
-                currentZoneImage = zone;
-                found = true;
-                cDebug() << Logger::SubEntry << "First zone found" << i << zone.text( ZONE_NAME );
-            }
-            else
-            {
-                cDebug() << Logger::SubEntry << "Also in zone" << i << zone.text( ZONE_NAME );
-            }
-#else
-            currentZoneImage = zone;
-            break;
-#endif
-        }
-    }
+    currentZoneImage = timeZoneImages.find( pos );
 
     // Repaint widget
     repaint();

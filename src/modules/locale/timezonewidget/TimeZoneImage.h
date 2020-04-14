@@ -56,6 +56,10 @@ public:
      */
     static QPoint getLocationPosition( double longitude, double latitude );
 
+    int index( QPoint p ) const;
+    int index( QPoint p, int& overlap ) const;
+    QImage find( QPoint p ) const;
+
     /// @brief The **expected** number of zones in the list.
     static constexpr const int zoneCount = 38;
     /// @brief The expected size of each zone image.
