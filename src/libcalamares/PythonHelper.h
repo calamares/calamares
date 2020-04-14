@@ -50,16 +50,15 @@ class Helper : public QObject
 {
     Q_OBJECT
 public:
-    virtual ~Helper();
-
     boost::python::dict createCleanNamespace();
 
     QString handleLastError();
 
+    static Helper* instance();
+
 private:
-    friend Helper* Calamares::PythonJob::helper();
-    explicit Helper( QObject* parent = nullptr );
-    static Helper* s_instance;
+    virtual ~Helper();
+    explicit Helper();
 
     boost::python::object m_mainModule;
     boost::python::object m_mainNamespace;

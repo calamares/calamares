@@ -40,10 +40,10 @@
 
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.19.1
+    VERSION 3.2.23
     LANGUAGES C CXX )
 
-set( CALAMARES_VERSION_RC 0 )  # Set to 0 during release cycle, 1 during development
+set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
 
 ### OPTIONS
 #
@@ -53,6 +53,15 @@ option( BUILD_TESTING "Build the testing tree." ON )
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
+
+# Possible debugging flags are:
+#  - DEBUG_TIMEZONES draws latitude and longitude lines on the timezone
+#    widget and enables chatty debug logging, for dealing with the timezone
+#    location database.
+#  - DEBUG_FILESYSTEMS does extra logging and checking when looking at
+#    partition configuration. Lists known KPMCore FS types.
+#  - DEBUG_PARTITION_UNSAFE (see partition/CMakeLists.txt)
+#  - DEBUG_PARTITION_LAME (see partition/CMakeLists.txt)
 
 
 ### USE_*
@@ -135,10 +144,11 @@ set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 if( POLICY CMP0057 )
     cmake_policy( SET CMP0057 NEW )
 endif()
-# CMake 3.9, 3.10 compatibility
+# Let ``AUTOMOC`` and ``AUTOUIC`` process ``GENERATED`` files.
 if( POLICY CMP0071 )
     cmake_policy( SET CMP0071 NEW )
 endif()
+# Recognize more macros to trigger automoc
 if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
     list(APPEND CMAKE_AUTOMOC_MACRO_NAMES
         "K_PLUGIN_FACTORY_WITH_JSON"
@@ -154,26 +164,6 @@ set( CMAKE_CXX_STANDARD 14 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
 set( CMAKE_C_STANDARD 99 )
 set( CMAKE_C_STANDARD_REQUIRED ON )
-
-# Debugging flags
-#
-# Possible debugging flags are:
-#  - DEBUG_TIMEZONES draws latitude and longitude lines on the timezone
-#    widget and enables chatty debug logging, for dealing with the timezone
-#    location database.
-#  - DEBUG_FILESYSTEMS does extra logging and checking when looking at
-#    partition configuration. Lists known KPMCore FS types.
-#
-# The flags listed here are enabled in Debug builds. By default, none
-# are **actually** listed, because they're for such specific scenarios.
-set( _enable_debug_flags
-    # DEBUG_TIMEZONES
-    # DEBUG_FILESYSTEMS
-)
-# Add those flags to the CXX flags in a suitable format.
-foreach( _edf ${_enable_debug_flags} )
-    string( APPEND CMAKE_CXX_FLAGS_DEBUG " -D${_edf}" )
-endforeach()
 
 set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )

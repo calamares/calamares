@@ -25,9 +25,9 @@
 
 #include "ImageRegistry.h"
 
+#include <QIcon>
 #include <QPainter>
 #include <QSvgRenderer>
-#include <qicon.h>
 
 static QHash< QString, QHash< int, QHash< qint64, QPixmap > > > s_cache;
 

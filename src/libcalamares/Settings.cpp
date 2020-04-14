@@ -71,6 +71,24 @@ requireBool( const YAML::Node& config, const char* key, bool d )
 namespace Calamares
 {
 
+InstanceDescription::InstanceDescription( const QVariantMap& m )
+    : module( m.value( "module" ).toString() )
+    , id( m.value( "id" ).toString() )
+    , config( m.value( "config" ).toString() )
+    , weight( m.value( "weight" ).toInt() )
+{
+    if ( id.isEmpty() )
+    {
+        id = module;
+    }
+    if ( config.isEmpty() )
+    {
+        config = module + QStringLiteral( ".conf" );
+    }
+
+    weight = qBound( 1, weight, 100 );
+}
+
 Settings* Settings::s_instance = nullptr;
 
 Settings*
@@ -134,17 +152,7 @@ interpretInstances( const YAML::Node& node, Settings::InstanceDescriptionList& c
                 {
                     continue;
                 }
-                QVariantMap instancesVListItemMap = instancesVListItem.toMap();
-                Settings::InstanceDescription instanceMap;
-                for ( auto it = instancesVListItemMap.constBegin(); it != instancesVListItemMap.constEnd(); ++it )
-                {
-                    if ( it.value().type() != QVariant::String )
-                    {
-                        continue;
-                    }
-                    instanceMap.insert( it.key(), it.value().toString() );
-                }
-                customInstances.append( instanceMap );
+                customInstances.append( InstanceDescription( instancesVListItem.toMap() ) );
             }
         }
     }
@@ -224,6 +232,7 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
             m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
             m_disableCancel = requireBool( config, "disable-cancel", false );
             m_disableCancelDuringExec = requireBool( config, "disable-cancel-during-exec", false );
+            m_quitAtEnd = requireBool( config, "quit-at-end", false );
         }
         catch ( YAML::Exception& e )
         {
@@ -302,7 +311,7 @@ Settings::init( bool debugMode )
         cWarning() << "Calamares::Settings already created";
         return s_instance;
     }
-    
+
     QStringList settingsFileCandidatesByPriority = settingsFileCandidates( debugMode );
 
     QFileInfo settingsFile;
@@ -340,7 +349,7 @@ Settings::init( bool debugMode )
         cError() << "FATAL: no sequence set.";
         ::exit( EXIT_FAILURE );
     }
-    
+
     return settings;
 }
 

@@ -44,10 +44,7 @@ public:
     Calamares::JobResult exec() override;
 
     void updatePreview();
-    Device* device() const
-    {
-        return m_device;
-    }
+    Device* device() const { return m_device; }
 
 private:
     Device* m_device;

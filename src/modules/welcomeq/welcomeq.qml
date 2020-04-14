@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2020, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2020, Anke Boersma <demm@kaosx.us>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,7 +16,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-import calamares.ui 1.0
+import io.calamares.ui 1.0
 
 import QtQuick 2.10
 import QtQuick.Controls 2.10
@@ -31,7 +32,7 @@ Page
     header: Item
     {
         width: parent.width
-        height: 150
+        height: parent.height
 
         Text
         {
@@ -39,7 +40,7 @@ Page
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             // In QML, QString::arg() only takes one argument
-            text: qsTr("<h3>%1 <quote>%2</quote></h3>").arg(Branding.string(Branding.ProductName)).arg(Branding.string(Branding.Version))
+            text: qsTr("<h3>Welcome to the %1 <quote>%2</quote> installer</h3>").arg(Branding.string(Branding.ProductName)).arg(Branding.string(Branding.Version))
         }
         Image
         {
@@ -49,10 +50,9 @@ Page
             // .. otherwise the path is interpreted relative to the "call site", which
             // .. might be the QRC file.
             source: "file:/" + Branding.imagePath(Branding.ProductWelcome)
-            height: Math.min(100, parent.height)
-            width: height
             sourceSize.width: width
             sourceSize.height: height
+            fillMode: Image.PreserveAspectFit
         }
 
         RowLayout
@@ -73,57 +73,65 @@ Page
             {
                 Layout.fillWidth: true
                 text: qsTr("About")
-                icon.name: "documentinfo"
+                icon.name: "dialog-information"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
-
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
+                
                 visible: false
-                onClicked: { } // TODO: show an about-Calamares window
+                onClicked: { 
+                    //onClicked: load.source = "file:/usr/share/calamares/branding/kaos_branding/show.qml"
+                    onClicked: load.source = "about.qml"
+                }
             }
             Button
             {
                 Layout.fillWidth: true
                 text: qsTr("Support")
-                icon.name: "documentinfo"
+                icon.name: "system-help"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
-                visible: config.helpUrl.isValid
-                onClicked: Qt.openUrlExternally(config.helpUrl)
+                visible: config.supportUrl !== ""
+                onClicked: Qt.openUrlExternally(config.supportUrl)
             }
             Button
             {
                 Layout.fillWidth: true
                 text: qsTr("Known issues")
-                icon.name: "documentinfo"
+                icon.name: "tools-report-bug"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
-                visible: config.issuesUrl.isValid
-                onClicked: Qt.openUrlExternally(config.issuesUrl)
+                visible: config.knownIssuesUrl !== ""
+                onClicked: Qt.openUrlExternally(config.knownIssuesUrl)
             }
             Button
             {
                 Layout.fillWidth: true
                 text: qsTr("Release notes")
-                icon.name: "documentinfo"
+                icon.name: "folder-text"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
-                visible: config.notesUrl.isValid
-                onClicked: Qt.openUrlExternally(config.notesUrl)
+                visible: config.releaseNotesUrl !== ""
+                onClicked: Qt.openUrlExternally(config.releaseNotesUrl)
             }
             Button
             {
                 Layout.fillWidth: true
                 text: qsTr("Donate")
-                icon.name: "documentinfo"
+                icon.name: "taxes-finances"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
-                Kirigami.Theme.textColor: "#fff"
+                Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
-                visible: config.donateUrl.isValid
+                visible: config.donateUrl !== ""
                 onClicked: Qt.openUrlExternally(config.donateUrl)
             }
+        }
+        Loader
+        { 
+            id:load 
+            anchors.fill: parent
         }
     }
 }

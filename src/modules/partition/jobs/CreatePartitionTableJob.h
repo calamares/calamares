@@ -45,10 +45,7 @@ public:
     Calamares::JobResult exec() override;
 
     void updatePreview();
-    Device* device() const
-    {
-        return m_device;
-    }
+    Device* device() const { return m_device; }
 
 private:
     CalamaresUtils::Partition::KPMManager m_kpmcore;

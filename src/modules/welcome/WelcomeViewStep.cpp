@@ -19,16 +19,16 @@
 
 #include "WelcomeViewStep.h"
 
+#include "Config.h"
 #include "WelcomePage.h"
 #include "checker/GeneralRequirements.h"
 
+#include "Branding.h"
 #include "geoip/Handler.h"
 #include "locale/Lookup.h"
+#include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
-
-#include "Branding.h"
-#include "modulesystem/ModuleManager.h"
 
 #include <QFutureWatcher>
 #include <QVariant>
@@ -38,14 +38,17 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeViewStepFactory, registerPlugin< Wel
 WelcomeViewStep::WelcomeViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_requirementsChecker( new GeneralRequirements( this ) )
+    , m_conf( new Config( this ) )
 {
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
              this,
              &WelcomeViewStep::nextStatusChanged );
-    m_widget = new WelcomePage();
-}
 
+    // the instance of the qqc2 or qwidgets page
+    m_widget = new WelcomePage( m_conf );
+    connect( m_conf, &Config::localeIndexChanged, m_widget, &WelcomePage::externallySelectedLanguage );
+}
 
 WelcomeViewStep::~WelcomeViewStep()
 {
@@ -54,7 +57,6 @@ WelcomeViewStep::~WelcomeViewStep()
         m_widget->deleteLater();
     }
 }
-
 
 QString
 WelcomeViewStep::prettyName() const
@@ -142,19 +144,19 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     using Calamares::Branding;
 
-    m_widget->setupButton( WelcomePage::Button::Support,
-                           jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
-    m_widget->setupButton( WelcomePage::Button::KnownIssues,
-                           jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
-    m_widget->setupButton( WelcomePage::Button::ReleaseNotes,
-                           jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
-    m_widget->setupButton( WelcomePage::Button::Donate,
-                           CalamaresUtils::getString( configurationMap, "showDonateUrl" ) );
+    m_conf->setSupportUrl( jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
+    m_conf->setKnownIssuesUrl(
+        jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
+    m_conf->setReleaseNotesUrl(
+        jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
+    m_conf->setDonateUrl( CalamaresUtils::getString( configurationMap, "showDonateUrl" ) );
 
     if ( configurationMap.contains( "requirements" )
          && configurationMap.value( "requirements" ).type() == QVariant::Map )
     {
         m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
+
+        m_conf->requirementsModel().setRequirementsList( checkRequirements() );
     }
     else
         cWarning() << "no valid requirements map found in welcome "
@@ -188,16 +190,14 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
-
     QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
     if ( !language.isEmpty() )
     {
-        auto icon = Calamares::Branding::instance()->image( language, QSize( 48, 48 ) );
-        if ( !icon.isNull() )
-        {
-            m_widget->setLanguageIcon( icon );
-        }
+        m_conf->setLanguageIcon( language );
     }
+
+    //here init the qml or qwidgets needed bits
+    m_widget->init();
 }
 
 Calamares::RequirementsList
@@ -240,9 +240,9 @@ WelcomeViewStep::setCountry( const QString& countryCode, CalamaresUtils::GeoIP::
         {
             cDebug() << "Unusable country code" << countryCode << "(no suitable translation)";
         }
-        if ( ( r >= 0 ) && m_widget )
+        if ( ( r >= 0 ) && m_conf )
         {
-            m_widget->externallySelectedLanguage( r );
+            m_conf->setCountryCode( countryCode );
         }
     }
 }

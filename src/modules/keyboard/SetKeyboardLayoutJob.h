@@ -20,7 +20,7 @@
 #ifndef SETKEYBOARDLAYOUTJOB_H
 #define SETKEYBOARDLAYOUTJOB_H
 
-#include <Job.h>
+#include "Job.h"
 
 
 class SetKeyboardLayoutJob : public Calamares::Job
@@ -40,8 +40,7 @@ public:
 private:
     QString findConvertedKeymap( const QString& convertedKeymapPath ) const;
     QString findLegacyKeymap() const;
-    bool writeVConsoleData( const QString& vconsoleConfPath,
-                            const QString& convertedKeymapPath ) const;
+    bool writeVConsoleData( const QString& vconsoleConfPath, const QString& convertedKeymapPath ) const;
     bool writeX11Data( const QString& keyboardConfPath ) const;
     bool writeDefaultKeyboardData( const QString& defaultKeyboardPath ) const;
 

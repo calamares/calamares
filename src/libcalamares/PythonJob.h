@@ -21,10 +21,11 @@
 #define CALAMARES_PYTHONJOB_H
 
 #include "Job.h"
-
 #include "modulesystem/InstanceKey.h"
 
 #include <QVariantMap>
+
+#include <memory>
 
 namespace CalamaresPython
 {
@@ -53,11 +54,12 @@ public:
     virtual qreal getJobWeight() const override;
 
 private:
-    friend class CalamaresPython::Helper;
+    struct Private;
+
     friend class CalamaresPython::PythonJobInterface;
     void emitProgress( double progressValue );
 
-    CalamaresPython::Helper* helper();
+    std::unique_ptr< Private > m_d;
     QString m_scriptFile;
     QString m_workingPath;
     QString m_description;

@@ -21,10 +21,10 @@
 #ifndef PARTITIONVIEWSTEP_H
 #define PARTITIONVIEWSTEP_H
 
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
-#include <DllMacro.h>
+#include "DllMacro.h"
 
 #include "core/PartitionActions.h"
 

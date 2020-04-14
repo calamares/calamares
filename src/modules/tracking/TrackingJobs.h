@@ -25,6 +25,7 @@ class QSemaphore;
 
 class TrackingInstallJob : public Calamares::Job
 {
+    Q_OBJECT
 public:
     TrackingInstallJob( const QString& url );
     ~TrackingInstallJob() override;

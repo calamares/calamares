@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,42 +20,45 @@
 
 #include "EncryptWidget.h"
 
-#include <utils/CalamaresUtilsGui.h>
+#include "ui_EncryptWidget.h"
+
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Retranslator.h"
 
 EncryptWidget::EncryptWidget( QWidget* parent )
     : QWidget( parent )
-    , m_state( EncryptionDisabled )
+    , m_ui( new Ui::EncryptWidget )
+    , m_state( Encryption::Disabled )
 {
-    setupUi( this );
+    m_ui->setupUi( this );
 
-    m_iconLabel->setFixedWidth( m_iconLabel->height() );
-    m_passphraseLineEdit->hide();
-    m_confirmLineEdit->hide();
-    m_iconLabel->hide();
+    m_ui->m_iconLabel->setFixedWidth( m_ui->m_iconLabel->height() );
+    m_ui->m_passphraseLineEdit->hide();
+    m_ui->m_confirmLineEdit->hide();
+    m_ui->m_iconLabel->hide();
 
-    connect( m_encryptCheckBox, &QCheckBox::stateChanged,
-             this, &EncryptWidget::onCheckBoxStateChanged );
-    connect( m_passphraseLineEdit, &QLineEdit::textEdited,
-             this, &EncryptWidget::onPassphraseEdited );
-    connect( m_confirmLineEdit, &QLineEdit::textEdited,
-             this, &EncryptWidget::onPassphraseEdited );
+    connect( m_ui->m_encryptCheckBox, &QCheckBox::stateChanged, this, &EncryptWidget::onCheckBoxStateChanged );
+    connect( m_ui->m_passphraseLineEdit, &QLineEdit::textEdited, this, &EncryptWidget::onPassphraseEdited );
+    connect( m_ui->m_confirmLineEdit, &QLineEdit::textEdited, this, &EncryptWidget::onPassphraseEdited );
 
-    setFixedHeight( m_passphraseLineEdit->height() ); // Avoid jumping up and down
+    setFixedHeight( m_ui->m_passphraseLineEdit->height() );  // Avoid jumping up and down
     updateState();
+
+    CALAMARES_RETRANSLATE_SLOT( &EncryptWidget::retranslate )
 }
 
 
 void
 EncryptWidget::reset()
 {
-    m_passphraseLineEdit->clear();
-    m_confirmLineEdit->clear();
+    m_ui->m_passphraseLineEdit->clear();
+    m_ui->m_confirmLineEdit->clear();
 
-    m_encryptCheckBox->setChecked( false );
+    m_ui->m_encryptCheckBox->setChecked( false );
 }
 
 
-EncryptWidget::State
+EncryptWidget::Encryption
 EncryptWidget::state() const
 {
     return m_state;
@@ -64,53 +68,48 @@ EncryptWidget::state() const
 void
 EncryptWidget::setText( const QString& text )
 {
-    m_encryptCheckBox->setText( text );
+    m_ui->m_encryptCheckBox->setText( text );
 }
 
 
 QString
 EncryptWidget::passphrase() const
 {
-    if ( m_state == EncryptionConfirmed )
-        return m_passphraseLineEdit->text();
+    if ( m_state == Encryption::Confirmed )
+    {
+        return m_ui->m_passphraseLineEdit->text();
+    }
     return QString();
 }
 
 
 void
-EncryptWidget::changeEvent( QEvent* e )
+EncryptWidget::retranslate()
 {
-    QWidget::changeEvent( e );
-    switch ( e->type() )
-    {
-    case QEvent::LanguageChange:
-        retranslateUi( this );
-        break;
-    default:
-        break;
-    }
+    m_ui->retranslateUi( this );
+    onPassphraseEdited();  // For the tooltip
 }
 
 
 void
 EncryptWidget::updateState()
 {
-    State newState;
-    if ( m_encryptCheckBox->isChecked() )
+    Encryption newState;
+    if ( m_ui->m_encryptCheckBox->isChecked() )
     {
-        if ( !m_passphraseLineEdit->text().isEmpty() &&
-             m_passphraseLineEdit->text() == m_confirmLineEdit->text() )
+        if ( !m_ui->m_passphraseLineEdit->text().isEmpty()
+             && m_ui->m_passphraseLineEdit->text() == m_ui->m_confirmLineEdit->text() )
         {
-            newState = EncryptionConfirmed;
+            newState = Encryption::Confirmed;
         }
         else
         {
-            newState = EncryptionUnconfirmed;
+            newState = Encryption::Unconfirmed;
         }
     }
     else
     {
-        newState = EncryptionDisabled;
+        newState = Encryption::Disabled;
     }
 
     if ( newState != m_state )
@@ -120,35 +119,38 @@ EncryptWidget::updateState()
     }
 }
 
+///@brief Give @p label the @p pixmap from the standard-pixmaps
+static void
+applyPixmap( QLabel* label, CalamaresUtils::ImageType pixmap )
+{
+    label->setFixedWidth( label->height() );
+    label->setPixmap( CalamaresUtils::defaultPixmap( pixmap, CalamaresUtils::Original, label->size() ) );
+}
 
 void
 EncryptWidget::onPassphraseEdited()
 {
-    if ( !m_iconLabel->isVisible() )
-        m_iconLabel->show();
+    if ( !m_ui->m_iconLabel->isVisible() )
+    {
+        m_ui->m_iconLabel->show();
+    }
 
-    QString p1 = m_passphraseLineEdit->text();
-    QString p2 = m_confirmLineEdit->text();
+    QString p1 = m_ui->m_passphraseLineEdit->text();
+    QString p2 = m_ui->m_confirmLineEdit->text();
 
-    m_iconLabel->setToolTip( QString() );
+    m_ui->m_iconLabel->setToolTip( QString() );
     if ( p1.isEmpty() && p2.isEmpty() )
     {
-        m_iconLabel->clear();
+        m_ui->m_iconLabel->clear();
     }
     else if ( p1 == p2 )
     {
-        m_iconLabel->setFixedWidth( m_iconLabel->height() );
-        m_iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                               CalamaresUtils::Original,
-                                                               m_iconLabel->size() ) );
+        applyPixmap( m_ui->m_iconLabel, CalamaresUtils::Yes );
     }
     else
     {
-        m_iconLabel->setFixedWidth( m_iconLabel->height() );
-        m_iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                               CalamaresUtils::Original,
-                                                               m_iconLabel->size() ) );
-        m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
+        applyPixmap( m_ui->m_iconLabel, CalamaresUtils::No );
+        m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
     }
 
     updateState();
@@ -156,14 +158,15 @@ EncryptWidget::onPassphraseEdited()
 
 
 void
-EncryptWidget::onCheckBoxStateChanged( int state )
+EncryptWidget::onCheckBoxStateChanged( int checked )
 {
-    m_passphraseLineEdit->setVisible( state );
-    m_confirmLineEdit->setVisible( state );
-    m_iconLabel->setVisible( state );
-    m_passphraseLineEdit->clear();
-    m_confirmLineEdit->clear();
-    m_iconLabel->clear();
+    // @p checked is a Qt::CheckState, 0 is "unchecked" and 2 is "checked"
+    m_ui->m_passphraseLineEdit->setVisible( checked );
+    m_ui->m_confirmLineEdit->setVisible( checked );
+    m_ui->m_iconLabel->setVisible( checked );
+    m_ui->m_passphraseLineEdit->clear();
+    m_ui->m_confirmLineEdit->clear();
+    m_ui->m_iconLabel->clear();
 
     updateState();
 }

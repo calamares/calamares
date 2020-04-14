@@ -17,23 +17,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <PartitionJobTests.h>
+#include "PartitionJobTests.h"
+
+#include "core/KPMHelpers.h"
+#include "jobs/CreatePartitionJob.h"
+#include "jobs/CreatePartitionTableJob.h"
+#include "jobs/ResizePartitionJob.h"
 
 #include "partition/KPMManager.h"
 #include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
-#include <core/KPMHelpers.h>
-#include <jobs/CreatePartitionJob.h>
-#include <jobs/CreatePartitionTableJob.h>
-#include <jobs/ResizePartitionJob.h>
-
-// CalaPM
 #include <backend/corebackend.h>
 #include <fs/filesystemfactory.h>
 
-// Qt
 #include <QEventLoop>
 #include <QProcess>
 #include <QtTest/QtTest>

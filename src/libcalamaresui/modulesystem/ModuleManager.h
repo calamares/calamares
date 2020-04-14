@@ -22,8 +22,7 @@
 
 #include "modulesystem/Descriptor.h"
 #include "modulesystem/InstanceKey.h"
-
-#include "Requirement.h"
+#include "modulesystem/Requirement.h"
 
 #include <QObject>
 #include <QStringList>

@@ -65,9 +65,9 @@ mount( const std::string& device_path,
        const std::string& options )
 {
     return CalamaresUtils::Partition::mount( QString::fromStdString( device_path ),
-                  QString::fromStdString( mount_point ),
-                  QString::fromStdString( filesystem_name ),
-                  QString::fromStdString( options ) );
+                                             QString::fromStdString( mount_point ),
+                                             QString::fromStdString( filesystem_name ),
+                                             QString::fromStdString( options ) );
 }
 
 
@@ -148,7 +148,7 @@ check_target_env_output( const bp::list& args, const std::string& stdin, int tim
 void
 debug( const std::string& s )
 {
-    cDebug() << "[PYTHON JOB]: " << QString::fromStdString( s );
+    Logger::CDebug( Logger::LOGDEBUG ) << "[PYTHON JOB]: " << QString::fromStdString( s );
 }
 
 void
@@ -171,7 +171,7 @@ PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
 void
 PythonJobInterface::setprogress( qreal progress )
 {
-    if ( progress >= 0 && progress <= 1 )
+    if ( progress >= 0.0 && progress <= 1.0 )
     {
         m_parent->emitProgress( progress );
     }

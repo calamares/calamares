@@ -31,12 +31,12 @@ class WelcomePage;
 }
 
 class CheckerContainer;
-
+class Config;
 class WelcomePage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit WelcomePage( QWidget* parent = nullptr );
+    explicit WelcomePage( Config* conf, QWidget* parent = nullptr );
 
     enum class Button
     {
@@ -58,6 +58,8 @@ public:
     /// @brief Change the language from an external source.
     void externallySelectedLanguage( int row );
 
+    void init();
+
 public slots:
     void retranslate();
     void showAboutBox();
@@ -72,6 +74,8 @@ private:
     Ui::WelcomePage* ui;
     CheckerContainer* m_checkingWidget;
     CalamaresUtils::Locale::LabelModel* m_languages;
+
+    Config* m_conf;
 };
 
 /** @brief Delegate to display language information in two columns.

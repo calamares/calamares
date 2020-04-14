@@ -183,7 +183,7 @@ load_module( const ModuleConfig& moduleConfig )
 
     cDebug() << "Module" << moduleName << "job-configuration:" << configFile;
 
-    Calamares::Module* module = Calamares::Module::fromDescriptor( descriptor, name, configFile, moduleDirectory );
+    Calamares::Module* module = Calamares::moduleFromDescriptor( descriptor, name, configFile, moduleDirectory );
 
     return module;
 }
@@ -229,7 +229,7 @@ main( int argc, char* argv[] )
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
     QMainWindow* mw = nullptr;
 
-    auto gs = jobqueue_p->globalStorage();
+    auto* gs = jobqueue_p->globalStorage();
     if ( !module.globalConfigFile().isEmpty() )
     {
         gs->loadYaml( module.globalConfigFile() );
@@ -240,7 +240,6 @@ main( int argc, char* argv[] )
         vm.insert( "LANG", module.language() );
         gs->insert( "localeConf", vm );
     }
-
 
     cDebug() << "Calamares module-loader testing" << module.moduleName();
     Calamares::Module* m = load_module( module );
@@ -273,7 +272,9 @@ main( int argc, char* argv[] )
 
     if ( mw )
     {
-        QWidget* w = Calamares::ViewManager::instance()->currentStep()->widget();
+        auto* vm = Calamares::ViewManager::instance();
+        vm->onInitComplete();
+        QWidget* w = vm->currentStep()->widget();
         w->setParent( mw );
         mw->setCentralWidget( w );
         w->show();

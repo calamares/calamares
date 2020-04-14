@@ -40,9 +40,9 @@
 #include <QFileInfo>
 #include <QProcess>
 
+using CalamaresUtils::Partition::PartitionIterator;
 using CalamaresUtils::Partition::untranslatedFS;
 using CalamaresUtils::Partition::userVisibleFS;
-using CalamaresUtils::Partition::PartitionIterator;
 
 typedef QHash< QString, QString > UuidForPartitionHash;
 
@@ -107,10 +107,8 @@ mapForPartition( Partition* partition, const QString& uuid )
     Logger::CDebug deb;
     using TR = Logger::DebugRow< const char* const, const QString& >;
     deb << Logger::SubEntry << "mapping for" << partition->partitionPath() << partition->deviceNode()
-        << TR( "mtpoint:", PartitionInfo::mountPoint( partition ) )
-        << TR( "fs:", map[ "fs" ].toString() )
-        << TR( "fsName", map[ "fsName" ].toString() )
-        << TR( "uuid", uuid )
+        << TR( "mtpoint:", PartitionInfo::mountPoint( partition ) ) << TR( "fs:", map[ "fs" ].toString() )
+        << TR( "fsName", map[ "fsName" ].toString() ) << TR( "uuid", uuid )
         << TR( "claimed", map[ "claimed" ].toString() );
 
     if ( partition->roles().has( PartitionRole::Luks ) )
@@ -147,7 +145,7 @@ FillGlobalStorageJob::prettyDescription() const
 {
     QStringList lines;
 
-    const auto partitionList = createPartitionList().toList();
+    const auto partitionList = createPartitionList();
     for ( const QVariant& partitionItem : partitionList )
     {
         if ( partitionItem.type() == QVariant::Map )
@@ -212,12 +210,52 @@ FillGlobalStorageJob::prettyStatusMessage() const
     return tr( "Setting up mount points." );
 }
 
+
+/** @brief note which FS'ses are in use in GS
+ *
+ * .. mark as "1" if it's on the system, somewhere
+ * .. mark as "2" if it's one of the claimed / in-use FSses
+ *
+ * Stores a GS key called "filesystems_use" with this mapping.
+ */
+static void
+storeFSUse( Calamares::GlobalStorage* storage, const QVariantList& partitions )
+{
+    QMap< QString, int > fsUses;
+    for ( const auto& p : partitions )
+    {
+        const auto pmap = p.toMap();
+
+        QString fs = pmap.value( "fs" ).toString();
+        int thisUse = pmap.value( "claimed" ).toBool() ? 2 : 1;
+
+        if ( fs.isEmpty() )
+        {
+            continue;
+        }
+
+        int newUse = qMax( fsUses.value( fs ), thisUse );  // value() is 0 if not present
+        fsUses.insert( fs, newUse );
+    }
+
+    QVariantMap fsUsesVariant;
+    for ( auto it = fsUses.cbegin(); it != fsUses.cend(); ++it )
+    {
+        fsUsesVariant.insert( it.key(), it.value() );
+    }
+
+    storage->insert( "filesystems_use", fsUsesVariant );
+}
+
 Calamares::JobResult
 FillGlobalStorageJob::exec()
 {
     Calamares::GlobalStorage* storage = Calamares::JobQueue::instance()->globalStorage();
-    storage->insert( "partitions", createPartitionList() );
+    const auto partitions = createPartitionList();
     cDebug() << "Saving partition information map to GlobalStorage[\"partitions\"]";
+    storage->insert( "partitions", partitions );
+    storeFSUse( storage, partitions );
+
     if ( !m_bootLoaderPath.isEmpty() )
     {
         QVariant var = createBootLoaderMap();
@@ -236,7 +274,7 @@ FillGlobalStorageJob::exec()
     return Calamares::JobResult::ok();
 }
 
-QVariant
+QVariantList
 FillGlobalStorageJob::createPartitionList() const
 {
     UuidForPartitionHash hash = findPartitionUuids( m_devices );

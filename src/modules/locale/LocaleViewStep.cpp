@@ -20,7 +20,6 @@
 #include "LocaleViewStep.h"
 
 #include "LocalePage.h"
-#include "timezonewidget/localeglobal.h"
 #include "widgets/WaitingWidget.h"
 
 #include "GlobalStorage.h"
@@ -225,7 +224,6 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 Calamares::RequirementsList
 LocaleViewStep::checkRequirements()
 {
-    LocaleGlobal::init();
     if ( m_geoip && m_geoip->isValid() )
     {
         auto& network = CalamaresUtils::Network::Manager::instance();

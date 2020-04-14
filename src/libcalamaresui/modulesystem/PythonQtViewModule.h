@@ -19,8 +19,8 @@
 #ifndef CALAMARES_PYTHONQTVIEWMODULE_H
 #define CALAMARES_PYTHONQTVIEWMODULE_H
 
-#include "Module.h"
 #include "DllMacro.h"
+#include "Module.h"
 
 namespace Calamares
 {
@@ -40,7 +40,6 @@ protected:
     void initFrom( const QVariantMap& moduleDescriptor ) override;
 
 private:
-    friend class Module;  //so only the superclass can instantiate
     explicit PythonQtViewModule();
     virtual ~PythonQtViewModule();
 
@@ -48,6 +47,11 @@ private:
 
     QString m_scriptFileName;
     QString m_workingPath;
+
+    friend Module* Calamares::moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
+                                                    const QString& instanceId,
+                                                    const QString& configFileName,
+                                                    const QString& moduleDirectory );
 };
 
 }  // namespace Calamares

@@ -33,9 +33,7 @@ Label::Label( const QString& locale, LabelFormat format, QObject* parent )
     : QObject( parent )
     , m_locale( Label::getLocale( locale ) )
     , m_localeId( locale.isEmpty() ? m_locale.name() : locale )
-
 {
-    //: language[name] (country[name])
     QString longFormat = QObject::tr( "%1 (%2)" );
 
     QString languageName = m_locale.nativeLanguageName();

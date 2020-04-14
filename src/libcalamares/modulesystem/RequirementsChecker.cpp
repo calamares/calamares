@@ -18,18 +18,16 @@
 
 #include "RequirementsChecker.h"
 
-#include "Module.h"
-#include "Requirement.h"
-
+#include "modulesystem/Module.h"
+#include "modulesystem/Requirement.h"
 #include "utils/Logger.h"
-
-#include <algorithm>
 
 #include <QFuture>
 #include <QFutureWatcher>
 #include <QTimer>
 #include <QtConcurrent/QtConcurrent>
 
+#include <algorithm>
 
 namespace Calamares
 {

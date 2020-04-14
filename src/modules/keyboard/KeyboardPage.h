@@ -48,24 +48,20 @@ public:
 
     QString prettyStatus() const;
 
-    Calamares::JobList createJobs( const QString& xOrgConfFileName,
-                                            const QString& convertedKeymapPath,
-                                            bool writeEtcDefaultKeyboard );
+    Calamares::JobList
+    createJobs( const QString& xOrgConfFileName, const QString& convertedKeymapPath, bool writeEtcDefaultKeyboard );
 
     void onActivate();
     void finalize();
 
 protected slots:
-    void onListLayoutCurrentItemChanged( const QModelIndex& current,
-                                         const QModelIndex& previous );
-    void onListVariantCurrentItemChanged( QListWidgetItem* current,
-                                          QListWidgetItem* previous );
+    void onListLayoutCurrentItemChanged( const QModelIndex& current, const QModelIndex& previous );
+    void onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous );
 
 private:
     /// Guess a layout based on the split-apart locale
     void guessLayout( const QStringList& langParts );
-    void updateVariants( const QPersistentModelIndex& currentItem,
-                         QString currentVariant = QString() );
+    void updateVariants( const QPersistentModelIndex& currentItem, QString currentVariant = QString() );
 
     Ui::Page_Keyboard* ui;
     KeyBoardPreview* m_keyboardPreview;
@@ -77,4 +73,4 @@ private:
     QTimer m_setxkbmapTimer;
 };
 
-#endif // KEYBOARDPAGE_H
+#endif  // KEYBOARDPAGE_H

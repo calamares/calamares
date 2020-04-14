@@ -25,6 +25,7 @@
 
 #include "Branding.h"
 #include "CalamaresVersion.h"
+#include "Config.h"
 #include "Settings.h"
 #include "ViewManager.h"
 
@@ -43,16 +44,14 @@
 #include <QLabel>
 #include <QMessageBox>
 
-WelcomePage::WelcomePage( QWidget* parent )
+WelcomePage::WelcomePage( Config* conf, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::WelcomePage )
-    , m_checkingWidget( new CheckerContainer( this ) )
+    , m_checkingWidget( new CheckerContainer( conf->requirementsModel(), this ) )
     , m_languages( nullptr )
+    , m_conf( conf )
 {
-    connect( Calamares::ModuleManager::instance(),
-             &Calamares::ModuleManager::requirementsResult,
-             m_checkingWidget,
-             &CheckerContainer::requirementsChecked );
+
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
              m_checkingWidget,
@@ -85,6 +84,22 @@ WelcomePage::WelcomePage( QWidget* parent )
     ui->verticalLayout->insertWidget( welcome_text_idx + 1, m_checkingWidget );
 }
 
+void
+WelcomePage::init()
+{
+    //setup the url buttons
+    setupButton( WelcomePage::Button::Support, m_conf->supportUrl() );
+    setupButton( WelcomePage::Button::KnownIssues, m_conf->knownIssuesUrl() );
+    setupButton( WelcomePage::Button::ReleaseNotes, m_conf->releaseNotesUrl() );
+    setupButton( WelcomePage::Button::Donate, m_conf->donateUrl() );
+
+    //language icon
+    auto icon = Calamares::Branding::instance()->image( m_conf->languageIcon(), QSize( 48, 48 ) );
+    if ( !icon.isNull() )
+    {
+        setLanguageIcon( icon );
+    }
+}
 
 void
 WelcomePage::initLanguages()
@@ -93,66 +108,16 @@ WelcomePage::initLanguages()
     ui->languageWidget->clear();
     ui->languageWidget->setInsertPolicy( QComboBox::InsertAtBottom );
 
-    m_languages = CalamaresUtils::Locale::availableTranslations();
-    ui->languageWidget->setModel( m_languages );
+    ui->languageWidget->setModel( m_conf->languagesModel() );
     ui->languageWidget->setItemDelegate( new LocaleTwoColumnDelegate( ui->languageWidget ) );
 
-    // Find the best initial translation
-    QLocale defaultLocale = QLocale( QLocale::system().name() );
-
-    cDebug() << "Matching locale" << defaultLocale;
-    int matchedLocaleIndex = m_languages->find( [&]( const QLocale& x ) {
-        return x.language() == defaultLocale.language() && x.country() == defaultLocale.country();
-    } );
-
-    if ( matchedLocaleIndex < 0 )
-    {
-        cDebug() << Logger::SubEntry << "Matching approximate locale" << defaultLocale.language();
-
-        matchedLocaleIndex
-            = m_languages->find( [&]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
-    }
-
-    if ( matchedLocaleIndex < 0 )
-    {
-        QLocale en_us( QLocale::English, QLocale::UnitedStates );
-
-        cDebug() << Logger::SubEntry << "Matching English (US)";
-        matchedLocaleIndex = m_languages->find( en_us );
-
-        // Now, if it matched, because we didn't match the system locale, switch to the one found
-        if ( matchedLocaleIndex >= 0 )
-        {
-            QLocale::setDefault( m_languages->locale( matchedLocaleIndex ).locale() );
-        }
-    }
-
-    if ( matchedLocaleIndex >= 0 )
-    {
-        QString name = m_languages->locale( matchedLocaleIndex ).name();
-        cDebug() << Logger::SubEntry << "Matched with index" << matchedLocaleIndex << name;
-
-        CalamaresUtils::installTranslator( name, Calamares::Branding::instance()->translationsDirectory(), qApp );
-        ui->languageWidget->setCurrentIndex( matchedLocaleIndex );
-    }
-    else
-    {
-        cWarning() << "No available translation matched" << defaultLocale;
-    }
+    ui->languageWidget->setCurrentIndex( m_conf->localeIndex() );
 
     connect( ui->languageWidget,
              static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
-             this,
-             [&]( int newIndex ) {
-                 const auto& selectedLocale = m_languages->locale( newIndex ).locale();
-                 cDebug() << "Selected locale" << selectedLocale;
-
-                 QLocale::setDefault( selectedLocale );
-                 CalamaresUtils::installTranslator(
-                     selectedLocale, Calamares::Branding::instance()->translationsDirectory(), qApp );
-             } );
+             m_conf,
+             &Config::setLocaleIndex );
 }
-
 
 void
 WelcomePage::setupButton( Button role, const QString& url )
@@ -270,7 +235,7 @@ WelcomePage::showAboutBox()
                         "<strong>%2<br/>"
                         "for %3</strong><br/><br/>"
                         "Copyright 2014-2017 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
-                        "Copyright 2017-2019 Adriaan de Groot &lt;groot@kde.org&gt;<br/>"
+                        "Copyright 2017-2020 Adriaan de Groot &lt;groot@kde.org&gt;<br/>"
                         "Thanks to <a href=\"https://calamares.io/team/\">the Calamares team</a> "
                         "and the <a href=\"https://www.transifex.com/calamares/calamares/\">Calamares "
                         "translators team</a>.<br/><br/>"

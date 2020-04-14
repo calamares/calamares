@@ -25,28 +25,24 @@
 RemoveVolumeGroupJob::RemoveVolumeGroupJob( LvmDevice* device )
     : m_device( device )
 {
-
 }
 
 QString
 RemoveVolumeGroupJob::prettyName() const
 {
-    return tr( "Remove Volume Group named %1." )
-            .arg( m_device->name() );
+    return tr( "Remove Volume Group named %1." ).arg( m_device->name() );
 }
 
 QString
 RemoveVolumeGroupJob::prettyDescription() const
 {
-    return tr( "Remove Volume Group named <strong>%1</strong>.")
-            .arg( m_device->name() );
+    return tr( "Remove Volume Group named <strong>%1</strong>." ).arg( m_device->name() );
 }
 
 QString
 RemoveVolumeGroupJob::prettyStatusMessage() const
 {
-    return tr( "Remove Volume Group named %1." )
-            .arg( m_device->name() );
+    return tr( "Remove Volume Group named %1." ).arg( m_device->name() );
 }
 
 Calamares::JobResult
@@ -60,7 +56,9 @@ RemoveVolumeGroupJob::exec()
 
     QString message = tr( "The installer failed to remove a volume group named '%1'." ).arg( m_device->name() );
     if ( op.execute( report ) )
+    {
         return Calamares::JobResult::ok();
+    }
 
-    return Calamares::JobResult::error(message, report.toText());
+    return Calamares::JobResult::error( message, report.toText() );
 }

@@ -20,56 +20,68 @@
 #include "PackageTreeItem.h"
 
 #include "utils/Logger.h"
+#include "utils/Variant.h"
 
-QVariant
-PackageTreeItem::ItemData::toOperation() const
+/** @brief Should a package be selected, given its parent's state? */
+static Qt::CheckState
+parentCheckState( PackageTreeItem* parent )
 {
-    // If it's a package with a pre- or post-script, replace
-    // with the more complicated datastructure.
-    if ( !preScript.isEmpty() || !postScript.isEmpty() )
+    if ( parent )
     {
-        QMap< QString, QVariant > sdetails;
-        sdetails.insert( "pre-script", preScript );
-        sdetails.insert( "package", packageName );
-        sdetails.insert( "post-script", postScript );
-        return sdetails;
+        // Avoid partially-checked .. a package can't be partial
+        return parent->isSelected() == Qt::Unchecked ? Qt::Unchecked : Qt::Checked;
     }
     else
     {
-        return packageName;
+        return Qt::Unchecked;
     }
 }
 
-PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent )
+/** @brief Should a subgroup be marked critical?
+ *
+ * If set explicitly, then use that, otherwise use the parent's critical-ness.
+ */
+static bool
+parentCriticality( const QVariantMap& groupData, PackageTreeItem* parent )
+{
+    if ( groupData.contains( "critical" ) )
+    {
+        return CalamaresUtils::getBool( groupData, "critical", false );
+    }
+    return parent ? parent->isCritical() : false;
+}
+
+PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* parent )
     : m_parentItem( parent )
-    , m_data( data )
+    , m_packageName( packageName )
+    , m_selected( parentCheckState( parent ) )
+    , m_isGroup( false )
+    , m_isCritical( parent ? parent->isCritical() : false )
+    , m_showReadOnly( parent ? parent->isImmutable() : false )
 {
 }
 
-PackageTreeItem::PackageTreeItem( const QString packageName, PackageTreeItem* parent )
+PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTreeItem* parent )
     : m_parentItem( parent )
-{
-    m_data.packageName = packageName;
-    if ( parent != nullptr )
-    {
-        m_data.selected = parent->isSelected();
-    }
-    else
-    {
-        m_data.selected = Qt::Unchecked;
-    }
-}
-
-PackageTreeItem::PackageTreeItem( PackageTreeItem* parent )
-    : m_parentItem( parent )
+    , m_name( CalamaresUtils::getString( groupData, "name" ) )
+    , m_selected( parentCheckState( parent ) )
+    , m_description( CalamaresUtils::getString( groupData, "description" ) )
+    , m_preScript( CalamaresUtils::getString( groupData, "pre-install" ) )
+    , m_postScript( CalamaresUtils::getString( groupData, "post-install" ) )
+    , m_isGroup( true )
+    , m_isCritical( parentCriticality( groupData, parent ) )
+    , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
+    , m_showReadOnly( CalamaresUtils::getBool( groupData, "immutable", false ) )
+    , m_startExpanded( CalamaresUtils::getBool( groupData, "expanded", false ) )
 {
 }
 
 PackageTreeItem::PackageTreeItem::PackageTreeItem()
-    : PackageTreeItem( QString(), nullptr )
+    : m_parentItem( nullptr )
+    , m_name( QStringLiteral( "<root>" ) )
+    , m_selected( Qt::Checked )
+    , m_isGroup( true )
 {
-    m_data.selected = Qt::Checked;
-    m_data.name = QLatin1String( "<root>" );
 }
 
 PackageTreeItem::~PackageTreeItem()
@@ -108,22 +120,27 @@ PackageTreeItem::row() const
 QVariant
 PackageTreeItem::data( int column ) const
 {
-    if ( packageName() != nullptr )  // package
+    if ( isPackage() )  // packages have a packagename, groups don't
     {
-        if ( !column )
+        switch ( column )
         {
+        case 0:
             return QVariant( packageName() );
+        default:
+            return QVariant();
         }
-        return QVariant();
     }
-    switch ( column )  // group
+    else
     {
-    case 0:
-        return QVariant( prettyName() );
-    case 1:
-        return QVariant( description() );
-    default:
-        return QVariant();
+        switch ( column )  // group
+        {
+        case 0:
+            return QVariant( name() );
+        case 1:
+            return QVariant( description() );
+        default:
+            return QVariant();
+        }
     }
 }
 
@@ -140,53 +157,15 @@ PackageTreeItem::parentItem() const
 }
 
 
-QString
-PackageTreeItem::prettyName() const
-{
-    return m_data.name;
-}
-
-QString
-PackageTreeItem::description() const
-{
-    return m_data.description;
-}
-
-QString
-PackageTreeItem::preScript() const
-{
-    return m_data.preScript;
-}
-
-QString
-PackageTreeItem::packageName() const
-{
-    return m_data.packageName;
-}
-
-QString
-PackageTreeItem::postScript() const
-{
-    return m_data.postScript;
-}
-
-bool
-PackageTreeItem::isHidden() const
-{
-    return m_data.isHidden;
-}
-
-void
-PackageTreeItem::setHidden( bool isHidden )
-{
-    m_data.isHidden = isHidden;
-}
-
 bool
 PackageTreeItem::hiddenSelected() const
 {
-    Q_ASSERT( m_data.isHidden );
-    if ( !m_data.selected )
+    if ( !m_isHidden )
+    {
+        return m_selected != Qt::Unchecked;
+    }
+
+    if ( m_selected == Qt::Unchecked )
     {
         return false;
     }
@@ -201,39 +180,21 @@ PackageTreeItem::hiddenSelected() const
         currentItem = currentItem->parentItem();
     }
 
-    /* Has no non-hiddent parents */
-    return m_data.selected;
+    /* Has no non-hidden parents */
+    return m_selected != Qt::Unchecked;
 }
 
-
-bool
-PackageTreeItem::isCritical() const
-{
-    return m_data.isCritical;
-}
-
-void
-PackageTreeItem::setCritical( bool isCritical )
-{
-    m_data.isCritical = isCritical;
-}
-
-Qt::CheckState
-PackageTreeItem::isSelected() const
-{
-    return m_data.selected;
-}
 
 void
 PackageTreeItem::setSelected( Qt::CheckState isSelected )
 {
     if ( parentItem() == nullptr )
-    // This is the root, it is always checked so don't change state
     {
+        // This is the root, it is always checked so don't change state
         return;
     }
 
-    m_data.selected = isSelected;
+    m_selected = isSelected;
     setChildrenSelected( isSelected );
 
     // Look for suitable parent item which may change checked-state
@@ -244,38 +205,45 @@ PackageTreeItem::setSelected( Qt::CheckState isSelected )
         currentItem = currentItem->parentItem();
     }
     if ( currentItem == nullptr )
-    // Reached the root .. don't bother
     {
+        // Reached the root .. don't bother
         return;
     }
 
+    currentItem->updateSelected();
+}
+
+void
+PackageTreeItem::updateSelected()
+{
     // Figure out checked-state based on the children
     int childrenSelected = 0;
     int childrenPartiallySelected = 0;
-    for ( int i = 0; i < currentItem->childCount(); i++ )
+    for ( int i = 0; i < childCount(); i++ )
     {
-        if ( currentItem->child( i )->isSelected() == Qt::Checked )
+        if ( child( i )->isSelected() == Qt::Checked )
         {
             childrenSelected++;
         }
-        if ( currentItem->child( i )->isSelected() == Qt::PartiallyChecked )
+        if ( child( i )->isSelected() == Qt::PartiallyChecked )
         {
             childrenPartiallySelected++;
         }
     }
     if ( !childrenSelected && !childrenPartiallySelected )
     {
-        currentItem->setSelected( Qt::Unchecked );
+        setSelected( Qt::Unchecked );
     }
-    else if ( childrenSelected == currentItem->childCount() )
+    else if ( childrenSelected == childCount() )
     {
-        currentItem->setSelected( Qt::Checked );
+        setSelected( Qt::Checked );
     }
     else
     {
-        currentItem->setSelected( Qt::PartiallyChecked );
+        setSelected( Qt::PartiallyChecked );
     }
 }
+
 
 void
 PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
@@ -284,7 +252,7 @@ PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
         // Children are never root; don't need to use setSelected on them.
         for ( auto child : m_childItems )
         {
-            child->m_data.selected = isSelected;
+            child->m_selected = isSelected;
             child->setChildrenSelected( isSelected );
         }
 }
@@ -293,4 +261,44 @@ int
 PackageTreeItem::type() const
 {
     return QStandardItem::UserType;
+}
+
+QVariant
+PackageTreeItem::toOperation() const
+{
+    // If it's a package with a pre- or post-script, replace
+    // with the more complicated datastructure.
+    if ( !m_preScript.isEmpty() || !m_postScript.isEmpty() )
+    {
+        QMap< QString, QVariant > sdetails;
+        sdetails.insert( "pre-script", m_preScript );
+        sdetails.insert( "package", m_packageName );
+        sdetails.insert( "post-script", m_postScript );
+        return sdetails;
+    }
+    else
+    {
+        return m_packageName;
+    }
+}
+
+bool
+PackageTreeItem::operator==( const PackageTreeItem& rhs ) const
+{
+    if ( isGroup() != rhs.isGroup() )
+    {
+        // Different kinds
+        return false;
+    }
+
+    if ( isGroup() )
+    {
+        return name() == rhs.name() && description() == rhs.description() && preScript() == rhs.preScript()
+            && postScript() == rhs.postScript() && isCritical() == rhs.isCritical() && isHidden() == rhs.isHidden()
+            && m_showReadOnly == rhs.m_showReadOnly && expandOnStart() == rhs.expandOnStart();
+    }
+    else
+    {
+        return packageName() == rhs.packageName();
+    }
 }

@@ -12,8 +12,6 @@ else()
     add_definitions( -DWITHOUT_LIBPARTED )
 endif()
 
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
-
 set( CHECKER_SOURCES
     checker/CheckerContainer.cpp
     checker/GeneralRequirements.cpp
@@ -28,6 +26,8 @@ calamares_add_plugin( welcome
     SOURCES
         ${CHECKER_SOURCES}
         WelcomeViewStep.cpp
+        Config.cpp
+        Config.h
         WelcomePage.cpp
     UI
         WelcomePage.ui

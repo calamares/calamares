@@ -18,7 +18,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "jobs/DeletePartitionJob.h"
+#include "DeletePartitionJob.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -37,24 +37,21 @@ DeletePartitionJob::DeletePartitionJob( Device* device, Partition* partition )
 QString
 DeletePartitionJob::prettyName() const
 {
-    return tr( "Delete partition %1." )
-            .arg( m_partition->partitionPath() );
+    return tr( "Delete partition %1." ).arg( m_partition->partitionPath() );
 }
 
 
 QString
 DeletePartitionJob::prettyDescription() const
 {
-    return tr( "Delete partition <strong>%1</strong>." )
-            .arg( m_partition->partitionPath() );
+    return tr( "Delete partition <strong>%1</strong>." ).arg( m_partition->partitionPath() );
 }
 
 
 QString
 DeletePartitionJob::prettyStatusMessage() const
 {
-    return tr( "Deleting partition %1." )
-            .arg( m_partition->partitionPath() );
+    return tr( "Deleting partition %1." ).arg( m_partition->partitionPath() );
 }
 
 
@@ -62,14 +59,16 @@ Calamares::JobResult
 DeletePartitionJob::exec()
 {
     Report report( nullptr );
-    DeleteOperation op(*m_device, m_partition);
-    op.setStatus(Operation::StatusRunning);
+    DeleteOperation op( *m_device, m_partition );
+    op.setStatus( Operation::StatusRunning );
 
     QString message = tr( "The installer failed to delete partition %1." ).arg( m_partition->devicePath() );
-    if (op.execute(report))
+    if ( op.execute( report ) )
+    {
         return Calamares::JobResult::ok();
+    }
 
-    return Calamares::JobResult::error(message, report.toText());
+    return Calamares::JobResult::error( message, report.toText() );
 }
 
 void
@@ -87,5 +86,7 @@ DeletePartitionJob::updatePreview()
     // become sda5, sda6, sda7
     Partition* parentPartition = dynamic_cast< Partition* >( m_partition->parent() );
     if ( parentPartition && parentPartition->roles().has( PartitionRole::Extended ) )
+    {
         parentPartition->adjustLogicalNumbers( m_partition->number(), -1 );
+    }
 }

@@ -25,32 +25,28 @@
 #include <kpmcore/util/report.h>
 
 CreateVolumeGroupJob::CreateVolumeGroupJob( QString& vgName, QVector< const Partition* > pvList, const qint32 peSize )
-    : m_vgName(vgName)
-    , m_pvList(pvList)
-    , m_peSize(peSize)
+    : m_vgName( vgName )
+    , m_pvList( pvList )
+    , m_peSize( peSize )
 {
-
 }
 
 QString
 CreateVolumeGroupJob::prettyName() const
 {
-    return tr( "Create new volume group named %1." )
-            .arg( m_vgName );
+    return tr( "Create new volume group named %1." ).arg( m_vgName );
 }
 
 QString
 CreateVolumeGroupJob::prettyDescription() const
 {
-    return tr( "Create new volume group named <strong>%1</strong>." )
-            .arg( m_vgName );
+    return tr( "Create new volume group named <strong>%1</strong>." ).arg( m_vgName );
 }
 
 QString
 CreateVolumeGroupJob::prettyStatusMessage() const
 {
-    return tr( "Creating new volume group named %1." )
-            .arg( m_vgName );
+    return tr( "Creating new volume group named %1." ).arg( m_vgName );
 }
 
 Calamares::JobResult
@@ -62,11 +58,13 @@ CreateVolumeGroupJob::exec()
 
     op.setStatus( Operation::StatusRunning );
 
-    QString message = tr( "The installer failed to create a volume group named '%1'.").arg( m_vgName );
-    if (op.execute(report))
+    QString message = tr( "The installer failed to create a volume group named '%1'." ).arg( m_vgName );
+    if ( op.execute( report ) )
+    {
         return Calamares::JobResult::ok();
+    }
 
-    return Calamares::JobResult::error(message, report.toText());
+    return Calamares::JobResult::error( message, report.toText() );
 }
 
 void
@@ -79,6 +77,10 @@ void
 CreateVolumeGroupJob::undoPreview()
 {
     for ( const auto& pv : m_pvList )
-        if ( LvmDevice::s_DirtyPVs.contains( pv ))
+    {
+        if ( LvmDevice::s_DirtyPVs.contains( pv ) )
+        {
             LvmDevice::s_DirtyPVs.removeAll( pv );
+        }
+    }
 }

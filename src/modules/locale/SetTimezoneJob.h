@@ -19,7 +19,7 @@
 #ifndef SETTIMEZONEJOB_H
 #define SETTIMEZONEJOB_H
 
-#include <Job.h>
+#include "Job.h"
 
 
 class SetTimezoneJob : public Calamares::Job

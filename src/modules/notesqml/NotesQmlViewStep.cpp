@@ -22,7 +22,7 @@
 #include <QVariant>
 
 NotesQmlViewStep::NotesQmlViewStep( QObject* parent )
-    : Calamares::QmlViewStep( "notesqml", parent )
+    : Calamares::QmlViewStep( parent )
 {
 }
 

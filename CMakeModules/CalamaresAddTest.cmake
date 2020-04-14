@@ -50,7 +50,7 @@ function( calamares_add_test )
                 Qt5::Test
             )
         calamares_automoc( ${TEST_NAME} )
-        target_compile_definitions( ${TEST_NAME} PRIVATE -DBUILD_AS_TEST ${TEST_DEFINITIONS} )
+        target_compile_definitions( ${TEST_NAME} PRIVATE -DBUILD_AS_TEST="${CMAKE_CURRENT_SOURCE_DIR}"  ${TEST_DEFINITIONS} )
         if( TEST_GUI )
             target_link_libraries( ${TEST_NAME} calamaresui Qt5::Gui )
         endif()

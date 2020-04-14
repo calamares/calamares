@@ -19,7 +19,7 @@
 #ifndef CREATEUSERJOB_H
 #define CREATEUSERJOB_H
 
-#include <Job.h>
+#include "Job.h"
 
 #include <QStringList>
 

@@ -26,13 +26,7 @@
 #include "JobQueue.h"
 
 #include <QDir>
-// #include <QTemporaryFile>
-
 #include <QtTest/QtTest>
-
-// #include <fcntl.h>
-// #include <sys/stat.h>
-// #include <unistd.h>
 
 class TestPaths : public QObject
 {

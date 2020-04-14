@@ -34,10 +34,7 @@ class PartitionJob : public Calamares::Job
 public:
     PartitionJob( Partition* partition );
 
-    Partition* partition() const
-    {
-        return m_partition;
-    }
+    Partition* partition() const { return m_partition; }
 
 public slots:
     /** @brief Translate from KPMCore to Calamares progress.

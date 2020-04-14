@@ -21,7 +21,7 @@
 #ifndef SETHOSTNAMEJOB_CPP_H
 #define SETHOSTNAMEJOB_CPP_H
 
-#include <Job.h>
+#include "Job.h"
 
 class SetHostNameJob : public Calamares::Job
 {

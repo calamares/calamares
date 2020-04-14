@@ -44,6 +44,9 @@ private Q_SLOTS:
     void testEntropy();
     void testPrintableEntropy();
     void testOddSizedPrintable();
+
+private:
+    void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
 };
 
 #endif

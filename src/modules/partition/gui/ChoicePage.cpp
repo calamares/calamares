@@ -332,7 +332,9 @@ ChoicePage::setupChoices()
 
     CALAMARES_RETRANSLATE(
         m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
-                                            "You can create or resize partitions yourself." ) );
+                                            "You can create or resize partitions yourself."
+                                            " Having a GPT partition table and <strong>fat32 512Mb /boot partition "
+                                            "is a must for UEFI installs</strong>, either use an existing without formatting or create one." ) );
         updateSwapChoicesTr( m_eraseSwapChoiceComboBox );
     )
 }
@@ -587,19 +589,19 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
 void
 ChoicePage::onEncryptWidgetStateChanged()
 {
-    EncryptWidget::State state = m_encryptWidget->state();
+    EncryptWidget::Encryption state = m_encryptWidget->state();
     if ( m_choice == Erase )
     {
-        if ( state == EncryptWidget::EncryptionConfirmed ||
-             state == EncryptWidget::EncryptionDisabled )
+        if ( state == EncryptWidget::Encryption::Confirmed ||
+             state == EncryptWidget::Encryption::Disabled )
             applyActionChoice( m_choice );
     }
     else if ( m_choice == Replace )
     {
         if ( m_beforePartitionBarsView &&
              m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() &&
-             ( state == EncryptWidget::EncryptionConfirmed ||
-               state == EncryptWidget::EncryptionDisabled ) )
+             ( state == EncryptWidget::Encryption::Confirmed ||
+               state == EncryptWidget::Encryption::Disabled ) )
         {
             doReplaceSelectedPartition( m_beforePartitionBarsView->
                                             selectionModel()->
@@ -1474,7 +1476,7 @@ ChoicePage::updateNextEnabled()
 
     if ( m_choice != Manual &&
          m_encryptWidget->isVisible() &&
-         m_encryptWidget->state() == EncryptWidget::EncryptionUnconfirmed )
+         m_encryptWidget->state() == EncryptWidget::Encryption::Unconfirmed )
         enabled = false;
 
     if ( enabled == m_nextEnabled )

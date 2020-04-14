@@ -27,7 +27,7 @@
 
 #include "utils/PluginFactory.h"
 
-struct ContextualProcessBinding;
+class ContextualProcessBinding;
 
 class PLUGINDLLEXPORT ContextualProcessJob : public Calamares::CppJob
 {

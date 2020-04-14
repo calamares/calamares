@@ -19,10 +19,10 @@
 #ifndef OEMVIEWSTEP_H
 #define OEMVIEWSTEP_H
 
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
 
-#include <DllMacro.h>
+#include "DllMacro.h"
 
 #include <QVariantMap>
 

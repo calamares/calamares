@@ -48,4 +48,4 @@ private:
     QVector< const Partition* > m_partitionList;
 };
 
-#endif // RESIZEVOLUMEGROUPJOB_H
+#endif  // RESIZEVOLUMEGROUPJOB_H

@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+  <file alias="calamares-sidebar.qml">calamares-sidebar.qml</file>
+  <file alias="calamares-navigation.qml">calamares-navigation.qml</file>
+</qresource>
+</RCC>

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,10 +19,13 @@
 
 #include "Tests.h"
 #include "LocaleConfiguration.h"
+#include "timezonewidget/TimeZoneImage.h"
+
+#include "locale/TimeZone.h"
 
 #include <QtTest/QtTest>
 
-QTEST_GUILESS_MAIN( LocaleTests )
+QTEST_MAIN( LocaleTests )
 
 
 LocaleTests::LocaleTests() {}
@@ -76,4 +79,71 @@ LocaleTests::testSplitLocaleConfiguration()
     QVERIFY( !lc3.isEmpty() );
     QCOMPARE( lc3.toBcp47(), QStringLiteral( "da" ) );
     QCOMPARE( lc3.lc_numeric, QStringLiteral( "de_DE.UTF-8" ) );
+}
+
+void
+LocaleTests::testTZImages()
+{
+    // This test messes around with log-levels a lot so
+    // that it produces useful output (e.g. listing the problems,
+    // not every check it ever does).
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    // Number of zone images
+    //
+    //
+    auto images = TimeZoneImageList::fromDirectory( SOURCE_DIR );
+    QCOMPARE( images.count(), images.zoneCount );
+
+    // All image sizes consistent
+    //
+    //
+    const QSize windowSize( 780, 340 );
+    {
+        QImage background( SOURCE_DIR "/bg.png" );
+        QVERIFY( !background.isNull() );
+        QCOMPARE( background.size(), windowSize );
+    }
+    for ( const auto& image : images )
+    {
+        QCOMPARE( image.size(), windowSize );
+    }
+
+    // Check zones are uniquely-claimed
+    //
+    //
+    using namespace CalamaresUtils::Locale;
+    const CStringPairList& regions = TZRegion::fromZoneTab();
+
+    int overlapcount = 0;
+    for ( const auto* pr : regions )
+    {
+        const TZRegion* region = dynamic_cast< const TZRegion* >( pr );
+        QVERIFY( region );
+
+        Logger::setupLogLevel( Logger::LOGDEBUG );
+        cDebug() << "Region" << region->region() << "zones #" << region->zones().count();
+        Logger::setupLogLevel( Logger::LOGERROR );
+
+        const auto zones = region->zones();
+        for ( const auto* pz : zones )
+        {
+            const TZZone* zone = dynamic_cast< const TZZone* >( pz );
+            QVERIFY( zone );
+
+            int overlap = 0;
+            auto pos = images.getLocationPosition( zone->longitude(), zone->latitude() );
+            QVERIFY( images.index( pos, overlap ) >= 0 );
+            if ( overlap > 1 )
+            {
+                Logger::setupLogLevel( Logger::LOGDEBUG );
+                cDebug() << Logger::SubEntry << "Zone" << zone->zone() << pos;
+                (void)images.index( pos, overlap );
+                Logger::setupLogLevel( Logger::LOGERROR );
+                overlapcount++;
+            }
+        }
+    }
+
+    QCOMPARE( overlapcount, 0 );
 }

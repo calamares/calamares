@@ -45,10 +45,10 @@ QString
 CreatePartitionJob::prettyName() const
 {
     return tr( "Create new %2MiB partition on %4 (%3) with file system %1." )
-            .arg( userVisibleFS( m_partition->fileSystem() ) )
-            .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
-            .arg( m_device->name() )
-            .arg( m_device->deviceNode() );
+        .arg( userVisibleFS( m_partition->fileSystem() ) )
+        .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
+        .arg( m_device->name() )
+        .arg( m_device->deviceNode() );
 }
 
 
@@ -57,10 +57,10 @@ CreatePartitionJob::prettyDescription() const
 {
     return tr( "Create new <strong>%2MiB</strong> partition on <strong>%4</strong> "
                "(%3) with file system <strong>%1</strong>." )
-            .arg( userVisibleFS( m_partition->fileSystem() ) )
-            .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
-            .arg( m_device->name() )
-            .arg( m_device->deviceNode() );
+        .arg( userVisibleFS( m_partition->fileSystem() ) )
+        .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
+        .arg( m_device->name() )
+        .arg( m_device->deviceNode() );
 }
 
 
@@ -68,22 +68,24 @@ QString
 CreatePartitionJob::prettyStatusMessage() const
 {
     return tr( "Creating new %1 partition on %2." )
-            .arg( userVisibleFS( m_partition->fileSystem() ) )
-            .arg( m_device->deviceNode() );
+        .arg( userVisibleFS( m_partition->fileSystem() ) )
+        .arg( m_device->deviceNode() );
 }
 
 Calamares::JobResult
 CreatePartitionJob::exec()
 {
     Report report( nullptr );
-    NewOperation op(*m_device, m_partition);
-    op.setStatus(Operation::StatusRunning);
+    NewOperation op( *m_device, m_partition );
+    op.setStatus( Operation::StatusRunning );
 
     QString message = tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() );
-    if (op.execute(report))
+    if ( op.execute( report ) )
+    {
         return Calamares::JobResult::ok();
+    }
 
-    return Calamares::JobResult::error(message, report.toText());
+    return Calamares::JobResult::error( message, report.toText() );
 }
 
 void

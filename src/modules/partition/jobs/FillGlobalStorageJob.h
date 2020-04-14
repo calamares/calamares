@@ -22,8 +22,8 @@
 
 #include "Job.h"
 
-// Qt
 #include <QList>
+#include <QVariantList>
 
 class Device;
 class Partition;
@@ -44,11 +44,12 @@ public:
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
+
 private:
     QList< Device* > m_devices;
     QString m_bootLoaderPath;
 
-    QVariant createPartitionList() const;
+    QVariantList createPartitionList() const;
     QVariant createBootLoaderMap() const;
 };
 

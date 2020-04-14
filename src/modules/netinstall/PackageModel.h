@@ -37,10 +37,20 @@ class PackageModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    using PackageItemDataList = QList< PackageTreeItem::ItemData >;
+    // Names for columns (unused in the code)
+    static constexpr const int NameColumn = 0;
+    static constexpr const int DescriptionColumn = 1;
 
-    explicit PackageModel( const YAML::Node& data, QObject* parent = nullptr );
+    /* The only interesting roles are DisplayRole (with text depending
+     * on the column, and MetaExpandRole which tells if an index
+     * should be initially expanded.
+     */
+    static constexpr const int MetaExpandRole = Qt::UserRole + 1;
+
+    explicit PackageModel( QObject* parent = nullptr );
     ~PackageModel() override;
+
+    void setupModelData( const QVariantList& l );
 
     QVariant data( const QModelIndex& index, int role ) const override;
     bool setData( const QModelIndex& index, const QVariant& value, int role = Qt::EditRole ) override;
@@ -53,14 +63,16 @@ public:
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
 
-    PackageItemDataList getPackages() const;
-    QList< PackageTreeItem* > getItemPackages( PackageTreeItem* item ) const;
+    PackageTreeItem::List getPackages() const;
+    PackageTreeItem::List getItemPackages( PackageTreeItem* item ) const;
 
 private:
-    void setupModelData( const YAML::Node& data, PackageTreeItem* parent );
+    friend class ItemTests;
 
-    PackageTreeItem* m_rootItem;
-    QList< PackageTreeItem* > m_hiddenItems;
+    void setupModelData( const QVariantList& l, PackageTreeItem* parent );
+
+    PackageTreeItem* m_rootItem = nullptr;
+    PackageTreeItem::List m_hiddenItems;
 };
 
 #endif  // PACKAGEMODEL_H

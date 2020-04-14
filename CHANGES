@@ -3,7 +3,123 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.19.1 (unreleased) #
+# 3.2.23 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
+ # 3.2.22 (2020-04-08) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Camilo Higuita
+
+## Core ##
+ - Both the sidebar (on the left) and the navigation buttons (along the
+   bottom of the window) can now be configured to use the traditional
+   *widgets*, to use *qml*, or *hidden* from view (hiding the navigation
+   is not recommended unless you have a pure-QML UI to run inside
+   Calamares). The example QML that is compiled into Calamares has
+   been improved. To use your own QML, put files `calamares-sidebar.qml`
+   or `calamares-navigation.qml` into the branding directory.
+ - The sidebar and navigation can now be placed on any side of the
+   main window. This is probably only useful for QML-based UIs.
+   See `branding.desc` for details.
+
+## Modules ##
+ - The *welcomeq* module has been improved with better layout and
+   nicer buttons in the example QML form. (Thanks to Anke Boersma)
+ - The *keyboardq* and *localeq* modules now provide some QML for
+   configuring these parts, although they are still very primitive.
+ - *netinstall* has had some minor layout fixes.
+ - *unpackfs* has much more detailed progress reporting and no
+   longer jumps around strangely in overall progress.
+ - *partition* now correctly marks a partition as bootable in BIOS + MBR
+   installs. #1175
+
+
+# 3.2.21 (2020-03-27) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Camilo Higuita
+ - Gabriel Craciunescu
+ - Gaël PORTAY
+
+## Core ##
+ - Python job modules (such as *unpackfs* or *packages*) can now provide
+   a `pretty_status_message()` function, like the existing `pretty_name()`
+   function, that is used to update the status during install. #1330
+ - QML support-modules and objects are now registered into the io.calamares
+   namespace. This affects modules using Calamares models inside their
+   QML UI (at this point, very few). With this release, the necessary
+   `import` for Calamares parts looks like
+   > ```import io.calamares.ui 1.0```
+   A complete list of objects available from Calamares van be found in the
+   documentation in `Qml.h`.
+ - The sidebar (which shows overall progress in the installation) is now
+   more configurable: the branding key *sidebar* controls it. The sidebar
+   can be shown as a widget (default, as it has been), hidden, or use a
+   new QML view which is more easily customised.
+ - A new `settings.conf` key *quit-at-end* will automatically close
+   Calamares (by clicking on the *Done* button) when the end of the
+   sequence is reached. If *finished* is the last module in the sequence,
+   this will run whatever it is configured for; you can also leave out
+   the finished page and Calamares will close after the exec parts.
+
+## Modules ##
+ - *packages* now reports more details in the installation progress-bar.
+ - *netinstall* module supports an `expanded` key, which will pre-expand
+   a group (as if the user had pressed the arrow-button in the tree-view).
+   This only affects the UI, and only the **outermost** level of groups.
+ - *netinstall* module now supports a special value for *groupsUrl*.
+   Setting this to *local* will read the groups directly from the
+   configuration file.
+ - *netinstall* groups now support a new key `immutable` which prevents
+   their check-state from being changed (they are shown, or hidden,
+   as usual and can be expanded).
+ - Modules that use QML need a new import line. The QML file for the
+   module is configured through new keys *qmlSearch* and *qmlFilename*
+   (previously those were without the `qml` prefix, which invites name
+   collisions). The full module identifier is also used as a filename,
+   so that multiple instances of a module can use different QML files.
+ - *partition* module has a number of new features and settings for
+   type, UUID, and filesystem characteristics. Thanks to Gaël.
+
+
+# 3.2.20 (2020-02-27) #
+
+This release contains contributions from (alphabetically by first name):
+ - Bart Ribbers
+
+## Core ##
+ - When logging level is set to 8 (eight), for instance via the `-D8`
+   logging flag, or the `-d` debug flag, the *Show debug information*
+   button will appear in the progress view. This helps with debugging
+   issues where the `-d` flag would be inappropriate.
+ - Calamares now starts at logging level 1 (warnings and errors to
+   the console) by default. Previously it (wrongly) started at level 8.
+
+## Modules ##
+ - The *partition* module now stores which filesystems are in use in
+   global storage.
+ - The *contextualprocess* module now understands "compound variable
+   names", where a dot (.) is used to index into structured data
+   stored in global storage. This allows it to use the map stored
+   by the partition module (but also other things, like looking into
+   the branding information).
+ - The *packages* module now understands "apk", the Alpine Linux
+   package manager.
+
+
+# 3.2.19.1 (2020-02-24) #
 
 This is a hotfix release for bugs in the *users* module.
 Reported by Philip Mueller and Walter Lapchynski.
@@ -11,6 +127,11 @@ Reported by Philip Mueller and Walter Lapchynski.
 ## Modules ##
  - The *users* module no longer wrote `/etc/hostname` at all.
  - The *users* module erroneously shows the root password input fields.
+ - The *initramfs* module sets a resume-hook even when there is no swap.
+ - The partitioning service expects *udevadm* in `/sbin`, but some
+   distro's place it elsewhere.
+ - The mount service didn't unmount directories properly, leading to
+   blocked installations.
 
 
 # 3.2.19 (2020-02-21) #

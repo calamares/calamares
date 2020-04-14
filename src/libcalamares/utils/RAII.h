@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2020, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,8 +16,28 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Config.h"
+#ifndef UTILS_RAII_H
+#define UTILS_RAII_H
 
-Config::Config() {}
+#include <QObject>
 
-Config::~Config() {}
+#include <type_traits>
+
+/// @brief Convenience to zero out and deleteLater of any QObject-derived-class
+template < typename T >
+struct cqDeleter
+{
+    T*& p;
+
+    ~cqDeleter()
+    {
+        static_assert( std::is_base_of< QObject, T >::value, "Not a QObject-class" );
+        if ( p )
+        {
+            p->deleteLater();
+        }
+        p = nullptr;
+    }
+};
+
+#endif
