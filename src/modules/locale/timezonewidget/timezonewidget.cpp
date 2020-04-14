@@ -31,10 +31,6 @@
 // Pixel value indicating that a spot is outside of a zone
 #define RGB_TRANSPARENT 0
 
-static constexpr double MAP_Y_OFFSET = 0.125;
-static constexpr double MAP_X_OFFSET = -0.0370;
-constexpr static double MATH_PI = 3.14159265;
-
 #ifdef DEBUG_TIMEZONES
 // Adds a label to the timezone with this name
 #define ZONE_NAME QStringLiteral( "zone" )
@@ -134,78 +130,6 @@ TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* locati
 //### Private
 //###
 
-
-QPoint
-TimeZoneWidget::getLocationPosition( double longitude, double latitude )
-{
-    const int width = this->width();
-    const int height = this->height();
-
-    double x = ( width / 2.0 + ( width / 2.0 ) * longitude / 180.0 ) + MAP_X_OFFSET * width;
-    double y = ( height / 2.0 - ( height / 2.0 ) * latitude / 90.0 ) + MAP_Y_OFFSET * height;
-
-    // Far north, the MAP_Y_OFFSET no longer holds, cancel the Y offset; it's noticeable
-    // from 62 degrees north, so scale those 28 degrees as if the world is flat south
-    // of there, and we have a funny "rounded" top of the world. In practice the locations
-    // of the different cities / regions looks ok -- at least Thule ends up in the right
-    // country, and Inuvik isn't in the ocean.
-    if ( latitude > 70.0 )
-    {
-        y -= sin( MATH_PI * ( latitude - 70.0 ) / 56.0 ) * MAP_Y_OFFSET * height * 0.8;
-    }
-    if ( latitude > 74.0 )
-    {
-        y += 4;
-    }
-    if ( latitude > 69.0 )
-    {
-        y -= 2;
-    }
-    if ( latitude > 59.0 )
-    {
-        y -= 4 * int( ( latitude - 54.0 ) / 5.0 );
-    }
-    if ( latitude > 54.0 )
-    {
-        y -= 2;
-    }
-    if ( latitude > 49.0 )
-    {
-        y -= int( ( latitude - 44.0 ) / 5.0 );
-    }
-    // Far south, some stretching occurs as well, but it is less pronounced.
-    // Move down by 1 pixel per 5 degrees past 10 south
-    if ( latitude < 0 )
-    {
-        y += int( ( -latitude ) / 5.0 );
-    }
-    // Antarctica isn't shown on the map, but you could try clicking there
-    if ( latitude < -60 )
-    {
-        y = height - 1;
-    }
-
-    if ( x < 0 )
-    {
-        x = width + x;
-    }
-    if ( x >= width )
-    {
-        x -= width;
-    }
-    if ( y < 0 )
-    {
-        y = height + y;
-    }
-    if ( y >= height )
-    {
-        y -= height;
-    }
-
-    return QPoint( int( x ), int( y ) );
-}
-
-
 void
 TimeZoneWidget::paintEvent( QPaintEvent* )
 {
@@ -229,7 +153,7 @@ TimeZoneWidget::paintEvent( QPaintEvent* )
         QPen p( y_lat ? Qt::black : Qt::red );
         p.setWidth( 0 );
         painter.setPen( p );
-        QPoint latLine0( getLocationPosition( 0, y_lat ) );
+        QPoint latLine0( TimeZoneImageList::getLocationPosition( 0, y_lat ) );
         painter.drawLine( 0, latLine0.y(), this->width() - 1, latLine0.y() );
     }
     // Just a dot in the selected location, no label
@@ -309,7 +233,7 @@ TimeZoneWidget::mousePressEvent( QMouseEvent* event )
                 const auto* zone = dynamic_cast< const TZZone* >( zone_p );
                 if ( zone )
                 {
-                    QPoint locPos = getLocationPosition( zone->longitude(), zone->latitude() );
+                    QPoint locPos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
 
                     if ( ( abs( mX - locPos.x() ) + abs( mY - locPos.y() ) < abs( mX - nX ) + abs( mY - nY ) ) )
                     {

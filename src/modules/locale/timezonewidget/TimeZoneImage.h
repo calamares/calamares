@@ -33,6 +33,7 @@ class TimeZoneImageList : public QList< TimeZoneImage >
 {
 private:
     TimeZoneImageList();
+
 public:
     /** @brief loads all the images from QRC.
      *
@@ -46,8 +47,19 @@ public:
      */
     static TimeZoneImageList fromDirectory( const QString& dirName );
 
+    /** @brief Map longitude and latitude to pixel positions
+     *
+     * The image is flat, and stretched at the poles and generally
+     * a bit weird, so this maps the global coordinates (as found in
+     * the zones table as a floating-point longitude and latitude value)
+     * to an x,y position.
+     */
+    static QPoint getLocationPosition( double longitude, double latitude );
+
     /// @brief The **expected** number of zones in the list.
-    static int zoneCount();
+    static constexpr const int zoneCount = 38;
+    /// @brief The expected size of each zone image.
+    static constexpr const QSize imageSize = QSize( 780, 340 );
 };
 
 #endif

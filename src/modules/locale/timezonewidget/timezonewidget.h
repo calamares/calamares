@@ -59,8 +59,10 @@ private:
     TimeZoneImageList timeZoneImages;
     const TZZone* m_currentLocation = nullptr;  // Not owned by me
 
-    QPoint getLocationPosition( const TZZone* l ) { return getLocationPosition( l->longitude(), l->latitude() ); }
-    QPoint getLocationPosition( double longitude, double latitude );
+    QPoint getLocationPosition( const TZZone* l )
+    {
+        return timeZoneImages.getLocationPosition( l->longitude(), l->latitude() );
+    }
 
     void paintEvent( QPaintEvent* event );
     void mousePressEvent( QMouseEvent* event );

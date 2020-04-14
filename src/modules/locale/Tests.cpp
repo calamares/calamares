@@ -90,8 +90,7 @@ LocaleTests::testTZImages()
     //
     //
     auto images = TimeZoneImageList::fromDirectory( SOURCE_DIR );
-    QCOMPARE( images.count(), images.zoneCount() );
-    QCOMPARE( images.count(), 38 );  // counted by hand
+    QCOMPARE( images.count(), images.zoneCount );
 
     // All image sizes consistent
     //
