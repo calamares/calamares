@@ -28,10 +28,15 @@ import QtPositioning 5.14
 Column {
     width: parent.width
     
+    property var configCity: "New York"
+    property var configCountry: "USA"
+    property var geoipCity: "" //"Amsterdam"
+    property var geoipCountry: "" //"Netherlands"
+    
     Rectangle {
         width: parent.width
-        height: 270
-        
+        height: 300
+
         Plugin {
             id: mapPlugin
             name: "esri" // "esri", "here", "itemsoverlay", "mapbox", "mapboxgl",  "osm"
@@ -55,8 +60,16 @@ Column {
                 query: Address {
                     id: address
                     //street: "14th Street"
-                    city: zoneIndex.currentIndex
-                    country: regionIndex.currentIndex
+                    city: {
+                        city = geoipCity 
+                        if(geoipCity == "")
+                            city = configCity
+                    }
+                    country: {
+                        country = geoipCountry 
+                        if(geoipCountry == "")
+                            country = configCountry
+                    }
                     //countryCode: "US"
                 }
                 
@@ -101,7 +114,13 @@ Column {
                     marker.coordinate = coordinate
                     map.center.latitude = coordinate.latitude
                     map.center.longitude = coordinate.longitude
-                    console.log(coordinate.latitude, coordinate.longitude)
+                    
+                    geocodeModel.query = QtPositioning.coordinate(coordinate.latitude, coordinate.longitude)
+                    
+                    configCity = coordinate.latitude
+                    configCountry = coordinate.longitude
+                        
+                    console.log(coordinate.latitude, coordinate.longitude, geocodeModel.query)
                 }
             }
         }
@@ -131,14 +150,37 @@ Column {
     }
 
     Rectangle {
-        width: parent.width / 1.2
-        height: 70
+        width: parent.width 
+        height: 100
         anchors.horizontalCenter: parent.horizontalCenter
-
+        
+        Item {
+            id: location
+            Kirigami.Theme.inherit: false
+            Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
+            anchors.horizontalCenter: parent.horizontalCenter
+            
+            Rectangle {
+                anchors.centerIn: parent
+                width: 200
+                height: 30
+                color: Kirigami.Theme.backgroundColor
+                Text {
+                    text: qsTr("%1 - %2").arg(configCity).arg(configCountry)
+                    color: Kirigami.Theme.textColor
+                    anchors.centerIn: parent
+                }
+            }
+        }
+        
         Text {
+            anchors.top: location.bottom
+            anchors.topMargin: 20
+            padding: 10
             width: parent.width
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
+            Kirigami.Theme.backgroundColor: Kirigami.Theme.backgroundColor
             text: qsTr("Please select your preferred location on the map so the installer can suggest the locale and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.")
         }
     }

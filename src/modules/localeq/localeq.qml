@@ -27,58 +27,100 @@ import org.kde.kirigami 2.7 as Kirigami
 
 Page
 {
+    width: 800
+    height: 520
+    
+    property var confLang: "American English"
+    property var confLocale: "American English"
+    
     Map  {
         id: image
         anchors.horizontalCenter: parent.horizontalCenter
     }
     
     RowLayout {
- 
         anchors.top: image.bottom
         width: parent.width
         
         Kirigami.FormLayout {
-            id: region
-            Layout.fillWidth: true
-
-            ComboBox {
-                Kirigami.FormData.label: qsTr("Country: ")
-                id: regionIndex
-                currentIndex: model.currentIndex
-                textRole: "label"
-                model: config.regionModel
-                onCurrentIndexChanged: console.debug(currentText, currentIndex)
-            }
-            Kirigami.Separator {
-                Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: "System language set to American English"
-            }
+            id: lang
             
-            Button {
-                text: qsTr("Adjust Language")
-                Layout.fillWidth: true
+            GridLayout {
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                rowSpacing: Kirigami.Units.largeSpacing
+                columnSpacing: Kirigami.Units.largeSpacing
+
+                Kirigami.Icon {
+                    source: "application-x-gettext-translation"
+                    Layout.fillHeight: true
+                    Layout.maximumHeight: Kirigami.Units.iconSizes.medium
+                    Layout.preferredWidth: height
+                }
+                ColumnLayout {
+                    Kirigami.Heading {
+                        level: 2
+                        text: qsTr("Language ")
+                    }
+                    Kirigami.Separator {
+                        Layout.fillWidth: true
+                    }
+                    Label {
+                        Layout.fillWidth: true
+                        wrapMode: Text.WordWrap
+                        text: qsTr("System language set to %1").arg(confLang)
+                    }
+                }
+                Button {
+                    Layout.alignment: Qt.AlignRight|Qt.AlignVCenter
+                    Layout.columnSpan: 2 
+                    text: qsTr("Change")
+                    onClicked: console.log("Adjust Language clicked");
+                }
             }
         }
         
         Kirigami.FormLayout {
-            id: zone
-            Layout.fillWidth: true
+            id: locale
+            
+            GridLayout {
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                rowSpacing: Kirigami.Units.largeSpacing
+                columnSpacing: Kirigami.Units.largeSpacing
 
-            ComboBox {
-                Kirigami.FormData.label: qsTr("City: ")
-                id: zoneIndex
-                currentIndex: model.currentIndex
-                textRole: "label"
-                model: config.zonesModel
-                onCurrentIndexChanged: console.debug(currentText, currentIndex)
-            }
-            Kirigami.Separator {
-                Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: "Numbers and dates locale set to American English"
-            }
-            Button {
-                text: qsTr("Adjust Locale")
-                Layout.fillWidth: true
+                Kirigami.Icon {
+                    source: "application-x-gettext-translation"
+                    Layout.fillHeight: true
+                    Layout.maximumHeight: Kirigami.Units.iconSizes.medium
+                    Layout.preferredWidth: height
+                }
+                ColumnLayout {
+                    Kirigami.Heading {
+                        level: 2
+                        text: qsTr("Locale ")
+                    }
+                    Kirigami.Separator {
+                        Layout.fillWidth: true
+                    }
+                    Label {
+                        Layout.fillWidth: true
+                        wrapMode: Text.WordWrap
+                        text: qsTr("Numbers and dates locale set to %1").arg(confLocale)
+                    }
+                }
+                Button {
+                    Layout.alignment: Qt.AlignRight|Qt.AlignVCenter
+                    Layout.columnSpan: 2 
+                    text: qsTr("Change")
+                    onClicked: console.log("Adjust Locale clicked");
+                }
             }
         }
     }
