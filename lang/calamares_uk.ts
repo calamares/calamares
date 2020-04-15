@@ -256,39 +256,41 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
-      <source>&amp;Back</source>
-      <translation>&amp;Назад</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
-      <source>&amp;Next</source>
-      <translation>&amp;Вперед</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="436"/>
-      <source>&amp;Cancel</source>
-      <translation>&amp;Скасувати</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
-      <source>Cancel setup without changing the system.</source>
-      <translation>Скасувати налаштування без зміни системи.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
-      <source>Cancel installation without changing the system.</source>
-      <translation>Скасувати встановлення без зміни системи.</translation>
-    </message>
-    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
       <source>Setup Failed</source>
       <translation>Помилка встановлення</translation>
     </message>
     <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
+      <source>Installation Failed</source>
+      <translation>Помилка під час встановлення</translation>
+    </message>
+    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="152"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Хочете викласти журнал встановлення у мережі?</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
+      <source>Error</source>
+      <translation>Помилка</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
+      <source>&amp;Yes</source>
+      <translation>&amp;Так</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
+      <source>&amp;No</source>
+      <translation>&amp;Ні</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
+      <source>&amp;Close</source>
+      <translation>&amp;Закрити</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
@@ -317,6 +319,11 @@
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+      <source>Continue with setup?</source>
+      <translation>Продовжити встановлення?</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
       <source>Continue with installation?</source>
       <translation>Продовжити встановлення?</translation>
     </message>
@@ -326,9 +333,24 @@
       <translation>Програма налаштування %1 збирається внести зміни до вашого диска, щоб налаштувати %2. &lt;br/&gt;&lt;strong&gt; Ви не зможете скасувати ці зміни.&lt;/strong&gt;</translation>
     </message>
     <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
+      <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
+      <translation>Засіб встановлення %1 має намір внести зміни до розподілу вашого диска, щоб встановити %2.&lt;br/&gt;&lt;strong&gt;Ці зміни неможливо буде скасувати.&lt;/strong&gt;</translation>
+    </message>
+    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
       <source>&amp;Set up now</source>
       <translation>&amp;Налаштувати зараз</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
+      <source>&amp;Install now</source>
+      <translation>&amp;Встановити зараз</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
+      <source>Go &amp;back</source>
+      <translation>Перейти &amp;назад</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="390"/>
@@ -344,6 +366,41 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>Встановлення виконано. Закрити програму встановлення.</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
+      <source>The installation is complete. Close the installer.</source>
+      <translation>Встановлення виконано. Завершити роботу засобу встановлення.</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
+      <source>Cancel setup without changing the system.</source>
+      <translation>Скасувати налаштування без зміни системи.</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
+      <source>Cancel installation without changing the system.</source>
+      <translation>Скасувати встановлення без зміни системи.</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
+      <source>&amp;Next</source>
+      <translation>&amp;Вперед</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
+      <source>&amp;Back</source>
+      <translation>&amp;Назад</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
+      <source>&amp;Done</source>
+      <translation>&amp;Закінчити</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="436"/>
+      <source>&amp;Cancel</source>
+      <translation>&amp;Скасувати</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="509"/>
@@ -368,63 +425,6 @@ The setup program will quit and all changes will be lost.</source>
 The installer will quit and all changes will be lost.</source>
       <translation>Чи ви насправді бажаєте скасувати процес встановлення?
 Роботу засобу встановлення буде завершено, і всі зміни буде втрачено.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
-      <source>&amp;Yes</source>
-      <translation>&amp;Так</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
-      <source>&amp;No</source>
-      <translation>&amp;Ні</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
-      <source>&amp;Close</source>
-      <translation>&amp;Закрити</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
-      <source>Continue with setup?</source>
-      <translation>Продовжити встановлення?</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
-      <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>Засіб встановлення %1 має намір внести зміни до розподілу вашого диска, щоб встановити %2.&lt;br/&gt;&lt;strong&gt;Ці зміни неможливо буде скасувати.&lt;/strong&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
-      <source>&amp;Install now</source>
-      <translation>&amp;Встановити зараз</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
-      <source>Go &amp;back</source>
-      <translation>Перейти &amp;назад</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
-      <source>&amp;Done</source>
-      <translation>&amp;Закінчити</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
-      <source>The installation is complete. Close the installer.</source>
-      <translation>Встановлення виконано. Завершити роботу засобу встановлення.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
-      <source>Error</source>
-      <translation>Помилка</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
-      <source>Installation Failed</source>
-      <translation>Помилка під час встановлення</translation>
     </message>
   </context>
   <context>
@@ -463,6 +463,11 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresWindow</name>
     <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="106"/>
+      <source>Show debug information</source>
+      <translation>Показати діагностичну інформацію</translation>
+    </message>
+    <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
       <source>&amp;Back</source>
       <translation>&amp;Назад</translation>
@@ -487,11 +492,6 @@ The installer will quit and all changes will be lost.</source>
       <source>%1 Installer</source>
       <translation>Засіб встановлення %1</translation>
     </message>
-    <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="106"/>
-      <source>Show debug information</source>
-      <translation>Показати діагностичну інформацію</translation>
-    </message>
   </context>
   <context>
     <name>CheckerContainer</name>
@@ -509,16 +509,6 @@ The installer will quit and all changes will be lost.</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
-      <source>After:</source>
-      <translation>Після:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
-      <source>Boot loader location:</source>
-      <translation>Розташування завантажувача:</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Обрати &amp;пристрій зберігання:</translation>
@@ -530,6 +520,11 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1088"/>
       <source>Current:</source>
       <translation>Зараз:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
+      <source>After:</source>
+      <translation>Після:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
@@ -550,6 +545,11 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="973"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 буде стиснуто до %2 МіБ. Натомість буде створено розділ розміром %3 МіБ для %4.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
+      <source>Boot loader location:</source>
+      <translation>Розташування завантажувача:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
@@ -585,9 +585,35 @@ The installer will quit and all changes will be lost.</source>
       <translation>&lt;strong&gt;Очистити диск&lt;/strong&gt;&lt;br/&gt;Це &lt;font color="red"&gt;знищить&lt;/font&gt; всі данні, присутні на обраному пристрої зберігання.</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1332"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1358"/>
+      <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
+      <translation>&lt;strong&gt;Встановити поруч&lt;/strong&gt;&lt;br/&gt;Засіб встановлення зменшить розмір розділу, щоб вивільнити простір для %1.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1283"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1318"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
+      <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
+      <translation>&lt;strong&gt;Замінити розділ&lt;/strong&gt;&lt;br/&gt;Замінити розділу на %1.</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1303"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>На цьому пристрої зберігання є %1. Що ви бажаєте зробити?&lt;br/&gt;У вас буде можливість переглянути та підтвердити все, що ви обрали перед тим, як будуть зроблені будь-які зміни на пристрої зберігання.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
+      <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+      <translation>На цьому пристрої зберігання вже є операційна система. Що ви бажаєте зробити?&lt;br/&gt;У вас буде можливість переглянути та підтвердити все, що ви обрали перед тим, як будуть зроблені будь-які зміни на пристрої зберігання.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+      <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+      <translation>На цьому пристрої зберігання вже є декілька операційних систем. Що ви бажаєте зробити?&lt;br/&gt;У вас буде можливість переглянути та підтвердити все, що ви обрали перед тим, як будуть зроблені будь-які зміни на пристрої зберігання.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1507"/>
@@ -613,32 +639,6 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1521"/>
       <source>Swap to file</source>
       <translation>Резервна пам'ять у файлі</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1332"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1358"/>
-      <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-      <translation>&lt;strong&gt;Встановити поруч&lt;/strong&gt;&lt;br/&gt;Засіб встановлення зменшить розмір розділу, щоб вивільнити простір для %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1283"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1318"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
-      <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-      <translation>&lt;strong&gt;Замінити розділ&lt;/strong&gt;&lt;br/&gt;Замінити розділу на %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
-      <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>На цьому пристрої зберігання вже є операційна система. Що ви бажаєте зробити?&lt;br/&gt;У вас буде можливість переглянути та підтвердити все, що ви обрали перед тим, як будуть зроблені будь-які зміни на пристрої зберігання.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
-      <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>На цьому пристрої зберігання вже є декілька операційних систем. Що ви бажаєте зробити?&lt;br/&gt;У вас буде можливість переглянути та підтвердити все, що ви обрали перед тим, як будуть зроблені будь-які зміни на пристрої зберігання.</translation>
     </message>
   </context>
   <context>
@@ -704,6 +704,51 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>Config</name>
     <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="348"/>
+      <source>Set keyboard model to %1.&lt;br/&gt;</source>
+      <translation>Встановити модель клавіатури як %1.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
+      <source>Set keyboard layout to %1/%2.</source>
+      <translation>Встановити розкладку клавіатури як %1/%2.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="279"/>
+      <source>The system language will be set to %1.</source>
+      <translation>Мову %1 буде встановлено як системну.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="280"/>
+      <source>The numbers and dates locale will be set to %1.</source>
+      <translation>%1 буде встановлено як локаль чисел та дат.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="313"/>
+      <source>Set timezone to %1/%2.&lt;br/&gt;</source>
+      <translation>Встановити зону %1/%2.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
+      <source>Network Installation. (Disabled: Incorrect configuration)</source>
+      <translation>Встановлення за допомогою мережі. (Вимкнено: помилкові налаштування)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
+      <source>Network Installation. (Disabled: Received invalid groups data)</source>
+      <translation>Встановлення через мережу. (Вимкнено: Отримано неправильні дані про групи)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
+      <source>Network Installation. (Disabled: internal error)</source>
+      <translation>Встановлення з мережі. (Вимкнено: внутрішня помилка)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
+      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
+      <translation>Встановлення через мережу. (Вимкнено: Неможливо отримати список пакетів, перевірте ваше підключення до мережі)</translation>
+    </message>
+    <message>
       <location filename="../src/modules/welcome/Config.cpp" line="54"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Цей комп'ютер не задовольняє мінімальні вимоги для налаштовування %1.&lt;br/&gt;Налаштовування неможливо продовжити. &lt;a href="#details"&gt;Докладніше...&lt;/a&gt;</translation>
@@ -748,51 +793,6 @@ The installer will quit and all changes will be lost.</source>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Ласкаво просимо до засобу встановлення %1.&lt;/h1&gt;</translation>
     </message>
-    <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="348"/>
-      <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation>Встановити модель клавіатури як %1.&lt;br/&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
-      <source>Set keyboard layout to %1/%2.</source>
-      <translation>Встановити розкладку клавіатури як %1/%2.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="272"/>
-      <source>The system language will be set to %1.</source>
-      <translation>Мову %1 буде встановлено як системну.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="273"/>
-      <source>The numbers and dates locale will be set to %1.</source>
-      <translation>%1 буде встановлено як локаль чисел та дат.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="306"/>
-      <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-      <translation>Встановити зону %1/%2.&lt;br/&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
-      <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation>Встановлення за допомогою мережі. (Вимкнено: помилкові налаштування)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
-      <source>Network Installation. (Disabled: Received invalid groups data)</source>
-      <translation>Встановлення через мережу. (Вимкнено: Отримано неправильні дані про групи)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
-      <source>Network Installation. (Disabled: internal error)</source>
-      <translation>Встановлення з мережі. (Вимкнено: внутрішня помилка)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
-      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-      <translation>Встановлення через мережу. (Вимкнено: Неможливо отримати список пакетів, перевірте ваше підключення до мережі)</translation>
-    </message>
   </context>
   <context>
     <name>ContextualProcessJob</name>
@@ -808,6 +808,11 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
       <source>Create a Partition</source>
       <translation>Створити розділ</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
+      <source>Si&amp;ze:</source>
+      <translation>Ро&amp;змір:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
@@ -840,19 +845,14 @@ The installer will quit and all changes will be lost.</source>
       <translation>Назва логічного тому LVM</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
-      <source>Flags:</source>
-      <translation>Прапорці:</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="161"/>
       <source>&amp;Mount Point:</source>
       <translation>Точка &amp;підключення:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
-      <source>Si&amp;ze:</source>
-      <translation>Ро&amp;змір:</translation>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
+      <source>Flags:</source>
+      <translation>Прапорці:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="74"/>
@@ -1068,11 +1068,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DeviceInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
-      <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation>Тип &lt;strong&gt;таблиці розділів&lt;/strong&gt; на вибраному пристрої зберігання даних.&lt;br&gt;&lt;br&gt;Єдиний спосіб змінити таблицю розділів — це очистити і створити таблицю розділів з нуля, що знищить всі дані на пристрої зберігання.&lt;br&gt;Засіб встановлення залишить поточну таблицю розділів, якщо ви явно не виберете інше.&lt;br&gt;Якщо не впевнені, на більш сучасних системах надайте перевагу GPT.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
       <translation>На цьому пристрої таблиця розділів &lt;strong&gt;%1&lt;/strong&gt;.</translation>
@@ -1096,6 +1091,11 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="138"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
       <translation>&lt;br&gt;&lt;br&gt;Цей тип таблиці розділів рекомендований лише для старих систем, які запускаються за допомогою завантажувального середовища &lt;strong&gt;BIOS&lt;/strong&gt;. GPT рекомендовано у більшості інших випадків.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Попередження:&lt;/strong&gt; таблиця розділів MBR - це застарілий стандарт часів MS-DOS. Можливо створити &lt;br&gt;Лише 4 &lt;em&gt;основних&lt;/em&gt; розділів, один зі яких може бути &lt;em&gt;розширеним&lt;/em&gt;, який в свою чергу може містити багато &lt;em&gt;логічних&lt;/em&gt; розділів.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
+      <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
+      <translation>Тип &lt;strong&gt;таблиці розділів&lt;/strong&gt; на вибраному пристрої зберігання даних.&lt;br&gt;&lt;br&gt;Єдиний спосіб змінити таблицю розділів — це очистити і створити таблицю розділів з нуля, що знищить всі дані на пристрої зберігання.&lt;br&gt;Засіб встановлення залишить поточну таблицю розділів, якщо ви явно не виберете інше.&lt;br&gt;Якщо не впевнені, на більш сучасних системах надайте перевагу GPT.</translation>
     </message>
   </context>
   <context>
@@ -1655,6 +1655,11 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
+      <source>Hide license text</source>
+      <translation>Сховати текст ліцензійної угоди</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
       <translation>Показати текст ліцензійної угоди</translation>
     </message>
@@ -1663,42 +1668,37 @@ The installer will quit and all changes will be lost.</source>
       <source>Open license agreement in browser.</source>
       <translation>Відкрити ліцензійну угоду у програмі для перегляду.</translation>
     </message>
-    <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
-      <source>Hide license text</source>
-      <translation>Сховати текст ліцензійної угоди</translation>
-    </message>
   </context>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
-      <source>The system language will be set to %1.</source>
-      <translation>Мову %1 буде встановлено як системну.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
-      <source>The numbers and dates locale will be set to %1.</source>
-      <translation>%1 буде встановлено як локаль чисел та дат.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="124"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="125"/>
       <source>Region:</source>
       <translation>Регіон:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="125"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="126"/>
       <source>Zone:</source>
       <translation>Зона:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="126"/>
       <location filename="../src/modules/locale/LocalePage.cpp" line="127"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="128"/>
       <source>&amp;Change...</source>
       <translation>&amp;Змінити...</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
+      <source>The system language will be set to %1.</source>
+      <translation>Мову %1 буде встановлено як системну.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="261"/>
+      <source>The numbers and dates locale will be set to %1.</source>
+      <translation>%1 буде встановлено як локаль чисел та дат.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="268"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
       <translation>Встановити зону %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -1706,7 +1706,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LocaleQmlViewStep</name>
     <message>
-      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="98"/>
+      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="95"/>
       <source>Location</source>
       <translation>Розташування</translation>
     </message>
@@ -1714,7 +1714,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LocaleViewStep</name>
     <message>
-      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
+      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="98"/>
       <source>Location</source>
       <translation>Розташування</translation>
     </message>
@@ -2245,9 +2245,34 @@ The installer will quit and all changes will be lost.</source>
       <translation>Ваше ім'я?</translation>
     </message>
     <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
+      <source>Your Full Name</source>
+      <translation>Ваше ім'я повністю</translation>
+    </message>
+    <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
       <source>What name do you want to use to log in?</source>
       <translation>Яке ім'я ви бажаєте використовувати для входу?</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
+      <source>login</source>
+      <translation>запис</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
+      <source>What is the name of this computer?</source>
+      <translation>Назва цього комп'ютера?</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
+      <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
+      <translation>&lt;small&gt;Цю назву буде використано, якщо ви зробите комп'ютер видимим іншим у мережі.&lt;/small&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
+      <source>Computer Name</source>
+      <translation>Назва комп'ютера</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="321"/>
@@ -2259,31 +2284,6 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/users/page_usersetup.ui" line="370"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Введіть один й той самий пароль двічі, для перевірки щодо помилок введення. Надійному паролю слід містити суміш літер, чисел та розділових знаків, бути довжиною хоча б вісім символів та регулярно змінюватись.&lt;/small&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
-      <source>What is the name of this computer?</source>
-      <translation>Назва цього комп'ютера?</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
-      <source>Your Full Name</source>
-      <translation>Ваше ім'я повністю</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
-      <source>login</source>
-      <translation>запис</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
-      <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Цю назву буде використано, якщо ви зробите комп'ютер видимим іншим у мережі.&lt;/small&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
-      <source>Computer Name</source>
-      <translation>Назва комп'ютера</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
@@ -2734,15 +2734,14 @@ Output:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
-      <source>Default Keyboard Model</source>
-      <translation>Типова модель клавіатури</translation>
+      <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
+      <source>%1 (%2)</source>
+      <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
-      <source>Default</source>
-      <translation>Типовий</translation>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
+      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
+      <translation>Перевірку виконання вимог щодо модуля &lt;i&gt;%1&lt;/i&gt; завершено.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="36"/>
@@ -2765,34 +2764,15 @@ Output:
       <translation>резервна пам'ять</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
-      <source>Unpartitioned space or unknown partition table</source>
-      <translation>Нерозподілений простір або невідома таблиця розділів</translation>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
+      <source>Default Keyboard Model</source>
+      <translation>Типова модель клавіатури</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
-      <source>(no mount point)</source>
-      <translation>(немає точки монтування)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
-      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation>Перевірку виконання вимог щодо модуля &lt;i&gt;%1&lt;/i&gt; завершено.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
-      <source>%1 (%2)</source>
-      <translation>%1 (%2)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
-      <source>No product</source>
-      <translation>Немає продукту</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
-      <source>No description provided.</source>
-      <translation>Опису не надано.</translation>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
+      <source>Default</source>
+      <translation>Типовий</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="73"/>
@@ -2811,6 +2791,26 @@ Output:
       <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>Не вдалося створити випадковий файл &lt;pre&gt;%1&lt;/pre&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
+      <source>No product</source>
+      <translation>Немає продукту</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
+      <source>No description provided.</source>
+      <translation>Опису не надано.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
+      <source>(no mount point)</source>
+      <translation>(немає точки монтування)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
+      <source>Unpartitioned space or unknown partition table</source>
+      <translation>Нерозподілений простір або невідома таблиця розділів</translation>
     </message>
   </context>
   <context>
@@ -3176,21 +3176,6 @@ Output:
       <translation>Зняти прапорці на розділі у %1 МіБ &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
-      <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation>Встановлення прапорця на розділі у %1 МіБ &lt;strong&gt;%2&lt;/strong&gt; як &lt;strong&gt;%3&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
-      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Знімаємо прапорці на розділі у %1 МіБ &lt;strong&gt;%2&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
-      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Встановлюємо прапорці &lt;strong&gt;%3&lt;/strong&gt; на розділі у %1 МіБ &lt;strong&gt;%2&lt;/strong&gt;.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
       <source>Clear flags on new partition.</source>
       <translation>Очистити прапорці на новому розділі.</translation>
@@ -3199,6 +3184,11 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Встановити прапорці &lt;strong&gt;%2&lt;/strong&gt; для розділу &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
+      <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
+      <translation>Встановлення прапорця на розділі у %1 МіБ &lt;strong&gt;%2&lt;/strong&gt; як &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
@@ -3211,6 +3201,11 @@ Output:
       <translation>Очищуємо прапорці для розділу &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
+      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+      <translation>Знімаємо прапорці на розділі у %1 МіБ &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="128"/>
       <source>Clearing flags on new partition.</source>
       <translation>Очищуємо прапорці для нового розділу.</translation>
@@ -3219,6 +3214,11 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Встановлюємо прапорці &lt;strong&gt;%2&lt;/strong&gt; для розділу &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
+      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+      <translation>Встановлюємо прапорці &lt;strong&gt;%3&lt;/strong&gt; на розділі у %1 МіБ &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
@@ -3481,11 +3481,6 @@ Output:
       <translation>Можна використовувати лише латинські літери нижнього регістру, цифри, символи підкреслювання та дефіси.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="457"/>
-      <source>Only letters, numbers, underscore and hyphen are allowed.</source>
-      <translation>Можна використовувати лише латинські літери, цифри, символи підкреслювання та дефіси.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="445"/>
       <source>Your hostname is too short.</source>
       <translation>Назва вузла є надто короткою.</translation>
@@ -3494,6 +3489,11 @@ Output:
       <location filename="../src/modules/users/UsersPage.cpp" line="450"/>
       <source>Your hostname is too long.</source>
       <translation>Назва вузла є надто довгою.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/UsersPage.cpp" line="457"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed.</source>
+      <translation>Можна використовувати лише латинські літери, цифри, символи підкреслювання та дефіси.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="474"/>
@@ -3589,6 +3589,11 @@ Output:
       <translation>Виберіть мову програм і системи</translation>
     </message>
     <message>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
+      <source>&amp;About</source>
+      <translation>&amp;Про програму</translation>
+    </message>
+    <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>Open donations website</source>
       <translation>Відкрити сторінку сайта із посиланнями для фінансової підтримки</translation>
@@ -3604,9 +3609,19 @@ Output:
       <translation>Відкрити сторінку сайта із посиланнями на довідку та технічну підтримку</translation>
     </message>
     <message>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
+      <source>&amp;Support</source>
+      <translation>Під&amp;тримка</translation>
+    </message>
+    <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
       <translation>Відкрити сторінку сайта стеження за вадами у програмі</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
+      <source>&amp;Known issues</source>
+      <translation>&amp;Відомі проблеми</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
@@ -3619,31 +3634,6 @@ Output:
       <translation>При&amp;мітки до випуску</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
-      <source>&amp;Known issues</source>
-      <translation>&amp;Відомі проблеми</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
-      <source>&amp;Support</source>
-      <translation>Під&amp;тримка</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
-      <source>&amp;About</source>
-      <translation>&amp;Про програму</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="219"/>
-      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Ласкаво просимо до засобу встановлення %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="218"/>
-      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Ласкаво просимо до засобу встановлення Calamares для %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Вітаємо у програмі налаштовування Calamares для %1.&lt;/h1&gt;</translation>
@@ -3652,6 +3642,21 @@ Output:
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="213"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Вітаємо у програмі для налаштовування %1.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="218"/>
+      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;Ласкаво просимо до засобу встановлення Calamares для %1.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="219"/>
+      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;Ласкаво просимо до засобу встановлення %1.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="224"/>
+      <source>%1 support</source>
+      <translation>Підтримка %1</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
@@ -3666,12 +3671,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;для %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;© Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;, 2014–2017&lt;br/&gt;© Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;, 2017–2019&lt;br/&gt;Дякуємо &lt;a href="https://calamares.io/team/"&gt;команді розробників Calamares&lt;/a&gt; та &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;команді перекладачів Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; розроблено за фінансової підтримки &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; — Liberating Software. {1&gt;?} {1&lt;?} {1&gt;?} {2&lt;?} {3&lt;?} {2014-2017 ?} {2017-2020 ?}</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="224"/>
-      <source>%1 support</source>
-      <translation>Підтримка %1</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>

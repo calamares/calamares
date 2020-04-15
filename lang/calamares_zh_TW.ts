@@ -250,39 +250,41 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
-      <source>&amp;Back</source>
-      <translation>返回 (&amp;B)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
-      <source>&amp;Next</source>
-      <translation>下一步 (&amp;N)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="436"/>
-      <source>&amp;Cancel</source>
-      <translation>取消(&amp;C)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
-      <source>Cancel setup without changing the system.</source>
-      <translation>取消安裝，不更改系統。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
-      <source>Cancel installation without changing the system.</source>
-      <translation>不變更系統並取消安裝。</translation>
-    </message>
-    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
       <source>Setup Failed</source>
       <translation>設定失敗</translation>
     </message>
     <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
+      <source>Installation Failed</source>
+      <translation>安裝失敗</translation>
+    </message>
+    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="152"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>想要將安裝紀錄檔貼到網路上嗎？</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
+      <source>Error</source>
+      <translation>錯誤</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
+      <source>&amp;Yes</source>
+      <translation>是(&amp;Y)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
+      <source>&amp;No</source>
+      <translation>否(&amp;N)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
+      <source>&amp;Close</source>
+      <translation>關閉(&amp;C)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
@@ -311,6 +313,11 @@
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+      <source>Continue with setup?</source>
+      <translation>繼續安裝？</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
       <source>Continue with installation?</source>
       <translation>繼續安裝？</translation>
     </message>
@@ -320,9 +327,24 @@
       <translation>%1 設定程式將在您的磁碟上做出變更以設定 %2。&lt;br/&gt;&lt;strong&gt;您將無法復原這些變更。&lt;/strong&gt;</translation>
     </message>
     <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
+      <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
+      <translation>%1 安裝程式將在您的磁碟上做出變更以安裝 %2。&lt;br/&gt;&lt;strong&gt;您將無法復原這些變更。&lt;/strong&gt;</translation>
+    </message>
+    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
       <source>&amp;Set up now</source>
       <translation>馬上進行設定 (&amp;S)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
+      <source>&amp;Install now</source>
+      <translation>現在安裝 (&amp;I)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
+      <source>Go &amp;back</source>
+      <translation>上一步 (&amp;B)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="390"/>
@@ -338,6 +360,41 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>設定完成。關閉設定程式。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
+      <source>The installation is complete. Close the installer.</source>
+      <translation>安裝完成。關閉安裝程式。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
+      <source>Cancel setup without changing the system.</source>
+      <translation>取消安裝，不更改系統。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
+      <source>Cancel installation without changing the system.</source>
+      <translation>不變更系統並取消安裝。</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
+      <source>&amp;Next</source>
+      <translation>下一步 (&amp;N)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
+      <source>&amp;Back</source>
+      <translation>返回 (&amp;B)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
+      <source>&amp;Done</source>
+      <translation>完成(&amp;D)</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="436"/>
+      <source>&amp;Cancel</source>
+      <translation>取消(&amp;C)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="509"/>
@@ -362,63 +419,6 @@ The setup program will quit and all changes will be lost.</source>
 The installer will quit and all changes will be lost.</source>
       <translation>您真的想要取消目前的安裝程序嗎？
 安裝程式將會退出且所有變動將會遺失。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
-      <source>&amp;Yes</source>
-      <translation>是(&amp;Y)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
-      <source>&amp;No</source>
-      <translation>否(&amp;N)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
-      <source>&amp;Close</source>
-      <translation>關閉(&amp;C)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
-      <source>Continue with setup?</source>
-      <translation>繼續安裝？</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
-      <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>%1 安裝程式將在您的磁碟上做出變更以安裝 %2。&lt;br/&gt;&lt;strong&gt;您將無法復原這些變更。&lt;/strong&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
-      <source>&amp;Install now</source>
-      <translation>現在安裝 (&amp;I)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
-      <source>Go &amp;back</source>
-      <translation>上一步 (&amp;B)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
-      <source>&amp;Done</source>
-      <translation>完成(&amp;D)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
-      <source>The installation is complete. Close the installer.</source>
-      <translation>安裝完成。關閉安裝程式。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
-      <source>Error</source>
-      <translation>錯誤</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
-      <source>Installation Failed</source>
-      <translation>安裝失敗</translation>
     </message>
   </context>
   <context>
@@ -457,6 +457,11 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresWindow</name>
     <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="106"/>
+      <source>Show debug information</source>
+      <translation>顯示除錯資訊</translation>
+    </message>
+    <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
       <source>&amp;Back</source>
       <translation>返回 (&amp;B)</translation>
@@ -481,11 +486,6 @@ The installer will quit and all changes will be lost.</source>
       <source>%1 Installer</source>
       <translation>%1 安裝程式</translation>
     </message>
-    <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="106"/>
-      <source>Show debug information</source>
-      <translation>顯示除錯資訊</translation>
-    </message>
   </context>
   <context>
     <name>CheckerContainer</name>
@@ -503,16 +503,6 @@ The installer will quit and all changes will be lost.</source>
       <translation>表單</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
-      <source>After:</source>
-      <translation>之後：</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
-      <source>Boot loader location:</source>
-      <translation>開機載入器位置：</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
       <source>Select storage de&amp;vice:</source>
       <translation>選取儲存裝置(&amp;V)：</translation>
@@ -524,6 +514,11 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1088"/>
       <source>Current:</source>
       <translation>目前：</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
+      <source>After:</source>
+      <translation>之後：</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
@@ -544,6 +539,11 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="973"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 會縮減到 %2MiB，並且會為 %4 建立新的 %3MiB 分割區。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
+      <source>Boot loader location:</source>
+      <translation>開機載入器位置：</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
@@ -579,9 +579,35 @@ The installer will quit and all changes will be lost.</source>
       <translation>&lt;strong&gt;抹除磁碟&lt;/strong&gt;&lt;br/&gt;這將會&lt;font color="red"&gt;刪除&lt;/font&gt;目前選取的儲存裝置所有的資料。</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1332"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1358"/>
+      <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
+      <translation>&lt;strong&gt;並存安裝&lt;/strong&gt;&lt;br/&gt;安裝程式會縮小一個分割區，以讓出空間給 %1。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1283"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1318"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
+      <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
+      <translation>&lt;strong&gt;取代一個分割區&lt;/strong&gt;&lt;br/&gt;用 %1 取代一個分割區。</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1303"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>這個儲存裝置上已經有 %1 了。您想要怎麼做？&lt;br/&gt;在任何變更套用到儲存裝置上前，您都可以重新檢視並確認您的選擇。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
+      <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+      <translation>這個儲存裝置上已經有一個作業系統了。您想要怎麼做？&lt;br/&gt;在任何變更套用到儲存裝置上前，您都可以重新檢視並確認您的選擇。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+      <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+      <translation>這個儲存裝置上已經有多個作業系統了。您想要怎麼做？&lt;br/&gt;在任何變更套用到儲存裝置上前，您都可以重新檢視並確認您的選擇。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1507"/>
@@ -607,32 +633,6 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1521"/>
       <source>Swap to file</source>
       <translation>Swap 到檔案</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1332"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1358"/>
-      <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-      <translation>&lt;strong&gt;並存安裝&lt;/strong&gt;&lt;br/&gt;安裝程式會縮小一個分割區，以讓出空間給 %1。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1283"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1318"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
-      <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-      <translation>&lt;strong&gt;取代一個分割區&lt;/strong&gt;&lt;br/&gt;用 %1 取代一個分割區。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
-      <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>這個儲存裝置上已經有一個作業系統了。您想要怎麼做？&lt;br/&gt;在任何變更套用到儲存裝置上前，您都可以重新檢視並確認您的選擇。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
-      <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>這個儲存裝置上已經有多個作業系統了。您想要怎麼做？&lt;br/&gt;在任何變更套用到儲存裝置上前，您都可以重新檢視並確認您的選擇。</translation>
     </message>
   </context>
   <context>
@@ -698,6 +698,51 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>Config</name>
     <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="348"/>
+      <source>Set keyboard model to %1.&lt;br/&gt;</source>
+      <translation>設定鍵盤型號為 %1 。&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
+      <source>Set keyboard layout to %1/%2.</source>
+      <translation>設定鍵盤佈局為 %1/%2 。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="279"/>
+      <source>The system language will be set to %1.</source>
+      <translation>系統語言會設定為%1。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="280"/>
+      <source>The numbers and dates locale will be set to %1.</source>
+      <translation>數字與日期語系會設定為%1。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="313"/>
+      <source>Set timezone to %1/%2.&lt;br/&gt;</source>
+      <translation>設定時區為 %1/%2 。&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
+      <source>Network Installation. (Disabled: Incorrect configuration)</source>
+      <translation>網路安裝。（已停用：設定不正確）</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
+      <source>Network Installation. (Disabled: Received invalid groups data)</source>
+      <translation>網路安裝。（已停用：收到無效的群組資料）</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
+      <source>Network Installation. (Disabled: internal error)</source>
+      <translation>網路安裝。（已停用：內部錯誤）</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
+      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
+      <translation>網路安裝。（已停用：無法擷取軟體包清單，請檢查您的網路連線）</translation>
+    </message>
+    <message>
       <location filename="../src/modules/welcome/Config.cpp" line="54"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>此電腦未滿足安裝 %1 的最低配備。&lt;br/&gt;設定無法繼續。&lt;a href="#details"&gt;詳細資訊...&lt;/a&gt;</translation>
@@ -742,51 +787,6 @@ The installer will quit and all changes will be lost.</source>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;歡迎使用 %1 安裝程式。&lt;/h1&gt;</translation>
     </message>
-    <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="348"/>
-      <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation>設定鍵盤型號為 %1 。&lt;br/&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
-      <source>Set keyboard layout to %1/%2.</source>
-      <translation>設定鍵盤佈局為 %1/%2 。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="272"/>
-      <source>The system language will be set to %1.</source>
-      <translation>系統語言會設定為%1。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="273"/>
-      <source>The numbers and dates locale will be set to %1.</source>
-      <translation>數字與日期語系會設定為%1。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="306"/>
-      <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-      <translation>設定時區為 %1/%2 。&lt;br/&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
-      <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation>網路安裝。（已停用：設定不正確）</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
-      <source>Network Installation. (Disabled: Received invalid groups data)</source>
-      <translation>網路安裝。（已停用：收到無效的群組資料）</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
-      <source>Network Installation. (Disabled: internal error)</source>
-      <translation>網路安裝。（已停用：內部錯誤）</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
-      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-      <translation>網路安裝。（已停用：無法擷取軟體包清單，請檢查您的網路連線）</translation>
-    </message>
   </context>
   <context>
     <name>ContextualProcessJob</name>
@@ -802,6 +802,11 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
       <source>Create a Partition</source>
       <translation>建立一個分割區</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
+      <source>Si&amp;ze:</source>
+      <translation>容量大小 (&amp;z) ：</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
@@ -834,19 +839,14 @@ The installer will quit and all changes will be lost.</source>
       <translation>LVM LV 名稱</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
-      <source>Flags:</source>
-      <translation>旗標：</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="161"/>
       <source>&amp;Mount Point:</source>
       <translation>掛載點 (&amp;M)：</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
-      <source>Si&amp;ze:</source>
-      <translation>容量大小 (&amp;z) ：</translation>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
+      <source>Flags:</source>
+      <translation>旗標：</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="74"/>
@@ -1062,11 +1062,6 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>DeviceInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
-      <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation>選定的儲存裝置的&lt;strong&gt;分割表&lt;/strong&gt;類型。&lt;br&gt;&lt;br&gt;變更分割表的唯一方法，就是抹除再重新從頭建立分割表，這會破壞在該儲存裝置所有的資料。&lt;br&gt;除非特別選擇，否則本安裝程式會保留目前的分割表。&lt;br&gt;若不確定，現時的系統建議使用 GPT。</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
       <translation>此裝置已有 &lt;strong&gt;%1&lt;/strong&gt; 分割表。</translation>
@@ -1090,6 +1085,11 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="138"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
       <translation>&lt;br&gt;&lt;br&gt;建議這個分割表類型只在以 &lt;strong&gt;BIOS&lt;/strong&gt; 開機的舊系統使用。其他大多數情況建議使用 GPT。&lt;br&gt;&lt;strong&gt;警告：&lt;/strong&gt;MBR 分割表是已過時、源自 MS-DOS 時代的標準。&lt;br&gt;最多只能建立 4 個&lt;em&gt;主要&lt;/em&gt;分割區；其中一個可以是&lt;em&gt;延伸&lt;/em&gt;分割區，其可以包含許多&lt;em&gt;邏輯&lt;/em&gt;分割區。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
+      <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
+      <translation>選定的儲存裝置的&lt;strong&gt;分割表&lt;/strong&gt;類型。&lt;br&gt;&lt;br&gt;變更分割表的唯一方法，就是抹除再重新從頭建立分割表，這會破壞在該儲存裝置所有的資料。&lt;br&gt;除非特別選擇，否則本安裝程式會保留目前的分割表。&lt;br&gt;若不確定，現時的系統建議使用 GPT。</translation>
     </message>
   </context>
   <context>
@@ -1649,6 +1649,11 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
+      <source>Hide license text</source>
+      <translation>隱藏授權條款文字</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
       <translation>顯示授權條款文字</translation>
     </message>
@@ -1657,42 +1662,37 @@ The installer will quit and all changes will be lost.</source>
       <source>Open license agreement in browser.</source>
       <translation>在瀏覽器中開啟授權條款文字。</translation>
     </message>
-    <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
-      <source>Hide license text</source>
-      <translation>隱藏授權條款文字</translation>
-    </message>
   </context>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
-      <source>The system language will be set to %1.</source>
-      <translation>系統語言會設定為%1。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
-      <source>The numbers and dates locale will be set to %1.</source>
-      <translation>數字與日期語系會設定為%1。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="124"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="125"/>
       <source>Region:</source>
       <translation>地區</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="125"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="126"/>
       <source>Zone:</source>
       <translation>時區</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="126"/>
       <location filename="../src/modules/locale/LocalePage.cpp" line="127"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="128"/>
       <source>&amp;Change...</source>
       <translation>變更...(&amp;C)</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
+      <source>The system language will be set to %1.</source>
+      <translation>系統語言會設定為%1。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="261"/>
+      <source>The numbers and dates locale will be set to %1.</source>
+      <translation>數字與日期語系會設定為%1。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="268"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
       <translation>設定時區為 %1/%2 。&lt;br/&gt;</translation>
     </message>
@@ -1700,7 +1700,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LocaleQmlViewStep</name>
     <message>
-      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="98"/>
+      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="95"/>
       <source>Location</source>
       <translation>位置</translation>
     </message>
@@ -1708,7 +1708,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LocaleViewStep</name>
     <message>
-      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
+      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="98"/>
       <source>Location</source>
       <translation>位置</translation>
     </message>
@@ -2238,9 +2238,34 @@ The installer will quit and all changes will be lost.</source>
       <translation>該如何稱呼您？</translation>
     </message>
     <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
+      <source>Your Full Name</source>
+      <translation>您的全名</translation>
+    </message>
+    <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
       <source>What name do you want to use to log in?</source>
       <translation>您想使用何種登入名稱？</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
+      <source>login</source>
+      <translation>登入</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
+      <source>What is the name of this computer?</source>
+      <translation>這部電腦的名字是？</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
+      <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
+      <translation>&lt;small&gt;若您將此電腦設定為讓網路上的其他電腦可見時將會使用此名稱。&lt;/small&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
+      <source>Computer Name</source>
+      <translation>電腦名稱</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="321"/>
@@ -2252,31 +2277,6 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/users/page_usersetup.ui" line="370"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
       <translation>&lt;small&gt;輸入同一個密碼兩次，以檢查輸入錯誤。一個好的密碼包含了字母、數字及標點符號的組合、至少八個字母長，且按一固定週期更換。&lt;/small&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
-      <source>What is the name of this computer?</source>
-      <translation>這部電腦的名字是？</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
-      <source>Your Full Name</source>
-      <translation>您的全名</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
-      <source>login</source>
-      <translation>登入</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
-      <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;若您將此電腦設定為讓網路上的其他電腦可見時將會使用此名稱。&lt;/small&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
-      <source>Computer Name</source>
-      <translation>電腦名稱</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
@@ -2727,15 +2727,14 @@ Output:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
-      <source>Default Keyboard Model</source>
-      <translation>預設鍵盤型號</translation>
+      <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
+      <source>%1 (%2)</source>
+      <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
-      <source>Default</source>
-      <translation>預設值</translation>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
+      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
+      <translation>模組 &lt;i&gt;%1&lt;/i&gt; 需求檢查完成。</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="36"/>
@@ -2758,34 +2757,15 @@ Output:
       <translation>swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
-      <source>Unpartitioned space or unknown partition table</source>
-      <translation>尚未分割的空間或是不明的分割表</translation>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
+      <source>Default Keyboard Model</source>
+      <translation>預設鍵盤型號</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
-      <source>(no mount point)</source>
-      <translation>(沒有掛載點)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
-      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation>模組 &lt;i&gt;%1&lt;/i&gt; 需求檢查完成。</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
-      <source>%1 (%2)</source>
-      <translation>%1 (%2)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
-      <source>No product</source>
-      <translation>沒有產品</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
-      <source>No description provided.</source>
-      <translation>未提供描述。</translation>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
+      <source>Default</source>
+      <translation>預設值</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="73"/>
@@ -2804,6 +2784,26 @@ Output:
       <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>無法建立新的隨機檔案 &lt;pre&gt;%1&lt;/pre&gt;。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
+      <source>No product</source>
+      <translation>沒有產品</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
+      <source>No description provided.</source>
+      <translation>未提供描述。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
+      <source>(no mount point)</source>
+      <translation>(沒有掛載點)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
+      <source>Unpartitioned space or unknown partition table</source>
+      <translation>尚未分割的空間或是不明的分割表</translation>
     </message>
   </context>
   <context>
@@ -3169,21 +3169,6 @@ Output:
       <translation>清除 %1MiB &lt;strong&gt;%2&lt;/strong&gt; 分割區的旗標。</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
-      <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation>將 %1MiB &lt;strong&gt;%2&lt;/strong&gt; 分割區標記為 &lt;strong&gt;%3&lt;/strong&gt;。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
-      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>正在清除 %1MiB &lt;strong&gt;%2&lt;/strong&gt; 分割區的旗標。</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
-      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>正在設定 %1MiB &lt;strong&gt;%2&lt;/strong&gt; 分割區的 &lt;strong&gt;%3&lt;/strong&gt; 旗標。</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
       <source>Clear flags on new partition.</source>
       <translation>清除新分割區的旗標。</translation>
@@ -3192,6 +3177,11 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>設定分割區 &lt;strong&gt;%1&lt;/strong&gt; 的旗標為 &lt;strong&gt;%2&lt;/strong&gt;。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
+      <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
+      <translation>將 %1MiB &lt;strong&gt;%2&lt;/strong&gt; 分割區標記為 &lt;strong&gt;%3&lt;/strong&gt;。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
@@ -3204,6 +3194,11 @@ Output:
       <translation>正在清除分割區 &lt;strong&gt;%1&lt;/strong&gt; 的旗標。</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
+      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+      <translation>正在清除 %1MiB &lt;strong&gt;%2&lt;/strong&gt; 分割區的旗標。</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="128"/>
       <source>Clearing flags on new partition.</source>
       <translation>清除新分割區的旗標。</translation>
@@ -3212,6 +3207,11 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>正在設定 &lt;strong&gt;%1&lt;/strong&gt; 分割區的 &lt;strong&gt;%2&lt;/strong&gt; 旗標。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
+      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+      <translation>正在設定 %1MiB &lt;strong&gt;%2&lt;/strong&gt; 分割區的 &lt;strong&gt;%3&lt;/strong&gt; 旗標。</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
@@ -3474,11 +3474,6 @@ Output:
       <translation>僅允許小寫字母、數字、底線與連接號。</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="457"/>
-      <source>Only letters, numbers, underscore and hyphen are allowed.</source>
-      <translation>僅允許字母、數字、底線與連接號。</translation>
-    </message>
-    <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="445"/>
       <source>Your hostname is too short.</source>
       <translation>您的主機名稱太短了。</translation>
@@ -3487,6 +3482,11 @@ Output:
       <location filename="../src/modules/users/UsersPage.cpp" line="450"/>
       <source>Your hostname is too long.</source>
       <translation>您的主機名稱太長了。</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/UsersPage.cpp" line="457"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed.</source>
+      <translation>僅允許字母、數字、底線與連接號。</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="474"/>
@@ -3582,6 +3582,11 @@ Output:
       <translation>選取應用程式與系統語言</translation>
     </message>
     <message>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
+      <source>&amp;About</source>
+      <translation>關於(&amp;A)</translation>
+    </message>
+    <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>Open donations website</source>
       <translation>開啟捐款網頁</translation>
@@ -3597,9 +3602,19 @@ Output:
       <translation>開啟說明與支援網頁</translation>
     </message>
     <message>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
+      <source>&amp;Support</source>
+      <translation>支援(&amp;S)</translation>
+    </message>
+    <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
       <translation>開啟問題與錯誤追蹤網頁</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
+      <source>&amp;Known issues</source>
+      <translation>已知問題(&amp;K)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
@@ -3612,31 +3627,6 @@ Output:
       <translation>發行註記(&amp;R)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
-      <source>&amp;Known issues</source>
-      <translation>已知問題(&amp;K)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
-      <source>&amp;Support</source>
-      <translation>支援(&amp;S)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
-      <source>&amp;About</source>
-      <translation>關於(&amp;A)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="219"/>
-      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;歡迎使用 %1 安裝程式。&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="218"/>
-      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;歡迎使用 %1 的 Calamares 安裝程式。&lt;/h1&gt;</translation>
-    </message>
-    <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;歡迎使用 %1 的 Calamares 安裝程式。&lt;/h1&gt;</translation>
@@ -3645,6 +3635,21 @@ Output:
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="213"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;歡迎使用 %1 安裝程式。&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="218"/>
+      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;歡迎使用 %1 的 Calamares 安裝程式。&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="219"/>
+      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;歡迎使用 %1 安裝程式。&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="224"/>
+      <source>%1 support</source>
+      <translation>%1 支援</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
@@ -3659,12 +3664,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;為 %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;感謝 &lt;a href="https://calamares.io/team/"&gt;Calamares 團隊&lt;/a&gt;與 &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares 翻譯團隊&lt;/a&gt;。&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; 開發由 &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software 贊助。{1&gt;?} {1&lt;?} {1&gt;?} {2&lt;?} {3&lt;?} {2014-2017 ?} {2017-2020 ?}</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="224"/>
-      <source>%1 support</source>
-      <translation>%1 支援</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>

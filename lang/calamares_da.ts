@@ -252,39 +252,41 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
-      <source>&amp;Back</source>
-      <translation>&amp;Tilbage</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
-      <source>&amp;Next</source>
-      <translation>&amp;Næste</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="436"/>
-      <source>&amp;Cancel</source>
-      <translation>&amp;Annullér</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
-      <source>Cancel setup without changing the system.</source>
-      <translation>Annullér opsætningen uden at ændre systemet.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
-      <source>Cancel installation without changing the system.</source>
-      <translation>Annullér installation uden at ændre systemet.</translation>
-    </message>
-    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
       <source>Setup Failed</source>
       <translation>Opsætningen mislykkedes</translation>
     </message>
     <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
+      <source>Installation Failed</source>
+      <translation>Installation mislykkedes</translation>
+    </message>
+    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="152"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Vil du indsætte installationsloggen på webbet?</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
+      <source>Error</source>
+      <translation>Fejl</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
+      <source>&amp;Yes</source>
+      <translation>&amp;Ja</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
+      <source>&amp;No</source>
+      <translation>&amp;Nej</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
+      <source>&amp;Close</source>
+      <translation>&amp;Luk</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
@@ -313,6 +315,11 @@
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
+      <source>Continue with setup?</source>
+      <translation>Fortsæt med opsætningen?</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
       <source>Continue with installation?</source>
       <translation>Fortsæt installationen?</translation>
     </message>
@@ -322,9 +329,24 @@
       <translation>%1-opsætningsprogrammet er ved at foretage ændringer til din disk for at opsætte %2.&lt;br/&gt;&lt;strong&gt;Det vil ikke være muligt at fortryde ændringerne.&lt;/strong&gt;</translation>
     </message>
     <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
+      <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
+      <translation>%1-installationsprogrammet er ved at foretage ændringer til din disk for at installere %2.&lt;br/&gt;&lt;strong&gt;Det vil ikke være muligt at fortryde ændringerne.&lt;/strong&gt;</translation>
+    </message>
+    <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
       <source>&amp;Set up now</source>
       <translation>&amp;Sæt op nu</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
+      <source>&amp;Install now</source>
+      <translation>&amp;Installér nu</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
+      <source>Go &amp;back</source>
+      <translation>Gå &amp;tilbage</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="390"/>
@@ -340,6 +362,41 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>Opsætningen er fuldført. Luk opsætningsprogrammet.</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
+      <source>The installation is complete. Close the installer.</source>
+      <translation>Installationen er fuldført. Luk installationsprogrammet.</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
+      <source>Cancel setup without changing the system.</source>
+      <translation>Annullér opsætningen uden at ændre systemet.</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="396"/>
+      <source>Cancel installation without changing the system.</source>
+      <translation>Annullér installation uden at ændre systemet.</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
+      <source>&amp;Next</source>
+      <translation>&amp;Næste</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
+      <source>&amp;Back</source>
+      <translation>&amp;Tilbage</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
+      <source>&amp;Done</source>
+      <translation>&amp;Færdig</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="436"/>
+      <source>&amp;Cancel</source>
+      <translation>&amp;Annullér</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="509"/>
@@ -364,63 +421,6 @@ Opsætningsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation>
 The installer will quit and all changes will be lost.</source>
       <translation>Vil du virkelig annullere den igangværende installationsproces?
 Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
-      <source>&amp;Yes</source>
-      <translation>&amp;Ja</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
-      <source>&amp;No</source>
-      <translation>&amp;Nej</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
-      <source>&amp;Close</source>
-      <translation>&amp;Luk</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
-      <source>Continue with setup?</source>
-      <translation>Fortsæt med opsætningen?</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
-      <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation>%1-installationsprogrammet er ved at foretage ændringer til din disk for at installere %2.&lt;br/&gt;&lt;strong&gt;Det vil ikke være muligt at fortryde ændringerne.&lt;/strong&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
-      <source>&amp;Install now</source>
-      <translation>&amp;Installér nu</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
-      <source>Go &amp;back</source>
-      <translation>Gå &amp;tilbage</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
-      <source>&amp;Done</source>
-      <translation>&amp;Færdig</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="393"/>
-      <source>The installation is complete. Close the installer.</source>
-      <translation>Installationen er fuldført. Luk installationsprogrammet.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="165"/>
-      <source>Error</source>
-      <translation>Fejl</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
-      <source>Installation Failed</source>
-      <translation>Installation mislykkedes</translation>
     </message>
   </context>
   <context>
@@ -459,6 +459,11 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
   <context>
     <name>CalamaresWindow</name>
     <message>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="106"/>
+      <source>Show debug information</source>
+      <translation>Vis fejlretningsinformation</translation>
+    </message>
+    <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
       <source>&amp;Back</source>
       <translation>&amp;Tilbage</translation>
@@ -483,11 +488,6 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <source>%1 Installer</source>
       <translation>%1-installationsprogram</translation>
     </message>
-    <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="106"/>
-      <source>Show debug information</source>
-      <translation>Vis fejlretningsinformation</translation>
-    </message>
   </context>
   <context>
     <name>CheckerContainer</name>
@@ -505,16 +505,6 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <translation>Formular</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
-      <source>After:</source>
-      <translation>Efter:</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
-      <source>Boot loader location:</source>
-      <translation>Placering af bootloader:</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Vælg lageren&amp;hed:</translation>
@@ -526,6 +516,11 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1088"/>
       <source>Current:</source>
       <translation>Nuværende:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
+      <source>After:</source>
+      <translation>Efter:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
@@ -546,6 +541,11 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="973"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 vil blive skrumpet til %2 MiB og en ny %3 MiB partition vil blive oprettet for %4.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
+      <source>Boot loader location:</source>
+      <translation>Placering af bootloader:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
@@ -581,9 +581,35 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <translation>&lt;strong&gt;Slet disk&lt;/strong&gt;&lt;br/&gt;Det vil &lt;font color="red"&gt;slette&lt;/font&gt; alt data på den valgte lagerenhed.</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1332"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1358"/>
+      <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
+      <translation>&lt;strong&gt;Installér ved siden af&lt;/strong&gt;&lt;br/&gt;Installationsprogrammet vil mindske en partition for at gøre plads til %1.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1283"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1318"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
+      <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
+      <translation>&lt;strong&gt;Erstat en partition&lt;/strong&gt;&lt;br/&gt;Erstatter en partition med %1.</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1303"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Lagerenheden har %1 på sig. Hvad ønsker du at gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før det sker ændringer til lagerenheden.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
+      <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+      <translation>Lagerenheden indeholder allerede et styresystem. Hvad ønsker du at gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
+      <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+      <translation>Lagerenheden indeholder flere styresystemer. Hvad ønsker du at gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1507"/>
@@ -609,32 +635,6 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1521"/>
       <source>Swap to file</source>
       <translation>Swap til fil</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1309"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1332"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1358"/>
-      <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-      <translation>&lt;strong&gt;Installér ved siden af&lt;/strong&gt;&lt;br/&gt;Installationsprogrammet vil mindske en partition for at gøre plads til %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1283"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1318"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
-      <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-      <translation>&lt;strong&gt;Erstat en partition&lt;/strong&gt;&lt;br/&gt;Erstatter en partition med %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
-      <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Lagerenheden indeholder allerede et styresystem. Hvad ønsker du at gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
-      <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Lagerenheden indeholder flere styresystemer. Hvad ønsker du at gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
     </message>
   </context>
   <context>
@@ -700,6 +700,51 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
   <context>
     <name>Config</name>
     <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="348"/>
+      <source>Set keyboard model to %1.&lt;br/&gt;</source>
+      <translation>Sæt tastaturmodel til %1.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
+      <source>Set keyboard layout to %1/%2.</source>
+      <translation>Sæt tastaturlayout til %1/%2.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="279"/>
+      <source>The system language will be set to %1.</source>
+      <translation>Systemsproget vil blive sat til %1.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="280"/>
+      <source>The numbers and dates locale will be set to %1.</source>
+      <translation>Lokalitet for tal og datoer vil blive sat til %1.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/Config.cpp" line="313"/>
+      <source>Set timezone to %1/%2.&lt;br/&gt;</source>
+      <translation>Sæt tidszone til %1/%2.&lt;br/&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
+      <source>Network Installation. (Disabled: Incorrect configuration)</source>
+      <translation>Netværksinstallation. (deaktiveret: forkert konfiguration)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
+      <source>Network Installation. (Disabled: Received invalid groups data)</source>
+      <translation>Netværksinstallation. (deaktiveret: modtog ugyldige gruppers data)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
+      <source>Network Installation. (Disabled: internal error)</source>
+      <translation>Netværksinstallation. (deaktiveret: intern fejl)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
+      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
+      <translation>Netværksinstallation. (deaktiveret: kunne ikke hente pakkelister, tjek din netværksforbindelse)</translation>
+    </message>
+    <message>
       <location filename="../src/modules/welcome/Config.cpp" line="54"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Computeren imødekommer ikke minimumsystemkravene for at opsætte %1.&lt;br/&gt;Opsætningen kan ikke fortsætte. &lt;a href="#details"&gt;Detaljer ...&lt;/a&gt;</translation>
@@ -744,51 +789,6 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Velkommen til %1-installationsprogrammet.&lt;/h1&gt;</translation>
     </message>
-    <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="348"/>
-      <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation>Sæt tastaturmodel til %1.&lt;br/&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
-      <source>Set keyboard layout to %1/%2.</source>
-      <translation>Sæt tastaturlayout til %1/%2.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="272"/>
-      <source>The system language will be set to %1.</source>
-      <translation>Systemsproget vil blive sat til %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="273"/>
-      <source>The numbers and dates locale will be set to %1.</source>
-      <translation>Lokalitet for tal og datoer vil blive sat til %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/Config.cpp" line="306"/>
-      <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-      <translation>Sæt tidszone til %1/%2.&lt;br/&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
-      <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation>Netværksinstallation. (deaktiveret: forkert konfiguration)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
-      <source>Network Installation. (Disabled: Received invalid groups data)</source>
-      <translation>Netværksinstallation. (deaktiveret: modtog ugyldige gruppers data)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
-      <source>Network Installation. (Disabled: internal error)</source>
-      <translation>Netværksinstallation. (deaktiveret: intern fejl)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
-      <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-      <translation>Netværksinstallation. (deaktiveret: kunne ikke hente pakkelister, tjek din netværksforbindelse)</translation>
-    </message>
   </context>
   <context>
     <name>ContextualProcessJob</name>
@@ -804,6 +804,11 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
       <source>Create a Partition</source>
       <translation>Opret en partition</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
+      <source>Si&amp;ze:</source>
+      <translation>&amp;Størrelse:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
@@ -836,19 +841,14 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <translation>LVM LV-navn</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
-      <source>Flags:</source>
-      <translation>Flag:</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="161"/>
       <source>&amp;Mount Point:</source>
       <translation>&amp;Monteringspunkt:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
-      <source>Si&amp;ze:</source>
-      <translation>&amp;Størrelse:</translation>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
+      <source>Flags:</source>
+      <translation>Flag:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="74"/>
@@ -1064,11 +1064,6 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
   <context>
     <name>DeviceInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
-      <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation>Typen af &lt;strong&gt;partitionstabel&lt;/strong&gt; på den valgte lagerenhed.&lt;br&gt;&lt;br&gt;Den eneste måde at ændre partitionstabeltypen, er at slette og oprette partitionstabellen igen, hvilket vil destruere al data på lagerenheden.&lt;br&gt;Installationsprogrammet vil beholde den nuværende partitionstabel medmindre du specifikt vælger andet.&lt;br&gt;Hvis usikker, er GPT foretrukket på moderne systemer.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
       <translation>Enheden har en &lt;strong&gt;%1&lt;/strong&gt; partitionstabel.</translation>
@@ -1092,6 +1087,11 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="138"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
       <translation>&lt;br&gt;&lt;br&gt;Partitionstabeltypen anbefales kun på ældre systemer der starter fra et &lt;strong&gt;BIOS&lt;/strong&gt;-bootmiljø. GPT anbefales i de fleste tilfælde.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Advarsel:&lt;/strong&gt; MBR-partitionstabeltypen er en forældet MS-DOS-æra standard.&lt;br&gt;Kun 4 &lt;em&gt;primære&lt;/em&gt; partitioner var tilladt, og ud af de fire kan én af dem være en &lt;em&gt;udvidet&lt;/em&gt; partition, som igen må indeholde mange &lt;em&gt;logiske&lt;/em&gt; partitioner.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
+      <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
+      <translation>Typen af &lt;strong&gt;partitionstabel&lt;/strong&gt; på den valgte lagerenhed.&lt;br&gt;&lt;br&gt;Den eneste måde at ændre partitionstabeltypen, er at slette og oprette partitionstabellen igen, hvilket vil destruere al data på lagerenheden.&lt;br&gt;Installationsprogrammet vil beholde den nuværende partitionstabel medmindre du specifikt vælger andet.&lt;br&gt;Hvis usikker, er GPT foretrukket på moderne systemer.</translation>
     </message>
   </context>
   <context>
@@ -1651,6 +1651,11 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
+      <source>Hide license text</source>
+      <translation>Skjul licenstekst</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
       <translation>Vis licensteksten</translation>
     </message>
@@ -1659,42 +1664,37 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <source>Open license agreement in browser.</source>
       <translation>Åbn licensaftale i browser.</translation>
     </message>
-    <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
-      <source>Hide license text</source>
-      <translation>Skjul licenstekst</translation>
-    </message>
   </context>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="259"/>
-      <source>The system language will be set to %1.</source>
-      <translation>Systemsproget vil blive sat til %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
-      <source>The numbers and dates locale will be set to %1.</source>
-      <translation>Lokalitet for tal og datoer vil blive sat til %1.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="124"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="125"/>
       <source>Region:</source>
       <translation>Region:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="125"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="126"/>
       <source>Zone:</source>
       <translation>Zone:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="126"/>
       <location filename="../src/modules/locale/LocalePage.cpp" line="127"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="128"/>
       <source>&amp;Change...</source>
       <translation>&amp;Skift ...</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="260"/>
+      <source>The system language will be set to %1.</source>
+      <translation>Systemsproget vil blive sat til %1.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="261"/>
+      <source>The numbers and dates locale will be set to %1.</source>
+      <translation>Lokalitet for tal og datoer vil blive sat til %1.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="268"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
       <translation>Sæt tidszone til %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -1702,7 +1702,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
   <context>
     <name>LocaleQmlViewStep</name>
     <message>
-      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="98"/>
+      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="95"/>
       <source>Location</source>
       <translation>Placering</translation>
     </message>
@@ -1710,7 +1710,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
   <context>
     <name>LocaleViewStep</name>
     <message>
-      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="99"/>
+      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="98"/>
       <source>Location</source>
       <translation>Placering</translation>
     </message>
@@ -2240,9 +2240,34 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <translation>Hvad er dit navn?</translation>
     </message>
     <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
+      <source>Your Full Name</source>
+      <translation>Dit fulde navn</translation>
+    </message>
+    <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
       <source>What name do you want to use to log in?</source>
       <translation>Hvilket navn skal bruges til at logge ind?</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
+      <source>login</source>
+      <translation>login</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
+      <source>What is the name of this computer?</source>
+      <translation>Hvad er navnet på computeren?</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
+      <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
+      <translation>&lt;small&gt;Navnet bruges, hvis du gør computeren synlig for andre på et netværk.&lt;/small&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
+      <source>Computer Name</source>
+      <translation>Computernavn</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="321"/>
@@ -2254,31 +2279,6 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <location filename="../src/modules/users/page_usersetup.ui" line="370"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Skriv den samme adgangskode to gange, så det kan blive tjekket for skrivefejl. En god adgangskode indeholder en blanding af bogstaver, tal og specialtegn, og bør være mindst 8 tegn langt og bør skiftes jævnligt.&lt;/small&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
-      <source>What is the name of this computer?</source>
-      <translation>Hvad er navnet på computeren?</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
-      <source>Your Full Name</source>
-      <translation>Dit fulde navn</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
-      <source>login</source>
-      <translation>login</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
-      <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Navnet bruges, hvis du gør computeren synlig for andre på et netværk.&lt;/small&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
-      <source>Computer Name</source>
-      <translation>Computernavn</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
@@ -2729,15 +2729,14 @@ Output:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
-      <source>Default Keyboard Model</source>
-      <translation>Standardtastaturmodel</translation>
+      <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
+      <source>%1 (%2)</source>
+      <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
-      <source>Default</source>
-      <translation>Standard</translation>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
+      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
+      <translation>Tjek at krav for modulet &lt;i&gt;%1&lt;/i&gt; er fuldført.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="36"/>
@@ -2760,34 +2759,15 @@ Output:
       <translation>swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
-      <source>Unpartitioned space or unknown partition table</source>
-      <translation>Upartitioneret plads eller ukendt partitionstabel</translation>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
+      <source>Default Keyboard Model</source>
+      <translation>Standardtastaturmodel</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
-      <source>(no mount point)</source>
-      <translation>(intet monteringspunkt)</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
-      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation>Tjek at krav for modulet &lt;i&gt;%1&lt;/i&gt; er fuldført.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
-      <source>%1 (%2)</source>
-      <translation>%1 (%2)</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
-      <source>No product</source>
-      <translation>Intet produkt</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
-      <source>No description provided.</source>
-      <translation>Der er ikke angivet nogen beskrivelse.</translation>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
+      <source>Default</source>
+      <translation>Standard</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="73"/>
@@ -2806,6 +2786,26 @@ Output:
       <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>Kunne ikke oprette den tilfældige fil &lt;pre&gt;%1&lt;/pre&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
+      <source>No product</source>
+      <translation>Intet produkt</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
+      <source>No description provided.</source>
+      <translation>Der er ikke angivet nogen beskrivelse.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
+      <source>(no mount point)</source>
+      <translation>(intet monteringspunkt)</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
+      <source>Unpartitioned space or unknown partition table</source>
+      <translation>Upartitioneret plads eller ukendt partitionstabel</translation>
     </message>
   </context>
   <context>
@@ -3171,21 +3171,6 @@ Output:
       <translation>Ryd flag på %1 MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
-      <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-      <translation>Flag %1 MiB &lt;strong&gt;%2&lt;/strong&gt; partition som &lt;strong&gt;%3&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
-      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Rydder flag på %1 MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
-      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-      <translation>Sætter flag &lt;strong&gt;%3&lt;/strong&gt; på %1 MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
       <source>Clear flags on new partition.</source>
       <translation>Ryd flag på ny partition.</translation>
@@ -3194,6 +3179,11 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Flag partition &lt;strong&gt;%1&lt;/strong&gt; som &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
+      <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
+      <translation>Flag %1 MiB &lt;strong&gt;%2&lt;/strong&gt; partition som &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
@@ -3206,6 +3196,11 @@ Output:
       <translation>Rydder flag på partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
+      <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+      <translation>Rydder flag på %1 MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</translation>
+    </message>
+    <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="128"/>
       <source>Clearing flags on new partition.</source>
       <translation>Rydder flag på ny partition.</translation>
@@ -3214,6 +3209,11 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Sætter flag &lt;strong&gt;%2&lt;/strong&gt; på partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
+      <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+      <translation>Sætter flag &lt;strong&gt;%3&lt;/strong&gt; på %1 MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
@@ -3476,11 +3476,6 @@ Output:
       <translation>Det er kun tilladt at bruge bogstaver med småt, tal, understregning og bindestreg.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="457"/>
-      <source>Only letters, numbers, underscore and hyphen are allowed.</source>
-      <translation>Det er kun tilladt at bruge bogstaver, tal, understregning og bindestreg.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="445"/>
       <source>Your hostname is too short.</source>
       <translation>Dit værtsnavn er for kort.</translation>
@@ -3489,6 +3484,11 @@ Output:
       <location filename="../src/modules/users/UsersPage.cpp" line="450"/>
       <source>Your hostname is too long.</source>
       <translation>Dit værtsnavn er for langt.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/UsersPage.cpp" line="457"/>
+      <source>Only letters, numbers, underscore and hyphen are allowed.</source>
+      <translation>Det er kun tilladt at bruge bogstaver, tal, understregning og bindestreg.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="474"/>
@@ -3584,6 +3584,11 @@ Output:
       <translation>Vælg program- og systemsprog</translation>
     </message>
     <message>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
+      <source>&amp;About</source>
+      <translation>&amp;Om</translation>
+    </message>
+    <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>Open donations website</source>
       <translation>Åbn websted for donationer</translation>
@@ -3599,9 +3604,19 @@ Output:
       <translation>Åbn websted for hjælp og support</translation>
     </message>
     <message>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
+      <source>&amp;Support</source>
+      <translation>&amp;Support</translation>
+    </message>
+    <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>Open issues and bug-tracking website</source>
       <translation>Åbn websted for issues og bug-tracking</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
+      <source>&amp;Known issues</source>
+      <translation>&amp;Kendte problemer</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
@@ -3614,31 +3629,6 @@ Output:
       <translation>&amp;Udgivelsesnoter</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
-      <source>&amp;Known issues</source>
-      <translation>&amp;Kendte problemer</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
-      <source>&amp;Support</source>
-      <translation>&amp;Support</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="130"/>
-      <source>&amp;About</source>
-      <translation>&amp;Om</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="219"/>
-      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Velkommen til %1-installationsprogrammet.&lt;/h1&gt;</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="218"/>
-      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Velkommen til Calamares-installationsprogrammet for %1.&lt;/h1&gt;</translation>
-    </message>
-    <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Velkommen til Calamares-opsætningsprogrammet til %1.&lt;/h1&gt;</translation>
@@ -3647,6 +3637,21 @@ Output:
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="213"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Velkommen til %1-opsætningen.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="218"/>
+      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;Velkommen til Calamares-installationsprogrammet for %1.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="219"/>
+      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
+      <translation>&lt;h1&gt;Velkommen til %1-installationsprogrammet.&lt;/h1&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="224"/>
+      <source>%1 support</source>
+      <translation>%1 support</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
@@ -3661,12 +3666,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Ophavsret 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Ophavsret 2017-2019 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Tak til &lt;a href="https://calamares.io/team/"&gt;Calamares-teamet&lt;/a&gt; og &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares-oversætterteamet&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Udviklingen af &lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; sponsoreres af &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software. {1&gt;?} {1&lt;?} {1&gt;?} {2&lt;?} {3&lt;?} {2014-2017 ?} {2017-2020 ?}</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="224"/>
-      <source>%1 support</source>
-      <translation>%1 support</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
