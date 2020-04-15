@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Demiray Muhterem <mdemiray@msn.com>, 2020
+# abc Def <hdogan1974@gmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 22:12+0200\n"
+"POT-Creation-Date: 2020-04-15 13:39+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2020\n"
+"Last-Translator: abc Def <hdogan1974@gmail.com>, 2020\n"
 "Language-Team: Turkish (Turkey) (https://www.transifex.com/calamares/teams/20061/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "GRUB'u yapılandır."
 
 #: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr "Disk bölümleri bağlanıyor."
+msgstr "Disk bölümlemeleri bağlanıyor."
 
 #: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
 #: src/modules/initcpiocfg/main.py:209
@@ -95,7 +96,7 @@ msgstr "Dosya sistemlerini ayırın."
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
-msgstr "Dosya sistemi genişletiliyor."
+msgstr "Dosya sistemlerini dolduruyorum."
 
 #: src/modules/unpackfs/main.py:257
 msgid "rsync failed with error code {}."
@@ -103,11 +104,11 @@ msgstr "rsync {} hata koduyla başarısız oldu."
 
 #: src/modules/unpackfs/main.py:302
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "Disk görüntüsü paketi açılıyor {}/{}, dosya {}/{}"
 
 #: src/modules/unpackfs/main.py:317
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "Paketi açmaya başlıyor {}"
 
 #: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
 msgid "Failed to unpack image \"{}\""
@@ -254,7 +255,7 @@ msgstr ""
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
-" <code>rc-update {arg!s}</code> çağrısında chroot, {num!s} hata kodunu "
+" <code>rc-update {arg!s}</code> çağrısında chroot {num!s} hata kodunu "
 "döndürdü."
 
 #: src/modules/services-openrc/main.py:110
@@ -269,13 +270,13 @@ msgstr "Runlevel  {level!s} yolu, mevcut olmayan <code>{path!s}</code> 'dir."
 
 #: src/modules/services-openrc/main.py:119
 msgid "Target service does not exist"
-msgstr "Hedef servisi mevcut değil"
+msgstr "Hedef hizmet mevcut değil"
 
 #: src/modules/services-openrc/main.py:120
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
-msgstr "{name!s} hizmetinin yolu, bulunmayan <code>{path!s}</code>."
+msgstr "{name!s} hizmetinin yolu <code>{path!s}</code>, ki mevcut değil."
 
 #: src/modules/plymouthcfg/main.py:36
 msgid "Configure Plymouth theme"
@@ -307,7 +308,7 @@ msgstr[1] "%(num)d paket kaldırılıyor."
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr "Önyükleyici kur."
+msgstr "Önyükleyici yükle"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
@@ -331,7 +332,7 @@ msgstr "Initramfs yapılandırılıyor."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt servisi yapılandırılıyor."
+msgstr "OpenRC dmcrypt hizmeti yapılandırılıyor."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
@@ -348,7 +349,7 @@ msgstr "Dummy python step {}"
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr "Sistem yereli yapılandırılıyor."
+msgstr "Sistem yerelleri yapılandırılıyor."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."

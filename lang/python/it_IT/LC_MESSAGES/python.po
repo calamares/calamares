@@ -4,18 +4,18 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Saverio <saverio.brancaccio@gmail.com>, 2018
 # Pierfrancesco Passerini <p.passerini@gmail.com>, 2019
 # Pietro F. Fontana, 2020
+# Saverio <saverio.brancaccio@gmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 22:12+0200\n"
+"POT-Creation-Date: 2020-04-15 13:39+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Pietro F. Fontana, 2020\n"
+"Last-Translator: Saverio <saverio.brancaccio@gmail.com>, 2020\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/calamares/teams/20061/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,11 +25,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "Configura GRUB."
 
 #: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "Montaggio partizioni."
 
 #: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
 #: src/modules/initcpiocfg/main.py:209
@@ -48,11 +48,11 @@ msgstr "Errore di Configurazione"
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nessuna partizione definita per l'uso con <pre>{!s}</pre>."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
-msgstr "Configura systemd services"
+msgstr "Configura servizi  systemd"
 
 #: src/modules/services-systemd/main.py:68
 #: src/modules/services-openrc/main.py:102
@@ -63,29 +63,34 @@ msgstr "Impossibile modificare il servizio"
 msgid ""
 "<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"La chiamata <code>systemctl {arg!s}</code> in chroot ha restituito il codice"
+" di errore {num!s}."
 
 #: src/modules/services-systemd/main.py:72
 #: src/modules/services-systemd/main.py:76
 msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Impossibile abilitare systemd service <code>{name!s}</code>."
+msgstr "Impossibile abilitare il servizio systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:74
 msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Impossibile abilitare systemd target <code>{name!s}</code>."
+msgstr "Impossibile abilitare la destinazione systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:78
 msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Impossibile disabilitare systemd target <code>{name!s}</code>."
+msgstr ""
+"Impossibile disabilitare la destinazione systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:80
 msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Impossibile mascherare systemd unit <code>{name!s}</code>."
+msgstr "Impossibile mascherare l'unità systemd <code>{name!s}</code>."
 
 #: src/modules/services-systemd/main.py:82
 msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
 msgstr ""
+"Comandi systemd sconosciuti <code>{command!s}</code> "
+"e<code>{suffix!s}</code> per l'unità {name!s}."
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -93,7 +98,7 @@ msgstr "Smonta i file system."
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "Copia dei file system."
 
 #: src/modules/unpackfs/main.py:257
 msgid "rsync failed with error code {}."
@@ -101,11 +106,11 @@ msgstr "rsync fallita con codice d'errore {}."
 
 #: src/modules/unpackfs/main.py:302
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "Estrazione immagine {}/{}, file {}/{}"
 
 #: src/modules/unpackfs/main.py:317
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "Avvio dell'estrazione {}"
 
 #: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
 msgid "Failed to unpack image \"{}\""
@@ -118,6 +123,8 @@ msgstr "Nessun punto di montaggio per la partizione di root"
 #: src/modules/unpackfs/main.py:400
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
+"globalstorage non contiene una chiave \"rootMountPoint\", nessuna azione "
+"prevista"
 
 #: src/modules/unpackfs/main.py:405
 msgid "Bad mount point for root partition"
@@ -125,7 +132,7 @@ msgstr "Punto di montaggio per la partizione di root errato"
 
 #: src/modules/unpackfs/main.py:406
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
+msgstr "rootMountPoint è \"{}\" ma non esiste, nessuna azione prevista"
 
 #: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
 #: src/modules/unpackfs/main.py:446
@@ -134,7 +141,7 @@ msgstr "Configurazione unsquash errata"
 
 #: src/modules/unpackfs/main.py:423
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr ""
+msgstr "Il filesystem per \"{}\" ({}) non è supportato dal kernel corrente"
 
 #: src/modules/unpackfs/main.py:427
 msgid "The source filesystem \"{}\" does not exist"
@@ -145,7 +152,7 @@ msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
-"Impossibile trovare unsquashfs, assicurati di aver installato il pacchetto "
+"Impossibile trovare unsquashfs, assicurarsi di aver installato il pacchetto "
 "squashfs-tools"
 
 #: src/modules/unpackfs/main.py:447
@@ -182,7 +189,7 @@ msgstr "Impossibile configurare LightDM"
 
 #: src/modules/displaymanager/main.py:737
 msgid "No LightDM greeter installed."
-msgstr "Non è stato installato nessun LightDM greeter"
+msgstr "Nessun LightDM greeter installato."
 
 #: src/modules/displaymanager/main.py:768
 msgid "Cannot write SLIM configuration file"
@@ -211,7 +218,7 @@ msgstr "La configurazione del display manager è incompleta"
 
 #: src/modules/initcpiocfg/main.py:37
 msgid "Configuring mkinitcpio."
-msgstr ""
+msgstr "Configurazione di mkinitcpio."
 
 #: src/modules/initcpiocfg/main.py:210
 #: src/modules/luksopenswaphookcfg/main.py:100
@@ -219,15 +226,15 @@ msgstr ""
 #: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
 #: src/modules/networkcfg/main.py:49
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "Nessun punto di mount root è dato in l'uso per <pre>{!s}</pre>"
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
-msgstr ""
+msgstr "Configurazione per lo swap cifrato."
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr "Installazione."
+msgstr "Installazione dei dati."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -246,11 +253,15 @@ msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
+"Service-action sconosciuta <code>{arg!s}</code> per il servizio {name!s} nel"
+" run-level {level!s}."
 
 #: src/modules/services-openrc/main.py:103
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"La chiamata <code>rc-update {arg!s}</code> in chroot ha ritornato il codice "
+"di errore {num!s}."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target runlevel does not exist"
@@ -304,35 +315,35 @@ msgstr[1] "Rimozione di %(num)d pacchetti."
 
 #: src/modules/bootloader/main.py:51
 msgid "Install bootloader."
-msgstr ""
+msgstr "Installa il bootloader."
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
-msgstr ""
+msgstr "Impostazione del clock hardware."
 
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
-msgstr ""
+msgstr "Creazione di initramfs con dracut."
 
 #: src/modules/dracut/main.py:58
 msgid "Failed to run dracut on the target"
-msgstr ""
+msgstr "Impossibile eseguire dracut sulla destinazione"
 
 #: src/modules/dracut/main.py:59
 msgid "The exit code was {}"
-msgstr ""
+msgstr "Il codice di uscita era {}"
 
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
-msgstr ""
+msgstr "Configurazione di initramfs."
 
 #: src/modules/openrcdmcryptcfg/main.py:34
 msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
+msgstr "Configurazione del servizio OpenRC dmcrypt."
 
 #: src/modules/fstab/main.py:38
 msgid "Writing fstab."
-msgstr ""
+msgstr "Scrittura di fstab."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -345,8 +356,8 @@ msgstr "Python step {} fittizio"
 
 #: src/modules/localecfg/main.py:39
 msgid "Configuring locales."
-msgstr ""
+msgstr "Configurazione della localizzazione."
 
 #: src/modules/networkcfg/main.py:37
 msgid "Saving network configuration."
-msgstr ""
+msgstr "Salvataggio della configurazione di rete."
