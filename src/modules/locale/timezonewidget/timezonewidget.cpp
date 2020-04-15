@@ -21,8 +21,6 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <cmath>
-
 #include "locale/TimeZone.h"
 #include "utils/Logger.h"
 
