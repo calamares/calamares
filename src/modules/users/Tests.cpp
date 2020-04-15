@@ -37,7 +37,7 @@ class UsersTests : public QObject
     Q_OBJECT
 public:
     UsersTests();
-    virtual ~UsersTests() {}
+    virtual ~UsersTests() { }
 
 private Q_SLOTS:
     void initTestCase();
