@@ -354,7 +354,8 @@ DEFINE_CHECK_FUNC( libpwquality )
                                              int r = settings->check( s );
                                              if ( r < 0 )
                                              {
-                                                 cWarning() << "libpwquality error" << r;
+                                                 cWarning() << "libpwquality error" << r
+                                                            << pwquality_strerror( nullptr, 256, r, nullptr );
                                              }
                                              else if ( r < settings->arbitrary_minimum_strength )
                                              {
