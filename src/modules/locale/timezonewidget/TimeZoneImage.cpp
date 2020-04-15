@@ -33,6 +33,8 @@ static_assert( TimeZoneImageList::zoneCount == ( sizeof( zoneNames ) / sizeof( z
 
 #define ZONE_NAME QStringLiteral( "zone" )
 
+/* static constexpr */ const int TimeZoneImageList::zoneCount;
+
 TimeZoneImageList::TimeZoneImageList() {}
 
 TimeZoneImageList
