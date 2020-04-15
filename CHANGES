@@ -9,10 +9,12 @@ This release contains contributions from (alphabetically by first name):
  - No external contributors yet
 
 ## Core ##
- - No core changes yet
+ - Some strange annotations were added to the *About* dialog text in
+   all the translations, like `{1?}`. These have been removed again.
 
 ## Modules ##
- - No module changes yet
+ - *users* module logs a full error message from libpwquality if something
+   is wrong internally.
 
 
  # 3.2.22 (2020-04-08) #
