@@ -40,6 +40,7 @@ calamares_add_test(
         timezonewidget/TimeZoneImage.cpp
     DEFINITIONS
         SOURCE_DIR="${CMAKE_CURRENT_LIST_DIR}/images"
+        DEBUG_TIMEZONES=1
     LIBRARIES
         Qt5::Gui
 )

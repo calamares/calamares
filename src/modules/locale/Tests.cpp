@@ -28,9 +28,9 @@
 QTEST_MAIN( LocaleTests )
 
 
-LocaleTests::LocaleTests() {}
+LocaleTests::LocaleTests() { }
 
-LocaleTests::~LocaleTests() {}
+LocaleTests::~LocaleTests() { }
 
 void
 LocaleTests::initTestCase()
@@ -126,6 +126,7 @@ LocaleTests::testTZImages()
         Logger::setupLogLevel( Logger::LOGERROR );
 
         const auto zones = region->zones();
+        QVERIFY( zones.count() > 0 );
         for ( const auto* pz : zones )
         {
             const TZZone* zone = dynamic_cast< const TZZone* >( pz );
@@ -134,6 +135,7 @@ LocaleTests::testTZImages()
             int overlap = 0;
             auto pos = images.getLocationPosition( zone->longitude(), zone->latitude() );
             QVERIFY( images.index( pos, overlap ) >= 0 );
+            QVERIFY( overlap > 0 );  // At least one image contains the spot
             if ( overlap > 1 )
             {
                 Logger::setupLogLevel( Logger::LOGDEBUG );
