@@ -28,13 +28,7 @@
 
 #include "locale/TimeZone.h"
 
-#include <QFile>
 #include <QFont>
-#include <QFontMetrics>
-#include <QMouseEvent>
-#include <QPainter>
-#include <QStringList>
-#include <QTextStream>
 #include <QWidget>
 
 class TimeZoneWidget : public QWidget

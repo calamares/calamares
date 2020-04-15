@@ -26,6 +26,9 @@
 
 #include "timezonewidget.h"
 
+#include <QMouseEvent>
+#include <QPainter>
+
 #ifdef DEBUG_TIMEZONES
 // Adds a label to the timezone with this name
 #define ZONE_NAME QStringLiteral( "zone" )

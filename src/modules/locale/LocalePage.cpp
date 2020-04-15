@@ -35,6 +35,7 @@
 
 #include <QBoxLayout>
 #include <QComboBox>
+#include <QFile>
 #include <QLabel>
 #include <QProcess>
 #include <QPushButton>
