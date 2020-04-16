@@ -61,15 +61,26 @@ PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* p
 {
 }
 
-PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTreeItem* parent )
-    : m_parentItem( parent )
+PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTag&& parent )
+    : m_parentItem( parent.parent )
+    , m_packageName( CalamaresUtils::getString( groupData, "name" ) )
+    , m_selected( parentCheckState( parent.parent ) )
+    , m_description( CalamaresUtils::getString( groupData, "description" ) )
+    , m_isGroup( false )
+    , m_isCritical( parent.parent ? parent.parent->isCritical() : false )
+    , m_showReadOnly( parent.parent ? parent.parent->isImmutable() : false )
+{
+}
+
+PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, GroupTag&& parent )
+    : m_parentItem( parent.parent )
     , m_name( CalamaresUtils::getString( groupData, "name" ) )
-    , m_selected( parentCheckState( parent ) )
+    , m_selected( parentCheckState( parent.parent ) )
     , m_description( CalamaresUtils::getString( groupData, "description" ) )
     , m_preScript( CalamaresUtils::getString( groupData, "pre-install" ) )
     , m_postScript( CalamaresUtils::getString( groupData, "post-install" ) )
     , m_isGroup( true )
-    , m_isCritical( parentCriticality( groupData, parent ) )
+    , m_isCritical( parentCriticality( groupData, parent.parent ) )
     , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
     , m_showReadOnly( CalamaresUtils::getBool( groupData, "immutable", false ) )
     , m_startExpanded( CalamaresUtils::getBool( groupData, "expanded", false ) )
