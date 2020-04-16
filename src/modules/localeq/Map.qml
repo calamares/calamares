@@ -35,7 +35,7 @@ Column {
     
     Rectangle {
         width: parent.width
-        height: 300
+        height: parent.height / 1.28
 
         Plugin {
             id: mapPlugin
