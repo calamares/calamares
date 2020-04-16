@@ -1,7 +1,15 @@
 # Example configuration with groups and packages, taken from Chakra Linux.
 #
-# This example is rather limited. See `README.md` for full documentation
-# on the configuration format.
+# This example is rather limited. See `netinstall.conf` for full documentation
+# on the configuration format. The module configuration file `netinstall.conf`
+# **may** contain the package-list, but that is only useful for static
+# package-lists. If you are updating the package lists or changing the package
+# offerings, an online `netinstall.yaml` is the way to go; or you can put the
+# `netinstall.yaml` on the installation media and modify that, while keeping
+# your Calamares configuration constant.
+#
+# Which approach works depends on what you want to offer and how your
+# ISO-image toolchain works.
 - name: "Default"
   description: "Default group"
   hidden: true
