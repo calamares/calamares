@@ -16,6 +16,9 @@ This release contains contributions from (alphabetically by first name):
  - *locale* module had some errors in timezone data, where clicking
    on a city would select a different timezone. Some of these are
    now fixed (thanks FLVAL). #1374
+ - *netinstall* supports a wider variety of package naming schemes,
+   and is more flexible in loading a `netinstall.yaml` that is copied from
+   the example configuration file, *groups* key and all. #1369
  - *users* module logs a full error message from libpwquality if something
    is wrong internally.
 
