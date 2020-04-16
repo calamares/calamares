@@ -131,27 +131,16 @@ PackageTreeItem::row() const
 QVariant
 PackageTreeItem::data( int column ) const
 {
-    if ( isPackage() )  // packages have a packagename, groups don't
+    switch ( column )
     {
-        switch ( column )
-        {
-        case 0:
-            return QVariant( packageName() );
-        default:
-            return QVariant();
-        }
-    }
-    else
-    {
-        switch ( column )  // group
-        {
-        case 0:
-            return QVariant( name() );
-        case 1:
-            return QVariant( description() );
-        default:
-            return QVariant();
-        }
+    case 0:
+        // packages have a packagename, groups don't
+        return QVariant( isPackage() ? packageName() : name() );
+    case 1:
+        // packages often have a blank description
+        return QVariant( description() );
+    default:
+        return QVariant();
     }
 }
 
