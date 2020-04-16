@@ -109,7 +109,7 @@ Config::receivedGroupData()
 
     cDebug() << "NetInstall group data received" << m_reply->size() << "bytes from" << m_reply->url();
 
-    cqDeleter< QNetworkReply > d{ m_reply };
+    cqDeleter< QNetworkReply > d { m_reply };
 
     // If m_required is *false* then we still say we're ready
     // even if the reply is corrupt or missing.
@@ -128,11 +128,23 @@ Config::receivedGroupData()
     {
         YAML::Node groups = YAML::Load( yamlData.constData() );
 
-        if ( !groups.IsSequence() )
+        if ( groups.IsSequence() )
+        {
+            loadGroupList( CalamaresUtils::yamlSequenceToVariant( groups ) );
+        }
+        else if ( groups.IsMap() )
+        {
+            auto map = CalamaresUtils::yamlMapToVariant( groups );
+            loadGroupList( map.value( "groups" ).toList() );
+        }
+        else
         {
             cWarning() << "NetInstall groups data does not form a sequence.";
         }
-        loadGroupList( CalamaresUtils::yamlSequenceToVariant( groups ) );
+        if ( m_model->rowCount() < 1 )
+        {
+            cWarning() << "NetInstall groups data was empty.";
+        }
     }
     catch ( YAML::Exception& e )
     {
