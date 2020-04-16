@@ -28,9 +28,9 @@
 QTEST_MAIN( LocaleTests )
 
 
-LocaleTests::LocaleTests() { }
+LocaleTests::LocaleTests() {}
 
-LocaleTests::~LocaleTests() { }
+LocaleTests::~LocaleTests() {}
 
 void
 LocaleTests::initTestCase()
@@ -147,5 +147,71 @@ LocaleTests::testTZImages()
         }
     }
 
+    QCOMPARE( overlapcount, 0 );
+}
+
+bool
+operator<( const QPoint& l, const QPoint& r )
+{
+    if ( l.x() < r.x() )
+    {
+        return true;
+    }
+    if ( l.x() > r.x() )
+    {
+        return false;
+    }
+    return l.y() < r.y();
+}
+
+void
+listAll( const QPoint& p, const CalamaresUtils::Locale::CStringPairList& zones )
+{
+    using namespace CalamaresUtils::Locale;
+    for ( const auto* pz : zones )
+    {
+        const TZZone* zone = dynamic_cast< const TZZone* >( pz );
+        if ( p == TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() ) )
+        {
+            cError() << Logger::SubEntry << zone->zone();
+        }
+    }
+}
+
+void
+LocaleTests::testTZLocations()
+{
+    using namespace CalamaresUtils::Locale;
+    const CStringPairList& regions = TZRegion::fromZoneTab();
+
+    int overlapcount = 0;
+    for ( const auto* pr : regions )
+    {
+        const TZRegion* region = dynamic_cast< const TZRegion* >( pr );
+        QVERIFY( region );
+
+        Logger::setupLogLevel( Logger::LOGDEBUG );
+        cDebug() << "Region" << region->region() << "zones #" << region->zones().count();
+        Logger::setupLogLevel( Logger::LOGERROR );
+
+        std::set< QPoint > occupied;
+
+        const auto zones = region->zones();
+        QVERIFY( zones.count() > 0 );
+        for ( const auto* pz : zones )
+        {
+            const TZZone* zone = dynamic_cast< const TZZone* >( pz );
+            QVERIFY( zone );
+
+            auto pos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
+            if ( occupied.find( pos ) != occupied.end() )
+            {
+                cError() << "Zone" << zone->zone() << "occupies same spot as ..";
+                listAll( pos, zones );
+                overlapcount++;
+            }
+            occupied.insert( pos );
+        }
+    }
     QCOMPARE( overlapcount, 0 );
 }
