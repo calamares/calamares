@@ -39,6 +39,7 @@ private Q_SLOTS:
     // Check the TZ images for consistency
     void testTZImages();  // No overlaps in images
     void testTZLocations();  // No overlaps in locations
+    void testSpecificLocations();
 };
 
 #endif

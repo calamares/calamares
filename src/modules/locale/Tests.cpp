@@ -215,3 +215,49 @@ LocaleTests::testTZLocations()
     }
     QCOMPARE( overlapcount, 0 );
 }
+
+const CalamaresUtils::Locale::TZZone*
+findZone( const QString& name )
+{
+    using namespace CalamaresUtils::Locale;
+    const CStringPairList& regions = TZRegion::fromZoneTab();
+
+    for ( const auto* pr : regions )
+    {
+        const TZRegion* region = dynamic_cast< const TZRegion* >( pr );
+        if ( !region )
+        {
+            continue;
+        }
+        const auto zones = region->zones();
+        for ( const auto* pz : zones )
+        {
+            const TZZone* zone = dynamic_cast< const TZZone* >( pz );
+            if ( !zone )
+            {
+                continue;
+            }
+
+            if ( zone->zone() == name )
+            {
+                return zone;
+            }
+        }
+    }
+    return nullptr;
+}
+
+void
+LocaleTests::testSpecificLocations()
+{
+    const auto* gibraltar = findZone( "Gibraltar" );
+    const auto* ceuta = findZone( "Ceuta" );
+    QVERIFY( gibraltar );
+    QVERIFY( ceuta );
+
+    auto gpos = TimeZoneImageList::getLocationPosition( gibraltar->longitude(), gibraltar->latitude() );
+    auto cpos = TimeZoneImageList::getLocationPosition( ceuta->longitude(), ceuta->latitude() );
+    QVERIFY( gpos != cpos );
+    QVERIFY( gibraltar->latitude() > ceuta->latitude() );
+    QVERIFY( gpos.y() < cpos.y() );  // Gibraltar is north of Ceuta
+}
