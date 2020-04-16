@@ -6,13 +6,16 @@ website will have to do for older versions.
 # 3.2.23 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - FLVAL
 
 ## Core ##
  - Some strange annotations were added to the *About* dialog text in
    all the translations, like `{1?}`. These have been removed again.
 
 ## Modules ##
+ - *locale* module had some errors in timezone data, where clicking
+   on a city would select a different timezone. Some of these are
+   now fixed (thanks FLVAL). #1374
  - *users* module logs a full error message from libpwquality if something
    is wrong internally.
 
