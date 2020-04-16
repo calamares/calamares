@@ -29,10 +29,23 @@ class PackageTreeItem : public QStandardItem
 public:
     using List = QList< PackageTreeItem* >;
 
+    ///@brief A tag class to distinguish package-from-map from group-from-map
+    struct PackageTag
+    {
+        PackageTreeItem* parent;
+    };
+    ///@brief A tag class to distinguish group-from-map from package-from-map
+    struct GroupTag
+    {
+        PackageTreeItem* parent;
+    };
+
     ///@brief A package (individual package)
     explicit PackageTreeItem( const QString& packageName, PackageTreeItem* parent = nullptr );
+    ///@brief A package (individual package with description)
+    explicit PackageTreeItem( const QVariantMap& packageData, PackageTag&& parent );
     ///@brief A group (sub-items and sub-groups are ignored)
-    explicit PackageTreeItem( const QVariantMap& groupData, PackageTreeItem* parent = nullptr );
+    explicit PackageTreeItem( const QVariantMap& groupData, GroupTag&& parent );
     ///@brief A root item, always selected, named "<root>"
     explicit PackageTreeItem();
     ~PackageTreeItem() override;
