@@ -214,20 +214,6 @@ class FstabGenerator(object):
                             home_entry["subvol"] = "@home"
                             dct = self.generate_fstab_line_info(home_entry)
                             if dct:
-                                self.print_fstab_line(dct, file=fstab_file)
-                        elif line.endswith(b'path @cache'):
-                            home_entry = partition
-                            home_entry["mountPoint"] = "/var/cache"
-                            home_entry["subvol"] = "@cache"
-                            dct = self.generate_fstab_line_info(home_entry)
-                            if dct:
-                                self.print_fstab_line(dct, file=fstab_file)
-                        elif line.endswith(b'path @log'):
-                            home_entry = partition
-                            home_entry["mountPoint"] = "/vat/log"
-                            home_entry["subvol"] = "@log"
-                            dct = self.generate_fstab_line_info(home_entry)
-                            if dct:
                                 self.print_fstab_line(dct, file=fstab_file)        
                 else:
                     dct = self.generate_fstab_line_info(partition)
