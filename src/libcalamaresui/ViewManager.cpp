@@ -118,7 +118,7 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 {
     emit beginInsertRows( QModelIndex(), before, before );
     m_steps.insert( before, step );
-    connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
+    connect( step, &ViewStep::ensureSize, this, &ViewManager::ensureSize );
     connect( step, &ViewStep::nextStatusChanged, this, &ViewManager::updateNextStatus );
 
     if ( !step->widget() )

@@ -310,7 +310,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     m_viewManager = Calamares::ViewManager::instance( this );
     if ( branding->windowExpands() )
     {
-        connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
+        connect( m_viewManager, &Calamares::ViewManager::ensureSize, this, &CalamaresWindow::ensureSize );
     }
     // NOTE: Although the ViewManager has a signal cancelEnabled() that
     //       signals when the state of the cancel button changes (in
@@ -356,12 +356,19 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 }
 
 void
-CalamaresWindow::enlarge( QSize enlarge )
+CalamaresWindow::ensureSize( QSize size )
 {
     auto mainGeometry = this->geometry();
     QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
 
-    auto h = qBound( 0, mainGeometry.height() + enlarge.height(), availableSize.height() );
+    // We only care about vertical sizes that are big enough
+    int embiggenment = qMax( 0, size.height() - m_viewManager->centralWidget()->size().height() );
+    if ( embiggenment < 6 )
+    {
+        return;
+    }
+
+    auto h = qBound( 0, mainGeometry.height() + embiggenment, availableSize.height() );
     auto w = this->size().width();
 
     resize( w, h );

@@ -41,11 +41,11 @@ public:
 
 public slots:
     /**
-     * This asks the main window to grow by @p enlarge pixels, to accomodate
+     * This asks the main window to grow to accomodate @p size pixels, to accomodate
      * larger-than-expected window contents. The enlargement may be silently
      * ignored.
      */
-    void enlarge( QSize enlarge );
+    void ensureSize( QSize size );
 
 protected:
     virtual void closeEvent( QCloseEvent* e ) override;
