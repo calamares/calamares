@@ -207,6 +207,7 @@ CalamaresWindow::getWidgetNavigation()
         bottomLayout->addWidget( quit );
     }
 
+    bottomLayout->setContentsMargins( 0, 0, 6, 6 );
     navigation->setLayout( bottomLayout );
     return navigation;
 }
@@ -220,6 +221,7 @@ CalamaresWindow::getQmlNavigation()
     w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-navigation" ) ) ) );
+    w->setMinimumHeight( 30 );  // matchine the default widgets version
     return w;
 }
 
@@ -259,14 +261,6 @@ insertIf( QBoxLayout* layout,
 {
     if ( first && side == firstSide )
     {
-        if ( ( side == Calamares::Branding::PanelSide::Left ) || ( side == Calamares::Branding::PanelSide::Right ) )
-        {
-            first->setMinimumWidth( qMax( first->minimumWidth(), 64 ) );
-        }
-        else
-        {
-            first->setMinimumHeight( qMax( first->minimumHeight(), 64 ) );
-        }
         layout->addWidget( first );
     }
 }
@@ -316,7 +310,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     m_viewManager = Calamares::ViewManager::instance( this );
     if ( branding->windowExpands() )
     {
-        connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
+        connect( m_viewManager, &Calamares::ViewManager::ensureSize, this, &CalamaresWindow::ensureSize );
     }
     // NOTE: Although the ViewManager has a signal cancelEnabled() that
     //       signals when the state of the cancel button changes (in
@@ -329,8 +323,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     QBoxLayout* mainLayout = new QHBoxLayout;
     QBoxLayout* contentsLayout = new QVBoxLayout;
-
-    setLayout( mainLayout );
+    contentsLayout->setSpacing( 0 );
 
     QWidget* sideBox = flavoredWidget(
         branding->sidebarFlavor(),
@@ -358,16 +351,24 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     CalamaresUtils::unmarginLayout( mainLayout );
     CalamaresUtils::unmarginLayout( contentsLayout );
+    setLayout( mainLayout );
     setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }
 
 void
-CalamaresWindow::enlarge( QSize enlarge )
+CalamaresWindow::ensureSize( QSize size )
 {
     auto mainGeometry = this->geometry();
     QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
 
-    auto h = qBound( 0, mainGeometry.height() + enlarge.height(), availableSize.height() );
+    // We only care about vertical sizes that are big enough
+    int embiggenment = qMax( 0, size.height() - m_viewManager->centralWidget()->size().height() );
+    if ( embiggenment < 6 )
+    {
+        return;
+    }
+
+    auto h = qBound( 0, mainGeometry.height() + embiggenment, availableSize.height() );
     auto w = this->size().width();
 
     resize( w, h );

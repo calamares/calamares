@@ -149,10 +149,12 @@ signals:
     void nextStatusChanged( bool status );
 
     /* Emitted when the viewstep thinks it needs more space than is currently
-     * available for display. @p enlarge is the requested additional space,
-     * e.g. 24px vertical. This request may be silently ignored.
+     * available for display. @p size is the requested space, that is needed
+     * to display the entire page.
+     *
+     * This request may be silently ignored.
      */
-    void enlarge( QSize enlarge ) const;
+    void ensureSize( QSize enlarge ) const;
 
 protected:
     Calamares::ModuleSystem::InstanceKey m_instanceKey;

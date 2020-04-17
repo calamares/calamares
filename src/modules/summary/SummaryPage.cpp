@@ -124,7 +124,7 @@ SummaryPage::onActivate()
 
         cDebug() << "Summary widget is larger than viewport, enlarge by" << enlarge << "to" << widgetSize;
 
-        emit m_thisViewStep->enlarge( QSize( 0, enlarge ) );  // Only expand height
+        emit m_thisViewStep->ensureSize( widgetSize );  // Only expand height
     }
 }
 
