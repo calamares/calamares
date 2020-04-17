@@ -595,17 +595,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1303"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการ %1 อยู่ คุณต้องการทำอย่างไร?&lt;br/&gt; คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
+      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการ %1 อยู่ คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1327"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการอยู่แล้ว คุณต้องการทำอย่างไร?&lt;br/&gt; คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
+      <translation>อุปกรณ์จัดเก็บนี้มีระบบปฏิบัติการอยู่แล้ว คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>อุปกรณ์จัดเก็บนี้มีหลายระบบปฏิบัติการ คุณต้องการทำอย่างไร?&lt;br/&gt;คุณจะสามารถทบทวนและยืนยันตัวเลือกของคุณก่อนที่จะกระทำการเปลี่ยนแปลงไปยังอุปกรณ์จัดเก็บของคุณ</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1507"/>

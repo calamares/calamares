@@ -3670,7 +3670,7 @@ Výstup:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;pre %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Autorské práva 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Autorské práva 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Poďakovanie patrí &lt;a href="https://calamares.io/team/"&gt;tímu inštalátora Calamares&lt;/a&gt; a &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;prekladateľskému tímu inštalátora Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Vývoj inštalátora &lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; je sponzorovaný spoločnosťou &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - oslobodzujúci softvér.</translation>
     </message>
   </context>
   <context>

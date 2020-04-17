@@ -523,7 +523,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;수동 파티션 작업&lt;/strong&gt;&lt;br/&gt;파티션을 직접 만들거나 크기를 조정할 수 있다. &lt;strong&gt;UEFI 설치 시 GPT 파티션 테이블과 fat32 512Mb /boot 파티션이 반드시 있어야 하며&lt;/strong&gt;, 포맷 없이 기존 파티션을 사용하거나 기존 파티션을 생성하십시오.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
@@ -735,7 +735,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
       <source>Network Installation. (Disabled: internal error)</source>
-      <translation type="unfinished"/>
+      <translation>네트워크 설치. (사용안함: 내부 오류)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
@@ -1828,42 +1828,42 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Communication</source>
-      <translation type="unfinished"/>
+      <translation>통신</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="75"/>
       <source>Development</source>
-      <translation type="unfinished"/>
+      <translation>개발</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="76"/>
       <source>Office</source>
-      <translation type="unfinished"/>
+      <translation>오피스</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="77"/>
       <source>Multimedia</source>
-      <translation type="unfinished"/>
+      <translation>멀티미디어</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="78"/>
       <source>Internet</source>
-      <translation type="unfinished"/>
+      <translation>인터넷</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="79"/>
       <source>Theming</source>
-      <translation type="unfinished"/>
+      <translation>테마</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="80"/>
       <source>Gaming</source>
-      <translation type="unfinished"/>
+      <translation>게임</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="81"/>
       <source>Utilities</source>
-      <translation type="unfinished"/>
+      <translation>유틸리티</translation>
     </message>
   </context>
   <context>
@@ -2569,12 +2569,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="467"/>
       <source>Option to use GPT on BIOS</source>
-      <translation type="unfinished"/>
+      <translation>BIOS에서 GPT를 사용하는 옵션</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>GPT 파티션 테이블은 모든 시스템에 가장 적합한 옵션입니다. 이 설치 프로그램은 BIOS 시스템에 대한 이러한 설정도 지원합니다.&lt;br/&gt;&lt;br/&gt;BIOS에서 GPT 파티션 테이블을 구성하려면(아직 구성되지 않은 경우) 돌아가서 파티션 테이블을 GPT로 설정한 다음, &lt;strong&gt;bios_grub&lt;/strong&gt; 플래그가 사용하도록 설정된 8MB의 포맷되지 않은 파티션을 생성합니다.&lt;br/&gt;&lt;br/&gt;GPT가 있는 BIOS 시스템에서 %1을 시작하려면 포맷되지 않은 8MB 파티션이 필요합니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="496"/>
@@ -3664,7 +3664,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;&lt;a href="https://calamares.io/team/"&gt;Calamares 팀&lt;/a&gt;과 &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares 번역 팀&lt;/a&gt; 덕분입니다.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; 개발은 &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt;에서 후원합니다 - Liberating Software.</translation>
     </message>
   </context>
   <context>
@@ -3699,12 +3699,23 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/team/'&gt;Calamares 팀&lt;/a&gt;과 
+                        &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 번역 팀&lt;/a&gt;
+                        덕분입니다.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 개발은 
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt;에서
+                        후원합니다 - 
+                        Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="105"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>뒤로</translation>
     </message>
   </context>
   <context>
@@ -3712,44 +3723,44 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="25"/>
       <source>Keyboard Model</source>
-      <translation type="unfinished"/>
+      <translation>키보드 모델</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="26"/>
       <source>Pick your preferred keyboard model or use the default one based on the detected hardware</source>
-      <translation type="unfinished"/>
+      <translation>기본 키보드 모델을 선택하거나 탐지된 하드웨어를 기반으로 기본 키보드 모델을 사용하십시오</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="41"/>
       <source>Refresh</source>
-      <translation type="unfinished"/>
+      <translation>새로 고침</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="51"/>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="163"/>
       <source>Layouts</source>
-      <translation type="unfinished"/>
+      <translation>레이아웃</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="79"/>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="139"/>
       <source>Keyboard Layout</source>
-      <translation type="unfinished"/>
+      <translation>키보드 레이아웃</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="101"/>
       <source>Models</source>
-      <translation type="unfinished"/>
+      <translation>모델</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="109"/>
       <source>Variants</source>
-      <translation type="unfinished"/>
+      <translation>변형</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="189"/>
       <source>Test your keyboard</source>
-      <translation type="unfinished"/>
+      <translation>키보드 테스트</translation>
     </message>
   </context>
   <context>
@@ -3767,7 +3778,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="43"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1 &lt;quote&gt;%2&lt;/quote&gt; 설치 프로그램에 오신 것을 환영합니다&lt;/h3&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>

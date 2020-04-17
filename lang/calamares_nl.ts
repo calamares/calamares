@@ -106,7 +106,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="113"/>
       <source>Widget Tree</source>
-      <translation type="unfinished"/>
+      <translation>Widget-boom</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="231"/>
@@ -238,9 +238,9 @@
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="165"/>
       <source>(%n second(s))</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>(%n seconde)</numerusform>
+        <numerusform>(%n seconden)</numerusform>
       </translation>
     </message>
     <message>
@@ -321,7 +321,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
       <source>Continue with installation?</source>
-      <translation type="unfinished"/>
+      <translation>Doorgaan met installatie?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
@@ -1608,7 +1608,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="96"/>
       <source>URL: %1</source>
-      <translation type="unfinished"/>
+      <translation>URL: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="117"/>
@@ -1645,7 +1645,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="171"/>
       <source>File: %1</source>
-      <translation type="unfinished"/>
+      <translation>Bestand: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
@@ -2240,7 +2240,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>Volledige Naam</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
@@ -2265,7 +2265,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>Computer Naam</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="321"/>
@@ -3594,7 +3594,7 @@ Uitvoer:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="143"/>
       <source>&amp;Donate</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Doneren</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
@@ -3704,7 +3704,7 @@ Uitvoer:
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="105"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Terug</translation>
     </message>
   </context>
   <context>
@@ -3791,7 +3791,7 @@ Uitvoer:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="122"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Doneren</translation>
     </message>
   </context>
 </TS>

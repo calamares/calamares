@@ -3670,7 +3670,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;עבור %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;כל הזכויות שמורות 2014‏-2017 ל־Teo Mrnjavac‏ &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;כל הזכויות שמורות 2017‏-2020 ל־Adriaan de Groot‏ &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;תודה גדולה נתונה &lt;a href="https://calamares.io/team/"&gt;לצוות Calamares&lt;/a&gt; ול&lt;a href="https://www.transifex.com/calamares/calamares/"&gt;צווות המתרגמים של Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;הפיתוח של Calamares&lt;/a&gt; ממומן על ידי &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - דואגים לחירות התכנה.</translation>
     </message>
   </context>
   <context>
