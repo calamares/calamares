@@ -207,6 +207,7 @@ CalamaresWindow::getWidgetNavigation()
         bottomLayout->addWidget( quit );
     }
 
+    bottomLayout->setContentsMargins( 0, 0, 6, 6 );
     navigation->setLayout( bottomLayout );
     return navigation;
 }
@@ -220,6 +221,7 @@ CalamaresWindow::getQmlNavigation()
     w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-navigation" ) ) ) );
+    w->setMinimumHeight( 30 );  // matchine the default widgets version
     return w;
 }
 
@@ -259,14 +261,6 @@ insertIf( QBoxLayout* layout,
 {
     if ( first && side == firstSide )
     {
-        if ( ( side == Calamares::Branding::PanelSide::Left ) || ( side == Calamares::Branding::PanelSide::Right ) )
-        {
-            first->setMinimumWidth( qMax( first->minimumWidth(), 64 ) );
-        }
-        else
-        {
-            first->setMinimumHeight( qMax( first->minimumHeight(), 64 ) );
-        }
         layout->addWidget( first );
     }
 }
@@ -329,8 +323,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     QBoxLayout* mainLayout = new QHBoxLayout;
     QBoxLayout* contentsLayout = new QVBoxLayout;
-
-    setLayout( mainLayout );
+    contentsLayout->setSpacing( 0 );
 
     QWidget* sideBox = flavoredWidget(
         branding->sidebarFlavor(),
@@ -358,6 +351,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     CalamaresUtils::unmarginLayout( mainLayout );
     CalamaresUtils::unmarginLayout( contentsLayout );
+    setLayout( mainLayout );
     setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }
 
