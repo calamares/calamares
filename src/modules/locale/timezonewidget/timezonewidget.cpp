@@ -52,6 +52,7 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent )
     // Set size
     setMinimumSize( background.size() );
     setMaximumSize( background.size() );
+    setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
 }
 
 
