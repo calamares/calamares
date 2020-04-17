@@ -83,41 +83,25 @@ def mount_partition(root_mount_point, partition, partitions):
     # a subvolume "@home".
     # Finally we remount all of the above on the correct paths.
     if fstype == "btrfs" and partition["mountPoint"] == '/':
-        has_home_mount_point = False
+        subvolumes = libcalamares.job.configuration.get("subvolumes") or []
+        # make a list of subvolume mountpoints
+        submounts = []
+        for s in subvolumes:
+            submounts.append(s["mountPoint"])
+        # Remove drom list mounts that have already been mounted somewhere
         for p in partitions:
             if "mountPoint" not in p or not p["mountPoint"]:
                 continue
-            if p["mountPoint"] == "/home":
-                has_home_mount_point = True
-                break
-
-        for p in partitions:
-            if "mountPoint" not in p or not p["mountPoint"]:
-                continue
-            if p["mountPoint"] == "/var/log":
-                has_log_mount_point = True
-                break
-
-        for p in partitions:
-            if "mountPoint" not in p or not p["mountPoint"]:
-                continue
-            if p["mountPoint"] == "/var/cache":
-                has_cache_mount_point = True
-                break
+            if p["mountPoint"] in submounts:
+                submounts.remove(p["mountPoint"])
 
         subprocess.check_call(['btrfs', 'subvolume', 'create',
                                root_mount_point + '/@'])
-
-        if not has_home_mount_point:
-            subprocess.check_call(['btrfs', 'subvolume', 'create',
-                                   root_mount_point + '/@home'])
-
-        if not has_log_mount_point:
-            subprocess.check_call(['btrfs', 'subvolume', 'create',
-                                   root_mount_point + '/@log'])
-        if not has_cache_mount_point:
-            subprocess.check_call(['btrfs', 'subvolume', 'create',
-                                   root_mount_point + '/@cache'])
+        # Create a subvolume for every mountpoint in submounts
+        for s in subvolumes:
+            if s["mountPoint"] in submounts:
+                subprocess.check_call(['btrfs', 'subvolume', 'create',
+                                       root_mount_point + s['name']])
 
         subprocess.check_call(["umount", "-v", root_mount_point])
 
@@ -129,14 +113,16 @@ def mount_partition(root_mount_point, partition, partitions):
                 ",".join(
                     ["subvol=@", partition.get("options", "")]),
                 )
-            if not has_home_mount_point:
-                libcalamares.utils.mount(
-                    "/dev/mapper/{!s}".format(partition["luksMapperName"]),
-                    root_mount_point + "/home",
-                    fstype,
-                    ",".join(
-                        ["subvol=@home", partition.get("options", "")]),
-                    )
+            
+            for s in subvolumes:
+                if s["mountPoint"] in submounts:
+                    libcalamares.utils.mount(
+                        "/dev/mapper/{!s}".format(partition["luksMapperName"]),
+                        root_mount_point + s[moutPoint],
+                        fstype,
+                        ",".join(
+                            [f"subvol={name}", partition.get("options", "")]),
+                        )
         else:
             libcalamares.utils.mount(
                 partition["device"],
@@ -144,30 +130,15 @@ def mount_partition(root_mount_point, partition, partitions):
                 fstype,
                 ",".join(["subvol=@", partition.get("options", "")]),
                 )
-            if not has_home_mount_point:
-                libcalamares.utils.mount(
-                    partition["device"],
-                    root_mount_point + "/home",
-                    fstype,
-                    ",".join(
-                        ["subvol=@home", partition.get("options", "")]),
-                    )
-            if not has_home_mount_point:
-                libcalamares.utils.mount(
-                    partition["device"],
-                    root_mount_point + "/var/log",
-                    fstype,
-                    ",".join(
-                        ["subvol=@log", partition.get("options", "")]),
-                    )
-            if not has_home_mount_point:
-                libcalamares.utils.mount(
-                    partition["device"],
-                    root_mount_point + "/var/cache",
-                    fstype,
-                    ",".join(
-                        ["subvol=@cache", partition.get("options", "")]),
-                    )
+            for s in subvolumes:
+                if s["mountPoint"] in submounts:
+                    libcalamares.utils.mount(
+                        partition["device"],
+                        root_mount_point + s[moutPoint],
+                        fstype,
+                        ",".join(
+                            [f"subvol={name}", partition.get("options", "")]),
+                        )
 
 
 def run():
