@@ -1,7 +1,10 @@
 <RCC>
     <qresource>
+        <file>i18n.qml</file>
+        <file>language.qml</file>
         <file>localeq.qml</file>
         <file>Map.qml</file>
-        <file>pin.svg</file>
+        <file>img/pin.svg</file>
+        <file>img/chevron-left-solid.svg</file>
     </qresource>
 </RCC>
