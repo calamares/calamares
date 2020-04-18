@@ -51,7 +51,6 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
     , m_languages( nullptr )
     , m_conf( conf )
 {
-
     connect( Calamares::ModuleManager::instance(),
              &Calamares::ModuleManager::requirementsComplete,
              m_checkingWidget,
@@ -62,7 +61,8 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
              &CheckerContainer::requirementsProgress );
     ui->setupUi( this );
 
-    ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() * 2 );
+    const int defaultFontHeight = CalamaresUtils::defaultFontHeight();
+    ui->verticalLayout->insertSpacing( 1, defaultFontHeight * 2 );
     initLanguages();
 
     ui->mainText->setAlignment( Qt::AlignCenter );
@@ -77,11 +77,29 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
     ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
         CalamaresUtils::Information,
         CalamaresUtils::Original,
-        2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() ) ) );
+        2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
     connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
 
-    int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
+    // insert system-check widget below welcome text
+    const int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
     ui->verticalLayout->insertWidget( welcome_text_idx + 1, m_checkingWidget );
+
+    // insert optional logo banner image above welcome text
+    Calamares::Branding::ImageEntry bannerImage = Calamares::Branding::ProductBanner;
+    QString bannerPath = Calamares::Branding::instance()->imagePath( bannerImage );
+    if ( QFile::exists( bannerPath ) )
+    {
+        QPixmap bannerPixmap = QPixmap( bannerPath );
+        if ( !bannerPixmap.isNull() )
+        {
+            QLabel* bannerLabel = new QLabel;
+            bannerLabel->setPixmap( bannerPixmap );
+            bannerLabel->setMinimumHeight( 64 );
+            bannerLabel->setAlignment( Qt::AlignCenter );
+            ui->verticalLayout->insertSpacing( welcome_text_idx, defaultFontHeight );
+            ui->verticalLayout->insertWidget( welcome_text_idx, bannerLabel );
+        }
+    }
 }
 
 void

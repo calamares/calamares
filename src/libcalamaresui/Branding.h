@@ -67,10 +67,11 @@ public:
 
     enum ImageEntry : short
     {
-        ProductLogo,
+        ProductBanner,
         ProductIcon,
-        ProductWelcome,
-        ProductWallpaper
+        ProductLogo,
+        ProductWallpaper,
+        ProductWelcome
     };
     Q_ENUM( ImageEntry )
 
