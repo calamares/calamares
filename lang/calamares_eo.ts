@@ -6,17 +6,17 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation type="unfinished"/>
+      <translation>La &lt;strong&gt;praŝarga ĉirkaŭaĵo&lt;/strong&gt; de ĉi tiu sistemo.&lt;br&gt;&lt;br&gt;Pli maljuna x86 sistemoj subtenas nur &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Pli sistemoj kutime uzas &lt;strong&gt;EFI&lt;/strong&gt;, sed povos ankaŭ aspektas kiel BIOS, sed ŝaltita en kongrua reĝimo.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="81"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation type="unfinished"/>
+      <translation>Tio ĉi sistemo estis ŝaltita per &lt;strong&gt;EFI&lt;/strong&gt; praŝarga ĉirkaŭaĵo.&lt;br&gt;&lt;br&gt;Agordi praŝargo el EFI, la instalilo devas disponigi praŝargilon, kiel: &lt;strong&gt;GRUB&lt;/strong&gt; aŭ &lt;strong&gt;systemd-boot&lt;/strong&gt; sur &lt;strong&gt;EFI Sistema Subdisko&lt;/strong&gt;. Tio estas aŭtomata, krom se vi selektas manan dispartigon, tiukaze vi devas selekti ĝin, aŭ kreias unu mane.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="93"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation type="unfinished"/>
+      <translation>Tio ĉi sistemo estis ŝaltita per &lt;strong&gt;BIOS&lt;/strong&gt; praŝarga ĉirkaŭaĵo.&lt;br&gt;&lt;br&gt;Agordi praŝargo el BIOS, la instalilo devas disponigi praŝargilon, kiel: &lt;strong&gt;GRUB&lt;/strong&gt;, ĉe la komenco de subdisko aŭ sur la&lt;strong&gt;Ĉefa Ŝargodosiero&lt;/strong&gt; apud la komencao de la subdiska tablo  (preferred). Tio estas aŭtomata, krom se vi selektas manan dispartigon, tiukaze vi devas manipuli ĝin mane.</translation>
     </message>
   </context>
   <context>
@@ -24,22 +24,22 @@
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="68"/>
       <source>Master Boot Record of %1</source>
-      <translation type="unfinished"/>
+      <translation>Ĉefa Ŝargodosiero de %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="102"/>
       <source>Boot Partition</source>
-      <translation type="unfinished"/>
+      <translation>Praŝarga Subdisko</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="109"/>
       <source>System Partition</source>
-      <translation type="unfinished"/>
+      <translation>Sistema Subdisko</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="139"/>
       <source>Do not install a boot loader</source>
-      <translation type="unfinished"/>
+      <translation>Ne instalu praŝargilon</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="157"/>
@@ -52,7 +52,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="70"/>
       <source>Blank Page</source>
-      <translation type="unfinished"/>
+      <translation>Senskriba Paĝo</translation>
     </message>
   </context>
   <context>
@@ -65,12 +65,12 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="24"/>
       <source>GlobalStorage</source>
-      <translation type="unfinished"/>
+      <translation>GlobalStorage</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="34"/>
       <source>JobQueue</source>
-      <translation type="unfinished"/>
+      <translation>JobQueue</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="44"/>
@@ -101,17 +101,17 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="106"/>
       <source>Reload Stylesheet</source>
-      <translation type="unfinished"/>
+      <translation>Reŝargu Stilfolio</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="113"/>
       <source>Widget Tree</source>
-      <translation type="unfinished"/>
+      <translation>KromprogrametArbo</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="231"/>
       <source>Debug information</source>
-      <translation type="unfinished"/>
+      <translation>Sencimiga Informaĵo</translation>
     </message>
   </context>
   <context>
@@ -124,7 +124,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
       <source>Install</source>
-      <translation>Instali</translation>
+      <translation>Instalu</translation>
     </message>
   </context>
   <context>
@@ -513,17 +513,17 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1002"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1088"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>Nune:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
       <source>After:</source>
-      <translation type="unfinished"/>
+      <translation>Poste:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Manan aranĝaĵon de subdisko&lt;/strong&gt;&lt;br/&gt;Vi povas kreii aŭ regrandigi subdiskon ajne.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
@@ -543,7 +543,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
       <source>Boot loader location:</source>
-      <translation type="unfinished"/>
+      <translation>Allokigo de la Praŝargilo:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
@@ -801,7 +801,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
       <source>Create a Partition</source>
-      <translation>Kreiu Subdisko</translation>
+      <translation>Kreiu Subdiskon</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
@@ -1153,12 +1153,12 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
       <source>Format</source>
-      <translation type="unfinished"/>
+      <translation>Strukturu</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
       <source>Warning: Formatting the partition will erase all existing data.</source>
-      <translation type="unfinished"/>
+      <translation>Averto: Strukturi la subdiskon, forviŝos ĉiujn eksistantajn datumojn.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
@@ -1173,7 +1173,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
       <source> MiB</source>
-      <translation type="unfinished"/>
+      <translation> MiB</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
@@ -1272,32 +1272,32 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Plenumita!&lt;/h1&gt;&lt;br/&gt;%1 estis agordita sur vian komputilon.&lt;br/&gt;Vi povas nun ekuzi vian novan sistemon.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se ĉi tio elektobutono estas elektita, via sistemo restartos senprokraste, kiam vi klikas &lt;span style="font-style:italic;"&gt;Finita&lt;/span&gt; aŭ vi malfermas la agordilon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="66"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Plenumita!&lt;/h1&gt;&lt;br/&gt;%1 estis instalita sur vian komputilon.&lt;br/&gt;Vi povas nun restartigas en vian novan sistemon, aŭ vi povas pluiri uzi la %2 aŭtonoman sistemon.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="71"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Se ĉi tio elektobutono estas elektita, via sistemo restartos senprokraste, kiam vi klikas &lt;span style="font-style:italic;"&gt;Finita&lt;/span&gt; aŭ vi malfermas la instalilon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="133"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Agorado Malsukcesis&lt;/h1&gt;&lt;br/&gt;%1 ne estis agordita sur vian komputilon.&lt;br/&gt;La erara mesaĝo estis: %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Instalaĵo Malsukcesis&lt;/h1&gt;&lt;br/&gt;%1 ne estis instalita sur vian komputilon.&lt;br/&gt;La erara mesaĝo estis: %2.</translation>
     </message>
   </context>
   <context>
@@ -1305,27 +1305,27 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="78"/>
       <source>Finish</source>
-      <translation type="unfinished"/>
+      <translation>Pretigu</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="132"/>
       <source>Setup Complete</source>
-      <translation type="unfinished"/>
+      <translation>Agordaĵo Plenumita</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="133"/>
       <source>Installation Complete</source>
-      <translation type="unfinished"/>
+      <translation>Instalaĵo Plenumita</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="135"/>
       <source>The setup of %1 is complete.</source>
-      <translation type="unfinished"/>
+      <translation>La agordaĵo de %1 estas plenumita.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
       <source>The installation of %1 is complete.</source>
-      <translation type="unfinished"/>
+      <translation>La instalaĵo de %1 estas plenumita.</translation>
     </message>
   </context>
   <context>
@@ -1333,22 +1333,22 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="45"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation type="unfinished"/>
+      <translation>Strukturu subdiskon %1 (dosiersistemo: %2, grandeco: %3 MiB) ja %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="56"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Strukturu &lt;strong&gt;%3MiB&lt;/strong&gt; subdiskon &lt;strong&gt;%1&lt;/strong&gt; kiel dosiersistemo &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
       <source>Formatting partition %1 with file system %2.</source>
-      <translation type="unfinished"/>
+      <translation>Strukturanta subdiskon %1 kiel dosiersistemo %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="81"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
-      <translation type="unfinished"/>
+      <translation>La instalilo malsukcesis strukturi ls subdiskon %1 sur disko '%2'.</translation>
     </message>
   </context>
   <context>
@@ -2539,12 +2539,12 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="249"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>Nune:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="266"/>
       <source>After:</source>
-      <translation type="unfinished"/>
+      <translation>Poste:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="426"/>
@@ -2746,7 +2746,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="40"/>
       <source>unformatted</source>
-      <translation type="unfinished"/>
+      <translation>nestrukturita</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="42"/>
