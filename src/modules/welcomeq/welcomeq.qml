@@ -110,7 +110,8 @@ Page
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
 
                 visible: config.releaseNotesUrl !== ""
-                onClicked: Qt.openUrlExternally(config.releaseNotesUrl)
+                onClicked: load.source = "release_notes.qml"
+                //onClicked: load.source = "file:/usr/share/calamares/release_notes.qml"
             }
             
             Button {
