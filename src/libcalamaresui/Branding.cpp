@@ -538,7 +538,7 @@ Branding::initSimpleSettings( const YAML::Node& doc )
 [[noreturn]] void
 Branding::bail( const QString& message )
 {
-    cError() << "FATAL in" << m_descriptorPath << "\n" + message;
+    cError() << "FATAL in" << m_descriptorPath << Logger::Continuation << Logger::NoQuote{} << message;
     ::exit( EXIT_FAILURE );
 }
 
