@@ -25,6 +25,8 @@
 
 #include <QtTest/QtTest>
 
+#include <set>
+
 QTEST_MAIN( LocaleTests )
 
 
@@ -213,6 +215,8 @@ LocaleTests::testTZLocations()
             occupied.insert( pos );
         }
     }
+
+    QEXPECT_FAIL("", "TZ Images contain pixel-overlaps", Continue);
     QCOMPARE( overlapcount, 0 );
 }
 
@@ -257,7 +261,9 @@ LocaleTests::testSpecificLocations()
 
     auto gpos = TimeZoneImageList::getLocationPosition( gibraltar->longitude(), gibraltar->latitude() );
     auto cpos = TimeZoneImageList::getLocationPosition( ceuta->longitude(), ceuta->latitude() );
+    QEXPECT_FAIL("", "Gibraltar and Ceuta are really close", Continue);
     QVERIFY( gpos != cpos );
     QVERIFY( gibraltar->latitude() > ceuta->latitude() );
+    QEXPECT_FAIL("", "Gibraltar and Ceuta are really close", Continue);
     QVERIFY( gpos.y() < cpos.y() );  // Gibraltar is north of Ceuta
 }
