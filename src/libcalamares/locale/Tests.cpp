@@ -37,6 +37,7 @@ void
 LocaleTests::initTestCase()
 {
     // Otherwise plain get() is dubious in the TranslatableConfiguration tests
+    QLocale::setDefault( QLocale( QStringLiteral( "en_US" ) ) );
     QVERIFY( ( QLocale().name() == "C" ) || ( QLocale().name() == "en_US" ) );
 }
 
