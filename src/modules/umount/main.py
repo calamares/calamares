@@ -98,7 +98,9 @@ def run():
     lst.sort(key=lambda x: x[1], reverse=True)
 
     for device, mount_point in lst:
-        subprocess.check_call(["umount", "-lv", mount_point])
+        # On success, no output; if the command fails, its output is
+        # in the exception object.
+        subprocess.check_output(["umount", "-lv", mount_point], stderr=subprocess.STDOUT)
 
     os.rmdir(root_mount_point)
 
