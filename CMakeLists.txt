@@ -390,6 +390,9 @@ list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 add_subdirectory( lang )  # i18n tools
 
 
+add_subdirectory( bash-completion )
+
+
 ### Example Distro
 #
 # For testing purposes Calamares includes a very, very, limited sample
