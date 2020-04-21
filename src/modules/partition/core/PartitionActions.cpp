@@ -151,6 +151,10 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
                                                                   KPM_PARTITION_FLAG( None ) );
         PartitionInfo::setFormat( efiPartition, true );
         PartitionInfo::setMountPoint( efiPartition, o.efiPartitionMountPoint );
+        if ( gs->contains( "efiSystemPartitionName" ) )
+        {
+            efiPartition->setLabel( gs->value( "efiSystemPartitionName" ).toString() );
+        }
         core->createPartition( dev, efiPartition, KPM_PARTITION_FLAG_ESP );
         firstFreeSector = lastSector + 1;
     }
