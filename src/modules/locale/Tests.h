@@ -37,7 +37,9 @@ private Q_SLOTS:
     void testSplitLocaleConfiguration();
 
     // Check the TZ images for consistency
-    void testTZImages();
+    void testTZImages();  // No overlaps in images
+    void testTZLocations();  // No overlaps in locations
+    void testSpecificLocations();
 };
 
 #endif
