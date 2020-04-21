@@ -6,10 +6,11 @@ website will have to do for older versions.
 # 3.2.24 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Gaël PORTAY
 
 ## Core ##
- - No core changes yet
+ - There is now a bash-completions script for Calamares; turn on
+   the (CMake-time) option INSTALL_COMPLETION to get it. (Thanks Gaël)
 
 ## Modules ##
  - No module changes yet

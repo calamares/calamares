@@ -49,6 +49,7 @@ set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during develop
 #
 option( INSTALL_CONFIG "Install configuration files" OFF )
 option( INSTALL_POLKIT "Install Polkit configuration" ON )
+option( INSTALL_COMPLETION "Install shell completions" OFF )
 option( BUILD_TESTING "Build the testing tree." ON )
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
@@ -389,6 +390,13 @@ list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
 add_subdirectory( lang )  # i18n tools
 
+if ( INSTALL_COMPLETION )
+    if( NOT CMAKE_INSTALL_BASHCOMPLETIONDIR )
+        set( CMAKE_INSTALL_BASHCOMPLETIONDIR "${CMAKE_INSTALL_DATADIR}/bash-completion/completions" )
+    endif()
+
+    install( FILES ${CMAKE_SOURCE_DIR}/data/completion/bash/calamares DESTINATION "${CMAKE_INSTALL_BASHCOMPLETIONDIR}" )
+endif()
 
 ### Example Distro
 #
