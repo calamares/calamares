@@ -33,6 +33,9 @@ struct FuncSuppressor
     const char* m_s;
 };
 
+struct NoQuote {};
+struct Quote {};
+
 DLLEXPORT extern const FuncSuppressor Continuation;
 DLLEXPORT extern const FuncSuppressor SubEntry;
 
@@ -72,6 +75,18 @@ inline QDebug&
 operator<<( QDebug& s, const FuncSuppressor& f )
 {
     return s << f.m_s;
+}
+
+inline QDebug&
+operator<<( QDebug& s, const NoQuote& )
+{
+    return s.noquote().nospace();
+}
+
+inline QDebug&
+operator<<( QDebug& s, const Quote& )
+{
+    return s.quote().space();
 }
 
 /**
