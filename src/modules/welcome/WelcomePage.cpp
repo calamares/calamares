@@ -51,34 +51,12 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
     , m_languages( nullptr )
     , m_conf( conf )
 {
-    connect( Calamares::ModuleManager::instance(),
-             &Calamares::ModuleManager::requirementsComplete,
-             m_checkingWidget,
-             &CheckerContainer::requirementsComplete );
-    connect( Calamares::ModuleManager::instance(),
-             &Calamares::ModuleManager::requirementsProgress,
-             m_checkingWidget,
-             &CheckerContainer::requirementsProgress );
-    ui->setupUi( this );
-
     const int defaultFontHeight = CalamaresUtils::defaultFontHeight();
-    ui->verticalLayout->insertSpacing( 1, defaultFontHeight * 2 );
-    initLanguages();
-
-    ui->mainText->setAlignment( Qt::AlignCenter );
-    ui->mainText->setWordWrap( true );
-    ui->mainText->setOpenExternalLinks( true );
-
-    cDebug() << "Welcome string" << Calamares::Branding::instance()->welcomeStyleCalamares()
-             << *Calamares::Branding::VersionedName;
-
-    CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate )
-
+    ui->setupUi( this );
     ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
         CalamaresUtils::Information,
         CalamaresUtils::Original,
         2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
-    connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
 
     // insert system-check widget below welcome text
     const int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
@@ -100,6 +78,22 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
             ui->verticalLayout->insertWidget( welcome_text_idx, bannerLabel );
         }
     }
+
+    initLanguages();
+
+    cDebug() << "Welcome string" << Calamares::Branding::instance()->welcomeStyleCalamares()
+             << *Calamares::Branding::VersionedName;
+    CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate )
+
+    connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
+    connect( Calamares::ModuleManager::instance(),
+             &Calamares::ModuleManager::requirementsComplete,
+             m_checkingWidget,
+             &CheckerContainer::requirementsComplete );
+    connect( Calamares::ModuleManager::instance(),
+             &Calamares::ModuleManager::requirementsProgress,
+             m_checkingWidget,
+             &CheckerContainer::requirementsProgress );
 }
 
 void
