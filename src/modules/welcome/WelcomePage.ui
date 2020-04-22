@@ -17,7 +17,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
      <item>
-      <spacer name="verticalSpacer">
+      <spacer name="aboveTextSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>

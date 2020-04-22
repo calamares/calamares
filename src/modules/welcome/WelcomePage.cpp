@@ -51,6 +51,8 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
     , m_languages( nullptr )
     , m_conf( conf )
 {
+    using Branding = Calamares::Branding;
+
     const int defaultFontHeight = CalamaresUtils::defaultFontHeight();
     ui->setupUi( this );
     ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
@@ -63,10 +65,10 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
     ui->verticalLayout->insertWidget( welcome_text_idx + 1, m_checkingWidget );
 
     // insert optional logo banner image above welcome text
-    Calamares::Branding::ImageEntry bannerImage = Calamares::Branding::ProductBanner;
-    QString bannerPath = Calamares::Branding::instance()->imagePath( bannerImage );
-    if ( QFile::exists( bannerPath ) )
+    QString bannerPath = Branding::instance()->imagePath( Branding::ProductBanner );
+    if ( !bannerPath.isEmpty() )
     {
+        // If the name is not empty, the file exists -- Branding checks that at startup
         QPixmap bannerPixmap = QPixmap( bannerPath );
         if ( !bannerPixmap.isNull() )
         {
@@ -74,6 +76,8 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
             bannerLabel->setPixmap( bannerPixmap );
             bannerLabel->setMinimumHeight( 64 );
             bannerLabel->setAlignment( Qt::AlignCenter );
+            ui->aboveTextSpacer->changeSize( 20, defaultFontHeight );  // Shrink it down
+            ui->aboveTextSpacer->invalidate();
             ui->verticalLayout->insertSpacing( welcome_text_idx, defaultFontHeight );
             ui->verticalLayout->insertWidget( welcome_text_idx, bannerLabel );
         }
