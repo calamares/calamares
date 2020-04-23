@@ -231,6 +231,8 @@ if( KPMcore_FOUND )
         libcalamarespartitionkpmtest
         SOURCES
             partition/KPMTests.cpp
+        LIBRARIES
+            ${OPTIONAL_PRIVATE_LIBRARIES}
     )
 endif()
 

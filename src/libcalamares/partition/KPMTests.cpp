@@ -22,12 +22,12 @@
 
 #include <QtTest/QtTest>
 
-class KPMTests
+class KPMTests : public QObject
 {
     Q_OBJECT
 public:
     KPMTests();
-    ~KPMTests() overr;
+    ~KPMTests() override;
 private Q_SLOTS:
     void initTestCase();
 
@@ -54,6 +54,8 @@ KPMTests::testFlagNames()
     {
         cDebug() << f << s;
         names.append( s );
+
+        f <<= 1;
     }
 }
 
