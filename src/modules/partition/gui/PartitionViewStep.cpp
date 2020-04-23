@@ -538,6 +538,12 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "efiSystemPartitionSize", CalamaresUtils::getString( configurationMap, "efiSystemPartitionSize" ) );
     }
 
+    // Read and parse key efiSystemPartitionName
+    if ( configurationMap.contains( "efiSystemPartitionName" ) )
+    {
+        gs->insert( "efiSystemPartitionName", CalamaresUtils::getString( configurationMap, "efiSystemPartitionName" ) );
+    }
+
     // SWAP SETTINGS
     //
     // This is a bit convoluted because there's legacy settings to handle as well
