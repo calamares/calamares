@@ -417,6 +417,12 @@ PartitionViewStep::onLeave()
         {
             QString espMountPoint
                 = Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
+#ifdef WITH_KPMCORE4API
+            auto espFlag = PartitionTable::Flag::Boot;
+#else
+            auto espFlag = PartitionTable::FlagEsp;
+#endif
+            QString espFlagName = PartitionTable::flagName( espFlag );
             Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
             QString message;
@@ -428,12 +434,12 @@ PartitionViewStep::onLeave()
                                   "<br/><br/>"
                                   "To configure an EFI system partition, go back and "
                                   "select or create a FAT32 filesystem with the "
-                                  "<strong>esp</strong> flag enabled and mount point "
+                                  "<strong>%3</strong> flag enabled and mount point "
                                   "<strong>%2</strong>.<br/><br/>"
                                   "You can continue without setting up an EFI system "
                                   "partition but your system may fail to start." )
                                   .arg( *Calamares::Branding::ShortProductName )
-                                  .arg( espMountPoint );
+                                  .arg( espMountPoint, espFlagName );
             }
             else if ( esp && !PartUtils::isEfiBootable( esp ) )
             {
@@ -441,14 +447,14 @@ PartitionViewStep::onLeave()
                 description = tr( "An EFI system partition is necessary to start %1."
                                   "<br/><br/>"
                                   "A partition was configured with mount point "
-                                  "<strong>%2</strong> but its <strong>esp</strong> "
+                                  "<strong>%2</strong> but its <strong>%3</strong> "
                                   "flag is not set.<br/>"
                                   "To set the flag, go back and edit the partition."
                                   "<br/><br/>"
                                   "You can continue without setting the flag but your "
                                   "system may fail to start." )
                                   .arg( *Calamares::Branding::ShortProductName )
-                                  .arg( espMountPoint );
+                                  .arg( espMountPoint, espFlagName );
             }
 
             if ( !message.isEmpty() )
