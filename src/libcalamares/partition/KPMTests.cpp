@@ -57,11 +57,21 @@ KPMTests::testFlagNames()
 
         f <<= 1;
     }
+
+#ifdef WITH_KPMCORE4API
+    // KPMCore 4 unifies the flags and handles them internally
+    QVERIFY( names.contains( QStringLiteral( "boot" ) ) );
+    QVERIFY( !names.contains( QStringLiteral( "esp" ) ) );
+#else
+    // KPMCore 3 has separate flags
+    QVERIFY( names.contains( QStringLiteral( "boot" ) ) );
+    QVERIFY( names.contains( QStringLiteral( "esp" ) ) );
+#endif
 }
 
 
 QTEST_GUILESS_MAIN( KPMTests )
 
-#include "moc-warnings.h"
+#include "utils/moc-warnings.h"
 
 #include "KPMTests.moc"
