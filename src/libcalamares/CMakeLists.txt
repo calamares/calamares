@@ -226,6 +226,16 @@ calamares_add_test(
         partition/Tests.cpp
 )
 
+if( KPMcore_FOUND )
+    calamares_add_test(
+        libcalamarespartitionkpmtest
+        SOURCES
+            partition/KPMTests.cpp
+        LIBRARIES
+            ${OPTIONAL_PRIVATE_LIBRARIES}
+    )
+endif()
+
 calamares_add_test(
     libcalamareslocaletest
     SOURCES
@@ -244,8 +254,8 @@ calamares_add_test(
         modulesystem/Tests.cpp
 )
 
-if( BUILD_TESTING )
-    add_executable( test_geoip geoip/test_geoip.cpp ${geoip_src} )
-    target_link_libraries( test_geoip calamares Qt5::Network yamlcpp )
-    calamares_automoc( test_geoip )
-endif()
+# This is not an actual test, it's a test / demo application
+# for experimenting with GeoIP.
+add_executable( test_geoip geoip/test_geoip.cpp ${geoip_src} )
+target_link_libraries( test_geoip calamares Qt5::Network yamlcpp )
+calamares_automoc( test_geoip )
