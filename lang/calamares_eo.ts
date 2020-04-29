@@ -811,7 +811,7 @@ La instalilo forlasos kaj ĉiuj ŝanĝoj perdos.</translation>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
       <source> MiB</source>
-      <translation type="unfinished"/>
+      <translation> MiB</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
@@ -3542,7 +3542,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
       <source> MiB</source>
-      <translation type="unfinished"/>
+      <translation> MiB</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="82"/>

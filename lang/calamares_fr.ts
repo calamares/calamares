@@ -412,14 +412,14 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="510"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-      <translation>Voulez-vous réellement abandonner le processus de configuration ?
+      <translation>Voulez-vous vraiment abandonner le processus de configuration ?
 Le programme de configuration se fermera et les changements seront perdus.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-      <translation>Voulez-vous réellement abandonner le processus d'installation ?
+      <translation>Voulez-vous vraiment abandonner le processus d'installation ?
 L'installateur se fermera et les changements seront perdus.</translation>
     </message>
   </context>
@@ -782,7 +782,7 @@ L'installateur se fermera et les changements seront perdus.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="260"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>Bien dans l'installateur Calamares pour %1.</translation>
+      <translation>Bienvenue dans l'installateur Calamares pour %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="261"/>
@@ -3769,7 +3769,7 @@ Sortie
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="43"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Bienvenue dans l'installateur de %1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>

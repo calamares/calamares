@@ -1829,27 +1829,27 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Communication</source>
-      <translation type="unfinished"/>
+      <translation>Comunicación</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="75"/>
       <source>Development</source>
-      <translation type="unfinished"/>
+      <translation>Desendolcu</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="76"/>
       <source>Office</source>
-      <translation type="unfinished"/>
+      <translation>Oficina</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="77"/>
       <source>Multimedia</source>
-      <translation type="unfinished"/>
+      <translation>Multimedia</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="78"/>
       <source>Internet</source>
-      <translation type="unfinished"/>
+      <translation>Internet</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="79"/>
@@ -1864,7 +1864,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="81"/>
       <source>Utilities</source>
-      <translation type="unfinished"/>
+      <translation>Utilidaes</translation>
     </message>
   </context>
   <context>
@@ -3718,7 +3718,7 @@ Salida:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="26"/>
       <source>Pick your preferred keyboard model or use the default one based on the detected hardware</source>
-      <translation type="unfinished"/>
+      <translation>Escueyi'l modelu que prefieras o usa'l predetermináu según el hardware deteutáu</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="41"/>
@@ -3740,12 +3740,12 @@ Salida:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="101"/>
       <source>Models</source>
-      <translation type="unfinished"/>
+      <translation>Modelos</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="109"/>
       <source>Variants</source>
-      <translation type="unfinished"/>
+      <translation>Variantes</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="189"/>

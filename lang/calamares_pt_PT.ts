@@ -525,7 +525,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Particionamento manual&lt;/strong&gt;&lt;br/&gt; Pode criar ou redimensionar partições. Ter uma tabela de partições GPT e &lt;strong&gt;uma partição de arranque "/boot" de fat32 512Mb é um requisito obrigatório para as instalações UEFI&lt;/strong&gt;, ou utilizar uma existente sem formatação ou então criar uma.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
@@ -540,7 +540,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="973"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-      <translation type="unfinished"/>
+      <translation>%1 será encolhida para %2MiB e uma nova %3MiB partição será criada para %4.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
@@ -727,7 +727,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation type="unfinished"/>
+      <translation>Instalação de rede. (Desativada: Configuração incorreta)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
@@ -737,17 +737,17 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
       <source>Network Installation. (Disabled: internal error)</source>
-      <translation type="unfinished"/>
+      <translation>Instalação de rede. (Desativada: erro interno)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
       <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-      <translation>Instalaçao de Rede. (Desativada: Incapaz de buscar listas de pacotes, verifique a sua ligação de rede)</translation>
+      <translation>Instalação de rede. (Desativada: Incapaz de buscar listas de pacotes, verifique a sua ligação de rede)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="54"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Este computador não satisfaz os requisitos mínimos para configurar %1.&lt;br/&gt;A configuração não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="58"/>
@@ -757,7 +757,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="65"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation type="unfinished"/>
+      <translation>Este computador não satisfaz alguns dos requisitos recomendados para configurar %1.&lt;br/&gt;A configuração pode continuar, mas algumas funcionalidades podem ser desativadas.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="69"/>
@@ -1358,22 +1358,22 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="126"/>
       <source>has at least %1 GiB available drive space</source>
-      <translation type="unfinished"/>
+      <translation>tem pelo menos %1 GiB de espaço livre em disco</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>Não existe espaço livre suficiente em disco. É necessário pelo menos %1 GiB. </translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
       <source>has at least %1 GiB working memory</source>
-      <translation type="unfinished"/>
+      <translation>tem pelo menos %1 GiB de memória disponível</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>O sistema não tem memória disponível suficiente. É necessário pelo menos %1 GiB.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="148"/>
@@ -1398,7 +1398,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>está a executar o instalador como um administrador (root)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
@@ -1408,7 +1408,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
       <source>The installer is not running with administrator rights.</source>
-      <translation>O instalador não está a correr com permissões de administrador.</translation>
+      <translation>O instalador não está a ser executado com permissões de administrador.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="176"/>
@@ -1820,7 +1820,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>Ambiente de trabalho</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
@@ -3047,7 +3047,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="261"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation type="unfinished"/>
+      <translation>Este computador não satisfaz os requisitos mínimos para configurar %1.&lt;br/&gt;A configuração não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="265"/>
@@ -3057,7 +3057,7 @@ Saída de Dados:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="272"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation type="unfinished"/>
+      <translation>Este computador não satisfaz alguns dos requisitos recomendados para configurar %1.&lt;br/&gt;A configuração pode continuar, mas algumas funcionalidades podem ser desativadas.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="276"/>
