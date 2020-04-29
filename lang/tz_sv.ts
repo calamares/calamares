@@ -45,7 +45,7 @@
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="68"/>
-        <source>Aqtobe</source> Aqtobe
+        <source>Aqtobe</source>
         <comment>tz_names</comment>
         <translation>Aqtöbe</translation>
     </message>
