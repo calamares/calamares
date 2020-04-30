@@ -359,11 +359,10 @@ Branding::image( const QString& imageName, const QSize& size ) const
     return ImageRegistry::instance()->pixmap( imageFi.absoluteFilePath(), size );
 }
 
-QString
-Branding::stylesheet() const
+static QString
+_stylesheet( const QDir& dir )
 {
-    QFileInfo fi( m_descriptorPath );
-    QFileInfo importQSSPath( fi.absoluteDir().filePath( "stylesheet.qss" ) );
+    QFileInfo importQSSPath( dir.filePath( "stylesheet.qss" ) );
     if ( importQSSPath.exists() && importQSSPath.isReadable() )
     {
         QFile stylesheetFile( importQSSPath.filePath() );
@@ -372,9 +371,15 @@ Branding::stylesheet() const
     }
     else
     {
-        cWarning() << "The branding component" << fi.absoluteDir().absolutePath() << "does not ship stylesheet.qss.";
+        cWarning() << "The branding component" << dir.absolutePath() << "does not ship stylesheet.qss.";
     }
     return QString();
+}
+
+QString
+Branding::stylesheet() const
+{
+    return _stylesheet( QFileInfo( m_descriptorPath ).absoluteDir() );
 }
 
 void
