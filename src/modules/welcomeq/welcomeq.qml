@@ -72,14 +72,14 @@ Page
                 icon.name: "dialog-information"
                 Kirigami.Theme.backgroundColor: Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.4)
                 Kirigami.Theme.textColor: Kirigami.Theme.textColor
-                
+
                 visible: true
-                onClicked: { 
+                onClicked: {
                     //onClicked: load.source = "file:/usr/share/calamares/branding/default/show.qml"
                     onClicked: load.source = "about.qml"
                 }
             }
-            
+
             Button {
                 Layout.fillWidth: true
                 text: qsTr("Support")
@@ -90,7 +90,7 @@ Page
                 visible: config.supportUrl !== ""
                 onClicked: Qt.openUrlExternally(config.supportUrl)
             }
-            
+
             Button {
                 Layout.fillWidth: true
                 text: qsTr("Known issues")
@@ -101,7 +101,7 @@ Page
                 visible: config.knownIssuesUrl !== ""
                 onClicked: Qt.openUrlExternally(config.knownIssuesUrl)
             }
-            
+
             Button {
                 Layout.fillWidth: true
                 text: qsTr("Release notes")
@@ -113,7 +113,7 @@ Page
                 onClicked: load.source = "release_notes.qml"
                 //onClicked: load.source = "file:/usr/share/calamares/release_notes.qml"
             }
-            
+
             Button {
                 Layout.fillWidth: true
                 text: qsTr("Donate")
@@ -125,17 +125,17 @@ Page
                 onClicked: Qt.openUrlExternally(config.donateUrl)
             }
         }
-        
+
         RowLayout {
             id: languageBar
             width: parent.width /1.2
             height: 48
-            
+
             anchors.bottom: parent.bottom
             anchors.bottomMargin: parent.height /7
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: Kirigami.Units.largeSpacing* 4
-            
+
             Rectangle {
                 width: parent.width
                 Layout.fillWidth: true
@@ -146,21 +146,21 @@ Page
                     fillMode: Image.PreserveAspectFit
                     source: "img/language-icon-48px.png"
                 }
-                
+
                 ComboBox {
                     id: languages
                     anchors.left: image.right
                     width: languageBar.width /1.1
                     textRole: "label"
-                    currentIndex: 4 //model.currentIndex
+                    currentIndex: config.localeIndex
                     model: config.languagesModel
-                    onCurrentIndexChanged: console.debug(currentText, currentIndex)
+                    onCurrentIndexChanged: config.localeIndex = currentIndex
                 }
             }
         }
-        
-        Loader { 
-            id:load 
+
+        Loader {
+            id:load
             anchors.fill: parent
         }
     }
