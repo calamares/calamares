@@ -191,23 +191,11 @@ Config::setIsNextEnabled( bool isNextEnabled )
     emit isNextEnabledChanged( m_isNextEnabled );
 }
 
-QString
-Config::donateUrl() const
-{
-    return m_donateUrl;
-}
-
 void
 Config::setDonateUrl( const QString& url )
 {
     m_donateUrl = url;
     emit donateUrlChanged();
-}
-
-QString
-Config::knownIssuesUrl() const
-{
-    return m_knownIssuesUrl;
 }
 
 void
@@ -222,18 +210,6 @@ Config::setReleaseNotesUrl( const QString& url )
 {
     m_releaseNotesUrl = url;
     emit releaseNotesUrlChanged();
-}
-
-QString
-Config::releaseNotesUrl() const
-{
-    return m_releaseNotesUrl;
-}
-
-QString
-Config::supportUrl() const
-{
-    return m_supportUrl;
 }
 
 void
