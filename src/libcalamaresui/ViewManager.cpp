@@ -71,9 +71,11 @@ ViewManager::ViewManager( QObject* parent )
     Q_ASSERT( !s_instance );
 
     QBoxLayout* mainLayout = new QVBoxLayout;
+    m_widget->setObjectName("viewManager");
     m_widget->setLayout( mainLayout );
 
     m_stack = new QStackedWidget( m_widget );
+    m_stack->setObjectName("viewManagerStack");
     m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
