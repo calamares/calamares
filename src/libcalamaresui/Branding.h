@@ -250,7 +250,8 @@ private:
 };
 
 template < typename U >
-inline QString operator*( U e )
+inline QString
+operator*( U e )
 {
     return Branding::instance()->string( e );
 }

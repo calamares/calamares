@@ -37,7 +37,7 @@ class CalamaresWindow : public QWidget
     Q_OBJECT
 public:
     CalamaresWindow( QWidget* parent = nullptr );
-    virtual ~CalamaresWindow() override {}
+    virtual ~CalamaresWindow() override { }
 
 public slots:
     /**
@@ -52,12 +52,12 @@ protected:
 
 private:
     // Two variations on sidebar (the progress view)
-    QWidget* getWidgetSidebar( int desiredWidth );
-    QWidget* getQmlSidebar( int desiredWidth );
+    QWidget* getWidgetSidebar( QWidget* parent, int desiredWidth );
+    QWidget* getQmlSidebar( QWidget* parent, int desiredWidth );
 
     // Two variations on navigation (buttons at bottom)
-    QWidget* getWidgetNavigation();
-    QWidget* getQmlNavigation();
+    QWidget* getWidgetNavigation( QWidget* parent );
+    QWidget* getQmlNavigation( QWidget* parent );
 
     QPointer< Calamares::DebugWindow > m_debugWindow;  // Managed by self
     Calamares::ViewManager* m_viewManager;
