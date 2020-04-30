@@ -193,7 +193,7 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                 { QStringLiteral( "VARIANT" ), relInfo.variant() },
                 { QStringLiteral( "VARIANT_ID" ), relInfo.variantId() },
                 { QStringLiteral( "LOGO" ), relInfo.logo() } } };
-            auto expand = [&]( const QString& s ) -> QString {
+            auto expand = [ & ]( const QString& s ) -> QString {
                 return KMacroExpander::expandMacros( s, relMap, QLatin1Char( '@' ) );
             };
 #else
@@ -203,7 +203,7 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
 
             // Massage the strings, images and style sections.
             loadStrings( m_strings, doc, "strings", expand );
-            loadStrings( m_images, doc, "images", [&]( const QString& s ) -> QString {
+            loadStrings( m_images, doc, "images", [ & ]( const QString& s ) -> QString {
                 // See also image()
                 const QString imageName( expand( s ) );
                 QFileInfo imageFi( componentDir.absoluteFilePath( imageName ) );
@@ -538,7 +538,7 @@ Branding::initSimpleSettings( const YAML::Node& doc )
 [[noreturn]] void
 Branding::bail( const QString& message )
 {
-    cError() << "FATAL in" << m_descriptorPath << Logger::Continuation << Logger::NoQuote{} << message;
+    cError() << "FATAL in" << m_descriptorPath << Logger::Continuation << Logger::NoQuote {} << message;
     ::exit( EXIT_FAILURE );
 }
 
