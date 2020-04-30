@@ -61,11 +61,11 @@ windowDimensionToPixels( const Calamares::Branding::WindowDimension& u )
 
 
 QWidget*
-CalamaresWindow::getWidgetSidebar( int desiredWidth )
+CalamaresWindow::getWidgetSidebar( QWidget* parent, int desiredWidth )
 {
     const Calamares::Branding* const branding = Calamares::Branding::instance();
 
-    QWidget* sideBox = new QWidget( this );
+    QWidget* sideBox = new QWidget( parent );
     sideBox->setObjectName( "sidebarApp" );
 
     QBoxLayout* sideLayout = new QVBoxLayout;
@@ -107,12 +107,12 @@ CalamaresWindow::getWidgetSidebar( int desiredWidth )
         sideLayout->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
-        connect( debugWindowBtn, &QPushButton::clicked, this, [=]( bool checked ) {
+        connect( debugWindowBtn, &QPushButton::clicked, this, [ = ]( bool checked ) {
             if ( checked )
             {
                 m_debugWindow = new Calamares::DebugWindow();
                 m_debugWindow->show();
-                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [=]() {
+                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [ = ]() {
                     m_debugWindow->deleteLater();
                     debugWindowBtn->setChecked( false );
                 } );
@@ -132,10 +132,10 @@ CalamaresWindow::getWidgetSidebar( int desiredWidth )
 }
 
 QWidget*
-CalamaresWindow::getQmlSidebar( int )
+CalamaresWindow::getQmlSidebar( QWidget* parent, int )
 {
     CalamaresUtils::registerCalamaresModels();
-    QQuickWidget* w = new QQuickWidget( this );
+    QQuickWidget* w = new QQuickWidget( parent );
     w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
@@ -161,9 +161,9 @@ setButtonIcon( QPushButton* button, const QString& name )
 }
 
 QWidget*
-CalamaresWindow::getWidgetNavigation()
+CalamaresWindow::getWidgetNavigation( QWidget* parent )
 {
-    QWidget* navigation = new QWidget( this );
+    QWidget* navigation = new QWidget( parent );
     QBoxLayout* bottomLayout = new QHBoxLayout;
     bottomLayout->addStretch();
 
@@ -175,7 +175,7 @@ CalamaresWindow::getWidgetNavigation()
         connect( back, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::back );
         connect( m_viewManager, &Calamares::ViewManager::backEnabledChanged, back, &QPushButton::setEnabled );
         connect( m_viewManager, &Calamares::ViewManager::backLabelChanged, back, &QPushButton::setText );
-        connect( m_viewManager, &Calamares::ViewManager::backIconChanged, this, [=]( QString n ) {
+        connect( m_viewManager, &Calamares::ViewManager::backIconChanged, this, [ = ]( QString n ) {
             setButtonIcon( back, n );
         } );
         bottomLayout->addWidget( back );
@@ -187,7 +187,7 @@ CalamaresWindow::getWidgetNavigation()
         connect( next, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::next );
         connect( m_viewManager, &Calamares::ViewManager::nextEnabledChanged, next, &QPushButton::setEnabled );
         connect( m_viewManager, &Calamares::ViewManager::nextLabelChanged, next, &QPushButton::setText );
-        connect( m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [=]( QString n ) {
+        connect( m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [ = ]( QString n ) {
             setButtonIcon( next, n );
         } );
         bottomLayout->addWidget( next );
@@ -199,7 +199,7 @@ CalamaresWindow::getWidgetNavigation()
         connect( quit, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::quit );
         connect( m_viewManager, &Calamares::ViewManager::quitEnabledChanged, quit, &QPushButton::setEnabled );
         connect( m_viewManager, &Calamares::ViewManager::quitLabelChanged, quit, &QPushButton::setText );
-        connect( m_viewManager, &Calamares::ViewManager::quitIconChanged, this, [=]( QString n ) {
+        connect( m_viewManager, &Calamares::ViewManager::quitIconChanged, this, [ = ]( QString n ) {
             setButtonIcon( quit, n );
         } );
         connect( m_viewManager, &Calamares::ViewManager::quitTooltipChanged, quit, &QPushButton::setToolTip );
@@ -213,10 +213,10 @@ CalamaresWindow::getWidgetNavigation()
 }
 
 QWidget*
-CalamaresWindow::getQmlNavigation()
+CalamaresWindow::getQmlNavigation( QWidget* parent )
 {
     CalamaresUtils::registerCalamaresModels();
-    QQuickWidget* w = new QQuickWidget( this );
+    QQuickWidget* w = new QQuickWidget( parent );
     w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
@@ -234,6 +234,7 @@ template < typename widgetMaker, typename... args >
 QWidget*
 flavoredWidget( Calamares::Branding::PanelFlavor flavor,
                 CalamaresWindow* w,
+                QWidget* parent,
                 widgetMaker widget,
                 widgetMaker qml,
                 args... a )
@@ -242,9 +243,9 @@ flavoredWidget( Calamares::Branding::PanelFlavor flavor,
     switch ( flavor )
     {
     case Calamares::Branding::PanelFlavor::Widget:
-        return ( w->*widget )( a... );
+        return ( w->*widget )( parent, a... );
     case Calamares::Branding::PanelFlavor::Qml:
-        return ( w->*qml )( a... );
+        return ( w->*qml )( parent, a... );
     case Calamares::Branding::PanelFlavor::None:
         return nullptr;
     }
@@ -281,6 +282,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
                                                : tr( "%1 Installer" ).arg( *Calamares::Branding::ProductName ) ); )
 
     const Calamares::Branding* const branding = Calamares::Branding::instance();
+    using ImageEntry = Calamares::Branding::ImageEntry;
 
     using CalamaresUtils::windowMinimumHeight;
     using CalamaresUtils::windowMinimumWidth;
@@ -307,7 +309,23 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     cDebug() << Logger::SubEntry << "Proposed window size:" << w << h;
     resize( w, h );
 
-    m_viewManager = Calamares::ViewManager::instance( this );
+    QWidget* baseWidget = this;
+    if ( !( branding->imagePath( ImageEntry::ProductWallpaper ).isEmpty() ) )
+    {
+        QWidget* label = new QWidget( this );
+        QVBoxLayout* l = new QVBoxLayout;
+        CalamaresUtils::unmarginLayout( l );
+        l->addWidget( label );
+        setLayout( l );
+        label->setObjectName( "backgroundWidget" );
+        label->setStyleSheet(
+            QStringLiteral( "#backgroundWidget { background-image: url(%1); background-repeat: repeat-xy; }" )
+                .arg( branding->imagePath( ImageEntry::ProductWallpaper ) ) );
+
+        baseWidget = label;
+    }
+
+    m_viewManager = Calamares::ViewManager::instance( baseWidget );
     if ( branding->windowExpands() )
     {
         connect( m_viewManager, &Calamares::ViewManager::ensureSize, this, &CalamaresWindow::ensureSize );
@@ -328,11 +346,15 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     QWidget* sideBox = flavoredWidget(
         branding->sidebarFlavor(),
         this,
+        baseWidget,
         &CalamaresWindow::getWidgetSidebar,
         &CalamaresWindow::getQmlSidebar,
         qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
-    QWidget* navigation = flavoredWidget(
-        branding->navigationFlavor(), this, &CalamaresWindow::getWidgetNavigation, &CalamaresWindow::getQmlNavigation );
+    QWidget* navigation = flavoredWidget( branding->navigationFlavor(),
+                                          this,
+                                          baseWidget,
+                                          &CalamaresWindow::getWidgetNavigation,
+                                          &CalamaresWindow::getQmlNavigation );
 
     // Build up the contentsLayout (a VBox) top-to-bottom
     // .. note that the bottom is mirrored wrt. the top
@@ -351,7 +373,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     CalamaresUtils::unmarginLayout( mainLayout );
     CalamaresUtils::unmarginLayout( contentsLayout );
-    setLayout( mainLayout );
+    baseWidget->setLayout( mainLayout );
     setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }
 
