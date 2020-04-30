@@ -135,8 +135,6 @@ images:
     # productBanner:       "banner.png"
     productIcon:         "squid.png"
     productLogo:         "squid.png"
-    productIcon:         "squid.png"
-    productLogo:         "squid.png"
     # productWallpaper:    "wallpaper.png"
     productWelcome:      "languages.png"
 
