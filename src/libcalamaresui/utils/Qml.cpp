@@ -160,7 +160,7 @@ registerCalamaresModels()
             "io.calamares.ui", 1, 0, "Branding", []( QQmlEngine*, QJSEngine* ) -> QObject* {
                 return Calamares::Branding::instance();
             } );
-        qmlRegisterSingletonType< Calamares::Branding >(
+        qmlRegisterSingletonType< Calamares::ViewManager >(
             "io.calamares.core", 1, 0, "ViewManager", []( QQmlEngine*, QJSEngine* ) -> QObject* {
                 return Calamares::ViewManager::instance();
             } );
