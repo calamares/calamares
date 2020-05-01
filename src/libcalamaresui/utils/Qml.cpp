@@ -71,14 +71,14 @@ addExpansions( QmlSearch method, QStringList& candidates, const QStringList& nam
         std::transform( names.constBegin(),
                         names.constEnd(),
                         std::back_inserter( candidates ),
-                        [&]( const QString& s ) { return s.isEmpty() ? QString() : bPath.arg( brandDir, s ); } );
+                        [ & ]( const QString& s ) { return s.isEmpty() ? QString() : bPath.arg( brandDir, s ); } );
     }
     if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
     {
         std::transform( names.constBegin(),
                         names.constEnd(),
                         std::back_inserter( candidates ),
-                        [&]( const QString& s ) { return s.isEmpty() ? QString() : qrPath.arg( s ); } );
+                        [ & ]( const QString& s ) { return s.isEmpty() ? QString() : qrPath.arg( s ); } );
     }
 }
 

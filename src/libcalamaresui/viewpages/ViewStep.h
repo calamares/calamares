@@ -20,8 +20,8 @@
 #ifndef VIEWSTEP_H
 #define VIEWSTEP_H
 
-#include "Job.h"
 #include "DllMacro.h"
+#include "Job.h"
 
 #include "modulesystem/InstanceKey.h"
 #include "modulesystem/Requirement.h"
