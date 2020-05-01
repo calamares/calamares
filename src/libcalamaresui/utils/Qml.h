@@ -36,6 +36,7 @@ namespace CalamaresUtils
  * The following objects are made available globally:
  *  - `io.calamares.ui.Branding` (an object, see Branding.h)
  *  - `io.calamares.core.ViewManager` (a model, see ViewManager.h)
+ *  - `io.calamares.core.Global` (an object, see GlobalStorage.h)
  * Additionally, modules based on QmlViewStep have a context
  * property `config` referring to that module's configuration (if any).
  */

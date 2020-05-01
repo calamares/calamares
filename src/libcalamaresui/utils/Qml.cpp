@@ -19,6 +19,8 @@
 #include "Qml.h"
 
 #include "Branding.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "ViewManager.h"
 #include "utils/Logger.h"
 
@@ -163,6 +165,10 @@ registerCalamaresModels()
         qmlRegisterSingletonType< Calamares::ViewManager >(
             "io.calamares.core", 1, 0, "ViewManager", []( QQmlEngine*, QJSEngine* ) -> QObject* {
                 return Calamares::ViewManager::instance();
+            } );
+        qmlRegisterSingletonType< Calamares::GlobalStorage >(
+            "io.calamares.core", 1, 0, "Global", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+                return Calamares::JobQueue::instance()->globalStorage();
             } );
     }
 }

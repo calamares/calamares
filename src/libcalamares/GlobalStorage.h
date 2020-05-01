@@ -39,12 +39,8 @@ public:
 
     //NOTE: thread safety is guaranteed by JobQueue, which executes jobs one by one.
     //      If at any time jobs become concurrent, this class must be made thread-safe.
-    bool contains( const QString& key ) const;
-    int count() const;
     void insert( const QString& key, const QVariant& value );
-    QStringList keys() const;
     int remove( const QString& key );
-    QVariant value( const QString& key ) const;
 
     /// @brief dump keys and values to the debug log
     void debugDump() const;
@@ -82,6 +78,12 @@ public:
      * signal for notifications.
      */
     const QVariantMap& data() const { return m; }
+
+public Q_SLOTS:
+    bool contains( const QString& key ) const;
+    int count() const;
+    QStringList keys() const;
+    QVariant value( const QString& key ) const;
 
 signals:
     void changed();
