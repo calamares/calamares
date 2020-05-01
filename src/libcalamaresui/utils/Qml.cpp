@@ -19,6 +19,8 @@
 #include "Qml.h"
 
 #include "Branding.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "ViewManager.h"
 #include "utils/Logger.h"
 
@@ -69,14 +71,14 @@ addExpansions( QmlSearch method, QStringList& candidates, const QStringList& nam
         std::transform( names.constBegin(),
                         names.constEnd(),
                         std::back_inserter( candidates ),
-                        [&]( const QString& s ) { return s.isEmpty() ? QString() : bPath.arg( brandDir, s ); } );
+                        [ & ]( const QString& s ) { return s.isEmpty() ? QString() : bPath.arg( brandDir, s ); } );
     }
     if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
     {
         std::transform( names.constBegin(),
                         names.constEnd(),
                         std::back_inserter( candidates ),
-                        [&]( const QString& s ) { return s.isEmpty() ? QString() : qrPath.arg( s ); } );
+                        [ & ]( const QString& s ) { return s.isEmpty() ? QString() : qrPath.arg( s ); } );
     }
 }
 
@@ -160,9 +162,13 @@ registerCalamaresModels()
             "io.calamares.ui", 1, 0, "Branding", []( QQmlEngine*, QJSEngine* ) -> QObject* {
                 return Calamares::Branding::instance();
             } );
-        qmlRegisterSingletonType< Calamares::Branding >(
+        qmlRegisterSingletonType< Calamares::ViewManager >(
             "io.calamares.core", 1, 0, "ViewManager", []( QQmlEngine*, QJSEngine* ) -> QObject* {
                 return Calamares::ViewManager::instance();
+            } );
+        qmlRegisterSingletonType< Calamares::GlobalStorage >(
+            "io.calamares.core", 1, 0, "Global", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+                return Calamares::JobQueue::instance()->globalStorage();
             } );
     }
 }

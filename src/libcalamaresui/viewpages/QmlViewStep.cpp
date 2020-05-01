@@ -88,7 +88,7 @@ QmlViewStep::QmlViewStep( QObject* parent )
     // QML Loading starts when the configuration for the module is set.
 }
 
-QmlViewStep::~QmlViewStep() {}
+QmlViewStep::~QmlViewStep() { }
 
 QString
 QmlViewStep::prettyName() const
