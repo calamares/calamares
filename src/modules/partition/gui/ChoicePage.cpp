@@ -832,7 +832,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
         if ( !homePartitionPath->isEmpty() )
             m_reuseHomeCheckBox->setText( tr( "Reuse %1 as home partition for %2." )
                                           .arg( *homePartitionPath )
-                                          .arg( *Calamares::Branding::ShortProductName ) );
+                                          .arg( Calamares::Branding::instance()->shortProductName() ) );
         delete homePartitionPath;
 
         if ( m_isEfi )
@@ -975,7 +975,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
                                         .arg( m_beforePartitionBarsView->selectionModel()->currentIndex().data().toString() )
                                         .arg( CalamaresUtils::BytesToMiB( size ) )
                                         .arg( CalamaresUtils::BytesToMiB( sizeNext ) )
-                                        .arg( *Calamares::Branding::ShortProductName ) );
+                                        .arg( Calamares::Branding::instance()->shortProductName() ) );
                 }
             );
 
@@ -1004,7 +1004,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
             m_afterPartitionBarsView->setNestedPartitionsMode( mode );
             m_afterPartitionLabelsView = new PartitionLabelsView( m_previewAfterFrame );
             m_afterPartitionLabelsView->setExtendedPartitionHidden( mode == PartitionBarsView::NoNestedPartitions );
-            m_afterPartitionLabelsView->setCustomNewRootLabel( *Calamares::Branding::BootloaderEntryName );
+            m_afterPartitionLabelsView->setCustomNewRootLabel( Calamares::Branding::instance()->string(Calamares::Branding::BootloaderEntryName) );
 
             PartitionModel* model = m_core->partitionModelForDevice( selectedDevice() );
 
@@ -1135,7 +1135,7 @@ ChoicePage::setupEfiSystemPartitionSelector()
                     tr( "An EFI system partition cannot be found anywhere "
                         "on this system. Please go back and use manual "
                         "partitioning to set up %1." )
-                    .arg( *Calamares::Branding::ShortProductName ) );
+                    .arg( Calamares::Branding::instance()->shortProductName() ) );
         updateNextEnabled();
     }
     else if ( efiSystemPartitions.count() == 1 ) //probably most usual situation
@@ -1144,7 +1144,7 @@ ChoicePage::setupEfiSystemPartitionSelector()
                     tr( "The EFI system partition at %1 will be used for "
                         "starting %2." )
                     .arg( efiSystemPartitions.first()->partitionPath() )
-                    .arg( *Calamares::Branding::ShortProductName ) );
+                    .arg( Calamares::Branding::instance()->shortProductName() ) );
     }
     else
     {
@@ -1278,11 +1278,11 @@ ChoicePage::setupActions()
 
             m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                             "The installer will shrink a partition to make room for %1." )
-                                        .arg( *Calamares::Branding::ShortVersionedName ) );
+                                        .arg( Calamares::Branding::instance()->shortVersionedName() ) );
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                           "Replaces a partition with %1." )
-                                      .arg( *Calamares::Branding::ShortVersionedName ) );
+                                      .arg( Calamares::Branding::instance()->shortVersionedName() ) );
         )
 
         m_replaceButton->hide();
@@ -1308,7 +1308,7 @@ ChoicePage::setupActions()
 
                 m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                                 "The installer will shrink a partition to make room for %1." )
-                                            .arg( *Calamares::Branding::ShortVersionedName ) );
+                                            .arg( Calamares::Branding::instance()->shortVersionedName() ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all data "
@@ -1317,7 +1317,7 @@ ChoicePage::setupActions()
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                               "Replaces a partition with %1." )
-                                          .arg( *Calamares::Branding::ShortVersionedName ) );
+                                          .arg( Calamares::Branding::instance()->shortVersionedName() ) );
             )
         }
         else
@@ -1331,7 +1331,7 @@ ChoicePage::setupActions()
 
                 m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                                 "The installer will shrink a partition to make room for %1." )
-                                            .arg( *Calamares::Branding::ShortVersionedName ) );
+                                            .arg( Calamares::Branding::instance()->shortVersionedName() ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all data "
@@ -1339,7 +1339,7 @@ ChoicePage::setupActions()
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                               "Replaces a partition with %1." )
-                                          .arg( *Calamares::Branding::ShortVersionedName ) );
+                                          .arg( Calamares::Branding::instance()->shortVersionedName() ) );
             )
         }
     }
@@ -1357,7 +1357,7 @@ ChoicePage::setupActions()
 
             m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                             "The installer will shrink a partition to make room for %1." )
-                                        .arg( *Calamares::Branding::ShortVersionedName ) );
+                                        .arg( Calamares::Branding::instance()->shortVersionedName() ) );
 
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all data "
@@ -1365,7 +1365,7 @@ ChoicePage::setupActions()
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                           "Replaces a partition with %1." )
-                                      .arg( *Calamares::Branding::ShortVersionedName ) );
+                                      .arg( Calamares::Branding::instance()->shortVersionedName() ) );
         )
     }
 

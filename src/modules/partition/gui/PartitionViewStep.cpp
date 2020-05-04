@@ -154,6 +154,7 @@ PartitionViewStep::createSummaryWidget() const
     formLayout->setContentsMargins( MARGIN, 0, MARGIN, MARGIN );
     mainLayout->addLayout( formLayout );
 
+    const auto* branding = Calamares::Branding::instance();
     QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
     if ( list.length() > 1 )  // There are changes on more than one disk
     {
@@ -166,15 +167,15 @@ PartitionViewStep::createSummaryWidget() const
         {
         case ChoicePage::Alongside:
             modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
-                           .arg( *Calamares::Branding::ShortVersionedName );
+                           .arg( branding->shortVersionedName() );
             break;
         case ChoicePage::Erase:
             modeText
-                = tr( "<strong>Erase</strong> disk and install %1." ).arg( *Calamares::Branding::ShortVersionedName );
+                = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
             break;
         case ChoicePage::Replace:
             modeText
-                = tr( "<strong>Replace</strong> a partition with %1." ).arg( *Calamares::Branding::ShortVersionedName );
+                = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
             break;
         case ChoicePage::NoChoice:
         case ChoicePage::Manual:
@@ -193,19 +194,19 @@ PartitionViewStep::createSummaryWidget() const
             case ChoicePage::Alongside:
                 modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk "
                                "<strong>%2</strong> (%3)." )
-                               .arg( *Calamares::Branding::ShortVersionedName )
+                               .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
             case ChoicePage::Erase:
                 modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
-                               .arg( *Calamares::Branding::ShortVersionedName )
+                               .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
             case ChoicePage::Replace:
                 modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
-                               .arg( *Calamares::Branding::ShortVersionedName )
+                               .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
@@ -256,7 +257,7 @@ PartitionViewStep::createSummaryWidget() const
         previewLabels->setModel( info.partitionModelAfter );
         preview->setSelectionMode( QAbstractItemView::NoSelection );
         previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
-        previewLabels->setCustomNewRootLabel( *Calamares::Branding::BootloaderEntryName );
+        previewLabels->setCustomNewRootLabel( Calamares::Branding::instance()->string( Calamares::Branding::BootloaderEntryName ));
         info.partitionModelAfter->setParent( widget );
         field = new QVBoxLayout;
         CalamaresUtils::unmarginLayout( field );
@@ -411,6 +412,7 @@ PartitionViewStep::onLeave()
         return;
     }
 
+    const auto* branding = Calamares::Branding::instance();
     if ( m_widget->currentWidget() == m_manualPartitionPage )
     {
         if ( PartUtils::isEfiSystem() )
@@ -438,7 +440,7 @@ PartitionViewStep::onLeave()
                                   "<strong>%2</strong>.<br/><br/>"
                                   "You can continue without setting up an EFI system "
                                   "partition but your system may fail to start." )
-                                  .arg( *Calamares::Branding::ShortProductName )
+                                  .arg( branding->shortProductName() )
                                   .arg( espMountPoint, espFlagName );
             }
             else if ( esp && !PartUtils::isEfiBootable( esp ) )
@@ -453,7 +455,7 @@ PartitionViewStep::onLeave()
                                   "<br/><br/>"
                                   "You can continue without setting the flag but your "
                                   "system may fail to start." )
-                                  .arg( *Calamares::Branding::ShortProductName )
+                                  .arg( branding->shortProductName() )
                                   .arg( espMountPoint, espFlagName );
             }
 
@@ -482,7 +484,7 @@ PartitionViewStep::onLeave()
                               "<strong>bios_grub</strong> flag enabled.<br/><br/>"
                               "An unformatted 8 MB partition is necessary "
                               "to start %1 on a BIOS system with GPT." )
-                              .arg( *Calamares::Branding::ShortProductName );
+                              .arg( branding->shortProductName() );
 
             QMessageBox::information( m_manualPartitionPage, message, description );
         }
