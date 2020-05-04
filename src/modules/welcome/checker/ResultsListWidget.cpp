@@ -47,16 +47,15 @@
 static void
 createResultWidgets( QLayout* layout,
                      QList< ResultWidget* >& resultWidgets,
-                     const Calamares::RequirementsModel &model,
-                     std::function< bool( const Calamares::RequirementEntry& ) > predicate
-                   )
+                     const Calamares::RequirementsModel& model,
+                     std::function< bool( const Calamares::RequirementEntry& ) > predicate )
 {
     resultWidgets.clear();
     resultWidgets.reserve( model.count() );
     for ( auto i = 0; i < model.count(); i++ )
     {
-        const auto &entry = model.getEntry(i);
-        if ( !predicate(entry))
+        const auto& entry = model.getEntry( i );
+        if ( !predicate( entry ) )
         {
             resultWidgets.append( nullptr );
             continue;
@@ -105,7 +104,7 @@ private:
     void retranslate();
 };
 
-ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model, QWidget* parent)
+ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model, QWidget* parent )
     : QDialog( parent )
     , m_model( model )
 {
@@ -114,9 +113,8 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
 
     m_title = new QLabel( this );
 
-    createResultWidgets( entriesLayout, m_resultWidgets, model, []( const Calamares::RequirementEntry& e ) {
-        return e.hasDetails();
-    } );
+    createResultWidgets(
+        entriesLayout, m_resultWidgets, model, []( const Calamares::RequirementEntry& e ) { return e.hasDetails(); } );
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
 
@@ -132,7 +130,7 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
     retranslate();  // Do it now to fill in the texts
 }
 
-ResultsListDialog::~ResultsListDialog() {}
+ResultsListDialog::~ResultsListDialog() { }
 
 void
 ResultsListDialog::retranslate()
@@ -142,7 +140,7 @@ ResultsListDialog::retranslate()
 
     for ( auto i = 0; i < m_model.count(); i++ )
     {
-        const auto &entry = m_model.getEntry(i);
+        const auto& entry = m_model.getEntry( i );
         if ( m_resultWidgets[ i ] )
         {
             m_resultWidgets[ i ]->setText( entry.enumerationText() );
@@ -151,7 +149,7 @@ ResultsListDialog::retranslate()
 }
 
 
-ResultsListWidget::ResultsListWidget( const Calamares::RequirementsModel &model, QWidget* parent )
+ResultsListWidget::ResultsListWidget( const Calamares::RequirementsModel& model, QWidget* parent )
     : QWidget( parent )
     , m_model( model )
 {
@@ -242,7 +240,7 @@ ResultsListWidget::retranslate()
 {
     for ( auto i = 0; i < m_model.count(); i++ )
     {
-        const auto &entry = m_model.getEntry(i);
+        const auto& entry = m_model.getEntry( i );
         if ( m_resultWidgets[ i ] )
         {
             m_resultWidgets[ i ]->setText( entry.negatedText() );

@@ -38,14 +38,14 @@ public:
      *
      * Use setText() to set up the text of the widget.
      */
-    explicit ResultWidget( bool satisfied, bool required,
-                           QWidget* parent = nullptr );
+    explicit ResultWidget( bool satisfied, bool required, QWidget* parent = nullptr );
 
     /// @brief Set the displayed description of the check.
     void setText( const QString& text );
+
 private:
     QLabel* m_textLabel;
     QLabel* m_iconLabel;
 };
 
-#endif // CHECKER_RESULTWIDGET_H
+#endif  // CHECKER_RESULTWIDGET_H

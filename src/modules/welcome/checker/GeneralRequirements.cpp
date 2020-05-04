@@ -38,12 +38,12 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-#include <QGuiApplication>
 #include <QDBusConnection>
 #include <QDBusInterface>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QGuiApplication>
 #include <QScreen>
 
 #include <unistd.h>  //geteuid
@@ -123,8 +123,10 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [req = m_requiredStorageGiB] { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
-                  [req = m_requiredStorageGiB] {
+                  [ req = m_requiredStorageGiB ] {
+                      return tr( "has at least %1 GiB available drive space" ).arg( req );
+                  },
+                  [ req = m_requiredStorageGiB ] {
                       return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req );
                   },
                   enoughStorage,
@@ -134,8 +136,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [req = m_requiredRamGiB] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
-                  [req = m_requiredRamGiB] {
+                  [ req = m_requiredRamGiB ] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
+                  [ req = m_requiredRamGiB ] {
                       return tr( "The system does not have enough working memory. At least %1 GiB is required." )
                           .arg( req );
                   },

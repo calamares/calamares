@@ -30,7 +30,7 @@ class ResultsListWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ResultsListWidget(const Calamares::RequirementsModel  &model,  QWidget* parent);
+    explicit ResultsListWidget( const Calamares::RequirementsModel& model, QWidget* parent );
 
 private:
     /// @brief A link in the explanatory text has been clicked
@@ -38,7 +38,7 @@ private:
     void retranslate();
 
     QLabel* m_explanation = nullptr;  ///< Explanatory text above the list, with link
-    const Calamares::RequirementsModel &m_model;
+    const Calamares::RequirementsModel& m_model;
     QList< ResultWidget* > m_resultWidgets;  ///< One widget for each unsatisfied entry
 };
 

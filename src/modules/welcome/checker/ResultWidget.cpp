@@ -24,17 +24,14 @@
 
 #include <QBoxLayout>
 
-static inline void setCondition( QLabel* label, CalamaresUtils::ImageType t )
+static inline void
+setCondition( QLabel* label, CalamaresUtils::ImageType t )
 {
     label->setPixmap(
-        CalamaresUtils::defaultPixmap( t,
-                                       CalamaresUtils::Original,
-                                       QSize( label->height(), label->height() ) ) );
+        CalamaresUtils::defaultPixmap( t, CalamaresUtils::Original, QSize( label->height(), label->height() ) ) );
 }
 
-ResultWidget::ResultWidget( bool satisfied,
-                            bool required,
-                            QWidget* parent )
+ResultWidget::ResultWidget( bool satisfied, bool required, QWidget* parent )
     : QWidget( parent )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
@@ -48,11 +45,17 @@ ResultWidget::ResultWidget( bool satisfied,
     m_textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
     if ( satisfied )
+    {
         setCondition( m_iconLabel, CalamaresUtils::StatusOk );
+    }
     else if ( required )
+    {
         setCondition( m_iconLabel, CalamaresUtils::StatusError );
+    }
     else
+    {
         setCondition( m_iconLabel, CalamaresUtils::StatusWarning );
+    }
 }
 
 
