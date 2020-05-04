@@ -209,6 +209,11 @@ public:
 
 public slots:
     QString string( StringEntry stringEntry ) const;
+    QString versionedName() const { return string( VersionedName ); }
+    QString productName() const { return string( ProductName ); }
+    QString shortProductName() const { return string( ShortProductName ); }
+    QString shortVersionedName() const { return string( ShortVersionedName ); }
+
     QString styleString( StyleEntry styleEntry ) const;
     QString imagePath( ImageEntry imageEntry ) const;
 
@@ -248,13 +253,6 @@ private:
     PanelSide m_sidebarSide = PanelSide::Left;
     PanelSide m_navigationSide = PanelSide::Bottom;
 };
-
-template < typename U >
-inline QString
-operator*( U e )
-{
-    return Branding::instance()->string( e );
-}
 
 }  // namespace Calamares
 

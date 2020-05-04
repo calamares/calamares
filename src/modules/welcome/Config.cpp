@@ -41,7 +41,7 @@ Config::Config( QObject* parent )
 void
 Config::retranslate()
 {
-    m_genericWelcomeMessage = genericWelcomeMessage().arg( *Calamares::Branding::VersionedName );
+    m_genericWelcomeMessage = genericWelcomeMessage().arg( Calamares::Branding::instance()->versionedName() );
     emit genericWelcomeMessageChanged( m_genericWelcomeMessage );
 
     if ( !m_requirementsModel->satisfiedRequirements() )
@@ -72,13 +72,13 @@ Config::retranslate()
                                   "might be disabled." );
         }
 
-        m_warningMessage = message.arg( *Calamares::Branding::ShortVersionedName );
+        m_warningMessage = message.arg( Calamares::Branding::instance()->shortVersionedName() );
     }
     else
     {
         m_warningMessage = tr( "This program will ask you some questions and "
                                "set up %2 on your computer." )
-                               .arg( *Calamares::Branding::ProductName );
+                               .arg( Calamares::Branding::instance()->productName() );
     }
 
     emit warningMessageChanged( m_warningMessage );
@@ -103,7 +103,7 @@ Config::initLanguages()
     QLocale defaultLocale = QLocale( QLocale::system().name() );
 
     cDebug() << "Matching locale" << defaultLocale;
-    int matchedLocaleIndex = m_languages->find( [&]( const QLocale& x ) {
+    int matchedLocaleIndex = m_languages->find( [ & ]( const QLocale& x ) {
         return x.language() == defaultLocale.language() && x.country() == defaultLocale.country();
     } );
 
@@ -112,7 +112,7 @@ Config::initLanguages()
         cDebug() << Logger::SubEntry << "Matching approximate locale" << defaultLocale.language();
 
         matchedLocaleIndex
-            = m_languages->find( [&]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
+            = m_languages->find( [ & ]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
     }
 
     if ( matchedLocaleIndex < 0 )

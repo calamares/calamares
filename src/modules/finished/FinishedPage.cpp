@@ -20,12 +20,12 @@
 
 #include "FinishedPage.h"
 
-#include "ui_FinishedPage.h"
 #include "CalamaresVersion.h"
-#include "utils/Logger.h"
-#include "utils/CalamaresUtilsGui.h"
-#include "utils/Retranslator.h"
 #include "ViewManager.h"
+#include "ui_FinishedPage.h"
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -48,33 +48,29 @@ FinishedPage::FinishedPage( QWidget* parent )
     ui->mainText->setOpenExternalLinks( true );
 
     CALAMARES_RETRANSLATE(
-        ui->retranslateUi( this );
-        if ( Calamares::Settings::instance()->isSetupMode() )
-        {
+        const auto* branding = Calamares::Branding::instance(); ui->retranslateUi( this );
+        if ( Calamares::Settings::instance()->isSetupMode() ) {
             ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
                                        "%1 has been set up on your computer.<br/>"
                                        "You may now start using your new system." )
-                                   .arg( *Calamares::Branding::VersionedName ) );
-            ui->restartCheckBox->setToolTip( tr ( "<html><head/><body>"
-                                                  "<p>When this box is checked, your system will "
-                                                  "restart immediately when you click on "
-                                                  "<span style=\"font-style:italic;\">Done</span> "
-                                                  "or close the setup program.</p></body></html>" ) );
-       }
-       else
-       {
+                                       .arg( branding->versionedName() ) );
+            ui->restartCheckBox->setToolTip( tr( "<html><head/><body>"
+                                                 "<p>When this box is checked, your system will "
+                                                 "restart immediately when you click on "
+                                                 "<span style=\"font-style:italic;\">Done</span> "
+                                                 "or close the setup program.</p></body></html>" ) );
+        } else {
             ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
                                        "%1 has been installed on your computer.<br/>"
                                        "You may now restart into your new system, or continue "
                                        "using the %2 Live environment." )
-                                   .arg( *Calamares::Branding::VersionedName, *Calamares::Branding::ProductName ) );
-            ui->restartCheckBox->setToolTip( tr ( "<html><head/><body>"
-                                                  "<p>When this box is checked, your system will "
-                                                  "restart immediately when you click on "
-                                                  "<span style=\"font-style:italic;\">Done</span> "
-                                                  "or close the installer.</p></body></html>" ) );
-       }
-    )
+                                       .arg( branding->versionedName(), branding->productName() ) );
+            ui->restartCheckBox->setToolTip( tr( "<html><head/><body>"
+                                                 "<p>When this box is checked, your system will "
+                                                 "restart immediately when you click on "
+                                                 "<span style=\"font-style:italic;\">Done</span> "
+                                                 "or close the installer.</p></body></html>" ) );
+        } )
 }
 
 
@@ -102,20 +98,15 @@ void
 FinishedPage::setUpRestart()
 {
     cDebug() << "FinishedPage::setUpRestart(), Quit button"
-        << "setup=" << FinishedViewStep::modeName( m_mode )
-        << "command=" << m_restartNowCommand;
+             << "setup=" << FinishedViewStep::modeName( m_mode ) << "command=" << m_restartNowCommand;
 
-    connect( qApp, &QApplication::aboutToQuit,
-            [this]()
-            {
-                if ( ui->restartCheckBox->isVisible() &&
-                        ui->restartCheckBox->isChecked() )
-                {
-                    cDebug() << "Running restart command" << m_restartNowCommand;
-                    QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );
-                }
-            }
-           );
+    connect( qApp, &QApplication::aboutToQuit, [ this ]() {
+        if ( ui->restartCheckBox->isVisible() && ui->restartCheckBox->isChecked() )
+        {
+            cDebug() << "Running restart command" << m_restartNowCommand;
+            QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );
+        }
+    } );
 }
 
 
@@ -128,18 +119,19 @@ FinishedPage::focusInEvent( QFocusEvent* e )
 void
 FinishedPage::onInstallationFailed( const QString& message, const QString& details )
 {
+    const auto* branding = Calamares::Branding::instance();
     Q_UNUSED( details )
     if ( Calamares::Settings::instance()->isSetupMode() )
         ui->mainText->setText( tr( "<h1>Setup Failed</h1><br/>"
                                    "%1 has not been set up on your computer.<br/>"
                                    "The error message was: %2." )
-                               .arg( *Calamares::Branding::VersionedName )
-                               .arg( message ) );
+                                   .arg( branding->versionedName() )
+                                   .arg( message ) );
     else
         ui->mainText->setText( tr( "<h1>Installation Failed</h1><br/>"
                                    "%1 has not been installed on your computer.<br/>"
                                    "The error message was: %2." )
-                               .arg( *Calamares::Branding::VersionedName )
-                               .arg( message ) );
+                                   .arg( branding->versionedName() )
+                                   .arg( message ) );
     setRestart( FinishedViewStep::RestartMode::Never );
 }

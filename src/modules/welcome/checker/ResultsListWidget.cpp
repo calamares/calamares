@@ -278,13 +278,13 @@ ResultsListWidget::retranslate()
                                   "Installation can continue, but some features "
                                   "might be disabled." );
         }
-        m_explanation->setText( message.arg( *Calamares::Branding::ShortVersionedName ) );
+        m_explanation->setText( message.arg( Calamares::Branding::instance()->shortVersionedName() ) );
     }
     else
     {
         m_explanation->setText( tr( "This program will ask you some questions and "
                                     "set up %2 on your computer." )
-                                    .arg( *Calamares::Branding::ProductName ) );
+                                    .arg( Calamares::Branding::instance()->productName() ) );
     }
 }
 
