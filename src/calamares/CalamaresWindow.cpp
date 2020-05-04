@@ -277,9 +277,10 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
         setWindowFlag( Qt::WindowCloseButtonHint, false );
     }
 
-    CALAMARES_RETRANSLATE( setWindowTitle( Calamares::Settings::instance()->isSetupMode()
-                                               ? tr( "%1 Setup Program" ).arg( *Calamares::Branding::ProductName )
-                                               : tr( "%1 Installer" ).arg( *Calamares::Branding::ProductName ) ); )
+    CALAMARES_RETRANSLATE( const auto* branding = Calamares::Branding::instance();
+                           setWindowTitle( Calamares::Settings::instance()->isSetupMode()
+                                               ? tr( "%1 Setup Program" ).arg( branding->productName() )
+                                               : tr( "%1 Installer" ).arg( branding->productName() ) ); )
 
     const Calamares::Branding* const branding = Calamares::Branding::instance();
     using ImageEntry = Calamares::Branding::ImageEntry;
