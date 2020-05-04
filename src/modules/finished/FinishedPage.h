@@ -44,7 +44,7 @@ public slots:
     void onInstallationFailed( const QString& message, const QString& details );
 
 protected:
-    void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
+    void focusInEvent( QFocusEvent* e ) override;  //choose the child widget to focus
 
 private:
     Ui::FinishedPage* ui;
@@ -53,4 +53,4 @@ private:
     QString m_restartNowCommand;
 };
 
-#endif // FINISHEDPAGE_H
+#endif  // FINISHEDPAGE_H
