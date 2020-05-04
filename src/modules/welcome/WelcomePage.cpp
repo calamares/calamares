@@ -56,9 +56,7 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
     const int defaultFontHeight = CalamaresUtils::defaultFontHeight();
     ui->setupUi( this );
     ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap(
-        CalamaresUtils::Information,
-        CalamaresUtils::Original,
-        2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
+        CalamaresUtils::Information, CalamaresUtils::Original, 2 * QSize( defaultFontHeight, defaultFontHeight ) ) );
 
     // insert system-check widget below welcome text
     const int welcome_text_idx = ui->verticalLayout->indexOf( ui->mainText );
@@ -85,8 +83,6 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
 
     initLanguages();
 
-    cDebug() << "Welcome string" << Calamares::Branding::instance()->welcomeStyleCalamares()
-             << *Calamares::Branding::VersionedName;
     CALAMARES_RETRANSLATE_SLOT( &WelcomePage::retranslate )
 
     connect( ui->aboutButton, &QPushButton::clicked, this, &WelcomePage::showAboutBox );
@@ -177,7 +173,7 @@ WelcomePage::setupButton( Button role, const QString& url )
     {
         auto size = 2 * QSize( CalamaresUtils::defaultFontHeight(), CalamaresUtils::defaultFontHeight() );
         button->setIcon( CalamaresUtils::defaultPixmap( icon, CalamaresUtils::Original, size ) );
-        connect( button, &QPushButton::clicked, [u]() { QDesktopServices::openUrl( u ); } );
+        connect( button, &QPushButton::clicked, [ u ]() { QDesktopServices::openUrl( u ); } );
     }
     else
     {
@@ -235,9 +231,9 @@ WelcomePage::retranslate()
             : tr( "<h1>Welcome to the %1 installer.</h1>" );
     }
 
-    ui->mainText->setText( message.arg( *Calamares::Branding::VersionedName ) );
+    ui->mainText->setText( message.arg( Calamares::Branding::instance()->versionedName() ) );
     ui->retranslateUi( this );
-    ui->supportButton->setText( tr( "%1 support" ).arg( *Calamares::Branding::ShortProductName ) );
+    ui->supportButton->setText( tr( "%1 support" ).arg( Calamares::Branding::instance()->shortProductName() ) );
 }
 
 void
@@ -261,7 +257,7 @@ WelcomePage::showAboutBox()
                         "Liberating Software." )
                         .arg( CALAMARES_APPLICATION_NAME )
                         .arg( CALAMARES_VERSION )
-                        .arg( *Calamares::Branding::VersionedName ),
+                        .arg( Calamares::Branding::instance()->versionedName() ),
                     QMessageBox::Ok,
                     this );
     mb.setIconPixmap( CalamaresUtils::defaultPixmap(

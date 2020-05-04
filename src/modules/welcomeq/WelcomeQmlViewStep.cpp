@@ -120,7 +120,7 @@ jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map
     auto v = map.value( key );
     if ( v.type() == QVariant::Bool )
     {
-        return v.toBool() ? ( *e ) : QString();
+        return v.toBool() ? ( Calamares::Branding::instance()->string( e ) ) : QString();
     }
     if ( v.type() == QVariant::String )
     {

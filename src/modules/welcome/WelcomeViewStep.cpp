@@ -129,7 +129,7 @@ jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map
     auto v = map.value( key );
     if ( v.type() == QVariant::Bool )
     {
-        return v.toBool() ? ( *e ) : QString();
+        return v.toBool() ? ( Calamares::Branding::instance()->string( e ) ) : QString();
     }
     if ( v.type() == QVariant::String )
     {
@@ -174,7 +174,7 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
         {
             auto* future = new FWString();
-            connect( future, &FWString::finished, [view = this, f = future, h = handler]() {
+            connect( future, &FWString::finished, [ view = this, f = future, h = handler ]() {
                 QString countryResult = f->future().result();
                 cDebug() << "GeoIP result for welcome=" << countryResult;
                 view->setCountry( countryResult, h );
