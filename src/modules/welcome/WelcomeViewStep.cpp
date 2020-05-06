@@ -127,4 +127,3 @@ WelcomeViewStep::checkRequirements()
 {
     return m_requirementsChecker->checkRequirements();
 }
-

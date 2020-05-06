@@ -108,7 +108,7 @@ Config::initLanguages()
     QLocale defaultLocale = QLocale( QLocale::system().name() );
 
     cDebug() << "Matching locale" << defaultLocale;
-    int matchedLocaleIndex = m_languages->find( [ & ]( const QLocale& x ) {
+    int matchedLocaleIndex = m_languages->find( [&]( const QLocale& x ) {
         return x.language() == defaultLocale.language() && x.country() == defaultLocale.country();
     } );
 
@@ -117,7 +117,7 @@ Config::initLanguages()
         cDebug() << Logger::SubEntry << "Matching approximate locale" << defaultLocale.language();
 
         matchedLocaleIndex
-            = m_languages->find( [ & ]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
+            = m_languages->find( [&]( const QLocale& x ) { return x.language() == defaultLocale.language(); } );
     }
 
     if ( matchedLocaleIndex < 0 )
@@ -353,7 +353,7 @@ setGeoIP( Config* c, const QVariantMap& configurationMap )
         if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
         {
             auto* future = new FWString();
-            QObject::connect( future, &FWString::finished, [ config = c, f = future, h = handler ]() {
+            QObject::connect( future, &FWString::finished, [config = c, f = future, h = handler]() {
                 QString countryResult = f->future().result();
                 cDebug() << "GeoIP result for welcome=" << countryResult;
                 ::setCountry( config, countryResult, h );
@@ -376,10 +376,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     using Calamares::Branding;
 
     setSupportUrl( jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
-    setKnownIssuesUrl(
-        jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
-    setReleaseNotesUrl(
-        jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
+    setKnownIssuesUrl( jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
+    setReleaseNotesUrl( jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
     setDonateUrl( jobOrBrandingSetting( Branding::DonateUrl, configurationMap, "showDonateUrl" ) );
 
     ::setLanguageIcon( this, configurationMap );
