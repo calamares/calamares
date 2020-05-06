@@ -67,7 +67,8 @@ const QStringList Branding::s_stringEntryStrings =
     "productUrl",
     "supportUrl",
     "knownIssuesUrl",
-    "releaseNotesUrl"
+    "releaseNotesUrl",
+    "donateUrl"
 };
 
 

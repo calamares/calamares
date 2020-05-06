@@ -103,6 +103,7 @@ strings:
     supportUrl:          https://github.com/calamares/calamares/issues
     knownIssuesUrl:      https://calamares.io/about/
     releaseNotesUrl:     https://calamares.io/about/
+    donateUrl:           https://kde.org/community/donations/index.php
 
 # These images are loaded from the branding module directory.
 #

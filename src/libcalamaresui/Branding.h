@@ -28,6 +28,8 @@
 
 #include <QMap>
 #include <QObject>
+#include <QPixmap>
+#include <QSize>
 #include <QStringList>
 
 namespace YAML
@@ -61,7 +63,8 @@ public:
         ProductUrl,
         SupportUrl,
         KnownIssuesUrl,
-        ReleaseNotesUrl
+        ReleaseNotesUrl,
+        DonateUrl
     };
     Q_ENUM( StringEntry )
 
