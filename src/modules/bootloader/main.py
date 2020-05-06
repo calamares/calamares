@@ -403,6 +403,21 @@ def install_secureboot(efi_directory):
         "-p", efi_partition_number,
         "-l", install_efi_directory + "/" + install_efi_bin])
 
+    boot_entry = None
+    efi_bootvars = subprocess.check_output(
+        [libcalamares.job.configuration["efiBootMgr"]], text=True)
+    for line in efi_bootvars.split('\n'):
+        if not line:
+            continue
+        words = line.split()
+        if len(words) >= 2 and words[0] == "BootOrder:":
+            boot_entry = words[1].split(',')[0] 
+            break
+    if boot_entry:
+        subprocess.call([
+            libcalamares.job.configuration["efiBootMgr"],
+            "-n", boot_entry])
+
     # The input file /etc/default/grub should already be filled out by the
     # grubcfg job module.
     check_target_env_call([libcalamares.job.configuration["grubMkconfig"],
