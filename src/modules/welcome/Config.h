@@ -50,6 +50,8 @@ class Config : public QObject
 public:
     Config( QObject* parent = nullptr );
 
+    void setConfigurationMap( const QVariantMap& );
+
     Calamares::RequirementsModel& requirementsModel() const;
 
     void setCountryCode( const QString& countryCode );

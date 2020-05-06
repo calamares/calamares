@@ -245,3 +245,48 @@ Config::warningMessage() const
 {
     return m_warningMessage;
 }
+
+/** @brief Look up a URL for a button
+ *
+ * Looks up @p key in @p map; if it is a *boolean* value, then
+ * assume an old-style configuration, and fetch the string from
+ * the branding settings @p e. If it is a string, not a boolean,
+ * use it as-is. If not found, or a weird type, returns empty.
+ *
+ * This allows switching the showKnownIssuesUrl and similar settings
+ * in welcome.conf from a boolean (deferring to branding) to an
+ * actual string for immediate use. Empty strings, as well as
+ * "false" as a setting, will hide the buttons as before.
+ */
+static QString
+jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map, const QString& key )
+{
+    if ( !map.contains( key ) )
+    {
+        return QString();
+    }
+    auto v = map.value( key );
+    if ( v.type() == QVariant::Bool )
+    {
+        return v.toBool() ? ( Calamares::Branding::instance()->string( e ) ) : QString();
+    }
+    if ( v.type() == QVariant::String )
+    {
+        return v.toString();
+    }
+
+    return QString();
+}
+
+void
+Config::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    using Calamares::Branding;
+
+    setSupportUrl( jobOrBrandingSetting( Branding::SupportUrl, configurationMap, "showSupportUrl" ) );
+    setKnownIssuesUrl(
+        jobOrBrandingSetting( Branding::KnownIssuesUrl, configurationMap, "showKnownIssuesUrl" ) );
+    setReleaseNotesUrl(
+        jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
+    setDonateUrl( jobOrBrandingSetting( Branding::DonateUrl, configurationMap, "showDonateUrl" ) );
+}
