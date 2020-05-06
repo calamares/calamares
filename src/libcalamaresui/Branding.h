@@ -28,6 +28,8 @@
 
 #include <QMap>
 #include <QObject>
+#include <QPixmap>
+#include <QSize>
 #include <QStringList>
 
 namespace YAML
