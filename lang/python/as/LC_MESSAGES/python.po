@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 13:39+0200\n"
+"POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Deep Jyoti Choudhury <deep.choudhury@libresoft.in>, 2020\n"
 "Language-Team: Assamese (https://www.transifex.com/calamares/teams/20061/as/)\n"
@@ -21,75 +21,69 @@ msgstr ""
 "Language: as\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "GRUB কনফিগাৰ কৰক।"
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "পেকেজ ইন্স্তল কৰক।"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "বিভাজন মাউন্ট্ কৰা।"
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "(%(count)d / %(total)d) পেকেজবোৰ সংশোধন কৰি আছে"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Installing one package."
+msgstr[1] "%(num)d পেকেজবোৰ ইনস্তল হৈ আছে।"
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Removing one package."
+msgstr[1] "%(num)d পেকেজবোৰ আতৰোৱা হৈ আছে।"
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "নেটৱৰ্ক কন্ফিগাৰ জমা কৰি আছে।"
+
+#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
+#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
 msgid "Configuration Error"
 msgstr "কনফিগাৰেচন ত্ৰুটি"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "<pre>{!s}</pre>ৰ ব্যৱহাৰৰ বাবে কোনো বিভাজনৰ বৰ্ণনা দিয়া হোৱা নাই।"
-
-#: src/modules/services-systemd/main.py:35
-msgid "Configure systemd services"
-msgstr "systemd সেৱা সমুহ কনফিগাৰ কৰক"
-
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
-msgid "Cannot modify service"
-msgstr "সেৱা সমুহৰ সংশোধন কৰিব নোৱাৰি"
-
-#: src/modules/services-systemd/main.py:69
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "chrootত systemctl <code>{arg!s}</code>ৰ call ক্ৰুটি কোড {num!s}।"
-
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "systemd সেৱা <code>{name!s}</code> সক্ৰিয় কৰিব নোৱাৰি।"
-
-#: src/modules/services-systemd/main.py:74
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "systemd গন্তব্য স্থান <code>{name!s}</code> সক্ৰিয় কৰিব নোৱাৰি।"
-
-#: src/modules/services-systemd/main.py:78
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "systemd গন্তব্য স্থান <code>{name!s}</code> নিষ্ক্ৰিয় কৰিব নোৱাৰি।"
-
-#: src/modules/services-systemd/main.py:80
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "systemd একক <code>{name!s}</code> মাস্ক্ কৰিব নোৱাৰি।"
-
-#: src/modules/services-systemd/main.py:82
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"একক {name!s}ৰ বাবে <code>{command!s}</code> আৰু <code>{suffix!s}</code> "
-"অজ্ঞাত systemd কমাণ্ড্।"
+#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
+#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
+#: src/modules/initramfscfg/main.py:99
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "ব্যৱহাৰৰ বাবে <pre>{!s}</pre>ৰ কোনো মাউন্ট্ পাইন্ট্ দিয়া হোৱা নাই।"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "ফাইল চিছটেম​বোৰ মাউণ্টৰ পৰা আতৰাওক।"
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "mkinitcpio কনফিগাৰ কৰি আছে।"
+
+#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
+#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
+#: src/modules/rawfs/main.py:172
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "<pre>{!s}</pre>ৰ ব্যৱহাৰৰ বাবে কোনো বিভাজনৰ বৰ্ণনা দিয়া হোৱা নাই।"
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt সেৱা কন্ফিগাৰ কৰি আছে।"
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
@@ -152,6 +146,140 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "লক্ষ্যৰ চিছটেম গন্তব্য স্থান \"{}\" এটা ডিৰেক্টৰী নহয়"
 
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "systemd সেৱা সমুহ কনফিগাৰ কৰক"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "সেৱা সমুহৰ সংশোধন কৰিব নোৱাৰি"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "chrootত systemctl <code>{arg!s}</code>ৰ call ক্ৰুটি কোড {num!s}।"
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "systemd সেৱা <code>{name!s}</code> সক্ৰিয় কৰিব নোৱাৰি।"
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "systemd গন্তব্য স্থান <code>{name!s}</code> সক্ৰিয় কৰিব নোৱাৰি।"
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "systemd গন্তব্য স্থান <code>{name!s}</code> নিষ্ক্ৰিয় কৰিব নোৱাৰি।"
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "systemd একক <code>{name!s}</code> মাস্ক্ কৰিব নোৱাৰি।"
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"একক {name!s}ৰ বাবে <code>{command!s}</code> আৰু <code>{suffix!s}</code> "
+"অজ্ঞাত systemd কমাণ্ড্।"
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "ডামী Pythonৰ কায্য"
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "ডামী Pythonৰ পদক্ষেপ {}"
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "বুতলোডাৰ ইন্স্তল কৰক।"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "স্থানীয়বোৰ কন্ফিগাৰ কৰি আছে।"
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "বিভাজন মাউন্ট্ কৰা।"
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Plymouth theme কন্ফিগাৰ কৰি আছে।​"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "এন্ক্ৰিপ্টেড স্ৱেপ কন্ফিগাৰ কৰি আছে।"
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "fstab লিখি আছে।"
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "OpenRC সেৱা সমুহ কনফিগাৰ কৰক"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "ৰাণ-লেভেল {level!s}ত সেৱা {name!s} যোগ কৰিব নোৱাৰি।"
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "ৰাণ-লেভেল {level!s}ৰ পৰা সেৱা {name!s} আতৰাব নোৱাৰি।"
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"ৰান-লেভেল {level!s}ত সেৱা {name!s}ৰ বাবে অজ্ঞাত সেৱা কাৰ্য্য "
+"<code>{arg!s}</code> ।"
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "chrootত <code>rc-update {arg!s}</code> call ক্ৰুটি কোড {num!s}।"
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "গন্তব্য ৰাণলেভেল উপস্থিত নাই।"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"{level!s} ৰাণলেভেলৰ বাবে পথ হ'ল <code>{path!s}</code> যিটো উপস্থিত নাই।"
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "গন্তব্য সেৱা উপস্থিত নাই।"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "{name!s}ৰ বাবে পথ হ'ল <code>{path!s}</code> যিটো উপস্থিত নাই।"
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "dracutৰ সৈতে initramfs বনাই আছে।"
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "গন্তব্য স্থানত dracut চলোৱাত বিফল হ'ল"
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "এক্সিড্ কোড্ আছিল {}"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "GRUB কনফিগাৰ কৰক।"
+
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
 msgstr "KDM কনফিগাৰেচন ফাইলত লিখিব নোৱাৰি"
@@ -208,145 +336,14 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "ডিস্প্লে প্ৰবন্ধক কন্ফিগাৰেচন অসমাপ্ত"
 
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "mkinitcpio কনফিগাৰ কৰি আছে।"
-
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "ব্যৱহাৰৰ বাবে <pre>{!s}</pre>ৰ কোনো মাউন্ট্ পাইন্ট্ দিয়া হোৱা নাই।"
-
-#: src/modules/luksopenswaphookcfg/main.py:35
-msgid "Configuring encrypted swap."
-msgstr "এন্ক্ৰিপ্টেড স্ৱেপ কন্ফিগাৰ কৰি আছে।"
-
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "ডাটা ইন্স্তল কৰি আছে।"
-
-#: src/modules/services-openrc/main.py:38
-msgid "Configure OpenRC services"
-msgstr "OpenRC সেৱা সমুহ কনফিগাৰ কৰক"
-
-#: src/modules/services-openrc/main.py:66
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "ৰাণ-লেভেল {level!s}ত সেৱা {name!s} যোগ কৰিব নোৱাৰি।"
-
-#: src/modules/services-openrc/main.py:68
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "ৰাণ-লেভেল {level!s}ৰ পৰা সেৱা {name!s} আতৰাব নোৱাৰি।"
-
-#: src/modules/services-openrc/main.py:70
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"ৰান-লেভেল {level!s}ত সেৱা {name!s}ৰ বাবে অজ্ঞাত সেৱা কাৰ্য্য "
-"<code>{arg!s}</code> ।"
-
-#: src/modules/services-openrc/main.py:103
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "chrootত <code>rc-update {arg!s}</code> call ক্ৰুটি কোড {num!s}।"
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target runlevel does not exist"
-msgstr "গন্তব্য ৰাণলেভেল উপস্থিত নাই।"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"{level!s} ৰাণলেভেলৰ বাবে পথ হ'ল <code>{path!s}</code> যিটো উপস্থিত নাই।"
-
-#: src/modules/services-openrc/main.py:119
-msgid "Target service does not exist"
-msgstr "গন্তব্য সেৱা উপস্থিত নাই।"
-
-#: src/modules/services-openrc/main.py:120
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "{name!s}ৰ বাবে পথ হ'ল <code>{path!s}</code> যিটো উপস্থিত নাই।"
-
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Plymouth theme কন্ফিগাৰ কৰি আছে।​"
-
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "পেকেজ ইন্স্তল কৰক।"
-
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "(%(count)d / %(total)d) পেকেজবোৰ সংশোধন কৰি আছে"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Installing one package."
-msgstr[1] "%(num)d পেকেজবোৰ ইনস্তল হৈ আছে।"
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Removing one package."
-msgstr[1] "%(num)d পেকেজবোৰ আতৰোৱা হৈ আছে।"
-
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "বুতলোডাৰ ইন্স্তল কৰক।"
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "initramfs কন্ফিগাৰ কৰি আছে।"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "হাৰ্ডৱেৰৰ ঘড়ী চেত্ কৰি আছে।"
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "dracutৰ সৈতে initramfs বনাই আছে।"
-
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "গন্তব্য স্থানত dracut চলোৱাত বিফল হ'ল"
-
-#: src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "এক্সিড্ কোড্ আছিল {}"
-
-#: src/modules/initramfscfg/main.py:41
-msgid "Configuring initramfs."
-msgstr "initramfs কন্ফিগাৰ কৰি আছে।"
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt সেৱা কন্ফিগাৰ কৰি আছে।"
-
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "fstab লিখি আছে।"
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "ডামী Pythonৰ কায্য"
-
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "ডামী Pythonৰ পদক্ষেপ {}"
-
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "স্থানীয়বোৰ কন্ফিগাৰ কৰি আছে।"
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "নেটৱৰ্ক কন্ফিগাৰ জমা কৰি আছে।"
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "ডাটা ইন্স্তল কৰি আছে।"

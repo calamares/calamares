@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 13:39+0200\n"
+"POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/calamares/teams/20061/ja/)\n"
@@ -23,76 +23,67 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "GRUBを設定にします。"
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "パッケージのインストール"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "パーティションのマウント。"
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "パッケージを処理しています (%(count)d / %(total)d)"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] " %(num)d パッケージをインストールしています。"
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] " %(num)d パッケージを削除しています。"
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "ネットワーク設定を保存しています。"
+
+#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
+#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
 msgid "Configuration Error"
 msgstr "コンフィグレーションエラー"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "<pre>{!s}</pre> に使用するパーティションが定義されていません。"
-
-#: src/modules/services-systemd/main.py:35
-msgid "Configure systemd services"
-msgstr "systemdサービスを設定"
-
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
-msgid "Cannot modify service"
-msgstr "サービスが変更できません"
-
-#: src/modules/services-systemd/main.py:69
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"chroot で <code>systemctl {arg!s}</code> を呼び出すと、エラーコード {num!s} が返されました。"
-
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "<code>{name!s}</code>というsystemdサービスが可能にすることができません"
-
-#: src/modules/services-systemd/main.py:74
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "systemd でターゲット <code>{name!s}</code>が開始できません。"
-
-#: src/modules/services-systemd/main.py:78
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "systemd でターゲット <code>{name!s}</code>が停止できません。"
-
-#: src/modules/services-systemd/main.py:80
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "systemd ユニット <code>{name!s}</code> をマスクできません。"
-
-#: src/modules/services-systemd/main.py:82
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"ユニット {name!s} に対する未知の systemd コマンド <code>{command!s}</code> と "
-"<code>{suffix!s}</code>。"
+#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
+#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
+#: src/modules/initramfscfg/main.py:99
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr " <pre>{!s}</pre> を使用するのにルートマウントポイントが与えられていません。"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "ファイルシステムをアンマウント。"
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "mkinitcpioを設定しています。"
+
+#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
+#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
+#: src/modules/rawfs/main.py:172
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "<pre>{!s}</pre> に使用するパーティションが定義されていません。"
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcryptサービスを設定しています。"
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
@@ -153,6 +144,139 @@ msgstr "unsquashfs が見つかりませんでした。 squashfs-toolsがイン�
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "ターゲットシステムの宛先 \"{}\" はディレクトリではありません"
 
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "systemdサービスを設定"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "サービスが変更できません"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"chroot で <code>systemctl {arg!s}</code> を呼び出すと、エラーコード {num!s} が返されました。"
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "<code>{name!s}</code>というsystemdサービスが可能にすることができません"
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "systemd でターゲット <code>{name!s}</code>が開始できません。"
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "systemd でターゲット <code>{name!s}</code>が停止できません。"
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "systemd ユニット <code>{name!s}</code> をマスクできません。"
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"ユニット {name!s} に対する未知の systemd コマンド <code>{command!s}</code> と "
+"<code>{suffix!s}</code>。"
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Dummy python job."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Dummy python step {}"
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "ブートローダーをインストール"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "ロケールを設定しています。"
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "パーティションのマウント。"
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Plymouthテーマを設定"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "暗号化したswapを設定しています。"
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "fstabを書き込んでいます。"
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "OpenRCサービスを設定"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "ランレベル  {level!s} にサービス {name!s} が追加できません。"
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "ランレベル  {level!s} からサービス {name!s} が削除できません。"
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"ランレベル {level!s} 内のサービス {name!s} に対する未知のサービスアクション <code>{arg!s}</code>。"
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "chrootで <code>rc-update {arg!s}</code> を呼び出すとエラーコード {num!s} が返されました。"
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "ターゲットとするランレベルは存在しません"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "ランレベル {level!s} のパスが <code>{path!s}</code> です。これは存在しません。"
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "ターゲットとするサービスは存在しません"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "サービス {name!s} のパスが <code>{path!s}</code> です。これは存在しません。"
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "dracutとinitramfsを作成しています。"
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "ターゲット上で dracut の実行に失敗"
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "停止コードは {} でした"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "GRUBを設定にします。"
+
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
 msgstr "KDMの設定ファイルに書き込みができません"
@@ -207,141 +331,14 @@ msgstr "ディスプレイマネージャのリストが bothglobalstorage 及�
 msgid "Display manager configuration was incomplete"
 msgstr "ディスプレイマネージャの設定が不完全です"
 
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "mkinitcpioを設定しています。"
-
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr " <pre>{!s}</pre> を使用するのにルートマウントポイントが与えられていません。"
-
-#: src/modules/luksopenswaphookcfg/main.py:35
-msgid "Configuring encrypted swap."
-msgstr "暗号化したswapを設定しています。"
-
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "データのインストール。"
-
-#: src/modules/services-openrc/main.py:38
-msgid "Configure OpenRC services"
-msgstr "OpenRCサービスを設定"
-
-#: src/modules/services-openrc/main.py:66
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "ランレベル  {level!s} にサービス {name!s} が追加できません。"
-
-#: src/modules/services-openrc/main.py:68
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "ランレベル  {level!s} からサービス {name!s} が削除できません。"
-
-#: src/modules/services-openrc/main.py:70
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"ランレベル {level!s} 内のサービス {name!s} に対する未知のサービスアクション <code>{arg!s}</code>。"
-
-#: src/modules/services-openrc/main.py:103
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "chrootで <code>rc-update {arg!s}</code> を呼び出すとエラーコード {num!s} が返されました。"
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target runlevel does not exist"
-msgstr "ターゲットとするランレベルは存在しません"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "ランレベル {level!s} のパスが <code>{path!s}</code> です。これは存在しません。"
-
-#: src/modules/services-openrc/main.py:119
-msgid "Target service does not exist"
-msgstr "ターゲットとするサービスは存在しません"
-
-#: src/modules/services-openrc/main.py:120
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "サービス {name!s} のパスが <code>{path!s}</code> です。これは存在しません。"
-
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Plymouthテーマを設定"
-
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "パッケージのインストール"
-
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "パッケージを処理しています (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] " %(num)d パッケージをインストールしています。"
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] " %(num)d パッケージを削除しています。"
-
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "ブートローダーをインストール"
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "initramfsを設定しています。"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "ハードウェアクロックの設定"
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "dracutとinitramfsを作成しています。"
-
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "ターゲット上で dracut の実行に失敗"
-
-#: src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "停止コードは {} でした"
-
-#: src/modules/initramfscfg/main.py:41
-msgid "Configuring initramfs."
-msgstr "initramfsを設定しています。"
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcryptサービスを設定しています。"
-
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "fstabを書き込んでいます。"
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Dummy python job."
-
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Dummy python step {}"
-
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "ロケールを設定しています。"
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "ネットワーク設定を保存しています。"
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "データのインストール。"

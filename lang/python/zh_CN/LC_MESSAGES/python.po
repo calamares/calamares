@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 13:39+0200\n"
+"POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2020\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/calamares/teams/20061/zh_CN/)\n"
@@ -25,75 +25,67 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "配置 GRUB."
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "安装软件包。"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "挂载分区。"
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "软件包处理中（%(count)d/%(total)d）"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "安装%(num)d软件包。"
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "移除%(num)d软件包。"
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "正在保存网络配置。"
+
+#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
+#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
 msgid "Configuration Error"
 msgstr "配置错误"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "没有分配分区给 <pre>{!s}</pre>。"
-
-#: src/modules/services-systemd/main.py:35
-msgid "Configure systemd services"
-msgstr "配置 systemd 服务"
-
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
-msgid "Cannot modify service"
-msgstr "无法修改服务"
-
-#: src/modules/services-systemd/main.py:69
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "chroot 中的 <code>systemctl {arg!s}</code> 命令返回错误 {num!s}."
-
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "无法启用 systemd 服务 <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:74
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "无法启用 systemd 目标 <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:78
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "无法禁用 systemd 目标 <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:80
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "无法屏蔽 systemd 单元 <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:82
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"未知的 systemd 命令 <code>{command!s}</code> 和 {name!s}  单元前缀 "
-"<code>{suffix!s}</code>."
+#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
+#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
+#: src/modules/initramfscfg/main.py:99
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr " 未设置 <pre>{!s}</pre> 要使用的根挂载点。"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "卸载文件系统。"
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "配置 mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
+#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
+#: src/modules/rawfs/main.py:172
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "没有分配分区给 <pre>{!s}</pre>。"
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "配置 OpenRC dmcrypt 服务。"
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
@@ -154,6 +146,137 @@ msgstr "未找到 unsquashfs，请确保安装了 squashfs-tools 软件包"
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "目标系统中的 \"{}\" 不是一个目录"
 
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "配置 systemd 服务"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "无法修改服务"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "chroot 中的 <code>systemctl {arg!s}</code> 命令返回错误 {num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "无法启用 systemd 服务 <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "无法启用 systemd 目标 <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "无法禁用 systemd 目标 <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "无法屏蔽 systemd 单元 <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"未知的 systemd 命令 <code>{command!s}</code> 和 {name!s}  单元前缀 "
+"<code>{suffix!s}</code>."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "占位 Python 任务。"
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "占位 Python 步骤 {}"
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "安装启动加载器。"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "正在进行本地化配置。"
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "挂载分区。"
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "配置 Plymouth 主题"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "配置加密交换分区。"
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "正在写入 fstab。"
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "配置 OpenRC 服务。"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "无法将服务 {name!s} 加入 {level!s} 运行级别."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "无法从 {level!s} 运行级别中删除服务 {name!s}。"
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr "未知的服务动作 <code>{arg!s}</code>，服务名: {name!s}，运行级别: {level!s}."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr "chroot 中运行的 <code>rc-update {arg!s}</code> 返回错误 {num!s}."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "目标运行级别不存在。"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "运行级别 {level!s} 所在目录 <code>{path!s}</code> 不存在。"
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "目标服务不存在"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "服务 {name!s} 的路径 <code>{path!s}</code> 不存在。"
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "用 dracut 创建 initramfs."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "无法在目标中运行 dracut "
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "退出码是 {}"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "配置 GRUB."
+
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
 msgstr "无法写入 KDM 配置文件"
@@ -208,140 +331,14 @@ msgstr "globalstorage 和 displaymanager.conf 配置文件中都没有配置显�
 msgid "Display manager configuration was incomplete"
 msgstr "显示管理器配置不完全"
 
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "配置 mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr " 未设置 <pre>{!s}</pre> 要使用的根挂载点。"
-
-#: src/modules/luksopenswaphookcfg/main.py:35
-msgid "Configuring encrypted swap."
-msgstr "配置加密交换分区。"
-
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "安装数据."
-
-#: src/modules/services-openrc/main.py:38
-msgid "Configure OpenRC services"
-msgstr "配置 OpenRC 服务。"
-
-#: src/modules/services-openrc/main.py:66
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "无法将服务 {name!s} 加入 {level!s} 运行级别."
-
-#: src/modules/services-openrc/main.py:68
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "无法从 {level!s} 运行级别中删除服务 {name!s}。"
-
-#: src/modules/services-openrc/main.py:70
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr "未知的服务动作 <code>{arg!s}</code>，服务名: {name!s}，运行级别: {level!s}."
-
-#: src/modules/services-openrc/main.py:103
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr "chroot 中运行的 <code>rc-update {arg!s}</code> 返回错误 {num!s}."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target runlevel does not exist"
-msgstr "目标运行级别不存在。"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "运行级别 {level!s} 所在目录 <code>{path!s}</code> 不存在。"
-
-#: src/modules/services-openrc/main.py:119
-msgid "Target service does not exist"
-msgstr "目标服务不存在"
-
-#: src/modules/services-openrc/main.py:120
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "服务 {name!s} 的路径 <code>{path!s}</code> 不存在。"
-
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "配置 Plymouth 主题"
-
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "安装软件包。"
-
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "软件包处理中（%(count)d/%(total)d）"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "安装%(num)d软件包。"
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "移除%(num)d软件包。"
-
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "安装启动加载器。"
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "正在配置初始内存文件系统。"
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "设置硬件时钟。"
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "用 dracut 创建 initramfs."
-
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "无法在目标中运行 dracut "
-
-#: src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "退出码是 {}"
-
-#: src/modules/initramfscfg/main.py:41
-msgid "Configuring initramfs."
-msgstr "正在配置初始内存文件系统。"
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "配置 OpenRC dmcrypt 服务。"
-
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "正在写入 fstab。"
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "占位 Python 任务。"
-
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "占位 Python 步骤 {}"
-
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "正在进行本地化配置。"
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "正在保存网络配置。"
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "安装数据."

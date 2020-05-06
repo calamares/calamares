@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 13:39+0200\n"
+"POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/calamares/teams/20061/he/)\n"
@@ -22,76 +22,73 @@ msgstr ""
 "Language: he\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "הגדרת GRUB."
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "התקנת חבילות."
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "מחיצות מעוגנות."
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "החבילות מעובדות (%(count)d/%(total)d)"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "מותקנת חבילה אחת."
+msgstr[1] "מותקנות %(num)d חבילות."
+msgstr[2] "מותקנות %(num)d חבילות."
+msgstr[3] "מותקנות %(num)d חבילות."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "מתבצעת הסרה של חבילה אחת."
+msgstr[1] "מתבצעת הסרה של %(num)d חבילות."
+msgstr[2] "מתבצעת הסרה של %(num)d חבילות."
+msgstr[3] "מתבצעת הסרה של %(num)d חבילות."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "הגדרות הרשת נשמרות."
+
+#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
+#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
 msgid "Configuration Error"
 msgstr "שגיאת הגדרות"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "לא הוגדרו מחיצות לשימוש של <pre>{!s}</pre>."
-
-#: src/modules/services-systemd/main.py:35
-msgid "Configure systemd services"
-msgstr "הגדרת שירותי systemd"
-
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
-msgid "Cannot modify service"
-msgstr "לא ניתן לשנות את השירות"
-
-#: src/modules/services-systemd/main.py:69
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>systemctl {arg!s}</code> הקריאה ב־chroot החזירה את קוד השגיאה {num!s}."
-
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "לא ניתן להפעיל את השירות הבא של systemd:‏ <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:74
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "לא ניתן להפעיל את היעד של systemd בשם <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:78
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "לא ניתן להשבית את היעד של systemd בשם  <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:80
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "לא ניתן למסך את היחידה של systemd בשם  <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:82
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"פקודות לא ידועות של systemd‏ <code>{command!s}</code> "
-"ו־<code>{suffix!s}</code> עבור היחידה {name!s}."
+#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
+#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
+#: src/modules/initramfscfg/main.py:99
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "לא סופקה נקודת עגינת שורש לשימוש של <pre>{!s}</pre>."
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "ניתוק עיגון מערכות קבצים."
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "mkinitcpio מותקן."
+
+#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
+#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
+#: src/modules/rawfs/main.py:172
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "לא הוגדרו מחיצות לשימוש של <pre>{!s}</pre>."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "שירות dmcrypt ל־OpenRC מוגדר."
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
@@ -152,6 +149,143 @@ msgstr "איתור unsquashfs לא צלח, נא לוודא שהחבילה squash
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "היעד „{}” במערכת הקבצים המיועדת אינו תיקייה"
 
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "הגדרת שירותי systemd"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "לא ניתן לשנות את השירות"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> הקריאה ב־chroot החזירה את קוד השגיאה {num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "לא ניתן להפעיל את השירות הבא של systemd:‏ <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "לא ניתן להפעיל את היעד של systemd בשם <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "לא ניתן להשבית את היעד של systemd בשם  <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "לא ניתן למסך את היחידה של systemd בשם  <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"פקודות לא ידועות של systemd‏ <code>{command!s}</code> "
+"ו־<code>{suffix!s}</code> עבור היחידה {name!s}."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "משימת דמה של Python."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "צעד דמה של Python {}"
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "התקנת מנהל אתחול."
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "השפות מוגדרות."
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "מחיצות מעוגנות."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "הגדרת ערכת עיצוב של Plymouth"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "מוגדר שטח החלפה מוצפן."
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "fstab נכתב."
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "הגדרת שירותי OpenRC"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "לא ניתן להוסיף את השירות {name!s} לשכבת ההפעלה {level!s}."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "לא ניתן להסיר את השירות {name!s} משכבת ההפעלה {level!s}."
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"service-action‏ (פעולת שירות) <code>{arg!s}</code> בלתי ידועה עבור השירות "
+"{name!s} בשכבת ההפעלה {level!s}."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"הקריאה <code>rc-update {arg!s}</code> במצב chroot החזירה את קוד השגיאה "
+"{num!s}."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "יעד שכבת ההפעלה אינו קיים"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"הנתיב לשכבת ההפעלה {level!s} הוא <code>{path!s}</code> ונתיב זה אינו קיים."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "שירות היעד אינו קיים"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "הנתיב לשירות {name!s} הוא <code>{path!s}</code>, שאינו קיים."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "נוצר initramfs עם dracut."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "הרצת dracut על היעד נכשלה"
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "קוד היציאה היה {}"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "הגדרת GRUB."
+
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
 msgstr "לא ניתן לכתוב את קובץ התצורה של KDM"
@@ -208,151 +342,14 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "תצורת מנהל התצוגה אינה שלמה"
 
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "mkinitcpio מותקן."
-
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "לא סופקה נקודת עגינת שורש לשימוש של <pre>{!s}</pre>."
-
-#: src/modules/luksopenswaphookcfg/main.py:35
-msgid "Configuring encrypted swap."
-msgstr "מוגדר שטח החלפה מוצפן."
-
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "הנתונים מותקנים."
-
-#: src/modules/services-openrc/main.py:38
-msgid "Configure OpenRC services"
-msgstr "הגדרת שירותי OpenRC"
-
-#: src/modules/services-openrc/main.py:66
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "לא ניתן להוסיף את השירות {name!s} לשכבת ההפעלה {level!s}."
-
-#: src/modules/services-openrc/main.py:68
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "לא ניתן להסיר את השירות {name!s} משכבת ההפעלה {level!s}."
-
-#: src/modules/services-openrc/main.py:70
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"service-action‏ (פעולת שירות) <code>{arg!s}</code> בלתי ידועה עבור השירות "
-"{name!s} בשכבת ההפעלה {level!s}."
-
-#: src/modules/services-openrc/main.py:103
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"הקריאה <code>rc-update {arg!s}</code> במצב chroot החזירה את קוד השגיאה "
-"{num!s}."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target runlevel does not exist"
-msgstr "יעד שכבת ההפעלה אינו קיים"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"הנתיב לשכבת ההפעלה {level!s} הוא <code>{path!s}</code> ונתיב זה אינו קיים."
-
-#: src/modules/services-openrc/main.py:119
-msgid "Target service does not exist"
-msgstr "שירות היעד אינו קיים"
-
-#: src/modules/services-openrc/main.py:120
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "הנתיב לשירות {name!s} הוא <code>{path!s}</code>, שאינו קיים."
-
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "הגדרת ערכת עיצוב של Plymouth"
-
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "התקנת חבילות."
-
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "החבילות מעובדות (%(count)d/%(total)d)"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "מותקנת חבילה אחת."
-msgstr[1] "מותקנות %(num)d חבילות."
-msgstr[2] "מותקנות %(num)d חבילות."
-msgstr[3] "מותקנות %(num)d חבילות."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "מתבצעת הסרה של חבילה אחת."
-msgstr[1] "מתבצעת הסרה של %(num)d חבילות."
-msgstr[2] "מתבצעת הסרה של %(num)d חבילות."
-msgstr[3] "מתבצעת הסרה של %(num)d חבילות."
-
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "התקנת מנהל אתחול."
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "initramfs מוגדר."
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "שעון החומרה מוגדר."
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "נוצר initramfs עם dracut."
-
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "הרצת dracut על היעד נכשלה"
-
-#: src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "קוד היציאה היה {}"
-
-#: src/modules/initramfscfg/main.py:41
-msgid "Configuring initramfs."
-msgstr "initramfs מוגדר."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "שירות dmcrypt ל־OpenRC מוגדר."
-
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "fstab נכתב."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "משימת דמה של Python."
-
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "צעד דמה של Python {}"
-
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "השפות מוגדרות."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "הגדרות הרשת נשמרות."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "הנתונים מותקנים."

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 13:39+0200\n"
+"POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Guilherme, 2020\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/calamares/teams/20061/pt_BR/)\n"
@@ -22,77 +22,70 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "Configurar GRUB."
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Instalar pacotes."
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Montando partições."
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Processando pacotes (%(count)d / %(total)d)"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Instalando um pacote."
+msgstr[1] "Instalando %(num)d pacotes."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Removendo um pacote."
+msgstr[1] "Removendo %(num)d pacotes."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Salvando configuração de rede."
+
+#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
+#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
 msgid "Configuration Error"
 msgstr "Erro de Configuração."
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Sem partições definidas para uso por <pre>{!s}</pre>."
-
-#: src/modules/services-systemd/main.py:35
-msgid "Configure systemd services"
-msgstr "Configurar serviços do systemd"
-
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
-msgid "Cannot modify service"
-msgstr "Não é possível modificar o serviço"
-
-#: src/modules/services-systemd/main.py:69
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
+#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
+#: src/modules/initramfscfg/main.py:99
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
-"A chamada <code>systemctl {arg!s}</code> no chroot retornou o código de erro"
-" {num!s}."
-
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Não é possível habilitar o serviço <code>{name!s}</code> do systemd."
-
-#: src/modules/services-systemd/main.py:74
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Não é possível habilitar o alvo <code>{name!s}</code> do systemd."
-
-#: src/modules/services-systemd/main.py:78
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Não é possível desabilitar o alvo <code>{name!s}</code> do systemd."
-
-#: src/modules/services-systemd/main.py:80
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Não é possível mascarar a unidade <code>{name!s}</code> do systemd."
-
-#: src/modules/services-systemd/main.py:82
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Comandos desconhecidos do systemd <code>{command!s}</code> e "
-"<code>{suffix!s}</code> para a unidade {name!s}."
+"Nenhum ponto de montagem para o root fornecido para uso por <pre>{!s}</pre>."
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "Desmontar os sistemas de arquivos."
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "Configurando mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
+#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
+#: src/modules/rawfs/main.py:172
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Sem partições definidas para uso por <pre>{!s}</pre>."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Configurando serviço dmcrypt do OpenRC."
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
@@ -155,6 +148,149 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "A destinação \"{}\" no sistema de destino não é um diretório"
 
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "Configurar serviços do systemd"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "Não é possível modificar o serviço"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"A chamada <code>systemctl {arg!s}</code> no chroot retornou o código de erro"
+" {num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Não é possível habilitar o serviço <code>{name!s}</code> do systemd."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Não é possível habilitar o alvo <code>{name!s}</code> do systemd."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Não é possível desabilitar o alvo <code>{name!s}</code> do systemd."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Não é possível mascarar a unidade <code>{name!s}</code> do systemd."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Comandos desconhecidos do systemd <code>{command!s}</code> e "
+"<code>{suffix!s}</code> para a unidade {name!s}."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Tarefa modelo python."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Etapa modelo python {}"
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Instalar bootloader."
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Configurando locais."
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Montando partições."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Configurar tema do Plymouth"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "Configurando swap encriptada."
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Escrevendo fstab."
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "Configurar serviços do OpenRC"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr ""
+"Não é possível adicionar serviço {name!s} ao nível de execução {level!s}."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr ""
+"Não é possível remover serviço {name!s} do nível de execução {level!s}."
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Serviço de ação <code>{arg!s}</code> desconhecido para o serviço {name!s} no"
+" nível de execução {level!s}."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"Chamada <code>rc-update {arg!s}</code> no chroot retornou o código de erro "
+"{num!s}."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "O nível de execução de destino não existe"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"O caminho para o nível de execução {level!s} é <code>{path!s}</code>, o qual"
+" não existe."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "O serviço de destino não existe"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"O caminho para o serviço {name!s} é <code>{path!s}</code>, o qual não "
+"existe."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "Criando initramfs com dracut."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "Erro ao executar dracut no alvo"
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "O código de saída foi {}"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Configurar GRUB."
+
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
 msgstr "Não foi possível gravar o arquivo de configuração do KDM"
@@ -212,153 +348,14 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "A configuração do gerenciador de exibição está incompleta"
 
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "Configurando mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Nenhum ponto de montagem para o root fornecido para uso por <pre>{!s}</pre>."
-
-#: src/modules/luksopenswaphookcfg/main.py:35
-msgid "Configuring encrypted swap."
-msgstr "Configurando swap encriptada."
-
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "Instalando os dados."
-
-#: src/modules/services-openrc/main.py:38
-msgid "Configure OpenRC services"
-msgstr "Configurar serviços do OpenRC"
-
-#: src/modules/services-openrc/main.py:66
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr ""
-"Não é possível adicionar serviço {name!s} ao nível de execução {level!s}."
-
-#: src/modules/services-openrc/main.py:68
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr ""
-"Não é possível remover serviço {name!s} do nível de execução {level!s}."
-
-#: src/modules/services-openrc/main.py:70
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Serviço de ação <code>{arg!s}</code> desconhecido para o serviço {name!s} no"
-" nível de execução {level!s}."
-
-#: src/modules/services-openrc/main.py:103
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"Chamada <code>rc-update {arg!s}</code> no chroot retornou o código de erro "
-"{num!s}."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target runlevel does not exist"
-msgstr "O nível de execução de destino não existe"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"O caminho para o nível de execução {level!s} é <code>{path!s}</code>, o qual"
-" não existe."
-
-#: src/modules/services-openrc/main.py:119
-msgid "Target service does not exist"
-msgstr "O serviço de destino não existe"
-
-#: src/modules/services-openrc/main.py:120
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"O caminho para o serviço {name!s} é <code>{path!s}</code>, o qual não "
-"existe."
-
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Configurar tema do Plymouth"
-
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Instalar pacotes."
-
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Processando pacotes (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Instalando um pacote."
-msgstr[1] "Instalando %(num)d pacotes."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Removendo um pacote."
-msgstr[1] "Removendo %(num)d pacotes."
-
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "Instalar bootloader."
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "Configurando initramfs."
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "Configurando relógio de hardware."
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "Criando initramfs com dracut."
-
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "Erro ao executar dracut no alvo"
-
-#: src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "O código de saída foi {}"
-
-#: src/modules/initramfscfg/main.py:41
-msgid "Configuring initramfs."
-msgstr "Configurando initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Configurando serviço dmcrypt do OpenRC."
-
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "Escrevendo fstab."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Tarefa modelo python."
-
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Etapa modelo python {}"
-
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "Configurando locais."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Salvando configuração de rede."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Instalando os dados."

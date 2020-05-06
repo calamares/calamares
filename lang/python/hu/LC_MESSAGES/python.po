@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 13:39+0200\n"
+"POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Lajos Pasztor <mrlajos@gmail.com>, 2019\n"
 "Language-Team: Hungarian (https://www.transifex.com/calamares/teams/20061/hu/)\n"
@@ -24,77 +24,69 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "GRUB konfigurálása."
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Csomagok telepítése."
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Partíciók csatolása."
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Csomagok feldolgozása (%(count)d / %(total)d)"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Egy csomag telepítése."
+msgstr[1] "%(num)d csomag telepítése."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Egy csomag eltávolítása."
+msgstr[1] "%(num)d csomag eltávolítása."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Hálózati konfiguráció mentése."
+
+#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
+#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
 msgid "Configuration Error"
 msgstr "Konfigurációs hiba"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Nincsenek partíciók meghatározva a <pre>{!s}</pre> használatához."
-
-#: src/modules/services-systemd/main.py:35
-msgid "Configure systemd services"
-msgstr "systemd szolgáltatások beállítása"
-
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
-msgid "Cannot modify service"
-msgstr "a szolgáltatást nem lehet módosítani"
-
-#: src/modules/services-systemd/main.py:69
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>systemctl {arg!s}</code> hívás a chroot-ban hibakódot okozott {num!s}."
-
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr ""
-"Nem sikerült a systemd szolgáltatást engedélyezni: <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:74
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Nem sikerült a systemd célt engedélyezni: <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:78
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Nem sikerült a systemd cél <code>{name!s}</code> letiltása."
-
-#: src/modules/services-systemd/main.py:80
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Nem maszkolható systemd egység: <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:82
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Ismeretlen systemd parancsok <code>{command!s}</code> és "
-"<code>{suffix!s}</code> a {name!s} egységhez. "
+#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
+#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
+#: src/modules/initramfscfg/main.py:99
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "Nincs root csatolási pont megadva a <pre>{!s}</pre> használatához."
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "Fájlrendszerek leválasztása."
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "mkinitcpio konfigurálása."
+
+#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
+#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
+#: src/modules/rawfs/main.py:172
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Nincsenek partíciók meghatározva a <pre>{!s}</pre> használatához."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt szolgáltatás konfigurálása."
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
@@ -158,6 +150,145 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Az elérés \"{}\" nem létező könyvtár a cél rendszerben"
 
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "systemd szolgáltatások beállítása"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "a szolgáltatást nem lehet módosítani"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> hívás a chroot-ban hibakódot okozott {num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr ""
+"Nem sikerült a systemd szolgáltatást engedélyezni: <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Nem sikerült a systemd célt engedélyezni: <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Nem sikerült a systemd cél <code>{name!s}</code> letiltása."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Nem maszkolható systemd egység: <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Ismeretlen systemd parancsok <code>{command!s}</code> és "
+"<code>{suffix!s}</code> a {name!s} egységhez. "
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Hamis Python feladat."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Hamis {}. Python lépés"
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Rendszerbetöltő telepítése."
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "nyelvi értékek konfigurálása."
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Partíciók csatolása."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Plymouth téma beállítása"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "Titkosított swap konfigurálása."
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "fstab írása."
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "OpenRC szolgáltatások beállítása"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "Nem lehet  {name!s} szolgáltatást hozzáadni a run-level {level!s}."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "Nem lehet törölni a {name!s} szolgáltatást a {level!s} futás-szintből"
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Ismeretlen service-action <code>{arg!s}</code> a szolgáltatáshoz {name!s} in"
+" run-level {level!s}."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>rc-update {arg!s}</code> hívás a chroot-ban hibakódot adott: {num!s}."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "A cél futási szint nem létezik"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"A futási-szint elérési útja {level!s} ami <code>{path!s}</code>, nem "
+"létezik."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "A cél szolgáltatás nem létezik"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"A szolgáltatás {name!s} elérési útja <code>{path!s}</code>, nem létezik."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "initramfs létrehozása ezzel: dracut."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "dracut futtatása nem sikerült a célon."
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "A kilépési kód {} volt."
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "GRUB konfigurálása."
+
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
 msgstr "A KDM konfigurációs fájl nem írható"
@@ -214,148 +345,14 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "A kijelzőkezelő konfigurációja hiányos volt"
 
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "mkinitcpio konfigurálása."
-
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Nincs root csatolási pont megadva a <pre>{!s}</pre> használatához."
-
-#: src/modules/luksopenswaphookcfg/main.py:35
-msgid "Configuring encrypted swap."
-msgstr "Titkosított swap konfigurálása."
-
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "Adatok telepítése."
-
-#: src/modules/services-openrc/main.py:38
-msgid "Configure OpenRC services"
-msgstr "OpenRC szolgáltatások beállítása"
-
-#: src/modules/services-openrc/main.py:66
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Nem lehet  {name!s} szolgáltatást hozzáadni a run-level {level!s}."
-
-#: src/modules/services-openrc/main.py:68
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Nem lehet törölni a {name!s} szolgáltatást a {level!s} futás-szintből"
-
-#: src/modules/services-openrc/main.py:70
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Ismeretlen service-action <code>{arg!s}</code> a szolgáltatáshoz {name!s} in"
-" run-level {level!s}."
-
-#: src/modules/services-openrc/main.py:103
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>rc-update {arg!s}</code> hívás a chroot-ban hibakódot adott: {num!s}."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target runlevel does not exist"
-msgstr "A cél futási szint nem létezik"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"A futási-szint elérési útja {level!s} ami <code>{path!s}</code>, nem "
-"létezik."
-
-#: src/modules/services-openrc/main.py:119
-msgid "Target service does not exist"
-msgstr "A cél szolgáltatás nem létezik"
-
-#: src/modules/services-openrc/main.py:120
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"A szolgáltatás {name!s} elérési útja <code>{path!s}</code>, nem létezik."
-
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Plymouth téma beállítása"
-
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Csomagok telepítése."
-
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Csomagok feldolgozása (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Egy csomag telepítése."
-msgstr[1] "%(num)d csomag telepítése."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Egy csomag eltávolítása."
-msgstr[1] "%(num)d csomag eltávolítása."
-
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "Rendszerbetöltő telepítése."
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "initramfs konfigurálása."
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "Rendszeridő beállítása."
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "initramfs létrehozása ezzel: dracut."
-
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "dracut futtatása nem sikerült a célon."
-
-#: src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "A kilépési kód {} volt."
-
-#: src/modules/initramfscfg/main.py:41
-msgid "Configuring initramfs."
-msgstr "initramfs konfigurálása."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt szolgáltatás konfigurálása."
-
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "fstab írása."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Hamis Python feladat."
-
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Hamis {}. Python lépés"
-
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "nyelvi értékek konfigurálása."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Hálózati konfiguráció mentése."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Adatok telepítése."

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 13:39+0200\n"
+"POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2020\n"
 "Language-Team: Turkish (Turkey) (https://www.transifex.com/calamares/teams/20061/tr_TR/)\n"
@@ -22,77 +22,69 @@ msgstr ""
 "Language: tr_TR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "GRUB'u yapılandır."
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Paketleri yükle"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Disk bölümlemeleri bağlanıyor."
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Paketler işleniyor (%(count)d / %(total)d)"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "%(num)d paket yükleniyor"
+msgstr[1] "%(num)d paket yükleniyor"
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "%(num)d paket kaldırılıyor."
+msgstr[1] "%(num)d paket kaldırılıyor."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Ağ yapılandırması kaydediliyor."
+
+#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
+#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
 msgid "Configuration Error"
 msgstr "Yapılandırma Hatası"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "<pre>{!s}</pre> kullanması için hiçbir bölüm tanımlanmadı."
-
-#: src/modules/services-systemd/main.py:35
-msgid "Configure systemd services"
-msgstr "Systemd hizmetlerini yapılandır"
-
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
-msgid "Cannot modify service"
-msgstr "Hizmet değiştirilemiyor"
-
-#: src/modules/services-systemd/main.py:69
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>systemctl {arg!s}</code> chroot çağrısında hata kodu döndürüldü "
-"{num!s}."
-
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Systemd hizmeti etkinleştirilemiyor <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:74
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Systemd hedefi etkinleştirilemiyor <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:78
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Systemd hedefi devre dışı bırakılamıyor <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:80
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Systemd birimi maskeleyemiyor <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:82
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Bilinmeyen sistem komutları <code>{command!s}</code> ve "
-"<code>{suffix!s}</code>  {name!s} birimi için."
+#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
+#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
+#: src/modules/initramfscfg/main.py:99
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "<pre>{!s}</pre> kullanması için kök bağlama noktası verilmedi."
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "Dosya sistemlerini ayırın."
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "Mkinitcpio yapılandırılıyor."
+
+#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
+#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
+#: src/modules/rawfs/main.py:172
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "<pre>{!s}</pre> kullanması için hiçbir bölüm tanımlanmadı."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt hizmeti yapılandırılıyor."
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
@@ -155,6 +147,143 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Hedef sistemdeki \"{}\" hedefi bir dizin değil"
 
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "Systemd hizmetlerini yapılandır"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "Hizmet değiştirilemiyor"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> chroot çağrısında hata kodu döndürüldü "
+"{num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Systemd hizmeti etkinleştirilemiyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Systemd hedefi etkinleştirilemiyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Systemd hedefi devre dışı bırakılamıyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Systemd birimi maskeleyemiyor <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Bilinmeyen sistem komutları <code>{command!s}</code> ve "
+"<code>{suffix!s}</code>  {name!s} birimi için."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Dummy python job."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Dummy python step {}"
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Önyükleyici kuruluyor"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Sistem yerelleri yapılandırılıyor."
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Disk bölümlemeleri bağlanıyor."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Plymouth temasını yapılandır"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "Şifreli takas alanı yapılandırılıyor."
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Fstab dosyasına yazılıyor."
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr " OpenRC servislerini yapılandır"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "{name!s} hizmeti, {level!s} çalışma düzeyine ekleyemiyor."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "{name!s} hizmeti {level!s} çalışma düzeyinden kaldırılamıyor."
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Çalışma düzeyinde {level!s} hizmetinde {name!s} servisi için bilinmeyen "
+"hizmet eylemi <code>{arg!s}</code>."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+" <code>rc-update {arg!s}</code> çağrısında chroot {num!s} hata kodunu "
+"döndürdü."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "Hedef çalışma seviyesi mevcut değil"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "Runlevel  {level!s} yolu, mevcut olmayan <code>{path!s}</code> 'dir."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "Hedef hizmet mevcut değil"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "{name!s} hizmetinin yolu <code>{path!s}</code>, ki mevcut değil."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "Dracut ile initramfs oluşturuluyor."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "Hedef üzerinde dracut çalıştırılamadı"
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "Çıkış kodu {} idi"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "GRUB'u yapılandır."
+
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
 msgstr "KDM yapılandırma dosyası yazılamıyor"
@@ -211,146 +340,14 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Ekran yöneticisi yapılandırma işi tamamlanamadı"
 
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "Mkinitcpio yapılandırılıyor."
-
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "<pre>{!s}</pre> kullanması için kök bağlama noktası verilmedi."
-
-#: src/modules/luksopenswaphookcfg/main.py:35
-msgid "Configuring encrypted swap."
-msgstr "Şifreli takas alanı yapılandırılıyor."
-
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "Veri yükleniyor."
-
-#: src/modules/services-openrc/main.py:38
-msgid "Configure OpenRC services"
-msgstr " OpenRC servislerini yapılandır"
-
-#: src/modules/services-openrc/main.py:66
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "{name!s} hizmeti, {level!s} çalışma düzeyine ekleyemiyor."
-
-#: src/modules/services-openrc/main.py:68
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "{name!s} hizmeti {level!s} çalışma düzeyinden kaldırılamıyor."
-
-#: src/modules/services-openrc/main.py:70
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Çalışma düzeyinde {level!s} hizmetinde {name!s} servisi için bilinmeyen "
-"hizmet eylemi <code>{arg!s}</code>."
-
-#: src/modules/services-openrc/main.py:103
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-" <code>rc-update {arg!s}</code> çağrısında chroot {num!s} hata kodunu "
-"döndürdü."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target runlevel does not exist"
-msgstr "Hedef çalışma seviyesi mevcut değil"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "Runlevel  {level!s} yolu, mevcut olmayan <code>{path!s}</code> 'dir."
-
-#: src/modules/services-openrc/main.py:119
-msgid "Target service does not exist"
-msgstr "Hedef hizmet mevcut değil"
-
-#: src/modules/services-openrc/main.py:120
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr "{name!s} hizmetinin yolu <code>{path!s}</code>, ki mevcut değil."
-
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Plymouth temasını yapılandır"
-
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Paketleri yükle"
-
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Paketler işleniyor (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "%(num)d paket yükleniyor"
-msgstr[1] "%(num)d paket yükleniyor"
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "%(num)d paket kaldırılıyor."
-msgstr[1] "%(num)d paket kaldırılıyor."
-
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "Önyükleyici kuruluyor"
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "Initramfs yapılandırılıyor."
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "Donanım saati ayarlanıyor."
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "Dracut ile initramfs oluşturuluyor."
-
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "Hedef üzerinde dracut çalıştırılamadı"
-
-#: src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "Çıkış kodu {} idi"
-
-#: src/modules/initramfscfg/main.py:41
-msgid "Configuring initramfs."
-msgstr "Initramfs yapılandırılıyor."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "OpenRC dmcrypt hizmeti yapılandırılıyor."
-
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "Fstab dosyasına yazılıyor."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Dummy python job."
-
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Dummy python step {}"
-
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "Sistem yerelleri yapılandırılıyor."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Ağ yapılandırması kaydediliyor."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Veri yükleniyor."

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 13:39+0200\n"
+"POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2020\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/calamares/teams/20061/cs_CZ/)\n"
@@ -22,76 +22,73 @@ msgstr ""
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "Nastavování zavaděče GRUB."
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Instalovat balíčky."
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Připojování oddílů."
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Zpracovávání balíčků (%(count)d / %(total)d)"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Je instalován jeden balíček."
+msgstr[1] "Jsou instalovány %(num)d balíčky."
+msgstr[2] "Je instalováno %(num)d balíčků."
+msgstr[3] "Je instalováno %(num)d balíčků."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Odebírá se jeden balíček."
+msgstr[1] "Odebírají se %(num)d balíčky."
+msgstr[2] "Odebírá se %(num)d balíčků."
+msgstr[3] "Odebírá se %(num)d balíčků."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Ukládání nastavení sítě."
+
+#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
+#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
 msgid "Configuration Error"
 msgstr "Chyba nastavení"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Pro <pre>{!s}</pre> nejsou zadány žádné oddíly."
-
-#: src/modules/services-systemd/main.py:35
-msgid "Configure systemd services"
-msgstr "Nastavit služby systemd"
-
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
-msgid "Cannot modify service"
-msgstr "Službu se nedaří upravit"
-
-#: src/modules/services-systemd/main.py:69
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"Volání <code>systemctl {arg!s}</code> v chroot vrátilo chybový kód {num!s}."
-
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Nedaří se zapnout systemd službu <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:74
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Nedaří se zapnout systemd službu <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:78
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Nedaří se vypnout systemd cíl <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:80
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Nedaří se maskovat systemd jednotku <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:82
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Neznámé systemd příkazy <code>{command!s}</code> a <code>{suffix!s}</code> "
-"pro jednotku {name!s}."
+#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
+#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
+#: src/modules/initramfscfg/main.py:99
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "Pro <pre>{!s}</pre> není zadán žádný přípojný bod."
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "Odpojit souborové systémy."
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "Nastavování mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
+#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
+#: src/modules/rawfs/main.py:172
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Pro <pre>{!s}</pre> nejsou zadány žádné oddíly."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Nastavování služby OpenRC dmcrypt."
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
@@ -156,6 +153,147 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Cíl „{}“ v cílovém systému není složka"
 
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "Nastavit služby systemd"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "Službu se nedaří upravit"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"Volání <code>systemctl {arg!s}</code> v chroot vrátilo chybový kód {num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Nedaří se zapnout systemd službu <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Nedaří se zapnout systemd službu <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Nedaří se vypnout systemd cíl <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Nedaří se maskovat systemd jednotku <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Neznámé systemd příkazy <code>{command!s}</code> a <code>{suffix!s}</code> "
+"pro jednotku {name!s}."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Testovací úloha python."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Testovací krok {} python."
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Instalace zavaděče systému."
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Nastavování místních a jazykových nastavení."
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Připojování oddílů."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Nastavit téma vzhledu pro Plymouth"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "Nastavování šifrovaného prostoru pro odkládání stránek paměti."
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Zapisování fstab."
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "Nastavit OpenRC služby"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr ""
+"Nedaří se přidat službu {name!s} do úrovně chodu (runlevel) {level!s}."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr ""
+"Nedaří se odebrat službu {name!s} z úrovně chodu (runlevel) {level!s}."
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Neznámá akce služby <code>{arg!s}</code> pro službu {name!s} v úrovni chodu "
+"(runlevel) {level!s}."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>rc-update {arg!s}</code> volání v chroot vrátilo kód chyby {num!s}."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "Cílová úroveň chodu (runlevel) neexistuje"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Popis umístění pro úroveň chodu (runlevel) {level!s} je "
+"<code>{path!s}</code>, keterá neexistuje."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "Cílová služba neexistuje"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Popis umístění pro službu {name!s} je <code>{path!s}</code>, která "
+"neexistuje."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "Vytváření initramfs s dracut."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "Na cíli se nepodařilo spustit dracut"
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "Návratový kód byl {}"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Nastavování zavaděče GRUB."
+
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
 msgstr "Nedaří se zapsat soubor s nastaveními pro KDM"
@@ -212,155 +350,14 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Nastavení správce displeje nebylo úplné"
 
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "Nastavování mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Pro <pre>{!s}</pre> není zadán žádný přípojný bod."
-
-#: src/modules/luksopenswaphookcfg/main.py:35
-msgid "Configuring encrypted swap."
-msgstr "Nastavování šifrovaného prostoru pro odkládání stránek paměti."
-
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "Instalace dat."
-
-#: src/modules/services-openrc/main.py:38
-msgid "Configure OpenRC services"
-msgstr "Nastavit OpenRC služby"
-
-#: src/modules/services-openrc/main.py:66
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr ""
-"Nedaří se přidat službu {name!s} do úrovně chodu (runlevel) {level!s}."
-
-#: src/modules/services-openrc/main.py:68
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr ""
-"Nedaří se odebrat službu {name!s} z úrovně chodu (runlevel) {level!s}."
-
-#: src/modules/services-openrc/main.py:70
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Neznámá akce služby <code>{arg!s}</code> pro službu {name!s} v úrovni chodu "
-"(runlevel) {level!s}."
-
-#: src/modules/services-openrc/main.py:103
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>rc-update {arg!s}</code> volání v chroot vrátilo kód chyby {num!s}."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target runlevel does not exist"
-msgstr "Cílová úroveň chodu (runlevel) neexistuje"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Popis umístění pro úroveň chodu (runlevel) {level!s} je "
-"<code>{path!s}</code>, keterá neexistuje."
-
-#: src/modules/services-openrc/main.py:119
-msgid "Target service does not exist"
-msgstr "Cílová služba neexistuje"
-
-#: src/modules/services-openrc/main.py:120
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Popis umístění pro službu {name!s} je <code>{path!s}</code>, která "
-"neexistuje."
-
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Nastavit téma vzhledu pro Plymouth"
-
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Instalovat balíčky."
-
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Zpracovávání balíčků (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Je instalován jeden balíček."
-msgstr[1] "Jsou instalovány %(num)d balíčky."
-msgstr[2] "Je instalováno %(num)d balíčků."
-msgstr[3] "Je instalováno %(num)d balíčků."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Odebírá se jeden balíček."
-msgstr[1] "Odebírají se %(num)d balíčky."
-msgstr[2] "Odebírá se %(num)d balíčků."
-msgstr[3] "Odebírá se %(num)d balíčků."
-
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "Instalace zavaděče systému."
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "Nastavování initramfs."
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "Nastavování hardwarových hodin."
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "Vytváření initramfs s dracut."
-
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "Na cíli se nepodařilo spustit dracut"
-
-#: src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "Návratový kód byl {}"
-
-#: src/modules/initramfscfg/main.py:41
-msgid "Configuring initramfs."
-msgstr "Nastavování initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Nastavování služby OpenRC dmcrypt."
-
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "Zapisování fstab."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Testovací úloha python."
-
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Testovací krok {} python."
-
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "Nastavování místních a jazykových nastavení."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Ukládání nastavení sítě."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Instalace dat."

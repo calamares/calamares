@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 13:39+0200\n"
+"POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: scootergrisen, 2020\n"
 "Language-Team: Danish (https://www.transifex.com/calamares/teams/20061/da/)\n"
@@ -22,76 +22,70 @@ msgstr ""
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "Konfigurer GRUB."
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Installér pakker."
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Monterer partitioner."
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Forarbejder pakker (%(count)d / %(total)d)"
 
-#: src/modules/mount/main.py:145 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:171
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Installerer én pakke."
+msgstr[1] "Installerer %(num)d pakker."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Fjerner én pakke."
+msgstr[1] "Fjerner %(num)d pakker."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Gemmer netværkskonfiguration."
+
+#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
+#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
+#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
 msgid "Configuration Error"
 msgstr "Fejl ved konfiguration"
 
-#: src/modules/mount/main.py:146 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:172
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
-msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Der er ikke angivet nogle partitioner som <pre>{!s}</pre> skal bruge."
-
-#: src/modules/services-systemd/main.py:35
-msgid "Configure systemd services"
-msgstr "Konfigurer systemd-tjenester"
-
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
-msgid "Cannot modify service"
-msgstr "Kan ikke redigere tjeneste"
-
-#: src/modules/services-systemd/main.py:69
-msgid ""
-"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
+#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
+#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
+#: src/modules/initramfscfg/main.py:99
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr ""
-"<code>systemctl {arg!s}</code>-kald i chroot returnerede fejlkoden {num!s}."
-
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
-msgid "Cannot enable systemd service <code>{name!s}</code>."
-msgstr "Kan ikke aktivere systemd-tjenesten <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:74
-msgid "Cannot enable systemd target <code>{name!s}</code>."
-msgstr "Kan ikke aktivere systemd-målet <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:78
-msgid "Cannot disable systemd target <code>{name!s}</code>."
-msgstr "Kan ikke deaktivere systemd-målet <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:80
-msgid "Cannot mask systemd unit <code>{name!s}</code>."
-msgstr "Kan ikke maskere systemd-enheden <code>{name!s}</code>."
-
-#: src/modules/services-systemd/main.py:82
-msgid ""
-"Unknown systemd commands <code>{command!s}</code> and "
-"<code>{suffix!s}</code> for unit {name!s}."
-msgstr ""
-"Ukendte systemd-kommandoer <code>{command!s}</code> og "
-"<code>{suffix!s}</code> til enheden {name!s}."
+"Der er ikke angivet noget rodmonteringspunkt som <pre>{!s}</pre> skal bruge."
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "Afmonter filsystemer."
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "Konfigurerer mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
+#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
+#: src/modules/rawfs/main.py:172
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "Der er ikke angivet nogle partitioner som <pre>{!s}</pre> skal bruge."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Konfigurerer OpenRC dmcrypt-tjeneste."
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
@@ -154,6 +148,144 @@ msgstr ""
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "Destinationen \"{}\" i målsystemet er ikke en mappe"
 
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "Konfigurer systemd-tjenester"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "Kan ikke redigere tjeneste"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code>-kald i chroot returnerede fejlkoden {num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "Kan ikke aktivere systemd-tjenesten <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "Kan ikke aktivere systemd-målet <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "Kan ikke deaktivere systemd-målet <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "Kan ikke maskere systemd-enheden <code>{name!s}</code>."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Ukendte systemd-kommandoer <code>{command!s}</code> og "
+"<code>{suffix!s}</code> til enheden {name!s}."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Dummy python-job."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Dummy python-trin {}"
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Installér bootloader."
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Konfigurerer lokaliteter."
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Monterer partitioner."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Konfigurer Plymouth-tema"
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "Konfigurerer krypteret swap."
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Skriver fstab."
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "Konfigurer OpenRC-tjenester"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "Kan ikke tilføje tjenesten {name!s} til kørselsniveauet {level!s}."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "Kan ikke fjerne tjenesten {name!s} fra kørselsniveauet {level!s}."
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"Ukendt tjenestehandling <code>{arg!s}</code> til tjenesten {name!s} i "
+"kørselsniveauet {level!s}."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>rc-update {arg!s}</code>-kald i chroot returnerede fejlkoden {num!s}."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "Målkørselsniveau findes ikke"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Stien til kørselsniveauet {level!s} er <code>{path!s}</code>, som ikke "
+"findes."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "Måltjenesten findes ikke"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"Stien til tjenesten {name!s} er <code>{path!s}</code>, som ikke findes."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "Opretter initramfs med dracut."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "Kunne ikke køre dracut på målet"
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "Afslutningskoden var {}"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Konfigurer GRUB."
+
 #: src/modules/displaymanager/main.py:515
 msgid "Cannot write KDM configuration file"
 msgstr "Kan ikke skrive KDM-konfigurationsfil"
@@ -211,149 +343,14 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "Displayhåndtering-konfiguration er ikke komplet"
 
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "Konfigurerer mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Der er ikke angivet noget rodmonteringspunkt som <pre>{!s}</pre> skal bruge."
-
-#: src/modules/luksopenswaphookcfg/main.py:35
-msgid "Configuring encrypted swap."
-msgstr "Konfigurerer krypteret swap."
-
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "Installerer data."
-
-#: src/modules/services-openrc/main.py:38
-msgid "Configure OpenRC services"
-msgstr "Konfigurer OpenRC-tjenester"
-
-#: src/modules/services-openrc/main.py:66
-msgid "Cannot add service {name!s} to run-level {level!s}."
-msgstr "Kan ikke tilføje tjenesten {name!s} til kørselsniveauet {level!s}."
-
-#: src/modules/services-openrc/main.py:68
-msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Kan ikke fjerne tjenesten {name!s} fra kørselsniveauet {level!s}."
-
-#: src/modules/services-openrc/main.py:70
-msgid ""
-"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
-"level {level!s}."
-msgstr ""
-"Ukendt tjenestehandling <code>{arg!s}</code> til tjenesten {name!s} i "
-"kørselsniveauet {level!s}."
-
-#: src/modules/services-openrc/main.py:103
-msgid ""
-"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
-msgstr ""
-"<code>rc-update {arg!s}</code>-kald i chroot returnerede fejlkoden {num!s}."
-
-#: src/modules/services-openrc/main.py:110
-msgid "Target runlevel does not exist"
-msgstr "Målkørselsniveau findes ikke"
-
-#: src/modules/services-openrc/main.py:111
-msgid ""
-"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Stien til kørselsniveauet {level!s} er <code>{path!s}</code>, som ikke "
-"findes."
-
-#: src/modules/services-openrc/main.py:119
-msgid "Target service does not exist"
-msgstr "Måltjenesten findes ikke"
-
-#: src/modules/services-openrc/main.py:120
-msgid ""
-"The path for service {name!s} is <code>{path!s}</code>, which does not "
-"exist."
-msgstr ""
-"Stien til tjenesten {name!s} er <code>{path!s}</code>, som ikke findes."
-
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Konfigurer Plymouth-tema"
-
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Installér pakker."
-
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Forarbejder pakker (%(count)d / %(total)d)"
-
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Installerer én pakke."
-msgstr[1] "Installerer %(num)d pakker."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Fjerner én pakke."
-msgstr[1] "Fjerner %(num)d pakker."
-
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "Installér bootloader."
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "Konfigurerer initramfs."
 
 #: src/modules/hwclock/main.py:35
 msgid "Setting hardware clock."
 msgstr "Indstiller hardwareur."
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "Opretter initramfs med dracut."
-
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "Kunne ikke køre dracut på målet"
-
-#: src/modules/dracut/main.py:59
-msgid "The exit code was {}"
-msgstr "Afslutningskoden var {}"
-
-#: src/modules/initramfscfg/main.py:41
-msgid "Configuring initramfs."
-msgstr "Konfigurerer initramfs."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Konfigurerer OpenRC dmcrypt-tjeneste."
-
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "Skriver fstab."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Dummy python-job."
-
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Dummy python-trin {}"
-
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "Konfigurerer lokaliteter."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Gemmer netværkskonfiguration."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Installerer data."
