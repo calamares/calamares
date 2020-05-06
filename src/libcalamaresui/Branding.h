@@ -61,7 +61,8 @@ public:
         ProductUrl,
         SupportUrl,
         KnownIssuesUrl,
-        ReleaseNotesUrl
+        ReleaseNotesUrl,
+        DonateUrl
     };
     Q_ENUM( StringEntry )
 
