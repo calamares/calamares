@@ -236,7 +236,7 @@ synchronousRun( QNetworkAccessManager* nam, const QUrl& url, const RequestOption
     }
     else if ( reply->error() != QNetworkReply::NoError )
     {
-        return qMakePair( RequestStatus( RequestStatus::Timeout ), nullptr );
+        return qMakePair( RequestStatus( RequestStatus::HttpError ), nullptr );
     }
     else
     {
@@ -279,6 +279,30 @@ QNetworkReply*
 Manager::asynchronousGet( const QUrl& url, const CalamaresUtils::Network::RequestOptions& options )
 {
     return asynchronousRun( d->nam(), url, options );
+}
+
+QDebug&
+operator<<( QDebug& s, const CalamaresUtils::Network::RequestStatus& e )
+{
+    s << int( e.status ) << bool( e );
+    switch ( e.status )
+    {
+    case RequestStatus::Ok:
+        break;
+    case RequestStatus::Timeout:
+        s << "Timeout";
+        break;
+    case RequestStatus::Failed:
+        s << "Failed";
+        break;
+    case RequestStatus::HttpError:
+        s << "HTTP";
+        break;
+    case RequestStatus::Empty:
+        s << "Empty";
+        break;
+    }
+    return s;
 }
 
 

@@ -49,5 +49,6 @@ NetworkTests::testPing()
     auto& nam = Manager::instance();
     auto canPing_www_kde_org
         = nam.synchronousPing( QUrl( "https://www.kde.org" ), RequestOptions( RequestOptions::FollowRedirect ) );
+    cDebug() << "Ping:" << canPing_www_kde_org;
     QVERIFY( canPing_www_kde_org );
 }

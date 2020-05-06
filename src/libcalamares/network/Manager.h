@@ -22,6 +22,7 @@
 #include "DllMacro.h"
 
 #include <QByteArray>
+#include <QDebug>
 #include <QObject>
 #include <QUrl>
 
@@ -78,6 +79,7 @@ struct RequestStatus
         Ok,
         Timeout,  // Timeout exceeded
         Failed,  // bad Url
+        HttpError,  // some other HTTP error (eg. SSL failed)
         Empty  // for ping(), response is empty
     };
 
@@ -89,6 +91,8 @@ struct RequestStatus
 
     State status;
 };
+
+QDebug& operator<<( QDebug& s, const RequestStatus& e );
 
 class DLLEXPORT Manager : QObject
 {
