@@ -151,12 +151,6 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
 
-    QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
-    if ( !language.isEmpty() )
-    {
-        m_conf->setLanguageIcon( language );
-    }
-
     //here init the qml or qwidgets needed bits
     m_widget->init();
 }

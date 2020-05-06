@@ -144,16 +144,6 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 		}
 	}
 
-	QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
-	if ( !language.isEmpty() )
-	{
-		auto icon = Calamares::Branding::instance()->image( language, QSize( 48, 48 ) );
-		if ( !icon.isNull() )
-		{
-			m_config->setLanguageIcon(language);
-		}
-	}
-
     Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
     setContextProperty( "Welcome", m_config );
 }

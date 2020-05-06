@@ -22,6 +22,7 @@
 #include "Settings.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "utils/Variant.h"
 
 Config::Config( QObject* parent )
     : QObject( parent )
@@ -289,4 +290,14 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     setReleaseNotesUrl(
         jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
     setDonateUrl( jobOrBrandingSetting( Branding::DonateUrl, configurationMap, "showDonateUrl" ) );
+
+    QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
+    if ( !language.isEmpty() )
+    {
+        auto icon = Calamares::Branding::instance()->image( language, QSize( 48, 48 ) );
+        if ( !icon.isNull() )
+        {
+            setLanguageIcon( language );
+        }
+    }
 }
