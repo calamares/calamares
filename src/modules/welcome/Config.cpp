@@ -20,9 +20,13 @@
 
 #include "Branding.h"
 #include "Settings.h"
+#include "geoip/Handler.h"
+#include "locale/Lookup.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/Variant.h"
+
+#include <QFutureWatcher>
 
 Config::Config( QObject* parent )
     : QObject( parent )
@@ -279,6 +283,93 @@ jobOrBrandingSetting( Calamares::Branding::StringEntry e, const QVariantMap& map
     return QString();
 }
 
+static inline void
+setLanguageIcon( Config* c, const QVariantMap& configurationMap )
+{
+    QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
+    if ( !language.isEmpty() )
+    {
+        auto icon = Calamares::Branding::instance()->image( language, QSize( 48, 48 ) );
+        if ( !icon.isNull() )
+        {
+            c->setLanguageIcon( language );
+        }
+    }
+}
+
+static inline void
+logGeoIPHandler( CalamaresUtils::GeoIP::Handler* handler )
+{
+    if ( handler )
+    {
+        cDebug() << Logger::SubEntry << "Obtained from" << handler->url() << " ("
+                 << static_cast< int >( handler->type() ) << handler->selector() << ')';
+    }
+}
+
+static void
+setCountry( Config* config, const QString& countryCode, CalamaresUtils::GeoIP::Handler* handler )
+{
+    if ( countryCode.length() != 2 )
+    {
+        cDebug() << "Unusable country code" << countryCode;
+        logGeoIPHandler( handler );
+        return;
+    }
+
+    auto c_l = CalamaresUtils::Locale::countryData( countryCode );
+    if ( c_l.first == QLocale::Country::AnyCountry )
+    {
+        cDebug() << "Unusable country code" << countryCode;
+        logGeoIPHandler( handler );
+        return;
+    }
+    else
+    {
+        int r = CalamaresUtils::Locale::availableTranslations()->find( countryCode );
+        if ( r < 0 )
+        {
+            cDebug() << "Unusable country code" << countryCode << "(no suitable translation)";
+        }
+        if ( ( r >= 0 ) && config )
+        {
+            config->setCountryCode( countryCode );
+        }
+    }
+}
+
+static inline void
+setGeoIP( Config* c, const QVariantMap& configurationMap )
+{
+    bool ok = false;
+    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    if ( ok )
+    {
+        using FWString = QFutureWatcher< QString >;
+
+        auto* handler = new CalamaresUtils::GeoIP::Handler( CalamaresUtils::getString( geoip, "style" ),
+                                                            CalamaresUtils::getString( geoip, "url" ),
+                                                            CalamaresUtils::getString( geoip, "selector" ) );
+        if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
+        {
+            auto* future = new FWString();
+            QObject::connect( future, &FWString::finished, [ config = c, f = future, h = handler ]() {
+                QString countryResult = f->future().result();
+                cDebug() << "GeoIP result for welcome=" << countryResult;
+                ::setCountry( config, countryResult, h );
+                f->deleteLater();
+                delete h;
+            } );
+            future->setFuture( handler->queryRaw() );
+        }
+        else
+        {
+            // Would not produce useful country code anyway.
+            delete handler;
+        }
+    }
+}
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -291,13 +382,6 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         jobOrBrandingSetting( Branding::ReleaseNotesUrl, configurationMap, "showReleaseNotesUrl" ) );
     setDonateUrl( jobOrBrandingSetting( Branding::DonateUrl, configurationMap, "showDonateUrl" ) );
 
-    QString language = CalamaresUtils::getString( configurationMap, "languageIcon" );
-    if ( !language.isEmpty() )
-    {
-        auto icon = Calamares::Branding::instance()->image( language, QSize( 48, 48 ) );
-        if ( !icon.isNull() )
-        {
-            setLanguageIcon( language );
-        }
-    }
+    ::setLanguageIcon( this, configurationMap );
+    ::setGeoIP( this, configurationMap );
 }

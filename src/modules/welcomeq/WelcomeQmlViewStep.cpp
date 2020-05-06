@@ -21,21 +21,14 @@
 
 #include "checker/GeneralRequirements.h"
 
-#include "geoip/Handler.h"
 #include "locale/LabelModel.h"
-#include "locale/Lookup.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 #include "utils/Dirs.h"
 
 #include "Branding.h"
 #include "modulesystem/ModuleManager.h"
-#include <QQmlEngine>
 #include "utils/Yaml.h"
-
-#include <QFutureWatcher>
-#include <QPixmap>
-#include <QVariant>
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeQmlViewStepFactory, registerPlugin< WelcomeQmlViewStep >(); )
 
@@ -116,34 +109,6 @@ WelcomeQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 		cWarning() << "no valid requirements map found in welcome "
 					  "module configuration.";
 
-	bool ok = false;
-	QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
-	if ( ok )
-	{
-		using FWString = QFutureWatcher< QString >;
-
-		auto* handler = new CalamaresUtils::GeoIP::Handler( CalamaresUtils::getString( geoip, "style" ),
-															CalamaresUtils::getString( geoip, "url" ),
-															CalamaresUtils::getString( geoip, "selector" ) );
-		if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
-		{
-			auto* future = new FWString();
-			connect( future, &FWString::finished, [view = this, f = future, h = handler]() {
-				QString countryResult = f->future().result();
-				cDebug() << "GeoIP result for welcome=" << countryResult;
-				view->setCountry( countryResult, h );
-				f->deleteLater();
-				delete h;
-			} );
-			future->setFuture( handler->queryRaw() );
-		}
-		else
-		{
-			// Would not produce useful country code anyway.
-			delete handler;
-		}
-	}
-
     Calamares::QmlViewStep::setConfigurationMap( configurationMap ); // call parent implementation last
     setContextProperty( "Welcome", m_config );
 }
@@ -160,44 +125,3 @@ WelcomeQmlViewStep::getConfig()
 	return m_config;
 }
 
-static inline void
-logGeoIPHandler( CalamaresUtils::GeoIP::Handler* handler )
-{
-	if ( handler )
-	{
-		cDebug() << Logger::SubEntry << "Obtained from" << handler->url() << " ("
-				 << static_cast< int >( handler->type() ) << handler->selector() << ')';
-	}
-}
-
-void
-WelcomeQmlViewStep::setCountry( const QString& countryCode, CalamaresUtils::GeoIP::Handler* handler )
-{
-	if ( countryCode.length() != 2 )
-	{
-		cDebug() << "Unusable country code" << countryCode;
-		logGeoIPHandler( handler );
-		return;
-	}
-
-	auto c_l = CalamaresUtils::Locale::countryData( countryCode );
-	if ( c_l.first == QLocale::Country::AnyCountry )
-	{
-		cDebug() << "Unusable country code" << countryCode;
-		logGeoIPHandler( handler );
-		return;
-	}
-	else
-	{
-		int r = CalamaresUtils::Locale::availableTranslations()->find( countryCode );
-		if ( r < 0 )
-		{
-			cDebug() << "Unusable country code" << countryCode << "(no suitable translation)";
-		}
-		if ( ( r >= 0 ) )
-		{
-			// TODO: update Config to point to selected language
-			m_config->setCountryCode( countryCode );
-		}
-	}
-}
