@@ -16,7 +16,8 @@ This release contains contributions from (alphabetically by first name):
  - The *productWallpaper* setting is documented and works. (Thanks Bill)
 
 ## Modules ##
- - No module changes yet
+ - The *bootloader* module can force a UEFI-based machine to boot into
+   the newly-installed system. #1394 (Thanks Gaël)
 
 
 # 3.2.23 (2020-04-17) #
