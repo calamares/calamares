@@ -237,6 +237,16 @@ private:
     QMap< QString, QString > m_strings;
     QMap< QString, QString > m_images;
     QMap< QString, QString > m_style;
+
+    /* The slideshow can be done in one of two ways:
+     *  - as a sequence of images
+     *  - as a QML file
+     * The slideshow: setting selects which one is used. If it is
+     * a list (of filenames) then it is a sequence of images, and otherwise
+     * it is a QML file which is run. (For QML, the slideshow API is
+     * important).
+     */
+    QStringList m_slideshowFilenames;
     QString m_slideshowPath;
     int m_slideshowAPI;
     QString m_translationsPathPrefix;

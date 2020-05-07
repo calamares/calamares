@@ -238,7 +238,7 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                     slideShowPictures[ i ] = imageFi.absoluteFilePath();
                 }
 
-                //FIXME: implement a GenericSlideShow.qml that uses these slideShowPictures
+                m_slideshowFilenames = slideShowPictures;
             }
             else if ( doc[ "slideshow" ].IsScalar() )
             {
