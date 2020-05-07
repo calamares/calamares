@@ -230,8 +230,6 @@ private:
     static const QStringList s_imageEntryStrings;
     static const QStringList s_styleEntryStrings;
 
-    [[noreturn]] void bail( const QString& message );
-
     QString m_descriptorPath;  // Path to descriptor (e.g. "/etc/calamares/default/branding.desc")
     QString m_componentName;  // Matches last part of full path to containing directory
     QMap< QString, QString > m_strings;
