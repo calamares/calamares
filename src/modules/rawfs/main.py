@@ -96,6 +96,8 @@ class RawFSItem:
         count = 0
 
         libcalamares.utils.debug("Copying {} to {}".format(self.source, self.destination))
+        if libcalamares.job.configuration["bogus"]:
+            return
 
         srcsize, srcblksize = get_device_size(self.source)
         destsize, destblksize = get_device_size(self.destination)
