@@ -25,9 +25,15 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
+#ifndef WITH_KF5DBus
+#warning "KDSingleApplicationGuard is deprecated"
 #include "3rdparty/kdsingleapplicationguard/kdsingleapplicationguard.h"
+#endif
 
 #include <KCoreAddons/KAboutData>
+#ifdef WITH_KF5DBus
+#include <KDBusAddons/KDBusService>
+#endif
 #ifdef WITH_KF5Crash
 #include <KCrash/KCrash>
 #endif
@@ -137,26 +143,27 @@ main( int argc, char* argv[] )
 
     bool is_debug = handle_args( a );
 
-    if ( !is_debug )
+#ifdef WITH_KF5DBus
+    KDBusService service( is_debug ? KDBusService::Multiple : KDBusService::Unique );
+#else
+    KDSingleApplicationGuard guard( is_debug ? KDSingleApplicationGuard::NoPolicy
+                                             : KDSingleApplicationGuard::AutoKillOtherInstances );
+    if ( !is_debug && !guard.isPrimaryInstance() )
     {
-        KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
-
-        if ( !guard.isPrimaryInstance() )
+        // Here we have not yet set-up the logger system, so qDebug() is ok
+        auto instancelist = guard.instances();
+        qDebug() << "Calamares is already running, shutting down.";
+        if ( instancelist.count() > 0 )
         {
-            // Here we have not yet set-up the logger system, so qDebug() is ok
-            auto instancelist = guard.instances();
-            qDebug() << "Calamares is already running, shutting down.";
-            if ( instancelist.count() > 0 )
-            {
-                qDebug() << "Other running Calamares instances:";
-            }
-            for ( const auto& i : instancelist )
-            {
-                qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
-            }
-            return 69;  // EX_UNAVAILABLE on FreeBSD
+            qDebug() << "Other running Calamares instances:";
         }
+        for ( const auto& i : instancelist )
+        {
+            qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
+        }
+        return 69;  // EX_UNAVAILABLE on FreeBSD
     }
+#endif
 
     Calamares::Settings::init( is_debug );
     a.init();
