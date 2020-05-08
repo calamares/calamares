@@ -27,9 +27,9 @@
 
 #include "3rdparty/kdsingleapplicationguard/kdsingleapplicationguard.h"
 
-#include <KF5/KCoreAddons/KAboutData>
+#include <KCoreAddons/KAboutData>
 #ifdef WITH_KF5Crash
-#include <KF5/KCrash/KCrash>
+#include <KCrash/KCrash>
 #endif
 
 #include <QCommandLineParser>
