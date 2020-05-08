@@ -8,10 +8,10 @@ import QtQuick.Layouts 1.3
 Rectangle {
     id: navigationBar;
     color: Branding.styleString( Branding.SidebarBackground );
+    height: 48;
 
     RowLayout {
         id: buttonBar
-        height: 64;
         anchors.fill: parent;
 
         Item

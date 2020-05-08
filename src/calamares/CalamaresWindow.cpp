@@ -38,6 +38,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
+#include <QQuickItem>
 #include <QQuickWidget>
 #include <QTreeView>
 
@@ -221,7 +222,13 @@ CalamaresWindow::getQmlNavigation( QWidget* parent )
     w->setResizeMode( QQuickWidget::SizeRootObjectToView );
     w->setSource( QUrl(
         CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-navigation" ) ) ) );
-    w->setMinimumHeight( 30 );  // matchine the default widgets version
+
+    // If the QML itself sets a height, use that, otherwise go to 48 pixels
+    // which seems to match what the widget navigation would use for height
+    // (with *my* specific screen, style, etc. so YMMV).
+    qreal minimumHeight = qBound( qreal( 16 ), w->rootObject() ? w->rootObject()->height() : 48, qreal( 64 ) );
+    w->setMinimumHeight( int( minimumHeight ) );
+
     return w;
 }
 
