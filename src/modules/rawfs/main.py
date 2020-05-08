@@ -151,7 +151,7 @@ def update_global_storage(item, gs):
     for partition in gs:
         if partition["device"] == item.destination:
             ret = subprocess.run(["blkid", "-s", "UUID", "-o", "value", item.destination],
-                    capture_output=True, text=True)
+                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
             if ret.returncode == 0:
                 libcalamares.utils.debug("Setting {} UUID to {}".format(item.destination,
                         ret.stdout.rstrip()))
