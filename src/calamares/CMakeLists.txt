@@ -41,11 +41,12 @@ target_link_libraries( calamares_bin
         KF5::CoreAddons
 )
 if( WITH_KF5Crash )
-    target_link_libraries( calamares_bin
-        PRIVATE
-            KF5::Crash
-    )
+    target_link_libraries( calamares_bin PRIVATE KF5::Crash )
     target_compile_definitions( calamares_bin PRIVATE WITH_KF5Crash )
+endif()
+if( WITH_KF5DBus )
+    target_link_libraries( calamares_bin PRIVATE KF5::DBusAddons )
+    target_compile_definitions( calamares_bin PRIVATE WITH_KF5DBus )
 endif()
 
 install( TARGETS calamares_bin
