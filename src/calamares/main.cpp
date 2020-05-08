@@ -63,7 +63,13 @@ debug_level( QCommandLineParser& parser, QCommandLineOption& levelOption )
     }
 }
 
-static void
+/** @brief Handles the command-line arguments
+ *
+ * Sets up internals for Calamares based on command-line arguments like `-D`,
+ * `-d`, etc. Returns @c true if this is a *debug* run, i.e. if the `-d`
+ * command-line flag is given, @c false otherwise.
+ */
+static bool
 handle_args( CalamaresApplication& a )
 {
     QCommandLineOption debugOption( QStringList { "d", "debug" },
@@ -100,8 +106,8 @@ handle_args( CalamaresApplication& a )
         CalamaresUtils::setXdgDirs();
     }
     CalamaresUtils::setAllowLocalTranslation( parser.isSet( debugOption ) || parser.isSet( debugTxOption ) );
-    Calamares::Settings::init( parser.isSet( debugOption ) );
-    a.init();
+
+    return parser.isSet( debugOption );
 }
 
 int
@@ -129,25 +135,30 @@ main( int argc, char* argv[] )
     // TODO: umount anything in /tmp/calamares-... as an emergency save function
 #endif
 
-    KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
-    if ( guard.isPrimaryInstance() )
+    bool is_debug = handle_args( a );
+
+    if ( !is_debug )
     {
-        handle_args( a );
-        return a.exec();
-    }
-    else
-    {
-        // Here we have not yet set-up the logger system, so qDebug() is ok
-        auto instancelist = guard.instances();
-        qDebug() << "Calamares is already running, shutting down.";
-        if ( instancelist.count() > 0 )
+        KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
+
+        if ( !guard.isPrimaryInstance() )
         {
-            qDebug() << "Other running Calamares instances:";
+            // Here we have not yet set-up the logger system, so qDebug() is ok
+            auto instancelist = guard.instances();
+            qDebug() << "Calamares is already running, shutting down.";
+            if ( instancelist.count() > 0 )
+            {
+                qDebug() << "Other running Calamares instances:";
+            }
+            for ( const auto& i : instancelist )
+            {
+                qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
+            }
+            return 69;  // EX_UNAVAILABLE on FreeBSD
         }
-        for ( const auto& i : instancelist )
-        {
-            qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
-        }
-        return 69;  // EX_UNAVAILABLE on FreeBSD
     }
+
+    Calamares::Settings::init( is_debug );
+    a.init();
+    return a.exec();
 }
