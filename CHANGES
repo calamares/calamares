@@ -9,15 +9,20 @@ This release contains contributions from (alphabetically by first name):
  - Bill Auger
  - Gaël PORTAY
  - Luna Jernberg
+ - Philip Müller
 
 ## Core ##
  - There is now a bash-completions script for Calamares; turn on
    the (CMake-time) option INSTALL_COMPLETION to get it. (Thanks Gaël)
  - The *productWallpaper* setting is documented and works. (Thanks Bill)
+ - GlobalStorage is available to QML modules as `Global`.
+ - The height of the navigation bar in QML can be set within the
+   QML code for the navigation; if not set, try something sensible.
 
 ## Modules ##
  - The *bootloader* module can force a UEFI-based machine to boot into
    the newly-installed system. #1394 (Thanks Gaël)
+ - *partition* Pop-ups about boot flags use the right flag names. #1192
 
 
 # 3.2.23 (2020-04-17) #
