@@ -168,5 +168,24 @@ function( calamares_add_module_subdirectory )
             COMMAND loadmodule ${SUBDIRECTORY}
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
             )
+        # Try it with the tests/ configurations shipped with the module
+        set( _count 1 )
+        set( _testdir ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/tests )
+        while ( EXISTS "${_testdir}/${_count}.global" OR EXISTS "${_testdir}/${_count}.job" )
+            set( _dash_g "" )
+            set( _dash_j "" )
+            if ( EXISTS "${_testdir}/${_count}.global" )
+                set( _dash_g -g ${_testdir}/${_count}.global )
+            endif()
+            if ( EXISTS "${_testdir}/${_count}.job" )
+                set( _dash_j -j ${_testdir}/${_count}.job )
+            endif()
+            add_test(
+                NAME load-${SUBDIRECTORY}-${_count}
+                COMMAND loadmodule ${_dash_g} ${_dash_j} ${SUBDIRECTORY}
+                WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+                )
+            math( EXPR _count "${_count} + 1" )
+        endwhile()
     endif()
 endfunction()

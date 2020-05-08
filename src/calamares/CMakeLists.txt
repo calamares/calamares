@@ -60,7 +60,10 @@ install( FILES ${CMAKE_SOURCE_DIR}/data/images/squid.svg
 )
 
 if( BUILD_TESTING )
+    # Don't install, these are just for enable_testing
     add_executable( loadmodule testmain.cpp )
     target_link_libraries( loadmodule PRIVATE Qt5::Core Qt5::Widgets calamares calamaresui )
-    # Don't install, it's just for enable_testing
+
+    add_executable( test_conf test_conf.cpp )
+    target_link_libraries( test_conf PUBLIC yamlcpp Qt5::Core )
 endif()

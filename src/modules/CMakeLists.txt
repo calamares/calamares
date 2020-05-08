@@ -10,12 +10,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src/libcalamaresui
 )
 
-if( BUILD_TESTING )
-    add_executable( test_conf test_conf.cpp )
-    target_link_libraries( test_conf yamlcpp Qt5::Core )
-    target_include_directories( test_conf PUBLIC ${YAMLCPP_INCLUDE_DIR} )
-endif()
-
 string( REPLACE " " ";" SKIP_LIST "${SKIP_MODULES}" )
 
 file( GLOB SUBDIRECTORIES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*" )
