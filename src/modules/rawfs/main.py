@@ -171,6 +171,7 @@ def run():
         return (_("Configuration Error"),
                 _("No partitions are defined for <pre>{!s}</pre> to use." ).format("rawfs"))
 
+    libcalamares.utils.debug("Copying {!s} raw partitions.".format(len(partitions)))
     for partition in partitions:
         if partition["mountPoint"]:
             for src in libcalamares.job.configuration["targets"]:
