@@ -2560,12 +2560,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="433"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>EFI sistemos skaidinys yra būtinas, norint paleisti %1.&lt;br/&gt;&lt;br/&gt;Norėdami sukonfigūruoti EFI sistemos skaidinį, grįžkite atgal ir pasirinkite arba sukurkite FAT32 failų sistemą su įjungta &lt;strong&gt;%3&lt;/strong&gt; vėliavėle ir &lt;strong&gt;%2&lt;/strong&gt; prijungimo tašku.&lt;br/&gt;&lt;br/&gt;Jūs galite tęsti ir nenustatę EFI sistemos skaidinio, tačiau tokiu atveju, gali nepavykti paleisti jūsų sistemos.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="447"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>EFI sistemos skaidinys yra būtinas, norint paleisti %1.&lt;br/&gt;&lt;br/&gt;Skaidinys buvo sukonfigūruotas su prijungimo tašku &lt;strong&gt;%2&lt;/strong&gt;, tačiau jo &lt;strong&gt;%3&lt;/strong&gt; vėliavėlė yra nenustatyta.&lt;br/&gt;Norėdami nustatyti vėliavėlę, grįžkite atgal ir taisykite skaidinį.&lt;br/&gt;&lt;br/&gt;Jūs galite tęsti ir nenustatę vėliavėlės, tačiau tokiu atveju, gali nepavykti paleisti jūsų sistemos.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="446"/>
@@ -3804,7 +3804,27 @@ Išvestis:
             &lt;/ul&gt;
 
             &lt;p&gt;The vertical scrollbar is adjustable, current width set to 10.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Tai yra pavyzdinis QML failas, rodantis parinktis raiškiuoju tekstu su interaktyviu turiniu.&lt;/p&gt;
+
+            &lt;p&gt;QML su raiškiuoju tekstu gali naudoti HTML žymes, interaktyvus turinys yra naudingas jutikliniuose ekranuose.&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Tai yra pusjuodis tekstas&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;i&gt;Tai yra kursyvinis tekstas&lt;/i&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;u&gt;Tai yra pabrauktas tekstas&lt;/u&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;center&gt;Šis tekstas bus lygiuojamas centre.&lt;/center&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;s&gt;Tai yra perbraukimas&lt;/s&gt;&lt;/p&gt;
+
+            &lt;p&gt;Kodo pavyzdžiai:
+            &lt;code&gt;ls -l /home&lt;/code&gt;&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Sąrašai:&lt;/b&gt;&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Intel CPU sistemos&lt;/li&gt;
+                &lt;li&gt;AMD CPU sistemos&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;p&gt;Vertikalioji slankjuostė yra reguliuojama, dabartinis plotis nustatytas į 10.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="85"/>
@@ -3818,7 +3838,8 @@ Išvestis:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="44"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Jus sveikina %1 &lt;quote&gt;%2&lt;/quote&gt; diegimo programa&lt;/h3&gt;
+            &lt;p&gt;Ši programa užduos jums kelis klausimus ir padės kompiuteryje nusistatyti %1.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="71"/>
