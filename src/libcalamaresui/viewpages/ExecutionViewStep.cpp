@@ -20,6 +20,8 @@
 
 #include "ExecutionViewStep.h"
 
+#include "Slideshow.h"
+
 #include "Branding.h"
 #include "Job.h"
 #include "JobQueue.h"
@@ -37,10 +39,6 @@
 #include <QDir>
 #include <QLabel>
 #include <QProgressBar>
-#include <QQmlComponent>
-#include <QQmlEngine>
-#include <QQuickItem>
-#include <QQuickWidget>
 #include <QVBoxLayout>
 
 namespace Calamares
@@ -51,20 +49,14 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     , m_widget( new QWidget )
     , m_progressBar( new QProgressBar )
     , m_label( new QLabel )
-    , m_qmlShow( new QQuickWidget )
-    , m_qmlComponent( nullptr )
-    , m_qmlObject( nullptr )
+    , m_slideshow( nullptr )
 {
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     QVBoxLayout* innerLayout = new QVBoxLayout;
 
     m_progressBar->setMaximum( 10000 );
 
-    m_qmlShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-    m_qmlShow->setResizeMode( QQuickWidget::SizeRootObjectToView );
-    m_qmlShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
-
-    layout->addWidget( m_qmlShow );
+    layout->addWidget( m_slideshow->widget() );
     CalamaresUtils::unmarginLayout( layout );
     layout->addLayout( innerLayout );
 
@@ -72,7 +64,6 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     innerLayout->addWidget( m_progressBar );
     innerLayout->addWidget( m_label );
 
-    cDebug() << "QML import paths:" << Logger::DebugList( m_qmlShow->engine()->importPathList() );
     if ( Branding::instance()->slideshowAPI() == 2 )
     {
         cDebug() << "QML load on startup, API 2.";
@@ -80,9 +71,6 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     }
 
     connect( JobQueue::instance(), &JobQueue::progress, this, &ExecutionViewStep::updateFromJobQueue );
-#if QT_VERSION >= QT_VERSION_CHECK( 5, 10, 0 )
-    CALAMARES_RETRANSLATE( m_qmlShow->engine()->retranslate(); )
-#endif
 }
 
 

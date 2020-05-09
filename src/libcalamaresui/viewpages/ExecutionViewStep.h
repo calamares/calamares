@@ -27,12 +27,11 @@
 class QLabel;
 class QObject;
 class QProgressBar;
-class QQmlComponent;
-class QQuickItem;
-class QQuickWidget;
 
 namespace Calamares
 {
+
+class Slideshow;
 
 class ExecutionViewStep : public ViewStep
 {
@@ -67,9 +66,7 @@ private:
     QWidget* m_widget;
     QProgressBar* m_progressBar;
     QLabel* m_label;
-    QQuickWidget* m_qmlShow;
-    QQmlComponent* m_qmlComponent;
-    QQuickItem* m_qmlObject;  ///< The actual show
+    Slideshow* m_slideshow;
 
     QStringList m_jobInstanceKeys;
 
