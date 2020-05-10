@@ -78,7 +78,7 @@ Column {
         }
 
         // Needs to move to localeq.conf, each distribution will need their own account
-        xhr.open("GET", "http://api.geonames.org/timezoneJSON?lat=" + latC + "&lng=" + lonC + "&username=demm")
+        xhr.open("GET", "http://api.geonames.org/timezoneJSON?lat=" + latC + "&lng=" + lonC + "&username=SOME_USERNAME")
         xhr.send()
     }
 
