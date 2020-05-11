@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.24 (unreleased) #
+# 3.2.24 (2020-05-11) #
 
 This release contains contributions from (alphabetically by first name):
  - Bill Auger
@@ -18,6 +18,9 @@ This release contains contributions from (alphabetically by first name):
  - GlobalStorage is available to QML modules as `Global`.
  - The height of the navigation bar in QML can be set within the
    QML code for the navigation; if not set, try something sensible.
+ - A regression in the requirements-checker which could block the
+   installer from proceeding without telling the user **why** it
+   was blocked, has been resolved.
 
 ## Modules ##
  - The *bootloader* module can force a UEFI-based machine to boot into
