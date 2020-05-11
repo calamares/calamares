@@ -87,9 +87,12 @@ public:
 
     /**
      * @brief Starts asynchronous requirements checking for each module.
-     * When this is done, the signal modulesChecked is emitted.
+     * When this is done, the signal requirementsComplete is emitted.
      */
     void checkRequirements();
+
+    ///@brief Gets the model that requirements-checking works on.
+    RequirementsModel* requirementsModel() { return m_requirementsModel; }
 
 signals:
     void initDone();

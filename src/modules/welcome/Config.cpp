@@ -22,6 +22,7 @@
 #include "Settings.h"
 #include "geoip/Handler.h"
 #include "locale/Lookup.h"
+#include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/Variant.h"
@@ -30,14 +31,8 @@
 
 Config::Config( QObject* parent )
     : QObject( parent )
-    , m_requirementsModel( new Calamares::RequirementsModel( this ) )
     , m_languages( CalamaresUtils::Locale::availableTranslations() )
 {
-    connect( m_requirementsModel,
-             &Calamares::RequirementsModel::satisfiedRequirementsChanged,
-             this,
-             &Config::setIsNextEnabled );
-
     initLanguages();
 
     CALAMARES_RETRANSLATE_SLOT( &Config::retranslate )
@@ -49,12 +44,13 @@ Config::retranslate()
     m_genericWelcomeMessage = genericWelcomeMessage().arg( Calamares::Branding::instance()->versionedName() );
     emit genericWelcomeMessageChanged( m_genericWelcomeMessage );
 
-    if ( !m_requirementsModel->satisfiedRequirements() )
+    const auto* r = requirementsModel();
+    if ( !r->satisfiedRequirements() )
     {
         QString message;
         const bool setup = Calamares::Settings::instance()->isSetupMode();
 
-        if ( !m_requirementsModel->satisfiedMandatory() )
+        if ( !r->satisfiedMandatory() )
         {
             message = setup ? tr( "This computer does not satisfy the minimum "
                                   "requirements for setting up %1.<br/>"
@@ -94,6 +90,13 @@ Config::languagesModel() const
 {
     return m_languages;
 }
+
+Calamares::RequirementsModel*
+Config::requirementsModel() const
+{
+    return Calamares::ModuleManager::instance()->requirementsModel();
+}
+
 
 QString
 Config::languageIcon() const
@@ -181,12 +184,6 @@ Config::setLocaleIndex( int index )
     CalamaresUtils::installTranslator( selectedLocale, Calamares::Branding::instance()->translationsDirectory() );
 
     emit localeIndexChanged( m_localeIndex );
-}
-
-Calamares::RequirementsModel&
-Config::requirementsModel() const
-{
-    return *m_requirementsModel;
 }
 
 void
