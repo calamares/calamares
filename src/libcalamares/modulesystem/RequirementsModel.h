@@ -71,6 +71,9 @@ public:
     int rowCount( const QModelIndex& ) const override;
     int count() const { return m_requirements.count(); }
 
+    ///@brief Debugging tool, describe the checking-state
+    void describe() const;
+
 signals:
     void satisfiedRequirementsChanged( bool value );
     void satisfiedMandatoryChanged( bool value );

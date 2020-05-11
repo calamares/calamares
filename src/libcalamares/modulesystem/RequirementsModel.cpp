@@ -18,6 +18,8 @@
 
 #include "RequirementsModel.h"
 
+#include "utils/Logger.h"
+
 namespace Calamares
 {
 
@@ -92,6 +94,22 @@ RequirementsModel::roleNames() const
     roles[ Roles::Satisfied ] = "satisfied";
     roles[ Roles::Mandatory ] = "mandatory";
     return roles;
+}
+
+void
+RequirementsModel::describe() const
+{
+    bool acceptable = true;
+    int count = 0;
+    for ( const auto& r : m_requirements )
+    {
+        if ( r.mandatory && !r.satisfied )
+        {
+            cDebug() << Logger::SubEntry << "requirement" << count << r.name << "is not satisfied.";
+            acceptable = false;
+        }
+        ++count;
+    }
 }
 
 }  // namespace Calamares
