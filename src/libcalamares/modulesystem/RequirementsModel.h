@@ -59,11 +59,6 @@ public:
     bool satisfiedRequirements() const { return m_satisfiedRequirements; }
     bool satisfiedMandatory() const { return m_satisfiedMandatory; }
 
-    const Calamares::RequirementEntry& getEntry( int index ) const
-    {
-        return m_requirements.at( index );
-    }
-
     void setRequirementsList( const Calamares::RequirementsList& requirements );
 
     QVariant data( const QModelIndex& index, int role ) const override;
