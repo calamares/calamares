@@ -49,7 +49,7 @@ public Q_SLOTS:
     void run();
 
     /// @brief Called when requirements are reported by a module
-    void addCheckedRequirements( RequirementsList );
+    void addCheckedRequirements( Module* );
 
     /// @brief Called when all requirements have been checked
     void finished();

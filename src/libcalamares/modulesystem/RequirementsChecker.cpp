@@ -52,18 +52,6 @@ registerMetatypes()
     }
 }
 
-static void
-check( Module* const& m, RequirementsChecker* c )
-{
-    RequirementsList l = m->checkRequirements();
-    if ( l.count() > 0 )
-    {
-        c->addCheckedRequirements( l );
-    }
-    c->requirementsProgress(
-        QObject::tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
-}
-
 RequirementsChecker::RequirementsChecker( QVector< Module* > modules, RequirementsModel* model, QObject* parent )
     : QObject( parent )
     , m_modules( std::move( modules ) )
@@ -88,7 +76,7 @@ RequirementsChecker::run()
     for ( const auto& module : m_modules )
     {
         Watcher* watcher = new Watcher( this );
-        watcher->setFuture( QtConcurrent::run( check, module, this ) );
+        watcher->setFuture( QtConcurrent::run( this, &RequirementsChecker::addCheckedRequirements, module ) );
         watcher->setObjectName( module->name() );
         m_watchers.append( watcher );
         connect( watcher, &Watcher::finished, this, &RequirementsChecker::finished );
@@ -122,10 +110,17 @@ RequirementsChecker::finished()
 }
 
 void
-RequirementsChecker::addCheckedRequirements( RequirementsList l )
+RequirementsChecker::addCheckedRequirements( Module* m )
 {
-    m_model->addRequirementsList( l );
-    cDebug() << "Added" << l.count() << "requirement results";
+    RequirementsList l = m->checkRequirements();
+    cDebug() << "Got" << l.count() << "requirement results from" << m->name();
+    if ( l.count() > 0 )
+    {
+        m_model->addRequirementsList( l );
+    }
+
+    requirementsProgress(
+        tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
     emit requirementsResult( l );
 }
 
