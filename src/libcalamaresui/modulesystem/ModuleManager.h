@@ -32,7 +32,7 @@ namespace Calamares
 {
 
 class Module;
-struct RequirementEntry;  // from Requirement.h
+class RequirementsModel;
 
 /**
  * @brief The ModuleManager class is a singleton which manages Calamares modules.
@@ -130,6 +130,7 @@ private:
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
     QMap< ModuleSystem::InstanceKey, Module* > m_loadedModulesByInstanceKey;
     const QStringList m_paths;
+    RequirementsModel* m_requirementsModel;
 
     static ModuleManager* s_instance;
 };

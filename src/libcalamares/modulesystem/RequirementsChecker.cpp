@@ -20,6 +20,7 @@
 
 #include "modulesystem/Module.h"
 #include "modulesystem/Requirement.h"
+#include "modulesystem/RequirementsModel.h"
 #include "utils/Logger.h"
 
 #include <QFuture>
@@ -63,14 +64,14 @@ check( Module* const& m, RequirementsChecker* c )
         QObject::tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
 }
 
-RequirementsChecker::RequirementsChecker( QVector< Module* > modules, QObject* parent )
+RequirementsChecker::RequirementsChecker( QVector< Module* > modules, RequirementsModel* model, QObject* parent )
     : QObject( parent )
     , m_modules( std::move( modules ) )
+    , m_model( model )
     , m_progressTimer( nullptr )
     , m_progressTimeouts( 0 )
 {
     m_watchers.reserve( m_modules.count() );
-    m_collectedRequirements.reserve( m_modules.count() );
 
     registerMetatypes();
 }
@@ -114,19 +115,8 @@ RequirementsChecker::finished()
             m_progressTimer = nullptr;
         }
 
-        bool acceptable = true;
-        int count = 0;
-        for ( const auto& r : m_collectedRequirements )
-        {
-            if ( r.mandatory && !r.satisfied )
-            {
-                cDebug() << Logger::SubEntry << "requirement" << count << r.name << "is not satisfied.";
-                acceptable = false;
-            }
-            ++count;
-        }
-
-        emit requirementsComplete( acceptable );
+        m_model->describe();
+        emit requirementsComplete( m_model->satisfiedMandatory() );
         QTimer::singleShot( 0, this, &RequirementsChecker::done );
     }
 }
@@ -134,11 +124,7 @@ RequirementsChecker::finished()
 void
 RequirementsChecker::addCheckedRequirements( RequirementsList l )
 {
-    static QMutex addMutex;
-    {
-        QMutexLocker lock( &addMutex );
-        m_collectedRequirements.append( l );
-    }
+    m_model->addRequirementsList( l );
     cDebug() << "Added" << l.count() << "requirement results";
     emit requirementsResult( l );
 }

@@ -28,6 +28,8 @@
 
 namespace Calamares
 {
+class RequirementsChecker;
+
 /** @brief System requirements from each module and their checked-status
  *
  * A Calamares module can have system requirements (e.g. check for
@@ -39,6 +41,8 @@ namespace Calamares
  */
 class DLLEXPORT RequirementsModel : public QAbstractListModel
 {
+    friend class RequirementsChecker;
+
     Q_OBJECT
     Q_PROPERTY( bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL )
     Q_PROPERTY( bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL )
@@ -62,11 +66,6 @@ public:
     ///@brief Are all the **mandatory** requirements satisfied?
     bool satisfiedMandatory() const { return m_satisfiedMandatory; }
 
-    ///@brief Replace the entire list of requirements; resets the model
-    void setRequirementsList( const Calamares::RequirementsList& requirements );
-    ///@brief Append some requirements; resets the model
-    void addRequirementsList( const Calamares::RequirementsList& requirements );
-
     QVariant data( const QModelIndex& index, int role ) const override;
     int rowCount( const QModelIndex& ) const override;
     int count() const { return m_requirements.count(); }
@@ -80,6 +79,9 @@ signals:
 
 protected:
     QHash< int, QByteArray > roleNames() const override;
+
+    ///@brief Append some requirements; resets the model
+    void addRequirementsList( const Calamares::RequirementsList& requirements );
 
 private:
     ///@brief Implementation for {set,add}RequirementsList

@@ -29,6 +29,7 @@ namespace Calamares
 {
 
 class Module;
+class RequirementsModel;
 
 /** @brief A manager-class that checks all the module requirements
  *
@@ -40,7 +41,7 @@ class RequirementsChecker : public QObject
     Q_OBJECT
 
 public:
-    RequirementsChecker( QVector< Module* > modules, QObject* parent = nullptr );
+    RequirementsChecker( QVector< Module* > modules, RequirementsModel* model, QObject* parent = nullptr );
     virtual ~RequirementsChecker() override;
 
 public Q_SLOTS:
@@ -75,7 +76,7 @@ private:
     using Watcher = QFutureWatcher< void >;
     QVector< Watcher* > m_watchers;
 
-    RequirementsList m_collectedRequirements;
+    RequirementsModel* m_model;
 
     QTimer* m_progressTimer;
     unsigned m_progressTimeouts;
