@@ -69,6 +69,8 @@ RequirementsModel::data( const QModelIndex& index, int role ) const
         return requirement.satisfied;
     case Roles::Mandatory:
         return requirement.mandatory;
+    case Roles::HasDetails:
+        return requirement.hasDetails();
     default:
         return QVariant();
     }
@@ -83,6 +85,7 @@ RequirementsModel::roleNames() const
     roles[ Roles::NegatedText ] = "negatedText";
     roles[ Roles::Satisfied ] = "satisfied";
     roles[ Roles::Mandatory ] = "mandatory";
+    roles[ Roles::HasDetails ] = "hasDetails";
     return roles;
 }
 
