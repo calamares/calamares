@@ -24,6 +24,7 @@
 #include "DllMacro.h"
 
 #include <QAbstractListModel>
+#include <QMutex>
 
 namespace Calamares
 {
@@ -56,10 +57,15 @@ public:
     };
     // No Q_ENUM because these are exposed through roleNames()
 
+    ///@brief Are all the requirements satisfied?
     bool satisfiedRequirements() const { return m_satisfiedRequirements; }
+    ///@brief Are all the **mandatory** requirements satisfied?
     bool satisfiedMandatory() const { return m_satisfiedMandatory; }
 
+    ///@brief Replace the entire list of requirements; resets the model
     void setRequirementsList( const Calamares::RequirementsList& requirements );
+    ///@brief Append some requirements; resets the model
+    void addRequirementsList( const Calamares::RequirementsList& requirements );
 
     QVariant data( const QModelIndex& index, int role ) const override;
     int rowCount( const QModelIndex& ) const override;
@@ -73,6 +79,10 @@ protected:
     QHash< int, QByteArray > roleNames() const override;
 
 private:
+    ///@brief Implementation for {set,add}RequirementsList
+    void changeRequirementsList();
+
+    QMutex m_addLock;
     RequirementsList m_requirements;
     bool m_satisfiedRequirements = false;
     bool m_satisfiedMandatory = false;

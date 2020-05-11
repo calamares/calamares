@@ -24,9 +24,26 @@ namespace Calamares
 void
 RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
 {
+    QMutexLocker l( &m_addLock );
     emit beginResetModel();
     m_requirements = requirements;
+    changeRequirementsList();
+    emit endResetModel();
+}
 
+void
+RequirementsModel::addRequirementsList( const Calamares::RequirementsList& requirements )
+{
+    QMutexLocker l( &m_addLock );
+    emit beginResetModel();
+    m_requirements.append( requirements );
+    changeRequirementsList();
+    emit endResetModel();
+}
+
+void
+RequirementsModel::changeRequirementsList()
+{
     auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
     auto isMandatoryAndUnSatisfied = []( const Calamares::RequirementEntry& e ) { return e.mandatory && !e.satisfied; };
 
@@ -35,7 +52,6 @@ RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requi
 
     emit satisfiedRequirementsChanged( m_satisfiedRequirements );
     emit satisfiedMandatoryChanged( m_satisfiedMandatory );
-    emit endResetModel();
 }
 
 int
