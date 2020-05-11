@@ -27,7 +27,15 @@
 
 namespace Calamares
 {
-
+/** @brief System requirements from each module and their checked-status
+ *
+ * A Calamares module can have system requirements (e.g. check for
+ * internet, or amount of RAM, or an available disk) which can
+ * be stated and checked.
+ *
+ * This model collects those requirements, can run the checks, and
+ * reports on the overall status of those checks.
+ */
 class DLLEXPORT RequirementsModel : public QAbstractListModel
 {
     Q_OBJECT
@@ -70,10 +78,9 @@ protected:
     QHash< int, QByteArray > roleNames() const override;
 
 private:
-    Calamares::RequirementsList m_requirements;
+    RequirementsList m_requirements;
     bool m_satisfiedRequirements = false;
     bool m_satisfiedMandatory = false;
-
 };
 
 }  // namespace Calamares
