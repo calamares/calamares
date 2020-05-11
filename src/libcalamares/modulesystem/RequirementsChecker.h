@@ -60,13 +60,6 @@ public Q_SLOTS:
 signals:
     /// @brief Human-readable progress message
     void requirementsProgress( const QString& );
-    /// @brief Requirements from a single module
-    void requirementsResult( RequirementsList );
-    /** @brief When all requirements are collected
-     *
-     * The argument indicates if all mandatory requirements are satisfied.
-     */
-    void requirementsComplete( bool );
     /// @brief Emitted after requirementsComplete
     void done();
 

@@ -358,10 +358,9 @@ ModuleManager::checkRequirements()
     }
 
     RequirementsChecker* rq = new RequirementsChecker( modules, m_requirementsModel, this );
-    connect( rq, &RequirementsChecker::requirementsResult, this, &ModuleManager::requirementsResult );
-    connect( rq, &RequirementsChecker::requirementsComplete, this, &ModuleManager::requirementsComplete );
     connect( rq, &RequirementsChecker::requirementsProgress, this, &ModuleManager::requirementsProgress );
     connect( rq, &RequirementsChecker::done, rq, &RequirementsChecker::deleteLater );
+    connect( rq, &RequirementsChecker::done, this, [=](){ this->requirementsComplete( m_requirementsModel->satisfiedMandatory() ); } );
 
     QTimer::singleShot( 0, rq, &RequirementsChecker::run );
 }

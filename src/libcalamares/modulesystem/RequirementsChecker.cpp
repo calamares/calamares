@@ -33,25 +33,6 @@
 namespace Calamares
 {
 
-static void
-registerMetatypes()
-{
-    static bool done = false;
-
-    if ( !done )
-    {
-        qRegisterMetaType< RequirementEntry >( "RequirementEntry" );
-        // It's sensitive to the names of types in parameters; in particular
-        // althrough QList<RequirementEntry> is the same as RequirementsList,
-        // because we *name* the type as  RequirementsList in the parameters,
-        // we need to register that (as well). Here, be safe and register
-        // both names.
-        qRegisterMetaType< QList< RequirementEntry > >( "QList<RequirementEntry>" );
-        qRegisterMetaType< RequirementsList >( "RequirementsList" );
-        done = true;
-    }
-}
-
 RequirementsChecker::RequirementsChecker( QVector< Module* > modules, RequirementsModel* model, QObject* parent )
     : QObject( parent )
     , m_modules( std::move( modules ) )
@@ -60,8 +41,6 @@ RequirementsChecker::RequirementsChecker( QVector< Module* > modules, Requiremen
     , m_progressTimeouts( 0 )
 {
     m_watchers.reserve( m_modules.count() );
-
-    registerMetatypes();
 }
 
 RequirementsChecker::~RequirementsChecker() {}
@@ -104,7 +83,6 @@ RequirementsChecker::finished()
         }
 
         m_model->describe();
-        emit requirementsComplete( m_model->satisfiedMandatory() );
         QTimer::singleShot( 0, this, &RequirementsChecker::done );
     }
 }
@@ -121,7 +99,6 @@ RequirementsChecker::addCheckedRequirements( Module* m )
 
     requirementsProgress(
         tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
-    emit requirementsResult( l );
 }
 
 void
