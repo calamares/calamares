@@ -24,12 +24,25 @@
 #include "DllMacro.h"
 
 #include <QAbstractListModel>
+#include <QMutex>
 
 namespace Calamares
 {
+class RequirementsChecker;
 
+/** @brief System requirements from each module and their checked-status
+ *
+ * A Calamares module can have system requirements (e.g. check for
+ * internet, or amount of RAM, or an available disk) which can
+ * be stated and checked.
+ *
+ * This model collects those requirements, can run the checks, and
+ * reports on the overall status of those checks.
+ */
 class DLLEXPORT RequirementsModel : public QAbstractListModel
 {
+    friend class RequirementsChecker;
+
     Q_OBJECT
     Q_PROPERTY( bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL )
     Q_PROPERTY( bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL )
@@ -48,19 +61,17 @@ public:
     };
     // No Q_ENUM because these are exposed through roleNames()
 
+    ///@brief Are all the requirements satisfied?
     bool satisfiedRequirements() const { return m_satisfiedRequirements; }
+    ///@brief Are all the **mandatory** requirements satisfied?
     bool satisfiedMandatory() const { return m_satisfiedMandatory; }
-
-    const Calamares::RequirementEntry& getEntry( int index ) const
-    {
-        return m_requirements.at( index );
-    }
-
-    void setRequirementsList( const Calamares::RequirementsList& requirements );
 
     QVariant data( const QModelIndex& index, int role ) const override;
     int rowCount( const QModelIndex& ) const override;
     int count() const { return m_requirements.count(); }
+
+    ///@brief Debugging tool, describe the checking-state
+    void describe() const;
 
 signals:
     void satisfiedRequirementsChanged( bool value );
@@ -69,11 +80,17 @@ signals:
 protected:
     QHash< int, QByteArray > roleNames() const override;
 
+    ///@brief Append some requirements; resets the model
+    void addRequirementsList( const Calamares::RequirementsList& requirements );
+
 private:
-    Calamares::RequirementsList m_requirements;
+    ///@brief Implementation for {set,add}RequirementsList
+    void changeRequirementsList();
+
+    QMutex m_addLock;
+    RequirementsList m_requirements;
     bool m_satisfiedRequirements = false;
     bool m_satisfiedMandatory = false;
-
 };
 
 }  // namespace Calamares

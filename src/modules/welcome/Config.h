@@ -20,7 +20,6 @@
 #define WELCOME_CONFIG_H
 
 #include "locale/LabelModel.h"
-#include "modulesystem/Requirement.h"
 #include "modulesystem/RequirementsModel.h"
 
 #include <QObject>
@@ -30,7 +29,7 @@ class Config : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL )
-    Q_PROPERTY( Calamares::RequirementsModel* requirementsModel MEMBER m_requirementsModel CONSTANT FINAL )
+    Q_PROPERTY( Calamares::RequirementsModel* requirementsModel READ requirementsModel CONSTANT FINAL )
 
     Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
 
@@ -51,8 +50,6 @@ public:
     Config( QObject* parent = nullptr );
 
     void setConfigurationMap( const QVariantMap& );
-
-    Calamares::RequirementsModel& requirementsModel() const;
 
     void setCountryCode( const QString& countryCode );
 
@@ -83,6 +80,9 @@ public slots:
     CalamaresUtils::Locale::LabelModel* languagesModel() const;
     void retranslate();
 
+    ///@brief The **global** requirements model, from ModuleManager
+    Calamares::RequirementsModel* requirementsModel() const;
+
 signals:
     void countryCodeChanged( QString countryCode );
     void localeIndexChanged( int localeIndex );
@@ -99,7 +99,6 @@ signals:
 private:
     void initLanguages();
 
-    Calamares::RequirementsModel* m_requirementsModel;
     CalamaresUtils::Locale::LabelModel* m_languages;
 
     QString m_languageIcon;

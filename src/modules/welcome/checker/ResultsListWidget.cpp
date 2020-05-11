@@ -48,27 +48,29 @@ static void
 createResultWidgets( QLayout* layout,
                      QList< ResultWidget* >& resultWidgets,
                      const Calamares::RequirementsModel& model,
-                     std::function< bool( const Calamares::RequirementEntry& ) > predicate )
+                     std::function< bool( const Calamares::RequirementsModel&, QModelIndex ) > predicate )
 {
     resultWidgets.clear();
     resultWidgets.reserve( model.count() );
     for ( auto i = 0; i < model.count(); i++ )
     {
-        const auto& entry = model.getEntry( i );
-        if ( !predicate( entry ) )
+        const auto& index = model.index( i );
+        if ( !predicate( model, index ) )
         {
             resultWidgets.append( nullptr );
             continue;
         }
 
-        ResultWidget* ciw = new ResultWidget( entry.satisfied, entry.mandatory );
+        const bool is_satisfied = model.data( index, Calamares::RequirementsModel::Satisfied ).toBool();
+        const bool is_mandatory = model.data( index, Calamares::RequirementsModel::Mandatory ).toBool();
+        ResultWidget* ciw = new ResultWidget( is_satisfied, is_mandatory );
         layout->addWidget( ciw );
         ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
         ciw->setAutoFillBackground( true );
         QPalette pal( ciw->palette() );
         QColor bgColor = pal.window().color();
-        int bgHue = ( entry.satisfied ) ? bgColor.hue() : ( entry.mandatory ) ? 0 : 60;
+        int bgHue = ( is_satisfied ) ? bgColor.hue() : ( is_mandatory ) ? 0 : 60;
         bgColor.setHsv( bgHue, 64, bgColor.value() );
         pal.setColor( QPalette::Window, bgColor );
         ciw->setPalette( pal );
@@ -114,7 +116,9 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
     m_title = new QLabel( this );
 
     createResultWidgets(
-        entriesLayout, m_resultWidgets, model, []( const Calamares::RequirementEntry& e ) { return e.hasDetails(); } );
+        entriesLayout, m_resultWidgets, model, []( const Calamares::RequirementsModel& m, QModelIndex i ) {
+            return m.data( i, Calamares::RequirementsModel::HasDetails ).toBool();
+        } );
 
     QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close, Qt::Horizontal, this );
 
@@ -130,7 +134,7 @@ ResultsListDialog::ResultsListDialog( const Calamares::RequirementsModel& model,
     retranslate();  // Do it now to fill in the texts
 }
 
-ResultsListDialog::~ResultsListDialog() { }
+ResultsListDialog::~ResultsListDialog() {}
 
 void
 ResultsListDialog::retranslate()
@@ -140,10 +144,10 @@ ResultsListDialog::retranslate()
 
     for ( auto i = 0; i < m_model.count(); i++ )
     {
-        const auto& entry = m_model.getEntry( i );
         if ( m_resultWidgets[ i ] )
         {
-            m_resultWidgets[ i ]->setText( entry.enumerationText() );
+            m_resultWidgets[ i ]->setText(
+                m_model.data( m_model.index( i ), Calamares::RequirementsModel::Details ).toString() );
         }
     }
 }
@@ -180,7 +184,9 @@ ResultsListWidget::ResultsListWidget( const Calamares::RequirementsModel& model,
     // all *mandatory* entries are satisfied (gives errors if not).
 
     const bool requirementsSatisfied = m_model.satisfiedRequirements();
-    auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
+    auto isUnSatisfied = []( const Calamares::RequirementsModel& m, QModelIndex i ) {
+        return !m.data( i, Calamares::RequirementsModel::Satisfied ).toBool();
+    };
 
     createResultWidgets( entriesLayout, m_resultWidgets, model, isUnSatisfied );
 
@@ -240,10 +246,10 @@ ResultsListWidget::retranslate()
 {
     for ( auto i = 0; i < m_model.count(); i++ )
     {
-        const auto& entry = m_model.getEntry( i );
         if ( m_resultWidgets[ i ] )
         {
-            m_resultWidgets[ i ]->setText( entry.negatedText() );
+            m_resultWidgets[ i ]->setText(
+                m_model.data( m_model.index( i ), Calamares::RequirementsModel::NegatedText ).toString() );
         }
     }
 

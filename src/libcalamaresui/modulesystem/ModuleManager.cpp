@@ -24,6 +24,7 @@
 #include "Settings.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/RequirementsChecker.h"
+#include "modulesystem/RequirementsModel.h"
 #include "utils/Logger.h"
 #include "utils/Yaml.h"
 #include "viewpages/ExecutionViewStep.h"
@@ -46,6 +47,7 @@ ModuleManager::instance()
 ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
     : QObject( parent )
     , m_paths( paths )
+    , m_requirementsModel( new RequirementsModel( this ) )
 {
     Q_ASSERT( !s_instance );
     s_instance = this;
@@ -355,11 +357,10 @@ ModuleManager::checkRequirements()
         modules[ count++ ] = module;
     }
 
-    RequirementsChecker* rq = new RequirementsChecker( modules, this );
-    connect( rq, &RequirementsChecker::requirementsResult, this, &ModuleManager::requirementsResult );
-    connect( rq, &RequirementsChecker::requirementsComplete, this, &ModuleManager::requirementsComplete );
+    RequirementsChecker* rq = new RequirementsChecker( modules, m_requirementsModel, this );
     connect( rq, &RequirementsChecker::requirementsProgress, this, &ModuleManager::requirementsProgress );
     connect( rq, &RequirementsChecker::done, rq, &RequirementsChecker::deleteLater );
+    connect( rq, &RequirementsChecker::done, this, [=](){ this->requirementsComplete( m_requirementsModel->satisfiedMandatory() ); } );
 
     QTimer::singleShot( 0, rq, &RequirementsChecker::run );
 }

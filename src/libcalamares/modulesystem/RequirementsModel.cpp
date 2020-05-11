@@ -18,15 +18,24 @@
 
 #include "RequirementsModel.h"
 
+#include "utils/Logger.h"
+
 namespace Calamares
 {
 
 void
-RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requirements )
+RequirementsModel::addRequirementsList( const Calamares::RequirementsList& requirements )
 {
+    QMutexLocker l( &m_addLock );
     emit beginResetModel();
-    m_requirements = requirements;
+    m_requirements.append( requirements );
+    changeRequirementsList();
+    emit endResetModel();
+}
 
+void
+RequirementsModel::changeRequirementsList()
+{
     auto isUnSatisfied = []( const Calamares::RequirementEntry& e ) { return !e.satisfied; };
     auto isMandatoryAndUnSatisfied = []( const Calamares::RequirementEntry& e ) { return e.mandatory && !e.satisfied; };
 
@@ -35,7 +44,6 @@ RequirementsModel::setRequirementsList( const Calamares::RequirementsList& requi
 
     emit satisfiedRequirementsChanged( m_satisfiedRequirements );
     emit satisfiedMandatoryChanged( m_satisfiedMandatory );
-    emit endResetModel();
 }
 
 int
@@ -61,6 +69,8 @@ RequirementsModel::data( const QModelIndex& index, int role ) const
         return requirement.satisfied;
     case Roles::Mandatory:
         return requirement.mandatory;
+    case Roles::HasDetails:
+        return requirement.hasDetails();
     default:
         return QVariant();
     }
@@ -75,7 +85,24 @@ RequirementsModel::roleNames() const
     roles[ Roles::NegatedText ] = "negatedText";
     roles[ Roles::Satisfied ] = "satisfied";
     roles[ Roles::Mandatory ] = "mandatory";
+    roles[ Roles::HasDetails ] = "hasDetails";
     return roles;
+}
+
+void
+RequirementsModel::describe() const
+{
+    bool acceptable = true;
+    int count = 0;
+    for ( const auto& r : m_requirements )
+    {
+        if ( r.mandatory && !r.satisfied )
+        {
+            cDebug() << Logger::SubEntry << "requirement" << count << r.name << "is not satisfied.";
+            acceptable = false;
+        }
+        ++count;
+    }
 }
 
 }  // namespace Calamares
