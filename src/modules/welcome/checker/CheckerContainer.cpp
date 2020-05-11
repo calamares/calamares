@@ -62,7 +62,8 @@ CheckerContainer::requirementsComplete( bool ok )
         {
             auto index = m_model.index( i );
             cDebug() << Logger::SubEntry << i << m_model.data( index, Calamares::RequirementsModel::Name ).toString()
-                     << m_model.data( index, Calamares::RequirementsModel::Satisfied ).toBool();
+                     << "set?" << m_model.data( index, Calamares::RequirementsModel::Satisfied ).toBool() << "req?"
+                     << m_model.data( index, Calamares::RequirementsModel::Mandatory ).toBool();
         }
     }
 
