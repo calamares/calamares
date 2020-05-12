@@ -29,11 +29,13 @@ namespace Ui
 class TrackingPage;
 }
 
+class Config;
+
 class TrackingPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit TrackingPage( QWidget* parent = nullptr );
+    explicit TrackingPage( Config* config, QWidget* parent = nullptr );
 
     /** @brief Set initial state for each option
      *
@@ -54,10 +56,14 @@ public:
 
     ///@brief Set URL for given level @p t
     void setTrackingPolicy( TrackingType t, QString url );
-    ///@brief Set URL for the global link
-    void setGeneralPolicy( QString url );
     ///@brief Select one of the four levels by name
     void setTrackingLevel( TrackingType t );
+
+public Q_SLOTS:
+    ///@brief Set URL for the global link
+    void setGeneralPolicy( QString url );
+
+    void retranslate();
 
 private:
     Ui::TrackingPage* ui;

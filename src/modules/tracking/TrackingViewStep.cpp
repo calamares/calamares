@@ -18,6 +18,7 @@
 
 #include "TrackingViewStep.h"
 
+#include "Config.h"
 #include "TrackingJobs.h"
 #include "TrackingPage.h"
 
@@ -43,7 +44,8 @@ isValidStyle( const QString& s )
 
 TrackingViewStep::TrackingViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new TrackingPage )
+    , m_config( new Config( this ) )
+    , m_widget( new TrackingPage( m_config ) )
 {
     emit nextStatusChanged( false );
 }
@@ -186,9 +188,10 @@ TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     setTrackingOption( configurationMap, "user", TrackingType::UserTracking );
 
-    m_widget->setGeneralPolicy( CalamaresUtils::getString( configurationMap, "policy" ) );
+    m_config->setConfigurationMap( configurationMap );
+
     bool ok;
-    m_widget->setTrackingLevel( trackingNames().find(CalamaresUtils::getString( configurationMap, "default" ), ok ) );
+    m_widget->setTrackingLevel( trackingNames().find( CalamaresUtils::getString( configurationMap, "default" ), ok ) );
     if ( !ok )
     {
         cWarning() << "Default tracking level unknown:" << CalamaresUtils::getString( configurationMap, "default" );

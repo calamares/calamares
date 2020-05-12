@@ -29,6 +29,7 @@
 #include <QUrl>
 #include <QVariantMap>
 
+class Config;
 class TrackingPage;
 
 class PLUGINDLLEXPORT TrackingViewStep : public Calamares::ViewStep
@@ -58,6 +59,7 @@ public:
 private:
     QVariantMap setTrackingOption( const QVariantMap& configurationMap, const QString& key, TrackingType t );
 
+    Config* m_config;
     TrackingPage* m_widget;
     QString m_installTrackingUrl;
     QString m_machineTrackingStyle;

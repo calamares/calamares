@@ -18,6 +18,7 @@
 
 #include "TrackingPage.h"
 
+#include "Config.h"
 #include "ui_page_trackingstep.h"
 
 #include "Branding.h"
@@ -32,27 +33,12 @@
 #include <QDesktopServices>
 #include <QLabel>
 
-TrackingPage::TrackingPage( QWidget* parent )
+TrackingPage::TrackingPage( Config* config, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::TrackingPage )
 {
     ui->setupUi( this );
-    CALAMARES_RETRANSLATE(
-        QString product = Calamares::Branding::instance()->shortProductName(); ui->retranslateUi( this );
-        ui->generalExplanation->setText(
-            tr( "Install tracking helps %1 to see how many users they have, what hardware they install %1 to and (with "
-                "the last two options below), get continuous information about preferred applications. To see what "
-                "will be sent, please click the help icon next to each area." )
-                .arg( product ) );
-        ui->installExplanation->setText(
-            tr( "By selecting this you will send information about your installation and hardware. This information "
-                "will <b>only be sent once</b> after the installation finishes." ) );
-        ui->machineExplanation->setText( tr( "By selecting this you will <b>periodically</b> send information about "
-                                             "your installation, hardware and applications, to %1." )
-                                             .arg( product ) );
-        ui->userExplanation->setText( tr( "By selecting this you will <b>regularly</b> send information about your "
-                                          "installation, hardware, applications and usage patterns, to %1." )
-                                          .arg( product ) ); )
+    CALAMARES_RETRANSLATE_SLOT( &TrackingPage::retranslate );
 
     QButtonGroup* group = new QButtonGroup( this );
     group->setExclusive( true );
@@ -61,7 +47,32 @@ TrackingPage::TrackingPage( QWidget* parent )
     group->addButton( ui->machineRadio );
     group->addButton( ui->userRadio );
     ui->noneRadio->setChecked( true );
+
+    connect( config, &Config::generalPolicyChanged, this, &TrackingPage::setGeneralPolicy );
+    retranslate();
 }
+
+void
+TrackingPage::retranslate()
+{
+    QString product = Calamares::Branding::instance()->shortProductName();
+    ui->retranslateUi( this );
+    ui->generalExplanation->setText(
+        tr( "Install tracking helps %1 to see how many users they have, what hardware they install %1 to and (with "
+            "the last two options below), get continuous information about preferred applications. To see what "
+            "will be sent, please click the help icon next to each area." )
+            .arg( product ) );
+    ui->installExplanation->setText(
+        tr( "By selecting this you will send information about your installation and hardware. This information "
+            "will <b>only be sent once</b> after the installation finishes." ) );
+    ui->machineExplanation->setText( tr( "By selecting this you will <b>periodically</b> send information about "
+                                         "your installation, hardware and applications, to %1." )
+                                         .arg( product ) );
+    ui->userExplanation->setText( tr( "By selecting this you will <b>regularly</b> send information about your "
+                                      "installation, hardware, applications and usage patterns, to %1." )
+                                      .arg( product ) );
+}
+
 
 void
 TrackingPage::enableTrackingOption( TrackingType t, bool enabled )
@@ -154,7 +165,7 @@ TrackingPage::setTrackingPolicy( TrackingType t, QString url )
         }
         else
         {
-            connect( button, &QToolButton::clicked, [ url ] { QDesktopServices::openUrl( url ); } );
+            connect( button, &QToolButton::clicked, [url] { QDesktopServices::openUrl( url ); } );
             cDebug() << "Tracking policy" << int( t ) << "set to" << url;
         }
     else
@@ -175,7 +186,7 @@ TrackingPage::setGeneralPolicy( QString url )
         ui->generalPolicyLabel->show();
         ui->generalPolicyLabel->setTextInteractionFlags( Qt::TextBrowserInteraction );
         ui->generalPolicyLabel->show();
-        connect( ui->generalPolicyLabel, &QLabel::linkActivated, [ url ] { QDesktopServices::openUrl( url ); } );
+        connect( ui->generalPolicyLabel, &QLabel::linkActivated, [url] { QDesktopServices::openUrl( url ); } );
     }
 }
 
@@ -184,20 +195,20 @@ TrackingPage::setTrackingLevel( TrackingType t )
 {
     QRadioButton* button = nullptr;
 
-    switch( t )
+    switch ( t )
     {
-        case TrackingType::NoTracking:
-            button = ui->noneRadio;
-            break;
-        case TrackingType::InstallTracking:
-            button = ui->installRadio;
-            break;
-        case TrackingType::MachineTracking:
-            button = ui->machineRadio;
-            break;
-        case TrackingType::UserTracking:
-            button = ui->userRadio;
-            break;
+    case TrackingType::NoTracking:
+        button = ui->noneRadio;
+        break;
+    case TrackingType::InstallTracking:
+        button = ui->installRadio;
+        break;
+    case TrackingType::MachineTracking:
+        button = ui->machineRadio;
+        break;
+    case TrackingType::UserTracking:
+        button = ui->userRadio;
+        break;
     }
 
     if ( button != nullptr )
