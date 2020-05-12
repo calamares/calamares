@@ -37,6 +37,10 @@ WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
     , m_config( new Config( this ) )
     , m_requirementsChecker( new GeneralRequirements( this ) )
 {
+    connect( Calamares::ModuleManager::instance(),
+            &Calamares::ModuleManager::requirementsComplete,
+            this,
+            &WelcomeQmlViewStep::nextStatusChanged );
 }
 
 
@@ -49,9 +53,7 @@ WelcomeQmlViewStep::prettyName() const
 bool
 WelcomeQmlViewStep::isNextEnabled() const
 {
-    // TODO: should return true
-    //     return m_config->property("isNextEnabled").toBool();
-    return true;
+    return m_config->requirementsModel()->satisfiedMandatory();
 }
 
 bool

@@ -31,6 +31,7 @@
 
 #include "locale/LabelModel.h"
 #include "modulesystem/ModuleManager.h"
+#include "modulesystem/RequirementsModel.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
@@ -90,8 +91,8 @@ WelcomePage::WelcomePage( Config* conf, QWidget* parent )
              &Calamares::ModuleManager::requirementsComplete,
              m_checkingWidget,
              &CheckerContainer::requirementsComplete );
-    connect( Calamares::ModuleManager::instance(),
-             &Calamares::ModuleManager::requirementsProgress,
+    connect( Calamares::ModuleManager::instance()->requirementsModel(),
+             &Calamares::RequirementsModel::progressMessageChanged,
              m_checkingWidget,
              &CheckerContainer::requirementsProgress );
 }

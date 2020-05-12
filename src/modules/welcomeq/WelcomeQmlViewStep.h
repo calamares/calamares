@@ -73,7 +73,6 @@ public:
     QObject* getConfig() override;
 
 private:
-    // TODO: a generic QML viewstep should return a config object from a method
     Config* m_config;
     GeneralRequirements* m_requirementsChecker;
 };
