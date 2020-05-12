@@ -21,6 +21,8 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
+#include <QUrl>
+
 Config::Config( QObject* parent )
     : QObject( parent )
 {
@@ -30,6 +32,12 @@ void
 Config::setConfigurationMap( const QVariantMap& m )
 {
     m_generalPolicy = CalamaresUtils::getString( m, "policy" );
+
+    if ( !QUrl( m_generalPolicy ).isValid() )
+    {
+        m_generalPolicy = QString();
+    }
+
     emit generalPolicyChanged( m_generalPolicy );
 }
 
