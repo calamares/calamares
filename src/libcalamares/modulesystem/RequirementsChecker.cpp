@@ -84,6 +84,7 @@ RequirementsChecker::finished()
         }
 
         m_model->describe();
+        m_model->changeRequirementsList();
         QTimer::singleShot( 0, this, &RequirementsChecker::done );
     }
 }
