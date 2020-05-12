@@ -105,4 +105,11 @@ RequirementsModel::describe() const
     }
 }
 
+void
+RequirementsModel::setProgressMessage( const QString& m )
+{
+    m_progressMessage = m;
+    emit progressMessageChanged( m_progressMessage );
+}
+
 }  // namespace Calamares

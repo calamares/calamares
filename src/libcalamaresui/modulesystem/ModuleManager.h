@@ -100,7 +100,6 @@ signals:
     void modulesFailed( QStringList );  /// .. or not
     // Below, see RequirementsChecker documentation
     void requirementsComplete( bool );
-    void requirementsProgress( const QString& );
 
 private slots:
     void doInit();

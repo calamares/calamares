@@ -358,7 +358,6 @@ ModuleManager::checkRequirements()
     }
 
     RequirementsChecker* rq = new RequirementsChecker( modules, m_requirementsModel, this );
-    connect( rq, &RequirementsChecker::requirementsProgress, this, &ModuleManager::requirementsProgress );
     connect( rq, &RequirementsChecker::done, rq, &RequirementsChecker::deleteLater );
     connect( rq, &RequirementsChecker::done, this, [=](){ this->requirementsComplete( m_requirementsModel->satisfiedMandatory() ); } );
 
