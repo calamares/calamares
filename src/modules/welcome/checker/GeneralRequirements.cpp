@@ -70,16 +70,49 @@ biggestSingleScreen()
     return s;
 }
 
+/** @brief Distinguish has-not-been-checked-at-all from false.
+ *
+ */
+struct MaybeChecked
+{
+    bool hasBeenChecked = false;
+    bool value = false;
+
+    MaybeChecked& operator=( bool b )
+    {
+        cDebug() << "Assigning" << b;
+        hasBeenChecked = true;
+        value = b;
+        return *this;
+    }
+
+    operator bool() const { return value; }
+};
+
+QDebug&
+operator<<( QDebug& s, const MaybeChecked& c )
+{
+    if ( c.hasBeenChecked )
+    {
+        s << c.value;
+    }
+    else
+    {
+        s << "unchecked";
+    }
+    return s;
+}
+
 Calamares::RequirementsList
 GeneralRequirements::checkRequirements()
 {
     QSize availableSize = biggestSingleScreen();
 
-    bool enoughStorage = false;
-    bool enoughRam = false;
-    bool hasPower = false;
-    bool hasInternet = false;
-    bool isRoot = false;
+    MaybeChecked enoughStorage;
+    MaybeChecked enoughRam;
+    MaybeChecked hasPower;
+    MaybeChecked hasInternet;
+    MaybeChecked isRoot;
     bool enoughScreen = availableSize.isValid() && ( availableSize.width() >= CalamaresUtils::windowMinimumWidth )
         && ( availableSize.height() >= CalamaresUtils::windowMinimumHeight );
 
@@ -112,7 +145,7 @@ GeneralRequirements::checkRequirements()
         isRoot = checkIsRoot();
     }
 
-    using TR = Logger::DebugRow< const char*, bool >;
+    using TR = Logger::DebugRow< const char*, MaybeChecked >;
     cDebug() << "GeneralRequirements output:" << TR( "enoughStorage", enoughStorage ) << TR( "enoughRam", enoughRam )
              << TR( "hasPower", hasPower ) << TR( "hasInternet", hasInternet ) << TR( "isRoot", isRoot );
 

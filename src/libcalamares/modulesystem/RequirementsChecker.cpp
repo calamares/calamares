@@ -41,6 +41,7 @@ RequirementsChecker::RequirementsChecker( QVector< Module* > modules, Requiremen
     , m_progressTimeouts( 0 )
 {
     m_watchers.reserve( m_modules.count() );
+    connect( this, &RequirementsChecker::requirementsProgress, model, &RequirementsModel::setProgressMessage );
 }
 
 RequirementsChecker::~RequirementsChecker() {}
@@ -83,6 +84,7 @@ RequirementsChecker::finished()
         }
 
         m_model->describe();
+        m_model->changeRequirementsList();
         QTimer::singleShot( 0, this, &RequirementsChecker::done );
     }
 }
@@ -97,8 +99,7 @@ RequirementsChecker::addCheckedRequirements( Module* m )
         m_model->addRequirementsList( l );
     }
 
-    requirementsProgress(
-        tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
+    requirementsProgress( tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
 }
 
 void

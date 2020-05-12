@@ -46,6 +46,7 @@ class DLLEXPORT RequirementsModel : public QAbstractListModel
     Q_OBJECT
     Q_PROPERTY( bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL )
     Q_PROPERTY( bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL )
+    Q_PROPERTY( QString progressMessage READ progressMessage NOTIFY progressMessageChanged FINAL )
 
 public:
     using QAbstractListModel::QAbstractListModel;
@@ -65,6 +66,9 @@ public:
     bool satisfiedRequirements() const { return m_satisfiedRequirements; }
     ///@brief Are all the **mandatory** requirements satisfied?
     bool satisfiedMandatory() const { return m_satisfiedMandatory; }
+    ///@brief Message (from an ongoing check) about progress
+    QString progressMessage() const { return m_progressMessage; }
+
 
     QVariant data( const QModelIndex& index, int role ) const override;
     int rowCount( const QModelIndex& ) const override;
@@ -76,6 +80,7 @@ public:
 signals:
     void satisfiedRequirementsChanged( bool value );
     void satisfiedMandatoryChanged( bool value );
+    void progressMessageChanged( QString message );
 
 protected:
     QHash< int, QByteArray > roleNames() const override;
@@ -83,10 +88,14 @@ protected:
     ///@brief Append some requirements; resets the model
     void addRequirementsList( const Calamares::RequirementsList& requirements );
 
+    ///@brief Update progress message (called by the checker)
+    void setProgressMessage( const QString& m );
+
 private:
     ///@brief Implementation for {set,add}RequirementsList
     void changeRequirementsList();
 
+    QString m_progressMessage;
     QMutex m_addLock;
     RequirementsList m_requirements;
     bool m_satisfiedRequirements = false;
