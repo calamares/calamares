@@ -70,6 +70,9 @@ TrackingPage::enableTrackingOption( TrackingType t, bool enabled )
 
     switch ( t )
     {
+    case TrackingType::NoTracking:
+        // Nothing to do, this **has** no widget
+        return;
     case TrackingType::InstallTracking:
         group = ui->installGroup;
         break;
@@ -108,6 +111,8 @@ TrackingPage::getTrackingOption( TrackingType t )
 #define ch( x ) ui->x->isChecked()
     switch ( t )
     {
+    case TrackingType::NoTracking:
+        return false;
     case TrackingType::InstallTracking:
         enabled = ch( installRadio ) || ch( machineRadio ) || ch( userRadio );
         break;
@@ -128,6 +133,9 @@ TrackingPage::setTrackingPolicy( TrackingType t, QString url )
     QToolButton* button = nullptr;
     switch ( t )
     {
+    case TrackingType::NoTracking:
+        cWarning() << "Cannot configure NoTracking widget";
+        return;
     case TrackingType::InstallTracking:
         button = ui->installPolicyButton;
         break;
