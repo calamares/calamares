@@ -189,3 +189,20 @@ TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_widget->setGeneralPolicy( CalamaresUtils::getString( configurationMap, "policy" ) );
     m_widget->setTrackingLevel( CalamaresUtils::getString( configurationMap, "default" ) );
 }
+
+const NamedEnumTable< TrackingType >&
+trackingNames()
+{
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< TrackingType > names {
+        { QStringLiteral( "none" ), TrackingType::NoTracking },
+        { QStringLiteral( "install" ), TrackingType::InstallTracking },
+        { QStringLiteral( "machine" ), TrackingType::MachineTracking },
+        { QStringLiteral( "user" ), TrackingType::UserTracking }
+    };
+    // clang-format on
+    // *INDENT-ON*
+
+    return names;
+}
