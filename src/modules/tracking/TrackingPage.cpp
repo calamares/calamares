@@ -172,34 +172,28 @@ TrackingPage::setGeneralPolicy( QString url )
 }
 
 void
-TrackingPage::setTrackingLevel( const QString& l )
+TrackingPage::setTrackingLevel( TrackingType t )
 {
-    QString level = l.toLower();
     QRadioButton* button = nullptr;
 
-    if ( level.isEmpty() || level == "none" )
+    switch( t )
     {
-        button = ui->noneRadio;
-    }
-    else if ( level == "install" )
-    {
-        button = ui->installRadio;
-    }
-    else if ( level == "machine" )
-    {
-        button = ui->machineRadio;
-    }
-    else if ( level == "user" )
-    {
-        button = ui->userRadio;
+        case TrackingType::NoTracking:
+            button = ui->noneRadio;
+            break;
+        case TrackingType::InstallTracking:
+            button = ui->installRadio;
+            break;
+        case TrackingType::MachineTracking:
+            button = ui->machineRadio;
+            break;
+        case TrackingType::UserTracking:
+            button = ui->userRadio;
+            break;
     }
 
     if ( button != nullptr )
     {
         button->setChecked( true );
-    }
-    else
-    {
-        cWarning() << "unknown default tracking level" << l;
     }
 }

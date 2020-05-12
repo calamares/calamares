@@ -35,7 +35,8 @@ class TrackingPage : public QWidget
 public:
     explicit TrackingPage( QWidget* parent = nullptr );
 
-    /**
+    /** @brief Set initial state for each option
+     *
      * Enables or disables the tracking-option block for the given
      * tracking option @p t, and sets the initial state of the
      * checkbox to the @p user default.
@@ -43,19 +44,20 @@ public:
      * Call this in ascending order of tracking type.
      */
     void enableTrackingOption( TrackingType t, bool enabled );
-    /**
+    /** @brief Is the given tracking type enabled?
+     *
      * Returns whether tracking type @p is selected by the user
      * (i.e. is the radio button for that level, or for a higher
      * tracking level, enabled).
      */
     bool getTrackingOption( TrackingType t );
 
-    /* URL for given level @p t */
+    ///@brief Set URL for given level @p t
     void setTrackingPolicy( TrackingType t, QString url );
-    /* URL for the global link */
+    ///@brief Set URL for the global link
     void setGeneralPolicy( QString url );
-    /* Select one of the four levels by name */
-    void setTrackingLevel( const QString& level );
+    ///@brief Select one of the four levels by name
+    void setTrackingLevel( TrackingType t );
 
 private:
     Ui::TrackingPage* ui;

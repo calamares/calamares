@@ -187,7 +187,12 @@ TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     setTrackingOption( configurationMap, "user", TrackingType::UserTracking );
 
     m_widget->setGeneralPolicy( CalamaresUtils::getString( configurationMap, "policy" ) );
-    m_widget->setTrackingLevel( CalamaresUtils::getString( configurationMap, "default" ) );
+    bool ok;
+    m_widget->setTrackingLevel( trackingNames().find(CalamaresUtils::getString( configurationMap, "default" ), ok ) );
+    if ( !ok )
+    {
+        cWarning() << "Default tracking level unknown:" << CalamaresUtils::getString( configurationMap, "default" );
+    }
 }
 
 const NamedEnumTable< TrackingType >&
