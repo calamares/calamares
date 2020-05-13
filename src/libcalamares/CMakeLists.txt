@@ -1,12 +1,7 @@
 # libcalamares is the non-GUI part of Calamares, which includes handling
 # translations, configurations, logging, utilities, global storage, and (non-GUI) jobs.
 
-add_definitions(
-    ${QT_DEFINITIONS}
-    -DQT_SHARED
-    -DQT_SHAREDPOINTER_TRACK_POINTERS
-    -DDLLEXPORT_PRO
-)
+add_definitions( -DDLLEXPORT_PRO )
 
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h )

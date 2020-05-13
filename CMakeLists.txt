@@ -496,7 +496,11 @@ if ( CALAMARES_VERSION_RC EQUAL 0 )
 endif()
 
 # enforce using constBegin, constEnd for const-iterators
-add_definitions( "-DQT_STRICT_ITERATORS" )
+add_definitions(
+    -DQT_STRICT_ITERATORS
+    -DQT_SHARED
+    -DQT_SHAREDPOINTER_TRACK_POINTERS
+)
 
 # set paths
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
