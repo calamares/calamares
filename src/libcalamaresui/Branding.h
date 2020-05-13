@@ -165,8 +165,16 @@ public:
      */
     QString translationsDirectory() const { return m_translationsPathPrefix; }
 
-    /** @brief Path to the slideshow QML file, if any. */
+    /** @brief Path to the slideshow QML file, if any. (API == 1 or 2)*/
     QString slideshowPath() const { return m_slideshowPath; }
+    /// @brief List of pathnames of slideshow images, if any. (API == -1)
+    QStringList slideshowImages() const { return m_slideshowFilenames; }
+    /** @brief Which slideshow API to use for the slideshow?
+     *
+     *  -  2    For QML-based slideshows loaded asynchronously (current)
+     *  -  1    For QML-based slideshows, loaded when shown (legacy)
+     *  - -1    For oldschool image-slideshows.
+     */
     int slideshowAPI() const { return m_slideshowAPI; }
 
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;

@@ -249,6 +249,7 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                 }
 
                 m_slideshowFilenames = slideShowPictures;
+                m_slideshowAPI = -1;
             }
             else if ( doc[ "slideshow" ].IsScalar() )
             {
@@ -259,19 +260,20 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                           QString( "Slideshow file %1 does not exist or is not a valid QML file." )
                               .arg( slideshowFi.absoluteFilePath() ) );
                 m_slideshowPath = slideshowFi.absoluteFilePath();
+
+                // API choice is relevant for QML slideshow
+                int api = doc[ "slideshowAPI" ].IsScalar() ? doc[ "slideshowAPI" ].as< int >() : -1;
+                if ( ( api < 1 ) || ( api > 2 ) )
+                {
+                    cWarning() << "Invalid or missing *slideshowAPI* in branding file.";
+                    api = 1;
+                }
+                m_slideshowAPI = api;
             }
             else
             {
                 bail( m_descriptorPath, "Syntax error in slideshow sequence." );
             }
-
-            int api = doc[ "slideshowAPI" ].IsScalar() ? doc[ "slideshowAPI" ].as< int >() : -1;
-            if ( ( api < 1 ) || ( api > 2 ) )
-            {
-                cWarning() << "Invalid or missing *slideshowAPI* in branding file.";
-                api = 1;
-            }
-            m_slideshowAPI = api;
         }
         catch ( YAML::Exception& e )
         {

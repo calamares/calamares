@@ -41,6 +41,24 @@
 #include <QProgressBar>
 #include <QVBoxLayout>
 
+static Calamares::Slideshow*
+makeSlideshow( QWidget* parent )
+{
+    const int api = Calamares::Branding::instance()->slideshowAPI();
+    switch ( api )
+    {
+    case -1:
+        return new Calamares::SlideshowPictures( parent );
+    case 1:
+        FALLTHRU;
+    case 2:
+        return new Calamares::SlideshowQML( parent );
+    default:
+        cWarning() << "Unknown Branding slideshow API" << api;
+        return new Calamares::SlideshowPictures( parent );
+    }
+}
+
 namespace Calamares
 {
 
@@ -49,7 +67,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     , m_widget( new QWidget )
     , m_progressBar( new QProgressBar )
     , m_label( new QLabel )
-    , m_slideshow( new SlideshowQML( m_widget ) )
+    , m_slideshow( makeSlideshow( m_widget ) )
 {
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     QVBoxLayout* innerLayout = new QVBoxLayout;

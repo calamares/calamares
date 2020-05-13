@@ -179,7 +179,7 @@ SlideshowPictures::SlideshowPictures( QWidget* parent )
     , m_label( new QLabel( parent ) )
     , m_timer( new QTimer( this ) )
     , m_imageIndex( 0 )
-    , m_images { QStringLiteral( ":/data/images/yes.svgz" ), QStringLiteral( ":/data/images/no.svgz" ) }
+    , m_images( Branding::instance()->slideshowImages() )
 {
     m_timer->setInterval( std::chrono::milliseconds( 2000 ) );
     connect( m_timer, &QTimer::timeout, this, &SlideshowPictures::next );
