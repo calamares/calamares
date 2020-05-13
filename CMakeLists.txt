@@ -50,7 +50,6 @@ set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during develop
 option( INSTALL_CONFIG "Install configuration files" OFF )
 option( INSTALL_POLKIT "Install Polkit configuration" ON )
 option( INSTALL_COMPLETION "Install shell completions" OFF )
-option( BUILD_TESTING "Build the testing tree." ON )
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
@@ -159,6 +158,7 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
     )
 endif()
 
+include( CTest )
 
 ### C++ SETUP
 #
@@ -311,10 +311,6 @@ if( NOT KF5DBusAddons_FOUND )
     endif()
     set( WITH_KF5DBus OFF )
 endif()
-
-if( BUILD_TESTING )
-    enable_testing()
-endif ()
 
 find_package( PythonLibs ${PYTHONLIBS_VERSION} )
 set_package_properties(
