@@ -26,11 +26,15 @@
 #include "utils/Qml.h"
 #include "utils/Retranslator.h"
 
+#include <QLabel>
 #include <QMutexLocker>
 #include <QQmlComponent>
 #include <QQmlEngine>
 #include <QQuickItem>
 #include <QQuickWidget>
+#include <QTimer>
+
+#include <chrono>
 
 namespace Calamares
 {
@@ -61,9 +65,13 @@ SlideshowQML::SlideshowQML( QWidget* parent )
 
 SlideshowQML::~SlideshowQML()
 {
+    delete m_qmlObject;
+    delete m_qmlComponent;
+    delete m_qmlShow;
 }
 
-QWidget * SlideshowQML::widget()
+QWidget*
+SlideshowQML::widget()
 {
     return m_qmlShow;
 }
@@ -166,4 +174,83 @@ SlideshowQML::changeSlideShowState( Action state )
     m_state = state;
 }
 
-}  // namespace
+SlideshowPictures::SlideshowPictures( QWidget* parent )
+    : Slideshow( parent )
+    , m_label( new QLabel( parent ) )
+    , m_timer( new QTimer( this ) )
+    , m_imageIndex( 0 )
+    , m_images { QStringLiteral( ":/data/images/yes.svgz" ), QStringLiteral( ":/data/images/no.svgz" ) }
+{
+    m_timer->setInterval( std::chrono::milliseconds( 2000 ) );
+    connect( m_timer, &QTimer::timeout, this, &SlideshowPictures::next );
+}
+
+SlideshowPictures::~SlideshowPictures()
+{
+    delete m_timer;
+    delete m_label;
+}
+
+QWidget*
+SlideshowPictures::widget()
+{
+    return m_label;
+}
+
+void
+SlideshowPictures::changeSlideShowState( Calamares::Slideshow::Action a )
+{
+    QMutexLocker l( &m_mutex );
+    m_state = a;
+    if ( a == Slideshow::Start )
+    {
+        m_imageIndex = -1;
+        if ( m_images.count() < 1 )
+        {
+            m_label->setPixmap( QPixmap( ":/data/images/squid.svg" ) );
+        }
+        else
+        {
+
+            m_timer->start();
+            QTimer::singleShot( 0, this, &SlideshowPictures::next );
+        }
+    }
+    else
+    {
+        m_timer->stop();
+    }
+}
+
+void
+SlideshowPictures::next()
+{
+    QMutexLocker l( &m_mutex );
+
+    if ( m_imageIndex < 0 )
+    {
+        // Initialization, don't do the advance-by-one
+        m_imageIndex = 0;
+    }
+    else
+    {
+        m_imageIndex++;
+        if ( m_imageIndex >= m_images.count() )
+        {
+            m_imageIndex = 0;
+        }
+    }
+
+    if ( m_imageIndex >= m_images.count() )
+    {
+        // Unusual case: timer is running, but we have 0 images to display.
+        // .. this would have been caught in changeSlideShowState(), which
+        // .. special-cases 0 images.
+        return;
+    }
+
+    m_label->setPixmap( QPixmap( m_images.at( m_imageIndex ) ) );
+}
+
+
+}  // namespace Calamares
