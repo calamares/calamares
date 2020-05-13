@@ -181,6 +181,8 @@ SlideshowPictures::SlideshowPictures( QWidget* parent )
     , m_imageIndex( 0 )
     , m_images( Branding::instance()->slideshowImages() )
 {
+    m_label->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    m_label->setAlignment( Qt::AlignCenter );
     m_timer->setInterval( std::chrono::milliseconds( 2000 ) );
     connect( m_timer, &QTimer::timeout, this, &SlideshowPictures::next );
 }
