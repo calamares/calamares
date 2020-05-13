@@ -19,6 +19,7 @@ set( calamaresui_SOURCES
     viewpages/BlankViewStep.cpp
     viewpages/ExecutionViewStep.cpp
     viewpages/QmlViewStep.cpp
+    viewpages/Slideshow.cpp
     viewpages/ViewStep.cpp
 
     widgets/ClickableLabel.cpp

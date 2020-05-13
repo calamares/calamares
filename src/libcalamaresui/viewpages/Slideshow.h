@@ -21,6 +21,7 @@
 #ifndef LIBCALAMARESUI_SLIDESHOW_H
 #define LIBCALAMARESUI_SLIDESHOW_H
 
+#include <QMutex>
 #include <QWidget>
 
 class QQmlComponent;
@@ -30,22 +31,58 @@ class QQuickWidget;
 namespace Calamares
 {
 
-class Slideshow
+class Slideshow : public QObject
 {
+    Q_OBJECT
 public:
-    Slideshow( QWidget* parent ) {};
+    /// @brief State-change of the slideshow, for changeSlideShowState()
+    enum Action
+    {
+        Start,
+        Stop
+    };
+
+    Slideshow( QWidget* parent = nullptr )
+        : QObject( parent )
+    {
+    }
     virtual ~Slideshow();
 
+    ///@brief Is the slideshow being shown **right now**?
+    bool isActive() const { return m_state == Start; }
+
+    /** @brief The actual widget to show the user.
+     *
+     * Depending on the style of slideshow, this might be a QQuickWidget,
+     * or a QLabel, or something else entirely.
+     */
     virtual QWidget* widget() = 0;
+
+    /** @brief Tells the slideshow we activated or left the show.
+     *
+     * If @p state is @c Slideshow::Start, calls suitable activation procedures.
+     * If @p state is @c Slideshow::Stop, calls deactivation procedures.
+     */
+    virtual void changeSlideShowState( Action a ) = 0;
+
+protected:
+    QMutex m_mutex;
+    Action m_state = Stop;
 };
 
 class SlideshowQML : public Slideshow
 {
+    Q_OBJECT
 public:
     SlideshowQML( QWidget* parent );
-    virtual ~SlideshowQML();
+    virtual ~SlideshowQML() override;
 
     QWidget* widget() override;
+    void changeSlideShowState( Action a ) override;
+
+public slots:
+    void loadQmlV2Complete();
+    void loadQmlV2();  ///< Loads the slideshow QML (from branding) for API version 2
 
 private:
     QQuickWidget* m_qmlShow;
@@ -57,10 +94,10 @@ class SlideshowPictures : public Slideshow
 {
 public:
     SlideshowPictures( QWidget* parent );
-    virtual ~SlideshowPictures();
+    virtual ~SlideshowPictures() override;
 
     QWidget* widget() override;
 };
 
-}
+}  // namespace Calamares
 #endif
