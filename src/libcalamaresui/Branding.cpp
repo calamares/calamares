@@ -41,6 +41,13 @@
 #include <KOSRelease>
 #endif
 
+[[noreturn]] static void
+bail( const QString& descriptorPath, const QString& message )
+{
+    cError() << "FATAL in" << descriptorPath << Logger::Continuation << Logger::NoQuote {} << message;
+    ::exit( EXIT_FAILURE );
+}
+
 namespace Calamares
 {
 
@@ -153,7 +160,7 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
     QDir componentDir( componentDirectory() );
     if ( !componentDir.exists() )
     {
-        bail( "Bad component directory path." );
+        bail( m_descriptorPath, "Bad component directory path." );
     }
 
     QFile file( brandingFilePath );
@@ -168,7 +175,8 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
 
             m_componentName = QString::fromStdString( doc[ "componentName" ].as< std::string >() );
             if ( m_componentName != componentDir.dirName() )
-                bail( "The branding component name should match the name of the "
+                bail( m_descriptorPath,
+                      "The branding component name should match the name of the "
                       "component directory." );
 
             initSimpleSettings( doc );
@@ -214,7 +222,8 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                     // Not found, bail out with the filename used
                     if ( icon.isNull() )
                     {
-                        bail( QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
+                        bail( m_descriptorPath,
+                              QString( "Image file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
                     }
                     return imageName;  // Not turned into a path
                 }
@@ -232,40 +241,44 @@ Branding::Branding( const QString& brandingFilePath, QObject* parent )
                     QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
                     if ( !imageFi.exists() )
                     {
-                        bail( QString( "Slideshow file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
+                        bail( m_descriptorPath,
+                              QString( "Slideshow file %1 does not exist." ).arg( imageFi.absoluteFilePath() ) );
                     }
 
                     slideShowPictures[ i ] = imageFi.absoluteFilePath();
                 }
 
-                //FIXME: implement a GenericSlideShow.qml that uses these slideShowPictures
+                m_slideshowFilenames = slideShowPictures;
+                m_slideshowAPI = -1;
             }
             else if ( doc[ "slideshow" ].IsScalar() )
             {
                 QString slideshowPath = QString::fromStdString( doc[ "slideshow" ].as< std::string >() );
                 QFileInfo slideshowFi( componentDir.absoluteFilePath( slideshowPath ) );
                 if ( !slideshowFi.exists() || !slideshowFi.fileName().toLower().endsWith( ".qml" ) )
-                    bail( QString( "Slideshow file %1 does not exist or is not a valid QML file." )
+                    bail( m_descriptorPath,
+                          QString( "Slideshow file %1 does not exist or is not a valid QML file." )
                               .arg( slideshowFi.absoluteFilePath() ) );
                 m_slideshowPath = slideshowFi.absoluteFilePath();
+
+                // API choice is relevant for QML slideshow
+                int api = doc[ "slideshowAPI" ].IsScalar() ? doc[ "slideshowAPI" ].as< int >() : -1;
+                if ( ( api < 1 ) || ( api > 2 ) )
+                {
+                    cWarning() << "Invalid or missing *slideshowAPI* in branding file.";
+                    api = 1;
+                }
+                m_slideshowAPI = api;
             }
             else
             {
-                bail( "Syntax error in slideshow sequence." );
+                bail( m_descriptorPath, "Syntax error in slideshow sequence." );
             }
-
-            int api = doc[ "slideshowAPI" ].IsScalar() ? doc[ "slideshowAPI" ].as< int >() : -1;
-            if ( ( api < 1 ) || ( api > 2 ) )
-            {
-                cWarning() << "Invalid or missing *slideshowAPI* in branding file.";
-                api = 1;
-            }
-            m_slideshowAPI = api;
         }
         catch ( YAML::Exception& e )
         {
             CalamaresUtils::explainYamlException( e, ba, file.fileName() );
-            bail( e.what() );
+            bail( m_descriptorPath, e.what() );
         }
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
@@ -538,14 +551,6 @@ Branding::initSimpleSettings( const YAML::Node& doc )
     {
         m_windowHeight = WindowDimension( CalamaresUtils::windowPreferredHeight, WindowDimensionUnit::Pixies );
     }
-}
-
-
-[[noreturn]] void
-Branding::bail( const QString& message )
-{
-    cError() << "FATAL in" << m_descriptorPath << Logger::Continuation << Logger::NoQuote {} << message;
-    ::exit( EXIT_FAILURE );
 }
 
 }  // namespace Calamares

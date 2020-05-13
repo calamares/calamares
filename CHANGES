@@ -9,7 +9,9 @@ This release contains contributions from (alphabetically by first name):
  - No external contributors yet
 
 ## Core ##
- - No core changes yet
+ - The slideshow in `branding.desc` can be configured with QML (recommended,
+   as it has been for the past umpteen releases) or with a list of
+   images (new).
 
 ## Modules ##
  - No module changes yet

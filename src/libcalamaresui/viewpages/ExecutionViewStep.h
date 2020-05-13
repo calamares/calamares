@@ -27,12 +27,11 @@
 class QLabel;
 class QObject;
 class QProgressBar;
-class QQmlComponent;
-class QQuickItem;
-class QQuickWidget;
 
 namespace Calamares
 {
+
+class Slideshow;
 
 class ExecutionViewStep : public ViewStep
 {
@@ -60,20 +59,14 @@ public:
 
     void appendJobModuleInstanceKey( const QString& instanceKey );
 
-public slots:
-    void loadQmlV2Complete();
-
 private:
     QWidget* m_widget;
     QProgressBar* m_progressBar;
     QLabel* m_label;
-    QQuickWidget* m_qmlShow;
-    QQmlComponent* m_qmlComponent;
-    QQuickItem* m_qmlObject;  ///< The actual show
+    Slideshow* m_slideshow;
 
     QStringList m_jobInstanceKeys;
 
-    void loadQmlV2();  ///< Loads the slideshow QML (from branding) for API version 2
     void updateFromJobQueue( qreal percent, const QString& message );
 };
 
