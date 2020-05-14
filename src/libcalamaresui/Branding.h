@@ -262,6 +262,8 @@ private:
 
     /** @brief Initialize the simple settings below */
     void initSimpleSettings( const YAML::Node& doc );
+    ///@brief Initialize the slideshow settings, above
+    void initSlideshowSettings( const YAML::Node& doc );
 
     bool m_welcomeStyleCalamares;
     bool m_welcomeExpandingLogo;
