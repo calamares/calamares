@@ -57,16 +57,10 @@ Page
         }
 
         Recommended {
-            property var required: "yes" //requirementsModel
-            property var satisfied: "yes" //satisfiedRequirements
-            property var requiredMet: (required != satisfied) ? true : false
             visible: !config.requirementsModel.satisfiedRequirements
         }
 
         Requirements {
-            property var required: "yes" //requirementsModel
-            property var mandatory: "yes" //satisfiedMandatory
-            property var mandatoryMet: (required != mandatory) ? true : false
             visible: !config.requirementsModel.satisfiedMandatory
         }
 
