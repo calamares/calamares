@@ -68,8 +68,8 @@ Rectangle {
                     Rectangle {
                         implicitWidth: 640
                         implicitHeight: 40
-                        border.color: mandatory ? "#ff0000" : "#228b22"
-                        color: mandatory ? "#ffc0cb" : "#f0fff0"
+                        border.color: mandatory ? "#228b22" : "#ff0000"
+                        color: mandatory ? "#f0fff0" : "#ffc0cb"
 
                         Image {
                             anchors.verticalCenter: parent.verticalCenter
@@ -81,7 +81,7 @@ Rectangle {
                         Text {
                             text: ( mandatory ? 'Met: ' : 'Failed: ' ) + name + " " + details
                             anchors.centerIn: parent
-                            font.pointSize: 12
+                            font.pointSize: 11
                         }
                     }
                 }

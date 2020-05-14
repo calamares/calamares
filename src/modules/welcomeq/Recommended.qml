@@ -81,7 +81,7 @@ Rectangle {
                         Text {
                             text: ( satisfied ? 'Met: ' : 'Missing: ' ) + name + " " + details
                             anchors.centerIn: parent
-                            font.pointSize: 12
+                            font.pointSize: 11
                         }
                     }
                 }
