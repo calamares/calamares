@@ -57,7 +57,6 @@ def get_uuid():
 
     :return:
     """
-    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     partitions = libcalamares.globalstorage.value("partitions")
 
     for partition in partitions:
