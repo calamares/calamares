@@ -20,9 +20,9 @@
 #ifndef PYTHONJOBAPI_H
 #define PYTHONJOBAPI_H
 
-#include "qglobal.h"  // For qreal
-
 #include "utils/BoostPython.h"
+
+#include <qglobal.h>  // For qreal
 
 namespace Calamares
 {
