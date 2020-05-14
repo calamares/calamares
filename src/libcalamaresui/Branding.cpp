@@ -436,8 +436,11 @@ flavorAndSide( const YAML::Node& doc, const char* key, Branding::PanelFlavor& fl
     static const NamedEnumTable< PanelFlavor > sidebarFlavorNames {
         { QStringLiteral( "widget" ), PanelFlavor::Widget },
         { QStringLiteral( "none" ), PanelFlavor::None },
-        { QStringLiteral( "hidden" ), PanelFlavor::None },
+        { QStringLiteral( "hidden" ), PanelFlavor::None }
+#ifdef WITH_QML
+        ,
         { QStringLiteral( "qml" ), PanelFlavor::Qml }
+#endif
     };
     static const NamedEnumTable< PanelSide > panelSideNames {
         { QStringLiteral( "left" ), PanelSide::Left },

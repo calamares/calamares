@@ -22,6 +22,7 @@
 #include "CalamaresWindow.h"
 
 #include "Branding.h"
+#include "CalamaresConfig.h"
 #include "DebugWindow.h"
 #include "Settings.h"
 #include "ViewManager.h"
@@ -38,8 +39,10 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
+#ifdef WITH_QML
 #include <QQuickItem>
 #include <QQuickWidget>
+#endif
 #include <QTreeView>
 
 static inline int
@@ -132,18 +135,6 @@ CalamaresWindow::getWidgetSidebar( QWidget* parent, int desiredWidth )
     return sideBox;
 }
 
-QWidget*
-CalamaresWindow::getQmlSidebar( QWidget* parent, int )
-{
-    CalamaresUtils::registerCalamaresModels();
-    QQuickWidget* w = new QQuickWidget( parent );
-    w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-    w->setResizeMode( QQuickWidget::SizeRootObjectToView );
-    w->setSource( QUrl(
-        CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-sidebar" ) ) ) );
-    return w;
-}
-
 /** @brief Get a button-sized icon. */
 static inline QPixmap
 getButtonIcon( const QString& name )
@@ -213,6 +204,19 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
     return navigation;
 }
 
+#ifdef WITH_QML
+QWidget*
+CalamaresWindow::getQmlSidebar( QWidget* parent, int )
+{
+    CalamaresUtils::registerCalamaresModels();
+    QQuickWidget* w = new QQuickWidget( parent );
+    w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    w->setResizeMode( QQuickWidget::SizeRootObjectToView );
+    w->setSource( QUrl(
+        CalamaresUtils::searchQmlFile( CalamaresUtils::QmlSearch::Both, QStringLiteral( "calamares-sidebar" ) ) ) );
+    return w;
+}
+
 QWidget*
 CalamaresWindow::getQmlNavigation( QWidget* parent )
 {
@@ -231,6 +235,19 @@ CalamaresWindow::getQmlNavigation( QWidget* parent )
 
     return w;
 }
+#else
+// Bogus to keep the linker happy
+QWidget * CalamaresWindow::getQmlSidebar(QWidget* , int )
+{
+    return nullptr;
+}
+QWidget * CalamaresWindow::getQmlNavigation(QWidget* )
+{
+    return nullptr;
+}
+
+
+#endif
 
 /**@brief Picks one of two methods to call
  *
@@ -243,16 +260,21 @@ flavoredWidget( Calamares::Branding::PanelFlavor flavor,
                 CalamaresWindow* w,
                 QWidget* parent,
                 widgetMaker widget,
-                widgetMaker qml,
+                widgetMaker qml,  // Only if WITH_QML is on
                 args... a )
 {
+#ifndef WITH_QML
+    Q_UNUSED( qml )
+#endif
     // Member-function calling syntax is (object.*member)(args)
     switch ( flavor )
     {
     case Calamares::Branding::PanelFlavor::Widget:
         return ( w->*widget )( parent, a... );
+#ifdef WITH_QML
     case Calamares::Branding::PanelFlavor::Qml:
         return ( w->*qml )( parent, a... );
+#endif
     case Calamares::Branding::PanelFlavor::None:
         return nullptr;
     }

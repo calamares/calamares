@@ -22,8 +22,8 @@
 #ifndef BRANDING_H
 #define BRANDING_H
 
+#include "CalamaresConfig.h"
 #include "DllMacro.h"
-
 #include "utils/NamedSuffix.h"
 
 #include <QMap>
@@ -131,8 +131,11 @@ public:
     enum class PanelFlavor
     {
         None,
-        Widget,
+        Widget
+#ifdef WITH_QML
+        ,
         Qml
+#endif
     };
     Q_ENUM( PanelFlavor )
     ///@brief Where to place a panel (sidebar, navigation)
