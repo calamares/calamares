@@ -50,10 +50,13 @@ set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during develop
 option( INSTALL_CONFIG "Install configuration files" OFF )
 option( INSTALL_POLKIT "Install Polkit configuration" ON )
 option( INSTALL_COMPLETION "Install shell completions" OFF )
-option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
+# Options for the calamares executable
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 option( WITH_KF5DBus "Use DBus service for unique-application." OFF )
+# When adding WITH_* that affects the ABI offered by libcalamares,
+# also update libcalamares/CalamaresConfig.h.in
+option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
+option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
 
 # Possible debugging flags are:
 #  - DEBUG_TIMEZONES draws latitude and longitude lines on the timezone

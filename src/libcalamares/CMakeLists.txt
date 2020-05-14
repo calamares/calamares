@@ -2,6 +2,7 @@
 # translations, configurations, logging, utilities, global storage, and (non-GUI) jobs.
 
 add_definitions( -DDLLEXPORT_PRO )
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} )
 
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h )
@@ -59,22 +60,6 @@ set( libSources
     utils/UMask.cpp
     utils/Variant.cpp
     utils/Yaml.cpp
-)
-set( _kdsagSources
-    kdsingleapplicationguard/kdsingleapplicationguard.cpp
-    kdsingleapplicationguard/kdsharedmemorylocker.cpp
-    kdsingleapplicationguard/kdtoolsglobal.cpp
-    kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
-)
-set( kdsagSources "" )
-foreach( _s ${_kdsagSources} )
-    list( APPEND kdsagSources ${CMAKE_SOURCE_DIR}/3rdparty/${_s} )
-endforeach()
-mark_thirdparty_code( ${kdsagSources} )
-
-include_directories(
-    ${CMAKE_CURRENT_BINARY_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 ### OPTIONAL Python support
@@ -151,7 +136,7 @@ endif()
 ### LIBRARY
 #
 #
-add_library( calamares SHARED ${libSources} ${kdsagSources} )
+add_library( calamares SHARED ${libSources} )
 set_target_properties( calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
