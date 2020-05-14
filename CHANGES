@@ -12,6 +12,10 @@ This release contains contributions from (alphabetically by first name):
  - The slideshow in `branding.desc` can be configured with QML (recommended,
    as it has been for the past umpteen releases) or with a list of
    images (new).
+ - It is possible to turn off all the new QML code -- navigation, slideshow,
+   QML-based modules -- with a single `-DWITH_QML=OFF` at CMake time.
+   This removes QML from Calamares' dependency footprint (but only saves
+   200kB in Calamares itself).
 
 ## Modules ##
  - No module changes yet

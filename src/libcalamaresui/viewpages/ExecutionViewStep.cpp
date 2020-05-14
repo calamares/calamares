@@ -23,11 +23,11 @@
 #include "Slideshow.h"
 
 #include "Branding.h"
+#include "CalamaresConfig.h"
 #include "Job.h"
 #include "JobQueue.h"
 #include "Settings.h"
 #include "ViewManager.h"
-
 #include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
 #include "utils/CalamaresUtilsGui.h"
@@ -49,10 +49,12 @@ makeSlideshow( QWidget* parent )
     {
     case -1:
         return new Calamares::SlideshowPictures( parent );
+#ifdef WITH_QML
     case 1:
         FALLTHRU;
     case 2:
         return new Calamares::SlideshowQML( parent );
+#endif
     default:
         cWarning() << "Unknown Branding slideshow API" << api;
         return new Calamares::SlideshowPictures( parent );

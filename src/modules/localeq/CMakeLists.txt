@@ -1,3 +1,8 @@
+if( NOT WITH_QML )
+    calamares_skip_module( "localeq (QML is not supported in this build)" )
+    return()
+endif()
+
 # When debugging the timezone widget, add this debugging definition
 # to have a debugging-friendly timezone widget, debug logging,
 # and no intrusive timezone-setting while clicking around.

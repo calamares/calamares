@@ -56,7 +56,8 @@ option( WITH_KF5DBus "Use DBus service for unique-application." OFF )
 # When adding WITH_* that affects the ABI offered by libcalamares,
 # also update libcalamares/CalamaresConfig.h.in
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
+option( WITH_PYTHONQT "Enable Python view modules API (deprecated, requires PythonQt)." OFF )
+option( WITH_QML "Enable QML UI options." ON )
 
 # Possible debugging flags are:
 #  - DEBUG_TIMEZONES draws latitude and longitude lines on the timezone
@@ -253,7 +254,10 @@ include( CMakeColors )
 
 ### DEPENDENCIES
 #
-find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
+find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core Gui LinguistTools Network Svg Widgets )
+if( WITH_QML )
+    find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Quick QuickWidgets )
+endif()
 if( Qt5_VERSION VERSION_GREATER 5.12.1 )
     # At least Qt 5.12.2 seems to support Esperanto in QLocale
     if( "eo" IN_LIST _tx_incomplete )

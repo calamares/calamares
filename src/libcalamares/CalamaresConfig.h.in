@@ -11,5 +11,6 @@
 //cmakedefines for CMake variables (e.g. for optdepends) go here
 #cmakedefine WITH_PYTHON
 #cmakedefine WITH_PYTHONQT
+#cmakedefine WITH_QML
 
 #endif  // CALAMARESCONFIG_H
