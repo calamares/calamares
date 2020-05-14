@@ -21,15 +21,19 @@
 #ifndef LIBCALAMARESUI_SLIDESHOW_H
 #define LIBCALAMARESUI_SLIDESHOW_H
 
+#include "CalamaresConfig.h"
+
 #include <QMutex>
 #include <QStringList>
 #include <QWidget>
 
 class QLabel;
 class QTimer;
+#ifdef WITH_QML
 class QQmlComponent;
 class QQuickItem;
 class QQuickWidget;
+#endif
 
 namespace Calamares
 {
@@ -81,6 +85,7 @@ protected:
     Action m_state = Stop;
 };
 
+#ifdef WITH_QML
 /** @brief Slideshow using a QML file
  *
  * This is the "classic" slideshow in Calamares, which runs some QML
@@ -109,6 +114,7 @@ private:
     QQmlComponent* m_qmlComponent;
     QQuickItem* m_qmlObject;  ///< The actual show
 };
+#endif
 
 /** @brief Slideshow using images
  *

@@ -28,10 +28,12 @@
 
 #include <QLabel>
 #include <QMutexLocker>
+#ifdef WITH_QML
 #include <QQmlComponent>
 #include <QQmlEngine>
 #include <QQuickItem>
 #include <QQuickWidget>
+#endif
 #include <QTimer>
 
 #include <chrono>
@@ -41,6 +43,7 @@ namespace Calamares
 
 Slideshow::~Slideshow() {}
 
+#ifdef WITH_QML
 SlideshowQML::SlideshowQML( QWidget* parent )
     : Slideshow( parent )
     , m_qmlShow( new QQuickWidget )
@@ -173,6 +176,7 @@ SlideshowQML::changeSlideShowState( Action state )
 
     m_state = state;
 }
+#endif
 
 SlideshowPictures::SlideshowPictures( QWidget* parent )
     : Slideshow( parent )
