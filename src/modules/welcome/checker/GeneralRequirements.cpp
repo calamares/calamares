@@ -80,7 +80,6 @@ struct MaybeChecked
 
     MaybeChecked& operator=( bool b )
     {
-        cDebug() << "Assigning" << b;
         hasBeenChecked = true;
         value = b;
         return *this;
