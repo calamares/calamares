@@ -1,6 +1,11 @@
 # This is a re-write of the welcome module using QML view steps
 # instead of widgets.
 
+if( NOT WITH_QML )
+    calamares_skip_module( "welcomeq (QML is not supported in this build)" )
+    return()
+endif()
+
 set( _welcome ${CMAKE_CURRENT_SOURCE_DIR}/../welcome )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui ${CMAKE_CURRENT_SOURCE_DIR}/../../libcalamares ${_welcome} )
