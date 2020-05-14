@@ -6,17 +6,17 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;محیط بوت&lt;/strong&gt; این سیستم. &lt;br&gt;&lt;br&gt;سیستم‌های قدیمی x86 فقط از &lt;strong&gt;بایوس&lt;/strong&gt; پشتیبانی می‌کنند. &lt;br&gt;سیستم‌های مدرن معمولا از &lt;strong&gt;ای.اف.آی&lt;/strong&gt; استفاده می‌کنند، اما ممکن است در صورتی که در حالت سازگاری اجرا شوند همچنان به صورت بایوس نشان داده شوند </translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="81"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation type="unfinished"/>
+      <translation>سیستم با محیط بوت &lt;strong&gt;ای.اف.آی&lt;/strong&gt; آغاز شد. &lt;br&gt;&lt;br&gt;به منظور پیکربندی راه‌اندازی از یک محیط ای.اف.آی، این نصاب باید حتما‌ یک برنامه بالاآورنده بوت، مانند &lt;strong&gt;گراب&lt;/strong&gt; یا &lt;strong&gt;سیستم‌بوت&lt;/strong&gt; را روی یک پارتیشن سیستم ای.اف.آی مستقر نماید. این به صورت خودکار است مگر اینکه شما پارتیشن‌بندی دستی را انتخاب کنید که در این صورت باید خودتان انتخاب کنید یا به صورت دستی ایجاد کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="93"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation type="unfinished"/>
+      <translation>سیستم با محیط بوت &lt;strong&gt;بایوس&lt;/strong&gt; آغاز شد. &lt;br&gt;&lt;br&gt;به منظور پیکربندی راه‌انداری از یک محیط بایوس، این نصاب باید حتما‌ یک برنامه بالاآورنده بوت، مانند &lt;strong&gt;گراب&lt;/strong&gt; را یا در شروع یک پارتیشن و یا روی &lt;strong&gt;رکورد راه‌انداز اصلی&lt;/strong&gt; نزدیک شروع جدول پارتیشن (ترجیحا) نصب کند. این به صورت خودکار است مگر اینکه شما پارتیشن‌بندی دستی را انتخاب کنید که در این صورت باید خودتان به صورت دستی آن را راه‌اندازی کنید.</translation>
     </message>
   </context>
   <context>
@@ -24,27 +24,27 @@
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="68"/>
       <source>Master Boot Record of %1</source>
-      <translation type="unfinished"/>
+      <translation>رکورد راه انداز اصلی یا همان ام.بی.آر  ٪1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="102"/>
       <source>Boot Partition</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن بوت</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="109"/>
       <source>System Partition</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن سیستمی</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="139"/>
       <source>Do not install a boot loader</source>
-      <translation type="unfinished"/>
+      <translation>بوت لودر نصب نکن.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="157"/>
       <source>%1 (%2)</source>
-      <translation type="unfinished"/>
+      <translation>%1 (%2)</translation>
     </message>
   </context>
   <context>
@@ -52,7 +52,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="70"/>
       <source>Blank Page</source>
-      <translation type="unfinished"/>
+      <translation>صفحه خالی</translation>
     </message>
   </context>
   <context>
@@ -60,58 +60,58 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="24"/>
       <source>GlobalStorage</source>
-      <translation type="unfinished"/>
+      <translation>ذخیره‌سازی همگانی</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="34"/>
       <source>JobQueue</source>
-      <translation type="unfinished"/>
+      <translation>صف کارها</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="44"/>
       <source>Modules</source>
-      <translation type="unfinished"/>
+      <translation>ماژول‌ها</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="57"/>
       <source>Type:</source>
-      <translation type="unfinished"/>
+      <translation>نوع:</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="64"/>
       <location filename="../src/calamares/DebugWindow.ui" line="78"/>
       <source>none</source>
-      <translation type="unfinished"/>
+      <translation>هیچ</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="71"/>
       <source>Interface:</source>
-      <translation type="unfinished"/>
+      <translation>رابط:</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="93"/>
       <source>Tools</source>
-      <translation type="unfinished"/>
+      <translation>ابزارها</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="106"/>
       <source>Reload Stylesheet</source>
-      <translation type="unfinished"/>
+      <translation>بارگزاری مجدد برگه‌شیوه </translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="113"/>
       <source>Widget Tree</source>
-      <translation type="unfinished"/>
+      <translation>درخت ابزارک‌ها</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="231"/>
       <source>Debug information</source>
-      <translation type="unfinished"/>
+      <translation>اطلاعات رفع اشکال</translation>
     </message>
   </context>
   <context>
@@ -119,12 +119,12 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
       <source>Set up</source>
-      <translation type="unfinished"/>
+      <translation>راه‌اندازی</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
       <source>Install</source>
-      <translation type="unfinished"/>
+      <translation>نصب</translation>
     </message>
   </context>
   <context>
@@ -132,12 +132,12 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
       <source>Job failed (%1)</source>
-      <translation type="unfinished"/>
+      <translation>کار شکست خورد. (%1)</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="40"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation type="unfinished"/>
+      <translation>عدم موفقیت کار برنامه ریزی شده به صورت صریح درخواست شد</translation>
     </message>
   </context>
   <context>
@@ -145,7 +145,7 @@
     <message>
       <location filename="../src/libcalamares/JobQueue.cpp" line="114"/>
       <source>Done</source>
-      <translation type="unfinished"/>
+      <translation>انجام شد.</translation>
     </message>
   </context>
   <context>
@@ -153,7 +153,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="27"/>
       <source>Example job (%1)</source>
-      <translation type="unfinished"/>
+      <translation>کار نمونه (%1) </translation>
     </message>
   </context>
   <context>
@@ -161,17 +161,17 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
       <source>Run command '%1' in target system.</source>
-      <translation type="unfinished"/>
+      <translation>دستور '%1' را در سیستم هدف اجرا کنید</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
       <source> Run command '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>دستور '%1' را اجرا کنید</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="59"/>
       <source>Running command %1 %2</source>
-      <translation type="unfinished"/>
+      <translation>اجرای دستور %1 %2</translation>
     </message>
   </context>
   <context>
@@ -179,32 +179,32 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="210"/>
       <source>Running %1 operation.</source>
-      <translation type="unfinished"/>
+      <translation>اجرا عملیات %1</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="239"/>
       <source>Bad working directory path</source>
-      <translation type="unfinished"/>
+      <translation>مسیر شاخه جاری نامناسب</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="240"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
-      <translation type="unfinished"/>
+      <translation>شاخه جاری %1 برای کار پایتونی %2 خواندنی نیست</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="246"/>
       <source>Bad main script file</source>
-      <translation type="unfinished"/>
+      <translation>اسکریپت اصلی مشکل‌دار</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="247"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
-      <translation type="unfinished"/>
+      <translation>فایل اسکریپت اصلی %1 برای کار پایتون %2 قابل خواندن نیست.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="315"/>
       <source>Boost.Python error in job "%1".</source>
-      <translation type="unfinished"/>
+      <translation>Boost.Python error in job "%1".</translation>
     </message>
   </context>
   <context>
@@ -212,17 +212,17 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="76"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>در حال بارگذاری ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="97"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>مرحله QML &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="261"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>بارگذاری شکست خورد.</translation>
     </message>
   </context>
   <context>
@@ -230,9 +230,9 @@
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="164"/>
       <source>Waiting for %n module(s).</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>منتظر ماندن برای n% ماژول</numerusform>
+        <numerusform>منتظر ماندن برای n% ماژول (ها).</numerusform>
       </translation>
     </message>
     <message numerus="yes">
@@ -246,7 +246,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="170"/>
       <source>System-requirements checking is complete.</source>
-      <translation type="unfinished"/>
+      <translation>چک کردن نیازمندی‌های سیستم تمام شد.</translation>
     </message>
   </context>
   <context>
@@ -254,171 +254,173 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="153"/>
       <source>Setup Failed</source>
-      <translation type="unfinished"/>
+      <translation>راه‌اندازی شکست خورد.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="153"/>
       <source>Installation Failed</source>
-      <translation type="unfinished"/>
+      <translation>نصب شکست خورد. </translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="154"/>
       <source>Would you like to paste the install log to the web?</source>
-      <translation type="unfinished"/>
+      <translation>آیا مایلید که گزارش‌ها در وب الصاق شوند؟</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
       <source>Error</source>
-      <translation type="unfinished"/>
+      <translation>خطا</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="174"/>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="518"/>
       <source>&amp;Yes</source>
-      <translation type="unfinished"/>
+      <translation>&amp;بله</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="175"/>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="519"/>
       <source>&amp;No</source>
-      <translation type="unfinished"/>
+      <translation>&amp;خیر</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="181"/>
       <source>&amp;Close</source>
-      <translation type="unfinished"/>
+      <translation>&amp;بسته</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
       <source>Install Log Paste URL</source>
-      <translation type="unfinished"/>
+      <translation>Install Log Paste URL</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="195"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
-      <translation type="unfinished"/>
+      <translation>The upload was unsuccessful. No web-paste was done.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
       <source>Calamares Initialization Failed</source>
-      <translation type="unfinished"/>
+      <translation>راه اندازی کالاماریس شکست خورد.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-      <translation type="unfinished"/>
+      <translation>%1 نمی‌تواند نصب شود. کالاماریس نمی‌تواند همه ماژول‌های پیکربندی را بالا بیاورد. این یک مشکل در نحوه استفاده کالاماریس توسط توزیع است.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br/&gt;این ماژول  نمی‌تواند بالا بیاید:</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
       <source>Continue with setup?</source>
-      <translation type="unfinished"/>
+      <translation>راه اندازی ادامه یابد؟</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
       <source>Continue with installation?</source>
-      <translation type="unfinished"/>
+      <translation>نصب ادامه یابد؟</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>برنامه نصب %1 در شرف ایجاد تغییرات در دیسک شما به منظور راه‌اندازی %2 است. &lt;br/&gt;&lt;strong&gt;شما قادر نخواهید بود تا این تغییرات را برگردانید.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>نصاب %1 در شرف ایجاد تغییرات در دیسک شما به منظور نصب %2 است. &lt;br/&gt;&lt;strong&gt;شما قادر نخواهید بود تا این تغییرات را برگردانید.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
       <source>&amp;Set up now</source>
-      <translation type="unfinished"/>
+      <translation>&amp;همین حالا راه‌انداری کنید</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
       <source>&amp;Install now</source>
-      <translation type="unfinished"/>
+      <translation>&amp;همین حالا نصب کنید</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="343"/>
       <source>Go &amp;back</source>
-      <translation type="unfinished"/>
+      <translation>برگردید به &amp;عقب</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>&amp;Set up</source>
-      <translation type="unfinished"/>
+      <translation>&amp;راه‌اندازی</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>&amp;Install</source>
-      <translation type="unfinished"/>
+      <translation>&amp;نصب</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
       <source>Setup is complete. Close the setup program.</source>
-      <translation type="unfinished"/>
+      <translation>نصب انجام شد. برنامه نصب را ببندید.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>The installation is complete. Close the installer.</source>
-      <translation type="unfinished"/>
+      <translation>نصب انجام شد. نصاب را ببندید.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
       <source>Cancel setup without changing the system.</source>
-      <translation type="unfinished"/>
+      <translation>لغو راه‌اندازی بدون تغییر سیستم.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
       <source>Cancel installation without changing the system.</source>
-      <translation type="unfinished"/>
+      <translation>لغو نصب بدون تغییر کردن سیستم.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="408"/>
       <source>&amp;Next</source>
-      <translation type="unfinished"/>
+      <translation>&amp;بعدی</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="413"/>
       <source>&amp;Back</source>
-      <translation type="unfinished"/>
+      <translation>&amp;قبلی</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="419"/>
       <source>&amp;Done</source>
-      <translation type="unfinished"/>
+      <translation>&amp;انجام شد</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="438"/>
       <source>&amp;Cancel</source>
-      <translation type="unfinished"/>
+      <translation>&amp;لغو</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="511"/>
       <source>Cancel setup?</source>
-      <translation type="unfinished"/>
+      <translation>لغو راه‌اندازی؟</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="511"/>
       <source>Cancel installation?</source>
-      <translation type="unfinished"/>
+      <translation>لغو نصب؟</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>آیا واقعا می‌خواهید روند راه‌اندازی فعلی رو لغو کنید؟
+برنامه راه اندازی ترک می شود و همه تغییرات از بین می روند.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>آیا واقعاً می خواهید روند نصب فعلی را لغو کنید؟
+نصاب ترک می شود و همه تغییرات از بین می روند.</translation>
     </message>
   </context>
   <context>
@@ -426,22 +428,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="297"/>
       <source>Unknown exception type</source>
-      <translation type="unfinished"/>
+      <translation>نوع ناشناخته استثنا</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="315"/>
       <source>unparseable Python error</source>
-      <translation type="unfinished"/>
+      <translation>unparseable Python error</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="359"/>
       <source>unparseable Python traceback</source>
-      <translation type="unfinished"/>
+      <translation>unparseable Python traceback</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="366"/>
       <source>Unfetchable Python error.</source>
-      <translation type="unfinished"/>
+      <translation>Unfetchable Python error.</translation>
     </message>
   </context>
   <context>
@@ -450,7 +452,8 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/libcalamaresui/utils/Paste.cpp" line="34"/>
       <source>Install log posted to:
 %1</source>
-      <translation type="unfinished"/>
+      <translation>نصب رخدادهای ارسال شده به:
+%1</translation>
     </message>
   </context>
   <context>
@@ -458,32 +461,32 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="106"/>
       <source>Show debug information</source>
-      <translation type="unfinished"/>
+      <translation>نمایش اطلاعات دیباگ</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
       <source>&amp;Back</source>
-      <translation type="unfinished"/>
+      <translation>&amp;قبلی</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="184"/>
       <source>&amp;Next</source>
-      <translation type="unfinished"/>
+      <translation>&amp;بعدی</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="197"/>
       <source>&amp;Cancel</source>
-      <translation type="unfinished"/>
+      <translation>&amp;لغو</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="281"/>
       <source>%1 Setup Program</source>
-      <translation type="unfinished"/>
+      <translation>%1 برنامه راه‌اندازی</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="282"/>
       <source>%1 Installer</source>
-      <translation type="unfinished"/>
+      <translation>%1 نصاب</translation>
     </message>
   </context>
   <context>
@@ -491,7 +494,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/checker/CheckerContainer.cpp" line="46"/>
       <source>Gathering system information...</source>
-      <translation type="unfinished"/>
+      <translation>جمع‌آوری اطلاعات سیستم...</translation>
     </message>
   </context>
   <context>
@@ -499,12 +502,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
       <source>Select storage de&amp;vice:</source>
-      <translation type="unfinished"/>
+      <translation>انتخاب &amp;دستگاه ذخیره‌سازی:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="157"/>
@@ -512,62 +515,62 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1002"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1088"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>فعلی:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
       <source>After:</source>
-      <translation type="unfinished"/>
+      <translation>بعد از:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;پارتیشن‌بندی دستی&lt;/strong&gt;&lt;br/&gt;شما می‌توانید خودتان پارتیشن‌ها را بسازید و یا تغییر سایز دهید. با داشتن یک جدول پارتیشن GPT و &lt;strong&gt;پارتیشن /boot با اندازه 512 مگابیتی fat32 برای نصب‌های UEFI الزامی است&lt;/strong&gt;، چه با استفاده از نمونه موجود آن بدون قالب‌بندی یا ساخت آن.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
       <source>Reuse %1 as home partition for %2.</source>
-      <translation type="unfinished"/>
+      <translation>استفاده مجدد از %1 به عنوان پارتیشن خانه برای %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;انتخاب یک پارتیشن برای کوجک کردن و ایجاد پارتیشن جدید از آن، سپس نوار دکمه را بکشید تا تغییر اندازه دهد&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="973"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
-      <translation type="unfinished"/>
+      <translation>%1 تغییر سایز خواهد داد به %2 مبی‌بایت و یک پارتیشن %3 مبی‌بایتی برای %4 ساخته خواهد شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
       <source>Boot loader location:</source>
-      <translation type="unfinished"/>
+      <translation>مکان بالاآورنده بوت:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;یک پارتیشن را برای نصب بر روی آن، انتخاب کنید&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن سیستم ای.اف.آی نمی‌تواند در هیچ جایی از این سیستم یافت شود. لطفا برگردید و از پارتیشن بندی دستی استفاده کنید تا %1 را راه‌اندازی کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1144"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن سیستم ای.اف.آی در %1 برای شروع %2 استفاده خواهد شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1152"/>
       <source>EFI system partition:</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن سیستم ای.اف.آی</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1270"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>به نظر می‌رسد در دستگاه ذخیره‌سازی هیچ سیستم‌عاملی وجود ندارد. تمایل به انجام چه کاری دارید؟&lt;br/&gt;شما می‌توانید انتخاب‌هایتان را قبل از اعمال هر تغییری در دستگاه ذخیره‌سازی، مرور و تأیید نمایید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1275"/>
@@ -575,7 +578,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1336"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1362"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;پاک کردن دیسک&lt;/strong&gt;&lt;br/&gt;این کار تمام داده‌های موجود بر روی دستگاه ذخیره‌سازی انتخاب شده را &lt;font color="red"&gt;حذف می‌کند&lt;/font&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
@@ -583,7 +586,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1332"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1358"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;نصب در امتداد&lt;/strong&gt;&lt;br/&gt;این نصاب از یک پارتیشن برای ساخت یک اتاق برای %1 استفاده می‌کند.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1283"/>
@@ -611,7 +614,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1507"/>
       <source>No Swap</source>
-      <translation type="unfinished"/>
+      <translation>بدون Swap</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1512"/>
@@ -1097,13 +1100,13 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/DeviceModel.cpp" line="93"/>
       <source>%1 - %2 (%3)</source>
       <extracomment>device[name] - size[number] (device-node[name])</extracomment>
-      <translation type="unfinished"/>
+      <translation>%1 - %2 (%3)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/DeviceModel.cpp" line="104"/>
       <source>%1 - (%2)</source>
       <extracomment>device[name] - (device-node[name])</extracomment>
-      <translation type="unfinished"/>
+      <translation>%1 - (%2)</translation>
     </message>
   </context>
   <context>
@@ -1111,7 +1114,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="136"/>
       <source>Write LUKS configuration for Dracut to %1</source>
-      <translation type="unfinished"/>
+      <translation>Write LUKS configuration for Dracut to %1</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="140"/>
@@ -1195,7 +1198,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
@@ -1261,7 +1264,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1543,7 +1546,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
       <source>&amp;Cancel</source>
-      <translation type="unfinished"/>
+      <translation>&amp;لغو</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
@@ -1556,7 +1559,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="22"/>
@@ -2157,7 +2160,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="20"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="40"/>
@@ -2198,7 +2201,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
       <source>Name</source>
-      <translation type="unfinished"/>
+      <translation>نام</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
@@ -2211,7 +2214,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
@@ -2229,7 +2232,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
@@ -2326,43 +2329,43 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
       <source>Root</source>
-      <translation type="unfinished"/>
+      <translation>ریشه</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
       <source>Home</source>
-      <translation type="unfinished"/>
+      <translation>خانه</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
       <source>Boot</source>
-      <translation type="unfinished"/>
+      <translation>بوت</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
       <source>EFI system</source>
-      <translation type="unfinished"/>
+      <translation>سیستم ای.اف.آی</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
       <source>Swap</source>
-      <translation type="unfinished"/>
+      <translation>Swap</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="209"/>
       <source>New partition for %1</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن جدید برای %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
       <source>New partition</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن جدید</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="230"/>
       <source>%1  %2</source>
       <extracomment>size[number] filesystem[name]</extracomment>
-      <translation type="unfinished"/>
+      <translation>%1 %2</translation>
     </message>
   </context>
   <context>
@@ -2371,23 +2374,23 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="168"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="208"/>
       <source>Free Space</source>
-      <translation type="unfinished"/>
+      <translation>فضای خالی</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="172"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="212"/>
       <source>New partition</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن جدید</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="305"/>
       <source>Name</source>
-      <translation type="unfinished"/>
+      <translation>نام</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
       <source>File System</source>
-      <translation type="unfinished"/>
+      <translation>سیستم فایل</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="309"/>
@@ -2405,7 +2408,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
@@ -2483,32 +2486,32 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="77"/>
       <source>Gathering system information...</source>
-      <translation type="unfinished"/>
+      <translation>جمع‌آوری اطلاعات سیستم...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="131"/>
       <source>Partitions</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن‌ها</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="168"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
-      <translation type="unfinished"/>
+      <translation>نصب %1 &lt;strong&gt;در امتداد&lt;/strong&gt; سیستم عامل دیگر.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="173"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;پاک کردن&lt;/strong&gt; دیسک و نصب %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;جایگزینی&lt;/strong&gt; یک پارتیشن و با %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="181"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;پارتیشن‌بندی&lt;/strong&gt; دستی.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
@@ -2538,12 +2541,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="249"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>فعلی:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="266"/>
       <source>After:</source>
-      <translation type="unfinished"/>
+      <translation>بعد از:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="432"/>
@@ -2578,7 +2581,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="502"/>
       <source>Boot partition not encrypted</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن بوت رمزشده نیست</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="503"/>
@@ -2593,7 +2596,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="721"/>
       <source>There are no partitions to install on.</source>
-      <translation type="unfinished"/>
+      <translation>هیچ پارتیشنی برای نصب وجود ندارد</translation>
     </message>
   </context>
   <context>
@@ -2615,7 +2618,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="70"/>
@@ -2667,7 +2670,7 @@ There was no output from the command.</source>
       <source>
 Output:
 </source>
-      <translation type="unfinished"/>
+      <translation>خروجی</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
@@ -2725,7 +2728,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
       <source>%1 (%2)</source>
-      <translation type="unfinished"/>
+      <translation>%1 (%2)</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
@@ -2834,7 +2837,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="139"/>
@@ -2896,12 +2899,12 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن سیستم ای.اف.آی در %1 برای شروع %2 استفاده خواهد شد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="291"/>
       <source>EFI system partition:</source>
-      <translation type="unfinished"/>
+      <translation>پارتیشن سیستم ای.اف.آی</translation>
     </message>
   </context>
   <context>
@@ -3396,7 +3399,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="24"/>
@@ -3569,7 +3572,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>فرم</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
