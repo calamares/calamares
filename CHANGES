@@ -16,6 +16,8 @@ This release contains contributions from (alphabetically by first name):
    QML-based modules -- with a single `-DWITH_QML=OFF` at CMake time.
    This removes QML from Calamares' dependency footprint (but only saves
    200kB in Calamares itself).
+ - Tests have been extended and now support a tests/CMakeTests.txt file
+   for fine-tuning tests for Python modules.
 
 ## Modules ##
  - No module changes yet

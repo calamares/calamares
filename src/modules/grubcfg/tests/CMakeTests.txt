@@ -1,0 +1,12 @@
+# Special cases for grubcfg configuration tests:
+# - 2.global specifies /tmp/calamares as the rootMountPath,
+#   so we end up editing files there. Create the directory
+#   beforehand, so the test doesn't blow up.
+set(_grub_root /tmp/calamares/etc/default)
+set(_grub_file ${_grub_root}/bogus)
+
+add_test(
+    NAME make-grubcfg-dirs
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${_grub_root}
+    )
+set_tests_properties(load-grubcfg-2 PROPERTIES DEPENDS make-grubcfg-dirs)

@@ -126,10 +126,10 @@ function( calamares_add_module_subdirectory )
             endif()
             message( "" )
             # We copy over the lang directory, if any
-            if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang" )
+            if( IS_DIRECTORY "${_mod_dir}/lang" )
                 install_calamares_gettext_translations(
                     ${SUBDIRECTORY}
-                    SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang"
+                    SOURCE_DIR "${_mod_dir}/lang"
                     FILENAME ${SUBDIRECTORY}.mo
                     RENAME calamares-${SUBDIRECTORY}.mo
                 )
@@ -162,6 +162,16 @@ function( calamares_add_module_subdirectory )
     # may try to do things to the running system. Needs work to make that a
     # safe thing to do.
     #
+    # If the module has a tests/ subdirectory with *.global and *.job
+    # files (YAML files holding global and job-configurations for
+    # testing purposes) then those files are used to drive additional
+    # tests. The files must be numbered (starting from 1) for this to work;
+    # 1.global and 1.job together make the configuration for test 1.
+    #
+    # If the module has a tests/CMakeLists.txt while it doesn't have its
+    # own CMakeLists.txt (e.g. a Python module), then the subdirectory
+    # for tests/ is added on its own.
+    #
     if ( BUILD_TESTING AND _mod_enabled AND _mod_testing )
         add_test(
             NAME load-${SUBDIRECTORY}
@@ -170,7 +180,7 @@ function( calamares_add_module_subdirectory )
             )
         # Try it with the tests/ configurations shipped with the module
         set( _count 1 )
-        set( _testdir ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/tests )
+        set( _testdir ${_mod_dir}/tests )
         while ( EXISTS "${_testdir}/${_count}.global" OR EXISTS "${_testdir}/${_count}.job" )
             set( _dash_g "" )
             set( _dash_j "" )
@@ -187,5 +197,8 @@ function( calamares_add_module_subdirectory )
                 )
             math( EXPR _count "${_count} + 1" )
         endwhile()
+        if ( EXISTS ${_testdir}/CMakeTests.txt AND NOT EXISTS ${_mod_dir}/CMakeLists.txt )
+            include( ${_testdir}/CMakeTests.txt )
+        endif()
     endif()
 endfunction()
