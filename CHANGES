@@ -6,7 +6,9 @@ website will have to do for older versions.
 # 3.2.25 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Anke Boersma
+ - FLVAL
+ - Gaël PORTAY
 
 ## Core ##
  - The slideshow in `branding.desc` can be configured with QML (recommended,
