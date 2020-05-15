@@ -79,7 +79,7 @@ Rectangle {
                         }
 
                         Text {
-                            text: ( satisfied ? 'Met: ' : 'Missing: ' ) + name + " " + details
+                            text: satisfied ? details : negatedText
                             anchors.centerIn: parent
                             font.pointSize: 11
                         }
