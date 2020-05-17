@@ -29,13 +29,13 @@ Rectangle {
     focus: true
     Kirigami.Theme.backgroundColor: Kirigami.Theme.backgroundColor
     anchors.fill: parent
-    anchors.topMargin: 70
+    anchors.topMargin: 50
 
     TextArea {
         id: recommended
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.topMargin: 1
         horizontalAlignment: TextEdit.AlignHCenter
         width: 640
         font.pointSize: 11
@@ -50,7 +50,7 @@ Rectangle {
 
     Rectangle {
         width: 640
-        height: 400
+        height: 360
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: recommended.bottom
         anchors.topMargin: 5
@@ -60,14 +60,14 @@ Rectangle {
 
             Item {
                 width: 640
-                height: 40
+                height: 35
 
                 Column {
                     anchors.centerIn: parent
 
                     Rectangle {
                         implicitWidth: 640
-                        implicitHeight: 40
+                        implicitHeight: 35
                         border.color: satisfied ? "#228b22" : "#ffa411"
                         color: satisfied ? "#f0fff0" : "#ffefd5"
 
