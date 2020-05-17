@@ -22,8 +22,12 @@ This release contains contributions from (alphabetically by first name):
    for fine-tuning tests for Python modules.
 
 ## Modules ##
- - No module changes yet
-
+ - The QML based *welcomeq* module is now a viable alternative to the
+   *welcome*(widgets based) module. Using QML files means it no longer
+   is needed to have pop-up windows for additional information or warnings,
+   all loads in the Calamares window itself.  Additional features include the
+   option to customize the *About* info and load files like Release Notes
+   direct into Calamares, QML files added to the branding directory can be used.
 
 # 3.2.24 (2020-05-11) #
 
