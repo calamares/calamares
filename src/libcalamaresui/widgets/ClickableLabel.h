@@ -20,8 +20,13 @@
 #ifndef LIBCALAMARESUI_CLICKABLELABEL_H
 #define LIBCALAMARESUI_CLICKABLELABEL_H
 
-#include <QLabel>
 #include <QElapsedTimer>
+#include <QLabel>
+
+#include "DllMacro.h"
+
+namespace Calamares
+{
 
 /** @brief A Label where the whole label area is clickable
  *
@@ -30,7 +35,7 @@
  * buttons or other clickable things where you want mouse interaction
  * with the label, to be the same as mouse interaction with the control.
  */
-class ClickableLabel : public QLabel
+class UIDLLEXPORT ClickableLabel : public QLabel
 {
     Q_OBJECT
 public:
@@ -48,5 +53,7 @@ protected:
 private:
     QElapsedTimer m_time;
 };
+
+}  // namespace Calamares
 
 #endif  // LIBCALAMARESUI_CLICKABLELABEL_H

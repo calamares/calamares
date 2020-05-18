@@ -19,12 +19,17 @@
 #ifndef LIBCALAMARESUI_PRETTYRADIOBUTTON_H
 #define LIBCALAMARESUI_PRETTYRADIOBUTTON_H
 
+#include "DllMacro.h"
+
 #include <QRadioButton>
 
-class ClickableLabel;
 class QComboBox;
 class QGridLayout;
 class QHBoxLayout;
+
+namespace Calamares
+{
+class ClickableLabel;
 
 /** @brief A radio button with fancy label next to it.
  *
@@ -33,12 +38,12 @@ class QHBoxLayout;
  * added to the display (options are hidden when the button is
  * not selected) with addOptionsComboBox().
  */
-class PrettyRadioButton : public QWidget
+class UIDLLEXPORT PrettyRadioButton : public QWidget
 {
     Q_OBJECT
 public:
     explicit PrettyRadioButton( QWidget* parent = nullptr );
-    virtual ~PrettyRadioButton() {}
+    virtual ~PrettyRadioButton() { }
 
     virtual void setText( const QString& text );
 
@@ -64,4 +69,5 @@ protected:
     QHBoxLayout* m_optionsLayout;
 };
 
-#endif // LIBCALAMARESUI_PRETTYRADIOBUTTON_H
+}  // namespace Calamares
+#endif  // LIBCALAMARESUI_PRETTYRADIOBUTTON_H
