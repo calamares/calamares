@@ -21,6 +21,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "widgets/ClickableLabel.h"
 
+#include <QButtonGroup>
 #include <QComboBox>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -80,11 +81,25 @@ PrettyRadioButton::iconSize() const
 }
 
 
-QRadioButton*
-PrettyRadioButton::buttonWidget() const
+void
+PrettyRadioButton::setChecked( bool checked )
 {
-    return m_radio;
+    m_radio->setChecked( checked );
 }
+
+
+bool
+PrettyRadioButton::isChecked() const
+{
+    return m_radio->isChecked();
+}
+
+void
+PrettyRadioButton::addToGroup( QButtonGroup* group, int id )
+{
+    group->addButton( m_radio, id );
+}
+
 
 void
 PrettyRadioButton::addOptionsComboBox( QComboBox* box )
