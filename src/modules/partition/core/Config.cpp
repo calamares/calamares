@@ -28,7 +28,7 @@ Config::Config( QObject* parent )
 {
 }
 
-Config::SwapChoices
+static PartitionActions::Choices::SwapChoiceSet
 getSwapChoices( const QVariantMap& configurationMap )
 {
     // SWAP SETTINGS
@@ -53,7 +53,7 @@ getSwapChoices( const QVariantMap& configurationMap )
     }
     bool neverCreateSwap = CalamaresUtils::getBool( configurationMap, "neverCreateSwap", false );
 
-    Config::SwapChoices choices;  // Available swap choices
+    PartitionActions::Choices::SwapChoiceSet choices;  // Available swap choices
     if ( configurationMap.contains( "userSwapChoices" ) )
     {
         // We've already warned about overlapping settings with the

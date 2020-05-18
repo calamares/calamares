@@ -19,6 +19,7 @@
 #ifndef PARTITIONACTIONS_H
 #define PARTITIONACTIONS_H
 
+#include <QSet>
 #include <QString>
 
 class PartitionCoreModule;
@@ -42,9 +43,18 @@ enum SwapChoice
     FullSwap,  // ensureSuspendToDisk -- at least RAM size
     SwapFile  // use a file (if supported)
 };
+using SwapChoiceSet = QSet< SwapChoice >;
 
 SwapChoice nameToChoice( QString name, bool& ok );
 QString choiceToName( SwapChoice );
+
+/** @brief Given a set of swap choices, return a sensible value from it.
+ *
+ * "Sensible" here means: if there is one value, use it; otherwise, use
+ * NoSwap if there are no choices, or if NoSwap is one of the choices, in the set.
+ * If that's not possible, any value from the set.
+ */
+SwapChoice pickOne( const SwapChoiceSet& s );
 
 struct ReplacePartitionOptions
 {

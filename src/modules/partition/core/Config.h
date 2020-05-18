@@ -36,10 +36,8 @@ public:
 
     void updateGlobalStorage() const;
 
-    using SwapChoices = QSet< PartitionActions::Choices::SwapChoice >;
-
 private:
-    SwapChoices m_swapChoices;
+    PartitionActions::Choices::SwapChoiceSet m_swapChoices;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
 };
 

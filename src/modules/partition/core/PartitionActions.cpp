@@ -293,6 +293,25 @@ choiceToName( SwapChoice c )
     return nameTable().find( c, ok );
 }
 
+SwapChoice
+pickOne( const SwapChoiceSet& s )
+{
+    if ( s.count() == 0 )
+    {
+        return SwapChoice::NoSwap;
+    }
+    if ( s.count() == 1 )
+    {
+        return *( s.begin() );
+    }
+    if ( s.contains( SwapChoice::NoSwap ) )
+    {
+        return SwapChoice::NoSwap;
+    }
+    // Here, count > 1 but NoSwap is not a member.
+    return *( s.begin() );
+}
+
 }  // namespace Choices
 
 }  // namespace PartitionActions

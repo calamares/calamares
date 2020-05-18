@@ -70,24 +70,6 @@ using CalamaresUtils::Partition::isPartitionFreeSpace;
 using CalamaresUtils::Partition::findPartitionByPath;
 using Calamares::PrettyRadioButton;
 
-/** @brief Given a set of swap choices, return a sensible value from it.
- *
- * "Sensible" here means: if there is one value, use it; otherwise, use
- * NoSwap if there are no choices, or if NoSwap is one of the choices, in the set.
- * If that's not possible, any value from the set.
- */
-SwapChoice pickOne( const SwapChoiceSet& s )
-{
-    if ( s.count() == 0 )
-        return SwapChoice::NoSwap;
-    if ( s.count() == 1 )
-        return *( s.begin() );
-    if ( s.contains( SwapChoice::NoSwap ) )
-        return SwapChoice::NoSwap;
-    // Here, count > 1 but NoSwap is not a member.
-    return *( s.begin() );
-}
-
 /**
  * @brief ChoicePage::ChoicePage is the default constructor. Called on startup as part of
  *      the module loading code path.
@@ -112,7 +94,7 @@ ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
     , m_availableSwapChoices( swapChoices )
-    , m_eraseSwapChoice( pickOne( swapChoices ) )
+    , m_eraseSwapChoice( PartitionActions::Choices::pickOne( swapChoices ) )
     , m_allowManualPartitioning( true )
 {
     setupUi( this );
