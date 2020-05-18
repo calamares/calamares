@@ -47,6 +47,21 @@ TrackingStyleConfig::setTracking( TrackingStyleConfig::TrackingState state )
 }
 
 void
+TrackingStyleConfig::validate( QString& s, std::function< bool( const QString& ) >&& pred )
+{
+    if ( !pred( s ) )
+    {
+        if ( m_state != DisabledByConfig )
+        {
+            cError() << "Configuration string" << s << "is not valid; disabling this tracking type.";
+            m_state = DisabledByConfig;
+            emit trackingChanged();
+        }
+        s = QString();
+    }
+}
+
+void
 TrackingStyleConfig::validateUrl( QString& urlString )
 {
     if ( !QUrl( urlString ).isValid() )
@@ -84,6 +99,50 @@ InstallTrackingConfig::setConfigurationMap( const QVariantMap& configurationMap 
 
     m_installTrackingUrl = CalamaresUtils::getString( configurationMap, "url" );
     validateUrl( m_installTrackingUrl );
+}
+
+MachineTrackingConfig::MachineTrackingConfig( QObject* parent )
+    : TrackingStyleConfig( parent )
+{
+}
+
+/** @brief Is @p s a valid machine-tracking style. */
+static bool
+isValidMachineTrackingStyle( const QString& s )
+{
+    static QStringList knownStyles { "neon" };
+    return knownStyles.contains( s );
+}
+
+void
+MachineTrackingConfig::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    TrackingStyleConfig::setConfigurationMap( configurationMap );
+
+    m_machineTrackingStyle = CalamaresUtils::getString( configurationMap, "style" );
+    validate( m_machineTrackingStyle, isValidMachineTrackingStyle );
+}
+
+
+UserTrackingConfig::UserTrackingConfig( QObject* parent )
+    : TrackingStyleConfig( parent )
+{
+}
+
+static bool
+isValidUserTrackingStyle( const QString& s )
+{
+    static QStringList knownStyles { "kde" };
+    return knownStyles.contains( s );
+}
+
+void
+UserTrackingConfig::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    TrackingStyleConfig::setConfigurationMap( configurationMap );
+
+    m_userTrackingStyle = CalamaresUtils::getString( configurationMap, "style" );
+    validate( m_userTrackingStyle, isValidUserTrackingStyle );
 }
 
 

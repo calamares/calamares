@@ -87,12 +87,21 @@ signals:
 protected:
     /// @brief Validates the @p urlString, disables tracking if invalid
     void validateUrl( QString& urlString );
+    /// @brief Validates the @p string, disables tracking if invalid
+    void validate( QString& s, std::function< bool( const QString& s ) >&& pred );
 
 private:
     TrackingState m_state = DisabledByConfig;
     QString m_policy;  // URL
 };
 
+/** @brief Install tracking pings a URL at the end of installation
+ *
+ * Install tracking will do a single GET on the given URL at
+ * the end of installation. The information included in the GET
+ * request depends on the URL configuration, see also the tracking
+ * jobs.
+ */
 class InstallTrackingConfig : public TrackingStyleConfig
 {
 public:
@@ -103,6 +112,46 @@ public:
 
 private:
     QString m_installTrackingUrl;
+};
+
+/** @brief Machine tracking reports from the installed system
+ *
+ * When machine tracking is on, the installed system will report
+ * back ("call home") at some point. This can mean Debian pop-con,
+ * or KDE neon maching tracking, or something else. The kind
+ * of configuration depends on the style of tracking that is enabled.
+ */
+class MachineTrackingConfig : public TrackingStyleConfig
+{
+public:
+    MachineTrackingConfig( QObject* parent );
+    void setConfigurationMap( const QVariantMap& configurationMap );
+
+    QString machineTrackingStyle() { return m_machineTrackingStyle; }
+
+private:
+    QString m_machineTrackingStyle;
+};
+
+/** @brief User tracking reports user actions
+ *
+ * When user tracking is on, it is enabled for the user configured
+ * in Calamares -- not for users created afterwards in the target
+ * system, unless the target system defaults to tracking them.
+ * The kind of user tracking depends on the target system and
+ * environment; KDE user tracking is one example, which can be
+ * configured in a fine-grained way and defaults to off.
+ */
+class UserTrackingConfig : public TrackingStyleConfig
+{
+public:
+    UserTrackingConfig( QObject* parent );
+    void setConfigurationMap( const QVariantMap& configurationMap );
+
+    QString userTrackingStyle() { return m_userTrackingStyle; }
+
+private:
+    QString m_userTrackingStyle;
 };
 
 class Config : public QObject
