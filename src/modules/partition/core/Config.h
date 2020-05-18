@@ -29,14 +29,14 @@ class Config : public QObject
     Q_OBJECT
 
 public:
-    Config() = default;
+    Config( QObject* parent );
     virtual ~Config() = default;
 
-    using SwapChoiceSet = QSet< PartitionActions::Choices::SwapChoice >;
+    void setConfigurationMap( const QVariantMap& );
+
+    void updateGlobalStorage() const;
 
 private:
-    SwapChoiceSet m_swapChoices;
-
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
 };
 

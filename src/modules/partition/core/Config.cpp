@@ -17,3 +17,31 @@
  */
 
 #include "Config.h"
+
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "utils/Variant.h"
+
+Config::Config( QObject* parent )
+    : QObject( parent )
+{
+}
+
+void
+Config::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    // Settings that overlap with the Welcome module
+    m_requiredStorageGiB = CalamaresUtils::getDouble( configurationMap, "requiredStorage", -1.0 );
+}
+
+void
+Config::updateGlobalStorage() const
+{
+    // If there's no setting (e.g. from the welcome page) for required storage
+    // then use ours, if it was set.
+    auto* gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    if ( m_requiredStorageGiB >= 0.0 && gs && !gs->contains( "requiredStorageGiB" ) )
+    {
+        gs->insert( "requiredStorageGiB", m_requiredStorageGiB );
+    }
+}
