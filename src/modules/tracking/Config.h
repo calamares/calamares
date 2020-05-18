@@ -84,9 +84,25 @@ signals:
     void trackingChanged();
     void policyChanged( QString );
 
+protected:
+    /// @brief Validates the @p urlString, disables tracking if invalid
+    void validateUrl( QString& urlString );
+
 private:
     TrackingState m_state = DisabledByConfig;
     QString m_policy;  // URL
+};
+
+class InstallTrackingConfig : public TrackingStyleConfig
+{
+public:
+    InstallTrackingConfig( QObject* parent );
+    void setConfigurationMap( const QVariantMap& configurationMap );
+
+    QString installTrackingUrl() { return m_installTrackingUrl; }
+
+private:
+    QString m_installTrackingUrl;
 };
 
 class Config : public QObject
@@ -109,7 +125,7 @@ signals:
 private:
     QString m_generalPolicy;
 
-    TrackingStyleConfig* m_installTracking;
+    InstallTrackingConfig* m_installTracking;
 };
 
 #endif

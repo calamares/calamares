@@ -47,28 +47,49 @@ TrackingStyleConfig::setTracking( TrackingStyleConfig::TrackingState state )
 }
 
 void
+TrackingStyleConfig::validateUrl( QString& urlString )
+{
+    if ( !QUrl( urlString ).isValid() )
+    {
+        if ( m_state != DisabledByConfig )
+        {
+            cError() << "URL" << urlString << "is not valid; disabling this tracking type.";
+            m_state = DisabledByConfig;
+            emit trackingChanged();
+        }
+        urlString = QString();
+    }
+}
+
+
+void
 TrackingStyleConfig::setConfigurationMap( const QVariantMap& config )
 {
     m_state = CalamaresUtils::getBool( config, "enabled", false ) ? DisabledByUser : DisabledByConfig;
     m_policy = CalamaresUtils::getString( config, "policy" );
-    if ( !QUrl( m_policy ).isValid() )
-    {
-        if ( m_state != DisabledByConfig )
-        {
-            cError() << "Tracking policy URL" << m_policy << "is not valid; disabling this tracking type.";
-        }
-        m_policy = QString();
-        m_state = DisabledByConfig;
-    }
-
+    validateUrl( m_policy );
     emit policyChanged( m_policy );
     emit trackingChanged();
+}
+
+InstallTrackingConfig::InstallTrackingConfig( QObject* parent )
+    : TrackingStyleConfig( parent )
+{
+}
+
+void
+InstallTrackingConfig::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    TrackingStyleConfig::setConfigurationMap( configurationMap );
+
+    m_installTrackingUrl = CalamaresUtils::getString( configurationMap, "url" );
+    validateUrl( m_installTrackingUrl );
 }
 
 
 Config::Config( QObject* parent )
     : QObject( parent )
-    , m_installTracking( new TrackingStyleConfig( this ) )
+    , m_installTracking( new InstallTrackingConfig( this ) )
 {
 }
 
