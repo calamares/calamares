@@ -149,6 +149,8 @@ UserTrackingConfig::setConfigurationMap( const QVariantMap& configurationMap )
 Config::Config( QObject* parent )
     : QObject( parent )
     , m_installTracking( new InstallTrackingConfig( this ) )
+    , m_machineTracking( new MachineTrackingConfig( this ) )
+    , m_userTracking( new UserTrackingConfig( this ) )
 {
 }
 
@@ -168,6 +170,18 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     if ( success )
     {
         m_installTracking->setConfigurationMap( subconfig );
+    }
+
+    subconfig = CalamaresUtils::getSubMap( configurationMap, "machine", success );
+    if ( success )
+    {
+        m_machineTracking->setConfigurationMap( subconfig );
+    }
+
+    subconfig = CalamaresUtils::getSubMap( configurationMap, "user", success );
+    if ( success )
+    {
+        m_userTracking->setConfigurationMap( subconfig );
     }
 }
 

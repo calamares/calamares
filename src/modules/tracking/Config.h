@@ -175,6 +175,8 @@ private:
     QString m_generalPolicy;
 
     InstallTrackingConfig* m_installTracking;
+    MachineTrackingConfig* m_machineTracking;
+    UserTrackingConfig* m_userTracking;
 };
 
 #endif
