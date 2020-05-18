@@ -17,12 +17,19 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CLICKABLELABEL_H
-#define CLICKABLELABEL_H
+#ifndef LIBCALAMARESUI_CLICKABLELABEL_H
+#define LIBCALAMARESUI_CLICKABLELABEL_H
 
 #include <QLabel>
-#include <QTime>
+#include <QElapsedTimer>
 
+/** @brief A Label where the whole label area is clickable
+ *
+ * When clicking anywhere on the Label (text, background, whatever)
+ * the signal clicked() is emitted. Use this as a buddy for radio
+ * buttons or other clickable things where you want mouse interaction
+ * with the label, to be the same as mouse interaction with the control.
+ */
 class ClickableLabel : public QLabel
 {
     Q_OBJECT
@@ -39,7 +46,7 @@ protected:
     virtual void mouseReleaseEvent( QMouseEvent* event ) override;
 
 private:
-    QTime m_time;
+    QElapsedTimer m_time;
 };
 
-#endif  // CLICKABLELABEL_H
+#endif  // LIBCALAMARESUI_CLICKABLELABEL_H
