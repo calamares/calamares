@@ -35,20 +35,19 @@
 #include "PartitionBarsView.h"
 #include "PartitionLabelsView.h"
 #include "PartitionSplitterWidget.h"
-#include "PrettyRadioButton.h"
 #include "ReplaceWidget.h"
 #include "ScanningDialog.h"
 
+#include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "partition/PartitionIterator.h"
 #include "partition/PartitionQuery.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/Units.h"
-
-#include "Branding.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "widgets/PrettyRadioButton.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
@@ -69,6 +68,7 @@ using PartitionActions::Choices::SwapChoice;
 using CalamaresUtils::Partition::PartitionIterator;
 using CalamaresUtils::Partition::isPartitionFreeSpace;
 using CalamaresUtils::Partition::findPartitionByPath;
+using Calamares::PrettyRadioButton;
 
 /** @brief Given a set of swap choices, return a sensible value from it.
  *
@@ -259,14 +259,14 @@ ChoicePage::setupChoices()
     m_alongsideButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionAlongside,
                                                                CalamaresUtils::Original,
                                                                iconSize ) );
-    m_grp->addButton( m_alongsideButton->buttonWidget(), Alongside );
+    m_alongsideButton->addToGroup( m_grp, Alongside );
 
     m_eraseButton = new PrettyRadioButton;
     m_eraseButton->setIconSize( iconSize );
     m_eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionEraseAuto,
                                                            CalamaresUtils::Original,
                                                            iconSize ) );
-    m_grp->addButton( m_eraseButton->buttonWidget(), Erase );
+    m_eraseButton->addToGroup( m_grp, Erase );
 
     m_replaceButton = new PrettyRadioButton;
 
@@ -274,7 +274,7 @@ ChoicePage::setupChoices()
     m_replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionReplaceOs,
                                                              CalamaresUtils::Original,
                                                              iconSize ) );
-    m_grp->addButton( m_replaceButton->buttonWidget(), Replace );
+    m_replaceButton->addToGroup( m_grp, Replace );
 
     // Fill up swap options
     // .. TODO: only if enabled in the config
@@ -294,7 +294,7 @@ ChoicePage::setupChoices()
                                                                    CalamaresUtils::Original,
                                                                    iconSize ) );
     m_itemsLayout->addWidget( m_somethingElseButton );
-    m_grp->addButton( m_somethingElseButton->buttonWidget(), Manual );
+    m_somethingElseButton->addToGroup( m_grp, Manual );
 
     m_itemsLayout->addStretch();
 
@@ -1193,7 +1193,7 @@ force_uncheck(QButtonGroup* grp, PrettyRadioButton* button)
 {
     button->hide();
     grp->setExclusive( false );
-    button->buttonWidget()->setChecked( false );
+    button->setChecked( false );
     grp->setExclusive( true );
 }
 
@@ -1288,8 +1288,8 @@ ChoicePage::setupActions()
         m_replaceButton->hide();
         m_alongsideButton->hide();
         m_grp->setExclusive( false );
-        m_replaceButton->buttonWidget()->setChecked( false );
-        m_alongsideButton->buttonWidget()->setChecked( false );
+        m_replaceButton->setChecked( false );
+        m_alongsideButton->setChecked( false );
         m_grp->setExclusive( true );
     }
     else if ( osproberEntriesForCurrentDevice.count() == 1 )
