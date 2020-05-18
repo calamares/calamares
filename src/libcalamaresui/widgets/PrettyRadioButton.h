@@ -16,8 +16,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PRETTYRADIOBUTTON_H
-#define PRETTYRADIOBUTTON_H
+#ifndef LIBCALAMARESUI_PRETTYRADIOBUTTON_H
+#define LIBCALAMARESUI_PRETTYRADIOBUTTON_H
 
 #include <QRadioButton>
 
@@ -64,4 +64,4 @@ protected:
     QHBoxLayout* m_optionsLayout;
 };
 
-#endif // PRETTYRADIOBUTTON_H
+#endif // LIBCALAMARESUI_PRETTYRADIOBUTTON_H
