@@ -17,6 +17,7 @@
 #include <QSharedMemory>
 #include <QSharedData>
 #include <QBasicTimer>
+#include <QElapsedTimer>
 #include <QTime>
 
 #include <algorithm>
@@ -764,7 +765,7 @@ void KDSingleApplicationGuard::Private::create( const QStringList & arguments )
         }
 
         const int maxWaitMSecs = 1000 * 60; // stop waiting after 60 seconds
-        QTime waitTimer;
+        QElapsedTimer waitTimer;
         waitTimer.start();
 
         // lets wait till the other instance initialized the register
