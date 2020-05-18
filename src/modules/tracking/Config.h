@@ -159,6 +159,8 @@ class Config : public QObject
     Q_OBJECT
     Q_PROPERTY( QString generalPolicy READ generalPolicy NOTIFY generalPolicyChanged FINAL )
     Q_PROPERTY( TrackingStyleConfig* installTracking READ installTracking FINAL )
+    Q_PROPERTY( TrackingStyleConfig* machineTracking READ machineTracking FINAL )
+    Q_PROPERTY( TrackingStyleConfig* userTracking READ userTracking FINAL )
 
 public:
     Config( QObject* parent = nullptr );
@@ -166,7 +168,10 @@ public:
 
 public Q_SLOTS:
     QString generalPolicy() const;
-    TrackingStyleConfig* installTracking() const { return m_installTracking; }
+
+    InstallTrackingConfig* installTracking() const { return m_installTracking; }
+    MachineTrackingConfig* machineTracking() const { return m_machineTracking; }
+    UserTrackingConfig* userTracking() const { return m_userTracking; }
 
 signals:
     void generalPolicyChanged( QString );

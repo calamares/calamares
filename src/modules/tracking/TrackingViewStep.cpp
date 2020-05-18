@@ -105,12 +105,9 @@ TrackingViewStep::isAtEnd() const
 void
 TrackingViewStep::onLeave()
 {
-    m_installTracking.userEnabled = m_widget->getTrackingOption( TrackingType::InstallTracking );
-    m_machineTracking.userEnabled = m_widget->getTrackingOption( TrackingType::MachineTracking );
-    m_userTracking.userEnabled = m_widget->getTrackingOption( TrackingType::UserTracking );
-    cDebug() << "Install tracking:" << m_installTracking.enabled();
-    cDebug() << "Machine tracking:" << m_machineTracking.enabled();
-    cDebug() << "   User tracking:" << m_userTracking.enabled();
+    cDebug() << "Install tracking:" << m_config->installTracking()->isEnabled();
+    cDebug() << "Machine tracking:" << m_config->machineTracking()->isEnabled();
+    cDebug() << "   User tracking:" << m_config->userTracking()->isEnabled();
 }
 
 
@@ -120,10 +117,10 @@ TrackingViewStep::jobs() const
     Calamares::JobList l;
 
     cDebug() << "Creating tracking jobs ..";
-    if ( m_installTracking.enabled() && !m_installTrackingUrl.isEmpty() )
+    if ( m_config->installTracking()->isEnabled() )
     {
-        QString installUrl = m_installTrackingUrl;
-        const auto s = CalamaresUtils::System::instance();
+        QString installUrl = m_config->installTracking()->installTrackingUrl();
+        const auto* s = CalamaresUtils::System::instance();
 
         QString memory, disk;
         memory.setNum( s->getTotalMemoryB().first );
@@ -136,58 +133,25 @@ TrackingViewStep::jobs() const
         l.append( Calamares::job_ptr( new TrackingInstallJob( installUrl ) ) );
     }
 
-    if ( m_machineTracking.enabled() && !m_machineTrackingStyle.isEmpty() )
+    if ( m_config->machineTracking()->isEnabled() )
     {
-        Q_ASSERT( isValidStyle( m_machineTrackingStyle ) );
-        if ( m_machineTrackingStyle == "neon" )
+        const auto style = m_config->machineTracking()->machineTrackingStyle();
+        if ( style == "neon" )
         {
             l.append( Calamares::job_ptr( new TrackingMachineNeonJob() ) );
+        }
+        else
+        {
+            cWarning() << "Unsupported machine tracking style" << style;
         }
     }
     return l;
 }
 
 
-QVariantMap
-TrackingViewStep::setTrackingOption( const QVariantMap& configurationMap, const QString& key, TrackingType t )
-{
-    bool settingEnabled = false;
-
-    bool success = false;
-    auto config = CalamaresUtils::getSubMap( configurationMap, key, success );
-
-    if ( success )
-    {
-        settingEnabled = CalamaresUtils::getBool( config, "enabled", false );
-    }
-
-    TrackingEnabled& trackingConfiguration = tracking( t );
-    trackingConfiguration.settingEnabled = settingEnabled;
-    trackingConfiguration.userEnabled = false;
-
-    m_widget->enableTrackingOption( t, settingEnabled );
-    m_widget->setTrackingPolicy( t, CalamaresUtils::getString( config, "policy" ) );
-
-    return config;
-}
-
 void
 TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    QVariantMap config;
-
-    config = setTrackingOption( configurationMap, "install", TrackingType::InstallTracking );
-    m_installTrackingUrl = CalamaresUtils::getString( config, "url" );
-
-    config = setTrackingOption( configurationMap, "machine", TrackingType::MachineTracking );
-    auto s = CalamaresUtils::getString( config, "style" );
-    if ( isValidStyle( s ) )
-    {
-        m_machineTrackingStyle = s;
-    }
-
-    setTrackingOption( configurationMap, "user", TrackingType::UserTracking );
-
     m_config->setConfigurationMap( configurationMap );
 
     bool ok;
