@@ -30,8 +30,22 @@
 #include <QString>
 #include <QVariant>
 
+static QDir s_qmlModulesDir( QString( CMAKE_INSTALL_FULL_DATADIR ) + "/qml" );
+
 namespace CalamaresUtils
 {
+QDir
+qmlModulesDir()
+{
+    return s_qmlModulesDir;
+}
+
+void
+setQmlModulesDir( const QDir& dir )
+{
+    s_qmlModulesDir = dir;
+}
+
 
 void
 callQmlFunction( QQuickItem* qmlObject, const char* method )

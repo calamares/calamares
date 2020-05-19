@@ -32,6 +32,9 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#ifdef WITH_QML
+#include "utils/Qml.h"
+#endif
 #include "utils/Retranslator.h"
 #include "viewpages/ViewStep.h"
 

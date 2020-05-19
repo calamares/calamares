@@ -31,8 +31,6 @@
 
 namespace CalamaresUtils
 {
-DLLEXPORT QDir qmlModulesDir();
-
 /**
  * @brief appDataDir returns the directory with common application data.
  * Defaults to CMAKE_INSTALL_FULL_DATADIR (usually /usr/share/calamares).
@@ -56,8 +54,6 @@ DLLEXPORT QDir systemLibDir();
  */
 DLLEXPORT void setAppDataDir( const QDir& dir );
 DLLEXPORT bool isAppDataDirOverridden();
-
-DLLEXPORT void setQmlModulesDir( const QDir& dir );
 
 /** @brief Setup extra config and data dirs from the XDG variables.
  */

@@ -24,10 +24,19 @@
 #include "modulesystem/InstanceKey.h"
 #include "utils/NamedEnum.h"
 
+#include <QDir>
+
 class QQuickItem;
 
 namespace CalamaresUtils
 {
+/// @brief the extra directory where Calamares searches for QML files
+UIDLLEXPORT QDir qmlModulesDir();
+/// @brief sets specific directory for searching for QML files
+UIDLLEXPORT void setQmlModulesDir( const QDir& dir );
+
+
+
 /** @brief Sets up global Calamares models for QML
  *
  * This needs to be called at least once to make the global Calamares
@@ -66,7 +75,7 @@ enum class QmlSearch
     Both
 };
 
-///@brief Names for the search terms (in config files)
+/// @brief Names for the search terms (in config files)
 UIDLLEXPORT const NamedEnumTable< QmlSearch >& qmlSearchNames();
 
 /** @brief Find a suitable QML file, given the search method and name hints
