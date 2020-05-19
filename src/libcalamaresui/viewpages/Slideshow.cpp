@@ -23,7 +23,9 @@
 #include "Branding.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#ifdef WITH_QML
 #include "utils/Qml.h"
+#endif
 #include "utils/Retranslator.h"
 
 #include <QLabel>
@@ -50,6 +52,8 @@ SlideshowQML::SlideshowQML( QWidget* parent )
     , m_qmlComponent( nullptr )
     , m_qmlObject( nullptr )
 {
+    CalamaresUtils::registerCalamaresModels();
+
     m_qmlShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     m_qmlShow->setResizeMode( QQuickWidget::SizeRootObjectToView );
     m_qmlShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
@@ -124,6 +128,21 @@ SlideshowQML::loadQmlV2Complete()
                 // passed onActivate already.
                 changeSlideShowState( Slideshow::Start );
             }
+        }
+    }
+    else
+    {
+        if ( m_qmlObject )
+        {
+            cWarning() << "QML object already created";
+        }
+        else if ( !m_qmlComponent )
+        {
+            cWarning() << "QML component does not exist";
+        }
+        else if ( m_qmlComponent && !m_qmlComponent->isReady() )
+        {
+            cWarning() << "QML component not ready:" << m_qmlComponent->errors();
         }
     }
 }
