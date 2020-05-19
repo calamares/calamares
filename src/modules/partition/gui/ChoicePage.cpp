@@ -560,7 +560,7 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
     Partition* part = modl->partitionForIndex( current );
     if ( !part )
     {
-        cDebug() << Q_FUNC_INFO << "Partition not found for index" << current;
+        cDebug() << "Partition not found for index" << current;
         return;
     }
 

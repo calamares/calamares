@@ -120,10 +120,10 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
                                             qint64 maxSize,
                                             qint64 preferredSize )
 {
-    cDebug() << Q_FUNC_INFO << "path:" << path
-             << "\nminSize:" << minSize
-             << "\nmaxSize:" << maxSize
-             << "\nprfSize:" << preferredSize;
+    cDebug() << "path:" << path
+             << Logger::Continuation << "minSize:" << minSize
+             << Logger::Continuation << "maxSize:" << maxSize
+             << Logger::Continuation << "prfSize:" << preferredSize;
 
     if ( m_itemToResize && m_itemToResizeNext )
     {
