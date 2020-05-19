@@ -252,6 +252,12 @@ main( int argc, char* argv[] )
     cDebug() << " .. got" << m->name() << m->typeString() << m->interfaceString();
     if ( m->type() == Calamares::Module::Type::View )
     {
+        if ( !qobject_cast< QApplication* >(aw) )
+        {
+            auto* replace_app = new QApplication( argc, argv );
+            replace_app->setQuitOnLastWindowClosed( true );
+            aw = replace_app;
+        }
         mw = module.m_ui ? new QMainWindow() : nullptr;
 
         (void)new Calamares::Branding( module.m_branding );
