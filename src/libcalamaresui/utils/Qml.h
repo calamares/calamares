@@ -40,7 +40,7 @@ namespace CalamaresUtils
  * Additionally, modules based on QmlViewStep have a context
  * property `config` referring to that module's configuration (if any).
  */
-UIDLLEXPORT void registerCalamaresModels();
+UIDLLEXPORT void registerQmlModels();
 
 /** @brief Calls the QML method @p method on @p qmlObject
  *
@@ -50,7 +50,7 @@ UIDLLEXPORT void registerCalamaresModels();
  *
  * If there is a return value from the QML method, it is logged (but not otherwise used).
  */
-UIDLLEXPORT void callQMLFunction( QQuickItem* qmlObject, const char* method );
+UIDLLEXPORT void callQmlFunction( QQuickItem* qmlObject, const char* method );
 
 /** @brief Search modes for loading Qml files.
  *

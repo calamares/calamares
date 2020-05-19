@@ -52,7 +52,7 @@ SlideshowQML::SlideshowQML( QWidget* parent )
     , m_qmlComponent( nullptr )
     , m_qmlObject( nullptr )
 {
-    CalamaresUtils::registerCalamaresModels();
+    CalamaresUtils::registerQmlModels();
 
     m_qmlShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     m_qmlShow->setResizeMode( QQuickWidget::SizeRootObjectToView );
@@ -163,7 +163,7 @@ SlideshowQML::changeSlideShowState( Action state )
     if ( Branding::instance()->slideshowAPI() == 2 )
     {
         // The QML was already loaded in the constructor, need to start it
-        CalamaresUtils::callQMLFunction( m_qmlObject, activate ? "onActivate" : "onLeave" );
+        CalamaresUtils::callQmlFunction( m_qmlObject, activate ? "onActivate" : "onLeave" );
     }
     else if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
     {

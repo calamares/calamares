@@ -208,7 +208,7 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
 QWidget*
 CalamaresWindow::getQmlSidebar( QWidget* parent, int )
 {
-    CalamaresUtils::registerCalamaresModels();
+    CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
     w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     w->setResizeMode( QQuickWidget::SizeRootObjectToView );
@@ -220,7 +220,7 @@ CalamaresWindow::getQmlSidebar( QWidget* parent, int )
 QWidget*
 CalamaresWindow::getQmlNavigation( QWidget* parent )
 {
-    CalamaresUtils::registerCalamaresModels();
+    CalamaresUtils::registerQmlModels();
     QQuickWidget* w = new QQuickWidget( parent );
     w->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     w->setResizeMode( QQuickWidget::SizeRootObjectToView );

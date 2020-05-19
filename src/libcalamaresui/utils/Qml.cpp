@@ -34,7 +34,7 @@ namespace CalamaresUtils
 {
 
 void
-callQMLFunction( QQuickItem* qmlObject, const char* method )
+callQmlFunction( QQuickItem* qmlObject, const char* method )
 {
     QByteArray methodSignature( method );
     methodSignature.append( "()" );
@@ -149,7 +149,7 @@ qmlSearchNames()
 }
 
 void
-registerCalamaresModels()
+registerQmlModels()
 {
     static bool done = false;
     if ( !done )
