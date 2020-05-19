@@ -58,19 +58,21 @@ TrackingPage::retranslate()
     QString product = Calamares::Branding::instance()->shortProductName();
     ui->retranslateUi( this );
     ui->generalExplanation->setText(
-        tr( "Install tracking helps %1 to see how many users they have, what hardware they install %1 to and (with "
-            "the last two options below), get continuous information about preferred applications. To see what "
+        tr( "Tracking helps %1 to see how often it is installed, what hardware it is installed on and "
+            "which applications are used. To see what "
             "will be sent, please click the help icon next to each area." )
             .arg( product ) );
     ui->installExplanation->setText(
         tr( "By selecting this you will send information about your installation and hardware. This information "
             "will <b>only be sent once</b> after the installation finishes." ) );
-    ui->machineExplanation->setText( tr( "By selecting this you will <b>periodically</b> send information about "
-                                         "your installation, hardware and applications, to %1." )
-                                         .arg( product ) );
-    ui->userExplanation->setText( tr( "By selecting this you will <b>regularly</b> send information about your "
-                                      "installation, hardware, applications and usage patterns, to %1." )
-                                      .arg( product ) );
+    ui->machineExplanation->setText(
+        tr( "By selecting this you will <b>periodically</b> send information about your machine installation, "
+            "hardware and applications, to %1." )
+            .arg( product ) );
+    ui->userExplanation->setText(
+        tr( "By selecting this you will <b>regularly</b> send information about your "
+            "user installation, hardware, applications and application usage patterns, to %1." )
+            .arg( product ) );
 }
 
 
