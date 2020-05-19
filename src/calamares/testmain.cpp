@@ -33,6 +33,9 @@
 #include "modulesystem/ModuleManager.h"
 #include "modulesystem/ViewModule.h"
 #include "utils/Logger.h"
+#ifdef WITH_QML
+#include "utils/Qml.h"
+#endif
 #include "utils/Yaml.h"
 #include "viewpages/ExecutionViewStep.h"
 
@@ -365,6 +368,10 @@ main( int argc, char* argv[] )
         vm.insert( "LANG", module.language() );
         gs->insert( "localeConf", vm );
     }
+
+#ifdef WITH_QML
+    CalamaresUtils::initQmlModulesDir();  // don't care if failed
+#endif
 
     cDebug() << "Calamares module-loader testing" << module.moduleName();
     Calamares::Module* m = load_module( module );

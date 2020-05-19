@@ -35,7 +35,13 @@ UIDLLEXPORT QDir qmlModulesDir();
 /// @brief sets specific directory for searching for QML files
 UIDLLEXPORT void setQmlModulesDir( const QDir& dir );
 
-
+/** @brief initialize QML search path with branding directories
+ *
+ * Picks a suitable branding directory (from the build-dir in debug mode,
+ * otherwise based on the branding directory) and adds it to the
+ * QML modules directory; returns @c false if none is found.
+ */
+UIDLLEXPORT bool initQmlModulesDir();
 
 /** @brief Sets up global Calamares models for QML
  *
