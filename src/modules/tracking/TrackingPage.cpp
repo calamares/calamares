@@ -165,7 +165,7 @@ TrackingPage::setTrackingPolicy( TrackingType t, QString url )
         }
         else
         {
-            connect( button, &QToolButton::clicked, [url] { QDesktopServices::openUrl( url ); } );
+            connect( button, &QToolButton::clicked, [ url ] { QDesktopServices::openUrl( url ); } );
             cDebug() << "Tracking policy" << int( t ) << "set to" << url;
         }
     else
@@ -186,7 +186,7 @@ TrackingPage::setGeneralPolicy( QString url )
         ui->generalPolicyLabel->show();
         ui->generalPolicyLabel->setTextInteractionFlags( Qt::TextBrowserInteraction );
         ui->generalPolicyLabel->show();
-        connect( ui->generalPolicyLabel, &QLabel::linkActivated, [url] { QDesktopServices::openUrl( url ); } );
+        connect( ui->generalPolicyLabel, &QLabel::linkActivated, [ url ] { QDesktopServices::openUrl( url ); } );
     }
 }
 

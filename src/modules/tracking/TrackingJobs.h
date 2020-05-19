@@ -16,13 +16,35 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TRACKINGJOBS
-#define TRACKINGJOBS
+#ifndef TRACKING_TRACKINGJOBS_H
+#define TRACKING_TRACKINGJOBS_H
 
 #include "Job.h"
 
+class InstallTrackingConfig;
+class MachineTrackingConfig;
+
 class QSemaphore;
 
+/** @section Tracking Jobs
+ *
+ * The tracking jobs do the actual work of configuring tracking on the
+ * target machine. Tracking jobs may have *styles*, variations depending
+ * on the distro or environment of the target system. At the root of
+ * each family of tracking jobs (installation, machine, user) there is
+ * a class with static method `addJob()` that takes the configuration
+ * information from the relevant Config sub-object and optionally
+ * adds the right job (subclass!) to the list of jobs.
+ */
+
+/** @brief Install-tracking job (gets a URL)
+ *
+ * The install-tracking job (there is only one kind) does a GET
+ * on a configured URL with some additional information about
+ * the machine (if configured into the URL).
+ *
+ * No persistent tracking is done.
+ */
 class TrackingInstallJob : public Calamares::Job
 {
     Q_OBJECT
@@ -35,11 +57,25 @@ public:
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
+    static void addJob( Calamares::JobList& list, InstallTrackingConfig* config );
+
 private:
     const QString m_url;
 };
 
-class TrackingMachineNeonJob : public Calamares::Job
+/** @brief Base class for machine-tracking jobs
+ *
+ * Machine-tracking configuraiton depends on the distro / style of machine
+ * being tracked, so it has subclasses to switch on the relevant kind
+ * of tracking. A machine is tracked persistently.
+ */
+class TrackingMachineJob : public Calamares::Job
+{
+public:
+    static void addJob( Calamares::JobList& list, MachineTrackingConfig* config );
+};
+
+class TrackingMachineNeonJob : public TrackingMachineJob
 {
     Q_OBJECT
 public:

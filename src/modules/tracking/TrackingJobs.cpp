@@ -18,6 +18,8 @@
 
 #include "TrackingJobs.h"
 
+#include "Config.h"
+
 #include "network/Manager.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
@@ -71,6 +73,44 @@ TrackingInstallJob::exec()
     }
     return Calamares::JobResult::ok();
 }
+
+void
+TrackingInstallJob::addJob( Calamares::JobList& list, InstallTrackingConfig* config )
+{
+    if ( config->isEnabled() )
+    {
+        QString installUrl = config->installTrackingUrl();
+        const auto* s = CalamaresUtils::System::instance();
+
+        QString memory, disk;
+        memory.setNum( s->getTotalMemoryB().first );
+        disk.setNum( s->getTotalDiskB() );
+
+        installUrl.replace( "$CPU", s->getCpuDescription() ).replace( "$MEMORY", memory ).replace( "$DISK", disk );
+
+        cDebug() << Logger::SubEntry << "install-tracking URL" << installUrl;
+
+        list.append( Calamares::job_ptr( new TrackingInstallJob( installUrl ) ) );
+    }
+}
+
+void
+TrackingMachineJob::addJob( Calamares::JobList& list, MachineTrackingConfig* config )
+{
+    if ( config->isEnabled() )
+    {
+        const auto style = config->machineTrackingStyle();
+        if ( style == "neon" )
+        {
+            list.append( Calamares::job_ptr( new TrackingMachineNeonJob() ) );
+        }
+        else
+        {
+            cWarning() << "Unsupported machine tracking style" << style;
+        }
+    }
+}
+
 
 QString
 TrackingMachineNeonJob::prettyName() const

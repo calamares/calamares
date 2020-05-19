@@ -106,45 +106,19 @@ void
 TrackingViewStep::onLeave()
 {
     cDebug() << "Install tracking:" << m_config->installTracking()->isEnabled();
-    cDebug() << "Machine tracking:" << m_config->machineTracking()->isEnabled();
-    cDebug() << "   User tracking:" << m_config->userTracking()->isEnabled();
+    cDebug() << Logger::SubEntry << "Machine tracking:" << m_config->machineTracking()->isEnabled();
+    cDebug() << Logger::SubEntry << "   User tracking:" << m_config->userTracking()->isEnabled();
 }
 
 
 Calamares::JobList
 TrackingViewStep::jobs() const
 {
-    Calamares::JobList l;
-
     cDebug() << "Creating tracking jobs ..";
-    if ( m_config->installTracking()->isEnabled() )
-    {
-        QString installUrl = m_config->installTracking()->installTrackingUrl();
-        const auto* s = CalamaresUtils::System::instance();
 
-        QString memory, disk;
-        memory.setNum( s->getTotalMemoryB().first );
-        disk.setNum( s->getTotalDiskB() );
-
-        installUrl.replace( "$CPU", s->getCpuDescription() ).replace( "$MEMORY", memory ).replace( "$DISK", disk );
-
-        cDebug() << Logger::SubEntry << "install-tracking URL" << installUrl;
-
-        l.append( Calamares::job_ptr( new TrackingInstallJob( installUrl ) ) );
-    }
-
-    if ( m_config->machineTracking()->isEnabled() )
-    {
-        const auto style = m_config->machineTracking()->machineTrackingStyle();
-        if ( style == "neon" )
-        {
-            l.append( Calamares::job_ptr( new TrackingMachineNeonJob() ) );
-        }
-        else
-        {
-            cWarning() << "Unsupported machine tracking style" << style;
-        }
-    }
+    Calamares::JobList l;
+    TrackingInstallJob::addJob( l, m_config->installTracking() );
+    TrackingMachineJob::addJob( l, m_config->machineTracking() );
     return l;
 }
 
