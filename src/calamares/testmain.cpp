@@ -22,18 +22,18 @@
  * bindings.
  */
 
-#include "modulesystem/Module.h"
-#include "utils/Logger.h"
-#include "utils/Yaml.h"
-
 #include "Branding.h"
 #include "GlobalStorage.h"
 #include "Job.h"
 #include "JobQueue.h"
 #include "Settings.h"
 #include "ViewManager.h"
-
+#include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
+#include "modulesystem/ViewModule.h"
+#include "utils/Logger.h"
+#include "utils/Yaml.h"
+#include "viewpages/ExecutionViewStep.h"
 
 #include <QApplication>
 #include <QCommandLineOption>
@@ -80,6 +80,8 @@ handle_args( QCoreApplication& a )
                                     "src/branding/default/branding.desc" );
     QCommandLineOption uiOption( QStringList() << QStringLiteral( "U" ) << QStringLiteral( "ui" ),
                                  QStringLiteral( "Enable UI" ) );
+    QCommandLineOption slideshowOption( QStringList() << QStringLiteral( "s" ) << QStringLiteral( "slideshow" ),
+                                        QStringLiteral( "Run slideshow module" ) );
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Calamares module tester" );
@@ -92,13 +94,14 @@ handle_args( QCoreApplication& a )
     parser.addOption( langOption );
     parser.addOption( brandOption );
     parser.addOption( uiOption );
+    parser.addOption( slideshowOption );
     parser.addPositionalArgument( "module", "Path or name of module to run." );
     parser.addPositionalArgument( "job.yaml", "Path of job settings document to use.", "[job.yaml]" );
 
     parser.process( a );
 
     const QStringList args = parser.positionalArguments();
-    if ( args.isEmpty() )
+    if ( args.isEmpty() && !parser.isSet( slideshowOption ) )
     {
         cError() << "Missing <module> path.\n";
         parser.showHelp();
@@ -116,13 +119,80 @@ handle_args( QCoreApplication& a )
             jobSettings = args.at( 1 );
         }
 
-        return ModuleConfig { args.first(),
+        return ModuleConfig { parser.isSet( slideshowOption ) ? QStringLiteral( "-" ) : args.first(),
                               jobSettings,
                               parser.value( globalOption ),
                               parser.value( langOption ),
                               parser.value( brandOption ),
-                              parser.isSet( uiOption ) };
+                              parser.isSet( slideshowOption ) || parser.isSet( uiOption ) };
     }
+}
+
+/** @brief Bogus module for --slideshow option
+ *
+ * Normally the slideshow -- displayed by ExecutionViewStep -- is not
+ * associated with any particular module in the Calamares configuration.
+ * It is added internally by the module manager. For the module-loader
+ * testing application, we need something that pretends to be the
+ * module for the ExecutionViewStep.
+ */
+class ExecViewModule : public Calamares::Module
+{
+public:
+    ExecViewModule();
+    ~ExecViewModule() override;
+
+    void loadSelf() override;
+
+    virtual Type type() const override;
+    virtual Interface interface() const override;
+
+    virtual Calamares::JobList jobs() const override;
+
+
+protected:
+    void initFrom( const QVariantMap& ) override;
+};
+
+ExecViewModule::ExecViewModule()
+    : Calamares::Module()
+{
+}
+
+ExecViewModule::~ExecViewModule() {}
+
+void
+ExecViewModule::initFrom( const QVariantMap& )
+{
+}
+
+void
+ExecViewModule::loadSelf()
+{
+    auto* viewStep = new Calamares::ExecutionViewStep();
+    viewStep->setModuleInstanceKey( instanceKey() );
+    viewStep->setConfigurationMap( m_configurationMap );
+    Calamares::ViewManager::instance()->addViewStep( viewStep );
+    m_loaded = true;
+}
+
+Calamares::Module::Type
+ExecViewModule::type() const
+{
+    return Module::Type::View;
+}
+
+
+Calamares::Module::Interface
+ExecViewModule::interface() const
+{
+    return Module::Interface::QtPlugin;
+}
+
+Calamares::JobList
+ExecViewModule::jobs() const
+{
+    return Calamares::JobList();
 }
 
 
@@ -130,6 +200,11 @@ static Calamares::Module*
 load_module( const ModuleConfig& moduleConfig )
 {
     QString moduleName = moduleConfig.moduleName();
+    if ( moduleName == "-" )
+    {
+        return new ExecViewModule;
+    }
+
     QFileInfo fi;
 
     bool ok = false;
@@ -188,6 +263,18 @@ load_module( const ModuleConfig& moduleConfig )
     return module;
 }
 
+static bool
+is_ui_option( const char* s )
+{
+    return !qstrcmp( s, "--ui" ) || !qstrcmp( s, "-U" );
+}
+
+static bool
+is_slideshow_option( const char* s )
+{
+    return !qstrcmp( s, "--slideshow" ) || !qstrcmp( s, "-s" );
+}
+
 /** @brief Create the right kind of QApplication
  *
  * Does primitive parsing of argv[] to find the --ui option and returns
@@ -202,7 +289,7 @@ createApplication( int& argc, char* argv[] )
 {
     for ( int i = 1; i < argc; ++i )
     {
-        if ( !qstrcmp( argv[ i ], "--ui" ) || !qstrcmp( argv[ i ], "-U" ) )
+        if ( is_slideshow_option( argv[ i ] ) || is_ui_option( argv[ i ] ) )
         {
             auto* aw = new QApplication( argc, argv );
             aw->setQuitOnLastWindowClosed( true );
@@ -252,7 +339,11 @@ main( int argc, char* argv[] )
     cDebug() << " .. got" << m->name() << m->typeString() << m->interfaceString();
     if ( m->type() == Calamares::Module::Type::View )
     {
-        if ( !qobject_cast< QApplication* >(aw) )
+        // If we forgot the --ui, any ViewModule will core dump as it
+        // tries to create the widget **which won't be used anyway**.
+        //
+        // To avoid that crash, re-create the QApplication, now with GUI
+        if ( !qobject_cast< QApplication* >( aw ) )
         {
             auto* replace_app = new QApplication( argc, argv );
             replace_app->setQuitOnLastWindowClosed( true );
