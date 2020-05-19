@@ -23,6 +23,7 @@
  */
 
 #include "Branding.h"
+#include "CppJob.h"
 #include "GlobalStorage.h"
 #include "Job.h"
 #include "JobQueue.h"
@@ -42,6 +43,7 @@
 #include <QFileInfo>
 #include <QLabel>
 #include <QMainWindow>
+#include <QThread>
 
 #include <memory>
 
@@ -128,6 +130,39 @@ handle_args( QCoreApplication& a )
     }
 }
 
+/** @brief Bogus Job for --slideshow option
+ *
+ * Generally one would use DummyCppJob for this kind of dummy
+ * job, but that class lives in a module so isn't available
+ * in this test application.
+ *
+ * This bogus job just sleeps for 3.
+ */
+class ExecViewJob : public Calamares::CppJob
+{
+public:
+    explicit ExecViewJob( const QString& name )
+        : m_name( name )
+    {
+    }
+    virtual ~ExecViewJob() override;
+
+    QString prettyName() const override { return m_name; }
+
+    Calamares::JobResult exec() override
+    {
+        QThread::sleep( 3 );
+        return Calamares::JobResult::ok();
+    }
+
+    void setConfigurationMap( const QVariantMap& ) override {}
+
+private:
+    QString m_name;
+};
+
+ExecViewJob::~ExecViewJob() {}
+
 /** @brief Bogus module for --slideshow option
  *
  * Normally the slideshow -- displayed by ExecutionViewStep -- is not
@@ -192,9 +227,12 @@ ExecViewModule::interface() const
 Calamares::JobList
 ExecViewModule::jobs() const
 {
-    return Calamares::JobList();
+    Calamares::JobList l;
+    l.append( Calamares::job_ptr( new ExecViewJob( QStringLiteral( "step 1" ) ) ) );
+    l.append( Calamares::job_ptr( new ExecViewJob( QStringLiteral( "step two" ) ) ) );
+    l.append( Calamares::job_ptr( new ExecViewJob( QStringLiteral( "step III" ) ) ) );
+    return l;
 }
-
 
 static Calamares::Module*
 load_module( const ModuleConfig& moduleConfig )
@@ -376,6 +414,7 @@ main( int argc, char* argv[] )
         mw->setCentralWidget( w );
         w->show();
         mw->show();
+        vm->currentStep()->onActivate();
         return aw->exec();
     }
 
