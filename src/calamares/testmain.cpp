@@ -144,8 +144,9 @@ handle_args( QCoreApplication& a )
 class ExecViewJob : public Calamares::CppJob
 {
 public:
-    explicit ExecViewJob( const QString& name )
+    explicit ExecViewJob( const QString& name, unsigned long t = 3 )
         : m_name( name )
+        , m_delay( t )
     {
     }
     virtual ~ExecViewJob() override;
@@ -154,7 +155,7 @@ public:
 
     Calamares::JobResult exec() override
     {
-        QThread::sleep( 3 );
+        QThread::sleep( m_delay );
         return Calamares::JobResult::ok();
     }
 
@@ -162,6 +163,7 @@ public:
 
 private:
     QString m_name;
+    unsigned long m_delay;
 };
 
 ExecViewJob::~ExecViewJob() {}
@@ -194,9 +196,12 @@ protected:
 ExecViewModule::ExecViewModule()
     : Calamares::Module()
 {
+    // Normally the module-loader gives the module an instance key
+    // (out of the settings file, or the descriptor of the module).
+    // We don't have one, so build one -- this gives us "x@x".
     QVariantMap m;
     m.insert( "name", "x" );
-    Calamares::Module::initFrom(m, "x" );
+    Calamares::Module::initFrom( m, "x" );
 }
 
 ExecViewModule::~ExecViewModule() {}
@@ -212,7 +217,7 @@ ExecViewModule::loadSelf()
     auto* viewStep = new Calamares::ExecutionViewStep();
     viewStep->setModuleInstanceKey( instanceKey() );
     viewStep->setConfigurationMap( m_configurationMap );
-    viewStep->appendJobModuleInstanceKey( "x@x" );
+    viewStep->appendJobModuleInstanceKey( instanceKey().toString() );
     Calamares::ViewManager::instance()->addViewStep( viewStep );
     m_loaded = true;
 }
@@ -234,9 +239,34 @@ Calamares::JobList
 ExecViewModule::jobs() const
 {
     Calamares::JobList l;
+    const auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( gs && gs->contains( "jobs" ) )
+    {
+        QVariantList joblist = gs->value( "jobs" ).toList();
+        for ( const auto& jd : joblist )
+        {
+            QVariantMap jobdescription = jd.toMap();
+            if ( jobdescription.contains( "name" ) && jobdescription.contains( "delay" ) )
+            {
+                l.append( Calamares::job_ptr( new ExecViewJob( jobdescription.value( "name" ).toString(),
+                                                               jobdescription.value( "delay" ).toULongLong() ) ) );
+            }
+        }
+    }
+    if ( l.count() > 0 )
+    {
+        return l;
+    }
+
     l.append( Calamares::job_ptr( new ExecViewJob( QStringLiteral( "step 1" ) ) ) );
     l.append( Calamares::job_ptr( new ExecViewJob( QStringLiteral( "step two" ) ) ) );
-    l.append( Calamares::job_ptr( new ExecViewJob( QStringLiteral( "step III" ) ) ) );
+    l.append( Calamares::job_ptr( new ExecViewJob( QStringLiteral( "locking mutexes" ), 20 ) ) );
+    l.append( Calamares::job_ptr( new ExecViewJob( QStringLiteral( "unlocking mutexes" ), 1 ) ) );
+    for ( const QString& s : QStringList { "Harder", "Better", "Faster", "Stronger" } )
+    {
+        l.append( Calamares::job_ptr( new ExecViewJob( s, 0 ) ) );
+    }
+    l.append( Calamares::job_ptr( new ExecViewJob( QStringLiteral( "cleaning up" ), 20 ) ) );
     return l;
 }
 
