@@ -397,8 +397,9 @@ main( int argc, char* argv[] )
         mw = module.m_ui ? new QMainWindow() : nullptr;
 
         (void)new Calamares::Branding( module.m_branding );
-        (void)new Calamares::ModuleManager( QStringList(), nullptr );
+        auto* modulemanager = new Calamares::ModuleManager( QStringList(), nullptr );
         (void)Calamares::ViewManager::instance( mw );
+        modulemanager->addModule( m );
     }
 
     if ( !m->isLoaded() )
