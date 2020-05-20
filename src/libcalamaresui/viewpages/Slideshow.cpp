@@ -125,7 +125,11 @@ SlideshowQML::loadQmlV2Complete()
             if ( isActive() )
             {
                 // We're alreay visible! Must have been slow QML loading, and we
-                // passed onActivate already.
+                // passed onActivate already. changeSlideShowState() locks
+                // the same mutex: we could set up a workaround to call
+                // changeSlideShowState() later after destruction of l.
+                //
+                l.unlock();
                 changeSlideShowState( Slideshow::Start );
             }
         }
