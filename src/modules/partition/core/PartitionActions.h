@@ -29,11 +29,13 @@ namespace Choices
 {
 struct ReplacePartitionOptions
 {
+    QString defaultPartitionTableType; // e.g. "gpt" or "msdos"
     QString defaultFsType;  // e.g. "ext4" or "btrfs"
     QString luksPassphrase;  // optional
 
-    ReplacePartitionOptions( const QString& fs, const QString& luks )
-        : defaultFsType( fs )
+    ReplacePartitionOptions( const QString& pt, const QString& fs, const QString& luks )
+        : defaultPartitionTableType ( pt )
+        , defaultFsType( fs )
         , luksPassphrase( luks )
     {
     }
@@ -45,12 +47,13 @@ struct AutoPartitionOptions : ReplacePartitionOptions
     quint64 requiredSpaceB;  // estimated required space for root partition
     Config::SwapChoice swap;
 
-    AutoPartitionOptions( const QString& fs,
+    AutoPartitionOptions( const QString& pt,
+                          const QString& fs,
                           const QString& luks,
                           const QString& efi,
                           qint64 requiredBytes,
                           Config::SwapChoice s )
-        : ReplacePartitionOptions( fs, luks )
+        : ReplacePartitionOptions( pt, fs, luks )
         , efiPartitionMountPoint( efi )
         , requiredSpaceB( requiredBytes > 0 ? static_cast< quint64 >( requiredBytes ) : 0 )
         , swap( s )

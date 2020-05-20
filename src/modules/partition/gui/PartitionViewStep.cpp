@@ -574,6 +574,13 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     gs->insert( "defaultFileSystemType", fsRealName );
 
+    QString partitionTableName = CalamaresUtils::getString( configurationMap, "defaultPartitionTableType" );
+    if ( partitionTableName.isEmpty() )
+    {
+        cWarning() << "Partition-module setting *defaultPartitionTableType* is unset, "
+                      "will use gpt for efi or msdos for bios";
+    }
+    gs->insert( "defaultPartitionTableType", partitionTableName );
 
     // Now that we have the config, we load the PartitionCoreModule in the background
     // because it could take a while. Then when it's done, we can set up the widgets

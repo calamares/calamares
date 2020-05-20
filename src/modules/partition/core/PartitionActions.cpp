@@ -118,6 +118,14 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
     // before that one, numbered 0..2047).
     qint64 firstFreeSector = CalamaresUtils::bytesToSectors( empty_space_sizeB, dev->logicalSize() );
 
+    PartitionTable::TableType partType = PartitionTable::nameToTableType( o.defaultPartitionTableType );
+    if ( partType == PartitionTable::unknownTableType )
+    {
+        partType = isEfi ? PartitionTable::gpt : PartitionTable::msdos;
+    }
+
+    core->createPartitionTable( dev, partType );
+
     if ( isEfi )
     {
         qint64 efiSectorCount = CalamaresUtils::bytesToSectors( uefisys_part_sizeB, dev->logicalSize() );
@@ -127,7 +135,6 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         // at firstFreeSector, we need efiSectorCount sectors, numbered
         // firstFreeSector..firstFreeSector+efiSectorCount-1.
         qint64 lastSector = firstFreeSector + efiSectorCount - 1;
-        core->createPartitionTable( dev, PartitionTable::gpt );
         Partition* efiPartition = KPMHelpers::createNewPartition( dev->partitionTable(),
                                                                   *dev,
                                                                   PartitionRole( PartitionRole::Primary ),
@@ -143,10 +150,6 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         }
         core->createPartition( dev, efiPartition, KPM_PARTITION_FLAG_ESP );
         firstFreeSector = lastSector + 1;
-    }
-    else
-    {
-        core->createPartitionTable( dev, PartitionTable::msdos );
     }
 
     const bool mayCreateSwap

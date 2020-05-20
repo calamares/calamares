@@ -448,7 +448,8 @@ ChoicePage::applyActionChoice( InstallChoice choice )
     {
         auto gs = Calamares::JobQueue::instance()->globalStorage();
 
-        PartitionActions::Choices::AutoPartitionOptions options { gs->value( "defaultFileSystemType" ).toString(),
+        PartitionActions::Choices::AutoPartitionOptions options { gs->value( "defaultPartitionTableType" ).toString(),
+                                                                  gs->value( "defaultFileSystemType" ).toString(),
                                                                   m_encryptWidget->passphrase(),
                                                                   gs->value( "efiSystemPartition" ).toString(),
                                                                   CalamaresUtils::GiBtoBytes(
@@ -805,7 +806,9 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                             m_core,
                             selectedDevice(),
                             selectedPartition,
-                            { gs->value( "defaultFileSystemType" ).toString(), m_encryptWidget->passphrase() } );
+                            { gs->value( "defaultPartitionType" ).toString(),
+                              gs->value( "defaultFileSystemType" ).toString(),
+                              m_encryptWidget->passphrase() } );
                         Partition* homePartition = findPartitionByPath( { selectedDevice() }, *homePartitionPath );
 
                         if ( homePartition && doReuseHomePartition )
