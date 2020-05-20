@@ -425,7 +425,6 @@ main( int argc, char* argv[] )
         mw->setCentralWidget( w );
         w->show();
         mw->show();
-        vm->currentStep()->onActivate();
         return aw->exec();
     }
 
