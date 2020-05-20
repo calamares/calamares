@@ -300,19 +300,9 @@ ModuleManager::loadModules()
                     continue;
                 }
 
-                if ( !checkModuleDependencies( *thisModule ) )
+                if ( !addModule( thisModule ) )
                 {
                     // Error message is already printed
-                    failedModules.append( instanceKey.toString() );
-                    continue;
-                }
-
-                // If it's a ViewModule, it also appends the ViewStep to the ViewManager.
-                thisModule->loadSelf();
-                m_loadedModulesByInstanceKey.insert( instanceKey, thisModule );
-                if ( !thisModule->isLoaded() )
-                {
-                    cError() << "Module" << instanceKey.toString() << "loading FAILED.";
                     failedModules.append( instanceKey.toString() );
                     continue;
                 }
@@ -343,6 +333,40 @@ ModuleManager::loadModules()
     {
         emit modulesLoaded();
     }
+}
+
+bool
+ModuleManager::addModule( Module *module )
+{
+    if ( !module )
+    {
+        return false;
+    }
+    if ( !module->instanceKey().isValid() )
+    {
+        cWarning() << "Module" << module->location() << '@' << (void*)module << "has invalid instance key.";
+        return false;
+    }
+    if ( !checkModuleDependencies( *module ) )
+    {
+        return false;
+    }
+
+    if ( !module->isLoaded() )
+    {
+        module->loadSelf();
+    }
+
+    // Even if the load failed, we keep the module, so that if it tried to
+    // get loaded **again**, we already know.
+    m_loadedModulesByInstanceKey.insert( module->instanceKey(), module );
+    if ( !module->isLoaded() )
+    {
+        cError() << "Module" << module->instanceKey().toString() << "loading FAILED.";
+        return false;
+    }
+
+    return true;
 }
 
 void
@@ -414,6 +438,12 @@ ModuleManager::checkDependencies()
 bool
 ModuleManager::checkModuleDependencies( const Module& m )
 {
+    if ( !m_availableDescriptorsByModuleName.contains( m.name() ) )
+    {
+        cWarning() << "Module" << m.name() << "loaded externally, no dependency information.";
+        return true;
+    }
+
     bool allRequirementsFound = true;
     QStringList requiredModules
         = m_availableDescriptorsByModuleName[ m.name() ].value( "requiredModules" ).toStringList();
