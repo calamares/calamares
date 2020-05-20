@@ -187,7 +187,6 @@ public:
 
     virtual Calamares::JobList jobs() const override;
 
-
 protected:
     void initFrom( const QVariantMap& ) override;
 };
@@ -195,6 +194,9 @@ protected:
 ExecViewModule::ExecViewModule()
     : Calamares::Module()
 {
+    QVariantMap m;
+    m.insert( "name", "x" );
+    Calamares::Module::initFrom(m, "x" );
 }
 
 ExecViewModule::~ExecViewModule() {}
@@ -210,6 +212,7 @@ ExecViewModule::loadSelf()
     auto* viewStep = new Calamares::ExecutionViewStep();
     viewStep->setModuleInstanceKey( instanceKey() );
     viewStep->setConfigurationMap( m_configurationMap );
+    viewStep->appendJobModuleInstanceKey( "x@x" );
     Calamares::ViewManager::instance()->addViewStep( viewStep );
     m_loaded = true;
 }
