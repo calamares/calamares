@@ -89,6 +89,7 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
 
     auto gs = Calamares::JobQueue::instance()->globalStorage();
 
+    m_requiredPartitionTableType = gs->value( "requiredPartitionTableType" ).toStringList();
     m_defaultFsType = gs->value( "defaultFileSystemType" ).toString();
     m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
 
@@ -1252,6 +1253,7 @@ ChoicePage::setupActions()
     bool atLeastOneCanBeReplaced = false;
     bool atLeastOneIsMounted = false;  // Suppress 'erase' if so
     bool isInactiveRAID = false;
+    bool matchTableType = false;
 
 #ifdef WITH_KPMCORE4API
     if ( currentDevice->type() == Device::Type::SoftwareRAID_Device
@@ -1261,6 +1263,14 @@ ChoicePage::setupActions()
         isInactiveRAID = true;
     }
 #endif
+
+    PartitionTable::TableType tableType = PartitionTable::unknownTableType;
+    if ( currentDevice->partitionTable() )
+    {
+        tableType = currentDevice->partitionTable()->type();
+        matchTableType = m_requiredPartitionTableType.size() == 0 ||
+            m_requiredPartitionTableType.contains( PartitionTable::tableTypeToName( tableType ) );
+    }
 
     for ( auto it = PartitionIterator::begin( currentDevice ); it != PartitionIterator::end( currentDevice ); ++it )
     {
@@ -1432,6 +1442,27 @@ ChoicePage::setupActions()
                       "DISABLING alongside and replace features.";
         m_alongsideButton->hide();
         m_replaceButton->hide();
+    }
+
+    if ( tableType != PartitionTable::unknownTableType && !matchTableType )
+    {
+        m_messageLabel->setText( tr( "This storage device already may has an operating system on it, "
+                                     "but its partition table <strong>%1</strong> mismatch the"
+                                     "requirement <strong>%2</strong>.<br/>" )
+                                     .arg( PartitionTable::tableTypeToName( tableType ) )
+                                     .arg( m_requiredPartitionTableType.join( " or " ) ) );
+        m_messageLabel->show();
+
+        cWarning() << "Partition table" << PartitionTable::tableTypeToName( tableType )
+                   << "does not match the requirement " << m_requiredPartitionTableType.join( " or " ) << ", "
+                      "ENABLING erease feature and ";
+                      "DISABLING alongside, replace and manual features.";
+        m_eraseButton->show();
+        m_alongsideButton->hide();
+        m_replaceButton->hide();
+        m_somethingElseButton->hide();
+        cDebug() << "Replace button suppressed because partition table type mismatch.";
+        force_uncheck( m_grp, m_replaceButton );
     }
 
     if ( m_somethingElseButton->isHidden()

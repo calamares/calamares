@@ -154,6 +154,7 @@ private:
     int m_lastSelectedDeviceIndex = -1;
     int m_lastSelectedActionIndex = -1;
 
+    QStringList m_requiredPartitionTableType;
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
 

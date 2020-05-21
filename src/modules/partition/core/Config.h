@@ -114,6 +114,7 @@ private:
     InstallChoice m_initialInstallChoice = NoChoice;
     InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
+    QStringList m_requiredPartitionTableType;
 };
 
 /** @brief Given a set of swap choices, return a sensible value from it.
