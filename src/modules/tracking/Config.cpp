@@ -18,10 +18,29 @@
 
 #include "Config.h"
 
+#include "TrackingType.h"
+
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
 #include <QUrl>
+
+const NamedEnumTable< TrackingType >&
+trackingNames()
+{
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< TrackingType > names {
+        { QStringLiteral( "none" ), TrackingType::NoTracking },
+        { QStringLiteral( "install" ), TrackingType::InstallTracking },
+        { QStringLiteral( "machine" ), TrackingType::MachineTracking },
+        { QStringLiteral( "user" ), TrackingType::UserTracking }
+    };
+    // clang-format on
+    // *INDENT-ON*
+
+    return names;
+}
 
 TrackingStyleConfig::TrackingStyleConfig( QObject* parent )
     : QObject( parent )
@@ -154,6 +173,26 @@ Config::Config( QObject* parent )
 {
 }
 
+static void
+enableLevelsBelow( Config* config, TrackingType level )
+{
+    switch( level )
+    {
+        case TrackingType::UserTracking:
+            config->userTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
+            FALLTHRU;
+        case TrackingType::MachineTracking:
+            config->machineTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
+            FALLTHRU;
+        case TrackingType::InstallTracking:
+            config->installTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
+            break;
+        case TrackingType::NoTracking:
+            config->noTracking( true );
+            break;
+    }
+}
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -183,10 +222,30 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     {
         m_userTracking->setConfigurationMap( subconfig );
     }
+
+    auto level = trackingNames().find( CalamaresUtils::getString( configurationMap, "default" ), success );
+    if ( !success )
+    {
+        cWarning() << "Default tracking level unknown:" << CalamaresUtils::getString( configurationMap, "default" );
+        level = TrackingType::NoTracking;
+    }
+    enableLevelsBelow( this, level );
 }
 
 QString
 Config::generalPolicy() const
 {
     return m_generalPolicy;
+}
+
+void
+Config::noTracking( bool switchOffAllTracking )
+{
+    if ( !switchOffAllTracking )
+    {
+        return;
+    }
+    m_installTracking->setTracking( TrackingStyleConfig::TrackingState::DisabledByUser );
+    m_machineTracking->setTracking( TrackingStyleConfig::TrackingState::DisabledByUser );
+    m_userTracking->setTracking( TrackingStyleConfig::TrackingState::DisabledByUser );
 }

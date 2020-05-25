@@ -173,6 +173,9 @@ public Q_SLOTS:
     MachineTrackingConfig* machineTracking() const { return m_machineTracking; }
     UserTrackingConfig* userTracking() const { return m_userTracking; }
 
+    /// @brief Call with @c true to turn off all the trackings
+    void noTracking( bool );
+
 signals:
     void generalPolicyChanged( QString );
 

@@ -29,7 +29,7 @@ enum class TrackingType
     UserTracking  // Track the user, ongoing
 };
 
-// Implemented in TrackingViewStep.cpp
+// Implemented in Config.cpp
 const NamedEnumTable< TrackingType >& trackingNames();
 
 #endif  //TRACKINGTYPE_H
