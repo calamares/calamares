@@ -9,6 +9,7 @@
 # Guido Grasso <cuquiman97@gmail.com>, 2018
 # Adolfo Jayme-Barrientos, 2019
 # Miguel Mayol <mitcoes@gmail.com>, 2020
+# Pier Jose Gotta Perez <piegope@protonmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -17,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Miguel Mayol <mitcoes@gmail.com>, 2020\n"
+"Last-Translator: Pier Jose Gotta Perez <piegope@protonmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/calamares/teams/20061/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,11 +101,11 @@ msgstr "Falló la sincronización  mediante rsync  con el código de error {}."
 
 #: src/modules/unpackfs/main.py:302
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "Desempaquetando la imagen {}/{}, archivo {}/{}"
 
 #: src/modules/unpackfs/main.py:317
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "Iniciando el desempaquetado {}"
 
 #: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
 msgid "Failed to unpack image \"{}\""
@@ -137,6 +138,8 @@ msgstr "Configuración de \"unsquash\" no válida"
 #: src/modules/unpackfs/main.py:423
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr ""
+"El sistema de archivos para \"{}\" ({}) no es compatible con su kernel "
+"actual"
 
 #: src/modules/unpackfs/main.py:427
 msgid "The source filesystem \"{}\" does not exist"
