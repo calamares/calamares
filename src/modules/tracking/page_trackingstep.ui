@@ -279,6 +279,9 @@ margin-left: 2em;</string>
      <property name="openExternalLinks">
       <bool>false</bool>
      </property>
+     <property name="textInteractionFlags">
+      <set>Qt::TextBrowserInteraction</set>
+     </property>
     </widget>
    </item>
    <item>

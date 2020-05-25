@@ -48,9 +48,6 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
     group->addButton( ui->userRadio );
     ui->noneRadio->setChecked( true );
 
-    // TODO: move to .ui file
-    ui->generalPolicyLabel->setTextInteractionFlags( Qt::TextBrowserInteraction );
-
     connect( config, &Config::generalPolicyChanged, [ this ]( const QString& url ) {
         this->ui->generalPolicyLabel->setVisible( !url.isEmpty() );
     } );
