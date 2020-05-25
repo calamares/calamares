@@ -48,7 +48,20 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
     group->addButton( ui->userRadio );
     ui->noneRadio->setChecked( true );
 
-    connect( config, &Config::generalPolicyChanged, this, &TrackingPage::setGeneralPolicy );
+    // TODO: move to .ui file
+    ui->generalPolicyLabel->setTextInteractionFlags( Qt::TextBrowserInteraction );
+
+    connect( config, &Config::generalPolicyChanged, [ this ]( const QString& url ) {
+        this->ui->generalPolicyLabel->setVisible( !url.isEmpty() );
+    } );
+    connect( ui->generalPolicyLabel, &QLabel::linkActivated, [ config ] {
+        QString url( config->generalPolicy() );
+        if ( !url.isEmpty() )
+        {
+            QDesktopServices::openUrl( url );
+        }
+    } );
+
     retranslate();
 }
 
@@ -75,22 +88,6 @@ TrackingPage::retranslate()
             .arg( product ) );
 }
 
-
-void
-TrackingPage::setGeneralPolicy( QString url )
-{
-    if ( url.isEmpty() )
-    {
-        ui->generalPolicyLabel->hide();
-    }
-    else
-    {
-        ui->generalPolicyLabel->show();
-        ui->generalPolicyLabel->setTextInteractionFlags( Qt::TextBrowserInteraction );
-        ui->generalPolicyLabel->show();
-        connect( ui->generalPolicyLabel, &QLabel::linkActivated, [ url ] { QDesktopServices::openUrl( url ); } );
-    }
-}
 
 void
 TrackingPage::setTrackingLevel( TrackingType t )

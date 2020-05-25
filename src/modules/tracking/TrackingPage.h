@@ -41,9 +41,6 @@ public:
     void setTrackingLevel( TrackingType t );
 
 public Q_SLOTS:
-    ///@brief Set URL for the global link
-    void setGeneralPolicy( QString url );
-
     void retranslate();
 
 private:
