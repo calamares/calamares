@@ -162,3 +162,72 @@ true
             tr( "Could not configure machine feedback correctly, Calamares error %1." ).arg( r ) );
     }
 }
+
+void
+TrackingUserJob::addJob( Calamares::JobList& list, UserTrackingConfig* config )
+{
+    if ( config->isEnabled() )
+    {
+        const auto style = config->userTrackingStyle();
+        if ( style == "kuserfeedback" )
+        {
+            list.append( Calamares::job_ptr( new TrackingKUserFeedbackJob() ) );
+        }
+        else
+        {
+            cWarning() << "Unsupported user tracking style" << style;
+        }
+    }
+}
+
+QString
+TrackingKUserFeedbackJob::prettyName() const
+{
+    return tr( "KDE user feedback" );
+}
+
+QString
+TrackingKUserFeedbackJob::prettyDescription() const
+{
+    return prettyName();
+}
+
+QString
+TrackingKUserFeedbackJob::prettyStatusMessage() const
+{
+    return tr( "Configuring KDE user feedback." );
+}
+
+Calamares::JobResult
+TrackingKUserFeedbackJob::exec()
+{
+    // This is the contents of a config file to turn on some kind
+    // of KUserFeedback tracking; the level (16) is chosen for minimal
+    // but not zero tracking.
+    static const char config[] = R"x([Global]
+FeedbackLevel=16
+)x";
+
+    for ( const QString& area : QStringList { "PlasmaUserFeedback" } )
+    {
+        // TODO: get the configured user name
+        QString path = QStringLiteral( "/home/%1/.config/%2" ).arg( QString(), area );
+        cDebug() << "Configuring KUserFeedback" << path;
+
+        int r = CalamaresUtils::System::instance()->createTargetFile( path, config );
+        if ( r > 0 )
+        {
+            return Calamares::JobResult::error(
+                tr( "Error in KDE user feedback configuration." ),
+                tr( "Could not configure KDE user feedback correctly, script error %1." ).arg( r ) );
+        }
+        else if ( r < 0 )
+        {
+            return Calamares::JobResult::error(
+                tr( "Error in KDE user feedback configuration." ),
+                tr( "Could not configure KDE user feedback correctly, Calamares error %1." ).arg( r ) );
+        }
+    }
+
+    return Calamares::JobResult::ok();
+}

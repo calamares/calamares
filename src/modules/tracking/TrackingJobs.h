@@ -23,6 +23,7 @@
 
 class InstallTrackingConfig;
 class MachineTrackingConfig;
+class UserTrackingConfig;
 
 class QSemaphore;
 
@@ -75,6 +76,12 @@ public:
     static void addJob( Calamares::JobList& list, MachineTrackingConfig* config );
 };
 
+/** @brief Tracking machines, KDE neon style
+ *
+ * The machine has a machine-id, and this is sed(1)'ed into the
+ * update-manager configuration, to report the machine-id back
+ * to KDE neon servers.
+ */
 class TrackingMachineNeonJob : public TrackingMachineJob
 {
     Q_OBJECT
@@ -85,5 +92,32 @@ public:
     Calamares::JobResult exec() override;
 };
 
+/** @brief Base class for user-tracking jobs
+ *
+ * User-tracking configuration depends on the distro / style of user
+ * tracking being implemented, so there are subclasses to switch on the
+ * relevant kind of tracking. Users are tracked persistently (the user
+ * can of course configure the tracking again once the system is restarted).
+ */
+class TrackingUserJob : public Calamares::Job
+{
+public:
+    static void addJob( Calamares::JobList& list, UserTrackingConfig* config );
+};
+
+/** @brief Turn on KUserFeedback in target system
+ *
+ * This writes suitable files for turning on KUserFeedback for the
+ * normal user configured in Calamares. The feedback can be reconfigured
+ * by the user through Plasma's user-feedback dialog.
+ */
+class TrackingKUserFeedbackJob : public Calamares::Job
+{
+public:
+    QString prettyName() const override;
+    QString prettyDescription() const override;
+    QString prettyStatusMessage() const override;
+    Calamares::JobResult exec() override;
+};
 
 #endif
