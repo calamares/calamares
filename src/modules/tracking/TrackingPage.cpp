@@ -40,13 +40,15 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
     ui->setupUi( this );
     CALAMARES_RETRANSLATE_SLOT( &TrackingPage::retranslate );
 
-    QButtonGroup* group = new QButtonGroup( this );
-    group->setExclusive( true );
-    group->addButton( ui->noneRadio );
-    group->addButton( ui->installRadio );
-    group->addButton( ui->machineRadio );
-    group->addButton( ui->userRadio );
-    ui->noneRadio->setChecked( true );
+    ui->noneCheckBox->setChecked( true );
+    connect( ui->noneCheckBox, &QCheckBox::stateChanged, this, &TrackingPage::noneChecked );
+    connect( ui->installCheckBox, &QCheckBox::stateChanged, this, &TrackingPage::otherChecked );
+    connect( ui->machineCheckBox, &QCheckBox::stateChanged, this, &TrackingPage::otherChecked );
+    connect( ui->userCheckBox, &QCheckBox::stateChanged, this, &TrackingPage::otherChecked );
+
+    connect( ui->installCheckBox, &QCheckBox::stateChanged, [ this ]( int s ) { cDebug() << "Checkbox install changed" << s; } );
+    connect( config->installTracking(), &TrackingStyleConfig::trackingChanged, [ config ]() { cDebug() <<
+    "Install tracking changed" << config->installTracking()->isEnabled(); } ) ;
 
     connect( config, &Config::generalPolicyChanged, [ this ]( const QString& url ) {
         this->ui->generalPolicyLabel->setVisible( !url.isEmpty() );
@@ -85,30 +87,35 @@ TrackingPage::retranslate()
             .arg( product ) );
 }
 
-
-void
-TrackingPage::setTrackingLevel( TrackingType t )
+void TrackingPage::noneChecked(int state)
 {
-    QRadioButton* button = nullptr;
-
-    switch ( t )
+    if ( state )
     {
-    case TrackingType::NoTracking:
-        button = ui->noneRadio;
-        break;
-    case TrackingType::InstallTracking:
-        button = ui->installRadio;
-        break;
-    case TrackingType::MachineTracking:
-        button = ui->machineRadio;
-        break;
-    case TrackingType::UserTracking:
-        button = ui->userRadio;
-        break;
+        cDebug() << "Unchecking all due to none box";
+        ui->installCheckBox->setChecked( false );
+        ui->machineCheckBox->setChecked( false );
+        ui->userCheckBox->setChecked( false );
     }
+}
 
-    if ( button != nullptr )
+void TrackingPage::otherChecked(int state)
+{
+    cDebug() << "Other checked" << state;
+    if ( state )
     {
-        button->setChecked( true );
+        // Can't have none checked, if another one is
+        ui->noneCheckBox->setChecked( false );
+    }
+    else
+    {
+        if ( ui->installCheckBox->isChecked()  || ui->machineCheckBox->isChecked() || ui->userCheckBox->isChecked() )
+        {
+            // One of them is still checked, leave *none* alone
+            ;
+        }
+        else
+        {
+            ui->noneCheckBox->setChecked( true );
+        }
     }
 }

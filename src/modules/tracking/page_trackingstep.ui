@@ -32,7 +32,7 @@ margin-left: 2em;</string>
     <widget class="QWidget" name="noneGroup" native="true">
      <layout class="QHBoxLayout" name="noneLayout">
       <item>
-       <widget class="QRadioButton" name="noneRadio">
+       <widget class="QCheckBox" name="noneCheckBox">
         <property name="text">
          <string/>
         </property>
@@ -83,7 +83,7 @@ margin-left: 2em;</string>
     <widget class="QWidget" name="installGroup" native="true">
      <layout class="QHBoxLayout" name="installLayout">
       <item>
-       <widget class="QRadioButton" name="installRadio">
+       <widget class="QCheckBox" name="installCheckBox">
         <property name="text">
          <string/>
         </property>
@@ -145,7 +145,7 @@ margin-left: 2em;</string>
     <widget class="QWidget" name="machineGroup" native="true">
      <layout class="QHBoxLayout" name="machineLayout">
       <item>
-       <widget class="QRadioButton" name="machineRadio">
+       <widget class="QCheckBox" name="machineCheckBox">
         <property name="text">
          <string/>
         </property>
@@ -207,7 +207,7 @@ margin-left: 2em;</string>
     <widget class="QWidget" name="userGroup" native="true">
      <layout class="QHBoxLayout" name="userLayout">
       <item>
-       <widget class="QRadioButton" name="userRadio">
+       <widget class="QCheckBox" name="userCheckBox">
         <property name="text">
          <string/>
         </property>

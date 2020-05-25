@@ -37,11 +37,22 @@ class TrackingPage : public QWidget
 public:
     explicit TrackingPage( Config* config, QWidget* parent = nullptr );
 
-    ///@brief Select one of the four levels by name
-    void setTrackingLevel( TrackingType t );
-
 public Q_SLOTS:
     void retranslate();
+
+    /** @brief When the *no tracking* checkbox is changed
+     *
+     * @p state will be non-zero when the box is checked; this
+     * **unchecks** all the other boxes.
+     */
+    void noneChecked( int state );
+
+    /** @brief Some other checkbox changed
+     *
+     * This may check the *none* button if all the others are
+     * now unchecked.
+     */
+    void otherChecked( int state );
 
 private:
     Ui::TrackingPage* ui;
