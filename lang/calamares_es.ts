@@ -102,7 +102,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="106"/>
       <source>Reload Stylesheet</source>
-      <translation type="unfinished"/>
+      <translation>Recargar Hoja de estilo</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="113"/>
@@ -120,7 +120,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
       <source>Set up</source>
-      <translation type="unfinished"/>
+      <translation>Instalar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
@@ -138,7 +138,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="40"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation type="unfinished"/>
+      <translation>Se solicitó de manera explícita la falla del trabajo programado.</translation>
     </message>
   </context>
   <context>
@@ -154,7 +154,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="27"/>
       <source>Example job (%1)</source>
-      <translation type="unfinished"/>
+      <translation>Ejemplo de trabajo (%1)</translation>
     </message>
   </context>
   <context>
@@ -162,12 +162,12 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
       <source>Run command '%1' in target system.</source>
-      <translation type="unfinished"/>
+      <translation>Ejecutar el comando '% 1' en el sistema de destino.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
       <source> Run command '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>Ejecutar el comando '% 1'.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="59"/>
@@ -213,17 +213,17 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="76"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>Cargando ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="97"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Paso QML &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="261"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>La carga ha fallado.</translation>
     </message>
   </context>
   <context>
@@ -231,9 +231,9 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="164"/>
       <source>Waiting for %n module(s).</source>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+      <translation>
+        <numerusform>Esperando %n módulo (s).</numerusform>
+        <numerusform>Esperando %n módulo(s).</numerusform>
       </translation>
     </message>
     <message numerus="yes">
@@ -247,7 +247,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="170"/>
       <source>System-requirements checking is complete.</source>
-      <translation type="unfinished"/>
+      <translation>La verificación de los requisitos del sistema está completa.</translation>
     </message>
   </context>
   <context>
@@ -255,7 +255,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="153"/>
       <source>Setup Failed</source>
-      <translation type="unfinished"/>
+      <translation>Configuración Fallida</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="153"/>
@@ -265,7 +265,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="154"/>
       <source>Would you like to paste the install log to the web?</source>
-      <translation type="unfinished"/>
+      <translation>¿Desea pegar el registro de instalación en la web?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
@@ -292,12 +292,12 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
       <source>Install Log Paste URL</source>
-      <translation type="unfinished"/>
+      <translation>Pegar URL Registro de Instalación</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="195"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
-      <translation type="unfinished"/>
+      <translation>La carga no tuvo éxito. No se realizó pegado web.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="211"/>
@@ -322,12 +322,12 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
       <source>Continue with installation?</source>
-      <translation type="unfinished"/>
+      <translation>Continuar con la instalación?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>El programa de instalación %1 está a punto de hacer cambios en el disco con el fin de configurar %2.&lt;br/&gt;&lt;strong&gt;No podrá deshacer estos cambios.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
@@ -337,7 +337,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
       <source>&amp;Set up now</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Configurar ahora</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
@@ -352,7 +352,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>&amp;Set up</source>
-      <translation type="unfinished"/>
+      <translation>&amp;Instalar</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
@@ -362,7 +362,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
       <source>Setup is complete. Close the setup program.</source>
-      <translation type="unfinished"/>
+      <translation>La instalación se ha completado. Cierre el instalador.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>

@@ -1838,7 +1838,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="76"/>
       <source>Office</source>
-      <translation>辦公室</translation>
+      <translation>辦公</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="77"/>
@@ -3619,7 +3619,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="185"/>
       <source>Open release notes website</source>
-      <translation>開啟發行手記網站</translation>
+      <translation>開啟發行記事網站</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="188"/>
