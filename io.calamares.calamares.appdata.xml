@@ -2,7 +2,7 @@
 <component type="desktop">
   <id>io.calamares.calamares.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <name>Calamares</name>
   <name xml:lang="da">Calamares</name>
   <name xml:lang="en-GB">Calamares</name>
