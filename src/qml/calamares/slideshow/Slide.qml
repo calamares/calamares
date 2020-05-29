@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   SPDX-License-Identifier: LGPL-2.1
+ *   SPDX-License-Identifier: LGPL-2.1-only
  *   License-Filename: LICENSES/LGPLv2.1-Presentation
  */
 
