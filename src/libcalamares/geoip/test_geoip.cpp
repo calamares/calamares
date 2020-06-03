@@ -22,6 +22,7 @@
 
 #include <iostream>
 
+#include "GeoIPFixed.h"
 #include "GeoIPJSON.h"
 #ifdef QT_XML_LIB
 #include "GeoIPXML.h"
@@ -33,27 +34,34 @@ using namespace CalamaresUtils::GeoIP;
 int
 main( int argc, char** argv )
 {
-    if ( argc != 2 )
+    if ( ( argc != 2 ) && ( argc != 3 ) )
     {
-        cerr << "Usage: curl url | test_geoip <format>\n";
+        cerr << "Usage: curl url | test_geoip <format> [selector]\n";
         return 1;
     }
 
+    QString format( argv[ 1 ] );
+    QString selector = argc == 3 ? QString( argv[ 2 ] ) : QString();
+
     Interface* handler = nullptr;
-    if ( QStringLiteral( "json" ) == argv[ 1 ] )
+    if ( QStringLiteral( "json" ) == format )
     {
-        handler = new GeoIPJSON;
+        handler = new GeoIPJSON( selector );
     }
 #ifdef QT_XML_LIB
-    else if ( QStringLiteral( "xml" ) == argv[ 1 ] )
+    else if ( QStringLiteral( "xml" ) == format )
     {
-        handler = new GeoIPXML;
+        handler = new GeoIPXML( selector );
     }
 #endif
+    else if ( QStringLiteral( "fixed" ) == format )
+    {
+        handler = new GeoIPFixed( selector );
+    }
 
     if ( !handler )
     {
-        cerr << "Unknown format '" << argv[ 1 ] << "'\n";
+        cerr << "Unknown format '" << format.toLatin1().constData() << "'\n";
         return 1;
     }
 

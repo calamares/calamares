@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,33 +14,34 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
  */
 
-#ifndef GEOIPTESTS_H
-#define GEOIPTESTS_H
+#include "GeoIPFixed.h"
 
-#include <QObject>
-
-class GeoIPTests : public QObject
+namespace CalamaresUtils
 {
-    Q_OBJECT
-public:
-    GeoIPTests();
-    ~GeoIPTests() override;
+namespace GeoIP
+{
 
-private Q_SLOTS:
-    void initTestCase();
-    void testFixed();
-    void testJSON();
-    void testJSONalt();
-    void testJSONbad();
-    void testXML();
-    void testXML2();
-    void testXMLalt();
-    void testXMLbad();
-    void testSplitTZ();
+GeoIPFixed::GeoIPFixed( const QString& attribute )
+    : Interface( attribute.isEmpty() ? QStringLiteral( "Europe/Amsterdam" ) : attribute )
+{
+}
 
-    void testGet();
-};
+QString
+GeoIPFixed::rawReply( const QByteArray& )
+{
+    return m_element;
+}
 
-#endif
+GeoIP::RegionZonePair
+GeoIPFixed::processReply( const QByteArray& data )
+{
+    return splitTZString( rawReply( data ) );
+}
+
+}  // namespace GeoIP
+}  // namespace CalamaresUtils

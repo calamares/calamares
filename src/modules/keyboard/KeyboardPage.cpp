@@ -324,7 +324,7 @@ KeyboardPage::onActivate()
         { "ar_YE", arabic },
         { "ca_ES", "cat_ES" }, /* Catalan */
         { "as_ES", "ast_ES" }, /* Asturian */
-        { "en_CA", "eng_CA" }, /* Canadian English */
+        { "en_CA", "us" }, /* Canadian English */
         { "el_CY", "gr" }, /* Greek in Cyprus */
         { "el_GR", "gr" }, /* Greek in Greeze */
         { "ig_NG", "igbo_NG" }, /* Igbo in Nigeria */

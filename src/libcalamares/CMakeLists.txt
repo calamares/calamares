@@ -23,6 +23,7 @@ set( libSources
 
     # GeoIP services
     geoip/Interface.cpp
+    geoip/GeoIPFixed.cpp
     geoip/GeoIPJSON.cpp
     geoip/Handler.cpp
 
