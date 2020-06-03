@@ -98,7 +98,7 @@ public:
     virtual QString rawReply( const QByteArray& ) = 0;
 
 protected:
-    Interface( const QString& e = QString() );
+    Interface( const QString& element = QString() );
 
     QString m_element;  // string for selecting from data
 };

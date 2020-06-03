@@ -43,9 +43,10 @@ class DLLEXPORT Handler
 public:
     enum class Type
     {
-        None,
-        JSON,
-        XML
+        None, // No lookup, returns empty string
+        JSON, // JSON-formatted data, returns extracted field
+        XML,  // XML-formatted data, returns extracted field
+        Fixed // Returns selector string verbatim
     };
 
     /** @brief An unconfigured handler; this always returns errors. */
