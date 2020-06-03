@@ -18,6 +18,7 @@
 
 #include "GeoIPTests.h"
 
+#include "GeoIPFixed.h"
 #include "GeoIPJSON.h"
 #ifdef QT_XML_LIB
 #include "GeoIPXML.h"
@@ -239,4 +240,36 @@ GeoIPTests::testGet()
     CHECK_GET( XML, QString(), "http://geoip.ubuntu.com/lookup" )  // Ubiquity's XML format
     CHECK_GET( XML, QString(), "https://geoip.kde.org/v1/ubiquity" )  // Temporary KDE service
 #endif
+}
+
+void
+GeoIPTests::testFixed()
+{
+    {
+        GeoIPFixed f;
+        auto tz = f.processReply( QByteArray() );
+        QCOMPARE( tz.first, QStringLiteral( "Europe" ) );
+        QCOMPARE( tz.second, QStringLiteral( "Amsterdam" ) );
+
+        QCOMPARE( f.processReply( xml_data_ubiquity ), tz );
+        QCOMPARE( f.processReply( QByteArray( "derp" ) ), tz );
+    }
+    {
+        GeoIPFixed f( QStringLiteral( "America/Vancouver" ) );
+        auto tz = f.processReply( QByteArray() );
+        QCOMPARE( tz.first, QStringLiteral( "America" ) );
+        QCOMPARE( tz.second, QStringLiteral( "Vancouver" ) );
+
+        QCOMPARE( f.processReply( xml_data_ubiquity ), tz );
+        QCOMPARE( f.processReply( QByteArray( "derp" ) ), tz );
+    }
+    {
+        GeoIPFixed f( QStringLiteral( "America/North Dakota/Beulah" ) );
+        auto tz = f.processReply( QByteArray() );
+        QCOMPARE( tz.first, QStringLiteral( "America" ) );
+        QCOMPARE( tz.second, QStringLiteral( "North_Dakota/Beulah" ) );
+
+        QCOMPARE( f.processReply( xml_data_ubiquity ), tz );
+        QCOMPARE( f.processReply( QByteArray( "derp" ) ), tz );
+    }
 }

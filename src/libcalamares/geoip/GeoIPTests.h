@@ -30,6 +30,7 @@ public:
 
 private Q_SLOTS:
     void initTestCase();
+    void testFixed();
     void testJSON();
     void testJSONalt();
     void testJSONbad();
