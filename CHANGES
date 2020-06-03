@@ -7,6 +7,7 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
+ - Callum Farmer
  - FLVAL
  - Gaël PORTAY
 
@@ -20,6 +21,8 @@ This release contains contributions from (alphabetically by first name):
    200kB in Calamares itself).
  - Tests have been extended and now support a tests/CMakeTests.txt file
    for fine-tuning tests for Python modules.
+ - SPDX identifiers are used much more widely and consistently in Calamares.
+   (thanks Callum)
 
 ## Modules ##
  - The QML based *welcomeq* module is now a viable alternative to the
@@ -28,6 +31,11 @@ This release contains contributions from (alphabetically by first name):
    all loads in the Calamares window itself.  Additional features include the
    option to customize the *About* info and load files like Release Notes
    direct into Calamares, QML files added to the branding directory can be used.
+ - The *welcome* and *locale* modules that do GeoIP lookup can now also
+   use "fixed" style; this just negates the GeoIP lookup and substitutes a
+   constant (fixed) value; useful for testing specific locales.
+ - The *keyboard* module no longer uses *ca_eng* keyboards in Canada by
+   default, but sticks to the *us* keyboard. #1419
 
 # 3.2.24 (2020-05-11) #
 
