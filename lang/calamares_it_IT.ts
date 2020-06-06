@@ -2555,12 +2555,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="433"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>Una partizione EFI è necessaria per avviare %1.&lt;br/&gt;&lt;br/&gt; Per configurare una partizione EFI, tornare indietro e selezionare o creare un filesystem FAT32 con il parametro&lt;strong&gt;%3&lt;/strong&gt;abilitato e punto di montaggio &lt;strong&gt;%2&lt;/strong&gt;. &lt;br/&gt;&lt;br/&gt;Si può continuare senza impostare una partizione EFI ma il sistema potrebbe non avviarsi correttamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="447"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>Una partizione EFI è necessaria per avviare %1.&lt;br/&gt;&lt;br/&gt; Una partizione è stata configurata con punto di montaggio &lt;strong&gt;%2&lt;/strong&gt; ma il suo parametro &lt;strong&gt;%3&lt;/strong&gt; non è impostato.&lt;br/&gt;Per impostare il flag, tornare indietro e modificare la partizione.&lt;br/&gt;&lt;br/&gt;Si può continuare senza impostare il parametro ma il sistema potrebbe non avviarsi correttamente.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="446"/>
@@ -3813,7 +3813,8 @@ Output:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="44"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Benvenuti al programma d'installazione %1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;
+&lt;p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="71"/>

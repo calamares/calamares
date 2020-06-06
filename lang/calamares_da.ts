@@ -232,7 +232,7 @@
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>Venter på %n modul.</numerusform>
-        <numerusform>Venter på %n moduler.</numerusform>
+        <numerusform>Venter på %n modul(er).</numerusform>
       </translation>
     </message>
     <message numerus="yes">
@@ -240,7 +240,7 @@
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%n sekund)</numerusform>
-        <numerusform>(%n sekunder)</numerusform>
+        <numerusform>(%n sekund(er))</numerusform>
       </translation>
     </message>
     <message>
