@@ -3,6 +3,18 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.26 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
 # 3.2.25 (2020-06-06) #
 
 This release contains contributions from (alphabetically by first name):
@@ -36,6 +48,7 @@ This release contains contributions from (alphabetically by first name):
    constant (fixed) value; useful for testing specific locales.
  - The *keyboard* module no longer uses *ca_eng* keyboards in Canada by
    default, but sticks to the *us* keyboard. #1419
+
 
 # 3.2.24 (2020-05-11) #
 
