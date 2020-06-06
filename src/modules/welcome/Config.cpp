@@ -229,14 +229,14 @@ Config::genericWelcomeMessage() const
     if ( Calamares::Settings::instance()->isSetupMode() )
     {
         message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
-            : tr( "<h1>Welcome to %1 setup.</h1>" );
+            ? tr( "<h1>Welcome to the Calamares setup program for %1</h1>" )
+            : tr( "<h1>Welcome to %1 setup</h1>" );
     }
     else
     {
         message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
-            : tr( "<h1>Welcome to the %1 installer.</h1>" );
+            ? tr( "<h1>Welcome to the Calamares installer for %1</h1>" )
+            : tr( "<h1>Welcome to the %1 installer</h1>" );
     }
 
     return message;
