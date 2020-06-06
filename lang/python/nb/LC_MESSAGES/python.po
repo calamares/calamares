@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Tyler Moss <inactive+lazerbeta@transifex.com>, 2017
+# 865ac004d9acf2568b2e4b389e0007c7_fba755c <3516cc82d94f87187da1e036e5f09e42_616112>, 2017
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-30 23:13+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Tyler Moss <inactive+lazerbeta@transifex.com>, 2017\n"
+"Last-Translator: 865ac004d9acf2568b2e4b389e0007c7_fba755c <3516cc82d94f87187da1e036e5f09e42_616112>, 2017\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/calamares/teams/20061/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
