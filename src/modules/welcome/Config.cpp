@@ -336,7 +336,7 @@ setCountry( Config* config, const QString& countryCode, CalamaresUtils::GeoIP::H
 }
 
 static inline void
-setGeoIP( Config* c, const QVariantMap& configurationMap )
+setGeoIP( Config* config, const QVariantMap& configurationMap )
 {
     bool ok = false;
     QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
@@ -350,12 +350,12 @@ setGeoIP( Config* c, const QVariantMap& configurationMap )
         if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
         {
             auto* future = new FWString();
-            QObject::connect( future, &FWString::finished, [config = c, f = future, h = handler]() {
-                QString countryResult = f->future().result();
+            QObject::connect( future, &FWString::finished, [config, future, handler]() {
+                QString countryResult = future->future().result();
                 cDebug() << "GeoIP result for welcome=" << countryResult;
-                ::setCountry( config, countryResult, h );
-                f->deleteLater();
-                delete h;
+                ::setCountry( config, countryResult, handler );
+                future->deleteLater();
+                delete handler;
             } );
             future->setFuture( handler->queryRaw() );
         }
