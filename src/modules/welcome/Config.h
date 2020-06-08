@@ -28,7 +28,20 @@
 class Config : public QObject
 {
     Q_OBJECT
+    /** @brief The languages available in Calamares.
+     *
+     * This is a list-model, with names and descriptions for the translations
+     * available to Calamares.
+     */
     Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL )
+    /** @brief The requirements (from modules) and their checked-status
+     *
+     * The model grows rows over time as each module is checked and its
+     * requirements are taken into account. The model **as a whole**
+     * has properties *satisfiedRequirements* and *satisfiedMandatory*
+     * to say if all of the requirements held in the model have been
+     * satisfied. See the model documentation for details.
+     */
     Q_PROPERTY( Calamares::RequirementsModel* requirementsModel READ requirementsModel CONSTANT FINAL )
 
     Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
