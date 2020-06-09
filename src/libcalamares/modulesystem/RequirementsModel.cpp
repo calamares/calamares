@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2019-2020 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -96,13 +96,16 @@ RequirementsModel::roleNames() const
 void
 RequirementsModel::describe() const
 {
+    cDebug() << "Requirements model has" << m_requirements.count() << "items";
     bool acceptable = true;
     int count = 0;
     for ( const auto& r : m_requirements )
     {
+        cDebug() << Logger::SubEntry << "requirement" << count << r.name
+            << "satisfied?" << r.satisfied
+            << "mandatory?" << r.mandatory;
         if ( r.mandatory && !r.satisfied )
         {
-            cDebug() << Logger::SubEntry << "requirement" << count << r.name << "is not satisfied.";
             acceptable = false;
         }
         ++count;

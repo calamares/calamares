@@ -17,6 +17,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* THIS COMPONENT IS UNUSED -- from the default welcomeq.qml at least */
+
 import io.calamares.core 1.0
 import io.calamares.ui 1.0
 

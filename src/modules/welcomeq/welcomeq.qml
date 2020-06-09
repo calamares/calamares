@@ -56,12 +56,8 @@ Page
             fillMode: Image.PreserveAspectFit
         }
 
-        Recommended {
-            visible: !config.requirementsModel.satisfiedRequirements
-        }
-
         Requirements {
-            visible: !config.requirementsModel.satisfiedMandatory
+            visible: !config.requirementsModel.satisfiedRequirements
         }
 
         RowLayout {
