@@ -523,13 +523,6 @@ endif()
 # make predefined install dirs available everywhere
 include( GNUInstallDirs )
 
-# make uninstall support
-configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY
-)
-
 # This is used by CalamaresAddLibrary; once Calamares is installed,
 # the CalamaresConfig.cmake module sets this variable to the IMPORTED
 # libraries for Calamares.
@@ -592,36 +585,31 @@ install(
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
 
+### Miscellaneous installs
+#
+#
 if( INSTALL_CONFIG )
     install(
-        FILES
-            settings.conf
-        DESTINATION
-            share/calamares
+        FILES settings.conf
+        DESTINATIONshare/calamares
     )
 endif()
 
 if( INSTALL_POLKIT )
     install(
-        FILES
-            com.github.calamares.calamares.policy
-        DESTINATION
-          "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
+        FILES com.github.calamares.calamares.policy
+        DESTINATION "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
     )
 endif()
 
 install(
-  FILES
-      calamares.desktop
-  DESTINATION
-      ${CMAKE_INSTALL_DATADIR}/applications
+  FILES calamares.desktop
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
 )
 
 install(
-    FILES
-        man/calamares.8
-    DESTINATION
-        ${CMAKE_INSTALL_MANDIR}/man8/
+    FILES man/calamares.8
+    DESTINATION ${CMAKE_INSTALL_MANDIR}/man8/
 )
 
 # uninstall target
