@@ -32,6 +32,7 @@
 Config::Config( QObject* parent )
     : QObject( parent )
     , m_languages( CalamaresUtils::Locale::availableTranslations() )
+    , m_filtermodel( std::make_unique< QSortFilterProxyModel >() )
 {
     initLanguages();
 
@@ -95,6 +96,18 @@ Calamares::RequirementsModel*
 Config::requirementsModel() const
 {
     return Calamares::ModuleManager::instance()->requirementsModel();
+}
+
+QAbstractItemModel*
+Config::unsatisfiedRequirements() const
+{
+    if ( !m_filtermodel->sourceModel() )
+    {
+        m_filtermodel->setFilterRole( Calamares::RequirementsModel::Roles::Satisfied );
+        m_filtermodel->setFilterFixedString( QStringLiteral( "false" ) );
+        m_filtermodel->setSourceModel( requirementsModel() );
+    }
+    return m_filtermodel.get();
 }
 
 
