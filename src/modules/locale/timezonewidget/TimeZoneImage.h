@@ -77,7 +77,7 @@ public:
     QImage find( QPoint p ) const;
 
     /// @brief The **expected** number of zones in the list.
-    static constexpr const int zoneCount = 38;
+    static constexpr const int zoneCount = 37;
     /// @brief The expected size of each zone image.
     static constexpr const QSize imageSize = QSize( 780, 340 );
 };

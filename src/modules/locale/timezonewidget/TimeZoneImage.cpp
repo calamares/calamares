@@ -26,7 +26,7 @@
 
 static const char* zoneNames[]
     = { "0.0",  "1.0",  "2.0",  "3.0",  "3.5",  "4.0",  "4.5",  "5.0",  "5.5",   "5.75", "6.0",   "6.5",  "7.0",
-        "8.0",  "9.0",  "9.5",  "10.0", "10.5", "11.0", "11.5", "12.0", "12.75", "13.0", "-1.0",  "-2.0", "-3.0",
+        "8.0",  "9.0",  "9.5",  "10.0", "10.5", "11.0", "12.0", "12.75", "13.0", "-1.0",  "-2.0", "-3.0",
         "-3.5", "-4.0", "-4.5", "-5.0", "-5.5", "-6.0", "-7.0", "-8.0", "-9.0",  "-9.5", "-10.0", "-11.0" };
 static_assert( TimeZoneImageList::zoneCount == ( sizeof( zoneNames ) / sizeof( zoneNames[ 0 ] ) ),
                "Incorrect number of zones" );
@@ -36,7 +36,7 @@ static_assert( TimeZoneImageList::zoneCount == ( sizeof( zoneNames ) / sizeof( z
 /* static constexpr */ const int TimeZoneImageList::zoneCount;
 /* static constexpr */ const QSize TimeZoneImageList::imageSize;
 
-static_assert( TimeZoneImageList::zoneCount == 38 );
+static_assert( TimeZoneImageList::zoneCount == 37 );
 
 TimeZoneImageList::TimeZoneImageList() {}
 
