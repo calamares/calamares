@@ -530,10 +530,9 @@ configure_file(
     IMMEDIATE @ONLY
 )
 
-# Early configure these files as we need them later on
-set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
-# This is used by CalamaresAddLibrary; once installed, this variable
-# is set to the IMPORTED library for Calamares.
+# This is used by CalamaresAddLibrary; once Calamares is installed,
+# the CalamaresConfig.cmake module sets this variable to the IMPORTED
+# libraries for Calamares.
 set( Calamares_LIBRARIES calamares )
 
 add_subdirectory( src )
@@ -544,20 +543,17 @@ add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
 add_feature_info(KDBusAddons ${WITH_KF5DBus} "Unique-application via DBus")
 
-# Add all targets to the build-tree export set
+### CMake infrastructure installation
+#
+#
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
 set( CMAKE_INSTALL_FULL_CMAKEDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_CMAKEDIR}" )
-export( TARGETS calamares
-    FILE "${PROJECT_BINARY_DIR}/CalamaresLibraryDepends.cmake" )
 
-# Export the package for use from the build-tree
-# (this registers the build-tree with a global CMake-registry)
 export( PACKAGE Calamares )
-
-# Create a CalamaresBuildTreeSettings.cmake file for the use from the build tree
-configure_file( CalamaresBuildTreeSettings.cmake.in "${PROJECT_BINARY_DIR}/CalamaresBuildTreeSettings.cmake" @ONLY )
-
-# Create the CalamaresConfig.cmake and CalamaresConfigVersion files
+configure_file(
+    CalamaresBuildTreeSettings.cmake.in
+    "${PROJECT_BINARY_DIR}/CalamaresBuildTreeSettings.cmake" @ONLY
+)
 configure_package_config_file(
     "CalamaresConfig.cmake.in"
     "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
@@ -572,7 +568,6 @@ write_basic_package_version_file(
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY SameMajorVersion
 )
-export( PACKAGE Calamares )
 install(
     EXPORT Calamares
     DESTINATION "${CMAKE_INSTALL_CMAKEDIR}"
