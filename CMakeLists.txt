@@ -556,25 +556,26 @@ export( PACKAGE Calamares )
 configure_file( CalamaresBuildTreeSettings.cmake.in "${PROJECT_BINARY_DIR}/CalamaresBuildTreeSettings.cmake" @ONLY )
 
 # Create the CalamaresConfig.cmake and CalamaresConfigVersion files
+configure_package_config_file(
+    "CalamaresConfig.cmake.in"
+    "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
+    INSTALL_DESTINATION "${CMAKE_INSTALL_CMAKEDIR}"
+    PATH_VARS
+        CMAKE_INSTALL_INCLUDEDIR
+        CMAKE_INSTALL_LIBDIR
+        CMAKE_INSTALL_DATADIR
+)
 write_basic_package_version_file(
     ${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY SameMajorVersion
 )
 
-file( RELATIVE_PATH CONF_REL_INCLUDE_DIR "${CMAKE_INSTALL_FULL_CMAKEDIR}" "${CMAKE_INSTALL_FULL_INCLUDEDIR}" )
-
-
-
-configure_file( CalamaresConfig.cmake.in "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake" @ONLY )
-configure_file( CalamaresUse.cmake.in "${PROJECT_BINARY_DIR}/CalamaresUse.cmake" @ONLY )
-
 # Install the cmake files
 install(
     FILES
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
         "CMakeModules/CalamaresAddBrandingSubdirectory.cmake"
         "CMakeModules/CalamaresAddLibrary.cmake"
         "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
