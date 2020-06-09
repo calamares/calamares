@@ -97,7 +97,6 @@ function(calamares_add_library)
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
-        ${LIBRARY_QT5_MODULES}
     )
     if(LIBRARY_LINK_LIBRARIES)
         target_link_libraries(${target} LINK_PUBLIC ${LIBRARY_LINK_LIBRARIES})
