@@ -162,7 +162,13 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
     )
 endif()
 
+# CMake Modules
+include( CMakePackageConfigHelpers )
 include( CTest )
+include( FeatureSummary )
+
+# Calamares Modules
+include( CMakeColors )
 
 ### C++ SETUP
 #
@@ -247,9 +253,6 @@ if( CMAKE_COMPILER_IS_GNUCXX )
         set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=auto" )
     endif()
 endif()
-
-include( FeatureSummary )
-include( CMakeColors )
 
 
 ### DEPENDENCIES
@@ -554,6 +557,8 @@ configure_file( CalamaresBuildTreeSettings.cmake.in "${PROJECT_BINARY_DIR}/Calam
 
 # Create the CalamaresConfig.cmake and CalamaresConfigVersion files
 file( RELATIVE_PATH CONF_REL_INCLUDE_DIR "${CMAKE_INSTALL_FULL_CMAKEDIR}" "${CMAKE_INSTALL_FULL_INCLUDEDIR}" )
+
+
 
 configure_file( CalamaresConfig.cmake.in "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake" @ONLY )
 configure_file( CalamaresConfigVersion.cmake.in "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake" @ONLY )
