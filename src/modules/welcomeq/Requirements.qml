@@ -64,18 +64,15 @@ Rectangle {
 
             Item {
                 width: 640
-                // Hide the satisfied requirements; we could do that with
-                // a filtering model, but here we'll just hide it, but also
-                // need to compensate for the spacing between items.
-                height: !satisfied ? 35 : -requirementsList.spacing
-                visible: !satisfied
+                height: 35
+                visible: true
 
                 Column {
                     anchors.centerIn: parent
 
                     Rectangle {
                         implicitWidth: 640
-                        implicitHeight: !satisfied ? 35 : 0
+                        implicitHeight: 35
                         // Colors and images based on the two satisfied-bools:
                         // - if satisfied, then green / ok
                         // - otherwise if mandatory, then red / stop
@@ -104,7 +101,10 @@ Rectangle {
             id: requirementsList
             anchors.fill: parent
             spacing: 5
-            model: config.requirementsModel
+            // This uses the filtered model, so that only unsatisfied
+            // requirements are ever shown. You could use *requirementsModel*
+            // to get all of them.
+            model: config.unsatisfiedRequirements
             delegate: requirementsDelegate
         }
     }
