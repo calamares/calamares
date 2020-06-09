@@ -1,5 +1,5 @@
 # === This file is part of Calamares - <https://github.com/calamares> ===
-# 
+#
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
@@ -177,7 +177,7 @@ target_link_libraries( calamares
 )
 
 install( TARGETS calamares
-    EXPORT CalamaresLibraryDepends
+    EXPORT Calamares
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}

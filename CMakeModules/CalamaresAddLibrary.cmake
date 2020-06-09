@@ -93,7 +93,7 @@ function(calamares_add_library)
 
     # add link targets
     target_link_libraries(${target}
-        LINK_PUBLIC ${CALAMARES_LIBRARIES}
+        LINK_PUBLIC ${Calamares_LIBRARIES}
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets

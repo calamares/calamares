@@ -67,7 +67,7 @@ calamares_add_library( calamaresui
     LINK_LIBRARIES
         Qt5::Svg
     RESOURCES libcalamaresui.qrc
-    EXPORT CalamaresLibraryDepends
+    EXPORT Calamares
     VERSION ${CALAMARES_VERSION_SHORT}
 )
 

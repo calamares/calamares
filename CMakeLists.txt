@@ -532,7 +532,9 @@ configure_file(
 
 # Early configure these files as we need them later on
 set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
-set( CALAMARES_LIBRARIES calamares )
+# This is used by CalamaresAddLibrary; once installed, this variable
+# is set to the IMPORTED library for Calamares.
+set( Calamares_LIBRARIES calamares )
 
 add_subdirectory( src )
 
@@ -570,6 +572,13 @@ write_basic_package_version_file(
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY SameMajorVersion
 )
+export( PACKAGE Calamares )
+install(
+    EXPORT Calamares
+    DESTINATION "${CMAKE_INSTALL_CMAKEDIR}"
+    FILE "CalamaresTargets.cmake"
+    NAMESPACE Calamares::
+)
 
 # Install the cmake files
 install(
@@ -584,14 +593,6 @@ install(
         "CMakeModules/CalamaresAddTranslations.cmake"
         "CMakeModules/CalamaresAutomoc.cmake"
         "CMakeModules/CMakeColors.cmake"
-    DESTINATION
-        "${CMAKE_INSTALL_CMAKEDIR}"
-)
-
-# Install the export set for use with the install-tree
-install(
-    EXPORT
-        CalamaresLibraryDepends
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
