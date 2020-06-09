@@ -11,12 +11,12 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="81"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation>Ky sistem qe nisur me një mjedis nisjesh &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Që të formësojë nisjen nga një mjedis EFI, ky instalues duhet të vërë në punë një aplikacion ngarkuesi nisësi, të tillë si &lt;strong&gt;GRUB&lt;/strong&gt; ose &lt;strong&gt;systemd-boot&lt;/strong&gt; në një &lt;strong&gt;Pjesë EFI Sistemi&lt;/strong&gt;. Kjo bëhet vetvetiu, hiq rastin kur zgjidhni pjesëzim dorazi, rast në të cilin duhet ta zgjidhni apo krijoni ju vetë.</translation>
+      <translation>Ky sistem qe nisur me një mjedis nisjesh &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Që të formësojë nisjen nga një mjedis EFI, ky instalues duhet të vërë në punë një aplikacion ngarkuesi nisësi, të tillë si &lt;strong&gt;GRUB&lt;/strong&gt; ose &lt;strong&gt;systemd-boot&lt;/strong&gt; në një &lt;strong&gt;Pjesë EFI Sistemi&lt;/strong&gt;. Kjo bëhet vetvetiu, hiq rastin kur zgjidhni pjesëtim dorazi, rast në të cilin duhet ta zgjidhni apo krijoni ju vetë.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="93"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation>Ky sistem qe nisur me një mjedis nisjesh &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Që të formësojë nisjen nga një mjedis BIOS, ky instalues duhet të instalojë një ngarkues nisjesh, të tillë si &lt;strong&gt;GRUB&lt;/strong&gt;, ose në krye të një pjese, ose te &lt;strong&gt;Master Boot Record&lt;/strong&gt; pranë fillimit të tabelës së pjesëve (e parapëlqyer). Kjo bëhet vetvetiu, veç në zgjedhshi pjesëzim dorazi, rast në të cilin duhet ta rregulloni ju vetë.</translation>
+      <translation>Ky sistem qe nisur me një mjedis nisjesh &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Që të formësojë nisjen nga një mjedis BIOS, ky instalues duhet të instalojë një ngarkues nisjesh, të tillë si &lt;strong&gt;GRUB&lt;/strong&gt;, ose në krye të një pjese, ose te &lt;strong&gt;Master Boot Record&lt;/strong&gt; pranë fillimit të tabelës së pjesëve (e parapëlqyer). Kjo bëhet vetvetiu, veç në zgjedhshi pjesëtim dorazi, rast në të cilin duhet ta rregulloni ju vetë.</translation>
     </message>
   </context>
   <context>
@@ -525,7 +525,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
-      <translation>&lt;strong&gt;Pjesëzim dorazi&lt;/strong&gt;&lt;br/&gt;Mund të krijoni ose ripërmasoni pjesë ju vetë. Pasja e një tabele GPT pjesësh dhe &lt;strong&gt;512Mb fat32 /pjesë nisjeje është domosdoshmëri për instalime UEFI&lt;/strong&gt;, ose përdorni një të tillë pa e formatuar, ose krijoni një të tillë.</translation>
+      <translation>&lt;strong&gt;Pjesëtim dorazi&lt;/strong&gt;&lt;br/&gt;Mund të krijoni ose ripërmasoni pjesë ju vetë. Pasja e një tabele GPT pjesësh dhe &lt;strong&gt;512Mb fat32 /pjesë nisjeje është domosdoshmëri për instalime UEFI&lt;/strong&gt;, ose përdorni një të tillë pa e formatuar, ose krijoni një të tillë.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
@@ -555,7 +555,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation>Në këtë sistem s’gjendet gjëkundi një pjesë EFI sistemi. Ju lutemi, kthehuni mbrapsht dhe përdorni pjesëzimin dorazi që të rregulloni %1.</translation>
+      <translation>Në këtë sistem s’gjendet gjëkundi një pjesë EFI sistemi. Ju lutemi, kthehuni mbrapsht dhe përdorni pjesëtimin dorazi që të rregulloni %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1144"/>
@@ -642,12 +642,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="50"/>
       <source>Clear mounts for partitioning operations on %1</source>
-      <translation>Hiqi montimet për veprime pjesëzimi te %1</translation>
+      <translation>Hiqi montimet për veprime pjesëtimi te %1</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="57"/>
       <source>Clearing mounts for partitioning operations on %1.</source>
-      <translation>Po hiqen montimet për veprime pjesëzimi te %1.</translation>
+      <translation>Po hiqen montimet për veprime pjesëtimi te %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="232"/>
@@ -1076,7 +1076,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="122"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation>Ky instalues &lt;strong&gt;s’pikas dot tabelë pjesësh&lt;/strong&gt; te pajisja e depozitimit e përzgjedhur.&lt;br&gt;&lt;br&gt;Ose pajisja s’ka tabelë pjesësh, ose tabela e pjesëve është e dëmtuar ose e një lloji të panjohur.&lt;br&gt;Ky instalues mund të krijojë për ju një tabelë të re pjesësh, ose vetvetiu, ose përmes faqes së pjesëzimit dorazi.</translation>
+      <translation>Ky instalues &lt;strong&gt;s’pikas dot tabelë pjesësh&lt;/strong&gt; te pajisja e depozitimit e përzgjedhur.&lt;br&gt;&lt;br&gt;Ose pajisja s’ka tabelë pjesësh, ose tabela e pjesëve është e dëmtuar ose e një lloji të panjohur.&lt;br&gt;Ky instalues mund të krijojë për ju një tabelë të re pjesësh, ose vetvetiu, ose përmes faqes së pjesëtimit dorazi.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="132"/>
@@ -2478,7 +2478,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="241"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-      <translation>Tabela e pjesëzimit te %1 ka tashmë %2 pjesë parësore, dhe s’mund të shtohen të tjera. Ju lutemi, në vend të kësaj, hiqni një pjesë parësore dhe shtoni një pjesë të zgjeruar.</translation>
+      <translation>Tabela e pjesëtimit te %1 ka tashmë %2 pjesë parësore, dhe s’mund të shtohen të tjera. Ju lutemi, në vend të kësaj, hiqni një pjesë parësore dhe shtoni një pjesë të zgjeruar.</translation>
     </message>
   </context>
   <context>
@@ -2511,7 +2511,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="181"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
-      <translation>Pjesëzim &lt;strong&gt;dorazi&lt;/strong&gt;.</translation>
+      <translation>Pjesëtim &lt;strong&gt;dorazi&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
@@ -2531,7 +2531,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="214"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
-      <translation>Pjesëzim &lt;strong&gt;dorazi&lt;/strong&gt; në diskun &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
+      <translation>Pjesëtim &lt;strong&gt;dorazi&lt;/strong&gt; në diskun &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="223"/>
@@ -2805,7 +2805,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
       <source>Unpartitioned space or unknown partition table</source>
-      <translation>Hapësirë e papjesëzuar ose tabelë e panjohur pjesësh</translation>
+      <translation>Hapësirë e papjesëtuar ose tabelë e panjohur pjesësh</translation>
     </message>
   </context>
   <context>
@@ -2860,7 +2860,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-      <translation>%1 s’mund të instalohet në një pjesë të llojit extended. Ju lutemi, përzgjidhni një pjesë parësore ose logjike ekzistuese.</translation>
+      <translation>%1 s’mund të instalohet në një pjesë të llojit “extended”. Ju lutemi, përzgjidhni një pjesë parësore ose logjike ekzistuese.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="193"/>
@@ -2890,7 +2890,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Në këtë sistem s’gjendet dot ndonjë pjesë sistemi EFI. Ju lutemi, që të rregulloni %1, kthehuni mbrapsht dhe përdorni procesin e pjesëzimit dorazi.</translation>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Në këtë sistem s’gjendet dot ndonjë pjesë sistemi EFI. Ju lutemi, që të rregulloni %1, kthehuni mbrapsht dhe përdorni procesin e pjesëtimit dorazi.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="266"/>
@@ -2902,7 +2902,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation>Për nisjen e %2 do të përdoret ndarja EFI e sistemit te %1.</translation>
+      <translation>Për nisjen e %2 do të përdoret pjesa EFI e sistemit te %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="291"/>

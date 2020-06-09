@@ -241,7 +241,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         return partition->partitionPath();
 
     case PartitionPtrRole:
-        return qVariantFromValue( (void*)partition );
+        return QVariant::fromValue( (void*)partition );
 
     // Osprober roles:
     case OsproberNameRole:

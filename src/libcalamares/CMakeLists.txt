@@ -1,12 +1,29 @@
+# === This file is part of Calamares - <https://github.com/calamares> ===
+# 
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#
+#   Calamares is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   Calamares is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+#
+#   SPDX-License-Identifier: GPL-3.0-or-later
+#   License-Filename: LICENSE
+#
+#
 # libcalamares is the non-GUI part of Calamares, which includes handling
 # translations, configurations, logging, utilities, global storage, and (non-GUI) jobs.
 
-add_definitions(
-    ${QT_DEFINITIONS}
-    -DQT_SHARED
-    -DQT_SHAREDPOINTER_TRACK_POINTERS
-    -DDLLEXPORT_PRO
-)
+add_definitions( -DDLLEXPORT_PRO )
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} )
 
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h )
@@ -27,6 +44,7 @@ set( libSources
 
     # GeoIP services
     geoip/Interface.cpp
+    geoip/GeoIPFixed.cpp
     geoip/GeoIPJSON.cpp
     geoip/Handler.cpp
 
@@ -64,22 +82,6 @@ set( libSources
     utils/UMask.cpp
     utils/Variant.cpp
     utils/Yaml.cpp
-)
-set( _kdsagSources
-    kdsingleapplicationguard/kdsingleapplicationguard.cpp
-    kdsingleapplicationguard/kdsharedmemorylocker.cpp
-    kdsingleapplicationguard/kdtoolsglobal.cpp
-    kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
-)
-set( kdsagSources "" )
-foreach( _s ${_kdsagSources} )
-    list( APPEND kdsagSources ${CMAKE_SOURCE_DIR}/3rdparty/${_s} )
-endforeach()
-mark_thirdparty_code( ${kdsagSources} )
-
-include_directories(
-    ${CMAKE_CURRENT_BINARY_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 ### OPTIONAL Python support
@@ -156,7 +158,7 @@ endif()
 ### LIBRARY
 #
 #
-add_library( calamares SHARED ${libSources} ${kdsagSources} )
+add_library( calamares SHARED ${libSources} )
 set_target_properties( calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}

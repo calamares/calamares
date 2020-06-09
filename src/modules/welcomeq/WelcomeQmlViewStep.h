@@ -47,7 +47,6 @@ class PLUGINDLLEXPORT WelcomeQmlViewStep : public Calamares::QmlViewStep
     Q_OBJECT
 
 public:
-
     explicit WelcomeQmlViewStep( QObject* parent = nullptr );
 
     QString prettyName() const override;
@@ -74,8 +73,7 @@ public:
     QObject* getConfig() override;
 
 private:
-    // TODO: a generic QML viewstep should return a config object from a method
-    Config *m_config;
+    Config* m_config;
     GeneralRequirements* m_requirementsChecker;
 };
 

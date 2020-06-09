@@ -13,7 +13,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 #
-#   SPDX-License-Identifier: GPL-3.0+
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #   License-Filename: LICENSE
 #
 ###
@@ -40,7 +40,7 @@
 
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.25
+    VERSION 3.2.26
     LANGUAGES C CXX )
 
 set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
@@ -50,11 +50,14 @@ set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during develop
 option( INSTALL_CONFIG "Install configuration files" OFF )
 option( INSTALL_POLKIT "Install Polkit configuration" ON )
 option( INSTALL_COMPLETION "Install shell completions" OFF )
-option( BUILD_TESTING "Build the testing tree." ON )
-option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
+# Options for the calamares executable
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 option( WITH_KF5DBus "Use DBus service for unique-application." OFF )
+# When adding WITH_* that affects the ABI offered by libcalamares,
+# also update libcalamares/CalamaresConfig.h.in
+option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
+option( WITH_PYTHONQT "Enable Python view modules API (deprecated, requires PythonQt)." OFF )
+option( WITH_QML "Enable QML UI options." ON )
 
 # Possible debugging flags are:
 #  - DEBUG_TIMEZONES draws latitude and longitude lines on the timezone
@@ -159,6 +162,7 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
     )
 endif()
 
+include( CTest )
 
 ### C++ SETUP
 #
@@ -250,7 +254,10 @@ include( CMakeColors )
 
 ### DEPENDENCIES
 #
-find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
+find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core Gui LinguistTools Network Svg Widgets )
+if( WITH_QML )
+    find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Quick QuickWidgets )
+endif()
 if( Qt5_VERSION VERSION_GREATER 5.12.1 )
     # At least Qt 5.12.2 seems to support Esperanto in QLocale
     if( "eo" IN_LIST _tx_incomplete )
@@ -311,10 +318,6 @@ if( NOT KF5DBusAddons_FOUND )
     endif()
     set( WITH_KF5DBus OFF )
 endif()
-
-if( BUILD_TESTING )
-    enable_testing()
-endif ()
 
 find_package( PythonLibs ${PYTHONLIBS_VERSION} )
 set_package_properties(
@@ -496,7 +499,11 @@ if ( CALAMARES_VERSION_RC EQUAL 0 )
 endif()
 
 # enforce using constBegin, constEnd for const-iterators
-add_definitions( "-DQT_STRICT_ITERATORS" )
+add_definitions(
+    -DQT_STRICT_ITERATORS
+    -DQT_SHARED
+    -DQT_SHAREDPOINTER_TRACK_POINTERS
+)
 
 # set paths
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )

@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
- *
- *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ * 
+ *   SPDX-FileCopyrightText: 2018-2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,6 +14,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #ifndef GEOIP_INTERFACE_H
@@ -98,7 +102,7 @@ public:
     virtual QString rawReply( const QByteArray& ) = 0;
 
 protected:
-    Interface( const QString& e = QString() );
+    Interface( const QString& element = QString() );
 
     QString m_element;  // string for selecting from data
 };

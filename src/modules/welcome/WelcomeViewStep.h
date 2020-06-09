@@ -73,9 +73,9 @@ public:
     Calamares::RequirementsList checkRequirements() override;
 
 private:
+    Config* m_conf;
     WelcomePage* m_widget;
     GeneralRequirements* m_requirementsChecker;
-    Config* m_conf;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )

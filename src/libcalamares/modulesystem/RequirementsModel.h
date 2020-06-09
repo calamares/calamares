@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- *
- *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
+ * 
+ *   SPDX-FileCopyrightText: 2019-2020 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,6 +14,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #ifndef CALAMARES_REQUIREMENTSMODEL_H
@@ -46,6 +50,7 @@ class DLLEXPORT RequirementsModel : public QAbstractListModel
     Q_OBJECT
     Q_PROPERTY( bool satisfiedRequirements READ satisfiedRequirements NOTIFY satisfiedRequirementsChanged FINAL )
     Q_PROPERTY( bool satisfiedMandatory READ satisfiedMandatory NOTIFY satisfiedMandatoryChanged FINAL )
+    Q_PROPERTY( QString progressMessage READ progressMessage NOTIFY progressMessageChanged FINAL )
 
 public:
     using QAbstractListModel::QAbstractListModel;
@@ -65,6 +70,9 @@ public:
     bool satisfiedRequirements() const { return m_satisfiedRequirements; }
     ///@brief Are all the **mandatory** requirements satisfied?
     bool satisfiedMandatory() const { return m_satisfiedMandatory; }
+    ///@brief Message (from an ongoing check) about progress
+    QString progressMessage() const { return m_progressMessage; }
+
 
     QVariant data( const QModelIndex& index, int role ) const override;
     int rowCount( const QModelIndex& ) const override;
@@ -76,6 +84,7 @@ public:
 signals:
     void satisfiedRequirementsChanged( bool value );
     void satisfiedMandatoryChanged( bool value );
+    void progressMessageChanged( QString message );
 
 protected:
     QHash< int, QByteArray > roleNames() const override;
@@ -83,10 +92,14 @@ protected:
     ///@brief Append some requirements; resets the model
     void addRequirementsList( const Calamares::RequirementsList& requirements );
 
+    ///@brief Update progress message (called by the checker)
+    void setProgressMessage( const QString& m );
+
 private:
     ///@brief Implementation for {set,add}RequirementsList
     void changeRequirementsList();
 
+    QString m_progressMessage;
     QMutex m_addLock;
     RequirementsList m_requirements;
     bool m_satisfiedRequirements = false;

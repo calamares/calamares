@@ -12,7 +12,7 @@
  *     - Support "V2" loading
  *     - Disable shortcuts until the content is visible in Calamares
  *
- *   SPDX-License-Identifier: LGPL-2.1
+ *   SPDX-License-Identifier: LGPL-2.1-only
  *   License-Filename: LICENSES/LGPLv2.1-Presentation
  */
 

@@ -86,6 +86,14 @@ public:
     void loadModules();
 
     /**
+     * @brief Adds a single module (loaded by some other means)
+     *
+     * Returns @c true on success (that is, the module's dependencies
+     * are satisfied, it wasn't already loaded, ...).
+     */
+    bool addModule( Module* );
+
+    /**
      * @brief Starts asynchronous requirements checking for each module.
      * When this is done, the signal requirementsComplete is emitted.
      */
@@ -100,7 +108,6 @@ signals:
     void modulesFailed( QStringList );  /// .. or not
     // Below, see RequirementsChecker documentation
     void requirementsComplete( bool );
-    void requirementsProgress( const QString& );
 
 private slots:
     void doInit();

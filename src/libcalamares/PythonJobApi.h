@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
+ * 
+ *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2020 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,14 +15,18 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #ifndef PYTHONJOBAPI_H
 #define PYTHONJOBAPI_H
 
-#include "qglobal.h"  // For qreal
-
 #include "utils/BoostPython.h"
+
+#include <qglobal.h>  // For qreal
 
 namespace Calamares
 {

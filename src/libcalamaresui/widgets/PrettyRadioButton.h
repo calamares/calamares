@@ -16,41 +16,59 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PRETTYRADIOBUTTON_H
-#define PRETTYRADIOBUTTON_H
+#ifndef LIBCALAMARESUI_PRETTYRADIOBUTTON_H
+#define LIBCALAMARESUI_PRETTYRADIOBUTTON_H
+
+#include "DllMacro.h"
 
 #include <QRadioButton>
 
-class ClickableLabel;
+class QButtonGroup;
 class QComboBox;
 class QGridLayout;
 class QHBoxLayout;
 
+namespace Calamares
+{
+class ClickableLabel;
+
 /** @brief A radio button with fancy label next to it.
+ *
+ * The fancy label is used so that the text alongside the radio
+ * button can word-wrap, be multi-line, and support rich text.
  *
  * The radio button itself can be retrieved with buttonWidget(),
  * and the whole behaves a lot like a label. Extra options can be
  * added to the display (options are hidden when the button is
  * not selected) with addOptionsComboBox().
  */
-class PrettyRadioButton : public QWidget
+class UIDLLEXPORT PrettyRadioButton : public QWidget
 {
     Q_OBJECT
 public:
     explicit PrettyRadioButton( QWidget* parent = nullptr );
-    virtual ~PrettyRadioButton() {}
+    virtual ~PrettyRadioButton() { }
 
-    virtual void setText( const QString& text );
+    /// @brief Passes @p text on to the ClickableLabel
+    void setText( const QString& text );
 
-    virtual void setIconSize( const QSize& size );
+    // Icon applies to the radio-button part
+    void setIconSize( const QSize& size );
+    QSize iconSize() const;
+    void setIcon( const QIcon& icon );
 
-    virtual void setIcon( const QIcon& icon );
+    // Applies to the radio-button part
+    void setChecked( bool checked );
+    bool isChecked() const;
 
-    virtual QSize iconSize() const;
+    /** @brief Adds the radio-button part to the given @p group
+     *
+     * For managing the pretty-radio-button in button groups like normal
+     * radio buttons, call addToGroup() rather that group->addButton().
+     */
+    void addToGroup( QButtonGroup* group, int id = -1 );
 
-    virtual QRadioButton* buttonWidget() const;
-
-    /** @brief Add an options drop-down to this button. */
+    /// @brief Add an options drop-down to this button.
     void addOptionsComboBox( QComboBox* );
 
 protected slots:
@@ -64,4 +82,5 @@ protected:
     QHBoxLayout* m_optionsLayout;
 };
 
-#endif // PRETTYRADIOBUTTON_H
+}  // namespace Calamares
+#endif  // LIBCALAMARESUI_PRETTYRADIOBUTTON_H

@@ -21,7 +21,9 @@
 #include "Branding.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "Settings.h"
 #include "ViewManager.h"
+#include "utils/Dirs.h"
 #include "utils/Logger.h"
 
 #include <QByteArray>
@@ -30,11 +32,81 @@
 #include <QString>
 #include <QVariant>
 
+static QDir s_qmlModulesDir( QString( CMAKE_INSTALL_FULL_DATADIR ) + "/qml" );
+
 namespace CalamaresUtils
 {
+QDir
+qmlModulesDir()
+{
+    return s_qmlModulesDir;
+}
 
 void
-callQMLFunction( QQuickItem* qmlObject, const char* method )
+setQmlModulesDir( const QDir& dir )
+{
+    s_qmlModulesDir = dir;
+}
+
+static QStringList
+qmlDirCandidates( bool assumeBuilddir )
+{
+    static const char QML[] = "qml";
+
+    QStringList qmlDirs;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+    {
+        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
+    }
+    else
+    {
+        if ( assumeBuilddir )
+        {
+            qmlDirs << QDir::current().absoluteFilePath( "src/qml" );  // In build-dir
+        }
+        if ( CalamaresUtils::haveExtraDirs() )
+            for ( auto s : CalamaresUtils::extraDataDirs() )
+            {
+                qmlDirs << ( s + QML );
+            }
+        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
+    }
+
+    return qmlDirs;
+}
+
+bool
+initQmlModulesDir()
+{
+    QStringList qmlDirCandidatesByPriority
+        = qmlDirCandidates( Calamares::Settings::instance() && Calamares::Settings::instance()->debugMode() );
+
+    for ( const QString& path : qmlDirCandidatesByPriority )
+    {
+        QDir dir( path );
+        if ( dir.exists() && dir.isReadable() )
+        {
+            cDebug() << "Using Calamares QML directory" << dir.absolutePath();
+            CalamaresUtils::setQmlModulesDir( dir );
+            return true;
+        }
+    }
+
+    cError() << "Cowardly refusing to continue startup without a QML directory."
+             << Logger::DebugList( qmlDirCandidatesByPriority );
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+    {
+        cError() << "FATAL: explicitly configured application data directory is missing qml/";
+    }
+    else
+    {
+        cError() << "FATAL: none of the expected QML paths exist.";
+    }
+    return false;
+}
+
+void
+callQmlFunction( QQuickItem* qmlObject, const char* method )
 {
     QByteArray methodSignature( method );
     methodSignature.append( "()" );
@@ -71,14 +143,14 @@ addExpansions( QmlSearch method, QStringList& candidates, const QStringList& nam
         std::transform( names.constBegin(),
                         names.constEnd(),
                         std::back_inserter( candidates ),
-                        [ & ]( const QString& s ) { return s.isEmpty() ? QString() : bPath.arg( brandDir, s ); } );
+                        [&]( const QString& s ) { return s.isEmpty() ? QString() : bPath.arg( brandDir, s ); } );
     }
     if ( ( method == QmlSearch::Both ) || ( method == QmlSearch::QrcOnly ) )
     {
         std::transform( names.constBegin(),
                         names.constEnd(),
                         std::back_inserter( candidates ),
-                        [ & ]( const QString& s ) { return s.isEmpty() ? QString() : qrPath.arg( s ); } );
+                        [&]( const QString& s ) { return s.isEmpty() ? QString() : qrPath.arg( s ); } );
     }
 }
 
@@ -149,7 +221,7 @@ qmlSearchNames()
 }
 
 void
-registerCalamaresModels()
+registerQmlModels()
 {
     static bool done = false;
     if ( !done )

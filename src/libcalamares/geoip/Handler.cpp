@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
- *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ * 
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,15 +14,21 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #include "Handler.h"
 
+#include "GeoIPFixed.h"
 #include "GeoIPJSON.h"
 #if defined( QT_XML_LIB )
 #include "GeoIPXML.h"
 #endif
 
+#include "Settings.h"
 #include "network/Manager.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
@@ -40,7 +46,8 @@ handlerTypes()
     static const NamedEnumTable<Type> names{
         { QStringLiteral( "none" ), Type::None },
         { QStringLiteral( "json" ), Type::JSON },
-        { QStringLiteral( "xml" ), Type::XML }
+        { QStringLiteral( "xml" ), Type::XML },
+        { QStringLiteral( "fixed" ), Type::Fixed }
     };
     // *INDENT-ON*
     // clang-format on
@@ -73,6 +80,10 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
     {
         cWarning() << "GeoIP style *none* does not do anything.";
     }
+    else if ( m_type == Type::Fixed && Calamares::Settings::instance() && !Calamares::Settings::instance()->debugMode() )
+    {
+        cWarning() << "GeoIP style *fixed* is not recommended for production.";
+    }
 #if !defined( QT_XML_LIB )
     else if ( m_type == Type::XML )
     {
@@ -99,6 +110,8 @@ create_interface( Handler::Type t, const QString& selector )
 #else
         return nullptr;
 #endif
+    case Handler::Type::Fixed:
+        return std::make_unique< GeoIPFixed >( selector );
     }
     NOTREACHED return nullptr;
 }

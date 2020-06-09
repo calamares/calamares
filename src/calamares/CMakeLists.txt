@@ -10,6 +10,20 @@ set( calamaresSources
     progresstree/ProgressTreeView.cpp
 )
 
+if( NOT WITH_KF5DBus )
+    set( kdsagSources "" )
+    foreach( _s
+        kdsingleapplicationguard/kdsingleapplicationguard.cpp
+        kdsingleapplicationguard/kdsharedmemorylocker.cpp
+        kdsingleapplicationguard/kdtoolsglobal.cpp
+        kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
+    )
+        list( APPEND kdsagSources ${CMAKE_SOURCE_DIR}/3rdparty/${_s} )
+    endforeach()
+    mark_thirdparty_code( ${kdsagSources} )
+    list( APPEND calamaresSources ${kdsagSources} )
+endif()
+
 include_directories(
     ${CMAKE_SOURCE_DIR}/src/libcalamares
     ${CMAKE_SOURCE_DIR}/src/libcalamaresui

@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
- *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ * 
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,6 +14,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #include "RequirementsChecker.h"
@@ -41,6 +45,7 @@ RequirementsChecker::RequirementsChecker( QVector< Module* > modules, Requiremen
     , m_progressTimeouts( 0 )
 {
     m_watchers.reserve( m_modules.count() );
+    connect( this, &RequirementsChecker::requirementsProgress, model, &RequirementsModel::setProgressMessage );
 }
 
 RequirementsChecker::~RequirementsChecker() {}
@@ -83,6 +88,7 @@ RequirementsChecker::finished()
         }
 
         m_model->describe();
+        m_model->changeRequirementsList();
         QTimer::singleShot( 0, this, &RequirementsChecker::done );
     }
 }
@@ -97,8 +103,7 @@ RequirementsChecker::addCheckedRequirements( Module* m )
         m_model->addRequirementsList( l );
     }
 
-    requirementsProgress(
-        tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
+    requirementsProgress( tr( "Requirements checking for module <i>%1</i> is complete." ).arg( m->name() ) );
 }
 
 void

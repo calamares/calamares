@@ -22,8 +22,8 @@
 #ifndef BRANDING_H
 #define BRANDING_H
 
+#include "CalamaresConfig.h"
 #include "DllMacro.h"
-
 #include "utils/NamedSuffix.h"
 
 #include <QMap>
@@ -131,8 +131,11 @@ public:
     enum class PanelFlavor
     {
         None,
-        Widget,
+        Widget
+#ifdef WITH_QML
+        ,
         Qml
+#endif
     };
     Q_ENUM( PanelFlavor )
     ///@brief Where to place a panel (sidebar, navigation)
@@ -165,8 +168,16 @@ public:
      */
     QString translationsDirectory() const { return m_translationsPathPrefix; }
 
-    /** @brief Path to the slideshow QML file, if any. */
+    /** @brief Path to the slideshow QML file, if any. (API == 1 or 2)*/
     QString slideshowPath() const { return m_slideshowPath; }
+    /// @brief List of pathnames of slideshow images, if any. (API == -1)
+    QStringList slideshowImages() const { return m_slideshowFilenames; }
+    /** @brief Which slideshow API to use for the slideshow?
+     *
+     *  -  2    For QML-based slideshows loaded asynchronously (current)
+     *  -  1    For QML-based slideshows, loaded when shown (legacy)
+     *  - -1    For oldschool image-slideshows.
+     */
     int slideshowAPI() const { return m_slideshowAPI; }
 
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
@@ -230,19 +241,29 @@ private:
     static const QStringList s_imageEntryStrings;
     static const QStringList s_styleEntryStrings;
 
-    [[noreturn]] void bail( const QString& message );
-
     QString m_descriptorPath;  // Path to descriptor (e.g. "/etc/calamares/default/branding.desc")
     QString m_componentName;  // Matches last part of full path to containing directory
     QMap< QString, QString > m_strings;
     QMap< QString, QString > m_images;
     QMap< QString, QString > m_style;
+
+    /* The slideshow can be done in one of two ways:
+     *  - as a sequence of images
+     *  - as a QML file
+     * The slideshow: setting selects which one is used. If it is
+     * a list (of filenames) then it is a sequence of images, and otherwise
+     * it is a QML file which is run. (For QML, the slideshow API is
+     * important).
+     */
+    QStringList m_slideshowFilenames;
     QString m_slideshowPath;
     int m_slideshowAPI;
     QString m_translationsPathPrefix;
 
     /** @brief Initialize the simple settings below */
     void initSimpleSettings( const YAML::Node& doc );
+    ///@brief Initialize the slideshow settings, above
+    void initSlideshowSettings( const YAML::Node& doc );
 
     bool m_welcomeStyleCalamares;
     bool m_welcomeExpandingLogo;

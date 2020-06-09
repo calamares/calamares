@@ -24,7 +24,7 @@ msgstr ""
 #: src/modules/packages/main.py:59 src/modules/packages/main.py:68
 #: src/modules/packages/main.py:78
 msgid "Install packages."
-msgstr "Asenna paketteja."
+msgstr "Asenna paketit."
 
 #: src/modules/packages/main.py:66
 #, python-format
@@ -108,7 +108,7 @@ msgstr "Kuvan purkaminen epäonnistui \"{}\""
 
 #: src/modules/unpackfs/main.py:399
 msgid "No mount point for root partition"
-msgstr "Ei liitoskohtaa juuri root-osiolle"
+msgstr "Ei liitoskohtaa juuri root osiolle"
 
 #: src/modules/unpackfs/main.py:400
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"

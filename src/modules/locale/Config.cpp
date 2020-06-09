@@ -81,16 +81,16 @@ Config::setLocaleInfo( const QString& initialRegion, const QString& initialZone,
     auto* region = m_regionList.find< TZRegion >( initialRegion );
     if ( region && region->zones().find< TZZone >( initialZone ) )
     {
-        this->m_regionModel->setCurrentIndex( m_regionModel->indexOf( initialRegion ) );
+        m_regionModel->setCurrentIndex( m_regionModel->indexOf( initialRegion ) );
         m_zonesModel->setList( region->zones() );
-        this->m_zonesModel->setCurrentIndex( m_zonesModel->indexOf( initialZone ) );
+        m_zonesModel->setCurrentIndex( m_zonesModel->indexOf( initialZone ) );
     }
     else
     {
-        this->m_regionModel->setCurrentIndex( m_regionModel->indexOf( "America" ) );
+        m_regionModel->setCurrentIndex( m_regionModel->indexOf( "America" ) );
         m_zonesModel->setList(
             static_cast< const TZRegion* >( m_regionModel->item( m_regionModel->currentIndex() ) )->zones() );
-        this->m_zonesModel->setCurrentIndex( m_zonesModel->indexOf( "New_York" ) );
+        m_zonesModel->setCurrentIndex( m_zonesModel->indexOf( "New_York" ) );
     }
 
     // Some distros come with a meaningfully commented and easy to parse locale.gen,

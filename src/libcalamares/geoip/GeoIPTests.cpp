@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
- *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ * 
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,10 +14,15 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #include "GeoIPTests.h"
 
+#include "GeoIPFixed.h"
 #include "GeoIPJSON.h"
 #ifdef QT_XML_LIB
 #include "GeoIPXML.h"
@@ -239,4 +244,36 @@ GeoIPTests::testGet()
     CHECK_GET( XML, QString(), "http://geoip.ubuntu.com/lookup" )  // Ubiquity's XML format
     CHECK_GET( XML, QString(), "https://geoip.kde.org/v1/ubiquity" )  // Temporary KDE service
 #endif
+}
+
+void
+GeoIPTests::testFixed()
+{
+    {
+        GeoIPFixed f;
+        auto tz = f.processReply( QByteArray() );
+        QCOMPARE( tz.first, QStringLiteral( "Europe" ) );
+        QCOMPARE( tz.second, QStringLiteral( "Amsterdam" ) );
+
+        QCOMPARE( f.processReply( xml_data_ubiquity ), tz );
+        QCOMPARE( f.processReply( QByteArray( "derp" ) ), tz );
+    }
+    {
+        GeoIPFixed f( QStringLiteral( "America/Vancouver" ) );
+        auto tz = f.processReply( QByteArray() );
+        QCOMPARE( tz.first, QStringLiteral( "America" ) );
+        QCOMPARE( tz.second, QStringLiteral( "Vancouver" ) );
+
+        QCOMPARE( f.processReply( xml_data_ubiquity ), tz );
+        QCOMPARE( f.processReply( QByteArray( "derp" ) ), tz );
+    }
+    {
+        GeoIPFixed f( QStringLiteral( "America/North Dakota/Beulah" ) );
+        auto tz = f.processReply( QByteArray() );
+        QCOMPARE( tz.first, QStringLiteral( "America" ) );
+        QCOMPARE( tz.second, QStringLiteral( "North_Dakota/Beulah" ) );
+
+        QCOMPARE( f.processReply( xml_data_ubiquity ), tz );
+        QCOMPARE( f.processReply( QByteArray( "derp" ) ), tz );
+    }
 }
