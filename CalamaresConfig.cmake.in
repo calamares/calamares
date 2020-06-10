@@ -62,7 +62,17 @@ set(Calamares_LIBRARIES Calamares::calamares)
 #
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
+include(CalamaresAddBrandingSubdirectory)
 include(CalamaresAddLibrary)
 include(CalamaresAddModuleSubdirectory)
 include(CalamaresAddPlugin)
-include(CalamaresAddBrandingSubdirectory)
+
+# These are feature-settings that affect consumers of Calamares
+# libraries as well; without Python-support in the libs, for instance,
+# there's no point in having a Python plugin.
+#
+# This list should match the one in libcalamares/CalamaresConfig.h,
+# which is the C++-language side of the same configuration.
+set(Calamares_WITH_PYTHON @WITH_PYTHON@)
+set(Calamares_WITH_PYTHONQT @WITH_PYTHONQT@)
+set(Calamares_WITH_QML @WITH_QML@)

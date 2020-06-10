@@ -543,10 +543,6 @@ set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH
 set( CMAKE_INSTALL_FULL_CMAKEDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_CMAKEDIR}" )
 
 export( PACKAGE Calamares )
-configure_file(
-    CalamaresBuildTreeSettings.cmake.in
-    "${PROJECT_BINARY_DIR}/CalamaresBuildTreeSettings.cmake" @ONLY
-)
 configure_package_config_file(
     "CalamaresConfig.cmake.in"
     "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
