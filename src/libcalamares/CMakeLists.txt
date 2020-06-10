@@ -163,6 +163,7 @@ set_target_properties( calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
         SOVERSION ${CALAMARES_VERSION_SHORT}
+        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_INSTALL_FULL_INCLUDEDIR}/libcalamares
 )
 calamares_automoc( calamares )
 
