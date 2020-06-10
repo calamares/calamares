@@ -193,13 +193,18 @@ install( CODE "
 
 # Install header files
 file( GLOB rootHeaders "*.h" )
-file( GLOB kdsingleapplicationguardHeaders "kdsingleapplicationguard/*.h" )
 file( GLOB utilsHeaders "utils/*.h" )
 
-install( FILES ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h DESTINATION include/libcalamares )
-install( FILES ${rootHeaders}                       DESTINATION include/libcalamares )
-install( FILES ${kdsingleapplicationguardHeaders}   DESTINATION include/libcalamares/kdsingleapplicationguard )
-install( FILES ${utilsHeaders}                      DESTINATION include/libcalamares/utils )
+install(
+    FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h
+        ${rootHeaders}
+    DESTINATION include/libcalamares
+)
+foreach( subdir geoip locale modulesystem network partition utils )
+    file( GLOB subdir_headers "${subdir}/*.h" )
+    install( FILES ${subdir_headers} DESTINATION include/libcalamares/${subdir} )
+endforeach()
 
 ### TESTING
 #
