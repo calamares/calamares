@@ -162,7 +162,13 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
     )
 endif()
 
+# CMake Modules
+include( CMakePackageConfigHelpers )
 include( CTest )
+include( FeatureSummary )
+
+# Calamares Modules
+include( CMakeColors )
 
 ### C++ SETUP
 #
@@ -247,9 +253,6 @@ if( CMAKE_COMPILER_IS_GNUCXX )
         set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=auto" )
     endif()
 endif()
-
-include( FeatureSummary )
-include( CMakeColors )
 
 
 ### DEPENDENCIES
@@ -520,16 +523,10 @@ endif()
 # make predefined install dirs available everywhere
 include( GNUInstallDirs )
 
-# make uninstall support
-configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY
-)
-
-# Early configure these files as we need them later on
-set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
-set( CALAMARES_LIBRARIES calamares )
+# This is used by CalamaresAddLibrary; once Calamares is installed,
+# the CalamaresConfig.cmake module sets this variable to the IMPORTED
+# libraries for Calamares.
+set( Calamares_LIBRARIES calamares )
 
 add_subdirectory( src )
 
@@ -539,32 +536,39 @@ add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
 add_feature_info(KDBusAddons ${WITH_KF5DBus} "Unique-application via DBus")
 
-# Add all targets to the build-tree export set
+### CMake infrastructure installation
+#
+#
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
 set( CMAKE_INSTALL_FULL_CMAKEDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_CMAKEDIR}" )
-export( TARGETS calamares
-    FILE "${PROJECT_BINARY_DIR}/CalamaresLibraryDepends.cmake" )
 
-# Export the package for use from the build-tree
-# (this registers the build-tree with a global CMake-registry)
 export( PACKAGE Calamares )
-
-# Create a CalamaresBuildTreeSettings.cmake file for the use from the build tree
-configure_file( CalamaresBuildTreeSettings.cmake.in "${PROJECT_BINARY_DIR}/CalamaresBuildTreeSettings.cmake" @ONLY )
-
-# Create the CalamaresConfig.cmake and CalamaresConfigVersion files
-file( RELATIVE_PATH CONF_REL_INCLUDE_DIR "${CMAKE_INSTALL_FULL_CMAKEDIR}" "${CMAKE_INSTALL_FULL_INCLUDEDIR}" )
-
-configure_file( CalamaresConfig.cmake.in "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake" @ONLY )
-configure_file( CalamaresConfigVersion.cmake.in "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake" @ONLY )
-configure_file( CalamaresUse.cmake.in "${PROJECT_BINARY_DIR}/CalamaresUse.cmake" @ONLY )
+configure_package_config_file(
+    "CalamaresConfig.cmake.in"
+    "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
+    INSTALL_DESTINATION "${CMAKE_INSTALL_CMAKEDIR}"
+    PATH_VARS
+        CMAKE_INSTALL_INCLUDEDIR
+        CMAKE_INSTALL_LIBDIR
+        CMAKE_INSTALL_DATADIR
+)
+write_basic_package_version_file(
+    ${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+install(
+    EXPORT Calamares
+    DESTINATION "${CMAKE_INSTALL_CMAKEDIR}"
+    FILE "CalamaresTargets.cmake"
+    NAMESPACE Calamares::
+)
 
 # Install the cmake files
 install(
     FILES
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
         "CMakeModules/CalamaresAddBrandingSubdirectory.cmake"
         "CMakeModules/CalamaresAddLibrary.cmake"
         "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
@@ -573,48 +577,36 @@ install(
         "CMakeModules/CalamaresAddTranslations.cmake"
         "CMakeModules/CalamaresAutomoc.cmake"
         "CMakeModules/CMakeColors.cmake"
+        "CMakeModules/FindYAMLCPP.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
 
-# Install the export set for use with the install-tree
-install(
-    EXPORT
-        CalamaresLibraryDepends
-    DESTINATION
-        "${CMAKE_INSTALL_CMAKEDIR}"
-)
-
+### Miscellaneous installs
+#
+#
 if( INSTALL_CONFIG )
     install(
-        FILES
-            settings.conf
-        DESTINATION
-            share/calamares
+        FILES settings.conf
+        DESTINATIONshare/calamares
     )
 endif()
 
 if( INSTALL_POLKIT )
     install(
-        FILES
-            com.github.calamares.calamares.policy
-        DESTINATION
-          "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
+        FILES com.github.calamares.calamares.policy
+        DESTINATION "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
     )
 endif()
 
 install(
-  FILES
-      calamares.desktop
-  DESTINATION
-      ${CMAKE_INSTALL_DATADIR}/applications
+  FILES calamares.desktop
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
 )
 
 install(
-    FILES
-        man/calamares.8
-    DESTINATION
-        ${CMAKE_INSTALL_MANDIR}/man8/
+    FILES man/calamares.8
+    DESTINATION ${CMAKE_INSTALL_MANDIR}/man8/
 )
 
 # uninstall target

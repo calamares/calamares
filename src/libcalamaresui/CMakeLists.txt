@@ -66,8 +66,9 @@ calamares_add_library( calamaresui
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_LIBRARIES
         Qt5::Svg
+        yamlcpp
     RESOURCES libcalamaresui.qrc
-    EXPORT CalamaresLibraryDepends
+    EXPORT Calamares
     VERSION ${CALAMARES_VERSION_SHORT}
 )
 
@@ -82,3 +83,25 @@ endif()
 if( WITH_QML )
     target_link_libraries( calamaresui PUBLIC Qt5::QuickWidgets )
 endif()
+
+
+### Installation
+#
+#
+# The library is already installed through calamares_add_library(),
+# so we only need to do headers. Unlike the Calamares source tree,
+# where libcalamares and libcalamaresui live in different branches,
+# we're going to glom it all together in the installed headers location.
+
+install(
+    FILES
+        Branding.h
+        ViewManager.h
+    DESTINATION include/libcalamares
+)
+
+# Install each subdir-worth of header files
+foreach( subdir modulesystem utils viewpages widgets )
+    file( GLOB subdir_headers "${subdir}/*.h" )
+    install( FILES ${subdir_headers} DESTINATION include/libcalamares/${subdir} )
+endforeach()
