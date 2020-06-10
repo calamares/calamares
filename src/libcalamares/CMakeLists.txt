@@ -177,6 +177,9 @@ target_link_libraries( calamares
         ${OPTIONAL_PUBLIC_LIBRARIES}
 )
 
+### Installation
+#
+#
 install( TARGETS calamares
     EXPORT Calamares
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
@@ -193,18 +196,18 @@ install( CODE "
 
 # Install header files
 file( GLOB rootHeaders "*.h" )
-file( GLOB utilsHeaders "utils/*.h" )
-
 install(
     FILES
         ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h
         ${rootHeaders}
     DESTINATION include/libcalamares
 )
+# Install each subdir-worth of header files
 foreach( subdir geoip locale modulesystem network partition utils )
     file( GLOB subdir_headers "${subdir}/*.h" )
     install( FILES ${subdir_headers} DESTINATION include/libcalamares/${subdir} )
 endforeach()
+
 
 ### TESTING
 #
