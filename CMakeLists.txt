@@ -581,6 +581,7 @@ install(
         "CMakeModules/CalamaresAddTranslations.cmake"
         "CMakeModules/CalamaresAutomoc.cmake"
         "CMakeModules/CMakeColors.cmake"
+        "CMakeModules/FindYAMLCPP.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )

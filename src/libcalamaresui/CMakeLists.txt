@@ -66,6 +66,7 @@ calamares_add_library( calamaresui
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_LIBRARIES
         Qt5::Svg
+        yamlcpp
     RESOURCES libcalamaresui.qrc
     EXPORT Calamares
     VERSION ${CALAMARES_VERSION_SHORT}

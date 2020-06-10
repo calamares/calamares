@@ -170,8 +170,8 @@ calamares_automoc( calamares )
 target_link_libraries( calamares
     LINK_PRIVATE
         ${OPTIONAL_PRIVATE_LIBRARIES}
-    LINK_PUBLIC
         yamlcpp
+    LINK_PUBLIC
         Qt5::Core
         KF5::CoreAddons
         ${OPTIONAL_PUBLIC_LIBRARIES}

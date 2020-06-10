@@ -26,5 +26,6 @@ calamares_add_test(
         PackageModel.cpp
     LIBRARIES
         Qt5::Gui
+        yamlcpp
 )
 
