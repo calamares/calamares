@@ -274,6 +274,20 @@ class PMApt(PackageManager):
         # Doesn't need to update the system explicitly
         pass
 
+class PMXbps(PackageManager):
+    backend = "xbps"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["xbps-install", "-Sy"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["xbps-remove", "-Ry", "--noconfirm"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["xbps-install", "-S"])
+
+    def update_system(self):
+        check_target_env_call(["xbps", "-Suy"])
 
 class PMPacman(PackageManager):
     backend = "pacman"
