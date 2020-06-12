@@ -359,6 +359,13 @@ if( NOT PYTHONLIBS_FOUND OR NOT PYTHONQT_FOUND )
     set( WITH_PYTHONQT OFF )
 endif()
 
+# Now we know the state of the ABI-options, copy them into "Calamares_"
+# prefixed variables, to match how the variables would-be-named
+# when building out-of-tree.
+set(Calamares_WITH_PYTHON ${WITH_PYTHON})
+set(Calamares_WITH_PYTHONQT ${WITH_PYTHONQT})
+set(Calamares_WITH_QML ${WITH_QML})
+
 ### Transifex Translation status
 #
 # Construct language lists for use. If there are p_tx* variables,

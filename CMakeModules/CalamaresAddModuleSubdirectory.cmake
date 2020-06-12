@@ -70,11 +70,11 @@ function( calamares_add_module_subdirectory )
         # _mod_testing boolean if the module should be added to the loadmodule tests
         file(STRINGS "${_mod_dir}/module.desc" MODULE_INTERFACE REGEX "^interface")
         if ( MODULE_INTERFACE MATCHES "pythonqt" )
-            set( _mod_enabled ${WITH_PYTHONQT} )
+            set( _mod_enabled ${Calamares_WITH_PYTHONQT} )
             set( _mod_reason "No PythonQt support" )
             set( _mod_testing OFF )
         elseif ( MODULE_INTERFACE MATCHES "python" )
-            set( _mod_enabled ${WITH_PYTHON} )
+            set( _mod_enabled ${Calamares_WITH_PYTHON} )
             set( _mod_reason "No Python support" )
             set( _mod_testing ON )  # Will check syntax and imports, at least
         elseif ( MODULE_INTERFACE MATCHES "qtplugin" )
