@@ -61,7 +61,17 @@ function( calamares_add_module_subdirectory )
     # ...otherwise, we look for a module.desc.
     elseif( EXISTS "${_mod_dir}/module.desc" )
         set( MODULES_DIR ${CMAKE_INSTALL_LIBDIR}/calamares/modules )
-        set( MODULE_DESTINATION ${MODULES_DIR}/${SUBDIRECTORY} )
+        # The module subdirectory may be given as a/b/c, but the module
+        # needs to be installed as "c", so we split off any intermediate
+        # directories.
+        get_filename_component(_dirname "${SUBDIRECTORY}" DIRECTORY)
+        if( _dirname )
+            # Remove the dirname and any leftover leading /s
+            string( REGEX REPLACE "^${_dirname}/*" "" _modulename "${SUBDIRECTORY}" )
+            set( MODULE_DESTINATION ${MODULES_DIR}/${_modulename} )
+        else()
+            set( MODULE_DESTINATION ${MODULES_DIR}/${SUBDIRECTORY} )
+        endif()
 
         # Read module.desc, check that the interface type is supported.
         #
