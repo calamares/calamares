@@ -29,6 +29,6 @@ tar caf calamares-ci.tar.xz cov-int
 curl -k --form token=$COVERITY_SCAN_TOKEN \
   --form email=groot@kde.org \
   --form file=@calamares-ci.tar.xz \
-  --form version="master-`date -u +%Y%m%d`" \
-  --form description="master on `date -u`" \
+  --form version="calamares-`date -u +%Y%m%d`" \
+  --form description="calamares on `date -u`" \
   https://scan.coverity.com/builds?project=calamares%2Fcalamares
