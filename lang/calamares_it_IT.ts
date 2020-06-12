@@ -706,7 +706,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/keyboard/Config.cpp" line="355"/>
       <source>Set keyboard layout to %1/%2.</source>
-      <translation>Impostare il layout della tastiera a %1%2.</translation>
+      <translation>Impostare il layout della tastiera a %1/%2.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="279"/>
@@ -721,17 +721,17 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="313"/>
       <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-      <translation>Imposta il fuso orario a %1%2.&lt;br/&gt;</translation>
+      <translation>Imposta il fuso orario a %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
-      <translation>Installazione di rete. (Disabilitato: Configurazione scorretta)</translation>
+      <translation>Installazione di rete. (Disabilitato: Configurazione non valida)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
       <source>Network Installation. (Disabled: Received invalid groups data)</source>
-      <translation>Installazione di rete. (Disabilitata: Ricevuti dati non validi dei gruppi)</translation>
+      <translation>Installazione di rete. (Disabilitata: Ricevuti dati dei gruppi non validi)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
@@ -746,22 +746,22 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="54"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Questo computer non soddisfa i requisiti minimi per l'installazione di %1.&lt;br/&gt;L'installazione non può continuare. &lt;a href="#details"&gt;Dettagli...&lt;/a&gt;</translation>
+      <translation>Questo computer non soddisfa i requisiti minimi per la configurazione di %1.&lt;br/&gt;La configurazione non può continuare. &lt;a href="#details"&gt;Dettagli...&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="58"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Questo computer non soddisfa i requisiti minimi per installare %1. &lt;br/&gt;L'installazione non può proseguire. &lt;a href="#details"&gt;Dettagli...&lt;/a&gt;</translation>
+      <translation>Questo computer non soddisfa i requisiti minimi per installare %1. &lt;br/&gt;L'installazione non può continuare. &lt;a href="#details"&gt;Dettagli...&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="65"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation>Questo computer non soddisfa alcuni requisiti raccomandati per l'installazione di %1.&lt;br/&gt;L'installazione può continuare, ma alcune funzionalità potrebbero essere disabilitate.</translation>
+      <translation>Questo computer non soddisfa alcuni requisiti raccomandati per la configurazione di %1.&lt;br/&gt;La configurazione può continuare ma alcune funzionalità potrebbero essere disabilitate.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="69"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-      <translation>Questo computer non soddisfa alcuni requisiti consigliati per l'installazione di %1. &lt;br/&gt;L'installazione può proseguire ma alcune funzionalità potrebbero non essere disponibili.</translation>
+      <translation>Questo computer non soddisfa alcuni requisiti consigliati per l'installazione di %1.&lt;br/&gt;L'installazione può continuare ma alcune funzionalità potrebbero non essere disponibili.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="79"/>
@@ -771,17 +771,17 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="230"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Benvenuto nel programma di installazione Calamares di %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Benvenuto nel programma di configurazione Calamares per %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="231"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Benvenuto nell'installazione di %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Benvenuto nella configurazione di %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="236"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Benvenuti nel programma di installazione Calamares per %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Benvenuti nel programma d'installazione Calamares per %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="237"/>
@@ -880,12 +880,12 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="47"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
-      <translation>Crea una nuova partizione da %2MiB su %4 (%3) con file system %1</translation>
+      <translation>Crea una nuova partizione da %2MiB su %4 (%3) con file system %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="58"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>Creare nuova partizione di &lt;strong&gt;%2MiB&lt;/strong&gt; su &lt;strong&gt;%4&lt;/strong&gt; (%3) con file system &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>Crea una nuova partizione di &lt;strong&gt;%2MiB&lt;/strong&gt; su &lt;strong&gt;%4&lt;/strong&gt; (%3) con file system &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="70"/>
@@ -1015,7 +1015,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
     <message>
       <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="61"/>
       <source>The installer failed to create a volume group named '%1'.</source>
-      <translation>Il programma di installazione non è riuscito a creare un gruppo di volumi denominato '%1'.</translation>
+      <translation>Il programma d'installazione non è riuscito a creare un gruppo di volumi denominato '%1'.</translation>
     </message>
   </context>
   <context>
@@ -1024,7 +1024,7 @@ Il programma d'installazione sarà terminato e tutte le modifiche andranno perse
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="33"/>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="45"/>
       <source>Deactivate volume group named %1.</source>
-      <translation>Disattiva gruppo di volumi denominato %1.</translation>
+      <translation>Disattiva il gruppo di volumi denominato %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="39"/>
@@ -3799,7 +3799,27 @@ Output:
             &lt;/ul&gt;
 
             &lt;p&gt;The vertical scrollbar is adjustable, current width set to 10.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Questo è un file QML di esempio, che mostra le opzioni in RichText con contenuto scorrevole&lt;/p&gt;
+
+            &lt;p&gt;QML con RichText può utilizzare tag HTML, il contenuto scorrevole è utile per i touchscreen.&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Questo è un testo in grassetto&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;i&gt;Questo è un testo in corsivo&lt;/i&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;u&gt;Questo è un testo sottolineato&lt;/u&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;center&gt;Questo testo sarà allineato al centro.&lt;/center&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;s&gt;Questo è un testo barrato&lt;/s&gt;&lt;/p&gt;
+
+           &lt;p&gt;Esempio di codice:
+           &lt;code&gt;ls -l /home&lt;/code&gt;&lt;/p&gt;
+
+          &lt;p&gt;&lt;b&gt;Liste:&lt;/b&gt;&lt;/p&gt;
+          &lt;ul&gt;
+             &lt;li&gt;Sistemi con CPU Intel&lt;/li&gt;
+             &lt;li&gt;Sistemi con CPU AMD&lt;/li&gt;
+          &lt;/ul&gt;
+
+          &lt;p&gt;La barra di scorrimento verticale è regolabile, la larghezza corrente è impostata a 10.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="85"/>
