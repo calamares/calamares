@@ -101,7 +101,7 @@ if test -n "$XMLLINT" ; then
 	$XMLLINT --c14n11 "$TS_FILE" | { echo "<!DOCTYPE TS>" ; cat - ; } | $XMLLINT --format --encode utf-8 -o "$TS_FILE".new - && mv "$TS_FILE".new "$TS_FILE"
 fi
 
-tx push --source --no-interactive -r calamares.calamares-master
+tx push --source --no-interactive -r calamares.calamares
 tx push --source --no-interactive -r calamares.fdo
 
 
