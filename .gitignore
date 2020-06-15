@@ -50,3 +50,4 @@ CMakeLists.txt.user
 
 # Kate
 *.kate-swp
+tags
