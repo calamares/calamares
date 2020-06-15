@@ -72,14 +72,7 @@ getInteger( const QVariantMap& map, const QString& key, qint64 d )
     if ( map.contains( key ) )
     {
         auto v = map.value( key );
-        if ( v.type() == QVariant::Int )
-        {
-            result = v.toInt();
-        }
-        else if ( v.type() == QVariant::LongLong )
-        {
-            result = v.toLongLong();
-        }
+        result = v.toString().toLongLong(nullptr, 0);
     }
 
     return result;
