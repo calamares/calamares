@@ -42,6 +42,7 @@
 # One special target is "show-version", which can be built
 # to obtain the version number from here.
 
+# TODO:3.3: Require CMake 3.12
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
     VERSION 3.2.26
@@ -326,15 +327,27 @@ if( NOT KF5DBusAddons_FOUND )
     set( WITH_KF5DBus OFF )
 endif()
 
+# TODO:3.3: Use FindPython3 instead
+find_package( PythonInterp ${PYTHONLIBS_VERSION} )
+set_package_properties(
+    PythonInterp PROPERTIES
+    DESCRIPTION "Python 3 interpreter."
+    URL "https://python.org"
+    PURPOSE "Python 3 interpreter for certain tests."
+)
+if ( PYTHONINTERP_FOUND )
+    message(STATUS "Found Python 3 interpreter ${PYTHON_EXECUTABLE}")
+endif()
 find_package( PythonLibs ${PYTHONLIBS_VERSION} )
 set_package_properties(
     PythonLibs PROPERTIES
     DESCRIPTION "C interface libraries for the Python 3 interpreter."
-    URL "http://python.org"
+    URL "https://python.org"
     PURPOSE "Python 3 is used for Python job modules."
 )
 
 if ( PYTHONLIBS_FOUND )
+    # TODO:3.3: Require Boost + CMake; sort out Boost::Python
     # Since Boost provides CMake config files (starting with Boost 1.70.
     # or so) the mess that is the Calamares find code picks the wrong
     # bits. Suppress those CMake config files, as suggested by @jmrcpn
@@ -345,7 +358,7 @@ if ( PYTHONLIBS_FOUND )
         Boost PROPERTIES
         PURPOSE "Boost.Python is used for Python job modules."
     )
-
+    # TODO:3.3: Remove PythonQt support
     find_package( PythonQt )
     set_package_properties( PythonQt PROPERTIES
         DESCRIPTION "A Python embedding solution for Qt applications."
