@@ -1,0 +1,7 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/plymouthcfg
+additionalProperties: false
+type: object
+properties:
+    plymouth_theme: { type: str }

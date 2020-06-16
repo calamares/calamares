@@ -1,0 +1,7 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/removeuser
+additionalProperties: false
+type: object
+properties:
+    "username": { type: string, required: true }

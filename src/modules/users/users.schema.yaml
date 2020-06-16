@@ -1,0 +1,18 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/users
+additionalProperties: false
+type: object
+properties:
+    "defaultGroups":
+        required: true
+        type: seq
+        sequence:
+            - { type: str }
+    "autologinGroup": { type: string, required: true }
+    "doAutologin": { type: boolean, default: true }
+    "sudoersGroup": { type: string, required: true }
+    "setRootPassword": { type: boolean, default: true }
+    "availableShells": { type: str }
+    "avatarFilePath": { type: str }
+    "doReusePassword": { type: boolean, default: true }
