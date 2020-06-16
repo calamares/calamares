@@ -27,8 +27,12 @@
 #   USE_<foo>       : fills in SKIP_MODULES for modules called <foo>-<something>
 #   WITH_<foo>      : try to enable <foo> (these usually default to ON). For
 #                     a list of WITH_<foo> grep CMakeCache.txt after running
-#                     CMake once.
+#                     CMake once. These affect the ABI offered by Calamares.
+#                       - PYTHON (enable Python Job modules)
+#                       - QML (enable QML UI View modules)
+#                       - PYTHONQT # TODO:3.3: remove
 #   BUILD_<foo>     : choose additional things to build
+#                       - TESTING (standard CMake option)
 #   DEBUG_<foo>     : special developer flags for debugging
 #
 # Example usage:
@@ -51,12 +55,12 @@ option( INSTALL_CONFIG "Install configuration files" OFF )
 option( INSTALL_POLKIT "Install Polkit configuration" ON )
 option( INSTALL_COMPLETION "Install shell completions" OFF )
 # Options for the calamares executable
-option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
-option( WITH_KF5DBus "Use DBus service for unique-application." OFF )
+option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )  # TODO:3.3: WITH->BUILD (this isn't an ABI thing)
+option( WITH_KF5DBus "Use DBus service for unique-application." OFF )  # TODO:3.3: WITH->BUILD
 # When adding WITH_* that affects the ABI offered by libcalamares,
 # also update libcalamares/CalamaresConfig.h.in
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-option( WITH_PYTHONQT "Enable Python view modules API (deprecated, requires PythonQt)." OFF )
+option( WITH_PYTHONQT "Enable Python view modules API (deprecated, requires PythonQt)." OFF )  # TODO:3.3: remove
 option( WITH_QML "Enable QML UI options." ON )
 
 # Possible debugging flags are:
