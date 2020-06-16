@@ -5,6 +5,7 @@
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-FileCopyrightText: 2018 Caio Carvalho <caiojcarvalho@gmail.com>
  *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -604,6 +605,12 @@ PartitionCoreModule::efiSystemPartitions() const
     return m_efiSystemPartitions;
 }
 
+QList< Partition* >
+PartitionCoreModule::homePartitions() const
+{
+    return m_homePartitions;
+}
+
 QVector< const Partition* >
 PartitionCoreModule::lvmPVs() const
 {
@@ -713,6 +720,8 @@ PartitionCoreModule::scanForPartitions()
     {
         scanForEfiSystemPartitions();
     }
+
+    scanForHomePartitions();
 }
 
 void
@@ -743,6 +752,53 @@ PartitionCoreModule::scanForEfiSystemPartitions()
     }
 
     m_efiSystemPartitions = efiSystemPartitions;
+}
+
+void
+PartitionCoreModule::scanForHomePartitions()
+{
+    m_homePartitions.clear();
+
+    QList< Device* > devices;
+    for ( int row = 0; row < deviceModel()->rowCount(); ++row )
+    {
+        Device* device = deviceModel()->deviceForIndex( deviceModel()->index( row ) );
+        devices.append( device );
+    }
+
+    QList< Partition* > homePartitions
+        = CalamaresUtils::Partition::findPartitions( devices, PartUtils::isHomePartition );
+
+    for ( const OsproberEntry& osproberEntry : osproberEntries() )
+    {
+        if ( !osproberEntry.homePath.isEmpty() ) {
+            Partition* homePartition = CalamaresUtils::Partition::findPartitionByPath( devices, osproberEntry.homePath );
+            if ( homePartition )
+            {
+                bool found = false;
+                for ( auto* part: homePartitions )
+                {
+                    if ( part == homePartition )
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if ( !found )
+                {
+                    homePartitions.append( homePartition );
+                }
+            }
+        }
+    }
+
+    if ( homePartitions.isEmpty() )
+    {
+        cWarning() << "system has no home partitions found.";
+    }
+
+    m_homePartitions = homePartitions;
 }
 
 void

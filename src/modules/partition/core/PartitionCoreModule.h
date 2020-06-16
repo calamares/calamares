@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
  *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2020 Gaël PORTAY <gael.portay@collabora.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -187,6 +188,8 @@ public:
 
     QList< Partition* > efiSystemPartitions() const;
 
+    QList< Partition* > homePartitions() const;
+
     QVector< const Partition* > lvmPVs() const;
 
     bool hasVGwithThisName( const QString& name ) const;
@@ -252,6 +255,7 @@ private:
     void scanForPartitions();
     void scanForEfiSystemPartitions();
     void scanForLVMPVs();
+    void scanForHomePartitions();
 
     DeviceInfo* infoForDevice( const Device* ) const;
 
@@ -259,6 +263,7 @@ private:
 
     QList< DeviceInfo* > m_deviceInfos;
     QList< Partition* > m_efiSystemPartitions;
+    QList< Partition* > m_homePartitions;
     QVector< const Partition* > m_lvmPVs;
 
     DeviceModel* m_deviceModel;
