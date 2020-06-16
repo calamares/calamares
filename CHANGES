@@ -6,6 +6,7 @@ website will have to do for older versions.
 # 3.2.26 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Gaël PORTAY
  - Pablo Ovelleiro Corral
  - Philip Müller
 
@@ -14,6 +15,10 @@ This release contains contributions from (alphabetically by first name):
    and calamares-extensions) is now *calamares*.
  - External modules can now be built again, outside of the Calamares
    source and build-tree.
+ - The repository *calamares-tools* has been removed. The idea behind
+   the tooling was to provide schema validation for Calamares configuration
+   files. This has been merged into the primary repository, where it
+   is now part of the test suite.
 
 ## Modules ##
  - *locale* put some more places into the correct timezone **visually**;
