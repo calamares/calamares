@@ -68,7 +68,7 @@ include( CalamaresAddTranslations )
 add_calamares_python_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
 
 # TODO:3.3: Use FindPython3
-if ( BUILD_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EXECUTABLE )
+if ( BUILD_TESTING AND BUILD_SCHEMA_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EXECUTABLE )
     # The tests for each config file are independent of whether the
     # module is enabled or not: the config file should match its schema
     # regardless.

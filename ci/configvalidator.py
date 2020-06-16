@@ -14,6 +14,15 @@ JSON-representable, anyway.
 
 Usage:
     configvalidator.py <schema> <file> ...
+    configvalidator.py -x
+
+Exits with value 0 on success, otherwise:
+    1 on missing dependencies
+    2 on invalid command-line arguments
+    3 on missing files
+    4 if files have invalid syntax
+    5 if files fail to validate
+Use -x as only command-line argument to check the imports only.
 """
 
 # The schemata originally lived outside the Calamares repository,
@@ -50,6 +59,9 @@ import sys
 #
 #
 if len(sys.argv) < 3:
+    # Special-case: called with -x to just test the imports
+    if len(sys.argv) == 2 and sys.argv[1] == "-x":
+        exit(0)
     print(usage)
     exit(ERR_USAGE)
 

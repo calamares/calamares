@@ -33,6 +33,7 @@
 #                       - PYTHONQT # TODO:3.3: remove
 #   BUILD_<foo>     : choose additional things to build
 #                       - TESTING (standard CMake option)
+#                       - SCHEMA_TESTING (requires Python, see ci/configvalidator.py)
 #   DEBUG_<foo>     : special developer flags for debugging
 #
 # Example usage:
@@ -63,6 +64,10 @@ option( WITH_KF5DBus "Use DBus service for unique-application." OFF )  # TODO:3.
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_PYTHONQT "Enable Python view modules API (deprecated, requires PythonQt)." OFF )  # TODO:3.3: remove
 option( WITH_QML "Enable QML UI options." ON )
+#
+# Additional parts to build
+option( BUILD_SCHEMA_TESTING "Enable schema-validation-tests" ON )
+
 
 # Possible debugging flags are:
 #  - DEBUG_TIMEZONES draws latitude and longitude lines on the timezone
@@ -337,6 +342,20 @@ set_package_properties(
 )
 if ( PYTHONINTERP_FOUND )
     message(STATUS "Found Python 3 interpreter ${PYTHON_EXECUTABLE}")
+    if ( BUILD_SCHEMA_TESTING )
+        # The configuration validator script has some dependencies,
+        # and if they are not installed, don't run. If errors out
+        # with exit(1) on missing dependencies.
+        exec_program( ${PYTHON_EXECUTABLE} ARGS "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" -x RETURN_VALUE _validator_deps )
+        # It should never succeed, but only returns 1 when the imports fail
+        if ( _validator_deps EQUAL 1 )
+            message(STATUS "BUILD_SCHEMA_TESTING dependencies are missing." )
+            set( BUILD_SCHEMA_TESTING OFF )
+        endif()
+    endif()
+else()
+    # Can't run schema tests without Python3.
+    set( BUILD_SCHEMA_TESTING OFF )
 endif()
 find_package( PythonLibs ${PYTHONLIBS_VERSION} )
 set_package_properties(
