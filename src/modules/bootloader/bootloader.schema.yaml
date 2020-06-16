@@ -1,0 +1,18 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/bootloader
+additionalProperties: false
+type: object
+properties:
+    efiBootLoader: { type: string, required: true }
+    kernel:  { type: string, required: true }
+    img:  { type: string, required: true }
+    fallback:  { type: str }
+    timeout:  { type: str }
+    bootloaderEntryName:  { type: str }
+    kernelLine:  { type: str }
+    fallbackKernelLine:  { type: str }
+    grubInstall:  { type: string, required: true }
+    grubMkconfig:  { type: string, required: true }
+    grubCfg:  { type: string, required: true }
+    efiBootloaderId:  { type: str }

@@ -1,0 +1,17 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/license
+additionalProperties: false
+type: object
+properties:
+    "entries":
+      type: seq
+      sequence:
+          - type: map
+            mapping:
+                "id": { type: str }
+                "name": { type: str }
+                "vendor": { type: str }
+                "type": { type: str }
+                "url": { type: str }
+                "required": { type: boolean, default: false }

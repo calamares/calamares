@@ -1,0 +1,9 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/machineid
+additionalProperties: false
+type: object
+properties:
+    "systemd": { type: boolean, default: true }
+    "dbus": { type: boolean, default: true }
+    "symlink": { type: boolean, default: true }

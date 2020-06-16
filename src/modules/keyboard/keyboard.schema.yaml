@@ -1,0 +1,8 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/finished
+additionalProperties: keyboard
+type: object
+properties:
+    xOrgConfFileName: { type: string, required: true }
+    convertedKeymapPath: { type: string, required: true }
