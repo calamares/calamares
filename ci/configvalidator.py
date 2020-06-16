@@ -79,8 +79,9 @@ with open(schema_file_name, "r") as data:
 
 try:
     validate(instance={}, schema=schema)
+# While developing the schemata, get full exceptions from schema failure
 except SchemaError as e:
-    print(e.message)
+    print(e)
     print("\nSchema file '{}' is invalid JSON-Schema.".format(schema_file_name))
     exit(ERR_INVALID)
 except ValidationError:
@@ -101,10 +102,15 @@ for f in config_file_names:
         print("YAML file '{}' is empty.".format(f))
     configs.append(config)
 
+assert len(configs) == len(config_file_names), "Not all configurations loaded."
+
 ### SCHEMA VALIDATION
 #
 #
-# Here a ValidationError from jsonschema carries a lot of useful information,
-# so just let it go.
-for c in configs:
-    validate(instance=c, schema=schema)
+for c, f in zip(configs, config_file_names):
+    try:
+        validate(instance=c, schema=schema)
+    except ValidationError as e:
+        print(e)
+        print("\nConfig file '{}' does not validate in schema.".format(f))
+        exit(ERR_INVALID)
