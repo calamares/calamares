@@ -1411,6 +1411,23 @@ ChoicePage::setupActions()
         m_alongsideButton->hide();
         m_replaceButton->hide();
     }
+
+    if ( m_somethingElseButton->isHidden()
+         && m_alongsideButton->isHidden()
+         && m_replaceButton->isHidden()
+         && m_somethingElseButton->isHidden() )
+    {
+	if (atLeastOneIsMounted)
+            m_messageLabel->setText( tr( "This storage device has one of its partitions <strong>mounted</strong>." ) );
+	else
+            m_messageLabel->setText( tr( "This storage device is a part of an <strong>inactive RAID</strong> device." ) );
+
+        m_messageLabel->show();
+        cWarning() << "No buttons available"
+                   << "replaced?" << atLeastOneCanBeReplaced
+                   << "resized?" << atLeastOneCanBeResized
+                   << "erased? (not-mounted and not-raid)" << !atLeastOneIsMounted << "and" << !isInactiveRAID;
+    }
 }
 
 
