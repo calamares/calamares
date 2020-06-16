@@ -1,6 +1,7 @@
 ---
 $schema: https://json-schema.org/schema#
 $id: https://calamares.io/schemas/finished
+additionalProperties: false
 type: object
 properties:
     restartNowEnabled: { type: boolean, default: true }  # TODO:3.3: remove
@@ -8,4 +9,3 @@ properties:
     restartNowCommand: { type: string }
     restartNowMode: { type: string, enum: [ never, user-unchecked, user-checked, always ] }
     notifyOnFinished: { type: boolean }
-additionalProperties: false

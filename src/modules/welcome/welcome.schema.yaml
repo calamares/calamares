@@ -1,0 +1,36 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/welcome
+additionalProperties: false
+type: object
+properties:
+    # TODO:3.3: drop the string alternatives and put the URL part in Branding
+    showSupportUrl: { anyOf: [ { type: boolean, default: true }, { type: string } ] }
+    showKnownIssuesUrl: { anyOf: [ { type: boolean, default: true }, { type: string } ] }
+    showReleaseNotesUrl: { anyOf: [ { type: boolean, default: true }, { type: string } ] }
+    showDonateUrl: { anyOf: [ { type: boolean, default: true }, { type: string } ] }
+
+    requirements:
+        additionalProperties: false
+        type: object
+        properties:
+            requiredStorage: { type: number }
+            requiredRam: { type: number }
+            internetCheckUrl: { type: string }
+            check:
+                type: array
+                items: { type: string, enum: [storage, ram, power, internet, root, screen], unique: true }
+            required:  # Key-name in the config-file
+                type: array
+                items: { type: string, enum: [storage, ram, power, internet, root, screen], unique: true }
+        required: [ requiredStorage, requiredRam, check ]  # Schema keyword
+
+    # TODO: refactor, this is reused in locale
+    geoip:
+        additionalProperties: false
+        type: object
+        properties:
+            style: { type: string, enum: [ none, fixed, xml, json ] }
+            url: { type: string }
+            selector: { type: string }
+        required: [ style, url, selector ]
