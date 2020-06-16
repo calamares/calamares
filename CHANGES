@@ -7,8 +7,11 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
  - Pablo Ovelleiro Corral
+ - Philip Müller
 
 ## Core ##
+ - The default branch for Calamares source repositories (calamares
+   and calamares-extensions) is now *calamares*.
  - External modules can now be built again, outside of the Calamares
    source and build-tree.
 
