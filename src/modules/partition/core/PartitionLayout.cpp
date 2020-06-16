@@ -118,6 +118,7 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
 
 bool
 PartitionLayout::addEntry( const QString& label,
+                           const QString& uuid,
                            const QString& type,
                            const QString& mountPoint,
                            const QString& fs,
@@ -140,6 +141,7 @@ PartitionLayout::addEntry( const QString& label,
     }
 
     entry.partLabel = label;
+    entry.partUUID = uuid;
     entry.partType = type;
     entry.partMountPoint = mountPoint;
     PartUtils::findFS( fs, &entry.partFileSystem );
@@ -243,6 +245,10 @@ PartitionLayout::execute( Device* dev,
         {
             currentPartition->setLabel( part.partLabel );
             currentPartition->fileSystem().setLabel( part.partLabel );
+        }
+        if ( !part.partUUID.isEmpty() )
+        {
+            currentPartition->setUUID( part.partUUID );
         }
         if ( !part.partType.isEmpty() )
         {

@@ -41,6 +41,7 @@ public:
     struct PartitionEntry
     {
         QString partLabel;
+        QString partUUID;
         QString partType;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
@@ -76,6 +77,7 @@ public:
                    const QString& min = QString(),
                    const QString& max = QString() );
     bool addEntry( const QString& label,
+                   const QString& uuid,
                    const QString& type,
                    const QString& mountPoint,
                    const QString& fs,
