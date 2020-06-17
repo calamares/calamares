@@ -34,14 +34,6 @@
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( TrackingViewStepFactory, registerPlugin< TrackingViewStep >(); )
 
-/** @brief Is @p s a valid machine-tracking style. */
-static bool
-isValidStyle( const QString& s )
-{
-    static QStringList knownStyles { "neon" };
-    return knownStyles.contains( s );
-}
-
 TrackingViewStep::TrackingViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_config( new Config( this ) )

@@ -101,9 +101,9 @@ TrackingMachineJob::addJob( Calamares::JobList& list, MachineTrackingConfig* con
     if ( config->isEnabled() )
     {
         const auto style = config->machineTrackingStyle();
-        if ( style == "neon" )
+        if ( style == "updatemanager" )
         {
-            list.append( Calamares::job_ptr( new TrackingMachineNeonJob() ) );
+            list.append( Calamares::job_ptr( new TrackingMachineUpdateManagerJob() ) );
         }
         else
         {
@@ -114,25 +114,25 @@ TrackingMachineJob::addJob( Calamares::JobList& list, MachineTrackingConfig* con
 
 
 QString
-TrackingMachineNeonJob::prettyName() const
+TrackingMachineUpdateManagerJob::prettyName() const
 {
     return tr( "Machine feedback" );
 }
 
 QString
-TrackingMachineNeonJob::prettyDescription() const
+TrackingMachineUpdateManagerJob::prettyDescription() const
 {
     return prettyName();
 }
 
 QString
-TrackingMachineNeonJob::prettyStatusMessage() const
+TrackingMachineUpdateManagerJob::prettyStatusMessage() const
 {
     return tr( "Configuring machine feedback." );
 }
 
 Calamares::JobResult
-TrackingMachineNeonJob::exec()
+TrackingMachineUpdateManagerJob::exec()
 {
     static const auto script = QStringLiteral(
         R"x(

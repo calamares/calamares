@@ -118,7 +118,7 @@ private:
  *
  * When machine tracking is on, the installed system will report
  * back ("call home") at some point. This can mean Debian pop-con,
- * or KDE neon maching tracking, or something else. The kind
+ * or updatemanager maching tracking, or something else. The kind
  * of configuration depends on the style of tracking that is enabled.
  */
 class MachineTrackingConfig : public TrackingStyleConfig

@@ -76,13 +76,13 @@ public:
     static void addJob( Calamares::JobList& list, MachineTrackingConfig* config );
 };
 
-/** @brief Tracking machines, KDE neon style
+/** @brief Tracking machines, update-manager style
  *
  * The machine has a machine-id, and this is sed(1)'ed into the
  * update-manager configuration, to report the machine-id back
- * to KDE neon servers.
+ * to distro servers.
  */
-class TrackingMachineNeonJob : public TrackingMachineJob
+class TrackingMachineUpdateManagerJob : public TrackingMachineJob
 {
     Q_OBJECT
 public:

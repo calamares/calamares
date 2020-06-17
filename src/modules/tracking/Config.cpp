@@ -129,7 +129,7 @@ MachineTrackingConfig::MachineTrackingConfig( QObject* parent )
 static bool
 isValidMachineTrackingStyle( const QString& s )
 {
-    static QStringList knownStyles { "neon" };
+    static QStringList knownStyles { "updatemanager" };
     return knownStyles.contains( s );
 }
 
