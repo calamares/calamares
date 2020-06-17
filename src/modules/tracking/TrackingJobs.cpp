@@ -24,6 +24,8 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
+#include <KMacroExpander>
+
 #include <QSemaphore>
 #include <QTimer>
 
@@ -79,14 +81,13 @@ TrackingInstallJob::addJob( Calamares::JobList& list, InstallTrackingConfig* con
 {
     if ( config->isEnabled() )
     {
-        QString installUrl = config->installTrackingUrl();
         const auto* s = CalamaresUtils::System::instance();
-
-        QString memory, disk;
-        memory.setNum( s->getTotalMemoryB().first );
-        disk.setNum( s->getTotalDiskB() );
-
-        installUrl.replace( "$CPU", s->getCpuDescription() ).replace( "$MEMORY", memory ).replace( "$DISK", disk );
+        QHash<QString, QString> map { std::initializer_list< std::pair< QString, QString > > {
+            { QStringLiteral("CPU"), s->getCpuDescription() },
+            { QStringLiteral("MEMORY"), QString::number( s->getTotalMemoryB().first ) },
+            { QStringLiteral("DISK"), QString::number( s->getTotalDiskB() ) }
+        } };
+        QString installUrl = KMacroExpander::expandMacros( config->installTrackingUrl(), map );
 
         cDebug() << Logger::SubEntry << "install-tracking URL" << installUrl;
 
