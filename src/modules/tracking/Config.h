@@ -149,9 +149,11 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap );
 
     QString userTrackingStyle() { return m_userTrackingStyle; }
+    QStringList userTrackingAreas() const { return m_userTrackingAreas; }
 
 private:
     QString m_userTrackingStyle;
+    QStringList m_userTrackingAreas;  // fine-grained areas
 };
 
 class Config : public QObject

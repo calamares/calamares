@@ -169,13 +169,20 @@ TrackingUserJob::addJob( Calamares::JobList& list, UserTrackingConfig* config )
         const auto style = config->userTrackingStyle();
         if ( style == "kuserfeedback" )
         {
-            list.append( Calamares::job_ptr( new TrackingKUserFeedbackJob() ) );
+            list.append(
+                Calamares::job_ptr( new TrackingKUserFeedbackJob( QString( "root" ), config->userTrackingAreas() ) ) );
         }
         else
         {
             cWarning() << "Unsupported user tracking style" << style;
         }
     }
+}
+
+TrackingKUserFeedbackJob::TrackingKUserFeedbackJob( const QString& username, const QStringList& areas )
+    : m_username( username )
+    , m_areas( areas )
+{
 }
 
 QString
@@ -206,10 +213,9 @@ TrackingKUserFeedbackJob::exec()
 FeedbackLevel=16
 )x";
 
-    for ( const QString& area : QStringList { "PlasmaUserFeedback" } )
+    for ( const QString& area : m_areas )
     {
-        // TODO: get the configured user name
-        QString path = QStringLiteral( "/home/%1/.config/%2" ).arg( QString(), area );
+        QString path = QStringLiteral( "/home/%1/.config/%2" ).arg( m_username, area );
         cDebug() << "Configuring KUserFeedback" << path;
 
         int r = CalamaresUtils::System::instance()->createTargetFile( path, config );

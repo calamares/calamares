@@ -114,10 +114,16 @@ public:
 class TrackingKUserFeedbackJob : public Calamares::Job
 {
 public:
+    TrackingKUserFeedbackJob( const QString& username, const QStringList& areas );
+
     QString prettyName() const override;
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
+
+private:
+    QString m_username;
+    QStringList m_areas;
 };
 
 #endif

@@ -165,6 +165,8 @@ UserTrackingConfig::setConfigurationMap( const QVariantMap& configurationMap )
 
     m_userTrackingStyle = CalamaresUtils::getString( configurationMap, "style" );
     validate( m_userTrackingStyle, isValidUserTrackingStyle );
+
+    m_userTrackingAreas = CalamaresUtils::getStringList( configurationMap, "areas" );
 }
 
 
