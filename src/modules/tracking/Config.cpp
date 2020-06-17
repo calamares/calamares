@@ -154,7 +154,7 @@ UserTrackingConfig::UserTrackingConfig( QObject* parent )
 static bool
 isValidUserTrackingStyle( const QString& s )
 {
-    static QStringList knownStyles { "kde" };
+    static QStringList knownStyles { "kuserfeedback" };
     return knownStyles.contains( s );
 }
 
