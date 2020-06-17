@@ -40,6 +40,7 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
     CALAMARES_RETRANSLATE_SLOT( &TrackingPage::retranslate );
 
     ui->noneCheckBox->setChecked( true );
+    ui->noneCheckBox->setEnabled( false );
     connect( ui->noneCheckBox, &QCheckBox::stateChanged, this, &TrackingPage::buttonNoneChecked );
 
     // Each "panel" of configuration has the same kind of setup,
@@ -124,6 +125,7 @@ TrackingPage::buttonNoneChecked( int state )
         ui->installCheckBox->setChecked( false );
         ui->machineCheckBox->setChecked( false );
         ui->userCheckBox->setChecked( false );
+        ui->noneCheckBox->setEnabled( false );
     }
 }
 
@@ -133,6 +135,7 @@ TrackingPage::buttonChecked( int state )
     if ( state )
     {
         // Can't have none checked, if another one is
+        ui->noneCheckBox->setEnabled( true );
         ui->noneCheckBox->setChecked( false );
     }
     else
@@ -140,6 +143,7 @@ TrackingPage::buttonChecked( int state )
         if ( !anyOtherChecked() )
         {
             ui->noneCheckBox->setChecked( true );
+            ui->noneCheckBox->setEnabled( false );
         }
     }
 }
