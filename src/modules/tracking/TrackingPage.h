@@ -21,6 +21,7 @@
 
 #include "TrackingType.h"
 
+#include <QCheckBox>
 #include <QUrl>
 #include <QWidget>
 
@@ -30,6 +31,7 @@ class TrackingPage;
 }
 
 class Config;
+class TrackingStyleConfig;
 
 class TrackingPage : public QWidget
 {
@@ -62,6 +64,14 @@ public Q_SLOTS:
     void buttonChecked( int state );
 
 private:
+    /** @brief Apply the tracking configuration to the UI
+     *
+     * If the config cannot be changed (disabled in config) then
+     * hide the UI parts on the @p panel; otherwise show it
+     * and set @p check state to whether the user has enabled it.
+     */
+    void trackerChanged( TrackingStyleConfig* subconfig, QWidget* panel, QCheckBox* check);
+
     Ui::TrackingPage* ui;
 };
 
