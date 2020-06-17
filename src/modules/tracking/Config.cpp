@@ -87,7 +87,7 @@ TrackingStyleConfig::validateUrl( QString& urlString )
     {
         if ( m_state != DisabledByConfig )
         {
-            cError() << "URL" << urlString << "is not valid; disabling this tracking type.";
+            cError() << "URL" << urlString << "is not valid; disabling tracking type" << objectName();
             m_state = DisabledByConfig;
             emit trackingChanged();
         }
@@ -109,6 +109,7 @@ TrackingStyleConfig::setConfigurationMap( const QVariantMap& config )
 InstallTrackingConfig::InstallTrackingConfig( QObject* parent )
     : TrackingStyleConfig( parent )
 {
+    setObjectName( "InstallTrackingConfig" );
 }
 
 void
@@ -123,6 +124,7 @@ InstallTrackingConfig::setConfigurationMap( const QVariantMap& configurationMap 
 MachineTrackingConfig::MachineTrackingConfig( QObject* parent )
     : TrackingStyleConfig( parent )
 {
+    setObjectName( "MachineTrackingConfig" );
 }
 
 /** @brief Is @p s a valid machine-tracking style. */
@@ -146,6 +148,7 @@ MachineTrackingConfig::setConfigurationMap( const QVariantMap& configurationMap 
 UserTrackingConfig::UserTrackingConfig( QObject* parent )
     : TrackingStyleConfig( parent )
 {
+    setObjectName( "UserTrackingConfig" );
 }
 
 static bool
