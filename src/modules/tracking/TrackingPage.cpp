@@ -46,6 +46,7 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
     // where the xButton and xCheckBox is connected to the xTracking
     // configuration object; that takes macro-trickery, unfortunately.
 #define trackingSetup( x ) \
+    do \
     { \
         connect( ui->x##CheckBox, &QCheckBox::stateChanged, this, &TrackingPage::buttonChecked ); \
         connect( ui->x##CheckBox, \
@@ -62,15 +63,17 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
                 QDesktopServices::openUrl( url ); \
             } \
         } ); \
-    }
+    } while ( false )
 
-    trackingSetup( install ) trackingSetup( machine ) trackingSetup( user )
+    trackingSetup( install );
+    trackingSetup( machine );
+    trackingSetup( user );
 
 #undef trackingSetup
 
-        connect( config, &Config::generalPolicyChanged, [this]( const QString& url ) {
-            this->ui->generalPolicyLabel->setVisible( !url.isEmpty() );
-        } );
+    connect( config, &Config::generalPolicyChanged, [this]( const QString& url ) {
+        this->ui->generalPolicyLabel->setVisible( !url.isEmpty() );
+    } );
     connect( ui->generalPolicyLabel, &QLabel::linkActivated, [config] {
         QString url( config->generalPolicy() );
         if ( !url.isEmpty() )
