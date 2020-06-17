@@ -76,14 +76,14 @@ TrackingPage::retranslate()
             .arg( product ) );
     ui->installExplanation->setText(
         tr( "By selecting this you will send information about your installation and hardware. This information "
-            "will <b>only be sent once</b> after the installation finishes." ) );
+            "will only be sent <b>once</b> after the installation finishes." ) );
     ui->machineExplanation->setText(
-        tr( "By selecting this you will <b>periodically</b> send information about your machine installation, "
+        tr( "By selecting this you will periodically send information about your <b>machine</b> installation, "
             "hardware and applications, to %1." )
             .arg( product ) );
     ui->userExplanation->setText(
-        tr( "By selecting this you will <b>regularly</b> send information about your "
-            "user installation, hardware, applications and application usage patterns, to %1." )
+        tr( "By selecting this you will regularly send information about your "
+            "<b>user</b> installation, hardware, applications and application usage patterns, to %1." )
             .arg( product ) );
 }
 
