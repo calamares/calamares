@@ -37,6 +37,13 @@ class TrackingPage : public QWidget
 public:
     explicit TrackingPage( Config* config, QWidget* parent = nullptr );
 
+    /** @brief is any of the enable-tracking buttons checked?
+     *
+     * Returns true if any one or more of install, machine or user
+     * tracking is enabled.
+     */
+    bool anyOtherChecked() const;
+
 public Q_SLOTS:
     void retranslate();
 
@@ -45,14 +52,14 @@ public Q_SLOTS:
      * @p state will be non-zero when the box is checked; this
      * **unchecks** all the other boxes.
      */
-    void noneChecked( int state );
+    void buttonNoneChecked( int state );
 
     /** @brief Some other checkbox changed
      *
      * This may check the *none* button if all the others are
      * now unchecked.
      */
-    void otherChecked( int state );
+    void buttonChecked( int state );
 
 private:
     Ui::TrackingPage* ui;
