@@ -20,6 +20,8 @@
 
 #include "Config.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "network/Manager.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
@@ -166,11 +168,20 @@ TrackingUserJob::addJob( Calamares::JobList& list, UserTrackingConfig* config )
 {
     if ( config->isEnabled() )
     {
+        const auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        static const auto key = QStringLiteral( "username" );
+        QString username = ( gs && gs->contains( key ) ) ? gs->value( key ).toString() : QString();
+
+        if ( username.isEmpty() )
+        {
+            cWarning() << "No username is set in GlobalStorage, skipping user-tracking.";
+            return;
+        }
+
         const auto style = config->userTrackingStyle();
         if ( style == "kuserfeedback" )
         {
-            list.append(
-                Calamares::job_ptr( new TrackingKUserFeedbackJob( QString( "root" ), config->userTrackingAreas() ) ) );
+            list.append( Calamares::job_ptr( new TrackingKUserFeedbackJob( username, config->userTrackingAreas() ) ) );
         }
         else
         {
