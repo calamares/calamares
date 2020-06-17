@@ -134,8 +134,7 @@ PartitionLayout::init( const QVariantList& config )
     {
         QVariantMap pentry = r.toMap();
 
-        if ( !pentry.contains( "name" ) || !pentry.contains( "mountPoint" ) || !pentry.contains( "filesystem" )
-             || !pentry.contains( "size" ) )
+        if ( !pentry.contains( "name" ) || !pentry.contains( "filesystem" ) || !pentry.contains( "size" ) )
         {
             cError() << "Partition layout entry #" << config.indexOf( r )
                      << "lacks mandatory attributes, switching to default layout.";
