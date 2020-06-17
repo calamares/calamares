@@ -36,7 +36,7 @@ TrackingInstallJob::TrackingInstallJob( const QString& url )
 {
 }
 
-TrackingInstallJob::~TrackingInstallJob() { }
+TrackingInstallJob::~TrackingInstallJob() {}
 
 QString
 TrackingInstallJob::prettyName() const
@@ -82,11 +82,10 @@ TrackingInstallJob::addJob( Calamares::JobList& list, InstallTrackingConfig* con
     if ( config->isEnabled() )
     {
         const auto* s = CalamaresUtils::System::instance();
-        QHash<QString, QString> map { std::initializer_list< std::pair< QString, QString > > {
-            { QStringLiteral("CPU"), s->getCpuDescription() },
-            { QStringLiteral("MEMORY"), QString::number( s->getTotalMemoryB().first ) },
-            { QStringLiteral("DISK"), QString::number( s->getTotalDiskB() ) }
-        } };
+        QHash< QString, QString > map { std::initializer_list< std::pair< QString, QString > > {
+            { QStringLiteral( "CPU" ), s->getCpuDescription() },
+            { QStringLiteral( "MEMORY" ), QString::number( s->getTotalMemoryB().first ) },
+            { QStringLiteral( "DISK" ), QString::number( s->getTotalDiskB() ) } } };
         QString installUrl = KMacroExpander::expandMacros( config->installTrackingUrl(), map );
 
         cDebug() << Logger::SubEntry << "install-tracking URL" << installUrl;
@@ -134,14 +133,14 @@ TrackingMachineUpdateManagerJob::prettyStatusMessage() const
 Calamares::JobResult
 TrackingMachineUpdateManagerJob::exec()
 {
-    static const auto script = QStringLiteral( "sed -i '/^URI/s,${MACHINE_ID},'`cat /etc/machine-id`',' /etc/update-manager/meta-release || true" );
+    static const auto script = QStringLiteral(
+        "sed -i '/^URI/s,${MACHINE_ID},'`cat /etc/machine-id`',' /etc/update-manager/meta-release || true" );
 
-    auto res = CalamaresUtils::System::instance()->runCommand(
-        CalamaresUtils::System::RunLocation::RunInTarget,
-        QStringList { QStringLiteral( "/bin/sh" ) },
-        QString(),  // Working dir
-        script,  // standard input
-        std::chrono::seconds( 1 ) );
+    auto res = CalamaresUtils::System::instance()->runCommand( CalamaresUtils::System::RunLocation::RunInTarget,
+                                                               QStringList { QStringLiteral( "/bin/sh" ) },
+                                                               QString(),  // Working dir
+                                                               script,  // standard input
+                                                               std::chrono::seconds( 1 ) );
     int r = res.first;
 
     if ( r == 0 )

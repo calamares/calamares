@@ -70,7 +70,7 @@ private:
      * hide the UI parts on the @p panel; otherwise show it
      * and set @p check state to whether the user has enabled it.
      */
-    void trackerChanged( TrackingStyleConfig* subconfig, QWidget* panel, QCheckBox* check);
+    void trackerChanged( TrackingStyleConfig* subconfig, QWidget* panel, QCheckBox* check );
 
     Ui::TrackingPage* ui;
 };

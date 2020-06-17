@@ -122,4 +122,3 @@ TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );
 }
-

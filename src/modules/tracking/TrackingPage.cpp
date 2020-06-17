@@ -45,27 +45,33 @@ TrackingPage::TrackingPage( Config* config, QWidget* parent )
     // Each "panel" of configuration has the same kind of setup,
     // where the xButton and xCheckBox is connected to the xTracking
     // configuration object; that takes macro-trickery, unfortunately.
-#define trackingSetup(x) { \
-    connect( ui->x ## CheckBox, &QCheckBox::stateChanged, \
-        this, &TrackingPage::buttonChecked ); \
-    connect( ui->x ## CheckBox, &QCheckBox::stateChanged, \
-        config->x ## Tracking(), QOverload<bool>::of( &TrackingStyleConfig::setTracking ) ); \
-    connect( config->x ## Tracking(), &TrackingStyleConfig::trackingChanged, \
-        this, [ this, config ]() { this->trackerChanged( config->x ## Tracking(), this->ui->x ## Group, this->ui->x ## CheckBox);} ); \
-    connect( ui->x ## PolicyButton, &QAbstractButton::clicked, \
-        config, [ config ] { QString url( config->x ## Tracking()->policy() ); if ( !url.isEmpty() ) { QDesktopServices::openUrl( url ); } } );  \
-}
+#define trackingSetup( x ) \
+    { \
+        connect( ui->x##CheckBox, &QCheckBox::stateChanged, this, &TrackingPage::buttonChecked ); \
+        connect( ui->x##CheckBox, \
+                 &QCheckBox::stateChanged, \
+                 config->x##Tracking(), \
+                 QOverload< bool >::of( &TrackingStyleConfig::setTracking ) ); \
+        connect( config->x##Tracking(), &TrackingStyleConfig::trackingChanged, this, [this, config]() { \
+            this->trackerChanged( config->x##Tracking(), this->ui->x##Group, this->ui->x##CheckBox ); \
+        } ); \
+        connect( ui->x##PolicyButton, &QAbstractButton::clicked, config, [config] { \
+            QString url( config->x##Tracking()->policy() ); \
+            if ( !url.isEmpty() ) \
+            { \
+                QDesktopServices::openUrl( url ); \
+            } \
+        } ); \
+    }
 
-    trackingSetup( install )
-    trackingSetup( machine )
-    trackingSetup( user )
+    trackingSetup( install ) trackingSetup( machine ) trackingSetup( user )
 
 #undef trackingSetup
 
-    connect( config, &Config::generalPolicyChanged, [ this ]( const QString& url ) {
-        this->ui->generalPolicyLabel->setVisible( !url.isEmpty() );
-    } );
-    connect( ui->generalPolicyLabel, &QLabel::linkActivated, [ config ] {
+        connect( config, &Config::generalPolicyChanged, [this]( const QString& url ) {
+            this->ui->generalPolicyLabel->setVisible( !url.isEmpty() );
+        } );
+    connect( ui->generalPolicyLabel, &QLabel::linkActivated, [config] {
         QString url( config->generalPolicy() );
         if ( !url.isEmpty() )
         {
@@ -99,13 +105,15 @@ TrackingPage::retranslate()
             .arg( product ) );
 }
 
-bool TrackingPage::anyOtherChecked() const
+bool
+TrackingPage::anyOtherChecked() const
 {
-    return ui->installCheckBox->isChecked()  || ui->machineCheckBox->isChecked() || ui->userCheckBox->isChecked();
+    return ui->installCheckBox->isChecked() || ui->machineCheckBox->isChecked() || ui->userCheckBox->isChecked();
 }
 
 
-void TrackingPage::buttonNoneChecked(int state)
+void
+TrackingPage::buttonNoneChecked( int state )
 {
     if ( state )
     {
@@ -116,7 +124,8 @@ void TrackingPage::buttonNoneChecked(int state)
     }
 }
 
-void TrackingPage::buttonChecked(int state)
+void
+TrackingPage::buttonChecked( int state )
 {
     if ( state )
     {
@@ -133,7 +142,7 @@ void TrackingPage::buttonChecked(int state)
 }
 
 void
-TrackingPage::trackerChanged(TrackingStyleConfig* config, QWidget* panel, QCheckBox* check)
+TrackingPage::trackerChanged( TrackingStyleConfig* config, QWidget* panel, QCheckBox* check )
 {
     panel->setVisible( config->isConfigurable() );
     check->setChecked( config->isEnabled() );

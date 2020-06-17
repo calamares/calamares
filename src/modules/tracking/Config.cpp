@@ -47,7 +47,7 @@ TrackingStyleConfig::TrackingStyleConfig( QObject* parent )
 {
 }
 
-TrackingStyleConfig::~TrackingStyleConfig() { }
+TrackingStyleConfig::~TrackingStyleConfig() {}
 
 void
 TrackingStyleConfig::setTracking( bool enabled )
@@ -179,20 +179,20 @@ Config::Config( QObject* parent )
 static void
 enableLevelsBelow( Config* config, TrackingType level )
 {
-    switch( level )
+    switch ( level )
     {
-        case TrackingType::UserTracking:
-            config->userTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
-            FALLTHRU;
-        case TrackingType::MachineTracking:
-            config->machineTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
-            FALLTHRU;
-        case TrackingType::InstallTracking:
-            config->installTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
-            break;
-        case TrackingType::NoTracking:
-            config->noTracking( true );
-            break;
+    case TrackingType::UserTracking:
+        config->userTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
+        FALLTHRU;
+    case TrackingType::MachineTracking:
+        config->machineTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
+        FALLTHRU;
+    case TrackingType::InstallTracking:
+        config->installTracking()->setTracking( TrackingStyleConfig::TrackingState::EnabledByUser );
+        break;
+    case TrackingType::NoTracking:
+        config->noTracking( true );
+        break;
     }
 }
 
