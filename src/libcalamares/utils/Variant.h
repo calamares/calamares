@@ -54,6 +54,11 @@ DLLEXPORT QStringList getStringList( const QVariantMap& map, const QString& key 
 DLLEXPORT qint64 getInteger( const QVariantMap& map, const QString& key, qint64 d );
 
 /**
+ * Get an unsigned integer value from a mapping; returns @p u if no value.
+ */
+DLLEXPORT quint64 getUnsignedInteger( const QVariantMap& map, const QString& key, quint64 u );
+
+/**
  * Get a double value from a mapping (integers are converted); returns @p d if no value.
  */
 DLLEXPORT double getDouble( const QVariantMap& map, const QString& key, double d );

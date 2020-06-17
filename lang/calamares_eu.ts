@@ -212,7 +212,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="76"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>Kargatzen ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="97"/>
@@ -222,7 +222,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="261"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>Kargatzeak huts egin du.</translation>
     </message>
   </context>
   <context>
@@ -321,7 +321,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
       <source>Continue with installation?</source>
-      <translation type="unfinished"/>
+      <translation>Instalazioarekin jarraitu?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
@@ -576,7 +576,7 @@ Instalatzailea irten egingo da eta aldaketa guztiak galduko dira.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1336"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1362"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation>&lt;strong&gt;Diskoa ezabatu&lt;/strong&gt;&lt;br/&gt;Honek orain dauden datu guztiak &lt;font color="red"&gt;ezbatuko&lt;/font&gt; ditu biltegiratze-gailutik.</translation>
+      <translation>&lt;strong&gt;Diskoa ezabatu&lt;/strong&gt;&lt;br/&gt;Honek orain dauden datu guztiak &lt;font color="red"&gt;ezabatuko&lt;/font&gt; ditu biltegiratze-gailutik.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
@@ -3703,7 +3703,7 @@ Irteera:
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="105"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Atzera</translation>
     </message>
   </context>
   <context>
@@ -3711,7 +3711,7 @@ Irteera:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="25"/>
       <source>Keyboard Model</source>
-      <translation type="unfinished"/>
+      <translation>Teklatu modeloa</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="26"/>
@@ -3748,7 +3748,7 @@ Irteera:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="189"/>
       <source>Test your keyboard</source>
-      <translation type="unfinished"/>
+      <translation>Frogatu zure teklatua</translation>
     </message>
   </context>
   <context>
@@ -3790,7 +3790,7 @@ Irteera:
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="85"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>Atzera</translation>
     </message>
   </context>
   <context>
@@ -3804,7 +3804,7 @@ Irteera:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="71"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>Honi buruz</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="85"/>
@@ -3824,7 +3824,7 @@ Irteera:
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>Egin dohaintza</translation>
     </message>
   </context>
 </TS>

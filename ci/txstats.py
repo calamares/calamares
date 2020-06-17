@@ -58,7 +58,7 @@ def get_tx_stats(token, verbose):
     """
     import requests
 
-    r = requests.get("https://api.transifex.com/organizations/calamares/projects/calamares/resources/calamares-master/", auth=("api", token))
+    r = requests.get("https://api.transifex.com/organizations/calamares/projects/calamares/resources/calamares/", auth=("api", token))
     if r.status_code != 200:
         return 1
 

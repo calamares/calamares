@@ -1,0 +1,11 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/partition
+additionalProperties: false
+type: object
+properties:
+    efiSystemPartition: { type: string, required: true }
+    ensureSuspendToDisk: { type: boolean, default: true }
+    drawNestedPartitions: { type: boolean, default: false }
+    alwaysShowPartitionLabels: { type: boolean, default: true }
+    defaultFileSystemType: { type: string, required: true }

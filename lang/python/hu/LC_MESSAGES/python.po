@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Adriaan de Groot <groot@kde.org>, 2018
-# Balázs Meskó <mesko.balazs@fsf.hu>, 2018
+# Balázs Meskó <meskobalazs@mailbox.org>, 2018
 # miku84, 2019
 # Lajos Pasztor <mrlajos@gmail.com>, 2019
 # 

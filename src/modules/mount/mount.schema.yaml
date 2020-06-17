@@ -1,0 +1,24 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/mount
+additionalProperties: false
+type: object
+properties:
+    "extraMounts":
+        type: seq
+        sequence:
+            - type: map
+              mapping:
+                  "device": { type: string, required: true }
+                  "fs": { type: str }
+                  "mountPoint": { type: string, required: true }
+                  "options": { type: str }
+    "extraMountsEfi":
+        type: seq
+        sequence:
+            - type: map
+              mapping:
+                  "device": { type: string, required: true }
+                  "fs": { type: str }
+                  "mountPoint": { type: string, required: true }
+                  "options": { type: str }

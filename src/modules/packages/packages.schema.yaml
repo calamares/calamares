@@ -1,0 +1,33 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/packages
+additionalProperties: false
+type: object
+properties:
+    "backend": { type: string, required: true, enum: [packagekit, zypp, yum, dnf, urpmi, apt, pacman, portage, entropy] }
+    "update_db": { type: boolean, default: true }
+    "operations":
+        type: seq
+        sequence:
+            - type: map
+              mapping:
+                "install":
+                    type: seq
+                    sequence:
+                        - { type: text }
+                "remove":
+                    type: seq
+                    sequence:
+                        - { type: text }
+                "localInstall":
+                    type: seq
+                    sequence:
+                        - { type: text }
+                "try_install":
+                    type: seq
+                    sequence:
+                        - { type: text }
+                "try_remove":
+                    type: seq
+                    sequence:
+                        - { type: text }

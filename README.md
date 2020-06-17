@@ -2,9 +2,9 @@
 ---------
 
 [![GitHub release](https://img.shields.io/github/release/calamares/calamares.svg)](https://github.com/calamares/calamares/releases)
-[![Travis Build Status](https://travis-ci.org/calamares/calamares.svg?branch=master)](https://travis-ci.org/calamares/calamares)
+[![Travis Build Status](https://travis-ci.org/calamares/calamares.svg?branch=calamares)](https://travis-ci.org/calamares/calamares)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5389/badge.svg)](https://scan.coverity.com/projects/5389)
-[![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/calamares/LICENSE)
 
 | [Report a Bug](https://github.com/calamares/calamares/issues/new) | [Translate](https://www.transifex.com/projects/p/calamares/) | [Contribute](https://github.com/calamares/calamares/wiki/Develop-Guide) | Freenode (IRC): #calamares | [Wiki](https://github.com/calamares/calamares/wiki) |
 |:-----------------------------------------:|:----------------------:|:-----------------------:|:--------------------------:|:--------------------------:|
@@ -23,11 +23,12 @@ Main:
 * KDE Frameworks KCoreAddons (>= 5.58 recommended)
 * PythonQt (optional, deprecated)
 
-Modules:
-* Individual modules may have their own requirements;
-  these are listed in CMake output. Particular requirements (not complete):
-* *fsresizer* KPMCore >= 3.3
-* *partition* KPMCore >= 3.3
+Individual modules may have their own requirements;
+these are listed in CMake output.
+Particular requirements (not complete):
+
+* *fsresizer* KPMCore >= 3.3 (>= 4.1 recommended)
+* *partition* KPMCore >= 3.3 (>= 4.1 recommended)
 * *users* LibPWQuality (optional)
 
 ### Building

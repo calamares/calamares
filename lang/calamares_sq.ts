@@ -124,7 +124,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
       <source>Install</source>
-      <translation>Instaloje</translation>
+      <translation>Instalim</translation>
     </message>
   </context>
   <context>
@@ -520,7 +520,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
       <source>After:</source>
-      <translation>Pas:</translation>
+      <translation>Më Pas:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
@@ -937,7 +937,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
       <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-      <translation>Krijoni tabelë pjesësh të re &lt;strong&gt;%1&lt;/strong&gt; te &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+      <translation>Krijo tabelë pjesësh të re &lt;strong&gt;%1&lt;/strong&gt; te &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
@@ -1307,7 +1307,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="78"/>
       <source>Finish</source>
-      <translation>Përfundoje</translation>
+      <translation>Përfundim</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="132"/>
@@ -3080,7 +3080,7 @@ Përfundim:
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="85"/>
       <source>Partitioning</source>
-      <translation>Pjesëzim</translation>
+      <translation>Pjesëtim</translation>
     </message>
   </context>
   <context>

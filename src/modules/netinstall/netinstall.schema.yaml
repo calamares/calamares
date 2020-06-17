@@ -1,0 +1,7 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/netinstall
+additionalProperties: false
+type: object
+properties:
+    groupsUrl: { type: string, required: true }

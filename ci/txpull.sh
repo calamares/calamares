@@ -23,20 +23,15 @@
 #
 ### END USAGE
 
-### INITIAL SETUP
+### SANITY CHECKING
 #
-# This stuff needs to be done once; in a real CI environment where it
-# runs regularly in a container, the setup needs to be done when
-# creating the container.
+# The script needs a .tx/config to talk to the Transifex server;
+# it also checks that it is run from the top-level of a Calamares
+# checkout. In order to use the system overall, you'll also need:
+#  - ~/.gitconfig (For the git commits this does)
+#  - ~/.transifexrc (Password token for Transifex)
+#  - ~/.ssh (For git commits)
 #
-#
-# cp ~/jenkins-master/.transifexrc ~  # Transifex user settings
-# cp ~/jenkins-master/.gitconfig ~    # Git config, user settings
-# cp -R ~/jenkins-master/.ssh ~       # SSH, presumably for github
-#
-# cd "$WORKSPACE"
-# git config --global http.sslVerify false
-
 test -f "CMakeLists.txt" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 test -f ".tx/config" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 test -f "calamares.desktop" || { echo "! Not at Calamares top-level" ; exit 1 ; }
@@ -145,5 +140,3 @@ for POFILE in $(find lang -name "python.po") ; do
 done
 git add --verbose lang/python*
 git commit "$AUTHOR" --message="i18n: [python] $BOILERPLATE" | true
-
-# git push --set-upstream origin master

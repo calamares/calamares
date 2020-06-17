@@ -61,7 +61,17 @@ function( calamares_add_module_subdirectory )
     # ...otherwise, we look for a module.desc.
     elseif( EXISTS "${_mod_dir}/module.desc" )
         set( MODULES_DIR ${CMAKE_INSTALL_LIBDIR}/calamares/modules )
-        set( MODULE_DESTINATION ${MODULES_DIR}/${SUBDIRECTORY} )
+        # The module subdirectory may be given as a/b/c, but the module
+        # needs to be installed as "c", so we split off any intermediate
+        # directories.
+        get_filename_component(_dirname "${SUBDIRECTORY}" DIRECTORY)
+        if( _dirname )
+            # Remove the dirname and any leftover leading /s
+            string( REGEX REPLACE "^${_dirname}/*" "" _modulename "${SUBDIRECTORY}" )
+            set( MODULE_DESTINATION ${MODULES_DIR}/${_modulename} )
+        else()
+            set( MODULE_DESTINATION ${MODULES_DIR}/${SUBDIRECTORY} )
+        endif()
 
         # Read module.desc, check that the interface type is supported.
         #
@@ -70,11 +80,11 @@ function( calamares_add_module_subdirectory )
         # _mod_testing boolean if the module should be added to the loadmodule tests
         file(STRINGS "${_mod_dir}/module.desc" MODULE_INTERFACE REGEX "^interface")
         if ( MODULE_INTERFACE MATCHES "pythonqt" )
-            set( _mod_enabled ${WITH_PYTHONQT} )
+            set( _mod_enabled ${Calamares_WITH_PYTHONQT} )
             set( _mod_reason "No PythonQt support" )
             set( _mod_testing OFF )
         elseif ( MODULE_INTERFACE MATCHES "python" )
-            set( _mod_enabled ${WITH_PYTHON} )
+            set( _mod_enabled ${Calamares_WITH_PYTHON} )
             set( _mod_reason "No Python support" )
             set( _mod_testing ON )  # Will check syntax and imports, at least
         elseif ( MODULE_INTERFACE MATCHES "qtplugin" )

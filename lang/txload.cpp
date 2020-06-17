@@ -1,7 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
- *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -14,23 +12,33 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
  */
 
 /*
  * Tool to find differences between translations (can be used to help
  * merging them into one). See usage string, below, for details.
+ *
+ * The tool can be used when there are multiple translation files
+ * for a single language (e.g. Spanish) which need to be reconciled.
+ * Then running `txload file0.ts file1.ts ...` will produce a
+ * human-readable overview of what is translated and where the
+ * differences in translation are.
  */
 
 #include <QCoreApplication>
 #include <QDebug>
 #include <QFile>
-#include <QList>
+// #include <QList>
 
 #include <QDomDocument>
 
-static const char usage[] = "Usage: txload <master> [<subsidiary> ...]\n"
+static const char usage[] = "Usage: txload <origin> [<alternate> ...]\n"
     "\n"
-    "Reads a .ts source file <master> and zero or more .ts <subsidiary>\n"
+    "Reads a .ts source file <origin> and zero or more .ts <alternate>\n"
     "files, and does a comparison between the translations. Source (English)\n"
     "strings that are untranslated are flagged in each of the translation\n"
     "files, while differences in the translations are themselves also shown.\n"
@@ -95,34 +103,34 @@ QDomElement find_message(QDomElement& context, const QString& source)
     return QDomElement();
 }
 
-bool merge_into(QDomElement& master, QDomElement& sub)
+bool merge_into(QDomElement& origin, QDomElement& alternate)
 {
-    QDomNode n = sub.firstChild();
+    QDomNode n = alternate.firstChild();
     while (!n.isNull()) {
         if (n.isElement()) {
-            QDomElement e = n.toElement();
-            if ( e.tagName() == "message" )
+            QDomElement alternateMessage = n.toElement();
+            if ( alternateMessage.tagName() == "message" )
             {
-                QString source = e.firstChildElement( "source" ).text();
-                QString translation = e.firstChildElement( "translation" ).text();
-                QDomElement masterTranslation = find_message( master, source );
-                if ( masterTranslation.isNull() )
+                QString alternateSourceText = alternateMessage.firstChildElement( "source" ).text();
+                QString alternateTranslationText = alternateMessage.firstChildElement( "translation" ).text();
+                QDomElement originMessage = find_message( origin, alternateSourceText );
+                if ( originMessage.isNull() )
                 {
-                    qDebug() << "No master translation for" << source;
+                    qDebug() << "No origin translation for" << alternateSourceText;
                     return false;
                 }
 
-                QString msource = masterTranslation.firstChildElement( "source" ).text();
-                QString mtranslation = masterTranslation.firstChildElement( "translation" ).text();
+                QString originSourceText = originMessage.firstChildElement( "source" ).text();
+                QString originTranslationText = originMessage.firstChildElement( "translation" ).text();
 
-                if ( source != msource )
+                if ( alternateSourceText != originSourceText )
                 {
-                    qDebug() << "Mismatch for messages\n" << source << '\n' << msource;
+                    qDebug() << "Mismatch for messages\n" << alternateSourceText << '\n' << originSourceText;
                     return false;
                 }
-                if ( !translation.isEmpty() && ( translation != mtranslation ) )
+                if ( !alternateTranslationText.isEmpty() && ( alternateTranslationText != originTranslationText ) )
                 {
-                    qDebug() << "\n\n\nSource:" << source << "\nTL1:" << mtranslation << "\nTL2:" << translation;
+                    qDebug() << "\n\n\nSource:" << alternateSourceText << "\nTL1:" << originTranslationText << "\nTL2:" << alternateTranslationText;
                 }
             }
         }
@@ -134,32 +142,32 @@ bool merge_into(QDomElement& master, QDomElement& sub)
 
 
 
-bool merge_into(QDomDocument& master, QDomElement& context)
+bool merge_into(QDomDocument& originDocument, QDomElement& context)
 {
     QDomElement name = context.firstChildElement( "name" );
     if ( name.isNull() )
         return false;
 
     QString contextname = name.text();
-    QDomElement masterContext = find_context( master, contextname );
-    if ( masterContext.isNull() )
+    QDomElement originContext = find_context( originDocument, contextname );
+    if ( originContext.isNull() )
     {
-        qDebug() << "Master document has no context" << contextname;
+        qDebug() << "Origin document has no context" << contextname;
         return false;
     }
 
-    return merge_into( masterContext, context );
+    return merge_into( originContext, context );
 }
 
-bool merge_into(QDomDocument& master, QDomDocument& sub)
+bool merge_into(QDomDocument& originDocument, QDomDocument& alternateDocument)
 {
-    QDomElement top = sub.documentElement();
+    QDomElement top = alternateDocument.documentElement();
     QDomNode n = top.firstChild();
     while (!n.isNull()) {
         if (n.isElement()) {
             QDomElement e = n.toElement();
             if ( e.tagName() == "context" )
-                if ( !merge_into( master, e ) )
+                if ( !merge_into( originDocument, e ) )
                     return false;
         }
         n = n.nextSibling();
@@ -178,16 +186,16 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    QDomDocument doc("master");
-    if ( !load_file(argv[1], doc) )
+    QDomDocument originDocument("origin");
+    if ( !load_file(argv[1], originDocument) )
         return 1;
 
     for (int i = 2; i < argc; ++i)
     {
-        QDomDocument subdoc("sub");
-        if ( !load_file(argv[i], subdoc) )
+        QDomDocument alternateDocument("alternate");
+        if ( !load_file(argv[i], alternateDocument) )
             return 1;
-        if ( !merge_into( doc, subdoc ) )
+        if ( !merge_into( originDocument, alternateDocument ) )
             return 1;
     }
 
@@ -200,7 +208,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    outfile.write( doc.toString(4).toUtf8() );
+    outfile.write( originDocument.toString(4).toUtf8() );
     outfile.close();
 
     return 0;

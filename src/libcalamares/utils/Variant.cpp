@@ -99,6 +99,19 @@ getInteger( const QVariantMap& map, const QString& key, qint64 d )
     return result;
 }
 
+quint64
+getUnsignedInteger( const QVariantMap& map, const QString& key, quint64 u )
+{
+    quint64 result = u;
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        result = v.toString().toULongLong(nullptr, 0);
+    }
+
+    return result;
+}
+
 double
 getDouble( const QVariantMap& map, const QString& key, double d )
 {

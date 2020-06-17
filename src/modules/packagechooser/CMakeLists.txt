@@ -5,6 +5,7 @@ set( _extra_src "" )
 ### OPTIONAL AppData XML support in PackageModel
 #
 #
+# TODO:3.3:WITH->BUILD (this doesn't affect the ABI offered by Calamares)
 option( WITH_APPDATA "Support appdata: items in PackageChooser (requires QtXml)" ON )
 if ( WITH_APPDATA )
     find_package(Qt5 COMPONENTS Xml)

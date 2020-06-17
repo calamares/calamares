@@ -1,5 +1,5 @@
 # === This file is part of Calamares - <https://github.com/calamares> ===
-# 
+#
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
@@ -163,21 +163,25 @@ set_target_properties( calamares
     PROPERTIES
         VERSION ${CALAMARES_VERSION_SHORT}
         SOVERSION ${CALAMARES_VERSION_SHORT}
+        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_INSTALL_FULL_INCLUDEDIR}/libcalamares
 )
 calamares_automoc( calamares )
 
 target_link_libraries( calamares
     LINK_PRIVATE
         ${OPTIONAL_PRIVATE_LIBRARIES}
-    LINK_PUBLIC
         yamlcpp
+    LINK_PUBLIC
         Qt5::Core
         KF5::CoreAddons
         ${OPTIONAL_PUBLIC_LIBRARIES}
 )
 
+### Installation
+#
+#
 install( TARGETS calamares
-    EXPORT CalamaresLibraryDepends
+    EXPORT Calamares
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -192,13 +196,18 @@ install( CODE "
 
 # Install header files
 file( GLOB rootHeaders "*.h" )
-file( GLOB kdsingleapplicationguardHeaders "kdsingleapplicationguard/*.h" )
-file( GLOB utilsHeaders "utils/*.h" )
+install(
+    FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h
+        ${rootHeaders}
+    DESTINATION include/libcalamares
+)
+# Install each subdir-worth of header files
+foreach( subdir geoip locale modulesystem network partition utils )
+    file( GLOB subdir_headers "${subdir}/*.h" )
+    install( FILES ${subdir_headers} DESTINATION include/libcalamares/${subdir} )
+endforeach()
 
-install( FILES ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h DESTINATION include/libcalamares )
-install( FILES ${rootHeaders}                       DESTINATION include/libcalamares )
-install( FILES ${kdsingleapplicationguardHeaders}   DESTINATION include/libcalamares/kdsingleapplicationguard )
-install( FILES ${utilsHeaders}                      DESTINATION include/libcalamares/utils )
 
 ### TESTING
 #

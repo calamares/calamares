@@ -6,14 +6,26 @@ website will have to do for older versions.
 # 3.2.26 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Gaël PORTAY
+ - Pablo Ovelleiro Corral
+ - Philip Müller
 
 ## Core ##
- - No core changes yet
+ - The default branch for Calamares source repositories (calamares
+   and calamares-extensions) is now *calamares*.
+ - External modules can now be built again, outside of the Calamares
+   source and build-tree.
+ - The repository *calamares-tools* has been removed. The idea behind
+   the tooling was to provide schema validation for Calamares configuration
+   files. This has been merged into the primary repository, where it
+   is now part of the test suite.
 
 ## Modules ##
- - No module changes yet
-
+ - *locale* put some more places into the correct timezone **visually**;
+   for instance Norfolk Island gave up UTC+11.5 in 2015 and is now
+   UTC+11, but Calamares still showed it in a zone separate from UTC+11.
+ - *packages* gained support for the Void Linux package manager,
+   *xbps*. (thanks Pablo)
 
 # 3.2.25 (2020-06-06) #
 

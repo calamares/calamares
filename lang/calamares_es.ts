@@ -372,7 +372,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
       <source>Cancel setup without changing the system.</source>
-      <translation type="unfinished"/>
+      <translation>Cancelar instalación sin cambiar el sistema.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
@@ -402,7 +402,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="511"/>
       <source>Cancel setup?</source>
-      <translation type="unfinished"/>
+      <translation>¿Cancelar la instalación?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="511"/>
@@ -776,7 +776,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="231"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bienvenido al instalador %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="236"/>
@@ -1362,12 +1362,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
-      <translation type="unfinished"/>
+      <translation>No hay suficiente espació en el disco duro. Se requiere al menos %1 GB libre.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
       <source>has at least %1 GiB working memory</source>
-      <translation type="unfinished"/>
+      <translation>tiene al menos %1 GB de memoria.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
@@ -1397,12 +1397,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>esta ejecutándose con permisos de administrador (root).</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
       <source>The setup program is not running with administrator rights.</source>
-      <translation type="unfinished"/>
+      <translation>El instalador no esta ejecutándose con permisos de administrador.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
@@ -1417,7 +1417,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
       <source>The screen is too small to display the setup program.</source>
-      <translation type="unfinished"/>
+      <translation>La pantalla es demasiado pequeña para mostrar el instalador.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="180"/>
@@ -1464,7 +1464,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="40"/>
       <source>Creating initramfs with mkinitcpio.</source>
-      <translation type="unfinished"/>
+      <translation>Creando initramfs con mkinitcpio.</translation>
     </message>
   </context>
   <context>
@@ -1472,7 +1472,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="37"/>
       <source>Creating initramfs.</source>
-      <translation type="unfinished"/>
+      <translation>Creando initramfs.</translation>
     </message>
   </context>
   <context>
@@ -1563,7 +1563,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="22"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Contrato de licencia&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="149"/>
@@ -1651,12 +1651,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Hide license text</source>
-      <translation type="unfinished"/>
+      <translation>Ocultar licencia</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>Ver licencia</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
@@ -1725,7 +1725,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
       <source>No partitions are defined.</source>
-      <translation type="unfinished"/>
+      <translation>No hay particiones definidas.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
@@ -1779,12 +1779,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Office software</source>
-      <translation type="unfinished"/>
+      <translation>Programas de oficina</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office package</source>
-      <translation type="unfinished"/>
+      <translation>Paquete de oficina</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
@@ -1804,12 +1804,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>Kernel</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>Servicios</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
@@ -1824,7 +1824,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>Aplicaciónes</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
@@ -1839,32 +1839,32 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="76"/>
       <source>Office</source>
-      <translation type="unfinished"/>
+      <translation>Oficina</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="77"/>
       <source>Multimedia</source>
-      <translation type="unfinished"/>
+      <translation>Multimedia</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="78"/>
       <source>Internet</source>
-      <translation type="unfinished"/>
+      <translation>Internet</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="79"/>
       <source>Theming</source>
-      <translation type="unfinished"/>
+      <translation>Temas</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="80"/>
       <source>Gaming</source>
-      <translation type="unfinished"/>
+      <translation>Juegos</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="81"/>
       <source>Utilities</source>
-      <translation type="unfinished"/>
+      <translation>Utilidades</translation>
     </message>
   </context>
   <context>
@@ -2151,7 +2151,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="581"/>
       <source>Password is empty</source>
-      <translation type="unfinished"/>
+      <translation>La contraseña vacia</translation>
     </message>
   </context>
   <context>
@@ -2164,7 +2164,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="40"/>
       <source>Product Name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre del producto</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="53"/>
@@ -2174,12 +2174,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="69"/>
       <source>Long Product Description</source>
-      <translation type="unfinished"/>
+      <translation>Descripción larga del producto</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
       <source>Package Selection</source>
-      <translation type="unfinished"/>
+      <translation>Selección de paquetes</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
@@ -2192,7 +2192,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
       <source>Packages</source>
-      <translation type="unfinished"/>
+      <translation>Paquetes</translation>
     </message>
   </context>
   <context>
@@ -2241,7 +2241,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
       <source>Your Full Name</source>
-      <translation type="unfinished"/>
+      <translation>Su nombre completo</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
@@ -2266,7 +2266,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
       <source>Computer Name</source>
-      <translation type="unfinished"/>
+      <translation>Nombre de computadora</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="321"/>
@@ -2283,13 +2283,13 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Contraseña</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>Repita la contraseña</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
@@ -2299,7 +2299,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="454"/>
       <source>Require strong passwords.</source>
-      <translation type="unfinished"/>
+      <translation>Requerir contraseñas seguras</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="461"/>
@@ -3635,7 +3635,7 @@ Salida:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="229"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bienvenido al instalador %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>

@@ -106,7 +106,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="113"/>
       <source>Widget Tree</source>
-      <translation type="unfinished"/>
+      <translation>Widgetträd</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="231"/>
@@ -246,7 +246,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="170"/>
       <source>System-requirements checking is complete.</source>
-      <translation type="unfinished"/>
+      <translation>Kontroll av systemkrav är färdig</translation>
     </message>
   </context>
   <context>
@@ -264,7 +264,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="154"/>
       <source>Would you like to paste the install log to the web?</source>
-      <translation type="unfinished"/>
+      <translation>Vill du ladda upp installationsloggen på webben?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="167"/>
@@ -291,7 +291,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
       <source>Install Log Paste URL</source>
-      <translation type="unfinished"/>
+      <translation>URL till installationslogg</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="195"/>
@@ -306,7 +306,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-      <translation type="unfinished"/>
+      <translation>%1 kan inte installeras. Calamares kunde inte ladda alla konfigurerade moduler. Detta är ett problem med hur Calamares används av distributionen.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
@@ -326,7 +326,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>%1-installeraren är på väg att göra ändringar på disk för att installera %2.&lt;br/&gt;&lt;strong&gt;Du kommer inte att kunna ångra dessa ändringar.&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
@@ -412,7 +412,7 @@
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>Vill du verkligen avbryta den nuvarande uppstartsprocessen? Uppstartsprogrammet kommer avsluta och alla ändringar kommer förloras.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
@@ -524,7 +524,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Manuell partitionering&lt;/strong&gt;&lt;br/&gt;Du kan skapa eller ändra storlek på partitioner själv. UEFI-installationer kräver en GPT-partitionstabell och en &lt;strong&gt;fat32-partition för /boot på 512MB&lt;/strong&gt;, använd en existerande utan formatering eller skapa en.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
@@ -688,7 +688,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="151"/>
       <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-      <translation type="unfinished"/>
+      <translation>Kommandot körs på värden och behöver känna till sökvägen till root, men rootMountPoint är inte definierat.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="164"/>
@@ -716,7 +716,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="280"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Systemspråket för siffror och datum kommer sättas till %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="313"/>
@@ -731,7 +731,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
       <source>Network Installation. (Disabled: Received invalid groups data)</source>
-      <translation type="unfinished"/>
+      <translation>Nätverksinstallation. (Inaktiverad: Fick felaktig gruppdata)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
@@ -1070,12 +1070,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="115"/>
       <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-      <translation type="unfinished"/>
+      <translation>Detta är en &lt;strong&gt;loop&lt;/strong&gt;enhet.&lt;br&gt;&lt;br&gt;Det är en pseudo-enhet som inte har någon partitionstabell, och som gör en fil tillgänglig som en blockenhet. Denna typ av upplägg innehåller vanligtvis ett enda filsystem.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="122"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation type="unfinished"/>
+      <translation>Installationsprogrammet &lt;strong&gt;kan inte hitta någon partitionstabell&lt;/strong&gt; på den valda lagringsenheten.&lt;br&gt;&lt;br&gt;Antingen har enheten ingen partitionstabell, eller så är partitionstabellen trasig eller av okänd typ.&lt;br&gt;Installationsprogrammet kan skapa en ny partitionstabell åt dig, antingen automatiskt, eller genom sidan för manuell partitionering.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="132"/>
@@ -1085,7 +1085,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="138"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br&gt;&lt;br&gt;Denna partitionstabell är endast lämplig på äldre system som startar från en &lt;strong&gt;BIOS&lt;/strong&gt;-startmiljö. GPT rekommenderas i de flesta andra fall.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Varning:&lt;/strong&gt; MBR-partitionstabellen är en föråldrad standard från MS-DOS-tiden.&lt;br&gt;Endast 4 &lt;em&gt;primära&lt;/em&gt; partitioner kan skapas, och av dessa 4 kan en vara en &lt;em&gt;utökad&lt;/em&gt; partition, som i sin tur kan innehålla många &lt;em&gt;logiska&lt;/em&gt; partitioner.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
@@ -1278,7 +1278,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;När denna ruta är ikryssad kommer systemet starta om omedelbart när du klickar på &lt;span style="font-style:italic;"&gt;Klar&lt;/span&gt; eller stänger installationsprogrammet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="66"/>
@@ -1288,7 +1288,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="71"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;När denna ruta är ikryssad kommer systemet starta om omedelbart när du klickar på &lt;span style="font-style:italic;"&gt;Klar&lt;/span&gt; eller stänger installationsprogrammet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="133"/>
@@ -1573,27 +1573,27 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
       <source>Please review the End User License Agreements (EULAs).</source>
-      <translation type="unfinished"/>
+      <translation>Vänligen läs igenom licensavtalen för slutanvändare (EULA).</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
-      <translation type="unfinished"/>
+      <translation>Denna installationsprocess kommer installera proprietär mjukvara för vilken särskilda licensvillkor gäller.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>Om du inte accepterar villkoren kan inte installationsproceduren fortsätta.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="164"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-      <translation type="unfinished"/>
+      <translation>Denna installationsprocess kan installera proprietär mjukvara för vilken särskilda licensvillkor gäller, för att kunna erbjuda ytterligare funktionalitet och förbättra användarupplevelsen.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="169"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation type="unfinished"/>
+      <translation>Om du inte godkänner villkoren kommer inte proprietär mjukvara att installeras, och alternativ med öppen källkod kommer användas istället.</translation>
     </message>
   </context>
   <context>
@@ -1690,7 +1690,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="263"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Systemspråket för siffror och datum kommer sättas till %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="270"/>
@@ -1732,7 +1732,7 @@ Alla ändringar kommer att gå förlorade.</translation>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="199"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="207"/>
       <source>Encrypted rootfs setup error</source>
-      <translation type="unfinished"/>
+      <translation>Fel vid inställning av krypterat rootfs</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
@@ -1946,7 +1946,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
       <source>The password differs with case changes only</source>
-      <translation type="unfinished"/>
+      <translation>Endast stora och små bokstäver skiljer lösenorden åt</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
@@ -1961,7 +1961,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
       <source>The password contains words from the real name of the user in some form</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller ord från användarens namn i någon form</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="177"/>
@@ -2001,7 +2001,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
       <source>The password contains less than %1 non-alphanumeric characters</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller färre än %1 icke alfanumeriska tecken</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
@@ -2021,22 +2021,22 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
       <source>The password is just rotated old one</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet är ett roterat gammalt lösenord</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
       <source>The password contains less than %1 character classes</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller färre än %1 teckenklasser</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
       <source>The password does not contain enough character classes</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller inte tillräckligt många teckenklasser</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="226"/>
       <source>The password contains more than %1 same characters consecutively</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller fler än %1 likadana tecken i rad</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="230"/>
@@ -2046,22 +2046,22 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
       <source>The password contains more than %1 characters of the same class consecutively</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller fler än %1 tecken från samma klass i rad</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
       <source>The password contains too many characters of the same class consecutively</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller för många tecken från samma klass i rad</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
       <source>The password contains monotonic sequence longer than %1 characters</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller en monoton sekvens längre än %1 tecken</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
       <source>The password contains too long of a monotonic character sequence</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet innehåller en för lång monoton teckensekvens</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="250"/>
@@ -2071,22 +2071,22 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
       <source>Cannot obtain random numbers from the RNG device</source>
-      <translation type="unfinished"/>
+      <translation>Kan inte hämta slumptal från slumptalsgeneratorn</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
       <source>Password generation failed - required entropy too low for settings</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordsgenerering misslyckades - för lite entropi tillgänglig för givna inställningar</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="260"/>
       <source>The password fails the dictionary check - %1</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet klarar inte ordlistekontrollen - %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
       <source>The password fails the dictionary check</source>
-      <translation type="unfinished"/>
+      <translation>Lösenordet klarar inte ordlistekontrollen</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
@@ -2184,7 +2184,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation type="unfinished"/>
+      <translation>Välj en produkt från listan. Den valda produkten kommer att installeras.</translation>
     </message>
   </context>
   <context>
@@ -2294,7 +2294,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation type="unfinished"/>
+      <translation>När den här rutan är förkryssad kommer kontroll av lösenordsstyrka att genomföras, och du kommer inte kunna använda ett svagt lösenord.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="454"/>
@@ -2477,7 +2477,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="241"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-      <translation type="unfinished"/>
+      <translation>Partitionstabellen på %1 har redan %2 primära partitioner och inga fler kan läggas till. Var god ta bort en primär partition och lägg till en utökad partition istället.</translation>
     </message>
   </context>
   <context>
@@ -2555,12 +2555,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="433"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>En EFI-systempartition krävs för att starta %1. &lt;br/&gt;&lt;br/&gt; För att konfigurera en EFI-systempartition, gå tillbaka och välj eller skapa ett FAT32-filsystem med &lt;strong&gt;%3&lt;/strong&gt;-flaggan satt och monteringspunkt &lt;strong&gt;%2&lt;/strong&gt;. &lt;br/&gt;&lt;br/&gt;Du kan fortsätta utan att ställa in en EFI-systempartition, men ditt system kanske misslyckas med att starta.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="447"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>En EFI-systempartition krävs för att starta %1. &lt;br/&gt;&lt;br/&gt;En partition är konfigurerad med monteringspunkt &lt;strong&gt;%2&lt;/strong&gt;, men dess &lt;strong&gt;%3&lt;/strong&gt;-flagga är inte satt.&lt;br/&gt;För att sätta flaggan, gå tillbaka och redigera partitionen.&lt;br/&gt;&lt;br/&gt;Du kan fortsätta utan att sätta flaggan, men ditt system kanske misslyckas med att starta</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="446"/>
@@ -2575,7 +2575,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="474"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>En GPT-partitionstabell är det bästa alternativet för alla system. Detta installationsprogram stödjer det för system med BIOS också.&lt;br/&gt;&lt;br/&gt;För att konfigurera en GPT-partitionstabell på BIOS (om det inte redan är gjort), gå tillbaka och sätt partitionstabell till GPT, skapa sedan en oformaterad partition på 8MB med &lt;strong&gt;bios_grub&lt;/strong&gt;-flaggan satt.&lt;br/&gt;&lt;br/&gt;En oformaterad partition på 8MB är nödvändig för att starta %1 på ett BIOS-system med GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="502"/>
@@ -2585,12 +2585,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="503"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-      <translation type="unfinished"/>
+      <translation>En separat uppstartspartition skapades tillsammans med den krypterade rootpartitionen, men uppstartspartitionen är inte krypterad.&lt;br/&gt;&lt;br/&gt;Det finns säkerhetsproblem med den här inställningen, eftersom viktiga systemfiler sparas på en okrypterad partition.&lt;br/&gt;Du kan fortsätta om du vill, men upplåsning av filsystemet kommer hända senare under uppstart av systemet.&lt;br/&gt;För att kryptera uppstartspartitionen, gå tillbaka och återskapa den, och välj &lt;strong&gt;Kryptera&lt;/strong&gt; i fönstret när du skapar partitionen.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="720"/>
       <source>has at least one disk device available.</source>
-      <translation type="unfinished"/>
+      <translation>har åtminstone en diskenhet tillgänglig.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="721"/>
@@ -2603,13 +2603,13 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="41"/>
       <source>Plasma Look-and-Feel Job</source>
-      <translation type="unfinished"/>
+      <translation>Jobb för Plasmas utseende och känsla</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="73"/>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="74"/>
       <source>Could not select KDE Plasma Look-and-Feel package</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte välja KDE Plasma-paket för utseende och känsla</translation>
     </message>
   </context>
   <context>
@@ -2622,12 +2622,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="70"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation type="unfinished"/>
+      <translation>Var god välj ett utseende och känsla för KDE Plasma skrivbordet. Du kan hoppa över detta steget och ställa in utseende och känsla när systemet är installerat. Klicka på ett val för utseende och känsla för att få en förhandsgranskning av det valet.</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="76"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation type="unfinished"/>
+      <translation>Var god välj ett utseende och känsla för KDE Plasma skrivbordet. Du kan hoppa över detta steget och ställa in utseende och känsla när systemet är installerat. Klicka på ett val för utseende och känsla för att få en förhandsgranskning av det valet.</translation>
     </message>
   </context>
   <context>
@@ -2635,7 +2635,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="68"/>
       <source>Look-and-Feel</source>
-      <translation type="unfinished"/>
+      <translation>Utseende och känsla</translation>
     </message>
   </context>
   <context>
@@ -2735,7 +2735,7 @@ Utdata:
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
       <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation type="unfinished"/>
+      <translation>Kontroll av krav för modul &lt;i&gt;%1&lt;/i&gt; är färdig.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="36"/>
@@ -2779,7 +2779,7 @@ Utdata:
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="74"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
-      <translation type="unfinished"/>
+      <translation>Sökväg &lt;pre&gt;%1&lt;/pre&gt; måste vara en absolut sökväg.</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
@@ -2889,7 +2889,7 @@ Utdata:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Kan inte hitta en EFI-systempartition någonstans på detta system. Var god gå tillbaka och använd manuell partitionering för att installera %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="266"/>
@@ -2914,7 +2914,7 @@ Utdata:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="57"/>
       <source>Resize Filesystem Job</source>
-      <translation type="unfinished"/>
+      <translation>Jobb för storleksförändring av filsystem</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
@@ -2924,7 +2924,7 @@ Utdata:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="171"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
-      <translation type="unfinished"/>
+      <translation>Jobbet för storleksförändring av filsystem har en felaktig konfiguration och kommer inte köras.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="177"/>
@@ -2934,7 +2934,7 @@ Utdata:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="178"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
-      <translation type="unfinished"/>
+      <translation>Calamares kan inte starta KPMCore för jobbet att ändra filsystemsstorlek.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
@@ -2948,34 +2948,34 @@ Utdata:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte hitta filsystemet %1 på systemet, och kan inte ändra storlek på det.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte hitta enheten %1 på systemet, och kan inte ändra storlek på den.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="209"/>
       <source>The filesystem %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Det går inte att ändra storlek på filsystemet %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="197"/>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="210"/>
       <source>The device %1 cannot be resized.</source>
-      <translation type="unfinished"/>
+      <translation>Det går inte att ändra storlek på enheten %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="218"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
-      <translation type="unfinished"/>
+      <translation>Filsystemet %1 måste ändra storlek, men storleken kan inte ändras.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="219"/>
       <source>The device %1 must be resized, but cannot</source>
-      <translation type="unfinished"/>
+      <translation>Enheten %1 måste ändra storlek, men storleken kan inte ändras</translation>
     </message>
   </context>
   <context>
@@ -3015,7 +3015,7 @@ Utdata:
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="36"/>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="54"/>
       <source>Resize volume group named %1 from %2 to %3.</source>
-      <translation type="unfinished"/>
+      <translation>Ändra storlek på volymgruppen som heter %1 från %2 till %3.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="45"/>
@@ -3311,7 +3311,7 @@ Utdata:
     <message>
       <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="46"/>
       <source>Shell Processes Job</source>
-      <translation type="unfinished"/>
+      <translation>Jobb för skalprocesser</translation>
     </message>
   </context>
   <context>
@@ -3328,7 +3328,7 @@ Utdata:
     <message>
       <location filename="../src/modules/summary/SummaryPage.cpp" line="57"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
-      <translation type="unfinished"/>
+      <translation>Detta är en översikt över vad som kommer hända när du startar installationsprocessen.</translation>
     </message>
     <message>
       <location filename="../src/modules/summary/SummaryPage.cpp" line="60"/>
@@ -3364,7 +3364,7 @@ Utdata:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="72"/>
       <source>HTTP request timed out.</source>
-      <translation type="unfinished"/>
+      <translation>HTTP-begäran tog för lång tid.</translation>
     </message>
   </context>
   <context>
@@ -3411,7 +3411,7 @@ Utdata:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By selecting this, you will send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Genom att välja detta, kommer du inte skicka &lt;span style=" font-weight:600;"&gt;någon information alls&lt;/span&gt; om din installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
@@ -3426,7 +3426,7 @@ Utdata:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="49"/>
       <source>By selecting this you will send information about your installation and hardware. This information will &lt;b&gt;only be sent once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>Genom att välja detta, kommer du skicka information om din installation och hårdvara. Denna information kommer &lt;b&gt;enbart skickas en gång&lt;/b&gt; efter att installationen slutförts.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="51"/>
@@ -3541,7 +3541,7 @@ Utdata:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
       <source>Physical Extent Size:</source>
-      <translation type="unfinished"/>
+      <translation>Storlek på fysisk volymdel (PE):</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
@@ -3566,7 +3566,7 @@ Utdata:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
       <source>Quantity of LVs:</source>
-      <translation type="unfinished"/>
+      <translation>Antal LV:</translation>
     </message>
   </context>
   <context>
@@ -3665,7 +3665,7 @@ Utdata:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="250"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Tack till &lt;a href="https://calamares.io/team/"&gt;Calamares-teamet&lt;/a&gt; och &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares översättar-team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; utveckling sponsras av &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
   </context>
   <context>
@@ -3700,7 +3700,18 @@ Utdata:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Tack till &lt;a href='https://calamares.io/team/'&gt;Calamares-teamet&lt;/a&gt; 
+                        och &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 
+                        översättar-team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        utveckling sponsras av &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="105"/>
@@ -3718,7 +3729,7 @@ Utdata:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="26"/>
       <source>Pick your preferred keyboard model or use the default one based on the detected hardware</source>
-      <translation type="unfinished"/>
+      <translation>Välj din föredragna tangentbordsmodell, eller använd ett förval baserat på vilken hårdvara vi känt av</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="41"/>
@@ -3788,7 +3799,27 @@ Utdata:
             &lt;/ul&gt;
 
             &lt;p&gt;The vertical scrollbar is adjustable, current width set to 10.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;Detta är en exempelfil för QML, som visar inställningar för RichText och innehåll som är Flickable.&lt;/p&gt;
+
+            &lt;p&gt;QML med RichText kan använda HTML-taggar. Innehåll som är Flickable är användbart på pekskärmar.&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Detta är fet text&lt;/b&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;i&gt;Detta är kursiv text&lt;/i&gt;&lt;/p&gt;
+            &lt;p&gt;Detta är understruken text&lt;/p&gt;
+            &lt;p&gt;&lt;center&gt;Denna text är centrerad.&lt;/center&gt;&lt;/p&gt;
+            &lt;p&gt;&lt;s&gt;Detta är överstruket&lt;/s&gt;&lt;/p&gt;
+
+            &lt;p&gt;Kodexample:
+            &lt;code&gt;ls -l /home&lt;/code&gt;&lt;/p&gt;
+
+            &lt;p&gt;&lt;b&gt;Listor:&lt;/b&gt;&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;System med Intel-processor&lt;/li&gt;
+                &lt;li&gt;System med AMD-processor&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;p&gt;Den vertikala rullningslisten är justerbar, nuvarande bredd är satt till 10.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="85"/>
@@ -3802,7 +3833,8 @@ Utdata:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="44"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;Välkommen till %2 installationsprogram för &lt;quote&gt;%1&lt;/quote&gt;&lt;/h3&gt;
+            &lt;p&gt;Detta program kommer ställa några frågor och installera %1 på din dator.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="71"/>

@@ -1,0 +1,19 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/fstab
+additionalProperties: false
+type: object
+properties:
+    "mountOptions":
+        type: map
+        mapping:
+            "default": { type: string, required: true }
+            "btrfs": { type: string, required: true }
+    "ssdExtraMountOptions":
+        type: map
+        mapping:
+            "ext4": { type: string, required: true }
+            "jfs": { type: string, required: true }
+            "xfs": { type: string, required: true }
+            "swap": { type: string, required: true }
+            "btrfs": { type: string, required: true }

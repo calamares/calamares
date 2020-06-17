@@ -1,0 +1,10 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/locale
+additionalProperties: false
+type: object
+properties:
+    "region": { type: str }
+    "zone": { type: str }
+    "localeGenPath": { type: string, required: true }
+    "geoipUrl": { type: str }
