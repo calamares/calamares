@@ -388,6 +388,22 @@ def get_supported_filesystems():
     return ["file"] + get_supported_filesystems_kernel()
 
 
+def repair_root_permissions(root_mount_point):
+    """
+    If the / of the system gets permission 777, change it down
+    to 755. Any other permission is left alone. This
+    works around standard behavior from squashfs where
+    permissions are (easily, accidentally) set to 777.
+    """
+    existing_root_mode = os.stat(root_mount_point).st_mode & 0o777
+    if existing_root_mode == 0o777:
+        try:
+            os.chmod(root_mount_point, 0o755)  # Want / to be rwxr-xr-x
+        except OSError as e:
+            utils.warning("Could not set / to safe permissions: {}".format(e))
+            # But ignore it
+
+
 def run():
     """
     Unsquash filesystem.
@@ -457,6 +473,9 @@ def run():
 
         is_first = False
 
-    unpackop = UnpackOperation(unpack)
-
-    return unpackop.run()
+    repair_root_permissions(root_mount_point)
+    try:
+        unpackop = UnpackOperation(unpack)
+        return unpackop.run()
+    finally:
+        repair_root_permissions(root_mount_point)
