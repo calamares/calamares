@@ -25,9 +25,13 @@ This release contains contributions from (alphabetically by first name):
  - *locale* put some more places into the correct timezone **visually**;
    for instance Norfolk Island gave up UTC+11.5 in 2015 and is now
    UTC+11, but Calamares still showed it in a zone separate from UTC+11.
+ - *localeq* can now properly switch between on & offline mode, 
+   it detects internet status through js.
  - *packages* gained support for the Void Linux package manager,
    *xbps*. (thanks Pablo)
  - *tracking* now supports kuserfeedback configuration.
+ - *welcomeq* added the GEOIP configuration option, so locale can be
+   initially set according to IP address.
 
 
 # 3.2.25 (2020-06-06) #
