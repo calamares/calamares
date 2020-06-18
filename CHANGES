@@ -6,6 +6,7 @@ website will have to do for older versions.
 # 3.2.26 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
  - Gaël PORTAY
  - Pablo Ovelleiro Corral
  - Philip Müller
@@ -26,6 +27,8 @@ This release contains contributions from (alphabetically by first name):
    UTC+11, but Calamares still showed it in a zone separate from UTC+11.
  - *packages* gained support for the Void Linux package manager,
    *xbps*. (thanks Pablo)
+ - *tracking* now supports kuserfeedback configuration.
+
 
 # 3.2.25 (2020-06-06) #
 

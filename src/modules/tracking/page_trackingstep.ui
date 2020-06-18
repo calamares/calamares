@@ -32,7 +32,7 @@ margin-left: 2em;</string>
     <widget class="QWidget" name="noneGroup" native="true">
      <layout class="QHBoxLayout" name="noneLayout">
       <item>
-       <widget class="QRadioButton" name="noneRadio">
+       <widget class="QCheckBox" name="noneCheckBox">
         <property name="text">
          <string/>
         </property>
@@ -69,7 +69,7 @@ margin-left: 2em;</string>
          </sizepolicy>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By selecting this, you will send &lt;span style=&quot; font-weight:600;&quot;&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=&quot; font-weight:600;&quot;&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -83,7 +83,7 @@ margin-left: 2em;</string>
     <widget class="QWidget" name="installGroup" native="true">
      <layout class="QHBoxLayout" name="installLayout">
       <item>
-       <widget class="QRadioButton" name="installRadio">
+       <widget class="QCheckBox" name="installCheckBox">
         <property name="text">
          <string/>
         </property>
@@ -145,7 +145,7 @@ margin-left: 2em;</string>
     <widget class="QWidget" name="machineGroup" native="true">
      <layout class="QHBoxLayout" name="machineLayout">
       <item>
-       <widget class="QRadioButton" name="machineRadio">
+       <widget class="QCheckBox" name="machineCheckBox">
         <property name="text">
          <string/>
         </property>
@@ -207,7 +207,7 @@ margin-left: 2em;</string>
     <widget class="QWidget" name="userGroup" native="true">
      <layout class="QHBoxLayout" name="userLayout">
       <item>
-       <widget class="QRadioButton" name="userRadio">
+       <widget class="QCheckBox" name="userCheckBox">
         <property name="text">
          <string/>
         </property>
@@ -278,6 +278,9 @@ margin-left: 2em;</string>
      </property>
      <property name="openExternalLinks">
       <bool>false</bool>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::TextBrowserInteraction</set>
      </property>
     </widget>
    </item>

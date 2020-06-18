@@ -19,11 +19,17 @@
 #ifndef TRACKINGTYPE_H
 #define TRACKINGTYPE_H
 
+#include "utils/NamedEnum.h"
+
 enum class TrackingType
 {
-    InstallTracking,
-    MachineTracking,
-    UserTracking
+    NoTracking,  // Do not enable tracking at all
+    InstallTracking,  // Track that *this* install has happened
+    MachineTracking,  // Track the machine, ongoing
+    UserTracking  // Track the user, ongoing
 };
+
+// Implemented in Config.cpp
+const NamedEnumTable< TrackingType >& trackingNames();
 
 #endif  //TRACKINGTYPE_H

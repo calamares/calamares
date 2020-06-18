@@ -2,6 +2,7 @@ calamares_add_plugin( tracking
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
+        Config.cpp
         TrackingJobs.cpp
         TrackingPage.cpp
         TrackingViewStep.cpp
