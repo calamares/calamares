@@ -1,4 +1,3 @@
-import io.calamares.modules 1.0 as Modules
 import io.calamares.ui 1.0
 
 import QtQuick 2.10
@@ -6,199 +5,191 @@ import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.7 as Kirigami
 
-ResponsiveBase
-{
-	id: control
-	Modules.Keyboard //locale handler
-	{
-		id: _keyboard
-	}
+ResponsiveBase {
 
-	title: stackView.currentItem.title
-	subtitle: stackView.currentItem.subtitle
+    id: control
+
+    title: stackView.currentItem.title
+    subtitle: stackView.currentItem.subtitle
 
 
-	stackView.initialItem:  Item
-	{
-		id: _keyboardModelsComponet
+    stackView.initialItem:  Item {
 
-		property string title: qsTr("Keyboard Model")
-		property string subtitle: qsTr("Pick your preferred keyboard model or use the default one based on the detected hardware")
+        id: _keyboardModelsComponet
 
-		ListViewTemplate
-		{
-			id: _keyboardModelListView
+        property string title: qsTr("Keyboard Model")
+        property string subtitle: qsTr("Pick your preferred keyboard model or use the default one based on the detected hardware")
 
-			anchors.centerIn: parent
-			implicitWidth: Math.min(parent.width, 500)
-			implicitHeight: Math.min(contentHeight, 500)
-			currentIndex: model.currentIndex
+        ListViewTemplate {
 
-			header: ToolButton
-			{
-				icon.name: "view-refresh"
-				onClicked: model.refresh()
-				text: qsTr("Refresh")
-			}
-			footer: RowLayout
-			{
-				width: parent.width
-				z: 99999
+            id: _keyboardModelListView
 
-				Button
-				{
-					Layout.fillWidth: true
-					text: qsTr("Layouts")
-					icon.name: "go-previous"
-					onClicked: control.stackView.push(_keyboardLayoutsComponent)
-				}
-			}
+            anchors.centerIn: parent
+            implicitWidth: Math.min(parent.width, 500)
+            implicitHeight: Math.min(contentHeight, 300)
+            currentIndex: model.currentIndex
 
-			model: _keyboard.Config.keyboardModelsModel
+            model: config.keyboardModelsModel
 
-			delegate: ListItemDelegate
-			{
-				id: _delegate
-				label1.text: model.label
-				onClicked:
-				{
-					_keyboardModelListView.model.currentIndex = index
-					control.stackView.push(_keyboardLayoutsComponent)
-				}
-			}
-		}
+            delegate: ListItemDelegate {
 
-	}
+                id: _delegate
+                label1.text: model.label
+                onClicked: {
 
-	Component
-	{
-		id: _keyboardLayoutsComponent
+                    _keyboardModelListView.model.currentIndex = index
+                    control.stackView.push(_keyboardLayoutsComponent)
+                }
+            }
+        }
 
-		Item
-		{
-			property string title: qsTr("Keyboard Layout")
-			property string subtitle: _keyboard.Config.prettyStatus
+        ColumnLayout{
 
-			ListViewTemplate
-			{
-				id: _layoutsListView
+            spacing: 2
+            anchors.verticalCenter: parent.verticalCenter
 
-				anchors.centerIn: parent
+            Button {
 
-				implicitWidth: Math.min(parent.width, 500)
-				implicitHeight: Math.min(contentHeight, 500)
+                icon.name: "view-refresh"
+                width: parent.width
+                onClicked: control.stackView.pop()
+                text: qsTr("Refresh")
+            }
 
-				currentIndex: model.currentIndex
-				footer: RowLayout
-				{
-					width: parent.width
-					z: 99999
+            Button {
 
-					Button
-					{
-						Layout.fillWidth: true
-						icon.name: "go-previous"
-						text: qsTr("Models")
-						onClicked: control.stackView.pop()
-					}
+                Layout.fillWidth: true
+                text: qsTr("Layouts")
+                icon.name: "go-next"
+                onClicked: control.stackView.push(_keyboardLayoutsComponent)
+            }
+        }
+    }
 
-					Button
-					{
-						Layout.fillWidth: true
-						icon.name: "go-next"
-						text: qsTr("Variants")
-						onClicked: control.stackView.push(_keyboardVariantsComponent)
-					}
-				}
+    Component {
 
-				model: _keyboard.Config.keyboardLayoutsModel
+        id: _keyboardLayoutsComponent
 
-				delegate: ListItemDelegate
-				{
-					id: _delegate
-					label1.text: model.label
-					onClicked:
-					{
-						_layoutsListView.model.currentIndex = index
-						_layoutsListView.positionViewAtIndex(index, ListView.Center)
-						control.stackView.push(_keyboardVariantsComponent)
-					}
-				}
-			}
-		}
+        Item {
+            
+            property string title: qsTr("Keyboard Layout")
+            property string subtitle: config.prettyStatus
 
+            ListViewTemplate {
 
-	}
+                id: _layoutsListView
 
-	Component
-	{
-		id: _keyboardVariantsComponent
+                anchors.centerIn: parent
 
-		Item
-		{
-			property string title: qsTr("Keyboard Layout")
-			property string subtitle: _keyboard.Config.prettyStatus
+                implicitWidth: Math.min(parent.width, 500)
+                implicitHeight: Math.min(contentHeight, 300)
 
-			ListViewTemplate
-			{
-				id: _variantsListView
+                currentIndex: model.currentIndex
 
-				anchors.centerIn: parent
+                model: config.keyboardLayoutsModel
 
-				implicitWidth: Math.min(parent.width, 500)
-				implicitHeight: Math.min(contentHeight, 500)
+                delegate: ListItemDelegate {
 
-				currentIndex: model.currentIndex
+                    id: _delegate
+                    label1.text: model.label
+                    onClicked: {
 
-				footerPositioning: ListView.OverlayFooter
+                        _layoutsListView.model.currentIndex = index
+                        _layoutsListView.positionViewAtIndex(index, ListView.Center)
+                        control.stackView.push(_keyboardVariantsComponent)
+                    }
+                }
+            }
 
-				footer: RowLayout
-				{
-					z: 99999
-					width: parent.width
+            ColumnLayout{
 
-					Button
-					{
-						Layout.fillWidth: true
-						text: qsTr("Layouts")
-						icon.name: "go-previous"
-						onClicked: control.stackView.pop()
-					}
-				}
+                spacing: 2
+                anchors.verticalCenter: parent.verticalCenter
 
-				model: _keyboard.Config.keyboardVariantsModel
+                Button {
 
-				delegate: ListItemDelegate
-				{
-					id: _delegate
-					label1.text: model.label
-					onClicked:
-					{
-						_variantsListView.model.currentIndex = index
-						_variantsListView.positionViewAtIndex(index, ListView.Center)
-					}
-				}
-			}
-		}
+                    Layout.fillWidth: true
+                    icon.name: "go-previous"
+                    text: qsTr("Models")
+                    onClicked: control.stackView.pop()
+                }
 
-	}
+                Button {
 
+                    Layout.fillWidth: true
+                    icon.name: "go-next"
+                    text: qsTr("Variants")
+                    onClicked: control.stackView.push(_keyboardVariantsComponent)
+                }
+            }
+        }
+    }
 
-	TextField
-	{
-		placeholderText: qsTr("Test your keyboard")
-		Layout.preferredHeight: 60
-		Layout.maximumWidth:  500
-		Layout.fillWidth: true
-		Layout.alignment: Qt.AlignCenter
+    Component {
 
-		background: Rectangle
-		{
-			color: Kirigami.Theme.backgroundColor
-			radius: 5
-			opacity: 0.3
-		}
-	}
+        id: _keyboardVariantsComponent
 
+        Item {
 
+            property string title: qsTr("Keyboard Layout")
+            property string subtitle: config.prettyStatus
+
+            ListViewTemplate {
+
+                id: _variantsListView
+
+                anchors.centerIn: parent
+
+                implicitWidth: Math.min(parent.width, 500)
+                implicitHeight: Math.min(contentHeight, 300)
+
+                currentIndex: model.currentIndex
+
+                model: config.keyboardVariantsModel
+
+                delegate: ListItemDelegate {
+
+                    id: _delegate
+                    label1.text: model.label
+                    onClicked: {
+
+                        _variantsListView.model.currentIndex = index
+                        _variantsListView.positionViewAtIndex(index, ListView.Center)
+                    }
+                }
+            }
+
+            ColumnLayout{
+
+                anchors.verticalCenter: parent.verticalCenter
+            
+                Button {
+
+                    Layout.fillWidth: true
+                    text: qsTr("Layouts")
+                    icon.name: "go-previous"
+                    onClicked: control.stackView.pop()
+                }
+            }
+        }
+
+    }
+
+    TextField {
+
+        placeholderText: qsTr("Test your keyboard")
+        Layout.preferredHeight: 48
+        Layout.maximumWidth:  500
+        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignCenter
+
+        background:Rectangle {
+
+            z: parent.z - 1
+            anchors.fill: parent
+            color: control.Kirigami.Theme.backgroundColor
+            radius: 5
+            opacity: 0.8
+        }
+    }
 }

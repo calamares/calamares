@@ -3,5 +3,9 @@
         <file alias="kbd-model-map">../keyboard/kbd-model-map</file>
         <file alias="images/restore.png">../keyboard/images/restore.png</file>
         <file>keyboardq.qml</file>
+        <file>ListItemDelegate.qml</file>
+        <file>ListViewTemplate.qml</file>
+        <file>ResponsiveBase.qml</file>
+        <file>keyboard.jpg</file>
     </qresource>
 </RCC>
