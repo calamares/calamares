@@ -62,6 +62,7 @@ public:
     PartitionLayout( const PartitionLayout& layout );
     ~PartitionLayout();
 
+    void init( const QVariantList& config );
     bool addEntry( const QString& mountPoint,
                    const QString& size,
                    const QString& min = QString(),

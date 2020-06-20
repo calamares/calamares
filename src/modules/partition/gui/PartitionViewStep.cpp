@@ -596,14 +596,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future = QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     m_future->setFuture( future );
 
-    if ( configurationMap.contains( "partitionLayout" ) )
-    {
-        m_core->initLayout( configurationMap.value( "partitionLayout" ).toList() );
-    }
-    else
-    {
-        m_core->initLayout();
-    }
+    m_core->initLayout( configurationMap.value( "partitionLayout" ).toList() );
 }
 
 

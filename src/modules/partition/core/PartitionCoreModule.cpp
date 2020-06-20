@@ -861,81 +861,9 @@ PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 }
 
 void
-PartitionCoreModule::initLayout()
-{
-    m_partLayout = new PartitionLayout();
-
-    m_partLayout->addEntry( QString( "/" ), QString( "100%" ) );
-}
-
-void
 PartitionCoreModule::initLayout( const QVariantList& config )
 {
-    bool ok;
-    QString sizeString;
-    QString minSizeString;
-    QString maxSizeString;
-
-    m_partLayout = new PartitionLayout();
-
-    for ( const auto& r : config )
-    {
-        QVariantMap pentry = r.toMap();
-
-        if ( !pentry.contains( "name" ) || !pentry.contains( "mountPoint" ) || !pentry.contains( "filesystem" )
-             || !pentry.contains( "size" ) )
-        {
-            cError() << "Partition layout entry #" << config.indexOf( r )
-                     << "lacks mandatory attributes, switching to default layout.";
-            delete ( m_partLayout );
-            initLayout();
-            break;
-        }
-
-        if ( pentry.contains( "size" ) && CalamaresUtils::getString( pentry, "size" ).isEmpty() )
-        {
-            sizeString.setNum( CalamaresUtils::getInteger( pentry, "size", 0 ) );
-        }
-        else
-        {
-            sizeString = CalamaresUtils::getString( pentry, "size" );
-        }
-
-        if ( pentry.contains( "minSize" ) && CalamaresUtils::getString( pentry, "minSize" ).isEmpty() )
-        {
-            minSizeString.setNum( CalamaresUtils::getInteger( pentry, "minSize", 0 ) );
-        }
-        else
-        {
-            minSizeString = CalamaresUtils::getString( pentry, "minSize" );
-        }
-
-        if ( pentry.contains( "maxSize" ) && CalamaresUtils::getString( pentry, "maxSize" ).isEmpty() )
-        {
-            maxSizeString.setNum( CalamaresUtils::getInteger( pentry, "maxSize", 0 ) );
-        }
-        else
-        {
-            maxSizeString = CalamaresUtils::getString( pentry, "maxSize" );
-        }
-
-        if ( !m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
-                                      CalamaresUtils::getString( pentry, "uuid" ),
-                                      CalamaresUtils::getString( pentry, "type" ),
-                                      CalamaresUtils::getUnsignedInteger( pentry, "attributes", 0 ),
-                                      CalamaresUtils::getString( pentry, "mountPoint" ),
-                                      CalamaresUtils::getString( pentry, "filesystem" ),
-                                      CalamaresUtils::getSubMap( pentry, "features", ok ),
-                                      sizeString,
-                                      minSizeString,
-                                      maxSizeString ) )
-        {
-            cError() << "Partition layout entry #" << config.indexOf( r ) << "is invalid, switching to default layout.";
-            delete ( m_partLayout );
-            initLayout();
-            break;
-        }
-    }
+    m_partLayout.init( config );
 }
 
 void
@@ -947,7 +875,7 @@ PartitionCoreModule::layoutApply( Device* dev,
                                   const PartitionRole& role )
 {
     bool isEfi = PartUtils::isEfiSystem();
-    QList< Partition* > partList = m_partLayout->execute( dev, firstSector, lastSector, luksPassphrase, parent, role );
+    QList< Partition* > partList = m_partLayout.execute( dev, firstSector, lastSector, luksPassphrase, parent, role );
 
     // Partition::mountPoint() tells us where it is mounted **now**, while
     // PartitionInfo::mountPoint() says where it will be mounted in the target system.
