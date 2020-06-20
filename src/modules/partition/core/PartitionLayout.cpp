@@ -62,20 +62,6 @@ PartitionLayout::PartitionLayout( const PartitionLayout& layout )
 
 PartitionLayout::~PartitionLayout() {}
 
-bool
-PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
-{
-    if ( !entry.isValid() )
-    {
-        cError() << "Partition size is invalid or has min size > max size";
-        return false;
-    }
-
-    m_partLayout.append( entry );
-
-    return true;
-}
-
 PartitionLayout::PartitionEntry::PartitionEntry()
     : partAttributes( 0 )
 {

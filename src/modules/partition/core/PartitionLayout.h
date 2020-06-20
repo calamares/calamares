@@ -63,7 +63,6 @@ public:
     PartitionLayout( const PartitionLayout& layout );
     ~PartitionLayout();
 
-    bool addEntry( PartitionEntry entry );
     bool addEntry( const QString& mountPoint,
                    const QString& size,
                    const QString& min = QString(),
