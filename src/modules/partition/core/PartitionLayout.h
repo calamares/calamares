@@ -44,8 +44,24 @@ public:
 
         /// @brief All-zeroes PartitionEntry
         PartitionEntry();
-        /// @brief Parse @p size, @p min and @p max to their respective member variables
-        PartitionEntry( const QString& size, const QString& min, const QString& max );
+        /// @brief Parse @p mountPoint, @p size, @p minSize and @p maxSize to their respective member variables
+        PartitionEntry( const QString& mountPoint,
+                        const QString& size,
+                        const QString& minSize = QString(),
+                        const QString& maxSize = QString() );
+        /// @brief All-field PartitionEntry
+        PartitionEntry( const QString& label,
+                        const QString& uuid,
+                        const QString& type,
+                        quint64 attributes,
+                        const QString& mountPoint,
+                        const QString& fs,
+                        const QVariantMap& features,
+                        const QString& size,
+                        const QString& minSize = QString(),
+                        const QString& maxSize = QString() );
+        /// @brief Copy PartitionEntry
+        PartitionEntry( const PartitionEntry& e );
 
         bool isValid() const
         {
@@ -63,20 +79,7 @@ public:
     ~PartitionLayout();
 
     void init( const QVariantList& config );
-    bool addEntry( const QString& mountPoint,
-                   const QString& size,
-                   const QString& min = QString(),
-                   const QString& max = QString() );
-    bool addEntry( const QString& label,
-                   const QString& uuid,
-                   const QString& type,
-                   quint64 attributes,
-                   const QString& mountPoint,
-                   const QString& fs,
-                   const QVariantMap& features,
-                   const QString& size,
-                   const QString& min = QString(),
-                   const QString& max = QString() );
+    bool addEntry( const PartitionEntry& entry );
 
     /**
      * @brief Apply the current partition layout to the selected drive space.

@@ -61,7 +61,7 @@ CreateLayoutsTests::testFixedSizePartition()
     PartitionRole role( PartitionRole::Role::Any );
     QList< Partition* > partitions;
 
-    if ( !layout.addEntry( QString( "/" ), QString( "5MiB" ) ) )
+    if ( !layout.addEntry( { QString( "/" ), QString( "5MiB" ) } ) )
     {
         QFAIL( qPrintable( "Unable to create / partition" ) );
     }
@@ -81,7 +81,7 @@ CreateLayoutsTests::testPercentSizePartition()
     PartitionRole role( PartitionRole::Role::Any );
     QList< Partition* > partitions;
 
-    if ( !layout.addEntry( QString( "/" ), QString( "50%" ) ) )
+    if ( !layout.addEntry( { QString( "/" ), QString( "50%" ) } ) )
     {
         QFAIL( qPrintable( "Unable to create / partition" ) );
     }
@@ -101,17 +101,17 @@ CreateLayoutsTests::testMixedSizePartition()
     PartitionRole role( PartitionRole::Role::Any );
     QList< Partition* > partitions;
 
-    if ( !layout.addEntry( QString( "/" ), QString( "5MiB" ) ) )
+    if ( !layout.addEntry( { QString( "/" ), QString( "5MiB" ) } ) )
     {
         QFAIL( qPrintable( "Unable to create / partition" ) );
     }
 
-    if ( !layout.addEntry( QString( "/home" ), QString( "50%" ) ) )
+    if ( !layout.addEntry( { QString( "/home" ), QString( "50%" ) } ) )
     {
         QFAIL( qPrintable( "Unable to create /home partition" ) );
     }
 
-    if ( !layout.addEntry( QString( "/bkup" ), QString( "50%" ) ) )
+    if ( !layout.addEntry( { QString( "/bkup" ), QString( "50%" ) } ) )
     {
         QFAIL( qPrintable( "Unable to create /bkup partition" ) );
     }
