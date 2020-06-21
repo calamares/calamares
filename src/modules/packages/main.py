@@ -319,7 +319,7 @@ class PMPamac(PackageManager):
         # resulting in remaining packages not being installed.
         import os
         if os.path.exists(lock):
-            check_target_env_call(["rm", lock)    
+            check_target_env_call(["rm", lock])    
 
     def install(self, pkgs, from_local=False):
         self.check_db_lock()
