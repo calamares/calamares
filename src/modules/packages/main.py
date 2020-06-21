@@ -322,10 +322,8 @@ class PMPamac(PackageManager):
             check_target_env_call(["rm", lock])    
 
     def install(self, pkgs, from_local=False):
-        self.check_db_lock()
-        pamac_flags = "install"
-        
-        check_target_env_call([self.backend, pamac_flags, "--no-confirm"] + pkgs)
+        self.check_db_lock()     
+        check_target_env_call([self.backend, "install", "--no-confirm"] + pkgs)
 
     def remove(self, pkgs):
         self.check_db_lock()
