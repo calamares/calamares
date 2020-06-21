@@ -325,19 +325,19 @@ class PMPamac(PackageManager):
         self.check_db_lock()
         pamac_flags = "install"
         
-        check_target_env_call([backend, pamac_flags, "--no-confirm"] + pkgs)
+        check_target_env_call([self.backend, pamac_flags, "--no-confirm"] + pkgs)
 
     def remove(self, pkgs):
         self.check_db_lock()
-        check_target_env_call([backend, "remove", "--no-confirm"] + pkgs)
+        check_target_env_call([self.backend, "remove", "--no-confirm"] + pkgs)
 
     def update_db(self):
         self.check_db_lock()
-        check_target_env_call([backend, "update", "--no-confirm"])
+        check_target_env_call([self.backend, "update", "--no-confirm"])
 
     def update_system(self):
         self.check_db_lock()
-        check_target_env_call([backend, "upgrade", "--no-confirm"])
+        check_target_env_call([self.backend, "upgrade", "--no-confirm"])
 
 
 class PMPortage(PackageManager):
