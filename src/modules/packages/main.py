@@ -309,6 +309,24 @@ class PMPacman(PackageManager):
 
     def update_system(self):
         check_target_env_call(["pacman", "-Su", "--noconfirm"])
+        
+        
+class PMPamac(PackageManager):
+    backend = "pamac"
+
+    def install(self, pkgs, from_local=False):
+        pamac_flags = "install"
+        
+        check_target_env_call([backend, pamac_flags + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call([backend, "remove"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call([backend, "update"])
+
+    def update_system(self):
+        check_target_env_call([backend, "upgrade"])
 
 
 class PMPortage(PackageManager):
