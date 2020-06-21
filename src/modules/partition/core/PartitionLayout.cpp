@@ -141,9 +141,6 @@ void
 PartitionLayout::init( const QVariantList& config )
 {
     bool ok;
-    QString sizeString;
-    QString minSizeString;
-    QString maxSizeString;
 
     m_partLayout.clear();
 
@@ -160,33 +157,6 @@ PartitionLayout::init( const QVariantList& config )
             break;
         }
 
-        if ( CalamaresUtils::getString( pentry, "size" ).isEmpty() )
-        {
-            sizeString.setNum( CalamaresUtils::getInteger( pentry, "size", 0 ) );
-        }
-        else
-        {
-            sizeString = CalamaresUtils::getString( pentry, "size" );
-        }
-
-        if ( CalamaresUtils::getString( pentry, "minSize" ).isEmpty() )
-        {
-            minSizeString.setNum( CalamaresUtils::getInteger( pentry, "minSize", 0 ) );
-        }
-        else
-        {
-            minSizeString = CalamaresUtils::getString( pentry, "minSize" );
-        }
-
-        if ( CalamaresUtils::getString( pentry, "maxSize" ).isEmpty() )
-        {
-            maxSizeString.setNum( CalamaresUtils::getInteger( pentry, "maxSize", 0 ) );
-        }
-        else
-        {
-            maxSizeString = CalamaresUtils::getString( pentry, "maxSize" );
-        }
-
         if ( !addEntry( CalamaresUtils::getString( pentry, "name" ),
                         CalamaresUtils::getString( pentry, "uuid" ),
                         CalamaresUtils::getString( pentry, "type" ),
@@ -194,9 +164,9 @@ PartitionLayout::init( const QVariantList& config )
                         CalamaresUtils::getString( pentry, "mountPoint" ),
                         CalamaresUtils::getString( pentry, "filesystem" ),
                         CalamaresUtils::getSubMap( pentry, "features", ok ),
-                        sizeString,
-                        minSizeString,
-                        maxSizeString ) )
+                        CalamaresUtils::getString( pentry, "size", QStringLiteral( "0" ) ),
+                        CalamaresUtils::getString( pentry, "minSize", QStringLiteral( "0" ) ),
+                        CalamaresUtils::getString( pentry, "maxSize", QStringLiteral( "0" ) ) ) )
         {
             cError() << "Partition layout entry #" << config.indexOf( r ) << "is invalid, switching to default layout.";
             m_partLayout.clear();
