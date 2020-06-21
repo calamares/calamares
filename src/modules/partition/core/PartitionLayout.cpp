@@ -160,7 +160,7 @@ PartitionLayout::init( const QVariantList& config )
             break;
         }
 
-        if ( pentry.contains( "size" ) && CalamaresUtils::getString( pentry, "size" ).isEmpty() )
+        if ( CalamaresUtils::getString( pentry, "size" ).isEmpty() )
         {
             sizeString.setNum( CalamaresUtils::getInteger( pentry, "size", 0 ) );
         }
@@ -169,7 +169,7 @@ PartitionLayout::init( const QVariantList& config )
             sizeString = CalamaresUtils::getString( pentry, "size" );
         }
 
-        if ( pentry.contains( "minSize" ) && CalamaresUtils::getString( pentry, "minSize" ).isEmpty() )
+        if ( CalamaresUtils::getString( pentry, "minSize" ).isEmpty() )
         {
             minSizeString.setNum( CalamaresUtils::getInteger( pentry, "minSize", 0 ) );
         }
@@ -178,7 +178,7 @@ PartitionLayout::init( const QVariantList& config )
             minSizeString = CalamaresUtils::getString( pentry, "minSize" );
         }
 
-        if ( pentry.contains( "maxSize" ) && CalamaresUtils::getString( pentry, "maxSize" ).isEmpty() )
+        if ( CalamaresUtils::getString( pentry, "maxSize" ).isEmpty() )
         {
             maxSizeString.setNum( CalamaresUtils::getInteger( pentry, "maxSize", 0 ) );
         }
