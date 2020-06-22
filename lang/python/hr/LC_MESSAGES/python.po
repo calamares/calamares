@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 23:13+0200\n"
+"POT-Creation-Date: 2020-06-18 15:42+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>, 2020\n"
 "Language-Team: Croatian (https://www.transifex.com/calamares/teams/20061/hr/)\n"
@@ -21,133 +21,32 @@ msgstr ""
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Instaliraj pakete."
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Konfigurirajte GRUB."
 
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Obrađujem pakete (%(count)d / %(total)d)"
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Montiranje particija."
 
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Instaliram paket."
-msgstr[1] "Instaliram %(num)d pakete."
-msgstr[2] "Instaliram %(num)d pakete."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Uklanjam paket."
-msgstr[1] "Uklanjam %(num)d pakete."
-msgstr[2] "Uklanjam %(num)d pakete."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Spremanje mrežne konfiguracije."
-
-#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
-#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
-#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "Greška konfiguracije"
 
-#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
-#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
-#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
-#: src/modules/initramfscfg/main.py:99
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Nijedna root točka montiranja nije definirana za <pre>{!s}</pre> korištenje."
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "Odmontiraj datotečne sustave."
-
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "Konfiguriranje mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
-#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
-#: src/modules/rawfs/main.py:172
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Nema definiranih particija za <pre>{!s}</pre> korištenje."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Konfiguriranje servisa OpenRC dmcrypt."
-
-#: src/modules/unpackfs/main.py:44
-msgid "Filling up filesystems."
-msgstr "Popunjavanje datotečnih sustava."
-
-#: src/modules/unpackfs/main.py:257
-msgid "rsync failed with error code {}."
-msgstr "rsync nije uspio s kodom pogreške {}."
-
-#: src/modules/unpackfs/main.py:302
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Otpakiravanje slike {}/{}, datoteka {}/{}"
-
-#: src/modules/unpackfs/main.py:317
-msgid "Starting to unpack {}"
-msgstr "Početak raspakiravanja {}"
-
-#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
-msgid "Failed to unpack image \"{}\""
-msgstr "Otpakiravnje slike nije uspjelo \"{}\""
-
-#: src/modules/unpackfs/main.py:399
-msgid "No mount point for root partition"
-msgstr "Nema točke montiranja za root particiju"
-
-#: src/modules/unpackfs/main.py:400
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage ne sadrži ključ \"rootMountPoint\", ne radi ništa"
-
-#: src/modules/unpackfs/main.py:405
-msgid "Bad mount point for root partition"
-msgstr "Neispravna točka montiranja za root particiju"
-
-#: src/modules/unpackfs/main.py:406
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint je \"{}\", što ne postoji, ne radi ništa"
-
-#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
-#: src/modules/unpackfs/main.py:446
-msgid "Bad unsquash configuration"
-msgstr "Neispravna unsquash konfiguracija"
-
-#: src/modules/unpackfs/main.py:423
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "Datotečni sustav za \"{}\" ({}) nije podržan na vašem trenutnom kernelu"
-
-#: src/modules/unpackfs/main.py:427
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Izvorni datotečni sustav \"{}\" ne postoji"
-
-#: src/modules/unpackfs/main.py:433
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Neuspješno pronalaženje unsquashfs, provjerite imate li instaliran paket "
-"squashfs-tools"
-
-#: src/modules/unpackfs/main.py:447
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Odredište \"{}\" u ciljnom sustavu nije direktorij"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -190,38 +89,147 @@ msgstr ""
 "Nepoznata systemd naredba <code>{command!s}</code> i <code>{suffix!s}</code>"
 " za jedinicu {name!s}."
 
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Testni python posao."
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Odmontiraj datotečne sustave."
 
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Testni python korak {}"
+#: src/modules/unpackfs/main.py:44
+msgid "Filling up filesystems."
+msgstr "Popunjavanje datotečnih sustava."
 
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "Instaliram bootloader."
+#: src/modules/unpackfs/main.py:257
+msgid "rsync failed with error code {}."
+msgstr "rsync nije uspio s kodom pogreške {}."
 
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "Konfiguriranje lokalizacije."
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Otpakiravanje slike {}/{}, datoteka {}/{}"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Montiranje particija."
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "Početak raspakiravanja {}"
 
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Konfigurirajte Plymouth temu"
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+msgid "Failed to unpack image \"{}\""
+msgstr "Otpakiravnje slike nije uspjelo \"{}\""
+
+#: src/modules/unpackfs/main.py:415
+msgid "No mount point for root partition"
+msgstr "Nema točke montiranja za root particiju"
+
+#: src/modules/unpackfs/main.py:416
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage ne sadrži ključ \"rootMountPoint\", ne radi ništa"
+
+#: src/modules/unpackfs/main.py:421
+msgid "Bad mount point for root partition"
+msgstr "Neispravna točka montiranja za root particiju"
+
+#: src/modules/unpackfs/main.py:422
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint je \"{}\", što ne postoji, ne radi ništa"
+
+#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
+#: src/modules/unpackfs/main.py:462
+msgid "Bad unsquash configuration"
+msgstr "Neispravna unsquash konfiguracija"
+
+#: src/modules/unpackfs/main.py:439
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "Datotečni sustav za \"{}\" ({}) nije podržan na vašem trenutnom kernelu"
+
+#: src/modules/unpackfs/main.py:443
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Izvorni datotečni sustav \"{}\" ne postoji"
+
+#: src/modules/unpackfs/main.py:449
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Neuspješno pronalaženje unsquashfs, provjerite imate li instaliran paket "
+"squashfs-tools"
+
+#: src/modules/unpackfs/main.py:463
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Odredište \"{}\" u ciljnom sustavu nije direktorij"
+
+#: src/modules/displaymanager/main.py:523
+msgid "Cannot write KDM configuration file"
+msgstr "Ne mogu zapisati KDM konfiguracijsku datoteku"
+
+#: src/modules/displaymanager/main.py:524
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM konfiguracijska datoteka {!s} ne postoji"
+
+#: src/modules/displaymanager/main.py:585
+msgid "Cannot write LXDM configuration file"
+msgstr "Ne mogu zapisati LXDM konfiguracijsku datoteku"
+
+#: src/modules/displaymanager/main.py:586
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM konfiguracijska datoteka {!s} ne postoji"
+
+#: src/modules/displaymanager/main.py:669
+msgid "Cannot write LightDM configuration file"
+msgstr "Ne moku zapisati LightDM konfiguracijsku datoteku"
+
+#: src/modules/displaymanager/main.py:670
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM konfiguracijska datoteka {!s} ne postoji"
+
+#: src/modules/displaymanager/main.py:744
+msgid "Cannot configure LightDM"
+msgstr "Ne mogu konfigurirati LightDM"
+
+#: src/modules/displaymanager/main.py:745
+msgid "No LightDM greeter installed."
+msgstr "Nije instaliran LightDM pozdravnik."
+
+#: src/modules/displaymanager/main.py:776
+msgid "Cannot write SLIM configuration file"
+msgstr "Ne mogu zapisati SLIM konfiguracijsku datoteku"
+
+#: src/modules/displaymanager/main.py:777
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM konfiguracijska datoteka {!s} ne postoji"
+
+#: src/modules/displaymanager/main.py:903
+msgid "No display managers selected for the displaymanager module."
+msgstr "Nisu odabrani upravitelji zaslona za modul displaymanager."
+
+#: src/modules/displaymanager/main.py:904
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+"Popis upravitelja zaslona je prazan ili nedefiniran u bothglobalstorage i "
+"displaymanager.conf."
+
+#: src/modules/displaymanager/main.py:986
+msgid "Display manager configuration was incomplete"
+msgstr "Konfiguracija upravitelja zaslona nije bila potpuna"
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "Konfiguriranje mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:210
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Nijedna root točka montiranja nije definirana za <pre>{!s}</pre> korištenje."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "Konfiguriranje šifriranog swapa."
 
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "Zapisujem fstab."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Instaliranje podataka."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -273,6 +281,44 @@ msgid ""
 msgstr ""
 "Putanja servisa  {name!s} je <code>{path!s}</code>, međutim ona ne postoji."
 
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Konfigurirajte Plymouth temu"
+
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Instaliraj pakete."
+
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Obrađujem pakete (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Instaliram paket."
+msgstr[1] "Instaliram %(num)d pakete."
+msgstr[2] "Instaliram %(num)d pakete."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Uklanjam paket."
+msgstr[1] "Uklanjam %(num)d pakete."
+msgstr[2] "Uklanjam %(num)d pakete."
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Instaliram bootloader."
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "Postavljanje hardverskog sata."
+
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
 msgstr "Stvaranje initramfs s dracut."
@@ -285,74 +331,31 @@ msgstr "Nije uspjelo pokretanje dracuta na ciljanom sustavu"
 msgid "The exit code was {}"
 msgstr "Izlazni kod bio je {}"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "Konfigurirajte GRUB."
-
-#: src/modules/displaymanager/main.py:515
-msgid "Cannot write KDM configuration file"
-msgstr "Ne mogu zapisati KDM konfiguracijsku datoteku"
-
-#: src/modules/displaymanager/main.py:516
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM konfiguracijska datoteka {!s} ne postoji"
-
-#: src/modules/displaymanager/main.py:577
-msgid "Cannot write LXDM configuration file"
-msgstr "Ne mogu zapisati LXDM konfiguracijsku datoteku"
-
-#: src/modules/displaymanager/main.py:578
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM konfiguracijska datoteka {!s} ne postoji"
-
-#: src/modules/displaymanager/main.py:661
-msgid "Cannot write LightDM configuration file"
-msgstr "Ne moku zapisati LightDM konfiguracijsku datoteku"
-
-#: src/modules/displaymanager/main.py:662
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM konfiguracijska datoteka {!s} ne postoji"
-
-#: src/modules/displaymanager/main.py:736
-msgid "Cannot configure LightDM"
-msgstr "Ne mogu konfigurirati LightDM"
-
-#: src/modules/displaymanager/main.py:737
-msgid "No LightDM greeter installed."
-msgstr "Nije instaliran LightDM pozdravnik."
-
-#: src/modules/displaymanager/main.py:768
-msgid "Cannot write SLIM configuration file"
-msgstr "Ne mogu zapisati SLIM konfiguracijsku datoteku"
-
-#: src/modules/displaymanager/main.py:769
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM konfiguracijska datoteka {!s} ne postoji"
-
-#: src/modules/displaymanager/main.py:895
-msgid "No display managers selected for the displaymanager module."
-msgstr "Nisu odabrani upravitelji zaslona za modul displaymanager."
-
-#: src/modules/displaymanager/main.py:896
-msgid ""
-"The displaymanagers list is empty or undefined in bothglobalstorage and "
-"displaymanager.conf."
-msgstr ""
-"Popis upravitelja zaslona je prazan ili nedefiniran u bothglobalstorage i "
-"displaymanager.conf."
-
-#: src/modules/displaymanager/main.py:978
-msgid "Display manager configuration was incomplete"
-msgstr "Konfiguracija upravitelja zaslona nije bila potpuna"
-
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "Konfiguriranje initramfs."
 
-#: src/modules/hwclock/main.py:35
-msgid "Setting hardware clock."
-msgstr "Postavljanje hardverskog sata."
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Konfiguriranje servisa OpenRC dmcrypt."
 
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "Instaliranje podataka."
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Zapisujem fstab."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Testni python posao."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Testni python korak {}"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Konfiguriranje lokalizacije."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Spremanje mrežne konfiguracije."

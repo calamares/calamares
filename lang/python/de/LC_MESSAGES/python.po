@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 23:13+0200\n"
+"POT-Creation-Date: 2020-06-18 15:42+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Andreas Eitel <github-aneitel@online.de>, 2020\n"
 "Language-Team: German (https://www.transifex.com/calamares/teams/20061/de/)\n"
@@ -23,135 +23,32 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Pakete installieren "
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "GRUB konfigurieren."
 
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Verarbeite Pakete (%(count)d / %(total)d)"
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Hänge Partitionen ein."
 
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Installiere ein Paket"
-msgstr[1] "Installiere %(num)d Pakete."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Entferne ein Paket"
-msgstr[1] "Entferne %(num)d Pakete."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Speichere Netzwerkkonfiguration."
-
-#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
-#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
-#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "Konfigurationsfehler"
 
-#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
-#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
-#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
-#: src/modules/initramfscfg/main.py:99
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Für <pre>{!s}</pre> wurde kein Einhängepunkt für die Root-Partition "
-"angegeben."
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "Dateisysteme aushängen."
-
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "Konfiguriere mkinitcpio. "
-
-#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
-#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
-#: src/modules/rawfs/main.py:172
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Für <pre>{!s}</pre> sind keine zu verwendenden Partitionen definiert."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Konfiguriere den dmcrypt-Dienst von OpenRC."
-
-#: src/modules/unpackfs/main.py:44
-msgid "Filling up filesystems."
-msgstr "Befüllen von Dateisystemen."
-
-#: src/modules/unpackfs/main.py:257
-msgid "rsync failed with error code {}."
-msgstr "rsync fehlgeschlagen mit Fehlercode {}."
-
-#: src/modules/unpackfs/main.py:302
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Bild Entpacken {}/{}, Datei {}/{}"
-
-#: src/modules/unpackfs/main.py:317
-msgid "Starting to unpack {}"
-msgstr "Beginn des Entpackens {}"
-
-#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
-msgid "Failed to unpack image \"{}\""
-msgstr "Entpacken des Image \"{}\" fehlgeschlagen"
-
-#: src/modules/unpackfs/main.py:399
-msgid "No mount point for root partition"
-msgstr "Kein Einhängepunkt für die Root-Partition"
-
-#: src/modules/unpackfs/main.py:400
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
-"globalstorage enthält keinen Schlüssel namens \"rootMountPoint\", tue nichts"
-
-#: src/modules/unpackfs/main.py:405
-msgid "Bad mount point for root partition"
-msgstr "Ungültiger Einhängepunkt für die Root-Partition"
-
-#: src/modules/unpackfs/main.py:406
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint ist \"{}\", welcher nicht existiert, tue nichts"
-
-#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
-#: src/modules/unpackfs/main.py:446
-msgid "Bad unsquash configuration"
-msgstr "Ungültige unsquash-Konfiguration"
-
-#: src/modules/unpackfs/main.py:423
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr ""
-"Das Dateisystem für \"{}\". ({}) wird von Ihrem aktuellen Kernel nicht "
-"unterstützt"
-
-#: src/modules/unpackfs/main.py:427
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Das Quelldateisystem \"{}\" existiert nicht"
-
-#: src/modules/unpackfs/main.py:433
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Konnte unsquashfs nicht finden, stellen Sie sicher, dass Sie das Paket "
-"namens squashfs-tools installiert haben"
-
-#: src/modules/unpackfs/main.py:447
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Das Ziel \"{}\" im Zielsystem ist kein Verzeichnis"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -194,38 +91,151 @@ msgstr ""
 "Unbekannte systemd-Befehle <code>{command!s}</code> und "
 "<code>{suffix!s}</code> für Einheit {name!s}."
 
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Dummy Python-Job"
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Dateisysteme aushängen."
 
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Dummy Python-Schritt {}"
+#: src/modules/unpackfs/main.py:44
+msgid "Filling up filesystems."
+msgstr "Befüllen von Dateisystemen."
 
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "Installiere Bootloader."
+#: src/modules/unpackfs/main.py:257
+msgid "rsync failed with error code {}."
+msgstr "rsync fehlgeschlagen mit Fehlercode {}."
 
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "Konfiguriere Lokalisierungen."
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Bild Entpacken {}/{}, Datei {}/{}"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Hänge Partitionen ein."
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "Beginn des Entpackens {}"
 
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Konfiguriere Plymouth-Thema"
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+msgid "Failed to unpack image \"{}\""
+msgstr "Entpacken des Image \"{}\" fehlgeschlagen"
+
+#: src/modules/unpackfs/main.py:415
+msgid "No mount point for root partition"
+msgstr "Kein Einhängepunkt für die Root-Partition"
+
+#: src/modules/unpackfs/main.py:416
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr ""
+"globalstorage enthält keinen Schlüssel namens \"rootMountPoint\", tue nichts"
+
+#: src/modules/unpackfs/main.py:421
+msgid "Bad mount point for root partition"
+msgstr "Ungültiger Einhängepunkt für die Root-Partition"
+
+#: src/modules/unpackfs/main.py:422
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint ist \"{}\", welcher nicht existiert, tue nichts"
+
+#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
+#: src/modules/unpackfs/main.py:462
+msgid "Bad unsquash configuration"
+msgstr "Ungültige unsquash-Konfiguration"
+
+#: src/modules/unpackfs/main.py:439
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr ""
+"Das Dateisystem für \"{}\". ({}) wird von Ihrem aktuellen Kernel nicht "
+"unterstützt"
+
+#: src/modules/unpackfs/main.py:443
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Das Quelldateisystem \"{}\" existiert nicht"
+
+#: src/modules/unpackfs/main.py:449
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Konnte unsquashfs nicht finden, stellen Sie sicher, dass Sie das Paket "
+"namens squashfs-tools installiert haben"
+
+#: src/modules/unpackfs/main.py:463
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Das Ziel \"{}\" im Zielsystem ist kein Verzeichnis"
+
+#: src/modules/displaymanager/main.py:523
+msgid "Cannot write KDM configuration file"
+msgstr "Schreiben der KDM-Konfigurationsdatei nicht möglich"
+
+#: src/modules/displaymanager/main.py:524
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM-Konfigurationsdatei {!s} existiert nicht"
+
+#: src/modules/displaymanager/main.py:585
+msgid "Cannot write LXDM configuration file"
+msgstr "Schreiben der LXDM-Konfigurationsdatei nicht möglich"
+
+#: src/modules/displaymanager/main.py:586
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM-Konfigurationsdatei {!s} existiert nicht"
+
+#: src/modules/displaymanager/main.py:669
+msgid "Cannot write LightDM configuration file"
+msgstr "Schreiben der LightDM-Konfigurationsdatei nicht möglich"
+
+#: src/modules/displaymanager/main.py:670
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM-Konfigurationsdatei {!s} existiert nicht"
+
+#: src/modules/displaymanager/main.py:744
+msgid "Cannot configure LightDM"
+msgstr "Konfiguration von LightDM ist nicht möglich"
+
+#: src/modules/displaymanager/main.py:745
+msgid "No LightDM greeter installed."
+msgstr "Keine Benutzeroberfläche für LightDM installiert."
+
+#: src/modules/displaymanager/main.py:776
+msgid "Cannot write SLIM configuration file"
+msgstr "Schreiben der SLIM-Konfigurationsdatei nicht möglich"
+
+#: src/modules/displaymanager/main.py:777
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM-Konfigurationsdatei {!s} existiert nicht"
+
+#: src/modules/displaymanager/main.py:903
+msgid "No display managers selected for the displaymanager module."
+msgstr "Keine Displaymanager für das Displaymanager-Modul ausgewählt."
+
+#: src/modules/displaymanager/main.py:904
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+"Die Liste der Displaymanager ist leer oder weder in globalstorage noch in "
+"displaymanager.conf definiert."
+
+#: src/modules/displaymanager/main.py:986
+msgid "Display manager configuration was incomplete"
+msgstr "Die Konfiguration des Displaymanager war unvollständig."
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "Konfiguriere mkinitcpio. "
+
+#: src/modules/initcpiocfg/main.py:210
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Für <pre>{!s}</pre> wurde kein Einhängepunkt für die Root-Partition "
+"angegeben."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "Konfiguriere verschlüsselten Auslagerungsspeicher."
 
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "Schreibe fstab."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Installiere Daten."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -278,6 +288,42 @@ msgstr ""
 "Der Pfad für den Dienst {name!s} is <code>{path!s}</code>, welcher nicht "
 "existiert."
 
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Konfiguriere Plymouth-Thema"
+
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Pakete installieren "
+
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Verarbeite Pakete (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Installiere ein Paket"
+msgstr[1] "Installiere %(num)d Pakete."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Entferne ein Paket"
+msgstr[1] "Entferne %(num)d Pakete."
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Installiere Bootloader."
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "Einstellen der Hardware-Uhr."
+
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
 msgstr "Erstelle initramfs mit dracut."
@@ -290,74 +336,31 @@ msgstr "Ausführen von dracut auf dem Ziel schlug fehl"
 msgid "The exit code was {}"
 msgstr "Der Exit-Code war {}"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "GRUB konfigurieren."
-
-#: src/modules/displaymanager/main.py:515
-msgid "Cannot write KDM configuration file"
-msgstr "Schreiben der KDM-Konfigurationsdatei nicht möglich"
-
-#: src/modules/displaymanager/main.py:516
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM-Konfigurationsdatei {!s} existiert nicht"
-
-#: src/modules/displaymanager/main.py:577
-msgid "Cannot write LXDM configuration file"
-msgstr "Schreiben der LXDM-Konfigurationsdatei nicht möglich"
-
-#: src/modules/displaymanager/main.py:578
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM-Konfigurationsdatei {!s} existiert nicht"
-
-#: src/modules/displaymanager/main.py:661
-msgid "Cannot write LightDM configuration file"
-msgstr "Schreiben der LightDM-Konfigurationsdatei nicht möglich"
-
-#: src/modules/displaymanager/main.py:662
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM-Konfigurationsdatei {!s} existiert nicht"
-
-#: src/modules/displaymanager/main.py:736
-msgid "Cannot configure LightDM"
-msgstr "Konfiguration von LightDM ist nicht möglich"
-
-#: src/modules/displaymanager/main.py:737
-msgid "No LightDM greeter installed."
-msgstr "Keine Benutzeroberfläche für LightDM installiert."
-
-#: src/modules/displaymanager/main.py:768
-msgid "Cannot write SLIM configuration file"
-msgstr "Schreiben der SLIM-Konfigurationsdatei nicht möglich"
-
-#: src/modules/displaymanager/main.py:769
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM-Konfigurationsdatei {!s} existiert nicht"
-
-#: src/modules/displaymanager/main.py:895
-msgid "No display managers selected for the displaymanager module."
-msgstr "Keine Displaymanager für das Displaymanager-Modul ausgewählt."
-
-#: src/modules/displaymanager/main.py:896
-msgid ""
-"The displaymanagers list is empty or undefined in bothglobalstorage and "
-"displaymanager.conf."
-msgstr ""
-"Die Liste der Displaymanager ist leer oder weder in globalstorage noch in "
-"displaymanager.conf definiert."
-
-#: src/modules/displaymanager/main.py:978
-msgid "Display manager configuration was incomplete"
-msgstr "Die Konfiguration des Displaymanager war unvollständig."
-
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "Konfiguriere initramfs."
 
-#: src/modules/hwclock/main.py:35
-msgid "Setting hardware clock."
-msgstr "Einstellen der Hardware-Uhr."
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Konfiguriere den dmcrypt-Dienst von OpenRC."
 
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "Installiere Daten."
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Schreibe fstab."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Dummy Python-Job"
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Dummy Python-Schritt {}"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Konfiguriere Lokalisierungen."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Speichere Netzwerkkonfiguration."

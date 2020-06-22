@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 23:13+0200\n"
+"POT-Creation-Date: 2020-06-18 15:42+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>, 2020\n"
 "Language-Team: Slovak (https://www.transifex.com/calamares/teams/20061/sk/)\n"
@@ -21,132 +21,32 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Inštalácia balíkov."
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Konfigurácia zavádzača GRUB."
 
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Spracovávajú sa balíky (%(count)d / %(total)d)"
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Pripájanie oddielov."
 
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Inštaluje sa jeden balík."
-msgstr[1] "Inštalujú sa %(num)d balíky."
-msgstr[2] "Inštaluje sa %(num)d balíkov."
-msgstr[3] "Inštaluje sa %(num)d balíkov."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Odstraňuje sa jeden balík."
-msgstr[1] "Odstraňujú sa %(num)d balíky."
-msgstr[2] "Odstraňuje sa %(num)d balíkov."
-msgstr[3] "Odstraňuje sa %(num)d balíkov."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Ukladanie sieťovej konfigurácie."
-
-#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
-#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
-#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "Chyba konfigurácie"
 
-#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
-#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
-#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
-#: src/modules/initramfscfg/main.py:99
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Nie je zadaný žiadny bod pripojenia na použitie pre <pre>{!s}</pre>."
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "Odpojenie súborových systémov."
-
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "Konfigurácia mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
-#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
-#: src/modules/rawfs/main.py:172
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Nie sú určené žiadne oddiely na použitie pre <pre>{!s}</pre>."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr ""
-
-#: src/modules/unpackfs/main.py:44
-msgid "Filling up filesystems."
-msgstr "Napĺňanie súborových systémov."
-
-#: src/modules/unpackfs/main.py:257
-msgid "rsync failed with error code {}."
-msgstr "Príkaz rsync zlyhal s chybovým kódom {}."
-
-#: src/modules/unpackfs/main.py:302
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Rozbaľuje sa obraz {}/{}, súbor {}/{}"
-
-#: src/modules/unpackfs/main.py:317
-msgid "Starting to unpack {}"
-msgstr "Spúšťa sa rozbaľovanie {}"
-
-#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
-msgid "Failed to unpack image \"{}\""
-msgstr "Zlyhalo rozbalenie obrazu „{}“"
-
-#: src/modules/unpackfs/main.py:399
-msgid "No mount point for root partition"
-msgstr "Žiadny bod pripojenia pre koreňový oddiel"
-
-#: src/modules/unpackfs/main.py:400
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:405
-msgid "Bad mount point for root partition"
-msgstr "Zlý bod pripojenia pre koreňový oddiel"
-
-#: src/modules/unpackfs/main.py:406
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
-#: src/modules/unpackfs/main.py:446
-msgid "Bad unsquash configuration"
-msgstr "Nesprávna konfigurácia nástroja unsquash"
-
-#: src/modules/unpackfs/main.py:423
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "Súborový systém pre \"{}\" ({}) nie je podporovaný vaším aktuálnym jadrom"
-
-#: src/modules/unpackfs/main.py:427
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Zdrojový súborový systém \"{}\" neexistuje"
-
-#: src/modules/unpackfs/main.py:433
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-
-#: src/modules/unpackfs/main.py:447
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Cieľ \"{}\" v cieľovom systéme nie je adresárom"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -189,38 +89,142 @@ msgstr ""
 "Neznáme príkazy systému systemd <code>{command!s}</code> a "
 "<code>{suffix!s}</code> pre jednotku {name!s}."
 
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Fiktívna úloha jazyka python."
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Odpojenie súborových systémov."
 
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Fiktívny krok {} jazyka python"
+#: src/modules/unpackfs/main.py:44
+msgid "Filling up filesystems."
+msgstr "Napĺňanie súborových systémov."
 
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "Inštalácia zavádzača."
+#: src/modules/unpackfs/main.py:257
+msgid "rsync failed with error code {}."
+msgstr "Príkaz rsync zlyhal s chybovým kódom {}."
 
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "Konfigurácia miestnych nastavení."
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Rozbaľuje sa obraz {}/{}, súbor {}/{}"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Pripájanie oddielov."
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "Spúšťa sa rozbaľovanie {}"
 
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Konfigurácia motívu služby Plymouth"
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+msgid "Failed to unpack image \"{}\""
+msgstr "Zlyhalo rozbalenie obrazu „{}“"
+
+#: src/modules/unpackfs/main.py:415
+msgid "No mount point for root partition"
+msgstr "Žiadny bod pripojenia pre koreňový oddiel"
+
+#: src/modules/unpackfs/main.py:416
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:421
+msgid "Bad mount point for root partition"
+msgstr "Zlý bod pripojenia pre koreňový oddiel"
+
+#: src/modules/unpackfs/main.py:422
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
+#: src/modules/unpackfs/main.py:462
+msgid "Bad unsquash configuration"
+msgstr "Nesprávna konfigurácia nástroja unsquash"
+
+#: src/modules/unpackfs/main.py:439
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "Súborový systém pre \"{}\" ({}) nie je podporovaný vaším aktuálnym jadrom"
+
+#: src/modules/unpackfs/main.py:443
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Zdrojový súborový systém \"{}\" neexistuje"
+
+#: src/modules/unpackfs/main.py:449
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:463
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Cieľ \"{}\" v cieľovom systéme nie je adresárom"
+
+#: src/modules/displaymanager/main.py:523
+msgid "Cannot write KDM configuration file"
+msgstr "Nedá sa zapísať konfiguračný súbor správcu KDM"
+
+#: src/modules/displaymanager/main.py:524
+msgid "KDM config file {!s} does not exist"
+msgstr "Konfiguračný súbor správcu KDM {!s} neexistuje"
+
+#: src/modules/displaymanager/main.py:585
+msgid "Cannot write LXDM configuration file"
+msgstr "Nedá sa zapísať konfiguračný súbor správcu LXDM"
+
+#: src/modules/displaymanager/main.py:586
+msgid "LXDM config file {!s} does not exist"
+msgstr "Konfiguračný súbor správcu LXDM {!s} neexistuje"
+
+#: src/modules/displaymanager/main.py:669
+msgid "Cannot write LightDM configuration file"
+msgstr "Nedá sa zapísať konfiguračný súbor správcu LightDM"
+
+#: src/modules/displaymanager/main.py:670
+msgid "LightDM config file {!s} does not exist"
+msgstr "Konfiguračný súbor správcu LightDM {!s} neexistuje"
+
+#: src/modules/displaymanager/main.py:744
+msgid "Cannot configure LightDM"
+msgstr "Nedá s nakonfigurovať správca LightDM"
+
+#: src/modules/displaymanager/main.py:745
+msgid "No LightDM greeter installed."
+msgstr "Nie je nainštalovaný žiadny vítací nástroj LightDM."
+
+#: src/modules/displaymanager/main.py:776
+msgid "Cannot write SLIM configuration file"
+msgstr "Nedá sa zapísať konfiguračný súbor správcu SLIM"
+
+#: src/modules/displaymanager/main.py:777
+msgid "SLIM config file {!s} does not exist"
+msgstr "Konfiguračný súbor správcu SLIM {!s} neexistuje"
+
+#: src/modules/displaymanager/main.py:903
+msgid "No display managers selected for the displaymanager module."
+msgstr "Neboli vybraní žiadni správcovia zobrazenia pre modul displaymanager."
+
+#: src/modules/displaymanager/main.py:904
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+
+#: src/modules/displaymanager/main.py:986
+msgid "Display manager configuration was incomplete"
+msgstr "Konfigurácia správcu zobrazenia nebola úplná"
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "Konfigurácia mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:210
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "Nie je zadaný žiadny bod pripojenia na použitie pre <pre>{!s}</pre>."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "Konfigurácia zašifrovaného odkladacieho priestoru."
 
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "Zapisovanie fstab."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Inštalácia údajov."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -265,6 +269,46 @@ msgid ""
 "exist."
 msgstr "Cesta k službe {name!s} je <code>{path!s}</code>, ale neexistuje."
 
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Konfigurácia motívu služby Plymouth"
+
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Inštalácia balíkov."
+
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Spracovávajú sa balíky (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Inštaluje sa jeden balík."
+msgstr[1] "Inštalujú sa %(num)d balíky."
+msgstr[2] "Inštaluje sa %(num)d balíkov."
+msgstr[3] "Inštaluje sa %(num)d balíkov."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Odstraňuje sa jeden balík."
+msgstr[1] "Odstraňujú sa %(num)d balíky."
+msgstr[2] "Odstraňuje sa %(num)d balíkov."
+msgstr[3] "Odstraňuje sa %(num)d balíkov."
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Inštalácia zavádzača."
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "Nastavovanie hardvérových hodín."
+
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
 msgstr "Vytváranie initramfs pomocou nástroja dracut."
@@ -277,72 +321,31 @@ msgstr "Zlyhalo spustenie nástroja dracut v cieli"
 msgid "The exit code was {}"
 msgstr "Kód skončenia bol {}"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "Konfigurácia zavádzača GRUB."
-
-#: src/modules/displaymanager/main.py:515
-msgid "Cannot write KDM configuration file"
-msgstr "Nedá sa zapísať konfiguračný súbor správcu KDM"
-
-#: src/modules/displaymanager/main.py:516
-msgid "KDM config file {!s} does not exist"
-msgstr "Konfiguračný súbor správcu KDM {!s} neexistuje"
-
-#: src/modules/displaymanager/main.py:577
-msgid "Cannot write LXDM configuration file"
-msgstr "Nedá sa zapísať konfiguračný súbor správcu LXDM"
-
-#: src/modules/displaymanager/main.py:578
-msgid "LXDM config file {!s} does not exist"
-msgstr "Konfiguračný súbor správcu LXDM {!s} neexistuje"
-
-#: src/modules/displaymanager/main.py:661
-msgid "Cannot write LightDM configuration file"
-msgstr "Nedá sa zapísať konfiguračný súbor správcu LightDM"
-
-#: src/modules/displaymanager/main.py:662
-msgid "LightDM config file {!s} does not exist"
-msgstr "Konfiguračný súbor správcu LightDM {!s} neexistuje"
-
-#: src/modules/displaymanager/main.py:736
-msgid "Cannot configure LightDM"
-msgstr "Nedá s nakonfigurovať správca LightDM"
-
-#: src/modules/displaymanager/main.py:737
-msgid "No LightDM greeter installed."
-msgstr "Nie je nainštalovaný žiadny vítací nástroj LightDM."
-
-#: src/modules/displaymanager/main.py:768
-msgid "Cannot write SLIM configuration file"
-msgstr "Nedá sa zapísať konfiguračný súbor správcu SLIM"
-
-#: src/modules/displaymanager/main.py:769
-msgid "SLIM config file {!s} does not exist"
-msgstr "Konfiguračný súbor správcu SLIM {!s} neexistuje"
-
-#: src/modules/displaymanager/main.py:895
-msgid "No display managers selected for the displaymanager module."
-msgstr "Neboli vybraní žiadni správcovia zobrazenia pre modul displaymanager."
-
-#: src/modules/displaymanager/main.py:896
-msgid ""
-"The displaymanagers list is empty or undefined in bothglobalstorage and "
-"displaymanager.conf."
-msgstr ""
-
-#: src/modules/displaymanager/main.py:978
-msgid "Display manager configuration was incomplete"
-msgstr "Konfigurácia správcu zobrazenia nebola úplná"
-
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "Konfigurácia initramfs."
 
-#: src/modules/hwclock/main.py:35
-msgid "Setting hardware clock."
-msgstr "Nastavovanie hardvérových hodín."
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr ""
 
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "Inštalácia údajov."
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Zapisovanie fstab."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Fiktívna úloha jazyka python."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Fiktívny krok {} jazyka python"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Konfigurácia miestnych nastavení."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Ukladanie sieťovej konfigurácie."
