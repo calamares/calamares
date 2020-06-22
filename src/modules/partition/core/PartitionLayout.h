@@ -59,7 +59,6 @@ public:
     };
 
     PartitionLayout();
-    PartitionLayout( PartitionEntry entry );
     PartitionLayout( const PartitionLayout& layout );
     ~PartitionLayout();
 

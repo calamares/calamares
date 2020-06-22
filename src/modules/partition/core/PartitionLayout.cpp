@@ -48,12 +48,6 @@ PartitionLayout::PartitionLayout()
 {
 }
 
-PartitionLayout::PartitionLayout( PartitionLayout::PartitionEntry entry )
-    : PartitionLayout()
-{
-    m_partLayout.append( entry );
-}
-
 PartitionLayout::PartitionLayout( const PartitionLayout& layout )
     : m_defaultFsType( layout.m_defaultFsType )
     , m_partLayout( layout.m_partLayout )
