@@ -54,6 +54,36 @@ CreateUserJob::prettyStatusMessage() const
     return tr( "Creating user %1." ).arg( m_userName );
 }
 
+static QStringList
+groupsInTargetSystem( const QDir& targetRoot )
+{
+    QFileInfo groupsFi( targetRoot.absoluteFilePath( "etc/group" ) );
+    QFile groupsFile( groupsFi.absoluteFilePath() );
+    if ( !groupsFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
+        return QStringList();
+    }
+    QString groupsData = QString::fromLocal8Bit( groupsFile.readAll() );
+    QStringList groupsLines = groupsData.split( '\n' );
+    for ( QStringList::iterator it = groupsLines.begin(); it != groupsLines.end(); ++it )
+    {
+        int indexOfFirstToDrop = it->indexOf( ':' );
+        it->truncate( indexOfFirstToDrop );
+    }
+    return groupsLines;
+}
+
+static void
+ensureGroupsExistInTarget( const QStringList& wantedGroups, const QStringList& availableGroups )
+{
+    for ( const QString& group : wantedGroups )
+    {
+        if ( !availableGroups.contains( group ) )
+        {
+            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", group } );
+        }
+    }
+}
 
 Calamares::JobResult
 CreateUserJob::exec()
@@ -89,36 +119,16 @@ CreateUserJob::exec()
 
     cDebug() << "[CREATEUSER]: preparing groups";
 
-    QFileInfo groupsFi( destDir.absoluteFilePath( "etc/group" ) );
-    QFile groupsFile( groupsFi.absoluteFilePath() );
-    if ( !groupsFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
-    {
-        return Calamares::JobResult::error( tr( "Cannot open groups file for reading." ) );
-    }
-    QString groupsData = QString::fromLocal8Bit( groupsFile.readAll() );
-    QStringList groupsLines = groupsData.split( '\n' );
-    for ( QStringList::iterator it = groupsLines.begin(); it != groupsLines.end(); ++it )
-    {
-        int indexOfFirstToDrop = it->indexOf( ':' );
-        it->truncate( indexOfFirstToDrop );
-    }
-
-    for ( const QString& group : m_defaultGroups )
-    {
-        if ( !groupsLines.contains( group ) )
-        {
-            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", group } );
-        }
-    }
+    QStringList availableGroups = groupsInTargetSystem( destDir );
+    ensureGroupsExistInTarget( m_defaultGroups, availableGroups );
 
     QString defaultGroups = m_defaultGroups.join( ',' );
     if ( m_autologin )
     {
-        QString autologinGroup;
         if ( gs->contains( "autologinGroup" ) && !gs->value( "autologinGroup" ).toString().isEmpty() )
         {
-            autologinGroup = gs->value( "autologinGroup" ).toString();
-            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", autologinGroup } );
+            QString autologinGroup = gs->value( "autologinGroup" ).toString();
+            ensureGroupsExistInTarget( QStringList { autologinGroup }, availableGroups );
             defaultGroups.append( QString( ",%1" ).arg( autologinGroup ) );
         }
     }
