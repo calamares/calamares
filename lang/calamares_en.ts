@@ -230,7 +230,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="106"/>
       <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation type="unfinished">Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</translation>
+      <translation>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="127"/>
@@ -777,22 +777,22 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="246"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="252"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</translation>
     </message>
   </context>
   <context>
@@ -1781,7 +1781,9 @@ The installer will quit and all changes will be lost.</translation>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>Please select your preferred location on the map so the installer can suggest the locale
+            and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
+            to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</translation>
     </message>
   </context>
   <context>
@@ -1927,12 +1929,12 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="62"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Timezone: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="77"/>
       <source>To be able to select a timezone, make sure you are connected to the internet. Restart the installer after connecting. You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>To be able to select a timezone, make sure you are connected to the internet. Restart the installer after connecting. You can fine-tune Language and Locale settings below.</translation>
     </message>
   </context>
   <context>
@@ -2837,7 +2839,8 @@ Output:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
+        Setup can continue, but some features might be disabled.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -2948,13 +2951,15 @@ Output:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="47"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
+        Installation cannot continue.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
+        Setup can continue, but some features might be disabled.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3420,28 +3425,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="202"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>KDE user feedback</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="214"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Configuring KDE user feedback.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="236"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="242"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Error in KDE user feedback configuration.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="237"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Could not configure KDE user feedback correctly, script error %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="243"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Could not configure KDE user feedback correctly, Calamares error %1.</translation>
     </message>
   </context>
   <context>
@@ -3449,28 +3454,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="120"/>
       <source>Machine feedback</source>
-      <translation type="unfinished">Machine feedback</translation>
+      <translation>Machine feedback</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="132"/>
       <source>Configuring machine feedback.</source>
-      <translation type="unfinished">Configuring machine feedback.</translation>
+      <translation>Configuring machine feedback.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="155"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="161"/>
       <source>Error in machine feedback configuration.</source>
-      <translation type="unfinished">Error in machine feedback configuration.</translation>
+      <translation>Error in machine feedback configuration.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="156"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
-      <translation type="unfinished">Could not configure machine feedback correctly, script error %1.</translation>
+      <translation>Could not configure machine feedback correctly, script error %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="162"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished">Could not configure machine feedback correctly, Calamares error %1.</translation>
+      <translation>Could not configure machine feedback correctly, Calamares error %1.</translation>
     </message>
   </context>
   <context>
@@ -3488,7 +3493,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
@@ -3498,22 +3503,22 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</translation>
     </message>
   </context>
   <context>
@@ -3802,18 +3807,20 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="59"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
+                    The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="120"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
+                    The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="174"/>
       <source>Back</source>
-      <translation type="unfinished">Back</translation>
+      <translation>Back</translation>
     </message>
   </context>
   <context>
@@ -3866,17 +3873,17 @@ Output:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="98"/>
       <source>System language set to %1</source>
-      <translation type="unfinished"/>
+      <translation>System language set to %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="106"/>
       <source>Numbers and dates locale set to %1</source>
-      <translation type="unfinished"/>
+      <translation>Numbers and dates locale set to %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="112"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>Change</translation>
     </message>
   </context>
   <context>
