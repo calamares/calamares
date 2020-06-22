@@ -76,6 +76,7 @@ set( libSources
     utils/Dirs.cpp
     utils/Entropy.cpp
     utils/Logger.cpp
+    utils/Permissions.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
     utils/String.cpp
