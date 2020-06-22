@@ -95,26 +95,23 @@ CreateUserJob::exec()
     {
         cDebug() << "[CREATEUSER]: preparing sudoers";
 
-        QFileInfo sudoersFi( destDir.absoluteFilePath( "etc/sudoers.d/10-installer" ) );
+        QString sudoersLine = QString( "%%1 ALL=(ALL) ALL\n" ).arg( gs->value( "sudoersGroup" ).toString() );
+        auto fileResult
+            = CalamaresUtils::System::instance()->createTargetFile( QStringLiteral( "/etc/sudoers.d/10-installer" ),
+                                                                    sudoersLine.toUtf8().constData(),
+                                                                    CalamaresUtils::System::WriteMode::Overwrite );
 
-        if ( !sudoersFi.absoluteDir().exists() )
+        if ( fileResult )
         {
-            return Calamares::JobResult::error( tr( "Sudoers dir is not writable." ) );
+            if ( QProcess::execute( "chmod", { "440", fileResult.path() } ) )
+            {
+                return Calamares::JobResult::error( tr( "Cannot chmod sudoers file." ) );
+            }
         }
-
-        QFile sudoersFile( sudoersFi.absoluteFilePath() );
-        if ( !sudoersFile.open( QIODevice::WriteOnly | QIODevice::Text ) )
+        else
         {
             return Calamares::JobResult::error( tr( "Cannot create sudoers file for writing." ) );
         }
-
-        QString sudoersGroup = gs->value( "sudoersGroup" ).toString();
-
-        QTextStream sudoersOut( &sudoersFile );
-        sudoersOut << QString( "%%1 ALL=(ALL) ALL\n" ).arg( sudoersGroup );
-
-        if ( QProcess::execute( "chmod", { "440", sudoersFi.absoluteFilePath() } ) )
-            return Calamares::JobResult::error( tr( "Cannot chmod sudoers file." ) );
     }
 
     cDebug() << "[CREATEUSER]: preparing groups";
