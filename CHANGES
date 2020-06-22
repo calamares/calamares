@@ -3,6 +3,18 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.27 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
 # 3.2.26 (2020-06-18) #
 
 This release contains contributions from (alphabetically by first name):
@@ -25,7 +37,7 @@ This release contains contributions from (alphabetically by first name):
  - *locale* put some more places into the correct timezone **visually**;
    for instance Norfolk Island gave up UTC+11.5 in 2015 and is now
    UTC+11, but Calamares still showed it in a zone separate from UTC+11.
- - *localeq* can now properly switch between on & offline mode, 
+ - *localeq* can now properly switch between on & offline mode,
    it detects internet status through js.
  - *packages* gained support for the Void Linux package manager,
    *xbps*. (thanks Pablo)
