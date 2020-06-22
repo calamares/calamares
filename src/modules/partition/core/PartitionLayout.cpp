@@ -182,11 +182,11 @@ PartitionLayout::execute( Device* dev,
 
     // Let's check if we have enough space for each partitions, using the size
     // propery or the min-size property if unit is in percentage.
-    for ( const auto& part : qAsConst( m_partLayout ) )
+    for ( const auto& entry : qAsConst( m_partLayout ) )
     {
-        if ( !part.partSize.isValid() )
+        if ( !entry.partSize.isValid() )
         {
-            cWarning() << "Partition" << part.partMountPoint << "size is invalid, skipping...";
+            cWarning() << "Partition" << entry.partMountPoint << "size is invalid, skipping...";
             continue;
         }
 
@@ -194,15 +194,15 @@ PartitionLayout::execute( Device* dev,
         // warnings to ensure that all the cases are covered below.
         // We need to ignore the percent-defined until later
         qint64 sectors = 0;
-        if ( part.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent )
+        if ( entry.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent )
         {
-            sectors = part.partSize.toSectors( totalSectors, dev->logicalSize() );
+            sectors = entry.partSize.toSectors( totalSectors, dev->logicalSize() );
         }
-        else if ( part.partMinSize.isValid() )
+        else if ( entry.partMinSize.isValid() )
         {
-            sectors = part.partMinSize.toSectors( totalSectors, dev->logicalSize() );
+            sectors = entry.partMinSize.toSectors( totalSectors, dev->logicalSize() );
         }
-        partSectorsMap.insert( &part, sectors );
+        partSectorsMap.insert( &entry, sectors );
         availableSectors -= sectors;
     }
 
@@ -211,46 +211,46 @@ PartitionLayout::execute( Device* dev,
     if ( availableSectors < 0 )
     {
         availableSectors = totalSectors;
-        for ( const auto& part : qAsConst( m_partLayout ) )
+        for ( const auto& entry : qAsConst( m_partLayout ) )
         {
-            qint64 sectors = partSectorsMap.value( &part );
-            if ( part.partMinSize.isValid() )
+            qint64 sectors = partSectorsMap.value( &entry );
+            if ( entry.partMinSize.isValid() )
             {
-                sectors = part.partMinSize.toSectors( totalSectors, dev->logicalSize() );
-                partSectorsMap.insert( &part, sectors );
+                sectors = entry.partMinSize.toSectors( totalSectors, dev->logicalSize() );
+                partSectorsMap.insert( &entry, sectors );
             }
             availableSectors -= sectors;
         }
     }
 
     // Assign sectors for percentage-defined partitions.
-    for ( const auto& part : qAsConst( m_partLayout ) )
+    for ( const auto& entry : qAsConst( m_partLayout ) )
     {
-        if ( part.partSize.unit() == CalamaresUtils::Partition::SizeUnit::Percent )
+        if ( entry.partSize.unit() == CalamaresUtils::Partition::SizeUnit::Percent )
         {
-            qint64 sectors = part.partSize.toSectors( availableSectors + partSectorsMap.value( &part ),
+            qint64 sectors = entry.partSize.toSectors( availableSectors + partSectorsMap.value( &entry ),
                                                       dev->logicalSize() );
-            if ( part.partMinSize.isValid() )
+            if ( entry.partMinSize.isValid() )
             {
-                sectors = std::max( sectors, part.partMinSize.toSectors( totalSectors, dev->logicalSize() ) );
+                sectors = std::max( sectors, entry.partMinSize.toSectors( totalSectors, dev->logicalSize() ) );
             }
-            if ( part.partMaxSize.isValid() )
+            if ( entry.partMaxSize.isValid() )
             {
-                sectors = std::min( sectors, part.partMaxSize.toSectors( totalSectors, dev->logicalSize() ) );
+                sectors = std::min( sectors, entry.partMaxSize.toSectors( totalSectors, dev->logicalSize() ) );
             }
-            partSectorsMap.insert( &part, sectors );
+            partSectorsMap.insert( &entry, sectors );
         }
     }
 
     // Create the partitions.
     currentSector = firstSector;
     availableSectors = totalSectors;
-    for ( const auto& part : qAsConst( m_partLayout ) )
+    for ( const auto& entry : qAsConst( m_partLayout ) )
     {
         Partition* currentPartition = nullptr;
 
         // Adjust partition size based on available space.
-        qint64 sectors = partSectorsMap.value( &part );
+        qint64 sectors = partSectorsMap.value( &entry );
         sectors = std::min( sectors, availableSectors );
         if ( sectors == 0 )
         {
@@ -260,46 +260,46 @@ PartitionLayout::execute( Device* dev,
         if ( luksPassphrase.isEmpty() )
         {
             currentPartition = KPMHelpers::createNewPartition(
-                parent, *dev, role, part.partFileSystem, currentSector, currentSector + sectors - 1, KPM_PARTITION_FLAG( None ) );
+                parent, *dev, role, entry.partFileSystem, currentSector, currentSector + sectors - 1, KPM_PARTITION_FLAG( None ) );
         }
         else
         {
             currentPartition = KPMHelpers::createNewEncryptedPartition(
-                parent, *dev, role, part.partFileSystem, currentSector, currentSector + sectors - 1, luksPassphrase, KPM_PARTITION_FLAG( None ) );
+                parent, *dev, role, entry.partFileSystem, currentSector, currentSector + sectors - 1, luksPassphrase, KPM_PARTITION_FLAG( None ) );
         }
         PartitionInfo::setFormat( currentPartition, true );
-        PartitionInfo::setMountPoint( currentPartition, part.partMountPoint );
-        if ( !part.partLabel.isEmpty() )
+        PartitionInfo::setMountPoint( currentPartition, entry.partMountPoint );
+        if ( !entry.partLabel.isEmpty() )
         {
-            currentPartition->setLabel( part.partLabel );
-            currentPartition->fileSystem().setLabel( part.partLabel );
+            currentPartition->setLabel( entry.partLabel );
+            currentPartition->fileSystem().setLabel( entry.partLabel );
         }
-        if ( !part.partUUID.isEmpty() )
+        if ( !entry.partUUID.isEmpty() )
         {
-            currentPartition->setUUID( part.partUUID );
+            currentPartition->setUUID( entry.partUUID );
         }
-        if ( !part.partType.isEmpty() )
+        if ( !entry.partType.isEmpty() )
         {
 #if defined( WITH_KPMCORE42API )
-            currentPartition->setType( part.partType );
+            currentPartition->setType( entry.partType );
 #else
             cWarning() << "Ignoring type; requires KPMcore >= 4.2.0.";
 #endif
         }
-        if ( part.partAttributes )
+        if ( entry.partAttributes )
         {
 #if defined( WITH_KPMCORE42API )
-            currentPartition->setAttributes( part.partAttributes );
+            currentPartition->setAttributes( entry.partAttributes );
 #else
             cWarning() << "Ignoring attributes; requires KPMcore >= 4.2.0.";
 #endif
         }
-        if ( !part.partFeatures.isEmpty() )
+        if ( !entry.partFeatures.isEmpty() )
         {
 #if defined( WITH_KPMCORE42API )
-            for ( const auto& k : part.partFeatures.keys() )
+            for ( const auto& k : entry.partFeatures.keys() )
             {
-                currentPartition->fileSystem().addFeature( k, part.partFeatures.value( k ) );
+                currentPartition->fileSystem().addFeature( k, entry.partFeatures.value( k ) );
             }
 #else
             cWarning() << "Ignoring features; requires KPMcore >= 4.2.0.";
