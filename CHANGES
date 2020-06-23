@@ -15,6 +15,28 @@ This release contains contributions from (alphabetically by first name):
  - No module changes yet
 
 
+ # 3.2.26.1 (2020-06-23) #
+
+This is a hotfix release for undefined behavior caused by an
+uninitialized integer variable. It includes new translations
+and features as well since those arrived independently.
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Gaël PORTAY
+
+## Core ##
+ - Welcome to Azerbaijani translations. These are available
+   in two variations, *Azerbaijani* and *Azerbaijani (Azerbaijan)*.
+   [Wikipedia Azerbaijani](https://en.wikipedia.org/wiki/Azerbaijani_language#North_vs._South_Azerbaijani)
+   has a nice overview.
+
+## Modules ##
+ - *partitioning* has one case of undefined behavior (UB) due
+   to a missing integer-initialization. (Thanks Gaël)
+ - *keyboardq* QML module now works correctly. (Thanks Anke)
+
+
 # 3.2.26 (2020-06-18) #
 
 This release contains contributions from (alphabetically by first name):
