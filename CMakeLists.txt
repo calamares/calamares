@@ -109,8 +109,7 @@ option( BUILD_SCHEMA_TESTING "Enable schema-validation-tests" ON )
 #    This defaults to *none* so that nothing gets picked up and nothing
 #    is packaged -- you must explicitly set it to empty to get all of
 #    the modules, but that hardly makes sense. Note, too that there
-#    are no os-* modules shipped with Calamares. They live in the
-#    *calamares-extensions* repository.
+#    are currently no os-* modules shipped with Calamares.
 set( USE_services "" CACHE STRING "Select the services module to use" )
 set( USE_os "none" CACHE STRING "Select the OS-specific module to include" )
 
