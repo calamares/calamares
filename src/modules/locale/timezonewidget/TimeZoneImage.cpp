@@ -36,7 +36,7 @@ static_assert( TimeZoneImageList::zoneCount == ( sizeof( zoneNames ) / sizeof( z
 /* static constexpr */ const int TimeZoneImageList::zoneCount;
 /* static constexpr */ const QSize TimeZoneImageList::imageSize;
 
-static_assert( TimeZoneImageList::zoneCount == 37 );
+static_assert( TimeZoneImageList::zoneCount == 37, "Incorrect number of zones" );
 
 TimeZoneImageList::TimeZoneImageList() {}
 
