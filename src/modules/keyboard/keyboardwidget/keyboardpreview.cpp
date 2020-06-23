@@ -21,8 +21,10 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "utils/Logger.h"
 #include "keyboardpreview.h"
+
+#include "utils/Logger.h"
+#include "utils/String.h"
 
 KeyBoardPreview::KeyBoardPreview( QWidget* parent )
     : QWidget( parent )
@@ -129,7 +131,7 @@ bool KeyBoardPreview::loadCodes() {
     // Clear codes
     codes.clear();
 
-    const QStringList list = QString(process.readAll()).split("\n", QString::SkipEmptyParts);
+    const QStringList list = QString(process.readAll()).split("\n", SplitSkipEmptyParts);
 
     for (const QString &line : list) {
         if (!line.startsWith("keycode") || !line.contains('='))

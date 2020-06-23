@@ -66,7 +66,7 @@ ClearTempMountsJob::exec()
     QString lineIn = in.readLine();
     while ( !lineIn.isNull() )
     {
-        QStringList line = lineIn.split( ' ', QString::SkipEmptyParts );
+        QStringList line = lineIn.split( ' ', SplitSkipEmptyParts );
         cDebug() << line.join( ' ' );
         QString device = line.at( 0 );
         QString mountPoint = line.at( 1 );

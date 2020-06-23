@@ -73,7 +73,7 @@ getPartitionsForDevice( const QString& deviceName )
         {
             // The fourth column (index from 0, so index 3) is the name of the device;
             // keep it if it is followed by something.
-            QStringList columns = in.readLine().split( ' ', QString::SkipEmptyParts );
+            QStringList columns = in.readLine().split( ' ', SplitSkipEmptyParts );
             if ( ( columns.count() >= 4 ) && ( columns[ 3 ].startsWith( deviceName ) )
                  && ( columns[ 3 ] != deviceName ) )
             {

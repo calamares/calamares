@@ -28,6 +28,7 @@
 #include "JobQueue.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/String.h"
 
 #include <QDir>
 #include <QFile>
@@ -104,7 +105,7 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
             continue;
         }
 
-        QStringList mapping = line.split( '\t', QString::SkipEmptyParts );
+        QStringList mapping = line.split( '\t', SplitSkipEmptyParts );
         if ( mapping.size() < 5 )
         {
             continue;
