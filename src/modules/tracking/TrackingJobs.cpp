@@ -78,41 +78,7 @@ TrackingInstallJob::exec()
     return Calamares::JobResult::ok();
 }
 
-void
-TrackingInstallJob::addJob( Calamares::JobList& list, InstallTrackingConfig* config )
-{
-    if ( config->isEnabled() )
-    {
-        const auto* s = CalamaresUtils::System::instance();
-        QHash< QString, QString > map { std::initializer_list< std::pair< QString, QString > > {
-            { QStringLiteral( "CPU" ), s->getCpuDescription() },
-            { QStringLiteral( "MEMORY" ), QString::number( s->getTotalMemoryB().first ) },
-            { QStringLiteral( "DISK" ), QString::number( s->getTotalDiskB() ) } } };
-        QString installUrl = KMacroExpander::expandMacros( config->installTrackingUrl(), map );
-
-        cDebug() << Logger::SubEntry << "install-tracking URL" << installUrl;
-
-        list.append( Calamares::job_ptr( new TrackingInstallJob( installUrl ) ) );
-    }
-}
-
-void
-TrackingMachineJob::addJob( Calamares::JobList& list, MachineTrackingConfig* config )
-{
-    if ( config->isEnabled() )
-    {
-        const auto style = config->machineTrackingStyle();
-        if ( style == "updatemanager" )
-        {
-            list.append( Calamares::job_ptr( new TrackingMachineUpdateManagerJob() ) );
-        }
-        else
-        {
-            cWarning() << "Unsupported machine tracking style" << style;
-        }
-    }
-}
-
+TrackingMachineUpdateManagerJob::~TrackingMachineUpdateManagerJob() {}
 
 QString
 TrackingMachineUpdateManagerJob::prettyName() const
@@ -163,38 +129,13 @@ TrackingMachineUpdateManagerJob::exec()
     }
 }
 
-void
-TrackingUserJob::addJob( Calamares::JobList& list, UserTrackingConfig* config )
-{
-    if ( config->isEnabled() )
-    {
-        const auto* gs = Calamares::JobQueue::instance()->globalStorage();
-        static const auto key = QStringLiteral( "username" );
-        QString username = ( gs && gs->contains( key ) ) ? gs->value( key ).toString() : QString();
-
-        if ( username.isEmpty() )
-        {
-            cWarning() << "No username is set in GlobalStorage, skipping user-tracking.";
-            return;
-        }
-
-        const auto style = config->userTrackingStyle();
-        if ( style == "kuserfeedback" )
-        {
-            list.append( Calamares::job_ptr( new TrackingKUserFeedbackJob( username, config->userTrackingAreas() ) ) );
-        }
-        else
-        {
-            cWarning() << "Unsupported user tracking style" << style;
-        }
-    }
-}
-
 TrackingKUserFeedbackJob::TrackingKUserFeedbackJob( const QString& username, const QStringList& areas )
     : m_username( username )
     , m_areas( areas )
 {
 }
+
+TrackingKUserFeedbackJob::~TrackingKUserFeedbackJob() {}
 
 QString
 TrackingKUserFeedbackJob::prettyName() const
@@ -245,4 +186,67 @@ FeedbackLevel=16
     }
 
     return Calamares::JobResult::ok();
+}
+
+void
+addJob( Calamares::JobList& list, InstallTrackingConfig* config )
+{
+    if ( config->isEnabled() )
+    {
+        const auto* s = CalamaresUtils::System::instance();
+        QHash< QString, QString > map { std::initializer_list< std::pair< QString, QString > > {
+            { QStringLiteral( "CPU" ), s->getCpuDescription() },
+            { QStringLiteral( "MEMORY" ), QString::number( s->getTotalMemoryB().first ) },
+            { QStringLiteral( "DISK" ), QString::number( s->getTotalDiskB() ) } } };
+        QString installUrl = KMacroExpander::expandMacros( config->installTrackingUrl(), map );
+
+        cDebug() << Logger::SubEntry << "install-tracking URL" << installUrl;
+
+        list.append( Calamares::job_ptr( new TrackingInstallJob( installUrl ) ) );
+    }
+}
+
+void
+addJob( Calamares::JobList& list, MachineTrackingConfig* config )
+{
+    if ( config->isEnabled() )
+    {
+        const auto style = config->machineTrackingStyle();
+        if ( style == "updatemanager" )
+        {
+            list.append( Calamares::job_ptr( new TrackingMachineUpdateManagerJob() ) );
+        }
+        else
+        {
+            cWarning() << "Unsupported machine tracking style" << style;
+        }
+    }
+}
+
+
+void
+addJob( Calamares::JobList& list, UserTrackingConfig* config )
+{
+    if ( config->isEnabled() )
+    {
+        const auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        static const auto key = QStringLiteral( "username" );
+        QString username = ( gs && gs->contains( key ) ) ? gs->value( key ).toString() : QString();
+
+        if ( username.isEmpty() )
+        {
+            cWarning() << "No username is set in GlobalStorage, skipping user-tracking.";
+            return;
+        }
+
+        const auto style = config->userTrackingStyle();
+        if ( style == "kuserfeedback" )
+        {
+            list.append( Calamares::job_ptr( new TrackingKUserFeedbackJob( username, config->userTrackingAreas() ) ) );
+        }
+        else
+        {
+            cWarning() << "Unsupported user tracking style" << style;
+        }
+    }
 }

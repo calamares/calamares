@@ -109,9 +109,9 @@ TrackingViewStep::jobs() const
     cDebug() << "Creating tracking jobs ..";
 
     Calamares::JobList l;
-    TrackingInstallJob::addJob( l, m_config->installTracking() );
-    TrackingMachineJob::addJob( l, m_config->machineTracking() );
-    TrackingUserJob::addJob( l, m_config->userTracking() );
+    addJob( l, m_config->installTracking() );
+    addJob( l, m_config->machineTracking() );
+    addJob( l, m_config->userTracking() );
     cDebug() << Logger::SubEntry << l.count() << "jobs queued.";
     return l;
 }

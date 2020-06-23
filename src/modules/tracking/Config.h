@@ -55,7 +55,7 @@ public:
         DisabledByUser,
         EnabledByUser
     };
-    Q_ENUM( TrackingState );
+    Q_ENUM( TrackingState )
 
 public Q_SLOTS:
     TrackingState tracking() const { return m_state; }
@@ -106,6 +106,7 @@ class InstallTrackingConfig : public TrackingStyleConfig
 {
 public:
     InstallTrackingConfig( QObject* parent );
+    ~InstallTrackingConfig() override;
     void setConfigurationMap( const QVariantMap& configurationMap );
 
     QString installTrackingUrl() { return m_installTrackingUrl; }
@@ -125,6 +126,7 @@ class MachineTrackingConfig : public TrackingStyleConfig
 {
 public:
     MachineTrackingConfig( QObject* parent );
+    ~MachineTrackingConfig() override;
     void setConfigurationMap( const QVariantMap& configurationMap );
 
     QString machineTrackingStyle() { return m_machineTrackingStyle; }
@@ -146,6 +148,7 @@ class UserTrackingConfig : public TrackingStyleConfig
 {
 public:
     UserTrackingConfig( QObject* parent );
+    ~UserTrackingConfig() override;
     void setConfigurationMap( const QVariantMap& configurationMap );
 
     QString userTrackingStyle() { return m_userTrackingStyle; }
