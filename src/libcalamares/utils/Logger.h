@@ -220,12 +220,12 @@ public:
 struct Pointer
 {
 public:
-    explicit Pointer( void* p )
+    explicit Pointer( const void* p )
         : ptr( p )
     {
     }
 
-    const void* ptr;
+    const void* const ptr;
 };
 
 /** @brief output operator for DebugRow */
