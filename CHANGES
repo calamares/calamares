@@ -15,7 +15,7 @@ This release contains contributions from (alphabetically by first name):
  - No module changes yet
 
 
- # 3.2.26.1 (2020-06-23) #
+# 3.2.26.1 (2020-06-23) #
 
 This is a hotfix release for undefined behavior caused by an
 uninitialized integer variable. It includes new translations
@@ -30,6 +30,7 @@ This release contains contributions from (alphabetically by first name):
    in two variations, *Azerbaijani* and *Azerbaijani (Azerbaijan)*.
    [Wikipedia Azerbaijani](https://en.wikipedia.org/wiki/Azerbaijani_language#North_vs._South_Azerbaijani)
    has a nice overview.
+ - Warnings while building with Qt 5.15 have been much reduced.
 
 ## Modules ##
  - *partitioning* has one case of undefined behavior (UB) due
