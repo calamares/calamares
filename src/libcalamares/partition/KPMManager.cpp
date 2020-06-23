@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -74,7 +74,7 @@ InternalManager::InternalManager()
         else
         {
             auto* backend_p = CoreBackendManager::self()->backend();
-            cDebug() << Logger::SubEntry << "Backend @" << (void*)backend_p << backend_p->id() << backend_p->version();
+            cDebug() << Logger::SubEntry << "Backend" << Logger::Pointer(backend_p) << backend_p->id() << backend_p->version();
             s_kpm_loaded = true;
         }
     }
