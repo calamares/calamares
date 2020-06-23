@@ -19,16 +19,15 @@
 #include "ClearTempMountsJob.h"
 
 #include "utils/Logger.h"
+#include "utils/String.h"
 
-#include <algorithm>
-
-// KPMcore
 #include <kpmcore/util/report.h>
 
 #include <QFile>
 #include <QProcess>
 #include <QStringList>
 
+#include <algorithm>
 
 ClearTempMountsJob::ClearTempMountsJob()
     : Calamares::Job()

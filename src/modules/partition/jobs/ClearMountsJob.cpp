@@ -25,6 +25,7 @@
 #include "partition/PartitionIterator.h"
 #include "partition/Sync.h"
 #include "utils/Logger.h"
+#include "utils/String.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
