@@ -128,15 +128,19 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     {
         cError() << "ViewStep" << step->moduleInstanceKey() << "has no widget.";
     }
-
-    QLayout* layout = step->widget()->layout();
-    if ( layout )
+    else
     {
-        layout->setContentsMargins( 0, 0, 0, 0 );
+        // step->adjustMargins() "some magic"
+        QLayout* layout = step->widget()->layout();
+        if ( layout )
+        {
+            layout->setContentsMargins( 0, 0, 0, 0 );
+        }
+
+        m_stack->insertWidget( before, step->widget() );
+        m_stack->setCurrentIndex( 0 );
+        step->widget()->setFocus();
     }
-    m_stack->insertWidget( before, step->widget() );
-    m_stack->setCurrentIndex( 0 );
-    step->widget()->setFocus();
     emit endInsertRows();
 }
 
