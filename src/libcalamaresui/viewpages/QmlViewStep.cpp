@@ -151,6 +151,22 @@ QmlViewStep::widget()
     return m_widget;
 }
 
+QSize
+QmlViewStep::widgetMargins( Qt::Orientations panelSides )
+{
+    // If any panels around it, use the standard, but if all the
+    // panels are hidden, like on full-screen with subsumed navigation,
+    // then no margins.
+    if ( panelSides )
+    {
+        return ViewStep::widgetMargins( panelSides );
+    }
+    else
+    {
+        return QSize( 0, 0 );
+    }
+}
+
 void
 QmlViewStep::loadComplete()
 {
