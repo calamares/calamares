@@ -87,6 +87,7 @@ UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
                                    ImageMode mode = CalamaresUtils::Original,
                                    const QSize& size = QSize( 0, 0 ) );
 
+// TODO:3.3:This has only one consumer, move to ImageRegistry, make static
 /**
  * @brief createRoundedImage returns a rounded version of a pixmap.
  * @param avatar the input pixmap.
@@ -103,6 +104,7 @@ UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size
  */
 UIDLLEXPORT void unmarginLayout( QLayout* layout );
 
+// TODO:3.3:This has only one consumer, move to LicensePage, make static
 /**
  * @brief clearLayout recursively walks the QLayout tree and deletes all the child
  * widgets and layouts.
@@ -113,7 +115,7 @@ UIDLLEXPORT void clearLayout( QLayout* layout );
 UIDLLEXPORT void setDefaultFontSize( int points );
 UIDLLEXPORT int defaultFontSize();  // in points
 UIDLLEXPORT int defaultFontHeight();  // in pixels, DPI-specific
-UIDLLEXPORT QFont defaultFont();
+UIDLLEXPORT QFont defaultFont();  // TODO:3.3:This has one consumer, move to BlankViewStep
 UIDLLEXPORT QFont largeFont();
 UIDLLEXPORT QSize defaultIconSize();
 
