@@ -55,7 +55,7 @@ class UIDLLEXPORT ViewManager : public QAbstractListModel
     Q_PROPERTY( bool quitVisible READ quitVisible NOTIFY quitVisibleChanged FINAL )
 
     ///@brief Sides on which the ViewManager has side-panels
-    Q_PROPERTY( Qt::Orientations panelSides MEMBER m_panelSides )
+    Q_PROPERTY( Qt::Orientations panelSides READ panelSides WRITE setPanelSides MEMBER m_panelSides )
 
 public:
     /**
@@ -110,6 +110,9 @@ public:
      * @return @c true if the user confirms closing the window.
      */
     bool confirmCancelInstallation();
+
+    Qt::Orientations panelSides() const { return m_panelSides; }
+    void setPanelSides( Qt::Orientations panelSides ) { m_panelSides = panelSides; }
 
 public Q_SLOTS:
     /**
