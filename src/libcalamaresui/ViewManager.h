@@ -54,6 +54,9 @@ class UIDLLEXPORT ViewManager : public QAbstractListModel
 
     Q_PROPERTY( bool quitVisible READ quitVisible NOTIFY quitVisibleChanged FINAL )
 
+    ///@brief Sides on which the ViewManager has side-panels
+    Q_PROPERTY( Qt::Orientations panelSides MEMBER m_panelSides )
+
 public:
     /**
      * @brief instance access to the ViewManager singleton.
@@ -244,6 +247,8 @@ private:
     QString m_quitIcon;
     QString m_quitTooltip;
     bool m_quitVisible = true;
+
+    Qt::Orientations m_panelSides;
 
 public:
     /** @section Model

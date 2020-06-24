@@ -67,6 +67,7 @@ ViewManager::ViewManager( QObject* parent )
     : QAbstractListModel( parent )
     , m_currentStep( -1 )
     , m_widget( new QWidget() )
+    , m_panelSides( Qt::Horizontal | Qt::Vertical )
 {
     Q_ASSERT( !s_instance );
 
