@@ -71,6 +71,7 @@ ViewManager::ViewManager( QObject* parent )
     Q_ASSERT( !s_instance );
 
     QBoxLayout* mainLayout = new QVBoxLayout;
+    mainLayout->setContentsMargins( 0, 0, 0, 0 );
     m_widget->setObjectName( "viewManager" );
     m_widget->setLayout( mainLayout );
 
