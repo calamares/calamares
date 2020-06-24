@@ -55,6 +55,7 @@ public:
     virtual QString prettyName() const override;
 
     virtual QWidget* widget() override;
+    virtual QSize widgetMargins( Qt::Orientations panelSides ) override;
 
     virtual bool isNextEnabled() const override;
     virtual bool isBackEnabled() const override;

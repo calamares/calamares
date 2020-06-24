@@ -54,6 +54,9 @@ class UIDLLEXPORT ViewManager : public QAbstractListModel
 
     Q_PROPERTY( bool quitVisible READ quitVisible NOTIFY quitVisibleChanged FINAL )
 
+    ///@brief Sides on which the ViewManager has side-panels
+    Q_PROPERTY( Qt::Orientations panelSides READ panelSides WRITE setPanelSides MEMBER m_panelSides )
+
 public:
     /**
      * @brief instance access to the ViewManager singleton.
@@ -100,12 +103,16 @@ public:
     int currentStepIndex() const;
 
     /**
-     * @ brief Called when "Cancel" is clicked; asks for confirmation.
+     * @brief Called when "Cancel" is clicked; asks for confirmation.
      * Other means of closing Calamares also call this method, e.g. alt-F4.
-     * At the end of installation, no confirmation is asked. Returns true
-     * if the user confirms closing the window.
+     * At the end of installation, no confirmation is asked.
+     *
+     * @return @c true if the user confirms closing the window.
      */
     bool confirmCancelInstallation();
+
+    Qt::Orientations panelSides() const { return m_panelSides; }
+    void setPanelSides( Qt::Orientations panelSides ) { m_panelSides = panelSides; }
 
 public Q_SLOTS:
     /**
@@ -243,6 +250,8 @@ private:
     QString m_quitIcon;
     QString m_quitTooltip;
     bool m_quitVisible = true;
+
+    Qt::Orientations m_panelSides;
 
 public:
     /** @section Model
