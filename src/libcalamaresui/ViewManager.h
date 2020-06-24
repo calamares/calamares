@@ -100,10 +100,11 @@ public:
     int currentStepIndex() const;
 
     /**
-     * @ brief Called when "Cancel" is clicked; asks for confirmation.
+     * @brief Called when "Cancel" is clicked; asks for confirmation.
      * Other means of closing Calamares also call this method, e.g. alt-F4.
-     * At the end of installation, no confirmation is asked. Returns true
-     * if the user confirms closing the window.
+     * At the end of installation, no confirmation is asked.
+     *
+     * @return @c true if the user confirms closing the window.
      */
     bool confirmCancelInstallation();
 
