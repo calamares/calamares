@@ -131,11 +131,11 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     }
     else
     {
-        // step->adjustMargins() "some magic"
         QLayout* layout = step->widget()->layout();
         if ( layout )
         {
-            layout->setContentsMargins( 0, 0, 0, 0 );
+            const auto margins = step->widgetMargins( m_panelSides );
+            layout->setContentsMargins( margins.width(), margins.height(), margins.width(), margins.height() );
         }
 
         m_stack->insertWidget( before, step->widget() );
