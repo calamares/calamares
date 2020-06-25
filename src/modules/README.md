@@ -129,6 +129,59 @@ a `CMakeLists.txt` with a `calamares_add_plugin` call. It will be picked
 up automatically by our CMake magic. The `module.desc` file is not recommended:
 nearly all cases can be described in CMake.
 
+### C++ Jobmodule
+
+**TODO:** this needs documentation
+
+### C++ Widgets Viewmodule
+
+**TODO:** this needs documentation
+
+### C++ QML Viewmodule
+
+A QML Viewmodule (or view step) puts much of the UI work in one or more
+QML files; the files may be loaded from the branding directory or compiled
+into the module. Which QML is used depends on the deployment and the
+configuration files for Calamares.
+
+#### Explicit properties
+
+The QML can access data from the C++ framework though properties
+exposed to QML. There are two libraries that need to be imported
+explicitly:
+
+```
+import io.calamares.core 1.0
+import io.calamares.ui 1.0
+```
+
+The *ui* library contains the *Branding* object, which corresponds to
+the branding information set through `branding.desc`. The Branding
+class (in `src/libcalamaresui/Branding.h` offers a QObject-property
+based API, where the most important functions are `string()` and the
+convenience functions `versionedName()` and similar.
+
+The *core* library contains both *ViewManager*, which handles overall
+progress through the application, and *Global*, which holds global
+storage information. Both objects have an extensive API. The *ViewManager*
+can behave as a model for list views and the like.
+
+These explicit properties from libraries are shared across all the
+QML modules (for global storage that goes without saying: it is
+the mechanism to share information with other modules).
+
+#### Implicit properties
+
+Each module also has an implicit context property available to it.
+No import is needed. The context property *config* (note lower case)
+holds the Config object for the module.
+
+The Config object is the bridge between C++ and QML.
+
+A Config object must inherit QObject and should expose, as `Q_PROPERTY`,
+all of the relevant configuration information for the module instance.
+The general description how to do that is available
+in the [Qt documentation](https://doc.qt.io/qt-5/qtqml-cppintegration-topic.html).
 
 
 ## Python modules
@@ -183,7 +236,7 @@ Their documentation is also almost completely lacking.
 
 
 
-## Process jobmodules
+## Process modules
 
 Use of this kind of module is **not** recommended.
 

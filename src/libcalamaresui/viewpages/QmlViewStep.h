@@ -42,8 +42,8 @@ namespace Calamares
  * - getConfig() to return a meaningful configuration object
  *
  * For details on the interaction between the config object and
- * the QML in the module, see the Calamares wiki:
- *      https://github.com/calamares/calamares/wiki/Develop-Design
+ * the QML in the module, see the module documentation:
+ *      src/modules/README.md
  */
 class QmlViewStep : public Calamares::ViewStep
 {
