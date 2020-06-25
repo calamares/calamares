@@ -9,20 +9,16 @@ Each Calamares module lives in its own directory.
 All modules are installed in `$DESTDIR/lib/calamares/modules`.
 
 There are two **types** of Calamares module:
-* viewmodule, for user-visible modules. These may be in C++, or PythonQt.
+* viewmodule, for user-visible modules. These use C++ and QWidgets or QML
 * jobmodule, for not-user-visible modules. These may be done in C++,
   Python, or as external processes.
 
-A viewmodule exposes a UI to the user. The PythonQt-based modules
-are considered experimental (and as of march 2019 may be on the
-way out again as never-used-much and PythonQt is not packaged
-on Debian anymore).
+A viewmodule exposes a UI to the user.
 
-There are three (four) **interfaces** for Calamares modules:
+There are three **interfaces** for Calamares modules:
 * qtplugin (viewmodules, jobmodules),
 * python (jobmodules only),
-* pythonqt (viewmodules, jobmodules, optional),
-* process (jobmodules only).
+* process (jobmodules only, not recommended).
 
 ## Module directory
 
@@ -50,7 +46,7 @@ Module descriptors **must** have the following keys:
 - *interface* (see below for the different interfaces; generally we
   refer to the kinds of modules by their interface)
 
-Module descriptors for Python and PythonQt modules **must** have the following key:
+Module descriptors for Python modules **must** have the following key:
 - *script* (the name of the Python script to load, nearly always `main.py`)
 
 Module descriptors **may** have the following keys:
@@ -139,9 +135,8 @@ nearly all cases can be described in CMake.
 
 Modules may use one of the python interfaces, which may be present
 in a Calamares installation (but also may not be). These modules must have
-a `module.desc` file. The Python script must implement one or more of the
-Python interfaces for Calamares -- either the python jobmodule interface,
-or the experimental pythonqt job- and viewmodule interfaces.
+a `module.desc` file. The Python script must implement the
+Python jobmodule interface.
 
 To add a Python or process jobmodule, put it in a subdirectory and make sure
 it has a `module.desc`. It will be picked up automatically by our CMake magic.
@@ -178,31 +173,19 @@ description if something went wrong.
 
 
 
-## PythonQt modules
+## PythonQt modules (deprecated)
 
 > Type: viewmodule, jobmodule
 > Interface: pythonqt
 
-The PythonQt modules are considered experimental and may be removed again
-due to low uptake. Their documentation is also almost completely lacking.
-
-### PythonQt Jobmodule
-
-A PythonQt jobmodule implements the experimental Job interface by defining
-a subclass of something.
-
-### PythonQt Viewmodule
-
-A PythonQt viewmodule implements the experimental View interface by defining
-a subclass of something.
-
-### Python API
-
-**TODO:** this needs documentation
+The PythonQt modules are deprecated and will be removed in Calamares 3.3.
+Their documentation is also almost completely lacking.
 
 
 
 ## Process jobmodules
+
+Use of this kind of module is **not** recommended.
 
 > Type: jobmodule
 > Interface: process
