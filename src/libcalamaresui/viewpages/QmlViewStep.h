@@ -35,6 +35,15 @@ namespace Calamares
  * This is generally a **base** class for other view steps, but
  * it can be used stand-alone for viewsteps that don't really have
  * any functionality.
+ *
+ * Most subclasses will override the following methods:
+ * - prettyName() to provide a meaningful human-readable name
+ * - jobs() if there is real work to be done during installation
+ * - getConfig() to return a meaningful configuration object
+ *
+ * For details on the interaction between the config object and
+ * the QML in the module, see the Calamares wiki:
+ *      https://github.com/calamares/calamares/wiki/Develop-Design
  */
 class QmlViewStep : public Calamares::ViewStep
 {
