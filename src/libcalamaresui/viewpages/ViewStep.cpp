@@ -91,7 +91,7 @@ ViewStep::checkRequirements()
 QSize
 ViewStep::widgetMargins( Qt::Orientations panelSides )
 {
-    Q_UNUSED( panelSides );
+    Q_UNUSED( panelSides )
 
     // Application's default style
     const auto* s = QApplication::style();
