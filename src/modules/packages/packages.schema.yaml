@@ -25,5 +25,18 @@ properties:
 
     operations:
         type: array
+        items:
+            additionalProperties: false
+            type: object
+            properties:
+                # TODO: these are either-string-or-struct items,
+                #       need their own little schema.
+                install: { type: array }
+                remove: { type: array }
+                try_install: { type: array }
+                try_remove: { type: array }
+                localInstall: { type: array }
+                source: { type: string }
+
 
 required: [ backend ]
