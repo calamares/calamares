@@ -17,6 +17,7 @@ properties:
             - urpmi
             - yum
             - zypp
+            - pamac
             - dummy
 
     update_db: { type: boolean, default: true }
