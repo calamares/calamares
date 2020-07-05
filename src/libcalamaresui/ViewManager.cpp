@@ -67,10 +67,12 @@ ViewManager::ViewManager( QObject* parent )
     : QAbstractListModel( parent )
     , m_currentStep( -1 )
     , m_widget( new QWidget() )
+    , m_panelSides( Qt::Horizontal | Qt::Vertical )
 {
     Q_ASSERT( !s_instance );
 
     QBoxLayout* mainLayout = new QVBoxLayout;
+    mainLayout->setContentsMargins( 0, 0, 0, 0 );
     m_widget->setObjectName( "viewManager" );
     m_widget->setLayout( mainLayout );
 
@@ -127,15 +129,19 @@ ViewManager::insertViewStep( int before, ViewStep* step )
     {
         cError() << "ViewStep" << step->moduleInstanceKey() << "has no widget.";
     }
-
-    QLayout* layout = step->widget()->layout();
-    if ( layout )
+    else
     {
-        layout->setContentsMargins( 0, 0, 0, 0 );
+        QLayout* layout = step->widget()->layout();
+        if ( layout )
+        {
+            const auto margins = step->widgetMargins( m_panelSides );
+            layout->setContentsMargins( margins.width(), margins.height(), margins.width(), margins.height() );
+        }
+
+        m_stack->insertWidget( before, step->widget() );
+        m_stack->setCurrentIndex( 0 );
+        step->widget()->setFocus();
     }
-    m_stack->insertWidget( before, step->widget() );
-    m_stack->setCurrentIndex( 0 );
-    step->widget()->setFocus();
     emit endInsertRows();
 }
 

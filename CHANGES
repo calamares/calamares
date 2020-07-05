@@ -3,6 +3,41 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.27 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
+# 3.2.26.1 (2020-06-23) #
+
+This is a hotfix release for undefined behavior caused by an
+uninitialized integer variable. It includes new translations
+and features as well since those arrived independently.
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Gaël PORTAY
+
+## Core ##
+ - Welcome to Azerbaijani translations. These are available
+   in two variations, *Azerbaijani* and *Azerbaijani (Azerbaijan)*.
+   [Wikipedia Azerbaijani](https://en.wikipedia.org/wiki/Azerbaijani_language#North_vs._South_Azerbaijani)
+   has a nice overview.
+ - Warnings while building with Qt 5.15 have been much reduced.
+
+## Modules ##
+ - *partitioning* has one case of undefined behavior (UB) due
+   to a missing integer-initialization. (Thanks Gaël)
+ - *keyboardq* QML module now works correctly. (Thanks Anke)
+
+
 # 3.2.26 (2020-06-18) #
 
 This release contains contributions from (alphabetically by first name):
@@ -25,7 +60,7 @@ This release contains contributions from (alphabetically by first name):
  - *locale* put some more places into the correct timezone **visually**;
    for instance Norfolk Island gave up UTC+11.5 in 2015 and is now
    UTC+11, but Calamares still showed it in a zone separate from UTC+11.
- - *localeq* can now properly switch between on & offline mode, 
+ - *localeq* can now properly switch between on & offline mode,
    it detects internet status through js.
  - *packages* gained support for the Void Linux package manager,
    *xbps*. (thanks Pablo)

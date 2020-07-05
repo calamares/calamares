@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2010-2011 Christian Muehlhaeuser <muesli@tomahawk-player.org>
  *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
@@ -37,8 +37,12 @@ struct FuncSuppressor
     const char* m_s;
 };
 
-struct NoQuote {};
-struct Quote {};
+struct NoQuote
+{
+};
+struct Quote
+{
+};
 
 DLLEXPORT extern const FuncSuppressor Continuation;
 DLLEXPORT extern const FuncSuppressor SubEntry;
@@ -206,6 +210,24 @@ public:
     const QVariantMap& map;
 };
 
+/**
+ * @brief Formatted logging of a pointer
+ *
+ * Pointers are printed as void-pointer, so just an address (unlike, say,
+ * QObject pointers which show an address and some metadata) preceded
+ * by an '@'. This avoids C-style (void*) casts in the code.
+ */
+struct Pointer
+{
+public:
+    explicit Pointer( const void* p )
+        : ptr( p )
+    {
+    }
+
+    const void* const ptr;
+};
+
 /** @brief output operator for DebugRow */
 template < typename T, typename U >
 inline QDebug&
@@ -238,6 +260,13 @@ operator<<( QDebug& s, const DebugMap& t )
     {
         s << Continuation << it.key().toUtf8().constData() << ':' << ' ' << toString( it.value() ).toUtf8().constData();
     }
+    return s;
+}
+
+inline QDebug&
+operator<<( QDebug& s, const Pointer& p )
+{
+    s << NoQuote {} << '@' << p.ptr << Quote {};
     return s;
 }
 }  // namespace Logger

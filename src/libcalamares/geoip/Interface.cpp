@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "Interface.h"
 
 #include "utils/Logger.h"
+#include "utils/String.h"
 
 namespace CalamaresUtils
 {
@@ -43,7 +44,7 @@ splitTZString( const QString& tz )
     timezoneString.remove( '\\' );
     timezoneString.replace( ' ', '_' );
 
-    QStringList tzParts = timezoneString.split( '/', QString::SkipEmptyParts );
+    QStringList tzParts = timezoneString.split( '/', SplitSkipEmptyParts );
     if ( tzParts.size() >= 2 )
     {
         cDebug() << "GeoIP reporting" << timezoneString;

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 23:13+0200\n"
+"POT-Creation-Date: 2020-06-18 15:42+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/calamares/teams/20061/ca/)\n"
@@ -21,131 +21,32 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Instal·la els paquets."
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Configura el GRUB."
 
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Es processen paquets (%(count)d / %(total)d)"
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Es munten les particions."
 
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "S'instal·la un paquet."
-msgstr[1] "S'instal·len %(num)d paquets."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Se suprimeix un paquet."
-msgstr[1] "Se suprimeixen %(num)d paquets."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Es desa la configuració de la xarxa."
-
-#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
-#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
-#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "Error de configuració"
 
-#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
-#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
-#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
-#: src/modules/initramfscfg/main.py:99
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"No s'ha proporcionat el punt de muntatge perquè l'usi <pre>{!s}</pre>."
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "Desmunta els sistemes de fitxers."
-
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "Es configura mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
-#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
-#: src/modules/rawfs/main.py:172
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "No s'han definit particions perquè les usi <pre>{!s}</pre>."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Es configura el sevei OpenRC dmcrypt."
-
-#: src/modules/unpackfs/main.py:44
-msgid "Filling up filesystems."
-msgstr "S'omplen els sistemes de fitxers."
-
-#: src/modules/unpackfs/main.py:257
-msgid "rsync failed with error code {}."
-msgstr "Ha fallat rsync amb el codi d'error {}."
-
-#: src/modules/unpackfs/main.py:302
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Es desempaqueta la imatge {}/{}, fitxer {}/{}"
-
-#: src/modules/unpackfs/main.py:317
-msgid "Starting to unpack {}"
-msgstr "Es comença a desempaquetar {}"
-
-#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
-msgid "Failed to unpack image \"{}\""
-msgstr "Ha fallat desempaquetar la imatge \"{}\"."
-
-#: src/modules/unpackfs/main.py:399
-msgid "No mount point for root partition"
-msgstr "No hi ha punt de muntatge per a la partició d'arrel."
-
-#: src/modules/unpackfs/main.py:400
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage no conté cap clau de \"rootMountPoint\". No es fa res."
-
-#: src/modules/unpackfs/main.py:405
-msgid "Bad mount point for root partition"
-msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
-
-#: src/modules/unpackfs/main.py:406
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
-
-#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
-#: src/modules/unpackfs/main.py:446
-msgid "Bad unsquash configuration"
-msgstr "Configuració incorrecta d'unsquash."
-
-#: src/modules/unpackfs/main.py:423
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "El sistema de fitxers per a {} ({}) no és admès pel nucli actual."
-
-#: src/modules/unpackfs/main.py:427
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "El sistema de fitxers font \"{}\" no existeix."
-
-#: src/modules/unpackfs/main.py:433
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Ha fallat trobar unsquashfs, assegureu-vos que tingueu el paquet squashfs-"
-"tools instal·lat."
-
-#: src/modules/unpackfs/main.py:447
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -188,38 +89,148 @@ msgstr ""
 "Ordres desconegudes de systemd: <code>{command!s}</code> i "
 "<code>{suffix!s}</code>, per a la unitat {name!s}."
 
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Tasca de python fictícia."
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Desmunta els sistemes de fitxers."
 
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Pas de python fitctici {}"
+#: src/modules/unpackfs/main.py:44
+msgid "Filling up filesystems."
+msgstr "S'omplen els sistemes de fitxers."
 
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "S'instal·la el carregador d'arrencada."
+#: src/modules/unpackfs/main.py:257
+msgid "rsync failed with error code {}."
+msgstr "Ha fallat rsync amb el codi d'error {}."
 
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "Es configuren les llengües."
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Es desempaqueta la imatge {}/{}, fitxer {}/{}"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Es munten les particions."
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "Es comença a desempaquetar {}"
 
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Configura el tema del Plymouth"
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+msgid "Failed to unpack image \"{}\""
+msgstr "Ha fallat desempaquetar la imatge \"{}\"."
+
+#: src/modules/unpackfs/main.py:415
+msgid "No mount point for root partition"
+msgstr "No hi ha punt de muntatge per a la partició d'arrel."
+
+#: src/modules/unpackfs/main.py:416
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage no conté cap clau de \"rootMountPoint\". No es fa res."
+
+#: src/modules/unpackfs/main.py:421
+msgid "Bad mount point for root partition"
+msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
+
+#: src/modules/unpackfs/main.py:422
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
+
+#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
+#: src/modules/unpackfs/main.py:462
+msgid "Bad unsquash configuration"
+msgstr "Configuració incorrecta d'unsquash."
+
+#: src/modules/unpackfs/main.py:439
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "El sistema de fitxers per a {} ({}) no és admès pel nucli actual."
+
+#: src/modules/unpackfs/main.py:443
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "El sistema de fitxers font \"{}\" no existeix."
+
+#: src/modules/unpackfs/main.py:449
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Ha fallat trobar unsquashfs, assegureu-vos que tingueu el paquet squashfs-"
+"tools instal·lat."
+
+#: src/modules/unpackfs/main.py:463
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
+
+#: src/modules/displaymanager/main.py:523
+msgid "Cannot write KDM configuration file"
+msgstr "No es pot escriure el fitxer de configuració del KDM."
+
+#: src/modules/displaymanager/main.py:524
+msgid "KDM config file {!s} does not exist"
+msgstr "El fitxer de configuració del KDM {!s} no existeix."
+
+#: src/modules/displaymanager/main.py:585
+msgid "Cannot write LXDM configuration file"
+msgstr "No es pot escriure el fitxer de configuració de l'LXDM."
+
+#: src/modules/displaymanager/main.py:586
+msgid "LXDM config file {!s} does not exist"
+msgstr "El fitxer de configuració de l'LXDM {!s} no existeix."
+
+#: src/modules/displaymanager/main.py:669
+msgid "Cannot write LightDM configuration file"
+msgstr "No es pot escriure el fitxer de configuració del LightDM."
+
+#: src/modules/displaymanager/main.py:670
+msgid "LightDM config file {!s} does not exist"
+msgstr "El fitxer de configuració del LightDM {!s} no existeix."
+
+#: src/modules/displaymanager/main.py:744
+msgid "Cannot configure LightDM"
+msgstr "No es pot configurar el LightDM."
+
+#: src/modules/displaymanager/main.py:745
+msgid "No LightDM greeter installed."
+msgstr "No hi ha benvinguda instal·lada per al LightDM."
+
+#: src/modules/displaymanager/main.py:776
+msgid "Cannot write SLIM configuration file"
+msgstr "No es pot escriure el fitxer de configuració de l'SLIM."
+
+#: src/modules/displaymanager/main.py:777
+msgid "SLIM config file {!s} does not exist"
+msgstr "El fitxer de configuració de l'SLIM {!s} no existeix."
+
+#: src/modules/displaymanager/main.py:903
+msgid "No display managers selected for the displaymanager module."
+msgstr ""
+"No hi ha cap gestor de pantalla seleccionat per al mòdul displaymanager."
+
+#: src/modules/displaymanager/main.py:904
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+"La llista de gestors de pantalla és buida o no definida a bothglobalstorage "
+"i displaymanager.conf."
+
+#: src/modules/displaymanager/main.py:986
+msgid "Display manager configuration was incomplete"
+msgstr "La configuració del gestor de pantalla no era completa."
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "Es configura mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:210
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"No s'ha proporcionat el punt de muntatge perquè l'usi <pre>{!s}</pre>."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "Es configura l'intercanvi encriptat."
 
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "S'escriu fstab."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "S'instal·len dades."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -272,6 +283,42 @@ msgid ""
 msgstr ""
 "El camí per al servei {name!s} és <code>{path!s}</code>, però no existeix."
 
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Configura el tema del Plymouth"
+
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Instal·la els paquets."
+
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Es processen paquets (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "S'instal·la un paquet."
+msgstr[1] "S'instal·len %(num)d paquets."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Se suprimeix un paquet."
+msgstr[1] "Se suprimeixen %(num)d paquets."
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "S'instal·la el carregador d'arrencada."
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "S'estableix el rellotge del maquinari."
+
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
 msgstr "Es creen initramfs amb dracut."
@@ -284,75 +331,31 @@ msgstr "Ha fallat executar dracut a la destinació."
 msgid "The exit code was {}"
 msgstr "El codi de sortida ha estat {}"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "Configura el GRUB."
-
-#: src/modules/displaymanager/main.py:515
-msgid "Cannot write KDM configuration file"
-msgstr "No es pot escriure el fitxer de configuració del KDM."
-
-#: src/modules/displaymanager/main.py:516
-msgid "KDM config file {!s} does not exist"
-msgstr "El fitxer de configuració del KDM {!s} no existeix."
-
-#: src/modules/displaymanager/main.py:577
-msgid "Cannot write LXDM configuration file"
-msgstr "No es pot escriure el fitxer de configuració de l'LXDM."
-
-#: src/modules/displaymanager/main.py:578
-msgid "LXDM config file {!s} does not exist"
-msgstr "El fitxer de configuració de l'LXDM {!s} no existeix."
-
-#: src/modules/displaymanager/main.py:661
-msgid "Cannot write LightDM configuration file"
-msgstr "No es pot escriure el fitxer de configuració del LightDM."
-
-#: src/modules/displaymanager/main.py:662
-msgid "LightDM config file {!s} does not exist"
-msgstr "El fitxer de configuració del LightDM {!s} no existeix."
-
-#: src/modules/displaymanager/main.py:736
-msgid "Cannot configure LightDM"
-msgstr "No es pot configurar el LightDM."
-
-#: src/modules/displaymanager/main.py:737
-msgid "No LightDM greeter installed."
-msgstr "No hi ha benvinguda instal·lada per al LightDM."
-
-#: src/modules/displaymanager/main.py:768
-msgid "Cannot write SLIM configuration file"
-msgstr "No es pot escriure el fitxer de configuració de l'SLIM."
-
-#: src/modules/displaymanager/main.py:769
-msgid "SLIM config file {!s} does not exist"
-msgstr "El fitxer de configuració de l'SLIM {!s} no existeix."
-
-#: src/modules/displaymanager/main.py:895
-msgid "No display managers selected for the displaymanager module."
-msgstr ""
-"No hi ha cap gestor de pantalla seleccionat per al mòdul displaymanager."
-
-#: src/modules/displaymanager/main.py:896
-msgid ""
-"The displaymanagers list is empty or undefined in bothglobalstorage and "
-"displaymanager.conf."
-msgstr ""
-"La llista de gestors de pantalla és buida o no definida a bothglobalstorage "
-"i displaymanager.conf."
-
-#: src/modules/displaymanager/main.py:978
-msgid "Display manager configuration was incomplete"
-msgstr "La configuració del gestor de pantalla no era completa."
-
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "Es configuren initramfs."
 
-#: src/modules/hwclock/main.py:35
-msgid "Setting hardware clock."
-msgstr "S'estableix el rellotge del maquinari."
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Es configura el sevei OpenRC dmcrypt."
 
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "S'instal·len dades."
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "S'escriu fstab."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Tasca de python fictícia."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Pas de python fitctici {}"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Es configuren les llengües."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Es desa la configuració de la xarxa."

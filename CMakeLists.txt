@@ -46,7 +46,7 @@
 # TODO:3.3: Require CMake 3.12
 cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
 project( CALAMARES
-    VERSION 3.2.26
+    VERSION 3.2.26.1
     LANGUAGES C CXX )
 
 set( CALAMARES_VERSION_RC 0 )  # Set to 0 during release cycle, 1 during development
@@ -94,9 +94,24 @@ option( BUILD_SCHEMA_TESTING "Enable schema-validation-tests" ON )
 # all the implementations are enabled (this just means they are
 # **available** to `settings.conf`, not that they are used).
 #
-# Currently, only USE_services is in use (to pick only one of the two
-# modules, systemd or openrc).
+# To explicitly disable a set of modules, set USE_<foo>=none
+# (e.g. the literal string none), which won't match any of the
+# modules but is handled specially. This is the default for
+# USE_os, which are modules for specialty non-Linux distributions.
+#
+# The following USE_* functionalities are available:
+#  - *services* picks one of the two service-configuration modules,
+#    for either systemd or openrc. This defaults to empty so that
+#    **both** modules are available.
+#  - *os* picks an OS-specific module for things-that-are-not-Linux.
+#    It is generally discouraged to use this unless your distro is
+#    completely unable to use standard Linux tools for configuration.
+#    This defaults to *none* so that nothing gets picked up and nothing
+#    is packaged -- you must explicitly set it to empty to get all of
+#    the modules, but that hardly makes sense. Note, too that there
+#    are currently no os-* modules shipped with Calamares.
 set( USE_services "" CACHE STRING "Select the services module to use" )
+set( USE_os "none" CACHE STRING "Select the OS-specific module to include" )
 
 ### Calamares application info
 #
@@ -132,14 +147,14 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #       copy these four lines to four backup lines, add "p", and then update
 #       the original four lines with the current translations).
 #
-# Total 62 languages
-set( _tx_complete ca da fi_FI fr he hr ja lt sq tr_TR )
-set( _tx_good ast cs_CZ de es es_MX et gl hi hu id it_IT ko ml nl
-    pl pt_BR pt_PT ru sk zh_TW )
-set( _tx_ok ar as be bg el en_GB es_PR eu is mr nb ro sl sr
-    sr@latin sv th uk zh_CN )
-set( _tx_incomplete ca@valencia eo fa fr_CH gu kk kn lo mk ne_NP ur
-    uz )
+# Total 66 languages
+set( _tx_complete az az_AZ ca he hi hr ja sq tr_TR uk zh_TW )
+set( _tx_good as ast be cs_CZ da de es fi_FI fr hu it_IT ko lt ml
+    nl pt_BR pt_PT ru sk sv zh_CN )
+set( _tx_ok ar bg el en_GB es_MX es_PR et eu fa gl id is mr nb pl
+    ro sl sr sr@latin th )
+set( _tx_incomplete bn ca@valencia eo fr_CH gu kk kn lo lv mk ne_NP
+    ur uz )
 
 ### Required versions
 #

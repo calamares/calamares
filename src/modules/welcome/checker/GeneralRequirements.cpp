@@ -358,7 +358,7 @@ GeneralRequirements::checkEnoughRam( qint64 requiredRam )
     // Ignore the guesstimate-factor; we get an under-estimate
     // which is probably the usable RAM for programs.
     quint64 availableRam = CalamaresUtils::System::instance()->getTotalMemoryB().first;
-    return availableRam >= requiredRam * 0.95;  // because MemTotal is variable
+    return double(availableRam) >= double(requiredRam) * 0.95;  // cast to silence 64-bit-int conversion to double
 }
 
 

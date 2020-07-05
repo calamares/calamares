@@ -112,6 +112,8 @@ InstallTrackingConfig::InstallTrackingConfig( QObject* parent )
     setObjectName( "InstallTrackingConfig" );
 }
 
+InstallTrackingConfig::~InstallTrackingConfig() {}
+
 void
 InstallTrackingConfig::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -126,6 +128,8 @@ MachineTrackingConfig::MachineTrackingConfig( QObject* parent )
 {
     setObjectName( "MachineTrackingConfig" );
 }
+
+MachineTrackingConfig::~MachineTrackingConfig() {}
 
 /** @brief Is @p s a valid machine-tracking style. */
 static bool
@@ -150,6 +154,8 @@ UserTrackingConfig::UserTrackingConfig( QObject* parent )
 {
     setObjectName( "UserTrackingConfig" );
 }
+
+UserTrackingConfig::~UserTrackingConfig() {}
 
 static bool
 isValidUserTrackingStyle( const QString& s )

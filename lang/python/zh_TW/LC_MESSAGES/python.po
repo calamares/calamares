@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 23:13+0200\n"
+"POT-Creation-Date: 2020-06-18 15:42+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>, 2020\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/calamares/teams/20061/zh_TW/)\n"
@@ -22,126 +22,32 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "安裝軟體包。"
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "設定 GRUB。"
 
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "正在處理軟體包 (%(count)d / %(total)d)"
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "正在掛載分割區。"
 
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "正在安裝 %(num)d 軟體包。"
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "正在移除 %(num)d 軟體包。"
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "正在儲存網路設定。"
-
-#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
-#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
-#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "設定錯誤"
 
-#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
-#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
-#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
-#: src/modules/initramfscfg/main.py:99
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "沒有給定的根掛載點 <pre>{!s}</pre> 以供使用。"
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "解除掛載檔案系統。"
-
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "正在設定 mkinitcpio。"
-
-#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
-#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
-#: src/modules/rawfs/main.py:172
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "沒有分割區被定義為 <pre>{!s}</pre> 以供使用。"
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "正在設定 OpenRC dmcrypt 服務。"
-
-#: src/modules/unpackfs/main.py:44
-msgid "Filling up filesystems."
-msgstr "填滿檔案系統。"
-
-#: src/modules/unpackfs/main.py:257
-msgid "rsync failed with error code {}."
-msgstr "rsync 失敗，錯誤碼 {} 。"
-
-#: src/modules/unpackfs/main.py:302
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "正在解壓縮 {}/{}，檔案 {}/{}"
-
-#: src/modules/unpackfs/main.py:317
-msgid "Starting to unpack {}"
-msgstr "開始解壓縮 {}"
-
-#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
-msgid "Failed to unpack image \"{}\""
-msgstr "無法解開映像檔 \"{}\""
-
-#: src/modules/unpackfs/main.py:399
-msgid "No mount point for root partition"
-msgstr "沒有 root 分割區的掛載點"
-
-#: src/modules/unpackfs/main.py:400
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage 不包含 \"rootMountPoint\" 鍵，不做任何事"
-
-#: src/modules/unpackfs/main.py:405
-msgid "Bad mount point for root partition"
-msgstr "root 分割區掛載點錯誤"
-
-#: src/modules/unpackfs/main.py:406
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint 為 \"{}\"，其不存在，不做任何事"
-
-#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
-#: src/modules/unpackfs/main.py:446
-msgid "Bad unsquash configuration"
-msgstr "錯誤的 unsquash 設定"
-
-#: src/modules/unpackfs/main.py:423
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "\"{}\" ({}) 的檔案系統不獲您目前的內核所支援"
-
-#: src/modules/unpackfs/main.py:427
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "來源檔案系統 \"{}\" 不存在"
-
-#: src/modules/unpackfs/main.py:433
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr "找不到 unsquashfs，請確定已安裝 squashfs-tools 軟體包"
-
-#: src/modules/unpackfs/main.py:447
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "目標系統中的目的地 \"{}\" 不是目錄"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -182,38 +88,142 @@ msgstr ""
 "未知的 systemd 指令 <code>{command!s}</code> 與 <code>{suffix!s}</code> 給單位 "
 "{name!s}。"
 
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "假的 python 工作。"
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "解除掛載檔案系統。"
 
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "假的 python step {}"
+#: src/modules/unpackfs/main.py:44
+msgid "Filling up filesystems."
+msgstr "填滿檔案系統。"
 
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "安裝開機載入程式。"
+#: src/modules/unpackfs/main.py:257
+msgid "rsync failed with error code {}."
+msgstr "rsync 失敗，錯誤碼 {} 。"
 
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "正在設定語系。"
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "正在解壓縮 {}/{}，檔案 {}/{}"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "正在掛載分割區。"
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "開始解壓縮 {}"
 
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "設定 Plymouth 主題"
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+msgid "Failed to unpack image \"{}\""
+msgstr "無法解開映像檔 \"{}\""
+
+#: src/modules/unpackfs/main.py:415
+msgid "No mount point for root partition"
+msgstr "沒有 root 分割區的掛載點"
+
+#: src/modules/unpackfs/main.py:416
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage 不包含 \"rootMountPoint\" 鍵，不做任何事"
+
+#: src/modules/unpackfs/main.py:421
+msgid "Bad mount point for root partition"
+msgstr "root 分割區掛載點錯誤"
+
+#: src/modules/unpackfs/main.py:422
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint 為 \"{}\"，其不存在，不做任何事"
+
+#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
+#: src/modules/unpackfs/main.py:462
+msgid "Bad unsquash configuration"
+msgstr "錯誤的 unsquash 設定"
+
+#: src/modules/unpackfs/main.py:439
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "\"{}\" ({}) 的檔案系統不獲您目前的內核所支援"
+
+#: src/modules/unpackfs/main.py:443
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "來源檔案系統 \"{}\" 不存在"
+
+#: src/modules/unpackfs/main.py:449
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr "找不到 unsquashfs，請確定已安裝 squashfs-tools 軟體包"
+
+#: src/modules/unpackfs/main.py:463
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "目標系統中的目的地 \"{}\" 不是目錄"
+
+#: src/modules/displaymanager/main.py:523
+msgid "Cannot write KDM configuration file"
+msgstr "無法寫入 KDM 設定檔"
+
+#: src/modules/displaymanager/main.py:524
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM 設定檔 {!s} 不存在"
+
+#: src/modules/displaymanager/main.py:585
+msgid "Cannot write LXDM configuration file"
+msgstr "無法寫入 LXDM 設定檔"
+
+#: src/modules/displaymanager/main.py:586
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM 設定檔 {!s} 不存在"
+
+#: src/modules/displaymanager/main.py:669
+msgid "Cannot write LightDM configuration file"
+msgstr "無法寫入 LightDM 設定檔"
+
+#: src/modules/displaymanager/main.py:670
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM 設定檔 {!s} 不存在"
+
+#: src/modules/displaymanager/main.py:744
+msgid "Cannot configure LightDM"
+msgstr "無法設定 LightDM"
+
+#: src/modules/displaymanager/main.py:745
+msgid "No LightDM greeter installed."
+msgstr "未安裝 LightDM greeter。"
+
+#: src/modules/displaymanager/main.py:776
+msgid "Cannot write SLIM configuration file"
+msgstr "無法寫入 SLIM 設定檔"
+
+#: src/modules/displaymanager/main.py:777
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM 設定檔 {!s} 不存在"
+
+#: src/modules/displaymanager/main.py:903
+msgid "No display managers selected for the displaymanager module."
+msgstr "未在顯示管理器模組中選取顯示管理器。"
+
+#: src/modules/displaymanager/main.py:904
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr "顯示管理器清單為空或在全域儲存與 displaymanager.conf 中皆未定義。"
+
+#: src/modules/displaymanager/main.py:986
+msgid "Display manager configuration was incomplete"
+msgstr "顯示管理器設定不完整"
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "正在設定 mkinitcpio。"
+
+#: src/modules/initcpiocfg/main.py:210
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "沒有給定的根掛載點 <pre>{!s}</pre> 以供使用。"
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "正在設定已加密的 swap。"
 
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "正在寫入 fstab。"
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "正在安裝資料。"
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -258,6 +268,40 @@ msgid ""
 "exist."
 msgstr "服務 {name!s} 的路徑為 <code>{path!s}</code>，不存在。"
 
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "設定 Plymouth 主題"
+
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "安裝軟體包。"
+
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "正在處理軟體包 (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "正在安裝 %(num)d 軟體包。"
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "正在移除 %(num)d 軟體包。"
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "安裝開機載入程式。"
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "正在設定硬體時鐘。"
+
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
 msgstr "正在使用 dracut 建立 initramfs。"
@@ -270,72 +314,31 @@ msgstr "在目標上執行 dracut 失敗"
 msgid "The exit code was {}"
 msgstr "結束碼為 {}"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "設定 GRUB。"
-
-#: src/modules/displaymanager/main.py:515
-msgid "Cannot write KDM configuration file"
-msgstr "無法寫入 KDM 設定檔"
-
-#: src/modules/displaymanager/main.py:516
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM 設定檔 {!s} 不存在"
-
-#: src/modules/displaymanager/main.py:577
-msgid "Cannot write LXDM configuration file"
-msgstr "無法寫入 LXDM 設定檔"
-
-#: src/modules/displaymanager/main.py:578
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM 設定檔 {!s} 不存在"
-
-#: src/modules/displaymanager/main.py:661
-msgid "Cannot write LightDM configuration file"
-msgstr "無法寫入 LightDM 設定檔"
-
-#: src/modules/displaymanager/main.py:662
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM 設定檔 {!s} 不存在"
-
-#: src/modules/displaymanager/main.py:736
-msgid "Cannot configure LightDM"
-msgstr "無法設定 LightDM"
-
-#: src/modules/displaymanager/main.py:737
-msgid "No LightDM greeter installed."
-msgstr "未安裝 LightDM greeter。"
-
-#: src/modules/displaymanager/main.py:768
-msgid "Cannot write SLIM configuration file"
-msgstr "無法寫入 SLIM 設定檔"
-
-#: src/modules/displaymanager/main.py:769
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM 設定檔 {!s} 不存在"
-
-#: src/modules/displaymanager/main.py:895
-msgid "No display managers selected for the displaymanager module."
-msgstr "未在顯示管理器模組中選取顯示管理器。"
-
-#: src/modules/displaymanager/main.py:896
-msgid ""
-"The displaymanagers list is empty or undefined in bothglobalstorage and "
-"displaymanager.conf."
-msgstr "顯示管理器清單為空或在全域儲存與 displaymanager.conf 中皆未定義。"
-
-#: src/modules/displaymanager/main.py:978
-msgid "Display manager configuration was incomplete"
-msgstr "顯示管理器設定不完整"
-
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "正在設定 initramfs。"
 
-#: src/modules/hwclock/main.py:35
-msgid "Setting hardware clock."
-msgstr "正在設定硬體時鐘。"
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "正在設定 OpenRC dmcrypt 服務。"
 
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "正在安裝資料。"
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "正在寫入 fstab。"
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "假的 python 工作。"
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "假的 python step {}"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "正在設定語系。"
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "正在儲存網路設定。"

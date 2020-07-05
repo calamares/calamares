@@ -15,3 +15,9 @@ calamares_add_plugin( tracking
     SHARED_LIB
 )
 
+calamares_add_test(
+    trackingtest
+    SOURCES
+        Tests.cpp
+        Config.cpp
+)
