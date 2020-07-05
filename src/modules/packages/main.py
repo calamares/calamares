@@ -178,6 +178,7 @@ class PMPackageKit(PackageManager):
     def update_system(self):
         check_target_env_call(["pkcon", "-py", "update"])
 
+
 class PMZypp(PackageManager):
     backend = "zypp"
 
@@ -198,6 +199,7 @@ class PMZypp(PackageManager):
         # Doesn't need to update the system explicitly
         pass
 
+
 class PMYum(PackageManager):
     backend = "yum"
 
@@ -214,6 +216,7 @@ class PMYum(PackageManager):
 
     def update_system(self):
         check_target_env_call(["yum", "-y", "upgrade"])
+
 
 class PMDnf(PackageManager):
     backend = "dnf"
@@ -274,6 +277,7 @@ class PMApt(PackageManager):
         # Doesn't need to update the system explicitly
         pass
 
+
 class PMXbps(PackageManager):
     backend = "xbps"
 
@@ -288,6 +292,7 @@ class PMXbps(PackageManager):
 
     def update_system(self):
         check_target_env_call(["xbps", "-Suy"])
+
 
 class PMPacman(PackageManager):
     backend = "pacman"
