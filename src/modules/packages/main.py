@@ -309,32 +309,30 @@ class PMPacman(PackageManager):
 
     def update_system(self):
         check_target_env_call(["pacman", "-Su", "--noconfirm"])
-        
-        
+
+
 class PMPamac(PackageManager):
     backend = "pamac"
-    
-    def check_db_lock(self, lock="/var/lib/pacman/db.lck"):
+
+    def del_db_lock(self, lock="/var/lib/pacman/db.lck"):
         # In case some error or crash, the database will be locked,
         # resulting in remaining packages not being installed.
-        import os
-        if os.path.exists(lock):
-            check_target_env_call(["rm", lock])    
+        check_target_env_call(["rm", "-f", lock])
 
     def install(self, pkgs, from_local=False):
-        self.check_db_lock()     
+        self.del_db_lock()
         check_target_env_call([self.backend, "install", "--no-confirm"] + pkgs)
 
     def remove(self, pkgs):
-        self.check_db_lock()
+        self.del_db_lock()
         check_target_env_call([self.backend, "remove", "--no-confirm"] + pkgs)
 
     def update_db(self):
-        self.check_db_lock()
+        self.del_db_lock()
         check_target_env_call([self.backend, "update", "--no-confirm"])
 
     def update_system(self):
-        self.check_db_lock()
+        self.del_db_lock()
         check_target_env_call([self.backend, "upgrade", "--no-confirm"])
 
 
