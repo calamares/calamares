@@ -92,6 +92,19 @@ isIso9660( const Device* device )
     return false;
 }
 
+static inline bool
+isZRam( const Device* device )
+{
+    const QString path = device->deviceNode();
+    return path.startswith( "/dev/zram" );
+}
+
+static inline bool
+isFloppyDrive( const Device* device )
+{
+    const QString path = device->deviceNode();
+    return path.startswith( "/dev/fd" ) || path.startswith( "/dev/floppy" );
+}
 
 static inline QDebug&
 operator<<( QDebug& s, QList< Device* >::iterator& it )
@@ -138,9 +151,14 @@ getDevices( DeviceType which, qint64 minimumSize )
             cDebug() << Logger::SubEntry << "Skipping nullptr device";
             it = erase( devices, it );
         }
-        else if ( ( *it )->deviceNode().startsWith( "/dev/zram" ) )
+        else if ( isZRam( *it ) )
         {
             cDebug() << Logger::SubEntry << "Removing zram" << it;
+            it = erase( devices, it );
+        }
+        else if ( isFloppyDrive( ( *it ) ) )
+        {
+            cDebug() << Logger::SubEntry << "Removing floppy disk" << it;
             it = erase( devices, it );
         }
         else if ( writableOnly && hasRootPartition( *it ) )
