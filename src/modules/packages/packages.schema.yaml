@@ -13,11 +13,11 @@ properties:
             - entropy
             - packagekit
             - pacman
+            - pamac
             - portage
             - urpmi
             - yum
             - zypp
-            - pamac
             - dummy
 
     update_db: { type: boolean, default: true }
