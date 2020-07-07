@@ -50,7 +50,7 @@ static unsigned int s_threshold =
 static QMutex s_mutex;
 
 static const char s_Continuation[] = "\n    ";
-static const char s_SubEntry[] = " .. ";
+static const char s_SubEntry[] = "    .. ";
 
 
 namespace Logger
@@ -79,7 +79,7 @@ logLevel()
 }
 
 static void
-log( const char* msg, unsigned int debugLevel )
+log( const char* msg, unsigned int debugLevel, bool withTime = true )
 {
     if ( true )
     {
@@ -95,13 +95,15 @@ log( const char* msg, unsigned int debugLevel )
         logfile.flush();
     }
 
-    if ( logLevelEnabled(debugLevel) )
+    if ( logLevelEnabled( debugLevel ) )
     {
         QMutexLocker lock( &s_mutex );
-
-        std::cout << QTime::currentTime().toString().toUtf8().data() << " ["
-                  << QString::number( debugLevel ).toUtf8().data() << "]: " << msg << std::endl;
-        std::cout.flush();
+        if ( withTime )
+        {
+            std::cout << QTime::currentTime().toString().toUtf8().data() << " ["
+                      << QString::number( debugLevel ).toUtf8().data() << "]: ";
+        }
+        std::cout << msg << std::endl;
     }
 }
 
@@ -199,12 +201,15 @@ CDebug::CDebug( unsigned int debugLevel, const char* func )
 
 CDebug::~CDebug()
 {
-    if ( m_funcinfo )
+    if ( logLevelEnabled( m_debugLevel ) )
     {
-        m_msg.prepend( s_Continuation );  // Prepending, so back-to-front
-        m_msg.prepend( m_funcinfo );
+        if ( m_funcinfo )
+        {
+            m_msg.prepend( s_Continuation );  // Prepending, so back-to-front
+            m_msg.prepend( m_funcinfo );
+        }
+        log( m_msg.toUtf8().data(), m_debugLevel, m_funcinfo );
     }
-    log( m_msg.toUtf8().data(), m_debugLevel );
 }
 
 constexpr FuncSuppressor::FuncSuppressor( const char s[] )
