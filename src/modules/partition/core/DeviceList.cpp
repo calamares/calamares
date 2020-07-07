@@ -96,14 +96,14 @@ static inline bool
 isZRam( const Device* device )
 {
     const QString path = device->deviceNode();
-    return path.startswith( "/dev/zram" );
+    return path.startsWith( "/dev/zram" );
 }
 
 static inline bool
 isFloppyDrive( const Device* device )
 {
     const QString path = device->deviceNode();
-    return path.startswith( "/dev/fd" ) || path.startswith( "/dev/floppy" );
+    return path.startsWith( "/dev/fd" ) || path.startsWith( "/dev/floppy" );
 }
 
 static inline QDebug&
