@@ -125,7 +125,7 @@ erase( DeviceList& l, DeviceList::iterator& it )
 }
 
 QList< Device* >
-getDevices( DeviceType which, qint64 minimumSize )
+getDevices( DeviceType which )
 {
     bool writableOnly = ( which == DeviceType::WritableOnly );
 
@@ -169,11 +169,6 @@ getDevices( DeviceType which, qint64 minimumSize )
         else if ( writableOnly && isIso9660( *it ) )
         {
             cDebug() << Logger::SubEntry << "Removing device with iso9660 filesystem (probably a CD) on it" << it;
-            it = erase( devices, it );
-        }
-        else if ( ( minimumSize >= 0 ) && !( ( *it )->capacity() > minimumSize ) )
-        {
-            cDebug() << Logger::SubEntry << "Removing too-small" << it;
             it = erase( devices, it );
         }
         else

@@ -45,7 +45,7 @@ enum class DeviceType
  *      greater than @p minimumSize will be returned.
  * @return a list of Devices meeting this criterium.
  */
-QList< Device* > getDevices( DeviceType which = DeviceType::All, qint64 minimumSize = -1 );
+QList< Device* > getDevices( DeviceType which = DeviceType::All );
 
 }  // namespace PartUtils
 
