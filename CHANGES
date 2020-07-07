@@ -6,13 +6,18 @@ website will have to do for older versions.
 # 3.2.27 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Gaël PORTAY
+ - Vitor Lopes (new! welcome!)
 
 ## Core ##
- - No core changes yet
+ - QML modules with no surrounding navigation -- this is basically a
+   special case for full-screen Calamares -- now have margins suitable
+   for full-screen use.
+ - PythonQt modules are increasingly on the way out.
 
 ## Modules ##
- - No module changes yet
+ - The Manjaro package manager *pamac* has been added to those supported by
+   the *packages* module.
 
 
 # 3.2.26.1 (2020-06-23) #
