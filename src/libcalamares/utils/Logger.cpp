@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2010-2011 Christian Muehlhaeuser <muesli@tomahawk-player.org>
  *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
@@ -95,7 +95,7 @@ log( const char* msg, unsigned int debugLevel )
         logfile.flush();
     }
 
-    if ( debugLevel <= LOGEXTRA || debugLevel < s_threshold )
+    if ( logLevelEnabled(debugLevel) )
     {
         QMutexLocker lock( &s_mutex );
 
