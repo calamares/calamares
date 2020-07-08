@@ -122,6 +122,7 @@ PartitionViewStep::~PartitionViewStep()
     {
         m_manualPartitionPage->deleteLater();
     }
+    delete m_core;
 }
 
 
