@@ -3,6 +3,9 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# 508a8b0ef95404aa3dc5178f0ccada5e_017b8a4 <d0ef5d977ab7abf012ef53891f8ca2b5_900530>, 2020
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -10,6 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-18 15:42+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: 508a8b0ef95404aa3dc5178f0ccada5e_017b8a4 <d0ef5d977ab7abf012ef53891f8ca2b5_900530>, 2020\n"
 "Language-Team: Bengali (https://www.transifex.com/calamares/teams/20061/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +23,11 @@ msgstr ""
 
 #: src/modules/grubcfg/main.py:37
 msgid "Configure GRUB."
-msgstr ""
+msgstr "কনফিগার করুন জিআরইউবি।"
 
 #: src/modules/mount/main.py:38
 msgid "Mounting partitions."
-msgstr ""
+msgstr "মাউন্ট করছে পার্টিশনগুলো।"
 
 #: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
 #: src/modules/initcpiocfg/main.py:209
@@ -35,28 +39,29 @@ msgstr ""
 #: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
 #: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
-msgstr ""
+msgstr "কনফিগারেশন ত্রুটি"
 
 #: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
 #: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
 #: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
 #: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr ""
+msgstr "কোন পার্টিশন নির্দিষ্ট করা হয়নি<pre>{!এস}</pre> ব্যবহার করার জন্য।"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
-msgstr ""
+msgstr "কনফিগার করুন সিস্টেমডি সেবাগুলি"
 
 #: src/modules/services-systemd/main.py:68
 #: src/modules/services-openrc/main.py:102
 msgid "Cannot modify service"
-msgstr ""
+msgstr "সেবা পরিবর্তন করতে পারে না"
 
 #: src/modules/services-systemd/main.py:69
 msgid ""
 "<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
+"<code>সিস্টেমসিটিএল {এআরজি!এস}</code>সিএইচরুট ফেরত ত্রুটি কোড দে{NUM! গুলি}।"
 
 #: src/modules/services-systemd/main.py:72
 #: src/modules/services-systemd/main.py:76
@@ -83,27 +88,27 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "আনমাউন্ট ফাইল সিস্টেমগুলি করুন।"
 
 #: src/modules/unpackfs/main.py:44
 msgid "Filling up filesystems."
-msgstr ""
+msgstr "ফাইলসিস্টেমগুলিপূরণ করছে।"
 
 #: src/modules/unpackfs/main.py:257
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "ত্রুটি কোড সহ আরসিঙ্ক ব্যর্থ হয়েছে {}।"
 
 #: src/modules/unpackfs/main.py:302
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr ""
+msgstr "চিত্র আনপ্যাক করছে {} / {}, ফাইল {} / {}"
 
 #: src/modules/unpackfs/main.py:317
 msgid "Starting to unpack {}"
-msgstr ""
+msgstr "আনপ্যাক করা শুরু করছে {}"
 
 #: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "চিত্র আনপ্যাক করতে ব্যর্থ হয়েছে \"{}\""
 
 #: src/modules/unpackfs/main.py:415
 msgid "No mount point for root partition"
