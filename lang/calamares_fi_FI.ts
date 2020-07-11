@@ -1782,7 +1782,9 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>Valitse sijainti kartalla, jotta asentaja voi ehdottaa paikalliset ja aikavyöhykeen asetukset.
+             Voit hienosäätää alla olevia asetuksia. Etsi kartalta vetämällä ja suurenna/pienennä +/- -painikkeella tai käytä
+hiiren vieritystä skaalaamiseen.</translation>
     </message>
   </context>
   <context>
@@ -1933,7 +1935,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="77"/>
       <source>To be able to select a timezone, make sure you are connected to the internet. Restart the installer after connecting. You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>Jos haluat valita aikavyöhykkeen niin varmista, että olet yhteydessä Internetiin. Käynnistä asennusohjelma uudelleen yhteyden muodostamisen jälkeen. Voit hienosäätää alla olevia kieli- ja kieliasetuksia.</translation>
     </message>
   </context>
   <context>
@@ -3493,7 +3495,7 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Napsauta tätä &lt;span style=" font-weight:600;"&gt;jos et halua lähettää mitään&lt;/span&gt; tietoja asennuksesta.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
@@ -3503,22 +3505,22 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>Seuranta auttaa %1 näkemään, kuinka usein se asennetaan, mihin laitteistoon se on asennettu ja mihin sovelluksiin sitä käytetään. Jos haluat nähdä, mitä lähetetään, napsauta kunkin alueen vieressä olevaa ohjekuvaketta.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>Valitsemalla tämän lähetät tietoja asennuksesta ja laitteistosta. Nämä tiedot lähetetään vain &lt;/b&gt;kerran&lt;/b&gt; asennuksen päätyttyä.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Valitsemalla tämän lähetät määräajoin tietoja &lt;b&gt;koneesi&lt;/b&gt; asennuksesta, laitteistosta ja sovelluksista, %1:lle.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Valitsemalla tämän lähetät säännöllisesti tietoja &lt;b&gt;käyttäjän&lt;/b&gt; asennuksesta, laitteistosta, sovelluksista ja sovellusten käyttötavoista %1:lle.</translation>
     </message>
   </context>
   <context>
@@ -3807,13 +3809,15 @@ Asennus voi jatkua, mutta jotkin toiminnot saattavat olla pois käytöstä.</tra
       <location filename="../src/modules/localeq/i18n.qml" line="59"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Kielet&lt;/h1&gt; &lt;/br&gt;
+                    Järjestelmän sijaintiasetukset vaikuttaa joidenkin komentorivin käyttöliittymän elementtien kieliin ja merkistöihin. Nykyinen asetus on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="120"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Sijainti&lt;/h1&gt; &lt;/br&gt;
+                    Järjestelmän sijaintiasetukset vaikuttaa joidenkin komentorivin käyttöliittymän elementtien kieliin ja merkistöihin. Nykyinen asetus on &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="174"/>

@@ -1781,7 +1781,9 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>Vælg venligst din foretrukne placering på kortet, så installationsprogrammet kan foreslå lokalitets-
+            og tidszoneindstillinger til dig. Du kan finjustere de foreslåede indstillinger nedenfor. Søg på kortet ved ved at trække
+            for at flytte og brug knapperne +/- for at zoome ind/ud eller brug muserulning til at zoome.</translation>
     </message>
   </context>
   <context>
@@ -1932,7 +1934,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="77"/>
       <source>To be able to select a timezone, make sure you are connected to the internet. Restart the installer after connecting. You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>For at kunne vælge en tidszone skal du sørge for at der er forbindelse til internettet. Genstart installationsprogrammet efter forbindelsen er blevet oprettet. Du kan finjustere sprog- og lokalitetsindstillinger nedenfor.</translation>
     </message>
   </context>
   <context>
@@ -3503,7 +3505,7 @@ setting
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>Sporing hjælper %1 med at se hvor ofte den installeres, hvilken hardware den installeres på og hvilke programmer der bruges. Klik på hjælpeikonet ved siden af hvert område for at se hvad der sendes.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
@@ -3518,7 +3520,7 @@ setting
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Vælges dette sender du regelmæssigt information om din &lt;b&gt;bruger&lt;/b&gt;installation, hardware, programmer og programmernes anvendelsesmønstre, til %1.</translation>
     </message>
   </context>
   <context>

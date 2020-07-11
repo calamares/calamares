@@ -24,7 +24,7 @@
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="68"/>
       <source>Master Boot Record of %1</source>
-      <translation>%1 Əsas ön yükləyici qurmaq</translation>
+      <translation>%1 əsas Ön yükləyici qurmaq</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="102"/>
@@ -132,7 +132,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="42"/>
       <source>Job failed (%1)</source>
-      <translation>Tapşırığı yerinə yetirmək mümkün olmadı (%1)</translation>
+      <translation> (%1) Tapşırığı yerinə yetirmək mümkün olmadı</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="43"/>
@@ -199,7 +199,7 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
-      <translation>%1 Əsas əmrlər faylı %2 python işləri üçün açıla bilmir.</translation>
+      <translation>%1 əsas əmrlər faylı %2 python işləri üçün açıla bilmir.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="318"/>
@@ -311,7 +311,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
-      <translation>%1 quraşdırılmadı. Calamares konfiqurasiya edilmiş modulların hamısını yükləyə bilmədi. Bu Calamares'i sizin distribütör tərəfindən necə istifadə edilməsindən asılı olan bir problemdir.</translation>
+      <translation>%1 quraşdırılmadı. Calamares konfiqurasiya edilmiş modulların hamısını yükləyə bilmədi. Bu Calamares'i, sizin distribütör tərəfindən necə istifadə edilməsindən asılı olan bir problemdir.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
@@ -433,22 +433,22 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="301"/>
       <source>Unknown exception type</source>
-      <translation>Naməlum istisna halı</translation>
+      <translation>Naməlum istisna hal</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="319"/>
       <source>unparseable Python error</source>
-      <translation>görünməmiş python xətası</translation>
+      <translation>görünməmiş Python xətası</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="363"/>
       <source>unparseable Python traceback</source>
-      <translation>görünməmiş python izi</translation>
+      <translation>görünməmiş Python izi</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="370"/>
       <source>Unfetchable Python error.</source>
-      <translation>Oxunmayan python xətası.</translation>
+      <translation>Oxunmayan Python xətası.</translation>
     </message>
   </context>
   <context>
@@ -530,7 +530,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
-      <translation>&lt;strong&gt;Əli ilə bölmək&lt;/strong&gt;&lt;br/&gt;Siz disk sahəsini özünüz bölə və ölçülərini təyin edə bilərsiniz. GPT disk bölmələri cədvəli və &lt;strong&gt;fat32 512Mb /boot bölməsi UEFI sistemi üçün vacibdir.&lt;/strong&gt;ya da mövcud bir bölmə varsa onu istifadə edin, və ya başqa birini yaradın.</translation>
+      <translation>&lt;strong&gt;Əl ilə bölmək&lt;/strong&gt;&lt;br/&gt;Siz disk sahəsini özünüz bölə və ölçülərini təyin edə bilərsiniz. GPT disk bölmələri cədvəli və &lt;strong&gt;fat32 512Mb /boot bölməsi UEFI sistemi üçün vacibdir&lt;/strong&gt;, ya da mövcud bir bölmə varsa onu istifadə edin, və ya başqa birini yaradın.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
@@ -583,7 +583,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1336"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1362"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation>&lt;strong&gt;Diski təmizləmək&lt;/strong&gt;&lt;br/&gt; &lt;font color="red"&gt;Silmək&lt;/font&gt; hal-hazırda seçilmiş diskdəki bütün verilənləri siləcəkdir.</translation>
+      <translation>&lt;strong&gt;Diski təmizləmək&lt;/strong&gt;&lt;br/&gt; &lt;font color="red"&gt;Silmək&lt;/font&gt;seçimi hal-hazırda, seçilmiş diskdəki bütün verilənləri siləcəkdir.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
@@ -694,7 +694,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="155"/>
       <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-      <translation>Əmr quraşdırı mühitində icra olunur və kök qovluğa yolu bilinməlidir, lakin rootMountPoint aşkar edilmədi.</translation>
+      <translation>Əmr, quraşdırı mühitində icra olunur və kök qovluğa yolu bilinməlidir, lakin rootMountPoint - KökQoşulmaNöqtəsi - aşkar edilmədi.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CommandList.cpp" line="168"/>
@@ -772,7 +772,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="81"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
-      <translation>Bu proqram sizə bəi suallar verəcək və %2 sizin komputerinizə qurmağa kömək edəcək.</translation>
+      <translation>Bu proqram sizə bəzi suallar verəcək və %2 əməliyyat sistemini sizin komputerinizə qurmağa kömək edəcək.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
@@ -914,7 +914,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
       <source>Creating a new partition table will delete all existing data on the disk.</source>
-      <translation>Bölmələr Cədvəli yaratmaq bütün diskdə olan məlumatların hamısını siləcək.</translation>
+      <translation>Bölmələr Cədvəli yaratmaq, bütün diskdə olan məlumatların hamısını siləcək.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
@@ -1203,7 +1203,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
       <source>Form</source>
-      <translation>Forma</translation>
+      <translation>Format</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
@@ -1223,7 +1223,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
       <source>Please enter the same passphrase in both boxes.</source>
-      <translation>Lütfən hər iki sahəyə eyni şifrəni daxil edin.</translation>
+      <translation>Lütfən, hər iki sahəyə eyni şifrəni daxil edin.</translation>
     </message>
   </context>
   <context>
@@ -1279,17 +1279,17 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="53"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-      <translation>&lt;h1&gt;Hər şey hazırdır.&lt;/h1&gt;&lt;br/&gt;%1 sizin kopyuterə qurulacaqdır.&lt;br/&gt;Siz indi yeni sisteminizi başlada bilərsiniz.</translation>
+      <translation>&lt;h1&gt;Hər şey hazırdır.&lt;/h1&gt;&lt;br/&gt;%1 kompyuterinizə qurulub.&lt;br/&gt;Siz indi yeni sisteminizi başlada bilərsiniz.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="57"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu çərçivə işarələnərsə siz &lt;span style="font-style:italic;"&gt;Hazır&lt;/span&gt; düyməsinə vurduğunuz və ya quraşdırıcı proqramı bağladığınız zaman sisteminiz dərhal yenidən başladılacaqdır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu çərçivə işarələnərsə siz &lt;span style="font-style:italic;"&gt;Hazır&lt;/span&gt; düyməsinə vurduğunuz və ya quraşdırıcı proqramı bağlatdığınız zaman sisteminiz dərhal yenidən başladılacaqdır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="63"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-      <translation>&lt;h1&gt;Hər şey hazırdır.&lt;/h1&gt;&lt;br/&gt;%1 sizin kompyuterinizə quraşdırıldı.&lt;br/&gt;Siz yenidən başladaraq yeni sisteminizə daxil ola və ya %2 Canlı mühitini istifadə etməyə davam edə bilərsiniz.</translation>
+      <translation>&lt;h1&gt;Hər şey hazırdır.&lt;/h1&gt;&lt;br/&gt;%1 kompyuterinizə quraşdırıldı.&lt;br/&gt;Siz yenidən başladaraq yeni sisteminizə daxil ola və ya %2 Canlı mühitini istifadə etməyə davam edə bilərsiniz.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="68"/>
@@ -1299,12 +1299,12 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="125"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation>&lt;h1&gt;Quraşdırılma alınmadı&lt;/h1&gt;&lt;br/&gt;%1 sizin kompyuterinizə quraşdırıla bilmədi.&lt;br/&gt;Baş vermiş xəta: %2.</translation>
+      <translation>&lt;h1&gt;Quraşdırılma alınmadı&lt;/h1&gt;&lt;br/&gt;%1 kompyuterinizə quraşdırıla bilmədi.&lt;br/&gt;Baş vermiş xəta: %2.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="131"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-      <translation>&lt;h1&gt;Quraşdırılma alınmadı&lt;/h1&gt;&lt;br/&gt;%1 sizin kompyuterinizə quraşdırıla bilmədi.&lt;br/&gt;Baş vermiş xəta: %2.</translation>
+      <translation>&lt;h1&gt;Quraşdırılma alınmadı&lt;/h1&gt;&lt;br/&gt;%1 kompyuterinizə quraşdırıla bilmədi.&lt;br/&gt;Baş vermiş xəta: %2.</translation>
     </message>
   </context>
   <context>
@@ -1332,7 +1332,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="137"/>
       <source>The installation of %1 is complete.</source>
-      <translation>%1in quraşdırılması başa çatdı.</translation>
+      <translation>%1-n quraşdırılması başa çatdı.</translation>
     </message>
   </context>
   <context>
@@ -1340,7 +1340,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="45"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
-      <translation>%4-də %1 bölməsini format etmək (fayl sistemi: %2, ölçüsü: %3 MB).</translation>
+      <translation>%4 üzərində %1 bölməsini format etmək (fayl sistemi: %2, ölçüsü: %3 MB).</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="56"/>
@@ -1368,7 +1368,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="162"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
-      <translation>Kifayət qədər disk sahəsi yoxdur. əƏn azı %1 QB tələb olunur.</translation>
+      <translation>Kifayət qədər disk sahəsi yoxdur. Ən azı %1 QB tələb olunur.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="171"/>
@@ -1403,7 +1403,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="198"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation>quraşdırıcı adminstrator (root) imtiyazları ilə başladılması</translation>
+      <translation>quraşdırıcını adminstrator (root) imtiyazları ilə başladılması</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="201"/>
@@ -1428,7 +1428,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="214"/>
       <source>The screen is too small to display the installer.</source>
-      <translation>Bu quarşdırıcını göstəmək üçün ekran çox kiçikdir.</translation>
+      <translation>Bu quarşdırıcını göstərmək üçün ekran çox kiçikdir.</translation>
     </message>
   </context>
   <context>
@@ -1680,7 +1680,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="128"/>
       <source>Zone:</source>
-      <translation>Zona:</translation>
+      <translation>Saat qurşağı:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="129"/>
@@ -3845,7 +3845,7 @@ Output:
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="51"/>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="163"/>
       <source>Layouts</source>
-      <translation>Qatları</translation>
+      <translation>Qatlar</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="79"/>
@@ -3866,7 +3866,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="189"/>
       <source>Test your keyboard</source>
-      <translation>klaviaturanızı yoxlayın</translation>
+      <translation>Klaviaturanızı yoxlayın</translation>
     </message>
   </context>
   <context>
@@ -3879,7 +3879,7 @@ Output:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="106"/>
       <source>Numbers and dates locale set to %1</source>
-      <translation>Yerli saylvə tarix formatlarını %1 qurmaq</translation>
+      <translation>Yerli say və tarix formatlarını %1 qurmaq</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="112"/>

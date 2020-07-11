@@ -781,22 +781,22 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;/h1&gt;Jus sveikina Calamares sąrankos programa, skirta %1 sistemai.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="246"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Jus sveikina %1 sąranka&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Jus sveikina Calamares diegimo programa, skirta %1 sistemai&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="252"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Jus sveikina %1 diegimo programa&lt;/h1&gt;</translation>
     </message>
   </context>
   <context>
@@ -3870,7 +3870,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="98"/>
       <source>System language set to %1</source>
-      <translation type="unfinished"/>
+      <translation>Sistemos kalba nustatyta į %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="106"/>
@@ -3880,7 +3880,7 @@ Išvestis:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="112"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>Keisti</translation>
     </message>
   </context>
   <context>

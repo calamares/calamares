@@ -777,17 +777,17 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Willkommen bei Calamares, dem Installationsprogramm für %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="246"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Willkommen zur Installation von %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Willkommen bei Calamares, dem Installationsprogramm für %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="252"/>
@@ -1927,7 +1927,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="62"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Zeitzone: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="77"/>
@@ -3866,17 +3866,17 @@ Liberating Software.</translation>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="98"/>
       <source>System language set to %1</source>
-      <translation type="unfinished"/>
+      <translation>Systemsprache eingestellt auf %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="106"/>
       <source>Numbers and dates locale set to %1</source>
-      <translation type="unfinished"/>
+      <translation>Zahlen- und Datumsformat eingestellt auf %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="112"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>Ändern</translation>
     </message>
   </context>
   <context>

@@ -230,7 +230,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="106"/>
       <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation>A verificação de requerimentos para o módulo &lt;i&gt;%1&lt;/i&gt; está completa.</translation>
+      <translation>A verificação de requisitos para o módulo &lt;i&gt;%1&lt;/i&gt; está completa.</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="127"/>
@@ -251,7 +251,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="133"/>
       <source>System-requirements checking is complete.</source>
-      <translation>Verificação de requerimentos do sistema completa.</translation>
+      <translation>Verificação de requisitos do sistema completa.</translation>
     </message>
   </context>
   <context>
@@ -722,7 +722,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="280"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation>O local dos números e datas será definido como %1.</translation>
+      <translation>A localidade dos números e datas será definida como %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="313"/>
@@ -752,7 +752,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="56"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Este computador não satisfaz os requerimentos mínimos para configurar %1.&lt;br/&gt;A configuração não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
+      <translation>Este computador não satisfaz os requisitos mínimos para configurar %1.&lt;br/&gt;A configuração não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="60"/>
@@ -762,7 +762,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="67"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation>Este computador não satisfaz alguns dos requerimentos recomendados para configurar %1.&lt;br/&gt;A configuração pode continuar, mas algumas funções podem ser desativadas.</translation>
+      <translation>Este computador não satisfaz alguns dos requisitos recomendados para configurar %1.&lt;br/&gt;A configuração pode continuar, mas alguns recursos podem ser desativados.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="71"/>
@@ -777,22 +777,22 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bem-vindo ao programa de configuração Calamares para %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="246"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bem-vindo à configuração de %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bem-vindo ao instalador Calamares para %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="252"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bem-vindo ao instalador de %1&lt;/h1&gt;</translation>
     </message>
   </context>
   <context>
@@ -1546,7 +1546,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="39"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation>A configuração de localidade do sistema afeta a linguagem e o conjunto de caracteres para algumas linhas de comando e elementos da interface do usuário.&lt;br/&gt;A configuração atual é &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+      <translation>A configuração de localidade do sistema afeta o idioma e o conjunto de caracteres para algumas linhas de comando e elementos da interface do usuário.&lt;br/&gt;A configuração atual é &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
@@ -1696,7 +1696,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="263"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation>O local dos números e datas será definido como %1.</translation>
+      <translation>A localidade dos números e datas será definida como %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="270"/>
@@ -1781,7 +1781,9 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>Por favor selecione seu local preferido no mapa para que o instalador possa sugerir as configurações de localidade
+            e fuso horário para você. Você pode ajustar as configurações sugeridas abaixo. Procure no mapa arrastando
+            para mover e usando os botões +/- para aumentar/diminuir ou use a rolagem do mouse para dar zoom.</translation>
     </message>
   </context>
   <context>
@@ -1927,12 +1929,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="62"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Fuso horário: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="77"/>
       <source>To be able to select a timezone, make sure you are connected to the internet. Restart the installer after connecting. You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>Para poder selecionar o fuso horário, tenha certeza que você está conectado à internet. Reinicie o instalador após conectar. Você pode ajustar as configurações de Idioma e Localidade abaixo.</translation>
     </message>
   </context>
   <context>
@@ -2837,7 +2839,8 @@ Saída:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Este computador não satisfaz alguns dos requisitos recomendados para configurar %1.&lt;br/&gt;
+        A configuração pode continuar, mas alguns recursos podem ser desativados.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -2948,13 +2951,15 @@ Saída:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="47"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Este computador não satisfaz os requisitos mínimos para instalar %1.&lt;br/&gt;
+        A instalação não pode continuar.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Este computador não satisfaz alguns dos requisitos recomendados para configurar %1.&lt;br/&gt;
+        A configuração pode continuar, mas alguns recursos podem ser desativados.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3094,7 +3099,7 @@ Saída:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="265"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
-      <translation>Este computador não satisfaz os requerimentos mínimos para configurar %1.&lt;br/&gt;A configuração não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
+      <translation>Este computador não satisfaz os requisitos mínimos para configurar %1.&lt;br/&gt;A configuração não pode continuar. &lt;a href="#details"&gt;Detalhes...&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="269"/>
@@ -3104,7 +3109,7 @@ Saída:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="276"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
-      <translation>Este computador não satisfaz alguns dos requerimentos recomendados para configurar %1.&lt;br/&gt;A configuração pode continuar, mas algumas funções podem ser desativadas.</translation>
+      <translation>Este computador não satisfaz alguns dos requisitos recomendados para configurar %1.&lt;br/&gt;A configuração pode continuar, mas alguns recursos podem ser desativados.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="280"/>
@@ -3420,28 +3425,28 @@ Saída:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="202"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>Feedback de usuário KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="214"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Configurando feedback de usuário KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="236"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="242"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Erro na configuração do feedback de usuário KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="237"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Não foi possível configurar o feedback de usuário KDE corretamente, erro de script %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="243"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Não foi possível configurar o feedback de usuário KDE corretamente, erro do Calamares %1.</translation>
     </message>
   </context>
   <context>
@@ -3488,7 +3493,7 @@ Saída:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clique aqui para não enviar &lt;span style=" font-weight:600;"&gt;nenhum tipo de informação&lt;/span&gt; sobre sua instalação.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
@@ -3498,22 +3503,22 @@ Saída:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>O rastreamento ajuda %1 a ver quão frequentemente ele é instalado, em qual hardware ele é instalado e quais aplicações são usadas. Para ver o que será enviado, por favor, clique no ícone de ajuda próximo a cada área.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>Ao selecionar isto você enviará informações sobre sua instalação e hardware. Essa informação será enviada apenas &lt;b&gt;uma vez&lt;/b&gt; depois que a instalação terminar.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Ao selecionar isto você enviará periodicamente informações sobre a instalação da sua &lt;b&gt;máquina&lt;/b&gt;, hardware e aplicações para %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Ao selecionar isto você enviará periodicamente informações sobre a instalação do seu &lt;b&gt;usuário&lt;/b&gt;, hardware, aplicações e padrões de uso das aplicações para %1.</translation>
     </message>
   </context>
   <context>
@@ -3657,7 +3662,7 @@ Saída:
       <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="94"/>
       <source>Select application and system language</source>
-      <translation>Selecione a aplicação e a linguagem do sistema</translation>
+      <translation>Selecione o idioma do sistema e das aplicações</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="136"/>
@@ -3722,7 +3727,7 @@ Saída:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="232"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Bem-vindo ao instalador %1 .&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Bem-vindo ao instalador %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="237"/>
@@ -3802,13 +3807,15 @@ Saída:
       <location filename="../src/modules/localeq/i18n.qml" line="59"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Idiomas&lt;/h1&gt; &lt;/br&gt;
+                    A configuração de localidade do sistema afeta o idioma e o conjunto de caracteres para algumas linhas de comando e elementos da interface do usuário. A configuração atual é &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="120"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Localidades&lt;/h1&gt; &lt;/br&gt;
+                    A configuração de localidade do sistema afeta o idioma e o conjunto de caracteres para algumas linhas de comando e elementos da interface do usuário. A configuração atual é &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="174"/>
@@ -3866,17 +3873,17 @@ Saída:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="98"/>
       <source>System language set to %1</source>
-      <translation type="unfinished"/>
+      <translation>Idioma do sistema definido como %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="106"/>
       <source>Numbers and dates locale set to %1</source>
-      <translation type="unfinished"/>
+      <translation>A localidade de números e datas foi definida para %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="112"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>Modificar</translation>
     </message>
   </context>
   <context>

@@ -1926,7 +1926,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="62"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>Tidszon: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="77"/>
@@ -3875,7 +3875,7 @@ Utdata:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="112"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>Ändra</translation>
     </message>
   </context>
   <context>

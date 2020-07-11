@@ -1763,7 +1763,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="62"/>
       <source>Configuration Error</source>
-      <translation type="unfinished"/>
+      <translation>কনফিগারেশন ত্রুটি</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="63"/>
