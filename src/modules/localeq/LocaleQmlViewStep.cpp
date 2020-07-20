@@ -65,7 +65,7 @@ LocaleQmlViewStep::fetchGeoIpTimezone()
         }
     }
 
-    m_config->setLocaleInfo(m_startingTimezone.first, m_startingTimezone.second, m_localeGenPath);
+    // m_config->setLocaleInfo(m_startingTimezone.first, m_startingTimezone.second, m_localeGenPath);
 }
 
 Calamares::RequirementsList LocaleQmlViewStep::checkRequirements()
@@ -138,6 +138,7 @@ void LocaleQmlViewStep::onActivate()
 
 void LocaleQmlViewStep::onLeave()
 {
+#if 0
     if ( true )
     {
         m_jobs = m_config->createJobs();
@@ -157,6 +158,7 @@ void LocaleQmlViewStep::onLeave()
         m_jobs.clear();
         Calamares::JobQueue::instance()->globalStorage()->remove( "localeConf" );
     }
+#endif
 }
 
 void LocaleQmlViewStep::setConfigurationMap(const QVariantMap& configurationMap)
