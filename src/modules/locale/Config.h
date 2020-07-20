@@ -21,6 +21,7 @@
 #ifndef LOCALE_CONFIG_H
 #define LOCALE_CONFIG_H
 
+#include "Job.h"
 #include "locale/TimeZone.h"
 
 #include <QObject>
@@ -40,6 +41,7 @@ public:
     ~Config();
 
     void setConfigurationMap( const QVariantMap& );
+    Calamares::JobList createJobs();
 
 public Q_SLOTS:
     const QStringList& supportedLocales() const { return m_localeGenLines; }

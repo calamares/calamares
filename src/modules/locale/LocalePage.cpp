@@ -114,9 +114,7 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
 }
 
 
-LocalePage::~LocalePage()
-{
-}
+LocalePage::~LocalePage() {}
 
 
 void
@@ -182,19 +180,6 @@ LocalePage::prettyStatus() const
     status += labels.second + "<br/>";
 
     return status;
-}
-
-
-Calamares::JobList
-LocalePage::createJobs()
-{
-    QList< Calamares::job_ptr > list;
-    const CalamaresUtils::Locale::TZZone* location = m_tzWidget->currentLocation();
-
-    Calamares::Job* j = new SetTimezoneJob( location->region(), location->zone() );
-    list.append( Calamares::job_ptr( j ) );
-
-    return list;
 }
 
 

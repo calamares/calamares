@@ -47,8 +47,6 @@ public:
 
     QString prettyStatus() const;
 
-    Calamares::JobList createJobs();
-
     QMap< QString, QString > localesMap();
 
     void onActivate();

@@ -166,7 +166,7 @@ LocaleViewStep::onLeave()
 {
     if ( m_actualWidget )
     {
-        m_jobs = m_actualWidget->createJobs();
+        m_jobs = m_config->createJobs();
         m_prettyStatus = m_actualWidget->prettyStatus();
 
         auto map = m_actualWidget->localesMap();

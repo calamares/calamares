@@ -20,6 +20,8 @@
 
 #include "Config.h"
 
+#include "SetTimezoneJob.h"
+
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
@@ -171,4 +173,19 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         localeGenPath = QStringLiteral( "/etc/locale.gen" );
     }
     m_localeGenLines = loadLocales( localeGenPath );
+}
+
+Calamares::JobList
+Config::createJobs()
+{
+    Calamares::JobList list;
+    const CalamaresUtils::Locale::TZZone* location = nullptr;  // TODO: m_tzWidget->currentLocation();
+
+    if ( location )
+    {
+        Calamares::Job* j = new SetTimezoneJob( location->region(), location->zone() );
+        list.append( Calamares::job_ptr( j ) );
+    }
+
+    return list;
 }
