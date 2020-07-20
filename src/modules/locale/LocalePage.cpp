@@ -138,7 +138,7 @@ LocalePage::updateLocaleLabels()
 }
 
 void
-LocalePage::init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
+LocalePage::init( const QString& initialRegion, const QString& initialZone )
 {
     using namespace CalamaresUtils::Locale;
 
@@ -155,98 +155,6 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone, cons
         m_tzWidget->setCurrentLocation( "America", "New_York" );
     }
 
-    // Some distros come with a meaningfully commented and easy to parse locale.gen,
-    // and others ship a separate file /usr/share/i18n/SUPPORTED with a clean list of
-    // supported locales. We first try that one, and if it doesn't exist, we fall back
-    // to parsing the lines from locale.gen
-    m_localeGenLines.clear();
-    QFile supported( "/usr/share/i18n/SUPPORTED" );
-    QByteArray ba;
-
-    if ( supported.exists() && supported.open( QIODevice::ReadOnly | QIODevice::Text ) )
-    {
-        ba = supported.readAll();
-        supported.close();
-
-        const auto lines = ba.split( '\n' );
-        for ( const QByteArray& line : lines )
-        {
-            m_localeGenLines.append( QString::fromLatin1( line.simplified() ) );
-        }
-    }
-    else
-    {
-        QFile localeGen( localeGenPath );
-        if ( localeGen.open( QIODevice::ReadOnly | QIODevice::Text ) )
-        {
-            ba = localeGen.readAll();
-            localeGen.close();
-        }
-        else
-        {
-            cWarning() << "Cannot open file" << localeGenPath
-                       << ". Assuming the supported languages are already built into "
-                          "the locale archive.";
-            QProcess localeA;
-            localeA.start( "locale", QStringList() << "-a" );
-            localeA.waitForFinished();
-            ba = localeA.readAllStandardOutput();
-        }
-        const auto lines = ba.split( '\n' );
-        for ( const QByteArray& line : lines )
-        {
-            if ( line.startsWith( "## " ) || line.startsWith( "# " ) || line.simplified() == "#" )
-            {
-                continue;
-            }
-
-            QString lineString = QString::fromLatin1( line.simplified() );
-            if ( lineString.startsWith( "#" ) )
-            {
-                lineString.remove( '#' );
-            }
-            lineString = lineString.simplified();
-
-            if ( lineString.isEmpty() )
-            {
-                continue;
-            }
-
-            m_localeGenLines.append( lineString );
-        }
-    }
-
-    if ( m_localeGenLines.isEmpty() )
-    {
-        cWarning() << "cannot acquire a list of available locales."
-                   << "The locale and localecfg modules will be broken as long as this "
-                      "system does not provide"
-                   << "\n\t  "
-                   << "* a well-formed" << supported.fileName() << "\n\tOR"
-                   << "* a well-formed"
-                   << ( localeGenPath.isEmpty() ? QLatin1String( "/etc/locale.gen" ) : localeGenPath ) << "\n\tOR"
-                   << "* a complete pre-compiled locale-gen database which allows complete locale -a output.";
-        return;  // something went wrong and there's nothing we can do about it.
-    }
-
-    // Assuming we have a list of supported locales, we usually only want UTF-8 ones
-    // because it's not 1995.
-    auto notUtf8 = []( const QString& s ) {
-        return !s.contains( "UTF-8", Qt::CaseInsensitive ) && !s.contains( "utf8", Qt::CaseInsensitive );
-    };
-    auto it = std::remove_if( m_localeGenLines.begin(), m_localeGenLines.end(), notUtf8 );
-    m_localeGenLines.erase( it, m_localeGenLines.end() );
-
-    // We strip " UTF-8" from "en_US.UTF-8 UTF-8" because it's redundant redundant.
-    // Also simplify whitespace.
-    auto unredundant = []( QString& s ) {
-        if ( s.endsWith( " UTF-8" ) )
-        {
-            s.chop( 6 );
-        }
-        s = s.simplified();
-    };
-    std::for_each( m_localeGenLines.begin(), m_localeGenLines.end(), unredundant );
 
     updateGlobalStorage();
 }
@@ -319,7 +227,7 @@ LocaleConfiguration
 LocalePage::guessLocaleConfiguration() const
 {
     return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), m_localeGenLines, m_tzWidget->currentLocation()->country() );
+        QLocale().name(), m_config->supportedLocales(), m_tzWidget->currentLocation()->country() );
 }
 
 
@@ -446,7 +354,7 @@ LocalePage::changeLocale()
     LCLocaleDialog* dlg
         = new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration().language()
                                                                       : m_selectedLocaleConfiguration.language(),
-                              m_localeGenLines,
+                              m_config->supportedLocales(),
                               this );
     dlg->exec();
     if ( dlg->result() == QDialog::Accepted && !dlg->selectedLCLocale().isEmpty() )
@@ -467,7 +375,7 @@ LocalePage::changeFormats()
     LCLocaleDialog* dlg
         = new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration().lc_numeric
                                                                       : m_selectedLocaleConfiguration.lc_numeric,
-                              m_localeGenLines,
+                              m_config->supportedLocales(),
                               this );
     dlg->exec();
     if ( dlg->result() == QDialog::Accepted && !dlg->selectedLCLocale().isEmpty() )

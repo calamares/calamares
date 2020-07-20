@@ -43,7 +43,7 @@ public:
     explicit LocalePage( class Config* config, QWidget* parent = nullptr );
     virtual ~LocalePage();
 
-    void init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath );
+    void init( const QString& initialRegion, const QString& initialZone );
 
     QString prettyStatus() const;
 
@@ -94,8 +94,6 @@ private:
     QPushButton* m_formatsChangeButton;
 
     LocaleConfiguration m_selectedLocaleConfiguration;
-
-    QStringList m_localeGenLines;
 
     bool m_blockTzWidgetSet;
 };

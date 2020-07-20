@@ -70,7 +70,7 @@ LocaleViewStep::setUpPage()
     {
         m_actualWidget = new LocalePage( m_config.get() );
     }
-    m_actualWidget->init( m_startingTimezone.first, m_startingTimezone.second, m_localeGenPath );
+    m_actualWidget->init( m_startingTimezone.first, m_startingTimezone.second );
     m_widget->layout()->addWidget( m_actualWidget );
 
     ensureSize( m_actualWidget->sizeHint() );

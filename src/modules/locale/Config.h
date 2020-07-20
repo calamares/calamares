@@ -26,12 +26,16 @@
 class Config : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY( const QStringList& supportedLocales READ supportedLocales CONSTANT FINAL )
 
 public:
     Config( QObject* parent = nullptr );
     ~Config();
 
     void setConfigurationMap( const QVariantMap& );
+
+public Q_SLOTS:
+    const QStringList& supportedLocales() const { return m_localeGenLines; }
 
 private:
     /// A list of supported locale identifiers (e.g. "en_US.UTF-8")
