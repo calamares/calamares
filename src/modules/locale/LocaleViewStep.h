@@ -20,15 +20,13 @@
 #ifndef LOCALEVIEWSTEP_H
 #define LOCALEVIEWSTEP_H
 
+#include "Config.h"
+
+#include "DllMacro.h"
 #include "geoip/Handler.h"
 #include "geoip/Interface.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
-
-#include "DllMacro.h"
-
-#include <QFutureWatcher>
-#include <QObject>
 
 #include <memory>
 
@@ -79,6 +77,8 @@ private:
 
     Calamares::JobList m_jobs;
     std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
+
+    std::unique_ptr< Config > m_config;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( LocaleViewStepFactory )

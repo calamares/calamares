@@ -34,7 +34,6 @@
 
 #include <QBoxLayout>
 #include <QLabel>
-#include <QtConcurrent/QtConcurrentRun>
 
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleViewStepFactory, registerPlugin< LocaleViewStep >(); )
@@ -45,6 +44,7 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
     , m_actualWidget( nullptr )
     , m_nextEnabled( false )
     , m_geoip( nullptr )
+    , m_config( std::make_unique< Config >() )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
@@ -221,6 +221,8 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             cWarning() << "GeoIP Style" << style << "is not recognized.";
         }
     }
+
+    m_config->setConfigurationMap( configurationMap );
 }
 
 Calamares::RequirementsList
