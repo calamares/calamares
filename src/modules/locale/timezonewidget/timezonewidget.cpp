@@ -34,6 +34,13 @@
 #define ZONE_NAME QStringLiteral( "zone" )
 #endif
 
+static QPoint
+getLocationPosition( const CalamaresUtils::Locale::TZZone* l )
+{
+    return TimeZoneImageList::getLocationPosition( l->longitude(), l->latitude() );
+}
+
+
 TimeZoneWidget::TimeZoneWidget( QWidget* parent )
     : QWidget( parent )
     , timeZoneImages( TimeZoneImageList::fromQRC() )
