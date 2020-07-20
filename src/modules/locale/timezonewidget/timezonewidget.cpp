@@ -41,9 +41,10 @@ getLocationPosition( const CalamaresUtils::Locale::TZZone* l )
 }
 
 
-TimeZoneWidget::TimeZoneWidget( QWidget* parent )
+TimeZoneWidget::TimeZoneWidget( const CalamaresUtils::Locale::CStringPairList& zones, QWidget* parent )
     : QWidget( parent )
     , timeZoneImages( TimeZoneImageList::fromQRC() )
+    , m_zonesData( zones )
 {
     setMouseTracking( false );
     setCursor( Qt::PointingHandCursor );
@@ -67,8 +68,7 @@ void
 TimeZoneWidget::setCurrentLocation( QString regionName, QString zoneName )
 {
     using namespace CalamaresUtils::Locale;
-    const auto& regions = TZRegion::fromZoneTab();
-    auto* region = regions.find< TZRegion >( regionName );
+    auto* region = m_zonesData.find< TZRegion >( regionName );
     if ( !region )
     {
         return;
@@ -201,7 +201,7 @@ TimeZoneWidget::mousePressEvent( QMouseEvent* event )
 
     using namespace CalamaresUtils::Locale;
     const TZZone* closest = nullptr;
-    for ( const auto* region_p : TZRegion::fromZoneTab() )
+    for ( const auto* region_p : m_zonesData )
     {
         const auto* region = dynamic_cast< const TZRegion* >( region_p );
         if ( region )

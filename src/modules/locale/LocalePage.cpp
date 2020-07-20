@@ -48,7 +48,7 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     QBoxLayout* mainLayout = new QVBoxLayout;
 
     QBoxLayout* tzwLayout = new QHBoxLayout;
-    m_tzWidget = new TimeZoneWidget( this );
+    m_tzWidget = new TimeZoneWidget( config->timezoneData(), this );
     tzwLayout->addStretch();
     tzwLayout->addWidget( m_tzWidget );
     tzwLayout->addStretch();

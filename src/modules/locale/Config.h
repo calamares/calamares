@@ -33,6 +33,7 @@ class Config : public QObject
     Q_PROPERTY( const QStringList& supportedLocales READ supportedLocales CONSTANT FINAL )
     Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* zonesModel READ zonesModel CONSTANT FINAL )
     Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* regionModel READ regionModel CONSTANT FINAL )
+    Q_PROPERTY( const CalamaresUtils::Locale::CStringPairList& timezoneData READ timezoneData CONSTANT FINAL )
 
 public:
     Config( QObject* parent = nullptr );
@@ -44,6 +45,8 @@ public Q_SLOTS:
     const QStringList& supportedLocales() const { return m_localeGenLines; }
     CalamaresUtils::Locale::CStringListModel* regionModel() const { return m_regionModel.get(); }
     CalamaresUtils::Locale::CStringListModel* zonesModel() const { return m_zonesModel.get(); }
+    // Underlying data for the models
+    const CalamaresUtils::Locale::CStringPairList& timezoneData() const;
 
 private:
     /// A list of supported locale identifiers (e.g. "en_US.UTF-8")

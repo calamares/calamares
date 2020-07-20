@@ -139,16 +139,28 @@ loadLocales( const QString& localeGenPath )
     return localeGenLines;
 }
 
+static inline const CalamaresUtils::Locale::CStringPairList&
+timezoneData()
+{
+    return CalamaresUtils::Locale::TZRegion::fromZoneTab();
+}
+
 
 Config::Config( QObject* parent )
     : QObject( parent )
-    , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >(
-          CalamaresUtils::Locale::TZRegion::fromZoneTab() ) )
+    , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( ::timezoneData() ) )
     , m_zonesModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >() )
 {
 }
 
 Config::~Config() {}
+
+const CalamaresUtils::Locale::CStringPairList&
+Config::timezoneData() const
+{
+    return ::timezoneData();
+}
+
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )

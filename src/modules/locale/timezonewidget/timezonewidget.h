@@ -53,7 +53,7 @@ class TimeZoneWidget : public QWidget
 public:
     using TZZone = CalamaresUtils::Locale::TZZone;
 
-    explicit TimeZoneWidget( QWidget* parent = nullptr );
+    explicit TimeZoneWidget( const CalamaresUtils::Locale::CStringPairList& zones, QWidget* parent = nullptr );
 
     /** @brief Sets a location by name
      *
@@ -76,6 +76,8 @@ private:
     QFont font;
     QImage background, pin, currentZoneImage;
     TimeZoneImageList timeZoneImages;
+
+    const CalamaresUtils::Locale::CStringPairList& m_zonesData;
     const TZZone* m_currentLocation = nullptr;  // Not owned by me
 
     void paintEvent( QPaintEvent* event );
