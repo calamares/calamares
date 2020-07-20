@@ -201,12 +201,6 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             = CalamaresUtils::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
     }
 
-    m_localeGenPath = CalamaresUtils::getString( configurationMap, "localeGenPath" );
-    if ( m_localeGenPath.isEmpty() )
-    {
-        m_localeGenPath = QStringLiteral( "/etc/locale.gen" );
-    }
-
     bool ok = false;
     QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
     if ( ok )

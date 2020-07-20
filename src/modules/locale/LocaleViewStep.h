@@ -72,10 +72,9 @@ private:
     bool m_nextEnabled;
     QString m_prettyStatus;
 
-    CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
-    QString m_localeGenPath;
-
     Calamares::JobList m_jobs;
+
+    CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
     std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
 
     std::unique_ptr< Config > m_config;
