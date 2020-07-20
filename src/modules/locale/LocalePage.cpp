@@ -115,6 +115,10 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     connect( m_formatsChangeButton, &QPushButton::clicked, this, &LocalePage::changeFormats );
 
     CALAMARES_RETRANSLATE_SLOT( &LocalePage::updateLocaleLabels )
+
+    m_regionCombo->setModel( m_config->regionModel() );
+    m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
+    updateGlobalStorage();
 }
 
 
@@ -134,19 +138,6 @@ LocalePage::updateLocaleLabels()
     auto labels = prettyLocaleStatus( lc );
     m_localeLabel->setText( labels.first );
     m_formatsLabel->setText( labels.second );
-}
-
-void
-LocalePage::init( const QString& initialRegion, const QString& initialZone )
-{
-    using namespace CalamaresUtils::Locale;
-
-    m_regionCombo->setModel( m_config->regionModel() );
-    m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
-
-    m_config->setCurrentLocation( initialRegion, initialZone );
-
-    updateGlobalStorage();
 }
 
 std::pair< QString, QString >
