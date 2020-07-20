@@ -31,6 +31,22 @@
 #include <QFont>
 #include <QWidget>
 
+/** @brief The TimeZoneWidget shows a map and reports where clicks happen
+ *
+ * This widget shows a map (unspecified whether it's a whole world map
+ * or can show regionsvia some kind of internal state). Mouse clicks are
+ * translated into timezone locations (e.g. the zone for America/New_York).
+ *
+ * The current location can be changed programmatically, by name
+ * or through a pointer to a location. If a pointer is used, take care
+ * that the pointer is to a zone in the same model as used by the
+ * widget.
+ *
+ * When a location is chosen -- by mouse click or programmatically --
+ * the locationChanged() signal is emitted with the new location.
+ *
+ * NOTE: the widget currently uses the globally cached TZRegion::fromZoneTab()
+ */
 class TimeZoneWidget : public QWidget
 {
     Q_OBJECT
@@ -39,10 +55,19 @@ public:
 
     explicit TimeZoneWidget( QWidget* parent = nullptr );
 
+    /** @brief Sets a location by name
+     *
+     * @p region should be "America" or the like, while @p zone
+     * names a zone within that region.
+     */
     void setCurrentLocation( QString region, QString zone );
+    /** @brief Sets a location by pointer
+     *
+     * Pointer should be within the same model as the widget uses.
+     */
     void setCurrentLocation( const TZZone* location );
-    const TZZone* currentLocation() { return m_currentLocation; }
 
+    const TZZone* currentLocation() { return m_currentLocation; }
 
 signals:
     void locationChanged( const TZZone* location );
