@@ -32,6 +32,10 @@ public:
     ~Config();
 
     void setConfigurationMap( const QVariantMap& );
+
+private:
+    /// A list of supported locale identifiers (e.g. "en_US.UTF-8")
+    QStringList m_localeGenLines;
 };
 
 
