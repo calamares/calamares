@@ -43,8 +43,7 @@
 LocalePage::LocalePage( Config* config, QWidget* parent )
     : QWidget( parent )
     , m_config( config )
-    , m_regionList( CalamaresUtils::Locale::TZRegion::fromZoneTab() )
-    , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( m_regionList ) )
+    , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( CalamaresUtils::Locale::TZRegion::fromZoneTab() ) )
     , m_blockTzWidgetSet( false )
 {
     QBoxLayout* mainLayout = new QVBoxLayout;
@@ -118,7 +117,6 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
 
 LocalePage::~LocalePage()
 {
-    qDeleteAll( m_regionList );
 }
 
 
@@ -145,7 +143,7 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone )
     m_regionCombo->setModel( m_regionModel.get() );
     m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
 
-    auto* region = m_regionList.find< TZRegion >( initialRegion );
+    auto* region = CalamaresUtils::Locale::TZRegion::fromZoneTab().find< TZRegion >( initialRegion );
     if ( region && region->zones().find< TZZone >( initialZone ) )
     {
         m_tzWidget->setCurrentLocation( initialRegion, initialZone );
@@ -297,7 +295,7 @@ LocalePage::regionChanged( int currentIndex )
     Q_UNUSED( currentIndex )
     QString selectedRegion = m_regionCombo->currentData().toString();
 
-    TZRegion* region = m_regionList.find< TZRegion >( selectedRegion );
+    TZRegion* region = CalamaresUtils::Locale::TZRegion::fromZoneTab().find< TZRegion >( selectedRegion );
     if ( !region )
     {
         return;

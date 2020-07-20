@@ -79,7 +79,6 @@ private:
     void changeFormats();
 
     // Dynamically, QList< TZRegion* >
-    CalamaresUtils::Locale::CStringPairList m_regionList;
     std::unique_ptr< CalamaresUtils::Locale::CStringListModel > m_regionModel;
 
     TimeZoneWidget* m_tzWidget;
