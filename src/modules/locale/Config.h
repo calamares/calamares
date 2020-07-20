@@ -35,6 +35,7 @@ class Config : public QObject
     Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* zonesModel READ zonesModel CONSTANT FINAL )
     Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* regionModel READ regionModel CONSTANT FINAL )
     Q_PROPERTY( const CalamaresUtils::Locale::CStringPairList& timezoneData READ timezoneData CONSTANT FINAL )
+    Q_PROPERTY( const CalamaresUtils::Locale::TZZone* currentLocation READ currentLocation WRITE setCurrentLocation NOTIFY currentLocationChanged )
 
 public:
     Config( QObject* parent = nullptr );
@@ -50,6 +51,23 @@ public Q_SLOTS:
     // Underlying data for the models
     const CalamaresUtils::Locale::CStringPairList& timezoneData() const;
 
+    /** @brief Sets a location by name
+     *
+     * @p region should be "America" or the like, while @p zone
+     * names a zone within that region.
+     */
+    void setCurrentLocation( const QString& region, const QString& zone );
+    /** @brief Sets a location by pointer
+     *
+     * Pointer should be within the same model as the widget uses.
+     */
+    void setCurrentLocation( const CalamaresUtils::Locale::TZZone* location );
+
+    const CalamaresUtils::Locale::TZZone* currentLocation() const { return m_currentLocation; }
+
+signals:
+    void currentLocationChanged( const CalamaresUtils::Locale::TZZone* location );
+
 private:
     /// A list of supported locale identifiers (e.g. "en_US.UTF-8")
     QStringList m_localeGenLines;
@@ -58,6 +76,10 @@ private:
     std::unique_ptr< CalamaresUtils::Locale::CStringListModel > m_regionModel;
     /// The zones for the current region (e.g. America/New_York)
     std::unique_ptr< CalamaresUtils::Locale::CStringListModel > m_zonesModel;
+
+    /// The location, points into the timezone data
+    const CalamaresUtils::Locale::TZZone* m_currentLocation = nullptr;
+
 };
 
 

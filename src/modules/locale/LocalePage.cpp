@@ -104,9 +104,13 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     setMinimumWidth( m_tzWidget->width() );
     setLayout( mainLayout );
 
+    connect( config, &Config::currentLocationChanged, m_tzWidget, &TimeZoneWidget::setCurrentLocation );
+    connect( config, &Config::currentLocationChanged, this, &LocalePage::locationChanged );
+    connect( m_tzWidget, &TimeZoneWidget::locationChanged, config, QOverload< const CalamaresUtils::Locale::TZZone* >::of( &Config::setCurrentLocation ) );
+
     connect( m_regionCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::regionChanged );
     connect( m_zoneCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::zoneChanged );
-    connect( m_tzWidget, &TimeZoneWidget::locationChanged, this, &LocalePage::locationChanged );
+
     connect( m_localeChangeButton, &QPushButton::clicked, this, &LocalePage::changeLocale );
     connect( m_formatsChangeButton, &QPushButton::clicked, this, &LocalePage::changeFormats );
 
@@ -140,16 +144,7 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone )
     m_regionCombo->setModel( m_config->regionModel() );
     m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
 
-    auto* region = CalamaresUtils::Locale::TZRegion::fromZoneTab().find< TZRegion >( initialRegion );
-    if ( region && region->zones().find< TZZone >( initialZone ) )
-    {
-        m_tzWidget->setCurrentLocation( initialRegion, initialZone );
-    }
-    else
-    {
-        m_tzWidget->setCurrentLocation( "America", "New_York" );
-    }
-
+    m_config->setCurrentLocation( initialRegion, initialZone );
 
     updateGlobalStorage();
 }
@@ -209,7 +204,7 @@ LocaleConfiguration
 LocalePage::guessLocaleConfiguration() const
 {
     return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), m_config->supportedLocales(), m_tzWidget->currentLocation()->country() );
+        QLocale().name(), m_config->supportedLocales(), m_config->currentLocation()->country() );
 }
 
 
@@ -227,7 +222,7 @@ LocalePage::updateGlobalStorage()
 {
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    const auto* location = m_tzWidget->currentLocation();
+    const auto* location = m_config->currentLocation();
     bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
         || ( location->zone() != gs->value( "locationZone" ) );
 
@@ -296,9 +291,10 @@ LocalePage::zoneChanged( int currentIndex )
 {
     Q_UNUSED( currentIndex )
     if ( !m_blockTzWidgetSet )
-        m_tzWidget->setCurrentLocation( m_regionCombo->currentData().toString(),
+    {
+        m_config->setCurrentLocation( m_regionCombo->currentData().toString(),
                                         m_zoneCombo->currentData().toString() );
-
+    }
     updateGlobalStorage();
 }
 

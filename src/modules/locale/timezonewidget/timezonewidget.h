@@ -55,21 +55,15 @@ public:
 
     explicit TimeZoneWidget( const CalamaresUtils::Locale::CStringPairList& zones, QWidget* parent = nullptr );
 
-    /** @brief Sets a location by name
-     *
-     * @p region should be "America" or the like, while @p zone
-     * names a zone within that region.
-     */
-    void setCurrentLocation( QString region, QString zone );
+public Q_SLOTS:
     /** @brief Sets a location by pointer
      *
      * Pointer should be within the same model as the widget uses.
      */
     void setCurrentLocation( const TZZone* location );
 
-    const TZZone* currentLocation() { return m_currentLocation; }
-
 signals:
+    /** @brief The location has changed by mouse click */
     void locationChanged( const TZZone* location );
 
 private:

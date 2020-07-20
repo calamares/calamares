@@ -163,6 +163,31 @@ Config::timezoneData() const
     return ::timezoneData();
 }
 
+void
+Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
+{
+    using namespace CalamaresUtils::Locale;
+    auto* region = timezoneData().find< TZRegion >( regionName );
+    auto* zone = region ? region->zones().find< TZZone >( zoneName ) : nullptr;
+    if ( zone )
+    {
+        setCurrentLocation( zone );
+    }
+    else
+    {
+        setCurrentLocation( QStringLiteral("America"), QStringLiteral("New_York") );
+    }
+}
+
+void
+Config::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
+{
+    if ( location != m_currentLocation )
+    {
+        m_currentLocation = location;
+        emit currentLocationChanged( m_currentLocation );
+    }
+}
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )

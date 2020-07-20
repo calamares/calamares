@@ -65,26 +65,13 @@ TimeZoneWidget::TimeZoneWidget( const CalamaresUtils::Locale::CStringPairList& z
 
 
 void
-TimeZoneWidget::setCurrentLocation( QString regionName, QString zoneName )
+TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
 {
-    using namespace CalamaresUtils::Locale;
-    auto* region = m_zonesData.find< TZRegion >( regionName );
-    if ( !region )
+    if ( location == m_currentLocation )
     {
         return;
     }
 
-    auto* zone = region->zones().find< TZZone >( zoneName );
-    if ( zone )
-    {
-        setCurrentLocation( zone );
-    }
-}
-
-
-void
-TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
-{
     m_currentLocation = location;
 
     // Set zone
@@ -100,7 +87,6 @@ TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* locati
 
     // Repaint widget
     repaint();
-    emit locationChanged( m_currentLocation );
 }
 
 
@@ -229,6 +215,6 @@ TimeZoneWidget::mousePressEvent( QMouseEvent* event )
         // Set zone image and repaint widget
         setCurrentLocation( closest );
         // Emit signal
-        emit locationChanged( m_currentLocation );
+        emit locationChanged( closest );
     }
 }
