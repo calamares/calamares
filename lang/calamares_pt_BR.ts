@@ -3549,7 +3549,7 @@ Saída:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="402"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
-      <translation>Seu nome de usuário deve começar com uma letra maiúscula ou com um sublinhado.</translation>
+      <translation>Seu nome de usuário deve começar com uma letra minúscula ou com um sublinhado.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="409"/>

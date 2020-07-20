@@ -781,7 +781,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Vítejte v Calamares instalačním programu pro %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="246"/>
@@ -796,7 +796,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="252"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Vítejte v instalátoru %1.&lt;/h1&gt;</translation>
     </message>
   </context>
   <context>
@@ -3424,7 +3424,7 @@ Výstup:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="202"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>Zpětná vazba uživatele KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="214"/>
@@ -3445,7 +3445,7 @@ Výstup:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="243"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Nepodařilo se správně nastavit zpětnou vazbu KDE uživatele, chyba Calamares %1.</translation>
     </message>
   </context>
   <context>
