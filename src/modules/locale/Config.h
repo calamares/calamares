@@ -21,12 +21,18 @@
 #ifndef LOCALE_CONFIG_H
 #define LOCALE_CONFIG_H
 
+#include "locale/TimeZone.h"
+
 #include <QObject>
+
+#include <memory>
 
 class Config : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( const QStringList& supportedLocales READ supportedLocales CONSTANT FINAL )
+    Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* zonesModel READ zonesModel CONSTANT FINAL )
+    Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* regionModel READ regionModel CONSTANT FINAL )
 
 public:
     Config( QObject* parent = nullptr );
@@ -36,10 +42,17 @@ public:
 
 public Q_SLOTS:
     const QStringList& supportedLocales() const { return m_localeGenLines; }
+    CalamaresUtils::Locale::CStringListModel* regionModel() const { return m_regionModel.get(); }
+    CalamaresUtils::Locale::CStringListModel* zonesModel() const { return m_zonesModel.get(); }
 
 private:
     /// A list of supported locale identifiers (e.g. "en_US.UTF-8")
     QStringList m_localeGenLines;
+
+    /// The regions (America, Asia, Europe ..)
+    std::unique_ptr< CalamaresUtils::Locale::CStringListModel > m_regionModel;
+    /// The zones for the current region (e.g. America/New_York)
+    std::unique_ptr< CalamaresUtils::Locale::CStringListModel > m_zonesModel;
 };
 
 

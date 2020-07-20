@@ -142,6 +142,9 @@ loadLocales( const QString& localeGenPath )
 
 Config::Config( QObject* parent )
     : QObject( parent )
+    , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >(
+          CalamaresUtils::Locale::TZRegion::fromZoneTab() ) )
+    , m_zonesModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >() )
 {
 }
 
