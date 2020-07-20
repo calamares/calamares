@@ -32,13 +32,15 @@
 class QComboBox;
 class QLabel;
 class QPushButton;
+
+class Config;
 class TimeZoneWidget;
 
 class LocalePage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit LocalePage( QWidget* parent = nullptr );
+    explicit LocalePage( class Config* config, QWidget* parent = nullptr );
     virtual ~LocalePage();
 
     void init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath );
@@ -53,6 +55,9 @@ public:
 
 private:
     LocaleConfiguration guessLocaleConfiguration() const;
+
+    /// @brief Non-owning pointer to the ViewStep's config
+    Config* m_config;
 
     // For the given locale config, return two strings describing
     // the settings for language and numbers.

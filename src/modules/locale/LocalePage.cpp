@@ -19,6 +19,7 @@
 
 #include "LocalePage.h"
 
+#include "Config.h"
 #include "SetTimezoneJob.h"
 #include "timezonewidget/timezonewidget.h"
 
@@ -26,7 +27,6 @@
 #include "JobQueue.h"
 #include "LCLocaleDialog.h"
 #include "Settings.h"
-
 #include "locale/Label.h"
 #include "locale/TimeZone.h"
 #include "utils/CalamaresUtilsGui.h"
@@ -40,8 +40,9 @@
 #include <QProcess>
 #include <QPushButton>
 
-LocalePage::LocalePage( QWidget* parent )
+LocalePage::LocalePage( Config* config, QWidget* parent )
     : QWidget( parent )
+    , m_config( config )
     , m_regionList( CalamaresUtils::Locale::TZRegion::fromZoneTab() )
     , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( m_regionList ) )
     , m_blockTzWidgetSet( false )

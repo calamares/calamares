@@ -68,7 +68,7 @@ LocaleViewStep::setUpPage()
 {
     if ( !m_actualWidget )
     {
-        m_actualWidget = new LocalePage();
+        m_actualWidget = new LocalePage( m_config.get() );
     }
     m_actualWidget->init( m_startingTimezone.first, m_startingTimezone.second, m_localeGenPath );
     m_widget->layout()->addWidget( m_actualWidget );
