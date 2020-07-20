@@ -31,6 +31,7 @@
 #include "locale/TimeZone.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/RAII.h"
 #include "utils/Retranslator.h"
 
 #include <QBoxLayout>
@@ -106,7 +107,10 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
 
     connect( config, &Config::currentLocationChanged, m_tzWidget, &TimeZoneWidget::setCurrentLocation );
     connect( config, &Config::currentLocationChanged, this, &LocalePage::locationChanged );
-    connect( m_tzWidget, &TimeZoneWidget::locationChanged, config, QOverload< const CalamaresUtils::Locale::TZZone* >::of( &Config::setCurrentLocation ) );
+    connect( m_tzWidget,
+             &TimeZoneWidget::locationChanged,
+             config,
+             QOverload< const CalamaresUtils::Locale::TZZone* >::of( &Config::setCurrentLocation ) );
 
     connect( m_regionCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::regionChanged );
     connect( m_zoneCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::zoneChanged );
@@ -265,15 +269,17 @@ LocalePage::regionChanged( int currentIndex )
     Q_UNUSED( currentIndex )
     QString selectedRegion = m_regionCombo->currentData().toString();
 
-    TZRegion* region = CalamaresUtils::Locale::TZRegion::fromZoneTab().find< TZRegion >( selectedRegion );
+    TZRegion* region = m_config->timezoneData().find< TZRegion >( selectedRegion );
     if ( !region )
     {
         return;
     }
 
-    m_zoneCombo->blockSignals( true );
-    m_zoneCombo->setModel( new CStringListModel( region->zones() ) );
-    m_zoneCombo->blockSignals( false );
+    {
+        cSignalBlocker b( m_zoneCombo );
+        m_zoneCombo->setModel( new CStringListModel( region->zones() ) );
+    }
+
     m_zoneCombo->currentIndexChanged( m_zoneCombo->currentIndex() );
 }
 
@@ -283,8 +289,7 @@ LocalePage::zoneChanged( int currentIndex )
     Q_UNUSED( currentIndex )
     if ( !m_blockTzWidgetSet )
     {
-        m_config->setCurrentLocation( m_regionCombo->currentData().toString(),
-                                        m_zoneCombo->currentData().toString() );
+        m_config->setCurrentLocation( m_regionCombo->currentData().toString(), m_zoneCombo->currentData().toString() );
     }
     updateGlobalStorage();
 }
@@ -292,7 +297,7 @@ LocalePage::zoneChanged( int currentIndex )
 void
 LocalePage::locationChanged( const CalamaresUtils::Locale::TZZone* location )
 {
-    m_blockTzWidgetSet = true;
+    cBoolSetter< true > b( m_blockTzWidgetSet );
 
     // Set region index
     int index = m_regionCombo->findData( location->region() );
@@ -311,8 +316,6 @@ LocalePage::locationChanged( const CalamaresUtils::Locale::TZZone* location )
     }
 
     m_zoneCombo->setCurrentIndex( index );
-
-    m_blockTzWidgetSet = false;
 
     updateGlobalStorage();
 }
