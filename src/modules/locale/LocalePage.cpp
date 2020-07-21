@@ -171,14 +171,6 @@ LocalePage::prettyStatus() const
     return status;
 }
 
-
-QMap< QString, QString >
-LocalePage::localesMap()
-{
-    return m_config->localeConfiguration().toMap();
-}
-
-
 void
 LocalePage::onActivate()
 {

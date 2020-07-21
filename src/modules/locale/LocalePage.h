@@ -45,8 +45,6 @@ public:
 
     QString prettyStatus() const;
 
-    QMap< QString, QString > localesMap();
-
     void onActivate();
 
 private:

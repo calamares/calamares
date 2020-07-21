@@ -169,7 +169,7 @@ LocaleViewStep::onLeave()
         m_jobs = m_config->createJobs();
         m_prettyStatus = m_actualWidget->prettyStatus();
 
-        auto map = m_actualWidget->localesMap();
+        auto map = m_config->localeConfiguration().toMap();
         QVariantMap vm;
         for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
         {
