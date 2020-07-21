@@ -43,17 +43,11 @@ public:
     explicit LocalePage( class Config* config, QWidget* parent = nullptr );
     virtual ~LocalePage();
 
-    QString prettyStatus() const;
-
     void onActivate();
 
 private:
     /// @brief Non-owning pointer to the ViewStep's config
     Config* m_config;
-
-    // For the given locale config, return two strings describing
-    // the settings for language and numbers.
-    std::pair< QString, QString > prettyLocaleStatus( const LocaleConfiguration& ) const;
 
     /** @brief Update the GS *locale* key with the selected system language.
      *

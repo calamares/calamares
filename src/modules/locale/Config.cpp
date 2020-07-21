@@ -22,6 +22,7 @@
 
 #include "SetTimezoneJob.h"
 
+#include "locale/Label.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
@@ -243,6 +244,33 @@ Config::setLCLocaleExplicitly( const QString& locale )
     m_selectedLocaleConfiguration.lc_measurement = locale;
     m_selectedLocaleConfiguration.lc_identification = locale;
     m_selectedLocaleConfiguration.explicit_lc = true;
+}
+
+std::pair< QString, QString >
+Config::prettyLocaleStatus() const
+{
+    using CalamaresUtils::Locale::Label;
+
+    Label lang( m_selectedLocaleConfiguration.language(), Label::LabelFormat::AlwaysWithCountry );
+    Label num( m_selectedLocaleConfiguration.lc_numeric, Label::LabelFormat::AlwaysWithCountry );
+
+    return std::make_pair< QString, QString >(
+        tr( "The system language will be set to %1." ).arg( lang.label() ),
+        tr( "The numbers and dates locale will be set to %1." ).arg( num.label() ) );
+}
+
+QString
+Config::prettyStatus() const
+{
+    QString br( QStringLiteral("<br/>"));
+    QString status;
+    status += tr( "Set timezone to %1/%2." ).arg( m_currentLocation->region(), m_currentLocation->zone() ) + br;
+
+    auto labels = prettyLocaleStatus();
+    status += labels.first + br;
+    status += labels.second + br;
+
+    return status;
 }
 
 

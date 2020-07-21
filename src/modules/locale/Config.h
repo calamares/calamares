@@ -47,6 +47,19 @@ public:
     void setConfigurationMap( const QVariantMap& );
     Calamares::JobList createJobs();
 
+    /** @brief Human-readable status for language and LC
+     *
+     * For the current locale config, return two strings describing
+     * the settings for language and numbers.
+     */
+    std::pair< QString, QString > prettyLocaleStatus() const;
+    /** @brief Human-readable zone, language and LC status
+     *
+     * Concatenates all three strings with <br/>
+     */
+    QString prettyStatus() const;
+
+
 public Q_SLOTS:
     const QStringList& supportedLocales() const { return m_localeGenLines; }
     CalamaresUtils::Locale::CStringListModel* regionModel() const { return m_regionModel.get(); }

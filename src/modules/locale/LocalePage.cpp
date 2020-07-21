@@ -138,38 +138,12 @@ LocalePage::updateLocaleLabels()
     m_localeChangeButton->setText( tr( "&Change..." ) );
     m_formatsChangeButton->setText( tr( "&Change..." ) );
 
-    LocaleConfiguration lc = m_config->localeConfiguration();
-    auto labels = prettyLocaleStatus( lc );
+    auto labels = m_config->prettyLocaleStatus();
     m_localeLabel->setText( labels.first );
     m_formatsLabel->setText( labels.second );
 }
 
-std::pair< QString, QString >
-LocalePage::prettyLocaleStatus( const LocaleConfiguration& lc ) const
-{
-    using CalamaresUtils::Locale::Label;
 
-    Label lang( lc.language(), Label::LabelFormat::AlwaysWithCountry );
-    Label num( lc.lc_numeric, Label::LabelFormat::AlwaysWithCountry );
-
-    return std::make_pair< QString, QString >(
-        tr( "The system language will be set to %1." ).arg( lang.label() ),
-        tr( "The numbers and dates locale will be set to %1." ).arg( num.label() ) );
-}
-
-QString
-LocalePage::prettyStatus() const
-{
-    QString status;
-    status += tr( "Set timezone to %1/%2.<br/>" ).arg( m_regionCombo->currentText() ).arg( m_zoneCombo->currentText() );
-
-    LocaleConfiguration lc = m_config->localeConfiguration();
-    auto labels = prettyLocaleStatus( lc );
-    status += labels.first + "<br/>";
-    status += labels.second + "<br/>";
-
-    return status;
-}
 
 void
 LocalePage::onActivate()
