@@ -21,6 +21,8 @@
 #ifndef LOCALE_CONFIG_H
 #define LOCALE_CONFIG_H
 
+#include "LocaleConfiguration.h"
+
 #include "Job.h"
 #include "locale/TimeZone.h"
 
@@ -35,7 +37,8 @@ class Config : public QObject
     Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* zonesModel READ zonesModel CONSTANT FINAL )
     Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* regionModel READ regionModel CONSTANT FINAL )
     Q_PROPERTY( const CalamaresUtils::Locale::CStringPairList& timezoneData READ timezoneData CONSTANT FINAL )
-    Q_PROPERTY( const CalamaresUtils::Locale::TZZone* currentLocation READ currentLocation WRITE setCurrentLocation NOTIFY currentLocationChanged )
+    Q_PROPERTY( const CalamaresUtils::Locale::TZZone* currentLocation READ currentLocation WRITE setCurrentLocation
+                    NOTIFY currentLocationChanged )
 
 public:
     Config( QObject* parent = nullptr );
@@ -60,10 +63,28 @@ public Q_SLOTS:
     /** @brief Sets a location by pointer
      *
      * Pointer should be within the same model as the widget uses.
+     * This can update the locale configuration -- the automatic one
+     * follows the current location, and otherwise only explicitly-set
+     * values will ignore changes to the location.
      */
     void setCurrentLocation( const CalamaresUtils::Locale::TZZone* location );
 
+    /** @brief The currently selected location (timezone)
+     *
+     * The location is a pointer into the date that timezoneData() returns.
+     * It is possible to return nullptr, if no location has been picked yet.
+     */
     const CalamaresUtils::Locale::TZZone* currentLocation() const { return m_currentLocation; }
+
+    /// locale configuration (LC_* and LANG) based solely on the current location.
+    LocaleConfiguration automaticLocaleConfiguration() const;
+    /// locale configuration that takes explicit settings into account
+    LocaleConfiguration localeConfiguration() const;
+
+    /// Set a language by user-choice, overriding future location changes
+    void setLanguageExplicitly( const QString& language );
+    /// Set LC (formats) by user-choice, overriding future location changes
+    void setLCLocaleExplicitly( const QString& locale );
 
 signals:
     void currentLocationChanged( const CalamaresUtils::Locale::TZZone* location );
@@ -80,6 +101,16 @@ private:
     /// The location, points into the timezone data
     const CalamaresUtils::Locale::TZZone* m_currentLocation = nullptr;
 
+    /** @brief Specific locale configurations
+     *
+     * "Automatic" locale configuration based on the location (e.g.
+     * Europe/Amsterdam means Dutch language and Dutch locale) leave
+     * this empty; if the user explicitly sets something, then
+     * this configuration is non-empty and takes precedence over the
+     * automatic location settings (so a user in Amsterdam can still
+     * pick Ukranian settings, for instance).
+     */
+    LocaleConfiguration m_selectedLocaleConfiguration;
 };
 
 

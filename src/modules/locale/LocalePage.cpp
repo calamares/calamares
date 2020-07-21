@@ -137,8 +137,7 @@ LocalePage::updateLocaleLabels()
     m_localeChangeButton->setText( tr( "&Change..." ) );
     m_formatsChangeButton->setText( tr( "&Change..." ) );
 
-    LocaleConfiguration lc
-        = m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration() : m_selectedLocaleConfiguration;
+    LocaleConfiguration lc = m_config->localeConfiguration();
     auto labels = prettyLocaleStatus( lc );
     m_localeLabel->setText( labels.first );
     m_formatsLabel->setText( labels.second );
@@ -163,8 +162,7 @@ LocalePage::prettyStatus() const
     QString status;
     status += tr( "Set timezone to %1/%2.<br/>" ).arg( m_regionCombo->currentText() ).arg( m_zoneCombo->currentText() );
 
-    LocaleConfiguration lc
-        = m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration() : m_selectedLocaleConfiguration;
+    LocaleConfiguration lc = m_config->localeConfiguration();
     auto labels = prettyLocaleStatus( lc );
     status += labels.first + "<br/>";
     status += labels.second + "<br/>";
@@ -176,8 +174,7 @@ LocalePage::prettyStatus() const
 QMap< QString, QString >
 LocalePage::localesMap()
 {
-    return m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration().toMap()
-                                                   : m_selectedLocaleConfiguration.toMap();
+    return m_config->localeConfiguration().toMap();
 }
 
 
@@ -185,21 +182,8 @@ void
 LocalePage::onActivate()
 {
     m_regionCombo->setFocus();
-    if ( m_selectedLocaleConfiguration.isEmpty() || !m_selectedLocaleConfiguration.explicit_lang )
-    {
-        auto newLocale = guessLocaleConfiguration();
-        m_selectedLocaleConfiguration.setLanguage( newLocale.language() );
-        updateGlobalLocale();
-        updateLocaleLabels();
-    }
-}
-
-
-LocaleConfiguration
-LocalePage::guessLocaleConfiguration() const
-{
-    return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), m_config->supportedLocales(), m_config->currentLocation()->country() );
+    updateGlobalLocale();
+    updateLocaleLabels();
 }
 
 
@@ -207,7 +191,7 @@ void
 LocalePage::updateGlobalLocale()
 {
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
-    const QString bcp47 = m_selectedLocaleConfiguration.toBcp47();
+    const QString bcp47 = m_config->localeConfiguration().toBcp47();
     gs->insert( "locale", bcp47 );
 }
 
@@ -236,28 +220,6 @@ LocalePage::updateGlobalStorage()
     }
 #endif
 
-    // Preserve those settings that have been made explicit.
-    auto newLocale = guessLocaleConfiguration();
-    if ( !m_selectedLocaleConfiguration.isEmpty() && m_selectedLocaleConfiguration.explicit_lang )
-    {
-        newLocale.setLanguage( m_selectedLocaleConfiguration.language() );
-    }
-    if ( !m_selectedLocaleConfiguration.isEmpty() && m_selectedLocaleConfiguration.explicit_lc )
-    {
-        newLocale.lc_numeric = m_selectedLocaleConfiguration.lc_numeric;
-        newLocale.lc_time = m_selectedLocaleConfiguration.lc_time;
-        newLocale.lc_monetary = m_selectedLocaleConfiguration.lc_monetary;
-        newLocale.lc_paper = m_selectedLocaleConfiguration.lc_paper;
-        newLocale.lc_name = m_selectedLocaleConfiguration.lc_name;
-        newLocale.lc_address = m_selectedLocaleConfiguration.lc_address;
-        newLocale.lc_telephone = m_selectedLocaleConfiguration.lc_telephone;
-        newLocale.lc_measurement = m_selectedLocaleConfiguration.lc_measurement;
-        newLocale.lc_identification = m_selectedLocaleConfiguration.lc_identification;
-    }
-    newLocale.explicit_lang = m_selectedLocaleConfiguration.explicit_lang;
-    newLocale.explicit_lc = m_selectedLocaleConfiguration.explicit_lc;
-
-    m_selectedLocaleConfiguration = newLocale;
     updateLocaleLabels();
 }
 
@@ -324,17 +286,13 @@ void
 LocalePage::changeLocale()
 {
     LCLocaleDialog* dlg
-        = new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration().language()
-                                                                      : m_selectedLocaleConfiguration.language(),
-                              m_config->supportedLocales(),
-                              this );
+        = new LCLocaleDialog( m_config->localeConfiguration().language(), m_config->supportedLocales(), this );
     dlg->exec();
     if ( dlg->result() == QDialog::Accepted && !dlg->selectedLCLocale().isEmpty() )
     {
-        m_selectedLocaleConfiguration.setLanguage( dlg->selectedLCLocale() );
-        m_selectedLocaleConfiguration.explicit_lang = true;
-        this->updateGlobalLocale();
-        this->updateLocaleLabels();
+        m_config->setLanguageExplicitly( dlg->selectedLCLocale() );
+        updateGlobalLocale();
+        updateLocaleLabels();
     }
 
     dlg->deleteLater();
@@ -345,26 +303,12 @@ void
 LocalePage::changeFormats()
 {
     LCLocaleDialog* dlg
-        = new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration().lc_numeric
-                                                                      : m_selectedLocaleConfiguration.lc_numeric,
-                              m_config->supportedLocales(),
-                              this );
+        = new LCLocaleDialog( m_config->localeConfiguration().lc_numeric, m_config->supportedLocales(), this );
     dlg->exec();
     if ( dlg->result() == QDialog::Accepted && !dlg->selectedLCLocale().isEmpty() )
     {
-        // TODO: improve the granularity of this setting.
-        m_selectedLocaleConfiguration.lc_numeric = dlg->selectedLCLocale();
-        m_selectedLocaleConfiguration.lc_time = dlg->selectedLCLocale();
-        m_selectedLocaleConfiguration.lc_monetary = dlg->selectedLCLocale();
-        m_selectedLocaleConfiguration.lc_paper = dlg->selectedLCLocale();
-        m_selectedLocaleConfiguration.lc_name = dlg->selectedLCLocale();
-        m_selectedLocaleConfiguration.lc_address = dlg->selectedLCLocale();
-        m_selectedLocaleConfiguration.lc_telephone = dlg->selectedLCLocale();
-        m_selectedLocaleConfiguration.lc_measurement = dlg->selectedLCLocale();
-        m_selectedLocaleConfiguration.lc_identification = dlg->selectedLCLocale();
-        m_selectedLocaleConfiguration.explicit_lc = true;
-
-        this->updateLocaleLabels();
+        m_config->setLCLocaleExplicitly( dlg->selectedLCLocale() );
+        updateLocaleLabels();
     }
 
     dlg->deleteLater();

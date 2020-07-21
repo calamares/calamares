@@ -175,7 +175,8 @@ Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
     }
     else
     {
-        setCurrentLocation( QStringLiteral("America"), QStringLiteral("New_York") );
+        // Recursive, but America/New_York always exists.
+        setCurrentLocation( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
     }
 }
 
@@ -185,9 +186,65 @@ Config::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
     if ( location != m_currentLocation )
     {
         m_currentLocation = location;
+        // Overwrite those settings that have not been made explicit.
+        auto newLocale = automaticLocaleConfiguration();
+        if ( !m_selectedLocaleConfiguration.explicit_lang )
+        {
+            m_selectedLocaleConfiguration.setLanguage( newLocale.language() );
+        }
+        if ( !m_selectedLocaleConfiguration.explicit_lc )
+        {
+            m_selectedLocaleConfiguration.lc_numeric = newLocale.lc_numeric;
+            m_selectedLocaleConfiguration.lc_time = newLocale.lc_time;
+            m_selectedLocaleConfiguration.lc_monetary = newLocale.lc_monetary;
+            m_selectedLocaleConfiguration.lc_paper = newLocale.lc_paper;
+            m_selectedLocaleConfiguration.lc_name = newLocale.lc_name;
+            m_selectedLocaleConfiguration.lc_address = newLocale.lc_address;
+            m_selectedLocaleConfiguration.lc_telephone = newLocale.lc_telephone;
+            m_selectedLocaleConfiguration.lc_measurement = newLocale.lc_measurement;
+            m_selectedLocaleConfiguration.lc_identification = newLocale.lc_identification;
+        }
         emit currentLocationChanged( m_currentLocation );
     }
 }
+
+
+LocaleConfiguration
+Config::automaticLocaleConfiguration() const
+{
+    return LocaleConfiguration::fromLanguageAndLocation(
+        QLocale().name(), supportedLocales(), currentLocation()->country() );
+}
+
+LocaleConfiguration
+Config::localeConfiguration() const
+{
+    return m_selectedLocaleConfiguration.isEmpty() ? automaticLocaleConfiguration() : m_selectedLocaleConfiguration;
+}
+
+void
+Config::setLanguageExplicitly( const QString& language )
+{
+    m_selectedLocaleConfiguration.setLanguage( language );
+    m_selectedLocaleConfiguration.explicit_lang = true;
+}
+
+void
+Config::setLCLocaleExplicitly( const QString& locale )
+{
+    // TODO: improve the granularity of this setting.
+    m_selectedLocaleConfiguration.lc_numeric = locale;
+    m_selectedLocaleConfiguration.lc_time = locale;
+    m_selectedLocaleConfiguration.lc_monetary = locale;
+    m_selectedLocaleConfiguration.lc_paper = locale;
+    m_selectedLocaleConfiguration.lc_name = locale;
+    m_selectedLocaleConfiguration.lc_address = locale;
+    m_selectedLocaleConfiguration.lc_telephone = locale;
+    m_selectedLocaleConfiguration.lc_measurement = locale;
+    m_selectedLocaleConfiguration.lc_identification = locale;
+    m_selectedLocaleConfiguration.explicit_lc = true;
+}
+
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
@@ -204,7 +261,7 @@ Calamares::JobList
 Config::createJobs()
 {
     Calamares::JobList list;
-    const CalamaresUtils::Locale::TZZone* location = nullptr;  // TODO: m_tzWidget->currentLocation();
+    const CalamaresUtils::Locale::TZZone* location = currentLocation();
 
     if ( location )
     {

@@ -50,8 +50,6 @@ public:
     void onActivate();
 
 private:
-    LocaleConfiguration guessLocaleConfiguration() const;
-
     /// @brief Non-owning pointer to the ViewStep's config
     Config* m_config;
 
@@ -85,7 +83,6 @@ private:
     QLabel* m_formatsLabel;
     QPushButton* m_formatsChangeButton;
 
-    LocaleConfiguration m_selectedLocaleConfiguration;
 
     bool m_blockTzWidgetSet;
 };
