@@ -71,8 +71,6 @@ private:
     LocalePage* m_actualWidget;
     bool m_nextEnabled;
 
-    Calamares::JobList m_jobs;
-
     CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
     std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
 

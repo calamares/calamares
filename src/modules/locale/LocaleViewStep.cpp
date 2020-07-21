@@ -147,7 +147,7 @@ LocaleViewStep::isAtEnd() const
 Calamares::JobList
 LocaleViewStep::jobs() const
 {
-    return m_jobs;
+    return m_config->createJobs();
 }
 
 
@@ -165,24 +165,6 @@ LocaleViewStep::onActivate()
 void
 LocaleViewStep::onLeave()
 {
-    if ( m_actualWidget )
-    {
-        m_jobs = m_config->createJobs();
-
-        auto map = m_config->localeConfiguration().toMap();
-        QVariantMap vm;
-        for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
-        {
-            vm.insert( it.key(), it.value() );
-        }
-
-        Calamares::JobQueue::instance()->globalStorage()->insert( "localeConf", vm );
-    }
-    else
-    {
-        m_jobs.clear();
-        Calamares::JobQueue::instance()->globalStorage()->remove( "localeConf" );
-    }
 }
 
 

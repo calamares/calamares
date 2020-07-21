@@ -170,18 +170,28 @@ Config::Config( QObject* parent )
 
     connect( this, &Config::currentLocationChanged, [&]() {
         auto* gs = Calamares::JobQueue::instance()->globalStorage();
+
+        // Update the GS region and zone (and possibly the live timezone)
         const auto* location = currentLocation();
         bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
             || ( location->zone() != gs->value( "locationZone" ) );
 
         gs->insert( "locationRegion", location->region() );
         gs->insert( "locationZone", location->zone() );
-
         if ( locationChanged && m_adjustLiveTimezone )
         {
             QProcess::execute( "timedatectl",  // depends on systemd
                                { "set-timezone", location->region() + '/' + location->zone() } );
         }
+
+        // Update GS localeConf (the LC_ variables)
+        auto map = localeConfiguration().toMap();
+        QVariantMap vm;
+        for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
+        {
+            vm.insert( it.key(), it.value() );
+        }
+        gs->insert( "localeConf", vm );
     } );
 }
 
