@@ -22,6 +22,9 @@
 
 #include "SetTimezoneJob.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "Settings.h"
 #include "locale/Label.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
@@ -154,6 +157,36 @@ Config::Config( QObject* parent )
     , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( ::timezoneData() ) )
     , m_zonesModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >() )
 {
+    // Slightly unusual: connect to our *own* signals. Wherever the language
+    // or the location is changed, these signals are emitted, so hook up to
+    // them to update global storage accordingly. This simplifies code:
+    // we don't need to call an update-GS method, or introduce an intermediate
+    // update-thing-and-GS method. And everywhere where we **do** change
+    // language or location, we already emit the signal.
+    connect( this, &Config::currentLanguageStatusChanged, [&]() {
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        gs->insert( "locale", m_selectedLocaleConfiguration.toBcp47() );
+    } );
+
+    connect( this, &Config::currentLocationChanged, [&]() {
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        const auto* location = currentLocation();
+        bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
+            || ( location->zone() != gs->value( "locationZone" ) );
+
+        gs->insert( "locationRegion", location->region() );
+        gs->insert( "locationZone", location->zone() );
+
+        // If we're in chroot mode (normal install mode), then we immediately set the
+        // timezone on the live system. When debugging timezones, don't bother.
+#ifndef DEBUG_TIMEZONES
+        if ( locationChanged && Calamares::Settings::instance()->doChroot() )
+        {
+            QProcess::execute( "timedatectl",  // depends on systemd
+                               { "set-timezone", location->region() + '/' + location->zone() } );
+        }
+#endif
+    } );
 }
 
 Config::~Config() {}

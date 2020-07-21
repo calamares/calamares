@@ -125,7 +125,6 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
 
     m_regionCombo->setModel( m_config->regionModel() );
     m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
-    updateGlobalStorage();
 }
 
 
@@ -148,46 +147,9 @@ void
 LocalePage::onActivate()
 {
     m_regionCombo->setFocus();
-    updateGlobalLocale();
     updateLocaleLabels();
 }
 
-
-void
-LocalePage::updateGlobalLocale()
-{
-    auto* gs = Calamares::JobQueue::instance()->globalStorage();
-    const QString bcp47 = m_config->localeConfiguration().toBcp47();
-    gs->insert( "locale", bcp47 );
-}
-
-
-void
-LocalePage::updateGlobalStorage()
-{
-    auto* gs = Calamares::JobQueue::instance()->globalStorage();
-
-    const auto* location = m_config->currentLocation();
-    bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
-        || ( location->zone() != gs->value( "locationZone" ) );
-
-    gs->insert( "locationRegion", location->region() );
-    gs->insert( "locationZone", location->zone() );
-
-    updateGlobalLocale();
-
-    // If we're in chroot mode (normal install mode), then we immediately set the
-    // timezone on the live system. When debugging timezones, don't bother.
-#ifndef DEBUG_TIMEZONES
-    if ( locationChanged && Calamares::Settings::instance()->doChroot() )
-    {
-        QProcess::execute( "timedatectl",  // depends on systemd
-                           { "set-timezone", location->region() + '/' + location->zone() } );
-    }
-#endif
-
-    updateLocaleLabels();
-}
 
 void
 LocalePage::regionChanged( int currentIndex )
@@ -219,7 +181,6 @@ LocalePage::zoneChanged( int currentIndex )
     {
         m_config->setCurrentLocation( m_regionCombo->currentData().toString(), m_zoneCombo->currentData().toString() );
     }
-    updateGlobalStorage();
 }
 
 void
@@ -244,8 +205,6 @@ LocalePage::locationChanged( const CalamaresUtils::Locale::TZZone* location )
     }
 
     m_zoneCombo->setCurrentIndex( index );
-
-    updateGlobalStorage();
 }
 
 void
@@ -257,7 +216,6 @@ LocalePage::changeLocale()
     if ( dlg && dlg->result() == QDialog::Accepted && !dlg->selectedLCLocale().isEmpty() )
     {
         m_config->setLanguageExplicitly( dlg->selectedLCLocale() );
-        updateGlobalLocale();
         updateLocaleLabels();
     }
 
