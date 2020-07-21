@@ -20,15 +20,9 @@
 #include "LocalePage.h"
 
 #include "Config.h"
-#include "SetTimezoneJob.h"
+#include "LCLocaleDialog.h"
 #include "timezonewidget/timezonewidget.h"
 
-#include "GlobalStorage.h"
-#include "JobQueue.h"
-#include "LCLocaleDialog.h"
-#include "Settings.h"
-#include "locale/Label.h"
-#include "locale/TimeZone.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
@@ -36,10 +30,8 @@
 
 #include <QBoxLayout>
 #include <QComboBox>
-#include <QFile>
 #include <QLabel>
 #include <QPointer>
-#include <QProcess>
 #include <QPushButton>
 
 LocalePage::LocalePage( Config* config, QWidget* parent )
