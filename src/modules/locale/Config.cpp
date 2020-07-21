@@ -255,6 +255,11 @@ Config::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
 LocaleConfiguration
 Config::automaticLocaleConfiguration() const
 {
+    // Special case: no location has been set at **all**
+    if ( !currentLocation() )
+    {
+        return LocaleConfiguration();
+    }
     return LocaleConfiguration::fromLanguageAndLocation(
         QLocale().name(), supportedLocales(), currentLocation()->country() );
 }
