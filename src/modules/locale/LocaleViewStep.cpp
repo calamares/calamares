@@ -104,7 +104,8 @@ LocaleViewStep::prettyName() const
 QString
 LocaleViewStep::prettyStatus() const
 {
-    return m_prettyStatus;
+    QStringList l { m_config->currentLocationStatus(), m_config->currentLanguageStatus(), m_config->currentLCStatus() };
+    return l.join( QStringLiteral( "<br/>" ) );
 }
 
 
@@ -167,7 +168,6 @@ LocaleViewStep::onLeave()
     if ( m_actualWidget )
     {
         m_jobs = m_config->createJobs();
-        m_prettyStatus = m_config->prettyStatus();
 
         auto map = m_config->localeConfiguration().toMap();
         QVariantMap vm;

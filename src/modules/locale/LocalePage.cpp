@@ -106,6 +106,8 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     setMinimumWidth( m_tzWidget->width() );
     setLayout( mainLayout );
 
+    connect( config, &Config::currentLCStatusChanged, m_formatsLabel, &QLabel::setText );
+    connect( config, &Config::currentLanguageStatusChanged, m_localeLabel, &QLabel::setText );
     connect( config, &Config::currentLocationChanged, m_tzWidget, &TimeZoneWidget::setCurrentLocation );
     connect( config, &Config::currentLocationChanged, this, &LocalePage::locationChanged );
     connect( m_tzWidget,
@@ -137,12 +139,9 @@ LocalePage::updateLocaleLabels()
     m_zoneLabel->setText( tr( "Zone:" ) );
     m_localeChangeButton->setText( tr( "&Change..." ) );
     m_formatsChangeButton->setText( tr( "&Change..." ) );
-
-    auto labels = m_config->prettyLocaleStatus();
-    m_localeLabel->setText( labels.first );
-    m_formatsLabel->setText( labels.second );
+    m_localeLabel->setText( m_config->currentLanguageStatus() );
+    m_formatsLabel->setText( m_config->currentLCStatus() );
 }
-
 
 
 void

@@ -192,6 +192,7 @@ Config::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
         if ( !m_selectedLocaleConfiguration.explicit_lang )
         {
             m_selectedLocaleConfiguration.setLanguage( newLocale.language() );
+            emit currentLanguageStatusChanged( currentLanguageStatus() );
         }
         if ( !m_selectedLocaleConfiguration.explicit_lc )
         {
@@ -204,6 +205,8 @@ Config::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
             m_selectedLocaleConfiguration.lc_telephone = newLocale.lc_telephone;
             m_selectedLocaleConfiguration.lc_measurement = newLocale.lc_measurement;
             m_selectedLocaleConfiguration.lc_identification = newLocale.lc_identification;
+
+            emit currentLCStatusChanged( currentLCStatus() );
         }
         emit currentLocationChanged( m_currentLocation );
     }
@@ -228,6 +231,8 @@ Config::setLanguageExplicitly( const QString& language )
 {
     m_selectedLocaleConfiguration.setLanguage( language );
     m_selectedLocaleConfiguration.explicit_lang = true;
+
+    emit currentLanguageStatusChanged( currentLanguageStatus() );
 }
 
 void
@@ -244,33 +249,37 @@ Config::setLCLocaleExplicitly( const QString& locale )
     m_selectedLocaleConfiguration.lc_measurement = locale;
     m_selectedLocaleConfiguration.lc_identification = locale;
     m_selectedLocaleConfiguration.explicit_lc = true;
-}
 
-std::pair< QString, QString >
-Config::prettyLocaleStatus() const
-{
-    using CalamaresUtils::Locale::Label;
-
-    Label lang( m_selectedLocaleConfiguration.language(), Label::LabelFormat::AlwaysWithCountry );
-    Label num( m_selectedLocaleConfiguration.lc_numeric, Label::LabelFormat::AlwaysWithCountry );
-
-    return std::make_pair< QString, QString >(
-        tr( "The system language will be set to %1." ).arg( lang.label() ),
-        tr( "The numbers and dates locale will be set to %1." ).arg( num.label() ) );
+    emit currentLCStatusChanged( currentLCStatus() );
 }
 
 QString
-Config::prettyStatus() const
+Config::currentLocationStatus() const
 {
-    QString br( QStringLiteral("<br/>"));
-    QString status;
-    status += tr( "Set timezone to %1/%2." ).arg( m_currentLocation->region(), m_currentLocation->zone() ) + br;
+    return tr( "Set timezone to %1/%2." ).arg( m_currentLocation->region(), m_currentLocation->zone() );
+}
 
-    auto labels = prettyLocaleStatus();
-    status += labels.first + br;
-    status += labels.second + br;
+static inline QString
+localeLabel( const QString& s )
+{
+    using CalamaresUtils::Locale::Label;
 
-    return status;
+    Label lang( s, Label::LabelFormat::AlwaysWithCountry );
+    return lang.label();
+}
+
+QString
+Config::currentLanguageStatus() const
+{
+    return tr( "The system language will be set to %1." )
+        .arg( localeLabel( m_selectedLocaleConfiguration.language() ) );
+}
+
+QString
+Config::currentLCStatus() const
+{
+    return tr( "The numbers and dates locale will be set to %1." )
+        .arg( localeLabel( m_selectedLocaleConfiguration.lc_numeric ) );
 }
 
 

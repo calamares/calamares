@@ -70,7 +70,6 @@ private:
 
     LocalePage* m_actualWidget;
     bool m_nextEnabled;
-    QString m_prettyStatus;
 
     Calamares::JobList m_jobs;
 
