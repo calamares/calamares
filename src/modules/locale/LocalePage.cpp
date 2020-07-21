@@ -38,6 +38,7 @@
 #include <QComboBox>
 #include <QFile>
 #include <QLabel>
+#include <QPointer>
 #include <QProcess>
 #include <QPushButton>
 
@@ -285,31 +286,31 @@ LocalePage::locationChanged( const CalamaresUtils::Locale::TZZone* location )
 void
 LocalePage::changeLocale()
 {
-    LCLocaleDialog* dlg
-        = new LCLocaleDialog( m_config->localeConfiguration().language(), m_config->supportedLocales(), this );
+    QPointer< LCLocaleDialog > dlg(
+        new LCLocaleDialog( m_config->localeConfiguration().language(), m_config->supportedLocales(), this ) );
     dlg->exec();
-    if ( dlg->result() == QDialog::Accepted && !dlg->selectedLCLocale().isEmpty() )
+    if ( dlg && dlg->result() == QDialog::Accepted && !dlg->selectedLCLocale().isEmpty() )
     {
         m_config->setLanguageExplicitly( dlg->selectedLCLocale() );
         updateGlobalLocale();
         updateLocaleLabels();
     }
 
-    dlg->deleteLater();
+    delete dlg;
 }
 
 
 void
 LocalePage::changeFormats()
 {
-    LCLocaleDialog* dlg
-        = new LCLocaleDialog( m_config->localeConfiguration().lc_numeric, m_config->supportedLocales(), this );
+    QPointer< LCLocaleDialog > dlg(
+        new LCLocaleDialog( m_config->localeConfiguration().lc_numeric, m_config->supportedLocales(), this ) );
     dlg->exec();
-    if ( dlg->result() == QDialog::Accepted && !dlg->selectedLCLocale().isEmpty() )
+    if ( dlg && dlg->result() == QDialog::Accepted && !dlg->selectedLCLocale().isEmpty() )
     {
         m_config->setLCLocaleExplicitly( dlg->selectedLCLocale() );
         updateLocaleLabels();
     }
 
-    dlg->deleteLater();
+    delete dlg;
 }
