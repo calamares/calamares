@@ -177,15 +177,11 @@ Config::Config( QObject* parent )
         gs->insert( "locationRegion", location->region() );
         gs->insert( "locationZone", location->zone() );
 
-        // If we're in chroot mode (normal install mode), then we immediately set the
-        // timezone on the live system. When debugging timezones, don't bother.
-#ifndef DEBUG_TIMEZONES
-        if ( locationChanged && Calamares::Settings::instance()->doChroot() )
+        if ( locationChanged && m_adjustLiveTimezone )
         {
             QProcess::execute( "timedatectl",  // depends on systemd
                                { "set-timezone", location->region() + '/' + location->zone() } );
         }
-#endif
     } );
 }
 
@@ -325,6 +321,23 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         localeGenPath = QStringLiteral( "/etc/locale.gen" );
     }
     m_localeGenLines = loadLocales( localeGenPath );
+
+    m_adjustLiveTimezone
+        = CalamaresUtils::getBool( configurationMap, "adjustLiveTimezone", Calamares::Settings::instance()->doChroot() );
+#ifdef DEBUG_TIMEZONES
+    if ( m_adjustLiveTimezone )
+    {
+        cDebug() << "Turning off live-timezone adjustments because debugging is on.";
+        m_adjustLiveTimezone = false;
+    }
+#endif
+#ifdef __FreeBSD__
+    if ( m_adjustLiveTimezone )
+    {
+        cDebug() << "Turning off live-timezone adjustments on FreeBSD.";
+        m_adjustLiveTimezone = false;
+    }
+#endif
 }
 
 Calamares::JobList

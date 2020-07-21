@@ -126,6 +126,13 @@ private:
      * pick Ukranian settings, for instance).
      */
     LocaleConfiguration m_selectedLocaleConfiguration;
+
+    /** @brief Should we adjust the "live" timezone when the location changes?
+     *
+     * In the Widgets UI, clicking around on the world map adjusts the
+     * timezone, and the live system can be made to follow that.
+     */
+    bool m_adjustLiveTimezone;
 };
 
 
