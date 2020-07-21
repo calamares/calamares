@@ -24,6 +24,7 @@
 #include "LocaleConfiguration.h"
 
 #include "Job.h"
+#include "geoip/Interface.h"
 #include "locale/TimeZone.h"
 
 #include <QObject>
@@ -133,6 +134,10 @@ private:
      * timezone, and the live system can be made to follow that.
      */
     bool m_adjustLiveTimezone;
+
+    /** @brief The initial timezone (region, zone) specified in the config.
+     */
+    CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
 };
 
 

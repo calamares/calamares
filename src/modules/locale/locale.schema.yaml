@@ -19,6 +19,7 @@ properties:
             ]
         }
     zone: { type: string }
+    useSystemTimezone: { type: boolean, default: false }
 
     adjustLiveTimezone: { type: boolean, default: true }
 

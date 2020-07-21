@@ -31,6 +31,7 @@
 
 #include <QFile>
 #include <QProcess>
+#include <QTimeZone>
 
 /** @brief Load supported locale keys
  *
@@ -342,17 +343,38 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 #ifdef DEBUG_TIMEZONES
     if ( m_adjustLiveTimezone )
     {
-        cDebug() << "Turning off live-timezone adjustments because debugging is on.";
+        cWarning() << "Turning off live-timezone adjustments because debugging is on.";
         m_adjustLiveTimezone = false;
     }
 #endif
 #ifdef __FreeBSD__
     if ( m_adjustLiveTimezone )
     {
-        cDebug() << "Turning off live-timezone adjustments on FreeBSD.";
+        cWarning() << "Turning off live-timezone adjustments on FreeBSD.";
         m_adjustLiveTimezone = false;
     }
 #endif
+
+    QString region = CalamaresUtils::getString( configurationMap, "region" );
+    QString zone = CalamaresUtils::getString( configurationMap, "zone" );
+    if ( !region.isEmpty() && !zone.isEmpty() )
+    {
+        m_startingTimezone = CalamaresUtils::GeoIP::RegionZonePair( region, zone );
+    }
+    else
+    {
+        m_startingTimezone
+            = CalamaresUtils::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
+    }
+
+    if ( CalamaresUtils::getBool( configurationMap, "useSystemTimezone", false ) )
+    {
+        auto systemtz = CalamaresUtils::GeoIP::splitTZString( QTimeZone::systemTimeZoneId() );
+        if ( systemtz.isValid() )
+        {
+            m_startingTimezone = systemtz;
+        }
+    }
 }
 
 Calamares::JobList
