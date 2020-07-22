@@ -94,11 +94,18 @@ TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* locati
 //### Private
 //###
 
+struct PainterEnder
+{
+    QPainter& p;
+    ~PainterEnder() { p.end(); }
+};
+
 void
 TimeZoneWidget::paintEvent( QPaintEvent* )
 {
     QFontMetrics fontMetrics( font );
     QPainter painter( this );
+    PainterEnder painter_end { painter };
 
     painter.setRenderHint( QPainter::Antialiasing );
     painter.setFont( font );
@@ -108,6 +115,11 @@ TimeZoneWidget::paintEvent( QPaintEvent* )
 
     // Draw zone image
     painter.drawImage( 0, 0, currentZoneImage );
+
+    if ( !m_currentLocation )
+    {
+        return;
+    }
 
 #ifdef DEBUG_TIMEZONES
     QPoint point = getLocationPosition( m_currentLocation );
@@ -168,8 +180,6 @@ TimeZoneWidget::paintEvent( QPaintEvent* )
     painter.setPen( Qt::white );
     painter.drawText( rect.x() + 5, rect.bottom() - 4, m_currentLocation ? m_currentLocation->tr() : QString() );
 #endif
-
-    painter.end();
 }
 
 
