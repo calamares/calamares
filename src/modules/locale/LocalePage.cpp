@@ -98,6 +98,12 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     setMinimumWidth( m_tzWidget->width() );
     setLayout( mainLayout );
 
+    // Set up the location before connecting signals, to avoid a signal
+    // storm as various parts interact.
+    m_regionCombo->setModel( m_config->regionModel() );
+    locationChanged( m_config->currentLocation() );  // doesn't inform TZ widget
+    m_tzWidget->setCurrentLocation( m_config->currentLocation() );
+
     connect( config, &Config::currentLCStatusChanged, m_formatsLabel, &QLabel::setText );
     connect( config, &Config::currentLanguageStatusChanged, m_localeLabel, &QLabel::setText );
     connect( config, &Config::currentLocationChanged, m_tzWidget, &TimeZoneWidget::setCurrentLocation );
@@ -114,9 +120,6 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     connect( m_formatsChangeButton, &QPushButton::clicked, this, &LocalePage::changeFormats );
 
     CALAMARES_RETRANSLATE_SLOT( &LocalePage::updateLocaleLabels )
-
-    m_regionCombo->setModel( m_config->regionModel() );
-    m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
 }
 
 
@@ -178,6 +181,10 @@ LocalePage::zoneChanged( int currentIndex )
 void
 LocalePage::locationChanged( const CalamaresUtils::Locale::TZZone* location )
 {
+    if ( !location )
+    {
+        return;
+    }
     cBoolSetter< true > b( m_blockTzWidgetSet );
 
     // Set region index
