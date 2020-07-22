@@ -58,21 +58,14 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
-    /// @brief Do setup (returns empty list) asynchronously
-    virtual Calamares::RequirementsList checkRequirements() override;
-
 private slots:
     void setUpPage();
 
 private:
-    void fetchGeoIpTimezone();
     QWidget* m_widget;
 
     LocalePage* m_actualWidget;
     bool m_nextEnabled;
-
-    CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
-    std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
 
     std::unique_ptr< Config > m_config;
 };

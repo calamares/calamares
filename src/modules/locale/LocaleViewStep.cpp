@@ -43,7 +43,6 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
     , m_widget( new QWidget() )
     , m_actualWidget( nullptr )
     , m_nextEnabled( false )
-    , m_geoip( nullptr )
     , m_config( std::make_unique< Config >() )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
@@ -66,31 +65,17 @@ LocaleViewStep::~LocaleViewStep()
 void
 LocaleViewStep::setUpPage()
 {
+    m_config->setCurrentLocation();
     if ( !m_actualWidget )
     {
         m_actualWidget = new LocalePage( m_config.get() );
     }
-    m_config->setCurrentLocation( m_startingTimezone.first, m_startingTimezone.second );
     m_widget->layout()->addWidget( m_actualWidget );
 
     ensureSize( m_actualWidget->sizeHint() );
 
     m_nextEnabled = true;
     emit nextStatusChanged( m_nextEnabled );
-}
-
-
-void
-LocaleViewStep::fetchGeoIpTimezone()
-{
-    if ( m_geoip && m_geoip->isValid() )
-    {
-        m_startingTimezone = m_geoip->get();
-        if ( !m_startingTimezone.isValid() )
-        {
-            cWarning() << "GeoIP lookup at" << m_geoip->url() << "failed.";
-        }
-    }
 }
 
 
@@ -171,54 +156,5 @@ LocaleViewStep::onLeave()
 void
 LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    QString region = CalamaresUtils::getString( configurationMap, "region" );
-    QString zone = CalamaresUtils::getString( configurationMap, "zone" );
-    if ( !region.isEmpty() && !zone.isEmpty() )
-    {
-        m_startingTimezone = CalamaresUtils::GeoIP::RegionZonePair( region, zone );
-    }
-    else
-    {
-        m_startingTimezone
-            = CalamaresUtils::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
-    }
-
-    bool ok = false;
-    QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
-    if ( ok )
-    {
-        QString url = CalamaresUtils::getString( geoip, "url" );
-        QString style = CalamaresUtils::getString( geoip, "style" );
-        QString selector = CalamaresUtils::getString( geoip, "selector" );
-
-        m_geoip = std::make_unique< CalamaresUtils::GeoIP::Handler >( style, url, selector );
-        if ( !m_geoip->isValid() )
-        {
-            cWarning() << "GeoIP Style" << style << "is not recognized.";
-        }
-    }
-
     m_config->setConfigurationMap( configurationMap );
-}
-
-Calamares::RequirementsList
-LocaleViewStep::checkRequirements()
-{
-    if ( m_geoip && m_geoip->isValid() )
-    {
-        auto& network = CalamaresUtils::Network::Manager::instance();
-        if ( network.hasInternet() )
-        {
-            fetchGeoIpTimezone();
-        }
-        else
-        {
-            if ( network.synchronousPing( m_geoip->url() ) )
-            {
-                fetchGeoIpTimezone();
-            }
-        }
-    }
-
-    return Calamares::RequirementsList();
 }

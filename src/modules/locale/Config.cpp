@@ -26,6 +26,8 @@
 #include "JobQueue.h"
 #include "Settings.h"
 #include "locale/Label.h"
+#include "modulesystem/ModuleManager.h"
+#include "network/Manager.h"
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
@@ -205,6 +207,15 @@ Config::timezoneData() const
 }
 
 void
+Config::setCurrentLocation()
+{
+    if ( !m_currentLocation && m_startingTimezone.isValid() )
+    {
+        setCurrentLocation( m_startingTimezone.first, m_startingTimezone.second );
+    }
+}
+
+void
 Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
 {
     using namespace CalamaresUtils::Locale;
@@ -251,7 +262,6 @@ Config::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
         emit currentLocationChanged( m_currentLocation );
     }
 }
-
 
 LocaleConfiguration
 Config::automaticLocaleConfiguration() const
@@ -341,8 +351,8 @@ getLocaleGenLines( const QVariantMap& configurationMap, QStringList& localeGenLi
 static inline void
 getAdjustLiveTimezone( const QVariantMap& configurationMap, bool& adjustLiveTimezone )
 {
-    adjustLiveTimezone
-        = CalamaresUtils::getBool( configurationMap, "adjustLiveTimezone", Calamares::Settings::instance()->doChroot() );
+    adjustLiveTimezone = CalamaresUtils::getBool(
+        configurationMap, "adjustLiveTimezone", Calamares::Settings::instance()->doChroot() );
 #ifdef DEBUG_TIMEZONES
     if ( m_adjustLiveTimezone )
     {
@@ -411,6 +421,12 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     getAdjustLiveTimezone( configurationMap, m_adjustLiveTimezone );
     getStartingTimezone( configurationMap, m_startingTimezone );
     getGeoIP( configurationMap, m_geoip );
+
+    if ( m_geoip && m_geoip->isValid() )
+    {
+        connect(
+            Calamares::ModuleManager::instance(), &Calamares::ModuleManager::modulesLoaded, this, &Config::startGeoIP );
+    }
 }
 
 Calamares::JobList
@@ -426,4 +442,43 @@ Config::createJobs()
     }
 
     return list;
+}
+
+void
+Config::startGeoIP()
+{
+    if ( m_geoip && m_geoip->isValid() )
+    {
+        auto& network = CalamaresUtils::Network::Manager::instance();
+        if ( network.hasInternet() || network.synchronousPing( m_geoip->url() ) )
+        {
+            using Watcher = QFutureWatcher< CalamaresUtils::GeoIP::RegionZonePair >;
+            m_geoipWatcher = std::make_unique< Watcher >();
+            m_geoipWatcher->setFuture( m_geoip->query() );
+            connect( m_geoipWatcher.get(), &Watcher::finished, this, &Config::completeGeoIP );
+        }
+    }
+}
+
+void
+Config::completeGeoIP()
+{
+    if ( !currentLocation() )
+    {
+        auto r = m_geoipWatcher->result();
+        if ( r.isValid() )
+        {
+            m_startingTimezone = r;
+        }
+        else
+        {
+            cWarning() << "GeoIP returned invalid result.";
+        }
+    }
+    else
+    {
+        cWarning() << "GeoIP result ignored because a location is already set.";
+    }
+    m_geoipWatcher.reset();
+    m_geoip.reset();
 }

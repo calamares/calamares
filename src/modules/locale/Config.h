@@ -28,6 +28,7 @@
 #include "geoip/Interface.h"
 #include "locale/TimeZone.h"
 
+#include <QFutureWatcher>
 #include <QObject>
 
 #include <memory>
@@ -59,7 +60,6 @@ public:
     /** @brief The currently selected location (timezone)
      *
      * The location is a pointer into the date that timezoneData() returns.
-     * It is possible to return nullptr, if no location has been picked yet.
      */
     const CalamaresUtils::Locale::TZZone* currentLocation() const { return m_currentLocation; }
 
@@ -78,6 +78,9 @@ public:
     const QStringList& supportedLocales() const { return m_localeGenLines; }
     CalamaresUtils::Locale::CStringListModel* regionModel() const { return m_regionModel.get(); }
     CalamaresUtils::Locale::CStringListModel* zonesModel() const { return m_zonesModel.get(); }
+
+    /// Special case, set location from starting timezone if not already set
+    void setCurrentLocation();
 
 public Q_SLOTS:
     /// Set a language by user-choice, overriding future location changes
@@ -149,6 +152,11 @@ private:
      * by explicitly calling *TODO*
      */
     std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
+
+    // Implementation details for doing GeoIP lookup
+    void startGeoIP();
+    void completeGeoIP();
+    std::unique_ptr< QFutureWatcher< CalamaresUtils::GeoIP::RegionZonePair > > m_geoipWatcher;
 };
 
 
