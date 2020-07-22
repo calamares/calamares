@@ -24,6 +24,7 @@
 #include "LocaleConfiguration.h"
 
 #include "Job.h"
+#include "geoip/Handler.h"
 #include "geoip/Interface.h"
 #include "locale/TimeZone.h"
 
@@ -136,8 +137,18 @@ private:
     bool m_adjustLiveTimezone;
 
     /** @brief The initial timezone (region, zone) specified in the config.
+     *
+     * This may be overridden by setting *useSystemTimezone* or by
+     * GeoIP settings.
      */
     CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
+
+    /** @brief Handler for GeoIP lookup (if configured)
+     *
+     * The GeoIP lookup needs to be started at some suitable time,
+     * by explicitly calling *TODO*
+     */
+    std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
 };
 
 
