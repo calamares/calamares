@@ -31,41 +31,13 @@ Page {
 
     property var confLang: "American English"
     property var confLocale: "Nederland"
-    //Needs to come from .conf/geoip
-    property var hasInternet: true
-
-    function getInt(format) {
-        var requestURL = "https://example.org/";
-        var xhr = new XMLHttpRequest;
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-
-                if (xhr.status !== 200) {
-                    console.log("Disconnected!!");
-                    var connected = false
-                    hasInternet = connected
-                    return;
-                }
-
-                else {
-                    console.log("Connected!!");
-                }
-            }
-        }
-        xhr.open("GET", requestURL, true);
-        xhr.send();
-    }
-    Component.onCompleted: {
-        getInt();
-    }
 
     Loader {
         id: image
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width
         height: parent.height / 1.28
-        source: (hasInternet) ? "Map.qml" : "Offline.qml"
+        source: (Network.hasInternet) ? "Map.qml" : "Offline.qml"
     }
 
     RowLayout {
