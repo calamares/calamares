@@ -288,6 +288,7 @@ Config::setLanguageExplicitly( const QString& language )
     m_selectedLocaleConfiguration.explicit_lang = true;
 
     emit currentLanguageStatusChanged( currentLanguageStatus() );
+    emit currentLanguageCodeChanged( currentLanguageCode() );
 }
 
 void
@@ -306,6 +307,7 @@ Config::setLCLocaleExplicitly( const QString& locale )
     m_selectedLocaleConfiguration.explicit_lc = true;
 
     emit currentLCStatusChanged( currentLCStatus() );
+    emit currentLCCodeChanged( currentLCCode() );
 }
 
 QString

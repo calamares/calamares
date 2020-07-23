@@ -43,9 +43,13 @@ class Config : public QObject
     Q_PROPERTY( const CalamaresUtils::Locale::TZZone* currentLocation READ currentLocation WRITE setCurrentLocation
                     NOTIFY currentLocationChanged )
 
+    // Status are complete, human-readable, messages
     Q_PROPERTY( QString currentLocationStatus READ currentLocationStatus NOTIFY currentLanguageStatusChanged )
     Q_PROPERTY( QString currentLanguageStatus READ currentLanguageStatus NOTIFY currentLanguageStatusChanged )
     Q_PROPERTY( QString currentLCStatus READ currentLCStatus NOTIFY currentLCStatusChanged )
+    // Code are internal identifiers, like "en_US.UTF-8"
+    Q_PROPERTY( QString currentLanguageCode READ currentLanguageCode WRITE setLanguageExplicitly NOTIFY currentLanguageCodeChanged )
+    Q_PROPERTY( QString currentLCCode READ currentLCCode WRITE setLCLocaleExplicitly NOTIFY currentLCCodeChanged )
 
 public:
     Config( QObject* parent = nullptr );
@@ -103,11 +107,16 @@ public Q_SLOTS:
      */
     void setCurrentLocation( const CalamaresUtils::Locale::TZZone* location );
 
+    QString currentLanguageCode() const { return localeConfiguration().language(); }
+    QString currentLCCode() const { return localeConfiguration().lc_numeric; }
+
 signals:
     void currentLocationChanged( const CalamaresUtils::Locale::TZZone* location ) const;
     void currentLocationStatusChanged( const QString& ) const;
     void currentLanguageStatusChanged( const QString& ) const;
     void currentLCStatusChanged( const QString& ) const;
+    void currentLanguageCodeChanged( const QString& ) const;
+    void currentLCCodeChanged( const QString& ) const;
 
 private:
     /// A list of supported locale identifiers (e.g. "en_US.UTF-8")
