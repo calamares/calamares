@@ -166,9 +166,21 @@ Config::Config( QObject* parent )
     // we don't need to call an update-GS method, or introduce an intermediate
     // update-thing-and-GS method. And everywhere where we **do** change
     // language or location, we already emit the signal.
-    connect( this, &Config::currentLanguageStatusChanged, [&]() {
+    connect( this, &Config::currentLanguageCodeChanged, [&]() {
         auto* gs = Calamares::JobQueue::instance()->globalStorage();
         gs->insert( "locale", m_selectedLocaleConfiguration.toBcp47() );
+    } );
+
+    connect( this, &Config::currentLCCodeChanged, [&]() {
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        // Update GS localeConf (the LC_ variables)
+        auto map = localeConfiguration().toMap();
+        QVariantMap vm;
+        for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
+        {
+            vm.insert( it.key(), it.value() );
+        }
+        gs->insert( "localeConf", vm );
     } );
 
     connect( this, &Config::currentLocationChanged, [&]() {
@@ -186,15 +198,6 @@ Config::Config( QObject* parent )
             QProcess::execute( "timedatectl",  // depends on systemd
                                { "set-timezone", location->region() + '/' + location->zone() } );
         }
-
-        // Update GS localeConf (the LC_ variables)
-        auto map = localeConfiguration().toMap();
-        QVariantMap vm;
-        for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
-        {
-            vm.insert( it.key(), it.value() );
-        }
-        gs->insert( "localeConf", vm );
     } );
 }
 
