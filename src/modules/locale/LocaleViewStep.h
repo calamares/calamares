@@ -23,8 +23,6 @@
 #include "Config.h"
 
 #include "DllMacro.h"
-#include "geoip/Handler.h"
-#include "geoip/Interface.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
 
