@@ -27,7 +27,6 @@ LocaleQmlViewStep::LocaleQmlViewStep( QObject* parent )
     : Calamares::QmlViewStep( parent )
     , m_config( std::make_unique< Config >( this ) )
 {
-    emit nextStatusChanged( m_nextEnabled );
 }
 
 QObject*
