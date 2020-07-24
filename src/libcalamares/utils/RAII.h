@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #define UTILS_RAII_H
 
 #include <QObject>
+#include <QSignalBlocker>
 
 #include <type_traits>
 
@@ -43,5 +44,22 @@ struct cqDeleter
         p = nullptr;
     }
 };
+
+/// @brief Sets a bool to @p value and resets to !value on destruction
+template < bool value >
+struct cBoolSetter
+{
+    bool& m_b;
+
+    cBoolSetter( bool& b )
+        : m_b( b )
+    {
+        m_b = value;
+    }
+    ~cBoolSetter() { m_b = !value; }
+};
+
+/// @brief Blocks signals on a QObject until destruction
+using cSignalBlocker = QSignalBlocker;
 
 #endif

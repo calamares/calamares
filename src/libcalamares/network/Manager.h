@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -98,9 +98,10 @@ struct RequestStatus
 
 QDebug& operator<<( QDebug& s, const RequestStatus& e );
 
-class DLLEXPORT Manager : QObject
+class DLLEXPORT Manager : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY( bool hasInternet READ hasInternet NOTIFY hasInternetChanged FINAL )
 
     Manager();
 
@@ -133,6 +134,16 @@ public:
 
     /// @brief Set the URL which is used for the general "is there internet" check.
     void setCheckHasInternetUrl( const QUrl& url );
+
+    /** @brief Do a network request asynchronously.
+     *
+     * Returns a pointer to the reply-from-the-request.
+     * This may be a nullptr if an error occurs immediately.
+     * The caller is responsible for cleaning up the reply (eventually).
+     */
+    QNetworkReply* asynchronousGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
+
+public Q_SLOTS:
     /** @brief Do an explicit check for internet connectivity.
      *
      * This **may** do a ping to the configured check URL, but can also
@@ -148,13 +159,13 @@ public:
      */
     bool hasInternet();
 
-    /** @brief Do a network request asynchronously.
+signals:
+    /** @brief Indicates that internet connectivity status has changed
      *
-     * Returns a pointer to the reply-from-the-request.
-     * This may be a nullptr if an error occurs immediately.
-     * The caller is responsible for cleaning up the reply (eventually).
+     * The value is that returned from hasInternet() -- @c true when there
+     * is connectivity, @c false otherwise.
      */
-    QNetworkReply* asynchronousGet( const QUrl& url, const RequestOptions& options = RequestOptions() );
+    void hasInternetChanged( bool );
 
 private:
     class Private;

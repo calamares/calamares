@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -168,7 +168,11 @@ Manager::checkHasInternet()
     {
         hasInternet = synchronousPing( d->m_hasInternetUrl );
     }
-    d->m_hasInternet = hasInternet;
+    if ( hasInternet != d->m_hasInternet )
+    {
+        d->m_hasInternet = hasInternet;
+        emit hasInternetChanged( hasInternet );
+    }
     return hasInternet;
 }
 

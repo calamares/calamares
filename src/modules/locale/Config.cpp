@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
- *   Copyright 2020, Camilo Higuita <milo.h@aol.com>
+ *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,85 +20,43 @@
 
 #include "Config.h"
 
-#include "LCLocaleDialog.h"
 #include "SetTimezoneJob.h"
-#include "timezonewidget/timezonewidget.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Settings.h"
-
 #include "locale/Label.h"
-#include "locale/TimeZone.h"
-#include "utils/CalamaresUtilsGui.h"
+#include "modulesystem/ModuleManager.h"
+#include "network/Manager.h"
 #include "utils/Logger.h"
-#include "utils/Retranslator.h"
+#include "utils/Variant.h"
 
-#include <QDebug>
 #include <QFile>
 #include <QProcess>
+#include <QTimeZone>
 
-Config::Config( QObject* parent )
-    : QObject( parent )
-    , m_regionList( CalamaresUtils::Locale::TZRegion::fromZoneTab() )
-    , m_regionModel( new CalamaresUtils::Locale::CStringListModel( m_regionList ) )
-    , m_zonesModel( new CalamaresUtils::Locale::CStringListModel() )
-    , m_blockTzWidgetSet( false )
+/** @brief Load supported locale keys
+ *
+ * If i18n/SUPPORTED exists, read the lines from that and return those
+ * as supported locales; otherwise, try the file at @p localeGenPath
+ * and get lines from that. Failing both, try the output of `locale -a`.
+ *
+ * This gives us a list of locale identifiers (e.g. en_US.UTF-8), which
+ * are not particularly human-readable.
+ *
+ * Only UTF-8 locales are returned (even if the system claims to support
+ * other, non-UTF-8, locales).
+ */
+static QStringList
+loadLocales( const QString& localeGenPath )
 {
-    connect( m_regionModel, &CalamaresUtils::Locale::CStringListModel::currentIndexChanged, [&]() {
-        m_zonesModel->setList( static_cast< const CalamaresUtils::Locale::TZRegion* >(
-                                   m_regionModel->item( m_regionModel->currentIndex() ) )
-                                   ->zones() );
-        updateLocaleLabels();
-    } );
-
-    connect(
-        m_zonesModel, &CalamaresUtils::Locale::CStringListModel::currentIndexChanged, [&]() { updateLocaleLabels(); } );
-}
-
-Config::~Config()
-{
-    qDeleteAll( m_regionList );
-}
-
-CalamaresUtils::Locale::CStringListModel*
-Config::zonesModel() const
-{
-    return m_zonesModel;
-}
-
-CalamaresUtils::Locale::CStringListModel*
-Config::regionModel() const
-{
-    return m_regionModel;
-}
-
-void
-Config::setLocaleInfo( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath )
-{
-    using namespace CalamaresUtils::Locale;
-
-    cDebug() << "REGION MODEL SIZE" << initialRegion << initialZone;
-    auto* region = m_regionList.find< TZRegion >( initialRegion );
-    if ( region && region->zones().find< TZZone >( initialZone ) )
-    {
-        m_regionModel->setCurrentIndex( m_regionModel->indexOf( initialRegion ) );
-        m_zonesModel->setList( region->zones() );
-        m_zonesModel->setCurrentIndex( m_zonesModel->indexOf( initialZone ) );
-    }
-    else
-    {
-        m_regionModel->setCurrentIndex( m_regionModel->indexOf( "America" ) );
-        m_zonesModel->setList(
-            static_cast< const TZRegion* >( m_regionModel->item( m_regionModel->currentIndex() ) )->zones() );
-        m_zonesModel->setCurrentIndex( m_zonesModel->indexOf( "New_York" ) );
-    }
+    QStringList localeGenLines;
 
     // Some distros come with a meaningfully commented and easy to parse locale.gen,
     // and others ship a separate file /usr/share/i18n/SUPPORTED with a clean list of
     // supported locales. We first try that one, and if it doesn't exist, we fall back
     // to parsing the lines from locale.gen
-    m_localeGenLines.clear();
+    localeGenLines.clear();
     QFile supported( "/usr/share/i18n/SUPPORTED" );
     QByteArray ba;
 
@@ -109,7 +68,7 @@ Config::setLocaleInfo( const QString& initialRegion, const QString& initialZone,
         const auto lines = ba.split( '\n' );
         for ( const QByteArray& line : lines )
         {
-            m_localeGenLines.append( QString::fromLatin1( line.simplified() ) );
+            localeGenLines.append( QString::fromLatin1( line.simplified() ) );
         }
     }
     else
@@ -150,11 +109,11 @@ Config::setLocaleInfo( const QString& initialRegion, const QString& initialZone,
                 continue;
             }
 
-            m_localeGenLines.append( lineString );
+            localeGenLines.append( lineString );
         }
     }
 
-    if ( m_localeGenLines.isEmpty() )
+    if ( localeGenLines.isEmpty() )
     {
         cWarning() << "cannot acquire a list of available locales."
                    << "The locale and localecfg modules will be broken as long as this "
@@ -164,168 +123,388 @@ Config::setLocaleInfo( const QString& initialRegion, const QString& initialZone,
                    << "* a well-formed"
                    << ( localeGenPath.isEmpty() ? QLatin1String( "/etc/locale.gen" ) : localeGenPath ) << "\n\tOR"
                    << "* a complete pre-compiled locale-gen database which allows complete locale -a output.";
-        return;  // something went wrong and there's nothing we can do about it.
+        return localeGenLines;  // something went wrong and there's nothing we can do about it.
     }
 
     // Assuming we have a list of supported locales, we usually only want UTF-8 ones
     // because it's not 1995.
-    for ( auto it = m_localeGenLines.begin(); it != m_localeGenLines.end(); )
-    {
-        if ( !it->contains( "UTF-8", Qt::CaseInsensitive ) && !it->contains( "utf8", Qt::CaseInsensitive ) )
-        {
-            it = m_localeGenLines.erase( it );
-        }
-        else
-        {
-            ++it;
-        }
-    }
+    auto notUtf8 = []( const QString& s ) {
+        return !s.contains( "UTF-8", Qt::CaseInsensitive ) && !s.contains( "utf8", Qt::CaseInsensitive );
+    };
+    auto it = std::remove_if( localeGenLines.begin(), localeGenLines.end(), notUtf8 );
+    localeGenLines.erase( it, localeGenLines.end() );
 
     // We strip " UTF-8" from "en_US.UTF-8 UTF-8" because it's redundant redundant.
-    for ( auto it = m_localeGenLines.begin(); it != m_localeGenLines.end(); ++it )
-    {
-        if ( it->endsWith( " UTF-8" ) )
+    // Also simplify whitespace.
+    auto unredundant = []( QString& s ) {
+        if ( s.endsWith( " UTF-8" ) )
         {
-            it->chop( 6 );
+            s.chop( 6 );
         }
-        *it = it->simplified();
-    }
-    updateGlobalStorage();
-    updateLocaleLabels();
+        s = s.simplified();
+    };
+    std::for_each( localeGenLines.begin(), localeGenLines.end(), unredundant );
+
+    return localeGenLines;
+}
+
+static inline const CalamaresUtils::Locale::CStringPairList&
+timezoneData()
+{
+    return CalamaresUtils::Locale::TZRegion::fromZoneTab();
+}
+
+
+Config::Config( QObject* parent )
+    : QObject( parent )
+    , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( ::timezoneData() ) )
+    , m_zonesModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >() )
+{
+    // Slightly unusual: connect to our *own* signals. Wherever the language
+    // or the location is changed, these signals are emitted, so hook up to
+    // them to update global storage accordingly. This simplifies code:
+    // we don't need to call an update-GS method, or introduce an intermediate
+    // update-thing-and-GS method. And everywhere where we **do** change
+    // language or location, we already emit the signal.
+    connect( this, &Config::currentLanguageCodeChanged, [&]() {
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        gs->insert( "locale", m_selectedLocaleConfiguration.toBcp47() );
+    } );
+
+    connect( this, &Config::currentLCCodeChanged, [&]() {
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        // Update GS localeConf (the LC_ variables)
+        auto map = localeConfiguration().toMap();
+        QVariantMap vm;
+        for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
+        {
+            vm.insert( it.key(), it.value() );
+        }
+        gs->insert( "localeConf", vm );
+    } );
+
+    connect( this, &Config::currentLocationChanged, [&]() {
+        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+
+        // Update the GS region and zone (and possibly the live timezone)
+        const auto* location = currentLocation();
+        bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
+            || ( location->zone() != gs->value( "locationZone" ) );
+
+        gs->insert( "locationRegion", location->region() );
+        gs->insert( "locationZone", location->zone() );
+        if ( locationChanged && m_adjustLiveTimezone )
+        {
+            QProcess::execute( "timedatectl",  // depends on systemd
+                               { "set-timezone", location->region() + '/' + location->zone() } );
+        }
+    } );
+
+    auto prettyStatusNotify = [&]() { emit prettyStatusChanged( prettyStatus() ); };
+    connect( this, &Config::currentLanguageStatusChanged, prettyStatusNotify );
+    connect( this, &Config::currentLCStatusChanged, prettyStatusNotify );
+    connect( this, &Config::currentLocationStatusChanged, prettyStatusNotify );
+}
+
+Config::~Config() {}
+
+const CalamaresUtils::Locale::CStringPairList&
+Config::timezoneData() const
+{
+    return ::timezoneData();
 }
 
 void
-Config::updateGlobalLocale()
+Config::setCurrentLocation()
 {
-    auto* gs = Calamares::JobQueue::instance()->globalStorage();
-    const QString bcp47 = m_selectedLocaleConfiguration.toBcp47();
-    gs->insert( "locale", bcp47 );
+    if ( !m_currentLocation && m_startingTimezone.isValid() )
+    {
+        setCurrentLocation( m_startingTimezone.first, m_startingTimezone.second );
+    }
+}
+
+void Config::setCurrentLocation(const QString& regionzone)
+{
+    auto r = CalamaresUtils::GeoIP::splitTZString( regionzone );
+    if ( r.isValid() )
+    {
+        setCurrentLocation( r.first, r.second );
+    }
 }
 
 void
-Config::updateGlobalStorage()
+Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
 {
-    auto* gs = Calamares::JobQueue::instance()->globalStorage();
-
-    const auto* location = currentLocation();
-    bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
-        || ( location->zone() != gs->value( "locationZone" ) );
-#ifdef DEBUG_TIMEZONES
-    if ( locationChanged )
+    using namespace CalamaresUtils::Locale;
+    auto* region = timezoneData().find< TZRegion >( regionName );
+    auto* zone = region ? region->zones().find< TZZone >( zoneName ) : nullptr;
+    if ( zone )
     {
-        cDebug() << "Location changed" << gs->value( "locationRegion" ) << ',' << gs->value( "locationZone" ) << "to"
-                 << location->region() << ',' << location->zone();
+        setCurrentLocation( zone );
     }
-#endif
-    gs->insert( "locationRegion", location->region() );
-    gs->insert( "locationZone", location->zone() );
-
-    updateGlobalLocale();
-
-    // If we're in chroot mode (normal install mode), then we immediately set the
-    // timezone on the live system. When debugging timezones, don't bother.
-#ifndef DEBUG_TIMEZONES
-    if ( locationChanged && Calamares::Settings::instance()->doChroot() )
+    else
     {
-        QProcess::execute( "timedatectl",  // depends on systemd
-                           { "set-timezone", location->region() + '/' + location->zone() } );
+        // Recursive, but America/New_York always exists.
+        setCurrentLocation( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
     }
-#endif
-
-    // Preserve those settings that have been made explicit.
-    auto newLocale = guessLocaleConfiguration();
-    if ( !m_selectedLocaleConfiguration.isEmpty() && m_selectedLocaleConfiguration.explicit_lang )
-    {
-        newLocale.setLanguage( m_selectedLocaleConfiguration.language() );
-    }
-    if ( !m_selectedLocaleConfiguration.isEmpty() && m_selectedLocaleConfiguration.explicit_lc )
-    {
-        newLocale.lc_numeric = m_selectedLocaleConfiguration.lc_numeric;
-        newLocale.lc_time = m_selectedLocaleConfiguration.lc_time;
-        newLocale.lc_monetary = m_selectedLocaleConfiguration.lc_monetary;
-        newLocale.lc_paper = m_selectedLocaleConfiguration.lc_paper;
-        newLocale.lc_name = m_selectedLocaleConfiguration.lc_name;
-        newLocale.lc_address = m_selectedLocaleConfiguration.lc_address;
-        newLocale.lc_telephone = m_selectedLocaleConfiguration.lc_telephone;
-        newLocale.lc_measurement = m_selectedLocaleConfiguration.lc_measurement;
-        newLocale.lc_identification = m_selectedLocaleConfiguration.lc_identification;
-    }
-    newLocale.explicit_lang = m_selectedLocaleConfiguration.explicit_lang;
-    newLocale.explicit_lc = m_selectedLocaleConfiguration.explicit_lc;
-
-    m_selectedLocaleConfiguration = newLocale;
-    updateLocaleLabels();
 }
 
 void
-Config::updateLocaleLabels()
+Config::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
 {
-    LocaleConfiguration lc
-        = m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration() : m_selectedLocaleConfiguration;
-    auto labels = prettyLocaleStatus( lc );
-    emit prettyStatusChanged();
-}
+    if ( location != m_currentLocation )
+    {
+        m_currentLocation = location;
+        // Overwrite those settings that have not been made explicit.
+        auto newLocale = automaticLocaleConfiguration();
+        if ( !m_selectedLocaleConfiguration.explicit_lang )
+        {
+            m_selectedLocaleConfiguration.setLanguage( newLocale.language() );
+            emit currentLanguageStatusChanged( currentLanguageStatus() );
+        }
+        if ( !m_selectedLocaleConfiguration.explicit_lc )
+        {
+            m_selectedLocaleConfiguration.lc_numeric = newLocale.lc_numeric;
+            m_selectedLocaleConfiguration.lc_time = newLocale.lc_time;
+            m_selectedLocaleConfiguration.lc_monetary = newLocale.lc_monetary;
+            m_selectedLocaleConfiguration.lc_paper = newLocale.lc_paper;
+            m_selectedLocaleConfiguration.lc_name = newLocale.lc_name;
+            m_selectedLocaleConfiguration.lc_address = newLocale.lc_address;
+            m_selectedLocaleConfiguration.lc_telephone = newLocale.lc_telephone;
+            m_selectedLocaleConfiguration.lc_measurement = newLocale.lc_measurement;
+            m_selectedLocaleConfiguration.lc_identification = newLocale.lc_identification;
 
-
-std::pair< QString, QString >
-Config::prettyLocaleStatus( const LocaleConfiguration& lc ) const
-{
-    using CalamaresUtils::Locale::Label;
-
-    Label lang( lc.language(), Label::LabelFormat::AlwaysWithCountry );
-    Label num( lc.lc_numeric, Label::LabelFormat::AlwaysWithCountry );
-
-    return std::make_pair< QString, QString >(
-        tr( "The system language will be set to %1." ).arg( lang.label() ),
-        tr( "The numbers and dates locale will be set to %1." ).arg( num.label() ) );
-}
-
-Calamares::JobList
-Config::createJobs()
-{
-    QList< Calamares::job_ptr > list;
-    const CalamaresUtils::Locale::TZZone* location = currentLocation();
-
-    Calamares::Job* j = new SetTimezoneJob( location->region(), location->zone() );
-    list.append( Calamares::job_ptr( j ) );
-
-    return list;
+            emit currentLCStatusChanged( currentLCStatus() );
+        }
+        emit currentLocationChanged( m_currentLocation );
+    }
 }
 
 LocaleConfiguration
-Config::guessLocaleConfiguration() const
+Config::automaticLocaleConfiguration() const
 {
+    // Special case: no location has been set at **all**
+    if ( !currentLocation() )
+    {
+        return LocaleConfiguration();
+    }
     return LocaleConfiguration::fromLanguageAndLocation(
-        QLocale().name(), m_localeGenLines, currentLocation() ? currentLocation()->country() : "" );
+        QLocale().name(), supportedLocales(), currentLocation()->country() );
 }
 
-QMap< QString, QString >
-Config::localesMap()
+LocaleConfiguration
+Config::localeConfiguration() const
 {
-    return m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration().toMap()
-                                                   : m_selectedLocaleConfiguration.toMap();
+    return m_selectedLocaleConfiguration.isEmpty() ? automaticLocaleConfiguration() : m_selectedLocaleConfiguration;
+}
+
+void
+Config::setLanguageExplicitly( const QString& language )
+{
+    m_selectedLocaleConfiguration.setLanguage( language );
+    m_selectedLocaleConfiguration.explicit_lang = true;
+
+    emit currentLanguageStatusChanged( currentLanguageStatus() );
+    emit currentLanguageCodeChanged( currentLanguageCode() );
+}
+
+void
+Config::setLCLocaleExplicitly( const QString& locale )
+{
+    // TODO: improve the granularity of this setting.
+    m_selectedLocaleConfiguration.lc_numeric = locale;
+    m_selectedLocaleConfiguration.lc_time = locale;
+    m_selectedLocaleConfiguration.lc_monetary = locale;
+    m_selectedLocaleConfiguration.lc_paper = locale;
+    m_selectedLocaleConfiguration.lc_name = locale;
+    m_selectedLocaleConfiguration.lc_address = locale;
+    m_selectedLocaleConfiguration.lc_telephone = locale;
+    m_selectedLocaleConfiguration.lc_measurement = locale;
+    m_selectedLocaleConfiguration.lc_identification = locale;
+    m_selectedLocaleConfiguration.explicit_lc = true;
+
+    emit currentLCStatusChanged( currentLCStatus() );
+    emit currentLCCodeChanged( currentLCCode() );
+}
+
+QString
+Config::currentLocationStatus() const
+{
+    return tr( "Set timezone to %1/%2." ).arg( m_currentLocation->region(), m_currentLocation->zone() );
+}
+
+static inline QString
+localeLabel( const QString& s )
+{
+    using CalamaresUtils::Locale::Label;
+
+    Label lang( s, Label::LabelFormat::AlwaysWithCountry );
+    return lang.label();
+}
+
+QString
+Config::currentLanguageStatus() const
+{
+    return tr( "The system language will be set to %1." )
+        .arg( localeLabel( m_selectedLocaleConfiguration.language() ) );
+}
+
+QString
+Config::currentLCStatus() const
+{
+    return tr( "The numbers and dates locale will be set to %1." )
+        .arg( localeLabel( m_selectedLocaleConfiguration.lc_numeric ) );
 }
 
 QString
 Config::prettyStatus() const
 {
-    QString status;
-    status += tr( "Set timezone to %1/%2.<br/>" )
-                  .arg( m_regionModel->item( m_regionModel->currentIndex() )->tr() )
-                  .arg( m_zonesModel->item( m_zonesModel->currentIndex() )->tr() );
-
-    LocaleConfiguration lc
-        = m_selectedLocaleConfiguration.isEmpty() ? guessLocaleConfiguration() : m_selectedLocaleConfiguration;
-    auto labels = prettyLocaleStatus( lc );
-    status += labels.first + "<br/>";
-    status += labels.second + "<br/>";
-
-    return status;
+    QStringList l { currentLocationStatus(), currentLanguageStatus(), currentLCStatus() };
+    return l.join( QStringLiteral( "<br/>" ) );
 }
 
-
-const CalamaresUtils::Locale::TZZone*
-Config::currentLocation() const
+static inline void
+getLocaleGenLines( const QVariantMap& configurationMap, QStringList& localeGenLines )
 {
-    return static_cast< const CalamaresUtils::Locale::TZZone* >( m_zonesModel->item( m_zonesModel->currentIndex() ) );
+    QString localeGenPath = CalamaresUtils::getString( configurationMap, "localeGenPath" );
+    if ( localeGenPath.isEmpty() )
+    {
+        localeGenPath = QStringLiteral( "/etc/locale.gen" );
+    }
+    localeGenLines = loadLocales( localeGenPath );
+}
+
+static inline void
+getAdjustLiveTimezone( const QVariantMap& configurationMap, bool& adjustLiveTimezone )
+{
+    adjustLiveTimezone = CalamaresUtils::getBool(
+        configurationMap, "adjustLiveTimezone", Calamares::Settings::instance()->doChroot() );
+#ifdef DEBUG_TIMEZONES
+    if ( m_adjustLiveTimezone )
+    {
+        cWarning() << "Turning off live-timezone adjustments because debugging is on.";
+        adjustLiveTimezone = false;
+    }
+#endif
+#ifdef __FreeBSD__
+    if ( adjustLiveTimezone )
+    {
+        cWarning() << "Turning off live-timezone adjustments on FreeBSD.";
+        adjustLiveTimezone = false;
+    }
+#endif
+}
+
+static inline void
+getStartingTimezone( const QVariantMap& configurationMap, CalamaresUtils::GeoIP::RegionZonePair& startingTimezone )
+{
+    QString region = CalamaresUtils::getString( configurationMap, "region" );
+    QString zone = CalamaresUtils::getString( configurationMap, "zone" );
+    if ( !region.isEmpty() && !zone.isEmpty() )
+    {
+        startingTimezone = CalamaresUtils::GeoIP::RegionZonePair( region, zone );
+    }
+    else
+    {
+        startingTimezone
+            = CalamaresUtils::GeoIP::RegionZonePair( QStringLiteral( "America" ), QStringLiteral( "New_York" ) );
+    }
+
+    if ( CalamaresUtils::getBool( configurationMap, "useSystemTimezone", false ) )
+    {
+        auto systemtz = CalamaresUtils::GeoIP::splitTZString( QTimeZone::systemTimeZoneId() );
+        if ( systemtz.isValid() )
+        {
+            cDebug() << "Overriding configured timezone" << startingTimezone << "with system timezone" << systemtz;
+            startingTimezone = systemtz;
+        }
+    }
+}
+
+static inline void
+getGeoIP( const QVariantMap& configurationMap, std::unique_ptr< CalamaresUtils::GeoIP::Handler >& geoip )
+{
+    bool ok = false;
+    QVariantMap map = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
+    if ( ok )
+    {
+        QString url = CalamaresUtils::getString( map, "url" );
+        QString style = CalamaresUtils::getString( map, "style" );
+        QString selector = CalamaresUtils::getString( map, "selector" );
+
+        geoip = std::make_unique< CalamaresUtils::GeoIP::Handler >( style, url, selector );
+        if ( !geoip->isValid() )
+        {
+            cWarning() << "GeoIP Style" << style << "is not recognized.";
+        }
+    }
+}
+
+void
+Config::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    getLocaleGenLines( configurationMap, m_localeGenLines );
+    getAdjustLiveTimezone( configurationMap, m_adjustLiveTimezone );
+    getStartingTimezone( configurationMap, m_startingTimezone );
+    getGeoIP( configurationMap, m_geoip );
+
+    if ( m_geoip && m_geoip->isValid() )
+    {
+        connect(
+            Calamares::ModuleManager::instance(), &Calamares::ModuleManager::modulesLoaded, this, &Config::startGeoIP );
+    }
+}
+
+Calamares::JobList
+Config::createJobs()
+{
+    Calamares::JobList list;
+    const CalamaresUtils::Locale::TZZone* location = currentLocation();
+
+    if ( location )
+    {
+        Calamares::Job* j = new SetTimezoneJob( location->region(), location->zone() );
+        list.append( Calamares::job_ptr( j ) );
+    }
+
+    return list;
+}
+
+void
+Config::startGeoIP()
+{
+    if ( m_geoip && m_geoip->isValid() )
+    {
+        auto& network = CalamaresUtils::Network::Manager::instance();
+        if ( network.hasInternet() || network.synchronousPing( m_geoip->url() ) )
+        {
+            using Watcher = QFutureWatcher< CalamaresUtils::GeoIP::RegionZonePair >;
+            m_geoipWatcher = std::make_unique< Watcher >();
+            m_geoipWatcher->setFuture( m_geoip->query() );
+            connect( m_geoipWatcher.get(), &Watcher::finished, this, &Config::completeGeoIP );
+        }
+    }
+}
+
+void
+Config::completeGeoIP()
+{
+    if ( !currentLocation() )
+    {
+        auto r = m_geoipWatcher->result();
+        if ( r.isValid() )
+        {
+            m_startingTimezone = r;
+        }
+        else
+        {
+            cWarning() << "GeoIP returned invalid result.";
+        }
+    }
+    else
+    {
+        cWarning() << "GeoIP result ignored because a location is already set.";
+    }
+    m_geoipWatcher.reset();
+    m_geoip.reset();
 }

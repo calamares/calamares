@@ -23,6 +23,7 @@
 #include "JobQueue.h"
 #include "Settings.h"
 #include "ViewManager.h"
+#include "network/Manager.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 
@@ -241,6 +242,10 @@ registerQmlModels()
         qmlRegisterSingletonType< Calamares::GlobalStorage >(
             "io.calamares.core", 1, 0, "Global", []( QQmlEngine*, QJSEngine* ) -> QObject* {
                 return Calamares::JobQueue::instance()->globalStorage();
+            } );
+        qmlRegisterSingletonType< CalamaresUtils::Network::Manager >(
+            "io.calamares.core", 1, 0, "Network", []( QQmlEngine*, QJSEngine* ) -> QObject* {
+                return &CalamaresUtils::Network::Manager::instance();
             } );
     }
 }

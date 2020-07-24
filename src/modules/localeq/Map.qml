@@ -74,6 +74,7 @@ Column {
                 var tz2 = responseJSON.timezoneId
 
                 tzText.text = "Timezone: " + tz2
+                config.setCurrentLocation(tz2)
             }
         }
 
@@ -126,7 +127,7 @@ Column {
                 anchorPoint.x: image.width/4
                 anchorPoint.y: image.height
                 coordinate: QtPositioning.coordinate(
-                    map.center.latitude, 
+                    map.center.latitude,
                     map.center.longitude)
                 //coordinate: QtPositioning.coordinate(40.730610, -73.935242) // New York
 
@@ -156,7 +157,7 @@ Column {
                     map.center.longitude = coordinate.longitude
 
                     getTz();
-                        
+
                     console.log(coordinate.latitude, coordinate.longitude)
                 }
             }
@@ -199,7 +200,7 @@ Column {
     }
 
     Rectangle {
-        width: parent.width 
+        width: parent.width
         height: 100
         anchors.horizontalCenter: parent.horizontalCenter
 
