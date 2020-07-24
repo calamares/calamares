@@ -74,7 +74,7 @@ Item {
 
                         model: config.supportedLocales
 
-                        currentIndex: 1
+                        currentIndex: -1
                         highlight: Rectangle {
                             color: Kirigami.Theme.highlightColor
                         }
@@ -133,10 +133,9 @@ Item {
                         width: 180; height: 200
                         focus: true
 
-                        // bogus entries, need to come from Locale config
                         model: config.supportedLocales
 
-                        currentIndex: 2
+                        currentIndex: -1
                         highlight: Rectangle {
                             color: Kirigami.Theme.highlightColor
                         }

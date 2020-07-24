@@ -29,9 +29,6 @@ Page {
     width: 800
     height: 550
 
-    property var confLang: "American English"
-    property var confLocale: "Nederland"
-
     Loader {
         id: image
         anchors.horizontalCenter: parent.horizontalCenter
