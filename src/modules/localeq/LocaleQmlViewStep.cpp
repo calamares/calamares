@@ -41,6 +41,13 @@ LocaleQmlViewStep::prettyName() const
     return tr( "Location" );
 }
 
+QString
+LocaleQmlViewStep::prettyStatus() const
+{
+    QStringList l { m_config->currentLocationStatus(), m_config->currentLanguageStatus(), m_config->currentLCStatus() };
+    return l.join( QStringLiteral( "<br/>" ) );
+}
+
 bool
 LocaleQmlViewStep::isNextEnabled() const
 {

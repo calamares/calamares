@@ -35,6 +35,7 @@ public:
     explicit LocaleQmlViewStep( QObject* parent = nullptr );
 
     QString prettyName() const override;
+    QString prettyStatus() const override;
 
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;
