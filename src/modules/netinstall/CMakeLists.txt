@@ -9,8 +9,6 @@ calamares_add_plugin( netinstall
         PackageModel.cpp
     UI
         page_netinst.ui
-    RESOURCES
-        netinstall.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
         Qt5::Network
