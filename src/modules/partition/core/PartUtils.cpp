@@ -459,7 +459,7 @@ isEfiBootable( const Partition* candidate )
     while ( root && !root->isRoot() )
     {
         root = root->parent();
-        cDebug() << Logger::SubEntry << "moved towards root" << (void*)root;
+        cDebug() << Logger::SubEntry << "moved towards root" << Logger::Pointer(root);
     }
 
     // Strange case: no root found, no partition table node?
@@ -469,7 +469,7 @@ isEfiBootable( const Partition* candidate )
     }
 
     const PartitionTable* table = dynamic_cast< const PartitionTable* >( root );
-    cDebug() << Logger::SubEntry << "partition table" << (void*)table << "type"
+    cDebug() << Logger::SubEntry << "partition table" << Logger::Pointer(table) << "type"
              << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
     return table && ( table->type() == PartitionTable::TableType::gpt ) && flags.testFlag( KPM_PARTITION_FLAG( Boot ) );
 }

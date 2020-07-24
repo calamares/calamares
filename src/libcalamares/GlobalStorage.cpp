@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
  *
@@ -36,8 +36,8 @@ using CalamaresUtils::operator""_MiB;
 namespace Calamares
 {
 
-GlobalStorage::GlobalStorage()
-    : QObject( nullptr )
+GlobalStorage::GlobalStorage( QObject* parent )
+    : QObject( parent )
 {
 }
 

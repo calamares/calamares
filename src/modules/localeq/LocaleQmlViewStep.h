@@ -20,14 +20,10 @@
 #define LOCALE_QMLVIEWSTEP_H
 
 #include "Config.h"
-#include "geoip/Handler.h"
-#include "geoip/Interface.h"
+
+#include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/QmlViewStep.h"
-#include <DllMacro.h>
-
-#include <QFutureWatcher>
-#include <QObject>
 
 #include <memory>
 
@@ -39,6 +35,7 @@ public:
     explicit LocaleQmlViewStep( QObject* parent = nullptr );
 
     QString prettyName() const override;
+    QString prettyStatus() const override;
 
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;
@@ -47,28 +44,12 @@ public:
     bool isAtEnd() const override;
 
     Calamares::JobList jobs() const override;
-    void onActivate() override;
-    void onLeave() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
     QObject* getConfig() override;
 
-    virtual Calamares::RequirementsList checkRequirements() override;
-
 private:
-    // TODO: a generic QML viewstep should return a config object from a method
-    Config *m_config;
-
-    bool m_nextEnabled;
-    QString m_prettyStatus;
-
-    CalamaresUtils::GeoIP::RegionZonePair m_startingTimezone;
-    QString m_localeGenPath;
-
-    Calamares::JobList m_jobs;
-    std::unique_ptr< CalamaresUtils::GeoIP::Handler > m_geoip;
-
-    void fetchGeoIpTimezone();
+    std::unique_ptr< Config > m_config;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( LocaleQmlViewStepFactory )

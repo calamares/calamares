@@ -58,22 +58,8 @@ public:
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
-    static void addJob( Calamares::JobList& list, InstallTrackingConfig* config );
-
 private:
     const QString m_url;
-};
-
-/** @brief Base class for machine-tracking jobs
- *
- * Machine-tracking configuraiton depends on the distro / style of machine
- * being tracked, so it has subclasses to switch on the relevant kind
- * of tracking. A machine is tracked persistently.
- */
-class TrackingMachineJob : public Calamares::Job
-{
-public:
-    static void addJob( Calamares::JobList& list, MachineTrackingConfig* config );
 };
 
 /** @brief Tracking machines, update-manager style
@@ -82,27 +68,16 @@ public:
  * update-manager configuration, to report the machine-id back
  * to distro servers.
  */
-class TrackingMachineUpdateManagerJob : public TrackingMachineJob
+class TrackingMachineUpdateManagerJob : public Calamares::Job
 {
     Q_OBJECT
 public:
+    ~TrackingMachineUpdateManagerJob() override;
+
     QString prettyName() const override;
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
-};
-
-/** @brief Base class for user-tracking jobs
- *
- * User-tracking configuration depends on the distro / style of user
- * tracking being implemented, so there are subclasses to switch on the
- * relevant kind of tracking. Users are tracked persistently (the user
- * can of course configure the tracking again once the system is restarted).
- */
-class TrackingUserJob : public Calamares::Job
-{
-public:
-    static void addJob( Calamares::JobList& list, UserTrackingConfig* config );
 };
 
 /** @brief Turn on KUserFeedback in target system
@@ -115,6 +90,7 @@ class TrackingKUserFeedbackJob : public Calamares::Job
 {
 public:
     TrackingKUserFeedbackJob( const QString& username, const QStringList& areas );
+    ~TrackingKUserFeedbackJob() override;
 
     QString prettyName() const override;
     QString prettyDescription() const override;
@@ -125,5 +101,9 @@ private:
     QString m_username;
     QStringList m_areas;
 };
+
+void addJob( Calamares::JobList& list, InstallTrackingConfig* config );
+void addJob( Calamares::JobList& list, MachineTrackingConfig* config );
+void addJob( Calamares::JobList& list, UserTrackingConfig* config );
 
 #endif

@@ -3,16 +3,66 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.27 (unreleased) #
+# 3.2.28 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
  - No external contributors yet
 
 ## Core ##
- - No core changes yet
+ - A new object *Network* is available to QML modules in `io.calamares.core`.
+   It exposes network status through the *hasInternet* property.
 
 ## Modules ##
- - No module changes yet
+ - The *locale* module has been completely redone on the inside.
+   Users should see no changes. #1391
+ - The *localeq* module uses the redone internals of the locale module.
+   It can now be used to set timezone, language and locale information
+   and is a suitable alternative module. Thanks to Anke Boersma who did
+   the work of figuring out maps. Note that the map uses several GeoIP
+   and GeoData providers and you may need to configure the URLs
+   with suitable usernames for those services. #1426
+
+
+# 3.2.27 (2020-07-11) #
+
+This release contains contributions from (alphabetically by first name):
+ - Gaël PORTAY
+ - Vitor Lopes (new! welcome!)
+
+## Core ##
+ - QML modules with no surrounding navigation -- this is basically a
+   special case for full-screen Calamares -- now have margins suitable
+   for full-screen use.
+ - PythonQt modules are increasingly on the way out.
+
+## Modules ##
+ - The Manjaro package manager *pamac* has been added to those supported by
+   the *packages* module.
+ - The *netinstall* module has had some minor UI tweaks.
+ - Partitioning now tries harder to avoid floppy drives.
+
+
+# 3.2.26.1 (2020-06-23) #
+
+This is a hotfix release for undefined behavior caused by an
+uninitialized integer variable. It includes new translations
+and features as well since those arrived independently.
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Gaël PORTAY
+
+## Core ##
+ - Welcome to Azerbaijani translations. These are available
+   in two variations, *Azerbaijani* and *Azerbaijani (Azerbaijan)*.
+   [Wikipedia Azerbaijani](https://en.wikipedia.org/wiki/Azerbaijani_language#North_vs._South_Azerbaijani)
+   has a nice overview.
+ - Warnings while building with Qt 5.15 have been much reduced.
+
+## Modules ##
+ - *partitioning* has one case of undefined behavior (UB) due
+   to a missing integer-initialization. (Thanks Gaël)
+ - *keyboardq* QML module now works correctly. (Thanks Anke)
 
 
 # 3.2.26 (2020-06-18) #

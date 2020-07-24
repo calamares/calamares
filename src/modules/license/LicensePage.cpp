@@ -107,10 +107,6 @@ LicensePage::LicensePage( QWidget* parent )
     // ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() );
     CalamaresUtils::unmarginLayout( ui->verticalLayout );
 
-    ui->mainText->setWordWrap( true );
-    ui->mainText->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
-
-    ui->acceptFrame->setFrameStyle( QFrame::NoFrame | QFrame::Plain );
     ui->acceptFrame->setStyleSheet( mustAccept );
     ui->acceptFrame->layout()->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
 

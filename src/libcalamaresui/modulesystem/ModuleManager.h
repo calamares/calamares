@@ -103,11 +103,37 @@ public:
     RequirementsModel* requirementsModel() { return m_requirementsModel; }
 
 signals:
+    /** @brief Emitted when all the module **configuration** has been read
+     *
+     * This indicates that all of the module.desc files have been
+     * loaded; bad ones are silently skipped, so this just indicates
+     * that the module manager is ready for the next phase (loading).
+     */
     void initDone();
-    void modulesLoaded();  /// All of the modules were loaded successfully
-    void modulesFailed( QStringList );  /// .. or not
-    // Below, see RequirementsChecker documentation
-    void requirementsComplete( bool );
+    /** @brief Emitted when all the modules are loaded successfully
+     *
+     * Each module listed in the settings is loaded. Modules are loaded
+     * only once, even when instantiated multiple times. If all of
+     * the listed modules are successfully loaded, this signal is
+     * emitted (otherwise, it isn't, so you need to wait for **both**
+     * of the signals).
+     *
+     * If this is emitted (i.e. all modules have loaded) then the next
+     * phase, requirements checking, can be started.
+     */
+    void modulesLoaded();
+    /** @brief Emitted if any modules failed to load
+     *
+     * Modules that failed to load (for any reason) are listed by
+     * instance key (e.g. "welcome@welcome", "shellprocess@mycustomthing").
+     */
+    void modulesFailed( QStringList );
+    /** @brief Emitted after all requirements have been checked
+     *
+     * The bool @p canContinue indicates if all of the **mandatory** requirements
+     * are satisfied (e.g. whether installation can continue).
+     */
+    void requirementsComplete( bool canContinue );
 
 private slots:
     void doInit();

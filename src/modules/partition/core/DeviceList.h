@@ -40,12 +40,9 @@ enum class DeviceType
  *      the system, filtering out those that do not meet a criterium.
  *      If set to WritableOnly, only devices which can be overwritten
  *      safely are returned (e.g. RO-media are ignored, as are mounted partitions).
- * @param minimumSize Can be used to filter devices based on their
- *      size (in bytes). If non-negative, only devices with a size
- *      greater than @p minimumSize will be returned.
  * @return a list of Devices meeting this criterium.
  */
-QList< Device* > getDevices( DeviceType which = DeviceType::All, qint64 minimumSize = -1 );
+QList< Device* > getDevices( DeviceType which = DeviceType::All );
 
 }  // namespace PartUtils
 

@@ -344,7 +344,7 @@ ModuleManager::addModule( Module *module )
     }
     if ( !module->instanceKey().isValid() )
     {
-        cWarning() << "Module" << module->location() << '@' << (void*)module << "has invalid instance key.";
+        cWarning() << "Module" << module->location() << Logger::Pointer(module) << "has invalid instance key.";
         return false;
     }
     if ( !checkModuleDependencies( *module ) )

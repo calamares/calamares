@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 23:13+0200\n"
+"POT-Creation-Date: 2020-06-18 15:42+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Moo, 2020\n"
 "Language-Team: Lithuanian (https://www.transifex.com/calamares/teams/20061/lt/)\n"
@@ -22,136 +22,32 @@ msgstr ""
 "Language: lt\n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "Įdiegti paketus."
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "Konfigūruoti GRUB."
 
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Apdorojami paketai (%(count)d / %(total)d)"
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Prijungiami skaidiniai."
 
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "Įdiegiamas %(num)d paketas."
-msgstr[1] "Įdiegiami %(num)d paketai."
-msgstr[2] "Įdiegiama %(num)d paketų."
-msgstr[3] "Įdiegiama %(num)d paketų."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "Šalinamas %(num)d paketas."
-msgstr[1] "Šalinami %(num)d paketai."
-msgstr[2] "Šalinama %(num)d paketų."
-msgstr[3] "Šalinama %(num)d paketų."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "Įrašoma tinklo konfigūracija."
-
-#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
-#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
-#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "Konfigūracijos klaida"
 
-#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
-#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
-#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
-#: src/modules/initramfscfg/main.py:99
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr ""
-"Nėra nurodyta jokių šaknies prijungimo taškų, skirtų <pre>{!s}</pre> "
-"naudojimui."
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "Atjungti failų sistemas."
-
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "Konfigūruojama mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
-#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
-#: src/modules/rawfs/main.py:172
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Nėra apibrėžta jokių skaidinių, skirtų <pre>{!s}</pre> naudojimui."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "Konfigūruojama OpenRC dmcrypt tarnyba."
-
-#: src/modules/unpackfs/main.py:44
-msgid "Filling up filesystems."
-msgstr "Užpildomos failų sistemos."
-
-#: src/modules/unpackfs/main.py:257
-msgid "rsync failed with error code {}."
-msgstr "rsync patyrė nesėkmę su klaidos kodu {}."
-
-#: src/modules/unpackfs/main.py:302
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Išpakuojamas atvaizdis {}/{}, failas {}/{}"
-
-#: src/modules/unpackfs/main.py:317
-msgid "Starting to unpack {}"
-msgstr "Pradedama išpakuoti {}"
-
-#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
-msgid "Failed to unpack image \"{}\""
-msgstr "Nepavyko išpakuoti atvaizdį „{}“"
-
-#: src/modules/unpackfs/main.py:399
-msgid "No mount point for root partition"
-msgstr "Nėra prijungimo taško šaknies skaidiniui"
-
-#: src/modules/unpackfs/main.py:400
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage viduje nėra „rootMountPoint“ rakto, nieko nedaroma"
-
-#: src/modules/unpackfs/main.py:405
-msgid "Bad mount point for root partition"
-msgstr "Blogas šaknies skaidinio prijungimo taškas"
-
-#: src/modules/unpackfs/main.py:406
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "rootMountPoint yra „{}“, kurio nėra, nieko nedaroma"
-
-#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
-#: src/modules/unpackfs/main.py:446
-msgid "Bad unsquash configuration"
-msgstr "Bloga unsquash konfigūracija"
-
-#: src/modules/unpackfs/main.py:423
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "Jūsų branduolys nepalaiko failų sistemos, kuri skirta \"{}\" ({})"
-
-#: src/modules/unpackfs/main.py:427
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "Šaltinio failų sistemos „{}“ nėra"
-
-#: src/modules/unpackfs/main.py:433
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr ""
-"Nepavyko rasti unsquashfs, įsitikinkite, kad esate įdiegę squashfs-tools "
-"paketą"
-
-#: src/modules/unpackfs/main.py:447
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "Paskirties vieta „{}“, esanti paskirties sistemoje, nėra katalogas"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -194,38 +90,148 @@ msgstr ""
 "Nežinomos systemd komandos <code>{command!s}</code> ir "
 "<code>{suffix!s}</code> įtaisui {name!s}."
 
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Fiktyvi python užduotis."
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Atjungti failų sistemas."
 
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "Fiktyvus python žingsnis {}"
+#: src/modules/unpackfs/main.py:44
+msgid "Filling up filesystems."
+msgstr "Užpildomos failų sistemos."
 
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "Įdiegti paleidyklę."
+#: src/modules/unpackfs/main.py:257
+msgid "rsync failed with error code {}."
+msgstr "rsync patyrė nesėkmę su klaidos kodu {}."
 
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
-msgstr "Konfigūruojamos lokalės."
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "Išpakuojamas atvaizdis {}/{}, failas {}/{}"
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "Prijungiami skaidiniai."
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "Pradedama išpakuoti {}"
 
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "Konfigūruoti Plymouth temą"
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+msgid "Failed to unpack image \"{}\""
+msgstr "Nepavyko išpakuoti atvaizdį „{}“"
+
+#: src/modules/unpackfs/main.py:415
+msgid "No mount point for root partition"
+msgstr "Nėra prijungimo taško šaknies skaidiniui"
+
+#: src/modules/unpackfs/main.py:416
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage viduje nėra „rootMountPoint“ rakto, nieko nedaroma"
+
+#: src/modules/unpackfs/main.py:421
+msgid "Bad mount point for root partition"
+msgstr "Blogas šaknies skaidinio prijungimo taškas"
+
+#: src/modules/unpackfs/main.py:422
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint yra „{}“, kurio nėra, nieko nedaroma"
+
+#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
+#: src/modules/unpackfs/main.py:462
+msgid "Bad unsquash configuration"
+msgstr "Bloga unsquash konfigūracija"
+
+#: src/modules/unpackfs/main.py:439
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "Jūsų branduolys nepalaiko failų sistemos, kuri skirta \"{}\" ({})"
+
+#: src/modules/unpackfs/main.py:443
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "Šaltinio failų sistemos „{}“ nėra"
+
+#: src/modules/unpackfs/main.py:449
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Nepavyko rasti unsquashfs, įsitikinkite, kad esate įdiegę squashfs-tools "
+"paketą"
+
+#: src/modules/unpackfs/main.py:463
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Paskirties vieta „{}“, esanti paskirties sistemoje, nėra katalogas"
+
+#: src/modules/displaymanager/main.py:523
+msgid "Cannot write KDM configuration file"
+msgstr "Nepavyksta įrašyti KDM konfigūracijos failą"
+
+#: src/modules/displaymanager/main.py:524
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM konfigūracijos failo {!s} nėra"
+
+#: src/modules/displaymanager/main.py:585
+msgid "Cannot write LXDM configuration file"
+msgstr "Nepavyksta įrašyti LXDM konfigūracijos failą"
+
+#: src/modules/displaymanager/main.py:586
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM konfigūracijos failo {!s} nėra"
+
+#: src/modules/displaymanager/main.py:669
+msgid "Cannot write LightDM configuration file"
+msgstr "Nepavyksta įrašyti LightDM konfigūracijos failą"
+
+#: src/modules/displaymanager/main.py:670
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM konfigūracijos failo {!s} nėra"
+
+#: src/modules/displaymanager/main.py:744
+msgid "Cannot configure LightDM"
+msgstr "Nepavyksta konfigūruoti LightDM"
+
+#: src/modules/displaymanager/main.py:745
+msgid "No LightDM greeter installed."
+msgstr "Neįdiegtas joks LightDM pasisveikinimas."
+
+#: src/modules/displaymanager/main.py:776
+msgid "Cannot write SLIM configuration file"
+msgstr "Nepavyksta įrašyti SLIM konfigūracijos failą"
+
+#: src/modules/displaymanager/main.py:777
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLIM konfigūracijos failo {!s} nėra"
+
+#: src/modules/displaymanager/main.py:903
+msgid "No display managers selected for the displaymanager module."
+msgstr "Displaymanagers moduliui nėra pasirinkta jokių ekranų tvarkytuvių."
+
+#: src/modules/displaymanager/main.py:904
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+"Displaymanagers sąrašas yra tuščias arba neapibrėžtas tiek "
+"bothglobalstorage, tiek ir displaymanager.conf faile."
+
+#: src/modules/displaymanager/main.py:986
+msgid "Display manager configuration was incomplete"
+msgstr "Ekranų tvarkytuvės konfigūracija yra nepilna"
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "Konfigūruojama mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:210
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"Nėra nurodyta jokių šaknies prijungimo taškų, skirtų <pre>{!s}</pre> "
+"naudojimui."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "Konfigūruojamas šifruotas sukeitimų skaidinys."
 
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "Rašoma fstab."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Įdiegiami duomenys."
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -277,6 +283,46 @@ msgid ""
 msgstr ""
 "Tarnybos {name!s} kelias yra <code>{path!s}</code>, kurio savo ruožtu nėra."
 
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Konfigūruoti Plymouth temą"
+
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Įdiegti paketus."
+
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Apdorojami paketai (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Įdiegiamas %(num)d paketas."
+msgstr[1] "Įdiegiami %(num)d paketai."
+msgstr[2] "Įdiegiama %(num)d paketų."
+msgstr[3] "Įdiegiama %(num)d paketų."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Šalinamas %(num)d paketas."
+msgstr[1] "Šalinami %(num)d paketai."
+msgstr[2] "Šalinama %(num)d paketų."
+msgstr[3] "Šalinama %(num)d paketų."
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Įdiegti paleidyklę."
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "Nustatomas aparatinės įrangos laikrodis."
+
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
 msgstr "Sukuriama initramfs naudojant dracut."
@@ -289,74 +335,31 @@ msgstr "Nepavyko paskirties vietoje paleisti dracut"
 msgid "The exit code was {}"
 msgstr "Išėjimo kodas buvo {}"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "Konfigūruoti GRUB."
-
-#: src/modules/displaymanager/main.py:515
-msgid "Cannot write KDM configuration file"
-msgstr "Nepavyksta įrašyti KDM konfigūracijos failą"
-
-#: src/modules/displaymanager/main.py:516
-msgid "KDM config file {!s} does not exist"
-msgstr "KDM konfigūracijos failo {!s} nėra"
-
-#: src/modules/displaymanager/main.py:577
-msgid "Cannot write LXDM configuration file"
-msgstr "Nepavyksta įrašyti LXDM konfigūracijos failą"
-
-#: src/modules/displaymanager/main.py:578
-msgid "LXDM config file {!s} does not exist"
-msgstr "LXDM konfigūracijos failo {!s} nėra"
-
-#: src/modules/displaymanager/main.py:661
-msgid "Cannot write LightDM configuration file"
-msgstr "Nepavyksta įrašyti LightDM konfigūracijos failą"
-
-#: src/modules/displaymanager/main.py:662
-msgid "LightDM config file {!s} does not exist"
-msgstr "LightDM konfigūracijos failo {!s} nėra"
-
-#: src/modules/displaymanager/main.py:736
-msgid "Cannot configure LightDM"
-msgstr "Nepavyksta konfigūruoti LightDM"
-
-#: src/modules/displaymanager/main.py:737
-msgid "No LightDM greeter installed."
-msgstr "Neįdiegtas joks LightDM pasisveikinimas."
-
-#: src/modules/displaymanager/main.py:768
-msgid "Cannot write SLIM configuration file"
-msgstr "Nepavyksta įrašyti SLIM konfigūracijos failą"
-
-#: src/modules/displaymanager/main.py:769
-msgid "SLIM config file {!s} does not exist"
-msgstr "SLIM konfigūracijos failo {!s} nėra"
-
-#: src/modules/displaymanager/main.py:895
-msgid "No display managers selected for the displaymanager module."
-msgstr "Displaymanagers moduliui nėra pasirinkta jokių ekranų tvarkytuvių."
-
-#: src/modules/displaymanager/main.py:896
-msgid ""
-"The displaymanagers list is empty or undefined in bothglobalstorage and "
-"displaymanager.conf."
-msgstr ""
-"Displaymanagers sąrašas yra tuščias arba neapibrėžtas tiek "
-"bothglobalstorage, tiek ir displaymanager.conf faile."
-
-#: src/modules/displaymanager/main.py:978
-msgid "Display manager configuration was incomplete"
-msgstr "Ekranų tvarkytuvės konfigūracija yra nepilna"
-
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "Konfigūruojama initramfs."
 
-#: src/modules/hwclock/main.py:35
-msgid "Setting hardware clock."
-msgstr "Nustatomas aparatinės įrangos laikrodis."
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "Konfigūruojama OpenRC dmcrypt tarnyba."
 
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "Įdiegiami duomenys."
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "Rašoma fstab."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Fiktyvi python užduotis."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "Fiktyvus python žingsnis {}"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Konfigūruojamos lokalės."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Įrašoma tinklo konfigūracija."

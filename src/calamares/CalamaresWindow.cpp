@@ -111,12 +111,12 @@ CalamaresWindow::getWidgetSidebar( QWidget* parent, int desiredWidth )
         sideLayout->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
-        connect( debugWindowBtn, &QPushButton::clicked, this, [ = ]( bool checked ) {
+        connect( debugWindowBtn, &QPushButton::clicked, this, [=]( bool checked ) {
             if ( checked )
             {
                 m_debugWindow = new Calamares::DebugWindow();
                 m_debugWindow->show();
-                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [ = ]() {
+                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed, this, [=]() {
                     m_debugWindow->deleteLater();
                     debugWindowBtn->setChecked( false );
                 } );
@@ -167,7 +167,7 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
         connect( back, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::back );
         connect( m_viewManager, &Calamares::ViewManager::backEnabledChanged, back, &QPushButton::setEnabled );
         connect( m_viewManager, &Calamares::ViewManager::backLabelChanged, back, &QPushButton::setText );
-        connect( m_viewManager, &Calamares::ViewManager::backIconChanged, this, [ = ]( QString n ) {
+        connect( m_viewManager, &Calamares::ViewManager::backIconChanged, this, [=]( QString n ) {
             setButtonIcon( back, n );
         } );
         bottomLayout->addWidget( back );
@@ -179,7 +179,7 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
         connect( next, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::next );
         connect( m_viewManager, &Calamares::ViewManager::nextEnabledChanged, next, &QPushButton::setEnabled );
         connect( m_viewManager, &Calamares::ViewManager::nextLabelChanged, next, &QPushButton::setText );
-        connect( m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [ = ]( QString n ) {
+        connect( m_viewManager, &Calamares::ViewManager::nextIconChanged, this, [=]( QString n ) {
             setButtonIcon( next, n );
         } );
         bottomLayout->addWidget( next );
@@ -191,7 +191,7 @@ CalamaresWindow::getWidgetNavigation( QWidget* parent )
         connect( quit, &QPushButton::clicked, m_viewManager, &Calamares::ViewManager::quit );
         connect( m_viewManager, &Calamares::ViewManager::quitEnabledChanged, quit, &QPushButton::setEnabled );
         connect( m_viewManager, &Calamares::ViewManager::quitLabelChanged, quit, &QPushButton::setText );
-        connect( m_viewManager, &Calamares::ViewManager::quitIconChanged, this, [ = ]( QString n ) {
+        connect( m_viewManager, &Calamares::ViewManager::quitIconChanged, this, [=]( QString n ) {
             setButtonIcon( quit, n );
         } );
         connect( m_viewManager, &Calamares::ViewManager::quitTooltipChanged, quit, &QPushButton::setToolTip );
@@ -237,11 +237,13 @@ CalamaresWindow::getQmlNavigation( QWidget* parent )
 }
 #else
 // Bogus to keep the linker happy
-QWidget * CalamaresWindow::getQmlSidebar(QWidget* , int )
+QWidget*
+CalamaresWindow::getQmlSidebar( QWidget*, int )
 {
     return nullptr;
 }
-QWidget * CalamaresWindow::getQmlNavigation(QWidget* )
+QWidget*
+CalamaresWindow::getQmlNavigation( QWidget* )
 {
     return nullptr;
 }
@@ -400,6 +402,14 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     mainLayout->addLayout( contentsLayout );
     insertIf( mainLayout, PanelSide::Right, navigation, branding->navigationSide() );
     insertIf( mainLayout, PanelSide::Right, sideBox, branding->sidebarSide() );
+
+    // layout->count() returns number of things in it; above we have put
+    // at **least** the central widget, which comes from the view manager,
+    // both vertically and horizontally -- so if there's a panel along
+    // either axis, the count in that axis will be > 1.
+    m_viewManager->setPanelSides(
+        ( contentsLayout->count() > 1 ? Qt::Orientations( Qt::Horizontal ) : Qt::Orientations() )
+        | ( mainLayout->count() > 1 ? Qt::Orientations( Qt::Vertical ) : Qt::Orientations() ) );
 
     CalamaresUtils::unmarginLayout( mainLayout );
     CalamaresUtils::unmarginLayout( contentsLayout );

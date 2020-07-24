@@ -19,6 +19,9 @@
 
 #include "ViewStep.h"
 
+#include <QApplication>
+#include <QStyle>
+
 namespace Calamares
 {
 
@@ -83,6 +86,16 @@ RequirementsList
 ViewStep::checkRequirements()
 {
     return RequirementsList();
+}
+
+QSize
+ViewStep::widgetMargins( Qt::Orientations panelSides )
+{
+    Q_UNUSED( panelSides )
+
+    // Application's default style
+    const auto* s = QApplication::style();
+    return QSize( s->pixelMetric( QStyle::PM_LayoutLeftMargin ), s->pixelMetric( QStyle::PM_LayoutTopMargin ) );
 }
 
 }  // namespace Calamares

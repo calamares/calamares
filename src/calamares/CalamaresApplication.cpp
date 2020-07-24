@@ -76,7 +76,7 @@ CalamaresApplication::init()
 {
     Logger::setupLogfile();
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
-    cDebug() << "        languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
+    cDebug() << Logger::SubEntry << "        languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
 
     if ( !Calamares::Settings::instance() )
     {
@@ -91,11 +91,11 @@ CalamaresApplication::init()
     setQuitOnLastWindowClosed( false );
     setWindowIcon( QIcon( Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductIcon ) ) );
 
-    cDebug() << "STARTUP: initSettings, initQmlPath, initBranding done";
+    cDebug() << Logger::SubEntry << "STARTUP: initSettings, initQmlPath, initBranding done";
 
     initModuleManager();  //also shows main window
 
-    cDebug() << "STARTUP: initModuleManager: module init started";
+    cDebug() << Logger::SubEntry << "STARTUP: initModuleManager: module init started";
 }
 
 

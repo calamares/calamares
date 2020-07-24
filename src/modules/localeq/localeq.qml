@@ -31,41 +31,14 @@ Page {
 
     property var confLang: "American English"
     property var confLocale: "Nederland"
-    //Needs to come from .conf/geoip
-    property var hasInternet: true
-
-    function getInt(format) {
-        var requestURL = "https://example.org/";
-        var xhr = new XMLHttpRequest;
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-
-                if (xhr.status !== 200) {
-                    console.log("Disconnected!!");
-                    var connected = false
-                    hasInternet = connected
-                    return;
-                }
-
-                else {
-                    console.log("Connected!!");
-                }
-            }
-        }
-        xhr.open("GET", requestURL, true);
-        xhr.send();
-    }
-    Component.onCompleted: {
-        getInt();
-    }
 
     Loader {
         id: image
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width
         height: parent.height / 1.28
-        source: (hasInternet) ? "Map.qml" : "Offline.qml"
+        // Network is in io.calamares.core
+        source: Network.hasInternet ? "Map.qml" : "Offline.qml"
     }
 
     RowLayout {
@@ -95,7 +68,7 @@ Page {
                     Label {
                         Layout.fillWidth: true
                         wrapMode: Text.WordWrap
-                        text: qsTr("System language set to %1").arg(confLang)
+                        text: config.currentLanguageStatus
                     }
                     Kirigami.Separator {
                         Layout.fillWidth: true
@@ -103,7 +76,7 @@ Page {
                     Label {
                         Layout.fillWidth: true
                         wrapMode: Text.WordWrap
-                        text: qsTr("Numbers and dates locale set to %1").arg(confLocale)
+                        text: config.currentLCStatus
                     }
                 }
                 Button {

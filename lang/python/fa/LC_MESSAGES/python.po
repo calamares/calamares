@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 23:13+0200\n"
+"POT-Creation-Date: 2020-06-18 15:42+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>, 2020\n"
 "Language-Team: Persian (https://www.transifex.com/calamares/teams/20061/fa/)\n"
@@ -21,128 +21,32 @@ msgstr ""
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
-msgid "Install packages."
-msgstr "نصب بسته‌ها."
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "در حال پیکربندی گراب."
 
-#: src/modules/packages/main.py:66
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "در حال پردازش بسته‌ها (%(count)d/%(total)d)"
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "در حال سوار کردن افرازها."
 
-#: src/modules/packages/main.py:71
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] "در حال نصب یک بسته."
-msgstr[1] "در حال نصب %(num)d بسته."
-
-#: src/modules/packages/main.py:74
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] "در حال برداشتن یک بسته."
-msgstr[1] "در حال برداشتن %(num)d بسته."
-
-#: src/modules/networkcfg/main.py:37
-msgid "Saving network configuration."
-msgstr "در حال ذخیرهٔ پیکربندی شبکه."
-
-#: src/modules/networkcfg/main.py:48 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209 src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/localecfg/main.py:144
-#: src/modules/mount/main.py:145 src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/initramfscfg/main.py:94
-#: src/modules/initramfscfg/main.py:98 src/modules/rawfs/main.py:171
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
 msgid "Configuration Error"
 msgstr "خطای پیکربندی"
 
-#: src/modules/networkcfg/main.py:49 src/modules/initcpiocfg/main.py:210
-#: src/modules/openrcdmcryptcfg/main.py:83 src/modules/localecfg/main.py:145
-#: src/modules/luksopenswaphookcfg/main.py:100 src/modules/fstab/main.py:339
-#: src/modules/initramfscfg/main.py:99
-msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "هیچ نقطهٔ اتّصال ریشه‌ای برای استفادهٔ <pre>{!s}</pre> داده نشده."
-
-#: src/modules/umount/main.py:40
-msgid "Unmount file systems."
-msgstr "پیاده کردن سامانه‌های پرونده."
-
-#: src/modules/initcpiocfg/main.py:37
-msgid "Configuring mkinitcpio."
-msgstr "پیکربندی mkinitcpio."
-
-#: src/modules/initcpiocfg/main.py:206 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/mount/main.py:146 src/modules/luksopenswaphookcfg/main.py:96
-#: src/modules/fstab/main.py:333 src/modules/initramfscfg/main.py:95
-#: src/modules/rawfs/main.py:172
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/fstab/main.py:333
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "هیچ افرازی برای استفادهٔ <pre>{!s}</pre> تعریف نشده."
-
-#: src/modules/openrcdmcryptcfg/main.py:34
-msgid "Configuring OpenRC dmcrypt service."
-msgstr "در حال پیکربندی خدمت dmcrypt OpenRC."
-
-#: src/modules/unpackfs/main.py:44
-msgid "Filling up filesystems."
-msgstr "در حال پر کردن سامانه‌پرونده‌ها."
-
-#: src/modules/unpackfs/main.py:257
-msgid "rsync failed with error code {}."
-msgstr "آرسینک با رمز خطای {} شکست خورد."
-
-#: src/modules/unpackfs/main.py:302
-msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "در حال بسته‌گشایی تصویر {}/{}، پروندهٔ {}/{}"
-
-#: src/modules/unpackfs/main.py:317
-msgid "Starting to unpack {}"
-msgstr "در حال شروع بسته‌گشایی {}"
-
-#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:432
-msgid "Failed to unpack image \"{}\""
-msgstr "شکست در بسته‌گشایی تصویر {}"
-
-#: src/modules/unpackfs/main.py:399
-msgid "No mount point for root partition"
-msgstr "هیچ نقطهٔ اتّصالی برای افراز ریشه وجود ندارد"
-
-#: src/modules/unpackfs/main.py:400
-msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr "globalstorage کلید rootMountPoint را ندارد. کاری انجام نمی‌شود"
-
-#: src/modules/unpackfs/main.py:405
-msgid "Bad mount point for root partition"
-msgstr "نقطهٔ اتّصال بد برای افراز ریشه"
-
-#: src/modules/unpackfs/main.py:406
-msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr "نقطهٔ اتّصال ریشه {} است که وجود ندارد. کاری انجام نمی‌شود"
-
-#: src/modules/unpackfs/main.py:422 src/modules/unpackfs/main.py:426
-#: src/modules/unpackfs/main.py:446
-msgid "Bad unsquash configuration"
-msgstr "پیکربندی بد unsquash"
-
-#: src/modules/unpackfs/main.py:423
-msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "کرنل کنونیتان از سامانه‌پروندهٔ {} ({}) پشتیبانی نمی‌کند"
-
-#: src/modules/unpackfs/main.py:427
-msgid "The source filesystem \"{}\" does not exist"
-msgstr "سامانهٔ پروندهٔ مبدأ {} وجود ندارد"
-
-#: src/modules/unpackfs/main.py:433
-msgid ""
-"Failed to find unsquashfs, make sure you have the squashfs-tools package "
-"installed"
-msgstr "شکست در یافتن unsquashfs. مطمئن شوید بستهٔ squashfs-tools نصب است"
-
-#: src/modules/unpackfs/main.py:447
-msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "مقصد {} در سامانهٔ هدف، یک شاخه نیست"
 
 #: src/modules/services-systemd/main.py:35
 msgid "Configure systemd services"
@@ -185,38 +89,144 @@ msgstr ""
 "دستورات ناشناختهٔ سیستم‌دی <code>{command!s}</code> و "
 "<code>{suffix!s}</code> برای واحد {name!s}."
 
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "کار پایتونی الکی."
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "پیاده کردن سامانه‌های پرونده."
 
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
-msgid "Dummy python step {}"
-msgstr "گام پایتونی الکی {}"
+#: src/modules/unpackfs/main.py:44
+msgid "Filling up filesystems."
+msgstr "در حال پر کردن سامانه‌پرونده‌ها."
 
-#: src/modules/bootloader/main.py:51
-msgid "Install bootloader."
-msgstr "نصب بارکنندهٔ راه‌اندازی."
+#: src/modules/unpackfs/main.py:257
+msgid "rsync failed with error code {}."
+msgstr "آرسینک با رمز خطای {} شکست خورد."
 
-#: src/modules/localecfg/main.py:39
-msgid "Configuring locales."
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "در حال بسته‌گشایی تصویر {}/{}، پروندهٔ {}/{}"
+
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "در حال شروع بسته‌گشایی {}"
+
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+msgid "Failed to unpack image \"{}\""
+msgstr "شکست در بسته‌گشایی تصویر {}"
+
+#: src/modules/unpackfs/main.py:415
+msgid "No mount point for root partition"
+msgstr "هیچ نقطهٔ اتّصالی برای افراز ریشه وجود ندارد"
+
+#: src/modules/unpackfs/main.py:416
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage کلید rootMountPoint را ندارد. کاری انجام نمی‌شود"
+
+#: src/modules/unpackfs/main.py:421
+msgid "Bad mount point for root partition"
+msgstr "نقطهٔ اتّصال بد برای افراز ریشه"
+
+#: src/modules/unpackfs/main.py:422
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "نقطهٔ اتّصال ریشه {} است که وجود ندارد. کاری انجام نمی‌شود"
+
+#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
+#: src/modules/unpackfs/main.py:462
+msgid "Bad unsquash configuration"
+msgstr "پیکربندی بد unsquash"
+
+#: src/modules/unpackfs/main.py:439
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "کرنل کنونیتان از سامانه‌پروندهٔ {} ({}) پشتیبانی نمی‌کند"
+
+#: src/modules/unpackfs/main.py:443
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "سامانهٔ پروندهٔ مبدأ {} وجود ندارد"
+
+#: src/modules/unpackfs/main.py:449
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr "شکست در یافتن unsquashfs. مطمئن شوید بستهٔ squashfs-tools نصب است"
+
+#: src/modules/unpackfs/main.py:463
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "مقصد {} در سامانهٔ هدف، یک شاخه نیست"
+
+#: src/modules/displaymanager/main.py:523
+msgid "Cannot write KDM configuration file"
+msgstr "نمی‌توان پروندهٔ پیکربندی KDM را نوشت"
+
+#: src/modules/displaymanager/main.py:524
+msgid "KDM config file {!s} does not exist"
+msgstr "پروندهٔ پیکربندی {!s} وجود ندارد"
+
+#: src/modules/displaymanager/main.py:585
+msgid "Cannot write LXDM configuration file"
+msgstr "نمی‌توان پروندهٔ پیکربندی LXDM را نوشت"
+
+#: src/modules/displaymanager/main.py:586
+msgid "LXDM config file {!s} does not exist"
+msgstr "پروندهٔ پیکربندی {!s} وجود ندارد"
+
+#: src/modules/displaymanager/main.py:669
+msgid "Cannot write LightDM configuration file"
+msgstr "نمی‌توان پروندهٔ پیکربندی LightDM را نوشت"
+
+#: src/modules/displaymanager/main.py:670
+msgid "LightDM config file {!s} does not exist"
+msgstr "پروندهٔ پیکربندی {!s} وجود ندارد"
+
+#: src/modules/displaymanager/main.py:744
+msgid "Cannot configure LightDM"
+msgstr "نمی‌توان LightDM را پیکربندی کرد"
+
+#: src/modules/displaymanager/main.py:745
+msgid "No LightDM greeter installed."
+msgstr "هیچ خوش‌آمدگوی LightDMای نصب نشده."
+
+#: src/modules/displaymanager/main.py:776
+msgid "Cannot write SLIM configuration file"
+msgstr "نمی‌توان پروندهٔ پیکربندی LightDM را نوشت"
+
+#: src/modules/displaymanager/main.py:777
+msgid "SLIM config file {!s} does not exist"
+msgstr "پروندهٔ پیکربندی {!s} وجود ندارد"
+
+#: src/modules/displaymanager/main.py:903
+msgid "No display managers selected for the displaymanager module."
+msgstr "هیچ مدیر نمایشی برای پیمانهٔ displaymanager گزیده نشده."
+
+#: src/modules/displaymanager/main.py:904
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
 msgstr ""
+"فهرست displaymanagers خالی بوده یا در bothglobalstorage و "
+"displaymanager.conf تعریف نشده."
 
-#: src/modules/mount/main.py:38
-msgid "Mounting partitions."
-msgstr "در حال سوار کردن افرازها."
+#: src/modules/displaymanager/main.py:986
+msgid "Display manager configuration was incomplete"
+msgstr "پیکربندی مدیر نمایش کامل نبود"
 
-#: src/modules/plymouthcfg/main.py:36
-msgid "Configure Plymouth theme"
-msgstr "در حال پیکربندی زمینهٔ پلی‌موث"
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "پیکربندی mkinitcpio."
+
+#: src/modules/initcpiocfg/main.py:210
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr "هیچ نقطهٔ اتّصال ریشه‌ای برای استفادهٔ <pre>{!s}</pre> داده نشده."
 
 #: src/modules/luksopenswaphookcfg/main.py:35
 msgid "Configuring encrypted swap."
 msgstr "در حال پیکربندی مبادلهٔ رمزشده."
 
-#: src/modules/fstab/main.py:38
-msgid "Writing fstab."
-msgstr "در حال نوشتن fstab."
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "داده‌های نصب"
 
 #: src/modules/services-openrc/main.py:38
 msgid "Configure OpenRC services"
@@ -261,6 +271,42 @@ msgid ""
 "exist."
 msgstr ""
 
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "در حال پیکربندی زمینهٔ پلی‌موث"
+
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "نصب بسته‌ها."
+
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "در حال پردازش بسته‌ها (%(count)d/%(total)d)"
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "در حال نصب یک بسته."
+msgstr[1] "در حال نصب %(num)d بسته."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "در حال برداشتن یک بسته."
+msgstr[1] "در حال برداشتن %(num)d بسته."
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "نصب بارکنندهٔ راه‌اندازی."
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "در حال تنظیم ساعت سخت‌افزاری."
+
 #: src/modules/dracut/main.py:36
 msgid "Creating initramfs with dracut."
 msgstr "در حال ایجاد initramfs با dracut."
@@ -273,74 +319,31 @@ msgstr "شکست در اجرای dracut روی هدف"
 msgid "The exit code was {}"
 msgstr "رمز خروج {} بود"
 
-#: src/modules/grubcfg/main.py:37
-msgid "Configure GRUB."
-msgstr "در حال پیکربندی گراب."
-
-#: src/modules/displaymanager/main.py:515
-msgid "Cannot write KDM configuration file"
-msgstr "نمی‌توان پروندهٔ پیکربندی KDM را نوشت"
-
-#: src/modules/displaymanager/main.py:516
-msgid "KDM config file {!s} does not exist"
-msgstr "پروندهٔ پیکربندی {!s} وجود ندارد"
-
-#: src/modules/displaymanager/main.py:577
-msgid "Cannot write LXDM configuration file"
-msgstr "نمی‌توان پروندهٔ پیکربندی LXDM را نوشت"
-
-#: src/modules/displaymanager/main.py:578
-msgid "LXDM config file {!s} does not exist"
-msgstr "پروندهٔ پیکربندی {!s} وجود ندارد"
-
-#: src/modules/displaymanager/main.py:661
-msgid "Cannot write LightDM configuration file"
-msgstr "نمی‌توان پروندهٔ پیکربندی LightDM را نوشت"
-
-#: src/modules/displaymanager/main.py:662
-msgid "LightDM config file {!s} does not exist"
-msgstr "پروندهٔ پیکربندی {!s} وجود ندارد"
-
-#: src/modules/displaymanager/main.py:736
-msgid "Cannot configure LightDM"
-msgstr "نمی‌توان LightDM را پیکربندی کرد"
-
-#: src/modules/displaymanager/main.py:737
-msgid "No LightDM greeter installed."
-msgstr "هیچ خوش‌آمدگوی LightDMای نصب نشده."
-
-#: src/modules/displaymanager/main.py:768
-msgid "Cannot write SLIM configuration file"
-msgstr "نمی‌توان پروندهٔ پیکربندی LightDM را نوشت"
-
-#: src/modules/displaymanager/main.py:769
-msgid "SLIM config file {!s} does not exist"
-msgstr "پروندهٔ پیکربندی {!s} وجود ندارد"
-
-#: src/modules/displaymanager/main.py:895
-msgid "No display managers selected for the displaymanager module."
-msgstr "هیچ مدیر نمایشی برای پیمانهٔ displaymanager گزیده نشده."
-
-#: src/modules/displaymanager/main.py:896
-msgid ""
-"The displaymanagers list is empty or undefined in bothglobalstorage and "
-"displaymanager.conf."
-msgstr ""
-"فهرست displaymanagers خالی بوده یا در bothglobalstorage و "
-"displaymanager.conf تعریف نشده."
-
-#: src/modules/displaymanager/main.py:978
-msgid "Display manager configuration was incomplete"
-msgstr "پیکربندی مدیر نمایش کامل نبود"
-
 #: src/modules/initramfscfg/main.py:41
 msgid "Configuring initramfs."
 msgstr "در حال پیکربندی initramfs."
 
-#: src/modules/hwclock/main.py:35
-msgid "Setting hardware clock."
-msgstr "در حال تنظیم ساعت سخت‌افزاری."
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "در حال پیکربندی خدمت dmcrypt OpenRC."
 
-#: src/modules/rawfs/main.py:35
-msgid "Installing data."
-msgstr "داده‌های نصب"
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "در حال نوشتن fstab."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "کار پایتونی الکی."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "گام پایتونی الکی {}"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr ""
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "در حال ذخیرهٔ پیکربندی شبکه."

@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2013-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *
@@ -32,6 +32,27 @@
 #include "DllMacro.h"
 
 #include <QString>
+
+/* Qt 5.14 changed the API to QString::split(), adding new overloads
+ * that take a different enum, then Qt 5.15 deprecated the old ones.
+ * To avoid overly-many warnings related to the API change, introduce
+ * Calamares-specific constants that pull from the correct enum.
+ */
+constexpr static const auto SplitSkipEmptyParts =
+#if QT_VERSION < QT_VERSION_CHECK( 5, 14, 0 )
+    QString::SkipEmptyParts
+#else
+    Qt::SkipEmptyParts
+#endif
+    ;
+
+constexpr static const auto SplitKeepEmptyParts =
+#if QT_VERSION < QT_VERSION_CHECK( 5, 14, 0 )
+    QString::KeepEmptyParts
+#else
+    Qt::KeepEmptyParts
+#endif
+    ;
 
 /**
  * @brief The CalamaresUtils namespace contains utility functions.

@@ -85,10 +85,16 @@ PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
     return true;
 }
 
+PartitionLayout::PartitionEntry::PartitionEntry()
+    : partAttributes( 0 )
+{
+}
+
 PartitionLayout::PartitionEntry::PartitionEntry( const QString& size, const QString& min, const QString& max )
     : partSize( size )
     , partMinSize( min )
     , partMaxSize( max )
+    , partAttributes( 0 )
 {
 }
 

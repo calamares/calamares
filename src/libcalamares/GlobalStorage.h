@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
  *
@@ -39,7 +39,7 @@ class GlobalStorage : public QObject
 {
     Q_OBJECT
 public:
-    explicit GlobalStorage();
+    explicit GlobalStorage( QObject* parent = nullptr );
 
     //NOTE: thread safety is guaranteed by JobQueue, which executes jobs one by one.
     //      If at any time jobs become concurrent, this class must be made thread-safe.

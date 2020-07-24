@@ -19,16 +19,15 @@
 #include "ClearTempMountsJob.h"
 
 #include "utils/Logger.h"
+#include "utils/String.h"
 
-#include <algorithm>
-
-// KPMcore
 #include <kpmcore/util/report.h>
 
 #include <QFile>
 #include <QProcess>
 #include <QStringList>
 
+#include <algorithm>
 
 ClearTempMountsJob::ClearTempMountsJob()
     : Calamares::Job()
@@ -66,7 +65,7 @@ ClearTempMountsJob::exec()
     QString lineIn = in.readLine();
     while ( !lineIn.isNull() )
     {
-        QStringList line = lineIn.split( ' ', QString::SkipEmptyParts );
+        QStringList line = lineIn.split( ' ', SplitSkipEmptyParts );
         cDebug() << line.join( ' ' );
         QString device = line.at( 0 );
         QString mountPoint = line.at( 1 );

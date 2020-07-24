@@ -32,39 +32,23 @@
 class QComboBox;
 class QLabel;
 class QPushButton;
+
+class Config;
 class TimeZoneWidget;
 
 class LocalePage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit LocalePage( QWidget* parent = nullptr );
+    explicit LocalePage( class Config* config, QWidget* parent = nullptr );
     virtual ~LocalePage();
-
-    void init( const QString& initialRegion, const QString& initialZone, const QString& localeGenPath );
-
-    QString prettyStatus() const;
-
-    Calamares::JobList createJobs();
-
-    QMap< QString, QString > localesMap();
 
     void onActivate();
 
 private:
-    LocaleConfiguration guessLocaleConfiguration() const;
+    /// @brief Non-owning pointer to the ViewStep's config
+    Config* m_config;
 
-    // For the given locale config, return two strings describing
-    // the settings for language and numbers.
-    std::pair< QString, QString > prettyLocaleStatus( const LocaleConfiguration& ) const;
-
-    /** @brief Update the GS *locale* key with the selected system language.
-     *
-     * This uses whatever is set in m_selectedLocaleConfiguration as the language,
-     * and writes it to GS *locale* key (as a string, in BCP47 format).
-     */
-    void updateGlobalLocale();
-    void updateGlobalStorage();
     void updateLocaleLabels();
 
     void regionChanged( int currentIndex );
@@ -72,10 +56,6 @@ private:
     void locationChanged( const CalamaresUtils::Locale::TZZone* location );
     void changeLocale();
     void changeFormats();
-
-    // Dynamically, QList< TZRegion* >
-    CalamaresUtils::Locale::CStringPairList m_regionList;
-    std::unique_ptr< CalamaresUtils::Locale::CStringListModel > m_regionModel;
 
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;
@@ -88,9 +68,6 @@ private:
     QLabel* m_formatsLabel;
     QPushButton* m_formatsChangeButton;
 
-    LocaleConfiguration m_selectedLocaleConfiguration;
-
-    QStringList m_localeGenLines;
 
     bool m_blockTzWidgetSet;
 };
