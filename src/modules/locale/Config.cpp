@@ -199,6 +199,11 @@ Config::Config( QObject* parent )
                                { "set-timezone", location->region() + '/' + location->zone() } );
         }
     } );
+
+    auto prettyStatusNotify = [&]() { emit prettyStatusChanged( prettyStatus() ); };
+    connect( this, &Config::currentLanguageStatusChanged, prettyStatusNotify );
+    connect( this, &Config::currentLCStatusChanged, prettyStatusNotify );
+    connect( this, &Config::currentLocationStatusChanged, prettyStatusNotify );
 }
 
 Config::~Config() {}
@@ -349,6 +354,13 @@ Config::currentLCStatus() const
 {
     return tr( "The numbers and dates locale will be set to %1." )
         .arg( localeLabel( m_selectedLocaleConfiguration.lc_numeric ) );
+}
+
+QString
+Config::prettyStatus() const
+{
+    QStringList l { currentLocationStatus(), currentLanguageStatus(), currentLCStatus() };
+    return l.join( QStringLiteral( "<br/>" ) );
 }
 
 static inline void

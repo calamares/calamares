@@ -51,6 +51,9 @@ class Config : public QObject
     Q_PROPERTY( QString currentLanguageCode READ currentLanguageCode WRITE setLanguageExplicitly NOTIFY currentLanguageCodeChanged )
     Q_PROPERTY( QString currentLCCode READ currentLCCode WRITE setLCLocaleExplicitly NOTIFY currentLCCodeChanged )
 
+    // This is a long human-readable string with all three statuses
+    Q_PROPERTY( QString prettyStatus READ prettyStatus NOTIFY prettyStatusChanged FINAL )
+
 public:
     Config( QObject* parent = nullptr );
     ~Config();
@@ -78,6 +81,9 @@ public:
     QString currentLanguageStatus() const;
     /// The human-readable description of what locale (LC_*) is used
     QString currentLCStatus() const;
+
+    /// The human-readable summary of what the module will do
+    QString prettyStatus() const;
 
     const QStringList& supportedLocales() const { return m_localeGenLines; }
     CalamaresUtils::Locale::CStringListModel* regionModel() const { return m_regionModel.get(); }
@@ -122,6 +128,7 @@ signals:
     void currentLocationStatusChanged( const QString& ) const;
     void currentLanguageStatusChanged( const QString& ) const;
     void currentLCStatusChanged( const QString& ) const;
+    void prettyStatusChanged( const QString& ) const;
     void currentLanguageCodeChanged( const QString& ) const;
     void currentLCCodeChanged( const QString& ) const;
 

@@ -89,8 +89,7 @@ LocaleViewStep::prettyName() const
 QString
 LocaleViewStep::prettyStatus() const
 {
-    QStringList l { m_config->currentLocationStatus(), m_config->currentLanguageStatus(), m_config->currentLCStatus() };
-    return l.join( QStringLiteral( "<br/>" ) );
+    return m_config->prettyStatus();
 }
 
 
