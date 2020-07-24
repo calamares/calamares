@@ -9,10 +9,18 @@ This release contains contributions from (alphabetically by first name):
  - No external contributors yet
 
 ## Core ##
- - No core changes yet
+ - A new object *Network* is available to QML modules in `io.calamares.core`.
+   It exposes network status through the *hasInternet* property.
 
 ## Modules ##
- - No module changes yet
+ - The *locale* module has been completely redone on the inside.
+   Users should see no changes. #1391
+ - The *localeq* module uses the redone internals of the locale module.
+   It can now be used to set timezone, language and locale information
+   and is a suitable alternative module. Thanks to Anke Boersma who did
+   the work of figuring out maps. Note that the map uses several GeoIP
+   and GeoData providers and you may need to configure the URLs
+   with suitable usernames for those services. #1426
 
 
 # 3.2.27 (2020-07-11) #
