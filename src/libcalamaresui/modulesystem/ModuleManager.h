@@ -130,10 +130,10 @@ signals:
     void modulesFailed( QStringList );
     /** @brief Emitted after all requirements have been checked
      *
-     * The bool value indicates if all of the **mandatory** requirements
+     * The bool @p canContinue indicates if all of the **mandatory** requirements
      * are satisfied (e.g. whether installation can continue).
      */
-    void requirementsComplete( bool );
+    void requirementsComplete( bool canContinue );
 
 private slots:
     void doInit();
