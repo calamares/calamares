@@ -14,20 +14,20 @@
 Permissions::Permissions()
     : m_username()
     , m_group()
-    , m_valid( false )
     , m_value( 0 )
+    , m_valid( false )
 {
 }
 
 
-Permissions::Permissions( QString p )
+Permissions::Permissions( QString const& p )
     : Permissions()
 {
     parsePermissions( p );
 }
 
 void
-Permissions::parsePermissions( const QString& p )
+Permissions::parsePermissions( QString const& p )
 {
 
     QStringList segments = p.split( ":" );

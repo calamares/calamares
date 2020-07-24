@@ -25,27 +25,44 @@ public:
     /** @brief Constructor
      *
      * Splits the string @p at the colon (":") into separate elements for
-     * <user>, <group>, and <value> (permissions), where <value> is returned as
-     * an **octal** integer.
+     * <user>, <group>, and <value> (permissions), where <value> is interpreted
+     * as an **octal** integer. That is, "root:wheel:755" will give
+     * you an integer value of four-hundred-ninety-three (493),
+     * corresponding to the UNIX file permissions rwxr-xr-x,
+     * as one would expect from chmod and other command-line utilities.
      */
-    Permissions( QString p );
+    Permissions( QString const& p );
 
-    /** @brief Default constructor of an invalid Permissions. */
+    /// @brief Default constructor of an invalid Permissions.
     Permissions();
 
+    /// @brief Was the Permissions object constructed from valid data?
     bool isValid() const { return m_valid; }
+    /// @brief The user (first component, e.g. "root" in "root:wheel:755")
     QString username() const { return m_username; }
+    /// @brief The group (second component, e.g. "wheel" in "root:wheel:755")
     QString group() const { return m_group; }
+    /** @brief The value (file permission) as an integer.
+     *
+     * Bear in mind that input is in octal, but integers are just integers;
+     * naively printing them will get decimal results (e.g. 493 from the
+     * input of "root:wheel:755").
+     */
     int value() const { return m_value; }
-    QString octal() const { return QString::number( m_value, 8 ); }
+    /** @brief The value (file permission) as octal string
+     *
+     * This is suitable for passing to chmod-the-program, or for
+     * recreating the original Permissions string.
+     */
+    QString octal() const { return QString::number( value(), 8 ); }
 
 private:
     void parsePermissions( QString const& p );
 
     QString m_username;
     QString m_group;
-    bool m_valid;
     int m_value;
+    bool m_valid;
 };
 
 #endif  // LIBCALAMARES_PERMISSIONS_H
