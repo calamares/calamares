@@ -218,6 +218,15 @@ Config::setCurrentLocation()
     }
 }
 
+void Config::setCurrentLocation(const QString& regionzone)
+{
+    auto r = CalamaresUtils::GeoIP::splitTZString( regionzone );
+    if ( r.isValid() )
+    {
+        setCurrentLocation( r.first, r.second );
+    }
+}
+
 void
 Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
 {

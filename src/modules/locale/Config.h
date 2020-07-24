@@ -92,7 +92,14 @@ public Q_SLOTS:
     /// Set LC (formats) by user-choice, overriding future location changes
     void setLCLocaleExplicitly( const QString& locale );
 
-    /** @brief Sets a location by name
+    /** @brief Sets a location by full name
+     *
+     * @p regionzone should be an identifier from zone.tab, e.g. "Africa/Abidjan",
+     * which is split into regon and zone. Invalid names will **not**
+     * change the actual location.
+     */
+    void setCurrentLocation( const QString& regionzone );
+    /** @brief Sets a location by split name
      *
      * @p region should be "America" or the like, while @p zone
      * names a zone within that region.
