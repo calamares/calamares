@@ -182,14 +182,15 @@ ResponsiveBase {
         Layout.maximumWidth:  500
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignCenter
+        color: control.Kirigami.Theme.textColor
 
         background:Rectangle {
 
             z: parent.z - 1
             anchors.fill: parent
-            color: control.Kirigami.Theme.backgroundColor
+            color: "#BDC3C7"
             radius: 5
-            opacity: 0.8
+            opacity: 0.3
         }
     }
 }

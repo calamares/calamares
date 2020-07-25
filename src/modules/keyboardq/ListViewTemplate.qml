@@ -15,7 +15,7 @@ ListView {
 
         z: parent.z - 1
         anchors.fill: parent
-        color: Kirigami.Theme.backgroundColor
+        color: "#BDC3C7"
         radius: 5
         opacity: 0.7
     }

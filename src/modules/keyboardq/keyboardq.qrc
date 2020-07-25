@@ -6,6 +6,5 @@
         <file>ListItemDelegate.qml</file>
         <file>ListViewTemplate.qml</file>
         <file>ResponsiveBase.qml</file>
-        <file>keyboard.jpg</file>
     </qresource>
 </RCC>

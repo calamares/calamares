@@ -13,8 +13,8 @@ Page {
     width: 800 //parent.width
     height: 550 //parent.height
 
-    Kirigami.Theme.backgroundColor: "#fafafa"
-    Kirigami.Theme.textColor: "#333"
+    Kirigami.Theme.backgroundColor: "#FAFAFA"
+    Kirigami.Theme.textColor: "#1F1F1F"
 
     property string subtitle
     property string message
@@ -22,39 +22,6 @@ Page {
     default property alias content : _content.data
     property alias stackView: _stackView
 
-    background: Item {
-
-        id: _background
-
-        Image {
-
-            id: _wallpaper
-            height: parent.height
-            width: parent.width
-
-            sourceSize.width: 800
-            sourceSize.height: 550
-
-            fillMode: Image.PreserveAspectCrop
-            antialiasing: false
-            smooth: false
-            asynchronous: true
-            cache: true
-
-            source: "keyboard.jpg"
-        }
-
-        FastBlur {
-
-            id: fastBlur
-            anchors.fill: parent
-            source: _wallpaper
-            radius: 32
-            transparentBorder: false
-            cached: true
-        }
-    }
-    
     ColumnLayout {
 
         id: _content
@@ -63,7 +30,7 @@ Page {
         spacing:  Kirigami.Units.smallSpacing * 5
         anchors.margins: Kirigami.Units.smallSpacing * 5
         anchors.bottomMargin: 20
-        
+
         Label {
             
             Layout.fillWidth: true
@@ -72,7 +39,7 @@ Page {
             wrapMode: Text.NoWrap
             elide: Text.ElideMiddle
             text: control.title
-            color: "white"
+            color: Kirigami.Theme.textColor
             font.bold: true
             font.weight: Font.Bold
             font.pointSize: 24
@@ -86,7 +53,7 @@ Page {
             wrapMode: Text.Wrap
             elide: Text.ElideMiddle
             text: control.subtitle
-            color: "white"
+            color: Kirigami.Theme.textColor
             font.weight: Font.Light
             font.pointSize: 12
         }
@@ -99,7 +66,7 @@ Page {
             wrapMode: Text.Wrap
             elide: Text.ElideMiddle
             text: control.message
-            color: "white"
+            color: Kirigami.Theme.textColor
             font.weight: Font.Light
             font.pointSize: 10
         }
@@ -110,7 +77,7 @@ Page {
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width
             clip: true
-        }	
+        }
         
     }
 }
