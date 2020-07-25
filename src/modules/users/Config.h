@@ -33,6 +33,9 @@ class Config : public QObject
     Q_PROPERTY( QString autologinGroup READ autologinGroup WRITE setAutologinGroup NOTIFY autologinGroupChanged )
     Q_PROPERTY( QString sudoersGroup READ sudoersGroup WRITE setSudoersGroup NOTIFY sudoersGroupChanged )
 
+    Q_PROPERTY( QString userName READ userName WRITE setUserName NOTIFY userNameChanged )
+    Q_PROPERTY( QString loginName READ loginName WRITE setLoginName NOTIFY loginNameChanged )
+
 public:
     Config( QObject* parent = nullptr );
     ~Config();
@@ -51,6 +54,11 @@ public:
     /// The group of which users who can "sudo" must be a member
     QString sudoersGroup() const { return m_sudoersGroup; }
 
+    /// The full (GECOS) name of the user
+    QString userName() const { return m_fullName; }
+    /// The login name of the user
+    QString loginName() const { return m_loginName; }
+
 public Q_SLOTS:
     /** @brief Sets the user's shell if possible
      *
@@ -67,15 +75,24 @@ public Q_SLOTS:
     /// Sets the sudoer group; empty is ignored
     void setSudoersGroup( const QString& group );
 
+    /// Sets the full name, may guess a loginName
+    void setUserName( const QString& name );
+    /// Sets the login name
+    void setLoginName( const QString& login );
+
 signals:
     void userShellChanged( const QString& );
     void autologinGroupChanged( const QString& );
     void sudoersGroupChanged( const QString& );
+    void userNameChanged( const QString& );
+    void loginNameChanged( const QString& );
 
 private:
     QString m_userShell;
     QString m_autologinGroup;
     QString m_sudoersGroup;
+    QString m_fullName;
+    QString m_loginName;
 };
 
 #endif

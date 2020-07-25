@@ -71,6 +71,27 @@ Config::setSudoersGroup( const QString& group )
 
 
 void
+Config::setLoginName( const QString& login )
+{
+    if ( login != m_loginName )
+    {
+        m_loginName = login;
+        emit loginNameChanged( login );
+    }
+}
+
+void
+Config::setUserName( const QString& name )
+{
+    if ( name != m_fullName )
+    {
+        m_fullName = name;
+        emit userNameChanged( name );
+    }
+}
+
+
+void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
     QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
