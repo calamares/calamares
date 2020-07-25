@@ -79,9 +79,10 @@ labelOk( QLabel* pix, QLabel* label )
     pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, label->size() ) );
 }
 
-UsersPage::UsersPage( QWidget* parent )
+UsersPage::UsersPage( Config* config, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_UserSetup )
+    , m_config( config )
     , m_readyFullName( false )
     , m_readyUsername( false )
     , m_readyHostname( false )
@@ -99,12 +100,12 @@ UsersPage::UsersPage( QWidget* parent )
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
     connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [ this ]( int ) {
+    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int ) {
         onPasswordTextChanged( ui->textBoxUserPassword->text() );
         onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
         checkReady( isReady() );
     } );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [ this ]( int checked ) {
+    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
         /* When "reuse" is checked, hide the fields for explicitly
          * entering the root password. However, if we're going to
          * disable the root password anyway, hide them all regardless of

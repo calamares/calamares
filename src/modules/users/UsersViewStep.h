@@ -29,6 +29,7 @@
 #include <QObject>
 #include <QVariant>
 
+class Config;
 class UsersPage;
 
 class PLUGINDLLEXPORT UsersViewStep : public Calamares::ViewStep
@@ -62,6 +63,8 @@ private:
 
     QStringList m_defaultGroups;
     SetHostNameJob::Actions m_actions;
+
+    Config* m_config;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( UsersViewStepFactory )

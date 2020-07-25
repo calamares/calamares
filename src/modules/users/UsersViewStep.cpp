@@ -20,16 +20,16 @@
 
 #include "UsersViewStep.h"
 
+#include "Config.h"
 #include "SetHostNameJob.h"
 #include "SetPasswordJob.h"
 #include "UsersPage.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
 #include "utils/Variant.h"
-
-#include "GlobalStorage.h"
-#include "JobQueue.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin< UsersViewStep >(); )
 
@@ -53,11 +53,11 @@ hostnameActions()
 
 UsersViewStep::UsersViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new UsersPage() )
+    , m_widget( nullptr )
     , m_actions( SetHostNameJob::Action::None )
+    , m_config( new Config( this ) )
 {
     emit nextStatusChanged( true );
-    connect( m_widget, &UsersPage::checkReady, this, &UsersViewStep::nextStatusChanged );
 }
 
 
@@ -80,6 +80,11 @@ UsersViewStep::prettyName() const
 QWidget*
 UsersViewStep::widget()
 {
+    if ( !m_widget )
+    {
+        m_widget = new UsersPage( m_config );
+        connect( m_widget, &UsersPage::checkReady, this, &UsersViewStep::nextStatusChanged );
+    }
     return m_widget;
 }
 
@@ -87,7 +92,7 @@ UsersViewStep::widget()
 bool
 UsersViewStep::isNextEnabled() const
 {
-    return m_widget->isReady();
+    return m_widget ? m_widget->isReady() : true;
 }
 
 
@@ -122,7 +127,10 @@ UsersViewStep::jobs() const
 void
 UsersViewStep::onActivate()
 {
-    m_widget->onActivate();
+    if ( m_widget )
+    {
+        m_widget->onActivate();
+    }
 }
 
 
@@ -130,6 +138,10 @@ void
 UsersViewStep::onLeave()
 {
     m_jobs.clear();
+    if ( !m_widget )
+    {
+        return;
+    }
     m_jobs.append( m_widget->createJobs( m_defaultGroups ) );
 
     Calamares::Job* j;
@@ -222,4 +234,6 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     Action hostsfileAction = getBool( configurationMap, "writeHostsFile", true ) ? Action::WriteEtcHosts : Action::None;
     m_actions = hostsfileAction | hostnameAction;
+
+    m_config->setConfigurationMap( configurationMap );
 }

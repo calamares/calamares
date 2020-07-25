@@ -29,6 +29,8 @@
 
 #include <QWidget>
 
+class Config;
+
 class QLabel;
 
 namespace Ui
@@ -40,7 +42,7 @@ class UsersPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit UsersPage( QWidget* parent = nullptr );
+    explicit UsersPage( Config* config, QWidget* parent = nullptr );
     virtual ~UsersPage();
 
     bool isReady();
@@ -95,6 +97,7 @@ private:
     void retranslate();
 
     Ui::Page_UserSetup* ui;
+    Config* m_config;
 
     PasswordCheckList m_passwordChecks;
     bool m_passwordChecksChanged = false;
