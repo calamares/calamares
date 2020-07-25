@@ -174,20 +174,6 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         m_defaultGroups = QStringList { "lp", "video", "network", "storage", "wheel", "audio" };
     }
 
-    if ( configurationMap.contains( "autologinGroup" )
-         && configurationMap.value( "autologinGroup" ).type() == QVariant::String )
-    {
-        Calamares::JobQueue::instance()->globalStorage()->insert(
-            "autologinGroup", configurationMap.value( "autologinGroup" ).toString() );
-    }
-
-    if ( configurationMap.contains( "sudoersGroup" )
-         && configurationMap.value( "sudoersGroup" ).type() == QVariant::String )
-    {
-        Calamares::JobQueue::instance()->globalStorage()->insert( "sudoersGroup",
-                                                                  configurationMap.value( "sudoersGroup" ).toString() );
-    }
-
     bool setRootPassword = getBool( configurationMap, "setRootPassword", true );
     Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", setRootPassword );
 

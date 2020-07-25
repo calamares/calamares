@@ -30,6 +30,9 @@ class Config : public QObject
 
     Q_PROPERTY( QString userShell READ userShell WRITE setUserShell NOTIFY userShellChanged )
 
+    Q_PROPERTY( QString autologinGroup READ autologinGroup WRITE setAutologinGroup NOTIFY autologinGroupChanged )
+    Q_PROPERTY( QString sudoersGroup READ sudoersGroup WRITE setSudoersGroup NOTIFY sudoersGroupChanged )
+
 public:
     Config( QObject* parent = nullptr );
     ~Config();
@@ -43,6 +46,11 @@ public:
      */
     QString userShell() const { return m_userShell; }
 
+    /// The group of which auto-login users must be a member
+    QString autologinGroup() const { return m_autologinGroup; }
+    /// The group of which users who can "sudo" must be a member
+    QString sudoersGroup() const { return m_sudoersGroup; }
+
 public Q_SLOTS:
     /** @brief Sets the user's shell if possible
      *
@@ -54,11 +62,20 @@ public Q_SLOTS:
      */
     void setUserShell( const QString& path );
 
+    /// Sets the autologin group; empty is ignored
+    void setAutologinGroup( const QString& group );
+    /// Sets the sudoer group; empty is ignored
+    void setSudoersGroup( const QString& group );
+
 signals:
     void userShellChanged( const QString& );
+    void autologinGroupChanged( const QString& );
+    void sudoersGroupChanged( const QString& );
 
 private:
     QString m_userShell;
+    QString m_autologinGroup;
+    QString m_sudoersGroup;
 };
 
 #endif

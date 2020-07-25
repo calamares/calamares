@@ -44,6 +44,31 @@ Config::setUserShell( const QString& shell )
     Calamares::JobQueue::instance()->globalStorage()->insert( "userShell", shell );
 }
 
+static inline void
+setGS( const QString& key, const QString& group )
+{
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( !gs || group.isEmpty() )
+    {
+        return;
+    }
+    gs->insert( key, group );
+}
+
+void
+Config::setAutologinGroup( const QString& group )
+{
+    setGS( QStringLiteral( "autologinGroup" ), group );
+    emit autologinGroupChanged( group );
+}
+
+void
+Config::setSudoersGroup( const QString& group )
+{
+    setGS( QStringLiteral( "sudoersGroup" ), group );
+    emit sudoersGroupChanged( group );
+}
+
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
@@ -55,4 +80,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     // Now it might be explicitly set to empty, which is ok
     setUserShell( shell );
+
+    setAutologinGroup( CalamaresUtils::getString( configurationMap, "autologinGroup" ) );
+    setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
 }
