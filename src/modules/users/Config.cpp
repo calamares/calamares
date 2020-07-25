@@ -20,6 +20,11 @@
 
 #include "Config.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "utils/Logger.h"
+#include "utils/Variant.h"
+
 Config::Config( QObject* parent )
     : QObject( parent )
 {
@@ -28,6 +33,26 @@ Config::Config( QObject* parent )
 Config::~Config() {}
 
 void
-Config::setConfigurationMap( const QVariantMap& )
+Config::setUserShell( const QString& shell )
 {
+    if ( !shell.isEmpty() && !shell.startsWith( '/' ) )
+    {
+        cWarning() << "User shell" << shell << "is not an absolute path.";
+        return;
+    }
+    // The shell is put into GS because the CreateUser job expects it there
+    Calamares::JobQueue::instance()->globalStorage()->insert( "userShell", shell );
+}
+
+
+void
+Config::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
+    if ( configurationMap.contains( "userShell" ) )
+    {
+        shell = CalamaresUtils::getString( configurationMap, "userShell" );
+    }
+    // Now it might be explicitly set to empty, which is ok
+    setUserShell( shell );
 }
