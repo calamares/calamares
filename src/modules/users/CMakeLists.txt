@@ -28,6 +28,7 @@ calamares_add_plugin( users
         UsersPage.cpp
         SetHostNameJob.cpp
         CheckPWQuality.cpp
+        Config.cpp
     UI
         page_usersetup.ui
     RESOURCES
