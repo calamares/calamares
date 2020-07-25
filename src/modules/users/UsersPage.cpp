@@ -409,6 +409,13 @@ UsersPage::validateUsernameText( const QString& textRef )
                     tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
         m_readyUsername = false;
     }
+    else if ( 0 == QString::compare("root", text, Qt::CaseSensitive ) )
+    {
+        labelError( ui->labelUsername,
+                    ui->labelUsernameError,
+                    tr( "'root' is not allowed as user name." ) );
+        m_readyUsername = false;
+    }
     else
     {
         labelOk( ui->labelUsername, ui->labelUsernameError );
