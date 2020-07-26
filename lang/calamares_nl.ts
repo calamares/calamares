@@ -245,7 +245,7 @@
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%n seconde)</numerusform>
-        <numerusform>(%n seconden)</numerusform>
+        <numerusform>(%n seconde(n))</numerusform>
       </translation>
     </message>
     <message>
@@ -528,7 +528,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself. Having a GPT partition table and &lt;strong&gt;fat32 512Mb /boot partition is a must for UEFI installs&lt;/strong&gt;, either use an existing without formatting or create one.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Handmatige partitionering&lt;/strong&gt;&lt;br/&gt;Je kunt zelf de partities creëren of wijzigen. Het hebben van een GPT partititie tabel and &lt;strong&gt;een FAT-32 512 MB /boot partitie is belangrijk voor UEFI installaties&lt;/strong&gt;. Gebruik een bestaande zonder formatteren of maak een nieuwe aan.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
@@ -1426,7 +1426,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="214"/>
       <source>The screen is too small to display the installer.</source>
-      <translation>Het schem is te klein on het installatieprogramma te vertonen.</translation>
+      <translation>Het scherm is te klein on het installatieprogramma te laten zien.</translation>
     </message>
   </context>
   <context>
@@ -1655,12 +1655,12 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Hide license text</source>
-      <translation type="unfinished"/>
+      <translation>Verberg licentietekst</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
       <source>Show the license text</source>
-      <translation type="unfinished"/>
+      <translation>Toon licentietekst</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
@@ -2268,7 +2268,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
       <source>Your Full Name</source>
-      <translation>Volledige Naam</translation>
+      <translation>Volledige naam</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
@@ -2278,7 +2278,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
       <source>login</source>
-      <translation type="unfinished"/>
+      <translation>Gebruikersnaam</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
@@ -2310,13 +2310,13 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
       <source>Password</source>
-      <translation type="unfinished"/>
+      <translation>Wachtwoord</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
       <source>Repeat Password</source>
-      <translation type="unfinished"/>
+      <translation>Herhaal wachtwoord</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
