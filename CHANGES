@@ -31,6 +31,8 @@ This release contains contributions from (alphabetically by first name):
    initial zone and doing extra GeoIP lookups, in the case where the
    live system already does so. #1391
  - The *users* module no longer accepts `root` as a username. #1462
+ - The *keyboardq* module is now more inline with the look of the rest
+   of the Calamares modules, use of a background image is removed.
 
 # 3.2.27 (2020-07-11) #
 
