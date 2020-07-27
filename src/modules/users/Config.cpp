@@ -26,6 +26,7 @@
 #include "utils/String.h"
 #include "utils/Variant.h"
 
+#include <QFile>
 #include <QRegExp>
 
 Config::Config( QObject* parent )
@@ -84,12 +85,56 @@ Config::setLoginName( const QString& login )
     }
 }
 
-static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
+void
+Config::setHostName( const QString& host )
+{
+    if ( host != m_hostName )
+    {
+        m_customHostName = !host.isEmpty();
+        m_hostName = host;
+        emit hostNameChanged( host );
+    }
+}
+
+
+/** @brief Guess the machine's name
+ *
+ * If there is DMI data, use that; otherwise, just call the machine "-pc".
+ * Reads the DMI data just once.
+ */
+static QString
+guessProductName()
+{
+    static bool tried = false;
+    static QString dmiProduct;
+
+    if ( !tried )
+    {
+        // yes validateHostnameText() but these files can be a mess
+        QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
+        QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
+
+        if ( dmiFile.exists() && dmiFile.open( QIODevice::ReadOnly ) )
+        {
+            dmiProduct = QString::fromLocal8Bit( dmiFile.readAll().simplified().data() )
+                             .toLower()
+                             .replace( dmirx, " " )
+                             .remove( ' ' );
+        }
+        if ( dmiProduct.isEmpty() )
+        {
+            dmiProduct = QStringLiteral( "-pc" );
+        }
+        tried = true;
+    }
+    return dmiProduct;
+}
 
 static QString
 makeLoginNameSuggestion( const QStringList& parts )
 {
-    if ( parts.isEmpty() )
+    static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
+    if ( parts.isEmpty() || parts.first().isEmpty() )
     {
         return QString();
     }
@@ -104,6 +149,20 @@ makeLoginNameSuggestion( const QStringList& parts )
     }
 
     return USERNAME_RX.indexIn( usernameSuggestion ) != -1 ? usernameSuggestion : QString();
+}
+
+static QString
+makeHostnameSuggestion( const QStringList& parts )
+{
+    static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
+    if ( parts.isEmpty() || parts.first().isEmpty() )
+    {
+        return QString();
+    }
+
+    QString productName = guessProductName();
+    QString hostnameSuggestion = QStringLiteral( "%1-%2" ).arg( parts.first() ).arg( productName );
+    return HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 ? hostnameSuggestion : QString();
 }
 
 void
@@ -128,9 +187,17 @@ Config::setUserName( const QString& name )
                 emit loginNameChanged( login );
             }
         }
+        if ( !m_customHostName )
+        {
+            QString hostname = makeHostnameSuggestion( cleanParts );
+            if ( !hostname.isEmpty() && hostname != m_hostName )
+            {
+                m_hostName = hostname;
+                emit hostNameChanged( hostname );
+            }
+        }
     }
 }
-
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )

@@ -36,6 +36,8 @@ class Config : public QObject
     Q_PROPERTY( QString userName READ userName WRITE setUserName NOTIFY userNameChanged )
     Q_PROPERTY( QString loginName READ loginName WRITE setLoginName NOTIFY loginNameChanged )
 
+    Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
+
 public:
     Config( QObject* parent = nullptr );
     ~Config();
@@ -59,6 +61,9 @@ public:
     /// The login name of the user
     QString loginName() const { return m_loginName; }
 
+    /// The host name (name for the system)
+    QString hostName() const { return m_hostName; }
+
 public Q_SLOTS:
     /** @brief Sets the user's shell if possible
      *
@@ -80,12 +85,16 @@ public Q_SLOTS:
     /// Sets the login name (flags it as "custom")
     void setLoginName( const QString& login );
 
+    /// Sets the host name (flags it as "custom")
+    void setHostName( const QString& host );
+
 signals:
     void userShellChanged( const QString& );
     void autologinGroupChanged( const QString& );
     void sudoersGroupChanged( const QString& );
     void userNameChanged( const QString& );
     void loginNameChanged( const QString& );
+    void hostNameChanged( const QString& );
 
 private:
     QString m_userShell;
@@ -93,7 +102,9 @@ private:
     QString m_sudoersGroup;
     QString m_fullName;
     QString m_loginName;
+    QString m_hostName;
     bool m_customLoginName = false;
+    bool m_customHostName = false;
 };
 
 #endif
