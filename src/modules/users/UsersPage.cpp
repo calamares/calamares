@@ -92,7 +92,6 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     ui->setupUi( this );
 
     // Connect signals and slots
-    connect( ui->textBoxFullName, &QLineEdit::textEdited, this, &UsersPage::onFullNameTextEdited );
     connect( ui->textBoxUserPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
@@ -121,7 +120,10 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
         checkReady( isReady() );
     } );
 
-    connect( ui->textBoxHostName, &QLineEdit::textEdited, config, &Config::setHostName);
+    connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
+    connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
+
+    connect( ui->textBoxHostName, &QLineEdit::textEdited, config, &Config::setHostName );
     connect( config, &Config::hostNameChanged, ui->textBoxHostName, &QLineEdit::setText );
     connect( config, &Config::hostNameChanged, this, &UsersPage::validateHostnameText );
 
@@ -150,14 +152,14 @@ UsersPage::retranslate()
     if ( Calamares::Settings::instance()->isSetupMode() )
     {
         ui->textBoxLoginName->setToolTip( tr( "<small>If more than one person will "
-                                             "use this computer, you can create multiple "
-                                             "accounts after setup.</small>" ) );
+                                              "use this computer, you can create multiple "
+                                              "accounts after setup.</small>" ) );
     }
     else
     {
         ui->textBoxLoginName->setToolTip( tr( "<small>If more than one person will "
-                                             "use this computer, you can create multiple "
-                                             "accounts after installation.</small>" ) );
+                                              "use this computer, you can create multiple "
+                                              "accounts after installation.</small>" ) );
     }
     // Re-do password checks (with output messages) as well.
     // .. the password-checking methods get their values from the text boxes,
@@ -218,8 +220,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 
     Calamares::Job* j;
     j = new CreateUserJob( m_config->loginName(),
-                           m_config->userName().isEmpty() ? m_config->loginName()
-                                                                 : m_config->userName(),
+                           m_config->fullName().isEmpty() ? m_config->loginName() : m_config->fullName(),
                            ui->checkBoxAutoLogin->isChecked(),
                            defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
@@ -265,16 +266,6 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
     {
         ui->labelFullNameError->clear();
         ui->labelFullName->clear();
-#if 0
-        if ( !m_customUsername )
-        {
-            ui->textBoxUsername->clear();
-        }
-        if ( !m_customHostname )
-        {
-            ui->textBoxHostname->clear();
-        }
-#endif
         m_readyFullName = false;
     }
     else
@@ -285,7 +276,6 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
     }
     checkReady( isReady() );
 }
-
 
 
 void
@@ -321,11 +311,9 @@ UsersPage::validateUsernameText( const QString& textRef )
                     tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
         m_readyUsername = false;
     }
-    else if ( 0 == QString::compare("root", text, Qt::CaseSensitive ) )
+    else if ( 0 == QString::compare( "root", text, Qt::CaseSensitive ) )
     {
-        labelError( ui->labelUsername,
-                    ui->labelUsernameError,
-                    tr( "'root' is not allowed as user name." ) );
+        labelError( ui->labelUsername, ui->labelUsernameError, tr( "'root' is not allowed as user name." ) );
         m_readyUsername = false;
     }
     else

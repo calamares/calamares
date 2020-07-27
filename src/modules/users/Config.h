@@ -33,7 +33,7 @@ class Config : public QObject
     Q_PROPERTY( QString autologinGroup READ autologinGroup WRITE setAutologinGroup NOTIFY autologinGroupChanged )
     Q_PROPERTY( QString sudoersGroup READ sudoersGroup WRITE setSudoersGroup NOTIFY sudoersGroupChanged )
 
-    Q_PROPERTY( QString userName READ userName WRITE setUserName NOTIFY userNameChanged )
+    Q_PROPERTY( QString fullName READ fullName WRITE setFullName NOTIFY fullNameChanged )
     Q_PROPERTY( QString loginName READ loginName WRITE setLoginName NOTIFY loginNameChanged )
 
     Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
@@ -57,7 +57,7 @@ public:
     QString sudoersGroup() const { return m_sudoersGroup; }
 
     /// The full (GECOS) name of the user
-    QString userName() const { return m_fullName; }
+    QString fullName() const { return m_fullName; }
     /// The login name of the user
     QString loginName() const { return m_loginName; }
 
@@ -81,7 +81,7 @@ public Q_SLOTS:
     void setSudoersGroup( const QString& group );
 
     /// Sets the full name, may guess a loginName
-    void setUserName( const QString& name );
+    void setFullName( const QString& name );
     /// Sets the login name (flags it as "custom")
     void setLoginName( const QString& login );
 
@@ -92,7 +92,7 @@ signals:
     void userShellChanged( const QString& );
     void autologinGroupChanged( const QString& );
     void sudoersGroupChanged( const QString& );
-    void userNameChanged( const QString& );
+    void fullNameChanged( const QString& );
     void loginNameChanged( const QString& );
     void hostNameChanged( const QString& );
 

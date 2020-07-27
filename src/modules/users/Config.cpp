@@ -166,14 +166,26 @@ makeHostnameSuggestion( const QStringList& parts )
 }
 
 void
-Config::setUserName( const QString& name )
+Config::setFullName( const QString& name )
 {
-    // TODO: handle "empty" case
-    // TODO: rename to "FullName"
+    if ( name.isEmpty() && !m_fullName.isEmpty() )
+    {
+        if ( !m_customHostName )
+        {
+            setHostName( name );
+        }
+        if ( !m_customLoginName )
+        {
+            setLoginName( name );
+        }
+        m_fullName = name;
+        emit fullNameChanged( name );
+    }
+
     if ( name != m_fullName )
     {
         m_fullName = name;
-        emit userNameChanged( name );
+        emit fullNameChanged( name );
 
         // Build login and hostname, if needed
         QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
