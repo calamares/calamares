@@ -77,7 +77,7 @@ public Q_SLOTS:
 
     /// Sets the full name, may guess a loginName
     void setUserName( const QString& name );
-    /// Sets the login name
+    /// Sets the login name (flags it as "custom")
     void setLoginName( const QString& login );
 
 signals:
@@ -93,6 +93,7 @@ private:
     QString m_sudoersGroup;
     QString m_fullName;
     QString m_loginName;
+    bool m_customLoginName = false;
 };
 
 #endif

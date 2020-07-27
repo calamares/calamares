@@ -23,7 +23,10 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
+#include "utils/String.h"
 #include "utils/Variant.h"
+
+#include <QRegExp>
 
 Config::Config( QObject* parent )
     : QObject( parent )
@@ -75,9 +78,32 @@ Config::setLoginName( const QString& login )
 {
     if ( login != m_loginName )
     {
+        m_customLoginName = !login.isEmpty();
         m_loginName = login;
         emit loginNameChanged( login );
     }
+}
+
+static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
+
+static QString
+makeLoginNameSuggestion( const QStringList& parts )
+{
+    if ( parts.isEmpty() )
+    {
+        return QString();
+    }
+
+    QString usernameSuggestion = parts.first();
+    for ( int i = 1; i < parts.length(); ++i )
+    {
+        if ( !parts.value( i ).isEmpty() )
+        {
+            usernameSuggestion.append( parts.value( i ).at( 0 ) );
+        }
+    }
+
+    return USERNAME_RX.indexIn( usernameSuggestion ) != -1 ? usernameSuggestion : QString();
 }
 
 void
@@ -87,6 +113,21 @@ Config::setUserName( const QString& name )
     {
         m_fullName = name;
         emit userNameChanged( name );
+
+        // Build login and hostname, if needed
+        QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
+        QString cleanName = CalamaresUtils::removeDiacritics( name ).toLower().replace( rx, " " ).simplified();
+        QStringList cleanParts = cleanName.split( ' ' );
+
+        if ( !m_customLoginName )
+        {
+            QString login = makeLoginNameSuggestion( cleanParts );
+            if ( !login.isEmpty() && login != m_loginName )
+            {
+                m_loginName = login;
+                emit loginNameChanged( login );
+            }
+        }
     }
 }
 
