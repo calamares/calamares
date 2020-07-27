@@ -6,11 +6,16 @@ website will have to do for older versions.
 # 3.2.28 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Anke Boersma
+ - apt-ghetto
 
 ## Core ##
  - A new object *Network* is available to QML modules in `io.calamares.core`.
    It exposes network status through the *hasInternet* property.
+ - Welcome to Tajik translations. This has reached sufficient completion
+   to be included in the drop-down list of languages on the welcome page.
+ - Welcome to [Interlingue](https://en.wikipedia.org/wiki/Interlingue).
+   The translation is at an early stage.
 
 ## Modules ##
  - The *locale* module has been completely redone on the inside.
@@ -21,7 +26,11 @@ This release contains contributions from (alphabetically by first name):
    the work of figuring out maps. Note that the map uses several GeoIP
    and GeoData providers and you may need to configure the URLs
    with suitable usernames for those services. #1426
-
+ - Both *locale* and *localeq* can now be configured to use the system's
+   timezone setting -- this can be useful to avoid both hard-coding an
+   initial zone and doing extra GeoIP lookups, in the case where the
+   live system already does so. #1391
+ - The *users* module no longer accepts `root` as a username. #1462
 
 # 3.2.27 (2020-07-11) #
 
