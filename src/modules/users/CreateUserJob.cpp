@@ -12,6 +12,7 @@
 #include "JobQueue.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
+#include "utils/Permissions.h"
 
 #include <QDateTime>
 #include <QDir>
@@ -103,7 +104,7 @@ CreateUserJob::exec()
 
         if ( fileResult )
         {
-            if ( QProcess::execute( "chmod", { "440", fileResult.path() } ) )
+            if ( CalamaresUtils::Permissions::apply( fileResult.path(), 0440 ) )
             {
                 return Calamares::JobResult::error( tr( "Cannot chmod sudoers file." ) );
             }

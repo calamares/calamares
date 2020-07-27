@@ -157,26 +157,9 @@ PreserveFiles::exec()
             {
                 if ( it.perm.isValid() )
                 {
-                    auto s_p = CalamaresUtils::System::instance();
-
-                    int r;
-
-                    r = s_p->targetEnvCall( QStringList { "chown", it.perm.username(), bare_dest } );
-                    if ( r )
+                    if ( !it.perm.apply( CalamaresUtils::System::instance()->targetPath( bare_dest ) ) )
                     {
-                        cWarning() << "Could not chown target" << bare_dest;
-                    }
-
-                    r = s_p->targetEnvCall( QStringList { "chgrp", it.perm.group(), bare_dest } );
-                    if ( r )
-                    {
-                        cWarning() << "Could not chgrp target" << bare_dest;
-                    }
-
-                    r = s_p->targetEnvCall( QStringList { "chmod", it.perm.octal(), bare_dest } );
-                    if ( r )
-                    {
-                        cWarning() << "Could not chmod target" << bare_dest;
+                        cWarning() << "Could not set attributes of" << bare_dest;
                     }
                 }
 
