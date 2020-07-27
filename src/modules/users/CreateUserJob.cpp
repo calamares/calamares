@@ -131,7 +131,8 @@ CreateUserJob::exec()
         }
     }
 
-    // If we're looking to reuse the contents of an existing /home
+    // If we're looking to reuse the contents of an existing /home.
+    // This GS setting comes from the **partitioning** module.
     if ( gs->value( "reuseHome" ).toBool() )
     {
         QString shellFriendlyHome = "/home/" + m_userName;
@@ -141,6 +142,7 @@ CreateUserJob::exec()
             QString backupDirName = "dotfiles_backup_" + QDateTime::currentDateTime().toString( "yyyy-MM-dd_HH-mm-ss" );
             existingHome.mkdir( backupDirName );
 
+            // We need the extra `sh -c` here to ensure that we can expand the shell globs
             CalamaresUtils::System::instance()->targetEnvCall(
                 { "sh", "-c", "mv -f " + shellFriendlyHome + "/.* " + shellFriendlyHome + "/" + backupDirName } );
         }
