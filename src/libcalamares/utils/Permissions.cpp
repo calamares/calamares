@@ -8,8 +8,13 @@
 
 #include "Permissions.h"
 
+#include <sys/stat.h>
+
 #include <QString>
 #include <QStringList>
+
+namespace CalamaresUtils
+{
 
 Permissions::Permissions()
     : m_username()
@@ -64,3 +69,12 @@ Permissions::parsePermissions( QString const& p )
 
     return;
 }
+
+bool
+Permissions::apply( const QString& path, int mode )
+{
+    int r = chmod( path.toUtf8().constData(), mode );
+    return r == 0;
+}
+
+}  // namespace CalamaresUtils

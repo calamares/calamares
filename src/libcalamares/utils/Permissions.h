@@ -13,6 +13,9 @@
 
 #include <QString>
 
+namespace CalamaresUtils
+{
+
 /**
  * @brief The Permissions class takes a QString @p in the form of
  * <user>:<group>:<permissions>, checks it for validity, and makes the three
@@ -56,6 +59,9 @@ public:
      */
     QString octal() const { return QString::number( value(), 8 ); }
 
+    /// chmod(path, mode), returns true on success
+    static bool apply( const QString& path, int mode );
+
 private:
     void parsePermissions( QString const& p );
 
@@ -64,5 +70,7 @@ private:
     int m_value;
     bool m_valid;
 };
+
+}  // namespace CalamaresUtils
 
 #endif  // LIBCALAMARES_PERMISSIONS_H

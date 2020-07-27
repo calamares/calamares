@@ -34,7 +34,7 @@ class PLUGINDLLEXPORT PreserveFiles : public Calamares::CppJob
     {
         QString source;
         QString dest;
-        Permissions perm;
+        CalamaresUtils::Permissions perm;
         ItemType type;
     };
 

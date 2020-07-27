@@ -220,7 +220,7 @@ PreserveFiles::setConfigurationMap( const QVariantMap& configurationMap )
         {
             QString filename = li.toString();
             if ( !filename.isEmpty() )
-                m_items.append( Item { filename, filename, Permissions( defaultPermissions ), ItemType::Path } );
+                m_items.append( Item { filename, filename, CalamaresUtils::Permissions( defaultPermissions ), ItemType::Path } );
             else
             {
                 cDebug() << "Empty filename for preservefiles, item" << c;
@@ -248,7 +248,7 @@ PreserveFiles::setConfigurationMap( const QVariantMap& configurationMap )
             }
             else
             {
-                m_items.append( Item { QString(), dest, Permissions( perm ), t } );
+                m_items.append( Item { QString(), dest, CalamaresUtils::Permissions( perm ), t } );
             }
         }
         else
