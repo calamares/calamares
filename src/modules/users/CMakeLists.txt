@@ -50,6 +50,13 @@ calamares_add_test(
 )
 
 calamares_add_test(
+    userscreatetest
+    SOURCES
+        CreateUserTests.cpp
+        CreateUserJob.cpp
+)
+
+calamares_add_test(
     userstest
     SOURCES
         Tests.cpp
