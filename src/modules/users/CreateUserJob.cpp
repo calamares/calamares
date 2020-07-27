@@ -121,10 +121,10 @@ createUser( const QString& loginName, const QString& fullName, const QString& sh
                    << "-U";
     if ( !shell.isEmpty() )
     {
-        useradd << "-s" << shell;
+        useraddCommand << "-s" << shell;
     }
-    useradd << "-c" << fullName;
-    useradd << loginName;
+    useraddCommand << "-c" << fullName;
+    useraddCommand << loginName;
 #endif
 
     auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( useraddCommand );
