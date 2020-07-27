@@ -65,8 +65,6 @@ public:
      */
     void addPasswordCheck( const QString& key, const QVariant& value );
 
-    ///@brief Hostname as entered / auto-filled
-    QString getHostname() const;
     ///@brief Root password, depends on settings, may be empty
     QString getRootPassword() const;
     ///@brief User name and password
@@ -74,10 +72,7 @@ public:
 
 protected slots:
     void onFullNameTextEdited( const QString& );
-    void fillSuggestions();
-    void onUsernameTextEdited( const QString& );
     void validateUsernameText( const QString& );
-    void onHostnameTextEdited( const QString& );
     void validateHostnameText( const QString& );
     void onPasswordTextChanged( const QString& );
     void onRootPasswordTextChanged( const QString& );
@@ -104,9 +99,7 @@ private:
 
     bool m_readyFullName;
     bool m_readyUsername;
-    bool m_customUsername;
     bool m_readyHostname;
-    bool m_customHostname;
     bool m_readyPassword;
     bool m_readyRootPassword;
 

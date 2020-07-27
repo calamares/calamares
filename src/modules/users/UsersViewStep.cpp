@@ -153,7 +153,7 @@ UsersViewStep::onLeave()
     j = new SetPasswordJob( "root", m_widget->getRootPassword() );
     m_jobs.append( Calamares::job_ptr( j ) );
 
-    j = new SetHostNameJob( m_widget->getHostname(), m_actions );
+    j = new SetHostNameJob( m_config->hostName(), m_actions );
     m_jobs.append( Calamares::job_ptr( j ) );
 }
 

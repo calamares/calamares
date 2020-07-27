@@ -24,9 +24,9 @@
  */
 
 #include "UsersPage.h"
-
 #include "ui_page_usersetup.h"
 
+#include "Config.h"
 #include "CreateUserJob.h"
 #include "SetHostNameJob.h"
 #include "SetPasswordJob.h"
@@ -34,7 +34,6 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Settings.h"
-
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
@@ -94,8 +93,6 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
 
     // Connect signals and slots
     connect( ui->textBoxFullName, &QLineEdit::textEdited, this, &UsersPage::onFullNameTextEdited );
-    connect( ui->textBoxUsername, &QLineEdit::textEdited, this, &UsersPage::onUsernameTextEdited );
-    connect( ui->textBoxHostname, &QLineEdit::textEdited, this, &UsersPage::onHostnameTextEdited );
     connect( ui->textBoxUserPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
@@ -124,8 +121,13 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
         checkReady( isReady() );
     } );
 
-    m_customUsername = false;
-    m_customHostname = false;
+    connect( ui->textBoxHostName, &QLineEdit::textEdited, config, &Config::setHostName);
+    connect( config, &Config::hostNameChanged, ui->textBoxHostName, &QLineEdit::setText );
+    connect( config, &Config::hostNameChanged, this, &UsersPage::validateHostnameText );
+
+    connect( ui->textBoxLoginName, &QLineEdit::textEdited, config, &Config::setLoginName );
+    connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
+    connect( config, &Config::loginNameChanged, this, &UsersPage::validateUsernameText );
 
     setWriteRootPassword( true );
     ui->checkBoxReusePassword->setChecked( true );
@@ -147,13 +149,13 @@ UsersPage::retranslate()
     ui->retranslateUi( this );
     if ( Calamares::Settings::instance()->isSetupMode() )
     {
-        ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
+        ui->textBoxLoginName->setToolTip( tr( "<small>If more than one person will "
                                              "use this computer, you can create multiple "
                                              "accounts after setup.</small>" ) );
     }
     else
     {
-        ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
+        ui->textBoxLoginName->setToolTip( tr( "<small>If more than one person will "
                                              "use this computer, you can create multiple "
                                              "accounts after installation.</small>" ) );
     }
@@ -175,12 +177,6 @@ UsersPage::isReady()
     }
 
     return readyFields && m_readyRootPassword;
-}
-
-QString
-UsersPage::getHostname() const
-{
-    return ui->textBoxHostname->text();
 }
 
 QString
@@ -206,7 +202,7 @@ UsersPage::getRootPassword() const
 QPair< QString, QString >
 UsersPage::getUserPassword() const
 {
-    return QPair< QString, QString >( ui->textBoxUsername->text(), ui->textBoxUserPassword->text() );
+    return QPair< QString, QString >( m_config->loginName(), ui->textBoxUserPassword->text() );
 }
 
 QList< Calamares::job_ptr >
@@ -221,9 +217,9 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
     Calamares::Job* j;
-    j = new CreateUserJob( ui->textBoxUsername->text(),
-                           ui->textBoxFullName->text().isEmpty() ? ui->textBoxUsername->text()
-                                                                 : ui->textBoxFullName->text(),
+    j = new CreateUserJob( m_config->loginName(),
+                           m_config->userName().isEmpty() ? m_config->loginName()
+                                                                 : m_config->userName(),
                            ui->checkBoxAutoLogin->isChecked(),
                            defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
@@ -232,13 +228,13 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
     {
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
     }
-    gs->insert( "hostname", ui->textBoxHostname->text() );
+    gs->insert( "hostname", m_config->hostName() );
     if ( ui->checkBoxAutoLogin->isChecked() )
     {
-        gs->insert( "autologinUser", ui->textBoxUsername->text() );
+        gs->insert( "autologinUser", m_config->loginName() );
     }
 
-    gs->insert( "username", ui->textBoxUsername->text() );
+    gs->insert( "username", m_config->loginName() );
     gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
 
     return list;
@@ -269,6 +265,7 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
     {
         ui->labelFullNameError->clear();
         ui->labelFullName->clear();
+#if 0
         if ( !m_customUsername )
         {
             ui->textBoxUsername->clear();
@@ -277,6 +274,7 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
         {
             ui->textBoxHostname->clear();
         }
+#endif
         m_readyFullName = false;
     }
     else
@@ -284,97 +282,10 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
         ui->labelFullName->setPixmap(
             CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, ui->labelFullName->size() ) );
         m_readyFullName = true;
-        fillSuggestions();
     }
     checkReady( isReady() );
 }
 
-/** @brief Guess the machine's name
- *
- * If there is DMI data, use that; otherwise, just call the machine "-pc".
- * Reads the DMI data just once.
- */
-static QString
-guessProductName()
-{
-    static bool tried = false;
-    static QString dmiProduct;
-
-    if ( !tried )
-    {
-        // yes validateHostnameText() but these files can be a mess
-        QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
-        QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
-
-        if ( dmiFile.exists() && dmiFile.open( QIODevice::ReadOnly ) )
-        {
-            dmiProduct = QString::fromLocal8Bit( dmiFile.readAll().simplified().data() )
-                             .toLower()
-                             .replace( dmirx, " " )
-                             .remove( ' ' );
-        }
-        if ( dmiProduct.isEmpty() )
-        {
-            dmiProduct = QStringLiteral( "-pc" );
-        }
-        tried = true;
-    }
-    return dmiProduct;
-}
-
-void
-UsersPage::fillSuggestions()
-{
-    QString fullName = ui->textBoxFullName->text();
-    QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
-    QString cleanName = CalamaresUtils::removeDiacritics( fullName ).toLower().replace( rx, " " ).simplified();
-    QStringList cleanParts = cleanName.split( ' ' );
-
-    if ( !m_customUsername )
-    {
-        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
-        {
-            QString usernameSuggestion = cleanParts.first();
-            for ( int i = 1; i < cleanParts.length(); ++i )
-            {
-                if ( !cleanParts.value( i ).isEmpty() )
-                {
-                    usernameSuggestion.append( cleanParts.value( i ).at( 0 ) );
-                }
-            }
-            if ( USERNAME_RX.indexIn( usernameSuggestion ) != -1 )
-            {
-                ui->textBoxUsername->setText( usernameSuggestion );
-                validateUsernameText( usernameSuggestion );
-                m_customUsername = false;
-            }
-        }
-    }
-
-    if ( !m_customHostname )
-    {
-        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
-        {
-            QString hostnameSuggestion;
-            QString productName = guessProductName();
-            hostnameSuggestion = QString( "%1-%2" ).arg( cleanParts.first() ).arg( productName );
-            if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
-            {
-                ui->textBoxHostname->setText( hostnameSuggestion );
-                validateHostnameText( hostnameSuggestion );
-                m_customHostname = false;
-            }
-        }
-    }
-}
-
-
-void
-UsersPage::onUsernameTextEdited( const QString& textRef )
-{
-    m_customUsername = true;
-    validateUsernameText( textRef );
-}
 
 
 void
@@ -424,14 +335,6 @@ UsersPage::validateUsernameText( const QString& textRef )
     }
 
     emit checkReady( isReady() );
-}
-
-
-void
-UsersPage::onHostnameTextEdited( const QString& textRef )
-{
-    m_customHostname = true;
-    validateHostnameText( textRef );
 }
 
 

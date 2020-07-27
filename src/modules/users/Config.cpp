@@ -168,6 +168,8 @@ makeHostnameSuggestion( const QStringList& parts )
 void
 Config::setUserName( const QString& name )
 {
+    // TODO: handle "empty" case
+    // TODO: rename to "FullName"
     if ( name != m_fullName )
     {
         m_fullName = name;
