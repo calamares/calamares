@@ -55,7 +55,7 @@ CreateUserJob::prettyStatusMessage() const
     return tr( "Creating user %1." ).arg( m_userName );
 }
 
-static QStringList
+STATICTEST QStringList
 groupsInTargetSystem( const QDir& targetRoot )
 {
     QFileInfo groupsFi( targetRoot.absoluteFilePath( "etc/group" ) );
@@ -66,10 +66,22 @@ groupsInTargetSystem( const QDir& targetRoot )
     }
     QString groupsData = QString::fromLocal8Bit( groupsFile.readAll() );
     QStringList groupsLines = groupsData.split( '\n' );
-    for ( QStringList::iterator it = groupsLines.begin(); it != groupsLines.end(); ++it )
+    QStringList::iterator it = groupsLines.begin();
+    while ( it != groupsLines.end() )
     {
+        if ( it->startsWith( '#' ) )
+        {
+            it = groupsLines.erase( it );
+            continue;
+        }
         int indexOfFirstToDrop = it->indexOf( ':' );
+        if ( indexOfFirstToDrop < 1 )
+        {
+            it = groupsLines.erase( it );
+            continue;
+        }
         it->truncate( indexOfFirstToDrop );
+        ++it;
     }
     return groupsLines;
 }
