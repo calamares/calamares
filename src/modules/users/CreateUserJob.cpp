@@ -93,19 +93,33 @@ ensureGroupsExistInTarget( const QStringList& wantedGroups, const QStringList& a
 static Calamares::JobResult
 createUser( const QString& loginName, const QString& fullName, const QString& shell )
 {
-    QStringList useradd { "useradd", "-m", "-U" };
+    QStringList useraddCommand;
+#ifdef __FreeBSD__
+    useraddCommand << "pw"
+                   << "useradd"
+                   << "-n" << loginName << "-m"
+                   << "-c" << fullName;
+    if ( !shell.isEmpty() )
+    {
+        useraddCommand << "-s" << shell;
+    }
+#else
+    useraddCommand << "useradd"
+                   << "-m"
+                   << "-U";
     if ( !shell.isEmpty() )
     {
         useradd << "-s" << shell;
     }
     useradd << "-c" << fullName;
     useradd << loginName;
+#endif
 
-    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( useradd );
+    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( useraddCommand );
     if ( commandResult.getExitCode() )
     {
         cError() << "useradd failed" << commandResult.getExitCode();
-        return commandResult.explainProcess( useradd, std::chrono::seconds( 10 ) /* bogus timeout */ );
+        return commandResult.explainProcess( useraddCommand, std::chrono::seconds( 10 ) /* bogus timeout */ );
     }
     return Calamares::JobResult::ok();
 }
@@ -113,12 +127,21 @@ createUser( const QString& loginName, const QString& fullName, const QString& sh
 static Calamares::JobResult
 setUserGroups( const QString& loginName, const QStringList& groups )
 {
-    auto commandResult
-        = CalamaresUtils::System::instance()->targetEnvCommand( { "usermod", "-aG", groups.join( ',' ), loginName } );
+    QStringList setgroupsCommand;
+#ifdef __FreeBSD__
+    setgroupsCommand << "pw"
+                     << "usermod"
+                     << "-n" << loginName << "-G" << groups.join( ',' );
+#else
+    setgroupsCommand << "usermod"
+                     << "-aG" << groups.join( ',' ) << loginName;
+#endif
+
+    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( setgroupsCommand );
     if ( commandResult.getExitCode() )
     {
         cError() << "usermod failed" << commandResult.getExitCode();
-        return commandResult.explainProcess( "usermod", std::chrono::seconds( 10 ) /* bogus timeout */ );
+        return commandResult.explainProcess( setgroupsCommand, std::chrono::seconds( 10 ) /* bogus timeout */ );
     }
     return Calamares::JobResult::ok();
 }
