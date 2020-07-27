@@ -90,6 +90,40 @@ ensureGroupsExistInTarget( const QStringList& wantedGroups, const QStringList& a
     }
 }
 
+static Calamares::JobResult
+createUser( const QString& loginName, const QString& fullName, const QString& shell )
+{
+    QStringList useradd { "useradd", "-m", "-U" };
+    if ( !shell.isEmpty() )
+    {
+        useradd << "-s" << shell;
+    }
+    useradd << "-c" << fullName;
+    useradd << loginName;
+
+    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( useradd );
+    if ( commandResult.getExitCode() )
+    {
+        cError() << "useradd failed" << commandResult.getExitCode();
+        return commandResult.explainProcess( useradd, std::chrono::seconds( 10 ) /* bogus timeout */ );
+    }
+    return Calamares::JobResult::ok();
+}
+
+static Calamares::JobResult
+setUserGroups( const QString& loginName, const QStringList& groups )
+{
+    auto commandResult
+        = CalamaresUtils::System::instance()->targetEnvCommand( { "usermod", "-aG", groups.join( ',' ), loginName } );
+    if ( commandResult.getExitCode() )
+    {
+        cError() << "usermod failed" << commandResult.getExitCode();
+        return commandResult.explainProcess( "usermod", std::chrono::seconds( 10 ) /* bogus timeout */ );
+    }
+    return Calamares::JobResult::ok();
+}
+
+
 Calamares::JobResult
 CreateUserJob::exec()
 {
@@ -122,18 +156,12 @@ CreateUserJob::exec()
     cDebug() << "[CREATEUSER]: preparing groups";
 
     QStringList availableGroups = groupsInTargetSystem( destDir );
-    ensureGroupsExistInTarget( m_defaultGroups, availableGroups );
-
-    QString defaultGroups = m_defaultGroups.join( ',' );
-    if ( m_autologin )
+    QStringList groupsForThisUser = m_defaultGroups;
+    if ( m_autologin && gs->contains( "autologinGroup" ) && !gs->value( "autologinGroup" ).toString().isEmpty() )
     {
-        if ( gs->contains( "autologinGroup" ) && !gs->value( "autologinGroup" ).toString().isEmpty() )
-        {
-            QString autologinGroup = gs->value( "autologinGroup" ).toString();
-            ensureGroupsExistInTarget( QStringList { autologinGroup }, availableGroups );
-            defaultGroups.append( QString( ",%1" ).arg( autologinGroup ) );
-        }
+        groupsForThisUser << gs->value( "autologinGroup" ).toString();
     }
+    ensureGroupsExistInTarget( m_defaultGroups, availableGroups );
 
     // If we're looking to reuse the contents of an existing /home.
     // This GS setting comes from the **partitioning** module.
@@ -154,33 +182,21 @@ CreateUserJob::exec()
 
     cDebug() << "[CREATEUSER]: creating user";
 
-    QStringList useradd { "useradd", "-m", "-U" };
-    QString shell = gs->value( "userShell" ).toString();
-    if ( !shell.isEmpty() )
+    auto useraddResult = createUser( m_userName, m_fullName, gs->value( "userShell" ).toString() );
+    if ( !useraddResult )
     {
-        useradd << "-s" << shell;
-    }
-    useradd << "-c" << m_fullName;
-    useradd << m_userName;
-
-    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( useradd );
-    if ( commandResult.getExitCode() )
-    {
-        cError() << "useradd failed" << commandResult.getExitCode();
-        return commandResult.explainProcess( useradd, std::chrono::seconds( 10 ) /* bogus timeout */ );
+        return useraddResult;
     }
 
-    commandResult
-        = CalamaresUtils::System::instance()->targetEnvCommand( { "usermod", "-aG", defaultGroups, m_userName } );
-    if ( commandResult.getExitCode() )
+    auto usergroupsResult = setUserGroups( m_userName, groupsForThisUser );
+    if ( !usergroupsResult )
     {
-        cError() << "usermod failed" << commandResult.getExitCode();
-        return commandResult.explainProcess( "usermod", std::chrono::seconds( 10 ) /* bogus timeout */ );
+        return usergroupsResult;
     }
 
     QString userGroup = QString( "%1:%2" ).arg( m_userName ).arg( m_userName );
     QString homeDir = QString( "/home/%1" ).arg( m_userName );
-    commandResult = CalamaresUtils::System::instance()->targetEnvCommand( { "chown", "-R", userGroup, homeDir } );
+    auto commandResult = CalamaresUtils::System::instance()->targetEnvCommand( { "chown", "-R", userGroup, homeDir } );
     if ( commandResult.getExitCode() )
     {
         cError() << "chown failed" << commandResult.getExitCode();
