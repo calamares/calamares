@@ -81,7 +81,11 @@ ensureGroupsExistInTarget( const QStringList& wantedGroups, const QStringList& a
     {
         if ( !availableGroups.contains( group ) )
         {
+#ifdef __FreeBSD__
+            CalamaresUtils::System::instance()->targetEnvCall( { "pw", "groupadd", "-n", group } );
+#else
             CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", group } );
+#endif
         }
     }
 }
