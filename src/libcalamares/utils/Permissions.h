@@ -49,7 +49,7 @@ public:
      *
      * Bear in mind that input is in octal, but integers are just integers;
      * naively printing them will get decimal results (e.g. 493 from the
-     * input of "root:wheel:755").
+     * input of "root:wheel:755"). This is suitable to pass to apply().
      */
     int value() const { return m_value; }
     /** @brief The value (file permission) as octal string
@@ -59,8 +59,24 @@ public:
      */
     QString octal() const { return QString::number( value(), 8 ); }
 
-    /// chmod(path, mode), returns true on success
+    /** @brief Sets the file-access @p mode of @p path
+     *
+     * Pass a path that is relative (or absolute) in the **host** system.
+     */
     static bool apply( const QString& path, int mode );
+    /** @brief Do both chmod and chown on @p path
+     *
+     * Note that interpreting user- and group- names for applying the
+     * permissions can be different between the host system and the target
+     * system; the target might not have a "live" user, for instance, and
+     * the host won't have the user-entered username for the installation.
+     *
+     * For this call, the names are interpreted in the **host** system.
+     * Pass a path that is relative (or absolute) in the **host** system.
+     */
+    static bool apply( const QString& path, const Permissions& p );
+    /// Convenience method for apply(const QString&, const Permissions& )
+    bool apply( const QString& path ) const { return apply( path, *this ); }
 
 private:
     void parsePermissions( QString const& p );

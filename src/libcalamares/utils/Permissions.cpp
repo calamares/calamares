@@ -8,10 +8,13 @@
 
 #include "Permissions.h"
 
-#include <sys/stat.h>
+#include "Logger.h"
 
+#include <QProcess>
 #include <QString>
 #include <QStringList>
+
+#include <sys/stat.h>
 
 namespace CalamaresUtils
 {
@@ -73,8 +76,49 @@ Permissions::parsePermissions( QString const& p )
 bool
 Permissions::apply( const QString& path, int mode )
 {
-    int r = chmod( path.toUtf8().constData(), mode );
+    // We **don't** use QFile::setPermissions() here because it takes
+    // a Qt flags object that subtlely does not align with POSIX bits.
+    // The Qt flags are **hex** based, so 0x755 for rwxr-xr-x, while
+    // our integer (mode_t) stores **octal** based flags.
+    //
+    // Call chmod(2) directly, that's what Qt would be doing underneath
+    // anyway.
+    int r = chmod( path.toUtf8().constData(), mode_t( mode ) );
+    if ( r )
+    {
+        cDebug() << Logger::SubEntry << "Could not set permissions of" << path << "to" << QString::number( mode, 8 );
+    }
     return r == 0;
 }
+
+bool
+Permissions::apply( const QString& path, const CalamaresUtils::Permissions& p )
+{
+    if ( !p.isValid() )
+    {
+        return false;
+    }
+    bool r = apply( path, p.value() );
+    if ( r )
+    {
+        // We don't use chgrp(2) or chown(2) here because then we need to
+        // go through the users list (which one, target or source?) to get
+        // uid_t and gid_t values to pass to that system call.
+        //
+        // Do a lame cop-out and let the chown(8) utility do the heavy lifting.
+        if ( QProcess::execute( "chown", { p.username() + ':' + p.group(), path } ) )
+        {
+            r = false;
+            cDebug() << Logger::SubEntry << "Could not set owner of" << path << "to"
+                     << ( p.username() + ':' + p.group() );
+        }
+    }
+    if ( r )
+    {
+        /* NOTUSED */ apply( path, p.value() );
+    }
+    return r;
+}
+
 
 }  // namespace CalamaresUtils
