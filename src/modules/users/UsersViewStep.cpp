@@ -161,6 +161,8 @@ UsersViewStep::onLeave()
 void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    // Create the widget, after all .. as long as writing configuration to the UI is needed
+    (void)this->widget();
     using CalamaresUtils::getBool;
 
     if ( configurationMap.contains( "defaultGroups" )
