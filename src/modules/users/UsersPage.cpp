@@ -278,20 +278,9 @@ UsersPage::setWriteRootPassword( bool write )
 
 
 void
-UsersPage::onFullNameTextEdited( const QString& textRef )
+UsersPage::onFullNameTextEdited( const QString& fullName )
 {
-    if ( textRef.isEmpty() )
-    {
-        ui->labelFullNameError->clear();
-        ui->labelFullName->clear();
-        m_readyFullName = false;
-    }
-    else
-    {
-        ui->labelFullName->setPixmap(
-            CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, ui->labelFullName->size() ) );
-        m_readyFullName = true;
-    }
+    labelStatus( ui->labelFullName, ui->labelFullNameError, fullName, QString(), m_readyFullName );
     checkReady( isReady() );
 }
 
