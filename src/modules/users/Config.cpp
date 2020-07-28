@@ -33,6 +33,10 @@
 static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
 static constexpr const int USERNAME_MAX_LENGTH = 31;
 
+static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
+static constexpr const int HOSTNAME_MIN_LENGTH = 2;
+static constexpr const int HOSTNAME_MAX_LENGTH = 63;
+
 Config::Config( QObject* parent )
     : QObject( parent )
 {
@@ -106,15 +110,22 @@ Config::loginNameStatus() const
         return QString();
     }
 
-    QRegExpValidator validateEntireLoginName( USERNAME_RX );
-    QRegExpValidator validateFirstLetter( QRegExp( "[a-z_].*" ) );  // anchors are implicit in QRegExpValidator
-    int pos = -1;
-
     if ( m_loginName.length() > USERNAME_MAX_LENGTH )
     {
         return tr( "Your username is too long." );
     }
+    for ( const QString& badName : forbiddenLoginNames() )
+    {
+        if ( 0 == QString::compare( badName, m_loginName, Qt::CaseSensitive ) )
+        {
+            return tr( "'%1' is not allowed as username." ).arg( badName );
+        }
+    }
+
     QString login( m_loginName );  // make a copy because validate() doesn't take const&
+    QRegExpValidator validateEntireLoginName( USERNAME_RX );
+    QRegExpValidator validateFirstLetter( QRegExp( "[a-z_].*" ) );  // anchors are implicit in QRegExpValidator
+    int pos = -1;
     if ( validateFirstLetter.validate( login, pos ) == QValidator::Invalid )
     {
         return tr( "Your username must start with a lowercase letter or underscore." );
@@ -122,14 +133,6 @@ Config::loginNameStatus() const
     if ( validateEntireLoginName.validate( login, pos ) == QValidator::Invalid )
     {
         return tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." );
-    }
-
-    for ( const QString& badName : forbiddenLoginNames() )
-    {
-        if ( 0 == QString::compare( badName, m_loginName, Qt::CaseSensitive ) )
-        {
-            return tr( "'%1' is not allowed as user name." ).arg( badName );
-        }
     }
 
     return QString();
@@ -143,7 +146,52 @@ Config::setHostName( const QString& host )
         m_customHostName = !host.isEmpty();
         m_hostName = host;
         emit hostNameChanged( host );
+        emit hostNameStatusChanged( hostNameStatus() );
     }
+}
+
+const QStringList&
+Config::forbiddenHostNames()
+{
+    static QStringList forbidden { "localhost" };
+    return forbidden;
+}
+
+QString
+Config::hostNameStatus() const
+{
+    // An empty hostname is "ok", even if it isn't really
+    if ( m_hostName.isEmpty() )
+    {
+        return QString();
+    }
+
+    if ( m_hostName.length() < HOSTNAME_MIN_LENGTH )
+    {
+        return tr( "Your hostname is too short." );
+    }
+    if ( m_hostName.length() > HOSTNAME_MAX_LENGTH )
+    {
+        return tr( "Your hostname is too long." );
+    }
+    for ( const QString& badName : forbiddenHostNames() )
+    {
+        if ( 0 == QString::compare( badName, m_hostName, Qt::CaseSensitive ) )
+        {
+            return tr( "'%1' is not allowed as hostname." ).arg( badName );
+        }
+    }
+
+    QString text = m_hostName;
+    QRegExpValidator val( HOSTNAME_RX );
+    int pos = -1;
+
+    if ( val.validate( text, pos ) == QValidator::Invalid )
+    {
+        return tr( "Only letters, numbers, underscore and hyphen are allowed." );
+    }
+
+    return QString();
 }
 
 
@@ -258,6 +306,7 @@ Config::setFullName( const QString& name )
             {
                 m_hostName = hostname;
                 emit hostNameChanged( hostname );
+                emit hostNameStatusChanged( hostNameStatus() );
             }
         }
     }

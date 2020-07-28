@@ -73,7 +73,7 @@ public:
 protected slots:
     void onFullNameTextEdited( const QString& );
     void reportLoginNameStatus( const QString& );
-    void validateHostnameText( const QString& );
+    void reportHostNameStatus( const QString& );
     void onPasswordTextChanged( const QString& );
     void onRootPasswordTextChanged( const QString& );
 

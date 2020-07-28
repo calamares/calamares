@@ -46,11 +46,6 @@
 #include <QRegExp>
 #include <QRegExpValidator>
 
-static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
-static constexpr const int USERNAME_MAX_LENGTH = 31;
-static constexpr const int HOSTNAME_MIN_LENGTH = 2;
-static constexpr const int HOSTNAME_MAX_LENGTH = 63;
-
 /** @brief How bad is the error for labelError() ? */
 enum class Badness
 {
@@ -75,6 +70,32 @@ labelOk( QLabel* pix, QLabel* label )
 {
     label->clear();
     pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, label->size() ) );
+}
+
+/** Indicate error, update @p ok based on @p status */
+static inline void
+labelStatus( QLabel* pix, QLabel* label, const QString& value, const QString& status, bool& ok )
+{
+    if ( status.isEmpty() )
+    {
+        if ( value.isEmpty() )
+        {
+            // This is different from labelOK() because no checkmark is shown
+            label->clear();
+            pix->clear();
+            ok = false;
+        }
+        else
+        {
+            labelOk( pix, label );
+            ok = true;
+        }
+    }
+    else
+    {
+        labelError( pix, label, status );
+        ok = false;
+    }
 }
 
 UsersPage::UsersPage( Config* config, QWidget* parent )
@@ -124,7 +145,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
 
     connect( ui->textBoxHostName, &QLineEdit::textEdited, config, &Config::setHostName );
     connect( config, &Config::hostNameChanged, ui->textBoxHostName, &QLineEdit::setText );
-    connect( config, &Config::hostNameChanged, this, &UsersPage::validateHostnameText );
+    connect( config, &Config::hostNameStatusChanged, this, &UsersPage::reportHostNameStatus );
 
     connect( ui->textBoxLoginName, &QLineEdit::textEdited, config, &Config::setLoginName );
     connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
@@ -279,64 +300,14 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
 void
 UsersPage::reportLoginNameStatus( const QString& status )
 {
-    if ( status.isEmpty() )
-    {
-        if ( m_config->loginName().isEmpty() )
-        {
-            ui->labelUsernameError->clear();
-            ui->labelUsername->clear();
-            m_readyUsername = false;
-        }
-        else
-        {
-            labelOk( ui->labelUsername, ui->labelUsernameError );
-            m_readyUsername = true;
-        }
-    }
-    else
-    {
-        labelError( ui->labelUsername, ui->labelUsernameError, status );
-        m_readyUsername = false;
-    }
+    labelStatus( ui->labelUsername, ui->labelUsernameError, m_config->loginName(), status, m_readyUsername );
     emit checkReady( isReady() );
 }
 
 void
-UsersPage::validateHostnameText( const QString& textRef )
+UsersPage::reportHostNameStatus( const QString& status )
 {
-    QString text = textRef;
-    QRegExpValidator val( HOSTNAME_RX );
-    int pos = -1;
-
-    if ( text.isEmpty() )
-    {
-        ui->labelHostnameError->clear();
-        ui->labelHostname->clear();
-        m_readyHostname = false;
-    }
-    else if ( text.length() < HOSTNAME_MIN_LENGTH )
-    {
-        labelError( ui->labelHostname, ui->labelHostnameError, tr( "Your hostname is too short." ) );
-        m_readyHostname = false;
-    }
-    else if ( text.length() > HOSTNAME_MAX_LENGTH )
-    {
-        labelError( ui->labelHostname, ui->labelHostnameError, tr( "Your hostname is too long." ) );
-        m_readyHostname = false;
-    }
-    else if ( val.validate( text, pos ) == QValidator::Invalid )
-    {
-        labelError( ui->labelHostname,
-                    ui->labelHostnameError,
-                    tr( "Only letters, numbers, underscore and hyphen are allowed." ) );
-        m_readyHostname = false;
-    }
-    else
-    {
-        labelOk( ui->labelHostname, ui->labelHostnameError );
-        m_readyHostname = true;
-    }
-
+    labelStatus( ui->labelHostname, ui->labelHostnameError, m_config->hostName(), status, m_readyHostname );
     emit checkReady( isReady() );
 }
 

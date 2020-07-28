@@ -38,6 +38,7 @@ class Config : public QObject
     Q_PROPERTY( QString loginNameStatus READ loginNameStatus NOTIFY loginNameStatusChanged )
 
     Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
+    Q_PROPERTY( QString hostNameStatus READ hostNameStatus NOTIFY hostNameStatusChanged )
 
 public:
     Config( QObject* parent = nullptr );
@@ -66,8 +67,11 @@ public:
 
     /// The host name (name for the system)
     QString hostName() const { return m_hostName; }
+    /// Status message about hostname -- empty for "ok"
+    QString hostNameStatus() const;
 
     static const QStringList& forbiddenLoginNames();
+    static const QStringList& forbiddenHostNames();
 
 public Q_SLOTS:
     /** @brief Sets the user's shell if possible
@@ -101,6 +105,7 @@ signals:
     void loginNameChanged( const QString& );
     void loginNameStatusChanged( const QString& );
     void hostNameChanged( const QString& );
+    void hostNameStatusChanged( const QString& );
 
 private:
     QString m_userShell;
