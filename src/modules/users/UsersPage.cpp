@@ -43,8 +43,6 @@
 #include <QFile>
 #include <QLabel>
 #include <QLineEdit>
-#include <QRegExp>
-#include <QRegExpValidator>
 
 /** @brief How bad is the error for labelError() ? */
 enum class Badness

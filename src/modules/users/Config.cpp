@@ -221,7 +221,7 @@ guessProductName()
         }
         if ( dmiProduct.isEmpty() )
         {
-            dmiProduct = QStringLiteral( "-pc" );
+            dmiProduct = QStringLiteral( "pc" );
         }
         tried = true;
     }
