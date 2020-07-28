@@ -149,6 +149,11 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
     connect( config, &Config::loginNameStatusChanged, this, &UsersPage::reportLoginNameStatus );
 
+    connect( ui->checkBoxDoAutoLogin, &QCheckBox::stateChanged, this, [this]( int checked ) {
+        m_config->setAutoLogin( checked != Qt::Unchecked );
+    } );
+    connect( config, &Config::autoLoginChanged, ui->checkBoxDoAutoLogin, &QCheckBox::setChecked );
+
     setWriteRootPassword( true );
     ui->checkBoxReusePassword->setChecked( true );
     ui->checkBoxValidatePassword->setChecked( true );
@@ -239,7 +244,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
     Calamares::Job* j;
     j = new CreateUserJob( m_config->loginName(),
                            m_config->fullName().isEmpty() ? m_config->loginName() : m_config->fullName(),
-                           ui->checkBoxAutoLogin->isChecked(),
+                           m_config->doAutoLogin(),
                            defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
 
@@ -248,7 +253,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
     }
     gs->insert( "hostname", m_config->hostName() );
-    if ( ui->checkBoxAutoLogin->isChecked() )
+    if ( m_config->doAutoLogin() )
     {
         gs->insert( "autologinUser", m_config->loginName() );
     }
@@ -375,13 +380,6 @@ void
 UsersPage::setValidatePasswordDefault( bool checked )
 {
     ui->checkBoxValidatePassword->setChecked( checked );
-    emit checkReady( isReady() );
-}
-
-void
-UsersPage::setAutologinDefault( bool checked )
-{
-    ui->checkBoxAutoLogin->setChecked( checked );
     emit checkReady( isReady() );
 }
 

@@ -313,6 +313,16 @@ Config::setFullName( const QString& name )
 }
 
 void
+Config::setAutoLogin( bool b )
+{
+    if ( b != m_doAutoLogin )
+    {
+        m_doAutoLogin = b;
+        emit autoLoginChanged( b );
+    }
+}
+
+void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
     QString shell( QLatin1String( "/bin/bash" ) );  // as if it's not set at all
@@ -325,4 +335,6 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     setAutologinGroup( CalamaresUtils::getString( configurationMap, "autologinGroup" ) );
     setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
+
+    m_doAutoLogin = CalamaresUtils::getBool( configurationMap, "doAutologin", false );
 }

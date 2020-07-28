@@ -180,7 +180,6 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", setRootPassword );
 
     m_widget->setWriteRootPassword( setRootPassword );
-    m_widget->setAutologinDefault( getBool( configurationMap, "doAutologin", false ) );
     m_widget->setReusePasswordDefault( getBool( configurationMap, "doReusePassword", false ) );
 
     if ( configurationMap.contains( "passwordRequirements" )

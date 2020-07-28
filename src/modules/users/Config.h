@@ -33,6 +33,8 @@ class Config : public QObject
     Q_PROPERTY( QString autologinGroup READ autologinGroup WRITE setAutologinGroup NOTIFY autologinGroupChanged )
     Q_PROPERTY( QString sudoersGroup READ sudoersGroup WRITE setSudoersGroup NOTIFY sudoersGroupChanged )
 
+    Q_PROPERTY( bool doAutoLogin READ doAutoLogin WRITE setAutoLogin NOTIFY autoLoginChanged )
+
     Q_PROPERTY( QString fullName READ fullName WRITE setFullName NOTIFY fullNameChanged )
     Q_PROPERTY( QString loginName READ loginName WRITE setLoginName NOTIFY loginNameChanged )
     Q_PROPERTY( QString loginNameStatus READ loginNameStatus NOTIFY loginNameStatusChanged )
@@ -70,6 +72,9 @@ public:
     /// Status message about hostname -- empty for "ok"
     QString hostNameStatus() const;
 
+    /// Should the user be automatically logged-in?
+    bool doAutoLogin() const { return m_doAutoLogin; }
+
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();
 
@@ -97,6 +102,9 @@ public Q_SLOTS:
     /// Sets the host name (flags it as "custom")
     void setHostName( const QString& host );
 
+    /// Sets the autologin flag
+    void setAutoLogin( bool b );
+
 signals:
     void userShellChanged( const QString& );
     void autologinGroupChanged( const QString& );
@@ -106,6 +114,7 @@ signals:
     void loginNameStatusChanged( const QString& );
     void hostNameChanged( const QString& );
     void hostNameStatusChanged( const QString& );
+    void autoLoginChanged( bool );
 
 private:
     QString m_userShell;
@@ -114,6 +123,8 @@ private:
     QString m_fullName;
     QString m_loginName;
     QString m_hostName;
+    bool m_doAutoLogin = false;
+
     bool m_customLoginName = false;
     bool m_customHostName = false;
 };

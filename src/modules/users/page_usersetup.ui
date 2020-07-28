@@ -456,7 +456,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBoxAutoLogin">
+    <widget class="QCheckBox" name="checkBoxDoAutoLogin">
      <property name="text">
       <string>Log in automatically without asking for the password.</string>
      </property>
