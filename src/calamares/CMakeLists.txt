@@ -34,9 +34,8 @@ include_directories(
 # Translations
 include( CalamaresAddTranslations )
 add_calamares_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
-qt5_add_resources( calamaresRc calamares.qrc )
 
-add_executable( calamares_bin ${calamaresSources} ${calamaresRc} ${trans_outfile} )
+add_executable( calamares_bin ${calamaresSources} calamares.qrc ${trans_outfile} )
 target_include_directories( calamares_bin PRIVATE ${CMAKE_SOURCE_DIR} )
 set_target_properties(calamares_bin
     PROPERTIES
@@ -45,6 +44,7 @@ set_target_properties(calamares_bin
 )
 calamares_automoc( calamares_bin )
 calamares_autouic( calamares_bin )
+calamares_autorcc( calamares_bin )
 
 target_link_libraries( calamares_bin
     PRIVATE
