@@ -105,7 +105,6 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     , m_readyHostname( false )
     , m_readyPassword( false )
     , m_readyRootPassword( false )
-    , m_writeRootPassword( true )
 {
     ui->setupUi( this );
 
@@ -119,22 +118,19 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
         onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
         checkReady( isReady() );
     } );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( const int checked ) {
         /* When "reuse" is checked, hide the fields for explicitly
          * entering the root password. However, if we're going to
          * disable the root password anyway, hide them all regardless of
          * the checkbox -- so when writeRoot is false, checked needs
          * to be true, to hide them all.
          */
-        if ( !m_writeRootPassword )
-        {
-            checked = true;
-        }
-        ui->labelChooseRootPassword->setVisible( !checked );
-        ui->labelRootPassword->setVisible( !checked );
-        ui->labelRootPasswordError->setVisible( !checked );
-        ui->textBoxRootPassword->setVisible( !checked );
-        ui->textBoxVerifiedRootPassword->setVisible( !checked );
+        const bool visible = m_config->writeRootPassword() ? !checked : false;
+        ui->labelChooseRootPassword->setVisible( visible );
+        ui->labelRootPassword->setVisible( visible );
+        ui->labelRootPasswordError->setVisible( visible );
+        ui->textBoxRootPassword->setVisible( visible );
+        ui->textBoxVerifiedRootPassword->setVisible( visible );
         checkReady( isReady() );
     } );
 
@@ -154,7 +150,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     } );
     connect( config, &Config::autoLoginChanged, ui->checkBoxDoAutoLogin, &QCheckBox::setChecked );
 
-    setWriteRootPassword( true );
+    ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
     ui->checkBoxReusePassword->setChecked( true );
     ui->checkBoxValidatePassword->setChecked( true );
 
@@ -196,18 +192,16 @@ bool
 UsersPage::isReady()
 {
     bool readyFields = m_readyFullName && m_readyHostname && m_readyPassword && m_readyUsername;
-    if ( !m_writeRootPassword || ui->checkBoxReusePassword->isChecked() )
-    {
-        return readyFields;
-    }
-
-    return readyFields && m_readyRootPassword;
+    // If we're going to write a root password, we need a valid one (or reuse the user's password)
+    readyFields
+        &= m_config->writeRootPassword() ? ( m_readyRootPassword || ui->checkBoxReusePassword->isChecked() ) : true;
+    return readyFields;
 }
 
 QString
 UsersPage::getRootPassword() const
 {
-    if ( m_writeRootPassword )
+    if ( m_config->writeRootPassword() )
     {
         if ( ui->checkBoxReusePassword->isChecked() )
         {
@@ -248,7 +242,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
                            defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
 
-    if ( m_writeRootPassword )
+    if ( m_config->writeRootPassword() )
     {
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
     }
@@ -271,14 +265,6 @@ UsersPage::onActivate()
     ui->textBoxFullName->setFocus();
     onPasswordTextChanged( QString() );
     onRootPasswordTextChanged( QString() );
-}
-
-
-void
-UsersPage::setWriteRootPassword( bool write )
-{
-    m_writeRootPassword = write;
-    ui->checkBoxReusePassword->setVisible( write );
 }
 
 

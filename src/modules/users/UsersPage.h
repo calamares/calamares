@@ -51,7 +51,6 @@ public:
 
     void onActivate();
 
-    void setWriteRootPassword( bool show );
     void setPasswordCheckboxVisible( bool visible );
     void setValidatePasswordDefault( bool checked );
     void setReusePasswordDefault( bool checked );
@@ -101,8 +100,6 @@ private:
     bool m_readyHostname;
     bool m_readyPassword;
     bool m_readyRootPassword;
-
-    bool m_writeRootPassword;
 };
 
 #endif  // USERSPAGE_H

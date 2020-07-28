@@ -176,10 +176,6 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         m_defaultGroups = QStringList { "lp", "video", "network", "storage", "wheel", "audio" };
     }
 
-    bool setRootPassword = getBool( configurationMap, "setRootPassword", true );
-    Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", setRootPassword );
-
-    m_widget->setWriteRootPassword( setRootPassword );
     m_widget->setReusePasswordDefault( getBool( configurationMap, "doReusePassword", false ) );
 
     if ( configurationMap.contains( "passwordRequirements" )

@@ -337,4 +337,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
 
     m_doAutoLogin = CalamaresUtils::getBool( configurationMap, "doAutologin", false );
+
+    m_writeRootPassword = CalamaresUtils::getBool( configurationMap, "setRootPassword", true );
+    Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", m_writeRootPassword );
 }

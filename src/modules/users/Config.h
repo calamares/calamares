@@ -74,6 +74,8 @@ public:
 
     /// Should the user be automatically logged-in?
     bool doAutoLogin() const { return m_doAutoLogin; }
+    /// Should the root password be written (if false, no password is set and the root account is disabled for login)
+    bool writeRootPassword() const { return m_writeRootPassword; }
 
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();
@@ -124,6 +126,7 @@ private:
     QString m_loginName;
     QString m_hostName;
     bool m_doAutoLogin = false;
+    bool m_writeRootPassword = true;
 
     bool m_customLoginName = false;
     bool m_customHostName = false;
