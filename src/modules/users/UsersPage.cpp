@@ -25,16 +25,12 @@
 
 #include "UsersPage.h"
 
+#include "Config.h"
 #include "ui_page_usersetup.h"
-
-#include "CreateUserJob.h"
-#include "SetHostNameJob.h"
-#include "SetPasswordJob.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Settings.h"
-
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
@@ -44,14 +40,6 @@
 #include <QFile>
 #include <QLabel>
 #include <QLineEdit>
-#include <QRegExp>
-#include <QRegExpValidator>
-
-static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
-static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
-static constexpr const int USERNAME_MAX_LENGTH = 31;
-static constexpr const int HOSTNAME_MIN_LENGTH = 2;
-static constexpr const int HOSTNAME_MAX_LENGTH = 63;
 
 /** @brief How bad is the error for labelError() ? */
 enum class Badness
@@ -79,54 +67,87 @@ labelOk( QLabel* pix, QLabel* label )
     pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, label->size() ) );
 }
 
-UsersPage::UsersPage( QWidget* parent )
+/** Indicate error, update @p ok based on @p status */
+static inline void
+labelStatus( QLabel* pix, QLabel* label, const QString& value, const QString& status, bool& ok )
+{
+    if ( status.isEmpty() )
+    {
+        if ( value.isEmpty() )
+        {
+            // This is different from labelOK() because no checkmark is shown
+            label->clear();
+            pix->clear();
+            ok = false;
+        }
+        else
+        {
+            labelOk( pix, label );
+            ok = true;
+        }
+    }
+    else
+    {
+        labelError( pix, label, status );
+        ok = false;
+    }
+}
+
+UsersPage::UsersPage( Config* config, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_UserSetup )
+    , m_config( config )
     , m_readyFullName( false )
     , m_readyUsername( false )
     , m_readyHostname( false )
     , m_readyPassword( false )
     , m_readyRootPassword( false )
-    , m_writeRootPassword( true )
 {
     ui->setupUi( this );
 
     // Connect signals and slots
-    connect( ui->textBoxFullName, &QLineEdit::textEdited, this, &UsersPage::onFullNameTextEdited );
-    connect( ui->textBoxUsername, &QLineEdit::textEdited, this, &UsersPage::onUsernameTextEdited );
-    connect( ui->textBoxHostname, &QLineEdit::textEdited, this, &UsersPage::onHostnameTextEdited );
     connect( ui->textBoxUserPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
     connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [ this ]( int ) {
+    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int ) {
         onPasswordTextChanged( ui->textBoxUserPassword->text() );
         onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
         checkReady( isReady() );
     } );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [ this ]( int checked ) {
+    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( const int checked ) {
         /* When "reuse" is checked, hide the fields for explicitly
          * entering the root password. However, if we're going to
          * disable the root password anyway, hide them all regardless of
          * the checkbox -- so when writeRoot is false, checked needs
          * to be true, to hide them all.
          */
-        if ( !m_writeRootPassword )
-        {
-            checked = true;
-        }
-        ui->labelChooseRootPassword->setVisible( !checked );
-        ui->labelRootPassword->setVisible( !checked );
-        ui->labelRootPasswordError->setVisible( !checked );
-        ui->textBoxRootPassword->setVisible( !checked );
-        ui->textBoxVerifiedRootPassword->setVisible( !checked );
+        const bool visible = m_config->writeRootPassword() ? !checked : false;
+        ui->labelChooseRootPassword->setVisible( visible );
+        ui->labelRootPassword->setVisible( visible );
+        ui->labelRootPasswordError->setVisible( visible );
+        ui->textBoxRootPassword->setVisible( visible );
+        ui->textBoxVerifiedRootPassword->setVisible( visible );
         checkReady( isReady() );
     } );
 
-    m_customUsername = false;
-    m_customHostname = false;
+    connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
+    connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
 
-    setWriteRootPassword( true );
+    connect( ui->textBoxHostName, &QLineEdit::textEdited, config, &Config::setHostName );
+    connect( config, &Config::hostNameChanged, ui->textBoxHostName, &QLineEdit::setText );
+    connect( config, &Config::hostNameStatusChanged, this, &UsersPage::reportHostNameStatus );
+
+    connect( ui->textBoxLoginName, &QLineEdit::textEdited, config, &Config::setLoginName );
+    connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
+    connect( config, &Config::loginNameStatusChanged, this, &UsersPage::reportLoginNameStatus );
+
+    connect( ui->checkBoxDoAutoLogin, &QCheckBox::stateChanged, this, [this]( int checked ) {
+        m_config->setAutoLogin( checked != Qt::Unchecked );
+    } );
+    connect( config, &Config::autoLoginChanged, ui->checkBoxDoAutoLogin, &QCheckBox::setChecked );
+
+    ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
     ui->checkBoxReusePassword->setChecked( true );
     ui->checkBoxValidatePassword->setChecked( true );
 
@@ -146,15 +167,15 @@ UsersPage::retranslate()
     ui->retranslateUi( this );
     if ( Calamares::Settings::instance()->isSetupMode() )
     {
-        ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
-                                             "use this computer, you can create multiple "
-                                             "accounts after setup.</small>" ) );
+        ui->textBoxLoginName->setToolTip( tr( "<small>If more than one person will "
+                                              "use this computer, you can create multiple "
+                                              "accounts after setup.</small>" ) );
     }
     else
     {
-        ui->textBoxUsername->setToolTip( tr( "<small>If more than one person will "
-                                             "use this computer, you can create multiple "
-                                             "accounts after installation.</small>" ) );
+        ui->textBoxLoginName->setToolTip( tr( "<small>If more than one person will "
+                                              "use this computer, you can create multiple "
+                                              "accounts after installation.</small>" ) );
     }
     // Re-do password checks (with output messages) as well.
     // .. the password-checking methods get their values from the text boxes,
@@ -165,27 +186,19 @@ UsersPage::retranslate()
 
 
 bool
-UsersPage::isReady()
+UsersPage::isReady() const
 {
     bool readyFields = m_readyFullName && m_readyHostname && m_readyPassword && m_readyUsername;
-    if ( !m_writeRootPassword || ui->checkBoxReusePassword->isChecked() )
-    {
-        return readyFields;
-    }
-
-    return readyFields && m_readyRootPassword;
-}
-
-QString
-UsersPage::getHostname() const
-{
-    return ui->textBoxHostname->text();
+    // If we're going to write a root password, we need a valid one (or reuse the user's password)
+    readyFields
+        &= m_config->writeRootPassword() ? ( m_readyRootPassword || ui->checkBoxReusePassword->isChecked() ) : true;
+    return readyFields;
 }
 
 QString
 UsersPage::getRootPassword() const
 {
-    if ( m_writeRootPassword )
+    if ( m_config->writeRootPassword() )
     {
         if ( ui->checkBoxReusePassword->isChecked() )
         {
@@ -205,42 +218,24 @@ UsersPage::getRootPassword() const
 QPair< QString, QString >
 UsersPage::getUserPassword() const
 {
-    return QPair< QString, QString >( ui->textBoxUsername->text(), ui->textBoxUserPassword->text() );
+    return QPair< QString, QString >( m_config->loginName(), ui->textBoxUserPassword->text() );
 }
 
-QList< Calamares::job_ptr >
-UsersPage::createJobs( const QStringList& defaultGroupsList )
+void
+UsersPage::fillGlobalStorage() const
 {
-    QList< Calamares::job_ptr > list;
     if ( !isReady() )
     {
-        return list;
+        return;
     }
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    Calamares::Job* j;
-    j = new CreateUserJob( ui->textBoxUsername->text(),
-                           ui->textBoxFullName->text().isEmpty() ? ui->textBoxUsername->text()
-                                                                 : ui->textBoxFullName->text(),
-                           ui->checkBoxAutoLogin->isChecked(),
-                           defaultGroupsList );
-    list.append( Calamares::job_ptr( j ) );
-
-    if ( m_writeRootPassword )
+    if ( m_config->writeRootPassword() )
     {
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
     }
-    gs->insert( "hostname", ui->textBoxHostname->text() );
-    if ( ui->checkBoxAutoLogin->isChecked() )
-    {
-        gs->insert( "autologinUser", ui->textBoxUsername->text() );
-    }
-
-    gs->insert( "username", ui->textBoxUsername->text() );
     gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
-
-    return list;
 }
 
 
@@ -254,222 +249,23 @@ UsersPage::onActivate()
 
 
 void
-UsersPage::setWriteRootPassword( bool write )
+UsersPage::onFullNameTextEdited( const QString& fullName )
 {
-    m_writeRootPassword = write;
-    ui->checkBoxReusePassword->setVisible( write );
-}
-
-
-void
-UsersPage::onFullNameTextEdited( const QString& textRef )
-{
-    if ( textRef.isEmpty() )
-    {
-        ui->labelFullNameError->clear();
-        ui->labelFullName->clear();
-        if ( !m_customUsername )
-        {
-            ui->textBoxUsername->clear();
-        }
-        if ( !m_customHostname )
-        {
-            ui->textBoxHostname->clear();
-        }
-        m_readyFullName = false;
-    }
-    else
-    {
-        ui->labelFullName->setPixmap(
-            CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, ui->labelFullName->size() ) );
-        m_readyFullName = true;
-        fillSuggestions();
-    }
+    labelStatus( ui->labelFullName, ui->labelFullNameError, fullName, QString(), m_readyFullName );
     checkReady( isReady() );
 }
 
-/** @brief Guess the machine's name
- *
- * If there is DMI data, use that; otherwise, just call the machine "-pc".
- * Reads the DMI data just once.
- */
-static QString
-guessProductName()
-{
-    static bool tried = false;
-    static QString dmiProduct;
-
-    if ( !tried )
-    {
-        // yes validateHostnameText() but these files can be a mess
-        QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
-        QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
-
-        if ( dmiFile.exists() && dmiFile.open( QIODevice::ReadOnly ) )
-        {
-            dmiProduct = QString::fromLocal8Bit( dmiFile.readAll().simplified().data() )
-                             .toLower()
-                             .replace( dmirx, " " )
-                             .remove( ' ' );
-        }
-        if ( dmiProduct.isEmpty() )
-        {
-            dmiProduct = QStringLiteral( "-pc" );
-        }
-        tried = true;
-    }
-    return dmiProduct;
-}
-
 void
-UsersPage::fillSuggestions()
+UsersPage::reportLoginNameStatus( const QString& status )
 {
-    QString fullName = ui->textBoxFullName->text();
-    QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
-    QString cleanName = CalamaresUtils::removeDiacritics( fullName ).toLower().replace( rx, " " ).simplified();
-    QStringList cleanParts = cleanName.split( ' ' );
-
-    if ( !m_customUsername )
-    {
-        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
-        {
-            QString usernameSuggestion = cleanParts.first();
-            for ( int i = 1; i < cleanParts.length(); ++i )
-            {
-                if ( !cleanParts.value( i ).isEmpty() )
-                {
-                    usernameSuggestion.append( cleanParts.value( i ).at( 0 ) );
-                }
-            }
-            if ( USERNAME_RX.indexIn( usernameSuggestion ) != -1 )
-            {
-                ui->textBoxUsername->setText( usernameSuggestion );
-                validateUsernameText( usernameSuggestion );
-                m_customUsername = false;
-            }
-        }
-    }
-
-    if ( !m_customHostname )
-    {
-        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
-        {
-            QString hostnameSuggestion;
-            QString productName = guessProductName();
-            hostnameSuggestion = QString( "%1-%2" ).arg( cleanParts.first() ).arg( productName );
-            if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
-            {
-                ui->textBoxHostname->setText( hostnameSuggestion );
-                validateHostnameText( hostnameSuggestion );
-                m_customHostname = false;
-            }
-        }
-    }
-}
-
-
-void
-UsersPage::onUsernameTextEdited( const QString& textRef )
-{
-    m_customUsername = true;
-    validateUsernameText( textRef );
-}
-
-
-void
-UsersPage::validateUsernameText( const QString& textRef )
-{
-    QString text( textRef );
-    QRegExpValidator val_whole( USERNAME_RX );
-    QRegExpValidator val_start( QRegExp( "[a-z_].*" ) );  // anchors are implicit in QRegExpValidator
-    int pos = -1;
-
-    if ( text.isEmpty() )
-    {
-        ui->labelUsernameError->clear();
-        ui->labelUsername->clear();
-        m_readyUsername = false;
-    }
-    else if ( text.length() > USERNAME_MAX_LENGTH )
-    {
-        labelError( ui->labelUsername, ui->labelUsernameError, tr( "Your username is too long." ) );
-        m_readyUsername = false;
-    }
-    else if ( val_start.validate( text, pos ) == QValidator::Invalid )
-    {
-        labelError( ui->labelUsername,
-                    ui->labelUsernameError,
-                    tr( "Your username must start with a lowercase letter or underscore." ) );
-        m_readyUsername = false;
-    }
-    else if ( val_whole.validate( text, pos ) == QValidator::Invalid )
-    {
-        labelError( ui->labelUsername,
-                    ui->labelUsernameError,
-                    tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
-        m_readyUsername = false;
-    }
-    else if ( 0 == QString::compare("root", text, Qt::CaseSensitive ) )
-    {
-        labelError( ui->labelUsername,
-                    ui->labelUsernameError,
-                    tr( "'root' is not allowed as user name." ) );
-        m_readyUsername = false;
-    }
-    else
-    {
-        labelOk( ui->labelUsername, ui->labelUsernameError );
-        m_readyUsername = true;
-    }
-
+    labelStatus( ui->labelUsername, ui->labelUsernameError, m_config->loginName(), status, m_readyUsername );
     emit checkReady( isReady() );
 }
 
-
 void
-UsersPage::onHostnameTextEdited( const QString& textRef )
+UsersPage::reportHostNameStatus( const QString& status )
 {
-    m_customHostname = true;
-    validateHostnameText( textRef );
-}
-
-
-void
-UsersPage::validateHostnameText( const QString& textRef )
-{
-    QString text = textRef;
-    QRegExpValidator val( HOSTNAME_RX );
-    int pos = -1;
-
-    if ( text.isEmpty() )
-    {
-        ui->labelHostnameError->clear();
-        ui->labelHostname->clear();
-        m_readyHostname = false;
-    }
-    else if ( text.length() < HOSTNAME_MIN_LENGTH )
-    {
-        labelError( ui->labelHostname, ui->labelHostnameError, tr( "Your hostname is too short." ) );
-        m_readyHostname = false;
-    }
-    else if ( text.length() > HOSTNAME_MAX_LENGTH )
-    {
-        labelError( ui->labelHostname, ui->labelHostnameError, tr( "Your hostname is too long." ) );
-        m_readyHostname = false;
-    }
-    else if ( val.validate( text, pos ) == QValidator::Invalid )
-    {
-        labelError( ui->labelHostname,
-                    ui->labelHostnameError,
-                    tr( "Only letters, numbers, underscore and hyphen are allowed." ) );
-        m_readyHostname = false;
-    }
-    else
-    {
-        labelOk( ui->labelHostname, ui->labelHostnameError );
-        m_readyHostname = true;
-    }
-
+    labelStatus( ui->labelHostname, ui->labelHostnameError, m_config->hostName(), status, m_readyHostname );
     emit checkReady( isReady() );
 }
 
@@ -550,13 +346,6 @@ void
 UsersPage::setValidatePasswordDefault( bool checked )
 {
     ui->checkBoxValidatePassword->setChecked( checked );
-    emit checkReady( isReady() );
-}
-
-void
-UsersPage::setAutologinDefault( bool checked )
-{
-    ui->checkBoxAutoLogin->setChecked( checked );
     emit checkReady( isReady() );
 }
 
