@@ -25,7 +25,6 @@
 #define USERSPAGE_H
 
 #include "CheckPWQuality.h"
-#include "Job.h"
 
 #include <QWidget>
 
@@ -45,9 +44,9 @@ public:
     explicit UsersPage( Config* config, QWidget* parent = nullptr );
     virtual ~UsersPage();
 
-    bool isReady();
+    bool isReady() const;
 
-    Calamares::JobList createJobs( const QStringList& defaultGroupsList );
+    void fillGlobalStorage() const;
 
     void onActivate();
 

@@ -24,12 +24,9 @@
  */
 
 #include "UsersPage.h"
-#include "ui_page_usersetup.h"
 
 #include "Config.h"
-#include "CreateUserJob.h"
-#include "SetHostNameJob.h"
-#include "SetPasswordJob.h"
+#include "ui_page_usersetup.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -189,7 +186,7 @@ UsersPage::retranslate()
 
 
 bool
-UsersPage::isReady()
+UsersPage::isReady() const
 {
     bool readyFields = m_readyFullName && m_readyHostname && m_readyPassword && m_readyUsername;
     // If we're going to write a root password, we need a valid one (or reuse the user's password)
@@ -224,38 +221,21 @@ UsersPage::getUserPassword() const
     return QPair< QString, QString >( m_config->loginName(), ui->textBoxUserPassword->text() );
 }
 
-QList< Calamares::job_ptr >
-UsersPage::createJobs( const QStringList& defaultGroupsList )
+void
+UsersPage::fillGlobalStorage() const
 {
-    QList< Calamares::job_ptr > list;
     if ( !isReady() )
     {
-        return list;
+        return;
     }
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-
-    Calamares::Job* j;
-    j = new CreateUserJob( m_config->loginName(),
-                           m_config->fullName().isEmpty() ? m_config->loginName() : m_config->fullName(),
-                           m_config->doAutoLogin(),
-                           defaultGroupsList );
-    list.append( Calamares::job_ptr( j ) );
 
     if ( m_config->writeRootPassword() )
     {
         gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
     }
-    gs->insert( "hostname", m_config->hostName() );
-    if ( m_config->doAutoLogin() )
-    {
-        gs->insert( "autologinUser", m_config->loginName() );
-    }
-
-    gs->insert( "username", m_config->loginName() );
     gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
-
-    return list;
 }
 
 

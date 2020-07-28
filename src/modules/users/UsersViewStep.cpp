@@ -21,6 +21,7 @@
 #include "UsersViewStep.h"
 
 #include "Config.h"
+#include "CreateUserJob.h"
 #include "SetHostNameJob.h"
 #include "SetPasswordJob.h"
 #include "UsersPage.h"
@@ -138,13 +139,16 @@ void
 UsersViewStep::onLeave()
 {
     m_jobs.clear();
-    if ( !m_widget )
+    if ( !m_widget || !m_widget->isReady() )
     {
         return;
     }
-    m_jobs.append( m_widget->createJobs( m_defaultGroups ) );
 
     Calamares::Job* j;
+    j = new CreateUserJob( m_config->loginName(),
+                           m_config->fullName().isEmpty() ? m_config->loginName() : m_config->fullName(),
+                           m_config->doAutoLogin(),
+                           m_defaultGroups );
 
     auto userPW = m_widget->getUserPassword();
     j = new SetPasswordJob( userPW.first, userPW.second );
@@ -155,6 +159,8 @@ UsersViewStep::onLeave()
 
     j = new SetHostNameJob( m_config->hostName(), m_actions );
     m_jobs.append( Calamares::job_ptr( j ) );
+
+    m_widget->fillGlobalStorage();
 }
 
 

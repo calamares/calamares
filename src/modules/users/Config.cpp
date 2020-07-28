@@ -87,6 +87,16 @@ Config::setLoginName( const QString& login )
 {
     if ( login != m_loginName )
     {
+        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+        if ( login.isEmpty() )
+        {
+            gs->remove( "username" );
+        }
+        else
+        {
+            gs->insert( "username", login );
+        }
+
         m_customLoginName = !login.isEmpty();
         m_loginName = login;
         emit loginNameChanged( login );
@@ -143,6 +153,16 @@ Config::setHostName( const QString& host )
 {
     if ( host != m_hostName )
     {
+        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+        if ( host.isEmpty() )
+        {
+            gs->remove( "hostname" );
+        }
+        else
+        {
+            gs->insert( "hostname", host );
+        }
+
         m_customHostName = !host.isEmpty();
         m_hostName = host;
         emit hostNameChanged( host );
@@ -317,6 +337,15 @@ Config::setAutoLogin( bool b )
 {
     if ( b != m_doAutoLogin )
     {
+        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+        if ( b )
+        {
+            gs->insert( "autologinUser", loginName() );
+        }
+        else
+        {
+            gs->remove( "autologinUser" );
+        }
         m_doAutoLogin = b;
         emit autoLoginChanged( b );
     }
