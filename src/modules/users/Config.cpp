@@ -28,6 +28,10 @@
 
 #include <QFile>
 #include <QRegExp>
+#include <QRegExpValidator>
+
+static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
+static constexpr const int USERNAME_MAX_LENGTH = 31;
 
 Config::Config( QObject* parent )
     : QObject( parent )
@@ -49,7 +53,7 @@ Config::setUserShell( const QString& shell )
 }
 
 static inline void
-setGS( const QString& key, const QString& group )
+insertInGlobalStorage( const QString& key, const QString& group )
 {
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( !gs || group.isEmpty() )
@@ -62,14 +66,14 @@ setGS( const QString& key, const QString& group )
 void
 Config::setAutologinGroup( const QString& group )
 {
-    setGS( QStringLiteral( "autologinGroup" ), group );
+    insertInGlobalStorage( QStringLiteral( "autologinGroup" ), group );
     emit autologinGroupChanged( group );
 }
 
 void
 Config::setSudoersGroup( const QString& group )
 {
-    setGS( QStringLiteral( "sudoersGroup" ), group );
+    insertInGlobalStorage( QStringLiteral( "sudoersGroup" ), group );
     emit sudoersGroupChanged( group );
 }
 
@@ -82,7 +86,53 @@ Config::setLoginName( const QString& login )
         m_customLoginName = !login.isEmpty();
         m_loginName = login;
         emit loginNameChanged( login );
+        emit loginNameStatusChanged( loginNameStatus() );
     }
+}
+
+const QStringList&
+Config::forbiddenLoginNames()
+{
+    static QStringList forbidden { "root" };
+    return forbidden;
+}
+
+QString
+Config::loginNameStatus() const
+{
+    // An empty login is "ok", even if it isn't really
+    if ( m_loginName.isEmpty() )
+    {
+        return QString();
+    }
+
+    QRegExpValidator validateEntireLoginName( USERNAME_RX );
+    QRegExpValidator validateFirstLetter( QRegExp( "[a-z_].*" ) );  // anchors are implicit in QRegExpValidator
+    int pos = -1;
+
+    if ( m_loginName.length() > USERNAME_MAX_LENGTH )
+    {
+        return tr( "Your username is too long." );
+    }
+    QString login( m_loginName );  // make a copy because validate() doesn't take const&
+    if ( validateFirstLetter.validate( login, pos ) == QValidator::Invalid )
+    {
+        return tr( "Your username must start with a lowercase letter or underscore." );
+    }
+    if ( validateEntireLoginName.validate( login, pos ) == QValidator::Invalid )
+    {
+        return tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." );
+    }
+
+    for ( const QString& badName : forbiddenLoginNames() )
+    {
+        if ( 0 == QString::compare( badName, m_loginName, Qt::CaseSensitive ) )
+        {
+            return tr( "'%1' is not allowed as user name." ).arg( badName );
+        }
+    }
+
+    return QString();
 }
 
 void
@@ -133,7 +183,6 @@ guessProductName()
 static QString
 makeLoginNameSuggestion( const QStringList& parts )
 {
-    static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
     if ( parts.isEmpty() || parts.first().isEmpty() )
     {
         return QString();
@@ -199,6 +248,7 @@ Config::setFullName( const QString& name )
             {
                 m_loginName = login;
                 emit loginNameChanged( login );
+                emit loginNameStatusChanged( loginNameStatus() );
             }
         }
         if ( !m_customHostName )

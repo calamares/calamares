@@ -35,6 +35,7 @@ class Config : public QObject
 
     Q_PROPERTY( QString fullName READ fullName WRITE setFullName NOTIFY fullNameChanged )
     Q_PROPERTY( QString loginName READ loginName WRITE setLoginName NOTIFY loginNameChanged )
+    Q_PROPERTY( QString loginNameStatus READ loginNameStatus NOTIFY loginNameStatusChanged )
 
     Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
 
@@ -60,9 +61,13 @@ public:
     QString fullName() const { return m_fullName; }
     /// The login name of the user
     QString loginName() const { return m_loginName; }
+    /// Status message about login -- empty for "ok"
+    QString loginNameStatus() const;
 
     /// The host name (name for the system)
     QString hostName() const { return m_hostName; }
+
+    static const QStringList& forbiddenLoginNames();
 
 public Q_SLOTS:
     /** @brief Sets the user's shell if possible
@@ -94,6 +99,7 @@ signals:
     void sudoersGroupChanged( const QString& );
     void fullNameChanged( const QString& );
     void loginNameChanged( const QString& );
+    void loginNameStatusChanged( const QString& );
     void hostNameChanged( const QString& );
 
 private:

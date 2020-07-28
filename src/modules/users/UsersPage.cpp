@@ -46,7 +46,6 @@
 #include <QRegExp>
 #include <QRegExpValidator>
 
-static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
 static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
 static constexpr const int USERNAME_MAX_LENGTH = 31;
 static constexpr const int HOSTNAME_MIN_LENGTH = 2;
@@ -129,7 +128,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
 
     connect( ui->textBoxLoginName, &QLineEdit::textEdited, config, &Config::setLoginName );
     connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
-    connect( config, &Config::loginNameChanged, this, &UsersPage::validateUsernameText );
+    connect( config, &Config::loginNameStatusChanged, this, &UsersPage::reportLoginNameStatus );
 
     setWriteRootPassword( true );
     ui->checkBoxReusePassword->setChecked( true );
@@ -277,54 +276,30 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
     checkReady( isReady() );
 }
 
-
 void
-UsersPage::validateUsernameText( const QString& textRef )
+UsersPage::reportLoginNameStatus( const QString& status )
 {
-    QString text( textRef );
-    QRegExpValidator val_whole( USERNAME_RX );
-    QRegExpValidator val_start( QRegExp( "[a-z_].*" ) );  // anchors are implicit in QRegExpValidator
-    int pos = -1;
-
-    if ( text.isEmpty() )
+    if ( status.isEmpty() )
     {
-        ui->labelUsernameError->clear();
-        ui->labelUsername->clear();
-        m_readyUsername = false;
-    }
-    else if ( text.length() > USERNAME_MAX_LENGTH )
-    {
-        labelError( ui->labelUsername, ui->labelUsernameError, tr( "Your username is too long." ) );
-        m_readyUsername = false;
-    }
-    else if ( val_start.validate( text, pos ) == QValidator::Invalid )
-    {
-        labelError( ui->labelUsername,
-                    ui->labelUsernameError,
-                    tr( "Your username must start with a lowercase letter or underscore." ) );
-        m_readyUsername = false;
-    }
-    else if ( val_whole.validate( text, pos ) == QValidator::Invalid )
-    {
-        labelError( ui->labelUsername,
-                    ui->labelUsernameError,
-                    tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." ) );
-        m_readyUsername = false;
-    }
-    else if ( 0 == QString::compare( "root", text, Qt::CaseSensitive ) )
-    {
-        labelError( ui->labelUsername, ui->labelUsernameError, tr( "'root' is not allowed as user name." ) );
-        m_readyUsername = false;
+        if ( m_config->loginName().isEmpty() )
+        {
+            ui->labelUsernameError->clear();
+            ui->labelUsername->clear();
+            m_readyUsername = false;
+        }
+        else
+        {
+            labelOk( ui->labelUsername, ui->labelUsernameError );
+            m_readyUsername = true;
+        }
     }
     else
     {
-        labelOk( ui->labelUsername, ui->labelUsernameError );
-        m_readyUsername = true;
+        labelError( ui->labelUsername, ui->labelUsernameError, status );
+        m_readyUsername = false;
     }
-
     emit checkReady( isReady() );
 }
-
 
 void
 UsersPage::validateHostnameText( const QString& textRef )
