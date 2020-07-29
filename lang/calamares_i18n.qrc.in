@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/lang">
+@calamares_i18n_qrc_content@
+</qresource>
+</RCC>
