@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,11 +19,19 @@
 
 #include "SetPasswordJob.h"
 
-#include "TestPasswordJob.h"
-
 #include <QtTest/QtTest>
 
-QTEST_GUILESS_MAIN( PasswordTests )
+class PasswordTests : public QObject
+{
+    Q_OBJECT
+public:
+    PasswordTests();
+    ~PasswordTests() override;
+
+private Q_SLOTS:
+    void initTestCase();
+    void testSalt();
+};
 
 PasswordTests::PasswordTests() {}
 
@@ -48,3 +57,9 @@ PasswordTests::testSalt()
     QVERIFY( s.endsWith( '$' ) );
     qDebug() << "Obtained salt" << s;
 }
+
+QTEST_GUILESS_MAIN( PasswordTests )
+
+#include "utils/moc-warnings.h"
+
+#include "TestPasswordJob.moc"

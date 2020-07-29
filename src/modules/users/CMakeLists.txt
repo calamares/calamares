@@ -55,7 +55,6 @@ calamares_add_test(
     SOURCES
         TestCreateUserJob.cpp
         CreateUserJob.cpp
-        Config.cpp
 )
 
 calamares_add_test(
@@ -65,4 +64,11 @@ calamares_add_test(
         SetHostNameJob.cpp
     LIBRARIES
         Qt5::DBus
+)
+
+calamares_add_test(
+    userstest
+    SOURCES
+        Tests.cpp
+        Config.cpp
 )

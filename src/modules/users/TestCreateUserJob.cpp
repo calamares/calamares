@@ -17,7 +17,6 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Config.h"
 #include "CreateUserJob.h"
 
 #include "utils/Logger.h"
@@ -27,7 +26,6 @@
 
 // Implementation details
 extern QStringList groupsInTargetSystem( const QDir& targetRoot );  // CreateUserJob
-extern void setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups );
 
 class CreateUserTests : public QObject
 {
@@ -40,7 +38,6 @@ private Q_SLOTS:
     void initTestCase();
 
     void testReadGroup();
-    void testDefaultGroups();
 };
 
 CreateUserTests::CreateUserTests() {}
@@ -74,61 +71,6 @@ CreateUserTests::testReadGroup()
         QVERIFY( !s.contains( '#' ) );
     }
 }
-
-void
-CreateUserTests::testDefaultGroups()
-{
-    {
-        QStringList groups;
-        QVariantMap hweelGroup;
-        QVERIFY( groups.isEmpty() );
-        hweelGroup.insert( "defaultGroups", QStringList { "hweel" } );
-        setConfigurationDefaultGroups( hweelGroup, groups );
-        QCOMPARE( groups.count(), 1 );
-        QVERIFY( groups.contains( "hweel" ) );
-    }
-
-    {
-        QStringList desired { "wheel", "root", "operator" };
-        QStringList groups;
-        QVariantMap threeGroup;
-        QVERIFY( groups.isEmpty() );
-        threeGroup.insert( "defaultGroups", desired );
-        setConfigurationDefaultGroups( threeGroup, groups );
-        QCOMPARE( groups.count(), 3 );
-        QVERIFY( !groups.contains( "hweel" ) );
-        QCOMPARE( groups, desired );
-    }
-
-    {
-        QStringList groups;
-        QVariantMap explicitEmpty;
-        QVERIFY( groups.isEmpty() );
-        explicitEmpty.insert( "defaultGroups", QStringList() );
-        setConfigurationDefaultGroups( explicitEmpty, groups );
-        QCOMPARE( groups.count(), 0 );
-    }
-
-    {
-        QStringList groups;
-        QVariantMap missing;
-        QVERIFY( groups.isEmpty() );
-        setConfigurationDefaultGroups( missing, groups );
-        QCOMPARE( groups.count(), 6 );  // because of fallback!
-        QVERIFY( groups.contains( "lp" ) );
-    }
-
-    {
-        QStringList groups;
-        QVariantMap typeMismatch;
-        QVERIFY( groups.isEmpty() );
-        typeMismatch.insert( "defaultGroups", 1 );
-        setConfigurationDefaultGroups( typeMismatch, groups );
-        QCOMPARE( groups.count(), 6 );  // because of fallback!
-        QVERIFY( groups.contains( "lp" ) );
-    }
-}
-
 
 QTEST_GUILESS_MAIN( CreateUserTests )
 
