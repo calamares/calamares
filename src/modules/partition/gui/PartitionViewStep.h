@@ -78,6 +78,9 @@ private:
     void initPartitionCoreModule();
     void continueLoading();
 
+    /// "slot" for changes to next-status from the KPMCore and ChoicePage
+    void nextPossiblyChanged( bool );
+
     PartitionCoreModule* m_core;
     QStackedWidget*   m_widget;
     ChoicePage*       m_choicePage;

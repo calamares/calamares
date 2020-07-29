@@ -107,8 +107,8 @@ PartitionViewStep::continueLoading()
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;
 
-    connect( m_core, &PartitionCoreModule::hasRootMountPointChanged, this, &PartitionViewStep::nextStatusChanged );
-    connect( m_choicePage, &ChoicePage::nextStatusChanged, this, &PartitionViewStep::nextStatusChanged );
+    connect( m_core, &PartitionCoreModule::hasRootMountPointChanged, this, &PartitionViewStep::nextPossiblyChanged );
+    connect( m_choicePage, &ChoicePage::nextStatusChanged, this, &PartitionViewStep::nextPossiblyChanged );
 }
 
 
@@ -348,6 +348,11 @@ PartitionViewStep::isNextEnabled() const
     return false;
 }
 
+void
+PartitionViewStep::nextPossiblyChanged(bool)
+{
+    emit nextStatusChanged( isNextEnabled() );
+}
 
 bool
 PartitionViewStep::isBackEnabled() const
