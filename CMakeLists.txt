@@ -356,23 +356,33 @@ set_package_properties(
     URL "https://python.org"
     PURPOSE "Python 3 interpreter for certain tests."
 )
+
+set( _schema_explanation "" )
 if ( PYTHONINTERP_FOUND )
-    message(STATUS "Found Python 3 interpreter ${PYTHON_EXECUTABLE}")
     if ( BUILD_SCHEMA_TESTING )
         # The configuration validator script has some dependencies,
         # and if they are not installed, don't run. If errors out
         # with exit(1) on missing dependencies.
-        exec_program( ${PYTHON_EXECUTABLE} ARGS "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" -x RETURN_VALUE _validator_deps )
+        if ( CALAMARES_CONFIGVALIDATOR_CHECKED )
+            set( _validator_deps ${CALAMARES_CONFIGVALIDATOR_RESULT} )
+        else()
+            exec_program( ${PYTHON_EXECUTABLE} ARGS "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" -x RETURN_VALUE _validator_deps )
+            set( CALAMARES_CONFIGVALIDATOR_CHECKED TRUE CACHE INTERNAL "Dependencies for configvalidator checked" )
+            set( CALAMARES_CONFIGVALIDATOR_RESULT ${_validator_deps} CACHE INTERNAL "Result of configvalidator dependency check" )
+        endif()
         # It should never succeed, but only returns 1 when the imports fail
         if ( _validator_deps EQUAL 1 )
-            message(STATUS "BUILD_SCHEMA_TESTING dependencies are missing." )
+            set( _schema_explanation " Missing dependencies for configvalidator.py." )
             set( BUILD_SCHEMA_TESTING OFF )
         endif()
     endif()
 else()
     # Can't run schema tests without Python3.
+    set( _schema_explanation " Missing Python3." )
     set( BUILD_SCHEMA_TESTING OFF )
 endif()
+add_feature_info( yaml-schema BUILD_SCHEMA_TESTING "Validate YAML (config files) with schema.${_schema_explanation}" )
+
 find_package( PythonLibs ${PYTHONLIBS_VERSION} )
 set_package_properties(
     PythonLibs PROPERTIES
