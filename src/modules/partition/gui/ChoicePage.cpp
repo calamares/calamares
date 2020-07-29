@@ -1460,6 +1460,7 @@ ChoicePage::calculateNextEnabled() const
             cDebug() << "No partition selected";
             return false;
         }
+        enabled = true;
         break;
     case Erase:
     case Manual:
