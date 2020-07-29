@@ -61,7 +61,6 @@ private:
     UsersPage* m_widget;
     QList< Calamares::job_ptr > m_jobs;
 
-    QStringList m_defaultGroups;
     SetHostNameJob::Actions m_actions;
 
     Config* m_config;

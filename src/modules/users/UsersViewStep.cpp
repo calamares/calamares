@@ -145,10 +145,11 @@ UsersViewStep::onLeave()
     }
 
     Calamares::Job* j;
+    // TODO: Config object should create jobs, like this one, that depend only on config values
     j = new CreateUserJob( m_config->loginName(),
                            m_config->fullName().isEmpty() ? m_config->loginName() : m_config->fullName(),
                            m_config->doAutoLogin(),
-                           m_defaultGroups );
+                           m_config->defaultGroups() );
 
     auto userPW = m_widget->getUserPassword();
     j = new SetPasswordJob( userPW.first, userPW.second );
@@ -170,17 +171,6 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Create the widget, after all .. as long as writing configuration to the UI is needed
     (void)this->widget();
     using CalamaresUtils::getBool;
-
-    if ( configurationMap.contains( "defaultGroups" )
-         && configurationMap.value( "defaultGroups" ).type() == QVariant::List )
-    {
-        m_defaultGroups = configurationMap.value( "defaultGroups" ).toStringList();
-    }
-    else
-    {
-        cWarning() << "Using fallback groups. Please check defaultGroups in users.conf";
-        m_defaultGroups = QStringList { "lp", "video", "network", "storage", "wheel", "audio" };
-    }
 
     m_widget->setReusePasswordDefault( getBool( configurationMap, "doReusePassword", false ) );
 

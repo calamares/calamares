@@ -351,6 +351,21 @@ Config::setAutoLogin( bool b )
     }
 }
 
+STATICTEST inline void
+setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups )
+{
+    // '#' is not a valid group name; use that to distinguish an empty-list
+    // in the configuration (which is a legitimate, if unusual, choice)
+    // from a bad or missing configuration value.
+    defaultGroups = CalamaresUtils::getStringList( map, QStringLiteral( "defaultGroups" ), QStringList { "#" } );
+    if ( defaultGroups.contains( QStringLiteral( "#" ) ) )
+    {
+        cWarning() << "Using fallback groups. Please check *defaultGroups* in users.conf";
+        defaultGroups = QStringList { "lp", "video", "network", "storage", "wheel", "audio" };
+    }
+}
+
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -365,6 +380,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     setAutologinGroup( CalamaresUtils::getString( configurationMap, "autologinGroup" ) );
     setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
 
+    setConfigurationDefaultGroups( configurationMap, m_defaultGroups );
     m_doAutoLogin = CalamaresUtils::getBool( configurationMap, "doAutologin", false );
 
     m_writeRootPassword = CalamaresUtils::getBool( configurationMap, "setRootPassword", true );

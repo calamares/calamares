@@ -55,6 +55,7 @@ calamares_add_test(
     SOURCES
         CreateUserTests.cpp
         CreateUserJob.cpp
+        Config.cpp
 )
 
 calamares_add_test(

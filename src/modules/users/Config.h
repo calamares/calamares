@@ -77,6 +77,8 @@ public:
     /// Should the root password be written (if false, no password is set and the root account is disabled for login)
     bool writeRootPassword() const { return m_writeRootPassword; }
 
+    const QStringList& defaultGroups() const { return m_defaultGroups; }
+
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();
 
@@ -119,6 +121,7 @@ signals:
     void autoLoginChanged( bool );
 
 private:
+    QStringList m_defaultGroups;
     QString m_userShell;
     QString m_autologinGroup;
     QString m_sudoersGroup;
