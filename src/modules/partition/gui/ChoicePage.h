@@ -126,6 +126,7 @@ private slots:
     void onEraseSwapChoiceChanged();
 
 private:
+    bool calculateNextEnabled() const;
     void updateNextEnabled();
     void setupChoices();
     QComboBox* createBootloaderComboBox( QWidget* parentButton );
