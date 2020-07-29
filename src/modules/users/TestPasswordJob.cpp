@@ -18,7 +18,7 @@
 
 #include "SetPasswordJob.h"
 
-#include "PasswordTests.h"
+#include "TestPasswordJob.h"
 
 #include <QtTest/QtTest>
 

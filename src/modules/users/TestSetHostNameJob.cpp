@@ -142,4 +142,4 @@ QTEST_GUILESS_MAIN( UsersTests )
 
 #include "utils/moc-warnings.h"
 
-#include "Tests.moc"
+#include "TestSetHostNameJob.moc"

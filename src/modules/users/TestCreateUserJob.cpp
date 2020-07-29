@@ -134,4 +134,4 @@ QTEST_GUILESS_MAIN( CreateUserTests )
 
 #include "utils/moc-warnings.h"
 
-#include "CreateUserTests.moc"
+#include "TestCreateUserJob.moc"
