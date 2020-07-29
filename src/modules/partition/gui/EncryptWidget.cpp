@@ -141,15 +141,16 @@ EncryptWidget::onPassphraseEdited()
     m_ui->m_iconLabel->setToolTip( QString() );
     if ( p1.isEmpty() && p2.isEmpty() )
     {
-        m_ui->m_iconLabel->clear();
+        applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusWarning );
+        m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
     }
     else if ( p1 == p2 )
     {
-        applyPixmap( m_ui->m_iconLabel, CalamaresUtils::Yes );
+        applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusOk );
     }
     else
     {
-        applyPixmap( m_ui->m_iconLabel, CalamaresUtils::No );
+        applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusError );
         m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
     }
 
