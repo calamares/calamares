@@ -13,7 +13,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 #
-#   SPDX-License-Identifier: GPL-3.0+
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #   License-Filename: LICENSE
 #
 ###
@@ -62,10 +62,8 @@ function(calamares_add_library)
     include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
     # add resources from current dir
-    if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/${LIBRARY_RESOURCES}")
-        qt5_add_resources(LIBRARY_RC_SOURCES "${LIBRARY_RESOURCES}")
-        list(APPEND LIBRARY_SOURCES ${LIBRARY_RC_SOURCES})
-        unset(LIBRARY_RC_SOURCES)
+    if(LIBRARY_RESOURCES)
+        list(APPEND LIBRARY_SOURCES ${LIBRARY_RESOURCES})
     endif()
 
     # add target
@@ -81,6 +79,9 @@ function(calamares_add_library)
     if(LIBRARY_UI)
         calamares_autouic(${target} ${LIBRARY_UI})
     endif()
+    if(LIBRARY_RESOURCES)
+        calamares_autorcc(${target} ${LIBRARY_RESOURCES})
+    endif()
 
     if(LIBRARY_EXPORT_MACRO)
         set_target_properties(${target} PROPERTIES COMPILE_DEFINITIONS ${LIBRARY_EXPORT_MACRO})
@@ -93,11 +94,10 @@ function(calamares_add_library)
 
     # add link targets
     target_link_libraries(${target}
-        LINK_PUBLIC ${CALAMARES_LIBRARIES}
+        LINK_PUBLIC ${Calamares_LIBRARIES}
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
-        ${LIBRARY_QT5_MODULES}
     )
     if(LIBRARY_LINK_LIBRARIES)
         target_link_libraries(${target} LINK_PUBLIC ${LIBRARY_LINK_LIBRARIES})

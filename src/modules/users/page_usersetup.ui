@@ -127,7 +127,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLineEdit" name="textBoxUsername">
+      <widget class="QLineEdit" name="textBoxLoginName">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -226,7 +226,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QLineEdit" name="textBoxHostname">
+      <widget class="QLineEdit" name="textBoxHostName">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -456,7 +456,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBoxAutoLogin">
+    <widget class="QCheckBox" name="checkBoxDoAutoLogin">
      <property name="text">
       <string>Log in automatically without asking for the password.</string>
      </property>

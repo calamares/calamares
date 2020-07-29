@@ -85,10 +85,16 @@ PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
     return true;
 }
 
+PartitionLayout::PartitionEntry::PartitionEntry()
+    : partAttributes( 0 )
+{
+}
+
 PartitionLayout::PartitionEntry::PartitionEntry( const QString& size, const QString& min, const QString& max )
     : partSize( size )
     , partMinSize( min )
     , partMaxSize( max )
+    , partAttributes( 0 )
 {
 }
 
@@ -118,7 +124,9 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
 
 bool
 PartitionLayout::addEntry( const QString& label,
+                           const QString& uuid,
                            const QString& type,
+                           quint64 attributes,
                            const QString& mountPoint,
                            const QString& fs,
                            const QVariantMap& features,
@@ -140,7 +148,9 @@ PartitionLayout::addEntry( const QString& label,
     }
 
     entry.partLabel = label;
+    entry.partUUID = uuid;
     entry.partType = type;
+    entry.partAttributes = attributes;
     entry.partMountPoint = mountPoint;
     PartUtils::findFS( fs, &entry.partFileSystem );
     if ( entry.partFileSystem == FileSystem::Unknown )
@@ -244,12 +254,24 @@ PartitionLayout::execute( Device* dev,
             currentPartition->setLabel( part.partLabel );
             currentPartition->fileSystem().setLabel( part.partLabel );
         }
+        if ( !part.partUUID.isEmpty() )
+        {
+            currentPartition->setUUID( part.partUUID );
+        }
         if ( !part.partType.isEmpty() )
         {
 #if defined( WITH_KPMCORE42API )
             currentPartition->setType( part.partType );
 #else
             cWarning() << "Ignoring type; requires KPMcore >= 4.2.0.";
+#endif
+        }
+        if ( part.partAttributes )
+        {
+#if defined( WITH_KPMCORE42API )
+            currentPartition->setAttributes( part.partAttributes );
+#else
+            cWarning() << "Ignoring attributes; requires KPMcore >= 4.2.0.";
 #endif
         }
         if ( !part.partFeatures.isEmpty() )

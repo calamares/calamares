@@ -32,6 +32,7 @@
 Config::Config( QObject* parent )
     : QObject( parent )
     , m_languages( CalamaresUtils::Locale::availableTranslations() )
+    , m_filtermodel( std::make_unique< QSortFilterProxyModel >() )
 {
     initLanguages();
 
@@ -95,6 +96,18 @@ Calamares::RequirementsModel*
 Config::requirementsModel() const
 {
     return Calamares::ModuleManager::instance()->requirementsModel();
+}
+
+QAbstractItemModel*
+Config::unsatisfiedRequirements() const
+{
+    if ( !m_filtermodel->sourceModel() )
+    {
+        m_filtermodel->setFilterRole( Calamares::RequirementsModel::Roles::Satisfied );
+        m_filtermodel->setFilterFixedString( QStringLiteral( "false" ) );
+        m_filtermodel->setSourceModel( requirementsModel() );
+    }
+    return m_filtermodel.get();
 }
 
 
@@ -229,14 +242,14 @@ Config::genericWelcomeMessage() const
     if ( Calamares::Settings::instance()->isSetupMode() )
     {
         message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares setup program for %1.</h1>" )
-            : tr( "<h1>Welcome to %1 setup.</h1>" );
+            ? tr( "<h1>Welcome to the Calamares setup program for %1</h1>" )
+            : tr( "<h1>Welcome to %1 setup</h1>" );
     }
     else
     {
         message = Calamares::Branding::instance()->welcomeStyleCalamares()
-            ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" )
-            : tr( "<h1>Welcome to the %1 installer.</h1>" );
+            ? tr( "<h1>Welcome to the Calamares installer for %1</h1>" )
+            : tr( "<h1>Welcome to the %1 installer</h1>" );
     }
 
     return message;
@@ -336,7 +349,7 @@ setCountry( Config* config, const QString& countryCode, CalamaresUtils::GeoIP::H
 }
 
 static inline void
-setGeoIP( Config* c, const QVariantMap& configurationMap )
+setGeoIP( Config* config, const QVariantMap& configurationMap )
 {
     bool ok = false;
     QVariantMap geoip = CalamaresUtils::getSubMap( configurationMap, "geoip", ok );
@@ -350,12 +363,12 @@ setGeoIP( Config* c, const QVariantMap& configurationMap )
         if ( handler->type() != CalamaresUtils::GeoIP::Handler::Type::None )
         {
             auto* future = new FWString();
-            QObject::connect( future, &FWString::finished, [config = c, f = future, h = handler]() {
-                QString countryResult = f->future().result();
+            QObject::connect( future, &FWString::finished, [config, future, handler]() {
+                QString countryResult = future->future().result();
                 cDebug() << "GeoIP result for welcome=" << countryResult;
-                ::setCountry( config, countryResult, h );
-                f->deleteLater();
-                delete h;
+                ::setCountry( config, countryResult, handler );
+                future->deleteLater();
+                delete handler;
             } );
             future->setFuture( handler->queryRaw() );
         }

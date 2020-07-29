@@ -53,14 +53,14 @@ ViewModule::loadSelf()
         CalamaresPluginFactory* pf = qobject_cast< CalamaresPluginFactory* >( m_loader->instance() );
         if ( !pf )
         {
-            cWarning() << Q_FUNC_INFO << "No factory:" << m_loader->errorString();
+            cWarning() << "No factory:" << m_loader->errorString();
             return;
         }
 
         m_viewStep = pf->create< Calamares::ViewStep >();
         if ( !m_viewStep )
         {
-            cWarning() << Q_FUNC_INFO << "create() failed" << m_loader->errorString();
+            cWarning() << "create() failed" << m_loader->errorString();
             return;
         }
     }
@@ -76,7 +76,7 @@ ViewModule::loadSelf()
     }
     else
     {
-        cWarning() << Q_FUNC_INFO << "No view step was created";
+        cWarning() << "No view step was created";
     }
 }
 

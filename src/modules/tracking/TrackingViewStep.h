@@ -29,6 +29,7 @@
 #include <QUrl>
 #include <QVariantMap>
 
+class Config;
 class TrackingPage;
 
 class PLUGINDLLEXPORT TrackingViewStep : public Calamares::ViewStep
@@ -56,42 +57,8 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    QVariantMap setTrackingOption( const QVariantMap& configurationMap, const QString& key, TrackingType t );
-
+    Config* m_config;
     TrackingPage* m_widget;
-    QString m_installTrackingUrl;
-    QString m_machineTrackingStyle;
-
-    struct TrackingEnabled
-    {
-        bool settingEnabled;  // Enabled in config file
-        bool userEnabled;  // User checked "yes"
-
-        TrackingEnabled()
-            : settingEnabled( false )
-            , userEnabled( false )
-        {
-        }
-
-        bool enabled() const { return settingEnabled && userEnabled; }
-    };
-    TrackingEnabled m_installTracking, m_machineTracking, m_userTracking;
-
-    inline TrackingEnabled& tracking( TrackingType t )
-    {
-        if ( t == TrackingType::UserTracking )
-        {
-            return m_userTracking;
-        }
-        else if ( t == TrackingType::MachineTracking )
-        {
-            return m_machineTracking;
-        }
-        else
-        {
-            return m_installTracking;
-        }
-    }
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( TrackingViewStepFactory )

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,11 +14,16 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #include "TimeZone.h"
 
 #include "utils/Logger.h"
+#include "utils/String.h"
 
 #include <QFile>
 #include <QStringList>
@@ -152,19 +157,19 @@ TZRegion::fromFile( const char* fileName )
     QTextStream in( &file );
     while ( !in.atEnd() )
     {
-        QString line = in.readLine().trimmed().split( '#', QString::KeepEmptyParts ).first().trimmed();
+        QString line = in.readLine().trimmed().split( '#', SplitKeepEmptyParts ).first().trimmed();
         if ( line.isEmpty() )
         {
             continue;
         }
 
-        QStringList list = line.split( QRegExp( "[\t ]" ), QString::SkipEmptyParts );
+        QStringList list = line.split( QRegExp( "[\t ]" ), SplitSkipEmptyParts );
         if ( list.size() < 3 )
         {
             continue;
         }
 
-        QStringList timezoneParts = list.at( 2 ).split( '/', QString::SkipEmptyParts );
+        QStringList timezoneParts = list.at( 2 ).split( '/', SplitSkipEmptyParts );
         if ( timezoneParts.size() < 2 )
         {
             continue;

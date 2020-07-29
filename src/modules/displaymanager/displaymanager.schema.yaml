@@ -1,0 +1,16 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/displaymanager
+additionalProperties: false
+type: object
+properties:
+    "displaymanagers":
+        type: seq
+        sequence:
+          - { type: string, required: true, enum: [slim, sddm, lightdm, gdm, mdm, lxdm, kdm] }
+    "defaultDesktopEnvironment":
+        type: map
+        mapping:
+            "executable": { type: str }
+            "desktopFile": { type: str }
+    "basicSetup": { type: boolean, default: false }

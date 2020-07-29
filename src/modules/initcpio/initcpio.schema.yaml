@@ -1,0 +1,7 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/initcpio
+additionalProperties: false
+type: object
+properties:
+  kernel: { type: string, required: true }

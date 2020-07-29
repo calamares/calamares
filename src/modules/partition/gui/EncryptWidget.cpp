@@ -91,9 +91,39 @@ EncryptWidget::retranslate()
 }
 
 
+///@brief Give @p label the @p pixmap from the standard-pixmaps
+static void
+applyPixmap( QLabel* label, CalamaresUtils::ImageType pixmap )
+{
+    label->setFixedWidth( label->height() );
+    label->setPixmap( CalamaresUtils::defaultPixmap( pixmap, CalamaresUtils::Original, label->size() ) );
+}
+
 void
 EncryptWidget::updateState()
 {
+    if ( m_ui->m_passphraseLineEdit->isVisible() )
+    {
+        QString p1 = m_ui->m_passphraseLineEdit->text();
+        QString p2 = m_ui->m_confirmLineEdit->text();
+
+        if ( p1.isEmpty() && p2.isEmpty() )
+        {
+            applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusWarning );
+            m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
+        }
+        else if ( p1 == p2 )
+        {
+            applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusOk );
+            m_ui->m_iconLabel->setToolTip( QString() );
+        }
+        else
+        {
+            applyPixmap( m_ui->m_iconLabel, CalamaresUtils::StatusError );
+            m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
+        }
+    }
+
     Encryption newState;
     if ( m_ui->m_encryptCheckBox->isChecked() )
     {
@@ -119,38 +149,12 @@ EncryptWidget::updateState()
     }
 }
 
-///@brief Give @p label the @p pixmap from the standard-pixmaps
-static void
-applyPixmap( QLabel* label, CalamaresUtils::ImageType pixmap )
-{
-    label->setFixedWidth( label->height() );
-    label->setPixmap( CalamaresUtils::defaultPixmap( pixmap, CalamaresUtils::Original, label->size() ) );
-}
-
 void
 EncryptWidget::onPassphraseEdited()
 {
     if ( !m_ui->m_iconLabel->isVisible() )
     {
         m_ui->m_iconLabel->show();
-    }
-
-    QString p1 = m_ui->m_passphraseLineEdit->text();
-    QString p2 = m_ui->m_confirmLineEdit->text();
-
-    m_ui->m_iconLabel->setToolTip( QString() );
-    if ( p1.isEmpty() && p2.isEmpty() )
-    {
-        m_ui->m_iconLabel->clear();
-    }
-    else if ( p1 == p2 )
-    {
-        applyPixmap( m_ui->m_iconLabel, CalamaresUtils::Yes );
-    }
-    else
-    {
-        applyPixmap( m_ui->m_iconLabel, CalamaresUtils::No );
-        m_ui->m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
     }
 
     updateState();

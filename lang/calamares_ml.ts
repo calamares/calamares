@@ -117,12 +117,12 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="94"/>
       <source>Set up</source>
       <translation>സജ്ജമാക്കുക</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="92"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="94"/>
       <source>Install</source>
       <translation>ഇൻസ്റ്റാൾ ചെയ്യുക</translation>
     </message>
@@ -130,12 +130,12 @@
   <context>
     <name>Calamares::FailJob</name>
     <message>
-      <location filename="../src/libcalamares/JobExample.cpp" line="39"/>
+      <location filename="../src/libcalamares/JobExample.cpp" line="42"/>
       <source>Job failed (%1)</source>
       <translation>ജോലി പരാജയപ്പെട്ടു (%1)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/JobExample.cpp" line="40"/>
+      <location filename="../src/libcalamares/JobExample.cpp" line="43"/>
       <source>Programmed job failure was explicitly requested.</source>
       <translation>പ്രോഗ്രാം ചെയ്യപ്പെട്ട ജോലിയുടെ പരാജയം പ്രത്യേകമായി ആവശ്യപ്പെട്ടിരുന്നു.</translation>
     </message>
@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="114"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="118"/>
       <source>Done</source>
       <translation>പൂർത്തിയായി</translation>
     </message>
@@ -151,7 +151,7 @@
   <context>
     <name>Calamares::NamedJob</name>
     <message>
-      <location filename="../src/libcalamares/JobExample.cpp" line="27"/>
+      <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
       <source>Example job (%1)</source>
       <translation>ഉദാഹരണം ജോലി (%1)</translation>
     </message>
@@ -159,17 +159,17 @@
   <context>
     <name>Calamares::ProcessJob</name>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="56"/>
       <source>Run command '%1' in target system.</source>
       <translation>ടാർഗറ്റ് സിസ്റ്റത്തിൽ '%1' ആജ്ഞ പ്രവർത്തിപ്പിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="56"/>
       <source> Run command '%1'.</source>
       <translation>'%1' എന്ന ആജ്ഞ നടപ്പിലാക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="59"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="63"/>
       <source>Running command %1 %2</source>
       <translation>%1 %2 ആജ്ഞ നടപ്പിലാക്കുന്നു</translation>
     </message>
@@ -177,32 +177,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="210"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="213"/>
       <source>Running %1 operation.</source>
       <translation>%1 ക്രിയ നടപ്പിലാക്കുന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="239"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="242"/>
       <source>Bad working directory path</source>
       <translation>പ്രവർത്ഥനരഹിതമായ ഡയറക്ടറി പാത</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="240"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="243"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>പൈതൺ ജോബ് %2 യുടെ പ്രവർത്തന പാതയായ %1 വായിക്കുവാൻ കഴിയുന്നില്ല</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="246"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="249"/>
       <source>Bad main script file</source>
       <translation>മോശമായ പ്രധാന സ്ക്രിപ്റ്റ് ഫയൽ</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="247"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>പൈത്തൺ ജോബ് %2 നായുള്ള പ്രധാന സ്ക്രിപ്റ്റ് ഫയൽ %1 വായിക്കാൻ കഴിയുന്നില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="315"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="318"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>"%1" എന്ന പ്രവൃത്തിയില്‍ ബൂസ്റ്റ്.പൈതണ്‍ പിശക്</translation>
     </message>
@@ -227,8 +227,13 @@
   </context>
   <context>
     <name>Calamares::RequirementsChecker</name>
+    <message>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="106"/>
+      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
+      <translation>&lt;i&gt;%1&lt;/i&gt;മൊഡ്യൂളിനായുള്ള ആവശ്യകതകൾ പരിശോധിക്കൽ പൂർത്തിയായിരിക്കുന്നു.</translation>
+    </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="164"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="127"/>
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>%n മൊഡ്യൂളിനായി കാത്തിരിക്കുന്നു.</numerusform>
@@ -236,7 +241,7 @@
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="165"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="128"/>
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(%1 സെക്കൻഡ്)</numerusform>
@@ -244,7 +249,7 @@
       </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="170"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="133"/>
       <source>System-requirements checking is complete.</source>
       <translation>സിസ്റ്റം-ആവശ്യകതകളുടെ പരിശോധന പൂർത്തിയായി.</translation>
     </message>
@@ -273,13 +278,13 @@
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="174"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="518"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="521"/>
       <source>&amp;Yes</source>
       <translation>വേണം (&amp;Y)</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="175"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="519"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="522"/>
       <source>&amp;No</source>
       <translation>വേണ്ട (&amp;N)</translation>
     </message>
@@ -314,109 +319,109 @@
       <translation>&lt;br/&gt;താഴെ പറയുന്ന മൊഡ്യൂളുകൾ ലഭ്യമാക്കാനായില്ല:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
       <source>Continue with setup?</source>
       <translation>സജ്ജീകരണപ്രക്രിയ തുടരണോ?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="328"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
       <source>Continue with installation?</source>
       <translation>ഇൻസ്റ്റളേഷൻ തുടരണോ?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%2 സജ്ജീകരിക്കുന്നതിന് %1 സജ്ജീകരണ പ്രോഗ്രാം നിങ്ങളുടെ ഡിസ്കിൽ മാറ്റങ്ങൾ വരുത്താൻ പോകുന്നു.&lt;br/&gt;&lt;strong&gt;നിങ്ങൾക്ക് ഈ മാറ്റങ്ങൾ പഴയപടിയാക്കാൻ കഴിയില്ല&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>%2 ഇൻസ്റ്റാളുചെയ്യുന്നതിന് %1 ഇൻസ്റ്റാളർ നിങ്ങളുടെ ഡിസ്കിൽ മാറ്റങ്ങൾ വരുത്താൻ പോകുന്നു.&lt;br/&gt;&lt;strong&gt;നിങ്ങൾക്ക് ഈ മാറ്റങ്ങൾ പഴയപടിയാക്കാൻ കഴിയില്ല.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
       <source>&amp;Set up now</source>
       <translation>ഉടൻ സജ്ജീകരിക്കുക (&amp;S)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
       <source>&amp;Install now</source>
       <translation>ഉടൻ ഇൻസ്റ്റാൾ ചെയ്യുക (&amp;I)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="343"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="346"/>
       <source>Go &amp;back</source>
       <translation>പുറകോട്ടു പോകുക </translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>&amp;Set up</source>
       <translation>സജ്ജീകരിക്കുക (&amp;S)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>&amp;Install</source>
       <translation>ഇൻസ്റ്റാൾ (&amp;I)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>സജ്ജീകരണം പൂർത്തിയായി. പ്രയോഗം അടയ്ക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
       <source>The installation is complete. Close the installer.</source>
       <translation>ഇൻസ്റ്റളേഷൻ പൂർത്തിയായി. ഇൻസ്റ്റാളർ അടയ്ക്കുക</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
       <source>Cancel setup without changing the system.</source>
       <translation>സിസ്റ്റത്തിന് മാറ്റമൊന്നും വരുത്താതെ സജ്ജീകരണപ്രക്രിയ റദ്ദാക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
       <source>Cancel installation without changing the system.</source>
       <translation>സിസ്റ്റത്തിന് മാറ്റമൊന്നും വരുത്താതെ ഇൻസ്റ്റളേഷൻ റദ്ദാക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="408"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="411"/>
       <source>&amp;Next</source>
       <translation>അടുത്തത് (&amp;N)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="413"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="416"/>
       <source>&amp;Back</source>
       <translation>പുറകോട്ട് (&amp;B)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="419"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
       <source>&amp;Done</source>
       <translation>ചെയ്‌തു</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="438"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="441"/>
       <source>&amp;Cancel</source>
       <translation>റദ്ദാക്കുക (&amp;C)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="511"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Cancel setup?</source>
       <translation>സജ്ജീകരണം റദ്ദാക്കണോ?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="511"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Cancel installation?</source>
       <translation>ഇൻസ്റ്റളേഷൻ റദ്ദാക്കണോ?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="515"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>നിലവിലുള്ള സജ്ജീകരണപ്രക്രിയ റദ്ദാക്കണോ?
 സജ്ജീകരണപ്രയോഗം നിൽക്കുകയും എല്ലാ മാറ്റങ്ങളും നഷ്ടപ്പെടുകയും ചെയ്യും.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>നിലവിലുള്ള ഇൻസ്റ്റാൾ പ്രക്രിയ റദ്ദാക്കണോ?
@@ -426,22 +431,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresPython::Helper</name>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="297"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="301"/>
       <source>Unknown exception type</source>
       <translation>അജ്ഞാതമായ പിശക്</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="315"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="319"/>
       <source>unparseable Python error</source>
       <translation>മനസ്സിലാക്കാനാവാത്ത പൈത്തൺ പിഴവ്</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="359"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="363"/>
       <source>unparseable Python traceback</source>
       <translation>മനസ്സിലാക്കാനാവാത്ത പൈത്തൺ ട്രേസ്ബാക്ക്</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="366"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="370"/>
       <source>Unfetchable Python error.</source>
       <translation>ലഭ്യമാക്കാനാവാത്ത പൈത്തൺ പിഴവ്.</translation>
     </message>
@@ -459,32 +464,32 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="106"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="110"/>
       <source>Show debug information</source>
       <translation>ഡീബഗ് വിവരങ്ങൾ കാണിക്കുക</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="172"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="164"/>
       <source>&amp;Back</source>
       <translation>പുറകോട്ട് (&amp;B)</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="184"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="176"/>
       <source>&amp;Next</source>
       <translation>അടുത്തത് (&amp;N)</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="197"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="189"/>
       <source>&amp;Cancel</source>
       <translation>റദ്ദാക്കുക (&amp;C)</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="281"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="311"/>
       <source>%1 Setup Program</source>
       <translation>%1 സജ്ജീകരണപ്രയോഗം</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="282"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="312"/>
       <source>%1 Installer</source>
       <translation>%1 ഇൻസ്റ്റാളർ</translation>
     </message>
@@ -681,18 +686,18 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CommandList</name>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="150"/>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="163"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="154"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="167"/>
       <source>Could not run command.</source>
       <translation>ആജ്ഞ പ്രവർത്തിപ്പിക്കാനായില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="151"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="155"/>
       <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
       <translation>കമാൻഡ് ഹോസ്റ്റ് എൻവയോൺമെന്റിൽ പ്രവർത്തിക്കുന്നു, റൂട്ട് പാത്ത് അറിയേണ്ടതുണ്ട്, പക്ഷേ rootMountPoint നിർവചിച്ചിട്ടില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="164"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="168"/>
       <source>The command needs to know the user's name, but no username is defined.</source>
       <translation>കമാൻഡിന് ഉപയോക്താവിന്റെ പേര് അറിയേണ്ടതുണ്ട്,എന്നാൽ ഉപയോക്തൃനാമമൊന്നും നിർവചിച്ചിട്ടില്ല.</translation>
     </message>
@@ -745,49 +750,49 @@ The installer will quit and all changes will be lost.</source>
       <translation>നെറ്റ്‌വർക്ക് ഇൻസ്റ്റാളേഷൻ. (അപ്രാപ്‌തമാക്കി: പാക്കേജ് ലിസ്റ്റുകൾ നേടാനായില്ല, നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിക്കുക)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="54"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="56"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാനാവില്ല. &lt;a href="#details"&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="58"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="60"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാനാവില്ല. &lt;a href="#details"&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="65"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="67"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ചില ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="69"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="71"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യാൻ ശുപാർശ ചെയ്യപ്പെട്ടിട്ടുള്ള ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="79"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="81"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>ഈ പ്രക്രിയ താങ്കളോട് ചില ചോദ്യങ്ങൾ ചോദിക്കുകയും %2 താങ്കളുടെ കമ്പ്യൂട്ടറിൽ സജ്ജീകരിക്കുകയും ചെയ്യും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="230"/>
-      <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1 -നായുള്ള കലാമാരേസ് സജ്ജീകരണപ്രക്രിയയിലേയ്ക്ക് സ്വാഗതം.&lt;/h1&gt;</translation>
+      <location filename="../src/modules/welcome/Config.cpp" line="245"/>
+      <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="231"/>
-      <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1 സജ്ജീകരണത്തിലേക്ക് സ്വാഗതം.&lt;/h1&gt;</translation>
+      <location filename="../src/modules/welcome/Config.cpp" line="246"/>
+      <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="236"/>
-      <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1 -നായുള്ള കലാമാരേസ് ഇൻസ്റ്റാളറിലേക്ക് സ്വാഗതം.&lt;/h1&gt;</translation>
+      <location filename="../src/modules/welcome/Config.cpp" line="251"/>
+      <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="237"/>
-      <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;%1 ഇൻസ്റ്റാളറിലേക്ക് സ്വാഗതം&lt;/h1&gt;</translation>
+      <location filename="../src/modules/welcome/Config.cpp" line="252"/>
+      <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -1224,37 +1229,37 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>FillGlobalStorageJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="139"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="142"/>
       <source>Set partition information</source>
       <translation>പാർട്ടീഷൻ വിവരങ്ങൾ ക്രമീകരിക്കുക</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="165"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="168"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
       <translation>&lt;strong&gt;പുതിയ&lt;/strong&gt; %2 സിസ്റ്റം പാർട്ടീഷനിൽ %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="171"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="174"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; മൗണ്ട് പോയിന്റോട് കൂടി &lt;strong&gt;പുതിയ&lt;/strong&gt; %2 പാർട്ടീഷൻ സജ്ജീകരിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="181"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="184"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>%3 സിസ്റ്റം പാർട്ടീഷൻ &lt;strong&gt;%1-ൽ&lt;/strong&gt; %2 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="188"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="191"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt; മൗണ്ട് പോയിന്റോട് കൂടി %3 പാർട്ടീഷൻ %1 സജ്ജീകരിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="201"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="204"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>&lt;strong&gt;%1-ൽ&lt;/strong&gt; ബൂട്ട് ലോഡർ ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="210"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="213"/>
       <source>Setting up mount points.</source>
       <translation>മൗണ്ട് പോയിന്റുകൾ സജ്ജീകരിക്കുക.</translation>
     </message>
@@ -1272,32 +1277,32 @@ The installer will quit and all changes will be lost.</source>
       <translation>ഇപ്പോൾ റീസ്റ്റാർട്ട് ചെയ്യുക (&amp;R)</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="53"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
       <translation>&lt;h1&gt;എല്ലാം പൂർത്തിയായി.&lt;/h1&gt;&lt;br/&gt;%1 താങ്കളുടെ കമ്പ്യൂട്ടറിൽ സജ്ജമാക്കപ്പെട്ടിരിക്കുന്നു. &lt;br/&gt;താങ്കൾക്ക് താങ്കളുടെ പുതിയ സിസ്റ്റം ഉപയോഗിച്ച് തുടങ്ങാം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="58"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="57"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ഈ ബോക്സിൽ ശെരിയിട്ടാൽ,നിങ്ങളുടെ സിസ്റ്റം &lt;span style="font-style:italic;"&gt;പൂർത്തിയായി &lt;/span&gt;അമർത്തുമ്പോഴോ സജ്ജീകരണ പ്രോഗ്രാം അടയ്ക്കുമ്പോഴോ ഉടൻ പുനരാരംഭിക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="66"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="63"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
       <translation>&lt;h1&gt;എല്ലാം പൂർത്തിയായി.&lt;/h1&gt;&lt;br/&gt; %1 നിങ്ങളുടെ കമ്പ്യൂട്ടറിൽ ഇൻസ്റ്റാൾ ചെയ്തു. &lt;br/&gt;നിങ്ങൾക്ക് ഇപ്പോൾ നിങ്ങളുടെ പുതിയ സിസ്റ്റത്തിലേക്ക് പുനരാരംഭിക്കാം അല്ലെങ്കിൽ %2 ലൈവ് എൻവയോൺമെൻറ്  ഉപയോഗിക്കുന്നത് തുടരാം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="71"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="68"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ഈ ബോക്സിൽ ശെരിയിട്ടാൽ,നിങ്ങളുടെ സിസ്റ്റം &lt;span style="font-style:italic;"&gt;പൂർത്തിയായി &lt;/span&gt;അമർത്തുമ്പോഴോ സജ്ജീകരണ പ്രോഗ്രാം അടയ്ക്കുമ്പോഴോ ഉടൻ പുനരാരംഭിക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="133"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="125"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;സജ്ജീകരണം പരാജയപ്പെട്ടു&lt;/h1&gt;&lt;br/&gt;നിങ്ങളുടെ കമ്പ്യൂട്ടറിൽ %1 സജ്ജമാക്കിയിട്ടില്ല.&lt;br/&gt;പിശക് സന്ദേശം ഇതായിരുന്നു: %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="139"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="131"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;ഇൻസ്റ്റാളേഷൻ പരാജയപ്പെട്ടു&lt;/h1&gt;&lt;br/&gt; നിങ്ങളുടെ കമ്പ്യൂട്ടറിൽ %1 സജ്ജമാക്കിയിട്ടില്ല.&lt;br/&gt;പിശക് സന്ദേശം ഇതായിരുന്നു: %2.</translation>
     </message>
@@ -1305,27 +1310,27 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>FinishedViewStep</name>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="78"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="76"/>
       <source>Finish</source>
       <translation>പൂർത്തിയാക്കുക</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="132"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="134"/>
       <source>Setup Complete</source>
       <translation>സജ്ജീകരണം പൂർത്തിയായി</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="133"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="134"/>
       <source>Installation Complete</source>
       <translation>ഇൻസ്റ്റാളേഷൻ പൂർത്തിയായി</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="135"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
       <source>The setup of %1 is complete.</source>
       <translation>%1 ന്റെ സജ്ജീകരണം പൂർത്തിയായി.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="137"/>
       <source>The installation of %1 is complete.</source>
       <translation>%1 ന്റെ ഇൻസ്റ്റാളേഷൻ പൂർത്തിയായി.</translation>
     </message>
@@ -1356,72 +1361,72 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="126"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="159"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>%1 GiB ഡിസ്ക്സ്പെയ്സ് എങ്കിലും ലഭ്യമായിരിക്കണം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="128"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="162"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>ആവശ്യത്തിനു ഡിസ്ക്സ്പെയ്സ് ലഭ്യമല്ല. %1 GiB എങ്കിലും വേണം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="137"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="171"/>
       <source>has at least %1 GiB working memory</source>
       <translation>%1 GiB RAM എങ്കിലും ലഭ്യമായിരിക്കണം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="139"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="173"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
       <translation>സിസ്റ്റത്തിൽ ആവശ്യത്തിനു RAM ലഭ്യമല്ല. %1 GiB എങ്കിലും വേണം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="148"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="182"/>
       <source>is plugged in to a power source</source>
       <translation>ഒരു ഊർജ്ജസ്രോതസ്സുമായി ബന്ധിപ്പിച്ചിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="149"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="183"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>സിസ്റ്റം ഒരു ഊർജ്ജസ്രോതസ്സിലേക്ക് ബന്ധിപ്പിച്ചിട്ടില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="156"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="190"/>
       <source>is connected to the Internet</source>
       <translation>ഇന്റർനെറ്റിലേക്ക് ബന്ധിപ്പിച്ചിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="157"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="191"/>
       <source>The system is not connected to the Internet.</source>
       <translation>സിസ്റ്റം ഇന്റർനെറ്റുമായി ബന്ധിപ്പിച്ചിട്ടില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="164"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="198"/>
       <source>is running the installer as an administrator (root)</source>
       <translation>ഇൻസ്റ്റാളർ കാര്യനിർവാഹകരിൽ ഒരാളായിട്ടാണ് (root) പ്രവർത്തിപ്പിക്കുന്നത്</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="167"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="201"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>സെറ്റപ്പ് പ്രോഗ്രാം അഡ്മിനിസ്ട്രേറ്റർ അവകാശങ്ങൾ ഇല്ലാതെയാണ് പ്രവർത്തിക്കുന്നത്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="168"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="202"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>ഇൻസ്റ്റാളർ അഡ്മിനിസ്ട്രേറ്റർ അവകാശങ്ങൾ ഇല്ലാതെയാണ് പ്രവർത്തിക്കുന്നത് </translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="176"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="210"/>
       <source>has a screen large enough to show the whole installer</source>
       <translation>മുഴുവൻ ഇൻസ്റ്റാളറും കാണിക്കാൻ തക്ക വലിപ്പമുള്ള ഒരു സ്ക്രീനുണ്ട്</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="213"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>സജ്ജീകരണ പ്രയോഗം കാണിക്കാൻ തക്ക വലുപ്പം സ്ക്രീനിനില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="180"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="214"/>
       <source>The screen is too small to display the installer.</source>
       <translation>ഇൻസ്റ്റാളർ കാണിക്കാൻ തക്ക വലുപ്പം സ്ക്രീനിനില്ല.</translation>
     </message>
@@ -1770,6 +1775,16 @@ The installer will quit and all changes will be lost.</source>
     </message>
   </context>
   <context>
+    <name>Map</name>
+    <message>
+      <location filename="../src/modules/localeq/Map.qml" line="238"/>
+      <source>Please select your preferred location on the map so the installer can suggest the locale
+            and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
+            to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>NetInstallViewStep</name>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
@@ -1905,6 +1920,19 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="126"/>
       <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
       <translation>OEM ബാച്ച് ഐഡന്റിഫയർ &lt;code&gt;%1&lt;/code&gt; ആയി ക്രമീകരിക്കുക.</translation>
+    </message>
+  </context>
+  <context>
+    <name>Offline</name>
+    <message>
+      <location filename="../src/modules/localeq/Offline.qml" line="62"/>
+      <source>Timezone: %1</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Offline.qml" line="77"/>
+      <source>To be able to select a timezone, make sure you are connected to the internet. Restart the installer after connecting. You can fine-tune Language and Locale settings below.</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -2494,107 +2522,107 @@ The installer will quit and all changes will be lost.</source>
       <translation>പാർട്ടീഷനുകൾ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="168"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="169"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
       <translation>മറ്റൊരു ഓപ്പറേറ്റിംഗ് സിസ്റ്റത്തിനൊപ്പം %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="174"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
       <translation>ഡിസ്ക് &lt;strong&gt;മായ്ക്കുക&lt;/strong&gt;എന്നിട്ട് %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="178"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
       <translation>ഒരു പാർട്ടീഷൻ %1 ഉപയോഗിച്ച് &lt;strong&gt;പുനഃസ്ഥാപിക്കുക.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="181"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="182"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
       <translation>&lt;strong&gt;സ്വമേധയാ&lt;/strong&gt; ഉള്ള പാർട്ടീഷനിങ്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="194"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="195"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>%2 (%3) ഡിസ്കിൽ മറ്റൊരു ഓപ്പറേറ്റിംഗ് സിസ്റ്റത്തിനൊപ്പം %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="201"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="202"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
       <translation>ഡിസ്ക് &lt;strong&gt;%2&lt;/strong&gt; (%3) &lt;strong&gt;മായ്‌ച്ച് &lt;/strong&gt; %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="207"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="208"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) ഡിസ്കിലെ ഒരു പാർട്ടീഷൻ %1 ഉപയോഗിച്ച്  &lt;strong&gt;മാറ്റിസ്ഥാപിക്കുക&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="214"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="215"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
       <translation>&lt;strong&gt;%1 &lt;/strong&gt;(%2) ഡിസ്കിലെ &lt;strong&gt;സ്വമേധയാ&lt;/strong&gt; പാർട്ടീഷനിംഗ്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="223"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="224"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <translation>ഡിസ്ക് &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="249"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="250"/>
       <source>Current:</source>
       <translation>നിലവിലുള്ളത്:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="266"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="267"/>
       <source>After:</source>
       <translation>ശേഷം:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="432"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="434"/>
       <source>No EFI system partition configured</source>
       <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷനൊന്നും ക്രമീകരിച്ചിട്ടില്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="433"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="435"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="447"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="446"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="448"/>
       <source>EFI system partition flag not set</source>
       <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ ഫ്ലാഗ് ക്രമീകരിച്ചിട്ടില്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="473"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="475"/>
       <source>Option to use GPT on BIOS</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="474"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="476"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="502"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="504"/>
       <source>Boot partition not encrypted</source>
       <translation>ബൂട്ട് പാർട്ടീഷൻ എൻക്രിപ്റ്റ് ചെയ്യപ്പെട്ടിട്ടില്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="503"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="505"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>എൻക്രിപ്റ്റ് ചെയ്ത ഒരു റൂട്ട് പാർട്ടീഷനോടൊപ്പം ഒരു വേർപെടുത്തിയ ബൂട്ട് പാർട്ടീഷനും ക്രമീകരിക്കപ്പെട്ടിരുന്നു, എന്നാൽ ബൂട്ട് പാർട്ടീഷൻ എൻക്രിപ്റ്റ് ചെയ്യപ്പെട്ടതല്ല.&lt;br/&gt;&lt;br/&gt;ഇത്തരം സജ്ജീകരണത്തിന്റെ സുരക്ഷ ഉത്കണ്ഠാജനകമാണ്, എന്തെന്നാൽ പ്രധാനപ്പെട്ട സിസ്റ്റം ഫയലുകൾ ഒരു എൻക്രിപ്റ്റ് ചെയ്യപ്പെടാത്ത പാർട്ടീഷനിലാണ് സൂക്ഷിച്ചിട്ടുള്ളത്.&lt;br/&gt; താങ്കൾക്ക് വേണമെങ്കിൽ തുടരാം, പക്ഷേ ഫയൽ സിസ്റ്റം തുറക്കൽ സിസ്റ്റം ആരംഭപ്രക്രിയയിൽ വൈകിയേ സംഭവിക്കൂ.&lt;br/&gt;ബൂട്ട് പാർട്ടീഷൻ എൻക്രിപ്റ്റ് ചെയ്യാനായി, തിരിച്ചു പോയി പാർട്ടീഷൻ നിർമ്മാണ ജാലകത്തിൽ &lt;strong&gt;എൻക്രിപ്റ്റ്&lt;/strong&gt; തിരഞ്ഞെടുത്തുകൊണ്ട് അത് വീണ്ടും നിർമ്മിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="720"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="722"/>
       <source>has at least one disk device available.</source>
       <translation>ഒരു ഡിസ്ക് ഡിവൈസെങ്കിലും ലഭ്യമാണ്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="721"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="723"/>
       <source>There are no partitions to install on.</source>
       <translation type="unfinished"/>
     </message>
@@ -2660,14 +2688,14 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="422"/>
       <source>
 There was no output from the command.</source>
       <translation>
 ആജ്ഞയിൽ നിന്നും ഔട്ട്പുട്ടൊന്നുമില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="419"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
       <source>
 Output:
 </source>
@@ -2676,52 +2704,52 @@ Output:
 </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="427"/>
       <source>External command crashed.</source>
       <translation>ബാഹ്യമായ ആജ്ഞ തകർന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="424"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="428"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation>ആജ്ഞ &lt;i&gt;%1&lt;/i&gt; പ്രവർത്തനരഹിതമായി.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="433"/>
       <source>External command failed to start.</source>
       <translation>ബാഹ്യമായ ആജ്ഞ ആരംഭിക്കുന്നതിൽ പരാജയപ്പെട്ടു.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="430"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation>&lt;i&gt;%1&lt;/i&gt;ആജ്ഞ ആരംഭിക്കുന്നതിൽ പരാജയപ്പെട്ടു.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="438"/>
       <source>Internal error when starting command.</source>
       <translation>ആജ്ഞ ആരംഭിക്കുന്നതിൽ ആന്തരികമായ പിഴവ്.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="435"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="439"/>
       <source>Bad parameters for process job call.</source>
       <translation>പ്രക്രിയ ജോലി വിളിയ്ക്ക് ശരിയല്ലാത്ത പരാമീറ്ററുകൾ.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="439"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="443"/>
       <source>External command failed to finish.</source>
       <translation>ബാഹ്യമായ ആജ്ഞ പൂർത്തിയാവുന്നതിൽ പരാജയപ്പെട്ടു.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="440"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="444"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation>ആജ്ഞ &lt;i&gt;%1&lt;/i&gt; %2 സെക്കൻഡുകൾക്കുള്ളിൽ പൂർത്തിയാവുന്നതിൽ പരാജയപ്പെട്ടു.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="447"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="451"/>
       <source>External command finished with errors.</source>
       <translation>ബാഹ്യമായ ആജ്ഞ പിഴവുകളോട് കൂടീ പൂർത്തിയായി.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="448"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="452"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation>ആജ്ഞ &lt;i&gt;%1&lt;/i&gt; എക്സിറ്റ് കോഡ് %2ഓട് കൂടി പൂർത്തിയായി.</translation>
     </message>
@@ -2729,32 +2757,27 @@ Output:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="37"/>
+      <location filename="../src/libcalamares/locale/Label.cpp" line="41"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="63"/>
-      <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation>&lt;i&gt;%1&lt;/i&gt;മൊഡ്യൂളിനായുള്ള ആവശ്യകതകൾ പരിശോധിക്കൽ പൂർത്തിയായിരിക്കുന്നു.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="36"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="40"/>
       <source>unknown</source>
       <translation>അജ്ഞാതം</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="38"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="42"/>
       <source>extended</source>
       <translation>വിസ്തൃതമായത്</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="40"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="44"/>
       <source>unformatted</source>
       <translation>ഫോർമാറ്റ് ചെയ്യപ്പെടാത്തത്</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="42"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="46"/>
       <source>swap</source>
       <translation>സ്വാപ്പ്</translation>
     </message>
@@ -2809,6 +2832,15 @@ Output:
     </message>
   </context>
   <context>
+    <name>Recommended</name>
+    <message>
+      <location filename="../src/modules/welcomeq/Recommended.qml" line="49"/>
+      <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
+        Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
     <name>RemoveUserJob</name>
     <message>
       <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="43"/>
@@ -2843,71 +2875,86 @@ Output:
       <translation>ഫോം</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="139"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="140"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>%1 എവിടെ ഇൻസ്റ്റാൾ ചെയ്യണമെന്ന് തിരഞ്ഞെടുക്കുക.&lt;br/&gt;&lt;font color="red"&gt;മുന്നറിയിപ്പ്: &lt;/font&gt; ഇത് തിരഞ്ഞെടുത്ത പാർട്ടീഷനിലെ എല്ലാ ഫയലുകളും നീക്കം ചെയ്യും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="165"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="166"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>തിരഞ്ഞെടുക്കപ്പെട്ടത് സാധുവായ ഒരു പാർട്ടീഷനായി തോന്നുന്നില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="173"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="174"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>%1 ഒരു ശൂന്യമായ സ്ഥലത്ത് ഇൻസ്റ്റാൾ ചെയ്യാൻ സാധിക്കില്ല. ദയവായി നിലവിലുള്ള ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കൂ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="183"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="184"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>%1 ഒരു എക്സ്റ്റൻഡഡ് പാർട്ടീഷനിൽ ചെയ്യാൻ സാധിക്കില്ല. ദയവായി നിലവിലുള്ള ഒരു പ്രൈമറി അല്ലെങ്കിൽ ലോജിക്കൽ പാർട്ടീഷൻ തിരഞ്ഞെടുക്കൂ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="193"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="194"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>%1 ഈ പാർട്ടീഷനിൽ ഇൻസ്റ്റാൾ ചെയ്യാൻ സാധിക്കില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="200"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="201"/>
       <source>Data partition (%1)</source>
       <translation>ഡാറ്റ പാർട്ടീഷൻ (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="216"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="217"/>
       <source>Unknown system partition (%1)</source>
       <translation>അപരിചിതമായ സിസ്റ്റം പാർട്ടീഷൻ (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="221"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="222"/>
       <source>%1 system partition (%2)</source>
       <translation>%1 സിസ്റ്റം പാർട്ടീഷൻ (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="232"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="233"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;പാർട്ടീഷൻ %1 %2ന് തീരെ ചെറുതാണ്. ദയവായി %3ജിബി എങ്കീലും  ഇടമുള്ള ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കൂ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="256"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;ഈ സിസ്റ്റത്തിൽ എവിടേയും ഒരു ഇഎഫ്ഐ സിസ്റ്റം പർട്ടീഷൻ കണ്ടെത്താനായില്ല. %1 സജ്ജീകരിക്കുന്നതിന് ദയവായി തിരിച്ചുപോയി മാനുവൽ പാർട്ടീഷനിങ്ങ് ഉപയോഗിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="266"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="283"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="307"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="284"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="308"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 %2ൽ ഇൻസ്റ്റാൾ ചെയ്യപ്പെടും.&lt;br/&gt;&lt;font color="red"&gt;മുന്നറിയിപ്പ്:&lt;/font&gt;പാർട്ടീഷൻ %2ൽ ഉള്ള എല്ലാ ഡാറ്റയും നഷ്ടപ്പെടും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="275"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="276"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1 ലെ ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ %2 ആരംഭിക്കുന്നതിന് ഉപയോഗിക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="291"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>EFI system partition:</source>
       <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ</translation>
+    </message>
+  </context>
+  <context>
+    <name>Requirements</name>
+    <message>
+      <location filename="../src/modules/welcomeq/Requirements.qml" line="47"/>
+      <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
+        Installation cannot continue.&lt;/p&gt;</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/Requirements.qml" line="49"/>
+      <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
+        Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
@@ -3032,12 +3079,12 @@ Output:
   <context>
     <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="140"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="142"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>മികച്ച ഫലങ്ങൾക്കായി ഈ കമ്പ്യൂട്ടർ താഴെപ്പറയുന്നവ നിറവേറ്റുന്നു എന്നുറപ്പുവരുത്തുക:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="141"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="143"/>
       <source>System requirements</source>
       <translation>സിസ്റ്റം ആവശ്യകതകൾ</translation>
     </message>
@@ -3045,27 +3092,27 @@ Output:
   <context>
     <name>ResultsListWidget</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="261"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="265"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാനാവില്ല. &lt;a href="#details"&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="265"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="269"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യുന്നതിനുള്ള ഏറ്റവും കുറഞ്ഞ ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാനാവില്ല. &lt;a href="#details"&gt;വിവരങ്ങൾ...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="272"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="276"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>%1 സജ്ജീകരിക്കുന്നതിനുള്ള ചില ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;സജ്ജീകരണം തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="276"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="280"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യാൻ ശുപാർശ ചെയ്യപ്പെട്ടിട്ടുള്ള ആവശ്യങ്ങൾ ഈ കമ്പ്യൂട്ടർ നിറവേറ്റുന്നില്ല.&lt;br/&gt;ഇൻസ്റ്റളേഷൻ തുടരാം, പക്ഷേ ചില സവിശേഷതകൾ നിഷ്ക്രിയമായിരിക്കാം.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="285"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="289"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>ഈ പ്രക്രിയ താങ്കളോട് ചില ചോദ്യങ്ങൾ ചോദിക്കുകയും %2 താങ്കളുടെ കമ്പ്യൂട്ടറിൽ സജ്ജീകരിക്കുകയും ചെയ്യും.</translation>
     </message>
@@ -3348,51 +3395,80 @@ Output:
   <context>
     <name>TrackingInstallJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="42"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="46"/>
       <source>Installation feedback</source>
       <translation>ഇൻസ്റ്റളേഷനെ പറ്റിയുള്ള പ്രതികരണം</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="54"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="58"/>
       <source>Sending installation feedback.</source>
       <translation>ഇൻസ്റ്റളേഷനെ പറ്റിയുള്ള പ്രതികരണം അയയ്ക്കുന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="71"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="75"/>
       <source>Internal error in install-tracking.</source>
       <translation>ഇൻസ്റ്റാൾ-പിന്തുടരുന്നതിൽ ആന്തരികമായ പിഴവ്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="72"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="76"/>
       <source>HTTP request timed out.</source>
       <translation>HTTP അപേക്ഷയുടെ സമയപരിധി കഴിഞ്ഞു.</translation>
     </message>
   </context>
   <context>
-    <name>TrackingMachineNeonJob</name>
+    <name>TrackingKUserFeedbackJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="80"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="202"/>
+      <source>KDE user feedback</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="214"/>
+      <source>Configuring KDE user feedback.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="236"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="242"/>
+      <source>Error in KDE user feedback configuration.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="237"/>
+      <source>Could not configure KDE user feedback correctly, script error %1.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="243"/>
+      <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>TrackingMachineUpdateManagerJob</name>
+    <message>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="120"/>
       <source>Machine feedback</source>
       <translation>ഉപകരണത്തിൽ നിന്നുള്ള പ്രതികരണം</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="92"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="132"/>
       <source>Configuring machine feedback.</source>
       <translation>ഉപകരണത്തിൽ നിന്നുള്ള പ്രതികരണം ക്രമീകരിക്കുന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="117"/>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="123"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="155"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="161"/>
       <source>Error in machine feedback configuration.</source>
       <translation>ഉപകരണത്തിൽ നിന്നുള്ള പ്രതികരണത്തിന്റെ ക്രമീകരണത്തിൽ പിഴവ്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="118"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="156"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
       <translation>ഉപകരണത്തിൽ നിന്നുള്ള പ്രതികരണം ശരിയായി ക്രമീകരിക്കാനായില്ല. സ്ക്രിപ്റ്റ് പിഴവ് %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="124"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="162"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
       <translation>ഉപകരണത്തിൽ നിന്നുള്ള പ്രതികരണം ശരിയായി ക്രമീകരിക്കാനായില്ല. കലാമാരേസ് പിഴവ് %1.</translation>
     </message>
@@ -3411,8 +3487,8 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By selecting this, you will send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ഇത് തിരഞ്ഞെടുക്കുന്നതിലൂടെ, നിങ്ങളുടെ ഇൻസ്റ്റാളേഷനെക്കുറിച്ച് &lt;span style=" font-weight:600;"&gt;ഒരു വിവരവും നിങ്ങൾ അയയ്‌ക്കില്ല.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished"/>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
@@ -3420,30 +3496,30 @@ Output:
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;ഉപയോക്തൃ ഫീഡ്‌ബാക്കിനെക്കുറിച്ചുള്ള കൂടുതൽ വിവരങ്ങൾക്ക് ഇവിടെ ക്ലിക്കുചെയ്യുക&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="44"/>
-      <source>Install tracking helps %1 to see how many users they have, what hardware they install %1 to and (with the last two options below), get continuous information about preferred applications. To see what will be sent, please click the help icon next to each area.</source>
-      <translation>എത്ര ഉപയോക്താക്കളുണ്ട് ,ഏത് ഹാർഡ്‌വെയറിലാണ് %1 ഇൻസ്റ്റാൾ ചെയ്യുന്നത് (ചുവടെയുള്ള അവസാന രണ്ടു ഓപ്ഷനുകൾക്കൊപ്പം) കൂടാതെ നിങ്ങൾ മുന്ഗണന നൽകുന്ന പ്രയോഗങ്ങളെക്കുറിച്ചുള്ള വിവരങ്ങൾ നേടുന്നതിന് %1 ഇൻസ്റ്റാൾ ട്രാക്കിംഗ് സഹായിക്കുന്നു.എന്താണ് അയയ്‌ക്കുന്നതെന്ന് കാണാൻ, ഓരോ ഭാഗത്തിനും അടുത്തുള്ള സഹായ ഐക്കണിൽ ക്ലിക്കുചെയ്യുക.</translation>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
+      <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="49"/>
-      <source>By selecting this you will send information about your installation and hardware. This information will &lt;b&gt;only be sent once&lt;/b&gt; after the installation finishes.</source>
-      <translation>ഇത് തിരഞ്ഞെടുക്കുന്നതിലൂടെ നിങ്ങളുടെ ഇൻസ്റ്റാളേഷനെക്കുറിച്ചും ഹാർഡ്‌വെയറിനെക്കുറിച്ചും വിവരങ്ങൾ അയയ്ക്കും. ഇൻസ്റ്റാളേഷൻ പൂർത്തിയായതിന് ശേഷം &lt;b&gt;ഒരു തവണ മാത്രമേ ഈ വിവരങ്ങൾ അയയ്ക്കൂ&lt;/b&gt;.</translation>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
+      <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="51"/>
-      <source>By selecting this you will &lt;b&gt;periodically&lt;/b&gt; send information about your installation, hardware and applications, to %1.</source>
-      <translation>ഇത് തിരഞ്ഞെടുക്കുന്നതിലൂടെ താങ്കൾ &lt;b&gt;ഇടയ്ക്കിടെ&lt;/b&gt;താങ്കളുടെ ഇൻസ്റ്റളേഷനെയും ഹാർഡ്‌വെയറിനെയും പ്രയോഗങ്ങളേയും പറ്റിയുള്ള വിവരങ്ങൾ %1ന് അയച്ചുകൊടുക്കും.</translation>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
+      <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="54"/>
-      <source>By selecting this you will &lt;b&gt;regularly&lt;/b&gt; send information about your installation, hardware, applications and usage patterns, to %1.</source>
-      <translation>ഇത് തിരഞ്ഞെടുക്കുന്നതിലൂടെ നിങ്ങളുടെ ഇൻസ്റ്റാളേഷൻ, ഹാർഡ്‌വെയർ, ആപ്ലിക്കേഷനുകൾ, ഉപയോഗ രീതികൾ എന്നിവയെക്കുറിച്ചുള്ള വിവരങ്ങൾ &lt;b&gt;പതിവായി&lt;/b&gt; %1 ലേക്ക് അയയ്ക്കും.</translation>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
+      <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>TrackingViewStep</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="64"/>
+      <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="58"/>
       <source>Feedback</source>
       <translation>പ്രതികരണം</translation>
     </message>
@@ -3629,42 +3705,42 @@ Output:
       <translation>പ്രകാശന കുറിപ്പുകൾ (&amp;R)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="225"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;%1 -നായുള്ള കലാമാരേസ് സജ്ജീകരണപ്രക്രിയയിലേയ്ക്ക് സ്വാഗതം.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="229"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="226"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;%1 സജ്ജീകരണത്തിലേക്ക് സ്വാഗതം.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="234"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;%1 -നായുള്ള കലാമാരേസ് ഇൻസ്റ്റാളറിലേക്ക് സ്വാഗതം.&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="232"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;%1 ഇൻസ്റ്റാളറിലേക്ക് സ്വാഗതം&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="240"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="237"/>
       <source>%1 support</source>
       <translation>%1 പിന്തുണ</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="244"/>
       <source>About %1 setup</source>
       <translation>%1 സജ്ജീകരണത്തെക്കുറിച്ച് </translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="244"/>
       <source>About %1 installer</source>
       <translation>%1 ഇൻസ്റ്റാളറിനെ കുറിച്ച്</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="250"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
       <translation type="unfinished"/>
     </message>
@@ -3672,7 +3748,7 @@ Output:
   <context>
     <name>WelcomeQmlViewStep</name>
     <message>
-      <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="60"/>
+      <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="50"/>
       <source>Welcome</source>
       <translation>സ്വാഗതം</translation>
     </message>
@@ -3680,7 +3756,7 @@ Output:
   <context>
     <name>WelcomeViewStep</name>
     <message>
-      <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="64"/>
+      <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="57"/>
       <source>Welcome</source>
       <translation>സ്വാഗതം</translation>
     </message>
@@ -3705,6 +3781,26 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="105"/>
+      <source>Back</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>i18n</name>
+    <message>
+      <location filename="../src/modules/localeq/i18n.qml" line="59"/>
+      <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
+                    The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/i18n.qml" line="120"/>
+      <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
+                    The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/i18n.qml" line="174"/>
       <source>Back</source>
       <translation type="unfinished"/>
     </message>
@@ -3751,6 +3847,24 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="189"/>
       <source>Test your keyboard</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>localeq</name>
+    <message>
+      <location filename="../src/modules/localeq/localeq.qml" line="98"/>
+      <source>System language set to %1</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/localeq.qml" line="106"/>
+      <source>Numbers and dates locale set to %1</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/localeq.qml" line="112"/>
+      <source>Change</source>
       <translation type="unfinished"/>
     </message>
   </context>
@@ -3805,27 +3919,27 @@ Output:
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="71"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
       <source>About</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="85"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="89"/>
       <source>Support</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="96"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Known issues</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="107"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="111"/>
       <source>Release notes</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="119"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="123"/>
       <source>Donate</source>
       <translation type="unfinished"/>
     </message>

@@ -23,13 +23,37 @@
 #include "modulesystem/RequirementsModel.h"
 
 #include <QObject>
+#include <QSortFilterProxyModel>
 #include <QUrl>
+
+#include <memory>
 
 class Config : public QObject
 {
     Q_OBJECT
+    /** @brief The languages available in Calamares.
+     *
+     * This is a list-model, with names and descriptions for the translations
+     * available to Calamares.
+     */
     Q_PROPERTY( CalamaresUtils::Locale::LabelModel* languagesModel READ languagesModel CONSTANT FINAL )
+    /** @brief The requirements (from modules) and their checked-status
+     *
+     * The model grows rows over time as each module is checked and its
+     * requirements are taken into account. The model **as a whole**
+     * has properties *satisfiedRequirements* and *satisfiedMandatory*
+     * to say if all of the requirements held in the model have been
+     * satisfied. See the model documentation for details.
+     */
     Q_PROPERTY( Calamares::RequirementsModel* requirementsModel READ requirementsModel CONSTANT FINAL )
+    /** @brief The requirements (from modules) that are **unsatisfied**
+     *
+     * This is the same as requirementsModel(), except filtered so
+     * that only those requirements that are not satisfied are exposed.
+     * Note that the type is different, so you should still use the
+     * requirementsModel() for overall status like *satisfiedMandatory*.
+     */
+    Q_PROPERTY( QAbstractItemModel* unsatisfiedRequirements READ unsatisfiedRequirements CONSTANT FINAL )
 
     Q_PROPERTY( QString languageIcon READ languageIcon CONSTANT FINAL )
 
@@ -83,6 +107,8 @@ public slots:
     ///@brief The **global** requirements model, from ModuleManager
     Calamares::RequirementsModel* requirementsModel() const;
 
+    QAbstractItemModel* unsatisfiedRequirements() const;
+
 signals:
     void countryCodeChanged( QString countryCode );
     void localeIndexChanged( int localeIndex );
@@ -99,7 +125,8 @@ signals:
 private:
     void initLanguages();
 
-    CalamaresUtils::Locale::LabelModel* m_languages;
+    CalamaresUtils::Locale::LabelModel* m_languages = nullptr;
+    std::unique_ptr< QSortFilterProxyModel > m_filtermodel;
 
     QString m_languageIcon;
     QString m_countryCode;

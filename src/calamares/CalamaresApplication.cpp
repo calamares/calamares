@@ -32,6 +32,9 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#ifdef WITH_QML
+#include "utils/Qml.h"
+#endif
 #include "utils/Retranslator.h"
 #include "viewpages/ViewStep.h"
 
@@ -73,7 +76,7 @@ CalamaresApplication::init()
 {
     Logger::setupLogfile();
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
-    cDebug() << "        languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
+    cDebug() << Logger::SubEntry << "        languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).replace( ";", ", " );
 
     if ( !Calamares::Settings::instance() )
     {
@@ -88,11 +91,11 @@ CalamaresApplication::init()
     setQuitOnLastWindowClosed( false );
     setWindowIcon( QIcon( Calamares::Branding::instance()->imagePath( Calamares::Branding::ProductIcon ) ) );
 
-    cDebug() << "STARTUP: initSettings, initQmlPath, initBranding done";
+    cDebug() << Logger::SubEntry << "STARTUP: initSettings, initQmlPath, initBranding done";
 
     initModuleManager();  //also shows main window
 
-    cDebug() << "STARTUP: initModuleManager: module init started";
+    cDebug() << Logger::SubEntry << "STARTUP: initModuleManager: module init started";
 }
 
 
@@ -114,34 +117,6 @@ CalamaresWindow*
 CalamaresApplication::mainWindow()
 {
     return m_mainwindow;
-}
-
-
-static QStringList
-qmlDirCandidates( bool assumeBuilddir )
-{
-    static const char QML[] = "qml";
-
-    QStringList qmlDirs;
-    if ( CalamaresUtils::isAppDataDirOverridden() )
-    {
-        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
-    }
-    else
-    {
-        if ( assumeBuilddir )
-        {
-            qmlDirs << QDir::current().absoluteFilePath( "src/qml" );  // In build-dir
-        }
-        if ( CalamaresUtils::haveExtraDirs() )
-            for ( auto s : CalamaresUtils::extraDataDirs() )
-            {
-                qmlDirs << ( s + QML );
-            }
-        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
-    }
-
-    return qmlDirs;
 }
 
 
@@ -175,38 +150,12 @@ brandingFileCandidates( bool assumeBuilddir, const QString& brandingFilename )
 void
 CalamaresApplication::initQmlPath()
 {
-    QDir importPath;  // Right now, current-dir
-    QStringList qmlDirCandidatesByPriority = qmlDirCandidates( isDebug() );
-    bool found = false;
-
-    foreach ( const QString& path, qmlDirCandidatesByPriority )
+#ifdef WITH_QML
+    if ( !CalamaresUtils::initQmlModulesDir() )
     {
-        QDir dir( path );
-        if ( dir.exists() && dir.isReadable() )
-        {
-            importPath = dir;
-            found = true;
-            break;
-        }
-    }
-
-    if ( !found || !importPath.exists() || !importPath.isReadable() )
-    {
-        cError() << "Cowardly refusing to continue startup without a QML directory."
-                 << Logger::DebugList( qmlDirCandidatesByPriority );
-        if ( CalamaresUtils::isAppDataDirOverridden() )
-        {
-            cError() << "FATAL: explicitly configured application data directory is missing qml/";
-        }
-        else
-        {
-            cError() << "FATAL: none of the expected QML paths exist.";
-        }
         ::exit( EXIT_FAILURE );
     }
-
-    cDebug() << "Using Calamares QML directory" << importPath.absolutePath();
-    CalamaresUtils::setQmlModulesDir( importPath );
+#endif
 }
 
 

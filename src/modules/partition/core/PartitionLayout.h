@@ -41,7 +41,9 @@ public:
     struct PartitionEntry
     {
         QString partLabel;
+        QString partUUID;
         QString partType;
+        quint64 partAttributes;
         QString partMountPoint;
         FileSystem::Type partFileSystem = FileSystem::Unknown;
         QVariantMap partFeatures;
@@ -50,7 +52,7 @@ public:
         CalamaresUtils::Partition::PartitionSize partMaxSize;
 
         /// @brief All-zeroes PartitionEntry
-        PartitionEntry() {}
+        PartitionEntry();
         /// @brief Parse @p size, @p min and @p max to their respective member variables
         PartitionEntry( const QString& size, const QString& min, const QString& max );
 
@@ -76,7 +78,9 @@ public:
                    const QString& min = QString(),
                    const QString& max = QString() );
     bool addEntry( const QString& label,
+                   const QString& uuid,
                    const QString& type,
+                   quint64 attributes,
                    const QString& mountPoint,
                    const QString& fs,
                    const QVariantMap& features,

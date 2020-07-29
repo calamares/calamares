@@ -1,6 +1,13 @@
 #! /usr/bin/env python3
 #
 #  === This file is part of Calamares - <https://github.com/calamares> ===
+# 
+#   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+#
+#   SPDX-License-Identifier: BSD-2-Clause
+#   License-Filename: LICENSES/BSD2
+#
+#
 #
 # Python3 script to scrape some data out of ICU CLDR supplemental data.
 #

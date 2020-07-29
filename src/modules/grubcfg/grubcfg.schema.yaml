@@ -1,0 +1,15 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/grubcfg
+additionalProperties: false
+type: object
+properties:
+    "overwrite": { type: boolean, default: false }
+    "defaults":
+        type: map
+        mapping:
+            "GRUB_TIMEOUT": { type: int, required: true }
+            "GRUB_DEFAULT": { type: string, required: true }
+            "GRUB_DISABLE_SUBMENU": { type: boolean, default: true }
+            "GRUB_TERMINAL_OUTPUT": { type: string, required: true }
+            "GRUB_DISABLE_RECOVERY": { type: boolean, default: true }

@@ -77,6 +77,9 @@ private:
     void initPartitionCoreModule();
     void continueLoading();
 
+    /// "slot" for changes to next-status from the KPMCore and ChoicePage
+    void nextPossiblyChanged( bool );
+
     Config* m_config;
 
     PartitionCoreModule* m_core;

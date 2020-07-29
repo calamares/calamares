@@ -91,6 +91,12 @@ mapForPartition( Partition* partition, const QString& uuid )
 {
     QVariantMap map;
     map[ "device" ] = partition->partitionPath();
+    map[ "partlabel" ] = partition->label();
+    map[ "partuuid" ] = partition->uuid();
+#ifdef WITH_KPMCORE42API
+    map[ "parttype" ] = partition->type();
+    map[ "partattrs" ] = partition->attributes();
+#endif
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fsName" ] = userVisibleFS( partition->fileSystem() );
     map[ "fs" ] = untranslatedFS( partition->fileSystem() );
@@ -107,6 +113,8 @@ mapForPartition( Partition* partition, const QString& uuid )
     Logger::CDebug deb;
     using TR = Logger::DebugRow< const char* const, const QString& >;
     deb << Logger::SubEntry << "mapping for" << partition->partitionPath() << partition->deviceNode()
+        << TR( "partlabel", map[ "partlabel" ].toString() ) << TR( "partuuid", map[ "partuuid" ].toString() )
+        << TR( "parttype", map[ "partype" ].toString() ) << TR( "partattrs", map[ "partattrs" ].toString() )
         << TR( "mountPoint:", PartitionInfo::mountPoint( partition ) ) << TR( "fs:", map[ "fs" ].toString() )
         << TR( "fsName", map[ "fsName" ].toString() ) << TR( "uuid", uuid )
         << TR( "claimed", map[ "claimed" ].toString() );

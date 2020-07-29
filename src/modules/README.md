@@ -9,20 +9,16 @@ Each Calamares module lives in its own directory.
 All modules are installed in `$DESTDIR/lib/calamares/modules`.
 
 There are two **types** of Calamares module:
-* viewmodule, for user-visible modules. These may be in C++, or PythonQt.
+* viewmodule, for user-visible modules. These use C++ and QWidgets or QML
 * jobmodule, for not-user-visible modules. These may be done in C++,
   Python, or as external processes.
 
-A viewmodule exposes a UI to the user. The PythonQt-based modules
-are considered experimental (and as of march 2019 may be on the
-way out again as never-used-much and PythonQt is not packaged
-on Debian anymore).
+A viewmodule exposes a UI to the user.
 
-There are three (four) **interfaces** for Calamares modules:
+There are three **interfaces** for Calamares modules:
 * qtplugin (viewmodules, jobmodules),
 * python (jobmodules only),
-* pythonqt (viewmodules, jobmodules, optional),
-* process (jobmodules only).
+* process (jobmodules only, not recommended).
 
 ## Module directory
 
@@ -50,7 +46,7 @@ Module descriptors **must** have the following keys:
 - *interface* (see below for the different interfaces; generally we
   refer to the kinds of modules by their interface)
 
-Module descriptors for Python and PythonQt modules **must** have the following key:
+Module descriptors for Python modules **must** have the following key:
 - *script* (the name of the Python script to load, nearly always `main.py`)
 
 Module descriptors **may** have the following keys:
@@ -133,15 +129,67 @@ a `CMakeLists.txt` with a `calamares_add_plugin` call. It will be picked
 up automatically by our CMake magic. The `module.desc` file is not recommended:
 nearly all cases can be described in CMake.
 
+### C++ Jobmodule
+
+**TODO:** this needs documentation
+
+### C++ Widgets Viewmodule
+
+**TODO:** this needs documentation
+
+### C++ QML Viewmodule
+
+A QML Viewmodule (or view step) puts much of the UI work in one or more
+QML files; the files may be loaded from the branding directory or compiled
+into the module. Which QML is used depends on the deployment and the
+configuration files for Calamares.
+
+#### Explicit properties
+
+The QML can access data from the C++ framework though properties
+exposed to QML. There are two libraries that need to be imported
+explicitly:
+
+```
+import io.calamares.core 1.0
+import io.calamares.ui 1.0
+```
+
+The *ui* library contains the *Branding* object, which corresponds to
+the branding information set through `branding.desc`. The Branding
+class (in `src/libcalamaresui/Branding.h` offers a QObject-property
+based API, where the most important functions are `string()` and the
+convenience functions `versionedName()` and similar.
+
+The *core* library contains both *ViewManager*, which handles overall
+progress through the application, and *Global*, which holds global
+storage information. Both objects have an extensive API. The *ViewManager*
+can behave as a model for list views and the like.
+
+These explicit properties from libraries are shared across all the
+QML modules (for global storage that goes without saying: it is
+the mechanism to share information with other modules).
+
+#### Implicit properties
+
+Each module also has an implicit context property available to it.
+No import is needed. The context property *config* (note lower case)
+holds the Config object for the module.
+
+The Config object is the bridge between C++ and QML.
+
+A Config object must inherit QObject and should expose, as `Q_PROPERTY`,
+all of the relevant configuration information for the module instance.
+The general description how to do that is available
+in the [Qt documentation](https://doc.qt.io/qt-5/qtqml-cppintegration-topic.html).
 
 
 ## Python modules
 
 Modules may use one of the python interfaces, which may be present
 in a Calamares installation (but also may not be). These modules must have
-a `module.desc` file. The Python script must implement one or more of the
-Python interfaces for Calamares -- either the python jobmodule interface,
-or the experimental pythonqt job- and viewmodule interfaces.
+a `module.desc` file. The Python script must implement the
+Python jobmodule interface.
 
 To add a Python or process jobmodule, put it in a subdirectory and make sure
 it has a `module.desc`. It will be picked up automatically by our CMake magic.
@@ -178,31 +226,19 @@ description if something went wrong.
 
 
 
-## PythonQt modules
+## PythonQt modules (deprecated)
 
 > Type: viewmodule, jobmodule
 > Interface: pythonqt
 
-The PythonQt modules are considered experimental and may be removed again
-due to low uptake. Their documentation is also almost completely lacking.
-
-### PythonQt Jobmodule
-
-A PythonQt jobmodule implements the experimental Job interface by defining
-a subclass of something.
-
-### PythonQt Viewmodule
-
-A PythonQt viewmodule implements the experimental View interface by defining
-a subclass of something.
-
-### Python API
-
-**TODO:** this needs documentation
+The PythonQt modules are deprecated and will be removed in Calamares 3.3.
+Their documentation is also almost completely lacking.
 
 
 
-## Process jobmodules
+## Process modules
+
+Use of this kind of module is **not** recommended.
 
 > Type: jobmodule
 > Interface: process

@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2013-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,6 +16,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #ifndef UTILS_VARIANT_H
@@ -28,35 +33,44 @@
 namespace CalamaresUtils
 {
 /**
- * Get a bool value from a mapping with a given key; returns the default
- * if no value is stored in the map.
+ * Get a bool value from a mapping with a given key; returns @p d if no value.
  */
-DLLEXPORT bool getBool( const QVariantMap& map, const QString& key, bool d );
+DLLEXPORT bool getBool( const QVariantMap& map, const QString& key, bool d = false );
 
 /**
- * Get a string value from a mapping; returns empty QString if no value.
+ * Get a string value from a mapping with a given key; returns @p d if no value.
  */
-DLLEXPORT QString getString( const QVariantMap& map, const QString& key );
+DLLEXPORT QString getString( const QVariantMap& map, const QString& key, const QString& d = QString() );
 
 /**
- * Get an integer value from a mapping; returns @p d if no value.
+ * Get a string list from a mapping with a given key; returns @p d if no value.
  */
-DLLEXPORT qint64 getInteger( const QVariantMap& map, const QString& key, qint64 d );
+DLLEXPORT QStringList getStringList( const QVariantMap& map, const QString& key, const QStringList& d = QStringList() );
 
 /**
- * Get a double value from a mapping (integers are converted); returns @p d if no value.
+ * Get an integer value from a mapping with a given key; returns @p d if no value.
  */
-DLLEXPORT double getDouble( const QVariantMap& map, const QString& key, double d );
+DLLEXPORT qint64 getInteger( const QVariantMap& map, const QString& key, qint64 d = 0);
 
 /**
- * Returns a sub-map (i.e. a nested map) from the given mapping with the
+ * Get an unsigned integer value from a mapping with a given key; returns @p d if no value.
+ */
+DLLEXPORT quint64 getUnsignedInteger( const QVariantMap& map, const QString& key, quint64 d = 0 );
+
+/**
+ * Get a double value from a mapping with a given key (integers are converted); returns @p d if no value.
+ */
+DLLEXPORT double getDouble( const QVariantMap& map, const QString& key, double d = 0.0 );
+
+/**
+ * Returns a sub-map (i.e. a nested map) from a given mapping with a 
  * given key. @p success is set to true if the @p key exists
  * in @p map and converts to a map, false otherwise.
  *
- * Returns an empty map if there is no such key or it is not a map-value.
+ * Returns @p d if there is no such key or it is not a map-value.
  * (e.g. if @p success is false).
  */
-DLLEXPORT QVariantMap getSubMap( const QVariantMap& map, const QString& key, bool& success );
+DLLEXPORT QVariantMap getSubMap( const QVariantMap& map, const QString& key, bool& success, const QVariantMap& d = QVariantMap() );
 }  // namespace CalamaresUtils
 
 #endif

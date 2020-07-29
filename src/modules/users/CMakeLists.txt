@@ -28,6 +28,7 @@ calamares_add_plugin( users
         UsersPage.cpp
         SetHostNameJob.cpp
         CheckPWQuality.cpp
+        Config.cpp
     UI
         page_usersetup.ui
     RESOURCES
@@ -43,17 +44,31 @@ calamares_add_plugin( users
 calamares_add_test(
     userspasswordtest
     SOURCES
-        PasswordTests.cpp
+        TestPasswordJob.cpp
         SetPasswordJob.cpp
     LIBRARIES
         ${CRYPT_LIBRARIES}
 )
 
 calamares_add_test(
-    userstest
+    userscreatetest
     SOURCES
-        Tests.cpp
+        TestCreateUserJob.cpp
+        CreateUserJob.cpp
+)
+
+calamares_add_test(
+    usershostnametest
+    SOURCES
+        TestSetHostNameJob.cpp
         SetHostNameJob.cpp
     LIBRARIES
         Qt5::DBus
+)
+
+calamares_add_test(
+    userstest
+    SOURCES
+        Tests.cpp
+        Config.cpp
 )

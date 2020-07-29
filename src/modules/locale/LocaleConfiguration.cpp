@@ -37,7 +37,7 @@ LocaleConfiguration::LocaleConfiguration( const QString& localeName, const QStri
     lc_numeric = lc_time = lc_monetary = lc_paper = lc_name = lc_address = lc_telephone = lc_measurement
         = lc_identification = formatsName;
 
-    (void)setLanguage( localeName );
+    setLanguage( localeName );
 }
 
 
@@ -83,7 +83,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     if ( language == "pt" || language == "zh" )
     {
         QString proposedLocale = QString( "%1_%2" ).arg( language ).arg( countryCode );
-        foreach ( QString line, linesForLanguage )
+        for ( const QString& line : linesForLanguage )
         {
             if ( line.contains( proposedLocale ) )
             {

@@ -1,0 +1,38 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/users
+additionalProperties: false
+type: object
+properties:
+    # User shell, should be path to /bin/sh or so
+    userShell: { type: string }
+    # Group settings
+    defaultGroups:
+        type: array
+        items: { type: string }
+    autologinGroup: { type: string }
+    sudoersGroup: { type: string }
+    # Skip login (depends on displaymanager support)
+    doAutologin: { type: boolean, default: true }
+    # Root password separate from user password?
+    setRootPassword: { type: boolean, default: true }
+    doReusePassword: { type: boolean, default: true }
+    # Passwords that don't pass a quality test
+    allowWeakPasswords: { type: boolean, default: false }
+    allowWeakPasswordsDefault: { type: boolean, default: false }
+    passwordRequirements:
+        additionalProperties: false
+        type: object
+        properties:
+            nonempty: { type: boolean, default: true }
+            minLength: { type: number }
+            maxLength: { type: number }
+            libpwquality: { type: array, items: { type: string } }  # Don't know what libpwquality supports
+    # Hostname setting
+    setHostname: { type: string, enum: [ None, EtcFile, Hostnamed ] }
+    writeHostsFile: { type: boolean, default: true }
+
+required:
+    - defaultGroups
+    - autologinGroup
+    - sudoersGroup

@@ -52,26 +52,60 @@ public:
     explicit ViewStep( QObject* parent = nullptr );
     virtual ~ViewStep() override;
 
+    /** @brief Human-readable name of the step
+     *
+     * This (translated) string is shown in the sidebar (progress)
+     * and during installation. There is no default.
+     */
     virtual QString prettyName() const = 0;
 
-    /**
+    /** @brief Describe what this step will do during install
+     *
      * Optional. May return a non-empty string describing what this
      * step is going to do (should be translated). This is also used
      * in the summary page to describe what is going to be done.
      * Return an empty string to provide no description.
+     *
+     * The default implementation returns an empty string, so nothing
+     * will be displayed for this step when a summary is shown.
      */
     virtual QString prettyStatus() const;
 
-    /**
+    /** @brief Return a long description what this step will do during install
+     *
      * Optional. May return a widget which will be inserted in the summary
      * page. The caller takes ownership of the widget. Return nullptr to
      * provide no widget. In general, this is only used for complicated
      * steps where prettyStatus() is not sufficient.
+     *
+     * The default implementation returns nullptr, so nothing
+     * will be displayed for this step when a summary is shown.
      */
     virtual QWidget* createSummaryWidget() const;
 
-    //TODO: we might want to make this a QSharedPointer
+    /** @brief Get (or create) the widget for this view step
+     *
+     * While a view step **may** create the widget when it is loaded,
+     * it is recommended to wait with widget creation until the
+     * widget is actually asked for: a view step **may** be used
+     * without a UI.
+     */
     virtual QWidget* widget() = 0;
+
+    /** @brief Get margins for this widget
+     *
+     * This is called by the layout manager to find the desired
+     * margins (width is used for left and right margin, height is
+     * used for top and bottom margins) for the widget. The
+     * @p panelSides indicates where there are panels in the overall
+     * layout: horizontally and / or vertically adjacent (or none!)
+     * to the view step's widget.
+     *
+     * Should return a size based also on QStyle metrics for layout.
+     * The default implementation just returns the default layout metrics
+     * (often 11 pixels on a side).
+     */
+    virtual QSize widgetMargins( Qt::Orientations panelSides );
 
     /**
      * @brief Multi-page support, go next

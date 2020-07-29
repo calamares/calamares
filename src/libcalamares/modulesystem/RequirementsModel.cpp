@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019-2020 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,6 +14,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #include "RequirementsModel.h"
@@ -92,13 +96,16 @@ RequirementsModel::roleNames() const
 void
 RequirementsModel::describe() const
 {
+    cDebug() << "Requirements model has" << m_requirements.count() << "items";
     bool acceptable = true;
     int count = 0;
     for ( const auto& r : m_requirements )
     {
+        cDebug() << Logger::SubEntry << "requirement" << count << r.name
+            << "satisfied?" << r.satisfied
+            << "mandatory?" << r.mandatory;
         if ( r.mandatory && !r.satisfied )
         {
-            cDebug() << Logger::SubEntry << "requirement" << count << r.name << "is not satisfied.";
             acceptable = false;
         }
         ++count;

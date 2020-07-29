@@ -1,0 +1,344 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# 508a8b0ef95404aa3dc5178f0ccada5e_017b8a4 <d0ef5d977ab7abf012ef53891f8ca2b5_900530>, 2020
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-18 15:42+0200\n"
+"PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: 508a8b0ef95404aa3dc5178f0ccada5e_017b8a4 <d0ef5d977ab7abf012ef53891f8ca2b5_900530>, 2020\n"
+"Language-Team: Bengali (https://www.transifex.com/calamares/teams/20061/bn/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bn\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "কনফিগার করুন জিআরইউবি।"
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "মাউন্ট করছে পার্টিশনগুলো।"
+
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
+msgid "Configuration Error"
+msgstr "কনফিগারেশন ত্রুটি"
+
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/fstab/main.py:333
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "কোন পার্টিশন নির্দিষ্ট করা হয়নি<pre>{!এস}</pre> ব্যবহার করার জন্য।"
+
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "কনফিগার করুন সিস্টেমডি সেবাগুলি"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "সেবা পরিবর্তন করতে পারে না"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>সিস্টেমসিটিএল {এআরজি!এস}</code>সিএইচরুট ফেরত ত্রুটি কোড দে{NUM! গুলি}।"
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr ""
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "আনমাউন্ট ফাইল সিস্টেমগুলি করুন।"
+
+#: src/modules/unpackfs/main.py:44
+msgid "Filling up filesystems."
+msgstr "ফাইলসিস্টেমগুলিপূরণ করছে।"
+
+#: src/modules/unpackfs/main.py:257
+msgid "rsync failed with error code {}."
+msgstr "ত্রুটি কোড সহ আরসিঙ্ক ব্যর্থ হয়েছে {}।"
+
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr "চিত্র আনপ্যাক করছে {} / {}, ফাইল {} / {}"
+
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "আনপ্যাক করা শুরু করছে {}"
+
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+msgid "Failed to unpack image \"{}\""
+msgstr "চিত্র আনপ্যাক করতে ব্যর্থ হয়েছে \"{}\""
+
+#: src/modules/unpackfs/main.py:415
+msgid "No mount point for root partition"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:416
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:421
+msgid "Bad mount point for root partition"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:422
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
+#: src/modules/unpackfs/main.py:462
+msgid "Bad unsquash configuration"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:439
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:443
+msgid "The source filesystem \"{}\" does not exist"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:449
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+
+#: src/modules/unpackfs/main.py:463
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:523
+msgid "Cannot write KDM configuration file"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:524
+msgid "KDM config file {!s} does not exist"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:585
+msgid "Cannot write LXDM configuration file"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:586
+msgid "LXDM config file {!s} does not exist"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:669
+msgid "Cannot write LightDM configuration file"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:670
+msgid "LightDM config file {!s} does not exist"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:744
+msgid "Cannot configure LightDM"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:745
+msgid "No LightDM greeter installed."
+msgstr ""
+
+#: src/modules/displaymanager/main.py:776
+msgid "Cannot write SLIM configuration file"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:777
+msgid "SLIM config file {!s} does not exist"
+msgstr ""
+
+#: src/modules/displaymanager/main.py:903
+msgid "No display managers selected for the displaymanager module."
+msgstr ""
+
+#: src/modules/displaymanager/main.py:904
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+
+#: src/modules/displaymanager/main.py:986
+msgid "Display manager configuration was incomplete"
+msgstr ""
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr ""
+
+#: src/modules/initcpiocfg/main.py:210
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr ""
+
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr ""
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr ""
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr ""
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr ""
+
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr ""
+
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr ""
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr ""
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr ""
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr ""
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr ""
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr ""
+
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr ""
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr ""
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr ""
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr ""
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr ""
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr ""
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr ""

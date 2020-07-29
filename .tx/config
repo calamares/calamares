@@ -1,16 +1,11 @@
 [main]
 host = https://www.transifex.com
 
-[calamares.calamares-master]
+[calamares.calamares]
 file_filter = lang/calamares_<lang>.ts
 source_file = lang/calamares_en.ts
 source_lang = en
 type = QT
-
-[calamares.dummypythonqt]
-file_filter = src/modules/dummypythonqt/lang/<lang>/LC_MESSAGES/dummypythonqt.po
-source_file = src/modules/dummypythonqt/lang/dummypythonqt.pot
-source_lang = en
 
 [calamares.fdo]
 file_filter = lang/desktop_<lang>.desktop

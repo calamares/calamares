@@ -1,0 +1,360 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Xəyyam Qocayev <xxmn77@gmail.com>, 2020
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-18 15:42+0200\n"
+"PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: Xəyyam Qocayev <xxmn77@gmail.com>, 2020\n"
+"Language-Team: Azerbaijani (Azerbaijan) (https://www.transifex.com/calamares/teams/20061/az_AZ/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: az_AZ\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/modules/grubcfg/main.py:37
+msgid "Configure GRUB."
+msgstr "GRUB tənzimləmələri"
+
+#: src/modules/mount/main.py:38
+msgid "Mounting partitions."
+msgstr "Disk bölmələri qoşulur."
+
+#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
+#: src/modules/initcpiocfg/main.py:209
+#: src/modules/luksopenswaphookcfg/main.py:95
+#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
+#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
+#: src/modules/openrcdmcryptcfg/main.py:78
+#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
+#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
+#: src/modules/networkcfg/main.py:48
+msgid "Configuration Error"
+msgstr "Tənzimləmə xətası"
+
+#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
+#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
+#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
+#: src/modules/fstab/main.py:333
+msgid "No partitions are defined for <pre>{!s}</pre> to use."
+msgstr "<pre>{!s}</pre> istifadə etmək üçün bölmələr təyin edilməyib"
+
+#: src/modules/services-systemd/main.py:35
+msgid "Configure systemd services"
+msgstr "Systemd xidmətini tənzimləmək"
+
+#: src/modules/services-systemd/main.py:68
+#: src/modules/services-openrc/main.py:102
+msgid "Cannot modify service"
+msgstr "Xidmətdə dəyişiklik etmək mümkün olmadı"
+
+#: src/modules/services-systemd/main.py:69
+msgid ""
+"<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>systemctl {arg!s}</code> chroot çağırışına xəta kodu ilə cavab verdi "
+"{num!s}."
+
+#: src/modules/services-systemd/main.py:72
+#: src/modules/services-systemd/main.py:76
+msgid "Cannot enable systemd service <code>{name!s}</code>."
+msgstr "<code>{name!s}</code> systemd xidməti aktiv edilmədi."
+
+#: src/modules/services-systemd/main.py:74
+msgid "Cannot enable systemd target <code>{name!s}</code>."
+msgstr "<code>{name!s}</code> systemd hədəfi aktiv edilmədi"
+
+#: src/modules/services-systemd/main.py:78
+msgid "Cannot disable systemd target <code>{name!s}</code>."
+msgstr "<code>{name!s}</code> systemd hədfi sönsürülmədi."
+
+#: src/modules/services-systemd/main.py:80
+msgid "Cannot mask systemd unit <code>{name!s}</code>."
+msgstr "<code>{name!s}</code> systemd vahidi maskalanmır."
+
+#: src/modules/services-systemd/main.py:82
+msgid ""
+"Unknown systemd commands <code>{command!s}</code> and "
+"<code>{suffix!s}</code> for unit {name!s}."
+msgstr ""
+"Naməlum systemd əmrləri <code>{command!s}</code> və <code>{suffix!s}</code> "
+"{name!s} vahidi üçün."
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Fayl sistemini ayırmaq."
+
+#: src/modules/unpackfs/main.py:44
+msgid "Filling up filesystems."
+msgstr "Fayl sistemlərini doldurmaq."
+
+#: src/modules/unpackfs/main.py:257
+msgid "rsync failed with error code {}."
+msgstr "rsync uğursuz oldu, xəta kodu: {}."
+
+#: src/modules/unpackfs/main.py:302
+msgid "Unpacking image {}/{}, file {}/{}"
+msgstr ""
+"Tərkibi çıxarılan quraşdırma faylı - image {}/{}, çıxarılan faylların sayı "
+"{}/{}"
+
+#: src/modules/unpackfs/main.py:317
+msgid "Starting to unpack {}"
+msgstr "Tərkiblərini açmağa başladılır {}"
+
+#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+msgid "Failed to unpack image \"{}\""
+msgstr "\"{}\" quraşdırma faylının tərkibini çıxarmaq alınmadı"
+
+#: src/modules/unpackfs/main.py:415
+msgid "No mount point for root partition"
+msgstr "Kök bölməsi üçün qoşulma nöqtəsi yoxdur"
+
+#: src/modules/unpackfs/main.py:416
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr ""
+"globalstorage tərkibində bir \"rootMountPoint\" açarı yoxdur, heç bir "
+"əməliyyat getmir"
+
+#: src/modules/unpackfs/main.py:421
+msgid "Bad mount point for root partition"
+msgstr "Kök bölməsi üçün xətalı qoşulma nöqtəsi"
+
+#: src/modules/unpackfs/main.py:422
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "rootMountPoint \"{}\" mövcud deyil, heç bir əməliyyat getmir"
+
+#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
+#: src/modules/unpackfs/main.py:462
+msgid "Bad unsquash configuration"
+msgstr "Unsquash xətalı tənzimlənməsi"
+
+#: src/modules/unpackfs/main.py:439
+msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
+msgstr "\"{}\" ({}) fayl sistemi sizin nüvəniz tərəfindən dəstəklənmir"
+
+#: src/modules/unpackfs/main.py:443
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "\"{}\" mənbə fayl sistemi mövcud deyil"
+
+#: src/modules/unpackfs/main.py:449
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"unsquashfs tapılmadı, squashfs-tools paketinin quraşdırıldığına əmin olun"
+
+#: src/modules/unpackfs/main.py:463
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "Hədəf sistemində təyin edilən \"{}\", qovluq deyil"
+
+#: src/modules/displaymanager/main.py:523
+msgid "Cannot write KDM configuration file"
+msgstr "KDM tənzimləmə faylı yazıla bilmir"
+
+#: src/modules/displaymanager/main.py:524
+msgid "KDM config file {!s} does not exist"
+msgstr "KDM tənzimləmə faylı {!s} mövcud deyil"
+
+#: src/modules/displaymanager/main.py:585
+msgid "Cannot write LXDM configuration file"
+msgstr "LXDM tənzimləmə faylı yazıla bilmir"
+
+#: src/modules/displaymanager/main.py:586
+msgid "LXDM config file {!s} does not exist"
+msgstr "LXDM tənzimləmə faylı {!s} mövcud deyil"
+
+#: src/modules/displaymanager/main.py:669
+msgid "Cannot write LightDM configuration file"
+msgstr "LightDM tənzimləmə faylı yazıla bilmir"
+
+#: src/modules/displaymanager/main.py:670
+msgid "LightDM config file {!s} does not exist"
+msgstr "LightDM tənzimləmə faylı {!s} mövcud deyil"
+
+#: src/modules/displaymanager/main.py:744
+msgid "Cannot configure LightDM"
+msgstr "LightDM tənzimlənə bilmir"
+
+#: src/modules/displaymanager/main.py:745
+msgid "No LightDM greeter installed."
+msgstr "LightDM qarşılama quraşdırılmayıb."
+
+#: src/modules/displaymanager/main.py:776
+msgid "Cannot write SLIM configuration file"
+msgstr "SLİM tənzimləmə faylı yazıla bilmir"
+
+#: src/modules/displaymanager/main.py:777
+msgid "SLIM config file {!s} does not exist"
+msgstr "SLİM tənzimləmə faylı {!s} mövcud deyil"
+
+#: src/modules/displaymanager/main.py:903
+msgid "No display managers selected for the displaymanager module."
+msgstr "displaymanager modulu üçün ekran menecerləri seçilməyib."
+
+#: src/modules/displaymanager/main.py:904
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+"displaymanagers siyahısı boşdur və ya bothglobalstorage və "
+"displaymanager.conf tənzimləmə fayllarında təyin edilməyib."
+
+#: src/modules/displaymanager/main.py:986
+msgid "Display manager configuration was incomplete"
+msgstr "Ekran meneceri tənzimləmələri başa çatmadı"
+
+#: src/modules/initcpiocfg/main.py:37
+msgid "Configuring mkinitcpio."
+msgstr "mkinitcpio tənzimlənir."
+
+#: src/modules/initcpiocfg/main.py:210
+#: src/modules/luksopenswaphookcfg/main.py:100
+#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
+#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
+#: src/modules/networkcfg/main.py:49
+msgid "No root mount point is given for <pre>{!s}</pre> to use."
+msgstr ""
+"<pre>{!s}</pre> istifadə etmək üçün kök qoşulma nöqtəsi təyin edilməyib."
+
+#: src/modules/luksopenswaphookcfg/main.py:35
+msgid "Configuring encrypted swap."
+msgstr "Çifrələnmiş mübadilə sahəsi - swap tənzimlənir."
+
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Quraşdırılma tarixi."
+
+#: src/modules/services-openrc/main.py:38
+msgid "Configure OpenRC services"
+msgstr "OpenRC xidmətlərini tənzimləmək"
+
+#: src/modules/services-openrc/main.py:66
+msgid "Cannot add service {name!s} to run-level {level!s}."
+msgstr "{name!s} xidməti {level!s} işləmə səviyyəsinə əlavə edilə bilmir."
+
+#: src/modules/services-openrc/main.py:68
+msgid "Cannot remove service {name!s} from run-level {level!s}."
+msgstr "{name!s} xidməti {level!s} iş səviyyəsindən silinə bilmir."
+
+#: src/modules/services-openrc/main.py:70
+msgid ""
+"Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
+"level {level!s}."
+msgstr ""
+"{level!s} işləmə səviyyəsindəki {name!s} xidməti üçün naməlum "
+"<code>{arg!s}</code> xidmət fəaliyyəti."
+
+#: src/modules/services-openrc/main.py:103
+msgid ""
+"<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
+msgstr ""
+"<code>rc-update {arg!s}</code> chroot-da çağırışına {num!s} xəta kodu ilə "
+"cavab verildi."
+
+#: src/modules/services-openrc/main.py:110
+msgid "Target runlevel does not exist"
+msgstr "Hədəf işləmə səviyyəsi mövcud deyil"
+
+#: src/modules/services-openrc/main.py:111
+msgid ""
+"The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr ""
+"{level!s} işləmə səviyyəsi üçün <code>{path!s}</code> yolu mövcud deyil."
+
+#: src/modules/services-openrc/main.py:119
+msgid "Target service does not exist"
+msgstr "Hədəf xidməti mövcud deyil"
+
+#: src/modules/services-openrc/main.py:120
+msgid ""
+"The path for service {name!s} is <code>{path!s}</code>, which does not "
+"exist."
+msgstr "{name!s} üçün <code>{path!s}</code> yolu mövcud deyil."
+
+#: src/modules/plymouthcfg/main.py:36
+msgid "Configure Plymouth theme"
+msgstr "Plymouth mövzusu tənzimlənməsi"
+
+#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
+#: src/modules/packages/main.py:78
+msgid "Install packages."
+msgstr "Paketləri quraşdırmaq."
+
+#: src/modules/packages/main.py:66
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "(%(count)d / %(total)d) paketləri işlənir"
+
+#: src/modules/packages/main.py:71
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Bir paket quraşdırılır."
+msgstr[1] "%(num)d paket quraşdırılır."
+
+#: src/modules/packages/main.py:74
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Bir paket silinir"
+msgstr[1] "%(num)d paket silinir."
+
+#: src/modules/bootloader/main.py:51
+msgid "Install bootloader."
+msgstr "Önyükləyici qurulur."
+
+#: src/modules/hwclock/main.py:35
+msgid "Setting hardware clock."
+msgstr "Aparat saatını ayarlamaq."
+
+#: src/modules/dracut/main.py:36
+msgid "Creating initramfs with dracut."
+msgstr "Dracut ilə initramfs yaratmaq."
+
+#: src/modules/dracut/main.py:58
+msgid "Failed to run dracut on the target"
+msgstr "Hədəfdə dracut başladılmadı"
+
+#: src/modules/dracut/main.py:59
+msgid "The exit code was {}"
+msgstr "Çıxış kodu {} idi"
+
+#: src/modules/initramfscfg/main.py:41
+msgid "Configuring initramfs."
+msgstr "initramfs tənzimlənir."
+
+#: src/modules/openrcdmcryptcfg/main.py:34
+msgid "Configuring OpenRC dmcrypt service."
+msgstr "OpenRC dmcrypt xidməti tənzimlənir."
+
+#: src/modules/fstab/main.py:38
+msgid "Writing fstab."
+msgstr "fstab yazılır."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Dummy python işi."
+
+#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
+#: src/modules/dummypython/main.py:103
+msgid "Dummy python step {}"
+msgstr "{} Dummy python addımı"
+
+#: src/modules/localecfg/main.py:39
+msgid "Configuring locales."
+msgstr "Lokallaşma tənzimlənir."
+
+#: src/modules/networkcfg/main.py:37
+msgid "Saving network configuration."
+msgstr "Şəbəkə ayarları saxlanılır."

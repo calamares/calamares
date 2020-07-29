@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,129 +17,96 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SetHostNameJob.h"
+#include "Config.h"
 
-// Implementation details
-extern bool setFileHostname( const QString& );
-extern bool writeFileEtcHosts( const QString& );
-extern bool setSystemdHostname( const QString& );
-
-#include "GlobalStorage.h"
-#include "JobQueue.h"
-#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
-#include "utils/Yaml.h"
 
-#include <QTemporaryDir>
 #include <QtTest/QtTest>
 
-class UsersTests : public QObject
+// Implementation details
+extern void setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups );
+
+/** @brief Test Config object methods and internals
+ *
+ */
+class UserTests : public QObject
 {
     Q_OBJECT
 public:
-    UsersTests();
-    virtual ~UsersTests() { }
+    UserTests();
+    virtual ~UserTests() {}
 
 private Q_SLOTS:
     void initTestCase();
 
-    void testEtcHostname();
-    void testEtcHosts();
-    void testHostnamed();
-
-    void cleanup();
-
-private:
-    QTemporaryDir m_dir;
+    void testDefaultGroups();
 };
 
-UsersTests::UsersTests()
-    : m_dir( QStringLiteral( "/tmp/calamares-usertest" ) )
-{
-}
+UserTests::UserTests() {}
 
 void
-UsersTests::initTestCase()
+UserTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
     cDebug() << "Users test started.";
-    cDebug() << "Test dir" << m_dir.path();
+}
 
-    // Ensure we have a system object, expect it to be a "bogus" one
-    CalamaresUtils::System* system = CalamaresUtils::System::instance();
-    QVERIFY( system );
-    QVERIFY( system->doChroot() );
-
-    // Ensure we have a system-wide GlobalStorage with /tmp as root
-    if ( !Calamares::JobQueue::instance() )
+void
+UserTests::testDefaultGroups()
+{
     {
-        cDebug() << "Creating new JobQueue";
-        (void)new Calamares::JobQueue();
+        QStringList groups;
+        QVariantMap hweelGroup;
+        QVERIFY( groups.isEmpty() );
+        hweelGroup.insert( "defaultGroups", QStringList { "hweel" } );
+        setConfigurationDefaultGroups( hweelGroup, groups );
+        QCOMPARE( groups.count(), 1 );
+        QVERIFY( groups.contains( "hweel" ) );
     }
-    Calamares::GlobalStorage* gs
-        = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
-    QVERIFY( gs );
-    gs->insert( "rootMountPoint", m_dir.path() );
-}
 
-void
-UsersTests::testEtcHostname()
-{
-    cDebug() << "Test dir" << m_dir.path();
-
-    QVERIFY( QFile::exists( m_dir.path() ) );
-    QVERIFY( !QFile::exists( m_dir.filePath( "etc" ) ) );
-
-    // Doesn't create intermediate directories
-    QVERIFY( !setFileHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
-
-    QVERIFY( CalamaresUtils::System::instance()->createTargetDirs( "/etc" ) );
-    QVERIFY( QFile::exists( m_dir.filePath( "etc" ) ) );
-
-    // Does write the file
-    QVERIFY( setFileHostname( QStringLiteral( "tubophone.calamares.io" ) ) );
-    QVERIFY( QFile::exists( m_dir.filePath( "etc/hostname" ) ) );
-
-    // 22 for the test string, above, and 1 for the newline
-    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hostname" ) ).size(), 22 + 1 );
-}
-
-void
-UsersTests::testEtcHosts()
-{
-    // Assume previous tests did their work
-    QVERIFY( QFile::exists( m_dir.path() ) );
-    QVERIFY( QFile::exists( m_dir.filePath( "etc" ) ) );
-
-    QVERIFY( writeFileEtcHosts( QStringLiteral( "tubophone.calamares.io" ) ) );
-    QVERIFY( QFile::exists( m_dir.filePath( "etc/hosts" ) ) );
-    // The skeleton contains %1 which has the hostname substituted in, so we lose two,
-    // and the rest of the blabla is 150 (according to Python)
-    QCOMPARE( QFileInfo( m_dir.filePath( "etc/hosts" ) ).size(), 150 + 22 - 2 );
-}
-
-void
-UsersTests::testHostnamed()
-{
-    // Since the service might not be running (e.g. non-systemd systems,
-    // FreeBSD, docker, ..) we're not going to fail a test here.
-    // There's also the permissions problem to think of.
-    QEXPECT_FAIL( "", "Hostname changes are access-controlled", Continue );
-    QVERIFY( setSystemdHostname( "tubophone.calamares.io" ) );
-}
-
-
-void
-UsersTests::cleanup()
-{
-    if ( QTest::currentTestFailed() )
     {
-        m_dir.setAutoRemove( false );
+        QStringList desired { "wheel", "root", "operator" };
+        QStringList groups;
+        QVariantMap threeGroup;
+        QVERIFY( groups.isEmpty() );
+        threeGroup.insert( "defaultGroups", desired );
+        setConfigurationDefaultGroups( threeGroup, groups );
+        QCOMPARE( groups.count(), 3 );
+        QVERIFY( !groups.contains( "hweel" ) );
+        QCOMPARE( groups, desired );
+    }
+
+    {
+        QStringList groups;
+        QVariantMap explicitEmpty;
+        QVERIFY( groups.isEmpty() );
+        explicitEmpty.insert( "defaultGroups", QStringList() );
+        setConfigurationDefaultGroups( explicitEmpty, groups );
+        QCOMPARE( groups.count(), 0 );
+    }
+
+    {
+        QStringList groups;
+        QVariantMap missing;
+        QVERIFY( groups.isEmpty() );
+        setConfigurationDefaultGroups( missing, groups );
+        QCOMPARE( groups.count(), 6 );  // because of fallback!
+        QVERIFY( groups.contains( "lp" ) );
+    }
+
+    {
+        QStringList groups;
+        QVariantMap typeMismatch;
+        QVERIFY( groups.isEmpty() );
+        typeMismatch.insert( "defaultGroups", 1 );
+        setConfigurationDefaultGroups( typeMismatch, groups );
+        QCOMPARE( groups.count(), 6 );  // because of fallback!
+        QVERIFY( groups.contains( "lp" ) );
     }
 }
 
 
-QTEST_GUILESS_MAIN( UsersTests )
+QTEST_GUILESS_MAIN( UserTests )
 
 #include "utils/moc-warnings.h"
 

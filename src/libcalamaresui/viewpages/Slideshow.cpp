@@ -23,7 +23,9 @@
 #include "Branding.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
+#ifdef WITH_QML
 #include "utils/Qml.h"
+#endif
 #include "utils/Retranslator.h"
 
 #include <QLabel>
@@ -50,6 +52,8 @@ SlideshowQML::SlideshowQML( QWidget* parent )
     , m_qmlComponent( nullptr )
     , m_qmlObject( nullptr )
 {
+    CalamaresUtils::registerQmlModels();
+
     m_qmlShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     m_qmlShow->setResizeMode( QQuickWidget::SizeRootObjectToView );
     m_qmlShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
@@ -121,9 +125,28 @@ SlideshowQML::loadQmlV2Complete()
             if ( isActive() )
             {
                 // We're alreay visible! Must have been slow QML loading, and we
-                // passed onActivate already.
+                // passed onActivate already. changeSlideShowState() locks
+                // the same mutex: we could set up a workaround to call
+                // changeSlideShowState() later after destruction of l.
+                //
+                l.unlock();
                 changeSlideShowState( Slideshow::Start );
             }
+        }
+    }
+    else
+    {
+        if ( m_qmlObject )
+        {
+            cWarning() << "QML object already created";
+        }
+        else if ( !m_qmlComponent )
+        {
+            cWarning() << "QML component does not exist";
+        }
+        else if ( m_qmlComponent && !m_qmlComponent->isReady() )
+        {
+            cWarning() << "QML component not ready:" << m_qmlComponent->errors();
         }
     }
 }
@@ -144,7 +167,7 @@ SlideshowQML::changeSlideShowState( Action state )
     if ( Branding::instance()->slideshowAPI() == 2 )
     {
         // The QML was already loaded in the constructor, need to start it
-        CalamaresUtils::callQMLFunction( m_qmlObject, activate ? "onActivate" : "onLeave" );
+        CalamaresUtils::callQmlFunction( m_qmlObject, activate ? "onActivate" : "onLeave" );
     }
     else if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
     {

@@ -1,7 +1,9 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,8 +17,17 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
  */
 
+/*
+ * YAML conversions and YAML convenience header.
+ *
+ * Includes the system YAMLCPP headers without warnings (by switching off
+ * the expected warnings) and provides a handful of methods for
+ * converting between YAML and QVariant.
+ */
 #ifndef UTILS_YAML_H
 #define UTILS_YAML_H
 
@@ -45,7 +56,7 @@ class QFileInfo;
 #pragma clang diagnostic pop
 #endif
 
-/// @brief Appends all te elements of @p node to the string list @p v
+/// @brief Appends all the elements of @p node to the string list @p v
 void operator>>( const YAML::Node& node, QStringList& v );
 
 namespace CalamaresUtils

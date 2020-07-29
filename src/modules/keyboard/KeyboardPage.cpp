@@ -32,6 +32,7 @@
 #include "JobQueue.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "utils/String.h"
 
 #include <QComboBox>
 #include <QProcess>
@@ -113,7 +114,7 @@ KeyboardPage::init()
 
     if ( process.waitForFinished() )
     {
-        const QStringList list = QString( process.readAll() ).split( "\n", QString::SkipEmptyParts );
+        const QStringList list = QString( process.readAll() ).split( "\n", SplitSkipEmptyParts );
 
         for ( QString line : list )
         {
@@ -126,7 +127,7 @@ KeyboardPage::init()
             line = line.remove( "}" ).remove( "{" ).remove( ";" );
             line = line.mid( line.indexOf( "\"" ) + 1 );
 
-            QStringList split = line.split( "+", QString::SkipEmptyParts );
+            QStringList split = line.split( "+", SplitSkipEmptyParts );
             if ( split.size() >= 2 )
             {
                 currentLayout = split.at( 1 );
@@ -324,7 +325,7 @@ KeyboardPage::onActivate()
         { "ar_YE", arabic },
         { "ca_ES", "cat_ES" }, /* Catalan */
         { "as_ES", "ast_ES" }, /* Asturian */
-        { "en_CA", "eng_CA" }, /* Canadian English */
+        { "en_CA", "us" }, /* Canadian English */
         { "el_CY", "gr" }, /* Greek in Cyprus */
         { "el_GR", "gr" }, /* Greek in Greeze */
         { "ig_NG", "igbo_NG" }, /* Igbo in Nigeria */
@@ -366,7 +367,7 @@ KeyboardPage::onActivate()
     }
     if ( !lang.isEmpty() )
     {
-        const auto langParts = lang.split( '_', QString::SkipEmptyParts );
+        const auto langParts = lang.split( '_', SplitSkipEmptyParts );
 
         // Note that this his string is not fit for display purposes!
         // It doesn't come from QLocale::nativeCountryName.

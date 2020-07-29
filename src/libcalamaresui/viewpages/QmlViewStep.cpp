@@ -58,7 +58,7 @@ changeQMLState( QMLAction action, QQuickItem* item )
     static const char propertyName[] = "activatedInCalamares";
 
     bool activate = action == QMLAction::Start;
-    CalamaresUtils::callQMLFunction( item, activate ? "onActivate" : "onLeave" );
+    CalamaresUtils::callQmlFunction( item, activate ? "onActivate" : "onLeave" );
 
     auto property = item->property( propertyName );
     if ( property.isValid() && ( property.type() == QVariant::Bool ) && ( property.toBool() != activate ) )
@@ -76,7 +76,7 @@ QmlViewStep::QmlViewStep( QObject* parent )
     , m_spinner( new WaitingWidget( tr( "Loading ..." ) ) )
     , m_qmlWidget( new QQuickWidget )
 {
-    CalamaresUtils::registerCalamaresModels();
+    CalamaresUtils::registerQmlModels();
 
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     layout->addWidget( m_spinner );
@@ -149,6 +149,22 @@ QWidget*
 QmlViewStep::widget()
 {
     return m_widget;
+}
+
+QSize
+QmlViewStep::widgetMargins( Qt::Orientations panelSides )
+{
+    // If any panels around it, use the standard, but if all the
+    // panels are hidden, like on full-screen with subsumed navigation,
+    // then no margins.
+    if ( panelSides )
+    {
+        return ViewStep::widgetMargins( panelSides );
+    }
+    else
+    {
+        return QSize( 0, 0 );
+    }
 }
 
 void

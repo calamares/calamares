@@ -2,6 +2,7 @@ calamares_add_plugin( tracking
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
+        Config.cpp
         TrackingJobs.cpp
         TrackingPage.cpp
         TrackingViewStep.cpp
@@ -14,3 +15,9 @@ calamares_add_plugin( tracking
     SHARED_LIB
 )
 
+calamares_add_test(
+    trackingtest
+    SOURCES
+        Tests.cpp
+        Config.cpp
+)

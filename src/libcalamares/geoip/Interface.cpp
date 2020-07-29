@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,11 +14,16 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #include "Interface.h"
 
 #include "utils/Logger.h"
+#include "utils/String.h"
 
 namespace CalamaresUtils
 {
@@ -39,7 +44,7 @@ splitTZString( const QString& tz )
     timezoneString.remove( '\\' );
     timezoneString.replace( ' ', '_' );
 
-    QStringList tzParts = timezoneString.split( '/', QString::SkipEmptyParts );
+    QStringList tzParts = timezoneString.split( '/', SplitSkipEmptyParts );
     if ( tzParts.size() >= 2 )
     {
         cDebug() << "GeoIP reporting" << timezoneString;

@@ -3,10 +3,115 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.25 (unreleased) #
+# 3.2.28 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
+ - apt-ghetto
+
+## Core ##
+ - A new object *Network* is available to QML modules in `io.calamares.core`.
+   It exposes network status through the *hasInternet* property.
+ - Welcome to Tajik translations. This has reached sufficient completion
+   to be included in the drop-down list of languages on the welcome page.
+ - Welcome to [Interlingue](https://en.wikipedia.org/wiki/Interlingue).
+   The translation is at an early stage.
+
+## Modules ##
+ - The *locale* module has been completely redone on the inside.
+   Users should see no changes. #1391
+ - The *localeq* module uses the redone internals of the locale module.
+   It can now be used to set timezone, language and locale information
+   and is a suitable alternative module. Thanks to Anke Boersma who did
+   the work of figuring out maps. Note that the map uses several GeoIP
+   and GeoData providers and you may need to configure the URLs
+   with suitable usernames for those services. #1426
+ - Both *locale* and *localeq* can now be configured to use the system's
+   timezone setting -- this can be useful to avoid both hard-coding an
+   initial zone and doing extra GeoIP lookups, in the case where the
+   live system already does so. #1391
+ - The *users* module no longer accepts `root` as a username. #1462
+ - The *keyboardq* module is now more inline with the look of the rest
+   of the Calamares modules, use of a background image is removed.
+
+# 3.2.27 (2020-07-11) #
+
+This release contains contributions from (alphabetically by first name):
+ - Gaël PORTAY
+ - Vitor Lopes (new! welcome!)
+
+## Core ##
+ - QML modules with no surrounding navigation -- this is basically a
+   special case for full-screen Calamares -- now have margins suitable
+   for full-screen use.
+ - PythonQt modules are increasingly on the way out.
+
+## Modules ##
+ - The Manjaro package manager *pamac* has been added to those supported by
+   the *packages* module.
+ - The *netinstall* module has had some minor UI tweaks.
+ - Partitioning now tries harder to avoid floppy drives.
+
+
+# 3.2.26.1 (2020-06-23) #
+
+This is a hotfix release for undefined behavior caused by an
+uninitialized integer variable. It includes new translations
+and features as well since those arrived independently.
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Gaël PORTAY
+
+## Core ##
+ - Welcome to Azerbaijani translations. These are available
+   in two variations, *Azerbaijani* and *Azerbaijani (Azerbaijan)*.
+   [Wikipedia Azerbaijani](https://en.wikipedia.org/wiki/Azerbaijani_language#North_vs._South_Azerbaijani)
+   has a nice overview.
+ - Warnings while building with Qt 5.15 have been much reduced.
+
+## Modules ##
+ - *partitioning* has one case of undefined behavior (UB) due
+   to a missing integer-initialization. (Thanks Gaël)
+ - *keyboardq* QML module now works correctly. (Thanks Anke)
+
+
+# 3.2.26 (2020-06-18) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Gaël PORTAY
+ - Pablo Ovelleiro Corral
+ - Philip Müller
+
+## Core ##
+ - The default branch for Calamares source repositories (calamares
+   and calamares-extensions) is now *calamares*.
+ - External modules can now be built again, outside of the Calamares
+   source and build-tree.
+ - The repository *calamares-tools* has been removed. The idea behind
+   the tooling was to provide schema validation for Calamares configuration
+   files. This has been merged into the primary repository, where it
+   is now part of the test suite.
+
+## Modules ##
+ - *locale* put some more places into the correct timezone **visually**;
+   for instance Norfolk Island gave up UTC+11.5 in 2015 and is now
+   UTC+11, but Calamares still showed it in a zone separate from UTC+11.
+ - *localeq* can now properly switch between on & offline mode,
+   it detects internet status through js.
+ - *packages* gained support for the Void Linux package manager,
+   *xbps*. (thanks Pablo)
+ - *tracking* now supports kuserfeedback configuration.
+ - *welcomeq* added the GEOIP configuration option, so locale can be
+   initially set according to IP address.
+
+
+# 3.2.25 (2020-06-06) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Callum Farmer
  - FLVAL
  - Gaël PORTAY
 
@@ -20,6 +125,8 @@ This release contains contributions from (alphabetically by first name):
    200kB in Calamares itself).
  - Tests have been extended and now support a tests/CMakeTests.txt file
    for fine-tuning tests for Python modules.
+ - SPDX identifiers are used much more widely and consistently in Calamares.
+   (thanks Callum)
 
 ## Modules ##
  - The QML based *welcomeq* module is now a viable alternative to the
@@ -28,6 +135,12 @@ This release contains contributions from (alphabetically by first name):
    all loads in the Calamares window itself.  Additional features include the
    option to customize the *About* info and load files like Release Notes
    direct into Calamares, QML files added to the branding directory can be used.
+ - The *welcome* and *locale* modules that do GeoIP lookup can now also
+   use "fixed" style; this just negates the GeoIP lookup and substitutes a
+   constant (fixed) value; useful for testing specific locales.
+ - The *keyboard* module no longer uses *ca_eng* keyboards in Canada by
+   default, but sticks to the *us* keyboard. #1419
+
 
 # 3.2.24 (2020-05-11) #
 

@@ -98,11 +98,6 @@ void
 doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionOptions o )
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QString defaultFsType = o.defaultFsType;
-    if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
-    {
-        defaultFsType = "ext4";
-    }
 
     bool isEfi = PartUtils::isEfiSystem();
 
@@ -226,12 +221,6 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
     qint64 firstSector, lastSector;
 
     cDebug() << "doReplacePartition for device" << partition->partitionPath();
-
-    QString defaultFsType = o.defaultFsType;
-    if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
-    {
-        defaultFsType = "ext4";
-    }
 
     PartitionRole newRoles( partition->roles() );
     if ( partition->roles().has( PartitionRole::Extended ) )

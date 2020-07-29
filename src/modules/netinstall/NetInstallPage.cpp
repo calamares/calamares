@@ -40,6 +40,7 @@ NetInstallPage::NetInstallPage( Config* c, QWidget* parent )
     , ui( new Ui::Page_NetInst )
 {
     ui->setupUi( this );
+    ui->groupswidget->header()->setSectionResizeMode( QHeaderView::ResizeToContents );
     ui->groupswidget->setModel( c->model() );
     connect( c, &Config::statusChanged, this, &NetInstallPage::setStatus );
     connect( c, &Config::statusReady, this, &NetInstallPage::expandGroups );
@@ -88,8 +89,6 @@ NetInstallPage::expandGroups()
             ui->groupswidget->setExpanded( index, true );
         }
     }
-    // Make sure all the group names are visible
-    ui->groupswidget->resizeColumnToContents(0);
 }
 
 void

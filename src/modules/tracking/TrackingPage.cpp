@@ -18,6 +18,7 @@
 
 #include "TrackingPage.h"
 
+#include "Config.h"
 #include "ui_page_trackingstep.h"
 
 #include "Branding.h"
@@ -28,178 +29,128 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
-#include <QButtonGroup>
 #include <QDesktopServices>
 #include <QLabel>
 
-TrackingPage::TrackingPage( QWidget* parent )
+TrackingPage::TrackingPage( Config* config, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::TrackingPage )
 {
     ui->setupUi( this );
-    CALAMARES_RETRANSLATE(
-        QString product = Calamares::Branding::instance()->shortProductName(); ui->retranslateUi( this );
-        ui->generalExplanation->setText(
-            tr( "Install tracking helps %1 to see how many users they have, what hardware they install %1 to and (with "
-                "the last two options below), get continuous information about preferred applications. To see what "
-                "will be sent, please click the help icon next to each area." )
-                .arg( product ) );
-        ui->installExplanation->setText(
-            tr( "By selecting this you will send information about your installation and hardware. This information "
-                "will <b>only be sent once</b> after the installation finishes." ) );
-        ui->machineExplanation->setText( tr( "By selecting this you will <b>periodically</b> send information about "
-                                             "your installation, hardware and applications, to %1." )
-                                             .arg( product ) );
-        ui->userExplanation->setText( tr( "By selecting this you will <b>regularly</b> send information about your "
-                                          "installation, hardware, applications and usage patterns, to %1." )
-                                          .arg( product ) ); )
+    CALAMARES_RETRANSLATE_SLOT( &TrackingPage::retranslate );
 
-    QButtonGroup* group = new QButtonGroup( this );
-    group->setExclusive( true );
-    group->addButton( ui->noneRadio );
-    group->addButton( ui->installRadio );
-    group->addButton( ui->machineRadio );
-    group->addButton( ui->userRadio );
-    ui->noneRadio->setChecked( true );
+    ui->noneCheckBox->setChecked( true );
+    ui->noneCheckBox->setEnabled( false );
+    connect( ui->noneCheckBox, &QCheckBox::stateChanged, this, &TrackingPage::buttonNoneChecked );
+
+    // Each "panel" of configuration has the same kind of setup,
+    // where the xButton and xCheckBox is connected to the xTracking
+    // configuration object; that takes macro-trickery, unfortunately.
+#define trackingSetup( x ) \
+    do \
+    { \
+        connect( ui->x##CheckBox, &QCheckBox::stateChanged, this, &TrackingPage::buttonChecked ); \
+        connect( ui->x##CheckBox, \
+                 &QCheckBox::stateChanged, \
+                 config->x##Tracking(), \
+                 QOverload< bool >::of( &TrackingStyleConfig::setTracking ) ); \
+        connect( config->x##Tracking(), &TrackingStyleConfig::trackingChanged, this, [this, config]() { \
+            this->trackerChanged( config->x##Tracking(), this->ui->x##Group, this->ui->x##CheckBox ); \
+        } ); \
+        connect( ui->x##PolicyButton, &QAbstractButton::clicked, config, [config] { \
+            QString url( config->x##Tracking()->policy() ); \
+            if ( !url.isEmpty() ) \
+            { \
+                QDesktopServices::openUrl( url ); \
+            } \
+        } ); \
+    } while ( false )
+
+    trackingSetup( install );
+    trackingSetup( machine );
+    trackingSetup( user );
+
+#undef trackingSetup
+
+    connect( config, &Config::generalPolicyChanged, [this]( const QString& url ) {
+        this->ui->generalPolicyLabel->setVisible( !url.isEmpty() );
+    } );
+    connect( ui->generalPolicyLabel, &QLabel::linkActivated, [config] {
+        QString url( config->generalPolicy() );
+        if ( !url.isEmpty() )
+        {
+            QDesktopServices::openUrl( url );
+        }
+    } );
+
+    retranslate();
 }
 
 void
-TrackingPage::enableTrackingOption( TrackingType t, bool enabled )
+TrackingPage::retranslate()
 {
-    QWidget* group = nullptr;
-
-    switch ( t )
-    {
-    case TrackingType::InstallTracking:
-        group = ui->installGroup;
-        break;
-    case TrackingType::MachineTracking:
-        group = ui->machineGroup;
-        break;
-    case TrackingType::UserTracking:
-        group = ui->userGroup;
-        break;
-    }
-
-    if ( group != nullptr )
-    {
-        if ( enabled )
-        {
-            group->show();
-        }
-        else
-        {
-            group->hide();
-        }
-    }
-    else
-    {
-        cWarning() << "unknown tracking option" << int( t );
-    }
+    QString product = Calamares::Branding::instance()->shortProductName();
+    ui->retranslateUi( this );
+    ui->generalExplanation->setText(
+        tr( "Tracking helps %1 to see how often it is installed, what hardware it is installed on and "
+            "which applications are used. To see what "
+            "will be sent, please click the help icon next to each area." )
+            .arg( product ) );
+    ui->installExplanation->setText(
+        tr( "By selecting this you will send information about your installation and hardware. This information "
+            "will only be sent <b>once</b> after the installation finishes." ) );
+    ui->machineExplanation->setText(
+        tr( "By selecting this you will periodically send information about your <b>machine</b> installation, "
+            "hardware and applications, to %1." )
+            .arg( product ) );
+    ui->userExplanation->setText(
+        tr( "By selecting this you will regularly send information about your "
+            "<b>user</b> installation, hardware, applications and application usage patterns, to %1." )
+            .arg( product ) );
 }
 
 bool
-TrackingPage::getTrackingOption( TrackingType t )
+TrackingPage::anyOtherChecked() const
 {
-    bool enabled = false;
+    return ui->installCheckBox->isChecked() || ui->machineCheckBox->isChecked() || ui->userCheckBox->isChecked();
+}
 
-    // A tracking type is enabled if it is checked, or
-    // any higher level is checked.
-#define ch( x ) ui->x->isChecked()
-    switch ( t )
+
+void
+TrackingPage::buttonNoneChecked( int state )
+{
+    if ( state )
     {
-    case TrackingType::InstallTracking:
-        enabled = ch( installRadio ) || ch( machineRadio ) || ch( userRadio );
-        break;
-    case TrackingType::MachineTracking:
-        enabled = ch( machineRadio ) || ch( userRadio );
-        break;
-    case TrackingType::UserTracking:
-        enabled = ch( userRadio );
-        break;
+        cDebug() << "Unchecking all other buttons because 'None' was checked";
+        ui->installCheckBox->setChecked( false );
+        ui->machineCheckBox->setChecked( false );
+        ui->userCheckBox->setChecked( false );
+        ui->noneCheckBox->setEnabled( false );
     }
-#undef ch
-    return enabled;
 }
 
 void
-TrackingPage::setTrackingPolicy( TrackingType t, QString url )
+TrackingPage::buttonChecked( int state )
 {
-    QToolButton* button = nullptr;
-    switch ( t )
+    if ( state )
     {
-    case TrackingType::InstallTracking:
-        button = ui->installPolicyButton;
-        break;
-    case TrackingType::MachineTracking:
-        button = ui->machinePolicyButton;
-        break;
-    case TrackingType::UserTracking:
-        button = ui->userPolicyButton;
-        break;
+        // Can't have none checked, if another one is
+        ui->noneCheckBox->setEnabled( true );
+        ui->noneCheckBox->setChecked( false );
     }
-
-    if ( button != nullptr )
-        if ( url.isEmpty() )
+    else
+    {
+        if ( !anyOtherChecked() )
         {
-            button->hide();
+            ui->noneCheckBox->setChecked( true );
+            ui->noneCheckBox->setEnabled( false );
         }
-        else
-        {
-            connect( button, &QToolButton::clicked, [ url ] { QDesktopServices::openUrl( url ); } );
-            cDebug() << "Tracking policy" << int( t ) << "set to" << url;
-        }
-    else
-    {
-        cWarning() << "unknown tracking option" << int( t );
     }
 }
 
 void
-TrackingPage::setGeneralPolicy( QString url )
+TrackingPage::trackerChanged( TrackingStyleConfig* config, QWidget* panel, QCheckBox* check )
 {
-    if ( url.isEmpty() )
-    {
-        ui->generalPolicyLabel->hide();
-    }
-    else
-    {
-        ui->generalPolicyLabel->show();
-        ui->generalPolicyLabel->setTextInteractionFlags( Qt::TextBrowserInteraction );
-        ui->generalPolicyLabel->show();
-        connect( ui->generalPolicyLabel, &QLabel::linkActivated, [ url ] { QDesktopServices::openUrl( url ); } );
-    }
-}
-
-void
-TrackingPage::setTrackingLevel( const QString& l )
-{
-    QString level = l.toLower();
-    QRadioButton* button = nullptr;
-
-    if ( level.isEmpty() || level == "none" )
-    {
-        button = ui->noneRadio;
-    }
-    else if ( level == "install" )
-    {
-        button = ui->installRadio;
-    }
-    else if ( level == "machine" )
-    {
-        button = ui->machineRadio;
-    }
-    else if ( level == "user" )
-    {
-        button = ui->userRadio;
-    }
-
-    if ( button != nullptr )
-    {
-        button->setChecked( true );
-    }
-    else
-    {
-        cWarning() << "unknown default tracking level" << l;
-    }
+    panel->setVisible( config->isConfigurable() );
+    check->setChecked( config->isEnabled() );
 }

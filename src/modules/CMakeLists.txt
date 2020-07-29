@@ -59,6 +59,9 @@ calamares_explain_skipped_modules( ${LIST_SKIPPED_MODULES} )
 
 foreach( _category ${_use_categories} )
     list( FIND _found_categories ${_category} _found )
+    if ( ${USE_${_category}} STREQUAL "none" )
+        set( _found 0 )
+    endif()
     if ( _found EQUAL -1 )
         message( FATAL_ERROR "USE_${_category} is set to ${USE_${_category}} and no module matches." )
     endif()
@@ -66,3 +69,21 @@ endforeach()
 
 include( CalamaresAddTranslations )
 add_calamares_python_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
+
+# TODO:3.3: Use FindPython3
+if ( BUILD_TESTING AND BUILD_SCHEMA_TESTING AND PYTHONINTERP_FOUND AND PYTHON_EXECUTABLE )
+    # The tests for each config file are independent of whether the
+    # module is enabled or not: the config file should match its schema
+    # regardless.
+    foreach( SUBDIRECTORY ${SUBDIRECTORIES} )
+        set( _schema_file "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/${SUBDIRECTORY}.schema.yaml" )
+        set( _conf_file "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/${SUBDIRECTORY}.conf" )
+        if ( EXISTS "${_schema_file}" AND EXISTS "${_conf_file}" )
+            add_test(
+                NAME validate-${SUBDIRECTORY}
+                COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/ci/configvalidator.py" "${_schema_file}" "${_conf_file}"
+            )
+        endif()
+    endforeach()
+endif()
+

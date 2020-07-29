@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,6 +14,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ *
  */
 
 #include "Tests.h"
@@ -99,36 +103,43 @@ PartitionSizeTests::testUnitComparison()
     QCOMPARE( original_compare( u1, u2 ), PartitionSize::unitsComparable( u1, u2 ) );
 }
 
+/* Operator to make the table in testUnitNormalisation_data easier to write */
+constexpr qint64 operator""_qi( unsigned long long m )
+{
+    return qint64( m );
+}
+
 void
 PartitionSizeTests::testUnitNormalisation_data()
 {
     QTest::addColumn< SizeUnit >( "u1" );
     QTest::addColumn< int >( "v" );
-    QTest::addColumn< long >( "bytes" );
+    QTest::addColumn< qint64 >( "bytes" );
 
-    QTest::newRow( "none" ) << SizeUnit::None << 16 << -1L;
-    QTest::newRow( "none" ) << SizeUnit::None << 0 << -1L;
-    QTest::newRow( "none" ) << SizeUnit::None << -2 << -1L;
+    QTest::newRow( "none" ) << SizeUnit::None << 16 << -1_qi;
+    QTest::newRow( "none" ) << SizeUnit::None << 0 << -1_qi;
+    QTest::newRow( "none" ) << SizeUnit::None << -2 << -1_qi;
 
-    QTest::newRow( "percent" ) << SizeUnit::Percent << 0 << -1L;
-    QTest::newRow( "percent" ) << SizeUnit::Percent << 16 << -1L;
-    QTest::newRow( "percent" ) << SizeUnit::Percent << -2 << -1L;
+    QTest::newRow( "percent" ) << SizeUnit::Percent << 0 << -1_qi;
+    QTest::newRow( "percent" ) << SizeUnit::Percent << 16 << -1_qi;
+    QTest::newRow( "percent" ) << SizeUnit::Percent << -2 << -1_qi;
 
-    QTest::newRow( "KiB" ) << SizeUnit::KiB << 0 << -1L;
-    QTest::newRow( "KiB" ) << SizeUnit::KiB << 1 << 1024L;
-    QTest::newRow( "KiB" ) << SizeUnit::KiB << 1000 << 1024000L;
-    QTest::newRow( "KiB" ) << SizeUnit::KiB << 1024 << 1024 * 1024L;
-    QTest::newRow( "KiB" ) << SizeUnit::KiB << -2 << -1L;
+    QTest::newRow( "KiB" ) << SizeUnit::KiB << 0 << -1_qi;
+    QTest::newRow( "KiB" ) << SizeUnit::KiB << 1 << 1024_qi;
+    QTest::newRow( "KiB" ) << SizeUnit::KiB << 1000 << 1024000_qi;
+    QTest::newRow( "KiB" ) << SizeUnit::KiB << 1024 << 1024 * 1024_qi;
+    QTest::newRow( "KiB" ) << SizeUnit::KiB << -2 << -1_qi;
 
-    QTest::newRow( "MiB" ) << SizeUnit::MiB << 0 << -1L;
-    QTest::newRow( "MiB" ) << SizeUnit::MiB << 1 << 1024 * 1024L;
-    QTest::newRow( "MiB" ) << SizeUnit::MiB << 1000 << 1024 * 1024000L;
-    QTest::newRow( "MiB" ) << SizeUnit::MiB << 1024 << 1024 * 1024 * 1024L;
-    QTest::newRow( "MiB" ) << SizeUnit::MiB << -2 << -1L;
+    QTest::newRow( "MiB" ) << SizeUnit::MiB << 0 << -1_qi;
+    QTest::newRow( "MiB" ) << SizeUnit::MiB << 1 << 1024 * 1024_qi;
+    QTest::newRow( "MiB" ) << SizeUnit::MiB << 1000 << 1024 * 1024000_qi;
+    QTest::newRow( "MiB" ) << SizeUnit::MiB << 1024 << 1024 * 1024 * 1024_qi;
+    QTest::newRow( "MiB" ) << SizeUnit::MiB << -2 << -1_qi;
 
-    QTest::newRow( "GiB" ) << SizeUnit::GiB << 0 << -1L;
-    QTest::newRow( "GiB" ) << SizeUnit::GiB << 1 << 1024 * 1024 * 1024L;
-    QTest::newRow( "GiB" ) << SizeUnit::GiB << 2 << 2048 * 1024 * 1024L;
+    QTest::newRow( "GiB" ) << SizeUnit::GiB << 0 << -1_qi;
+    QTest::newRow( "GiB" ) << SizeUnit::GiB << 1 << 1024_qi * 1024 * 1024_qi;
+    // This one overflows 32-bits, which is why we want 64-bits for the whole table
+    QTest::newRow( "GiB" ) << SizeUnit::GiB << 2 << 2048_qi * 1024 * 1024_qi;
 }
 
 void
@@ -136,7 +147,7 @@ PartitionSizeTests::testUnitNormalisation()
 {
     QFETCH( SizeUnit, u1 );
     QFETCH( int, v );
-    QFETCH( long, bytes );
+    QFETCH( qint64, bytes );
 
-    QCOMPARE( PartitionSize( v, u1 ).toBytes(), static_cast< qint64 >( bytes ) );
+    QCOMPARE( PartitionSize( v, u1 ).toBytes(), bytes );
 }

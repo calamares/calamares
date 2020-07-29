@@ -1,0 +1,14 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/unpackfs
+additionalProperties: false
+type: object
+properties:
+    "unpack":
+        type: seq
+        sequence:
+          - type: map
+            mapping:
+                "source": { type: string, required: true }
+                "sourcefs": { type: str }
+                "destination": { type: str }

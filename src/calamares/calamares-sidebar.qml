@@ -7,6 +7,7 @@ import QtQuick.Layouts 1.3
 Rectangle {
     id: sideBar;
     color: Branding.styleString( Branding.SidebarBackground );
+    anchors.fill: parent;
 
     ColumnLayout {
         anchors.fill: parent;
@@ -27,16 +28,17 @@ Rectangle {
         Repeater {
             model: ViewManager
             Rectangle {
-                Layout.leftMargin: 12;
-                width: parent.width - 24;
+                Layout.leftMargin: 6;
+                Layout.rightMargin: 6;
+                Layout.fillWidth: true;
                 height: 35;
                 radius: 6;
-                color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextHighlight : Branding.SidebarBackground );
+                color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarBackgroundSelected : Branding.SidebarBackground );
 
                 Text {
                     anchors.verticalCenter: parent.verticalCenter;
-                    x: parent.x + 12;
-                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextSelect : Branding.SidebarText );
+                    anchors.horizontalCenter: parent.horizontalCenter;
+                    color: Branding.styleString( index == ViewManager.currentStepIndex ? Branding.SidebarTextSelected : Branding.SidebarText );
                     text: display;
                 }
             }

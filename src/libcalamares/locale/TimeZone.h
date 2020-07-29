@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,6 +15,8 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
  */
 
 #ifndef LOCALE_TIMEZONE_H
@@ -84,7 +87,13 @@ public:
     }
 };
 
-/// @brief A pair of strings for timezone regions (e.g. "America")
+/** @brief Timezone regions (e.g. "America")
+ *
+ * A region has a key and a human-readable name, but also
+ * a collection of associated timezone zones (TZZone, below).
+ * This class is not usually constructed, but uses fromFile()
+ * to load a complete tree structure of timezones.
+ */
 class TZRegion : public CStringPair
 {
     Q_OBJECT
@@ -116,7 +125,12 @@ private:
     CStringPairList m_zones;
 };
 
-/// @brief A pair of strings for specific timezone names (e.g. "New_York")
+/** @brief Specific timezone zones (e.g. "New_York", "New York")
+ *
+ * A timezone zone lives in a region, and has some associated
+ * data like the country (used to map likely languages) and latitude
+ * and longitude information.
+ */
 class TZZone : public CStringPair
 {
     Q_OBJECT

@@ -1,0 +1,43 @@
+---
+$schema: https://json-schema.org/schema#
+$id: https://calamares.io/schemas/packages
+additionalProperties: false
+type: object
+properties:
+    backend:
+        type: string
+        enum:
+            - apk
+            - apt
+            - dnf
+            - entropy
+            - packagekit
+            - pacman
+            - pamac
+            - portage
+            - urpmi
+            - yum
+            - zypp
+            - dummy
+
+    update_db: { type: boolean, default: true }
+    update_system: { type: boolean, default: false }
+    skip_if_no_internet: { type: boolean, default: false }
+
+    operations:
+        type: array
+        items:
+            additionalProperties: false
+            type: object
+            properties:
+                # TODO: these are either-string-or-struct items,
+                #       need their own little schema.
+                install: { type: array }
+                remove: { type: array }
+                try_install: { type: array }
+                try_remove: { type: array }
+                localInstall: { type: array }
+                source: { type: string }
+
+
+required: [ backend ]
