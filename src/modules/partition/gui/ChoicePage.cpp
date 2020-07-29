@@ -1442,46 +1442,75 @@ ChoicePage::currentChoice() const
     return m_choice;
 }
 
-
-void
-ChoicePage::updateNextEnabled()
+bool
+ChoicePage::calculateNextEnabled() const
 {
     bool enabled = false;
-
     auto sm_p = m_beforePartitionBarsView ? m_beforePartitionBarsView->selectionModel() : nullptr;
 
     switch ( m_choice )
     {
     case NoChoice:
-        enabled = false;
-        break;
+        cDebug() << "No partitioning choice";
+        return false;
     case Replace:
     case Alongside:
-        enabled = sm_p && sm_p->currentIndex().isValid();
+        if ( !( sm_p && sm_p->currentIndex().isValid() ) )
+        {
+            cDebug() << "No partition selected";
+            return false;
+        }
+        enabled = true;
         break;
     case Erase:
     case Manual:
         enabled = true;
     }
 
-    if ( m_isEfi &&
-         ( m_choice == Alongside ||
-           m_choice == Replace ) )
+    if (!enabled)
     {
-        if ( m_core->efiSystemPartitions().count() == 0 )
-            enabled = false;
+        cDebug() << "No valid choice made";
+        return false;
     }
 
-    if ( m_choice != Manual &&
-         m_encryptWidget->isVisible() &&
-         m_encryptWidget->state() == EncryptWidget::Encryption::Unconfirmed )
-        enabled = false;
 
-    if ( enabled == m_nextEnabled )
-        return;
+    if ( m_isEfi && ( m_choice == Alongside || m_choice == Replace ) )
+    {
+        if ( m_core->efiSystemPartitions().count() == 0 )
+        {
+            cDebug() << "No EFI partition for alongside or replace";
+            return false;
+        }
+    }
 
-    m_nextEnabled = enabled;
-    emit nextStatusChanged( enabled );
+    if ( m_choice != Manual && m_encryptWidget->isVisible() )
+    {
+        switch ( m_encryptWidget->state() )
+        {
+            case EncryptWidget::Encryption::Unconfirmed:
+                cDebug() << "No passphrase provided";
+                return false;
+            case EncryptWidget::Encryption::Disabled:
+            case EncryptWidget::Encryption::Confirmed:
+                // Checkbox not checked, **or** passphrases match
+                break;
+        }
+    }
+
+    return true;
+}
+
+
+void
+ChoicePage::updateNextEnabled()
+{
+    bool enabled = calculateNextEnabled();
+
+    if ( enabled != m_nextEnabled )
+    {
+        m_nextEnabled = enabled;
+        emit nextStatusChanged( enabled );
+    }
 }
 
 void
