@@ -27,8 +27,10 @@ include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} )
 
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h )
-configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/CalamaresVersion.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/CalamaresVersionX.h.in
+                ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersionX.h )
 
 set( OPTIONAL_PRIVATE_LIBRARIES "" )
 set( OPTIONAL_PUBLIC_LIBRARIES "" )

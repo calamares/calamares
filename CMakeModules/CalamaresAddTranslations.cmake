@@ -22,50 +22,15 @@
 
 include( CMakeParseArguments )
 
-if( NOT _rcc_version_support_checked )
-    set( _rcc_version_support_checked TRUE )
-
-    # Extract the executable name
-    get_property( _rcc_executable
-        TARGET ${Qt5Core_RCC_EXECUTABLE}
-        PROPERTY IMPORTED_LOCATION
-    )
-    if( NOT _rcc_executable )
-        # Weird, probably now uses Qt5::rcc which is wrong too
-        set( _rcc_executable ${Qt5Core_RCC_EXECUTABLE} )
-    endif()
-
-    # Try an empty RCC file with explicit format-version
-    execute_process(
-        COMMAND echo "<RCC version='1.0'></RCC>"
-        COMMAND ${Qt5Core_RCC_EXECUTABLE} --format-version 1 --list -
-        RESULT_VARIABLE _rcc_version_rv
-        ERROR_VARIABLE _rcc_version_dump
-    )
-    if ( _rcc_version_rv EQUAL 0 )
-        # Supported: force to the reproducible version
-        set( _rcc_version_support --format-version 1 )
-    else()
-        # Older Qt versions (5.7, 5.8) don't support setting the
-        # rcc format-version, so won't be reproducible if they
-        # default to version 2.
-        set( _rcc_version_support "" )
-    endif()
-    unset( _rcc_version_rv )
-    unset( _rcc_version_dump )
-endif()
-
-
 # Internal macro for adding the C++ / Qt translations to the
 # build and install tree. Should be called only once, from
 # src/calamares/CMakeLists.txt.
 macro(add_calamares_translations language)
     list( APPEND CALAMARES_LANGUAGES ${ARGV} )
 
-    set( calamares_i18n_qrc_content "<!DOCTYPE RCC><RCC version=\"1.0\">\n" )
+    set( calamares_i18n_qrc_content "" )
 
     # calamares and qt language files
-    set( calamares_i18n_qrc_content "${calamares_i18n_qrc_content}<qresource prefix=\"/lang\">\n" )
     foreach( lang ${CALAMARES_LANGUAGES} )
         foreach( tlsource "calamares_${lang}" "tz_${lang}" )
             if( EXISTS "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts" )
@@ -75,31 +40,19 @@ macro(add_calamares_translations language)
         endforeach()
     endforeach()
 
-    set( calamares_i18n_qrc_content "${calamares_i18n_qrc_content}</qresource>\n" )
-    set( calamares_i18n_qrc_content "${calamares_i18n_qrc_content}</RCC>\n" )
-
-    file( WRITE ${CMAKE_BINARY_DIR}/lang/calamares_i18n.qrc "${calamares_i18n_qrc_content}" )
-
-    qt5_add_translation(QM_FILES ${TS_FILES})
-
-    ## HACK HACK HACK - around rcc limitations to allow out of source-tree building
     set( trans_file calamares_i18n )
-    set( trans_srcfile ${CMAKE_BINARY_DIR}/lang/${trans_file}.qrc )
     set( trans_infile ${CMAKE_CURRENT_BINARY_DIR}/${trans_file}.qrc )
     set( trans_outfile ${CMAKE_CURRENT_BINARY_DIR}/qrc_${trans_file}.cxx )
 
-    # Copy the QRC file to the output directory
-    add_custom_command(
-        OUTPUT ${trans_infile}
-        COMMAND ${CMAKE_COMMAND} -E copy ${trans_srcfile} ${trans_infile}
-        MAIN_DEPENDENCY ${trans_srcfile}
-    )
+    configure_file( ${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${trans_infile} @ONLY )
+
+    qt5_add_translation(QM_FILES ${TS_FILES})
 
     # Run the resource compiler (rcc_options should already be set)
     add_custom_command(
         OUTPUT ${trans_outfile}
         COMMAND "${Qt5Core_RCC_EXECUTABLE}"
-        ARGS ${rcc_options} ${_rcc_version_support} -name ${trans_file} -o ${trans_outfile} ${trans_infile}
+        ARGS ${rcc_options} --format-version 1 -name ${trans_file} -o ${trans_outfile} ${trans_infile}
         MAIN_DEPENDENCY ${trans_infile}
         DEPENDS ${QM_FILES}
     )
