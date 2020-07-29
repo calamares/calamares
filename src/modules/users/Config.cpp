@@ -28,7 +28,6 @@
 
 #include <QFile>
 #include <QRegExp>
-#include <QRegExpValidator>
 
 static const QRegExp USERNAME_RX( "^[a-z_][a-z0-9_-]*[$]?$" );
 static constexpr const int USERNAME_MAX_LENGTH = 31;
@@ -132,15 +131,12 @@ Config::loginNameStatus() const
         }
     }
 
-    QString login( m_loginName );  // make a copy because validate() doesn't take const&
-    QRegExpValidator validateEntireLoginName( USERNAME_RX );
-    QRegExpValidator validateFirstLetter( QRegExp( "[a-z_].*" ) );  // anchors are implicit in QRegExpValidator
-    int pos = -1;
-    if ( validateFirstLetter.validate( login, pos ) == QValidator::Invalid )
+    QRegExp validateFirstLetter( "^[a-z_]" );
+    if ( validateFirstLetter.indexIn( m_loginName ) != 0 )
     {
         return tr( "Your username must start with a lowercase letter or underscore." );
     }
-    if ( validateEntireLoginName.validate( login, pos ) == QValidator::Invalid )
+    if ( !USERNAME_RX.exactMatch( m_loginName ) )
     {
         return tr( "Only lowercase letters, numbers, underscore and hyphen are allowed." );
     }
@@ -202,11 +198,7 @@ Config::hostNameStatus() const
         }
     }
 
-    QString text = m_hostName;
-    QRegExpValidator val( HOSTNAME_RX );
-    int pos = -1;
-
-    if ( val.validate( text, pos ) == QValidator::Invalid )
+    if ( !HOSTNAME_RX.exactMatch( m_hostName ) )
     {
         return tr( "Only letters, numbers, underscore and hyphen are allowed." );
     }
