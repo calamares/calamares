@@ -123,6 +123,9 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     // Settings that overlap with the Welcome module
     m_requiredStorageGiB = CalamaresUtils::getDouble( configurationMap, "requiredStorage", -1.0 );
     m_swapChoices = getSwapChoices( configurationMap );
+
+    bool nameFound = false;  // In the name table (ignored, falls back to first entry in table)
+    m_initialInstallChoice = PartitionActions::Choices::installChoiceNames().find( CalamaresUtils::getString( configurationMap, "initialPartitioningChoice" ), nameFound );
 }
 
 void

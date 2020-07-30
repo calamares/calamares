@@ -46,7 +46,6 @@ enum SwapChoice
     SwapFile  // use a file (if supported)
 };
 using SwapChoiceSet = QSet< SwapChoice >;
-
 const NamedEnumTable< SwapChoice >& swapChoiceNames();
 
 /** @brief Given a set of swap choices, return a sensible value from it.
@@ -56,6 +55,16 @@ const NamedEnumTable< SwapChoice >& swapChoiceNames();
  * If that's not possible, any value from the set.
  */
 SwapChoice pickOne( const SwapChoiceSet& s );
+
+enum InstallChoice
+{
+    NoChoice,
+    Alongside,
+    Erase,
+    Replace,
+    Manual
+};
+const NamedEnumTable< InstallChoice >& installChoiceNames();
 
 struct ReplacePartitionOptions
 {
