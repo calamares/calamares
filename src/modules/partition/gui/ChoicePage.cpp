@@ -80,7 +80,7 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     , m_config( config )
     , m_nextEnabled( false )
     , m_core( nullptr )
-    , m_choice( NoChoice )
+    , m_choice( InstallChoice::NoChoice )
     , m_isEfi( false )
     , m_grp( nullptr )
     , m_alongsideButton( nullptr )
@@ -242,14 +242,14 @@ ChoicePage::setupChoices()
     m_alongsideButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionAlongside,
                                                                CalamaresUtils::Original,
                                                                iconSize ) );
-    m_alongsideButton->addToGroup( m_grp, Alongside );
+    m_alongsideButton->addToGroup( m_grp, InstallChoice::Alongside );
 
     m_eraseButton = new PrettyRadioButton;
     m_eraseButton->setIconSize( iconSize );
     m_eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionEraseAuto,
                                                            CalamaresUtils::Original,
                                                            iconSize ) );
-    m_eraseButton->addToGroup( m_grp, Erase );
+    m_eraseButton->addToGroup( m_grp, InstallChoice::Erase );
 
     m_replaceButton = new PrettyRadioButton;
 
@@ -257,7 +257,7 @@ ChoicePage::setupChoices()
     m_replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionReplaceOs,
                                                              CalamaresUtils::Original,
                                                              iconSize ) );
-    m_replaceButton->addToGroup( m_grp, Replace );
+    m_replaceButton->addToGroup( m_grp, InstallChoice::Replace );
 
     // Fill up swap options
     // .. TODO: only if enabled in the config
@@ -277,7 +277,7 @@ ChoicePage::setupChoices()
                                                                    CalamaresUtils::Original,
                                                                    iconSize ) );
     m_itemsLayout->addWidget( m_somethingElseButton );
-    m_somethingElseButton->addToGroup( m_grp, Manual );
+    m_somethingElseButton->addToGroup( m_grp, InstallChoice::Manual );
 
     m_itemsLayout->addStretch();
 
@@ -295,7 +295,7 @@ ChoicePage::setupChoices()
         {
             if ( m_grp->checkedButton() == nullptr )  // If no other action is chosen, we must
             {                                         // set m_choice to NoChoice and reset previews.
-                m_choice = NoChoice;
+                m_choice = InstallChoice::NoChoice;
                 updateNextEnabled();
 
                 emit actionChosen();
@@ -441,7 +441,7 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
 
     switch ( choice )
     {
-    case Erase:
+    case InstallChoice::Erase:
         {
             auto gs = Calamares::JobQueue::instance()->globalStorage();
 
@@ -474,7 +474,7 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
             }
         }
         break;
-    case Replace:
+    case InstallChoice::Replace:
         if ( m_core->isDirty() )
         {
             ScanningDialog::run( QtConcurrent::run( [ = ]
@@ -492,7 +492,7 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
                  Qt::UniqueConnection );
         break;
 
-    case Alongside:
+    case InstallChoice::Alongside:
         if ( m_core->isDirty() )
         {
             ScanningDialog::run( QtConcurrent::run( [ = ]
@@ -515,8 +515,8 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
                  this, SLOT( doAlongsideSetupSplitter( QModelIndex, QModelIndex ) ),
                  Qt::UniqueConnection );
         break;
-    case NoChoice:
-    case Manual:
+    case InstallChoice::NoChoice:
+    case InstallChoice::Manual:
         break;
     }
     updateActionChoicePreview( choice );
@@ -571,13 +571,13 @@ void
 ChoicePage::onEncryptWidgetStateChanged()
 {
     EncryptWidget::Encryption state = m_encryptWidget->state();
-    if ( m_choice == Erase )
+    if ( m_choice == InstallChoice::Erase )
     {
         if ( state == EncryptWidget::Encryption::Confirmed ||
              state == EncryptWidget::Encryption::Disabled )
             applyActionChoice( m_choice );
     }
-    else if ( m_choice == Replace )
+    else if ( m_choice == InstallChoice::Replace )
     {
         if ( m_beforePartitionBarsView &&
              m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() &&
@@ -596,7 +596,7 @@ ChoicePage::onEncryptWidgetStateChanged()
 void
 ChoicePage::onHomeCheckBoxStateChanged()
 {
-    if ( currentChoice() == Replace &&
+    if ( currentChoice() == InstallChoice::Replace &&
          m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() )
     {
         doReplaceSelectedPartition( m_beforePartitionBarsView->
@@ -609,10 +609,10 @@ ChoicePage::onHomeCheckBoxStateChanged()
 void
 ChoicePage::onLeave()
 {
-    if ( m_choice == Alongside )
+    if ( m_choice == InstallChoice::Alongside )
         doAlongsideApply();
 
-    if ( m_isEfi && ( m_choice == Alongside || m_choice == Replace ) )
+    if ( m_isEfi && ( m_choice == InstallChoice::Alongside || m_choice == InstallChoice::Replace ) )
     {
         QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
         if ( efiSystemPartitions.count() == 1 )
@@ -879,8 +879,8 @@ ChoicePage::updateDeviceStatePreview()
 
     switch ( m_choice )
     {
-    case Replace:
-    case Alongside:
+    case InstallChoice::Replace:
+    case InstallChoice::Alongside:
         m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::SingleSelection );
         m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::SingleSelection );
         break;
@@ -931,7 +931,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
 
     switch ( choice )
     {
-    case Alongside:
+    case InstallChoice::Alongside:
         {
             if ( m_enableEncryptionWidget )
                 m_encryptWidget->show();
@@ -975,8 +975,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
 
             break;
         }
-    case Erase:
-    case Replace:
+    case InstallChoice::Erase:
+    case InstallChoice::Replace:
         {
             if ( m_enableEncryptionWidget )
                 m_encryptWidget->show();
@@ -1042,7 +1042,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
             m_previewAfterFrame->show();
             m_previewAfterLabel->show();
 
-            if ( m_choice == Erase )
+            if ( m_choice == InstallChoice::Erase )
                 m_selectLabel->hide();
             else
             {
@@ -1062,8 +1062,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
 
             break;
         }
-    case NoChoice:
-    case Manual:
+    case InstallChoice::NoChoice:
+    case InstallChoice::Manual:
         m_selectLabel->hide();
         m_previewAfterFrame->hide();
         m_previewBeforeLabel->setText( tr( "Current:" ) );
@@ -1072,7 +1072,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
         break;
     }
 
-    if ( m_isEfi && ( m_choice == Alongside || m_choice == Replace ) )
+    if ( m_isEfi && ( m_choice == InstallChoice::Alongside || m_choice == InstallChoice::Replace ) )
     {
         QHBoxLayout* efiLayout = new QHBoxLayout;
         layout->addLayout( efiLayout );
@@ -1089,8 +1089,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
     QAbstractItemView::SelectionMode previewSelectionMode;
     switch ( m_choice )
     {
-    case Replace:
-    case Alongside:
+    case InstallChoice::Replace:
+    case InstallChoice::Alongside:
         previewSelectionMode = QAbstractItemView::SingleSelection;
         break;
     default:
@@ -1433,11 +1433,11 @@ ChoicePage::calculateNextEnabled() const
 
     switch ( m_choice )
     {
-    case NoChoice:
+    case InstallChoice::NoChoice:
         cDebug() << "No partitioning choice";
         return false;
-    case Replace:
-    case Alongside:
+    case InstallChoice::Replace:
+    case InstallChoice::Alongside:
         if ( !( sm_p && sm_p->currentIndex().isValid() ) )
         {
             cDebug() << "No partition selected";
@@ -1445,8 +1445,8 @@ ChoicePage::calculateNextEnabled() const
         }
         enabled = true;
         break;
-    case Erase:
-    case Manual:
+    case InstallChoice::Erase:
+    case InstallChoice::Manual:
         enabled = true;
     }
 
@@ -1457,7 +1457,7 @@ ChoicePage::calculateNextEnabled() const
     }
 
 
-    if ( m_isEfi && ( m_choice == Alongside || m_choice == Replace ) )
+    if ( m_isEfi && ( m_choice == InstallChoice::Alongside || m_choice == InstallChoice::Replace ) )
     {
         if ( m_core->efiSystemPartitions().count() == 0 )
         {
@@ -1466,7 +1466,7 @@ ChoicePage::calculateNextEnabled() const
         }
     }
 
-    if ( m_choice != Manual && m_encryptWidget->isVisible() )
+    if ( m_choice != InstallChoice::Manual && m_encryptWidget->isVisible() )
     {
         switch ( m_encryptWidget->state() )
         {

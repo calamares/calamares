@@ -62,14 +62,7 @@ class ChoicePage : public QWidget, private Ui::ChoicePage
 {
     Q_OBJECT
 public:
-    enum InstallChoice
-    {
-        NoChoice,
-        Alongside,
-        Erase,
-        Replace,
-        Manual
-    };
+    using InstallChoice = PartitionActions::Choices::InstallChoice;
 
     explicit ChoicePage( Config* config, QWidget* parent = nullptr );
     virtual ~ChoicePage();

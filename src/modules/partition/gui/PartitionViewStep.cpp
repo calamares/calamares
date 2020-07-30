@@ -167,20 +167,20 @@ PartitionViewStep::createSummaryWidget() const
         QString modeText;
         switch ( choice )
         {
-        case ChoicePage::Alongside:
+        case ChoicePage::InstallChoice::Alongside:
             modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
                            .arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::Erase:
+        case ChoicePage::InstallChoice::Erase:
             modeText
                 = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::Replace:
+        case ChoicePage::InstallChoice::Replace:
             modeText
                 = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::NoChoice:
-        case ChoicePage::Manual:
+        case ChoicePage::InstallChoice::NoChoice:
+        case ChoicePage::InstallChoice::Manual:
             modeText = tr( "<strong>Manual</strong> partitioning." );
         }
         modeLabel->setText( modeText );
@@ -193,27 +193,27 @@ PartitionViewStep::createSummaryWidget() const
             QString modeText;
             switch ( choice )
             {
-            case ChoicePage::Alongside:
+            case ChoicePage::InstallChoice::Alongside:
                 modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk "
                                "<strong>%2</strong> (%3)." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::Erase:
+            case ChoicePage::InstallChoice::Erase:
                 modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::Replace:
+            case ChoicePage::InstallChoice::Replace:
                 modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::NoChoice:
-            case ChoicePage::Manual:
+            case ChoicePage::InstallChoice::NoChoice:
+            case ChoicePage::InstallChoice::Manual:
                 modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
@@ -296,7 +296,7 @@ PartitionViewStep::next()
 {
     if ( m_choicePage == m_widget->currentWidget() )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::Manual )
+        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Manual )
         {
             if ( !m_manualPartitionPage )
             {
@@ -378,8 +378,8 @@ PartitionViewStep::isAtEnd() const
 {
     if ( m_widget->currentWidget() == m_choicePage )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::Erase || m_choicePage->currentChoice() == ChoicePage::Replace
-             || m_choicePage->currentChoice() == ChoicePage::Alongside )
+        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Erase || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Replace
+             || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
         {
             return true;
         }
@@ -395,9 +395,9 @@ PartitionViewStep::onActivate()
     m_config->updateGlobalStorage();
 
     // if we're coming back to PVS from the next VS
-    if ( m_widget->currentWidget() == m_choicePage && m_choicePage->currentChoice() == ChoicePage::Alongside )
+    if ( m_widget->currentWidget() == m_choicePage && m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
     {
-        m_choicePage->applyActionChoice( ChoicePage::Alongside );
+        m_choicePage->applyActionChoice( ChoicePage::InstallChoice::Alongside );
         //        m_choicePage->reset();
         //FIXME: ReplaceWidget should be reset maybe?
     }
