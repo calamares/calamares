@@ -94,7 +94,7 @@ void
 PartitionViewStep::continueLoading()
 {
     Q_ASSERT( !m_choicePage );
-    m_choicePage = new ChoicePage( m_swapChoices );
+    m_choicePage = new ChoicePage( m_config->swapChoices() );
     m_choicePage->init( m_core );
     m_widget->addWidget( m_choicePage );
 
