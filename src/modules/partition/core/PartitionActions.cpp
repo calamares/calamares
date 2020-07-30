@@ -257,8 +257,8 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
 
 namespace Choices
 {
-static const NamedEnumTable< SwapChoice >&
-nameTable()
+const NamedEnumTable< SwapChoice >&
+swapChoiceNames()
 {
     static const NamedEnumTable< SwapChoice > names { { QStringLiteral( "none" ), SwapChoice::NoSwap },
                                                       { QStringLiteral( "small" ), SwapChoice::SmallSwap },
@@ -267,19 +267,6 @@ nameTable()
                                                       { QStringLiteral( "file" ), SwapChoice::SwapFile } };
 
     return names;
-}
-
-SwapChoice
-nameToChoice( QString name, bool& ok )
-{
-    return nameTable().find( name, ok );
-}
-
-QString
-choiceToName( SwapChoice c )
-{
-    bool ok = false;
-    return nameTable().find( c, ok );
 }
 
 SwapChoice

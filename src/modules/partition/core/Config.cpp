@@ -64,7 +64,7 @@ getSwapChoices( const QVariantMap& configurationMap )
         for ( const auto& item : l )
         {
             bool ok = false;
-            auto v = PartitionActions::Choices::nameToChoice( item, ok );
+            auto v = PartitionActions::Choices::swapChoiceNames().find( item, ok );
             if ( ok )
             {
                 choices.insert( v );
@@ -105,7 +105,8 @@ getSwapChoices( const QVariantMap& configurationMap )
 #define COMPLAIN_UNSUPPORTED( x ) \
     if ( choices.contains( x ) ) \
     { \
-        cWarning() << unsupportedSetting << PartitionActions::Choices::choiceToName( x ); \
+        bool bogus = false; \
+        cWarning() << unsupportedSetting << PartitionActions::Choices::swapChoiceNames().find( x, bogus ); \
         choices.remove( x ); \
     }
 

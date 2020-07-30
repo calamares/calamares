@@ -19,6 +19,8 @@
 #ifndef PARTITIONACTIONS_H
 #define PARTITIONACTIONS_H
 
+#include "utils/NamedEnum.h"
+
 #include <QSet>
 #include <QString>
 
@@ -34,7 +36,7 @@ namespace PartitionActions
  */
 namespace Choices
 {
-/** @brief Ccchoice of swap (size and type) */
+/** @brief Choice of swap (size and type) */
 enum SwapChoice
 {
     NoSwap,  // don't create any swap, don't use any
@@ -45,8 +47,7 @@ enum SwapChoice
 };
 using SwapChoiceSet = QSet< SwapChoice >;
 
-SwapChoice nameToChoice( QString name, bool& ok );
-QString choiceToName( SwapChoice );
+const NamedEnumTable< SwapChoice >& swapChoiceNames();
 
 /** @brief Given a set of swap choices, return a sensible value from it.
  *
