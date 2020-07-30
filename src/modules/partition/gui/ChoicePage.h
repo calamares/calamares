@@ -42,11 +42,12 @@ namespace Calamares
 class PrettyRadioButton;
 }
 
+class Config;
+class DeviceInfoWidget;
 class PartitionBarsView;
 class PartitionSplitterWidget;
 class PartitionLabelsView;
 class PartitionCoreModule;
-class DeviceInfoWidget;
 
 class Device;
 
@@ -70,7 +71,7 @@ public:
         Manual
     };
 
-    explicit ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent = nullptr );
+    explicit ChoicePage( Config* config, QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
     /**
@@ -147,6 +148,7 @@ private:
     // Translations support
     void updateSwapChoicesTr( QComboBox* box );
 
+    Config* m_config;
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
 

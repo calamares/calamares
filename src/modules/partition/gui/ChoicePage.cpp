@@ -20,7 +20,15 @@
 
 #include "ChoicePage.h"
 
+#include "BootInfoWidget.h"
+#include "DeviceInfoWidget.h"
+#include "PartitionBarsView.h"
+#include "PartitionLabelsView.h"
+#include "PartitionSplitterWidget.h"
+#include "ReplaceWidget.h"
+#include "ScanningDialog.h"
 #include "core/BootLoaderModel.h"
+#include "core/Config.h"
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
 #include "core/OsproberEntry.h"
@@ -29,14 +37,6 @@
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
-
-#include "BootInfoWidget.h"
-#include "DeviceInfoWidget.h"
-#include "PartitionBarsView.h"
-#include "PartitionLabelsView.h"
-#include "PartitionSplitterWidget.h"
-#include "ReplaceWidget.h"
-#include "ScanningDialog.h"
 
 #include "Branding.h"
 #include "GlobalStorage.h"
@@ -75,8 +75,9 @@ using Calamares::PrettyRadioButton;
  *      the module loading code path.
  * @param parent the QWidget parent.
  */
-ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
+ChoicePage::ChoicePage( Config* config, QWidget* parent )
     : QWidget( parent )
+    , m_config( config )
     , m_nextEnabled( false )
     , m_core( nullptr )
     , m_choice( NoChoice )
@@ -93,8 +94,8 @@ ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
     , m_bootloaderComboBox( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
-    , m_availableSwapChoices( swapChoices )
-    , m_eraseSwapChoice( PartitionActions::Choices::pickOne( swapChoices ) )
+    , m_availableSwapChoices( config->swapChoices() )
+    , m_eraseSwapChoice( PartitionActions::Choices::pickOne( m_availableSwapChoices ) )
     , m_allowManualPartitioning( true )
 {
     setupUi( this );
