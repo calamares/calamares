@@ -148,14 +148,13 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #       the original four lines with the current translations).
 #
 # Total 68 languages
-set( _tx_complete az az_AZ ca da fi_FI he hi hr ja pt_BR sq tr_TR
-    uk zh_TW )
-set( _tx_good as ast be cs_CZ de es fr hu it_IT ko lt ml nl pt_PT
-    ru sk sv zh_CN )
-set( _tx_ok ar bg el en_GB es_MX es_PR et eu fa gl id is mr nb pl
-    ro sl sr sr@latin tg th )
-set( _tx_incomplete bn ca@valencia eo fr_CH gu ie kk kn lo lv mk
-    ne_NP ur uz )
+set( _tx_complete ca fi_FI he hr nl pt_BR sq tg tr_TR uk zh_TW )
+set( _tx_good as ast az az_AZ be cs_CZ da de es fr hi hu it_IT ja
+    ko lt ml pt_PT ru sk sv zh_CN )
+set( _tx_ok ar bg el en_GB es_MX es_PR et eu fa gl id ie is mr nb
+    pl ro sl sr sr@latin th )
+set( _tx_incomplete bn ca@valencia eo fr_CH gu kk kn lo lv mk ne_NP
+    ur uz )
 
 ### Required versions
 #

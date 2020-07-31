@@ -8,12 +8,13 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
  - apt-ghetto
+ - Victor Ibragimov
 
 ## Core ##
  - A new object *Network* is available to QML modules in `io.calamares.core`.
    It exposes network status through the *hasInternet* property.
- - Welcome to Tajik translations. This has reached sufficient completion
-   to be included in the drop-down list of languages on the welcome page.
+ - Welcome to Tajik translations. The Tajik language has quickly reached
+   100% completion.
  - Welcome to [Interlingue](https://en.wikipedia.org/wiki/Interlingue).
    The translation is at an early stage.
 
