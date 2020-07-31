@@ -8,6 +8,7 @@
 # Run it with a -v command-line option to get extra output on
 # actual translation percentages.
 import sys
+import argparse
 
 def get_tx_credentials():
     """
@@ -101,10 +102,12 @@ def get_tx_stats(token, verbose):
 
 
 def main():
-    verbose = (sys.argv[-1] == "-v")
+    parser = argparse.ArgumentParser(description="Update Transifex Statistics")
+    parser.add_argument("--verbose", "-v", help="Show statistics", action="store_true")
+    args = parser.parse_args()
     cred = get_tx_credentials()
     if cred:
-        return get_tx_stats(cred, verbose)
+        return get_tx_stats(cred, args.verbose)
     else:
         print("! Could not find API token in ~/.transifexrc")
         return 1
