@@ -67,7 +67,24 @@ class BogusGetter(object):
             self.languages[lang] = dict(translated=dict(stringcount=686, percentage=(completion/100.0)))
 
 
-def output_langs(all_langs, label, filterfunc):
+class PrintOutputter(object):
+    """
+    Output via print-statements.
+    """
+    def __init__(self):
+        pass
+
+    def print(self, s):
+        print(s)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, e, v, tb):
+        pass
+
+
+def output_langs(all_langs, outputter, label, filterfunc):
     """
     Output (via print) all of the languages in @p all_langs
     that satisfy the translation-percentage filter @p filterfunc.
@@ -83,13 +100,13 @@ def output_langs(all_langs, label, filterfunc):
 
     while len(out) > width - len(prefix):
         chunk = out[:out[:width].rfind(" ")]
-        print("%s%s" % (prefix, chunk))
+        outputter.print("%s%s" % (prefix, chunk))
         out = out[len(chunk)+1:]
         prefix = "    "
-    print("%s%s" % (prefix, out))
+    outputter.print("%s%s" % (prefix, out))
 
 
-def get_tx_stats(languages, verbose):
+def get_tx_stats(languages, outputter, verbose):
     """
     Does an API request to Transifex with the given API @p token, getting
     the translation statistics for the main body of texts. Then prints
@@ -110,7 +127,7 @@ def get_tx_stats(languages, verbose):
         )
 
     all_langs = []
-    print("# Total %d languages" % len(languages))
+    outputter.print("# Total %d languages" % len(languages))
     for lang_name in languages:
         if lang_name in suppressed_languages:
             continue
@@ -124,14 +141,17 @@ def get_tx_stats(languages, verbose):
 
     if verbose:
         for s, l in sorted(all_langs, reverse=True):
-            print("#  %16s\t%6.2f" % (l, s * 100.0))
-    output_langs(all_langs, "complete", lambda s : s == 1.0)
-    output_langs(all_langs, "good", lambda s : 1.0 > s >= 0.75)
-    output_langs(all_langs, "ok", lambda s : 0.75 > s >= 0.05)
-    output_langs(all_langs, "incomplete", lambda s : 0.05 > s)
+            outputter.print("#  %16s\t%6.2f" % (l, s * 100.0))
+    output_langs(all_langs, outputter, "complete", lambda s : s == 1.0)
+    output_langs(all_langs, outputter, "good", lambda s : 1.0 > s >= 0.75)
+    output_langs(all_langs, outputter, "ok", lambda s : 0.75 > s >= 0.05)
+    output_langs(all_langs, outputter, "incomplete", lambda s : 0.05 > s)
 
     return 0
 
+
+def get_outputter():
+    return PrintOutputter()
 
 def main():
     parser = argparse.ArgumentParser(description="Update Transifex Statistics")
@@ -143,7 +163,8 @@ def main():
             getter = BogusGetter()
         else:
             getter = TransifexGetter()
-        return get_tx_stats(getter.languages, args.verbose)
+        with get_outputter() as outputter:
+            return get_tx_stats(getter.languages, outputter, args.verbose)
     except TXError as e:
         print("! " + str(e))
         return 1;
