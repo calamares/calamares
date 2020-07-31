@@ -4,18 +4,18 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Christian Spaan, 2020
 # Andreas Eitel <github-aneitel@online.de>, 2020
 # Adriaan de Groot <groot@kde.org>, 2020
+# Christian Spaan, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-18 15:42+0200\n"
+"POT-Creation-Date: 2020-07-29 11:03+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Adriaan de Groot <groot@kde.org>, 2020\n"
+"Last-Translator: Christian Spaan, 2020\n"
 "Language-Team: German (https://www.transifex.com/calamares/teams/20061/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,7 +140,7 @@ msgstr "Ungültige unsquash-Konfiguration"
 #: src/modules/unpackfs/main.py:439
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr ""
-"Das Dateisystem für \"{}\". ({}) wird von Ihrem aktuellen Kernel nicht "
+"Das Dateisystem für \"{}\" ({}) wird von Ihrem aktuellen Kernel nicht "
 "unterstützt"
 
 #: src/modules/unpackfs/main.py:443
