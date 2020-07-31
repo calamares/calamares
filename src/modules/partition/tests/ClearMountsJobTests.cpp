@@ -26,19 +26,17 @@ QTEST_GUILESS_MAIN( ClearMountsJobTests )
 
 
 /* Not exactly public API */
-QStringList
-getPartitionsForDevice( const QString& deviceName );
+QStringList getPartitionsForDevice( const QString& deviceName );
 
 QStringList
-getPartitionsForDevice_other(const QString& deviceName)
+getPartitionsForDevice_other( const QString& deviceName )
 {
     QProcess process;
     process.setProgram( "sh" );
-    process.setArguments( {
-                              "-c",
-                              QString( "echo $(awk '{print $4}' /proc/partitions | sed -e '/name/d' -e '/^$/d' -e '/[1-9]/!d' | grep %1)" )
-                                      .arg( deviceName )
-                          } );
+    process.setArguments(
+        { "-c",
+          QString( "echo $(awk '{print $4}' /proc/partitions | sed -e '/name/d' -e '/^$/d' -e '/[1-9]/!d' | grep %1)" )
+              .arg( deviceName ) } );
     process.start();
     process.waitForFinished();
 
@@ -55,10 +53,11 @@ getPartitionsForDevice_other(const QString& deviceName)
 
 ClearMountsJobTests::ClearMountsJobTests()
 {
-    Logger::setupLogLevel(6);
+    Logger::setupLogLevel( Logger::LOGDEBUG );
 }
 
-void ClearMountsJobTests::testFindPartitions()
+void
+ClearMountsJobTests::testFindPartitions()
 {
     QStringList partitions = getPartitionsForDevice( "sda" );
     QStringList other_part = getPartitionsForDevice_other( "sda" );

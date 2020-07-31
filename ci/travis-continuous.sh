@@ -24,7 +24,7 @@ section "cmake $CMAKE_ARGS $SRCDIR"
 cmake $CMAKE_ARGS $SRCDIR || { echo "! CMake failed" ; exit 1 ; }
 
 section "make"
-make -j2 || { echo "! Make recheck" ; pwd -P ; df -h ; make -j1 VERBOSE=1 ; echo "! Make failed" ; exit 1 ; }
+make -j2 VERBOSE=1 || { echo "! Make recheck" ; pwd -P ; df -h ; make -j1 VERBOSE=1 ; echo "! Make failed" ; exit 1 ; }
 
 section "make install"
 

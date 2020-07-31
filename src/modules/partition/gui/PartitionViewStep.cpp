@@ -22,6 +22,7 @@
 
 #include "gui/PartitionViewStep.h"
 
+#include "core/Config.h"
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
 #include "core/OsproberEntry.h"
@@ -64,11 +65,11 @@
 
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
+    , m_config( new Config( this ) )
     , m_core( nullptr )
     , m_widget( new QStackedWidget() )
     , m_choicePage( nullptr )
     , m_manualPartitionPage( nullptr )
-    , m_requiredStorageGiB( 0.0 )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
 
@@ -93,7 +94,7 @@ void
 PartitionViewStep::continueLoading()
 {
     Q_ASSERT( !m_choicePage );
-    m_choicePage = new ChoicePage( m_swapChoices );
+    m_choicePage = new ChoicePage( m_config );
     m_choicePage->init( m_core );
     m_widget->addWidget( m_choicePage );
 
@@ -166,20 +167,20 @@ PartitionViewStep::createSummaryWidget() const
         QString modeText;
         switch ( choice )
         {
-        case ChoicePage::Alongside:
+        case ChoicePage::InstallChoice::Alongside:
             modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
                            .arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::Erase:
+        case ChoicePage::InstallChoice::Erase:
             modeText
                 = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::Replace:
+        case ChoicePage::InstallChoice::Replace:
             modeText
                 = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::NoChoice:
-        case ChoicePage::Manual:
+        case ChoicePage::InstallChoice::NoChoice:
+        case ChoicePage::InstallChoice::Manual:
             modeText = tr( "<strong>Manual</strong> partitioning." );
         }
         modeLabel->setText( modeText );
@@ -192,27 +193,27 @@ PartitionViewStep::createSummaryWidget() const
             QString modeText;
             switch ( choice )
             {
-            case ChoicePage::Alongside:
+            case ChoicePage::InstallChoice::Alongside:
                 modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk "
                                "<strong>%2</strong> (%3)." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::Erase:
+            case ChoicePage::InstallChoice::Erase:
                 modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::Replace:
+            case ChoicePage::InstallChoice::Replace:
                 modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::NoChoice:
-            case ChoicePage::Manual:
+            case ChoicePage::InstallChoice::NoChoice:
+            case ChoicePage::InstallChoice::Manual:
                 modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
@@ -295,7 +296,7 @@ PartitionViewStep::next()
 {
     if ( m_choicePage == m_widget->currentWidget() )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::Manual )
+        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Manual )
         {
             if ( !m_manualPartitionPage )
             {
@@ -377,8 +378,8 @@ PartitionViewStep::isAtEnd() const
 {
     if ( m_widget->currentWidget() == m_choicePage )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::Erase || m_choicePage->currentChoice() == ChoicePage::Replace
-             || m_choicePage->currentChoice() == ChoicePage::Alongside )
+        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Erase || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Replace
+             || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
         {
             return true;
         }
@@ -391,18 +392,12 @@ PartitionViewStep::isAtEnd() const
 void
 PartitionViewStep::onActivate()
 {
-    // If there's no setting (e.g. from the welcome page) for required storage
-    // then use ours, if it was set.
-    auto* gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
-    if ( m_requiredStorageGiB >= 0.0 && gs && !gs->contains( "requiredStorageGiB" ) )
-    {
-        gs->insert( "requiredStorageGiB", m_requiredStorageGiB );
-    }
+    m_config->updateGlobalStorage();
 
     // if we're coming back to PVS from the next VS
-    if ( m_widget->currentWidget() == m_choicePage && m_choicePage->currentChoice() == ChoicePage::Alongside )
+    if ( m_widget->currentWidget() == m_choicePage && m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
     {
-        m_choicePage->applyActionChoice( ChoicePage::Alongside );
+        m_choicePage->applyActionChoice( ChoicePage::InstallChoice::Alongside );
         //        m_choicePage->reset();
         //FIXME: ReplaceWidget should be reset maybe?
     }
@@ -531,6 +526,8 @@ PartitionViewStep::onLeave()
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    m_config->setConfigurationMap( configurationMap );
+
     // Copy the efiSystemPartition setting to the global storage. It is needed not only in
     // the EraseDiskPage, but also in the bootloader configuration modules (grub, bootloader).
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
@@ -557,97 +554,6 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         gs->insert( "efiSystemPartitionName", CalamaresUtils::getString( configurationMap, "efiSystemPartitionName" ) );
     }
-
-    // SWAP SETTINGS
-    //
-    // This is a bit convoluted because there's legacy settings to handle as well
-    // as the new-style list of choices, with mapping back-and-forth.
-    if ( configurationMap.contains( "userSwapChoices" )
-         && ( configurationMap.contains( "ensureSuspendToDisk" ) || configurationMap.contains( "neverCreateSwap" ) ) )
-    {
-        cError() << "Partition-module configuration mixes old- and new-style swap settings.";
-    }
-
-    if ( configurationMap.contains( "ensureSuspendToDisk" ) )
-    {
-        cWarning() << "Partition-module setting *ensureSuspendToDisk* is deprecated.";
-    }
-    bool ensureSuspendToDisk = CalamaresUtils::getBool( configurationMap, "ensureSuspendToDisk", true );
-
-    if ( configurationMap.contains( "neverCreateSwap" ) )
-    {
-        cWarning() << "Partition-module setting *neverCreateSwap* is deprecated.";
-    }
-    bool neverCreateSwap = CalamaresUtils::getBool( configurationMap, "neverCreateSwap", false );
-
-    QSet< PartitionActions::Choices::SwapChoice > choices;  // Available swap choices
-    if ( configurationMap.contains( "userSwapChoices" ) )
-    {
-        // We've already warned about overlapping settings with the
-        // legacy *ensureSuspendToDisk* and *neverCreateSwap*.
-        QStringList l = configurationMap[ "userSwapChoices" ].toStringList();
-
-        for ( const auto& item : l )
-        {
-            bool ok = false;
-            auto v = PartitionActions::Choices::nameToChoice( item, ok );
-            if ( ok )
-            {
-                choices.insert( v );
-            }
-        }
-
-        if ( choices.isEmpty() )
-        {
-            cWarning() << "Partition-module configuration for *userSwapChoices* is empty:" << l;
-            choices.insert( PartitionActions::Choices::SwapChoice::FullSwap );
-        }
-
-        // suspend if it's one of the possible choices; suppress swap only if it's
-        // the **only** choice available.
-        ensureSuspendToDisk = choices.contains( PartitionActions::Choices::SwapChoice::FullSwap );
-        neverCreateSwap = ( choices.count() == 1 ) && choices.contains( PartitionActions::Choices::SwapChoice::NoSwap );
-    }
-    else
-    {
-        // Convert the legacy settings into a single setting for now.
-        if ( neverCreateSwap )
-        {
-            choices.insert( PartitionActions::Choices::SwapChoice::NoSwap );
-        }
-        else if ( ensureSuspendToDisk )
-        {
-            choices.insert( PartitionActions::Choices::SwapChoice::FullSwap );
-        }
-        else
-        {
-            choices.insert( PartitionActions::Choices::SwapChoice::SmallSwap );
-        }
-    }
-
-    // Not all are supported right now // FIXME
-    static const char unsupportedSetting[] = "Partition-module does not support *userSwapChoices* setting";
-
-#define COMPLAIN_UNSUPPORTED( x ) \
-    if ( choices.contains( x ) ) \
-    { \
-        cWarning() << unsupportedSetting << PartitionActions::Choices::choiceToName( x ); \
-        choices.remove( x ); \
-    }
-
-    COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::SwapFile )
-    COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::ReuseSwap )
-#undef COMPLAIN_UNSUPPORTED
-
-    m_swapChoices = choices;
-
-    // Settings that overlap with the Welcome module
-    m_requiredStorageGiB = CalamaresUtils::getDouble( configurationMap, "requiredStorage", -1.0 );
-
-    // These gs settings seem to be unused (in upstream Calamares) outside of
-    // the partition module itself.
-    gs->insert( "ensureSuspendToDisk", ensureSuspendToDisk );
-    gs->insert( "neverCreateSwap", neverCreateSwap );
 
     // OTHER SETTINGS
     //

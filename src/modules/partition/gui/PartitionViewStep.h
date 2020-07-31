@@ -26,12 +26,11 @@
 
 #include "DllMacro.h"
 
-#include "core/PartitionActions.h"
-
 #include <QObject>
 #include <QSet>
 
 class ChoicePage;
+class Config;
 class PartitionPage;
 class PartitionCoreModule;
 class QStackedWidget;
@@ -81,6 +80,8 @@ private:
     /// "slot" for changes to next-status from the KPMCore and ChoicePage
     void nextPossiblyChanged( bool );
 
+    Config* m_config;
+
     PartitionCoreModule* m_core;
     QStackedWidget*   m_widget;
     ChoicePage*       m_choicePage;
@@ -88,10 +89,6 @@ private:
 
     WaitingWidget* m_waitingWidget;
     QFutureWatcher<void>* m_future;
-
-    QSet< PartitionActions::Choices::SwapChoice > m_swapChoices;
-
-    qreal m_requiredStorageGiB;  // May duplicate setting in the welcome module
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PartitionViewStepFactory )

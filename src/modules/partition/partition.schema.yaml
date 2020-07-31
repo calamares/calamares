@@ -4,8 +4,24 @@ $id: https://calamares.io/schemas/partition
 additionalProperties: false
 type: object
 properties:
-    efiSystemPartition: { type: string, required: true }
-    ensureSuspendToDisk: { type: boolean, default: true }
+    efiSystemPartition: { type: string }  # Mount point
+    efiSystemPartitionSize: { type: string }
+    efiSystemPartitionName: { type: string }
+
+    userSwapChoices: { type: array, items: { type: string, enum: [ none, reuse, small, suspend, file ] } }
+    # ensureSuspendToDisk: { type: boolean, default: true }  # Legacy
+    # neverCreateSwap: { type: boolean, default: false }  # Legacy
+
     drawNestedPartitions: { type: boolean, default: false }
     alwaysShowPartitionLabels: { type: boolean, default: true }
-    defaultFileSystemType: { type: string, required: true }
+
+    defaultFileSystemType: { type: string }
+    enableLuksAutomatedPartitioning: { type: boolean, default: false }
+    allowManualPartitioning: { type: boolean, default: true }
+    partitionLayout: { type: array }  # TODO: specify items
+    initialPartitioningChoice: { type: string, enum: [ none, erase, replace, alongside, manual ] }
+
+    requiredStorage: { type: number }
+required:
+    - efiSystemPartition
+    - userSwapChoices

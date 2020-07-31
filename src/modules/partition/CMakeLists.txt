@@ -56,6 +56,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
         SOURCES
             core/BootLoaderModel.cpp
             core/ColorUtils.cpp
+            core/Config.cpp
             core/DeviceList.cpp
             core/DeviceModel.cpp
             core/KPMHelpers.cpp

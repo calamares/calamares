@@ -257,8 +257,8 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
 
 namespace Choices
 {
-static const NamedEnumTable< SwapChoice >&
-nameTable()
+const NamedEnumTable< SwapChoice >&
+swapChoiceNames()
 {
     static const NamedEnumTable< SwapChoice > names { { QStringLiteral( "none" ), SwapChoice::NoSwap },
                                                       { QStringLiteral( "small" ), SwapChoice::SmallSwap },
@@ -270,17 +270,36 @@ nameTable()
 }
 
 SwapChoice
-nameToChoice( QString name, bool& ok )
+pickOne( const SwapChoiceSet& s )
 {
-    return nameTable().find( name, ok );
+    if ( s.count() == 0 )
+    {
+        return SwapChoice::NoSwap;
+    }
+    if ( s.count() == 1 )
+    {
+        return *( s.begin() );
+    }
+    if ( s.contains( SwapChoice::NoSwap ) )
+    {
+        return SwapChoice::NoSwap;
+    }
+    // Here, count > 1 but NoSwap is not a member.
+    return *( s.begin() );
 }
 
-QString
-choiceToName( SwapChoice c )
+const NamedEnumTable< InstallChoice >&
+installChoiceNames()
 {
-    bool ok = false;
-    return nameTable().find( c, ok );
+    static const NamedEnumTable< InstallChoice > names { { QStringLiteral( "none" ), InstallChoice::NoChoice },
+                                                         { QStringLiteral( "nochoice" ), InstallChoice::NoChoice },
+                                                         { QStringLiteral( "alongside" ), InstallChoice::Alongside },
+                                                         { QStringLiteral( "erase" ), InstallChoice::Erase },
+                                                         { QStringLiteral( "replace" ), InstallChoice::Replace },
+                                                         { QStringLiteral( "manual" ), InstallChoice::Manual } };
+    return names;
 }
+
 
 }  // namespace Choices
 
