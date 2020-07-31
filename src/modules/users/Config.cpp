@@ -343,7 +343,7 @@ Config::setAutoLogin( bool b )
     }
 }
 
-STATICTEST inline void
+STATICTEST void
 setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups )
 {
     // '#' is not a valid group name; use that to distinguish an empty-list
