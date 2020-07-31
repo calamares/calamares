@@ -54,6 +54,17 @@ class TransifexGetter(object):
             return None
 
 
+class BogusGetter(object):
+    """
+    Fake language data.
+
+    This object pretends to retrieve data, and returns fixed language lists and percentages,
+    for testing purposes without hitting Transifex servers all the time.
+    """
+    def __init__(self):
+        self.languages = dict()
+        for lang, completion in ( ("sq", 100), ("ar", 44), ("as", 28), ("de", 15), ("da", 4), ("ts", 82) ):
+            self.languages[lang] = dict(translated=dict(stringcount=686, percentage=(completion/100.0)))
 
 
 def output_langs(all_langs, label, filterfunc):
@@ -125,9 +136,13 @@ def get_tx_stats(languages, verbose):
 def main():
     parser = argparse.ArgumentParser(description="Update Transifex Statistics")
     parser.add_argument("--verbose", "-v", help="Show statistics", action="store_true")
+    parser.add_argument("--bogus", "-n", help="Use bogus data (do not query Transifex)", action="store_true")
     args = parser.parse_args()
     try:
-        getter = TransifexGetter()
+        if args.bogus:
+            getter = BogusGetter()
+        else:
+            getter = TransifexGetter()
         return get_tx_stats(getter.languages, args.verbose)
     except TXError as e:
         print("! " + str(e))
