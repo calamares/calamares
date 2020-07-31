@@ -120,10 +120,13 @@ class EditingOutputter(object):
         self.post_lines = lines[nextmark:]
 
         self.mid_lines = []
+        print("# Editing CMakeLists.txt in-place")
 
     def print(self, s):
         # Add the implicit \n from print()
         self.mid_lines.append(s + "\n")
+        if s.startswith("#"):
+            print(s)
 
     def __enter__(self):
         return self
@@ -132,6 +135,7 @@ class EditingOutputter(object):
         if e is None:
             with open("CMakeLists.txt", "w") as f:
                 f.write("".join(self.pre_lines + self.mid_lines + self.post_lines))
+            print("# CMakeLists.txt updated")
 
 
 def output_langs(all_langs, outputter, label, filterfunc):
