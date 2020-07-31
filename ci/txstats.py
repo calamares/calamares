@@ -10,22 +10,51 @@
 import sys
 import argparse
 
-def get_tx_credentials():
-    """
-    Gets the API token out of the user's .transifexrc (this is supposed
-    to be secure).
-    """
-    import configparser
-    import os
-    txconfig_name = os.path.expanduser("~/.transifexrc")
-    try:
-        with open(txconfig_name, "r") as f:
-            parser = configparser.ConfigParser()
-            parser.read_file(f)
+class TXError(Exception):
+    pass
 
-            return parser.get("https://www.transifex.com", "password")
-    except IOError as e:
-        return None
+
+class TransifexGetter(object):
+    """
+    Get language data from Transifex.
+
+    The object does all the work in __init__, after that
+    the only relevant data is .languages, a dictionary
+    of language data.
+    """
+    def __init__(self):
+        token = self.get_tx_credentials()
+        if token is None:
+            raise TXError("Could not get Transifex API token")
+
+        import requests
+        r = requests.get("https://api.transifex.com/organizations/calamares/projects/calamares/resources/calamares/", auth=("api", token))
+        if r.status_code != 200:
+            raise TXError("Could not get Transifex data from API")
+
+        j = r.json()
+        self.languages = j["stats"]
+
+
+    def get_tx_credentials(self):
+        """
+        Gets the API token out of the user's .transifexrc (this is supposed
+        to be secure).
+        """
+        import configparser
+        import os
+        txconfig_name = os.path.expanduser("~/.transifexrc")
+        try:
+            with open(txconfig_name, "r") as f:
+                parser = configparser.ConfigParser()
+                parser.read_file(f)
+
+                return parser.get("https://www.transifex.com", "password")
+        except IOError as e:
+            return None
+
+
+
 
 def output_langs(all_langs, label, filterfunc):
     """
@@ -48,7 +77,8 @@ def output_langs(all_langs, label, filterfunc):
         prefix = "    "
     print("%s%s" % (prefix, out))
 
-def get_tx_stats(token, verbose):
+
+def get_tx_stats(languages, verbose):
     """
     Does an API request to Transifex with the given API @p token, getting
     the translation statistics for the main body of texts. Then prints
@@ -57,12 +87,6 @@ def get_tx_stats(token, verbose):
 
     If @p verbose is True, prints out language stats as well.
     """
-    import requests
-
-    r = requests.get("https://api.transifex.com/organizations/calamares/projects/calamares/resources/calamares/", auth=("api", token))
-    if r.status_code != 200:
-        return 1
-
     suppressed_languages = ( "es_ES", )  # In Transifex, but not used
     # Some languages go into the "incomplete" list by definition,
     # regardless of their completion status: this can have various reasons.
@@ -75,9 +99,6 @@ def get_tx_stats(token, verbose):
         )
 
     all_langs = []
-
-    j = r.json()
-    languages = j["stats"]
     print("# Total %d languages" % len(languages))
     for lang_name in languages:
         if lang_name in suppressed_languages:
@@ -105,12 +126,12 @@ def main():
     parser = argparse.ArgumentParser(description="Update Transifex Statistics")
     parser.add_argument("--verbose", "-v", help="Show statistics", action="store_true")
     args = parser.parse_args()
-    cred = get_tx_credentials()
-    if cred:
-        return get_tx_stats(cred, args.verbose)
-    else:
-        print("! Could not find API token in ~/.transifexrc")
-        return 1
+    try:
+        getter = TransifexGetter()
+        return get_tx_stats(getter.languages, args.verbose)
+    except TXError as e:
+        print("! " + str(e))
+        return 1;
     return 0
 
 if __name__ == "__main__":
