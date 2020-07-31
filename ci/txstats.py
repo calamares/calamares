@@ -84,6 +84,56 @@ class PrintOutputter(object):
         pass
 
 
+class EditingOutputter(object):
+    """
+    Edit CMakeLists in-place.
+    """
+    def __init__(self):
+        with open("CMakeLists.txt", "r") as f:
+            lines = f.readlines()
+
+        mark = None
+        for l in lines:
+            # Note that we didn't strip the lines, so need the \n here
+            if l.startswith("# Total ") and l.endswith(" languages\n"):
+                mark = lines.index(l)
+                break
+        if mark is None:
+            raise TXError("No CMakeLists.txt lines for TX stats found")
+        self.pre_lines = lines[:mark]
+
+        nextmark = mark + 1
+        for l in lines[mark+1:]:
+            if l.startswith("set( _tx_"):
+                nextmark += 1
+                continue
+            if l.startswith("    "):
+                nextmark += 1
+                continue
+            break
+        if nextmark > mark + 12 or nextmark > len(lines) - 4:
+            # Try to catch runaway nextmarks: we know there should
+            # be four set-lines, which are unlikely to be 3 lines each;
+            # similarly the CMakeLists.txt is supposed to end with
+            # some boilerplate.
+            raise TXError("Could not find end of TX settings in CMakeLists.txt")
+        self.post_lines = lines[nextmark:]
+
+        self.mid_lines = []
+
+    def print(self, s):
+        # Add the implicit \n from print()
+        self.mid_lines.append(s + "\n")
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, e, v, tb):
+        if e is None:
+            with open("CMakeLists.txt", "w") as f:
+                f.write("".join(self.pre_lines + self.mid_lines + self.post_lines))
+
+
 def output_langs(all_langs, outputter, label, filterfunc):
     """
     Output (via print) all of the languages in @p all_langs
@@ -150,20 +200,22 @@ def get_tx_stats(languages, outputter, verbose):
     return 0
 
 
-def get_outputter():
-    return PrintOutputter()
-
 def main():
     parser = argparse.ArgumentParser(description="Update Transifex Statistics")
     parser.add_argument("--verbose", "-v", help="Show statistics", action="store_true")
     parser.add_argument("--bogus", "-n", help="Use bogus data (do not query Transifex)", action="store_true")
+    parser.add_argument("--edit", "-e", help="Edit CMakeLists.txt in-place", action="store_true")
     args = parser.parse_args()
     try:
         if args.bogus:
             getter = BogusGetter()
         else:
             getter = TransifexGetter()
-        with get_outputter() as outputter:
+        if args.edit:
+            outputter = EditingOutputter()
+        else:
+            outputter = PrintOutputter()
+        with outputter:
             return get_tx_stats(getter.languages, outputter, args.verbose)
     except TXError as e:
         print("! " + str(e))
