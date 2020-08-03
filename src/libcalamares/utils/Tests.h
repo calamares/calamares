@@ -53,6 +53,9 @@ private Q_SLOTS:
     /** @brief Tests the RAII bits. */
     void testBoolSetter();
 
+    /** @brief Tests the Traits bits. */
+    void testTraits();
+
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
 };
