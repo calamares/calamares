@@ -120,7 +120,7 @@ PartitionCoreModule::DeviceInfo::~DeviceInfo() {}
 void
 PartitionCoreModule::DeviceInfo::forgetChanges()
 {
-    jobs.clear();
+    m_jobs.clear();
     for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it )
     {
         PartitionInfo::reset( *it );
@@ -132,16 +132,18 @@ PartitionCoreModule::DeviceInfo::forgetChanges()
 bool
 PartitionCoreModule::DeviceInfo::isDirty() const
 {
-    if ( !jobs.isEmpty() )
+    if ( !m_jobs.isEmpty() )
     {
         return true;
     }
 
     for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it )
+    {
         if ( PartitionInfo::isDirty( *it ) )
         {
             return true;
         }
+    }
 
     return false;
 }
