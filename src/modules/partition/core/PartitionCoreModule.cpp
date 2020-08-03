@@ -328,24 +328,24 @@ PartitionCoreModule::immutableDeviceCopy( const Device* device )
 void
 PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::TableType type )
 {
-    DeviceInfo* info = infoForDevice( device );
-    if ( info )
+    auto* deviceInfo = infoForDevice( device );
+    if ( deviceInfo )
     {
         // Creating a partition table wipes all the disk, so there is no need to
         // keep previous changes
-        info->forgetChanges();
+        deviceInfo->forgetChanges();
 
         OperationHelper helper( partitionModelForDevice( device ), this );
         CreatePartitionTableJob* job = new CreatePartitionTableJob( device, type );
         job->updatePreview();
-        info->jobs << Calamares::job_ptr( job );
+        deviceInfo->jobs << Calamares::job_ptr( job );
     }
 }
 
 void
 PartitionCoreModule::createPartition( Device* device, Partition* partition, PartitionTable::Flags flags )
 {
-    auto deviceInfo = infoForDevice( device );
+    auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
     OperationHelper helper( partitionModelForDevice( device ), this );
@@ -396,7 +396,7 @@ PartitionCoreModule::createVolumeGroup( QString& vgName, QVector< const Partitio
 void
 PartitionCoreModule::resizeVolumeGroup( LvmDevice* device, QVector< const Partition* >& pvList )
 {
-    DeviceInfo* deviceInfo = infoForDevice( device );
+    auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
     ResizeVolumeGroupJob* job = new ResizeVolumeGroupJob( device, pvList );
@@ -409,7 +409,7 @@ PartitionCoreModule::resizeVolumeGroup( LvmDevice* device, QVector< const Partit
 void
 PartitionCoreModule::deactivateVolumeGroup( LvmDevice* device )
 {
-    DeviceInfo* deviceInfo = infoForDevice( device );
+    auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
     deviceInfo->isAvailable = false;
@@ -425,7 +425,7 @@ PartitionCoreModule::deactivateVolumeGroup( LvmDevice* device )
 void
 PartitionCoreModule::removeVolumeGroup( LvmDevice* device )
 {
-    DeviceInfo* deviceInfo = infoForDevice( device );
+    auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
     RemoveVolumeGroupJob* job = new RemoveVolumeGroupJob( device );
@@ -438,7 +438,7 @@ PartitionCoreModule::removeVolumeGroup( LvmDevice* device )
 void
 PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 {
-    auto deviceInfo = infoForDevice( device );
+    auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
     OperationHelper helper( partitionModelForDevice( device ), this );
@@ -525,7 +525,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 void
 PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 {
-    auto deviceInfo = infoForDevice( device );
+    auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
     OperationHelper helper( partitionModelForDevice( device ), this );
 
@@ -536,7 +536,7 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 void
 PartitionCoreModule::resizePartition( Device* device, Partition* partition, qint64 first, qint64 last )
 {
-    auto deviceInfo = infoForDevice( device );
+    auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
     OperationHelper helper( partitionModelForDevice( device ), this );
 
@@ -548,7 +548,7 @@ PartitionCoreModule::resizePartition( Device* device, Partition* partition, qint
 void
 PartitionCoreModule::setPartitionFlags( Device* device, Partition* partition, PartitionTable::Flags flags )
 {
-    auto deviceInfo = infoForDevice( device );
+    auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
     OperationHelper( partitionModelForDevice( device ), this );
 
