@@ -21,6 +21,7 @@
 #define EXECUTIONVIEWSTEP_H
 
 #include "ViewStep.h"
+#include "modulesystem/InstanceKey.h"
 
 #include <QStringList>
 
@@ -57,7 +58,7 @@ public:
 
     JobList jobs() const override;
 
-    void appendJobModuleInstanceKey( const QString& instanceKey );
+    void appendJobModuleInstanceKey( const ModuleSystem::InstanceKey& instanceKey );
 
 private:
     QWidget* m_widget;
@@ -65,7 +66,7 @@ private:
     QLabel* m_label;
     Slideshow* m_slideshow;
 
-    QStringList m_jobInstanceKeys;
+    QList< ModuleSystem::InstanceKey > m_jobInstanceKeys;
 
     void updateFromJobQueue( qreal percent, const QString& message );
 };

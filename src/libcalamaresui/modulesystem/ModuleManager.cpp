@@ -151,9 +151,9 @@ ModuleManager::moduleDescriptor( const QString& name )
 }
 
 Module*
-ModuleManager::moduleInstance( const QString& instanceKey )
+ModuleManager::moduleInstance( const ModuleSystem::InstanceKey& instanceKey )
 {
-    return m_loadedModulesByInstanceKey.value( ModuleSystem::InstanceKey::fromString( instanceKey ) );
+    return m_loadedModulesByInstanceKey.value( instanceKey );
 }
 
 
@@ -320,7 +320,7 @@ ModuleManager::loadModules()
                     ViewManager::instance()->addViewStep( evs );
                 }
 
-                evs->appendJobModuleInstanceKey( instanceKey.toString() );
+                evs->appendJobModuleInstanceKey( instanceKey );
             }
         }
     }

@@ -217,7 +217,7 @@ ExecViewModule::loadSelf()
     auto* viewStep = new Calamares::ExecutionViewStep();
     viewStep->setModuleInstanceKey( instanceKey() );
     viewStep->setConfigurationMap( m_configurationMap );
-    viewStep->appendJobModuleInstanceKey( instanceKey().toString() );
+    viewStep->appendJobModuleInstanceKey( instanceKey() );
     Calamares::ViewManager::instance()->addViewStep( viewStep );
     m_loaded = true;
 }

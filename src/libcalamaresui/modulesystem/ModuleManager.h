@@ -76,7 +76,7 @@ public:
      * @param instanceKey the instance key for a module instance.
      * @return a pointer to an object of a subtype of Module.
      */
-    Module* moduleInstance( const QString& instanceKey );
+    Module* moduleInstance( const ModuleSystem::InstanceKey& instanceKey );
 
     /**
      * @brief loadModules does all of the module loading operation.
