@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *
  *
@@ -26,6 +26,7 @@
 #include "CalamaresUtilsSystem.h"
 #include "Entropy.h"
 #include "Logger.h"
+#include "RAII.h"
 #include "UMask.h"
 #include "Yaml.h"
 
@@ -114,15 +115,16 @@ findConf( const QDir& d )
     return mine;
 }
 
-void LibCalamaresTests::recursiveCompareMap(const QVariantMap& a, const QVariantMap& b, int depth )
+void
+LibCalamaresTests::recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth )
 {
     cDebug() << "Comparing depth" << depth << a.count() << b.count();
     QCOMPARE( a.keys(), b.keys() );
     for ( const auto& k : a.keys() )
     {
         cDebug() << Logger::SubEntry << k;
-        const auto& av = a[k];
-        const auto& bv = b[k];
+        const auto& av = a[ k ];
+        const auto& bv = b[ k ];
 
         if ( av.typeName() != bv.typeName() )
         {
@@ -130,9 +132,9 @@ void LibCalamaresTests::recursiveCompareMap(const QVariantMap& a, const QVariant
             cDebug() << Logger::SubEntry << "b type" << bv.typeName() << bv;
         }
         QCOMPARE( av.typeName(), bv.typeName() );
-        if ( av.canConvert<QVariantMap>() )
+        if ( av.canConvert< QVariantMap >() )
         {
-            recursiveCompareMap( av.toMap(), bv.toMap(), depth+1 );
+            recursiveCompareMap( av.toMap(), bv.toMap(), depth + 1 );
         }
         else
         {
@@ -288,4 +290,26 @@ LibCalamaresTests::testOddSizedPrintable()
             QVERIFY( c.cell() < 127 );
         }
     }
+}
+
+void
+LibCalamaresTests::testBoolSetter()
+{
+    bool b = false;
+
+    QVERIFY( !b );
+    {
+        QVERIFY( !b );
+        cBoolSetter< true > x( b );
+        QVERIFY( b );
+    }
+    QVERIFY( !b );
+
+    QVERIFY( !b );
+    {
+        QVERIFY( !b );
+        cBoolSetter< false > x( b );
+        QVERIFY( !b );  // Still!
+    }
+    QVERIFY( b );
 }
