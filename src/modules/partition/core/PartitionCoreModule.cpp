@@ -106,6 +106,39 @@ private:
 
 
 //- DeviceInfo ---------------------------------------------
+/**
+    * Owns the Device, PartitionModel and the jobs
+    */
+struct PartitionCoreModule::DeviceInfo
+{
+    DeviceInfo( Device* );
+    ~DeviceInfo();
+    QScopedPointer< Device > device;
+    QScopedPointer< PartitionModel > partitionModel;
+    const QScopedPointer< Device > immutableDevice;
+
+    // To check if LVM VGs are deactivated
+    bool isAvailable;
+
+    void forgetChanges();
+    bool isDirty() const;
+
+    const Calamares::JobList& jobs() const { return m_jobs; }
+
+    template< typename Job, typename... Args >
+    Calamares::Job* makeJob(Args... a)
+    {
+        auto* job = new Job( device.get(), a... );
+        job->updatePreview();
+        m_jobs << Calamares::job_ptr( job );
+        return job;
+    }
+
+private:
+    Calamares::JobList m_jobs;
+};
+
+
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
     : device( _device )
     , partitionModel( new PartitionModel )
