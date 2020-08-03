@@ -59,7 +59,12 @@ HostInfoTests::testHostOS()
 
     QCOMPARE( expect, hostOS() );
     QCOMPARE( expect, hostOSName() );  // Might be the same
-    QCOMPARE( QStringLiteral( "Intel" ), hostCPU() );  // On all my developer machines
+
+    // This is a lousy test, too: the implementation reads /proc/cpuinfo
+    // and that's the only way we could use, too, to find what the "right"
+    // answer is.
+    QStringList cpunames{ QStringLiteral( "Intel" ), QStringLiteral( "AMD" ) };
+    QVERIFY( cpunames.contains( hostCPU() ) );
 }
 
 
