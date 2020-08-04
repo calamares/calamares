@@ -187,13 +187,22 @@ function( calamares_add_plugin )
         install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE}
                 DESTINATION ${PLUGIN_DESTINATION} )
 
+        set( _warned_config OFF )
         foreach( PLUGIN_CONFIG_FILE ${PLUGIN_CONFIG_FILES} )
-            configure_file( ${PLUGIN_CONFIG_FILE} ${PLUGIN_CONFIG_FILE} COPYONLY )
+            if( ${CMAKE_CURRENT_SOURCE_DIR}/${PLUGIN_CONFIG_FILE} IS_NEWER_THAN ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE} OR INSTALL_CONFIG )
+                configure_file( ${PLUGIN_CONFIG_FILE} ${PLUGIN_CONFIG_FILE} COPYONLY )
+            else()
+                message( "   ${BoldYellow}Not updating${ColorReset} ${PLUGIN_CONFIG_FILE}" )
+                set( _warned_config ON )
+            endif()
             if ( INSTALL_CONFIG )
                 install(
                     FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE}
                     DESTINATION ${PLUGIN_DATA_DESTINATION} )
             endif()
         endforeach()
+        if ( _warned_config )
+            message( "" )
+        endif()
     endif()
 endfunction()
