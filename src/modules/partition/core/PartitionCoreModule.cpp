@@ -357,9 +357,7 @@ PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::Table
         deviceInfo->forgetChanges();
 
         OperationHelper helper( partitionModelForDevice( device ), this );
-        CreatePartitionTableJob* job = new CreatePartitionTableJob( device, type );
-        job->updatePreview();
-        deviceInfo->jobs << Calamares::job_ptr( job );
+        deviceInfo->makeJob< CreatePartitionTableJob >( type );
     }
 }
 
@@ -370,15 +368,11 @@ PartitionCoreModule::createPartition( Device* device, Partition* partition, Part
     Q_ASSERT( deviceInfo );
 
     OperationHelper helper( partitionModelForDevice( device ), this );
-    CreatePartitionJob* job = new CreatePartitionJob( device, partition );
-    job->updatePreview();
-
-    deviceInfo->jobs << Calamares::job_ptr( job );
+    deviceInfo->makeJob< CreatePartitionJob >( partition );
 
     if ( flags != KPM_PARTITION_FLAG( None ) )
     {
-        SetPartFlagsJob* fJob = new SetPartFlagsJob( device, partition, flags );
-        deviceInfo->jobs << Calamares::job_ptr( fJob );
+        deviceInfo->makeJob< SetPartFlagsJob >( partition, flags );
         PartitionInfo::setFlags( partition, flags );
     }
 }
@@ -392,25 +386,18 @@ PartitionCoreModule::createVolumeGroup( QString& vgName, QVector< const Partitio
         vgName.append( '_' );
     }
 
-    CreateVolumeGroupJob* job = new CreateVolumeGroupJob( vgName, pvList, peSize );
-    job->updatePreview();
-
     LvmDevice* device = new LvmDevice( vgName );
-
     for ( const Partition* p : pvList )
     {
         device->physicalVolumes() << p;
     }
 
     DeviceInfo* deviceInfo = new DeviceInfo( device );
-
     deviceInfo->partitionModel->init( device, osproberEntries() );
-
     m_deviceModel->addDevice( device );
-
     m_deviceInfos << deviceInfo;
-    deviceInfo->jobs << Calamares::job_ptr( job );
 
+    deviceInfo->makeJob< CreateVolumeGroupJob >( vgName, pvList, peSize );
     refreshAfterModelChange();
 }
 
@@ -419,11 +406,7 @@ PartitionCoreModule::resizeVolumeGroup( LvmDevice* device, QVector< const Partit
 {
     auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
-
-    ResizeVolumeGroupJob* job = new ResizeVolumeGroupJob( device, pvList );
-
-    deviceInfo->jobs << Calamares::job_ptr( job );
-
+    deviceInfo->makeJob< ResizeVolumeGroupJob >( device, pvList );
     refreshAfterModelChange();
 }
 
@@ -435,6 +418,7 @@ PartitionCoreModule::deactivateVolumeGroup( LvmDevice* device )
 
     deviceInfo->isAvailable = false;
 
+    // TODO: this leaks
     DeactivateVolumeGroupJob* job = new DeactivateVolumeGroupJob( device );
 
     // DeactivateVolumeGroupJob needs to be immediately called
@@ -448,11 +432,7 @@ PartitionCoreModule::removeVolumeGroup( LvmDevice* device )
 {
     auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
-
-    RemoveVolumeGroupJob* job = new RemoveVolumeGroupJob( device );
-
-    deviceInfo->jobs << Calamares::job_ptr( job );
-
+    deviceInfo->makeJob< RemoveVolumeGroupJob >( device );
     refreshAfterModelChange();
 }
 
@@ -482,7 +462,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         }
     }
 
-    Calamares::JobList& jobs = deviceInfo->jobs;
+    const Calamares::JobList& jobs = deviceInfo->jobs();
     if ( partition->state() == KPM_PARTITION_STATE( New ) )
     {
         // First remove matching SetPartFlagsJobs
@@ -537,9 +517,8 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
                 ++it;
             }
         }
-        DeletePartitionJob* job = new DeletePartitionJob( device, partition );
-        job->updatePreview();
-        jobs << Calamares::job_ptr( job );
+
+        deviceInfo->makeJob< DeletePartitionJob >( partition );
     }
 }
 
@@ -549,9 +528,7 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
     auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
     OperationHelper helper( partitionModelForDevice( device ), this );
-
-    FormatPartitionJob* job = new FormatPartitionJob( device, partition );
-    deviceInfo->jobs << Calamares::job_ptr( job );
+    deviceInfo->makeJob< FormatPartitionJob >( partition );
 }
 
 void
@@ -560,10 +537,7 @@ PartitionCoreModule::resizePartition( Device* device, Partition* partition, qint
     auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
     OperationHelper helper( partitionModelForDevice( device ), this );
-
-    ResizePartitionJob* job = new ResizePartitionJob( device, partition, first, last );
-    job->updatePreview();
-    deviceInfo->jobs << Calamares::job_ptr( job );
+    deviceInfo->makeJob< ResizePartitionJob >( partition, first, last );
 }
 
 void
@@ -572,9 +546,7 @@ PartitionCoreModule::setPartitionFlags( Device* device, Partition* partition, Pa
     auto* deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
     OperationHelper( partitionModelForDevice( device ), this );
-
-    SetPartFlagsJob* job = new SetPartFlagsJob( device, partition, flags );
-    deviceInfo->jobs << Calamares::job_ptr( job );
+    deviceInfo->makeJob< SetPartFlagsJob >( partition, flags );
     PartitionInfo::setFlags( partition, flags );
 }
 
@@ -607,7 +579,7 @@ PartitionCoreModule::jobs() const
 
     for ( auto info : m_deviceInfos )
     {
-        lst << info->jobs;
+        lst << info->jobs();
         devices << info->device.data();
     }
     lst << Calamares::job_ptr( new FillGlobalStorageJob( devices, m_bootLoaderInstallPath ) );
@@ -661,7 +633,7 @@ PartitionCoreModule::dumpQueue() const
     for ( auto info : m_deviceInfos )
     {
         cDebug() << "## Device:" << info->device->name();
-        for ( auto job : info->jobs )
+        for ( const auto& job : info->jobs() )
         {
             cDebug() << "-" << job->prettyName();
         }
@@ -801,7 +773,7 @@ PartitionCoreModule::scanForLVMPVs()
 
     for ( DeviceInfo* d : m_deviceInfos )
     {
-        for ( auto job : d->jobs )
+        for ( const auto& job : d->jobs() )
         {
             // Including new LVM PVs
             CreatePartitionJob* partJob = dynamic_cast< CreatePartitionJob* >( job.data() );
@@ -1028,9 +1000,9 @@ PartitionCoreModule::revertAllDevices()
         {
             ( *it )->isAvailable = true;
 
-            if ( !( *it )->jobs.empty() )
+            if ( !( *it )->jobs().empty() )
             {
-                CreateVolumeGroupJob* vgJob = dynamic_cast< CreateVolumeGroupJob* >( ( *it )->jobs[ 0 ].data() );
+                CreateVolumeGroupJob* vgJob = dynamic_cast< CreateVolumeGroupJob* >( ( *it )->jobs().first().data() );
 
                 if ( vgJob )
                 {
