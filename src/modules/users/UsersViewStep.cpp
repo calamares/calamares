@@ -168,6 +168,8 @@ UsersViewStep::onLeave()
 void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    m_config->setConfigurationMap( configurationMap );
+
     // Create the widget, after all .. as long as writing configuration to the UI is needed
     (void)this->widget();
     using CalamaresUtils::getBool;
@@ -204,6 +206,4 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     Action hostsfileAction = getBool( configurationMap, "writeHostsFile", true ) ? Action::WriteEtcHosts : Action::None;
     m_actions = hostsfileAction | hostnameAction;
-
-    m_config->setConfigurationMap( configurationMap );
 }
