@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *
  *
@@ -26,6 +26,8 @@
 #include "CalamaresUtilsSystem.h"
 #include "Entropy.h"
 #include "Logger.h"
+#include "RAII.h"
+#include "Traits.h"
 #include "UMask.h"
 #include "Yaml.h"
 
@@ -114,15 +116,16 @@ findConf( const QDir& d )
     return mine;
 }
 
-void LibCalamaresTests::recursiveCompareMap(const QVariantMap& a, const QVariantMap& b, int depth )
+void
+LibCalamaresTests::recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth )
 {
     cDebug() << "Comparing depth" << depth << a.count() << b.count();
     QCOMPARE( a.keys(), b.keys() );
     for ( const auto& k : a.keys() )
     {
         cDebug() << Logger::SubEntry << k;
-        const auto& av = a[k];
-        const auto& bv = b[k];
+        const auto& av = a[ k ];
+        const auto& bv = b[ k ];
 
         if ( av.typeName() != bv.typeName() )
         {
@@ -130,9 +133,9 @@ void LibCalamaresTests::recursiveCompareMap(const QVariantMap& a, const QVariant
             cDebug() << Logger::SubEntry << "b type" << bv.typeName() << bv;
         }
         QCOMPARE( av.typeName(), bv.typeName() );
-        if ( av.canConvert<QVariantMap>() )
+        if ( av.canConvert< QVariantMap >() )
         {
-            recursiveCompareMap( av.toMap(), bv.toMap(), depth+1 );
+            recursiveCompareMap( av.toMap(), bv.toMap(), depth + 1 );
         }
         else
         {
@@ -288,4 +291,78 @@ LibCalamaresTests::testOddSizedPrintable()
             QVERIFY( c.cell() < 127 );
         }
     }
+}
+
+void
+LibCalamaresTests::testBoolSetter()
+{
+    bool b = false;
+
+    QVERIFY( !b );
+    {
+        QVERIFY( !b );
+        cBoolSetter< true > x( b );
+        QVERIFY( b );
+    }
+    QVERIFY( !b );
+
+    QVERIFY( !b );
+    {
+        QVERIFY( !b );
+        cBoolSetter< false > x( b );
+        QVERIFY( !b );  // Still!
+    }
+    QVERIFY( b );
+}
+
+/* Demonstration of Traits support for has-a-method or not.
+ *
+ * We have two classes, c1 and c2; one has a method do_the_thing() and the
+ * other does not. A third class, Thinginator, has a method thingify(),
+ * which should call do_the_thing() of its argument if it exists.
+ */
+
+struct c1 { int do_the_thing() { return 2; } };
+struct c2 { };
+
+DECLARE_HAS_METHOD(do_the_thing)
+
+struct Thinginator
+{
+public:
+    /// When class T has function do_the_thing()
+    template< class T > int thingify( T& t, const std::true_type& )
+    {
+        return t.do_the_thing();
+    }
+
+    template< class T > int thingify( T&, const std::false_type& )
+    {
+        return -1;
+    }
+
+    template< class T > int thingify( T& t )
+    {
+        return thingify(t, has_do_the_thing<T>{});
+    }
+} ;
+
+
+void
+LibCalamaresTests::testTraits()
+{
+    has_do_the_thing<c1> x{};
+    has_do_the_thing<c2> y{};
+
+    QVERIFY(x);
+    QVERIFY(!y);
+
+    c1 c1{};
+    c2 c2{};
+
+    QCOMPARE(c1.do_the_thing(), 2);
+
+    Thinginator t;
+    QCOMPARE(t.thingify(c1), 2);  // Calls c1::do_the_thing()
+    QCOMPARE(t.thingify(c2), -1);
 }

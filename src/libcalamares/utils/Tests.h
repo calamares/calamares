@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *
  *
@@ -49,6 +49,12 @@ private Q_SLOTS:
     void testEntropy();
     void testPrintableEntropy();
     void testOddSizedPrintable();
+
+    /** @brief Tests the RAII bits. */
+    void testBoolSetter();
+
+    /** @brief Tests the Traits bits. */
+    void testTraits();
 
 private:
     void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,12 +16,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
- *
  */
-
-#include "Tests.h"
 
 #include "locale/LabelModel.h"
 #include "locale/TimeZone.h"
@@ -31,7 +27,29 @@
 
 #include <QtTest/QtTest>
 
-QTEST_GUILESS_MAIN( LocaleTests )
+class LocaleTests : public QObject
+{
+    Q_OBJECT
+public:
+    LocaleTests();
+    ~LocaleTests() override;
+
+private Q_SLOTS:
+    void initTestCase();
+
+    void testLanguageModelCount();
+    void testTranslatableLanguages();
+    void testTranslatableConfig1();
+    void testTranslatableConfig2();
+    void testLanguageScripts();
+
+    void testEsperanto();
+    void testInterlingue();
+
+    // TimeZone testing
+    void testSimpleZones();
+    void testComplexZones();
+};
 
 LocaleTests::LocaleTests() {}
 
@@ -40,6 +58,8 @@ LocaleTests::~LocaleTests() {}
 void
 LocaleTests::initTestCase()
 {
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
     // Otherwise plain get() is dubious in the TranslatableConfiguration tests
     QLocale::setDefault( QLocale( QStringLiteral( "en_US" ) ) );
     QVERIFY( ( QLocale().name() == "C" ) || ( QLocale().name() == "en_US" ) );
@@ -65,10 +85,8 @@ LocaleTests::testLanguageModelCount()
 }
 
 void
-LocaleTests::testEsperanto()
+LocaleTests::testLanguageScripts()
 {
-    Logger::setupLogLevel( Logger::LOGDEBUG );
-
     const auto* m = CalamaresUtils::Locale::availableTranslations();
 
     QVERIFY( m );
@@ -89,12 +107,32 @@ LocaleTests::testEsperanto()
         QVERIFY( locale.language() == QLocale::Lithuanian ? locale.country() == QLocale::Lithuania : true );
         QVERIFY( locale.language() != QLocale::C );
     }
+}
+
+void
+LocaleTests::testEsperanto()
+{
 #if QT_VERSION < QT_VERSION_CHECK( 5, 12, 2 )
     QCOMPARE( QLocale( "eo" ).language(), QLocale::C );
 #else
     QCOMPARE( QLocale( "eo" ).language(), QLocale::Esperanto );
 #endif
+    QCOMPARE( QLocale( QLocale::Esperanto ).language(), QLocale::Esperanto );  // Probably fails on 5.12, too
 }
+
+void
+LocaleTests::testInterlingue()
+{
+    // ie / Interlingue is borked (is "ie" even the right name?)
+    QCOMPARE( QLocale( "ie" ).language(), QLocale::C );
+    QCOMPARE( QLocale( QLocale::Interlingue ).language(), QLocale::English );
+
+    // "ia" exists (post-war variant of Interlingue)
+    QCOMPARE( QLocale( "ia" ).language(), QLocale::Interlingua );
+    // "bork" does not exist
+    QCOMPARE( QLocale( "bork" ).language(), QLocale::C );
+}
+
 
 static const QStringList&
 someLanguages()
@@ -257,3 +295,9 @@ LocaleTests::testComplexZones()
         QCOMPARE( r.tr(), QStringLiteral( "zxc,;* vm" ) );  // Only _ is special
     }
 }
+
+QTEST_GUILESS_MAIN( LocaleTests )
+
+#include "utils/moc-warnings.h"
+
+#include "Tests.moc"
