@@ -343,6 +343,27 @@ Config::setAutoLogin( bool b )
     }
 }
 
+void
+Config::setReuseUserPasswordForRoot( bool reuse )
+{
+    if ( reuse != m_reuseUserPasswordForRoot )
+    {
+        m_reuseUserPasswordForRoot = reuse;
+        emit reuseUserPasswordForRootChanged( reuse );
+    }
+}
+
+void
+Config::setRequireStrongPasswords( bool strong )
+{
+    if ( strong != m_requireStrongPasswords )
+    {
+        m_requireStrongPasswords = strong;
+        emit requireStrongPasswordsChanged( strong );
+    }
+}
+
+
 STATICTEST void
 setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups )
 {
@@ -377,4 +398,10 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     m_writeRootPassword = CalamaresUtils::getBool( configurationMap, "setRootPassword", true );
     Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", m_writeRootPassword );
+
+    m_reuseUserPasswordForRoot = CalamaresUtils::getBool( configurationMap, "doReusePassword", false );
+
+    m_permitWeakPasswords = CalamaresUtils::getBool( configurationMap, "allowWeakPasswords", false );
+    m_requireStrongPasswords
+        = !m_permitWeakPasswords || !CalamaresUtils::getBool( configurationMap, "allowWeakPasswordsDefault", false );
 }

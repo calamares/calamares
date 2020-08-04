@@ -50,10 +50,6 @@ public:
 
     void onActivate();
 
-    void setPasswordCheckboxVisible( bool visible );
-    void setValidatePasswordDefault( bool checked );
-    void setReusePasswordDefault( bool checked );
-
     /** @brief Process entries in the passwordRequirements config entry
      *
      * Called once for each item in the config entry, which should
@@ -73,6 +69,7 @@ protected slots:
     void reportHostNameStatus( const QString& );
     void onPasswordTextChanged( const QString& );
     void onRootPasswordTextChanged( const QString& );
+    void onReuseUserPasswordChanged( const int );
 
 signals:
     void checkReady( bool );

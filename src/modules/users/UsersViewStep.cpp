@@ -174,8 +174,6 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     (void)this->widget();
     using CalamaresUtils::getBool;
 
-    m_widget->setReusePasswordDefault( getBool( configurationMap, "doReusePassword", false ) );
-
     if ( configurationMap.contains( "passwordRequirements" )
          && configurationMap.value( "passwordRequirements" ).type() == QVariant::Map )
     {
@@ -186,9 +184,6 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             m_widget->addPasswordCheck( i.key(), i.value() );
         }
     }
-
-    m_widget->setPasswordCheckboxVisible( getBool( configurationMap, "allowWeakPasswords", false ) );
-    m_widget->setValidatePasswordDefault( !getBool( configurationMap, "allowWeakPasswordsDefault", false ) );
 
     using Action = SetHostNameJob::Action;
 

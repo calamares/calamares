@@ -105,6 +105,12 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
 {
     ui->setupUi( this );
 
+    ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
+    ui->checkBoxReusePassword->setChecked( m_config->reuseUserPasswordForRoot() );
+
+    ui->checkBoxValidatePassword->setVisible( m_config->permitWeakPasswords() );
+    ui->checkBoxValidatePassword->setChecked( m_config->requireStrongPasswords() );
+
     // Connect signals and slots
     connect( ui->textBoxUserPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
@@ -115,21 +121,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
         onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
         checkReady( isReady() );
     } );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( const int checked ) {
-        /* When "reuse" is checked, hide the fields for explicitly
-         * entering the root password. However, if we're going to
-         * disable the root password anyway, hide them all regardless of
-         * the checkbox -- so when writeRoot is false, checked needs
-         * to be true, to hide them all.
-         */
-        const bool visible = m_config->writeRootPassword() ? !checked : false;
-        ui->labelChooseRootPassword->setVisible( visible );
-        ui->labelRootPassword->setVisible( visible );
-        ui->labelRootPasswordError->setVisible( visible );
-        ui->textBoxRootPassword->setVisible( visible );
-        ui->textBoxVerifiedRootPassword->setVisible( visible );
-        checkReady( isReady() );
-    } );
+    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, &UsersPage::onReuseUserPasswordChanged );
 
     connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
@@ -147,13 +139,25 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     } );
     connect( config, &Config::autoLoginChanged, ui->checkBoxDoAutoLogin, &QCheckBox::setChecked );
 
-    ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
-    ui->checkBoxReusePassword->setChecked( true );
-    ui->checkBoxValidatePassword->setChecked( true );
+    if ( m_config->writeRootPassword() )
+    {
+        connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+            m_config->setReuseUserPasswordForRoot( checked != Qt::Unchecked );
+        } );
+        connect( config, &Config::reuseUserPasswordForRootChanged, ui->checkBoxReusePassword, &QCheckBox::setChecked );
+    }
 
-    setPasswordCheckboxVisible( false );
+    if ( m_config->permitWeakPasswords() )
+    {
+        connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+            m_config->setRequireStrongPasswords( checked != Qt::Unchecked );
+        } );
+        connect( config, &Config::requireStrongPasswordsChanged, ui->checkBoxValidatePassword, &QCheckBox::setChecked );
+    }
 
     CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate );
+
+    onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
 }
 
 UsersPage::~UsersPage()
@@ -335,25 +339,26 @@ UsersPage::onRootPasswordTextChanged( const QString& )
     emit checkReady( isReady() );
 }
 
-
 void
-UsersPage::setPasswordCheckboxVisible( bool visible )
+UsersPage::onReuseUserPasswordChanged( const int checked )
 {
-    ui->checkBoxValidatePassword->setVisible( visible );
-}
-
-void
-UsersPage::setValidatePasswordDefault( bool checked )
-{
-    ui->checkBoxValidatePassword->setChecked( checked );
-    emit checkReady( isReady() );
-}
-
-void
-UsersPage::setReusePasswordDefault( bool checked )
-{
-    ui->checkBoxReusePassword->setChecked( checked );
-    emit checkReady( isReady() );
+    /* When "reuse" is checked, hide the fields for explicitly
+     * entering the root password. However, if we're going to
+     * disable the root password anyway, hide them all regardless of
+     * the checkbox -- so when writeRoot is false, visible needs
+     * to be false, to hide them all.
+     *
+     * In principle this is only connected when writeRootPassword is @c true,
+     * but it is **always** called at least once in the constructor
+     * to set up initial visibility.
+     */
+    const bool visible = m_config->writeRootPassword() ? !checked : false;
+    ui->labelChooseRootPassword->setVisible( visible );
+    ui->labelRootPassword->setVisible( visible );
+    ui->labelRootPasswordError->setVisible( visible );
+    ui->textBoxRootPassword->setVisible( visible );
+    ui->textBoxVerifiedRootPassword->setVisible( visible );
+    checkReady( isReady() );
 }
 
 void

@@ -42,6 +42,14 @@ class Config : public QObject
     Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
     Q_PROPERTY( QString hostNameStatus READ hostNameStatus NOTIFY hostNameStatusChanged )
 
+    Q_PROPERTY( bool writeRootPassword READ writeRootPassword CONSTANT )
+    Q_PROPERTY( bool reuseUserPasswordForRoot READ reuseUserPasswordForRoot WRITE setReuseUserPasswordForRoot NOTIFY
+                    reuseUserPasswordForRootChanged )
+
+    Q_PROPERTY( bool permitWeakPasswords READ permitWeakPasswords CONSTANT )
+    Q_PROPERTY( bool requireStrongPasswords READ requireStrongPasswords WRITE setRequireStrongPasswords NOTIFY
+                    requireStrongPasswordsChanged )
+
 public:
     Config( QObject* parent = nullptr );
     ~Config();
@@ -76,6 +84,12 @@ public:
     bool doAutoLogin() const { return m_doAutoLogin; }
     /// Should the root password be written (if false, no password is set and the root account is disabled for login)
     bool writeRootPassword() const { return m_writeRootPassword; }
+    /// Should the user's password be used for root, too? (if root is written at all)
+    bool reuseUserPasswordForRoot() const { return m_reuseUserPasswordForRoot; }
+    /// Show UI to change the "require strong password" setting?
+    bool permitWeakPasswords() const { return m_permitWeakPasswords; }
+    /// Current setting for "require strong password"?
+    bool requireStrongPasswords() const { return m_requireStrongPasswords; }
 
     const QStringList& defaultGroups() const { return m_defaultGroups; }
 
@@ -109,6 +123,11 @@ public Q_SLOTS:
     /// Sets the autologin flag
     void setAutoLogin( bool b );
 
+    /// Set to true to use the user password, unchanged, for root too
+    void setReuseUserPasswordForRoot( bool reuse );
+    /// Change setting for "require strong password"
+    void setRequireStrongPasswords( bool strong );
+
 signals:
     void userShellChanged( const QString& );
     void autologinGroupChanged( const QString& );
@@ -119,6 +138,8 @@ signals:
     void hostNameChanged( const QString& );
     void hostNameStatusChanged( const QString& );
     void autoLoginChanged( bool );
+    void reuseUserPasswordForRootChanged( bool );
+    void requireStrongPasswordsChanged( bool );
 
 private:
     QStringList m_defaultGroups;
@@ -129,7 +150,12 @@ private:
     QString m_loginName;
     QString m_hostName;
     bool m_doAutoLogin = false;
+
     bool m_writeRootPassword = true;
+    bool m_reuseUserPasswordForRoot = false;
+
+    bool m_permitWeakPasswords = false;
+    bool m_requireStrongPasswords = true;
 
     bool m_customLoginName = false;
     bool m_customHostName = false;
