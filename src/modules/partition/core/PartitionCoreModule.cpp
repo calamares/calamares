@@ -50,6 +50,7 @@
 #include "partition/PartitionIterator.h"
 #include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
+#include "utils/Traits.h"
 #include "utils/Variant.h"
 
 // KPMcore
@@ -106,9 +107,29 @@ private:
 
 
 //- DeviceInfo ---------------------------------------------
+// Some jobs have an updatePreview some don't
+DECLARE_HAS_METHOD(updatePreview)
+
+template< typename Job >
+void updatePreview( Job* job, const std::true_type& )
+{
+    job->updatePreview();
+}
+
+template< typename Job >
+void updatePreview( Job* job, const std::false_type& )
+{
+}
+
+template< typename Job >
+void updatePreview( Job* job )
+{
+    updatePreview(job, has_updatePreview<Job>{});
+}
+
 /**
-    * Owns the Device, PartitionModel and the jobs
-    */
+ * Owns the Device, PartitionModel and the jobs
+ */
 struct PartitionCoreModule::DeviceInfo
 {
     DeviceInfo( Device* );
@@ -129,7 +150,7 @@ struct PartitionCoreModule::DeviceInfo
     Calamares::Job* makeJob(Args... a)
     {
         auto* job = new Job( device.get(), a... );
-        job->updatePreview();
+        updatePreview( job );
         m_jobs << Calamares::job_ptr( job );
         return job;
     }
