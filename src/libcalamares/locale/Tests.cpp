@@ -38,10 +38,13 @@ private Q_SLOTS:
     void initTestCase();
 
     void testLanguageModelCount();
-    void testEsperanto();
     void testTranslatableLanguages();
     void testTranslatableConfig1();
     void testTranslatableConfig2();
+    void testLanguageScripts();
+
+    void testEsperanto();
+    void testInterlingue();
 
     // TimeZone testing
     void testSimpleZones();
@@ -55,6 +58,8 @@ LocaleTests::~LocaleTests() {}
 void
 LocaleTests::initTestCase()
 {
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
     // Otherwise plain get() is dubious in the TranslatableConfiguration tests
     QLocale::setDefault( QLocale( QStringLiteral( "en_US" ) ) );
     QVERIFY( ( QLocale().name() == "C" ) || ( QLocale().name() == "en_US" ) );
@@ -80,10 +85,8 @@ LocaleTests::testLanguageModelCount()
 }
 
 void
-LocaleTests::testEsperanto()
+LocaleTests::testLanguageScripts()
 {
-    Logger::setupLogLevel( Logger::LOGDEBUG );
-
     const auto* m = CalamaresUtils::Locale::availableTranslations();
 
     QVERIFY( m );
@@ -104,12 +107,32 @@ LocaleTests::testEsperanto()
         QVERIFY( locale.language() == QLocale::Lithuanian ? locale.country() == QLocale::Lithuania : true );
         QVERIFY( locale.language() != QLocale::C );
     }
+}
+
+void
+LocaleTests::testEsperanto()
+{
 #if QT_VERSION < QT_VERSION_CHECK( 5, 12, 2 )
     QCOMPARE( QLocale( "eo" ).language(), QLocale::C );
 #else
     QCOMPARE( QLocale( "eo" ).language(), QLocale::Esperanto );
 #endif
+    QCOMPARE( QLocale( QLocale::Esperanto ).language(), QLocale::Esperanto );  // Probably fails on 5.12, too
 }
+
+void
+LocaleTests::testInterlingue()
+{
+    // ie / Interlingue is borked (is "ie" even the right name?)
+    QCOMPARE( QLocale( "ie" ).language(), QLocale::C );
+    QCOMPARE( QLocale( QLocale::Interlingue ).language(), QLocale::English );
+
+    // "ia" exists (post-war variant of Interlingue)
+    QCOMPARE( QLocale( "ia" ).language(), QLocale::Interlingua );
+    // "bork" does not exist
+    QCOMPARE( QLocale( "bork" ).language(), QLocale::C );
+}
+
 
 static const QStringList&
 someLanguages()
