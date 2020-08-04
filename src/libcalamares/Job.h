@@ -1,6 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -14,9 +16,6 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
  *
  */
 #ifndef CALAMARES_JOB_H
@@ -114,7 +113,14 @@ public:
      * For status and state information, see prettyStatusMessage().
      */
     virtual QString prettyName() const = 0;
-    // TODO: Unused
+    /** @brief a longer human-readable description of what the job will do
+     *
+     * This **may** be used by view steps to fill in the summary
+     * messages for the summary page; at present, only the *partition*
+     * module does so.
+     *
+     * The default implementation returns an empty string.
+     */
     virtual QString prettyDescription() const;
     /** @brief A human-readable status for progress reporting
      *
