@@ -92,35 +92,36 @@ namespace CalamaresUtils
 namespace Locale
 {
 
-struct Private {
+struct Private
+{
 };
 
-static Private* privateInstance()
+static Private*
+privateInstance()
 {
     static Private* s_p = new Private;
     return s_p;
 }
 
-RegionsModel::RegionsModel()
-: QAbstractListModel()
-, m_private( privateInstance() )
+RegionsModel::RegionsModel( QObject* parent )
+    : QAbstractListModel( parent )
+    , m_private( privateInstance() )
 {
 }
 
-RegionsModel::~RegionsModel()
-{
-}
+RegionsModel::~RegionsModel() {}
 
-int RegionsModel::rowCount(const QModelIndex& parent) const
+int
+RegionsModel::rowCount( const QModelIndex& parent ) const
 {
     return 0;
 }
 
-QVariant RegionsModel::data(const QModelIndex& index, int role) const
+QVariant
+RegionsModel::data( const QModelIndex& index, int role ) const
 {
     return QVariant();
 }
-
 
 
 }  // namespace Locale

@@ -43,17 +43,16 @@ class DLLEXPORT RegionsModel : public QAbstractListModel
 {
     Q_OBJECT
 
-    RegionsModel();
 
 public:
+    RegionsModel( QObject* parent = nullptr );
     virtual ~RegionsModel() override;
-    static RegionsModel* instance();
 
     int rowCount( const QModelIndex& parent ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;
 
 private:
-    Private *m_private;
+    Private* m_private;
 };
 
 }  // namespace Locale

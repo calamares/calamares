@@ -47,6 +47,7 @@ private Q_SLOTS:
     void testInterlingue();
 
     // TimeZone testing
+    void testRegions();
     void testSimpleZones();
     void testComplexZones();
 };
@@ -245,17 +246,24 @@ LocaleTests::testTranslatableConfig2()
 }
 
 void
+LocaleTests::testRegions()
+{
+    CalamaresUtils::Locale::RegionsModel regions;
+
+    QVERIFY( regions.rowCount( QModelIndex() ) > 3 );  // Africa, America, Asia
+}
+
+
+void
 LocaleTests::testSimpleZones()
 {
     using namespace CalamaresUtils::Locale;
-
 }
 
 void
 LocaleTests::testComplexZones()
 {
     using namespace CalamaresUtils::Locale;
-
 }
 
 QTEST_GUILESS_MAIN( LocaleTests )
