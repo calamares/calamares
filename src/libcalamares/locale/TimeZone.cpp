@@ -262,15 +262,17 @@ ZonesModel::data( const QModelIndex& index, int role ) const
     }
 
     const auto* zone = m_private->m_zones[ index.row() ];
-    if ( role == NameRole )
+    switch ( role )
     {
+    case NameRole:
         return zone->tr();
-    }
-    if ( role == KeyRole )
-    {
+    case KeyRole:
         return zone->key();
+    case RegionRole:
+        return zone->region();
+    default:
+        return QVariant();
     }
-    return QVariant();
 }
 
 QHash< int, QByteArray >

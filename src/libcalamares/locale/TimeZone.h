@@ -54,10 +54,17 @@ public:
                   const QString& country,
                   double latitude,
                   double longitude );
+    TimeZoneData( const TimeZoneData& ) = delete;
+    TimeZoneData( TimeZoneData&& ) = delete;
+
     QString tr() const override;
 
     QString region() const { return m_region; }
     QString zone() const { return key(); }
+
+    QString country() const { return m_country; }
+    double latitude() const { return m_latitude; }
+    double longitude() const { return m_longitude; }
 
 private:
     QString m_region;
@@ -80,7 +87,7 @@ public:
     enum Roles
     {
         NameRole = Qt::DisplayRole,
-        KeyRole = Qt::UserRole + 1
+        KeyRole = Qt::UserRole  // So that currentData() will get the key
     };
 
     RegionsModel( QObject* parent = nullptr );
@@ -103,7 +110,8 @@ public:
     enum Roles
     {
         NameRole = Qt::DisplayRole,
-        KeyRole = Qt::UserRole + 1
+        KeyRole = Qt::UserRole,  // So that currentData() will get the key
+        RegionRole = Qt::UserRole + 1
     };
 
     ZonesModel( QObject* parent = nullptr );
