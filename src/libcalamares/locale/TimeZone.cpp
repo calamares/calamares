@@ -70,22 +70,6 @@ getRightGeoLocation( QString str )
 }
 
 
-class TimeZoneData : public TranslatableString
-{
-public:
-    TimeZoneData( const QString& region,
-                  const QString& zone,
-                  const QString& country,
-                  double latitude,
-                  double longitude );
-    QString tr() const override;
-
-    QString m_region;
-    QString m_country;
-    double m_latitude;
-    double m_longitude;
-};
-
 TimeZoneData::TimeZoneData( const QString& region,
                             const QString& zone,
                             const QString& country,
@@ -122,7 +106,7 @@ RegionData::tr() const
 }
 
 static void
-loadTZData( QVector< RegionData >& regions, QVector< TimeZoneData >& zones )
+loadTZData( QVector< RegionData >& regions, QVector< TimeZoneData* >& zones )
 {
     QFile file( TZ_DATA_FILE );
     if ( file.open( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -187,7 +171,7 @@ loadTZData( QVector< RegionData >& regions, QVector< TimeZoneData >& zones )
             {
                 regions.append( std::move( r ) );
             }
-            zones.append( TimeZoneData( region, zone, countryCode, latitude, longitude ) );
+            zones.append( new TimeZoneData( region, zone, countryCode, latitude, longitude ) );
         }
     }
 }
@@ -196,7 +180,7 @@ loadTZData( QVector< RegionData >& regions, QVector< TimeZoneData >& zones )
 struct Private
 {
     QVector< RegionData > m_regions;
-    QVector< TimeZoneData > m_zones;
+    QVector< TimeZoneData* > m_zones;
 
     Private()
     {
@@ -277,14 +261,14 @@ ZonesModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    const auto& zone = m_private->m_zones[ index.row() ];
+    const auto* zone = m_private->m_zones[ index.row() ];
     if ( role == NameRole )
     {
-        return zone.tr();
+        return zone->tr();
     }
     if ( role == KeyRole )
     {
-        return zone.key();
+        return zone->key();
     }
     return QVariant();
 }
@@ -329,13 +313,9 @@ RegionalZonesModel::filterAcceptsRow( int sourceRow, const QModelIndex& ) const
     }
 
     const auto& zone = m_private->m_zones[ sourceRow ];
-    return ( zone.m_region == m_region );
+    return ( zone->m_region == m_region );
 }
 
 
 }  // namespace Locale
 }  // namespace CalamaresUtils
-
-#include "utils/moc-warnings.h"
-
-#include "TimeZone.moc"

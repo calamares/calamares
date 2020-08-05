@@ -24,6 +24,8 @@
 
 #include "DllMacro.h"
 
+#include "locale/TranslatableString.h"
+
 #include <QAbstractListModel>
 #include <QObject>
 #include <QSortFilterProxyModel>
@@ -34,6 +36,35 @@ namespace CalamaresUtils
 namespace Locale
 {
 struct Private;
+class RegionalZonesModel;
+class ZonesModel;
+
+class TimeZoneData : public QObject, TranslatableString
+{
+    friend class RegionalZonesModel;
+    friend class ZonesModel;
+
+    Q_OBJECT
+
+    Q_PROPERTY( QString region READ region CONSTANT )
+
+public:
+    TimeZoneData( const QString& region,
+                  const QString& zone,
+                  const QString& country,
+                  double latitude,
+                  double longitude );
+    QString tr() const override;
+
+    QString region() const { return m_region; }
+
+private:
+    QString m_region;
+    QString m_country;
+    double m_latitude;
+    double m_longitude;
+};
+
 
 /** @brief The list of timezone regions
  *
