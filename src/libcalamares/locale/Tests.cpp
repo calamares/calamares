@@ -52,6 +52,7 @@ private Q_SLOTS:
     void testComplexZones();
     void testTZLookup();
     void testTZIterator();
+    void testLocationLookup();
 };
 
 LocaleTests::LocaleTests() {}
@@ -387,6 +388,15 @@ LocaleTests::testTZIterator()
 
     QCOMPARE( zones.data( zones.index( 0 ), ZonesModel::RegionRole ).toString(), QStringLiteral( "Africa" ) );
     QCOMPARE( ( *zones.begin() )->zone(), QStringLiteral( "Abidjan" ) );
+}
+
+void
+LocaleTests::testLocationLookup()
+{
+    const CalamaresUtils::Locale::ZonesModel zones;
+
+    QVERIFY( zones.find( 50.0, 0.0 ) );
+    QCOMPARE( zones.find( 50.0, 0.0 )->zone(), QStringLiteral( "London" ) );
 }
 
 

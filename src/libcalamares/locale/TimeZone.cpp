@@ -316,6 +316,12 @@ ZonesModel::find( const QString& region, const QString& zone ) const
     return nullptr;
 }
 
+const TimeZoneData*
+ZonesModel::find( double latitude, double longitude ) const
+{
+    return nullptr;
+}
+
 ZonesModel::Iterator::operator bool() const
 {
     return 0 <= m_index && m_index < m_p->m_zones.count();

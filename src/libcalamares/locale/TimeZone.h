@@ -128,6 +128,12 @@ public:
      */
     const TimeZoneData* find( const QString& region, const QString& zone ) const;
 
+    /** @brief Look up TZ data based on the location.
+     *
+     * Returns the nearest zone to the given lat and lon.
+     */
+    const TimeZoneData* find( double latitude, double longitude ) const;
+
     /** @brief Iterator for testing purposes
      *
      * This is primarily for testing, but who knows, it might be useful
