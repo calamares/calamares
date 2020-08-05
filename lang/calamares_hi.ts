@@ -530,7 +530,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;मैनुअल विभाजन&lt;/strong&gt;&lt;br/&gt; आप स्वयं भी विभाजन बना व उनका आकार बदल सकते है।</translation>
+      <translation>&lt;strong&gt;मैनुअल विभाजन&lt;/strong&gt;&lt;br/&gt; स्वयं विभाजन बनाएँ या उनका आकार बदलें।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
@@ -717,7 +717,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="333"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>समय क्षेत्र %1%2 सेट करें।</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="348"/>
@@ -797,42 +797,42 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="125"/>
       <source>Your username is too long.</source>
-      <translation>आपका उपयोक्ता नाम बहुत लंबा है।</translation>
+      <translation>उपयोक्ता नाम बहुत लंबा है।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="131"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>उपयोक्ता नाम के रूप में '%1' का उपयोग अस्वीकार्य है।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="141"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
-      <translation>आपके उपयोक्ता नाम का आरंभ lowercase अक्षर या अंडरस्कोर(_) से ही होना चाहिए।</translation>
+      <translation>उपयोक्ता नाम का आरंभ केवल लोअरकेस अक्षर या अंडरस्कोर(-) से ही करें।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="145"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation>केवल lowercase अक्षर, अंक, अंडरस्कोर(_) व हाइफ़न(-) का उपयोग ही मान्य है।</translation>
+      <translation>केवल लोअरकेस अक्षर, अंक, अंडरस्कोर(_) व हाइफ़न(-) ही स्वीकार्य हैं।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="191"/>
       <source>Your hostname is too short.</source>
-      <translation>आपका होस्ट नाम बहुत छोटा है।</translation>
+      <translation>होस्ट नाम बहुत छोटा है।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="195"/>
       <source>Your hostname is too long.</source>
-      <translation>आपका होस्ट नाम बहुत लंबा है।</translation>
+      <translation>होस्ट नाम बहुत लंबा है।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="201"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>होस्ट नाम के रूप में '%1' का उपयोग अस्वीकार्य है।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="211"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
-      <translation>केवल अक्षर, अंक, अंडरस्कोर(_) व हाइफ़न(-) का उपयोग ही मान्य है।</translation>
+      <translation>केवल अक्षर, अंक, अंडरस्कोर(_) व हाइफ़न(-) ही स्वीकार्य हैं।</translation>
     </message>
   </context>
   <context>
@@ -3799,7 +3799,8 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="115"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;स्थानिकी&lt;/h1&gt; &lt;/br&gt;
+                    सिस्टम स्थानिकी सेटिंग संख्या व दिनांक के प्रारूप को प्रभावित करती है। वर्तमान सेटिंग &lt;strong&gt;%1&lt;/strong&gt; है।</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="167"/>

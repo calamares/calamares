@@ -6,17 +6,17 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation type="unfinished"/>
+      <translation>এই সিস্টেমের &lt;strong&gt;বুট পরিবেশ&lt;/strong&gt;।&lt;br&gt;&lt;br&gt; পুরাতন x86 সিস্টেম শুধুমাত্র &lt;strong&gt;BIOS&lt;/strong&gt; সমর্থন কর&lt;br&gt; আধুনিক সিস্টেম সাধারণত &lt;strong&gt;EFI&lt;/strong&gt; ব্যবহার করে, কিন্তু যদি সামঞ্জস্যতা মোডে শুরু হয় তাহলে BIOS হিসেবেও প্রদর্শিত হতে পারে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="81"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation type="unfinished"/>
+      <translation>এই সিস্টেম একটি &lt;strong&gt;EFI&lt;/strong&gt; বুট পরিবেশ দিয়ে শুরু হয়েছিল।&lt;br&gt;&lt;br&gt; একটি EFI পরিবেশ থেকে স্টার্টআপ কনফিগার করতে, এই ইনস্টলার অবশ্যই একটি &lt;strong&gt;EFI সিস্টেম পার্টিশনে&lt;/strong&gt; &lt;strong&gt;GRUB&lt;/strong&gt; বা &lt;strong&gt;systemd-boot &lt;/strong&gt; এর মত একটি বুট লোডার অ্যাপ্লিকেশন প্রয়োগ করতে হবে। এটি স্বয়ংক্রিয়, যদি না আপনি ম্যানুয়াল পার্টিশনিং নির্বাচন করেন, সেক্ষেত্রে আপনাকে অবশ্যই এটি বেছে নিতে হবে অথবা এটি নিজে তৈরি করতে হবে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="93"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation type="unfinished"/>
+      <translation>এই সিস্টেম একটি &lt;strong&gt;BIOS&lt;/strong&gt; বুট পরিবেশ দিয়ে শুরু হয়েছিল।&lt;br&gt;&lt;br&gt;একটি BIOS পরিবেশ থেকে স্টার্টআপ কনফিগার করতে, এই ইনস্টলার অবশ্যই GRUB এর মত একটি পার্টিশনের শুরুতে অথবা পার্টিশন টেবিলের শুরুতে মাস্টার বুট রেকর্ডে (পছন্দনীয়) মত একটি বুট লোডার ইনস্টল করতে হবে। এটি স্বয়ংক্রিয়, যদি না আপনি ম্যানুয়াল পার্টিশনিং নির্বাচন করেন, সেক্ষেত্রে আপনাকে অবশ্যই এটি নিজেই সেট আপ করতে হবে।</translation>
     </message>
   </context>
   <context>
@@ -39,12 +39,12 @@
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="139"/>
       <source>Do not install a boot loader</source>
-      <translation type="unfinished"/>
+      <translation>একটি বুট লোডার ইনস্টল করবেন না</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="157"/>
       <source>%1 (%2)</source>
-      <translation type="unfinished"/>
+      <translation>%1 (%2)</translation>
     </message>
   </context>
   <context>
@@ -60,22 +60,22 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="24"/>
       <source>GlobalStorage</source>
-      <translation type="unfinished"/>
+      <translation>গ্লোবাল স্টোরেজ</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="34"/>
       <source>JobQueue</source>
-      <translation type="unfinished"/>
+      <translation>জব লাইন</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="44"/>
       <source>Modules</source>
-      <translation type="unfinished"/>
+      <translation>মডিউলগুলো</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="57"/>
@@ -111,7 +111,7 @@
     <message>
       <location filename="../src/calamares/DebugWindow.cpp" line="231"/>
       <source>Debug information</source>
-      <translation type="unfinished"/>
+      <translation>তথ্য ডিবাগ করুন</translation>
     </message>
   </context>
   <context>
@@ -124,7 +124,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="94"/>
       <source>Install</source>
-      <translation type="unfinished"/>
+      <translation>ইনস্টল করুন</translation>
     </message>
   </context>
   <context>
@@ -171,7 +171,7 @@
     <message>
       <location filename="../src/libcalamares/ProcessJob.cpp" line="63"/>
       <source>Running command %1 %2</source>
-      <translation type="unfinished"/>
+      <translation>কমান্ড %1 %2 চলছে</translation>
     </message>
   </context>
   <context>
@@ -179,22 +179,22 @@
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="213"/>
       <source>Running %1 operation.</source>
-      <translation type="unfinished"/>
+      <translation>%1 ক্রিয়াকলাপ চলছে।</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="242"/>
       <source>Bad working directory path</source>
-      <translation>খারাপ ওয়ার্কিং ডিরেক্টরি পাথ</translation>
+      <translation>ওয়ার্কিং ডিরেক্টরি পাথ ভালো নয়</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="243"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
-      <translation>ওয়ার্কিং ডিরেক্টরি 1% পাইথন কাজের জন্য % 2 পাঠযোগ্য নয়।</translation>
+      <translation>ওয়ার্কিং ডিরেক্টরি 1% পাইথন কাজের জন্য %2 পাঠযোগ্য নয়।</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="249"/>
       <source>Bad main script file</source>
-      <translation>খারাপ প্রধান স্ক্রিপ্ট ফাইল</translation>
+      <translation>প্রধান স্ক্রিপ্ট ফাইল ভালো নয়</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
@@ -264,7 +264,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
       <source>Installation Failed</source>
-      <translation>ইনস্টলেশন ব্যর্থ হয়েছে</translation>
+      <translation>ইনস্টলেশন ব্যর্থ হলো</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
@@ -321,7 +321,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
       <source>Continue with setup?</source>
-      <translation type="unfinished"/>
+      <translation>সেটআপ চালিয়ে যেতে চান?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
@@ -336,7 +336,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>%1 ইনস্টলার %2 সংস্থাপন করতে আপনার ডিস্কে পরিবর্তন করতে যাচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="344"/>
@@ -346,12 +346,12 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="344"/>
       <source>&amp;Install now</source>
-      <translation type="unfinished"/>
+      <translation>এবংএখনই ইনস্টল করুন</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="352"/>
       <source>Go &amp;back</source>
-      <translation type="unfinished"/>
+      <translation>এবংফিরে যান</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
@@ -401,7 +401,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="447"/>
       <source>&amp;Cancel</source>
-      <translation type="unfinished"/>
+      <translation>এবংবাতিল করুন</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="520"/>
@@ -411,7 +411,7 @@
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="520"/>
       <source>Cancel installation?</source>
-      <translation type="unfinished"/>
+      <translation>ইনস্টলেশন বাতিল করবেন?</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="521"/>
@@ -423,7 +423,8 @@ The setup program will quit and all changes will be lost.</source>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="523"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>আপনি কি সত্যিই বর্তমান সংস্থাপন প্রক্রিয়া বাতিল করতে চান?
+ইনস্টলার টি বন্ধ হয়ে যাবে এবং সকল পরিবর্তন হারিয়ে যাবে।</translation>
     </message>
   </context>
   <context>
@@ -431,22 +432,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="301"/>
       <source>Unknown exception type</source>
-      <translation>অজানা ব্যতিক্রম প্রকার</translation>
+      <translation>অজানা ধরনের ব্যতিক্রম</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="319"/>
       <source>unparseable Python error</source>
-      <translation>আনপারসেবল পাইথন ত্রুটি</translation>
+      <translation>অতুলনীয় পাইথন ত্রুটি</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="363"/>
       <source>unparseable Python traceback</source>
-      <translation>আনপারসেবল পাইথন ট্রেসব্যাক</translation>
+      <translation>অতুলনীয় পাইথন ট্রেসব্যাক</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/PythonHelper.cpp" line="370"/>
       <source>Unfetchable Python error.</source>
-      <translation>অপরিবর্তনীয় পাইথন ত্রুটি।</translation>
+      <translation>অতুলনীয় পাইথন ত্রুটি।</translation>
     </message>
   </context>
   <context>
@@ -463,7 +464,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="110"/>
       <source>Show debug information</source>
-      <translation type="unfinished"/>
+      <translation>ডিবাগ তথ্য দেখান</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="164"/>
@@ -478,7 +479,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="189"/>
       <source>&amp;Cancel</source>
-      <translation type="unfinished"/>
+      <translation>এবংবাতিল করুন</translation>
     </message>
     <message>
       <location filename="../src/calamares/CalamaresWindow.cpp" line="313"/>
@@ -496,7 +497,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/checker/CheckerContainer.cpp" line="46"/>
       <source>Gathering system information...</source>
-      <translation type="unfinished"/>
+      <translation>সিস্টেম তথ্য সংগ্রহ করা হচ্ছে...</translation>
     </message>
   </context>
   <context>
@@ -504,12 +505,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
       <source>Select storage de&amp;vice:</source>
-      <translation type="unfinished"/>
+      <translation>স্টোরেজ ডিএবংভাইস নির্বাচন করুন:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="157"/>
@@ -517,12 +518,12 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>বর্তমান:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
       <source>After:</source>
-      <translation type="unfinished"/>
+      <translation>পরে:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
@@ -537,7 +538,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;সংকুচিত করার জন্য একটি পার্টিশন নির্বাচন করুন, তারপর নিচের বারটি পুনঃআকারের জন্য টেনে আনুন&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="971"/>
@@ -547,12 +548,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
       <source>Boot loader location:</source>
-      <translation type="unfinished"/>
+      <translation>বুট লোডার অবস্থান:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;ইনস্টল করতে একটি পার্টিশন নির্বাচন করুন&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
@@ -562,17 +563,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation type="unfinished"/>
+      <translation>%1 এ EFI সিস্টেম পার্টিশন %2 শুরু করার জন্য ব্যবহার করা হবে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
       <source>EFI system partition:</source>
-      <translation type="unfinished"/>
+      <translation>EFI সিস্টেম পার্টিশন:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>এই স্টোরেজ ডিভাইসে কোন অপারেটিং সিস্টেম আছে বলে মনে হয় না। তুমি কি করতে চাও? &lt;br/&gt;স্টোরেজ ডিভাইসে কোন পরিবর্তন করার আগে আপনি আপনার পছন্দপর্যালোচনা এবং নিশ্চিত করতে সক্ষম হবেন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
@@ -580,7 +581,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;ডিস্ক মুছে ফেলুন&lt;/strong&gt; &lt;br/&gt;এটি বর্তমানে নির্বাচিত স্টোরেজ ডিভাইসে উপস্থিত সকল উপাত্ত &lt;font color="red"&gt;মুছে ফেলবে&lt;/font&gt;।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
@@ -588,7 +589,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;ইনস্টল করুন পাশাপাশি&lt;/strong&gt; &lt;br/&gt;ইনস্টলার %1 এর জন্য জায়গা তৈরি করতে একটি পার্টিশন সংকুচিত করবে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
@@ -596,22 +597,22 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;একটি পার্টিশন প্রতিস্থাপন করুন&lt;/strong&gt;&lt;br/&gt;%1-এর সাথে একটি পার্টিশন প্রতিস্থাপন করে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>এই সঞ্চয় যন্ত্রটিতে %1 আছে। তুমি কি করতে চাও? &lt;br/&gt;স্টোরেজ ডিভাইসে কোন পরিবর্তন করার আগে আপনি আপনার পছন্দপর্যালোচনা এবং নিশ্চিত করতে সক্ষম হবেন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>এই স্টোরেজ ডিভাইসে ইতোমধ্যে একটি অপারেটিং সিস্টেম আছে। তুমি কি করতে চাও? &lt;br/&gt;স্টোরেজ ডিভাইসে কোন পরিবর্তন করার আগে আপনি আপনার পছন্দপর্যালোচনা এবং নিশ্চিত করতে সক্ষম হবেন.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>এই স্টোরেজ ডিভাইসে একাধিক অপারেটিং সিস্টেম আছে। তুমি কি করতে চাও? &lt;br/&gt;স্টোরেজ ডিভাইসে কোন পরিবর্তন করার আগে আপনি আপনার পছন্দপর্যালোচনা এবং নিশ্চিত করতে সক্ষম হবেন.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1505"/>
@@ -644,17 +645,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="51"/>
       <source>Clear mounts for partitioning operations on %1</source>
-      <translation type="unfinished"/>
+      <translation>%1 এ পার্টিশনিং অপারেশনের জন্য মাউন্ট গুলি মুছে ফেলুন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="58"/>
       <source>Clearing mounts for partitioning operations on %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1-এ পার্টিশনিং অপারেশনের জন্য মাউন্ট মুছে ফেলা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="233"/>
       <source>Cleared all mounts for %1</source>
-      <translation type="unfinished"/>
+      <translation>%1-এর জন্য সকল মাউন্ট মুছে ফেলা হয়েছে</translation>
     </message>
   </context>
   <context>
@@ -662,22 +663,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="41"/>
       <source>Clear all temporary mounts.</source>
-      <translation type="unfinished"/>
+      <translation>সব অস্থায়ী মাউন্ট পরিষ্কার করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="48"/>
       <source>Clearing all temporary mounts.</source>
-      <translation type="unfinished"/>
+      <translation>সব অস্থায়ী মাউন্ট পরিষ্কার করা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="60"/>
       <source>Cannot get list of temporary mounts.</source>
-      <translation type="unfinished"/>
+      <translation>অস্থায়ী মাউন্টের তালিকা পাওয়া যাচ্ছে না।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="101"/>
       <source>Cleared all temporary mounts.</source>
-      <translation type="unfinished"/>
+      <translation>সব অস্থায়ী মাউন্ট পরিষ্কার করা হয়েছে.</translation>
     </message>
   </context>
   <context>
@@ -704,12 +705,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboard/Config.cpp" line="349"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>%1-এ কীবোর্ড নকশা নির্ধারণ করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/Config.cpp" line="356"/>
       <source>Set keyboard layout to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>%1/%2 এ কীবোর্ড বিন্যাস নির্ধারণ করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="333"/>
@@ -850,7 +851,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
       <source>Si&amp;ze:</source>
-      <translation type="unfinished"/>
+      <translation>আএবংকার</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
@@ -860,22 +861,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
       <source>Partition &amp;Type:</source>
-      <translation>পার্টিশন এবং প্রকার:</translation>
+      <translation>পার্টিশন এবংধরন:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="67"/>
       <source>&amp;Primary</source>
-      <translation>এবং প্রাথমিক</translation>
+      <translation>এবংপ্রাথমিক</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="77"/>
       <source>E&amp;xtended</source>
-      <translation>সম্প্রসারিত</translation>
+      <translation>বএবংর্ধিত</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="119"/>
       <source>Fi&amp;le System:</source>
-      <translation type="unfinished"/>
+      <translation>ফাএবংইল সিস্টেম:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
@@ -885,7 +886,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="161"/>
       <source>&amp;Mount Point:</source>
-      <translation>এবং মাউন্ট পয়েন্ট:</translation>
+      <translation>এবংমাউন্ট পয়েন্ট:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
@@ -900,17 +901,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="159"/>
       <source>Logical</source>
-      <translation type="unfinished"/>
+      <translation>যৌক্তিক</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="164"/>
       <source>Primary</source>
-      <translation type="unfinished"/>
+      <translation>প্রাথমিক</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="181"/>
       <source>GPT</source>
-      <translation type="unfinished"/>
+      <translation>জিপিটি</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="271"/>
@@ -933,12 +934,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="70"/>
       <source>Creating new %1 partition on %2.</source>
-      <translation type="unfinished"/>
+      <translation>%2-এ নতুন %1 পার্টিশন তৈরি করা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="82"/>
       <source>The installer failed to create partition on disk '%1'.</source>
-      <translation type="unfinished"/>
+      <translation>ইনস্টলার '%1' ডিস্কে পার্টিশন তৈরি করতে ব্যর্থ হয়েছে।</translation>
     </message>
   </context>
   <context>
@@ -946,27 +947,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="20"/>
       <source>Create Partition Table</source>
-      <translation type="unfinished"/>
+      <translation>পার্টিশন টেবিল তৈরি করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
       <source>Creating a new partition table will delete all existing data on the disk.</source>
-      <translation type="unfinished"/>
+      <translation>একটি নতুন পার্টিশন টেবিল তৈরি করলে ডিস্কের সকল বিদ্যমান উপাত্ত মুছে যাবে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
       <source>What kind of partition table do you want to create?</source>
-      <translation type="unfinished"/>
+      <translation>আপনি কি ধরনের পার্টিশন টেবিল তৈরি করতে চান?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="72"/>
       <source>Master Boot Record (MBR)</source>
-      <translation type="unfinished"/>
+      <translation>মাস্টার বুট রেকর্ড (এমবিআর)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="82"/>
       <source>GUID Partition Table (GPT)</source>
-      <translation type="unfinished"/>
+      <translation>জিইউআইডি পার্টিশন টেবিল (জিপিটি)</translation>
     </message>
   </context>
   <context>
@@ -974,22 +975,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
       <source>Create new %1 partition table on %2.</source>
-      <translation type="unfinished"/>
+      <translation>%2-এ নতুন %1 পার্টিশন টেবিল তৈরি করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
       <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) এ নতুন &lt;strong&gt;%1&lt;/strong&gt; পার্টিশন টেবিল তৈরি করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
       <source>Creating new %1 partition table on %2.</source>
-      <translation type="unfinished"/>
+      <translation>%2 এ নতুন %1 পার্টিশন টেবিল তৈরি করা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
       <source>The installer failed to create a partition table on %1.</source>
-      <translation type="unfinished"/>
+      <translation>ইনস্টলার %1 এ একটি পার্টিশন টেবিল তৈরি করতে ব্যর্থ হয়েছে।</translation>
     </message>
   </context>
   <context>
@@ -997,27 +998,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="41"/>
       <source>Create user %1</source>
-      <translation type="unfinished"/>
+      <translation>%1 ব্যবহারকারী তৈরি করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="48"/>
       <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>ব্যবহারকারী %1 তৈরি করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="55"/>
       <source>Creating user %1.</source>
-      <translation type="unfinished"/>
+      <translation>ব্যবহারকারী %1 তৈরি করা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="187"/>
       <source>Cannot create sudoers file for writing.</source>
-      <translation type="unfinished"/>
+      <translation>লেখার জন্য sudoers ফাইল তৈরি করা যাবে না।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CreateUserJob.cpp" line="182"/>
       <source>Cannot chmod sudoers file.</source>
-      <translation type="unfinished"/>
+      <translation>Sudoers ফাইল chmod করা যাবে না।</translation>
     </message>
   </context>
   <context>
@@ -1075,22 +1076,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="40"/>
       <source>Delete partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>পার্টিশন %1 মুছে ফেলুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="47"/>
       <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>পার্টিশন &lt;strong&gt;%1&lt;/strong&gt; মুছে ফেলুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
       <source>Deleting partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>পার্টিশন %1 মুছে ফেলা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="65"/>
       <source>The installer failed to delete partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>ইনস্টলার %1 পার্টিশন মুছে ফেলতে ব্যর্থ হয়েছে।</translation>
     </message>
   </context>
   <context>
@@ -1098,22 +1099,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-      <translation type="unfinished"/>
+      <translation>এই যন্ত্রটির একটি &lt;strong&gt;%1&lt;/strong&gt; পার্টিশন টেবিল আছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="115"/>
       <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-      <translation type="unfinished"/>
+      <translation>এটি একটি &lt;strong&gt;লুপ&lt;/strong&gt; ডিভাইস।&lt;br&gt;&lt;br&gt;এটি একটি ছদ্ম-ডিভাইস যার কোন পার্টিশন টেবিল নেই যা একটি ফাইলকে ব্লক ডিভাইস হিসেবে অ্যাক্সেসযোগ্য করে তোলে। এই ধরনের উপস্থাপনা সাধারণত শুধুমাত্র একটি একক ফাইলসিস্টেম ধারণ করে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="122"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation type="unfinished"/>
+      <translation>এই ইনস্টলার নির্বাচিত সঞ্চয় ডিভাইসে &lt;strong&gt;একটি পার্টিশন টেবিল শনাক্ত করতে পারে না&lt;/strong&gt;।&lt;br&gt; &lt;br&gt;ডিভাইসটির কোন পার্টিশন টেবিল নেই, অথবা পার্টিশন টেবিলটি দূষিত অথবা একটি অজানা ধরনের।&lt;br&gt; এই ইনস্টলার আপনার জন্য একটি নতুন পার্টিশন টেবিল তৈরি করতে পারে, হয় স্বয়ংক্রিয়ভাবে, অথবা ম্যানুয়াল পার্টিশনিং পৃষ্ঠার মাধ্যমে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="132"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;br&gt;&lt;br&gt;এটি আধুনিক সিস্টেমের জন্য প্রস্তাবিত পার্টিশন টেবিলের ধরন যা একটি &lt;strong&gt;EFI&lt;/strong&gt; বুট পরিবেশ থেকে শুরু হয়।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="138"/>
@@ -1123,7 +1124,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation type="unfinished"/>
+      <translation>নির্বাচিত স্টোরেজ ডিভাইসে &lt;strong&gt;পার্টিশন টেবিলে&lt;/strong&gt;র ধরন। &lt;br&gt;&lt;br&gt;পার্টিশন টেবিলের ধরন পরিবর্তনের একমাত্র উপায় হল স্ক্র্যাচ থেকে পার্টিশন টেবিল মুছে ফেলা এবং পুনরায় তৈরি করা, যা স্টোরেজ ডিভাইসের সমস্ত ডাটা ধ্বংস করে।&lt;br&gt; এই ইনস্টলার বর্তমান পার্টিশন টেবিল রাখবে যদি না আপনি স্পষ্টভাবে অন্যভাবে নির্বাচন করেন. যদি অনিশ্চিত থাকেন, আধুনিক সিস্টেমে জিপিটি অগ্রাধিকার দেওয়া হয়।</translation>
     </message>
   </context>
   <context>
@@ -1132,7 +1133,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/DeviceModel.cpp" line="93"/>
       <source>%1 - %2 (%3)</source>
       <extracomment>device[name] - size[number] (device-node[name])</extracomment>
-      <translation type="unfinished"/>
+      <translation>%1 - %2 (%3)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/DeviceModel.cpp" line="104"/>
@@ -1172,27 +1173,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="20"/>
       <source>Edit Existing Partition</source>
-      <translation type="unfinished"/>
+      <translation>বিদ্যমান পার্টিশন সম্পাদনা করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="50"/>
       <source>Content:</source>
-      <translation type="unfinished"/>
+      <translation>বিষয়বস্তু:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
       <source>&amp;Keep</source>
-      <translation type="unfinished"/>
+      <translation>এবংরাখুন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
       <source>Format</source>
-      <translation type="unfinished"/>
+      <translation>বিন্যাস</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
       <source>Warning: Formatting the partition will erase all existing data.</source>
-      <translation type="unfinished"/>
+      <translation>সতর্কীকরণ: পার্টিশন ফরম্যাট করলে সমস্ত বিদ্যমান উপাত্ত মুছে ফেলবে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
@@ -1202,7 +1203,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
       <source>Si&amp;ze:</source>
-      <translation type="unfinished"/>
+      <translation>আএবংকার</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
@@ -1212,7 +1213,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
       <source>Fi&amp;le System:</source>
-      <translation type="unfinished"/>
+      <translation>ফাএবংইল সিস্টেম:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="149"/>
@@ -1230,7 +1231,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
@@ -1258,37 +1259,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
       <source>Set partition information</source>
-      <translation type="unfinished"/>
+      <translation>পার্টিশন তথ্য নির্ধারণ করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="173"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;নতুন&lt;/strong&gt; %2 সিস্টেম পার্টিশনে %1 সংস্থাপন করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>মাউন্ট বিন্দু &lt;strong&gt;%1&lt;/strong&gt; দিয়ে &lt;strong&gt;নতুন&lt;/strong&gt; %2 পার্টিশন বিন্যাস করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="189"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>%3 সিস্টেম পার্টিশন &lt;strong&gt;%1&lt;/strong&gt; এ %2 ইনস্টল করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="196"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>%3 পার্টিশন &lt;strong&gt;%1&lt;/strong&gt; মাউন্ট বিন্দু &lt;strong&gt;%2&lt;/strong&gt; দিয়ে বিন্যাস করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="209"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; এ বুট লোডার ইনস্টল করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="218"/>
       <source>Setting up mount points.</source>
-      <translation type="unfinished"/>
+      <translation>মাউন্ট পয়েন্ট সেট আপ করা হচ্ছে।</translation>
     </message>
   </context>
   <context>
@@ -1296,12 +1297,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
       <source>&amp;Restart now</source>
-      <translation type="unfinished"/>
+      <translation>এবংএখন আবার চালু করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="53"/>
@@ -1316,7 +1317,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="63"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;সব শেষ।&lt;/h1&gt;&lt;br/&gt;%1 আপনার কম্পিউটারে সংস্থাপন করা হয়েছে।&lt;br/&gt;আপনি এখন আপনার নতুন সিস্টেমে পুনর্সূচনা করতে পারেন, অথবা %2 লাইভ পরিবেশ ব্যবহার চালিয়ে যেতে পারেন।</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="68"/>
@@ -1339,7 +1340,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="76"/>
       <source>Finish</source>
-      <translation type="unfinished"/>
+      <translation>শেষ করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedViewStep.cpp" line="134"/>
@@ -1377,12 +1378,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
       <source>Formatting partition %1 with file system %2.</source>
-      <translation type="unfinished"/>
+      <translation>ফাইল সিস্টেম %2 দিয়ে পার্টিশন %1 বিন্যাস করা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="81"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
-      <translation type="unfinished"/>
+      <translation>ইনস্টলার '%2' ডিস্কে %1 পার্টিশন বিন্যাস করতে ব্যর্থ হয়েছে।</translation>
     </message>
   </context>
   <context>
@@ -1523,7 +1524,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="116"/>
       <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
-      <translation type="unfinished"/>
+      <translation>স্ক্রিপ্ট কার্যকর করা হচ্ছে: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
   </context>
   <context>
@@ -1531,7 +1532,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="47"/>
       <source>Script</source>
-      <translation type="unfinished"/>
+      <translation>স্ক্রিপ্ট</translation>
     </message>
   </context>
   <context>
@@ -1539,12 +1540,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="214"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation type="unfinished"/>
+      <translation>%1 এ কীবোর্ড নকশা নির্ধারণ করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="218"/>
       <source>Set keyboard layout to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>%1/%2 এ কীবোর্ড বিন্যাস নির্ধারণ করুন।</translation>
     </message>
   </context>
   <context>
@@ -1552,7 +1553,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="42"/>
       <source>Keyboard</source>
-      <translation type="unfinished"/>
+      <translation>কীবোর্ড</translation>
     </message>
   </context>
   <context>
@@ -1560,7 +1561,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="54"/>
       <source>Keyboard</source>
-      <translation type="unfinished"/>
+      <translation>কীবোর্ড</translation>
     </message>
   </context>
   <context>
@@ -1568,17 +1569,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="32"/>
       <source>System locale setting</source>
-      <translation type="unfinished"/>
+      <translation>সিস্টেম লোকেল সেটিং</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="39"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>সিস্টেম স্থানীয় বিন্যাসন কিছু কমান্ড লাইন ব্যবহারকারী ইন্টারফেস উপাদানের জন্য ভাষা এবং অক্ষর সেট কে প্রভাবিত করে. &lt;br/&gt;বর্তমান বিন্যাসন &lt;strong&gt;%1&lt;/strong&gt;।</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
       <source>&amp;Cancel</source>
-      <translation type="unfinished"/>
+      <translation>এবংবাতিল করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
@@ -1591,7 +1592,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.ui" line="22"/>
@@ -1601,7 +1602,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="145"/>
       <source>I accept the terms and conditions above.</source>
-      <translation type="unfinished"/>
+      <translation>আমি উপরের শর্তাবলী মেনে নিচ্ছি।</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="147"/>
@@ -1634,7 +1635,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicenseViewStep.cpp" line="52"/>
       <source>License</source>
-      <translation type="unfinished"/>
+      <translation>লাইসেন্স</translation>
     </message>
   </context>
   <context>
@@ -1702,18 +1703,18 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="132"/>
       <source>Region:</source>
-      <translation type="unfinished"/>
+      <translation>অঞ্চল:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="133"/>
       <source>Zone:</source>
-      <translation type="unfinished"/>
+      <translation>বলয়:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
       <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
       <source>&amp;Change...</source>
-      <translation type="unfinished"/>
+      <translation>এবংপরিবর্তন করুন...</translation>
     </message>
   </context>
   <context>
@@ -1721,7 +1722,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="41"/>
       <source>Location</source>
-      <translation type="unfinished"/>
+      <translation>অবস্থান</translation>
     </message>
   </context>
   <context>
@@ -1729,7 +1730,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/LocaleViewStep.cpp" line="85"/>
       <source>Location</source>
-      <translation type="unfinished"/>
+      <translation>অবস্থান</translation>
     </message>
   </context>
   <context>
@@ -2200,7 +2201,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="20"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/page_package.ui" line="40"/>
@@ -2241,7 +2242,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
       <source>Name</source>
-      <translation type="unfinished"/>
+      <translation>নাম</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
@@ -2254,17 +2255,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
       <source>Keyboard Model:</source>
-      <translation type="unfinished"/>
+      <translation>কীবোর্ড নকশা:</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
       <source>Type here to test your keyboard</source>
-      <translation type="unfinished"/>
+      <translation>আপনার কীবোর্ড পরীক্ষা করতে এখানে টাইপ করুন</translation>
     </message>
   </context>
   <context>
@@ -2272,12 +2273,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
       <source>What is your name?</source>
-      <translation type="unfinished"/>
+      <translation>আপনার নাম কি?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
@@ -2287,7 +2288,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
       <source>What name do you want to use to log in?</source>
-      <translation type="unfinished"/>
+      <translation>লগ-ইন করতে আপনি কোন নাম ব্যবহার করতে চান?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
@@ -2297,12 +2298,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
       <source>What is the name of this computer?</source>
-      <translation type="unfinished"/>
+      <translation>এই কম্পিউটারের নাম কি?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
       <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;আপনি যদি কম্পিউটারটিকে অন্যদের কাছে একটি নেটওয়ার্কে দৃশ্যমান করেন তাহলে এই নামটি ব্যবহার করা হবে।&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
@@ -2312,13 +2313,13 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="321"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>আপনার অ্যাকাউন্ট সুরক্ষিত রাখতে একটি পাসওয়ার্ড নির্বাচন করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="370"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;একই পাসওয়ার্ড দুইবার প্রবেশ করান, যাতে এটি টাইপিং ত্রুটির জন্য পরীক্ষা করা যেতে পারে। একটি ভাল পাসওয়ার্ড অক্ষর, সংখ্যা এবং বিরামচিহ্নের একটি মিশ্রণ ধারণ করবে, অন্তত আট অক্ষর দীর্ঘ হওয়া উচিত, এবং নিয়মিত বিরতিতে পরিবর্তন করা উচিত।&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
@@ -2345,23 +2346,23 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="461"/>
       <source>Log in automatically without asking for the password.</source>
-      <translation type="unfinished"/>
+      <translation>পাসওয়ার্ড না চাইলে স্বয়ংক্রিয়ভাবে লগ ইন করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="468"/>
       <source>Use the same password for the administrator account.</source>
-      <translation type="unfinished"/>
+      <translation>প্রশাসক হিসাবের জন্য একই গুপ্ত-সংকেত ব্যবহার করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="491"/>
       <source>Choose a password for the administrator account.</source>
-      <translation type="unfinished"/>
+      <translation>প্রশাসক হিসাবের জন্য একটি পাসওয়ার্ড নির্বাচন করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="515"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="540"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;small&gt;একই পাসওয়ার্ড দুইবার প্রবেশ করান, যাতে এটি টাইপিং ত্রুটির জন্য পরীক্ষা করা যেতে পারে।&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -2369,43 +2370,43 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
       <source>Root</source>
-      <translation type="unfinished"/>
+      <translation>রুট</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
       <source>Home</source>
-      <translation type="unfinished"/>
+      <translation>বাড়ি</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
       <source>Boot</source>
-      <translation type="unfinished"/>
+      <translation>বুট</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
       <source>EFI system</source>
-      <translation type="unfinished"/>
+      <translation>ইএফআই সিস্টেম</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
       <source>Swap</source>
-      <translation type="unfinished"/>
+      <translation>অদলবদল</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="209"/>
       <source>New partition for %1</source>
-      <translation type="unfinished"/>
+      <translation>%1 এর জন্য নতুন পার্টিশন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
       <source>New partition</source>
-      <translation type="unfinished"/>
+      <translation>নতুন পার্টিশন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="230"/>
       <source>%1  %2</source>
       <extracomment>size[number] filesystem[name]</extracomment>
-      <translation type="unfinished"/>
+      <translation>%1 %2</translation>
     </message>
   </context>
   <context>
@@ -2414,33 +2415,33 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="168"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="208"/>
       <source>Free Space</source>
-      <translation type="unfinished"/>
+      <translation>খালি জায়গা</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="172"/>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="212"/>
       <source>New partition</source>
-      <translation type="unfinished"/>
+      <translation>নতুন পার্টিশন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="305"/>
       <source>Name</source>
-      <translation type="unfinished"/>
+      <translation>নাম</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
       <source>File System</source>
-      <translation type="unfinished"/>
+      <translation>নথি ব্যবস্থা</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="309"/>
       <source>Mount Point</source>
-      <translation type="unfinished"/>
+      <translation>মাউন্ট পয়েন্ট</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="311"/>
       <source>Size</source>
-      <translation type="unfinished"/>
+      <translation>আকার</translation>
     </message>
   </context>
   <context>
@@ -2448,22 +2449,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
       <source>Storage de&amp;vice:</source>
-      <translation type="unfinished"/>
+      <translation>স্টোরেজ ডিএবংভাইস</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
       <source>&amp;Revert All Changes</source>
-      <translation type="unfinished"/>
+      <translation>এবংসকল পরিবর্তন ফিরিয়ে দিন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="87"/>
       <source>New Partition &amp;Table</source>
-      <translation type="unfinished"/>
+      <translation>নতুন পার্টিশন এবংটেবিল</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
@@ -2473,12 +2474,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
       <source>&amp;Edit</source>
-      <translation type="unfinished"/>
+      <translation>এবংসম্পাদনা করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="121"/>
       <source>&amp;Delete</source>
-      <translation type="unfinished"/>
+      <translation>এবংমুছে ফেলুন</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
@@ -2508,7 +2509,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="211"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
-      <translation type="unfinished"/>
+      <translation>আপনি কি নিশ্চিত যে আপনি %1 এ একটি নতুন পার্টিশন টেবিল তৈরি করতে চান?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="240"/>
@@ -2526,67 +2527,67 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="77"/>
       <source>Gathering system information...</source>
-      <translation type="unfinished"/>
+      <translation>সিস্টেম তথ্য সংগ্রহ করা হচ্ছে...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="132"/>
       <source>Partitions</source>
-      <translation type="unfinished"/>
+      <translation>পার্টিশনগুলো</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
-      <translation type="unfinished"/>
+      <translation>অন্য অপারেটিং সিস্টেমের &lt;strong&gt;পাশাপাশি&lt;/strong&gt; %1 ইনস্টল করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
-      <translation type="unfinished"/>
+      <translation>ডিস্ক &lt;strong&gt;মুছে ফেলুন&lt;/strong&gt; এবং %1 সংস্থাপন করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="179"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 দিয়ে একটি পার্টিশন &lt;strong&gt;প্রতিস্থাপন করুন&lt;/strong&gt;।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="183"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;ম্যানুয়াল&lt;/strong&gt; পার্টিশনিং।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) ডিস্কে অন্য অপারেটিং সিস্টেমের &lt;strong&gt;পাশাপাশি&lt;/strong&gt; %1 ইনস্টল করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="203"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
-      <translation type="unfinished"/>
+      <translation>ডিস্ক &lt;strong&gt;%2&lt;/strong&gt; (%3) &lt;strong&gt;মুছে ফেলুন&lt;/strong&gt; এবং %1 সংস্থাপন করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 দিয়ে &lt;strong&gt;%2&lt;/strong&gt; (%3) ডিস্কে একটি পার্টিশন &lt;strong&gt;প্রতিস্থাপন করুন&lt;/strong&gt;।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="216"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt;  (%2) ডিস্কে &lt;strong&gt;ম্যানুয়াল&lt;/strong&gt; পার্টিশন করা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
-      <translation type="unfinished"/>
+      <translation>ডিস্ক &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="251"/>
       <source>Current:</source>
-      <translation type="unfinished"/>
+      <translation>বর্তমান:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
       <source>After:</source>
-      <translation type="unfinished"/>
+      <translation>পরে:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="435"/>
@@ -2658,7 +2659,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="70"/>
@@ -2768,22 +2769,22 @@ Output:
     <message>
       <location filename="../src/libcalamares/locale/Label.cpp" line="41"/>
       <source>%1 (%2)</source>
-      <translation type="unfinished"/>
+      <translation>%1 (%2)</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="40"/>
       <source>unknown</source>
-      <translation type="unfinished"/>
+      <translation>অজানা</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="42"/>
       <source>extended</source>
-      <translation type="unfinished"/>
+      <translation>বর্ধিত</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="44"/>
       <source>unformatted</source>
-      <translation type="unfinished"/>
+      <translation>অবিন্যাসিত</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/partition/FileSystem.cpp" line="46"/>
@@ -2793,13 +2794,13 @@ Output:
     <message>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
       <source>Default Keyboard Model</source>
-      <translation type="unfinished"/>
+      <translation>পূর্বনির্ধারিত কীবোর্ডের নকশা</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
       <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
       <source>Default</source>
-      <translation type="unfinished"/>
+      <translation>পূর্বনির্ধারিত</translation>
     </message>
     <message>
       <location filename="../src/modules/machineid/Workers.cpp" line="73"/>
@@ -2837,7 +2838,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
       <source>Unpartitioned space or unknown partition table</source>
-      <translation type="unfinished"/>
+      <translation>অবিভাজনকৃত স্থান বা অজানা পার্টিশন টেবিল</translation>
     </message>
   </context>
   <context>
@@ -2881,74 +2882,74 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="140"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 কোথায় সংস্থাপন করতে হবে তা নির্বাচন করুন।&lt;br/&gt;&lt;font color="red"&gt; সতর্কীকরণ: &lt;/font&gt;এটি নির্বাচিত পার্টিশনের সকল ফাইল মুছে ফেলবে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="166"/>
       <source>The selected item does not appear to be a valid partition.</source>
-      <translation type="unfinished"/>
+      <translation>নির্বাচিত বিষয়োপকরণটি একটি বৈধ পার্টিশন বলে মনে হচ্ছে না।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="174"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 ফাঁকা স্থানে সংস্থাপন করা যাবে না। অনুগ্রহ করে একটি বিদ্যমান পার্টিশন নির্বাচন করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="184"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 একটি বর্ধিত পার্টিশনে সংস্থাপন করা যাবে না। অনুগ্রহ করে একটি বিদ্যমান প্রাথমিক বা যৌক্তিক বিভাজন নির্বাচন করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="194"/>
       <source>%1 cannot be installed on this partition.</source>
-      <translation type="unfinished"/>
+      <translation>%1 এই পার্টিশনে সংস্থাপন করা যাবে না।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="201"/>
       <source>Data partition (%1)</source>
-      <translation type="unfinished"/>
+      <translation>ডাটা পার্টিশন (%1)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="217"/>
       <source>Unknown system partition (%1)</source>
-      <translation type="unfinished"/>
+      <translation>অজানা সিস্টেম পার্টিশন (%1)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="222"/>
       <source>%1 system partition (%2)</source>
-      <translation type="unfinished"/>
+      <translation>%1 সিস্টেম পার্টিশন (%2)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="233"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 পার্টিশন %2 এর জন্য খুবই ছোট। অনুগ্রহ করে কমপক্ষে %3 GiB ধারণ ক্ষমতা সম্পন্ন একটি পার্টিশন নির্বাচন করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="256"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt; একটি EFI সিস্টেম পার্টিশন এই সিস্টেমের কোথাও খুঁজে পাওয়া যাবে না। অনুগ্রহ করে ফিরে যান এবং %1 সেট আপ করতে ম্যানুয়াল পার্টিশনিং ব্যবহার করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="284"/>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="308"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 %2-এ ইনস্টল করা হবে।&lt;br/&gt;&lt;font color="red"&gt; সতর্কীকরণ: &lt;/font&gt;%2 পার্টিশনের সকল উপাত্ত হারিয়ে যাবে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="276"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
-      <translation type="unfinished"/>
+      <translation>%1 এ EFI সিস্টেম পার্টিশন %2 শুরু করার জন্য ব্যবহার করা হবে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
       <source>EFI system partition:</source>
-      <translation type="unfinished"/>
+      <translation>EFI সিস্টেম পার্টিশন:</translation>
     </message>
   </context>
   <context>
@@ -3040,7 +3041,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="49"/>
       <source>Resize partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>পার্টিশন %1 পুনঃআকার করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="56"/>
@@ -3055,7 +3056,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="86"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
-      <translation type="unfinished"/>
+      <translation>ইনস্টলার '%2' ডিস্কে %1 পার্টিশন পুনঃআকার করতে ব্যর্থ হয়েছে।</translation>
     </message>
   </context>
   <context>
@@ -3131,12 +3132,12 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
       <source>Scanning storage devices...</source>
-      <translation type="unfinished"/>
+      <translation>স্টোরেজ ডিভাইস স্ক্যান করা হচ্ছে...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="85"/>
       <source>Partitioning</source>
-      <translation type="unfinished"/>
+      <translation>পার্টিশন করা হচ্ছে</translation>
     </message>
   </context>
   <context>
@@ -3144,29 +3145,29 @@ Output:
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
       <source>Set hostname %1</source>
-      <translation type="unfinished"/>
+      <translation>হোস্টের নাম %1 নির্ধারণ করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="53"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>হোস্টনাম &lt;strong&gt;%1&lt;/strong&gt; নির্ধারণ করুন।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
       <source>Setting hostname %1.</source>
-      <translation type="unfinished"/>
+      <translation>হোস্টনাম %1 নির্ধারণ করা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="131"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="138"/>
       <source>Internal Error</source>
-      <translation type="unfinished"/>
+      <translation>অভ্যন্তরীণ ত্রুটি</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="155"/>
       <source>Cannot write hostname to target system</source>
-      <translation type="unfinished"/>
+      <translation>লক্ষ্য ব্যবস্থায় হোস্টের নাম লেখা যাচ্ছে না</translation>
     </message>
   </context>
   <context>
@@ -3174,24 +3175,24 @@ Output:
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="60"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
-      <translation type="unfinished"/>
+      <translation>কীবোর্ড মডেলটিকে %1, লেআউটটিকে %2-%3 এ সেট করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="352"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
-      <translation type="unfinished"/>
+      <translation>ভার্চুয়াল কনসোলের জন্য কীবোর্ড কনফিগারেশন লিখতে ব্যর্থ হয়েছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="353"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="357"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="364"/>
       <source>Failed to write to %1</source>
-      <translation type="unfinished"/>
+      <translation>%1 এ লিখতে ব্যর্থ</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
       <source>Failed to write keyboard configuration for X11.</source>
-      <translation type="unfinished"/>
+      <translation>X11 এর জন্য কীবোর্ড কনফিগারেশন লিখতে ব্যর্থ হয়েছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="363"/>
@@ -3287,22 +3288,22 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
       <source>Set password for user %1</source>
-      <translation type="unfinished"/>
+      <translation>ব্যবহারকারীর জন্য গুপ্ত-সংকেত নির্ধারণ করুন % 1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="56"/>
       <source>Setting password for user %1.</source>
-      <translation type="unfinished"/>
+      <translation>ব্যবহারকারীর %1-এর জন্য গুপ্ত-সংকেত নির্ধারণ করা হচ্ছে।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
       <source>Bad destination system path.</source>
-      <translation type="unfinished"/>
+      <translation>খারাপ গন্তব্য সিস্টেম পথ।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="91"/>
       <source>rootMountPoint is %1</source>
-      <translation type="unfinished"/>
+      <translation>রুটমাউন্টপয়েন্টটি % 1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
@@ -3317,12 +3318,12 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="106"/>
       <source>Cannot set password for user %1.</source>
-      <translation type="unfinished"/>
+      <translation>% 1 ব্যবহারকারীর জন্য পাসওয়ার্ড নির্ধারণ করা যাচ্ছে না।</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="107"/>
       <source>usermod terminated with error code %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 ত্রুটি কোড দিয়ে ব্যবহারকারীমোড সমাপ্ত করা হয়েছে।</translation>
     </message>
   </context>
   <context>
@@ -3330,37 +3331,37 @@ Output:
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="43"/>
       <source>Set timezone to %1/%2</source>
-      <translation type="unfinished"/>
+      <translation>%1/%2 এ সময়অঞ্চল নির্ধারণ করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
       <source>Cannot access selected timezone path.</source>
-      <translation type="unfinished"/>
+      <translation>নির্বাচিত সময়অঞ্চল পথে প্রবেশ করতে পারে না।</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
       <source>Bad path: %1</source>
-      <translation type="unfinished"/>
+      <translation>খারাপ পথ: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
       <source>Cannot set timezone.</source>
-      <translation type="unfinished"/>
+      <translation>সময়অঞ্চল নির্ধারণ করা যাচ্ছে না।</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
       <source>Link creation failed, target: %1; link name: %2</source>
-      <translation type="unfinished"/>
+      <translation>লিংক তৈরি ব্যর্থ হয়েছে, লক্ষ্য: %1; লিংকের নাম: %2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
       <source>Cannot set timezone,</source>
-      <translation type="unfinished"/>
+      <translation>সময়অঞ্চল নির্ধারণ করা যাচ্ছে না,</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
       <source>Cannot open /etc/timezone for writing</source>
-      <translation type="unfinished"/>
+      <translation>লেখার জন্য /ইত্যাদি/সময়অঞ্চল খোলা যাচ্ছে না</translation>
     </message>
   </context>
   <context>
@@ -3390,7 +3391,7 @@ Output:
     <message>
       <location filename="../src/modules/summary/SummaryPage.cpp" line="60"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
-      <translation type="unfinished"/>
+      <translation>আপনি ইনস্টল প্রক্রিয়া শুরু করার পর কি হবে তার একটি পর্যালোচনা।</translation>
     </message>
   </context>
   <context>
@@ -3398,7 +3399,7 @@ Output:
     <message>
       <location filename="../src/modules/summary/SummaryViewStep.cpp" line="43"/>
       <source>Summary</source>
-      <translation type="unfinished"/>
+      <translation>সারাংশ</translation>
     </message>
   </context>
   <context>
@@ -3487,7 +3488,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="24"/>
@@ -3548,7 +3549,7 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
       <source>Your passwords do not match!</source>
-      <translation type="unfinished"/>
+      <translation>আপনার পাসওয়ার্ড মেলে না!</translation>
     </message>
   </context>
   <context>
@@ -3556,7 +3557,7 @@ Output:
     <message>
       <location filename="../src/modules/users/UsersViewStep.cpp" line="77"/>
       <source>Users</source>
-      <translation type="unfinished"/>
+      <translation>ব্যবহারকারীরা</translation>
     </message>
   </context>
   <context>
@@ -3630,7 +3631,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
       <source>Form</source>
-      <translation type="unfinished"/>
+      <translation>ফর্ম</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
@@ -3641,7 +3642,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="136"/>
       <source>&amp;About</source>
-      <translation type="unfinished"/>
+      <translation>এবংসম্পর্কে</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="146"/>
@@ -3661,7 +3662,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="162"/>
       <source>&amp;Support</source>
-      <translation type="unfinished"/>
+      <translation>এবংসহায়তা</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="172"/>
@@ -3671,7 +3672,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="175"/>
       <source>&amp;Known issues</source>
-      <translation type="unfinished"/>
+      <translation>এবংপরিচিত বিষয়গুলো</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="185"/>
@@ -3681,7 +3682,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="188"/>
       <source>&amp;Release notes</source>
-      <translation type="unfinished"/>
+      <translation>এবংনোট প্রকাশ করুন</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="225"/>
@@ -3701,12 +3702,12 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="232"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1 ইনস্টলারে স্বাগতম।&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="237"/>
       <source>%1 support</source>
-      <translation type="unfinished"/>
+      <translation>%1 সহায়তা</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="244"/>
@@ -3716,7 +3717,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="244"/>
       <source>About %1 installer</source>
-      <translation type="unfinished"/>
+      <translation>%1 ইনস্টলার সম্পর্কে</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
@@ -3729,7 +3730,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="50"/>
       <source>Welcome</source>
-      <translation type="unfinished"/>
+      <translation>স্বাগতম</translation>
     </message>
   </context>
   <context>
@@ -3737,7 +3738,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="57"/>
       <source>Welcome</source>
-      <translation type="unfinished"/>
+      <translation>স্বাগতম</translation>
     </message>
   </context>
   <context>
