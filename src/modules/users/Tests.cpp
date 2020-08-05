@@ -25,6 +25,7 @@
 
 // Implementation details
 extern void setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups );
+extern HostNameActions getHostNameActions( const QVariantMap& configurationMap );
 
 /** @brief Test Config object methods and internals
  *
@@ -40,6 +41,8 @@ private Q_SLOTS:
     void initTestCase();
 
     void testDefaultGroups();
+    void testHostActions_data();
+    void testHostActions();
 };
 
 UserTests::UserTests() {}
@@ -103,6 +106,39 @@ UserTests::testDefaultGroups()
         QCOMPARE( groups.count(), 6 );  // because of fallback!
         QVERIFY( groups.contains( "lp" ) );
     }
+}
+
+void
+UserTests::testHostActions_data()
+{
+    QTest::addColumn< bool >( "set" );
+    QTest::addColumn< QString >( "string" );
+    QTest::addColumn< int >( "result" );
+
+    QTest::newRow( "unset  " ) << false << QString() << int( HostNameAction::EtcHostname );
+    QTest::newRow( "empty  " ) << true << QString() << int( HostNameAction::EtcHostname );
+    QTest::newRow( "bad    " ) << true << QString( "derp" ) << int( HostNameAction::EtcHostname );
+    QTest::newRow( "none   " ) << true << QString( "none" ) << int( HostNameAction::None );
+    QTest::newRow( "systemd" ) << true << QString( "Hostnamed" ) << int( HostNameAction::SystemdHostname );
+}
+
+void
+UserTests::testHostActions()
+{
+    QFETCH( bool, set );
+    QFETCH( QString, string );
+    QFETCH( int, result );
+
+    QVariantMap m;
+    if ( set )
+    {
+        m.insert( "setHostname", string );
+    }
+    QCOMPARE( getHostNameActions( m ), HostNameActions( result ) | HostNameAction::WriteEtcHosts );  // write bits default to true
+    m.insert( "writeHostsFile", false );
+    QCOMPARE( getHostNameActions( m ), HostNameActions( result ) );
+    m.insert( "writeHostsFile", true );
+    QCOMPARE( getHostNameActions( m ), HostNameActions( result ) | HostNameAction::WriteEtcHosts );
 }
 
 
