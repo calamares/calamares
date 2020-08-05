@@ -20,8 +20,6 @@
 #ifndef USERSPAGEPLUGIN_H
 #define USERSPAGEPLUGIN_H
 
-#include "SetHostNameJob.h"
-
 #include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
@@ -60,8 +58,6 @@ public:
 private:
     UsersPage* m_widget;
     QList< Calamares::job_ptr > m_jobs;
-
-    SetHostNameJob::Actions m_actions;
 
     Config* m_config;
 };

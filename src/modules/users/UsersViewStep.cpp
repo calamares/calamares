@@ -34,28 +34,9 @@
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin< UsersViewStep >(); )
 
-static const NamedEnumTable< SetHostNameJob::Action >&
-hostnameActions()
-{
-    using Action = SetHostNameJob::Action;
-
-    // *INDENT-OFF*
-    // clang-format off
-    static const NamedEnumTable< Action > names {
-        { QStringLiteral( "none" ), Action::None },
-        { QStringLiteral( "etcfile" ), Action::EtcHostname },
-        { QStringLiteral( "hostnamed" ), Action::SystemdHostname }
-    };
-    // clang-format on
-    // *INDENT-ON*
-
-    return names;
-}
-
 UsersViewStep::UsersViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( nullptr )
-    , m_actions( SetHostNameJob::Action::None )
     , m_config( new Config( this ) )
 {
     emit nextStatusChanged( true );
@@ -158,7 +139,8 @@ UsersViewStep::onLeave()
     j = new SetPasswordJob( "root", m_widget->getRootPassword() );
     m_jobs.append( Calamares::job_ptr( j ) );
 
-    j = new SetHostNameJob( m_config->hostName(), m_actions );
+    // TODO: Config object should create jobs
+    j = new SetHostNameJob( m_config->hostName(), m_config->hostNameActions() );
     m_jobs.append( Calamares::job_ptr( j ) );
 
     m_widget->fillGlobalStorage();
@@ -184,21 +166,4 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             m_widget->addPasswordCheck( i.key(), i.value() );
         }
     }
-
-    using Action = SetHostNameJob::Action;
-
-    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "setHostname" );
-    if ( hostnameActionString.isEmpty() )
-    {
-        hostnameActionString = QStringLiteral( "EtcFile" );
-    }
-    bool ok = false;
-    auto hostnameAction = hostnameActions().find( hostnameActionString, ok );
-    if ( !ok )
-    {
-        hostnameAction = Action::EtcHostname;
-    }
-
-    Action hostsfileAction = getBool( configurationMap, "writeHostsFile", true ) ? Action::WriteEtcHosts : Action::None;
-    m_actions = hostsfileAction | hostnameAction;
 }

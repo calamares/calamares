@@ -21,8 +21,22 @@
 #ifndef USERS_CONFIG_H
 #define USERS_CONFIG_H
 
+#include "utils/NamedEnum.h"
+
 #include <QObject>
 #include <QVariantMap>
+
+enum HostNameAction
+{
+    None = 0x0,
+    EtcHostname = 0x1,  // Write to /etc/hostname directly
+    SystemdHostname = 0x2,  // Set via hostnamed(1)
+    WriteEtcHosts = 0x4  // Write /etc/hosts (127.0.1.1 is this host)
+};
+Q_DECLARE_FLAGS( HostNameActions, HostNameAction )
+Q_DECLARE_OPERATORS_FOR_FLAGS( HostNameActions )
+
+const NamedEnumTable< HostNameAction >& hostNameActionNames();
 
 class Config : public QObject
 {
@@ -41,6 +55,7 @@ class Config : public QObject
 
     Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
     Q_PROPERTY( QString hostNameStatus READ hostNameStatus NOTIFY hostNameStatusChanged )
+    Q_PROPERTY( HostNameActions hostNameActions READ hostNameActions CONSTANT )
 
     Q_PROPERTY( bool writeRootPassword READ writeRootPassword CONSTANT )
     Q_PROPERTY( bool reuseUserPasswordForRoot READ reuseUserPasswordForRoot WRITE setReuseUserPasswordForRoot NOTIFY
@@ -79,6 +94,8 @@ public:
     QString hostName() const { return m_hostName; }
     /// Status message about hostname -- empty for "ok"
     QString hostNameStatus() const;
+    /// How to write the hostname
+    HostNameActions hostNameActions() const { return m_hostNameActions; }
 
     /// Should the user be automatically logged-in?
     bool doAutoLogin() const { return m_doAutoLogin; }
@@ -159,6 +176,8 @@ private:
 
     bool m_customLoginName = false;
     bool m_customHostName = false;
+
+    HostNameActions m_hostNameActions;
 };
 
 #endif

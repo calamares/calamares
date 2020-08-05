@@ -36,6 +36,22 @@ static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
 static constexpr const int HOSTNAME_MIN_LENGTH = 2;
 static constexpr const int HOSTNAME_MAX_LENGTH = 63;
 
+const NamedEnumTable< HostNameAction >&
+hostNameActionNames()
+{
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< HostNameAction > names {
+        { QStringLiteral( "none" ), HostNameAction::None },
+        { QStringLiteral( "etcfile" ), HostNameAction::EtcHostname },
+        { QStringLiteral( "hostnamed" ), HostNameAction::SystemdHostname }
+    };
+    // clang-format on
+    // *INDENT-ON*
+
+    return names;
+}
+
 Config::Config( QObject* parent )
     : QObject( parent )
 {
@@ -378,6 +394,25 @@ setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroup
     }
 }
 
+STATICTEST HostNameActions
+getHostNameActions( const QVariantMap& configurationMap )
+{
+    HostNameAction setHostName = HostNameAction::EtcHostname;
+    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "setHostname" );
+    if ( !hostnameActionString.isEmpty() )
+    {
+        bool ok = false;
+        setHostName = hostNameActionNames().find( hostnameActionString, ok );
+        if ( !ok )
+        {
+            setHostName = HostNameAction::EtcHostname;  // Rather than none
+        }
+    }
+
+    HostNameAction writeHosts = CalamaresUtils::getBool( configurationMap, "writeHostsFile", true ) ? HostNameAction::WriteEtcHosts : HostNameAction::None;
+    return setHostName | writeHosts;
+}
+
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
@@ -392,6 +427,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     setAutologinGroup( CalamaresUtils::getString( configurationMap, "autologinGroup" ) );
     setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
+
+    m_hostNameActions = getHostNameActions( configurationMap );
 
     setConfigurationDefaultGroups( configurationMap, m_defaultGroups );
     m_doAutoLogin = CalamaresUtils::getBool( configurationMap, "doAutologin", false );
