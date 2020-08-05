@@ -255,13 +255,14 @@ LocaleTests::testRegions()
     QStringList names;
     for ( int i = 0; i < regions.rowCount( QModelIndex() ); ++i )
     {
-        QVariant name = regions.data( regions.index( i ), Qt::UserRole );
+        QVariant name = regions.data( regions.index( i ), Qt::DisplayRole );
         QVERIFY( name.isValid() );
         QVERIFY( !name.toString().isEmpty() );
         names.append( name.toString() );
     }
 
     QVERIFY( names.contains( "America" ) );
+    QVERIFY( !names.contains( "UTC" ) );
 }
 
 

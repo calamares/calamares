@@ -326,8 +326,28 @@ RegionsModel::rowCount( const QModelIndex& parent ) const
 QVariant
 RegionsModel::data( const QModelIndex& index, int role ) const
 {
+    if ( !index.isValid() || index.row() < 0 || index.row() >= m_private->m_regions.count() )
+    {
+        return QVariant();
+    }
+
+    if ( role == Qt::DisplayRole )
+    {
+        return m_private->m_regions[ index.row() ].tr();
+    }
+    if ( role == KeyRole )
+    {
+        return m_private->m_regions[ index.row() ].key();
+    }
     return QVariant();
 }
+
+QHash< int, QByteArray >
+RegionsModel::roleNames() const
+{
+    return { { Qt::DisplayRole, "name" }, { KeyRole, "key" } };
+}
+
 
 ZonesModel::ZonesModel( QObject* parent )
     : QAbstractListModel( parent )
