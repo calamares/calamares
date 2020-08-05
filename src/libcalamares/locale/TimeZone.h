@@ -26,6 +26,7 @@
 
 #include <QAbstractListModel>
 #include <QObject>
+#include <QSortFilterProxyModel>
 #include <QVariant>
 
 namespace CalamaresUtils
@@ -83,6 +84,30 @@ public:
 
 private:
     Private* m_private;
+};
+
+class DLLEXPORT RegionalZonesModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+    Q_PROPERTY( QString region READ region WRITE setRegion NOTIFY regionChanged )
+
+public:
+    RegionalZonesModel( ZonesModel* source, QObject* parent = nullptr );
+    ~RegionalZonesModel() override;
+
+    bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
+
+    QString region() const { return m_region; }
+
+public Q_SLOTS:
+    void setRegion( const QString& r );
+
+signals:
+    void regionChanged( const QString& );
+
+private:
+    Private* m_private;
+    QString m_region;
 };
 
 

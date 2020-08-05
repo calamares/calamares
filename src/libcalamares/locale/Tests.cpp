@@ -267,6 +267,19 @@ LocaleTests::testRegions()
 }
 
 
+static void
+displayedNames( QAbstractItemModel& model, QStringList& names )
+{
+    names.clear();
+    for ( int i = 0; i < model.rowCount( QModelIndex() ); ++i )
+    {
+        QVariant name = model.data( model.index( i, 0 ), Qt::DisplayRole );
+        QVERIFY( name.isValid() );
+        QVERIFY( !name.toString().isEmpty() );
+        names.append( name.toString() );
+    }
+}
+
 void
 LocaleTests::testSimpleZones()
 {
@@ -276,14 +289,7 @@ LocaleTests::testSimpleZones()
     QVERIFY( zones.rowCount( QModelIndex() ) > 24 );
 
     QStringList names;
-    for ( int i = 0; i < zones.rowCount( QModelIndex() ); ++i )
-    {
-        QVariant name = zones.data( zones.index( i ), ZonesModel::NameRole );
-        QVERIFY( name.isValid() );
-        QVERIFY( !name.toString().isEmpty() );
-        names.append( name.toString() );
-    }
-
+    displayedNames( zones, names );
     QVERIFY( names.contains( "Amsterdam" ) );
     if ( !names.contains( "New York" ) )
     {
@@ -304,6 +310,39 @@ void
 LocaleTests::testComplexZones()
 {
     using namespace CalamaresUtils::Locale;
+    ZonesModel zones;
+    RegionalZonesModel europe( &zones );
+
+    QStringList names;
+    displayedNames( zones, names );
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( names.contains( "Prague" ) );
+    QVERIFY( names.contains( "Abidjan" ) );
+
+    // No region set
+    displayedNames( europe, names );
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( names.contains( "Prague" ) );
+    QVERIFY( names.contains( "Abidjan" ) );
+
+    // Now filter
+    europe.setRegion( "Europe" );
+    displayedNames( europe, names );
+    QVERIFY( !names.contains( "New York" ) );
+    QVERIFY( names.contains( "Prague" ) );
+    QVERIFY( !names.contains( "Abidjan" ) );
+
+    europe.setRegion( "America" );
+    displayedNames( europe, names );
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( !names.contains( "Prague" ) );
+    QVERIFY( !names.contains( "Abidjan" ) );
+
+    europe.setRegion( "Africa" );
+    displayedNames( europe, names );
+    QVERIFY( !names.contains( "New York" ) );
+    QVERIFY( !names.contains( "Prague" ) );
+    QVERIFY( names.contains( "Abidjan" ) );
 }
 
 QTEST_GUILESS_MAIN( LocaleTests )

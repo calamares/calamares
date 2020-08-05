@@ -170,7 +170,6 @@ public:
                   double longitude );
     QString tr() const override;
 
-private:
     QString m_region;
     QString m_country;
     double m_latitude;
@@ -318,7 +317,7 @@ RegionsModel::RegionsModel( QObject* parent )
 RegionsModel::~RegionsModel() {}
 
 int
-RegionsModel::rowCount( const QModelIndex& parent ) const
+RegionsModel::rowCount( const QModelIndex& ) const
 {
     return m_private->m_regions.count();
 }
@@ -359,7 +358,7 @@ ZonesModel::ZonesModel( QObject* parent )
 ZonesModel::~ZonesModel() {}
 
 int
-ZonesModel::rowCount( const QModelIndex& parent ) const
+ZonesModel::rowCount( const QModelIndex& ) const
 {
     return m_private->m_zones.count();
 }
@@ -388,6 +387,43 @@ QHash< int, QByteArray >
 ZonesModel::roleNames() const
 {
     return { { NameRole, "name" }, { KeyRole, "key" } };
+}
+
+RegionalZonesModel::RegionalZonesModel( CalamaresUtils::Locale::ZonesModel* source, QObject* parent )
+    : QSortFilterProxyModel( parent )
+    , m_private( privateInstance() )
+{
+    setSourceModel( source );
+}
+
+RegionalZonesModel::~RegionalZonesModel() {}
+
+void
+RegionalZonesModel::setRegion( const QString& r )
+{
+    if ( r != m_region )
+    {
+        m_region = r;
+        invalidateFilter();
+        emit regionChanged( r );
+    }
+}
+
+bool
+RegionalZonesModel::filterAcceptsRow( int sourceRow, const QModelIndex& ) const
+{
+    if ( m_region.isEmpty() )
+    {
+        return true;
+    }
+
+    if ( sourceRow < 0 || sourceRow >= m_private->m_zones.count() )
+    {
+        return false;
+    }
+
+    const auto& zone = m_private->m_zones[ sourceRow ];
+    return ( zone.m_region == m_region );
 }
 
 
