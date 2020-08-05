@@ -105,8 +105,11 @@ RegionData::tr() const
     return QObject::tr( m_human, "tz_regions" );
 }
 
+using RegionVector = QVector< RegionData* >;
+using ZoneVector = QVector< TimeZoneData* >;
+
 static void
-loadTZData( QVector< RegionData >& regions, QVector< TimeZoneData* >& zones )
+loadTZData( RegionVector& regions, ZoneVector& zones )
 {
     QFile file( TZ_DATA_FILE );
     if ( file.open( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -166,10 +169,18 @@ loadTZData( QVector< RegionData >& regions, QVector< TimeZoneData* >& zones )
             }
 
             // Now we have region, zone, country, lat and longitude
-            RegionData r( region );
-            if ( regions.indexOf( r ) < 0 )
+            const RegionData* existingRegion = nullptr;
+            for ( const auto* p : regions )
             {
-                regions.append( std::move( r ) );
+                if ( p->key() == region )
+                {
+                    existingRegion = p;
+                    break;
+                }
+            }
+            if ( !existingRegion )
+            {
+                regions.append( new RegionData( region ) );
             }
             zones.append( new TimeZoneData( region, zone, countryCode, latitude, longitude ) );
         }
@@ -179,8 +190,8 @@ loadTZData( QVector< RegionData >& regions, QVector< TimeZoneData* >& zones )
 
 struct Private
 {
-    QVector< RegionData > m_regions;
-    QVector< TimeZoneData* > m_zones;
+    RegionVector m_regions;
+    ZoneVector m_zones;
 
     Private()
     {
@@ -188,6 +199,17 @@ struct Private
         m_zones.reserve( 452 );  // wc -l /usr/share/zoneinfo/zone.tab
 
         loadTZData( m_regions, m_zones );
+
+        std::sort( m_regions.begin(), m_regions.end(), []( const RegionData* lhs, const RegionData* rhs ) {
+            return lhs->key() < rhs->key();
+        } );
+        std::sort( m_zones.begin(), m_zones.end(), []( const TimeZoneData* lhs, const TimeZoneData* rhs ) {
+            if ( lhs->region() == rhs->region() )
+            {
+                return lhs->zone() < rhs->zone();
+            }
+            return lhs->region() < rhs->region();
+        } );
     }
 };
 
@@ -223,11 +245,11 @@ RegionsModel::data( const QModelIndex& index, int role ) const
     const auto& region = m_private->m_regions[ index.row() ];
     if ( role == NameRole )
     {
-        return region.tr();
+        return region->tr();
     }
     if ( role == KeyRole )
     {
-        return region.key();
+        return region->key();
     }
     return QVariant();
 }

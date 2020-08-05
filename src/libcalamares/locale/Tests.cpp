@@ -384,6 +384,9 @@ LocaleTests::testTZIterator()
     QVERIFY( seenRome );
     QVERIFY( !seenGnome );
     QCOMPARE( count, zones.rowCount( QModelIndex() ) );
+
+    QCOMPARE( zones.data( zones.index( 0 ), ZonesModel::RegionRole ).toString(), QStringLiteral( "Africa" ) );
+    QCOMPARE( ( *zones.begin() )->zone(), QStringLiteral( "Abidjan" ) );
 }
 
 
