@@ -26,6 +26,7 @@
 #include "utils/String.h"
 #include "utils/Variant.h"
 
+#include <QCoreApplication>
 #include <QFile>
 #include <QRegExp>
 
@@ -379,6 +380,27 @@ Config::setRequireStrongPasswords( bool strong )
     }
 }
 
+bool
+Config::isPasswordAcceptable(const QString& password, QString& message)
+{
+    bool failureIsFatal = requireStrongPasswords();
+
+    for ( auto pc : m_passwordChecks )
+    {
+        QString s = pc.filter( password );
+
+        if ( !s.isEmpty() )
+        {
+            message = s;
+            return !failureIsFatal;
+        }
+    }
+
+    return true;
+}
+
+
+
 
 STATICTEST void
 setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups )
@@ -409,10 +431,59 @@ getHostNameActions( const QVariantMap& configurationMap )
         }
     }
 
-    HostNameAction writeHosts = CalamaresUtils::getBool( configurationMap, "writeHostsFile", true ) ? HostNameAction::WriteEtcHosts : HostNameAction::None;
+    HostNameAction writeHosts = CalamaresUtils::getBool( configurationMap, "writeHostsFile", true )
+        ? HostNameAction::WriteEtcHosts
+        : HostNameAction::None;
     return setHostName | writeHosts;
 }
 
+/** @brief Process entries in the passwordRequirements config entry
+ *
+ * Called once for each item in the config entry, which should
+ * be a key-value pair. What makes sense as a value depends on
+ * the key. Supported keys are documented in users.conf.
+ *
+ * @return if the check was added, returns @c true
+ */
+STATICTEST bool
+addPasswordCheck( const QString& key, const QVariant& value, PasswordCheckList& passwordChecks )
+{
+    if ( key == "minLength" )
+    {
+        add_check_minLength( passwordChecks, value );
+    }
+    else if ( key == "maxLength" )
+    {
+        add_check_maxLength( passwordChecks, value );
+    }
+    else if ( key == "nonempty" )
+    {
+        if ( value.toBool() )
+        {
+            passwordChecks.push_back(
+                PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
+                               []( const QString& s ) { return !s.isEmpty(); },
+                               PasswordCheck::Weight( 1 ) ) );
+        }
+        else
+        {
+            cDebug() << "nonempty check is mentioned but set to false";
+            return false;
+        }
+    }
+#ifdef CHECK_PWQUALITY
+    else if ( key == "libpwquality" )
+    {
+        add_check_libpwquality( passwordChecks, value );
+    }
+#endif  // CHECK_PWQUALITY
+    else
+    {
+        cWarning() << "Unknown password-check key" << key;
+        return false;
+    }
+    return true;
+}
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
@@ -441,4 +512,12 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_permitWeakPasswords = CalamaresUtils::getBool( configurationMap, "allowWeakPasswords", false );
     m_requireStrongPasswords
         = !m_permitWeakPasswords || !CalamaresUtils::getBool( configurationMap, "allowWeakPasswordsDefault", false );
+
+    // If the value doesn't exist, or isn't a map, this gives an empty map -- no problem
+    auto pr_checks( configurationMap.value( "passwordRequirements" ).toMap() );
+    for ( decltype( pr_checks )::const_iterator i = pr_checks.constBegin(); i != pr_checks.constEnd(); ++i )
+    {
+        addPasswordCheck( i.key(), i.value(), m_passwordChecks );
+    }
+    std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
 }

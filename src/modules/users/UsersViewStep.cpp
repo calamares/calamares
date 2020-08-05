@@ -151,19 +151,4 @@ void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );
-
-    // Create the widget, after all .. as long as writing configuration to the UI is needed
-    (void)this->widget();
-    using CalamaresUtils::getBool;
-
-    if ( configurationMap.contains( "passwordRequirements" )
-         && configurationMap.value( "passwordRequirements" ).type() == QVariant::Map )
-    {
-        auto pr_checks( configurationMap.value( "passwordRequirements" ).toMap() );
-
-        for ( decltype( pr_checks )::const_iterator i = pr_checks.constBegin(); i != pr_checks.constEnd(); ++i )
-        {
-            m_widget->addPasswordCheck( i.key(), i.value() );
-        }
-    }
 }

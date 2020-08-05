@@ -283,38 +283,21 @@ UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLab
     }
     else
     {
-        bool failureIsFatal = ui->checkBoxValidatePassword->isChecked();
-        bool failureFound = false;
-
-        if ( m_passwordChecksChanged )
+        QString s;
+        bool ok = m_config->isPasswordAcceptable( pw1, s );
+        if ( !ok )
         {
-            std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
-            m_passwordChecksChanged = false;
+            labelError( badge, message, s, Badness::Fatal );
         }
-
-        for ( auto pc : m_passwordChecks )
+        else if ( !s.isEmpty() )
         {
-            QString s = pc.filter( pw1 );
-
-            if ( !s.isEmpty() )
-            {
-                labelError( badge, message, s, failureIsFatal ? Badness::Fatal : Badness::Warning );
-                failureFound = true;
-                if ( failureIsFatal )
-                {
-                    return false;
-                }
-            }
+            labelError( badge, message, s, Badness::Warning );
         }
-
-        if ( !failureFound )
+        else
         {
             labelOk( badge, message );
         }
-
-        // Here, if failureFound is true then we've found **warnings**,
-        // which is ok to continue but the user should know.
-        return true;
+        return ok;
     }
 }
 
@@ -359,39 +342,4 @@ UsersPage::onReuseUserPasswordChanged( const int checked )
     ui->textBoxRootPassword->setVisible( visible );
     ui->textBoxVerifiedRootPassword->setVisible( visible );
     checkReady( isReady() );
-}
-
-void
-UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
-{
-    m_passwordChecksChanged = true;
-
-    if ( key == "minLength" )
-    {
-        add_check_minLength( m_passwordChecks, value );
-    }
-    else if ( key == "maxLength" )
-    {
-        add_check_maxLength( m_passwordChecks, value );
-    }
-    else if ( key == "nonempty" )
-    {
-        if ( value.toBool() )
-        {
-            m_passwordChecks.push_back(
-                PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
-                               []( const QString& s ) { return !s.isEmpty(); },
-                               PasswordCheck::Weight( 1 ) ) );
-        }
-    }
-#ifdef CHECK_PWQUALITY
-    else if ( key == "libpwquality" )
-    {
-        add_check_libpwquality( m_passwordChecks, value );
-    }
-#endif  // CHECK_PWQUALITY
-    else
-    {
-        cWarning() << "Unknown password-check key" << key;
-    }
 }

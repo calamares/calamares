@@ -21,6 +21,8 @@
 #ifndef USERS_CONFIG_H
 #define USERS_CONFIG_H
 
+#include "CheckPWQuality.h"
+
 #include "utils/NamedEnum.h"
 
 #include <QObject>
@@ -110,6 +112,17 @@ public:
 
     const QStringList& defaultGroups() const { return m_defaultGroups; }
 
+    /** @brief Checks if the password is acceptable.
+     *
+     * If all is well, sets @p message to empty and returns @c true.
+     * If there are warnings, but acceptable, sets @p message to something
+     *   non-empty and returns @c true. This happens if requireStrongPasswords
+     *   is turned off (by config or user).
+     * If the password is not acceptable, sets @p message to something
+     *   non-empty and returns @c false.
+     */
+    bool isPasswordAcceptable( const QString& password, QString& message );
+
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();
 
@@ -178,6 +191,7 @@ private:
     bool m_customHostName = false;
 
     HostNameActions m_hostNameActions;
+    PasswordCheckList m_passwordChecks;
 };
 
 #endif
