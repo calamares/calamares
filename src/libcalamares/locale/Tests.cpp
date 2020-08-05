@@ -248,14 +248,15 @@ LocaleTests::testTranslatableConfig2()
 void
 LocaleTests::testRegions()
 {
-    CalamaresUtils::Locale::RegionsModel regions;
+    using namespace CalamaresUtils::Locale;
+    RegionsModel regions;
 
     QVERIFY( regions.rowCount( QModelIndex() ) > 3 );  // Africa, America, Asia
 
     QStringList names;
     for ( int i = 0; i < regions.rowCount( QModelIndex() ); ++i )
     {
-        QVariant name = regions.data( regions.index( i ), Qt::DisplayRole );
+        QVariant name = regions.data( regions.index( i ), RegionsModel::NameRole );
         QVERIFY( name.isValid() );
         QVERIFY( !name.toString().isEmpty() );
         names.append( name.toString() );
@@ -269,9 +270,34 @@ LocaleTests::testRegions()
 void
 LocaleTests::testSimpleZones()
 {
-    CalamaresUtils::Locale::ZonesModel zones;
+    using namespace CalamaresUtils::Locale;
+    ZonesModel zones;
 
     QVERIFY( zones.rowCount( QModelIndex() ) > 24 );
+
+    QStringList names;
+    for ( int i = 0; i < zones.rowCount( QModelIndex() ); ++i )
+    {
+        QVariant name = zones.data( zones.index( i ), ZonesModel::NameRole );
+        QVERIFY( name.isValid() );
+        QVERIFY( !name.toString().isEmpty() );
+        names.append( name.toString() );
+    }
+
+    QVERIFY( names.contains( "Amsterdam" ) );
+    if ( !names.contains( "New York" ) )
+    {
+        for ( const auto& s : names )
+        {
+            if ( s.startsWith( 'N' ) )
+            {
+                cDebug() << s;
+            }
+        }
+    }
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( !names.contains( "America" ) );
+    QVERIFY( !names.contains( "New_York" ) );
 }
 
 void

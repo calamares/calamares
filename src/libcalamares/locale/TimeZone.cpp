@@ -148,7 +148,7 @@ CStringPair::CStringPair( const char* s1 )
 }
 
 CStringPair::CStringPair( const QString& s )
-    : m_human( strdup( s.toUtf8().constData() ) )
+    : m_human( munge( s.toUtf8().constData() ) )
     , m_key( s )
 {
 }
@@ -331,13 +331,14 @@ RegionsModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    if ( role == Qt::DisplayRole )
+    const auto& region = m_private->m_regions[ index.row() ];
+    if ( role == NameRole )
     {
-        return m_private->m_regions[ index.row() ].tr();
+        return region.tr();
     }
     if ( role == KeyRole )
     {
-        return m_private->m_regions[ index.row() ].key();
+        return region.key();
     }
     return QVariant();
 }
@@ -345,7 +346,7 @@ RegionsModel::data( const QModelIndex& index, int role ) const
 QHash< int, QByteArray >
 RegionsModel::roleNames() const
 {
-    return { { Qt::DisplayRole, "name" }, { KeyRole, "key" } };
+    return { { NameRole, "name" }, { KeyRole, "key" } };
 }
 
 
@@ -366,7 +367,27 @@ ZonesModel::rowCount( const QModelIndex& parent ) const
 QVariant
 ZonesModel::data( const QModelIndex& index, int role ) const
 {
+    if ( !index.isValid() || index.row() < 0 || index.row() >= m_private->m_zones.count() )
+    {
+        return QVariant();
+    }
+
+    const auto& zone = m_private->m_zones[ index.row() ];
+    if ( role == NameRole )
+    {
+        return zone.tr();
+    }
+    if ( role == KeyRole )
+    {
+        return zone.key();
+    }
     return QVariant();
+}
+
+QHash< int, QByteArray >
+ZonesModel::roleNames() const
+{
+    return { { NameRole, "name" }, { KeyRole, "key" } };
 }
 
 
