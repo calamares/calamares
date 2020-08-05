@@ -91,6 +91,17 @@ hostCPUmatch( const QString& s )
     return QString();
 }
 
+static QString
+hostCPUmatchARM( const QString& s )
+{
+    // Both Rock64 and Raspberry pi mention 0x41
+    if ( s.contains( ": 0x41" ) )
+    {
+        return QStringLiteral( "ARM" );
+    }
+    return QString();
+}
+
 #if defined( Q_OS_FREEBSD )
 QString
 hostCPU_FreeBSD()
@@ -126,6 +137,10 @@ hostCPU_Linux()
             if ( line.startsWith( "vendor_id" ) )
             {
                 return hostCPUmatch( line );
+            }
+            if ( line.startsWith( "CPU implementer" ) )
+            {
+                return hostCPUmatchARM( line );
             }
         }
     }
