@@ -22,7 +22,6 @@
 
 #include <QCoreApplication>
 #include <QString>
-#include <QWidget>
 
 #ifdef HAVE_LIBPWQUALITY
 #include <pwquality.h>
