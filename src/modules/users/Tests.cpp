@@ -26,6 +26,7 @@
 // Implementation details
 extern void setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups );
 extern HostNameActions getHostNameActions( const QVariantMap& configurationMap );
+extern bool addPasswordCheck( const QString& key, const QVariant& value, PasswordCheckList& passwordChecks );
 
 /** @brief Test Config object methods and internals
  *
@@ -43,6 +44,7 @@ private Q_SLOTS:
     void testDefaultGroups();
     void testHostActions_data();
     void testHostActions();
+    void testPasswordChecks();
 };
 
 UserTests::UserTests() {}
@@ -139,6 +141,19 @@ UserTests::testHostActions()
     QCOMPARE( getHostNameActions( m ), HostNameActions( result ) );
     m.insert( "writeHostsFile", true );
     QCOMPARE( getHostNameActions( m ), HostNameActions( result ) | HostNameAction::WriteEtcHosts );
+}
+
+void
+UserTests::testPasswordChecks()
+{
+    {
+        PasswordCheckList l;
+        QCOMPARE( l.length(), 0 );
+        QVERIFY( !addPasswordCheck( "nonempty", QVariant(false), l ) );  // a silly setting
+        QCOMPARE( l.length(), 0 );
+        QVERIFY( addPasswordCheck( "nonempty", QVariant(true), l ) );
+        QCOMPARE( l.length(), 1 );
+    }
 }
 
 
