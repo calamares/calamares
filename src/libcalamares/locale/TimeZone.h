@@ -55,6 +55,22 @@ private:
     Private* m_private;
 };
 
+class DLLEXPORT ZonesModel : public QAbstractListModel
+{
+    Q_OBJECT
+
+public:
+    ZonesModel( QObject* parent = nullptr );
+    virtual ~ZonesModel() override;
+
+    int rowCount( const QModelIndex& parent ) const override;
+    QVariant data( const QModelIndex& index, int role ) const override;
+
+private:
+    Private* m_private;
+};
+
+
 }  // namespace Locale
 }  // namespace CalamaresUtils
 

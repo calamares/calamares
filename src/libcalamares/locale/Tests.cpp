@@ -257,7 +257,9 @@ LocaleTests::testRegions()
 void
 LocaleTests::testSimpleZones()
 {
-    using namespace CalamaresUtils::Locale;
+    CalamaresUtils::Locale::ZonesModel zones;
+
+    QVERIFY( zones.rowCount( QModelIndex() ) > 24 );
 }
 
 void

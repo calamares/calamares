@@ -23,6 +23,10 @@
 #include "TimeZone.h"
 
 #include "utils/Logger.h"
+#include "utils/String.h"
+
+#include <QFile>
+#include <QString>
 
 static const char TZ_DATA_FILE[] = "/usr/share/zoneinfo/zone.tab";
 
@@ -59,6 +63,42 @@ getRightGeoLocation( QString str )
     return sign * num;
 }
 
+/** @brief A pair of strings, one human-readable, one a key
+ *
+ * Given an identifier-like string (e.g. "New_York"), makes
+ * a human-readable version of that and keeps a copy of the
+ * identifier itself.
+ *
+ * This explicitly uses const char* instead of just being
+ * QPair<QString, QString> because the human-readable part
+ * may need to be translated through tr(), and that takes a char*.
+ * C-style strings.
+ */
+class CStringPair : public QObject
+{
+    Q_OBJECT
+public:
+    /// @brief An empty pair
+    CStringPair() {}
+    /// @brief Given an identifier, create the pair
+    explicit CStringPair( const char* s1 );
+    explicit CStringPair( const QString& s );
+    CStringPair( CStringPair&& t );
+    CStringPair( const CStringPair& );
+    virtual ~CStringPair();
+
+    /// @brief Give the localized human-readable form
+    virtual QString tr() const = 0;
+    QString key() const { return m_key; }
+
+    bool operator==( const CStringPair& other ) const { return m_key == other.m_key; }
+    bool operator<( const CStringPair& other ) const { return m_key < other.m_key; }
+
+protected:
+    char* m_human = nullptr;
+    QString m_key;
+};
+
 /** @brief Massage an identifier into a human-readable form
  *
  * Makes a copy of @p s, caller must free() it.
@@ -86,6 +126,162 @@ munge( const char* s )
     return t;
 }
 
+CStringPair::CStringPair( CStringPair&& t )
+    : m_human( nullptr )
+    , m_key()
+{
+    // My pointers are initialized to nullptr
+    std::swap( m_human, t.m_human );
+    std::swap( m_key, t.m_key );
+}
+
+CStringPair::CStringPair( const CStringPair& t )
+    : m_human( t.m_human ? strdup( t.m_human ) : nullptr )
+    , m_key( t.m_key )
+{
+}
+
+CStringPair::CStringPair( const char* s1 )
+    : m_human( s1 ? munge( s1 ) : nullptr )
+    , m_key( s1 ? QString( s1 ) : QString() )
+{
+}
+
+CStringPair::CStringPair( const QString& s )
+    : m_human( strdup( s.toUtf8().constData() ) )
+    , m_key( s )
+{
+}
+
+
+CStringPair::~CStringPair()
+{
+    free( m_human );
+}
+
+
+class TimeZoneData : public CStringPair
+{
+public:
+    TimeZoneData( const QString& region,
+                  const QString& zone,
+                  const QString& country,
+                  double latitude,
+                  double longitude );
+    QString tr() const override;
+
+private:
+    QString m_region;
+    QString m_country;
+    double m_latitude;
+    double m_longitude;
+};
+
+TimeZoneData::TimeZoneData( const QString& region,
+                            const QString& zone,
+                            const QString& country,
+                            double latitude,
+                            double longitude )
+    : CStringPair( zone )
+    , m_region( region )
+    , m_country( country )
+    , m_latitude( latitude )
+    , m_longitude( longitude )
+{
+}
+
+QString
+TimeZoneData::tr() const
+{
+    // NOTE: context name must match what's used in zone-extractor.py
+    return QObject::tr( m_human, "tz_names" );
+}
+
+
+class RegionData : public CStringPair
+{
+public:
+    using CStringPair::CStringPair;
+    QString tr() const override;
+};
+
+QString
+RegionData::tr() const
+{
+    // NOTE: context name must match what's used in zone-extractor.py
+    return QObject::tr( m_human, "tz_regions" );
+}
+
+static void
+loadTZData( QVector< RegionData >& regions, QVector< TimeZoneData >& zones )
+{
+    QFile file( TZ_DATA_FILE );
+    if ( file.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
+        QTextStream in( &file );
+        while ( !in.atEnd() )
+        {
+            QString line = in.readLine().trimmed().split( '#', SplitKeepEmptyParts ).first().trimmed();
+            if ( line.isEmpty() )
+            {
+                continue;
+            }
+
+            QStringList list = line.split( QRegExp( "[\t ]" ), SplitSkipEmptyParts );
+            if ( list.size() < 3 )
+            {
+                continue;
+            }
+
+            QStringList timezoneParts = list.at( 2 ).split( '/', SplitSkipEmptyParts );
+            if ( timezoneParts.size() < 2 )
+            {
+                continue;
+            }
+
+            QString region = timezoneParts.first().trimmed();
+            if ( region.isEmpty() )
+            {
+                continue;
+            }
+
+            QString countryCode = list.at( 0 ).trimmed();
+            if ( countryCode.size() != 2 )
+            {
+                continue;
+            }
+
+            timezoneParts.removeFirst();
+            QString zone = timezoneParts.join( '/' );
+            if ( zone.length() < 2 )
+            {
+                continue;
+            }
+
+            QString position = list.at( 1 );
+            int cooSplitPos = position.indexOf( QRegExp( "[-+]" ), 1 );
+            double latitude;
+            double longitude;
+            if ( cooSplitPos > 0 )
+            {
+                latitude = getRightGeoLocation( position.mid( 0, cooSplitPos ) );
+                longitude = getRightGeoLocation( position.mid( cooSplitPos ) );
+            }
+            else
+            {
+                continue;
+            }
+
+            // Now we have region, zone, country, lat and longitude
+            RegionData r( region );
+            if ( regions.indexOf( r ) < 0 )
+            {
+                regions.append( std::move( r ) );
+            }
+            zones.append( TimeZoneData( region, zone, countryCode, latitude, longitude ) );
+        }
+    }
+}
 
 namespace CalamaresUtils
 {
@@ -94,6 +290,16 @@ namespace Locale
 
 struct Private
 {
+    QVector< RegionData > m_regions;
+    QVector< TimeZoneData > m_zones;
+
+    Private()
+    {
+        m_regions.reserve( 12 );  // reasonable guess
+        m_zones.reserve( 452 );  // wc -l /usr/share/zoneinfo/zone.tab
+
+        loadTZData( m_regions, m_zones );
+    }
 };
 
 static Private*
@@ -114,7 +320,7 @@ RegionsModel::~RegionsModel() {}
 int
 RegionsModel::rowCount( const QModelIndex& parent ) const
 {
-    return 0;
+    return m_private->m_regions.count();
 }
 
 QVariant
@@ -123,6 +329,30 @@ RegionsModel::data( const QModelIndex& index, int role ) const
     return QVariant();
 }
 
+ZonesModel::ZonesModel( QObject* parent )
+    : QAbstractListModel( parent )
+    , m_private( privateInstance() )
+{
+}
+
+ZonesModel::~ZonesModel() {}
+
+int
+ZonesModel::rowCount( const QModelIndex& parent ) const
+{
+    return m_private->m_zones.count();
+}
+
+QVariant
+ZonesModel::data( const QModelIndex& index, int role ) const
+{
+    return QVariant();
+}
+
 
 }  // namespace Locale
 }  // namespace CalamaresUtils
+
+#include "utils/moc-warnings.h"
+
+#include "TimeZone.moc"
