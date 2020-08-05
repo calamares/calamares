@@ -50,7 +50,7 @@ enum class Badness
 
 /** Add an error message and pixmap to a label. */
 static inline void
-labelError( QLabel* pix, QLabel* label, const QString& message, Badness bad = Badness::Fatal )
+labelError( QLabel* pix, QLabel* label, const QString& message, Badness bad )
 {
     label->setText( message );
     pix->setPixmap( CalamaresUtils::defaultPixmap( ( bad == Badness::Fatal ) ? CalamaresUtils::StatusError
@@ -88,7 +88,7 @@ labelStatus( QLabel* pix, QLabel* label, const QString& value, const QString& st
     }
     else
     {
-        labelError( pix, label, status );
+        labelError( pix, label, status, Badness::Fatal );
         ok = false;
     }
 }
@@ -278,7 +278,7 @@ UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLab
 {
     if ( pw1 != pw2 )
     {
-        labelError( badge, message, tr( "Your passwords do not match!" ) );
+        labelError( badge, message, tr( "Your passwords do not match!" ), Badness::Fatal );
         return false;
     }
     else
