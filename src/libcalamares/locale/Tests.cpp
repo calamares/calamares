@@ -251,6 +251,17 @@ LocaleTests::testRegions()
     CalamaresUtils::Locale::RegionsModel regions;
 
     QVERIFY( regions.rowCount( QModelIndex() ) > 3 );  // Africa, America, Asia
+
+    QStringList names;
+    for ( int i = 0; i < regions.rowCount( QModelIndex() ); ++i )
+    {
+        QVariant name = regions.data( regions.index( i ), Qt::UserRole );
+        QVERIFY( name.isValid() );
+        QVERIFY( !name.toString().isEmpty() );
+        names.append( name.toString() );
+    }
+
+    QVERIFY( names.contains( "America" ) );
 }
 
 
