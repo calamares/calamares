@@ -381,7 +381,7 @@ Config::setRequireStrongPasswords( bool strong )
 }
 
 bool
-Config::isPasswordAcceptable(const QString& password, QString& message)
+Config::isPasswordAcceptable( const QString& password, QString& message )
 {
     bool failureIsFatal = requireStrongPasswords();
 
@@ -399,7 +399,43 @@ Config::isPasswordAcceptable(const QString& password, QString& message)
     return true;
 }
 
+void
+Config::setUserPassword( const QString& s )
+{
+    m_userPassword = s;
+    // TODO: check new password status
+    emit userPasswordChanged( s );
+}
 
+void
+Config::setUserPasswordSecondary( const QString& s )
+{
+    m_userPasswordSecondary = s;
+    // TODO: check new password status
+    emit userPasswordSecondaryChanged( s );
+}
+
+void
+Config::setRootPassword( const QString& s )
+{
+    if ( writeRootPassword() )
+    {
+        m_rootPassword = s;
+        // TODO: check new password status
+        emit rootPasswordChanged( s );
+    }
+}
+
+void
+Config::setRootPasswordSecondary( const QString& s )
+{
+    if ( writeRootPassword() )
+    {
+        m_rootPasswordSecondary = s;
+        // TODO: check new password status
+        emit rootPasswordSecondaryChanged( s );
+    }
+}
 
 
 STATICTEST void

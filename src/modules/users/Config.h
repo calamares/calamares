@@ -59,6 +59,13 @@ class Config : public QObject
     Q_PROPERTY( QString hostNameStatus READ hostNameStatus NOTIFY hostNameStatusChanged )
     Q_PROPERTY( HostNameActions hostNameActions READ hostNameActions CONSTANT )
 
+    Q_PROPERTY( QString userPassword READ userPassword WRITE setUserPassword NOTIFY userPasswordChanged )
+    Q_PROPERTY( QString userPasswordSecondary READ userPasswordSecondary WRITE setUserPasswordSecondary NOTIFY
+                    userPasswordSecondaryChanged )
+    Q_PROPERTY( QString rootPassword READ rootPassword WRITE setRootPassword NOTIFY rootPasswordChanged )
+    Q_PROPERTY( QString rootPasswordSecondary READ rootPasswordSecondary WRITE setRootPasswordSecondary NOTIFY
+                    rootPasswordSecondaryChanged )
+
     Q_PROPERTY( bool writeRootPassword READ writeRootPassword CONSTANT )
     Q_PROPERTY( bool reuseUserPasswordForRoot READ reuseUserPasswordForRoot WRITE setReuseUserPasswordForRoot NOTIFY
                     reuseUserPasswordForRootChanged )
@@ -123,6 +130,11 @@ public:
      */
     bool isPasswordAcceptable( const QString& password, QString& message );
 
+    QString userPassword() const { return m_userPassword; }
+    QString userPasswordSecondary() const { return m_userPasswordSecondary; }
+    QString rootPassword() const { return m_rootPassword; }
+    QString rootPasswordSecondary() const { return m_rootPasswordSecondary; }
+
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();
 
@@ -158,6 +170,11 @@ public Q_SLOTS:
     /// Change setting for "require strong password"
     void setRequireStrongPasswords( bool strong );
 
+    void setUserPassword( const QString& );
+    void setUserPasswordSecondary( const QString& );
+    void setRootPassword( const QString& );
+    void setRootPasswordSecondary( const QString& );
+
 signals:
     void userShellChanged( const QString& );
     void autologinGroupChanged( const QString& );
@@ -170,6 +187,11 @@ signals:
     void autoLoginChanged( bool );
     void reuseUserPasswordForRootChanged( bool );
     void requireStrongPasswordsChanged( bool );
+    void userPasswordChanged( const QString& );
+    void userPasswordSecondaryChanged( const QString& );
+    void rootPasswordChanged( const QString& );
+    void rootPasswordSecondaryChanged( const QString& );
+
 
 private:
     QStringList m_defaultGroups;
@@ -179,6 +201,12 @@ private:
     QString m_fullName;
     QString m_loginName;
     QString m_hostName;
+
+    QString m_userPassword;
+    QString m_userPasswordSecondary;  // enter again to be sure
+    QString m_rootPassword;
+    QString m_rootPasswordSecondary;
+
     bool m_doAutoLogin = false;
 
     bool m_writeRootPassword = true;
