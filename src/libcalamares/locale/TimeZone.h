@@ -126,7 +126,44 @@ public:
      *
      * Returns @c nullptr if not found.
      */
-    const TimeZoneData* find( const QString& region, const QString& zone );
+    const TimeZoneData* find( const QString& region, const QString& zone ) const;
+
+    /** @brief Iterator for testing purposes
+     *
+     * This is primarily for testing, but who knows, it might be useful
+     * elsewhere, and it's convenient when it can access Private.
+     *
+     * Iterates over all the zones in the model. Operator * may return
+     * a @c nullptr when the iterator is not valid. Typical usage:
+     *
+     * ```
+     * for( auto it = model.begin(); it; ++it )
+     * {
+     *     const auto* zonedata = *it;
+     *     ...
+     * }
+     */
+    class Iterator
+    {
+        friend class ZonesModel;
+        Iterator( const Private* m )
+            : m_index( 0 )
+            , m_p( m )
+        {
+        }
+
+    public:
+        operator bool() const;
+        void operator++() { ++m_index; }
+        const TimeZoneData* operator*() const;
+        int index() const { return m_index; }
+
+    private:
+        int m_index;
+        const Private* m_p;
+    };
+
+    Iterator begin() const { return Iterator( m_private ); }
 
 private:
     Private* m_private;

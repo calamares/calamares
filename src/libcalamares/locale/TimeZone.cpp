@@ -282,7 +282,7 @@ ZonesModel::roleNames() const
 }
 
 const TimeZoneData*
-ZonesModel::find( const QString& region, const QString& zone )
+ZonesModel::find( const QString& region, const QString& zone ) const
 {
     for ( const auto* p : m_private->m_zones )
     {
@@ -290,6 +290,20 @@ ZonesModel::find( const QString& region, const QString& zone )
         {
             return p;
         }
+    }
+    return nullptr;
+}
+
+ZonesModel::Iterator::operator bool() const
+{
+    return 0 <= m_index && m_index < m_p->m_zones.count();
+}
+
+const TimeZoneData* ZonesModel::Iterator::operator*() const
+{
+    if ( *this )
+    {
+        return m_p->m_zones[ m_index ];
     }
     return nullptr;
 }

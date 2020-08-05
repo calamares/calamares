@@ -51,6 +51,7 @@ private Q_SLOTS:
     void testSimpleZones();
     void testComplexZones();
     void testTZLookup();
+    void testTZIterator();
 };
 
 LocaleTests::LocaleTests() {}
@@ -358,6 +359,31 @@ LocaleTests::testTZLookup()
 
     QVERIFY( !zones.find( "Europe", "New_York" ) );
     QVERIFY( !zones.find( "America", "New York" ) );
+}
+
+void
+LocaleTests::testTZIterator()
+{
+    using namespace CalamaresUtils::Locale;
+    const ZonesModel zones;
+
+    QVERIFY( zones.find( "Europe", "Rome" ) );
+
+    int count = 0;
+    bool seenRome = false;
+    bool seenGnome = false;
+    for ( auto it = zones.begin(); it; ++it )
+    {
+        QVERIFY( *it );
+        QVERIFY( !( *it )->zone().isEmpty() );
+        seenRome |= ( *it )->zone() == QStringLiteral( "Rome" );
+        seenGnome |= ( *it )->zone() == QStringLiteral( "Gnome" );
+        count++;
+    }
+
+    QVERIFY( seenRome );
+    QVERIFY( !seenGnome );
+    QCOMPARE( count, zones.rowCount( QModelIndex() ) );
 }
 
 
