@@ -22,6 +22,7 @@
 
 #include "TimeZone.h"
 
+#include "locale/TranslatableString.h"
 #include "utils/Logger.h"
 #include "utils/String.h"
 
@@ -29,6 +30,11 @@
 #include <QString>
 
 static const char TZ_DATA_FILE[] = "/usr/share/zoneinfo/zone.tab";
+
+namespace CalamaresUtils
+{
+namespace Locale
+{
 
 /** @brief Turns a string longitude or latitude notation into a double
  *
@@ -63,104 +69,8 @@ getRightGeoLocation( QString str )
     return sign * num;
 }
 
-/** @brief A pair of strings, one human-readable, one a key
- *
- * Given an identifier-like string (e.g. "New_York"), makes
- * a human-readable version of that and keeps a copy of the
- * identifier itself.
- *
- * This explicitly uses const char* instead of just being
- * QPair<QString, QString> because the human-readable part
- * may need to be translated through tr(), and that takes a char*.
- * C-style strings.
- */
-class CStringPair : public QObject
-{
-    Q_OBJECT
-public:
-    /// @brief An empty pair
-    CStringPair() {}
-    /// @brief Given an identifier, create the pair
-    explicit CStringPair( const char* s1 );
-    explicit CStringPair( const QString& s );
-    CStringPair( CStringPair&& t );
-    CStringPair( const CStringPair& );
-    virtual ~CStringPair();
 
-    /// @brief Give the localized human-readable form
-    virtual QString tr() const = 0;
-    QString key() const { return m_key; }
-
-    bool operator==( const CStringPair& other ) const { return m_key == other.m_key; }
-    bool operator<( const CStringPair& other ) const { return m_key < other.m_key; }
-
-protected:
-    char* m_human = nullptr;
-    QString m_key;
-};
-
-/** @brief Massage an identifier into a human-readable form
- *
- * Makes a copy of @p s, caller must free() it.
- */
-static char*
-munge( const char* s )
-{
-    char* t = strdup( s );
-    if ( !t )
-    {
-        return nullptr;
-    }
-
-    // replace("_"," ") in the Python script
-    char* p = t;
-    while ( *p )
-    {
-        if ( ( *p ) == '_' )
-        {
-            *p = ' ';
-        }
-        ++p;
-    }
-
-    return t;
-}
-
-CStringPair::CStringPair( CStringPair&& t )
-    : m_human( nullptr )
-    , m_key()
-{
-    // My pointers are initialized to nullptr
-    std::swap( m_human, t.m_human );
-    std::swap( m_key, t.m_key );
-}
-
-CStringPair::CStringPair( const CStringPair& t )
-    : m_human( t.m_human ? strdup( t.m_human ) : nullptr )
-    , m_key( t.m_key )
-{
-}
-
-CStringPair::CStringPair( const char* s1 )
-    : m_human( s1 ? munge( s1 ) : nullptr )
-    , m_key( s1 ? QString( s1 ) : QString() )
-{
-}
-
-CStringPair::CStringPair( const QString& s )
-    : m_human( munge( s.toUtf8().constData() ) )
-    , m_key( s )
-{
-}
-
-
-CStringPair::~CStringPair()
-{
-    free( m_human );
-}
-
-
-class TimeZoneData : public CStringPair
+class TimeZoneData : public TranslatableString
 {
 public:
     TimeZoneData( const QString& region,
@@ -181,7 +91,7 @@ TimeZoneData::TimeZoneData( const QString& region,
                             const QString& country,
                             double latitude,
                             double longitude )
-    : CStringPair( zone )
+    : TranslatableString( zone )
     , m_region( region )
     , m_country( country )
     , m_latitude( latitude )
@@ -197,10 +107,10 @@ TimeZoneData::tr() const
 }
 
 
-class RegionData : public CStringPair
+class RegionData : public TranslatableString
 {
 public:
-    using CStringPair::CStringPair;
+    using TranslatableString::TranslatableString;
     QString tr() const override;
 };
 
@@ -282,10 +192,6 @@ loadTZData( QVector< RegionData >& regions, QVector< TimeZoneData >& zones )
     }
 }
 
-namespace CalamaresUtils
-{
-namespace Locale
-{
 
 struct Private
 {
