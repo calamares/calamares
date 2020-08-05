@@ -63,8 +63,29 @@ HostInfoTests::testHostOS()
     // This is a lousy test, too: the implementation reads /proc/cpuinfo
     // and that's the only way we could use, too, to find what the "right"
     // answer is.
-    QStringList cpunames{ QStringLiteral( "Intel" ), QStringLiteral( "AMD" ) };
-    QVERIFY( cpunames.contains( hostCPU() ) );
+    QStringList x86cpunames{ QStringLiteral( "Intel" ), QStringLiteral( "AMD" ) };
+    QStringList armcpunames{ QStringLiteral( "ARM" ) };
+    const QString cpu = hostCPU();
+    QVERIFY( x86cpunames.contains( cpu ) || armcpunames.contains( cpu ) );
+
+    // Try to detect family in a different way
+    QFile modalias( "/sys/devices/system/cpu/modalias" );
+    if ( modalias.open( QIODevice::ReadOnly ) )
+    {
+        QString cpumodalias = modalias.readLine();
+        if ( cpumodalias.contains( "type:x86" ) )
+        {
+            QVERIFY( x86cpunames.contains( cpu ) );
+        }
+        else if ( cpumodalias.contains( "type:aarch64" ) )
+        {
+            QVERIFY( armcpunames.contains( cpu ) );
+        }
+        else
+        {
+            QCOMPARE( cpu, QString( "Unknown CPU modalias '%1'" ).arg(cpumodalias) );
+        }
+    }
 }
 
 
