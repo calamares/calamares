@@ -279,6 +279,19 @@ ZonesModel::roleNames() const
     return { { NameRole, "name" }, { KeyRole, "key" } };
 }
 
+const TimeZoneData*
+ZonesModel::find( const QString& region, const QString& zone )
+{
+    for ( const auto* p : m_private->m_zones )
+    {
+        if ( p->region() == region && p->zone() == zone )
+        {
+            return p;
+        }
+    }
+    return nullptr;
+}
+
 RegionalZonesModel::RegionalZonesModel( CalamaresUtils::Locale::ZonesModel* source, QObject* parent )
     : QSortFilterProxyModel( parent )
     , m_private( privateInstance() )

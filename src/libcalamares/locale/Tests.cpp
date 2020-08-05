@@ -50,6 +50,7 @@ private Q_SLOTS:
     void testRegions();
     void testSimpleZones();
     void testComplexZones();
+    void testTZLookup();
 };
 
 LocaleTests::LocaleTests() {}
@@ -344,6 +345,21 @@ LocaleTests::testComplexZones()
     QVERIFY( !names.contains( "Prague" ) );
     QVERIFY( names.contains( "Abidjan" ) );
 }
+
+void
+LocaleTests::testTZLookup()
+{
+    using namespace CalamaresUtils::Locale;
+    ZonesModel zones;
+
+    QVERIFY( zones.find( "America", "New_York" ) );
+    QCOMPARE( zones.find( "America", "New_York" )->zone(), QStringLiteral( "New_York" ) );
+    QCOMPARE( zones.find( "America", "New_York" )->tr(), QStringLiteral( "New York" ) );
+
+    QVERIFY( !zones.find( "Europe", "New_York" ) );
+    QVERIFY( !zones.find( "America", "New York" ) );
+}
+
 
 QTEST_GUILESS_MAIN( LocaleTests )
 

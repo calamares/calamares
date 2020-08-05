@@ -57,6 +57,7 @@ public:
     QString tr() const override;
 
     QString region() const { return m_region; }
+    QString zone() const { return key(); }
 
 private:
     QString m_region;
@@ -112,6 +113,12 @@ public:
     QVariant data( const QModelIndex& index, int role ) const override;
 
     QHash< int, QByteArray > roleNames() const override;
+
+    /** @brief Look up TZ data based on its name.
+     *
+     * Returns @c nullptr if not found.
+     */
+    const TimeZoneData* find( const QString& region, const QString& zone );
 
 private:
     Private* m_private;
