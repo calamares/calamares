@@ -24,182 +24,36 @@
 
 #include "DllMacro.h"
 
-#include "utils/Logger.h"
-
 #include <QAbstractListModel>
 #include <QObject>
-#include <QString>
-
-#include <memory>
+#include <QVariant>
 
 namespace CalamaresUtils
 {
 namespace Locale
 {
+struct Private;
 
-/** @brief A pair of strings, one human-readable, one a key
+/** @brief The list of timezone regions
  *
- * Given an identifier-like string (e.g. "New_York"), makes
- * a human-readable version of that and keeps a copy of the
- * identifier itself.
- *
- * This explicitly uses const char* instead of just being
- * QPair<QString, QString> because there is API that needs
- * C-style strings.
+ * The regions are a short list of global areas (Africa, America, India ..)
+ * which contain zones.
  */
-class CStringPair : public QObject
+class DLLEXPORT RegionsModel : public QAbstractListModel
 {
     Q_OBJECT
-public:
-    /// @brief An empty pair
-    CStringPair() {}
-    /// @brief Given an identifier, create the pair
-    explicit CStringPair( const char* s1 );
-    CStringPair( CStringPair&& t );
-    CStringPair( const CStringPair& );
-    virtual ~CStringPair();
 
-    /// @brief Give the localized human-readable form
-    virtual QString tr() const = 0;
-    QString key() const { return m_key; }
-
-    bool operator<( const CStringPair& other ) const { return m_key < other.m_key; }
-
-protected:
-    char* m_human = nullptr;
-    QString m_key;
-};
-
-class CStringPairList : public QList< CStringPair* >
-{
-public:
-    template < typename T >
-    T* find( const QString& key ) const
-    {
-        for ( auto* p : *this )
-        {
-            if ( p->key() == key )
-            {
-                return dynamic_cast< T* >( p );
-            }
-        }
-        return nullptr;
-    }
-};
-
-/** @brief Timezone regions (e.g. "America")
- *
- * A region has a key and a human-readable name, but also
- * a collection of associated timezone zones (TZZone, below).
- * This class is not usually constructed, but uses fromFile()
- * to load a complete tree structure of timezones.
- */
-class TZRegion : public CStringPair
-{
-    Q_OBJECT
-public:
-    using CStringPair::CStringPair;
-    virtual ~TZRegion() override;
-    TZRegion( const TZRegion& ) = delete;
-    QString tr() const override;
-
-    QString region() const { return key(); }
-
-    /** @brief Create list from a zone.tab-like file
-     *
-     * Returns a list of all the regions; each region has a list
-     * of zones within that region. Dyamically, the items in the
-     * returned list are TZRegions; their zones dynamically are
-     * TZZones even though all those lists have type CStringPairList.
-     *
-     * The list owns the regions, and the regions own their own list of zones.
-     * When getting rid of the list, remember to qDeleteAll() on it.
-     */
-    static CStringPairList fromFile( const char* fileName );
-    /// @brief Calls fromFile with the standard zone.tab name
-    static const CStringPairList& fromZoneTab();
-
-    const CStringPairList& zones() const { return m_zones; }
-
-private:
-    CStringPairList m_zones;
-};
-
-/** @brief Specific timezone zones (e.g. "New_York", "New York")
- *
- * A timezone zone lives in a region, and has some associated
- * data like the country (used to map likely languages) and latitude
- * and longitude information.
- */
-class TZZone : public CStringPair
-{
-    Q_OBJECT
-public:
-    using CStringPair::CStringPair;
-    QString tr() const override;
-
-    TZZone( const QString& region, const char* zoneName, const QString& country, QString position );
-
-    QString region() const { return m_region; }
-    QString zone() const { return key(); }
-    QString country() const { return m_country; }
-    double latitude() const { return m_latitude; }
-    double longitude() const { return m_longitude; }
-
-protected:
-    QString m_region;
-    QString m_country;
-    double m_latitude = 0.0, m_longitude = 0.0;
-};
-
-class CStringListModel : public QAbstractListModel
-{
-    Q_OBJECT
-    Q_PROPERTY( int currentIndex READ currentIndex WRITE setCurrentIndex NOTIFY currentIndexChanged )
+    RegionsModel();
 
 public:
-    /// @brief Create empty model
-    CStringListModel() {}
-    /// @brief Create model from list (non-owning)
-    CStringListModel( CStringPairList );
+    virtual ~RegionsModel() override;
+    static RegionsModel* instance();
 
     int rowCount( const QModelIndex& parent ) const override;
-
     QVariant data( const QModelIndex& index, int role ) const override;
 
-    const CStringPair* item( int index ) const;
-    QHash< int, QByteArray > roleNames() const override;
-
-    void setCurrentIndex( int index );
-    int currentIndex() const;
-
-    void setList( CStringPairList );
-
-    inline int indexOf( const QString& key )
-    {
-        const auto it = std::find_if(
-            m_list.constBegin(), m_list.constEnd(), [&]( const CalamaresUtils::Locale::CStringPair* item ) -> bool {
-                return item->key() == key;
-            } );
-
-        if ( it != m_list.constEnd() )
-        {
-            // distance() is usually a long long
-            return int( std::distance( m_list.constBegin(), it ) );
-        }
-        else
-        {
-            return -1;
-        }
-    }
-
-
 private:
-    CStringPairList m_list;
-    int m_currentIndex = -1;
-
-signals:
-    void currentIndexChanged();
+    Private *m_private;
 };
 
 }  // namespace Locale

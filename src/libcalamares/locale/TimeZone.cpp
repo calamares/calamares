@@ -23,16 +23,14 @@
 #include "TimeZone.h"
 
 #include "utils/Logger.h"
-#include "utils/String.h"
-
-#include <QFile>
-#include <QStringList>
-#include <QTextStream>
-
-#include <cstring>
 
 static const char TZ_DATA_FILE[] = "/usr/share/zoneinfo/zone.tab";
 
+/** @brief Turns a string longitude or latitude notation into a double
+ *
+ * This handles strings like "+4230+00131" from zone.tab,
+ * which is degrees-and-minutes notation, and + means north or east.
+ */
 static double
 getRightGeoLocation( QString str )
 {
@@ -59,28 +57,6 @@ getRightGeoLocation( QString str )
     }
 
     return sign * num;
-}
-
-
-namespace CalamaresUtils
-{
-namespace Locale
-{
-
-
-CStringPair::CStringPair( CStringPair&& t )
-    : m_human( nullptr )
-    , m_key()
-{
-    // My pointers are initialized to nullptr
-    std::swap( m_human, t.m_human );
-    std::swap( m_key, t.m_key );
-}
-
-CStringPair::CStringPair( const CStringPair& t )
-    : m_human( t.m_human ? strdup( t.m_human ) : nullptr )
-    , m_key( t.m_key )
-{
 }
 
 /** @brief Massage an identifier into a human-readable form
@@ -110,204 +86,42 @@ munge( const char* s )
     return t;
 }
 
-CStringPair::CStringPair( const char* s1 )
-    : m_human( s1 ? munge( s1 ) : nullptr )
-    , m_key( s1 ? QString( s1 ) : QString() )
+
+namespace CalamaresUtils
+{
+namespace Locale
+{
+
+struct Private {
+};
+
+static Private* privateInstance()
+{
+    static Private* s_p = new Private;
+    return s_p;
+}
+
+RegionsModel::RegionsModel()
+: QAbstractListModel()
+, m_private( privateInstance() )
 {
 }
 
-
-CStringPair::~CStringPair()
-{
-    free( m_human );
-}
-
-
-QString
-TZRegion::tr() const
-{
-    // NOTE: context name must match what's used in zone-extractor.py
-    return QObject::tr( m_human, "tz_regions" );
-}
-
-TZRegion::~TZRegion()
-{
-    qDeleteAll( m_zones );
-}
-
-const CStringPairList&
-TZRegion::fromZoneTab()
-{
-    static CStringPairList zoneTab = TZRegion::fromFile( TZ_DATA_FILE );
-    return zoneTab;
-}
-
-CStringPairList
-TZRegion::fromFile( const char* fileName )
-{
-    CStringPairList model;
-
-    QFile file( fileName );
-    if ( !file.open( QIODevice::ReadOnly | QIODevice::Text ) )
-    {
-        return model;
-    }
-
-    TZRegion* thisRegion = nullptr;
-    QTextStream in( &file );
-    while ( !in.atEnd() )
-    {
-        QString line = in.readLine().trimmed().split( '#', SplitKeepEmptyParts ).first().trimmed();
-        if ( line.isEmpty() )
-        {
-            continue;
-        }
-
-        QStringList list = line.split( QRegExp( "[\t ]" ), SplitSkipEmptyParts );
-        if ( list.size() < 3 )
-        {
-            continue;
-        }
-
-        QStringList timezoneParts = list.at( 2 ).split( '/', SplitSkipEmptyParts );
-        if ( timezoneParts.size() < 2 )
-        {
-            continue;
-        }
-
-        QString region = timezoneParts.first().trimmed();
-        if ( region.isEmpty() )
-        {
-            continue;
-        }
-
-        auto keyMatch = [&region]( const CStringPair* r ) { return r->key() == region; };
-        auto it = std::find_if( model.begin(), model.end(), keyMatch );
-        if ( it != model.end() )
-        {
-            thisRegion = dynamic_cast< TZRegion* >( *it );
-        }
-        else
-        {
-            thisRegion = new TZRegion( region.toUtf8().data() );
-            model.append( thisRegion );
-        }
-
-        QString countryCode = list.at( 0 ).trimmed();
-        if ( countryCode.size() != 2 )
-        {
-            continue;
-        }
-
-        timezoneParts.removeFirst();
-        thisRegion->m_zones.append(
-            new TZZone( region, timezoneParts.join( '/' ).toUtf8().constData(), countryCode, list.at( 1 ) ) );
-    }
-
-    auto sorter = []( const CStringPair* l, const CStringPair* r ) { return *l < *r; };
-    std::sort( model.begin(), model.end(), sorter );
-    for ( auto& it : model )
-    {
-        TZRegion* r = dynamic_cast< TZRegion* >( it );
-        if ( r )
-        {
-            std::sort( r->m_zones.begin(), r->m_zones.end(), sorter );
-        }
-    }
-
-    return model;
-}
-
-TZZone::TZZone( const QString& region, const char* zoneName, const QString& country, QString position )
-    : CStringPair( zoneName )
-    , m_region( region )
-    , m_country( country )
-{
-    int cooSplitPos = position.indexOf( QRegExp( "[-+]" ), 1 );
-    if ( cooSplitPos > 0 )
-    {
-        m_latitude = getRightGeoLocation( position.mid( 0, cooSplitPos ) );
-        m_longitude = getRightGeoLocation( position.mid( cooSplitPos ) );
-    }
-}
-
-QString
-TZZone::tr() const
-{
-    // NOTE: context name must match what's used in zone-extractor.py
-    return QObject::tr( m_human, "tz_names" );
-}
-
-
-CStringListModel::CStringListModel( CStringPairList l )
-    : m_list( l )
+RegionsModel::~RegionsModel()
 {
 }
 
-void
-CStringListModel::setList( CalamaresUtils::Locale::CStringPairList l )
+int RegionsModel::rowCount(const QModelIndex& parent) const
 {
-    beginResetModel();
-    m_list = l;
-    endResetModel();
+    return 0;
 }
 
-int
-CStringListModel::rowCount( const QModelIndex& ) const
+QVariant RegionsModel::data(const QModelIndex& index, int role) const
 {
-    return m_list.count();
+    return QVariant();
 }
 
-QVariant
-CStringListModel::data( const QModelIndex& index, int role ) const
-{
-    if ( ( role != Qt::DisplayRole ) && ( role != Qt::UserRole ) )
-    {
-        return QVariant();
-    }
 
-    if ( !index.isValid() )
-    {
-        return QVariant();
-    }
-
-    const auto* item = m_list.at( index.row() );
-    return item ? ( role == Qt::DisplayRole ? item->tr() : item->key() ) : QVariant();
-}
-
-void
-CStringListModel::setCurrentIndex( int index )
-{
-    if ( ( index < 0 ) || ( index >= m_list.count() ) )
-    {
-        return;
-    }
-
-    m_currentIndex = index;
-    emit currentIndexChanged();
-}
-
-int
-CStringListModel::currentIndex() const
-{
-    return m_currentIndex;
-}
-
-QHash< int, QByteArray >
-CStringListModel::roleNames() const
-{
-    return { { Qt::DisplayRole, "label" }, { Qt::UserRole, "key" } };
-}
-
-const CStringPair*
-CStringListModel::item( int index ) const
-{
-    if ( ( index < 0 ) || ( index >= m_list.count() ) )
-    {
-        return nullptr;
-    }
-    return m_list[ index ];
-}
 
 }  // namespace Locale
 }  // namespace CalamaresUtils
