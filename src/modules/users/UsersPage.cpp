@@ -199,32 +199,6 @@ UsersPage::isReady() const
     return readyFields;
 }
 
-QString
-UsersPage::getRootPassword() const
-{
-    if ( m_config->writeRootPassword() )
-    {
-        if ( ui->checkBoxReusePassword->isChecked() )
-        {
-            return ui->textBoxUserPassword->text();
-        }
-        else
-        {
-            return ui->textBoxRootPassword->text();
-        }
-    }
-    else
-    {
-        return QString();
-    }
-}
-
-QPair< QString, QString >
-UsersPage::getUserPassword() const
-{
-    return QPair< QString, QString >( m_config->loginName(), ui->textBoxUserPassword->text() );
-}
-
 void
 UsersPage::fillGlobalStorage() const
 {

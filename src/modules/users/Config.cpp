@@ -437,6 +437,28 @@ Config::setRootPasswordSecondary( const QString& s )
     }
 }
 
+QString Config::rootPassword() const
+{
+    if ( writeRootPassword() )
+    {
+        if ( reuseUserPasswordForRoot() )
+            return userPassword();
+        return m_rootPassword;
+    }
+    return QString();
+}
+
+QString Config::rootPasswordSecondary() const
+{
+    if ( writeRootPassword() )
+    {
+        if ( reuseUserPasswordForRoot() )
+            return userPasswordSecondary();
+        return m_rootPasswordSecondary;
+    }
+    return QString();
+}
+
 
 STATICTEST void
 setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups )

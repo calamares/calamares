@@ -130,10 +130,14 @@ public:
      */
     bool isPasswordAcceptable( const QString& password, QString& message );
 
+    // The user enters a password (and again in a separate UI element)
     QString userPassword() const { return m_userPassword; }
     QString userPasswordSecondary() const { return m_userPasswordSecondary; }
-    QString rootPassword() const { return m_rootPassword; }
-    QString rootPasswordSecondary() const { return m_rootPasswordSecondary; }
+    // The root password **may** be entered in the UI, or may be suppressed
+    //   entirely when writeRootPassword is off, or may be equal to
+    //   the user password when reuseUserPasswordForRoot is on.
+    QString rootPassword() const;
+    QString rootPasswordSecondary() const;
 
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();

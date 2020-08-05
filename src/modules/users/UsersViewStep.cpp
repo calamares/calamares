@@ -132,11 +132,10 @@ UsersViewStep::onLeave()
                            m_config->doAutoLogin(),
                            m_config->defaultGroups() );
 
-    auto userPW = m_widget->getUserPassword();
-    j = new SetPasswordJob( userPW.first, userPW.second );
+    j = new SetPasswordJob( m_config->loginName(), m_config->userPassword() );
     m_jobs.append( Calamares::job_ptr( j ) );
 
-    j = new SetPasswordJob( "root", m_widget->getRootPassword() );
+    j = new SetPasswordJob( "root", m_config->rootPassword() );
     m_jobs.append( Calamares::job_ptr( j ) );
 
     // TODO: Config object should create jobs
