@@ -43,7 +43,7 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     QBoxLayout* mainLayout = new QVBoxLayout;
 
     QBoxLayout* tzwLayout = new QHBoxLayout;
-    m_tzWidget = new TimeZoneWidget( config->timezoneData(), this );
+    m_tzWidget = new TimeZoneWidget( m_config->zonesModel(), this );
     tzwLayout->addStretch();
     tzwLayout->addWidget( m_tzWidget );
     tzwLayout->addStretch();
@@ -102,6 +102,7 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     // Set up the location before connecting signals, to avoid a signal
     // storm as various parts interact.
     m_regionCombo->setModel( m_config->regionModel() );
+    m_zoneCombo->setModel( m_config->regionalZonesModel() );
     locationChanged( m_config->currentLocation() );  // doesn't inform TZ widget
     m_tzWidget->setCurrentLocation( m_config->currentLocation() );
 
@@ -112,7 +113,7 @@ LocalePage::LocalePage( Config* config, QWidget* parent )
     connect( m_tzWidget,
              &TimeZoneWidget::locationChanged,
              config,
-             QOverload< const CalamaresUtils::Locale::TZZone* >::of( &Config::setCurrentLocation ) );
+             QOverload< const CalamaresUtils::Locale::TimeZoneData* >::of( &Config::setCurrentLocation ) );
 
     connect( m_regionCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::regionChanged );
     connect( m_zoneCombo, QOverload< int >::of( &QComboBox::currentIndexChanged ), this, &LocalePage::zoneChanged );
@@ -152,35 +153,26 @@ LocalePage::regionChanged( int currentIndex )
 {
     using namespace CalamaresUtils::Locale;
 
-    Q_UNUSED( currentIndex )
-    QString selectedRegion = m_regionCombo->currentData().toString();
-
-    TZRegion* region = m_config->timezoneData().find< TZRegion >( selectedRegion );
-    if ( !region )
+    QString selectedRegion = m_regionCombo->itemData( currentIndex ).toString();
     {
-        return;
+        cSignalBlocker z( m_zoneCombo );
+        m_config->regionalZonesModel()->setRegion( selectedRegion );
     }
-
-    {
-        cSignalBlocker b( m_zoneCombo );
-        m_zoneCombo->setModel( new CStringListModel( region->zones() ) );
-    }
-
-    m_zoneCombo->currentIndexChanged( m_zoneCombo->currentIndex() );
+    m_zoneCombo->currentIndexChanged( 0 );
 }
 
 void
 LocalePage::zoneChanged( int currentIndex )
 {
-    Q_UNUSED( currentIndex )
     if ( !m_blockTzWidgetSet )
     {
-        m_config->setCurrentLocation( m_regionCombo->currentData().toString(), m_zoneCombo->currentData().toString() );
+        m_config->setCurrentLocation( m_regionCombo->currentData().toString(),
+                                      m_zoneCombo->itemData( currentIndex ).toString() );
     }
 }
 
 void
-LocalePage::locationChanged( const CalamaresUtils::Locale::TZZone* location )
+LocalePage::locationChanged( const CalamaresUtils::Locale::TimeZoneData* location )
 {
     if ( !location )
     {

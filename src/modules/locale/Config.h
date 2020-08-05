@@ -37,18 +37,20 @@ class Config : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( const QStringList& supportedLocales READ supportedLocales CONSTANT FINAL )
-    Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* zonesModel READ zonesModel CONSTANT FINAL )
-    Q_PROPERTY( CalamaresUtils::Locale::CStringListModel* regionModel READ regionModel CONSTANT FINAL )
+    Q_PROPERTY( CalamaresUtils::Locale::RegionsModel* regionModel READ regionModel CONSTANT FINAL )
+    Q_PROPERTY( CalamaresUtils::Locale::ZonesModel* zonesModel READ zonesModel CONSTANT FINAL )
+    Q_PROPERTY( QAbstractItemModel* regionalZonesModel READ regionalZonesModel CONSTANT FINAL )
 
-    Q_PROPERTY( const CalamaresUtils::Locale::TZZone* currentLocation READ currentLocation WRITE setCurrentLocation
-                    NOTIFY currentLocationChanged )
+    Q_PROPERTY(
+        const CalamaresUtils::Locale::TimeZoneData* currentLocation READ currentLocation NOTIFY currentLocationChanged )
 
     // Status are complete, human-readable, messages
     Q_PROPERTY( QString currentLocationStatus READ currentLocationStatus NOTIFY currentLanguageStatusChanged )
     Q_PROPERTY( QString currentLanguageStatus READ currentLanguageStatus NOTIFY currentLanguageStatusChanged )
     Q_PROPERTY( QString currentLCStatus READ currentLCStatus NOTIFY currentLCStatusChanged )
     // Code are internal identifiers, like "en_US.UTF-8"
-    Q_PROPERTY( QString currentLanguageCode READ currentLanguageCode WRITE setLanguageExplicitly NOTIFY currentLanguageCodeChanged )
+    Q_PROPERTY( QString currentLanguageCode READ currentLanguageCode WRITE setLanguageExplicitly NOTIFY
+                    currentLanguageCodeChanged )
     Q_PROPERTY( QString currentLCCode READ currentLCCode WRITE setLCLocaleExplicitly NOTIFY currentLCCodeChanged )
 
     // This is a long human-readable string with all three statuses
@@ -60,15 +62,6 @@ public:
 
     void setConfigurationMap( const QVariantMap& );
     Calamares::JobList createJobs();
-
-    // Underlying data for the models
-    const CalamaresUtils::Locale::CStringPairList& timezoneData() const;
-
-    /** @brief The currently selected location (timezone)
-     *
-     * The location is a pointer into the date that timezoneData() returns.
-     */
-    const CalamaresUtils::Locale::TZZone* currentLocation() const { return m_currentLocation; }
 
     /// locale configuration (LC_* and LANG) based solely on the current location.
     LocaleConfiguration automaticLocaleConfiguration() const;
@@ -85,9 +78,16 @@ public:
     /// The human-readable summary of what the module will do
     QString prettyStatus() const;
 
+    // A long list of locale codes (e.g. en_US.UTF-8)
     const QStringList& supportedLocales() const { return m_localeGenLines; }
-    CalamaresUtils::Locale::CStringListModel* regionModel() const { return m_regionModel.get(); }
-    CalamaresUtils::Locale::CStringListModel* zonesModel() const { return m_zonesModel.get(); }
+    // All the regions (Africa, America, ...)
+    CalamaresUtils::Locale::RegionsModel* regionModel() const { return m_regionModel.get(); }
+    // All of the timezones in the world, according to zone.tab
+    CalamaresUtils::Locale::ZonesModel* zonesModel() const { return m_zonesModel.get(); }
+    // This model can be filtered by region
+    CalamaresUtils::Locale::RegionalZonesModel* regionalZonesModel() const { return m_regionalZonesModel.get(); }
+
+    const CalamaresUtils::Locale::TimeZoneData* currentLocation() const { return m_currentLocation; }
 
     /// Special case, set location from starting timezone if not already set
     void setCurrentLocation();
@@ -111,20 +111,17 @@ public Q_SLOTS:
      * names a zone within that region.
      */
     void setCurrentLocation( const QString& region, const QString& zone );
-    /** @brief Sets a location by pointer
+
+    /** @brief Sets a location by pointer to zone data.
      *
-     * Pointer should be within the same model as the widget uses.
-     * This can update the locale configuration -- the automatic one
-     * follows the current location, and otherwise only explicitly-set
-     * values will ignore changes to the location.
      */
-    void setCurrentLocation( const CalamaresUtils::Locale::TZZone* location );
+    void setCurrentLocation( const CalamaresUtils::Locale::TimeZoneData* tz );
 
     QString currentLanguageCode() const { return localeConfiguration().language(); }
     QString currentLCCode() const { return localeConfiguration().lc_numeric; }
 
 signals:
-    void currentLocationChanged( const CalamaresUtils::Locale::TZZone* location ) const;
+    void currentLocationChanged( const CalamaresUtils::Locale::TimeZoneData* location ) const;
     void currentLocationStatusChanged( const QString& ) const;
     void currentLanguageStatusChanged( const QString& ) const;
     void currentLCStatusChanged( const QString& ) const;
@@ -137,12 +134,11 @@ private:
     QStringList m_localeGenLines;
 
     /// The regions (America, Asia, Europe ..)
-    std::unique_ptr< CalamaresUtils::Locale::CStringListModel > m_regionModel;
-    /// The zones for the current region (e.g. America/New_York)
-    std::unique_ptr< CalamaresUtils::Locale::CStringListModel > m_zonesModel;
+    std::unique_ptr< CalamaresUtils::Locale::RegionsModel > m_regionModel;
+    std::unique_ptr< CalamaresUtils::Locale::ZonesModel > m_zonesModel;
+    std::unique_ptr< CalamaresUtils::Locale::RegionalZonesModel > m_regionalZonesModel;
 
-    /// The location, points into the timezone data
-    const CalamaresUtils::Locale::TZZone* m_currentLocation = nullptr;
+    const CalamaresUtils::Locale::TimeZoneData* m_currentLocation = nullptr;
 
     /** @brief Specific locale configurations
      *

@@ -148,17 +148,11 @@ loadLocales( const QString& localeGenPath )
     return localeGenLines;
 }
 
-static inline const CalamaresUtils::Locale::CStringPairList&
-timezoneData()
-{
-    return CalamaresUtils::Locale::TZRegion::fromZoneTab();
-}
-
-
 Config::Config( QObject* parent )
     : QObject( parent )
-    , m_regionModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >( ::timezoneData() ) )
-    , m_zonesModel( std::make_unique< CalamaresUtils::Locale::CStringListModel >() )
+    , m_regionModel( std::make_unique< CalamaresUtils::Locale::RegionsModel >() )
+    , m_zonesModel( std::make_unique< CalamaresUtils::Locale::ZonesModel >() )
+    , m_regionalZonesModel( std::make_unique< CalamaresUtils::Locale::RegionalZonesModel >( m_zonesModel.get() ) )
 {
     // Slightly unusual: connect to our *own* signals. Wherever the language
     // or the location is changed, these signals are emitted, so hook up to
@@ -208,12 +202,6 @@ Config::Config( QObject* parent )
 
 Config::~Config() {}
 
-const CalamaresUtils::Locale::CStringPairList&
-Config::timezoneData() const
-{
-    return ::timezoneData();
-}
-
 void
 Config::setCurrentLocation()
 {
@@ -223,7 +211,8 @@ Config::setCurrentLocation()
     }
 }
 
-void Config::setCurrentLocation(const QString& regionzone)
+void
+Config::setCurrentLocation( const QString& regionzone )
 {
     auto r = CalamaresUtils::GeoIP::splitTZString( regionzone );
     if ( r.isValid() )
@@ -236,8 +225,7 @@ void
 Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
 {
     using namespace CalamaresUtils::Locale;
-    auto* region = timezoneData().find< TZRegion >( regionName );
-    auto* zone = region ? region->zones().find< TZZone >( zoneName ) : nullptr;
+    auto* zone = m_zonesModel->find( regionName, zoneName );
     if ( zone )
     {
         setCurrentLocation( zone );
@@ -250,7 +238,7 @@ Config::setCurrentLocation( const QString& regionName, const QString& zoneName )
 }
 
 void
-Config::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
+Config::setCurrentLocation( const CalamaresUtils::Locale::TimeZoneData* location )
 {
     if ( location != m_currentLocation )
     {
@@ -459,7 +447,7 @@ Calamares::JobList
 Config::createJobs()
 {
     Calamares::JobList list;
-    const CalamaresUtils::Locale::TZZone* location = currentLocation();
+    const auto* location = currentLocation();
 
     if ( location )
     {
