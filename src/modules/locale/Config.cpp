@@ -318,7 +318,9 @@ Config::setLCLocaleExplicitly( const QString& locale )
 QString
 Config::currentLocationStatus() const
 {
-    return tr( "Set timezone to %1/%2." ).arg( m_currentLocation->region(), m_currentLocation->zone() );
+    return tr( "Set timezone to %1/%2." )
+        .arg( m_currentLocation ? m_currentLocation->region() : QString(),
+              m_currentLocation ? m_currentLocation->zone() : QString() );
 }
 
 static inline QString
