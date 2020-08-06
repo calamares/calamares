@@ -216,19 +216,19 @@ endforeach()
 #
 #
 calamares_add_test(
-    libcalamarestest
+    libcalamaresutilstest
     SOURCES
         utils/Tests.cpp
 )
 
 calamares_add_test(
-    libcalamarestestpaths
+    libcalamaresutilspathstest
     SOURCES
         utils/TestPaths.cpp
 )
 
 calamares_add_test(
-    geoiptest
+    libcalamaresgeoiptest
     SOURCES
         geoip/GeoIPTests.cpp
         ${geoip_src}
