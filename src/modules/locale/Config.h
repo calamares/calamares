@@ -66,6 +66,7 @@ public:
     ~Config();
 
     void setConfigurationMap( const QVariantMap& );
+    void finalizeGlobalStorage() const;
     Calamares::JobList createJobs();
 
     /// locale configuration (LC_* and LANG) based solely on the current location.

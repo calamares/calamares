@@ -148,6 +148,45 @@ loadLocales( const QString& localeGenPath )
     return localeGenLines;
 }
 
+static bool
+updateGSLocation( Calamares::GlobalStorage* gs, const CalamaresUtils::Locale::TimeZoneData* location )
+{
+    const QString regionKey = QStringLiteral( "locationRegion" );
+    const QString zoneKey = QStringLiteral( "locationZone" );
+
+    if ( !location )
+    {
+        if ( gs->contains( regionKey ) || gs->contains( zoneKey ) )
+        {
+            gs->remove( regionKey );
+            gs->remove( zoneKey );
+            return true;
+        }
+        return false;
+    }
+
+    // Update the GS region and zone (and possibly the live timezone)
+    bool locationChanged
+        = ( location->region() != gs->value( regionKey ) ) || ( location->zone() != gs->value( zoneKey ) );
+
+    gs->insert( regionKey, location->region() );
+    gs->insert( zoneKey, location->zone() );
+
+    return locationChanged;
+}
+
+static void
+updateGSLocale( Calamares::GlobalStorage* gs, const LocaleConfiguration& locale )
+{
+    auto map = locale.toMap();
+    QVariantMap vm;
+    for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
+    {
+        vm.insert( it.key(), it.value() );
+    }
+    gs->insert( "localeConf", vm );
+}
+
 Config::Config( QObject* parent )
     : QObject( parent )
     , m_regionModel( std::make_unique< CalamaresUtils::Locale::RegionsModel >() )
@@ -166,31 +205,17 @@ Config::Config( QObject* parent )
     } );
 
     connect( this, &Config::currentLCCodeChanged, [&]() {
-        auto* gs = Calamares::JobQueue::instance()->globalStorage();
-        // Update GS localeConf (the LC_ variables)
-        auto map = localeConfiguration().toMap();
-        QVariantMap vm;
-        for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
-        {
-            vm.insert( it.key(), it.value() );
-        }
-        gs->insert( "localeConf", vm );
+        updateGSLocale( Calamares::JobQueue::instance()->globalStorage(), localeConfiguration() );
     } );
 
     connect( this, &Config::currentLocationChanged, [&]() {
-        auto* gs = Calamares::JobQueue::instance()->globalStorage();
+        const bool locationChanged
+            = updateGSLocation( Calamares::JobQueue::instance()->globalStorage(), currentLocation() );
 
-        // Update the GS region and zone (and possibly the live timezone)
-        const auto* location = currentLocation();
-        bool locationChanged = ( location->region() != gs->value( "locationRegion" ) )
-            || ( location->zone() != gs->value( "locationZone" ) );
-
-        gs->insert( "locationRegion", location->region() );
-        gs->insert( "locationZone", location->zone() );
         if ( locationChanged && m_adjustLiveTimezone )
         {
             QProcess::execute( "timedatectl",  // depends on systemd
-                               { "set-timezone", location->region() + '/' + location->zone() } );
+                               { "set-timezone", currentTimezoneCode() } );
         }
 
         emit currentTimezoneCodeChanged( currentTimezoneCode() );
@@ -486,6 +511,15 @@ Config::createJobs()
 
     return list;
 }
+
+void
+Config::finalizeGlobalStorage() const
+{
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    updateGSLocale( gs, localeConfiguration() );
+    updateGSLocation( gs, currentLocation() );
+}
+
 
 void
 Config::startGeoIP()

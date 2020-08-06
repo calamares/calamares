@@ -87,6 +87,12 @@ LocaleQmlViewStep::onActivate()
 }
 
 void
+LocaleQmlViewStep::onLeave()
+{
+    m_config->finalizeGlobalStorage();
+}
+
+void
 LocaleQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );

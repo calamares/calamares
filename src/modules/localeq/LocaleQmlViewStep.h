@@ -44,6 +44,7 @@ public:
     bool isAtEnd() const override;
 
     virtual void onActivate() override;
+    virtual void onLeave() override;
 
     Calamares::JobList jobs() const override;
 
