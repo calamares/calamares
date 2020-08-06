@@ -17,7 +17,6 @@
  */
 
 
-#include "Tests.h"
 #include "LocaleConfiguration.h"
 #include "timezonewidget/TimeZoneImage.h"
 
@@ -27,6 +26,26 @@
 #include <QtTest/QtTest>
 
 #include <set>
+
+class LocaleTests : public QObject
+{
+    Q_OBJECT
+public:
+    LocaleTests();
+    ~LocaleTests() override;
+
+private Q_SLOTS:
+    void initTestCase();
+    // Check the sample config file is processed correctly
+    void testEmptyLocaleConfiguration();
+    void testDefaultLocaleConfiguration();
+    void testSplitLocaleConfiguration();
+
+    // Check the TZ images for consistency
+    void testTZImages();  // No overlaps in images
+    void testTZLocations();  // No overlaps in locations
+    void testSpecificLocations();
+};
 
 QTEST_MAIN( LocaleTests )
 
@@ -191,11 +210,12 @@ LocaleTests::testTZLocations()
     using namespace CalamaresUtils::Locale;
     ZonesModel zones;
 
+    QVERIFY( zones.rowCount( QModelIndex() ) > 100 );
+
     int overlapcount = 0;
+    std::set< QPoint > occupied;
     for ( auto it = zones.begin(); it; ++it )
     {
-        std::set< QPoint > occupied;
-
         const auto* zone = *it;
         QVERIFY( zone );
 
@@ -230,3 +250,7 @@ LocaleTests::testSpecificLocations()
     QEXPECT_FAIL( "", "Gibraltar and Ceuta are really close", Continue );
     QVERIFY( gpos.y() < cpos.y() );  // Gibraltar is north of Ceuta
 }
+
+#include "utils/moc-warnings.h"
+
+#include "Tests.moc"

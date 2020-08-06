@@ -368,7 +368,7 @@ getAdjustLiveTimezone( const QVariantMap& configurationMap, bool& adjustLiveTime
     adjustLiveTimezone = CalamaresUtils::getBool(
         configurationMap, "adjustLiveTimezone", Calamares::Settings::instance()->doChroot() );
 #ifdef DEBUG_TIMEZONES
-    if ( m_adjustLiveTimezone )
+    if ( adjustLiveTimezone )
     {
         cWarning() << "Turning off live-timezone adjustments because debugging is on.";
         adjustLiveTimezone = false;
