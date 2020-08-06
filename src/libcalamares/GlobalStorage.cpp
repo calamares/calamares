@@ -158,10 +158,13 @@ GlobalStorage::loadJson( const QString& filename )
     else
     {
         WriteLock l( this );
+        // Do **not** use method insert() here, because it would
+        //   recursively lock the mutex, leading to deadlock. Also,
+        //   that would emit changed() for each key.
         auto map = d.toVariant().toMap();
         for ( auto i = map.constBegin(); i != map.constEnd(); ++i )
         {
-            insert( i.key(), *i );
+            m.insert( i.key(), *i );
         }
         return true;
     }
@@ -179,11 +182,17 @@ bool
 GlobalStorage::loadYaml( const QString& filename )
 {
     bool ok = false;
-    auto gs = CalamaresUtils::loadYaml( filename, &ok );
+    auto map = CalamaresUtils::loadYaml( filename, &ok );
     if ( ok )
     {
         WriteLock l( this );
-        m = gs;
+        // Do **not** use method insert() here, because it would
+        //   recursively lock the mutex, leading to deadlock. Also,
+        //   that would emit changed() for each key.
+        for ( auto i = map.constBegin(); i != map.constEnd(); ++i )
+        {
+            m.insert( i.key(), *i );
+        }
         return true;
     }
     return false;
