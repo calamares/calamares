@@ -22,7 +22,6 @@
  */
 
 #include "GlobalStorage.h"
-#include "JobQueue.h"
 
 #include "utils/Logger.h"
 #include "utils/Units.h"

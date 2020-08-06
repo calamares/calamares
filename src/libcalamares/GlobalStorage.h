@@ -24,16 +24,12 @@
 #ifndef CALAMARES_GLOBALSTORAGE_H
 #define CALAMARES_GLOBALSTORAGE_H
 
-#include "CalamaresConfig.h"
-
 #include <QObject>
 #include <QString>
 #include <QVariantMap>
 
 namespace Calamares
 {
-
-class DebugWindow;
 
 class GlobalStorage : public QObject
 {
