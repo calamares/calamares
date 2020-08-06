@@ -94,7 +94,7 @@ GlobalStorage::debugDump() const
 }
 
 bool
-GlobalStorage::save( const QString& filename )
+GlobalStorage::saveJson( const QString& filename ) const
 {
     QFile f( filename );
     if ( !f.open( QFile::WriteOnly ) )
@@ -108,7 +108,7 @@ GlobalStorage::save( const QString& filename )
 }
 
 bool
-GlobalStorage::load( const QString& filename )
+GlobalStorage::loadJson( const QString& filename )
 {
     QFile f( filename );
     if ( !f.open( QFile::ReadOnly ) )
@@ -139,7 +139,7 @@ GlobalStorage::load( const QString& filename )
 }
 
 bool
-GlobalStorage::saveYaml( const QString& filename )
+GlobalStorage::saveYaml( const QString& filename ) const
 {
     return CalamaresUtils::saveYaml( filename, m );
 }

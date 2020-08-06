@@ -94,7 +94,7 @@ public:
      * and this JSON file will contain that password in-the-only-slightly-
      * obscured form.
      */
-    bool save( const QString& filename );
+    bool saveJson( const QString& filename ) const;
 
     /** @brief Adds the keys from the given JSON file
      *
@@ -103,13 +103,13 @@ public:
      * the global storage. The storage is not cleared first: existing
      * keys will remain; keys that also occur in the JSON file are overwritten.
      */
-    bool load( const QString& filename );
+    bool loadJson( const QString& filename );
 
     /** @brief write as YAML to the given filename
      *
      * See also save(), above.
      */
-    bool saveYaml( const QString& filename );
+    bool saveYaml( const QString& filename ) const;
 
     /** @brief reads settings from the given filename
      *
