@@ -42,7 +42,7 @@ class Config : public QObject
     Q_PROPERTY( QAbstractItemModel* regionalZonesModel READ regionalZonesModel CONSTANT FINAL )
 
     Q_PROPERTY(
-        const CalamaresUtils::Locale::TimeZoneData* currentLocation READ currentLocation NOTIFY currentLocationChanged )
+        CalamaresUtils::Locale::TimeZoneData* currentLocation READ currentLocation_c NOTIFY currentLocationChanged )
 
     // Status are complete, human-readable, messages
     Q_PROPERTY( QString currentLocationStatus READ currentLocationStatus NOTIFY currentLanguageStatusChanged )
@@ -94,8 +94,15 @@ public:
 
     const CalamaresUtils::Locale::TimeZoneData* currentLocation() const { return m_currentLocation; }
 
+
     /// Special case, set location from starting timezone if not already set
     void setCurrentLocation();
+
+private:
+    CalamaresUtils::Locale::TimeZoneData* currentLocation_c() const
+    {
+        return const_cast< CalamaresUtils::Locale::TimeZoneData* >( m_currentLocation );
+    }
 
 public Q_SLOTS:
     /// Set a language by user-choice, overriding future location changes
