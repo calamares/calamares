@@ -16,7 +16,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
+#include "Config.h"
 #include "LocaleConfiguration.h"
 #include "timezonewidget/TimeZoneImage.h"
 
@@ -45,6 +45,9 @@ private Q_SLOTS:
     void testTZImages();  // No overlaps in images
     void testTZLocations();  // No overlaps in locations
     void testSpecificLocations();
+
+    // Check the Config loading
+    void testConfigInitialization();
 };
 
 QTEST_MAIN( LocaleTests )
@@ -250,6 +253,16 @@ LocaleTests::testSpecificLocations()
     QEXPECT_FAIL( "", "Gibraltar and Ceuta are really close", Continue );
     QVERIFY( gpos.y() < cpos.y() );  // Gibraltar is north of Ceuta
 }
+
+void
+LocaleTests::testConfigInitialization()
+{
+    Config c;
+
+    QVERIFY( !c.currentLocation() );
+    QVERIFY( !c.currentLocationStatus().isEmpty() );
+}
+
 
 #include "utils/moc-warnings.h"
 

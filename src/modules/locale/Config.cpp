@@ -436,11 +436,13 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     getStartingTimezone( configurationMap, m_startingTimezone );
     getGeoIP( configurationMap, m_geoip );
 
+#ifndef BUILD_AS_TEST
     if ( m_geoip && m_geoip->isValid() )
     {
         connect(
             Calamares::ModuleManager::instance(), &Calamares::ModuleManager::modulesLoaded, this, &Config::startGeoIP );
     }
+#endif
 }
 
 Calamares::JobList
