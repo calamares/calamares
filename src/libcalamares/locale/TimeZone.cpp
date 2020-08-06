@@ -327,7 +327,42 @@ ZonesModel::find( const QString& region, const QString& zone ) const
 const TimeZoneData*
 ZonesModel::find( double latitude, double longitude ) const
 {
-    return nullptr;
+    /* This is a somewhat derpy way of finding "closest",
+     * in that it considers one degree of separation
+     * either N/S or E/W equal to any other; this obviously
+     * falls apart at the poles.
+     */
+
+    double largestDifference = 720.0;
+    const TimeZoneData* closest = nullptr;
+
+    for ( const auto* zone : m_private->m_zones )
+    {
+        // Latitude doesn't wrap around: there is nothing north of 90
+        double latitudeDifference = abs( zone->latitude() - latitude );
+
+        // Longitude **does** wrap around, so consider the case of -178 and 178
+        //   which differ by 4 degrees.
+        double westerly = qMin( zone->longitude(), longitude );
+        double easterly = qMax( zone->longitude(), longitude );
+        double longitudeDifference = 0.0;
+        if ( westerly < 0.0 && !( easterly < 0.0 ) )
+        {
+            // Only if they're different signs can we have wrap-around.
+            longitudeDifference = qMin( abs( westerly - easterly ), abs( 360.0 + westerly - easterly ) );
+        }
+        else
+        {
+            longitudeDifference = abs( westerly - easterly );
+        }
+
+        if ( latitudeDifference + longitudeDifference < largestDifference )
+        {
+            largestDifference = latitudeDifference + longitudeDifference;
+            closest = zone;
+        }
+    }
+    return closest;
 }
 
 QObject*

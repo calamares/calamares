@@ -395,8 +395,19 @@ LocaleTests::testLocationLookup()
 {
     const CalamaresUtils::Locale::ZonesModel zones;
 
-    QVERIFY( zones.find( 50.0, 0.0 ) );
-    QCOMPARE( zones.find( 50.0, 0.0 )->zone(), QStringLiteral( "London" ) );
+    const auto* zone = zones.find( 50.0, 0.0 );
+    QVERIFY( zone );
+    QCOMPARE( zone->zone(), QStringLiteral( "London" ) );
+
+
+    // Tarawa is close to "the other side of the world" from London
+    zone = zones.find( 0.0, 179.0 );
+    QVERIFY( zone );
+    QCOMPARE( zone->zone(), QStringLiteral( "Tarawa" ) );
+
+    zone = zones.find( 0.0, -179.0 );
+    QVERIFY( zone );
+    QCOMPARE( zone->zone(), QStringLiteral( "Tarawa" ) );
 }
 
 
