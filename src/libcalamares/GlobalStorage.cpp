@@ -88,9 +88,10 @@ GlobalStorage::value( const QString& key ) const
 void
 GlobalStorage::debugDump() const
 {
+    cDebug() << "GlobalStorage" << Logger::Pointer(this) << m.count() << "items";
     for ( auto it = m.cbegin(); it != m.cend(); ++it )
     {
-        cDebug() << it.key() << '\t' << it.value();
+        cDebug() << Logger::SubEntry << it.key() << '\t' << it.value();
     }
 }
 
