@@ -36,7 +36,12 @@ Column {
     property var cityName: ""
     property var countryName: ""
 
-    function getIp() {
+    /* This is an extra GeoIP lookup, which will find better-accuracy
+     * location data for the user's IP, and then sets the current timezone
+     * and map location. Call it from Component.onCompleted so that
+     * it happens "on time" before the page is shown.
+     */
+    function getIpOnline() {
         var xhr = new XMLHttpRequest
 
         xhr.onreadystatechange = function() {
@@ -57,6 +62,16 @@ Column {
         xhr.open("GET", "https://get.geojs.io/v1/ip/geo.json")
         // Execute the request
         xhr.send()
+    }
+
+    /* This is an "offline" GeoIP lookup -- it just follows what
+     * Calamares itself has figured out with its GeoIP or configuration.
+     * Call it from the **Component** onActivate() -- in localeq.qml --
+     * so it happens as the page is shown.
+     */
+    function getIpOffline() {
+        cityName = config.currentLocation.zone
+        countryName = config.currentLocation.countryCode
     }
 
     /* This is an **accurate** TZ lookup method: it queries an
@@ -239,7 +254,11 @@ Column {
                     anchors.centerIn: parent
                 }
 
-                Component.onCompleted: getIp();
+                /* If you want an extra (and accurate) GeoIP lookup,
+                 * enable this one and disable the offline lookup in
+                 * onActivate().
+                Component.onCompleted: getIpOnline();
+                 */
             }
         }
 
