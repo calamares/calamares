@@ -22,6 +22,7 @@
 #ifndef CALAMARES_GLOBALSTORAGE_H
 #define CALAMARES_GLOBALSTORAGE_H
 
+#include <QMutex>
 #include <QObject>
 #include <QString>
 #include <QVariantMap>
@@ -45,8 +46,11 @@ namespace Calamares
  *
  * In general, see QVariantMap (possibly after calling data()) for details.
  *
- * This class is not thread-safe, but as long as JobQueue is, that's ok
- * because only one module is active at a time.
+ * This class is thread-safe -- most accesses go through JobQueue, which
+ * handles threading itself, but because modules load in parallel and can
+ * have asynchronous tasks like GeoIP lookups, the storage itself also
+ * has locking. All methods are thread-safe, use data() to make a snapshot
+ * copy for use outside of the thread-safe API.
  */
 class GlobalStorage : public QObject
 {
@@ -117,13 +121,11 @@ public:
      */
     bool loadYaml( const QString& filename );
 
-    /** @brief Get internal mapping as a constant object
+    /** @brief Make a complete copy of the data
      *
-     * Note that the VariantMap underneath may change, because
-     * it's not constant in itself. Connect to the changed()
-     * signal for notifications.
+     * Provides a snapshot of the data at a given time.
      */
-    const QVariantMap& data() const { return m; }
+    QVariantMap data() const { return m; }
 
 public Q_SLOTS:
     /** @brief Does the store contain the given key?
@@ -164,7 +166,10 @@ signals:
     void changed();
 
 private:
+    class ReadLock;
+    class WriteLock;
     QVariantMap m;
+    mutable QMutex m_mutex;
 };
 
 }  // namespace Calamares
