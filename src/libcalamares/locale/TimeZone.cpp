@@ -35,6 +35,9 @@ namespace CalamaresUtils
 {
 namespace Locale
 {
+class RegionData;
+using RegionVector = QVector< RegionData* >;
+using ZoneVector = QVector< TimeZoneData* >;
 
 /** @brief Turns a string longitude or latitude notation into a double
  *
@@ -81,6 +84,7 @@ TimeZoneData::TimeZoneData( const QString& region,
     , m_latitude( latitude )
     , m_longitude( longitude )
 {
+    setObjectName( region + '/' + zone );
 }
 
 QString
@@ -104,9 +108,6 @@ RegionData::tr() const
     // NOTE: context name must match what's used in zone-extractor.py
     return QObject::tr( m_human, "tz_regions" );
 }
-
-using RegionVector = QVector< RegionData* >;
-using ZoneVector = QVector< TimeZoneData* >;
 
 static void
 loadTZData( RegionVector& regions, ZoneVector& zones )
@@ -188,8 +189,10 @@ loadTZData( RegionVector& regions, ZoneVector& zones )
 }
 
 
-struct Private
+class Private : public QObject
 {
+    Q_OBJECT
+public:
     RegionVector m_regions;
     ZoneVector m_zones;
 
@@ -210,6 +213,11 @@ struct Private
             }
             return lhs->region() < rhs->region();
         } );
+
+        for ( auto* z : m_zones )
+        {
+            z->setParent( this );
+        }
     }
 };
 
@@ -322,6 +330,22 @@ ZonesModel::find( double latitude, double longitude ) const
     return nullptr;
 }
 
+QObject*
+ZonesModel::lookup( double latitude, double longitude ) const
+{
+    const auto* p = find( latitude, longitude );
+    if ( !p )
+    {
+        p = find( "America", "New_York" );
+    }
+    if ( !p )
+    {
+        cWarning() << "No zone (not even New York) found, expect crashes.";
+    }
+    return const_cast< QObject* >( reinterpret_cast< const QObject* >( p ) );
+}
+
+
 ZonesModel::Iterator::operator bool() const
 {
     return 0 <= m_index && m_index < m_p->m_zones.count();
@@ -376,3 +400,7 @@ RegionalZonesModel::filterAcceptsRow( int sourceRow, const QModelIndex& ) const
 
 }  // namespace Locale
 }  // namespace CalamaresUtils
+
+#include "utils/moc-warnings.h"
+
+#include "TimeZone.moc"

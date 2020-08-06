@@ -35,7 +35,7 @@ namespace CalamaresUtils
 {
 namespace Locale
 {
-struct Private;
+class Private;
 class RegionalZonesModel;
 class ZonesModel;
 
@@ -122,22 +122,7 @@ public:
 
     QHash< int, QByteArray > roleNames() const override;
 
-    /** @brief Look up TZ data based on its name.
-     *
-     * Returns @c nullptr if not found.
-     */
-    const TimeZoneData* find( const QString& region, const QString& zone ) const;
-
-    /** @brief Look up TZ data based on the location.
-     *
-     * Returns the nearest zone to the given lat and lon.
-     */
-    const TimeZoneData* find( double latitude, double longitude ) const;
-
-    /** @brief Iterator for testing purposes
-     *
-     * This is primarily for testing, but who knows, it might be useful
-     * elsewhere, and it's convenient when it can access Private.
+    /** @brief Iterator for the underlying list of zones
      *
      * Iterates over all the zones in the model. Operator * may return
      * a @c nullptr when the iterator is not valid. Typical usage:
@@ -170,6 +155,26 @@ public:
     };
 
     Iterator begin() const { return Iterator( m_private ); }
+
+public Q_SLOTS:
+    /** @brief Look up TZ data based on its name.
+     *
+     * Returns @c nullptr if not found.
+     */
+    const TimeZoneData* find( const QString& region, const QString& zone ) const;
+
+    /** @brief Look up TZ data based on the location.
+     *
+     * Returns the nearest zone to the given lat and lon.
+     */
+    const TimeZoneData* find( double latitude, double longitude ) const;
+
+    /** @brief Look up TZ data based on the location.
+     *
+     * Returns the nearest zone, or New York. This is non-const for QML
+     * purposes, but the object should be considered const anyway.
+     */
+    QObject* lookup( double latitude, double longitude ) const;
 
 private:
     Private* m_private;
