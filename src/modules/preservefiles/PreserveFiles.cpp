@@ -138,7 +138,7 @@ PreserveFiles::exec()
         }
         if ( it.type == ItemType::Config )
         {
-            if ( Calamares::JobQueue::instance()->globalStorage()->save( dest ) )
+            if ( Calamares::JobQueue::instance()->globalStorage()->saveJson( dest ) )
             {
                 cWarning() << "Could not write config for" << dest;
             }
