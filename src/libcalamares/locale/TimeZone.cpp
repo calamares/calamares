@@ -268,6 +268,18 @@ RegionsModel::roleNames() const
     return { { NameRole, "name" }, { KeyRole, "key" } };
 }
 
+QString
+RegionsModel::tr( const QString& region ) const
+{
+    for ( const auto* p : m_private->m_regions )
+    {
+        if ( p->key() == region )
+        {
+            return p->tr();
+        }
+    }
+    return region;
+}
 
 ZonesModel::ZonesModel( QObject* parent )
     : QAbstractListModel( parent )

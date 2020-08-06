@@ -47,6 +47,9 @@ class TimeZoneData : public QObject, TranslatableString
     Q_OBJECT
 
     Q_PROPERTY( QString region READ region CONSTANT )
+    Q_PROPERTY( QString zone READ zone CONSTANT )
+    Q_PROPERTY( QString name READ tr CONSTANT )
+    Q_PROPERTY( QString countryCode READ country CONSTANT )
 
 public:
     TimeZoneData( const QString& region,
@@ -97,6 +100,14 @@ public:
     QVariant data( const QModelIndex& index, int role ) const override;
 
     QHash< int, QByteArray > roleNames() const override;
+
+public Q_SLOTS:
+    /** @brief Provides a human-readable version of the region
+     *
+     * Returns @p region unchanged if there is no such region
+     * or no translation for the region's name.
+     */
+    QString tr( const QString& region ) const;
 
 private:
     Private* m_private;
