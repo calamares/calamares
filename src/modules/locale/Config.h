@@ -48,7 +48,12 @@ class Config : public QObject
     Q_PROPERTY( QString currentLocationStatus READ currentLocationStatus NOTIFY currentLanguageStatusChanged )
     Q_PROPERTY( QString currentLanguageStatus READ currentLanguageStatus NOTIFY currentLanguageStatusChanged )
     Q_PROPERTY( QString currentLCStatus READ currentLCStatus NOTIFY currentLCStatusChanged )
+    // Name are shorter human-readable names
+    //   .. main difference is that status is a full sentence, like "Timezone is America/New York"
+    //      while name is just "America/New York" (and the code, below, is "America/New_York")
+    Q_PROPERTY( QString currentTimezoneName READ currentTimezoneName NOTIFY currentTimezoneNameChanged )
     // Code are internal identifiers, like "en_US.UTF-8"
+    Q_PROPERTY( QString currentTimezoneCode READ currentTimezoneCode NOTIFY currentTimezoneCodeChanged )
     Q_PROPERTY( QString currentLanguageCode READ currentLanguageCode WRITE setLanguageExplicitly NOTIFY
                     currentLanguageCodeChanged )
     Q_PROPERTY( QString currentLCCode READ currentLCCode WRITE setLCLocaleExplicitly NOTIFY currentLCCodeChanged )
@@ -119,6 +124,8 @@ public Q_SLOTS:
 
     QString currentLanguageCode() const { return localeConfiguration().language(); }
     QString currentLCCode() const { return localeConfiguration().lc_numeric; }
+    QString currentTimezoneName() const;  // human-readable
+    QString currentTimezoneCode() const;
 
 signals:
     void currentLocationChanged( const CalamaresUtils::Locale::TimeZoneData* location ) const;
@@ -128,6 +135,8 @@ signals:
     void prettyStatusChanged( const QString& ) const;
     void currentLanguageCodeChanged( const QString& ) const;
     void currentLCCodeChanged( const QString& ) const;
+    void currentTimezoneCodeChanged( const QString& ) const;
+    void currentTimezoneNameChanged( const QString& ) const;
 
 private:
     /// A list of supported locale identifiers (e.g. "en_US.UTF-8")

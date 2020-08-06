@@ -192,6 +192,9 @@ Config::Config( QObject* parent )
             QProcess::execute( "timedatectl",  // depends on systemd
                                { "set-timezone", location->region() + '/' + location->zone() } );
         }
+
+        emit currentTimezoneCodeChanged( currentTimezoneCode() );
+        emit currentTimezoneNameChanged( currentTimezoneName() );
     } );
 
     auto prettyStatusNotify = [&]() { emit prettyStatusChanged( prettyStatus() ); };
@@ -265,6 +268,7 @@ Config::setCurrentLocation( const CalamaresUtils::Locale::TimeZoneData* location
             emit currentLCStatusChanged( currentLCStatus() );
         }
         emit currentLocationChanged( m_currentLocation );
+        // Other signals come from the LocationChanged signal
     }
 }
 
@@ -322,6 +326,27 @@ Config::currentLocationStatus() const
         .arg( m_currentLocation ? m_currentLocation->region() : QString(),
               m_currentLocation ? m_currentLocation->zone() : QString() );
 }
+
+QString
+Config::currentTimezoneCode() const
+{
+    if ( m_currentLocation )
+    {
+        return m_currentLocation->region() + '/' + m_currentLocation->zone();
+    }
+    return QString();
+}
+
+QString
+Config::currentTimezoneName() const
+{
+    if ( m_currentLocation )
+    {
+        return m_regionModel->tr( m_currentLocation->region() ) + '/' + m_currentLocation->tr();
+    }
+    return QString();
+}
+
 
 static inline QString
 localeLabel( const QString& s )
