@@ -27,11 +27,34 @@
 
 #include <QFile>
 #include <QJsonDocument>
+#include <QMutexLocker>
 
 using CalamaresUtils::operator""_MiB;
 
 namespace Calamares
 {
+
+class GlobalStorage::ReadLock : public QMutexLocker
+{
+public:
+    ReadLock( const GlobalStorage* gs )
+        : QMutexLocker( &gs->m_mutex )
+    {
+    }
+};
+
+class GlobalStorage::WriteLock : public QMutexLocker
+{
+public:
+    WriteLock( GlobalStorage* gs )
+        : QMutexLocker( &gs->m_mutex )
+        , m_gs( gs )
+    {
+    }
+    ~WriteLock() { m_gs->changed(); }
+
+    GlobalStorage* m_gs;
+};
 
 GlobalStorage::GlobalStorage( QObject* parent )
     : QObject( parent )
@@ -42,6 +65,7 @@ GlobalStorage::GlobalStorage( QObject* parent )
 bool
 GlobalStorage::contains( const QString& key ) const
 {
+    ReadLock l( this );
     return m.contains( key );
 }
 
@@ -49,6 +73,7 @@ GlobalStorage::contains( const QString& key ) const
 int
 GlobalStorage::count() const
 {
+    ReadLock l( this );
     return m.count();
 }
 
@@ -56,14 +81,15 @@ GlobalStorage::count() const
 void
 GlobalStorage::insert( const QString& key, const QVariant& value )
 {
+    WriteLock l( this );
     m.insert( key, value );
-    emit changed();
 }
 
 
 QStringList
 GlobalStorage::keys() const
 {
+    ReadLock l( this );
     return m.keys();
 }
 
@@ -71,8 +97,8 @@ GlobalStorage::keys() const
 int
 GlobalStorage::remove( const QString& key )
 {
+    WriteLock l( this );
     int nItems = m.remove( key );
-    emit changed();
     return nItems;
 }
 
@@ -80,13 +106,15 @@ GlobalStorage::remove( const QString& key )
 QVariant
 GlobalStorage::value( const QString& key ) const
 {
+    ReadLock l( this );
     return m.value( key );
 }
 
 void
 GlobalStorage::debugDump() const
 {
-    cDebug() << "GlobalStorage" << Logger::Pointer(this) << m.count() << "items";
+    ReadLock l( this );
+    cDebug() << "GlobalStorage" << Logger::Pointer( this ) << m.count() << "items";
     for ( auto it = m.cbegin(); it != m.cend(); ++it )
     {
         cDebug() << Logger::SubEntry << it.key() << '\t' << it.value();
@@ -96,6 +124,7 @@ GlobalStorage::debugDump() const
 bool
 GlobalStorage::saveJson( const QString& filename ) const
 {
+    ReadLock l( this );
     QFile f( filename );
     if ( !f.open( QFile::WriteOnly ) )
     {
@@ -128,6 +157,7 @@ GlobalStorage::loadJson( const QString& filename )
     }
     else
     {
+        WriteLock l( this );
         auto map = d.toVariant().toMap();
         for ( auto i = map.constBegin(); i != map.constEnd(); ++i )
         {
@@ -141,6 +171,7 @@ GlobalStorage::loadJson( const QString& filename )
 bool
 GlobalStorage::saveYaml( const QString& filename ) const
 {
+    ReadLock l( this );
     return CalamaresUtils::saveYaml( filename, m );
 }
 
@@ -151,9 +182,11 @@ GlobalStorage::loadYaml( const QString& filename )
     auto gs = CalamaresUtils::loadYaml( filename, &ok );
     if ( ok )
     {
+        WriteLock l( this );
         m = gs;
+        return true;
     }
-    return ok;
+    return false;
 }
 
 
