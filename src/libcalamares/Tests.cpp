@@ -21,6 +21,8 @@
 
 #include "GlobalStorage.h"
 
+#include "utils/Logger.h"
+
 #include <QObject>
 #include <QSignalSpy>
 #include <QtTest/QtTest>
@@ -35,6 +37,7 @@ public:
 private Q_SLOTS:
     void testGSModify();
     void testGSLoadSave();
+    void testGSLoadSave2();
 };
 
 void
@@ -105,6 +108,35 @@ TestLibCalamares::testGSLoadSave()
     QCOMPARE( gs4.count(), 4 );
     QVERIFY( gs4.contains( "dorp" ) );
     QCOMPARE( gs4.value( "derp" ).toInt(), 17 );  // This one was overwritten
+}
+
+void
+TestLibCalamares::testGSLoadSave2()
+{
+    Logger::setupLogLevel( Logger::LOGDEBUG );
+
+    const QString filename( "../src/libcalamares/testdata/yaml-list.conf" );
+    if ( !QFile::exists( filename ) )
+    {
+        return;
+    }
+
+    Calamares::GlobalStorage gs1;
+    const QString key( "dwarfs" );
+
+    QVERIFY( gs1.loadYaml( filename ) );
+    QCOMPARE( gs1.count(), 3 );  // From examining the file
+    QVERIFY( gs1.contains( key ) );
+    cDebug() << gs1.value( key ).type() << gs1.value( key );
+    QCOMPARE( gs1.value( key ).type(), QVariant::List );
+
+    const QString yamlfilename( "gs.test.yaml" );
+    QVERIFY( gs1.saveYaml( yamlfilename ) );
+
+    Calamares::GlobalStorage gs2;
+    QVERIFY( gs2.loadYaml( yamlfilename ) );
+    QVERIFY( gs2.contains( key ) );
+    QCOMPARE( gs2.value( key ).type(), QVariant::List );
 }
 
 
