@@ -50,7 +50,7 @@ enum class Badness
 
 /** Add an error message and pixmap to a label. */
 static inline void
-labelError( QLabel* pix, QLabel* label, const QString& message, Badness bad = Badness::Fatal )
+labelError( QLabel* pix, QLabel* label, const QString& message, Badness bad )
 {
     label->setText( message );
     pix->setPixmap( CalamaresUtils::defaultPixmap( ( bad == Badness::Fatal ) ? CalamaresUtils::StatusError
@@ -88,7 +88,7 @@ labelStatus( QLabel* pix, QLabel* label, const QString& value, const QString& st
     }
     else
     {
-        labelError( pix, label, status );
+        labelError( pix, label, status, Badness::Fatal );
         ok = false;
     }
 }
@@ -105,6 +105,12 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
 {
     ui->setupUi( this );
 
+    ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
+    ui->checkBoxReusePassword->setChecked( m_config->reuseUserPasswordForRoot() );
+
+    ui->checkBoxValidatePassword->setVisible( m_config->permitWeakPasswords() );
+    ui->checkBoxValidatePassword->setChecked( m_config->requireStrongPasswords() );
+
     // Connect signals and slots
     connect( ui->textBoxUserPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
@@ -115,21 +121,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
         onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
         checkReady( isReady() );
     } );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( const int checked ) {
-        /* When "reuse" is checked, hide the fields for explicitly
-         * entering the root password. However, if we're going to
-         * disable the root password anyway, hide them all regardless of
-         * the checkbox -- so when writeRoot is false, checked needs
-         * to be true, to hide them all.
-         */
-        const bool visible = m_config->writeRootPassword() ? !checked : false;
-        ui->labelChooseRootPassword->setVisible( visible );
-        ui->labelRootPassword->setVisible( visible );
-        ui->labelRootPasswordError->setVisible( visible );
-        ui->textBoxRootPassword->setVisible( visible );
-        ui->textBoxVerifiedRootPassword->setVisible( visible );
-        checkReady( isReady() );
-    } );
+    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, &UsersPage::onReuseUserPasswordChanged );
 
     connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
@@ -147,13 +139,25 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     } );
     connect( config, &Config::autoLoginChanged, ui->checkBoxDoAutoLogin, &QCheckBox::setChecked );
 
-    ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
-    ui->checkBoxReusePassword->setChecked( true );
-    ui->checkBoxValidatePassword->setChecked( true );
+    if ( m_config->writeRootPassword() )
+    {
+        connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+            m_config->setReuseUserPasswordForRoot( checked != Qt::Unchecked );
+        } );
+        connect( config, &Config::reuseUserPasswordForRootChanged, ui->checkBoxReusePassword, &QCheckBox::setChecked );
+    }
 
-    setPasswordCheckboxVisible( false );
+    if ( m_config->permitWeakPasswords() )
+    {
+        connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+            m_config->setRequireStrongPasswords( checked != Qt::Unchecked );
+        } );
+        connect( config, &Config::requireStrongPasswordsChanged, ui->checkBoxValidatePassword, &QCheckBox::setChecked );
+    }
 
     CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate );
+
+    onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
 }
 
 UsersPage::~UsersPage()
@@ -193,32 +197,6 @@ UsersPage::isReady() const
     readyFields
         &= m_config->writeRootPassword() ? ( m_readyRootPassword || ui->checkBoxReusePassword->isChecked() ) : true;
     return readyFields;
-}
-
-QString
-UsersPage::getRootPassword() const
-{
-    if ( m_config->writeRootPassword() )
-    {
-        if ( ui->checkBoxReusePassword->isChecked() )
-        {
-            return ui->textBoxUserPassword->text();
-        }
-        else
-        {
-            return ui->textBoxRootPassword->text();
-        }
-    }
-    else
-    {
-        return QString();
-    }
-}
-
-QPair< QString, QString >
-UsersPage::getUserPassword() const
-{
-    return QPair< QString, QString >( m_config->loginName(), ui->textBoxUserPassword->text() );
 }
 
 void
@@ -274,43 +252,26 @@ UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLab
 {
     if ( pw1 != pw2 )
     {
-        labelError( badge, message, tr( "Your passwords do not match!" ) );
+        labelError( badge, message, tr( "Your passwords do not match!" ), Badness::Fatal );
         return false;
     }
     else
     {
-        bool failureIsFatal = ui->checkBoxValidatePassword->isChecked();
-        bool failureFound = false;
-
-        if ( m_passwordChecksChanged )
+        QString s;
+        bool ok = m_config->isPasswordAcceptable( pw1, s );
+        if ( !ok )
         {
-            std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
-            m_passwordChecksChanged = false;
+            labelError( badge, message, s, Badness::Fatal );
         }
-
-        for ( auto pc : m_passwordChecks )
+        else if ( !s.isEmpty() )
         {
-            QString s = pc.filter( pw1 );
-
-            if ( !s.isEmpty() )
-            {
-                labelError( badge, message, s, failureIsFatal ? Badness::Fatal : Badness::Warning );
-                failureFound = true;
-                if ( failureIsFatal )
-                {
-                    return false;
-                }
-            }
+            labelError( badge, message, s, Badness::Warning );
         }
-
-        if ( !failureFound )
+        else
         {
             labelOk( badge, message );
         }
-
-        // Here, if failureFound is true then we've found **warnings**,
-        // which is ok to continue but the user should know.
-        return true;
+        return ok;
     }
 }
 
@@ -335,58 +296,24 @@ UsersPage::onRootPasswordTextChanged( const QString& )
     emit checkReady( isReady() );
 }
 
-
 void
-UsersPage::setPasswordCheckboxVisible( bool visible )
+UsersPage::onReuseUserPasswordChanged( const int checked )
 {
-    ui->checkBoxValidatePassword->setVisible( visible );
-}
-
-void
-UsersPage::setValidatePasswordDefault( bool checked )
-{
-    ui->checkBoxValidatePassword->setChecked( checked );
-    emit checkReady( isReady() );
-}
-
-void
-UsersPage::setReusePasswordDefault( bool checked )
-{
-    ui->checkBoxReusePassword->setChecked( checked );
-    emit checkReady( isReady() );
-}
-
-void
-UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
-{
-    m_passwordChecksChanged = true;
-
-    if ( key == "minLength" )
-    {
-        add_check_minLength( m_passwordChecks, value );
-    }
-    else if ( key == "maxLength" )
-    {
-        add_check_maxLength( m_passwordChecks, value );
-    }
-    else if ( key == "nonempty" )
-    {
-        if ( value.toBool() )
-        {
-            m_passwordChecks.push_back(
-                PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
-                               []( const QString& s ) { return !s.isEmpty(); },
-                               PasswordCheck::Weight( 1 ) ) );
-        }
-    }
-#ifdef CHECK_PWQUALITY
-    else if ( key == "libpwquality" )
-    {
-        add_check_libpwquality( m_passwordChecks, value );
-    }
-#endif  // CHECK_PWQUALITY
-    else
-    {
-        cWarning() << "Unknown password-check key" << key;
-    }
+    /* When "reuse" is checked, hide the fields for explicitly
+     * entering the root password. However, if we're going to
+     * disable the root password anyway, hide them all regardless of
+     * the checkbox -- so when writeRoot is false, visible needs
+     * to be false, to hide them all.
+     *
+     * In principle this is only connected when writeRootPassword is @c true,
+     * but it is **always** called at least once in the constructor
+     * to set up initial visibility.
+     */
+    const bool visible = m_config->writeRootPassword() ? !checked : false;
+    ui->labelChooseRootPassword->setVisible( visible );
+    ui->labelRootPassword->setVisible( visible );
+    ui->labelRootPasswordError->setVisible( visible );
+    ui->textBoxRootPassword->setVisible( visible );
+    ui->textBoxVerifiedRootPassword->setVisible( visible );
+    checkReady( isReady() );
 }

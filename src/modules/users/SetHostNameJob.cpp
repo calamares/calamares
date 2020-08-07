@@ -27,13 +27,13 @@
 
 #include <QDir>
 #include <QFile>
-#include <QtDBus/QDBusConnection>
-#include <QtDBus/QDBusInterface>
-#include <QtDBus/QDBusReply>
+#include <QDBusConnection>
+#include <QDBusInterface>
+#include <QDBusReply>
 
 using WriteMode = CalamaresUtils::System::WriteMode;
 
-SetHostNameJob::SetHostNameJob( const QString& hostname, Actions a )
+SetHostNameJob::SetHostNameJob( const QString& hostname, HostNameActions a )
     : Calamares::Job()
     , m_hostname( hostname )
     , m_actions( a )
@@ -138,7 +138,7 @@ SetHostNameJob::exec()
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
-    if ( m_actions & Action::EtcHostname )
+    if ( m_actions & HostNameAction::EtcHostname )
     {
         if ( !setFileHostname( m_hostname ) )
         {
@@ -147,7 +147,7 @@ SetHostNameJob::exec()
         }
     }
 
-    if ( m_actions & Action::WriteEtcHosts )
+    if ( m_actions & HostNameAction::WriteEtcHosts )
     {
         if ( !writeFileEtcHosts( m_hostname ) )
         {
@@ -156,7 +156,7 @@ SetHostNameJob::exec()
         }
     }
 
-    if ( m_actions & Action::SystemdHostname )
+    if ( m_actions & HostNameAction::SystemdHostname )
     {
         // Does its own logging
         setSystemdHostname( m_hostname );

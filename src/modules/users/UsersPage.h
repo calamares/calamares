@@ -24,8 +24,6 @@
 #ifndef USERSPAGE_H
 #define USERSPAGE_H
 
-#include "CheckPWQuality.h"
-
 #include <QWidget>
 
 class Config;
@@ -50,29 +48,13 @@ public:
 
     void onActivate();
 
-    void setPasswordCheckboxVisible( bool visible );
-    void setValidatePasswordDefault( bool checked );
-    void setReusePasswordDefault( bool checked );
-
-    /** @brief Process entries in the passwordRequirements config entry
-     *
-     * Called once for each item in the config entry, which should
-     * be a key-value pair. What makes sense as a value depends on
-     * the key. Supported keys are documented in users.conf.
-     */
-    void addPasswordCheck( const QString& key, const QVariant& value );
-
-    ///@brief Root password, depends on settings, may be empty
-    QString getRootPassword() const;
-    ///@brief User name and password
-    QPair< QString, QString > getUserPassword() const;
-
 protected slots:
     void onFullNameTextEdited( const QString& );
     void reportLoginNameStatus( const QString& );
     void reportHostNameStatus( const QString& );
     void onPasswordTextChanged( const QString& );
     void onRootPasswordTextChanged( const QString& );
+    void onReuseUserPasswordChanged( const int );
 
 signals:
     void checkReady( bool );
@@ -90,9 +72,6 @@ private:
 
     Ui::Page_UserSetup* ui;
     Config* m_config;
-
-    PasswordCheckList m_passwordChecks;
-    bool m_passwordChecksChanged = false;
 
     bool m_readyFullName;
     bool m_readyUsername;
