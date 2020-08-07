@@ -46,12 +46,19 @@ def get_grub_config_path(root_mount_point):
     Returns a path into @p root_mount_point.
     """
     default_dir = os.path.join(root_mount_point, "etc/default")
-    default_grub = os.path.join(default_dir, "grub")
+    default_config_file = "grub"
+
+    if "prefer_grub_d" in libcalamares.job.configuration and libcalamares.job.configuration["prefer_grub_d"]:
+        possible_dir = os.path.join(root_mount_point, "etc/default/grub.d")
+        if os.path.exists(possible_dir) and os.path.isdir(possible_dir):
+            default_dir = possible_dir
+            default_config_file = "00calamares"
 
     if not os.path.exists(default_dir):
         os.mkdir(default_dir)
 
-    return default_grub
+    return os.path.join(default_dir, default_config_file)
+
 
 def modify_grub_default(partitions, root_mount_point, distributor):
     """
