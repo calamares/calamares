@@ -455,14 +455,6 @@ list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
 add_subdirectory( lang )  # i18n tools
 
-if ( INSTALL_COMPLETION )
-    if( NOT CMAKE_INSTALL_BASHCOMPLETIONDIR )
-        set( CMAKE_INSTALL_BASHCOMPLETIONDIR "${CMAKE_INSTALL_DATADIR}/bash-completion/completions" )
-    endif()
-
-    install( FILES ${CMAKE_SOURCE_DIR}/data/completion/bash/calamares DESTINATION "${CMAKE_INSTALL_BASHCOMPLETIONDIR}" )
-endif()
-
 ### Example Distro
 #
 # For testing purposes Calamares includes a very, very, limited sample
@@ -650,6 +642,14 @@ if( INSTALL_POLKIT )
         FILES com.github.calamares.calamares.policy
         DESTINATION "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
     )
+endif()
+
+if ( INSTALL_COMPLETION )
+    if( NOT CMAKE_INSTALL_BASHCOMPLETIONDIR )
+        set( CMAKE_INSTALL_BASHCOMPLETIONDIR "${CMAKE_INSTALL_DATADIR}/bash-completion/completions" )
+    endif()
+
+    install( FILES ${CMAKE_SOURCE_DIR}/data/completion/bash/calamares DESTINATION "${CMAKE_INSTALL_BASHCOMPLETIONDIR}" )
 endif()
 
 install(
