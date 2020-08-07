@@ -2,7 +2,7 @@
 bogus: true
 firmwareType: bios
 bootLoader: grub
-rootMountPoint: /tmp/calamares/grubcfg-test-2
+rootMountPoint: /tmp/calamares/grubcfg-test-4
 
 branding:
   bootloaderEntryName: generic

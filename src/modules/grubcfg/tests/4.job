@@ -1,0 +1,10 @@
+---
+overwrite: true
+prefer_grub_d: true
+keepDistributor: false
+defaults:
+    GRUB_TIMEOUT: 5
+    GRUB_DEFAULT: "saved"
+    GRUB_DISABLE_SUBMENU: true
+    GRUB_TERMINAL_OUTPUT: "console"
+    GRUB_DISABLE_RECOVERY: true

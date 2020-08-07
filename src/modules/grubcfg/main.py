@@ -55,7 +55,11 @@ def get_grub_config_path(root_mount_point):
             default_config_file = "00calamares"
 
     if not os.path.exists(default_dir):
-        os.mkdir(default_dir)
+        try:
+            os.mkdir(default_dir)
+        except:
+            libcalamares.utils.debug("Failed to create '%r'" % default_dir)
+            raise
 
     return os.path.join(default_dir, default_config_file)
 
