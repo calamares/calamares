@@ -37,6 +37,19 @@ def pretty_name():
     return _("Configure GRUB.")
 
 
+def get_grub_config_paths(root_mount_point):
+    """
+    Figures out where to put the grub config files. Returns
+    a directory path and the full path of a file inside that
+    directory, as "the grub-directory" and "the config file".
+
+    Returns a path into @p root_mount_point.
+    """
+    default_dir = os.path.join(root_mount_point, "etc/default")
+    default_grub = os.path.join(default_dir, "grub")
+
+    return (default_dir, default_grub)
+
 def modify_grub_default(partitions, root_mount_point, distributor):
     """
     Configures '/etc/default/grub' for hibernation and plymouth.
@@ -54,8 +67,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         is always updated to set this value.
     :return:
     """
-    default_dir = os.path.join(root_mount_point, "etc/default")
-    default_grub = os.path.join(default_dir, "grub")
+    default_dir, default_grub = get_grub_config_paths(root_mount_point)
     distributor_replace = distributor.replace("'", "'\\''")
     dracut_bin = libcalamares.utils.target_env_call(
         ["sh", "-c", "which dracut"]
