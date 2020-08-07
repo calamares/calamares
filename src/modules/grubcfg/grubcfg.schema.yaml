@@ -5,6 +5,8 @@ additionalProperties: false
 type: object
 properties:
     overwrite: { type: boolean, default: false }
+    keepDistributor: { type: boolean, default: false }
+    prefer_grub_d: { type: boolean, default: false }
     defaults:
         type: object
         additionalProperties: true  # Other fields are acceptable
