@@ -37,18 +37,21 @@ def pretty_name():
     return _("Configure GRUB.")
 
 
-def get_grub_config_paths(root_mount_point):
+def get_grub_config_path(root_mount_point):
     """
     Figures out where to put the grub config files. Returns
-    a directory path and the full path of a file inside that
-    directory, as "the grub-directory" and "the config file".
+    a the full path of a file inside that
+    directory, as "the config file".
 
     Returns a path into @p root_mount_point.
     """
     default_dir = os.path.join(root_mount_point, "etc/default")
     default_grub = os.path.join(default_dir, "grub")
 
-    return (default_dir, default_grub)
+    if not os.path.exists(default_dir):
+        os.mkdir(default_dir)
+
+    return default_grub
 
 def modify_grub_default(partitions, root_mount_point, distributor):
     """
@@ -67,7 +70,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         is always updated to set this value.
     :return:
     """
-    default_dir, default_grub = get_grub_config_paths(root_mount_point)
+    default_grub = get_grub_config_path(root_mount_point)
     distributor_replace = distributor.replace("'", "'\\''")
     dracut_bin = libcalamares.utils.target_env_call(
         ["sh", "-c", "which dracut"]
@@ -153,9 +156,6 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             swap_outer_mappername))
 
     distributor_line = "GRUB_DISTRIBUTOR='{!s}'".format(distributor_replace)
-
-    if not os.path.exists(default_dir):
-        os.mkdir(default_dir)
 
     have_kernel_cmd = False
     have_distributor_line = False
