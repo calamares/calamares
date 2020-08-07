@@ -57,6 +57,7 @@ set( libSources
     locale/Lookup.cpp
     locale/TimeZone.cpp
     locale/TranslatableConfiguration.cpp
+    locale/TranslatableString.cpp
 
     # Modules
     modulesystem/InstanceKey.cpp

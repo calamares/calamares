@@ -51,28 +51,28 @@ class TimeZoneWidget : public QWidget
 {
     Q_OBJECT
 public:
-    using TZZone = CalamaresUtils::Locale::TZZone;
+    using TimeZoneData = CalamaresUtils::Locale::TimeZoneData;
 
-    explicit TimeZoneWidget( const CalamaresUtils::Locale::CStringPairList& zones, QWidget* parent = nullptr );
+    explicit TimeZoneWidget( const CalamaresUtils::Locale::ZonesModel* zones, QWidget* parent = nullptr );
 
 public Q_SLOTS:
     /** @brief Sets a location by pointer
      *
      * Pointer should be within the same model as the widget uses.
      */
-    void setCurrentLocation( const TZZone* location );
+    void setCurrentLocation( const TimeZoneData* location );
 
 signals:
     /** @brief The location has changed by mouse click */
-    void locationChanged( const TZZone* location );
+    void locationChanged( const TimeZoneData* location );
 
 private:
     QFont font;
     QImage background, pin, currentZoneImage;
     TimeZoneImageList timeZoneImages;
 
-    const CalamaresUtils::Locale::CStringPairList& m_zonesData;
-    const TZZone* m_currentLocation = nullptr;  // Not owned by me
+    const CalamaresUtils::Locale::ZonesModel* m_zonesData;
+    const TimeZoneData* m_currentLocation = nullptr;  // Not owned by me
 
     void paintEvent( QPaintEvent* event );
     void mousePressEvent( QMouseEvent* event );

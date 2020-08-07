@@ -47,8 +47,12 @@ private Q_SLOTS:
     void testInterlingue();
 
     // TimeZone testing
+    void testRegions();
     void testSimpleZones();
     void testComplexZones();
+    void testTZLookup();
+    void testTZIterator();
+    void testLocationLookup();
 };
 
 LocaleTests::LocaleTests() {}
@@ -245,56 +249,167 @@ LocaleTests::testTranslatableConfig2()
 }
 
 void
+LocaleTests::testRegions()
+{
+    using namespace CalamaresUtils::Locale;
+    RegionsModel regions;
+
+    QVERIFY( regions.rowCount( QModelIndex() ) > 3 );  // Africa, America, Asia
+
+    QStringList names;
+    for ( int i = 0; i < regions.rowCount( QModelIndex() ); ++i )
+    {
+        QVariant name = regions.data( regions.index( i ), RegionsModel::NameRole );
+        QVERIFY( name.isValid() );
+        QVERIFY( !name.toString().isEmpty() );
+        names.append( name.toString() );
+    }
+
+    QVERIFY( names.contains( "America" ) );
+    QVERIFY( !names.contains( "UTC" ) );
+}
+
+
+static void
+displayedNames( QAbstractItemModel& model, QStringList& names )
+{
+    names.clear();
+    for ( int i = 0; i < model.rowCount( QModelIndex() ); ++i )
+    {
+        QVariant name = model.data( model.index( i, 0 ), Qt::DisplayRole );
+        QVERIFY( name.isValid() );
+        QVERIFY( !name.toString().isEmpty() );
+        names.append( name.toString() );
+    }
+}
+
+void
 LocaleTests::testSimpleZones()
 {
     using namespace CalamaresUtils::Locale;
+    ZonesModel zones;
 
+    QVERIFY( zones.rowCount( QModelIndex() ) > 24 );
+
+    QStringList names;
+    displayedNames( zones, names );
+    QVERIFY( names.contains( "Amsterdam" ) );
+    if ( !names.contains( "New York" ) )
     {
-        TZRegion r;
-        QVERIFY( r.tr().isEmpty() );
+        for ( const auto& s : names )
+        {
+            if ( s.startsWith( 'N' ) )
+            {
+                cDebug() << s;
+            }
+        }
     }
-    {
-        TZZone n;
-        QVERIFY( n.tr().isEmpty() );
-    }
-    {
-        TZZone r0( "xAmsterdam" );
-        QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
-        TZZone r1( r0 );
-        QCOMPARE( r0.tr(), QStringLiteral( "xAmsterdam" ) );
-        QCOMPARE( r1.tr(), QStringLiteral( "xAmsterdam" ) );
-        TZZone r2( std::move( r0 ) );
-        QCOMPARE( r2.tr(), QStringLiteral( "xAmsterdam" ) );
-        QCOMPARE( r0.tr(), QString() );
-    }
-    {
-        TZZone r0( nullptr );
-        QVERIFY( r0.tr().isEmpty() );
-        TZZone r1( r0 );
-        QVERIFY( r1.tr().isEmpty() );
-        TZZone r2( std::move( r0 ) );
-        QVERIFY( r2.tr().isEmpty() );
-    }
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( !names.contains( "America" ) );
+    QVERIFY( !names.contains( "New_York" ) );
 }
 
 void
 LocaleTests::testComplexZones()
 {
     using namespace CalamaresUtils::Locale;
+    ZonesModel zones;
+    RegionalZonesModel europe( &zones );
 
-    {
-        TZZone r0( "America/New_York" );
-        TZZone r1( "America/New York" );
+    QStringList names;
+    displayedNames( zones, names );
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( names.contains( "Prague" ) );
+    QVERIFY( names.contains( "Abidjan" ) );
 
-        QCOMPARE( r0.tr(), r1.tr() );
-        QCOMPARE( r0.tr(), QStringLiteral( "America/New York" ) );
-    }
-    {
-        TZZone r( "zxc,;*_vm" );
-        QVERIFY( !r.tr().isEmpty() );
-        QCOMPARE( r.tr(), QStringLiteral( "zxc,;* vm" ) );  // Only _ is special
-    }
+    // No region set
+    displayedNames( europe, names );
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( names.contains( "Prague" ) );
+    QVERIFY( names.contains( "Abidjan" ) );
+
+    // Now filter
+    europe.setRegion( "Europe" );
+    displayedNames( europe, names );
+    QVERIFY( !names.contains( "New York" ) );
+    QVERIFY( names.contains( "Prague" ) );
+    QVERIFY( !names.contains( "Abidjan" ) );
+
+    europe.setRegion( "America" );
+    displayedNames( europe, names );
+    QVERIFY( names.contains( "New York" ) );
+    QVERIFY( !names.contains( "Prague" ) );
+    QVERIFY( !names.contains( "Abidjan" ) );
+
+    europe.setRegion( "Africa" );
+    displayedNames( europe, names );
+    QVERIFY( !names.contains( "New York" ) );
+    QVERIFY( !names.contains( "Prague" ) );
+    QVERIFY( names.contains( "Abidjan" ) );
 }
+
+void
+LocaleTests::testTZLookup()
+{
+    using namespace CalamaresUtils::Locale;
+    ZonesModel zones;
+
+    QVERIFY( zones.find( "America", "New_York" ) );
+    QCOMPARE( zones.find( "America", "New_York" )->zone(), QStringLiteral( "New_York" ) );
+    QCOMPARE( zones.find( "America", "New_York" )->tr(), QStringLiteral( "New York" ) );
+
+    QVERIFY( !zones.find( "Europe", "New_York" ) );
+    QVERIFY( !zones.find( "America", "New York" ) );
+}
+
+void
+LocaleTests::testTZIterator()
+{
+    using namespace CalamaresUtils::Locale;
+    const ZonesModel zones;
+
+    QVERIFY( zones.find( "Europe", "Rome" ) );
+
+    int count = 0;
+    bool seenRome = false;
+    bool seenGnome = false;
+    for ( auto it = zones.begin(); it; ++it )
+    {
+        QVERIFY( *it );
+        QVERIFY( !( *it )->zone().isEmpty() );
+        seenRome |= ( *it )->zone() == QStringLiteral( "Rome" );
+        seenGnome |= ( *it )->zone() == QStringLiteral( "Gnome" );
+        count++;
+    }
+
+    QVERIFY( seenRome );
+    QVERIFY( !seenGnome );
+    QCOMPARE( count, zones.rowCount( QModelIndex() ) );
+
+    QCOMPARE( zones.data( zones.index( 0 ), ZonesModel::RegionRole ).toString(), QStringLiteral( "Africa" ) );
+    QCOMPARE( ( *zones.begin() )->zone(), QStringLiteral( "Abidjan" ) );
+}
+
+void
+LocaleTests::testLocationLookup()
+{
+    const CalamaresUtils::Locale::ZonesModel zones;
+
+    const auto* zone = zones.find( 50.0, 0.0 );
+    QVERIFY( zone );
+    QCOMPARE( zone->zone(), QStringLiteral( "London" ) );
+
+
+    // Tarawa is close to "the other side of the world" from London
+    zone = zones.find( 0.0, 179.0 );
+    QVERIFY( zone );
+    QCOMPARE( zone->zone(), QStringLiteral( "Tarawa" ) );
+
+    zone = zones.find( 0.0, -179.0 );
+    QVERIFY( zone );
+    QCOMPARE( zone->zone(), QStringLiteral( "Tarawa" ) );
+}
+
 
 QTEST_GUILESS_MAIN( LocaleTests )
 
