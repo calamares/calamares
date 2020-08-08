@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
  *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018-2019 Adriaan de Groot <groot@kde.org>
@@ -71,6 +71,18 @@ prettyNameForFileSystemType( FileSystem::Type t )
         return "LVM PV";
     default:
         return FileSystem::nameForType( t );
+    }
+}
+
+QString
+untranslatedFS( FileSystem::Type t )
+{
+    switch ( t )
+    {
+    case FileSystem::Type::ReiserFS:
+        return QStringLiteral( "reiserfs" );
+    default:
+        return FileSystem::nameForType( t, { QStringLiteral( "C" ) } );
     }
 }
 

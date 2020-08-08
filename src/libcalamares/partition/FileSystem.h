@@ -38,12 +38,30 @@ namespace Partition
 {
 QString DLLEXPORT prettyNameForFileSystemType( FileSystem::Type t );
 
+/** @brief Returns a machine-readable identifier for the filesystem type
+ *
+ * This identifier is  used in filesystem manipulation --
+ * e.g. when mounting the filesystem, or in /etc/fstab. It
+ * is almost always just what KPMCore says it is, with
+ * the following exceptions:
+ *  - reiserfs is called "reiser" by KPMCore, "reiserfs" by Calamares
+ */
+QString DLLEXPORT untranslatedFS( FileSystem::Type t );
+
+/** @brief Returns the machine-readable identifier for the given @p fs
+ *
+ * See notes for untranslatedFS(), above.
+ */
 static inline QString
 untranslatedFS( FileSystem& fs )
 {
-    return fs.name( { QStringLiteral( "C" ) } );
+    return untranslatedFS( fs.type() );
 }
 
+/** @brief Returns a machine-readable identifier for the given @p fs
+ *
+ * Returns an empty string is the @p fs is not valid (e.g. nullptr).
+ */
 static inline QString
 untranslatedFS( FileSystem* fs )
 {

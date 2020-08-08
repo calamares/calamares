@@ -20,6 +20,8 @@
 
 #include "utils/Logger.h"
 
+#include "FileSystem.h"
+
 #include <kpmcore/core/partitiontable.h>
 #include <kpmcore/fs/filesystem.h>
 
@@ -100,6 +102,30 @@ KPMTests::testFSNames()
     QVERIFY( fsNames.contains( "ext2" ) );
     QVERIFY( fsNames.contains( "ext4" ) );
     QVERIFY( fsNames.contains( "reiser" ) );
+
+    QStringList calaFSNames;
+    calaFSNames.reserve( fstypes.count() );
+    for ( const auto t : fstypes )
+    {
+        QString s = CalamaresUtils::Partition::untranslatedFS( t );
+        calaFSNames.append( s );
+    }
+
+    QVERIFY( calaFSNames.contains( "ext2" ) );
+    QVERIFY( calaFSNames.contains( "ext4" ) );
+    QVERIFY( !calaFSNames.contains( "reiser" ) );
+    QVERIFY( calaFSNames.contains( "reiserfs" ) );  // whole point of Cala's own implementation
+
+    // Lists are the same except for .. the exceptions
+    QStringList exceptionalNames { "reiser", "reiserfs" };
+    for ( const auto& s : fsNames )
+    {
+        QVERIFY( exceptionalNames.contains( s ) || calaFSNames.contains( s ) );
+    }
+    for ( const auto& s : calaFSNames )
+    {
+        QVERIFY( exceptionalNames.contains( s ) || fsNames.contains( s ) );
+    }
 }
 
 
