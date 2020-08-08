@@ -52,6 +52,7 @@ private Q_SLOTS:
     void testComplexZones();
     void testTZLookup();
     void testTZIterator();
+    void testLocationLookup_data();
     void testLocationLookup();
 };
 
@@ -391,23 +392,30 @@ LocaleTests::testTZIterator()
 }
 
 void
+LocaleTests::testLocationLookup_data()
+{
+    QTest::addColumn< double >( "latitude" );
+    QTest::addColumn< double >( "longitude" );
+    QTest::addColumn< QString >( "name" );
+
+    QTest::newRow( "London" ) << 50.0 << 0.0 << QString( "London" );
+    QTest::newRow( "Tarawa E" ) << 0.0 << 179.0 << QString( "Tarawa" );
+    QTest::newRow( "Tarawa W" ) << 0.0 << -179.0 << QString( "Tarawa" );
+
+}
+
+void
 LocaleTests::testLocationLookup()
 {
     const CalamaresUtils::Locale::ZonesModel zones;
 
-    const auto* zone = zones.find( 50.0, 0.0 );
-    QVERIFY( zone );
-    QCOMPARE( zone->zone(), QStringLiteral( "London" ) );
+    QFETCH( double, latitude );
+    QFETCH( double, longitude );
+    QFETCH( QString, name );
 
-
-    // Tarawa is close to "the other side of the world" from London
-    zone = zones.find( 0.0, 179.0 );
+    const auto* zone = zones.find( latitude, longitude );
     QVERIFY( zone );
-    QCOMPARE( zone->zone(), QStringLiteral( "Tarawa" ) );
-
-    zone = zones.find( 0.0, -179.0 );
-    QVERIFY( zone );
-    QCOMPARE( zone->zone(), QStringLiteral( "Tarawa" ) );
+    QCOMPARE( zone->zone(), name );
 }
 
 
