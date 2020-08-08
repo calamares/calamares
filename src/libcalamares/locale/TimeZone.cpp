@@ -110,81 +110,87 @@ RegionData::tr() const
 }
 
 static void
+loadTZData( RegionVector& regions, ZoneVector& zones, QTextStream& in )
+{
+    while ( !in.atEnd() )
+    {
+        QString line = in.readLine().trimmed().split( '#', SplitKeepEmptyParts ).first().trimmed();
+        if ( line.isEmpty() )
+        {
+            continue;
+        }
+
+        QStringList list = line.split( QRegExp( "[\t ]" ), SplitSkipEmptyParts );
+        if ( list.size() < 3 )
+        {
+            continue;
+        }
+
+        QStringList timezoneParts = list.at( 2 ).split( '/', SplitSkipEmptyParts );
+        if ( timezoneParts.size() < 2 )
+        {
+            continue;
+        }
+
+        QString region = timezoneParts.first().trimmed();
+        if ( region.isEmpty() )
+        {
+            continue;
+        }
+
+        QString countryCode = list.at( 0 ).trimmed();
+        if ( countryCode.size() != 2 )
+        {
+            continue;
+        }
+
+        timezoneParts.removeFirst();
+        QString zone = timezoneParts.join( '/' );
+        if ( zone.length() < 2 )
+        {
+            continue;
+        }
+
+        QString position = list.at( 1 );
+        int cooSplitPos = position.indexOf( QRegExp( "[-+]" ), 1 );
+        double latitude;
+        double longitude;
+        if ( cooSplitPos > 0 )
+        {
+            latitude = getRightGeoLocation( position.mid( 0, cooSplitPos ) );
+            longitude = getRightGeoLocation( position.mid( cooSplitPos ) );
+        }
+        else
+        {
+            continue;
+        }
+
+        // Now we have region, zone, country, lat and longitude
+        const RegionData* existingRegion = nullptr;
+        for ( const auto* p : regions )
+        {
+            if ( p->key() == region )
+            {
+                existingRegion = p;
+                break;
+            }
+        }
+        if ( !existingRegion )
+        {
+            regions.append( new RegionData( region ) );
+        }
+        zones.append( new TimeZoneData( region, zone, countryCode, latitude, longitude ) );
+    }
+}
+
+static void
 loadTZData( RegionVector& regions, ZoneVector& zones )
 {
     QFile file( TZ_DATA_FILE );
     if ( file.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
         QTextStream in( &file );
-        while ( !in.atEnd() )
-        {
-            QString line = in.readLine().trimmed().split( '#', SplitKeepEmptyParts ).first().trimmed();
-            if ( line.isEmpty() )
-            {
-                continue;
-            }
-
-            QStringList list = line.split( QRegExp( "[\t ]" ), SplitSkipEmptyParts );
-            if ( list.size() < 3 )
-            {
-                continue;
-            }
-
-            QStringList timezoneParts = list.at( 2 ).split( '/', SplitSkipEmptyParts );
-            if ( timezoneParts.size() < 2 )
-            {
-                continue;
-            }
-
-            QString region = timezoneParts.first().trimmed();
-            if ( region.isEmpty() )
-            {
-                continue;
-            }
-
-            QString countryCode = list.at( 0 ).trimmed();
-            if ( countryCode.size() != 2 )
-            {
-                continue;
-            }
-
-            timezoneParts.removeFirst();
-            QString zone = timezoneParts.join( '/' );
-            if ( zone.length() < 2 )
-            {
-                continue;
-            }
-
-            QString position = list.at( 1 );
-            int cooSplitPos = position.indexOf( QRegExp( "[-+]" ), 1 );
-            double latitude;
-            double longitude;
-            if ( cooSplitPos > 0 )
-            {
-                latitude = getRightGeoLocation( position.mid( 0, cooSplitPos ) );
-                longitude = getRightGeoLocation( position.mid( cooSplitPos ) );
-            }
-            else
-            {
-                continue;
-            }
-
-            // Now we have region, zone, country, lat and longitude
-            const RegionData* existingRegion = nullptr;
-            for ( const auto* p : regions )
-            {
-                if ( p->key() == region )
-                {
-                    existingRegion = p;
-                    break;
-                }
-            }
-            if ( !existingRegion )
-            {
-                regions.append( new RegionData( region ) );
-            }
-            zones.append( new TimeZoneData( region, zone, countryCode, latitude, longitude ) );
-        }
+        loadTZData( regions, zones, in );
     }
 }
 
