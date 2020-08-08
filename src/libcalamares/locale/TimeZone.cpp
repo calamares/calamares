@@ -336,6 +336,24 @@ ZonesModel::find( const QString& region, const QString& zone ) const
     return nullptr;
 }
 
+STATICTEST const TimeZoneData*
+find( const ZoneVector& zones, std::function< double( const TimeZoneData* ) > distance )
+{
+    double smallestDistance = 1000000.0;
+    const TimeZoneData* closest = nullptr;
+
+    for ( const auto* zone : zones )
+    {
+        double thisDistance = distance( zone );
+        if ( thisDistance < smallestDistance )
+        {
+            closest = zone;
+            smallestDistance = thisDistance;
+        }
+    }
+    return closest;
+}
+
 const TimeZoneData*
 ZonesModel::find( double latitude, double longitude ) const
 {
@@ -344,12 +362,7 @@ ZonesModel::find( double latitude, double longitude ) const
      * either N/S or E/W equal to any other; this obviously
      * falls apart at the poles.
      */
-
-    double largestDifference = 720.0;
-    const TimeZoneData* closest = nullptr;
-
-    for ( const auto* zone : m_private->m_zones )
-    {
+    auto distance = [&]( const TimeZoneData* zone ) -> double {
         // Latitude doesn't wrap around: there is nothing north of 90
         double latitudeDifference = abs( zone->latitude() - latitude );
 
@@ -368,13 +381,10 @@ ZonesModel::find( double latitude, double longitude ) const
             longitudeDifference = abs( westerly - easterly );
         }
 
-        if ( latitudeDifference + longitudeDifference < largestDifference )
-        {
-            largestDifference = latitudeDifference + longitudeDifference;
-            closest = zone;
-        }
-    }
-    return closest;
+        return latitudeDifference + longitudeDifference;
+    };
+
+    return CalamaresUtils::Locale::find( m_private->m_zones, distance );
 }
 
 QObject*
