@@ -190,28 +190,15 @@ TimeZoneWidget::mousePressEvent( QMouseEvent* event )
     {
         return;
     }
-    // Set nearest location
-    int nX = 999999, mX = event->pos().x();
-    int nY = 999999, mY = event->pos().y();
 
-    using namespace CalamaresUtils::Locale;
-    const TimeZoneData* closest = nullptr;
-    for ( auto it = m_zonesData->begin(); it; ++it )
-    {
-        const auto* zone = *it;
-        if ( zone )
-        {
-            QPoint locPos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
+    int mX = event->pos().x();
+    int mY = event->pos().y();
+    auto distance = [&]( const CalamaresUtils::Locale::TimeZoneData* zone ) {
+        QPoint locPos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
+        return double( abs( mX - locPos.x() ) + abs( mY - locPos.y() ) );
+    };
 
-            if ( ( abs( mX - locPos.x() ) + abs( mY - locPos.y() ) < abs( mX - nX ) + abs( mY - nY ) ) )
-            {
-                closest = zone;
-                nX = locPos.x();
-                nY = locPos.y();
-            }
-        }
-    }
-
+    const auto* closest = m_zonesData->find( distance );
     if ( closest )
     {
         // Set zone image and repaint widget
