@@ -337,14 +337,14 @@ ZonesModel::find( const QString& region, const QString& zone ) const
 }
 
 STATICTEST const TimeZoneData*
-find( const ZoneVector& zones, std::function< double( const TimeZoneData* ) > distance )
+find( const ZoneVector& zones, const std::function< double( const TimeZoneData* ) >& distanceFunc )
 {
     double smallestDistance = 1000000.0;
     const TimeZoneData* closest = nullptr;
 
     for ( const auto* zone : zones )
     {
-        double thisDistance = distance( zone );
+        double thisDistance = distanceFunc( zone );
         if ( thisDistance < smallestDistance )
         {
             closest = zone;
@@ -352,6 +352,12 @@ find( const ZoneVector& zones, std::function< double( const TimeZoneData* ) > di
         }
     }
     return closest;
+}
+
+const TimeZoneData*
+ZonesModel::find( const std::function< double( const TimeZoneData* ) >& distanceFunc ) const
+{
+    return CalamaresUtils::Locale::find( m_private->m_zones, distanceFunc );
 }
 
 const TimeZoneData*
@@ -384,7 +390,7 @@ ZonesModel::find( double latitude, double longitude ) const
         return latitudeDifference + longitudeDifference;
     };
 
-    return CalamaresUtils::Locale::find( m_private->m_zones, distance );
+    return find( distance );
 }
 
 QObject*
