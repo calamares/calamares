@@ -110,84 +110,103 @@ RegionData::tr() const
 }
 
 static void
-loadTZData( RegionVector& regions, ZoneVector& zones )
+loadTZData( RegionVector& regions, ZoneVector& zones, QTextStream& in )
 {
-    QFile file( TZ_DATA_FILE );
-    if ( file.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    while ( !in.atEnd() )
     {
-        QTextStream in( &file );
-        while ( !in.atEnd() )
+        QString line = in.readLine().trimmed().split( '#', SplitKeepEmptyParts ).first().trimmed();
+        if ( line.isEmpty() )
         {
-            QString line = in.readLine().trimmed().split( '#', SplitKeepEmptyParts ).first().trimmed();
-            if ( line.isEmpty() )
-            {
-                continue;
-            }
-
-            QStringList list = line.split( QRegExp( "[\t ]" ), SplitSkipEmptyParts );
-            if ( list.size() < 3 )
-            {
-                continue;
-            }
-
-            QStringList timezoneParts = list.at( 2 ).split( '/', SplitSkipEmptyParts );
-            if ( timezoneParts.size() < 2 )
-            {
-                continue;
-            }
-
-            QString region = timezoneParts.first().trimmed();
-            if ( region.isEmpty() )
-            {
-                continue;
-            }
-
-            QString countryCode = list.at( 0 ).trimmed();
-            if ( countryCode.size() != 2 )
-            {
-                continue;
-            }
-
-            timezoneParts.removeFirst();
-            QString zone = timezoneParts.join( '/' );
-            if ( zone.length() < 2 )
-            {
-                continue;
-            }
-
-            QString position = list.at( 1 );
-            int cooSplitPos = position.indexOf( QRegExp( "[-+]" ), 1 );
-            double latitude;
-            double longitude;
-            if ( cooSplitPos > 0 )
-            {
-                latitude = getRightGeoLocation( position.mid( 0, cooSplitPos ) );
-                longitude = getRightGeoLocation( position.mid( cooSplitPos ) );
-            }
-            else
-            {
-                continue;
-            }
-
-            // Now we have region, zone, country, lat and longitude
-            const RegionData* existingRegion = nullptr;
-            for ( const auto* p : regions )
-            {
-                if ( p->key() == region )
-                {
-                    existingRegion = p;
-                    break;
-                }
-            }
-            if ( !existingRegion )
-            {
-                regions.append( new RegionData( region ) );
-            }
-            zones.append( new TimeZoneData( region, zone, countryCode, latitude, longitude ) );
+            continue;
         }
+
+        QStringList list = line.split( QRegExp( "[\t ]" ), SplitSkipEmptyParts );
+        if ( list.size() < 3 )
+        {
+            continue;
+        }
+
+        QStringList timezoneParts = list.at( 2 ).split( '/', SplitSkipEmptyParts );
+        if ( timezoneParts.size() < 2 )
+        {
+            continue;
+        }
+
+        QString region = timezoneParts.first().trimmed();
+        if ( region.isEmpty() )
+        {
+            continue;
+        }
+
+        QString countryCode = list.at( 0 ).trimmed();
+        if ( countryCode.size() != 2 )
+        {
+            continue;
+        }
+
+        timezoneParts.removeFirst();
+        QString zone = timezoneParts.join( '/' );
+        if ( zone.length() < 2 )
+        {
+            continue;
+        }
+
+        QString position = list.at( 1 );
+        int cooSplitPos = position.indexOf( QRegExp( "[-+]" ), 1 );
+        double latitude;
+        double longitude;
+        if ( cooSplitPos > 0 )
+        {
+            latitude = getRightGeoLocation( position.mid( 0, cooSplitPos ) );
+            longitude = getRightGeoLocation( position.mid( cooSplitPos ) );
+        }
+        else
+        {
+            continue;
+        }
+
+        // Now we have region, zone, country, lat and longitude
+        const RegionData* existingRegion = nullptr;
+        for ( const auto* p : regions )
+        {
+            if ( p->key() == region )
+            {
+                existingRegion = p;
+                break;
+            }
+        }
+        if ( !existingRegion )
+        {
+            regions.append( new RegionData( region ) );
+        }
+        zones.append( new TimeZoneData( region, zone, countryCode, latitude, longitude ) );
     }
 }
 
+/** @brief Extra, fake, timezones
+ *
+ * The timezone locations in zone.tab are not always very useful,
+ * given Calamares's standard "nearest zone" algorithm: for instance,
+ * in most locations physically in the country of South Africa,
+ * Maseru (the capital of Lesotho, and location for timezone Africa/Maseru)
+ * is closer than Johannesburg (the location for timezone Africa/Johannesburg).
+ *
+ * The algorithm picks the wrong place. This is for instance annoying
+ * when clicking on Cape Town, you get Maseru, and to get Johannesburg
+ * you need to click somewhere very carefully north of Maserru.
+ *
+ * These alternate zones are used to introduce "extra locations"
+ * into the timezone database, in order to influence the closest-location
+ * algorithm. Lines are formatted just like in zone.tab: remember the \n
+ */
+static const char altZones[] =
+    /* This extra zone is north-east of Karoo National park,
+     * and means that Western Cape province and a good chunk of
+     * Northern- and Eastern- Cape provinces get pulled in to Johannesburg.
+     * Bloemfontein is still closer to Maseru than either correct zone,
+     * but this is a definite improvement.
+     */
+    "ZA -3230+02259 Africa/Johannesburg\n";
 
 class Private : public QObject
 {
@@ -195,13 +214,27 @@ class Private : public QObject
 public:
     RegionVector m_regions;
     ZoneVector m_zones;
+    ZoneVector m_altZones;  //< Extra locations for zones
 
     Private()
     {
         m_regions.reserve( 12 );  // reasonable guess
         m_zones.reserve( 452 );  // wc -l /usr/share/zoneinfo/zone.tab
 
-        loadTZData( m_regions, m_zones );
+        // Load the official timezones
+        {
+            QFile file( TZ_DATA_FILE );
+            if ( file.open( QIODevice::ReadOnly | QIODevice::Text ) )
+            {
+                QTextStream in( &file );
+                loadTZData( m_regions, m_zones, in );
+            }
+        }
+        // Load the alternate zones (see documentation at altZones)
+        {
+            QTextStream in( altZones );
+            loadTZData( m_regions, m_altZones, in );
+        }
 
         std::sort( m_regions.begin(), m_regions.end(), []( const RegionData* lhs, const RegionData* rhs ) {
             return lhs->key() < rhs->key();
@@ -336,6 +369,37 @@ ZonesModel::find( const QString& region, const QString& zone ) const
     return nullptr;
 }
 
+STATICTEST const TimeZoneData*
+find( double startingDistance, const ZoneVector& zones, const std::function< double( const TimeZoneData* ) >& distanceFunc )
+{
+    double smallestDistance = startingDistance;
+    const TimeZoneData* closest = nullptr;
+
+    for ( const auto* zone : zones )
+    {
+        double thisDistance = distanceFunc( zone );
+        if ( thisDistance < smallestDistance )
+        {
+            closest = zone;
+            smallestDistance = thisDistance;
+        }
+    }
+    return closest;
+}
+
+const TimeZoneData*
+ZonesModel::find( const std::function< double( const TimeZoneData* ) >& distanceFunc ) const
+{
+    const auto* officialZone = CalamaresUtils::Locale::find( 1000000.0, m_private->m_zones, distanceFunc );
+    const auto* altZone = CalamaresUtils::Locale::find( distanceFunc( officialZone ), m_private->m_altZones, distanceFunc );
+
+    // If nothing was closer than the official zone already was, altZone is
+    // nullptr; but if there is a spot-patch, then we need to re-find
+    // the zone by name, since we want to always return pointers into
+    // m_zones, not into the alternative spots.
+    return altZone ? find( altZone->region(), altZone->zone() ) : officialZone;
+}
+
 const TimeZoneData*
 ZonesModel::find( double latitude, double longitude ) const
 {
@@ -344,12 +408,7 @@ ZonesModel::find( double latitude, double longitude ) const
      * either N/S or E/W equal to any other; this obviously
      * falls apart at the poles.
      */
-
-    double largestDifference = 720.0;
-    const TimeZoneData* closest = nullptr;
-
-    for ( const auto* zone : m_private->m_zones )
-    {
+    auto distance = [&]( const TimeZoneData* zone ) -> double {
         // Latitude doesn't wrap around: there is nothing north of 90
         double latitudeDifference = abs( zone->latitude() - latitude );
 
@@ -368,13 +427,10 @@ ZonesModel::find( double latitude, double longitude ) const
             longitudeDifference = abs( westerly - easterly );
         }
 
-        if ( latitudeDifference + longitudeDifference < largestDifference )
-        {
-            largestDifference = latitudeDifference + longitudeDifference;
-            closest = zone;
-        }
-    }
-    return closest;
+        return latitudeDifference + longitudeDifference;
+    };
+
+    return find( distance );
 }
 
 QObject*

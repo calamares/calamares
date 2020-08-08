@@ -52,7 +52,9 @@ private Q_SLOTS:
     void testComplexZones();
     void testTZLookup();
     void testTZIterator();
+    void testLocationLookup_data();
     void testLocationLookup();
+    void testLocationLookup2();
 };
 
 LocaleTests::LocaleTests() {}
@@ -391,23 +393,66 @@ LocaleTests::testTZIterator()
 }
 
 void
+LocaleTests::testLocationLookup_data()
+{
+    QTest::addColumn< double >( "latitude" );
+    QTest::addColumn< double >( "longitude" );
+    QTest::addColumn< QString >( "name" );
+
+    QTest::newRow( "London" ) << 50.0 << 0.0 << QString( "London" );
+    QTest::newRow( "Tarawa E" ) << 0.0 << 179.0 << QString( "Tarawa" );
+    QTest::newRow( "Tarawa W" ) << 0.0 << -179.0 << QString( "Tarawa" );
+
+    QTest::newRow( "Johannesburg" ) << -26.0 << 28.0 << QString( "Johannesburg" );  // South Africa
+    QTest::newRow( "Maseru" ) << -29.0 << 27.0 << QString( "Maseru" );  // Lesotho
+    QTest::newRow( "Windhoek" ) << -22.0 << 17.0 << QString( "Windhoek" );  // Namibia
+    QTest::newRow( "Port Elisabeth" ) << -33.0 << 25.0 << QString( "Johannesburg" );  // South Africa
+    QTest::newRow( "Cape Town" ) << -33.0 << 18.0 << QString( "Johannesburg" );  // South Africa
+}
+
+void
 LocaleTests::testLocationLookup()
 {
     const CalamaresUtils::Locale::ZonesModel zones;
 
-    const auto* zone = zones.find( 50.0, 0.0 );
-    QVERIFY( zone );
-    QCOMPARE( zone->zone(), QStringLiteral( "London" ) );
+    QFETCH( double, latitude );
+    QFETCH( double, longitude );
+    QFETCH( QString, name );
 
-
-    // Tarawa is close to "the other side of the world" from London
-    zone = zones.find( 0.0, 179.0 );
+    const auto* zone = zones.find( latitude, longitude );
     QVERIFY( zone );
-    QCOMPARE( zone->zone(), QStringLiteral( "Tarawa" ) );
+    QCOMPARE( zone->zone(), name );
+}
 
-    zone = zones.find( 0.0, -179.0 );
-    QVERIFY( zone );
-    QCOMPARE( zone->zone(), QStringLiteral( "Tarawa" ) );
+void
+LocaleTests::testLocationLookup2()
+{
+    // Official
+    // ZA      -2615+02800     Africa/Johannesburg
+    // Spot patch
+    //     "ZA -3230+02259 Africa/Johannesburg\n";
+
+    const CalamaresUtils::Locale::ZonesModel zones;
+    const auto* zone = zones.find( -26.15, 28.00 );
+    QCOMPARE( zone->zone(), QString( "Johannesburg" ) );
+    // The TZ data sources use minutes-and-seconds notation,
+    // so "2615" is 26 degrees, 15 minutes, and 15 minutes is
+    // one-quarter of a degree.
+    QCOMPARE( zone->latitude(), -26.25 );
+    QCOMPARE( zone->longitude(), 28.00 );
+
+    // Elsewhere in South Africa
+    const auto* altzone = zones.find( -32.0, 22.0 );
+    QCOMPARE( altzone, zone );  // same pointer
+    QCOMPARE( altzone->zone(), QString( "Johannesburg" ) );
+    QCOMPARE( altzone->latitude(), -26.25 );
+    QCOMPARE( altzone->longitude(), 28.00 );
+
+    altzone = zones.find( -29.0, 27.0 );
+    QCOMPARE( altzone->zone(), QString( "Maseru" ) );
+    // -2928, that's -29 and 28/60 of a degree, is almost half, but we don't want
+    //   to fall foul of variations in double-precision
+    QCOMPARE( trunc( altzone->latitude() * 1000.0 ), -29466 );
 }
 
 

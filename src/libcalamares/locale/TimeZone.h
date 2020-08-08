@@ -167,6 +167,17 @@ public:
 
     Iterator begin() const { return Iterator( m_private ); }
 
+    /** @brief Look up TZ data based on an arbitrary distance function
+     *
+     * This is a generic method that can define distance in whatever
+     * coordinate system is wanted; returns the zone with the smallest
+     * distance. The @p distanceFunc must return "the distance" for
+     * each zone. It would be polite to return something non-negative.
+     *
+     * Note: not a slot, because the parameter isn't moc-able.
+     */
+    const TimeZoneData* find( const std::function< double( const TimeZoneData* ) >& distanceFunc ) const;
+
 public Q_SLOTS:
     /** @brief Look up TZ data based on its name.
      *
@@ -176,7 +187,10 @@ public Q_SLOTS:
 
     /** @brief Look up TZ data based on the location.
      *
-     * Returns the nearest zone to the given lat and lon.
+     * Returns the nearest zone to the given lat and lon. This is a
+     * convenience function for calling find(), below, with a standard
+     * distance function based on the distance between the given
+     * location (lat and lon) and each zone's given location.
      */
     const TimeZoneData* find( double latitude, double longitude ) const;
 
