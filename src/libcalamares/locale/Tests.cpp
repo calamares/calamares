@@ -402,6 +402,11 @@ LocaleTests::testLocationLookup_data()
     QTest::newRow( "Tarawa E" ) << 0.0 << 179.0 << QString( "Tarawa" );
     QTest::newRow( "Tarawa W" ) << 0.0 << -179.0 << QString( "Tarawa" );
 
+    QTest::newRow( "Johannesburg" ) << -26.0 << 28.0 << QString( "Johannesburg" );  // South Africa
+    QTest::newRow( "Maseru" ) << -29.0 << 27.0 << QString( "Maseru" );  // Lesotho
+    QTest::newRow( "Windhoek" ) << -22.0 << 17.0 << QString( "Windhoek" );  // Namibia
+    QTest::newRow( "Port Elisabeth" ) << -33.0 << 25.0 << QString( "Johannesburg" );  // South Africa
+    QTest::newRow( "Cape Town" ) << -33.0 << 18.0 << QString( "Johannesburg" );  // South Africa
 }
 
 void
