@@ -183,17 +183,30 @@ loadTZData( RegionVector& regions, ZoneVector& zones, QTextStream& in )
     }
 }
 
-static void
-loadTZData( RegionVector& regions, ZoneVector& zones )
-{
-    QFile file( TZ_DATA_FILE );
-    if ( file.open( QIODevice::ReadOnly | QIODevice::Text ) )
-    {
-        QTextStream in( &file );
-        loadTZData( regions, zones, in );
-    }
-}
-
+/** @brief Extra, fake, timezones
+ *
+ * The timezone locations in zone.tab are not always very useful,
+ * given Calamares's standard "nearest zone" algorithm: for instance,
+ * in most locations physically in the country of South Africa,
+ * Maseru (the capital of Lesotho, and location for timezone Africa/Maseru)
+ * is closer than Johannesburg (the location for timezone Africa/Johannesburg).
+ *
+ * The algorithm picks the wrong place. This is for instance annoying
+ * when clicking on Cape Town, you get Maseru, and to get Johannesburg
+ * you need to click somewhere very carefully north of Maserru.
+ *
+ * These alternate zones are used to introduce "extra locations"
+ * into the timezone database, in order to influence the closest-location
+ * algorithm. Lines are formatted just like in zone.tab: remember the \n
+ */
+static const char altZones[] =
+    /* This extra zone is north-east of Karoo National park,
+     * and means that Western Cape province and a good chunk of
+     * Northern- and Eastern- Cape provinces get pulled in to Johannesburg.
+     * Bloemfontein is still closer to Maseru than either correct zone,
+     * but this is a definite improvement.
+     */
+    "ZA -3230+02259 Africa/Johannesburg\n";
 
 class Private : public QObject
 {
@@ -201,13 +214,27 @@ class Private : public QObject
 public:
     RegionVector m_regions;
     ZoneVector m_zones;
+    ZoneVector m_altZones;  //< Extra locations for zones
 
     Private()
     {
         m_regions.reserve( 12 );  // reasonable guess
         m_zones.reserve( 452 );  // wc -l /usr/share/zoneinfo/zone.tab
 
-        loadTZData( m_regions, m_zones );
+        // Load the official timezones
+        {
+            QFile file( TZ_DATA_FILE );
+            if ( file.open( QIODevice::ReadOnly | QIODevice::Text ) )
+            {
+                QTextStream in( &file );
+                loadTZData( m_regions, m_zones, in );
+            }
+        }
+        // Load the alternate zones (see documentation at altZones)
+        {
+            QTextStream in( altZones );
+            loadTZData( m_regions, m_altZones, in );
+        }
 
         std::sort( m_regions.begin(), m_regions.end(), []( const RegionData* lhs, const RegionData* rhs ) {
             return lhs->key() < rhs->key();
@@ -343,9 +370,9 @@ ZonesModel::find( const QString& region, const QString& zone ) const
 }
 
 STATICTEST const TimeZoneData*
-find( const ZoneVector& zones, const std::function< double( const TimeZoneData* ) >& distanceFunc )
+find( double startingDistance, const ZoneVector& zones, const std::function< double( const TimeZoneData* ) >& distanceFunc )
 {
-    double smallestDistance = 1000000.0;
+    double smallestDistance = startingDistance;
     const TimeZoneData* closest = nullptr;
 
     for ( const auto* zone : zones )
@@ -363,7 +390,14 @@ find( const ZoneVector& zones, const std::function< double( const TimeZoneData* 
 const TimeZoneData*
 ZonesModel::find( const std::function< double( const TimeZoneData* ) >& distanceFunc ) const
 {
-    return CalamaresUtils::Locale::find( m_private->m_zones, distanceFunc );
+    const auto* officialZone = CalamaresUtils::Locale::find( 1000000.0, m_private->m_zones, distanceFunc );
+    const auto* altZone = CalamaresUtils::Locale::find( distanceFunc( officialZone ), m_private->m_altZones, distanceFunc );
+
+    // If nothing was closer than the official zone already was, altZone is
+    // nullptr; but if there is a spot-patch, then we need to re-find
+    // the zone by name, since we want to always return pointers into
+    // m_zones, not into the alternative spots.
+    return altZone ? find( altZone->region(), altZone->zone() ) : officialZone;
 }
 
 const TimeZoneData*
