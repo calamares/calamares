@@ -212,17 +212,17 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="76"/>
       <source>Loading ...</source>
-      <translation type="unfinished"/>
+      <translation>ভৰ্টিকৰন ...</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="97"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>QML Step &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="277"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>ভৰ্টিকৰন বিফল |</translation>
     </message>
   </context>
   <context>
@@ -717,7 +717,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="333"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>সময় অঞ্চলৰ সিদ্ধান্ত কৰক %`1%2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="348"/>
@@ -742,7 +742,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
       <source>Network Installation. (Disabled: internal error)</source>
-      <translation type="unfinished"/>
+      <translation>নেটৱৰ্ক ইনস্তলেচন। (নিস্ক্ৰিয়: ভিতৰুৱা দোষ)</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
@@ -777,22 +777,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>%1ৰ Calamares চেত্ আপ প্ৰগ্ৰামলৈ আদৰণি জনাইছো।</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="246"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt; %1 চেত্ আপলৈ আদৰণি জনাইছো।&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1ৰ কেলামাৰেচ ইনস্তলাৰলৈ আদৰণি জনাইছো।&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="252"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1 ইনস্তলাৰলৈ আদৰণি জনাইছো।&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="125"/>
@@ -802,7 +802,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="131"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1'ক ব্যৱহাৰকাৰীৰ নাম হিচাপে ব্যৱহাৰ কৰা অবধ্য |</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="141"/>
@@ -827,7 +827,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="201"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1'ক আয়োজকৰ নাম হিচাপে ব্যৱহাৰ কৰা অবধ্য |</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="211"/>
@@ -1768,7 +1768,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
       <source>Could not configure LUKS key file on partition %1.</source>
-      <translation type="unfinished"/>
+      <translation>%1 বিভাজনত LUKS কি ফাইল কনফিগাৰ কৰিব পৰা নগ'ল।</translation>
     </message>
   </context>
   <context>
@@ -1796,7 +1796,9 @@ The installer will quit and all changes will be lost.</source>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>অনুগ্ৰহ কৰি নিজৰ  প্রিয় স্থান নক্সাখ্নত  বাছক জাতে ইস্নস্তালাৰটোৱে অপোনাক থলী 
+            আৰু সময় অঞ্চলৰ ছেটিংছ আপোৰ বাবে মিলাই দায়ক | আপোনি পৰামৰ্শমূলক ছেটিংছবোৰক তলত অনুকূলিত কৰিব পাৰে | নক্সাখ্নত পৈন্তেৰদালক টানি অনুসন্ধান কৰিব |
+           আৰু  +/- বুটামেৰে যোম in/out কৰক বা মাউছৰ সচৰোলৰও ব্যবহাৰ কৰিব পাৰে |</translation>
     </message>
   </context>
   <context>
@@ -1810,92 +1812,92 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Office software</source>
-      <translation type="unfinished"/>
+      <translation>কাৰ্যালয়ৰ ছফটৱেৰ</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Office package</source>
-      <translation type="unfinished"/>
+      <translation>কাৰ্যালয়ৰ  পেকেজ</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Browser software</source>
-      <translation type="unfinished"/>
+      <translation>ব্ৰাউজাৰৰ ছফটৱেৰ</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Browser package</source>
-      <translation type="unfinished"/>
+      <translation>ব্ৰাউজাৰৰ পেকেজ</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Web browser</source>
-      <translation type="unfinished"/>
+      <translation> ৱেব ব্ৰাউজাৰ</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Kernel</source>
-      <translation type="unfinished"/>
+      <translation>কাৰ্ণেল</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Services</source>
-      <translation type="unfinished"/>
+      <translation>সেৰ্ৱিচেস</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Login</source>
-      <translation type="unfinished"/>
+      <translation>পৰীক্ষণ কৰক</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Desktop</source>
-      <translation type="unfinished"/>
+      <translation>দেস্কেতোপ</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
       <source>Applications</source>
-      <translation type="unfinished"/>
+      <translation>এপ্লীকেছ্নচ</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
       <source>Communication</source>
-      <translation type="unfinished"/>
+      <translation>যোগাযোগ</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="75"/>
       <source>Development</source>
-      <translation type="unfinished"/>
+      <translation>প্রবৃদ্ধি</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="76"/>
       <source>Office</source>
-      <translation type="unfinished"/>
+      <translation>কাৰ্যালয়</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="77"/>
       <source>Multimedia</source>
-      <translation type="unfinished"/>
+      <translation>মাল্টিমিডিয়া</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="78"/>
       <source>Internet</source>
-      <translation type="unfinished"/>
+      <translation>ইণ্টাৰনেট</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="79"/>
       <source>Theming</source>
-      <translation type="unfinished"/>
+      <translation>থিমীং</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="80"/>
       <source>Gaming</source>
-      <translation type="unfinished"/>
+      <translation>খেলা</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="81"/>
       <source>Utilities</source>
-      <translation type="unfinished"/>
+      <translation>সঁজুলি</translation>
     </message>
   </context>
   <context>
@@ -1903,7 +1905,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
       <source>Notes</source>
-      <translation type="unfinished"/>
+      <translation>টোকা</translation>
     </message>
   </context>
   <context>
@@ -1942,12 +1944,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="62"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>সময় অঞ্চল: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="77"/>
       <source>To be able to select a timezone, make sure you are connected to the internet. Restart the installer after connecting. You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>সময় অঞ্চল বাছিবলৈ,  ইণ্টাৰনেটত সংশ্লিষ্ট কৰি ৰাখিব | সংশ্লিষ্ট কৰি ইন্স্তালাৰটো  পুনৰাৰম্ভ কৰক | আপোনি ভাসা অৰু থলীৰ ছেটিংছবোৰ তলত অনুকূলিত কৰিব পাৰে |</translation>
     </message>
   </context>
   <context>
@@ -2599,12 +2601,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="436"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>%1 আৰম্ভ কৰিবলৈ এটা EFI চিছটেম থকাটো আৱশ্যক। &lt;br/&gt;&lt;br/&gt;এটা EFI চিছটেম কন্ফিগাৰ কৰিবলৈ উভতি যাওক আৰু FAT32 ফাইল চিছটেম এটা বাচনি কৰক যিটোত &lt;strong&gt;%3&lt;/strong&gt; ফ্লেগ  সক্ষম হৈ আছে আৰু &lt;strong&gt;%2&lt;/strong&gt; মাউন্ট্ পইণ্ট্ আছে।&lt;br/&gt;&lt;br/&gt;আপুনি EFI চিছটেমবিভাজন কন্ফিগাৰ নকৰাকৈ অগ্ৰসৰ হ'ব পাৰে কিন্তু ইয়াৰ ফলত চিছটেম বিফল হ'ব পাৰে।</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>%1 আৰম্ভ কৰিবলৈ এটা EFI চিছটেম থকাটো আৱশ্যক। %2 মাউন্ট্ পইন্ট্ নোহোৱকৈ কন্ফিগাৰ কৰা হৈছিল, কিন্তু ইয়াৰ esp ফ্লেগ ছেট কৰা হোৱা নাই। ফ্লেগ্ ছেট কৰিবলৈ উভতি যাওক আৰু বিভাজন সলনি কৰক। আপুনি     ফ্লেগ ছেট নকৰাকৈ অগ্ৰসৰ হ'ব পাৰে কিন্তু ইয়াৰ ফলত চিছটেম বিফল হ'ব পাৰে। </translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
@@ -2614,12 +2616,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="476"/>
       <source>Option to use GPT on BIOS</source>
-      <translation type="unfinished"/>
+      <translation>GPTৰ BIOSত ব্যৱহাৰৰ বাবে বিকল্প</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="477"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>এটা GPT পৰ্তিসোন টেবুল সকলো স্যস্তেমৰ বাবে উত্তম বিকল্প হয় | এই ইন্সালাৰতোৱে তেনে স্থাপনকৰণ BIOS স্যস্তেমতো কৰে |&lt;br/&gt;&lt;br/&gt;এটা GPT পৰ্তিসোন টেবুল কনফিগাৰ কৰিবলৈ ( যদি আগতে কৰা নাই ) পাছলৈ গৈ  পৰ্তিসোন টেবুলখনক GPTলৈ পৰিৱৰ্তন কৰক,  তাৰপাচত 8 MBৰ উনফোৰমেতেট পৰ্তিতিওন এটা বনাব | &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="505"/>
@@ -2639,7 +2641,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="724"/>
       <source>There are no partitions to install on.</source>
-      <translation type="unfinished"/>
+      <translation>ইনস্তল কৰিবলৈ কোনো বিভাজন নাই।</translation>
     </message>
   </context>
   <context>
@@ -2852,7 +2854,7 @@ Output:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>%1 চেত্ আপৰ বাবে পৰামৰ্শ দিয়া আৱশ্যকতা এই কম্পিউটাৰটোৱে পূৰ্ণ নকৰে। &lt;br/&gt;স্থাপন প্ৰক্ৰিয়া অবিৰত ৰাখিব পাৰিব, কিন্তু কিছুমান সুবিধা নিষ্ক্রিয় হৈ থাকিব। </translation>
     </message>
   </context>
   <context>
@@ -2963,13 +2965,14 @@ Output:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="47"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>%1 ইনস্তলচেন​ৰ বাবে নিম্নতম আৱশ্যকতা এই কম্পিউটাৰটোৱে পূৰ্ণ নকৰে।
+       &lt;br/&gt;ইনস্তলচেন​ প্ৰক্ৰিয়া অবিৰত ৰাখিব নোৱাৰিব।</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>%1 চেত্ আপৰ বাবে পৰামৰ্শ দিয়া আৱশ্যকতা এই কম্পিউটাৰটোৱে পূৰ্ণ নকৰে। &lt;br/&gt;স্থাপন প্ৰক্ৰিয়া অবিৰত ৰাখিব পাৰিব, কিন্তু কিছুমান সুবিধা নিষ্ক্রিয় হৈ থাকিব। </translation>
     </message>
   </context>
   <context>
@@ -3435,28 +3438,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="143"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>KDE ব্যৱহাৰকৰ্তাৰ সম্বন্ধীয় প্ৰতিক্ৰীয়া</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="155"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>কনফিগাৰত KDE ব্যৱহাৰকৰ্তাৰ সম্বন্ধীয় প্ৰতিক্ৰীয়া</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="177"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="183"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>KDE ব্যৱহাৰকৰ্তাৰ ফিডবেক কনফিগাৰেচনৰ ক্ৰুটি।</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="178"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>KDE ব্যৱহাৰকৰ্তাৰ প্ৰতিক্ৰিয়া ঠাকভাৱে কন্ফিগাৰ কৰিব পৰা নগ'ল, লিপি ক্ৰুটি %1।</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="184"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>KDE ব্যৱহাৰকৰ্তাৰ প্ৰতিক্ৰিয়া ঠাকভাৱে কন্ফিগাৰ কৰিব পৰা নগ'ল, কেলামাৰেচ ক্ৰুটি %1।</translation>
     </message>
   </context>
   <context>
@@ -3503,7 +3506,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;এইটো বাচনি কৰি, ইনস্তলচেন​ৰ বিষয়ে &lt;span style=" font-weight:600;"&gt;মুঠতে একো তথ্য&lt;/span&gt; আপুনি নপঠায়।&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
@@ -3518,17 +3521,17 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>এইটো বাচনি কৰি আপুনি ইনস্তলচেন​ আৰু হাৰ্ডৱেৰৰ বিষয়ে তথ্য পঠাব। ইনস্তলচেন​ৰ পিছত &lt;b&gt;এই তথ্য এবাৰ পঠোৱা হ'ব&lt;/b&gt;।</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>এইটো বাচনি কৰি আপুনি ইনস্তলচেন​, হাৰ্ডৱেৰ আৰু এপ্লিকেচনৰ বিষয়ে &lt;b&gt;মেচিন&lt;/b&gt; %1লৈ তথ্য পঠাব।</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>এইটো বাচনি কৰি আপুনি ইনস্তলচেন​, হাৰ্ডৱেৰ আৰু এপ্লিকেচনৰ বিষয়ে &lt;b&gt;ব্যৱহাৰকৰ্তা&lt;/b&gt; %1লৈ তথ্য পঠাব।</translation>
     </message>
   </context>
   <context>
@@ -3727,7 +3730,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;ৰ বাবে %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt; মালিকিস্বত্ত 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;মালিকিস্বত্ত 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;&lt;a href="https://calamares.io/team/"&gt;Calamares দল&lt;/a&gt; আৰু &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;কেলামাৰেচ অনুবাদক দল&lt;/a&gt;ক ধন্যবাদ জনাইছো।&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt;ৰ বিকাশ&lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt;- Liberating Softwareৰ দ্বাৰা প্ৰযোজিত।</translation>
     </message>
   </context>
   <context>
@@ -3762,12 +3765,23 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        ৰ বাবে %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        মালিকিস্বত্ত 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        মালিকিস্বত্ত 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        ক ধন্যবাদ জনাইছো&lt;a href='https://calamares.io/team/'&gt; Calamares দল
+                        আৰু &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 
+                        অনুবাদক দল&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        ৰ বিকাশ&lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        Liberating Softwareৰ দ্বাৰা প্ৰযোজিত।.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="105"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>পাছলৈ</translation>
     </message>
   </context>
   <context>
@@ -3776,18 +3790,20 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="55"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;ভাষা&lt;/h1&gt; &lt;/br&gt;
+                    চিছটেমৰ স্থানীয় ছেটিংস্ কমাণ্ডলাইনৰ কিছুমান উপভোক্তা ইন্টাৰফেছ উপাদানৰ ভাষা আৰু আখৰবোৰত প্ৰভাৱ পেলায়। বৰ্তমান ছেটিংস্ হ'ল:  &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="115"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;স্থানীয়&lt;/h1&gt; &lt;/br&gt;
+                    চিছটেমৰ স্থানীয় ছেটিংসে  উপাদানৰ নম্বৰ আৰু  তাৰিখ সজ্জা প্ৰভাৱ পেলায়। বৰ্তমান ছেটিংস্ হ'ল:  &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="167"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>পাছলৈ</translation>
     </message>
   </context>
   <context>
@@ -3795,44 +3811,44 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="20"/>
       <source>Keyboard Model</source>
-      <translation type="unfinished"/>
+      <translation>কিবোৰ্ড মডেল</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="21"/>
       <source>Pick your preferred keyboard model or use the default one based on the detected hardware</source>
-      <translation type="unfinished"/>
+      <translation>আপোনাৰ প্ৰিয় কিবোৰ্ড মডেল চয়ন কৰক বা আপোনাৰ হাৰ্ডৱেৰৰ গতানুগতিকখ্নক ব্যৱহাৰ কৰক |</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="56"/>
       <source>Refresh</source>
-      <translation type="unfinished"/>
+      <translation>সতেজ কৰক</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="62"/>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="169"/>
       <source>Layouts</source>
-      <translation type="unfinished"/>
+      <translation>লেআউট</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="75"/>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="134"/>
       <source>Keyboard Layout</source>
-      <translation type="unfinished"/>
+      <translation>কিবোৰ্ড লেআউট</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="113"/>
       <source>Models</source>
-      <translation type="unfinished"/>
+      <translation>মডেল</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="121"/>
       <source>Variants</source>
-      <translation type="unfinished"/>
+      <translation>ভিন্ন ৰুপ</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="180"/>
       <source>Test your keyboard</source>
-      <translation type="unfinished"/>
+      <translation>কিবোৰ্ড পৰীক্ষা কৰক</translation>
     </message>
   </context>
   <context>
@@ -3840,7 +3856,7 @@ Output:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="82"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>সলনি</translation>
     </message>
   </context>
   <context>
@@ -3849,7 +3865,8 @@ Output:
       <location filename="../src/modules/notesqml/notesqml.qml" line="61"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;%1&lt;/h3&gt;
+            &lt;p&gt;এই খিনি ৰিলিজ নোতৰ উদাহৰণ &lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3882,7 +3899,7 @@ Output:
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="85"/>
       <source>Back</source>
-      <translation type="unfinished"/>
+      <translation>পাছলৈ</translation>
     </message>
   </context>
   <context>
@@ -3891,32 +3908,33 @@ Output:
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="44"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h3&gt;স্বাগতম আপোনাক %1 &lt;quote&gt;%2&lt;/quote&gt; ইন্সালাৰটোত&lt;/h3&gt;
+            &lt;p&gt;এই প্ৰোগ্ৰেমটোএয়ে অপোনাক কিৱছোমান প্ৰশ্ন সুধিব আৰু আপোনাৰ কোম্পিউটাৰত %1 স্থাপনকৰণ কৰিব |&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
       <source>About</source>
-      <translation type="unfinished"/>
+      <translation>সম্পর্কে</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="89"/>
       <source>Support</source>
-      <translation type="unfinished"/>
+      <translation>সহায়</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
       <source>Known issues</source>
-      <translation type="unfinished"/>
+      <translation>জ্ঞাত সমস্যা</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="111"/>
       <source>Release notes</source>
-      <translation type="unfinished"/>
+      <translation>মুক্তি টোকা </translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="123"/>
       <source>Donate</source>
-      <translation type="unfinished"/>
+      <translation>দান কৰক </translation>
     </message>
   </context>
 </TS>

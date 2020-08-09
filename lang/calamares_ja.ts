@@ -715,7 +715,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="333"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>タイムゾーンを %1/%2 に設定します。</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="348"/>
@@ -725,7 +725,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="355"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation>数字と日付のロケールを %1 に設定します。</translation>
+      <translation>数値と日付のロケールを %1 に設定します。</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
@@ -800,7 +800,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="131"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' はユーザー名として許可されていません。</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="141"/>
@@ -825,7 +825,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="201"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' はホスト名として許可されていません。</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="211"/>
@@ -3799,7 +3799,8 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="115"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;ロケール&lt;/h1&gt; &lt;/br&gt;
+                    システムのロケール設定は、数値と日付の形式に影響を及ぼします。現在の設定は &lt;strong&gt;%1&lt;/strong&gt; です。</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="167"/>
