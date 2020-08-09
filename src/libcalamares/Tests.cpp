@@ -38,6 +38,7 @@ private Q_SLOTS:
     void testGSModify();
     void testGSLoadSave();
     void testGSLoadSave2();
+    void testGSLoadSaveYAMLStringList();
 };
 
 void
@@ -75,7 +76,13 @@ TestLibCalamares::testGSLoadSave()
 
     gs.insert( "derp", 17 );
     gs.insert( "cow", "moo" );
-    gs.insert( "dwarfs", QStringList { "dopey", "sneezy" } );
+
+    QVariantList l;
+    for ( const auto& s : QStringList { "dopey", "sneezy" } )
+    {
+        l.append( s );
+    }
+    gs.insert( "dwarfs", l );
 
     QCOMPARE( gs.count(), 3 );
 
@@ -93,8 +100,12 @@ TestLibCalamares::testGSLoadSave()
     QCOMPARE( gs3.count(), 3 );
     QCOMPARE( gs3.data(), gs.data() );
 
+    // YAML can load as JSON!
+    QVERIFY( gs3.loadYaml( jsonfilename ) );
+    QCOMPARE( gs3.count(), 3 );
+    QCOMPARE( gs3.data(), gs.data() );
+
     // Failures in loading
-    QVERIFY( !gs3.loadYaml( jsonfilename ) );
     QVERIFY( !gs3.loadJson( yamlfilename ) );
 
     Calamares::GlobalStorage gs4;
@@ -137,6 +148,33 @@ TestLibCalamares::testGSLoadSave2()
     QVERIFY( gs2.loadYaml( yamlfilename ) );
     QVERIFY( gs2.contains( key ) );
     QCOMPARE( gs2.value( key ).type(), QVariant::List );
+}
+
+void
+TestLibCalamares::testGSLoadSaveYAMLStringList()
+{
+    Calamares::GlobalStorage gs;
+    const QString yamlfilename( "gs.test.yaml" );
+
+    gs.insert( "derp", 17 );
+    gs.insert( "cow", "moo" );
+    gs.insert( "dwarfs", QStringList { "happy", "dopey", "sleepy", "sneezy", "doc", "thorin", "balin" } );
+
+    QCOMPARE( gs.count(), 3 );
+    QCOMPARE( gs.value( "dwarfs" ).toList().count(), 7 );  // There's seven dwarfs, right?
+    QVERIFY( gs.value( "dwarfs" ).toStringList().contains( "thorin" ) );
+    QVERIFY( !gs.value( "dwarfs" ).toStringList().contains( "gimli" ) );
+
+
+    QVERIFY( gs.saveYaml( yamlfilename ) );
+
+    Calamares::GlobalStorage gs2;
+    QCOMPARE( gs2.count(), 0 );
+    QVERIFY( gs2.loadYaml( yamlfilename ) );
+    QCOMPARE( gs2.count(), 3 );
+    QEXPECT_FAIL( "", "QStringList doesn't write out nicely", Continue );
+    QCOMPARE( gs2.value( "dwarfs" ).toList().count(), 7 );  // There's seven dwarfs, right?
+    QCOMPARE( gs2.value( "dwarfs" ).toString(), QStringLiteral( "<QStringList>" ) );  // .. they're gone
 }
 
 
