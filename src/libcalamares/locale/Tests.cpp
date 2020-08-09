@@ -120,10 +120,11 @@ LocaleTests::testEsperanto()
 {
 #if QT_VERSION < QT_VERSION_CHECK( 5, 12, 2 )
     QCOMPARE( QLocale( "eo" ).language(), QLocale::C );
+    QCOMPARE( QLocale( QLocale::Esperanto ).language(), QLocale::English );
 #else
     QCOMPARE( QLocale( "eo" ).language(), QLocale::Esperanto );
-#endif
     QCOMPARE( QLocale( QLocale::Esperanto ).language(), QLocale::Esperanto );  // Probably fails on 5.12, too
+#endif
 }
 
 void
