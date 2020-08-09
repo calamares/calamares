@@ -78,7 +78,7 @@ if test "x$BUILD_DEFAULT" = "xtrue" ; then
     rm -rf "$BUILDDIR"
     mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
     ( cd "$BUILDDIR" && cmake .. && make -j4 ) || { echo "Could not perform test-build in $BUILDDIR." ; exit 1 ; }
-    ( cd "$BUILDDIR" && make test ) || { echo "Tests failed in $BUILDDIR." ; exit 1 ; }
+    ( cd "$BUILDDIR" && make test ) || { echo "Tests failed in $BUILDDIR ." ; exit 1 ; }
 fi
 
 ### Build with clang
@@ -95,7 +95,7 @@ if test "x$BUILD_CLANG" = "xtrue" ; then
 fi
 
 if test "x$BUILD_ONLY" = "xtrue" ; then
-    echo "Builds completed, release stopped. Build remains in $BUILDDIR."
+    echo "Builds completed, release stopped. Build remains in $BUILDDIR ."
     exit 1
 fi
 
@@ -106,14 +106,14 @@ else
     # Presumably -B was given; just do the cmake part
     rm -rf "$BUILDDIR"
     mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
-    ( cd "$BUILDDIR" && cmake .. ) || { echo "Could not run cmake in $BUILDDIR." ; exit 1 ; }
+    ( cd "$BUILDDIR" && cmake .. ) || { echo "Could not run cmake in $BUILDDIR ." ; exit 1 ; }
 fi
 
 ### Get version number for this release
 #
 #
 V=$( cd "$BUILDDIR" && make show-version | grep ^CALAMARES_VERSION | sed s/^[A-Z_]*=// )
-test -n "$V" || { echo "Could not obtain version in $BUILDDIR." ; exit 1 ; }
+test -n "$V" || { echo "Could not obtain version in $BUILDDIR ." ; exit 1 ; }
 
 ### Create signed tag
 #
@@ -139,7 +139,7 @@ TMPDIR=$(mktemp -d --suffix="-calamares-$D")
 test -d "$TMPDIR" || { echo "Could not create tarball-build directory." ; exit 1 ; }
 tar xzf "$TAR_FILE" -C "$TMPDIR" || { echo "Could not unpack tarball." ; exit 1 ; }
 test -d "$TMPDIR/$TAR_V" || { echo "Tarball did not contain source directory." ; exit 1 ; }
-( cd "$TMPDIR/$TAR_V" && cmake . && make -j4 && make test ) || { echo "Tarball build failed in $TMPDIR." ; exit 1 ; }
+( cd "$TMPDIR/$TAR_V" && cmake . && make -j4 && make test ) || { echo "Tarball build failed in $TMPDIR ." ; exit 1 ; }
 
 ### Cleanup
 #
