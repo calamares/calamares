@@ -29,7 +29,7 @@
 ### END USAGE
 
 # The files that are translated; should match the contents of .tx/config
-TX_FILE_LIST="lang/calamares_en.ts lang/python.pot src/modules/dummypythonqt/lang/dummypythonqt.pot calamares.desktop"
+TX_FILE_LIST="lang/calamares_en.ts lang/python.pot calamares.desktop"
 
 ### COMMAND ARGUMENTS
 #
@@ -125,7 +125,7 @@ tx_sum()
 
 	# Remove linenumbers from .ts (XML) and .pot
 	sed -i'' -e '/<location filename/d' "$WORKTREE_NAME/lang/calamares_en.ts"
-	sed -i'' -e '/^#: src..*[0-9]$/d' $WORKTREE_NAME/lang/python.pot $WORKTREE_NAME/src/modules/dummypythonqt/lang/dummypythonqt.pot
+	sed -i'' -e '/^#: src..*[0-9]$/d' $WORKTREE_NAME/lang/python.pot
 
 	_SUM=$( cd $WORKTREE_NAME && cat $TX_FILE_LIST | $SHA256 )
 	echo "$_SUM"

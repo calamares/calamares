@@ -64,7 +64,7 @@ tx pull --force --source --all
 # so clean them up after pulling.
 #
 drop_language() {
-	rm -rf lang/python/"$1" src/modules/dummypythonqt/lang/"$1" lang/calamares_"$1".ts
+	rm -rf lang/python/"$1" lang/calamares_"$1".ts
 	grep -v "\\[$1]" calamares.desktop > calamares.desktop.new
 	mv calamares.desktop.new calamares.desktop
 }
