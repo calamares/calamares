@@ -3,6 +3,28 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
+# 3.2.29 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - No module changes yet
+
+
+# 3.2.28.1 (2020-08-10) #
+
+This is a hotfix release for #1482 and #1483, where no user was
+created during installation and a chmod was failing (resulting in
+a failed installation). Reported by Jonathan Riddell.
+
+With incidental improvements in SPDX tagging (code licensing)
+and some new icon options for the welcomeq and localeq modules.
+
+
 # 3.2.28 (2020-08-09) #
 
 This release contains contributions from (alphabetically by first name):

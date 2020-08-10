@@ -131,6 +131,7 @@ UsersViewStep::onLeave()
                            m_config->fullName().isEmpty() ? m_config->loginName() : m_config->fullName(),
                            m_config->doAutoLogin(),
                            m_config->defaultGroups() );
+    m_jobs.append( Calamares::job_ptr( j ) );
 
     j = new SetPasswordJob( m_config->loginName(), m_config->userPassword() );
     m_jobs.append( Calamares::job_ptr( j ) );

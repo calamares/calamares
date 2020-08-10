@@ -63,8 +63,8 @@ Page {
                 rowSpacing: Kirigami.Units.largeSpacing
                 columnSpacing: Kirigami.Units.largeSpacing
 
-                Kirigami.Icon {
-                    source: "application-x-gettext-translation"
+                Image {
+                    source: "img/locale.svg"
                     Layout.fillHeight: true
                     Layout.maximumHeight: Kirigami.Units.iconSizes.medium
                     Layout.preferredWidth: height

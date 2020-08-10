@@ -144,16 +144,34 @@ Page
                 width: parent.width
                 Layout.fillWidth: true
                 focus: true
-                Image {
-                    id: image
-                    height: 48
-                    fillMode: Image.PreserveAspectFit
-                    source: "img/language-icon-48px.png"
+
+                Loader {
+                    id: imLoader
+
+                    Component {
+                        id: icon
+                        Kirigami.Icon {
+                            source: config.languageIcon
+                            height: 48
+                            width: 48
+                        }
+                    }
+
+                    Component {
+                        id: image
+                        Image {
+                            height: 48
+                            fillMode: Image.PreserveAspectFit
+                            source: "img/language-icon-48px.png"
+                        }
+                    }
+
+                    sourceComponent: (config.languageIcon != "")  ? icon : image
                 }
 
                 ComboBox {
                     id: languages
-                    anchors.left: image.right
+                    anchors.left: imLoader.right
                     width: languageBar.width /1.1
                     textRole: "label"
                     currentIndex: config.localeIndex

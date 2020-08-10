@@ -3,6 +3,7 @@
  *   SPDX-FileCopyrightText: 2010-2011 Christian Muehlhaeuser <muesli@tomahawk-player.org>
  *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,9 +17,6 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
  *
  */
 
