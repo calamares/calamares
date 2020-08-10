@@ -2,6 +2,7 @@
  *
  *   SPDX-FileCopyrightText: 2013-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -16,9 +17,6 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
  *
  */
 
@@ -63,7 +61,7 @@ DLLEXPORT quint64 getUnsignedInteger( const QVariantMap& map, const QString& key
 DLLEXPORT double getDouble( const QVariantMap& map, const QString& key, double d = 0.0 );
 
 /**
- * Returns a sub-map (i.e. a nested map) from a given mapping with a 
+ * Returns a sub-map (i.e. a nested map) from a given mapping with a
  * given key. @p success is set to true if the @p key exists
  * in @p map and converts to a map, false otherwise.
  *
