@@ -78,8 +78,8 @@ public:
             }
 
             emitProgress();
-            cDebug() << "Starting" << ( anyFailed ? "EMERGENCY JOB" : "job" ) << job->prettyName() << " (there are"
-                     << m_jobs.count() << " left)";
+            cDebug() << "Starting" << ( anyFailed ? "EMERGENCY JOB" : "job" ) << job->prettyName() << "(there are"
+                     << ( m_jobs.count() - m_jobIndex ) << "left)";
             connect( job.data(), &Job::progress, this, &JobThread::emitProgress );
             JobResult result = job->exec();
             if ( !anyFailed && !result )
