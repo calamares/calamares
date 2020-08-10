@@ -1,5 +1,8 @@
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
+#   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: GPL-3.0-or-later
+#
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
 #   the Free Software Foundation, either version 3 of the License, or
@@ -12,9 +15,6 @@
 #
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
-#
-#   SPDX-License-Identifier: GPL-3.0-or-later
-#   License-Filename: LICENSE
 #
 ###
 #
@@ -49,7 +49,7 @@ project( CALAMARES
     VERSION 3.2.28
     LANGUAGES C CXX )
 
-set( CALAMARES_VERSION_RC 1 )  # Set to 0 during release cycle, 1 during development
+set( CALAMARES_VERSION_RC 0 )  # Set to 0 during release cycle, 1 during development
 
 ### OPTIONS
 #
@@ -140,20 +140,18 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 # TODO: drop the es_ES translation from Transifex
 #
 # NOTE: move eo (Esperanto) to _ok once Qt can actually create a
-#       locale for it. (Qt 5.12.2 can, see check later on).
-# NOTE: update these lines by running txstats.py, or copy these four lines
-#       and prefix each variable name with "p", so that the automatic
-#       checks for new languages and misspelled ones are done (that is,
-#       copy these four lines to four backup lines, add "p", and then update
-#       the original four lines with the current translations).
+#       locale for it. (Qt 5.12.2 can, see Translation Status section).
+# NOTE: move ie (Interlingue) to _ok once Qt supports it.
+# NOTE: update these lines by running `txstats.py`, or for full automation
+#       `txstats.py -e`. See also
 #
 # Total 68 languages
 set( _tx_complete ca fi_FI he hr nl pt_BR sq tg tr_TR uk zh_TW )
 set( _tx_good as ast az az_AZ be cs_CZ da de es fr hi hu it_IT ja
     ko lt ml pt_PT ru sk sv zh_CN )
-set( _tx_ok ar bg el en_GB es_MX es_PR et eu fa gl id ie is mr nb
+set( _tx_ok ar bg el en_GB es_MX es_PR et eu fa gl id is mr nb
     pl ro sl sr sr@latin th )
-set( _tx_incomplete bn ca@valencia eo fr_CH gu kk kn lo lv mk ne_NP
+set( _tx_incomplete bn ca@valencia eo fr_CH gu ie kk kn lo lv mk ne_NP
     ur uz )
 
 ### Required versions
@@ -285,14 +283,6 @@ endif()
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Concurrent Core Gui LinguistTools Network Svg Widgets )
 if( WITH_QML )
     find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Quick QuickWidgets )
-endif()
-if( Qt5_VERSION VERSION_GREATER 5.12.1 )
-    # At least Qt 5.12.2 seems to support Esperanto in QLocale
-    if( "eo" IN_LIST _tx_incomplete )
-        message(STATUS "Esperanto support since Qt 5.12.2, enabling Esperanto locale")
-        list( REMOVE_ITEM _tx_incomplete "eo" )
-        list( APPEND _tx_ok "eo" )
-    endif()
 endif()
 # Optional Qt parts
 find_package( Qt5DBus CONFIG )
@@ -429,30 +419,22 @@ set(Calamares_WITH_QML ${WITH_QML})
 
 ### Transifex Translation status
 #
-# Construct language lists for use. If there are p_tx* variables,
-# then run an extra cmake-time check for consistency of the old
-# (p_tx*) and new (_tx*) lists.
+# Construct language lists for use.
 #
-set( prev_tx ${p_tx_complete} ${p_tx_good} ${p_tx_ok} ${p_tx_incomplete} )
+if( Qt5_VERSION VERSION_GREATER 5.12.1 )
+    # At least Qt 5.12.2 seems to support Esperanto in QLocale
+    if( "eo" IN_LIST _tx_incomplete )
+        message(STATUS "Esperanto support since Qt 5.12.2, enabling Esperanto locale")
+        list( REMOVE_ITEM _tx_incomplete "eo" )
+        list( APPEND _tx_ok "eo" )
+    endif()
+endif()
+
 set( curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_incomplete} )
 set( tx_errors OFF )
-if ( prev_tx )
-    # Gone in new list
-    foreach( l ${prev_tx} )
-        list( FIND curr_tx ${l} p_l )
-        if( p_l EQUAL -1 )
-            message(WARNING "Language ${l} was present in previous translations and is now absent.")
-            set( tx_errors ON )
-        endif()
-    endforeach()
-
+if ( curr_tx )
     # New in list
     foreach( l ${curr_tx} )
-        list( FIND prev_tx ${l} p_l )
-        if( p_l EQUAL -1 )
-            message(WARNING "Language ${l} is new.")
-            set( tx_errors ON )
-        endif()
         set( p_l "lang/calamares_${l}.ts" )
         if( NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${p_l} )
             message(WARNING "Language ${l} has no .ts file yet.")
@@ -463,7 +445,6 @@ if ( prev_tx )
     unset( p_l )
     unset( l )
 endif()
-unset( prev_tx )
 unset( curr_tx )
 if( tx_errors )
     message( FATAL_ERROR "Translation warnings, see above." )
@@ -473,14 +454,6 @@ set( CALAMARES_TRANSLATION_LANGUAGES en ${_tx_complete} ${_tx_good} ${_tx_ok} )
 list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
 add_subdirectory( lang )  # i18n tools
-
-if ( INSTALL_COMPLETION )
-    if( NOT CMAKE_INSTALL_BASHCOMPLETIONDIR )
-        set( CMAKE_INSTALL_BASHCOMPLETIONDIR "${CMAKE_INSTALL_DATADIR}/bash-completion/completions" )
-    endif()
-
-    install( FILES ${CMAKE_SOURCE_DIR}/data/completion/bash/calamares DESTINATION "${CMAKE_INSTALL_BASHCOMPLETIONDIR}" )
-endif()
 
 ### Example Distro
 #
@@ -669,6 +642,14 @@ if( INSTALL_POLKIT )
         FILES com.github.calamares.calamares.policy
         DESTINATION "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
     )
+endif()
+
+if ( INSTALL_COMPLETION )
+    if( NOT CMAKE_INSTALL_BASHCOMPLETIONDIR )
+        set( CMAKE_INSTALL_BASHCOMPLETIONDIR "${CMAKE_INSTALL_DATADIR}/bash-completion/completions" )
+    endif()
+
+    install( FILES ${CMAKE_SOURCE_DIR}/data/completion/bash/calamares DESTINATION "${CMAKE_INSTALL_BASHCOMPLETIONDIR}" )
 endif()
 
 install(

@@ -21,8 +21,24 @@
 #ifndef USERS_CONFIG_H
 #define USERS_CONFIG_H
 
+#include "CheckPWQuality.h"
+
+#include "utils/NamedEnum.h"
+
 #include <QObject>
 #include <QVariantMap>
+
+enum HostNameAction
+{
+    None = 0x0,
+    EtcHostname = 0x1,  // Write to /etc/hostname directly
+    SystemdHostname = 0x2,  // Set via hostnamed(1)
+    WriteEtcHosts = 0x4  // Write /etc/hosts (127.0.1.1 is this host)
+};
+Q_DECLARE_FLAGS( HostNameActions, HostNameAction )
+Q_DECLARE_OPERATORS_FOR_FLAGS( HostNameActions )
+
+const NamedEnumTable< HostNameAction >& hostNameActionNames();
 
 class Config : public QObject
 {
@@ -41,6 +57,22 @@ class Config : public QObject
 
     Q_PROPERTY( QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged )
     Q_PROPERTY( QString hostNameStatus READ hostNameStatus NOTIFY hostNameStatusChanged )
+    Q_PROPERTY( HostNameActions hostNameActions READ hostNameActions CONSTANT )
+
+    Q_PROPERTY( QString userPassword READ userPassword WRITE setUserPassword NOTIFY userPasswordChanged )
+    Q_PROPERTY( QString userPasswordSecondary READ userPasswordSecondary WRITE setUserPasswordSecondary NOTIFY
+                    userPasswordSecondaryChanged )
+    Q_PROPERTY( QString rootPassword READ rootPassword WRITE setRootPassword NOTIFY rootPasswordChanged )
+    Q_PROPERTY( QString rootPasswordSecondary READ rootPasswordSecondary WRITE setRootPasswordSecondary NOTIFY
+                    rootPasswordSecondaryChanged )
+
+    Q_PROPERTY( bool writeRootPassword READ writeRootPassword CONSTANT )
+    Q_PROPERTY( bool reuseUserPasswordForRoot READ reuseUserPasswordForRoot WRITE setReuseUserPasswordForRoot NOTIFY
+                    reuseUserPasswordForRootChanged )
+
+    Q_PROPERTY( bool permitWeakPasswords READ permitWeakPasswords CONSTANT )
+    Q_PROPERTY( bool requireStrongPasswords READ requireStrongPasswords WRITE setRequireStrongPasswords NOTIFY
+                    requireStrongPasswordsChanged )
 
 public:
     Config( QObject* parent = nullptr );
@@ -71,13 +103,41 @@ public:
     QString hostName() const { return m_hostName; }
     /// Status message about hostname -- empty for "ok"
     QString hostNameStatus() const;
+    /// How to write the hostname
+    HostNameActions hostNameActions() const { return m_hostNameActions; }
 
     /// Should the user be automatically logged-in?
     bool doAutoLogin() const { return m_doAutoLogin; }
     /// Should the root password be written (if false, no password is set and the root account is disabled for login)
     bool writeRootPassword() const { return m_writeRootPassword; }
+    /// Should the user's password be used for root, too? (if root is written at all)
+    bool reuseUserPasswordForRoot() const { return m_reuseUserPasswordForRoot; }
+    /// Show UI to change the "require strong password" setting?
+    bool permitWeakPasswords() const { return m_permitWeakPasswords; }
+    /// Current setting for "require strong password"?
+    bool requireStrongPasswords() const { return m_requireStrongPasswords; }
 
     const QStringList& defaultGroups() const { return m_defaultGroups; }
+
+    /** @brief Checks if the password is acceptable.
+     *
+     * If all is well, sets @p message to empty and returns @c true.
+     * If there are warnings, but acceptable, sets @p message to something
+     *   non-empty and returns @c true. This happens if requireStrongPasswords
+     *   is turned off (by config or user).
+     * If the password is not acceptable, sets @p message to something
+     *   non-empty and returns @c false.
+     */
+    bool isPasswordAcceptable( const QString& password, QString& message );
+
+    // The user enters a password (and again in a separate UI element)
+    QString userPassword() const { return m_userPassword; }
+    QString userPasswordSecondary() const { return m_userPasswordSecondary; }
+    // The root password **may** be entered in the UI, or may be suppressed
+    //   entirely when writeRootPassword is off, or may be equal to
+    //   the user password when reuseUserPasswordForRoot is on.
+    QString rootPassword() const;
+    QString rootPasswordSecondary() const;
 
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();
@@ -109,6 +169,16 @@ public Q_SLOTS:
     /// Sets the autologin flag
     void setAutoLogin( bool b );
 
+    /// Set to true to use the user password, unchanged, for root too
+    void setReuseUserPasswordForRoot( bool reuse );
+    /// Change setting for "require strong password"
+    void setRequireStrongPasswords( bool strong );
+
+    void setUserPassword( const QString& );
+    void setUserPasswordSecondary( const QString& );
+    void setRootPassword( const QString& );
+    void setRootPasswordSecondary( const QString& );
+
 signals:
     void userShellChanged( const QString& );
     void autologinGroupChanged( const QString& );
@@ -119,6 +189,13 @@ signals:
     void hostNameChanged( const QString& );
     void hostNameStatusChanged( const QString& );
     void autoLoginChanged( bool );
+    void reuseUserPasswordForRootChanged( bool );
+    void requireStrongPasswordsChanged( bool );
+    void userPasswordChanged( const QString& );
+    void userPasswordSecondaryChanged( const QString& );
+    void rootPasswordChanged( const QString& );
+    void rootPasswordSecondaryChanged( const QString& );
+
 
 private:
     QStringList m_defaultGroups;
@@ -128,11 +205,25 @@ private:
     QString m_fullName;
     QString m_loginName;
     QString m_hostName;
+
+    QString m_userPassword;
+    QString m_userPasswordSecondary;  // enter again to be sure
+    QString m_rootPassword;
+    QString m_rootPasswordSecondary;
+
     bool m_doAutoLogin = false;
+
     bool m_writeRootPassword = true;
+    bool m_reuseUserPasswordForRoot = false;
+
+    bool m_permitWeakPasswords = false;
+    bool m_requireStrongPasswords = true;
 
     bool m_customLoginName = false;
     bool m_customHostName = false;
+
+    HostNameActions m_hostNameActions;
+    PasswordCheckList m_passwordChecks;
 };
 
 #endif

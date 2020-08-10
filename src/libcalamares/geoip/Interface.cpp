@@ -47,7 +47,6 @@ splitTZString( const QString& tz )
     QStringList tzParts = timezoneString.split( '/', SplitSkipEmptyParts );
     if ( tzParts.size() >= 2 )
     {
-        cDebug() << "GeoIP reporting" << timezoneString;
         QString region = tzParts.takeFirst();
         QString zone = tzParts.join( '/' );
         return RegionZonePair( region, zone );

@@ -530,7 +530,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;strong&gt;Əl ilə bölmək&lt;/strong&gt;&lt;br/&gt;Siz bölməni özünüz yarada və ölçüsünü dəyişə bilərsiniz.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
@@ -717,7 +717,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="333"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>Saat quraşağını təyin etmək %1/%2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="348"/>
@@ -802,7 +802,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/users/Config.cpp" line="131"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>İstifadəçi adı '%1' ola bilməz</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="141"/>
@@ -827,7 +827,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/users/Config.cpp" line="201"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>Host_adı '%1' ola bilməz</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="211"/>
@@ -3800,7 +3800,8 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="115"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Yerlər&lt;/h1&gt;&lt;/br&gt;
+                 Sistemin məkan ayarları say və tarix formatlarəna təsir edir. Cari ayar &lt;strong&gt;%1&lt;/strong&gt;-dir</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="167"/>

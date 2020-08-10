@@ -37,6 +37,33 @@ def pretty_name():
     return _("Configure GRUB.")
 
 
+def get_grub_config_path(root_mount_point):
+    """
+    Figures out where to put the grub config files. Returns
+    a the full path of a file inside that
+    directory, as "the config file".
+
+    Returns a path into @p root_mount_point.
+    """
+    default_dir = os.path.join(root_mount_point, "etc/default")
+    default_config_file = "grub"
+
+    if "prefer_grub_d" in libcalamares.job.configuration and libcalamares.job.configuration["prefer_grub_d"]:
+        possible_dir = os.path.join(root_mount_point, "etc/default/grub.d")
+        if os.path.exists(possible_dir) and os.path.isdir(possible_dir):
+            default_dir = possible_dir
+            default_config_file = "00calamares"
+
+    if not os.path.exists(default_dir):
+        try:
+            os.mkdir(default_dir)
+        except:
+            libcalamares.utils.debug("Failed to create '%r'" % default_dir)
+            raise
+
+    return os.path.join(default_dir, default_config_file)
+
+
 def modify_grub_default(partitions, root_mount_point, distributor):
     """
     Configures '/etc/default/grub' for hibernation and plymouth.
@@ -54,8 +81,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         is always updated to set this value.
     :return:
     """
-    default_dir = os.path.join(root_mount_point, "etc/default")
-    default_grub = os.path.join(default_dir, "grub")
+    default_grub = get_grub_config_path(root_mount_point)
     distributor_replace = distributor.replace("'", "'\\''")
     dracut_bin = libcalamares.utils.target_env_call(
         ["sh", "-c", "which dracut"]
@@ -141,9 +167,6 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             swap_outer_mappername))
 
     distributor_line = "GRUB_DISTRIBUTOR='{!s}'".format(distributor_replace)
-
-    if not os.path.exists(default_dir):
-        os.mkdir(default_dir)
 
     have_kernel_cmd = False
     have_distributor_line = False

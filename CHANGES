@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.28 (unreleased) #
+# 3.2.28 (2020-08-09) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
@@ -14,9 +14,11 @@ This release contains contributions from (alphabetically by first name):
  - A new object *Network* is available to QML modules in `io.calamares.core`.
    It exposes network status through the *hasInternet* property.
  - Welcome to Tajik translations. The Tajik language has quickly reached
-   100% completion.
+   100% completion. Thanks Victor!
  - Welcome to [Interlingue](https://en.wikipedia.org/wiki/Interlingue).
-   The translation is at an early stage.
+   The translation is at an early stage. Qt does not support language
+   code *ie* though, so it may take some time to be integrated (much
+   like Esperanto wasn't supported until Qt 5.12).
 
 ## Modules ##
  - The *locale* module has been completely redone on the inside.
@@ -31,9 +33,15 @@ This release contains contributions from (alphabetically by first name):
    timezone setting -- this can be useful to avoid both hard-coding an
    initial zone and doing extra GeoIP lookups, in the case where the
    live system already does so. #1391
+ - The *locale* and *localeq* modules have additional machinery for
+   timezone lookups; please report cases where clicking on the map
+   returns an obviously bogus timezone (up until this release, for
+   instance, Cape Town).
  - The *users* module no longer accepts `root` as a username. #1462
  - The *keyboardq* module is now more inline with the look of the rest
    of the Calamares modules, use of a background image is removed.
+ - The *grubcfg* module now understands `/etc/default/grub.d`. #1457
+
 
 # 3.2.27 (2020-07-11) #
 

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,11 +16,16 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
- *
  */
 
+/** @file Run-time translation of strings from configuration files
+ *
+ * The TranslatedString class provides a way of doing run-time
+ * lookups of human-readable strings, from data provided in
+ * the configuration files (*.conf) for Calamares. This acts
+ * like "normal" translation through tr() calls, as far as the
+ * user-visible part goes.
+ */
 #ifndef LOCALE_TRANSLATABLECONFIGURATION_H
 #define LOCALE_TRANSLATABLECONFIGURATION_H
 

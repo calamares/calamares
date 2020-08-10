@@ -35,13 +35,13 @@
 #endif
 
 static QPoint
-getLocationPosition( const CalamaresUtils::Locale::TZZone* l )
+getLocationPosition( const CalamaresUtils::Locale::TimeZoneData* l )
 {
     return TimeZoneImageList::getLocationPosition( l->longitude(), l->latitude() );
 }
 
 
-TimeZoneWidget::TimeZoneWidget( const CalamaresUtils::Locale::CStringPairList& zones, QWidget* parent )
+TimeZoneWidget::TimeZoneWidget( const CalamaresUtils::Locale::ZonesModel* zones, QWidget* parent )
     : QWidget( parent )
     , timeZoneImages( TimeZoneImageList::fromQRC() )
     , m_zonesData( zones )
@@ -65,7 +65,7 @@ TimeZoneWidget::TimeZoneWidget( const CalamaresUtils::Locale::CStringPairList& z
 
 
 void
-TimeZoneWidget::setCurrentLocation( const CalamaresUtils::Locale::TZZone* location )
+TimeZoneWidget::setCurrentLocation( const TimeZoneData* location )
 {
     if ( location == m_currentLocation )
     {
@@ -191,35 +191,14 @@ TimeZoneWidget::mousePressEvent( QMouseEvent* event )
         return;
     }
 
-    // Set nearest location
-    int nX = 999999, mX = event->pos().x();
-    int nY = 999999, mY = event->pos().y();
+    int mX = event->pos().x();
+    int mY = event->pos().y();
+    auto distance = [&]( const CalamaresUtils::Locale::TimeZoneData* zone ) {
+        QPoint locPos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
+        return double( abs( mX - locPos.x() ) + abs( mY - locPos.y() ) );
+    };
 
-    using namespace CalamaresUtils::Locale;
-    const TZZone* closest = nullptr;
-    for ( const auto* region_p : m_zonesData )
-    {
-        const auto* region = dynamic_cast< const TZRegion* >( region_p );
-        if ( region )
-        {
-            for ( const auto* zone_p : region->zones() )
-            {
-                const auto* zone = dynamic_cast< const TZZone* >( zone_p );
-                if ( zone )
-                {
-                    QPoint locPos = TimeZoneImageList::getLocationPosition( zone->longitude(), zone->latitude() );
-
-                    if ( ( abs( mX - locPos.x() ) + abs( mY - locPos.y() ) < abs( mX - nX ) + abs( mY - nY ) ) )
-                    {
-                        closest = zone;
-                        nX = locPos.x();
-                        nY = locPos.y();
-                    }
-                }
-            }
-        }
-    }
-
+    const auto* closest = m_zonesData->find( distance );
     if ( closest )
     {
         // Set zone image and repaint widget

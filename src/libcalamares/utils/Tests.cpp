@@ -148,6 +148,7 @@ LibCalamaresTests::recursiveCompareMap( const QVariantMap& a, const QVariantMap&
 void
 LibCalamaresTests::testLoadSaveYamlExtended()
 {
+    Logger::setupLogLevel( Logger::LOGDEBUG );
     bool loaded_ok;
     for ( const auto& confname : findConf( QDir( "../src" ) ) )
     {

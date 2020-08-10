@@ -26,6 +26,7 @@
 #include "utils/String.h"
 #include "utils/Variant.h"
 
+#include <QCoreApplication>
 #include <QFile>
 #include <QRegExp>
 
@@ -35,6 +36,22 @@ static constexpr const int USERNAME_MAX_LENGTH = 31;
 static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
 static constexpr const int HOSTNAME_MIN_LENGTH = 2;
 static constexpr const int HOSTNAME_MAX_LENGTH = 63;
+
+const NamedEnumTable< HostNameAction >&
+hostNameActionNames()
+{
+    // *INDENT-OFF*
+    // clang-format off
+    static const NamedEnumTable< HostNameAction > names {
+        { QStringLiteral( "none" ), HostNameAction::None },
+        { QStringLiteral( "etcfile" ), HostNameAction::EtcHostname },
+        { QStringLiteral( "hostnamed" ), HostNameAction::SystemdHostname }
+    };
+    // clang-format on
+    // *INDENT-ON*
+
+    return names;
+}
 
 Config::Config( QObject* parent )
     : QObject( parent )
@@ -343,6 +360,106 @@ Config::setAutoLogin( bool b )
     }
 }
 
+void
+Config::setReuseUserPasswordForRoot( bool reuse )
+{
+    if ( reuse != m_reuseUserPasswordForRoot )
+    {
+        m_reuseUserPasswordForRoot = reuse;
+        emit reuseUserPasswordForRootChanged( reuse );
+    }
+}
+
+void
+Config::setRequireStrongPasswords( bool strong )
+{
+    if ( strong != m_requireStrongPasswords )
+    {
+        m_requireStrongPasswords = strong;
+        emit requireStrongPasswordsChanged( strong );
+    }
+}
+
+bool
+Config::isPasswordAcceptable( const QString& password, QString& message )
+{
+    bool failureIsFatal = requireStrongPasswords();
+
+    for ( auto pc : m_passwordChecks )
+    {
+        QString s = pc.filter( password );
+
+        if ( !s.isEmpty() )
+        {
+            message = s;
+            return !failureIsFatal;
+        }
+    }
+
+    return true;
+}
+
+void
+Config::setUserPassword( const QString& s )
+{
+    m_userPassword = s;
+    // TODO: check new password status
+    emit userPasswordChanged( s );
+}
+
+void
+Config::setUserPasswordSecondary( const QString& s )
+{
+    m_userPasswordSecondary = s;
+    // TODO: check new password status
+    emit userPasswordSecondaryChanged( s );
+}
+
+void
+Config::setRootPassword( const QString& s )
+{
+    if ( writeRootPassword() )
+    {
+        m_rootPassword = s;
+        // TODO: check new password status
+        emit rootPasswordChanged( s );
+    }
+}
+
+void
+Config::setRootPasswordSecondary( const QString& s )
+{
+    if ( writeRootPassword() )
+    {
+        m_rootPasswordSecondary = s;
+        // TODO: check new password status
+        emit rootPasswordSecondaryChanged( s );
+    }
+}
+
+QString Config::rootPassword() const
+{
+    if ( writeRootPassword() )
+    {
+        if ( reuseUserPasswordForRoot() )
+            return userPassword();
+        return m_rootPassword;
+    }
+    return QString();
+}
+
+QString Config::rootPasswordSecondary() const
+{
+    if ( writeRootPassword() )
+    {
+        if ( reuseUserPasswordForRoot() )
+            return userPasswordSecondary();
+        return m_rootPasswordSecondary;
+    }
+    return QString();
+}
+
+
 STATICTEST void
 setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups )
 {
@@ -357,6 +474,74 @@ setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroup
     }
 }
 
+STATICTEST HostNameActions
+getHostNameActions( const QVariantMap& configurationMap )
+{
+    HostNameAction setHostName = HostNameAction::EtcHostname;
+    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "setHostname" );
+    if ( !hostnameActionString.isEmpty() )
+    {
+        bool ok = false;
+        setHostName = hostNameActionNames().find( hostnameActionString, ok );
+        if ( !ok )
+        {
+            setHostName = HostNameAction::EtcHostname;  // Rather than none
+        }
+    }
+
+    HostNameAction writeHosts = CalamaresUtils::getBool( configurationMap, "writeHostsFile", true )
+        ? HostNameAction::WriteEtcHosts
+        : HostNameAction::None;
+    return setHostName | writeHosts;
+}
+
+/** @brief Process entries in the passwordRequirements config entry
+ *
+ * Called once for each item in the config entry, which should
+ * be a key-value pair. What makes sense as a value depends on
+ * the key. Supported keys are documented in users.conf.
+ *
+ * @return if the check was added, returns @c true
+ */
+STATICTEST bool
+addPasswordCheck( const QString& key, const QVariant& value, PasswordCheckList& passwordChecks )
+{
+    if ( key == "minLength" )
+    {
+        add_check_minLength( passwordChecks, value );
+    }
+    else if ( key == "maxLength" )
+    {
+        add_check_maxLength( passwordChecks, value );
+    }
+    else if ( key == "nonempty" )
+    {
+        if ( value.toBool() )
+        {
+            passwordChecks.push_back(
+                PasswordCheck( []() { return QCoreApplication::translate( "PWQ", "Password is empty" ); },
+                               []( const QString& s ) { return !s.isEmpty(); },
+                               PasswordCheck::Weight( 1 ) ) );
+        }
+        else
+        {
+            cDebug() << "nonempty check is mentioned but set to false";
+            return false;
+        }
+    }
+#ifdef CHECK_PWQUALITY
+    else if ( key == "libpwquality" )
+    {
+        add_check_libpwquality( passwordChecks, value );
+    }
+#endif  // CHECK_PWQUALITY
+    else
+    {
+        cWarning() << "Unknown password-check key" << key;
+        return false;
+    }
+    return true;
+}
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
@@ -372,9 +557,25 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     setAutologinGroup( CalamaresUtils::getString( configurationMap, "autologinGroup" ) );
     setSudoersGroup( CalamaresUtils::getString( configurationMap, "sudoersGroup" ) );
 
+    m_hostNameActions = getHostNameActions( configurationMap );
+
     setConfigurationDefaultGroups( configurationMap, m_defaultGroups );
     m_doAutoLogin = CalamaresUtils::getBool( configurationMap, "doAutologin", false );
 
     m_writeRootPassword = CalamaresUtils::getBool( configurationMap, "setRootPassword", true );
     Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword", m_writeRootPassword );
+
+    m_reuseUserPasswordForRoot = CalamaresUtils::getBool( configurationMap, "doReusePassword", false );
+
+    m_permitWeakPasswords = CalamaresUtils::getBool( configurationMap, "allowWeakPasswords", false );
+    m_requireStrongPasswords
+        = !m_permitWeakPasswords || !CalamaresUtils::getBool( configurationMap, "allowWeakPasswordsDefault", false );
+
+    // If the value doesn't exist, or isn't a map, this gives an empty map -- no problem
+    auto pr_checks( configurationMap.value( "passwordRequirements" ).toMap() );
+    for ( decltype( pr_checks )::const_iterator i = pr_checks.constBegin(); i != pr_checks.constEnd(); ++i )
+    {
+        addPasswordCheck( i.key(), i.value(), m_passwordChecks );
+    }
+    std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
 }

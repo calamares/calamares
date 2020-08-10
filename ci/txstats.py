@@ -178,6 +178,7 @@ def get_tx_stats(languages, outputter, verbose):
     # and it's at-the-least ok.
     incomplete_languages = (
         "eo",   # Not supported by QLocale < 5.12.1
+        "ie",   # Not supported by Qt at least through 5.15.0
         )
 
     all_langs = []

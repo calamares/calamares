@@ -138,6 +138,7 @@ LocaleViewStep::jobs() const
 void
 LocaleViewStep::onActivate()
 {
+    m_config->setCurrentLocation();  // Finalize the location
     if ( !m_actualWidget )
     {
         setUpPage();
@@ -149,6 +150,7 @@ LocaleViewStep::onActivate()
 void
 LocaleViewStep::onLeave()
 {
+    m_config->finalizeGlobalStorage();
 }
 
 

@@ -71,4 +71,7 @@ calamares_add_test(
     SOURCES
         Tests.cpp
         Config.cpp
+        CheckPWQuality.cpp
+    LIBRARIES
+        ${USER_EXTRA_LIB}
 )

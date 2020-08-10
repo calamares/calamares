@@ -80,8 +80,21 @@ LocaleQmlViewStep::jobs() const
 }
 
 void
+LocaleQmlViewStep::onActivate()
+{
+    m_config->setCurrentLocation();  // Finalize the location
+    QmlViewStep::onActivate();
+}
+
+void
+LocaleQmlViewStep::onLeave()
+{
+    m_config->finalizeGlobalStorage();
+}
+
+void
 LocaleQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );
-    Calamares::QmlViewStep::setConfigurationMap( configurationMap );  // call parent implementation last
+    QmlViewStep::setConfigurationMap( configurationMap );  // call parent implementation last
 }

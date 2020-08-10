@@ -776,22 +776,22 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Afáyate nel programa de configuración de Calamares pa %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="246"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Afáyate na configuración de %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Afáyate nel instalador Calamares pa %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="252"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Afáyate nel instalador de %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="125"/>
@@ -1432,7 +1432,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="198"/>
       <source>is running the installer as an administrator (root)</source>
-      <translation type="unfinished"/>
+      <translation>ta executando l'instalador como alministrador (root)</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="201"/>
@@ -1447,7 +1447,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="210"/>
       <source>has a screen large enough to show the whole installer</source>
-      <translation type="unfinished"/>
+      <translation>tien una pantalla abondo grande como p'amosar tol instalador</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="213"/>
@@ -1884,7 +1884,7 @@ L'instalador va colar y van perdese tolos cambeos.</translation>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="79"/>
       <source>Theming</source>
-      <translation type="unfinished"/>
+      <translation>Estilu</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="80"/>
@@ -2851,7 +2851,8 @@ Salida:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Esti ordenador nun satisfaz nengún de los requirimientos aconseyaos pa configurar %1.&lt;br/&gt;
+        La configuración pue siguir pero quiciabes se desactiven dalgunes carauterístiques.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -2962,13 +2963,15 @@ Salida:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="47"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Esti ordenador nun satisfaz los requirimientos mínimos pa instalar %1.&lt;br/&gt;
+        La instalación nun pue siguir.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Esti ordenador nun satisfaz nengún de los requirimientos aconseyaos pa configurar %1.&lt;br/&gt;
+        La configuración pue siguir pero quiciabes se desactiven dalgunes carauterístiques.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3517,7 +3520,7 @@ Salida:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>Al esbillar esto vas unviar información tocante a la instalación y el hardware. Esta información va unviase namás &lt;b&gt;una vegada&lt;/b&gt; dempués de finar la instalación.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>

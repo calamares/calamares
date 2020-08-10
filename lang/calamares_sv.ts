@@ -137,7 +137,7 @@
     <message>
       <location filename="../src/libcalamares/JobExample.cpp" line="43"/>
       <source>Programmed job failure was explicitly requested.</source>
-      <translation type="unfinished"/>
+      <translation>Programmerat jobbfel begärdes uttryckligen.</translation>
     </message>
   </context>
   <context>
@@ -222,7 +222,7 @@
     <message>
       <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="277"/>
       <source>Loading failed.</source>
-      <translation type="unfinished"/>
+      <translation>Laddning misslyckades.</translation>
     </message>
   </context>
   <context>
@@ -716,7 +716,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="333"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>Sätt tidszon till %1/%2.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="348"/>
@@ -776,22 +776,22 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Välkommen till Calamares installationsprogram för %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="246"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Välkommen till %1 installation&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Välkommen till Calamares installationsprogram för %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="252"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Välkommen till %1-installeraren&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="125"/>
@@ -801,7 +801,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="131"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' är inte tillåtet som användarnamn.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="141"/>
@@ -826,7 +826,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="201"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' är inte tillåtet som värdnamn.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="211"/>
@@ -839,7 +839,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="128"/>
       <source>Contextual Processes Job</source>
-      <translation type="unfinished"/>
+      <translation>Kontextuellt processjobb</translation>
     </message>
   </context>
   <context>
@@ -1476,7 +1476,7 @@ Alla ändringar kommer att gå förlorade.</translation>
       <location filename="../src/modules/oemid/IDJob.cpp" line="59"/>
       <location filename="../src/modules/oemid/IDJob.cpp" line="67"/>
       <source>OEM Batch Identifier</source>
-      <translation type="unfinished"/>
+      <translation>OEM-batchidentifierare</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/IDJob.cpp" line="48"/>
@@ -1795,7 +1795,10 @@ Alla ändringar kommer att gå förlorade.</translation>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>Snälla välj din föredragna plats på kartan så installationsprogrammet kan föreslå nationella inställningar
+ och tidszons inställningar åt dig. Du kan finjustera de föreslagna inställningarna nedan. 
+Sök på kartan genom att dra
+  för att flytta och använd +/- knapparna för att zooma in/ut eller så använder du musens scrollhjul för att zooma.</translation>
     </message>
   </context>
   <context>
@@ -1910,12 +1913,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="28"/>
       <source>Ba&amp;tch:</source>
-      <translation type="unfinished"/>
+      <translation>Gr&amp;upp:</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="38"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a batch-identifier here. This will be stored in the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ange en batch-identifierare här. Den kommer lagras på målsystemet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/oemid/OEMPage.ui" line="48"/>
@@ -1933,7 +1936,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/oemid/OEMViewStep.cpp" line="126"/>
       <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>Sätt OEM-batchidentifierare till &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
   </context>
   <context>
@@ -1946,7 +1949,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="77"/>
       <source>To be able to select a timezone, make sure you are connected to the internet. Restart the installer after connecting. You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>För att kunna välja en tidszon, se till att du är ansluten till internet. Starta om installationsprogrammet efter anslutningen. Du kan finjustera språk och nationella inställningar nedan.</translation>
     </message>
   </context>
   <context>
@@ -1969,7 +1972,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="157"/>
       <source>Memory allocation error when setting '%1'</source>
-      <translation type="unfinished"/>
+      <translation>Minnesallokerings fel då '%1' skulle ställas in</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
@@ -2144,7 +2147,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
       <source>Bad integer value of setting - %1</source>
-      <translation type="unfinished"/>
+      <translation>Dåligt heltals värde på inställning - %1</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
@@ -2851,7 +2854,8 @@ Utdata:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Denna dator uppfyller inte alla rekommenderade krav för att installera %1.
+&lt;br/&gt;Installationen kan fortsätta, men alla alternativ och funktioner kanske inte kan användas.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -2962,13 +2966,15 @@ Utdata:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="47"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Denna dator uppfyller inte minimikraven för att installera %1.&lt;br/&gt;
+Installationen kan inte fortsätta.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Denna dator uppfyller inte alla rekommenderade krav för att installera %1.
+&lt;br/&gt;Installationen kan fortsätta, men alla alternativ och funktioner kanske inte kan användas.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3411,17 +3417,17 @@ Utdata:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="46"/>
       <source>Installation feedback</source>
-      <translation type="unfinished"/>
+      <translation>Installationsåterkoppling</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="58"/>
       <source>Sending installation feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Skickar installationsåterkoppling</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="75"/>
       <source>Internal error in install-tracking.</source>
-      <translation type="unfinished"/>
+      <translation>Internt fel i install-tracking.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="76"/>
@@ -3434,28 +3440,28 @@ Utdata:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="143"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>KDE användarfeedback </translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="155"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Konfigurerar KDE användarfeedback.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="177"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="183"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Fel vid konfigurering av KDE användarfeedback.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="178"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte konfigurera KDE användarfeedback korrekt, script fel %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="184"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Kunde inte konfigurera KDE användarfeedback korrekt, Calamares fel  %1.</translation>
     </message>
   </context>
   <context>
@@ -3474,7 +3480,7 @@ Utdata:
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="121"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="127"/>
       <source>Error in machine feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Fel vid konfigurering av maskin feedback</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="122"/>
@@ -3502,32 +3508,32 @@ Utdata:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Klicka här för att inte &lt;span style=" font-weight:600;"&gt; skicka någon information alls om din installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Click here for more information about user feedback&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt; Klicka här för information om användarfeedback &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>Spårning hjälper %1 att se hur ofta den är installerad, vilken hårdvara den är installerad på och vilka program som används. För att se vad som skickas, Klicka på hjälp ikonen vad sidan av varje område för att se vad som skickas.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>Genom att välja detta, kommer du skicka information om din installation och hårdvara. Denna information kommer &lt;b&gt;enbart skickas en gång&lt;/b&gt; efter att installationen slutförts.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Genom att välja detta, kommer du periodiskt skicka information om din &lt;b&gt;maskin&lt;/b&gt;installation, hårdvara och program, till %1</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>Genom att välja detta, kommer du regelbundet skicka information om din &lt;b&gt;användar&lt;/b&gt;installation, hårdvara, program och dina program användningsmönster till %1.</translation>
     </message>
   </context>
   <context>
@@ -3786,13 +3792,15 @@ Utdata:
       <location filename="../src/modules/localeq/i18n.qml" line="55"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Språk&lt;/h1&gt; &lt;/br&gt;
+Systemspråket påverkar vilket språk och teckenuppsättning somliga kommandoradsprogram använder. Den nuvarande inställningen är &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="115"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Nationella inställningar&lt;/h1&gt; &lt;/br&gt;
+Systems nationella inställningar påverkar nummer och datumformat. Den nuvarande inställningen är &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="167"/>

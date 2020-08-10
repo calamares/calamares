@@ -1,6 +1,7 @@
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -15,12 +16,12 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 #
-#   SPDX-License-Identifier: GPL-3.0-or-later
-#   License-Filename: LICENSE
-#
+
 #
 # libcalamares is the non-GUI part of Calamares, which includes handling
-# translations, configurations, logging, utilities, global storage, and (non-GUI) jobs.
+# translations, configurations, logging, utilities, global storage, and
+# (non-GUI) jobs.
+#
 
 add_definitions( -DDLLEXPORT_PRO )
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR} )
@@ -56,6 +57,7 @@ set( libSources
     locale/Lookup.cpp
     locale/TimeZone.cpp
     locale/TranslatableConfiguration.cpp
+    locale/TranslatableString.cpp
 
     # Modules
     modulesystem/InstanceKey.cpp
@@ -218,17 +220,23 @@ endforeach()
 calamares_add_test(
     libcalamarestest
     SOURCES
+        Tests.cpp
+)
+
+calamares_add_test(
+    libcalamaresutilstest
+    SOURCES
         utils/Tests.cpp
 )
 
 calamares_add_test(
-    libcalamarestestpaths
+    libcalamaresutilspathstest
     SOURCES
         utils/TestPaths.cpp
 )
 
 calamares_add_test(
-    geoiptest
+    libcalamaresgeoiptest
     SOURCES
         geoip/GeoIPTests.cpp
         ${geoip_src}

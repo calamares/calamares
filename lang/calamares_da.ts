@@ -717,7 +717,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="333"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>Indstil tidszone til %1/%2.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="348"/>
@@ -802,7 +802,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
       <location filename="../src/modules/users/Config.cpp" line="131"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' er ikke tilladt som brugernavn.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="141"/>
@@ -827,7 +827,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
       <location filename="../src/modules/users/Config.cpp" line="201"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' er ikke tilladt som værtsnavn.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="211"/>
@@ -3801,7 +3801,8 @@ setting
       <location filename="../src/modules/localeq/i18n.qml" line="115"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Lokaliteter&lt;/h1&gt; &lt;/br&gt;
+                    Systemets lokalitetsindstillinger påvirker tal- og datoformater. Den nuværende indstilling er &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="167"/>
