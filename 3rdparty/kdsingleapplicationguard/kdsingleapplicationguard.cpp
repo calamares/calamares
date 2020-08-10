@@ -1119,7 +1119,7 @@ void KDSingleApplicationGuard::Private::poll() {
     }
 }
 
-#include "moc_kdsingleapplicationguard.cpp"
+// #include "moc_kdsingleapplicationguard.cpp"
 
 #ifdef KDTOOLSCORE_UNITTESTS
 
