@@ -5,9 +5,9 @@ website will have to do for older versions.
 
 # 3.2.28.1 (2020-08-10) #
 
-This is a hotfix release for #1482, where no user was created
-during installation (so the installation would fail when that
-user's password was being set). Reported by Jonathan Riddell.
+This is a hotfix release for #1482 and #1483, where no user was
+created during installation and a chmod was failing (resulting in
+a failed installation). Reported by Jonathan Riddell.
 
 With incidental improvements in SPDX tagging (code licensing)
 and some new icon options for the welcomeq and localeq modules.
