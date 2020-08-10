@@ -62,7 +62,6 @@ set( libSources
     # Modules
     modulesystem/InstanceKey.cpp
     modulesystem/Module.cpp
-    modulesystem/Requirement.cpp
     modulesystem/RequirementsChecker.cpp
     modulesystem/RequirementsModel.cpp
 
