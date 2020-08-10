@@ -61,6 +61,8 @@ public:
     /** @brief Sets the file-access @p mode of @p path
      *
      * Pass a path that is relative (or absolute) in the **host** system.
+     *
+     * @return @c true on success
      */
     static bool apply( const QString& path, int mode );
     /** @brief Do both chmod and chown on @p path
@@ -72,6 +74,8 @@ public:
      *
      * For this call, the names are interpreted in the **host** system.
      * Pass a path that is relative (or absolute) in the **host** system.
+     *
+     * @return @c true on success of **both** operations
      */
     static bool apply( const QString& path, const Permissions& p );
     /// Convenience method for apply(const QString&, const Permissions& )

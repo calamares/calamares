@@ -177,7 +177,7 @@ CreateUserJob::exec()
 
         if ( fileResult )
         {
-            if ( CalamaresUtils::Permissions::apply( fileResult.path(), 0440 ) )
+            if ( !CalamaresUtils::Permissions::apply( fileResult.path(), 0440 ) )
             {
                 return Calamares::JobResult::error( tr( "Cannot chmod sudoers file." ) );
             }
