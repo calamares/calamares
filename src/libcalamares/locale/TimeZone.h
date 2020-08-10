@@ -16,9 +16,19 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  *
- *
  */
 
+/** @file Timezone data and models to go with it
+ *
+ * The TimeZoneData class holds information from zone.tab, about
+ * TZ names and locations (latitude and longitude) for geographic
+ * lookups.
+ *
+ * The RegionModel lists the regions of the world (about 12) and
+ * ZonesModel lists all the timezones; the RegionalZonesModel provides
+ * a way to restrict the view of timezones to those of a specific region.
+ *
+ */
 #ifndef LOCALE_TIMEZONE_H
 #define LOCALE_TIMEZONE_H
 
