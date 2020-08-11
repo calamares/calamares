@@ -59,6 +59,16 @@ public:
      */
     InstanceDescription() = default;
 
+    /** @brief An InstanceDescription with no special settings.
+     *
+     * Regardless of @p key being custom, sets weight to 1 and
+     * the configuration file to @c key.module() (plus the ".conf"
+     * extension).
+     *
+     * To InstanceDescription is custom if the key is.
+     */
+    InstanceDescription( const InstanceKey& key );
+
     static InstanceDescription fromSettings( const QVariantMap& );
 
     bool isValid() const { return m_instanceKey.isValid(); }
@@ -84,6 +94,7 @@ public:
     explicit Settings( const QString& settingsFilePath, bool debugMode );
 
     void setConfiguration( const QByteArray& configData, const QString& explainName );
+    void validateSequence();
 
 public:
     static Settings* instance();

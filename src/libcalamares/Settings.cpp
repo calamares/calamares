@@ -73,6 +73,16 @@ requireBool( const YAML::Node& config, const char* key, bool d )
 namespace Calamares
 {
 
+InstanceDescription::InstanceDescription( const Calamares::ModuleSystem::InstanceKey& key )
+    : m_instanceKey( key )
+    , m_weight( 1 )
+{
+    if ( !isValid() )
+    {
+        m_weight = 0;
+    }
+}
+
 InstanceDescription::InstanceDescription( Calamares::ModuleSystem::InstanceKey&& key, int weight )
     : m_instanceKey( key )
     , m_weight( qBound( 1, weight, 100 ) )
@@ -246,6 +256,50 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
 }
 
 void
+Settings::validateSequence()
+{
+    // Since moduleFinder captures targetKey by reference, we can
+    //   update targetKey to change what the finder lambda looks for.
+    Calamares::ModuleSystem::InstanceKey targetKey;
+    auto moduleFinder = [&targetKey]( const InstanceDescription& d ) { return d.isValid() && d.key() == targetKey; };
+
+    // Check the sequence against the existing instances (which so far are only custom)
+    for ( const auto& step : m_modulesSequence )
+    {
+        for ( const auto& instance : step.second )
+        {
+            Calamares::ModuleSystem::InstanceKey k = Calamares::ModuleSystem::InstanceKey::fromString( instance );
+            if ( !k.isValid() )
+            {
+                cWarning() << "Invalid instance key in *sequence*," << instance;
+            }
+            if ( k.isValid() && k.isCustom() )
+            {
+                targetKey = k;
+                const auto it = std::find_if(
+                    m_customModuleInstances.constBegin(), m_customModuleInstances.constEnd(), moduleFinder );
+                if ( it == m_customModuleInstances.constEnd() )
+                {
+                    cWarning() << "Custom instance key" << instance << "is not listed in the *instances*";
+                    // don't add it, let this fail later.
+                }
+            }
+            if ( k.isValid() && !k.isCustom() )
+            {
+                targetKey = k;
+                const auto it = std::find_if(
+                    m_customModuleInstances.constBegin(), m_customModuleInstances.constEnd(), moduleFinder );
+                if ( it == m_customModuleInstances.constEnd() )
+                {
+                    // Non-custom instance, just mentioned in *sequence*
+                    m_customModuleInstances.append( InstanceDescription( k ) );
+                }
+            }
+        }
+    }
+}
+
+void
 Settings::setConfiguration( const QByteArray& ba, const QString& explainName )
 {
     try
@@ -265,6 +319,8 @@ Settings::setConfiguration( const QByteArray& ba, const QString& explainName )
         m_disableCancel = requireBool( config, "disable-cancel", false );
         m_disableCancelDuringExec = requireBool( config, "disable-cancel-during-exec", false );
         m_quitAtEnd = requireBool( config, "quit-at-end", false );
+
+        validateSequence();
     }
     catch ( YAML::Exception& e )
     {
