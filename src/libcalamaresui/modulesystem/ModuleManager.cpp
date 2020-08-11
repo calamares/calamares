@@ -206,13 +206,12 @@ ModuleManager::loadModules()
     {
         ModuleSystem::Action currentAction = modulePhase.first;
 
-        foreach ( const QString& moduleEntry, modulePhase.second )
+        for ( const auto& instanceKey : modulePhase.second )
         {
-            auto instanceKey = ModuleSystem::InstanceKey::fromString( moduleEntry );
             if ( !instanceKey.isValid() )
             {
-                cError() << "Wrong module entry format for module" << moduleEntry;
-                failedModules.append( moduleEntry );
+                cError() << "Wrong module entry format for module" << instanceKey;
+                failedModules.append( instanceKey.toString() );
                 continue;
             }
 
