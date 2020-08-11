@@ -22,6 +22,7 @@
 #define MODULESYSTEM_INSTANCEKEY_H
 
 #include <QDebug>
+#include <QList>
 #include <QPair>
 #include <QString>
 
@@ -95,6 +96,8 @@ private:
         }
     }
 };
+
+using InstanceKeyList = QList< InstanceKey >;
 
 QDebug& operator<<( QDebug& s, const Calamares::ModuleSystem::InstanceKey& i );
 

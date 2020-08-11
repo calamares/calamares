@@ -210,7 +210,13 @@ interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSeque
             }
 
             QStringList thisActionRoster = sequenceVListItem.toMap().value( thisActionS ).toStringList();
-            moduleSequence.append( qMakePair( thisAction, thisActionRoster ) );
+            Calamares::ModuleSystem::InstanceKeyList roster;
+            roster.reserve( thisActionRoster.count() );
+            std::transform( thisActionRoster.constBegin(),
+                            thisActionRoster.constEnd(),
+                            std::back_inserter( roster ),
+                            []( const QString& s ) { return Calamares::ModuleSystem::InstanceKey::fromString( s ); } );
+            moduleSequence.append( qMakePair( thisAction, roster ) );
         }
     }
     else
@@ -262,24 +268,23 @@ Settings::validateSequence()
     // Check the sequence against the existing instances (which so far are only custom)
     for ( const auto& step : m_modulesSequence )
     {
-        for ( const auto& instance : step.second )
+        for ( const auto& instanceKey : step.second )
         {
-            Calamares::ModuleSystem::InstanceKey k = Calamares::ModuleSystem::InstanceKey::fromString( instance );
-            if ( !k.isValid() )
+            if ( !instanceKey.isValid() )
             {
-                cWarning() << "Invalid instance key in *sequence*," << instance;
+                cWarning() << "Invalid instance key in *sequence*," << instanceKey;
                 continue;
             }
 
-            targetKey = k;
+            targetKey = instanceKey;
             const auto it = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
             if ( it == m_moduleInstances.constEnd() )
             {
-                if ( k.isCustom() )
+                if ( instanceKey.isCustom() )
                 {
-                    cWarning() << "Custom instance key" << instance << "is not listed in the *instances*";
+                    cWarning() << "Custom instance key" << instanceKey << "is not listed in the *instances*";
                 }
-                m_moduleInstances.append( InstanceDescription( k ) );
+                m_moduleInstances.append( InstanceDescription( instanceKey ) );
             }
         }
     }

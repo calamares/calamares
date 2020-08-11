@@ -110,7 +110,7 @@ public:
      */
     InstanceDescriptionList moduleInstances() const;
 
-    using ModuleSequence = QList< QPair< ModuleSystem::Action, QStringList > >;
+    using ModuleSequence = QList< QPair< ModuleSystem::Action, Calamares::ModuleSystem::InstanceKeyList > >;
     /** @brief Representation of *sequence* of execution
      *
      * Each "section" of the *sequence* key in `settings.conf` gets an
