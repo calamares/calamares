@@ -42,7 +42,7 @@ public:
     RequirementsList checkRequirements() override;
 
 protected:
-    void initFrom( const QVariantMap& moduleDescriptor ) override;
+    void initFrom( const ModuleSystem::Descriptor& moduleDescriptor ) override;
 
 private:
     explicit ViewModule();

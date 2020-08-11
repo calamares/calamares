@@ -162,7 +162,6 @@ private:
     bool checkModuleDependencies( const Module& );
 
     QMap< QString, ModuleSystem::Descriptor > m_availableDescriptorsByModuleName;
-    QMap< QString, QString > m_moduleDirectoriesByModuleName;
     QMap< ModuleSystem::InstanceKey, Module* > m_loadedModulesByInstanceKey;
     const QStringList m_paths;
     RequirementsModel* m_requirementsModel;

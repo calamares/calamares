@@ -114,9 +114,9 @@ ModuleManager::doInit()
                     if ( ok && !moduleName.isEmpty() && ( moduleName == currentDir.dirName() )
                          && !m_availableDescriptorsByModuleName.contains( moduleName ) )
                     {
-                        m_availableDescriptorsByModuleName.insert( moduleName, moduleDescriptorMap );
-                        m_moduleDirectoriesByModuleName.insert( moduleName,
-                                                                descriptorFileInfo.absoluteDir().absolutePath() );
+                        auto descriptor = Calamares::ModuleSystem::Descriptor::fromDescriptorData( moduleDescriptorMap );
+                        descriptor.setDirectory(descriptorFileInfo.absoluteDir().absolutePath() );
+                        m_availableDescriptorsByModuleName.insert( moduleName, descriptor );
                     }
                 }
                 else
@@ -132,8 +132,7 @@ ModuleManager::doInit()
     }
     // At this point m_availableDescriptorsByModuleName is filled with
     // the modules that were found in the search paths.
-    cDebug() << "Found" << m_availableDescriptorsByModuleName.count() << "modules"
-             << m_moduleDirectoriesByModuleName.count() << "names";
+    cDebug() << "Found" << m_availableDescriptorsByModuleName.count() << "modules";
     emit initDone();
 }
 
@@ -169,7 +168,7 @@ getConfigFileName( const Settings::InstanceDescriptionList& descriptorList,
                    const ModuleSystem::InstanceKey& instanceKey,
                    const ModuleSystem::Descriptor& descriptor )
 {
-    if ( descriptor.value( "noconfig", false ).toBool() )
+    if ( !descriptor.hasConfig() )
     {
         // Explicitly set to no-configuration. This doesn't apply
         // to custom instances (above) since the only reason to
@@ -217,7 +216,7 @@ ModuleManager::loadModules()
 
             ModuleSystem::Descriptor descriptor
                 = m_availableDescriptorsByModuleName.value( instanceKey.module(), ModuleSystem::Descriptor() );
-            if ( descriptor.isEmpty() )
+            if ( !descriptor.isValid() )
             {
                 cError() << "Module" << instanceKey.toString() << "not found in module search paths."
                          << Logger::DebugList( m_paths );
@@ -258,7 +257,7 @@ ModuleManager::loadModules()
                     = Calamares::moduleFromDescriptor( descriptor,
                                                        instanceKey.id(),
                                                        configFileName,
-                                                       m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
+                                                       descriptor.directory() );
                 if ( !thisModule )
                 {
                     cError() << "Module" << instanceKey.toString() << "cannot be created from descriptor"
@@ -358,7 +357,7 @@ ModuleManager::checkRequirements()
 }
 
 static QStringList
-missingRequiredModules( const QStringList& required, const QMap< QString, QVariantMap >& available )
+missingRequiredModules( const QStringList& required, const QMap< QString, ModuleSystem::Descriptor >& available )
 {
     QStringList l;
     for ( const QString& depName : required )
@@ -386,12 +385,12 @@ ModuleManager::checkDependencies()
         for ( auto it = m_availableDescriptorsByModuleName.begin(); it != m_availableDescriptorsByModuleName.end();
               ++it )
         {
-            QStringList unmet = missingRequiredModules( it->value( "requiredModules" ).toStringList(),
+            QStringList unmet = missingRequiredModules( it->requiredModules(),
                                                         m_availableDescriptorsByModuleName );
 
             if ( unmet.count() > 0 )
             {
-                QString moduleName = it->value( "name" ).toString();
+                QString moduleName = it->name();
                 somethingWasRemovedBecauseOfUnmetDependencies = true;
                 m_availableDescriptorsByModuleName.erase( it );
                 numberRemoved++;
@@ -415,7 +414,7 @@ ModuleManager::checkModuleDependencies( const Module& m )
 
     bool allRequirementsFound = true;
     QStringList requiredModules
-        = m_availableDescriptorsByModuleName[ m.name() ].value( "requiredModules" ).toStringList();
+        = m_availableDescriptorsByModuleName[ m.name() ].requiredModules();
 
     for ( const QString& required : requiredModules )
     {

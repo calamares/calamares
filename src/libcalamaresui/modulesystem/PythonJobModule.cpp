@@ -62,15 +62,11 @@ PythonJobModule::jobs() const
 
 
 void
-PythonJobModule::initFrom( const QVariantMap& moduleDescriptor )
+PythonJobModule::initFrom( const ModuleSystem::Descriptor& moduleDescriptor )
 {
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
-
-    if ( !moduleDescriptor.value( "script" ).toString().isEmpty() )
-    {
-        m_scriptFileName = moduleDescriptor.value( "script" ).toString();
-    }
+    m_scriptFileName = moduleDescriptor.script();
 }
 
 

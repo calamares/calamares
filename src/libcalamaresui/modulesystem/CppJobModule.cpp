@@ -84,13 +84,12 @@ CppJobModule::jobs() const
 
 
 void
-CppJobModule::initFrom( const QVariantMap& moduleDescriptor )
+CppJobModule::initFrom( const ModuleSystem::Descriptor& moduleDescriptor )
 {
     QDir directory( location() );
-    QString load;
-    if ( !moduleDescriptor.value( "load" ).toString().isEmpty() )
+    QString load = moduleDescriptor.load();
+    if ( !load.isEmpty() )
     {
-        load = moduleDescriptor.value( "load" ).toString();
         load = directory.absoluteFilePath( load );
     }
     // If a load path is not specified, we look for a plugin to load in the directory.

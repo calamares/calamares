@@ -61,32 +61,14 @@ ProcessJobModule::jobs() const
 
 
 void
-ProcessJobModule::initFrom( const QVariantMap& moduleDescriptor )
+ProcessJobModule::initFrom( const ModuleSystem::Descriptor& moduleDescriptor )
 {
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
 
-    if ( !moduleDescriptor.value( "command" ).toString().isEmpty() )
-    {
-        m_command = moduleDescriptor.value( "command" ).toString();
-    }
-
-    m_secondsTimeout = std::chrono::seconds( 30 );
-    if ( moduleDescriptor.contains( "timeout" ) && !moduleDescriptor.value( "timeout" ).isNull() )
-    {
-        int sec = moduleDescriptor.value( "timeout" ).toInt();
-        if ( sec < 0 )
-        {
-            sec = 0;
-        }
-        m_secondsTimeout = std::chrono::seconds( sec );
-    }
-
-    m_runInChroot = false;
-    if ( moduleDescriptor.contains( "chroot" ) && !moduleDescriptor.value( "chroot" ).isNull() )
-    {
-        m_runInChroot = moduleDescriptor.value( "chroot" ).toBool();
-    }
+    m_command = moduleDescriptor.command();
+    m_secondsTimeout = std::chrono::seconds( moduleDescriptor.timeout() );
+    m_runInChroot = moduleDescriptor.chroot();
 }
 
 
