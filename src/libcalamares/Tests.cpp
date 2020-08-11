@@ -44,6 +44,8 @@ private Q_SLOTS:
 
     void testInstanceKey();
     void testInstanceDescription();
+
+    void testSettings();
 };
 
 void
@@ -371,6 +373,75 @@ TestLibCalamares::testInstanceDescription()
         QCOMPARE( d.key().module(), QString( "welcome" ) );
         QCOMPARE( d.key().id(), QString( "hi" ) );
         QCOMPARE( d.configFileName(), QString( "hi.conf" ) );
+    }
+}
+
+void
+TestLibCalamares::testSettings()
+{
+    {
+        Calamares::Settings s( false );
+        QVERIFY( !s.debugMode() );
+    }
+    {
+        Calamares::Settings s( true );
+        QVERIFY( s.debugMode() );
+        QVERIFY( s.customModuleInstances().isEmpty() );
+        QVERIFY( s.modulesSequence().isEmpty() );
+        QVERIFY( s.brandingComponentName().isEmpty() );
+
+        s.setConfiguration( R"(---
+instances:
+    - module: welcome
+      id: hi
+      weight: 75
+    - module: welcome
+      id: yo
+      config: yolo.conf
+sequence:
+    - show:
+        - welcome@hi
+        - welcome@yo
+        - dummycpp
+        - summary
+    - exec:
+        - welcome@hi
+)",
+                            QStringLiteral( "<testdata>" ) );
+
+        QVERIFY( s.debugMode() );
+        QCOMPARE( s.customModuleInstances().count(), 2 );
+        QCOMPARE( s.modulesSequence().count(), 2 );  // 2 steps (show, exec)
+        QVERIFY( s.brandingComponentName().isEmpty() );
+
+        // Make a lambda where we can adjust what it looks for from the outside,
+        //   by capturing a reference.
+        QString moduleKey = QString( "welcome" );
+        auto moduleFinder = [&moduleKey]( const Calamares::InstanceDescription& d ) {
+            return d.isValid() && d.key().module() == moduleKey;
+        };
+
+        const auto it0 = std::find_if(
+            s.customModuleInstances().constBegin(), s.customModuleInstances().constEnd(), moduleFinder );
+        QVERIFY( it0 != s.customModuleInstances().constEnd() );
+
+        moduleKey = QString( "derp" );
+        const auto it1 = std::find_if(
+            s.customModuleInstances().constBegin(), s.customModuleInstances().constEnd(), moduleFinder );
+        QVERIFY( it1 == s.customModuleInstances().constEnd() );
+
+        int validCount = 0;
+        int customCount = 0;
+        for ( const auto& d : s.customModuleInstances() )
+        {
+            if ( d.isValid() )
+                validCount++;
+            if ( d.isCustom() )
+                customCount++;
+            QVERIFY( d.isCustom() ? d.isValid() : true );  // All custom entries are valid
+        }
+        QCOMPARE( customCount, 2 );
+        QCOMPARE( validCount, 2 );
     }
 }
 

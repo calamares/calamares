@@ -77,7 +77,13 @@ private:
 class DLLEXPORT Settings : public QObject
 {
     Q_OBJECT
+#ifdef BUILD_AS_TEST
+public:
+#endif
+    explicit Settings( bool debugMode );
     explicit Settings( const QString& settingsFilePath, bool debugMode );
+
+    void setConfiguration( const QByteArray& configData, const QString& explainName );
 
 public:
     static Settings* instance();

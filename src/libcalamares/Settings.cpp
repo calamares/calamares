@@ -213,6 +213,16 @@ interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSeque
     }
 }
 
+Settings::Settings( bool debugMode )
+    : QObject()
+    , m_debug( debugMode )
+    , m_doChroot( true )
+    , m_promptInstall( false )
+    , m_disableCancel( false )
+    , m_disableCancelDuringExec( false )
+{
+}
+
 Settings::Settings( const QString& settingsFilePath, bool debugMode )
     : QObject()
     , m_debug( debugMode )
@@ -225,30 +235,7 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
     QFile file( settingsFilePath );
     if ( file.exists() && file.open( QFile::ReadOnly | QFile::Text ) )
     {
-        QByteArray ba = file.readAll();
-
-        try
-        {
-            YAML::Node config = YAML::Load( ba.constData() );
-            Q_ASSERT( config.IsMap() );
-
-            interpretModulesSearch(
-                debugMode, CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
-            interpretInstances( config[ "instances" ], m_customModuleInstances );
-            interpretSequence( config[ "sequence" ], m_modulesSequence );
-
-            m_brandingComponentName = requireString( config, "branding" );
-            m_promptInstall = requireBool( config, "prompt-install", false );
-            m_doChroot = !requireBool( config, "dont-chroot", false );
-            m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
-            m_disableCancel = requireBool( config, "disable-cancel", false );
-            m_disableCancelDuringExec = requireBool( config, "disable-cancel-during-exec", false );
-            m_quitAtEnd = requireBool( config, "quit-at-end", false );
-        }
-        catch ( YAML::Exception& e )
-        {
-            CalamaresUtils::explainYamlException( e, ba, file.fileName() );
-        }
+        setConfiguration( file.readAll(), file.fileName() );
     }
     else
     {
@@ -258,6 +245,32 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
     s_instance = this;
 }
 
+void
+Settings::setConfiguration( const QByteArray& ba, const QString& explainName )
+{
+    try
+    {
+        YAML::Node config = YAML::Load( ba.constData() );
+        Q_ASSERT( config.IsMap() );
+
+        interpretModulesSearch(
+            debugMode(), CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
+        interpretInstances( config[ "instances" ], m_customModuleInstances );
+        interpretSequence( config[ "sequence" ], m_modulesSequence );
+
+        m_brandingComponentName = requireString( config, "branding" );
+        m_promptInstall = requireBool( config, "prompt-install", false );
+        m_doChroot = !requireBool( config, "dont-chroot", false );
+        m_isSetupMode = requireBool( config, "oem-setup", !m_doChroot );
+        m_disableCancel = requireBool( config, "disable-cancel", false );
+        m_disableCancelDuringExec = requireBool( config, "disable-cancel-during-exec", false );
+        m_quitAtEnd = requireBool( config, "quit-at-end", false );
+    }
+    catch ( YAML::Exception& e )
+    {
+        CalamaresUtils::explainYamlException( e, ba, explainName );
+    }
+}
 
 QStringList
 Settings::modulesSearchPaths() const
