@@ -421,13 +421,11 @@ sequence:
             return d.isValid() && d.key().module() == moduleKey;
         };
 
-        const auto it0 = std::find_if(
-            s.moduleInstances().constBegin(), s.moduleInstances().constEnd(), moduleFinder );
+        const auto it0 = std::find_if( s.moduleInstances().constBegin(), s.moduleInstances().constEnd(), moduleFinder );
         QVERIFY( it0 != s.moduleInstances().constEnd() );
 
         moduleKey = QString( "derp" );
-        const auto it1 = std::find_if(
-            s.moduleInstances().constBegin(), s.moduleInstances().constEnd(), moduleFinder );
+        const auto it1 = std::find_if( s.moduleInstances().constBegin(), s.moduleInstances().constEnd(), moduleFinder );
         QVERIFY( it1 == s.moduleInstances().constEnd() );
 
         int validCount = 0;
@@ -435,10 +433,31 @@ sequence:
         for ( const auto& d : s.moduleInstances() )
         {
             if ( d.isValid() )
+            {
                 validCount++;
+            }
             if ( d.isCustom() )
+            {
                 customCount++;
+            }
             QVERIFY( d.isCustom() ? d.isValid() : true );  // All custom entries are valid
+
+            if ( !d.isCustom() )
+            {
+                QCOMPARE( d.configFileName(), QString( "%1.conf" ).arg( d.key().module() ) );
+            }
+            else
+            {
+                // Specific cases from this config file
+                if ( d.key().id() == QString( "yo" ) )
+                {
+                    QCOMPARE( d.configFileName(), QString( "yolo.conf" ) );
+                }
+                else
+                {
+                    QCOMPARE( d.configFileName(), QString( "welcome.conf" ) );  // Not set in the settings data
+                }
+            }
         }
         QCOMPARE( customCount, 2 );
         QCOMPARE( validCount, 4 );  // welcome@hi is listed twice, in *show* and *exec*
