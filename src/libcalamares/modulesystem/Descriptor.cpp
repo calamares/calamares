@@ -60,7 +60,8 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
         Type t = typeNames().find( moduleDesc.value( "type" ).toString(), typeOk );
         bool interfaceOk = false;
         Interface i = interfaceNames().find( moduleDesc.value( "interface" ).toString(), interfaceOk );
-        if ( typeOk && interfaceOk )
+        d.m_name = moduleDesc.value( "name" ).toString();
+        if ( typeOk && interfaceOk && !d.m_name.isEmpty() )
         {
             d.m_type = t;
             d.m_interface = i;

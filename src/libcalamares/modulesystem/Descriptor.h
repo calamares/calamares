@@ -74,7 +74,7 @@ public:
 
     bool isValid() const { return m_isValid; }
 
-    QString name() const { return QString(); }
+    QString name() const { return m_name; }
     Type type() const { return m_type; }
     Interface interface() const { return m_interface; }
 
@@ -119,6 +119,7 @@ public:
     QString script() const { return QString(); }
 
 private:
+    QString m_name;
     QString m_directory;
     Type m_type;
     Interface m_interface;

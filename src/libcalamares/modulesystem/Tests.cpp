@@ -18,6 +18,7 @@
  *
  */
 
+#include "modulesystem/Descriptor.h"
 #include "modulesystem/InstanceKey.h"
 
 #include <QtTest/QtTest>
@@ -40,6 +41,8 @@ private Q_SLOTS:
 
     void testBadSimpleCases();
     void testBadFromStringCases();
+
+    void testBasicDescriptor();
 };
 
 void
@@ -134,6 +137,47 @@ ModuleSystemTests::testBadFromStringCases()
 
     k0 = InstanceKey::fromString( "derp@derp@derp" );
     assert_is_invalid( k0 );
+}
+
+void
+ModuleSystemTests::testBasicDescriptor()
+{
+    {
+        QVariantMap m;
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+
+        QVERIFY( !d.isValid() );
+        QVERIFY( d.name().isEmpty() );
+    }
+    {
+        QVariantMap m;
+        m.insert( "name", QVariant() );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+
+        QVERIFY( !d.isValid() );
+        QVERIFY( d.name().isEmpty() );
+    }
+    {
+        QVariantMap m;
+        m.insert( "name", 17 );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+
+        QVERIFY( !d.isValid() );
+        QVERIFY( !d.name().isEmpty() );
+        QCOMPARE( d.name(), QStringLiteral( "17" ) );  // Strange but true
+    }
+    {
+        QVariantMap m;
+        m.insert( "name", "welcome" );
+        m.insert( "type", "viewmodule" );
+        m.insert( "interface", "qtplugin" );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+
+        // QVERIFY( !d.isValid() );
+        QCOMPARE( d.name(), QStringLiteral( "welcome" ) );
+        QCOMPARE( d.type(), Calamares::ModuleSystem::Type::View );
+        QCOMPARE( d.interface(), Calamares::ModuleSystem::Interface::QtPlugin );
+    }
 }
 
 
