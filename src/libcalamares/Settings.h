@@ -101,9 +101,23 @@ public:
     QStringList modulesSearchPaths() const;
 
     using InstanceDescriptionList = QList< InstanceDescription >;
+    /** @brief All the module instances used
+     *
+     * Each module-instance mentioned in `settings.conf` has an entry
+     * in the moduleInstances list -- both custom entries that are
+     * in the *instances* section, and each module mentioned in the
+     * *sequence*.
+     */
     InstanceDescriptionList moduleInstances() const;
 
     using ModuleSequence = QList< QPair< ModuleSystem::Action, QStringList > >;
+    /** @brief Representation of *sequence* of execution
+     *
+     * Each "section" of the *sequence* key in `settings.conf` gets an
+     * entry here, stating what kind of action is taken and which modules
+     * take part (in order). Each entry in the list is an instance key
+     * which can be found in the moduleInstances() list.
+     */
     ModuleSequence modulesSequence() const;
 
     QString brandingComponentName() const;

@@ -268,28 +268,18 @@ Settings::validateSequence()
             if ( !k.isValid() )
             {
                 cWarning() << "Invalid instance key in *sequence*," << instance;
+                continue;
             }
-            if ( k.isValid() && k.isCustom() )
+
+            targetKey = k;
+            const auto it = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
+            if ( it == m_moduleInstances.constEnd() )
             {
-                targetKey = k;
-                const auto it
-                    = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
-                if ( it == m_moduleInstances.constEnd() )
+                if ( k.isCustom() )
                 {
                     cWarning() << "Custom instance key" << instance << "is not listed in the *instances*";
-                    // don't add it, let this fail later.
                 }
-            }
-            if ( k.isValid() && !k.isCustom() )
-            {
-                targetKey = k;
-                const auto it
-                    = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
-                if ( it == m_moduleInstances.constEnd() )
-                {
-                    // Non-custom instance, just mentioned in *sequence*
-                    m_moduleInstances.append( InstanceDescription( k ) );
-                }
+                m_moduleInstances.append( InstanceDescription( k ) );
             }
         }
     }
