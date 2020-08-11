@@ -1,9 +1,10 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2019 Gabriel Craciunescu <crazy@frugalware.org>
  *   SPDX-FileCopyrightText: 2019 Dominic Hayes <ferenosdev@outlook.com>
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,9 +19,6 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
- *
  */
 
 #ifndef SETTINGS_H
@@ -28,6 +26,7 @@
 
 #include "DllMacro.h"
 #include "modulesystem/Actions.h"
+#include "modulesystem/InstanceKey.h"
 
 #include <QObject>
 #include <QStringList>
@@ -36,14 +35,40 @@
 namespace Calamares
 {
 
-struct DLLEXPORT InstanceDescription
+/** @brief Description of an instance as named in `settings.conf`
+ *
+ * An instance is an intended-step-in-sequence; it is not yet
+ * a loaded module. The instances have config-files and weights
+ * which are used by the module manager when loading modules
+ * and creating jobs.
+ */
+class DLLEXPORT InstanceDescription
 {
-    InstanceDescription( const QVariantMap& );
+    using InstanceKey = Calamares::ModuleSystem::InstanceKey;
 
-    QString module;  ///< Module name (e.g. "welcome")
-    QString id;  ///< Id, to distinguish multiple instances (e.g. "one", for "welcome@one")
-    QString config;  ///< Config-file name (for multiple instances)
-    int weight;
+    PRIVATETEST : InstanceDescription( InstanceKey&& key, int weight );
+
+public:
+    /** @brief An invalid InstanceDescription
+     *
+     * Use `fromSettings()` to populate an InstanceDescription and
+     * check its validity.
+     */
+    InstanceDescription() = default;
+
+    static InstanceDescription fromSettings( const QVariantMap& );
+
+    bool isValid() const { return m_instanceKey.isValid(); }
+
+    const InstanceKey& key() const { return m_instanceKey; }
+    QString configFileName() const { return m_configFileName; }
+    bool isCustom() const { return m_instanceKey.isCustom(); }
+    int weight() const { return m_weight; }
+
+private:
+    InstanceKey m_instanceKey;
+    QString m_configFileName;
+    int m_weight = 0;
 };
 
 class DLLEXPORT Settings : public QObject

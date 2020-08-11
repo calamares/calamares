@@ -1,9 +1,10 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2019 Gabriel Craciunescu <crazy@frugalware.org>
  *   SPDX-FileCopyrightText: 2019 Dominic Hayes <ferenosdev@outlook.com>
  *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,9 +18,6 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
  *
  */
 
@@ -75,22 +73,31 @@ requireBool( const YAML::Node& config, const char* key, bool d )
 namespace Calamares
 {
 
-InstanceDescription::InstanceDescription( const QVariantMap& m )
-    : module( m.value( "module" ).toString() )
-    , id( m.value( "id" ).toString() )
-    , config( m.value( "config" ).toString() )
-    , weight( m.value( "weight" ).toInt() )
+InstanceDescription::InstanceDescription( Calamares::ModuleSystem::InstanceKey&& key, int weight )
+    : m_instanceKey( key )
+    , m_weight( qBound( 1, weight, 100 ) )
 {
-    if ( id.isEmpty() )
+    if ( !isValid() )
     {
-        id = module;
+        m_weight = 0;
     }
-    if ( config.isEmpty() )
-    {
-        config = module + QStringLiteral( ".conf" );
-    }
+}
 
-    weight = qBound( 1, weight, 100 );
+InstanceDescription
+InstanceDescription::fromSettings( const QVariantMap& m )
+{
+    InstanceDescription r(
+        Calamares::ModuleSystem::InstanceKey( m.value( "module" ).toString(), m.value( "id" ).toString() ),
+        m.value( "weight" ).toInt() );
+    if ( r.isValid() )
+    {
+        r.m_configFileName = m.value( "config" ).toString();
+        if ( r.m_configFileName.isEmpty() )
+        {
+            r.m_configFileName = r.key().module() + QStringLiteral( ".conf" );
+        }
+    }
+    return r;
 }
 
 Settings* Settings::s_instance = nullptr;
@@ -156,7 +163,7 @@ interpretInstances( const YAML::Node& node, Settings::InstanceDescriptionList& c
                 {
                     continue;
                 }
-                customInstances.append( InstanceDescription( instancesVListItem.toMap() ) );
+                customInstances.append( InstanceDescription::fromSettings( instancesVListItem.toMap() ) );
             }
         }
     }

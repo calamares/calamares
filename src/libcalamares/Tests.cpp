@@ -20,6 +20,8 @@
  */
 
 #include "GlobalStorage.h"
+#include "Settings.h"
+#include "modulesystem/InstanceKey.h"
 
 #include "utils/Logger.h"
 
@@ -39,6 +41,9 @@ private Q_SLOTS:
     void testGSLoadSave();
     void testGSLoadSave2();
     void testGSLoadSaveYAMLStringList();
+
+    void testInstanceKey();
+    void testInstanceDescription();
 };
 
 void
@@ -175,6 +180,198 @@ TestLibCalamares::testGSLoadSaveYAMLStringList()
     QEXPECT_FAIL( "", "QStringList doesn't write out nicely", Continue );
     QCOMPARE( gs2.value( "dwarfs" ).toList().count(), 7 );  // There's seven dwarfs, right?
     QCOMPARE( gs2.value( "dwarfs" ).toString(), QStringLiteral( "<QStringList>" ) );  // .. they're gone
+}
+
+void
+TestLibCalamares::testInstanceKey()
+{
+    using InstanceKey = Calamares::ModuleSystem::InstanceKey;
+    {
+        InstanceKey k;
+        QVERIFY( !k.isValid() );
+        QVERIFY( !k.isCustom() );
+        QVERIFY( k.module().isEmpty() );
+    }
+    {
+        InstanceKey k( QStringLiteral( "welcome" ), QString() );
+        QVERIFY( k.isValid() );
+        QVERIFY( !k.isCustom() );
+        QCOMPARE( k.module(), QStringLiteral( "welcome" ) );
+        QCOMPARE( k.id(), QStringLiteral( "welcome" ) );
+    }
+    {
+        InstanceKey k( QStringLiteral( "shellprocess" ), QStringLiteral( "zfssetup" ) );
+        QVERIFY( k.isValid() );
+        QVERIFY( k.isCustom() );
+        QCOMPARE( k.module(), QStringLiteral( "shellprocess" ) );
+        QCOMPARE( k.id(), QStringLiteral( "zfssetup" ) );
+    }
+
+    {
+        // This is a bad idea, names and ids with odd punctuation
+        InstanceKey k( QStringLiteral( " o__O " ), QString() );
+        QVERIFY( k.isValid() );
+        QVERIFY( !k.isCustom() );
+        QCOMPARE( k.module(), QStringLiteral( " o__O " ) );
+    }
+    {
+        // .. but @ is disallowed
+        InstanceKey k( QStringLiteral( "welcome@hi" ), QString() );
+        QVERIFY( !k.isValid() );
+        QVERIFY( !k.isCustom() );
+        QVERIFY( k.module().isEmpty() );
+    }
+
+    {
+        InstanceKey k = InstanceKey::fromString( "welcome" );
+        QVERIFY( k.isValid() );
+        QVERIFY( !k.isCustom() );
+        QCOMPARE( k.module(), QStringLiteral( "welcome" ) );
+        QCOMPARE( k.id(), QStringLiteral( "welcome" ) );
+    }
+    {
+        InstanceKey k = InstanceKey::fromString( "welcome@welcome" );
+        QVERIFY( k.isValid() );
+        QVERIFY( !k.isCustom() );
+        QCOMPARE( k.module(), QStringLiteral( "welcome" ) );
+        QCOMPARE( k.id(), QStringLiteral( "welcome" ) );
+    }
+
+    {
+        InstanceKey k = InstanceKey::fromString( "welcome@hi" );
+        QVERIFY( k.isValid() );
+        QVERIFY( k.isCustom() );
+        QCOMPARE( k.module(), QStringLiteral( "welcome" ) );
+        QCOMPARE( k.id(), QStringLiteral( "hi" ) );
+    }
+    {
+        InstanceKey k = InstanceKey::fromString( "welcome@hi@hi" );
+        QVERIFY( !k.isValid() );
+        QVERIFY( !k.isCustom() );
+        QVERIFY( k.module().isEmpty() );
+        QVERIFY( k.id().isEmpty() );
+    }
+}
+
+void
+TestLibCalamares::testInstanceDescription()
+{
+    using InstanceDescription = Calamares::InstanceDescription;
+    using InstanceKey = Calamares::ModuleSystem::InstanceKey;
+
+    // With invalid keys
+    //
+    //
+    {
+        InstanceDescription d;
+        QVERIFY( !d.isValid() );
+        QVERIFY( !d.isCustom() );
+        QCOMPARE( d.weight(), 0 );
+        QVERIFY( d.configFileName().isEmpty() );
+    }
+
+    {
+        InstanceDescription d( InstanceKey(), 0 );
+        QVERIFY( !d.isValid() );
+        QVERIFY( !d.isCustom() );
+        QCOMPARE( d.weight(), 0 );
+        QVERIFY( d.configFileName().isEmpty() );
+    }
+
+    {
+        InstanceDescription d( InstanceKey(), 100 );
+        QVERIFY( !d.isValid() );
+        QVERIFY( !d.isCustom() );
+        QCOMPARE( d.weight(), 0 );
+        QVERIFY( d.configFileName().isEmpty() );
+    }
+
+    // Private constructor
+    //
+    // This doesn't set up the config file yet.
+    {
+        InstanceDescription d( InstanceKey::fromString( "welcome" ), 0 );
+        QVERIFY( d.isValid() );
+        QVERIFY( !d.isCustom() );
+        QCOMPARE( d.weight(), 1 );  // **now** the constraints kick in
+        QVERIFY( d.configFileName().isEmpty() );
+    }
+
+    {
+        InstanceDescription d( InstanceKey::fromString( "welcome@hi" ), 0 );
+        QVERIFY( d.isValid() );
+        QVERIFY( d.isCustom() );
+        QCOMPARE( d.weight(), 1 );  // **now** the constraints kick in
+        QVERIFY( d.configFileName().isEmpty() );
+    }
+
+    {
+        InstanceDescription d( InstanceKey::fromString( "welcome@hi" ), 75 );
+        QCOMPARE( d.weight(), 75 );
+    }
+    {
+        InstanceDescription d( InstanceKey::fromString( "welcome@hi" ), 105 );
+        QCOMPARE( d.weight(), 100 );
+    }
+
+
+    // From settings, normal program flow
+    //
+    //
+    {
+        QVariantMap m;
+
+        InstanceDescription d = InstanceDescription::fromSettings( m );
+        QVERIFY( !d.isValid() );
+    }
+    {
+        QVariantMap m;
+        m.insert( "name", "welcome" );
+
+        InstanceDescription d = InstanceDescription::fromSettings( m );
+        QVERIFY( !d.isValid() );
+    }
+    {
+        QVariantMap m;
+        m.insert( "module", "welcome" );
+
+        InstanceDescription d = InstanceDescription::fromSettings( m );
+        QVERIFY( d.isValid() );
+        QVERIFY( !d.isCustom() );
+        QCOMPARE( d.weight(), 1 );
+        QCOMPARE( d.key().module(), QString( "welcome" ) );
+        QCOMPARE( d.key().id(), QString( "welcome" ) );
+        QCOMPARE( d.configFileName(), QString( "welcome.conf" ) );
+    }
+    {
+        QVariantMap m;
+        m.insert( "module", "welcome" );
+        m.insert( "id", "hi" );
+        m.insert( "weight", "17" );  // String, that's kind of bogus
+
+        InstanceDescription d = InstanceDescription::fromSettings( m );
+        QVERIFY( d.isValid() );
+        QVERIFY( d.isCustom() );
+        QCOMPARE( d.weight(), 17 );
+        QCOMPARE( d.key().module(), QString( "welcome" ) );
+        QCOMPARE( d.key().id(), QString( "hi" ) );
+        QCOMPARE( d.configFileName(), QString( "welcome.conf" ) );
+    }
+    {
+        QVariantMap m;
+        m.insert( "module", "welcome" );
+        m.insert( "id", "hi" );
+        m.insert( "weight", 134 );
+        m.insert( "config", "hi.conf" );
+
+        InstanceDescription d = InstanceDescription::fromSettings( m );
+        QVERIFY( d.isValid() );
+        QVERIFY( d.isCustom() );
+        QCOMPARE( d.weight(), 100 );
+        QCOMPARE( d.key().module(), QString( "welcome" ) );
+        QCOMPARE( d.key().id(), QString( "hi" ) );
+        QCOMPARE( d.configFileName(), QString( "hi.conf" ) );
+    }
 }
 
 
