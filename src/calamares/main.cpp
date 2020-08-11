@@ -166,6 +166,11 @@ main( int argc, char* argv[] )
 #endif
 
     Calamares::Settings::init( is_debug );
+    if ( !Calamares::Settings::instance() || !Calamares::Settings::instance()->isValid() )
+    {
+        qCritical() << "Calamares has invalid settings, shutting down.";
+        return 78;  // EX_CONFIG on FreeBSD
+    }
     a.init();
     return a.exec();
 }
