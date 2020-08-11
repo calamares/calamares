@@ -169,7 +169,13 @@ interpretInstances( const YAML::Node& node, Settings::InstanceDescriptionList& c
                 {
                     continue;
                 }
-                customInstances.append( InstanceDescription::fromSettings( instancesVListItem.toMap() ) );
+                auto description = InstanceDescription::fromSettings( instancesVListItem.toMap() );
+                if ( !description.isValid() )
+                {
+                    cWarning() << "Invalid entry in *instances*" << instancesVListItem;
+                }
+                // Append it **anyway**, since this will bail out after Settings is constructed
+                customInstances.append( description );
             }
         }
     }
@@ -206,16 +212,22 @@ interpretSequence( const YAML::Node& node, Settings::ModuleSequence& moduleSeque
             }
             else
             {
+                cDebug() << "Unknown action in *sequence*" << thisActionS;
                 continue;
             }
 
             QStringList thisActionRoster = sequenceVListItem.toMap().value( thisActionS ).toStringList();
             Calamares::ModuleSystem::InstanceKeyList roster;
             roster.reserve( thisActionRoster.count() );
-            std::transform( thisActionRoster.constBegin(),
-                            thisActionRoster.constEnd(),
-                            std::back_inserter( roster ),
-                            []( const QString& s ) { return Calamares::ModuleSystem::InstanceKey::fromString( s ); } );
+            for ( const auto& s : thisActionRoster )
+            {
+                auto instanceKey = Calamares::ModuleSystem::InstanceKey::fromString( s );
+                if ( !instanceKey.isValid() )
+                {
+                    cWarning() << "Invalid instance in *sequence*" << s;
+                }
+                roster.append( instanceKey );
+            }
             moduleSequence.append( qMakePair( thisAction, roster ) );
         }
     }
@@ -258,7 +270,7 @@ Settings::Settings( const QString& settingsFilePath, bool debugMode )
 }
 
 void
-Settings::validateSequence()
+Settings::reconcileInstancesAndSequence()
 {
     // Since moduleFinder captures targetKey by reference, we can
     //   update targetKey to change what the finder lambda looks for.
@@ -311,7 +323,7 @@ Settings::setConfiguration( const QByteArray& ba, const QString& explainName )
         m_disableCancelDuringExec = requireBool( config, "disable-cancel-during-exec", false );
         m_quitAtEnd = requireBool( config, "quit-at-end", false );
 
-        validateSequence();
+        reconcileInstancesAndSequence();
     }
     catch ( YAML::Exception& e )
     {

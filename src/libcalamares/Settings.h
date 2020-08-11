@@ -89,7 +89,7 @@ public:
     explicit Settings( const QString& settingsFilePath, bool debugMode );
 
     void setConfiguration( const QByteArray& configData, const QString& explainName );
-    void validateSequence();
+    void reconcileInstancesAndSequence();
 
 public:
     static Settings* instance();
