@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -157,60 +158,37 @@ ModuleManager::moduleInstance( const ModuleSystem::InstanceKey& instanceKey )
 }
 
 
-/**
- * @brief Search a list of instance descriptions for one matching @p module and @p id
- *
- * @return -1 on failure, otherwise index of the instance that matches.
- */
-static int
-findCustomInstance( const Settings::InstanceDescriptionList& customInstances, const ModuleSystem::InstanceKey& m )
-{
-    for ( int i = 0; i < customInstances.count(); ++i )
-    {
-        const auto& thisInstance = customInstances[ i ];
-        if ( thisInstance.module == m.module() && thisInstance.id == m.id() )
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
-/** @brief Returns the config file name for the fiven @p instanceKey
+/** @brief Returns the config file name for the given @p instanceKey
  *
  * Custom instances have custom config files, non-custom ones
  * have a <modulename>.conf file. Returns an empty QString on
  * errors.
  */
 static QString
-getConfigFileName( const Settings::InstanceDescriptionList& customInstances,
+getConfigFileName( const Settings::InstanceDescriptionList& descriptorList,
                    const ModuleSystem::InstanceKey& instanceKey,
                    const ModuleSystem::Descriptor& descriptor )
 {
-    if ( instanceKey.isCustom() )
+    if ( descriptor.value( "noconfig", false ).toBool() )
     {
-        int found = findCustomInstance( customInstances, instanceKey );
-
-        if ( found < 0 )
-        {
-            // This should already have been checked and failed the module already
-            return QString();
-        }
-
-        return customInstances[ found ].config;
+        // Explicitly set to no-configuration. This doesn't apply
+        // to custom instances (above) since the only reason to
+        // **have** a custom instance is to specify a different
+        // config file for more than one module.
+        return QString();
     }
-    else
+
+    for ( const auto& descriptor : descriptorList )
     {
-        if ( descriptor.value( "noconfig", false ).toBool() )
+        if ( descriptor.key() == instanceKey )
         {
-            // Explicitly set to no-configuration. This doesn't apply
-            // to custom instances (above) since the only reason to
-            // **have** a custom instance is to specify a different
-            // config file for more than one module.
-            return QString();
+            return descriptor.configFileName();
         }
-        return QString( "%1.conf" ).arg( instanceKey.module() );
     }
+
+
+    // This should already have been checked and failed the module already
+    return QString();
 }
 
 void
@@ -220,7 +198,7 @@ ModuleManager::loadModules()
     {
         cWarning() << "Some installed modules have unmet dependencies.";
     }
-    Settings::InstanceDescriptionList customInstances = Settings::instance()->customModuleInstances();
+    Settings::InstanceDescriptionList customInstances = Settings::instance()->moduleInstances();
 
     QStringList failedModules;
     const auto modulesSequence = Settings::instance()->modulesSequence();
@@ -236,16 +214,6 @@ ModuleManager::loadModules()
                 cError() << "Wrong module entry format for module" << moduleEntry;
                 failedModules.append( moduleEntry );
                 continue;
-            }
-            if ( instanceKey.isCustom() )
-            {
-                int found = findCustomInstance( customInstances, instanceKey );
-                if ( found < 0 )
-                {
-                    cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
-                    failedModules.append( moduleEntry );
-                    continue;
-                }
             }
 
             ModuleSystem::Descriptor descriptor
@@ -336,7 +304,7 @@ ModuleManager::loadModules()
 }
 
 bool
-ModuleManager::addModule( Module *module )
+ModuleManager::addModule( Module* module )
 {
     if ( !module )
     {
@@ -344,7 +312,7 @@ ModuleManager::addModule( Module *module )
     }
     if ( !module->instanceKey().isValid() )
     {
-        cWarning() << "Module" << module->location() << Logger::Pointer(module) << "has invalid instance key.";
+        cWarning() << "Module" << module->location() << Logger::Pointer( module ) << "has invalid instance key.";
         return false;
     }
     if ( !checkModuleDependencies( *module ) )
@@ -383,7 +351,9 @@ ModuleManager::checkRequirements()
 
     RequirementsChecker* rq = new RequirementsChecker( modules, m_requirementsModel, this );
     connect( rq, &RequirementsChecker::done, rq, &RequirementsChecker::deleteLater );
-    connect( rq, &RequirementsChecker::done, this, [=](){ this->requirementsComplete( m_requirementsModel->satisfiedMandatory() ); } );
+    connect( rq, &RequirementsChecker::done, this, [=]() {
+        this->requirementsComplete( m_requirementsModel->satisfiedMandatory() );
+    } );
 
     QTimer::singleShot( 0, rq, &RequirementsChecker::run );
 }
