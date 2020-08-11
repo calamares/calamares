@@ -55,6 +55,23 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
 
     cDebug() << moduleDesc;
 
+    {
+        bool typeOk = false;
+        Type t = typeNames().find( moduleDesc.value( "type" ).toString(), typeOk );
+        bool interfaceOk = false;
+        Interface i = interfaceNames().find( moduleDesc.value( "interface" ).toString(), interfaceOk );
+        if ( typeOk && interfaceOk )
+        {
+            d.m_type = t;
+            d.m_interface = i;
+            d.m_isValid = true;
+        }
+    }
+    if ( !d.m_isValid )
+    {
+        return d;
+    }
+
     return d;
 }
 

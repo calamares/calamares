@@ -72,11 +72,11 @@ public:
      */
     static Descriptor fromDescriptorData( const QVariantMap& moduleDesc );
 
-    bool isValid() const { return false; }
+    bool isValid() const { return m_isValid; }
 
     QString name() const { return QString(); }
-    Type type() const { return Type::Job; }
-    Interface interface() const { return Interface::QtPlugin; }
+    Type type() const { return m_type; }
+    Interface interface() const { return m_interface; }
 
     bool isEmergency() const { return false; }
     bool hasConfig() const { return true; }
@@ -120,6 +120,9 @@ public:
 
 private:
     QString m_directory;
+    Type m_type;
+    Interface m_interface;
+    bool m_isValid = false;
 };
 
 }  // namespace ModuleSystem
