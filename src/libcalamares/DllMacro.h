@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
  *
@@ -73,6 +73,18 @@
 #define STATICTEST
 #else
 #define STATICTEST static
+#endif
+#endif
+
+/*
+ * For private functions that should be public for testing purposes,
+ * use PRIVATETEST, which is private except when building tests.
+ */
+#ifndef PRIVATETEST
+#if defined( BUILD_AS_TEST )
+#define PRIVATETEST public
+#else
+#define PRIVATETEST private
 #endif
 #endif
 
