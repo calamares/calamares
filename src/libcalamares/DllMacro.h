@@ -76,16 +76,4 @@
 #endif
 #endif
 
-/*
- * For private functions that should be public for testing purposes,
- * use PRIVATETEST, which is private except when building tests.
- */
-#ifndef PRIVATETEST
-#if defined( BUILD_AS_TEST )
-#define PRIVATETEST public
-#else
-#define PRIVATETEST private
-#endif
-#endif
-
 #endif
