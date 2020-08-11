@@ -282,12 +282,6 @@ Settings::reconcileInstancesAndSequence()
     {
         for ( const auto& instanceKey : step.second )
         {
-            if ( !instanceKey.isValid() )
-            {
-                cWarning() << "Invalid instance key in *sequence*," << instanceKey;
-                continue;
-            }
-
             targetKey = instanceKey;
             const auto it = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
             if ( it == m_moduleInstances.constEnd() )
@@ -445,6 +439,27 @@ Settings::init( const QString& path )
         return s_instance;
     }
     return new Calamares::Settings( path, true );
+}
+
+bool
+Settings::isValid() const
+{
+    if ( brandingComponentName().isEmpty() )
+    {
+        cWarning() << "No branding component is set";
+        return false;
+    }
+
+    const auto invalidDescriptor = []( const InstanceDescription& d ) { return !d.isValid(); };
+    const auto invalidDescriptorIt
+        = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), invalidDescriptor );
+    if ( invalidDescriptorIt != m_moduleInstances.constEnd() )
+    {
+        cWarning() << "Invalid module instance in *instances* or *sequence*";
+        return false;
+    }
+
+    return true;
 }
 
 }  // namespace Calamares

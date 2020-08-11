@@ -122,6 +122,13 @@ public:
 
     QString brandingComponentName() const;
 
+    /** @brief Are the settings consistent and valid?
+     *
+     * Checks that at least branding is set, and that the instances
+     * and sequence are valid.
+     */
+    bool isValid() const;
+
     /** @brief Is this a debugging run?
      *
      * Returns true if Calamares is in debug mode. In debug mode,

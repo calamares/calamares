@@ -367,6 +367,7 @@ TestLibCalamares::testSettings()
     {
         Calamares::Settings s( false );
         QVERIFY( !s.debugMode() );
+        QVERIFY( !s.isValid() );
     }
     {
         Calamares::Settings s( true );
@@ -374,8 +375,10 @@ TestLibCalamares::testSettings()
         QVERIFY( s.moduleInstances().isEmpty() );
         QVERIFY( s.modulesSequence().isEmpty() );
         QVERIFY( s.brandingComponentName().isEmpty() );
+        QVERIFY( !s.isValid() );
 
         s.setConfiguration( R"(---
+branding: default  # needed for it to be considered valid
 instances:
     - module: welcome
       id: hi
@@ -397,7 +400,8 @@ sequence:
         QVERIFY( s.debugMode() );
         QCOMPARE( s.moduleInstances().count(), 4 );  // there are 4 module instances mentioned
         QCOMPARE( s.modulesSequence().count(), 2 );  // 2 steps (show, exec)
-        QVERIFY( s.brandingComponentName().isEmpty() );
+        QVERIFY( !s.brandingComponentName().isEmpty() );
+        QVERIFY( s.isValid() );
 
         // Make a lambda where we can adjust what it looks for from the outside,
         //   by capturing a reference.
