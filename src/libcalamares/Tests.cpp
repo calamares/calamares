@@ -270,6 +270,7 @@ TestLibCalamares::testInstanceDescription()
         QVERIFY( !d.isCustom() );
         QCOMPARE( d.weight(), 0 );
         QVERIFY( d.configFileName().isEmpty() );
+        QVERIFY( !d.explicitWeight() );
     }
 
     {
@@ -278,6 +279,7 @@ TestLibCalamares::testInstanceDescription()
         QVERIFY( !d.isCustom() );
         QCOMPARE( d.weight(), 0 );
         QVERIFY( d.configFileName().isEmpty() );
+        QVERIFY( !d.explicitWeight() );
     }
 
     // Private constructor
@@ -290,6 +292,7 @@ TestLibCalamares::testInstanceDescription()
         QCOMPARE( d.weight(), 1 );  // **now** the constraints kick in
         QVERIFY( !d.configFileName().isEmpty() );
         QCOMPARE( d.configFileName(), QStringLiteral( "welcome.conf" ) );
+        QVERIFY( !d.explicitWeight() );
     }
 
     {
@@ -299,6 +302,7 @@ TestLibCalamares::testInstanceDescription()
         QCOMPARE( d.weight(), 1 );  // **now** the constraints kick in
         QVERIFY( !d.configFileName().isEmpty() );
         QCOMPARE( d.configFileName(), QStringLiteral( "welcome.conf" ) );
+        QVERIFY( !d.explicitWeight() );
     }
 
 
@@ -317,6 +321,7 @@ TestLibCalamares::testInstanceDescription()
 
         InstanceDescription d = InstanceDescription::fromSettings( m );
         QVERIFY( !d.isValid() );
+        QVERIFY( !d.explicitWeight() );
     }
     {
         QVariantMap m;
@@ -325,7 +330,27 @@ TestLibCalamares::testInstanceDescription()
         InstanceDescription d = InstanceDescription::fromSettings( m );
         QVERIFY( d.isValid() );
         QVERIFY( !d.isCustom() );
+        // Valid, but no weight set by settings
         QCOMPARE( d.weight(), 1 );
+        QVERIFY( !d.explicitWeight() );
+
+        QCOMPARE( d.key().module(), QString( "welcome" ) );
+        QCOMPARE( d.key().id(), QString( "welcome" ) );
+        QCOMPARE( d.configFileName(), QString( "welcome.conf" ) );
+    }
+    {
+        QVariantMap m;
+        m.insert( "module", "welcome" );
+        m.insert( "weight", 1);
+
+        InstanceDescription d = InstanceDescription::fromSettings( m );
+        QVERIFY( d.isValid() );
+        QVERIFY( !d.isCustom() );
+
+        //Valid, set explicitly
+        QCOMPARE( d.weight(), 1 );
+        QVERIFY( d.explicitWeight() );
+
         QCOMPARE( d.key().module(), QString( "welcome" ) );
         QCOMPARE( d.key().id(), QString( "welcome" ) );
         QCOMPARE( d.configFileName(), QString( "welcome.conf" ) );
@@ -343,6 +368,7 @@ TestLibCalamares::testInstanceDescription()
         QCOMPARE( d.key().module(), QString( "welcome" ) );
         QCOMPARE( d.key().id(), QString( "hi" ) );
         QCOMPARE( d.configFileName(), QString( "welcome.conf" ) );
+        QVERIFY( d.explicitWeight() );
     }
     {
         QVariantMap m;
@@ -358,6 +384,7 @@ TestLibCalamares::testInstanceDescription()
         QCOMPARE( d.key().module(), QString( "welcome" ) );
         QCOMPARE( d.key().id(), QString( "hi" ) );
         QCOMPARE( d.configFileName(), QString( "hi.conf" ) );
+        QVERIFY( d.explicitWeight() );
     }
 }
 

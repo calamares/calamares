@@ -75,7 +75,7 @@ namespace Calamares
 
 InstanceDescription::InstanceDescription( const Calamares::ModuleSystem::InstanceKey& key )
     : m_instanceKey( key )
-    , m_weight( 1 )
+    , m_weight( -1 )
 {
     if ( !isValid() )
     {
@@ -94,8 +94,11 @@ InstanceDescription::fromSettings( const QVariantMap& m )
         Calamares::ModuleSystem::InstanceKey( m.value( "module" ).toString(), m.value( "id" ).toString() ) );
     if ( r.isValid() )
     {
-        int w = qBound( 1, m.value( "weight" ).toInt(), 100 );
-        r.m_weight = w;
+        if ( m.value( "weight" ).isValid() )
+        {
+            int w = qBound( 1, m.value( "weight" ).toInt(), 100 );
+            r.m_weight = w;
+        }
 
         QString c = m.value( "config" ).toString();
         if ( !c.isEmpty() )

@@ -71,7 +71,8 @@ public:
     const InstanceKey& key() const { return m_instanceKey; }
     QString configFileName() const { return m_configFileName; }
     bool isCustom() const { return m_instanceKey.isCustom(); }
-    int weight() const { return m_weight; }
+    int weight() const { return m_weight < 0 ? 1 : m_weight; }
+    bool explicitWeight() const { return m_weight > 0; }
 
 private:
     InstanceKey m_instanceKey;
