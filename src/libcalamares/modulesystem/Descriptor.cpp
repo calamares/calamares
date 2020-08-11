@@ -7,6 +7,8 @@
 
 #include "Descriptor.h"
 
+#include "utils/Logger.h"
+
 namespace Calamares
 {
 namespace ModuleSystem
@@ -42,6 +44,18 @@ interfaceNames()
     // *INDENT-ON*
     // clang-format on
     return table;
+}
+
+Descriptor::Descriptor() {}
+
+Descriptor
+Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
+{
+    Descriptor d;
+
+    cDebug() << moduleDesc;
+
+    return d;
 }
 
 }  // namespace ModuleSystem

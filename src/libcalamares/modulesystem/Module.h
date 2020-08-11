@@ -51,6 +51,9 @@ Module* moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
 class DLLEXPORT Module
 {
 public:
+    using Type = ModuleSystem::Type;
+    using Interface = ModuleSystem::Interface;
+
     virtual ~Module();
 
     /**
@@ -132,13 +135,13 @@ public:
      * @brief type returns the Type of this module object.
      * @return the type enum value.
      */
-    virtual ModuleSystem::Type type() const = 0;
+    virtual Type type() const = 0;
 
     /**
      * @brief interface the Interface used by this module.
      * @return the interface enum value.
      */
-    virtual ModuleSystem::Interface interface() const = 0;
+    virtual Interface interface() const = 0;
 
     /**
      * @brief Check the requirements of this module.
