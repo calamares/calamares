@@ -1,0 +1,5 @@
+---
+type:		"job"
+name:		"mkinitfs"
+interface:	"python"
+script:		"main.py"
