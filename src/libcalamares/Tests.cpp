@@ -386,7 +386,7 @@ TestLibCalamares::testSettings()
     {
         Calamares::Settings s( true );
         QVERIFY( s.debugMode() );
-        QVERIFY( s.customModuleInstances().isEmpty() );
+        QVERIFY( s.moduleInstances().isEmpty() );
         QVERIFY( s.modulesSequence().isEmpty() );
         QVERIFY( s.brandingComponentName().isEmpty() );
 
@@ -410,7 +410,7 @@ sequence:
                             QStringLiteral( "<testdata>" ) );
 
         QVERIFY( s.debugMode() );
-        QCOMPARE( s.customModuleInstances().count(), 2 );
+        QCOMPARE( s.moduleInstances().count(), 4 );  // there are 4 module instances mentioned
         QCOMPARE( s.modulesSequence().count(), 2 );  // 2 steps (show, exec)
         QVERIFY( s.brandingComponentName().isEmpty() );
 
@@ -422,17 +422,17 @@ sequence:
         };
 
         const auto it0 = std::find_if(
-            s.customModuleInstances().constBegin(), s.customModuleInstances().constEnd(), moduleFinder );
-        QVERIFY( it0 != s.customModuleInstances().constEnd() );
+            s.moduleInstances().constBegin(), s.moduleInstances().constEnd(), moduleFinder );
+        QVERIFY( it0 != s.moduleInstances().constEnd() );
 
         moduleKey = QString( "derp" );
         const auto it1 = std::find_if(
-            s.customModuleInstances().constBegin(), s.customModuleInstances().constEnd(), moduleFinder );
-        QVERIFY( it1 == s.customModuleInstances().constEnd() );
+            s.moduleInstances().constBegin(), s.moduleInstances().constEnd(), moduleFinder );
+        QVERIFY( it1 == s.moduleInstances().constEnd() );
 
         int validCount = 0;
         int customCount = 0;
-        for ( const auto& d : s.customModuleInstances() )
+        for ( const auto& d : s.moduleInstances() )
         {
             if ( d.isValid() )
                 validCount++;
@@ -441,7 +441,7 @@ sequence:
             QVERIFY( d.isCustom() ? d.isValid() : true );  // All custom entries are valid
         }
         QCOMPARE( customCount, 2 );
-        QCOMPARE( validCount, 2 );
+        QCOMPARE( validCount, 4 );  // welcome@hi is listed twice, in *show* and *exec*
     }
 }
 

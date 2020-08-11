@@ -106,7 +106,7 @@ public:
     QStringList modulesSearchPaths() const;
 
     using InstanceDescriptionList = QList< InstanceDescription >;
-    InstanceDescriptionList customModuleInstances() const;
+    InstanceDescriptionList moduleInstances() const;
 
     using ModuleSequence = QList< QPair< ModuleSystem::Action, QStringList > >;
     ModuleSequence modulesSequence() const;
@@ -158,7 +158,7 @@ private:
 
     QStringList m_modulesSearchPaths;
 
-    InstanceDescriptionList m_customModuleInstances;
+    InstanceDescriptionList m_moduleInstances;
     ModuleSequence m_modulesSequence;
 
     QString m_brandingComponentName;

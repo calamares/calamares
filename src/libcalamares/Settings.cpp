@@ -277,8 +277,8 @@ Settings::validateSequence()
             {
                 targetKey = k;
                 const auto it = std::find_if(
-                    m_customModuleInstances.constBegin(), m_customModuleInstances.constEnd(), moduleFinder );
-                if ( it == m_customModuleInstances.constEnd() )
+                    m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
+                if ( it == m_moduleInstances.constEnd() )
                 {
                     cWarning() << "Custom instance key" << instance << "is not listed in the *instances*";
                     // don't add it, let this fail later.
@@ -288,11 +288,11 @@ Settings::validateSequence()
             {
                 targetKey = k;
                 const auto it = std::find_if(
-                    m_customModuleInstances.constBegin(), m_customModuleInstances.constEnd(), moduleFinder );
-                if ( it == m_customModuleInstances.constEnd() )
+                    m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
+                if ( it == m_moduleInstances.constEnd() )
                 {
                     // Non-custom instance, just mentioned in *sequence*
-                    m_customModuleInstances.append( InstanceDescription( k ) );
+                    m_moduleInstances.append( InstanceDescription( k ) );
                 }
             }
         }
@@ -309,7 +309,7 @@ Settings::setConfiguration( const QByteArray& ba, const QString& explainName )
 
         interpretModulesSearch(
             debugMode(), CalamaresUtils::yamlToStringList( config[ "modules-search" ] ), m_modulesSearchPaths );
-        interpretInstances( config[ "instances" ], m_customModuleInstances );
+        interpretInstances( config[ "instances" ], m_moduleInstances );
         interpretSequence( config[ "sequence" ], m_modulesSequence );
 
         m_brandingComponentName = requireString( config, "branding" );
@@ -336,9 +336,9 @@ Settings::modulesSearchPaths() const
 
 
 Settings::InstanceDescriptionList
-Settings::customModuleInstances() const
+Settings::moduleInstances() const
 {
-    return m_customModuleInstances;
+    return m_moduleInstances;
 }
 
 
