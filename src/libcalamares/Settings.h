@@ -46,11 +46,6 @@ class DLLEXPORT InstanceDescription
 {
     using InstanceKey = Calamares::ModuleSystem::InstanceKey;
 
-#ifdef BUILD_AS_TEST
-public:
-#endif
-    InstanceDescription( InstanceKey&& key, int weight );
-
 public:
     /** @brief An invalid InstanceDescription
      *

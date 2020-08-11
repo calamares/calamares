@@ -273,15 +273,7 @@ TestLibCalamares::testInstanceDescription()
     }
 
     {
-        InstanceDescription d( InstanceKey(), 0 );
-        QVERIFY( !d.isValid() );
-        QVERIFY( !d.isCustom() );
-        QCOMPARE( d.weight(), 0 );
-        QVERIFY( d.configFileName().isEmpty() );
-    }
-
-    {
-        InstanceDescription d( InstanceKey(), 100 );
+        InstanceDescription d( InstanceKey {} );  // most-vexing, use brace-init instead
         QVERIFY( !d.isValid() );
         QVERIFY( !d.isCustom() );
         QCOMPARE( d.weight(), 0 );
@@ -290,30 +282,23 @@ TestLibCalamares::testInstanceDescription()
 
     // Private constructor
     //
-    // This doesn't set up the config file yet.
+    // This does set up the config file, to default values
     {
-        InstanceDescription d( InstanceKey::fromString( "welcome" ), 0 );
+        InstanceDescription d( InstanceKey::fromString( "welcome" ) );
         QVERIFY( d.isValid() );
         QVERIFY( !d.isCustom() );
         QCOMPARE( d.weight(), 1 );  // **now** the constraints kick in
-        QVERIFY( d.configFileName().isEmpty() );
+        QVERIFY( !d.configFileName().isEmpty() );
+        QCOMPARE( d.configFileName(), QStringLiteral( "welcome.conf" ) );
     }
 
     {
-        InstanceDescription d( InstanceKey::fromString( "welcome@hi" ), 0 );
+        InstanceDescription d( InstanceKey::fromString( "welcome@hi" ) );
         QVERIFY( d.isValid() );
         QVERIFY( d.isCustom() );
         QCOMPARE( d.weight(), 1 );  // **now** the constraints kick in
-        QVERIFY( d.configFileName().isEmpty() );
-    }
-
-    {
-        InstanceDescription d( InstanceKey::fromString( "welcome@hi" ), 75 );
-        QCOMPARE( d.weight(), 75 );
-    }
-    {
-        InstanceDescription d( InstanceKey::fromString( "welcome@hi" ), 105 );
-        QCOMPARE( d.weight(), 100 );
+        QVERIFY( !d.configFileName().isEmpty() );
+        QCOMPARE( d.configFileName(), QStringLiteral( "welcome.conf" ) );
     }
 
 

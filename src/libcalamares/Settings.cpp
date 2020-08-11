@@ -81,15 +81,9 @@ InstanceDescription::InstanceDescription( const Calamares::ModuleSystem::Instanc
     {
         m_weight = 0;
     }
-}
-
-InstanceDescription::InstanceDescription( Calamares::ModuleSystem::InstanceKey&& key, int weight )
-    : m_instanceKey( key )
-    , m_weight( qBound( 1, weight, 100 ) )
-{
-    if ( !isValid() )
+    else
     {
-        m_weight = 0;
+        m_configFileName = key.module() + QStringLiteral( ".conf" );
     }
 }
 
@@ -97,14 +91,16 @@ InstanceDescription
 InstanceDescription::fromSettings( const QVariantMap& m )
 {
     InstanceDescription r(
-        Calamares::ModuleSystem::InstanceKey( m.value( "module" ).toString(), m.value( "id" ).toString() ),
-        m.value( "weight" ).toInt() );
+        Calamares::ModuleSystem::InstanceKey( m.value( "module" ).toString(), m.value( "id" ).toString() ) );
     if ( r.isValid() )
     {
-        r.m_configFileName = m.value( "config" ).toString();
-        if ( r.m_configFileName.isEmpty() )
+        int w = qBound( 1, m.value( "weight" ).toInt(), 100 );
+        r.m_weight = w;
+
+        QString c = m.value( "config" ).toString();
+        if ( !c.isEmpty() )
         {
-            r.m_configFileName = r.key().module() + QStringLiteral( ".conf" );
+            r.m_configFileName = c;
         }
     }
     return r;
@@ -276,8 +272,8 @@ Settings::validateSequence()
             if ( k.isValid() && k.isCustom() )
             {
                 targetKey = k;
-                const auto it = std::find_if(
-                    m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
+                const auto it
+                    = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
                 if ( it == m_moduleInstances.constEnd() )
                 {
                     cWarning() << "Custom instance key" << instance << "is not listed in the *instances*";
@@ -287,8 +283,8 @@ Settings::validateSequence()
             if ( k.isValid() && !k.isCustom() )
             {
                 targetKey = k;
-                const auto it = std::find_if(
-                    m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
+                const auto it
+                    = std::find_if( m_moduleInstances.constBegin(), m_moduleInstances.constEnd(), moduleFinder );
                 if ( it == m_moduleInstances.constEnd() )
                 {
                     // Non-custom instance, just mentioned in *sequence*
