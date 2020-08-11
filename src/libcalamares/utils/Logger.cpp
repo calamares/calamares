@@ -188,11 +188,11 @@ CDebug::CDebug( unsigned int debugLevel, const char* func )
 {
     if ( debugLevel <= LOGERROR )
     {
-        m_msg = QStringLiteral( "ERROR:" );
+        m_msg = QStringLiteral( "ERROR: " );
     }
     else if ( debugLevel <= LOGWARNING )
     {
-        m_msg = QStringLiteral( "WARNING:" );
+        m_msg = QStringLiteral( "WARNING: " );
     }
 }
 
