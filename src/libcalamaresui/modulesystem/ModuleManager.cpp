@@ -166,9 +166,9 @@ ModuleManager::moduleInstance( const ModuleSystem::InstanceKey& instanceKey )
 static QString
 getConfigFileName( const Settings::InstanceDescriptionList& descriptorList,
                    const ModuleSystem::InstanceKey& instanceKey,
-                   const ModuleSystem::Descriptor& descriptor )
+                   const ModuleSystem::Descriptor& thisModule )
 {
-    if ( !descriptor.hasConfig() )
+    if ( !thisModule.hasConfig() )
     {
         // Explicitly set to no-configuration. This doesn't apply
         // to custom instances (above) since the only reason to
