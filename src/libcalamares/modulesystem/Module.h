@@ -51,31 +51,6 @@ Module* moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
 class DLLEXPORT Module
 {
 public:
-    /**
-     * @brief The Type enum represents the intended functionality of the module
-     * Every module is either a job module or a view module.
-     * A job module is a single Calamares job.
-     * A view module has a UI (one or more view pages) and zero-to-many jobs.
-     */
-    enum class Type
-    {
-        Job,
-        View
-    };
-
-    /**
-     * @brief The Interface enum represents the interface through which the module
-     * talks to Calamares.
-     * Not all Type-Interface associations are valid.
-     */
-    enum class Interface
-    {
-        QtPlugin,  // Jobs or Views
-        Python,  // Jobs only
-        Process,  // Deprecated interface
-        PythonQt  // Views only, available as enum even if PythonQt isn't used
-    };
-
     virtual ~Module();
 
     /**
@@ -157,13 +132,13 @@ public:
      * @brief type returns the Type of this module object.
      * @return the type enum value.
      */
-    virtual Type type() const = 0;
+    virtual ModuleSystem::Type type() const = 0;
 
     /**
      * @brief interface the Interface used by this module.
      * @return the interface enum value.
      */
-    virtual Interface interface() const = 0;
+    virtual ModuleSystem::Interface interface() const = 0;
 
     /**
      * @brief Check the requirements of this module.

@@ -60,6 +60,7 @@ set( libSources
     locale/TranslatableString.cpp
 
     # Modules
+    modulesystem/Descriptor.cpp
     modulesystem/InstanceKey.cpp
     modulesystem/Module.cpp
     modulesystem/RequirementsChecker.cpp
