@@ -63,7 +63,10 @@ CreateUserTests::testReadGroup()
 #else
     QVERIFY( groups.contains( QStringLiteral( "root" ) ) );
 #endif
-    QVERIFY( groups.contains( QStringLiteral( "sys" ) ) );
+    // openSUSE doesn't have "sys"
+    // QVERIFY( groups.contains( QStringLiteral( "sys" ) ) );
+    QVERIFY( groups.contains( QStringLiteral( "nogroup" ) ) );
+    QVERIFY( groups.contains( QStringLiteral( "tty" ) ) );
 
     for ( const QString& s : groups )
     {
