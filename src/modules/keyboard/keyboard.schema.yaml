@@ -1,8 +1,10 @@
 ---
 $schema: https://json-schema.org/schema#
 $id: https://calamares.io/schemas/finished
-additionalProperties: keyboard
+additionalProperties: false
 type: object
 properties:
-    xOrgConfFileName: { type: string, required: true }
-    convertedKeymapPath: { type: string, required: true }
+    xOrgConfFileName: { type: string }
+    convertedKeymapPath: { type: string }
+    writeEtcDefaultKeyboard: { type: boolean, default: true }
+required: [ xOrgConfFileName, convertedKeymapPath ]
