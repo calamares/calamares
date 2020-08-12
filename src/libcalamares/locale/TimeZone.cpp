@@ -211,8 +211,8 @@ class Private : public QObject
     Q_OBJECT
 public:
     RegionVector m_regions;
-    ZoneVector m_zones;
-    ZoneVector m_altZones;  //< Extra locations for zones
+    ZoneVector m_zones;  ///< The official timezones and locations
+    ZoneVector m_altZones;  ///< Extra locations for zones
 
     Private()
     {
