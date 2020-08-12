@@ -4,4 +4,13 @@ $id: https://calamares.io/schemas/netinstall
 additionalProperties: false
 type: object
 properties:
-    groupsUrl: { type: string, required: true }
+    groupsUrl: { type: string }
+    required: { type: boolean, default: false }
+    label:  # Translatable labels
+        type: object
+        additionalProperties: true
+        properties:
+            sidebar: { type: string }
+            title: { type: string }
+    groups: { type: array }  # TODO: the schema for the whole groups file
+required: [ groupsUrl ]

@@ -4,11 +4,15 @@ $id: https://calamares.io/schemas/unpackfs
 additionalProperties: false
 type: object
 properties:
-    "unpack":
-        type: seq
-        sequence:
-          - type: map
-            mapping:
-                "source": { type: string, required: true }
-                "sourcefs": { type: str }
-                "destination": { type: str }
+    unpack:
+        type: array
+        items:
+            type: object
+            additionalProperties: false
+            properties:
+                source: { type: string }
+                sourcefs: { type: string }
+                destination: { type: string }
+                excludeFile: { type: string }
+                exclude: { type: array, items: { type: string } }
+            required: [ source , sourcefs, destination ]

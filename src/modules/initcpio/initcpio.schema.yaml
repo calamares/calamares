@@ -4,4 +4,6 @@ $id: https://calamares.io/schemas/initcpio
 additionalProperties: false
 type: object
 properties:
-  kernel: { type: string, required: true }
+    kernel: { type: string }
+    be_unsafe: { type: boolean, default: false }
+required: [ kernel ]
