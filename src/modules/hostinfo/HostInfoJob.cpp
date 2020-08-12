@@ -91,17 +91,6 @@ hostCPUmatch( const QString& s )
     return QString();
 }
 
-static QString
-hostCPUmatchARM( const QString& s )
-{
-    // Both Rock64 and Raspberry pi mention 0x41
-    if ( s.contains( ": 0x41" ) )
-    {
-        return QStringLiteral( "ARM" );
-    }
-    return QString();
-}
-
 #if defined( Q_OS_FREEBSD )
 QString
 hostCPU_FreeBSD()
@@ -124,6 +113,17 @@ hostCPU_FreeBSD()
 #endif
 
 #if defined( Q_OS_LINUX )
+static QString
+hostCPUmatchARM( const QString& s )
+{
+    // Both Rock64 and Raspberry pi mention 0x41
+    if ( s.contains( ": 0x41" ) )
+    {
+        return QStringLiteral( "ARM" );
+    }
+    return QString();
+}
+
 QString
 hostCPU_Linux()
 {
