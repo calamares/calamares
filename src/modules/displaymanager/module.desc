@@ -2,5 +2,4 @@
 type:       "job"
 name:       "displaymanager"
 interface:  "python"
-requires:   []
 script:     "main.py"

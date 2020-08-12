@@ -4,5 +4,4 @@ type:       "job"
 name:       "unpackfs"
 interface:  "python"
 script:     "main.py"
-requiredModules:
- - mount
+requiredModules: [ mount ]
