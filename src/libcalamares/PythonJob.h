@@ -55,8 +55,6 @@ public:
     QString prettyStatusMessage() const override;
     JobResult exec() override;
 
-    virtual qreal getJobWeight() const override;
-
 private:
     struct Private;
 

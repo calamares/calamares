@@ -190,12 +190,6 @@ PythonJob::PythonJob( const ModuleSystem::InstanceKey& instance,
 
 PythonJob::~PythonJob() {}
 
-qreal
-PythonJob::getJobWeight() const
-{
-    return 1.0;
-}
-
 QString
 PythonJob::prettyName() const
 {
