@@ -47,12 +47,6 @@ TrackingInstallJob::prettyName() const
 }
 
 QString
-TrackingInstallJob::prettyDescription() const
-{
-    return prettyName();
-}
-
-QString
 TrackingInstallJob::prettyStatusMessage() const
 {
     return tr( "Sending installation feedback." );
@@ -84,12 +78,6 @@ QString
 TrackingMachineUpdateManagerJob::prettyName() const
 {
     return tr( "Machine feedback" );
-}
-
-QString
-TrackingMachineUpdateManagerJob::prettyDescription() const
-{
-    return prettyName();
 }
 
 QString
@@ -141,12 +129,6 @@ QString
 TrackingKUserFeedbackJob::prettyName() const
 {
     return tr( "KDE user feedback" );
-}
-
-QString
-TrackingKUserFeedbackJob::prettyDescription() const
-{
-    return prettyName();
 }
 
 QString

@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018-2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,14 +17,12 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
- *
  */
 #ifndef MODULESYSTEM_INSTANCEKEY_H
 #define MODULESYSTEM_INSTANCEKEY_H
 
 #include <QDebug>
+#include <QList>
 #include <QPair>
 #include <QString>
 
@@ -97,6 +96,8 @@ private:
         }
     }
 };
+
+using InstanceKeyList = QList< InstanceKey >;
 
 QDebug& operator<<( QDebug& s, const Calamares::ModuleSystem::InstanceKey& i );
 

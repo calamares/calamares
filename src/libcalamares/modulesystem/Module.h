@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,9 +16,6 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
  *
  */
 
@@ -53,30 +51,8 @@ Module* moduleFromDescriptor( const ModuleSystem::Descriptor& moduleDescriptor,
 class DLLEXPORT Module
 {
 public:
-    /**
-     * @brief The Type enum represents the intended functionality of the module
-     * Every module is either a job module or a view module.
-     * A job module is a single Calamares job.
-     * A view module has a UI (one or more view pages) and zero-to-many jobs.
-     */
-    enum class Type
-    {
-        Job,
-        View
-    };
-
-    /**
-     * @brief The Interface enum represents the interface through which the module
-     * talks to Calamares.
-     * Not all Type-Interface associations are valid.
-     */
-    enum class Interface
-    {
-        QtPlugin,  // Jobs or Views
-        Python,  // Jobs only
-        Process,  // Deprecated interface
-        PythonQt  // Views only, available as enum even if PythonQt isn't used
-    };
+    using Type = ModuleSystem::Type;
+    using Interface = ModuleSystem::Interface;
 
     virtual ~Module();
 
@@ -176,9 +152,9 @@ protected:
     explicit Module();
 
     /// @brief For subclasses to read their part of the descriptor
-    virtual void initFrom( const QVariantMap& moduleDescriptor ) = 0;
+    virtual void initFrom( const ModuleSystem::Descriptor& moduleDescriptor ) = 0;
     /// @brief Generic part of descriptor reading (and instance id)
-    void initFrom( const QVariantMap& moduleDescriptor, const QString& id );
+    void initFrom( const ModuleSystem::Descriptor& moduleDescriptor, const QString& id );
 
     QVariantMap m_configurationMap;
 

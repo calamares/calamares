@@ -105,6 +105,16 @@ struct NamedEnumTable
         // ok is still false
         return string_t();
     }
+
+    /** @brief Find a value @p s in the table and return its name.
+     *
+     * Returns emptry string if the value is not found.
+     */
+    string_t find( enum_t s ) const
+    {
+        bool ok = false;
+        return find( s, ok );
+    }
 };
 
 /** @brief Smashes an enum value to its underlying type. */

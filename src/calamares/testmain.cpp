@@ -184,13 +184,13 @@ public:
 
     void loadSelf() override;
 
-    virtual Type type() const override;
-    virtual Interface interface() const override;
+    virtual Calamares::ModuleSystem::Type type() const override;
+    virtual Calamares::ModuleSystem::Interface interface() const override;
 
     virtual Calamares::JobList jobs() const override;
 
 protected:
-    void initFrom( const QVariantMap& ) override;
+    void initFrom( const Calamares::ModuleSystem::Descriptor& ) override;
 };
 
 ExecViewModule::ExecViewModule()
@@ -201,13 +201,13 @@ ExecViewModule::ExecViewModule()
     // We don't have one, so build one -- this gives us "x@x".
     QVariantMap m;
     m.insert( "name", "x" );
-    Calamares::Module::initFrom( m, "x" );
+    Calamares::Module::initFrom( Calamares::ModuleSystem::Descriptor::fromDescriptorData(m), "x" );
 }
 
 ExecViewModule::~ExecViewModule() {}
 
 void
-ExecViewModule::initFrom( const QVariantMap& )
+ExecViewModule::initFrom( const Calamares::ModuleSystem::Descriptor& )
 {
 }
 
@@ -217,7 +217,7 @@ ExecViewModule::loadSelf()
     auto* viewStep = new Calamares::ExecutionViewStep();
     viewStep->setModuleInstanceKey( instanceKey() );
     viewStep->setConfigurationMap( m_configurationMap );
-    viewStep->appendJobModuleInstanceKey( instanceKey().toString() );
+    viewStep->appendJobModuleInstanceKey( instanceKey() );
     Calamares::ViewManager::instance()->addViewStep( viewStep );
     m_loaded = true;
 }
@@ -332,7 +332,7 @@ load_module( const ModuleConfig& moduleConfig )
 
     cDebug() << "Module" << moduleName << "job-configuration:" << configFile;
 
-    Calamares::Module* module = Calamares::moduleFromDescriptor( descriptor, name, configFile, moduleDirectory );
+    Calamares::Module* module = Calamares::moduleFromDescriptor( Calamares::ModuleSystem::Descriptor::fromDescriptorData( descriptor ), name, configFile, moduleDirectory );
 
     return module;
 }

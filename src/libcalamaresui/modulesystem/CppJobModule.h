@@ -39,7 +39,7 @@ public:
     JobList jobs() const override;
 
 protected:
-    void initFrom( const QVariantMap& moduleDescriptor ) override;
+    void initFrom( const ModuleSystem::Descriptor& moduleDescriptor ) override;
 
 private:
     explicit CppJobModule();

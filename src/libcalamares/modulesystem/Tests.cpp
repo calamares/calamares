@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,11 +16,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  *
- *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
- *
  */
 
+#include "modulesystem/Descriptor.h"
 #include "modulesystem/InstanceKey.h"
 
 #include <QtTest/QtTest>
@@ -42,6 +41,8 @@ private Q_SLOTS:
 
     void testBadSimpleCases();
     void testBadFromStringCases();
+
+    void testBasicDescriptor();
 };
 
 void
@@ -136,6 +137,47 @@ ModuleSystemTests::testBadFromStringCases()
 
     k0 = InstanceKey::fromString( "derp@derp@derp" );
     assert_is_invalid( k0 );
+}
+
+void
+ModuleSystemTests::testBasicDescriptor()
+{
+    {
+        QVariantMap m;
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+
+        QVERIFY( !d.isValid() );
+        QVERIFY( d.name().isEmpty() );
+    }
+    {
+        QVariantMap m;
+        m.insert( "name", QVariant() );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+
+        QVERIFY( !d.isValid() );
+        QVERIFY( d.name().isEmpty() );
+    }
+    {
+        QVariantMap m;
+        m.insert( "name", 17 );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+
+        QVERIFY( !d.isValid() );
+        QVERIFY( !d.name().isEmpty() );
+        QCOMPARE( d.name(), QStringLiteral( "17" ) );  // Strange but true
+    }
+    {
+        QVariantMap m;
+        m.insert( "name", "welcome" );
+        m.insert( "type", "viewmodule" );
+        m.insert( "interface", "qtplugin" );
+        auto d = Calamares::ModuleSystem::Descriptor::fromDescriptorData( m );
+
+        // QVERIFY( !d.isValid() );
+        QCOMPARE( d.name(), QStringLiteral( "welcome" ) );
+        QCOMPARE( d.type(), Calamares::ModuleSystem::Type::View );
+        QCOMPARE( d.interface(), Calamares::ModuleSystem::Interface::QtPlugin );
+    }
 }
 
 

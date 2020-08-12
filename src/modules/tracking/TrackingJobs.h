@@ -54,7 +54,6 @@ public:
     ~TrackingInstallJob() override;
 
     QString prettyName() const override;
-    QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
@@ -75,7 +74,6 @@ public:
     ~TrackingMachineUpdateManagerJob() override;
 
     QString prettyName() const override;
-    QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 };
@@ -93,7 +91,6 @@ public:
     ~TrackingKUserFeedbackJob() override;
 
     QString prettyName() const override;
-    QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 

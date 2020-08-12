@@ -52,23 +52,22 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
                       const QString& configFileName,
                       const QString& moduleDirectory )
 {
+    using Type = Calamares::ModuleSystem::Type;
+    using Interface = Calamares::ModuleSystem::Interface;
+
     std::unique_ptr< Module > m;
 
-    QString typeString = moduleDescriptor.value( "type" ).toString();
-    QString intfString = moduleDescriptor.value( "interface" ).toString();
-
-    if ( typeString.isEmpty() || intfString.isEmpty() )
-    {
+    if ( !moduleDescriptor.isValid() ) {
         cError() << "Bad module descriptor format" << instanceId;
         return nullptr;
     }
-    if ( ( typeString == "view" ) || ( typeString == "viewmodule" ) )
+    if ( moduleDescriptor.type() == Type::View )
     {
-        if ( intfString == "qtplugin" )
+        if ( moduleDescriptor.interface() == Interface::QtPlugin )
         {
             m.reset( new ViewModule() );
         }
-        else if ( intfString == "pythonqt" )
+        else if ( moduleDescriptor.interface() == Interface::PythonQt )
         {
 #ifdef WITH_PYTHONQT
             m.reset( new PythonQtViewModule() );
@@ -78,20 +77,20 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
         }
         else
         {
-            cError() << "Bad interface" << intfString << "for module type" << typeString;
+            cError() << "Bad interface" << Calamares::ModuleSystem::interfaceNames().find( moduleDescriptor.interface() ) << "for module type" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() );
         }
     }
-    else if ( typeString == "job" )
+    else if ( moduleDescriptor.type() == Type::Job )
     {
-        if ( intfString == "qtplugin" )
+        if ( moduleDescriptor.interface() == Interface::QtPlugin )
         {
             m.reset( new CppJobModule() );
         }
-        else if ( intfString == "process" )
+        else if ( moduleDescriptor.interface() == Interface::Process )
         {
             m.reset( new ProcessJobModule() );
         }
-        else if ( intfString == "python" )
+        else if ( moduleDescriptor.interface() == Interface::Python )
         {
 #ifdef WITH_PYTHON
             m.reset( new PythonJobModule() );
@@ -101,17 +100,17 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
         }
         else
         {
-            cError() << "Bad interface" << intfString << "for module type" << typeString;
+            cError() << "Bad interface" << Calamares::ModuleSystem::interfaceNames().find( moduleDescriptor.interface() ) << "for module type" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() );
         }
     }
     else
     {
-        cError() << "Bad module type" << typeString;
+        cError() << "Bad module type" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() );
     }
 
     if ( !m )
     {
-        cError() << "Bad module type (" << typeString << ") or interface string (" << intfString << ") for module "
+        cError() << "Bad module type (" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() ) << ") or interface string (" << Calamares::ModuleSystem::interfaceNames().find( moduleDescriptor.interface() ) << ") for module "
                  << instanceId;
         return nullptr;
     }

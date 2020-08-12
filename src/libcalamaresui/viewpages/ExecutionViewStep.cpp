@@ -147,7 +147,7 @@ ExecutionViewStep::onActivate()
     m_slideshow->changeSlideShowState( Slideshow::Start );
 
     JobQueue* queue = JobQueue::instance();
-    foreach ( const QString& instanceKey, m_jobInstanceKeys )
+    for( const auto& instanceKey : m_jobInstanceKeys )
     {
         Calamares::Module* module = Calamares::ModuleManager::instance()->moduleInstance( instanceKey );
         if ( module )
@@ -176,7 +176,7 @@ ExecutionViewStep::jobs() const
 
 
 void
-ExecutionViewStep::appendJobModuleInstanceKey( const QString& instanceKey )
+ExecutionViewStep::appendJobModuleInstanceKey( const ModuleSystem::InstanceKey& instanceKey )
 {
     m_jobInstanceKeys.append( instanceKey );
 }

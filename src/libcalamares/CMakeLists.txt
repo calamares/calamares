@@ -60,9 +60,9 @@ set( libSources
     locale/TranslatableString.cpp
 
     # Modules
+    modulesystem/Descriptor.cpp
     modulesystem/InstanceKey.cpp
     modulesystem/Module.cpp
-    modulesystem/Requirement.cpp
     modulesystem/RequirementsChecker.cpp
     modulesystem/RequirementsModel.cpp
 
@@ -224,22 +224,28 @@ calamares_add_test(
 )
 
 calamares_add_test(
-    libcalamaresutilstest
-    SOURCES
-        utils/Tests.cpp
-)
-
-calamares_add_test(
-    libcalamaresutilspathstest
-    SOURCES
-        utils/TestPaths.cpp
-)
-
-calamares_add_test(
     libcalamaresgeoiptest
     SOURCES
         geoip/GeoIPTests.cpp
         ${geoip_src}
+)
+
+calamares_add_test(
+    libcalamareslocaletest
+    SOURCES
+        locale/Tests.cpp
+)
+
+calamares_add_test(
+    libcalamaresmodulesystemtest
+    SOURCES
+        modulesystem/Tests.cpp
+)
+
+calamares_add_test(
+    libcalamaresnetworktest
+    SOURCES
+        network/Tests.cpp
 )
 
 calamares_add_test(
@@ -259,22 +265,17 @@ if( KPMcore_FOUND )
 endif()
 
 calamares_add_test(
-    libcalamareslocaletest
+    libcalamaresutilstest
     SOURCES
-        locale/Tests.cpp
+        utils/Tests.cpp
 )
 
 calamares_add_test(
-    libcalamaresnetworktest
+    libcalamaresutilspathstest
     SOURCES
-        network/Tests.cpp
+        utils/TestPaths.cpp
 )
 
-calamares_add_test(
-    libcalamaresmodulesystemtest
-    SOURCES
-        modulesystem/Tests.cpp
-)
 
 # This is not an actual test, it's a test / demo application
 # for experimenting with GeoIP.

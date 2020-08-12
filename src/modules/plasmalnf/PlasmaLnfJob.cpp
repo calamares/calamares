@@ -41,12 +41,6 @@ PlasmaLnfJob::prettyName() const
     return tr( "Plasma Look-and-Feel Job" );
 }
 
-QString
-PlasmaLnfJob::prettyDescription() const
-{
-    return prettyName();
-}
-
 QString PlasmaLnfJob::prettyStatusMessage() const
 {
     return prettyName();
