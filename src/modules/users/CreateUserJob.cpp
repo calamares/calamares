@@ -196,7 +196,7 @@ CreateUserJob::exec()
     {
         groupsForThisUser << gs->value( "autologinGroup" ).toString();
     }
-    ensureGroupsExistInTarget( m_defaultGroups, availableGroups );
+    ensureGroupsExistInTarget( groupsForThisUser, availableGroups );
 
     // If we're looking to reuse the contents of an existing /home.
     // This GS setting comes from the **partitioning** module.
