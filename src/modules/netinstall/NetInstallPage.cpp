@@ -46,7 +46,7 @@ NetInstallPage::NetInstallPage( Config* c, QWidget* parent )
     connect( c, &Config::statusReady, this, &NetInstallPage::expandGroups );
 
     setPageTitle( nullptr );
-    CALAMARES_RETRANSLATE_SLOT( &NetInstallPage::retranslate );
+    CALAMARES_RETRANSLATE_SLOT( &NetInstallPage::retranslate )
 }
 
 NetInstallPage::~NetInstallPage() {}
