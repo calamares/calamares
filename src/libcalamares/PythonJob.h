@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
  *
@@ -68,7 +68,6 @@ private:
     QString m_workingPath;
     QString m_description;
     QVariantMap m_configurationMap;
-    qreal m_weight;
 };
 
 }  // namespace Calamares
