@@ -80,6 +80,9 @@ public:
 
     bool isEmergency() const { return m_isEmergeny; }
     bool hasConfig() const { return m_hasConfig; }
+    int weight() const { return m_weight < 1 ? 1 : m_weight; }
+    bool explicitWeight() const { return m_weight > 0; }
+
 
     /// @brief The directory where the module.desc lives
     QString directory() const { return m_directory; }
@@ -125,6 +128,7 @@ private:
     QString m_name;
     QString m_directory;
     QStringList m_requiredModules;
+    int m_weight = -1;
     Type m_type;
     Interface m_interface;
     bool m_isValid = false;

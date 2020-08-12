@@ -41,6 +41,7 @@
 #   [NO_CONFIG]
 #   [SHARED_LIB]
 #   [EMERGENCY]
+#   [WEIGHT w]
 # )
 #
 # Function parameters:
@@ -63,6 +64,9 @@
 #  - EMERGENCY
 #       If this is set, the module is marked as an *emergency* module in the
 #       descriptor. See *Emergency Modules* in the module documentation.
+#  - WEIGHT
+#       If this is set, writes an explicit weight into the module.desc;
+#       module weights are used in progress reporting.
 #
 
 include( CMakeParseArguments )
@@ -73,7 +77,7 @@ function( calamares_add_plugin )
     # parse arguments ( name needs to be saved before passing ARGN into the macro )
     set( NAME ${ARGV0} )
     set( options NO_CONFIG NO_INSTALL SHARED_LIB EMERGENCY )
-    set( oneValueArgs NAME TYPE EXPORT_MACRO RESOURCES )
+    set( oneValueArgs NAME TYPE EXPORT_MACRO RESOURCES WEIGHT )
     set( multiValueArgs SOURCES UI LINK_LIBRARIES LINK_PRIVATE_LIBRARIES COMPILE_DEFINITIONS REQUIRES )
     cmake_parse_arguments( PLUGIN "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
     set( PLUGIN_NAME ${NAME} )
@@ -180,6 +184,9 @@ function( calamares_add_plugin )
         endif()
         if ( PLUGIN_NO_CONFIG )
             file( APPEND ${_file} "noconfig: true\n" )
+        endif()
+        if ( PLUGIN_WEIGHT )
+            file( APPEND ${_file} "weight: ${PLUGIN_WEIGHT}\n" )
         endif()
     endif()
 
