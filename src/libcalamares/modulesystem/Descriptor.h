@@ -78,14 +78,14 @@ public:
     Type type() const { return m_type; }
     Interface interface() const { return m_interface; }
 
-    bool isEmergency() const { return false; }
-    bool hasConfig() const { return true; }
+    bool isEmergency() const { return m_isEmergeny; }
+    bool hasConfig() const { return m_hasConfig; }
 
     /// @brief The directory where the module.desc lives
     QString directory() const { return m_directory; }
     void setDirectory( const QString& d ) { m_directory = d; }
 
-    QStringList requiredModules() const { return QStringList {}; }
+    const QStringList& requiredModules() const { return m_requiredModules; }
 
     /** @section C++ Modules
      *
@@ -121,9 +121,12 @@ public:
 private:
     QString m_name;
     QString m_directory;
+    QStringList m_requiredModules;
     Type m_type;
     Interface m_interface;
     bool m_isValid = false;
+    bool m_isEmergeny = false;
+    bool m_hasConfig = true;
 };
 
 }  // namespace ModuleSystem
