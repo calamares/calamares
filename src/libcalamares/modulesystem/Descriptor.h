@@ -95,7 +95,7 @@ public:
      */
 
     /// @brief Short path to the shared-library; no extension.
-    QString load() const { return QString(); }
+    QString load() const { return m_interface == Interface::QtPlugin ? m_script : QString(); }
 
     /** @section Process Job modules
      *
@@ -106,17 +106,20 @@ public:
      * Process Jobs execute one command.
      */
     /// @brief The command to execute; passed to the shell
-    QString command() const { return QString(); }
+    QString command() const { return m_interface == Interface::Process ? m_script : QString(); }
     /// @brief Timeout in seconds
-    int timeout() const { return 30; }
+    int timeout() const { return m_processTimeout; }
     /// @brief Run command in chroot?
-    bool chroot() const { return false; }
+    bool chroot() const { return m_processChroot; }
 
     /** @section Python Job modules
      *
      * Python job modules have one specific script to load and run.
      */
-    QString script() const { return QString(); }
+    QString script() const
+    {
+        return ( m_interface == Interface::Python || m_interface == Interface::PythonQt ) ? m_script : QString();
+    }
 
 private:
     QString m_name;
@@ -127,6 +130,20 @@ private:
     bool m_isValid = false;
     bool m_isEmergeny = false;
     bool m_hasConfig = true;
+
+    /** @brief The name of the thing to load
+     *
+     * - A C++ module loads a shared library (via key *load*),
+     * - A Python module loads a Python script (via key *script*),
+     * - A process runs a specific command (via key *command*)
+     *
+     * This name-of-the-thing is stored here, regardless of which
+     * interface is being used.
+     */
+    QString m_script;
+
+    int m_processTimeout = 30;
+    bool m_processChroot = false;
 };
 
 }  // namespace ModuleSystem

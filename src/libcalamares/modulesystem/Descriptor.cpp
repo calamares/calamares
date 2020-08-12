@@ -54,8 +54,6 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
 {
     Descriptor d;
 
-    cDebug() << moduleDesc;
-
     {
         bool typeOk = false;
         QString typeValue = moduleDesc.value( "type" ).toString();
@@ -91,6 +89,32 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
     d.m_requiredModules = CalamaresUtils::getStringList( moduleDesc, "requiredModules" );
 
     QStringList consumedKeys { "type", "interface", "name", "emergency", "noconfig", "requiredModules" };
+
+    switch ( d.interface() )
+    {
+    case Interface::QtPlugin:
+        d.m_script = CalamaresUtils::getString( moduleDesc, "load" );
+        consumedKeys << "load";
+        break;
+    case Interface::Python:
+    case Interface::PythonQt:
+        d.m_script = CalamaresUtils::getString( moduleDesc, "script" );
+        consumedKeys << "script";
+        break;
+    case Interface::Process:
+        d.m_script = CalamaresUtils::getString( moduleDesc, "command" );
+        d.m_processTimeout = CalamaresUtils::getInteger( moduleDesc, "timeout", 30 );
+        d.m_processChroot = CalamaresUtils::getBool( moduleDesc, "chroot", false );
+        consumedKeys << "command"
+                     << "timeout"
+                     << "chroot";
+
+        if ( d.m_processTimeout < 0 )
+        {
+            d.m_processTimeout = 0;
+        }
+        break;
+    }
 
     QStringList superfluousKeys;
     for ( auto kv = moduleDesc.keyBegin(); kv != moduleDesc.keyEnd(); ++kv )
