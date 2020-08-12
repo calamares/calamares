@@ -205,16 +205,7 @@ JobQueue::start()
 
 
 void
-JobQueue::enqueue( const job_ptr& job )
-{
-    Q_ASSERT( !m_thread->isRunning() );
-    m_jobs.append( job );
-    emit queueChanged( m_jobs );
-}
-
-
-void
-JobQueue::enqueue( const JobList& jobs )
+JobQueue::enqueue( int moduleWeight, const JobList& jobs )
 {
     Q_ASSERT( !m_thread->isRunning() );
     m_jobs.append( jobs );
