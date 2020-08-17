@@ -112,16 +112,25 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     ui->checkBoxValidatePassword->setChecked( m_config->requireStrongPasswords() );
 
     // Connect signals and slots
-    connect( ui->textBoxUserPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
-    connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, this, &UsersPage::onPasswordTextChanged );
-    connect( ui->textBoxRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int ) {
-        onPasswordTextChanged( ui->textBoxUserPassword->text() );
-        onRootPasswordTextChanged( ui->textBoxRootPassword->text() );
-        checkReady( isReady() );
+    ui->textBoxUserPassword->setText( config->userPassword() );
+    connect( ui->textBoxUserPassword, &QLineEdit::textChanged, config, &Config::setUserPassword );
+    connect( config, &Config::userPasswordChanged, ui->textBoxUserPassword, &QLineEdit::setText );
+    ui->textBoxUserVerifiedPassword->setText( config->userPasswordSecondary() );
+    connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged, config, &Config::setUserPasswordSecondary );
+    connect( config, &Config::userPasswordSecondaryChanged, ui->textBoxUserVerifiedPassword, &QLineEdit::setText );
+    connect( config, &Config::userPasswordStatusChanged, this, &UsersPage::reportUserPasswordStatus );
+
+    ui->textBoxRootPassword->setText( config->rootPassword() );
+    connect( ui->textBoxRootPassword, &QLineEdit::textChanged, config, &Config::setRootPassword );
+    connect( config, &Config::rootPasswordChanged, ui->textBoxRootPassword, &QLineEdit::setText );
+    ui->textBoxVerifiedRootPassword->setText( config->rootPasswordSecondary() );
+    connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged, config, &Config::setRootPasswordSecondary );
+    connect( config, &Config::rootPasswordSecondaryChanged, ui->textBoxVerifiedRootPassword, &QLineEdit::setText );
+    connect( config, &Config::rootPasswordStatusChanged, this, &UsersPage::reportRootPasswordStatus );
+
+    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+        m_config->setRequireStrongPasswords( checked != Qt::Unchecked );
     } );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, &UsersPage::onReuseUserPasswordChanged );
 
     connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
@@ -145,6 +154,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
             m_config->setReuseUserPasswordForRoot( checked != Qt::Unchecked );
         } );
         connect( config, &Config::reuseUserPasswordForRootChanged, ui->checkBoxReusePassword, &QCheckBox::setChecked );
+        connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, &UsersPage::onReuseUserPasswordChanged );
     }
 
     if ( m_config->permitWeakPasswords() )
@@ -181,11 +191,11 @@ UsersPage::retranslate()
                                               "use this computer, you can create multiple "
                                               "accounts after installation.</small>" ) );
     }
-    // Re-do password checks (with output messages) as well.
-    // .. the password-checking methods get their values from the text boxes,
-    //    not from their parameters.
-    onPasswordTextChanged( QString() );
-    onRootPasswordTextChanged( QString() );
+
+    const auto up = m_config->userPasswordStatus();
+    reportUserPasswordStatus( up.first, up.second );
+    const auto rp = m_config->rootPasswordStatus();
+    reportRootPasswordStatus( rp.first, rp.second );
 }
 
 
@@ -221,8 +231,10 @@ void
 UsersPage::onActivate()
 {
     ui->textBoxFullName->setFocus();
-    onPasswordTextChanged( QString() );
-    onRootPasswordTextChanged( QString() );
+    const auto up = m_config->userPasswordStatus();
+    reportUserPasswordStatus( up.first, up.second );
+    const auto rp = m_config->rootPasswordStatus();
+    reportRootPasswordStatus( rp.first, rp.second );
 }
 
 
@@ -247,53 +259,42 @@ UsersPage::reportHostNameStatus( const QString& status )
     emit checkReady( isReady() );
 }
 
-bool
-UsersPage::checkPasswordAcceptance( Password p, QLabel* badge, QLabel* message )
+static inline void
+passwordStatus( QLabel* iconLabel, QLabel* messageLabel, int validity, const QString& message )
 {
-    QString pw1 = p == Password::User ? m_config->userPassword() : m_config->rootPassword();
-    QString pw2 = p == Password::User ? m_config->userPasswordSecondary() : m_config->rootPasswordSecondary();
-
-    if ( pw1 != pw2 )
+    switch ( validity )
     {
-        labelError( badge, message, tr( "Your passwords do not match!" ), Badness::Fatal );
-        return false;
-    }
-    else
-    {
-        QString s;
-        bool ok = m_config->isPasswordAcceptable( pw1, s );
-        if ( !ok )
-        {
-            labelError( badge, message, s, Badness::Fatal );
-        }
-        else if ( !s.isEmpty() )
-        {
-            labelError( badge, message, s, Badness::Warning );
-        }
-        else
-        {
-            labelOk( badge, message );
-        }
-        return ok;
+    case Config::PasswordValidity::Valid:
+        messageLabel->clear();
+        iconLabel->setPixmap(
+            CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, messageLabel->size() ) );
+        break;
+    case Config::PasswordValidity::Weak:
+        messageLabel->setText( message );
+        iconLabel->setPixmap( CalamaresUtils::defaultPixmap(
+            CalamaresUtils::StatusWarning, CalamaresUtils::Original, messageLabel->size() ) );
+        break;
+    case Config::PasswordValidity::Invalid:
+    default:
+        messageLabel->setText( message );
+        iconLabel->setPixmap( CalamaresUtils::defaultPixmap(
+            CalamaresUtils::StatusError, CalamaresUtils::Original, messageLabel->size() ) );
+        break;
     }
 }
 
 void
-UsersPage::onPasswordTextChanged( const QString& )
+UsersPage::reportRootPasswordStatus( int validity, const QString& message )
 {
-    m_readyPassword = checkPasswordAcceptance( Password::User, ui->labelUserPassword,
-                                               ui->labelUserPasswordError );
-
-    emit checkReady( isReady() );
+    passwordStatus( ui->labelRootPassword, ui->labelRootPasswordError, validity, message );
 }
 
 void
-UsersPage::onRootPasswordTextChanged( const QString& )
+UsersPage::reportUserPasswordStatus( int validity, const QString& message )
 {
-    m_readyRootPassword = checkPasswordAcceptance( Password::Root, ui->labelRootPassword,
-                                                   ui->labelRootPasswordError );
-    emit checkReady( isReady() );
+    passwordStatus( ui->labelUserPassword, ui->labelUserPasswordError, validity, message );
 }
+
 
 void
 UsersPage::onReuseUserPasswordChanged( const int checked )

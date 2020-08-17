@@ -52,24 +52,14 @@ protected slots:
     void onFullNameTextEdited( const QString& );
     void reportLoginNameStatus( const QString& );
     void reportHostNameStatus( const QString& );
-    void onPasswordTextChanged( const QString& );
-    void onRootPasswordTextChanged( const QString& );
     void onReuseUserPasswordChanged( const int );
+    void reportUserPasswordStatus( int, const QString& );
+    void reportRootPasswordStatus( int, const QString& );
 
 signals:
     void checkReady( bool );
 
 private:
-    /// @brief Which password are we talking about? (for checkPasswordAcceptance())
-    enum class Password { Root, User };
-    /** @brief Is the password acceptable?
-     *
-     * Checks the two copies of the password and places error messages in the
-     * given QLabels. Returns true (and clears the error messages) if the
-     * password is acceptable.
-     */
-    bool checkPasswordAcceptance( Password p, QLabel* badge, QLabel* message );
-
     void retranslate();
 
     Ui::Page_UserSetup* ui;
