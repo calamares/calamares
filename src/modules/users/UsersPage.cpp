@@ -41,25 +41,15 @@
 #include <QLabel>
 #include <QLineEdit>
 
-/** @brief How bad is the error for labelError() ? */
-enum class Badness
-{
-    Fatal,
-    Warning
-};
-
-/** Add an error message and pixmap to a label. */
+/** @brief Add an error message and pixmap to a label. */
 static inline void
-labelError( QLabel* pix, QLabel* label, const QString& message, Badness bad )
+labelError( QLabel* pix, QLabel* label, CalamaresUtils::ImageType icon, const QString& message )
 {
     label->setText( message );
-    pix->setPixmap( CalamaresUtils::defaultPixmap( ( bad == Badness::Fatal ) ? CalamaresUtils::StatusError
-                                                                             : CalamaresUtils::StatusWarning,
-                                                   CalamaresUtils::Original,
-                                                   label->size() ) );
+    pix->setPixmap( CalamaresUtils::defaultPixmap( icon, CalamaresUtils::Original, label->size() ) );
 }
 
-/** Clear error, indicate OK on a label. */
+/** @brief Clear error, set happy pixmap on a label to indicate "ok". */
 static inline void
 labelOk( QLabel* pix, QLabel* label )
 {
@@ -67,9 +57,14 @@ labelOk( QLabel* pix, QLabel* label )
     pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, label->size() ) );
 }
 
-/** Indicate error, update @p ok based on @p status */
+/** @brief Sets error or ok on a label depending on @p status and @p value
+ *
+ * - An **empty** @p value gets no message and no icon.
+ * - A non-empty @p value, with an **empty** @p status gets an "ok".
+ * - A non-empty @p value with a non-empty @p status gets an error indicator.
+ */
 static inline void
-labelStatus( QLabel* pix, QLabel* label, const QString& value, const QString& status, bool& ok )
+labelStatus( QLabel* pix, QLabel* label, const QString& value, const QString& status )
 {
     if ( status.isEmpty() )
     {
@@ -78,18 +73,15 @@ labelStatus( QLabel* pix, QLabel* label, const QString& value, const QString& st
             // This is different from labelOK() because no checkmark is shown
             label->clear();
             pix->clear();
-            ok = false;
         }
         else
         {
             labelOk( pix, label );
-            ok = true;
         }
     }
     else
     {
-        labelError( pix, label, status, Badness::Fatal );
-        ok = false;
+        labelError( pix, label, CalamaresUtils::ImageType::StatusError, status );
     }
 }
 
@@ -97,11 +89,6 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_UserSetup )
     , m_config( config )
-    , m_readyFullName( false )
-    , m_readyUsername( false )
-    , m_readyHostname( false )
-    , m_readyPassword( false )
-    , m_readyRootPassword( false )
 {
     ui->setupUi( this );
 
@@ -202,11 +189,12 @@ UsersPage::retranslate()
 bool
 UsersPage::isReady() const
 {
-    bool readyFields = m_readyFullName && m_readyHostname && m_readyPassword && m_readyUsername;
-    // If we're going to write a root password, we need a valid one (or reuse the user's password)
-    readyFields
-        &= m_config->writeRootPassword() ? ( m_readyRootPassword || ui->checkBoxReusePassword->isChecked() ) : true;
-    return readyFields;
+    bool readyFullName = !m_config->fullName().isEmpty();  // Needs some text
+    bool readyHostname = m_config->hostNameStatus().isEmpty();  // .. no warning message
+    bool readyUsername = m_config->loginNameStatus().isEmpty();  // .. no warning message
+    bool readyUserPassword = m_config->userPasswordValidity() != Config::PasswordValidity::Invalid;
+    bool readyRootPassword = m_config->rootPasswordValidity() != Config::PasswordValidity::Invalid;
+    return readyFullName && readyHostname && readyUsername && readyUserPassword && readyRootPassword;
 }
 
 
@@ -224,21 +212,21 @@ UsersPage::onActivate()
 void
 UsersPage::onFullNameTextEdited( const QString& fullName )
 {
-    labelStatus( ui->labelFullName, ui->labelFullNameError, fullName, QString(), m_readyFullName );
+    labelStatus( ui->labelFullName, ui->labelFullNameError, fullName, QString() );
     checkReady( isReady() );
 }
 
 void
 UsersPage::reportLoginNameStatus( const QString& status )
 {
-    labelStatus( ui->labelUsername, ui->labelUsernameError, m_config->loginName(), status, m_readyUsername );
+    labelStatus( ui->labelUsername, ui->labelUsernameError, m_config->loginName(), status );
     emit checkReady( isReady() );
 }
 
 void
 UsersPage::reportHostNameStatus( const QString& status )
 {
-    labelStatus( ui->labelHostname, ui->labelHostnameError, m_config->hostName(), status, m_readyHostname );
+    labelStatus( ui->labelHostname, ui->labelHostnameError, m_config->hostName(), status );
     emit checkReady( isReady() );
 }
 
@@ -248,20 +236,14 @@ passwordStatus( QLabel* iconLabel, QLabel* messageLabel, int validity, const QSt
     switch ( validity )
     {
     case Config::PasswordValidity::Valid:
-        messageLabel->clear();
-        iconLabel->setPixmap(
-            CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, messageLabel->size() ) );
+        labelOk( iconLabel, messageLabel );
         break;
     case Config::PasswordValidity::Weak:
-        messageLabel->setText( message );
-        iconLabel->setPixmap( CalamaresUtils::defaultPixmap(
-            CalamaresUtils::StatusWarning, CalamaresUtils::Original, messageLabel->size() ) );
+        labelError( iconLabel, messageLabel, CalamaresUtils::StatusWarning, message );
         break;
     case Config::PasswordValidity::Invalid:
     default:
-        messageLabel->setText( message );
-        iconLabel->setPixmap( CalamaresUtils::defaultPixmap(
-            CalamaresUtils::StatusError, CalamaresUtils::Original, messageLabel->size() ) );
+        labelError( iconLabel, messageLabel, CalamaresUtils::StatusError, message );
         break;
     }
 }

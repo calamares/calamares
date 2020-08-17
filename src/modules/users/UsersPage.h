@@ -62,12 +62,6 @@ private:
 
     Ui::Page_UserSetup* ui;
     Config* m_config;
-
-    bool m_readyFullName;
-    bool m_readyUsername;
-    bool m_readyHostname;
-    bool m_readyPassword;
-    bool m_readyRootPassword;
 };
 
 #endif  // USERSPAGE_H
