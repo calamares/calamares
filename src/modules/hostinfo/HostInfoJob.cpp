@@ -117,7 +117,7 @@ static QString
 hostCPUmatchARM( const QString& s )
 {
     // Both Rock64 and Raspberry pi mention 0x41
-    if ( s.contains( ": 0x41" ) )
+    if ( s.contains( ": 0x41" ) || s.contains( ": 0x50" ) )
     {
         return QStringLiteral( "ARM" );
     }
