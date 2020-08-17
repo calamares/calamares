@@ -19,6 +19,7 @@
 
 #include "Config.h"
 
+#include "JobQueue.h"
 #include "utils/Logger.h"
 
 #include <QtTest/QtTest>
@@ -45,6 +46,7 @@ private Q_SLOTS:
     void testHostActions_data();
     void testHostActions();
     void testPasswordChecks();
+    void testUserPassword();
 };
 
 UserTests::UserTests() {}
@@ -136,7 +138,8 @@ UserTests::testHostActions()
     {
         m.insert( "setHostname", string );
     }
-    QCOMPARE( getHostNameActions( m ), HostNameActions( result ) | HostNameAction::WriteEtcHosts );  // write bits default to true
+    QCOMPARE( getHostNameActions( m ),
+              HostNameActions( result ) | HostNameAction::WriteEtcHosts );  // write bits default to true
     m.insert( "writeHostsFile", false );
     QCOMPARE( getHostNameActions( m ), HostNameActions( result ) );
     m.insert( "writeHostsFile", true );
@@ -149,10 +152,60 @@ UserTests::testPasswordChecks()
     {
         PasswordCheckList l;
         QCOMPARE( l.length(), 0 );
-        QVERIFY( !addPasswordCheck( "nonempty", QVariant(false), l ) );  // a silly setting
+        QVERIFY( !addPasswordCheck( "nonempty", QVariant( false ), l ) );  // a silly setting
         QCOMPARE( l.length(), 0 );
-        QVERIFY( addPasswordCheck( "nonempty", QVariant(true), l ) );
+        QVERIFY( addPasswordCheck( "nonempty", QVariant( true ), l ) );
         QCOMPARE( l.length(), 1 );
+    }
+}
+
+void
+UserTests::testUserPassword()
+{
+    if ( !Calamares::JobQueue::instance() )
+    {
+        (void)new Calamares::JobQueue( nullptr );
+    }
+
+    {
+        Config c;
+
+        QVERIFY( c.userPassword().isEmpty() );
+        QVERIFY( c.userPasswordSecondary().isEmpty() );
+        // There are no validity checks, so no check for nonempty
+        QCOMPARE( c.userPasswordValidity(), Config::PasswordValidity::Valid );
+
+        c.setUserPassword( "bogus" );
+        QCOMPARE( c.userPasswordValidity(), Config::PasswordValidity::Invalid );
+        QCOMPARE( c.userPassword(), "bogus" );
+        c.setUserPasswordSecondary( "bogus" );
+        QCOMPARE( c.userPasswordValidity(), Config::PasswordValidity::Valid );
+    }
+
+    {
+        Config c;
+
+        QVariantMap m;
+        m.insert( "allowWeakPasswords", true );
+        m.insert( "allowWeakPasswordsDefault", true );
+        m.insert( "defaultGroups", QStringList { "wheel" } );
+
+        QVariantMap pwreq;
+        pwreq.insert( "nonempty", true );
+        pwreq.insert( "minLength", 6 );
+        m.insert( "passwordRequirements", pwreq );
+
+        c.setConfigurationMap( m );
+
+        QVERIFY( c.userPassword().isEmpty() );
+        QVERIFY( c.userPasswordSecondary().isEmpty() );
+        // There is now a nonempty check, but weak passwords are ok
+        QCOMPARE( c.userPasswordValidity(), int( Config::PasswordValidity::Weak ) );
+
+        c.setUserPassword( "bogus" );
+        QCOMPARE( c.userPasswordValidity(), int( Config::PasswordValidity::Invalid ) );
+        c.setUserPasswordSecondary( "bogus" );
+        QCOMPARE( c.userPasswordValidity(), int( Config::PasswordValidity::Weak ) );
     }
 }
 
