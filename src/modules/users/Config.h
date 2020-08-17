@@ -213,10 +213,10 @@ signals:
     void requireStrongPasswordsChanged( bool );
     void userPasswordChanged( const QString& );
     void userPasswordSecondaryChanged( const QString& );
-    void userPasswordStatusChanged( int, QString& );
+    void userPasswordStatusChanged( int, const QString& );
     void rootPasswordChanged( const QString& );
     void rootPasswordSecondaryChanged( const QString& );
-    void rootPasswordStatusChanged( int, QString& );
+    void rootPasswordStatusChanged( int, const QString& );
 
 
 private:

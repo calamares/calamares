@@ -386,7 +386,8 @@ Config::setUserPassword( const QString& s )
     if ( s != m_userPassword )
     {
         m_userPassword = s;
-        // TODO: check new password status
+        const auto p = passwordStatus( m_userPassword, m_userPasswordSecondary );
+        emit userPasswordStatusChanged( p.first, p.second );
         emit userPasswordChanged( s );
     }
 }
@@ -397,7 +398,8 @@ Config::setUserPasswordSecondary( const QString& s )
     if ( s != m_userPasswordSecondary )
     {
         m_userPasswordSecondary = s;
-        // TODO: check new password status
+        const auto p = passwordStatus( m_userPassword, m_userPasswordSecondary );
+        emit userPasswordStatusChanged( p.first, p.second );
         emit userPasswordSecondaryChanged( s );
     }
 }
@@ -446,7 +448,8 @@ Config::setRootPassword( const QString& s )
     if ( writeRootPassword() && s != m_rootPassword )
     {
         m_rootPassword = s;
-        // TODO: check new password status
+        const auto p = passwordStatus( m_rootPassword, m_rootPasswordSecondary );
+        emit rootPasswordStatusChanged( p.first, p.second );
         emit rootPasswordChanged( s );
     }
 }
@@ -457,7 +460,8 @@ Config::setRootPasswordSecondary( const QString& s )
     if ( writeRootPassword() && s != m_rootPasswordSecondary )
     {
         m_rootPasswordSecondary = s;
-        // TODO: check new password status
+        const auto p = passwordStatus( m_rootPassword, m_rootPasswordSecondary );
+        emit rootPasswordStatusChanged( p.first, p.second );
         emit rootPasswordSecondaryChanged( s );
     }
 }
