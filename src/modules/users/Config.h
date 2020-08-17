@@ -116,6 +116,13 @@ public:
 
     void setConfigurationMap( const QVariantMap& );
 
+    /** @brief Fill Global Storage with some settings
+     *
+     * This should be called when moving on from the view step,
+     * and copies some things to GS that otherwise would not.
+     */
+    void finalizeGlobalStorage() const;
+
     /** @brief Full path to the user's shell executable
      *
      * Typically this will be /bin/bash, but it can be set from

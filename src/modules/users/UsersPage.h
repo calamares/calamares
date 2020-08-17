@@ -44,8 +44,6 @@ public:
 
     bool isReady() const;
 
-    void fillGlobalStorage() const;
-
     void onActivate();
 
 protected slots:

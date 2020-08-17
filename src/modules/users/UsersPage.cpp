@@ -209,23 +209,6 @@ UsersPage::isReady() const
     return readyFields;
 }
 
-void
-UsersPage::fillGlobalStorage() const
-{
-    if ( !isReady() )
-    {
-        return;
-    }
-
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-
-    if ( m_config->writeRootPassword() )
-    {
-        gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
-    }
-    gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
-}
-
 
 void
 UsersPage::onActivate()

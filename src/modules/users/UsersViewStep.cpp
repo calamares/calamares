@@ -143,7 +143,7 @@ UsersViewStep::onLeave()
     j = new SetHostNameJob( m_config->hostName(), m_config->hostNameActions() );
     m_jobs.append( Calamares::job_ptr( j ) );
 
-    m_widget->fillGlobalStorage();
+    m_config->finalizeGlobalStorage();
 }
 
 

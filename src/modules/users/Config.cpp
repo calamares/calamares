@@ -647,3 +647,15 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
 }
+
+void
+Config::finalizeGlobalStorage() const
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    if ( writeRootPassword() )
+    {
+        gs->insert( "reuseRootPassword", reuseUserPasswordForRoot() );
+    }
+    gs->insert( "password", CalamaresUtils::obscure( userPassword() ) );
+}
