@@ -63,13 +63,13 @@ class Config : public QObject
     Q_PROPERTY( QString userPasswordSecondary READ userPasswordSecondary WRITE setUserPasswordSecondary NOTIFY
                     userPasswordSecondaryChanged )
     Q_PROPERTY( int userPasswordValidity READ userPasswordValidity NOTIFY userPasswordStatusChanged STORED false )
-    Q_PROPERTY( QString userPasswordStatus READ userPasswordStatus NOTIFY userPasswordStatusChanged STORED false )
+    Q_PROPERTY( QString userPasswordMessage READ userPasswordMessage NOTIFY userPasswordStatusChanged STORED false )
 
     Q_PROPERTY( QString rootPassword READ rootPassword WRITE setRootPassword NOTIFY rootPasswordChanged )
     Q_PROPERTY( QString rootPasswordSecondary READ rootPasswordSecondary WRITE setRootPasswordSecondary NOTIFY
                     rootPasswordSecondaryChanged )
     Q_PROPERTY( int rootPasswordValidity READ rootPasswordValidity NOTIFY rootPasswordStatusChanged STORED false )
-    Q_PROPERTY( QString rootPasswordStatus READ rootPasswordStatus NOTIFY rootPasswordStatusChanged STORED false )
+    Q_PROPERTY( QString rootPasswordMessage READ rootPasswordMessage NOTIFY rootPasswordStatusChanged STORED false )
 
     Q_PROPERTY( bool writeRootPassword READ writeRootPassword CONSTANT )
     Q_PROPERTY( bool reuseUserPasswordForRoot READ reuseUserPasswordForRoot WRITE setReuseUserPasswordForRoot NOTIFY
@@ -100,6 +100,16 @@ public:
         Weak = 1,
         Invalid = 2
     };
+
+    /** @brief Full password status
+     *
+     * A password's status is in two parts:
+     *  - a validity (valid, weak or invalid)
+     *  - a message describing that validity
+     * The message is empty when the password is valid, but
+     * weak and invalid passwords have an explanatory message.
+     */
+    using PasswordStatus = QPair< PasswordValidity, QString >;
 
     Config( QObject* parent = nullptr );
     ~Config();
@@ -149,7 +159,8 @@ public:
     QString userPassword() const { return m_userPassword; }
     QString userPasswordSecondary() const { return m_userPasswordSecondary; }
     int userPasswordValidity() const;
-    QString userPasswordStatus() const;
+    QString userPasswordMessage() const;
+    PasswordStatus userPasswordStatus() const;
 
     // The root password **may** be entered in the UI, or may be suppressed
     //   entirely when writeRootPassword is off, or may be equal to
@@ -157,7 +168,8 @@ public:
     QString rootPassword() const;
     QString rootPasswordSecondary() const;
     int rootPasswordValidity() const;
-    QString rootPasswordStatus() const;
+    QString rootPasswordMessage() const;
+    PasswordStatus rootPasswordStatus() const;
 
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();
@@ -220,7 +232,7 @@ signals:
 
 
 private:
-    QPair< PasswordValidity, QString > passwordStatus( const QString&, const QString& ) const;
+    PasswordStatus passwordStatus( const QString&, const QString& ) const;
 
     QStringList m_defaultGroups;
     QString m_userShell;

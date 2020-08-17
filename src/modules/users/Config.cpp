@@ -427,17 +427,23 @@ Config::passwordStatus( const QString& pw1, const QString& pw2 ) const
 }
 
 
+Config::PasswordStatus
+Config::userPasswordStatus() const
+{
+    return passwordStatus( m_userPassword, m_userPasswordSecondary );
+}
+
 int
 Config::userPasswordValidity() const
 {
-    auto p = passwordStatus( m_userPassword, m_userPasswordSecondary );
+    auto p = userPasswordStatus();
     return p.first;
 }
 
 QString
-Config::userPasswordStatus() const
+Config::userPasswordMessage() const
 {
-    auto p = passwordStatus( m_userPassword, m_userPasswordSecondary );
+    auto p = userPasswordStatus();
     return p.second;
 }
 
@@ -494,32 +500,31 @@ Config::rootPasswordSecondary() const
     return QString();
 }
 
-int
-Config::rootPasswordValidity() const
-{
-    if ( writeRootPassword() && !reuseUserPasswordForRoot() )
-    {
-        auto p = passwordStatus( m_rootPassword, m_rootPasswordSecondary );
-        return p.first;
-    }
-    else
-    {
-        return userPasswordValidity();
-    }
-}
-
-QString
+Config::PasswordStatus
 Config::rootPasswordStatus() const
 {
     if ( writeRootPassword() && !reuseUserPasswordForRoot() )
     {
-        auto p = passwordStatus( m_rootPassword, m_rootPasswordSecondary );
-        return p.second;
+        return passwordStatus( m_rootPassword, m_rootPasswordSecondary );
     }
     else
     {
         return userPasswordStatus();
     }
+}
+
+int
+Config::rootPasswordValidity() const
+{
+    auto p = rootPasswordStatus();
+    return p.first;
+}
+
+QString
+Config::rootPasswordMessage() const
+{
+    auto p = rootPasswordStatus();
+    return p.second;
 }
 
 
