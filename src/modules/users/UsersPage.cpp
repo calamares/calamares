@@ -155,7 +155,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
         connect( config, &Config::requireStrongPasswordsChanged, ui->checkBoxValidatePassword, &QCheckBox::setChecked );
     }
 
-    CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate );
+    CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate )
 
     onReuseUserPasswordChanged( m_config->reuseUserPasswordForRoot() );
 }
