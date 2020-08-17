@@ -248,8 +248,11 @@ UsersPage::reportHostNameStatus( const QString& status )
 }
 
 bool
-UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message )
+UsersPage::checkPasswordAcceptance( Password p, QLabel* badge, QLabel* message )
 {
+    QString pw1 = p == Password::User ? m_config->userPassword() : m_config->rootPassword();
+    QString pw2 = p == Password::User ? m_config->userPasswordSecondary() : m_config->rootPasswordSecondary();
+
     if ( pw1 != pw2 )
     {
         labelError( badge, message, tr( "Your passwords do not match!" ), Badness::Fatal );
@@ -278,9 +281,7 @@ UsersPage::checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLab
 void
 UsersPage::onPasswordTextChanged( const QString& )
 {
-    m_readyPassword = checkPasswordAcceptance( ui->textBoxUserPassword->text(),
-                                               ui->textBoxUserVerifiedPassword->text(),
-                                               ui->labelUserPassword,
+    m_readyPassword = checkPasswordAcceptance( Password::User, ui->labelUserPassword,
                                                ui->labelUserPasswordError );
 
     emit checkReady( isReady() );
@@ -289,9 +290,7 @@ UsersPage::onPasswordTextChanged( const QString& )
 void
 UsersPage::onRootPasswordTextChanged( const QString& )
 {
-    m_readyRootPassword = checkPasswordAcceptance( ui->textBoxRootPassword->text(),
-                                                   ui->textBoxVerifiedRootPassword->text(),
-                                                   ui->labelRootPassword,
+    m_readyRootPassword = checkPasswordAcceptance( Password::Root, ui->labelRootPassword,
                                                    ui->labelRootPasswordError );
     emit checkReady( isReady() );
 }

@@ -381,7 +381,7 @@ Config::setRequireStrongPasswords( bool strong )
 }
 
 bool
-Config::isPasswordAcceptable( const QString& password, QString& message )
+Config::isPasswordAcceptable( const QString& password, QString& message ) const
 {
     bool failureIsFatal = requireStrongPasswords();
 
@@ -402,23 +402,58 @@ Config::isPasswordAcceptable( const QString& password, QString& message )
 void
 Config::setUserPassword( const QString& s )
 {
-    m_userPassword = s;
-    // TODO: check new password status
-    emit userPasswordChanged( s );
+    if ( s != m_userPassword )
+    {
+        m_userPassword = s;
+        // TODO: check new password status
+        emit userPasswordChanged( s );
+    }
 }
 
 void
 Config::setUserPasswordSecondary( const QString& s )
 {
-    m_userPasswordSecondary = s;
-    // TODO: check new password status
-    emit userPasswordSecondaryChanged( s );
+    if ( s != m_userPasswordSecondary )
+    {
+        m_userPasswordSecondary = s;
+        // TODO: check new password status
+        emit userPasswordSecondaryChanged( s );
+    }
 }
+
+QPair< Config::PasswordValidity, QString >
+Config::passwordStatus( const QString& pw1, const QString& pw2 ) const
+{
+    if ( pw1 != pw2 )
+    {
+        return qMakePair( PasswordValidity::Invalid, tr( "Your passwords do not match!" ) );
+    }
+
+    QString message;
+    bool ok = isPasswordAcceptable( pw1, message );
+    return qMakePair( ok ? PasswordValidity::Valid : PasswordValidity::Weak, message );
+}
+
+
+int
+Config::userPasswordValidity() const
+{
+    auto p = passwordStatus( m_userPassword, m_userPasswordSecondary );
+    return p.first;
+}
+
+QString
+Config::userPasswordStatus() const
+{
+    auto p = passwordStatus( m_userPassword, m_userPasswordSecondary );
+    return p.second;
+}
+
 
 void
 Config::setRootPassword( const QString& s )
 {
-    if ( writeRootPassword() )
+    if ( writeRootPassword() && s != m_rootPassword )
     {
         m_rootPassword = s;
         // TODO: check new password status
@@ -429,7 +464,7 @@ Config::setRootPassword( const QString& s )
 void
 Config::setRootPasswordSecondary( const QString& s )
 {
-    if ( writeRootPassword() )
+    if ( writeRootPassword() && s != m_rootPasswordSecondary )
     {
         m_rootPasswordSecondary = s;
         // TODO: check new password status
@@ -437,26 +472,60 @@ Config::setRootPasswordSecondary( const QString& s )
     }
 }
 
-QString Config::rootPassword() const
+QString
+Config::rootPassword() const
 {
     if ( writeRootPassword() )
     {
         if ( reuseUserPasswordForRoot() )
+        {
             return userPassword();
+        }
         return m_rootPassword;
     }
     return QString();
 }
 
-QString Config::rootPasswordSecondary() const
+QString
+Config::rootPasswordSecondary() const
 {
     if ( writeRootPassword() )
     {
         if ( reuseUserPasswordForRoot() )
+        {
             return userPasswordSecondary();
+        }
         return m_rootPasswordSecondary;
     }
     return QString();
+}
+
+int
+Config::rootPasswordValidity() const
+{
+    if ( writeRootPassword() && !reuseUserPasswordForRoot() )
+    {
+        auto p = passwordStatus( m_rootPassword, m_rootPasswordSecondary );
+        return p.first;
+    }
+    else
+    {
+        return userPasswordValidity();
+    }
+}
+
+QString
+Config::rootPasswordStatus() const
+{
+    if ( writeRootPassword() && !reuseUserPasswordForRoot() )
+    {
+        auto p = passwordStatus( m_rootPassword, m_rootPasswordSecondary );
+        return p.second;
+    }
+    else
+    {
+        return userPasswordStatus();
+    }
 }
 
 

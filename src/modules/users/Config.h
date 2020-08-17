@@ -62,9 +62,14 @@ class Config : public QObject
     Q_PROPERTY( QString userPassword READ userPassword WRITE setUserPassword NOTIFY userPasswordChanged )
     Q_PROPERTY( QString userPasswordSecondary READ userPasswordSecondary WRITE setUserPasswordSecondary NOTIFY
                     userPasswordSecondaryChanged )
+    Q_PROPERTY( int userPasswordValidity READ userPasswordValidity NOTIFY userPasswordStatusChanged STORED false )
+    Q_PROPERTY( QString userPasswordStatus READ userPasswordStatus NOTIFY userPasswordStatusChanged STORED false )
+
     Q_PROPERTY( QString rootPassword READ rootPassword WRITE setRootPassword NOTIFY rootPasswordChanged )
     Q_PROPERTY( QString rootPasswordSecondary READ rootPasswordSecondary WRITE setRootPasswordSecondary NOTIFY
                     rootPasswordSecondaryChanged )
+    Q_PROPERTY( int rootPasswordValidity READ rootPasswordValidity NOTIFY rootPasswordStatusChanged STORED false )
+    Q_PROPERTY( QString rootPasswordStatus READ rootPasswordStatus NOTIFY rootPasswordStatusChanged STORED false )
 
     Q_PROPERTY( bool writeRootPassword READ writeRootPassword CONSTANT )
     Q_PROPERTY( bool reuseUserPasswordForRoot READ reuseUserPasswordForRoot WRITE setReuseUserPasswordForRoot NOTIFY
@@ -75,6 +80,27 @@ class Config : public QObject
                     requireStrongPasswordsChanged )
 
 public:
+    /** @brief Validity (status) of a password
+     *
+     * Valid passwords are:
+     *  - primary and secondary are equal **and**
+     *  - all the password-strength checks pass
+     * Weak passwords:
+     *  - primary and secondary are equal **and**
+     *  - not all the checks pass **and**
+     *  - permitWeakPasswords is @c true **and**
+     *  - requireStrongPasswords is @c false
+     * Invalid passwords (all other cases):
+     *  - the primary and secondary values are not equal **or**
+     *  - not all the checks pass and weak passwords are not permitted
+     */
+    enum PasswordValidity
+    {
+        Valid = 0,
+        Weak = 1,
+        Invalid = 2
+    };
+
     Config( QObject* parent = nullptr );
     ~Config();
 
@@ -128,16 +154,21 @@ public:
      * If the password is not acceptable, sets @p message to something
      *   non-empty and returns @c false.
      */
-    bool isPasswordAcceptable( const QString& password, QString& message );
+    bool isPasswordAcceptable( const QString& password, QString& message ) const;
 
     // The user enters a password (and again in a separate UI element)
     QString userPassword() const { return m_userPassword; }
     QString userPasswordSecondary() const { return m_userPasswordSecondary; }
+    int userPasswordValidity() const;
+    QString userPasswordStatus() const;
+
     // The root password **may** be entered in the UI, or may be suppressed
     //   entirely when writeRootPassword is off, or may be equal to
     //   the user password when reuseUserPasswordForRoot is on.
     QString rootPassword() const;
     QString rootPasswordSecondary() const;
+    int rootPasswordValidity() const;
+    QString rootPasswordStatus() const;
 
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();
@@ -193,11 +224,15 @@ signals:
     void requireStrongPasswordsChanged( bool );
     void userPasswordChanged( const QString& );
     void userPasswordSecondaryChanged( const QString& );
+    void userPasswordStatusChanged( int, QString& );
     void rootPasswordChanged( const QString& );
     void rootPasswordSecondaryChanged( const QString& );
+    void rootPasswordStatusChanged( int, QString& );
 
 
 private:
+    QPair< PasswordValidity, QString > passwordStatus( const QString&, const QString& ) const;
+
     QStringList m_defaultGroups;
     QString m_userShell;
     QString m_autologinGroup;

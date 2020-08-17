@@ -60,13 +60,15 @@ signals:
     void checkReady( bool );
 
 private:
+    /// @brief Which password are we talking about? (for checkPasswordAcceptance())
+    enum class Password { Root, User };
     /** @brief Is the password acceptable?
      *
      * Checks the two copies of the password and places error messages in the
      * given QLabels. Returns true (and clears the error messages) if the
      * password is acceptable.
      */
-    bool checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message );
+    bool checkPasswordAcceptance( Password p, QLabel* badge, QLabel* message );
 
     void retranslate();
 
