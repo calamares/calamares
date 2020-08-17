@@ -380,25 +380,6 @@ Config::setRequireStrongPasswords( bool strong )
     }
 }
 
-bool
-Config::isPasswordAcceptable( const QString& password, QString& message ) const
-{
-    bool failureIsFatal = requireStrongPasswords();
-
-    for ( auto pc : m_passwordChecks )
-    {
-        QString s = pc.filter( password );
-
-        if ( !s.isEmpty() )
-        {
-            message = s;
-            return !failureIsFatal;
-        }
-    }
-
-    return true;
-}
-
 void
 Config::setUserPassword( const QString& s )
 {
@@ -429,9 +410,18 @@ Config::passwordStatus( const QString& pw1, const QString& pw2 ) const
         return qMakePair( PasswordValidity::Invalid, tr( "Your passwords do not match!" ) );
     }
 
-    QString message;
-    bool ok = isPasswordAcceptable( pw1, message );
-    return qMakePair( ok ? PasswordValidity::Valid : PasswordValidity::Weak, message );
+    bool failureIsFatal = requireStrongPasswords();
+    for ( const auto& pc : m_passwordChecks )
+    {
+        QString message = pc.filter( pw1 );
+
+        if ( !message.isEmpty() )
+        {
+            return qMakePair( failureIsFatal ? PasswordValidity::Invalid : PasswordValidity::Weak, message );
+        }
+    }
+
+    return qMakePair( PasswordValidity::Valid, QString() );
 }
 
 

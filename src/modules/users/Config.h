@@ -145,17 +145,6 @@ public:
 
     const QStringList& defaultGroups() const { return m_defaultGroups; }
 
-    /** @brief Checks if the password is acceptable.
-     *
-     * If all is well, sets @p message to empty and returns @c true.
-     * If there are warnings, but acceptable, sets @p message to something
-     *   non-empty and returns @c true. This happens if requireStrongPasswords
-     *   is turned off (by config or user).
-     * If the password is not acceptable, sets @p message to something
-     *   non-empty and returns @c false.
-     */
-    bool isPasswordAcceptable( const QString& password, QString& message ) const;
-
     // The user enters a password (and again in a separate UI element)
     QString userPassword() const { return m_userPassword; }
     QString userPasswordSecondary() const { return m_userPasswordSecondary; }
