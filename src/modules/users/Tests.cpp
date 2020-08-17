@@ -206,6 +206,35 @@ UserTests::testUserPassword()
         QCOMPARE( c.userPasswordValidity(), int( Config::PasswordValidity::Invalid ) );
         c.setUserPasswordSecondary( "bogus" );
         QCOMPARE( c.userPasswordValidity(), int( Config::PasswordValidity::Weak ) );
+
+        QVERIFY( !c.requireStrongPasswords() );
+        c.setRequireStrongPasswords( true );
+        QVERIFY( c.requireStrongPasswords() );
+        // Now changed requirements make the password invalid
+        QCOMPARE( c.userPassword(), "bogus" );
+        QCOMPARE( c.userPasswordValidity(), int( Config::PasswordValidity::Invalid ) );
+    }
+
+    {
+        Config c;
+        QVERIFY( c.userPassword().isEmpty() );
+        QCOMPARE( c.userPasswordValidity(), Config::PasswordValidity::Valid );
+
+        QSignalSpy spy_pwChanged( &c, &Config::userPasswordChanged );
+        QSignalSpy spy_pwSecondaryChanged( &c, &Config::userPasswordSecondaryChanged );
+        QSignalSpy spy_pwStatusChanged( &c, &Config::userPasswordStatusChanged );
+
+        c.setUserPassword( "bogus" );
+        c.setUserPassword( "bogus" );
+        QCOMPARE( spy_pwChanged.count(), 1 );
+        QCOMPARE( spy_pwStatusChanged.count(), 1 );
+        QCOMPARE( c.userPasswordValidity(), Config::PasswordValidity::Invalid );
+        c.setUserPassword( "sugob" );
+        c.setUserPasswordSecondary( "sugob" );
+        QCOMPARE( spy_pwChanged.count(), 2 );
+        QCOMPARE( spy_pwSecondaryChanged.count(), 1 );
+        QCOMPARE( spy_pwStatusChanged.count(), 3 );
+        QCOMPARE( c.userPasswordValidity(), Config::PasswordValidity::Valid );
     }
 }
 
