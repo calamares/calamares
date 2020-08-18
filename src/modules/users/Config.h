@@ -79,6 +79,8 @@ class Config : public QObject
     Q_PROPERTY( bool requireStrongPasswords READ requireStrongPasswords WRITE setRequireStrongPasswords NOTIFY
                     requireStrongPasswordsChanged )
 
+    Q_PROPERTY( bool ready READ isReady NOTIFY readyChanged STORED false )
+
 public:
     /** @brief Validity (status) of a password
      *
@@ -178,6 +180,8 @@ public:
     QString rootPasswordMessage() const;
     PasswordStatus rootPasswordStatus() const;
 
+    bool isReady() const;
+
     static const QStringList& forbiddenLoginNames();
     static const QStringList& forbiddenHostNames();
 
@@ -236,10 +240,11 @@ signals:
     void rootPasswordChanged( const QString& );
     void rootPasswordSecondaryChanged( const QString& );
     void rootPasswordStatusChanged( int, const QString& );
-
+    void readyChanged( bool ) const;
 
 private:
     PasswordStatus passwordStatus( const QString&, const QString& ) const;
+    void checkReady();
 
     QStringList m_defaultGroups;
     QString m_userShell;
@@ -264,6 +269,8 @@ private:
 
     bool m_customLoginName = false;
     bool m_customHostName = false;
+
+    bool m_isReady = false;  ///< Used to reduce readyChanged signals
 
     HostNameActions m_hostNameActions;
     PasswordCheckList m_passwordChecks;

@@ -56,6 +56,16 @@ hostNameActionNames()
 Config::Config( QObject* parent )
     : QObject( parent )
 {
+    emit readyChanged( m_isReady );  // false
+
+    // Gang together all the changes of status to one readyChanged() signal
+    connect( this, &Config::hostNameStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::loginNameStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::fullNameChanged, this, &Config::checkReady );
+    connect( this, &Config::userPasswordStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::rootPasswordStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::reuseUserPasswordForRootChanged, this, &Config::checkReady );
+    connect( this, &Config::requireStrongPasswordsChanged, this, &Config::checkReady );
 }
 
 Config::~Config() {}
@@ -404,7 +414,14 @@ Config::setUserPasswordSecondary( const QString& s )
     }
 }
 
-QPair< Config::PasswordValidity, QString >
+/** @brief Checks two copies of the password for validity
+ *
+ * Given two copies of the password -- generally the password and
+ * the secondary fields -- checks them for validity and returns
+ * a pair of <validity, message>.
+ *
+ */
+Config::PasswordStatus
 Config::passwordStatus( const QString& pw1, const QString& pw2 ) const
 {
     if ( pw1 != pw2 )
@@ -527,6 +544,33 @@ Config::rootPasswordMessage() const
     return p.second;
 }
 
+bool
+Config::isReady() const
+{
+    bool readyFullName = !fullName().isEmpty();  // Needs some text
+    bool readyHostname = hostNameStatus().isEmpty();  // .. no warning message
+    bool readyUsername = loginNameStatus().isEmpty();  // .. no warning message
+    bool readyUserPassword = userPasswordValidity() != Config::PasswordValidity::Invalid;
+    bool readyRootPassword = rootPasswordValidity() != Config::PasswordValidity::Invalid;
+    return readyFullName && readyHostname && readyUsername && readyUserPassword && readyRootPassword;
+}
+
+/** @brief Update ready status and emit signal
+ *
+ * This is a "concentrator" private slot for all the status-changed
+ * signals, so that readyChanged() is emitted only when needed.
+ */
+void
+Config::checkReady()
+{
+    bool b = isReady();
+    if ( b != m_isReady )
+    {
+        m_isReady = b;
+        emit readyChanged( b );
+    }
+}
+
 
 STATICTEST void
 setConfigurationDefaultGroups( const QVariantMap& map, QStringList& defaultGroups )
@@ -646,6 +690,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         addPasswordCheck( i.key(), i.value(), m_passwordChecks );
     }
     std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
+
+    checkReady();
 }
 
 void

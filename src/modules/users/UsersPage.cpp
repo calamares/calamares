@@ -186,18 +186,6 @@ UsersPage::retranslate()
 }
 
 
-bool
-UsersPage::isReady() const
-{
-    bool readyFullName = !m_config->fullName().isEmpty();  // Needs some text
-    bool readyHostname = m_config->hostNameStatus().isEmpty();  // .. no warning message
-    bool readyUsername = m_config->loginNameStatus().isEmpty();  // .. no warning message
-    bool readyUserPassword = m_config->userPasswordValidity() != Config::PasswordValidity::Invalid;
-    bool readyRootPassword = m_config->rootPasswordValidity() != Config::PasswordValidity::Invalid;
-    return readyFullName && readyHostname && readyUsername && readyUserPassword && readyRootPassword;
-}
-
-
 void
 UsersPage::onActivate()
 {
@@ -213,21 +201,18 @@ void
 UsersPage::onFullNameTextEdited( const QString& fullName )
 {
     labelStatus( ui->labelFullName, ui->labelFullNameError, fullName, QString() );
-    checkReady( isReady() );
 }
 
 void
 UsersPage::reportLoginNameStatus( const QString& status )
 {
     labelStatus( ui->labelUsername, ui->labelUsernameError, m_config->loginName(), status );
-    emit checkReady( isReady() );
 }
 
 void
 UsersPage::reportHostNameStatus( const QString& status )
 {
     labelStatus( ui->labelHostname, ui->labelHostnameError, m_config->hostName(), status );
-    emit checkReady( isReady() );
 }
 
 static inline void
@@ -280,5 +265,4 @@ UsersPage::onReuseUserPasswordChanged( const int checked )
     ui->labelRootPasswordError->setVisible( visible );
     ui->textBoxRootPassword->setVisible( visible );
     ui->textBoxVerifiedRootPassword->setVisible( visible );
-    checkReady( isReady() );
 }

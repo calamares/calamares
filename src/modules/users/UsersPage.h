@@ -42,8 +42,6 @@ public:
     explicit UsersPage( Config* config, QWidget* parent = nullptr );
     virtual ~UsersPage();
 
-    bool isReady() const;
-
     void onActivate();
 
 protected slots:
@@ -53,9 +51,6 @@ protected slots:
     void onReuseUserPasswordChanged( const int );
     void reportUserPasswordStatus( int, const QString& );
     void reportRootPasswordStatus( int, const QString& );
-
-signals:
-    void checkReady( bool );
 
 private:
     void retranslate();

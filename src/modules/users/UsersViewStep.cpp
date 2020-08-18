@@ -39,7 +39,9 @@ UsersViewStep::UsersViewStep( QObject* parent )
     , m_widget( nullptr )
     , m_config( new Config( this ) )
 {
-    emit nextStatusChanged( true );
+    connect( m_config, &Config::readyChanged, this, &UsersViewStep::nextStatusChanged );
+
+    emit nextStatusChanged( m_config->isReady() );
 }
 
 
@@ -65,7 +67,6 @@ UsersViewStep::widget()
     if ( !m_widget )
     {
         m_widget = new UsersPage( m_config );
-        connect( m_widget, &UsersPage::checkReady, this, &UsersViewStep::nextStatusChanged );
     }
     return m_widget;
 }
@@ -74,7 +75,7 @@ UsersViewStep::widget()
 bool
 UsersViewStep::isNextEnabled() const
 {
-    return m_widget ? m_widget->isReady() : true;
+    return m_config->isReady();
 }
 
 
@@ -120,7 +121,7 @@ void
 UsersViewStep::onLeave()
 {
     m_jobs.clear();
-    if ( !m_widget || !m_widget->isReady() )
+    if ( !m_widget || !m_config->isReady() )
     {
         return;
     }
