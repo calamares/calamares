@@ -381,6 +381,10 @@ Config::setReuseUserPasswordForRoot( bool reuse )
     {
         m_reuseUserPasswordForRoot = reuse;
         emit reuseUserPasswordForRootChanged( reuse );
+        {
+            auto rp = rootPasswordStatus();
+            emit rootPasswordStatusChanged( rp.first, rp.second );
+        }
     }
 }
 
@@ -391,6 +395,14 @@ Config::setRequireStrongPasswords( bool strong )
     {
         m_requireStrongPasswords = strong;
         emit requireStrongPasswordsChanged( strong );
+        {
+            auto rp = rootPasswordStatus();
+            emit rootPasswordStatusChanged( rp.first, rp.second );
+        }
+        {
+            auto up = userPasswordStatus();
+            emit userPasswordStatusChanged( up.first, up.second );
+        }
     }
 }
 
