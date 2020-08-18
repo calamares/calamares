@@ -21,9 +21,6 @@
 #include "UsersViewStep.h"
 
 #include "Config.h"
-#include "CreateUserJob.h"
-#include "SetHostNameJob.h"
-#include "SetPasswordJob.h"
 #include "UsersPage.h"
 
 #include "GlobalStorage.h"
@@ -39,7 +36,9 @@ UsersViewStep::UsersViewStep( QObject* parent )
     , m_widget( nullptr )
     , m_config( new Config( this ) )
 {
-    emit nextStatusChanged( true );
+    connect( m_config, &Config::readyChanged, this, &UsersViewStep::nextStatusChanged );
+
+    emit nextStatusChanged( m_config->isReady() );
 }
 
 
@@ -65,7 +64,6 @@ UsersViewStep::widget()
     if ( !m_widget )
     {
         m_widget = new UsersPage( m_config );
-        connect( m_widget, &UsersPage::checkReady, this, &UsersViewStep::nextStatusChanged );
     }
     return m_widget;
 }
@@ -74,7 +72,7 @@ UsersViewStep::widget()
 bool
 UsersViewStep::isNextEnabled() const
 {
-    return m_widget ? m_widget->isReady() : true;
+    return m_config->isReady();
 }
 
 
@@ -119,31 +117,8 @@ UsersViewStep::onActivate()
 void
 UsersViewStep::onLeave()
 {
-    m_jobs.clear();
-    if ( !m_widget || !m_widget->isReady() )
-    {
-        return;
-    }
-
-    Calamares::Job* j;
-    // TODO: Config object should create jobs, like this one, that depend only on config values
-    j = new CreateUserJob( m_config->loginName(),
-                           m_config->fullName().isEmpty() ? m_config->loginName() : m_config->fullName(),
-                           m_config->doAutoLogin(),
-                           m_config->defaultGroups() );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    j = new SetPasswordJob( m_config->loginName(), m_config->userPassword() );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    j = new SetPasswordJob( "root", m_config->rootPassword() );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    // TODO: Config object should create jobs
-    j = new SetHostNameJob( m_config->hostName(), m_config->hostNameActions() );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    m_widget->fillGlobalStorage();
+    m_jobs = m_config->createJobs();
+    m_config->finalizeGlobalStorage();
 }
 
 

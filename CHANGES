@@ -15,6 +15,19 @@ This release contains contributions from (alphabetically by first name):
  - No module changes yet
 
 
+ # 3.2.28.3 (2020-08-18) #
+
+Another hotfix, for more issues reported by Marco Obaid. Users
+were not having a password set (#1489)
+
+
+# 3.2.28.2 (2020-08-12) #
+
+A second hotfix, for autologin support -- the autologin group was not
+created in the target system before assigning the user to it. Reported
+by Marco Obaid.
+
+
 # 3.2.28.1 (2020-08-10) #
 
 This is a hotfix release for #1482 and #1483, where no user was

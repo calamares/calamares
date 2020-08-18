@@ -20,6 +20,10 @@
 
 #include "Config.h"
 
+#include "CreateUserJob.h"
+#include "SetHostNameJob.h"
+#include "SetPasswordJob.h"
+
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
@@ -56,6 +60,16 @@ hostNameActionNames()
 Config::Config( QObject* parent )
     : QObject( parent )
 {
+    emit readyChanged( m_isReady );  // false
+
+    // Gang together all the changes of status to one readyChanged() signal
+    connect( this, &Config::hostNameStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::loginNameStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::fullNameChanged, this, &Config::checkReady );
+    connect( this, &Config::userPasswordStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::rootPasswordStatusChanged, this, &Config::checkReady );
+    connect( this, &Config::reuseUserPasswordForRootChanged, this, &Config::checkReady );
+    connect( this, &Config::requireStrongPasswordsChanged, this, &Config::checkReady );
 }
 
 Config::~Config() {}
@@ -367,6 +381,10 @@ Config::setReuseUserPasswordForRoot( bool reuse )
     {
         m_reuseUserPasswordForRoot = reuse;
         emit reuseUserPasswordForRootChanged( reuse );
+        {
+            auto rp = rootPasswordStatus();
+            emit rootPasswordStatusChanged( rp.first, rp.second );
+        }
     }
 }
 
@@ -377,51 +395,100 @@ Config::setRequireStrongPasswords( bool strong )
     {
         m_requireStrongPasswords = strong;
         emit requireStrongPasswordsChanged( strong );
-    }
-}
-
-bool
-Config::isPasswordAcceptable( const QString& password, QString& message )
-{
-    bool failureIsFatal = requireStrongPasswords();
-
-    for ( auto pc : m_passwordChecks )
-    {
-        QString s = pc.filter( password );
-
-        if ( !s.isEmpty() )
         {
-            message = s;
-            return !failureIsFatal;
+            auto rp = rootPasswordStatus();
+            emit rootPasswordStatusChanged( rp.first, rp.second );
+        }
+        {
+            auto up = userPasswordStatus();
+            emit userPasswordStatusChanged( up.first, up.second );
         }
     }
-
-    return true;
 }
 
 void
 Config::setUserPassword( const QString& s )
 {
-    m_userPassword = s;
-    // TODO: check new password status
-    emit userPasswordChanged( s );
+    if ( s != m_userPassword )
+    {
+        m_userPassword = s;
+        const auto p = passwordStatus( m_userPassword, m_userPasswordSecondary );
+        emit userPasswordStatusChanged( p.first, p.second );
+        emit userPasswordChanged( s );
+    }
 }
 
 void
 Config::setUserPasswordSecondary( const QString& s )
 {
-    m_userPasswordSecondary = s;
-    // TODO: check new password status
-    emit userPasswordSecondaryChanged( s );
+    if ( s != m_userPasswordSecondary )
+    {
+        m_userPasswordSecondary = s;
+        const auto p = passwordStatus( m_userPassword, m_userPasswordSecondary );
+        emit userPasswordStatusChanged( p.first, p.second );
+        emit userPasswordSecondaryChanged( s );
+    }
 }
+
+/** @brief Checks two copies of the password for validity
+ *
+ * Given two copies of the password -- generally the password and
+ * the secondary fields -- checks them for validity and returns
+ * a pair of <validity, message>.
+ *
+ */
+Config::PasswordStatus
+Config::passwordStatus( const QString& pw1, const QString& pw2 ) const
+{
+    if ( pw1 != pw2 )
+    {
+        return qMakePair( PasswordValidity::Invalid, tr( "Your passwords do not match!" ) );
+    }
+
+    bool failureIsFatal = requireStrongPasswords();
+    for ( const auto& pc : m_passwordChecks )
+    {
+        QString message = pc.filter( pw1 );
+
+        if ( !message.isEmpty() )
+        {
+            return qMakePair( failureIsFatal ? PasswordValidity::Invalid : PasswordValidity::Weak, message );
+        }
+    }
+
+    return qMakePair( PasswordValidity::Valid, QString() );
+}
+
+
+Config::PasswordStatus
+Config::userPasswordStatus() const
+{
+    return passwordStatus( m_userPassword, m_userPasswordSecondary );
+}
+
+int
+Config::userPasswordValidity() const
+{
+    auto p = userPasswordStatus();
+    return p.first;
+}
+
+QString
+Config::userPasswordMessage() const
+{
+    auto p = userPasswordStatus();
+    return p.second;
+}
+
 
 void
 Config::setRootPassword( const QString& s )
 {
-    if ( writeRootPassword() )
+    if ( writeRootPassword() && s != m_rootPassword )
     {
         m_rootPassword = s;
-        // TODO: check new password status
+        const auto p = passwordStatus( m_rootPassword, m_rootPasswordSecondary );
+        emit rootPasswordStatusChanged( p.first, p.second );
         emit rootPasswordChanged( s );
     }
 }
@@ -429,34 +496,95 @@ Config::setRootPassword( const QString& s )
 void
 Config::setRootPasswordSecondary( const QString& s )
 {
-    if ( writeRootPassword() )
+    if ( writeRootPassword() && s != m_rootPasswordSecondary )
     {
         m_rootPasswordSecondary = s;
-        // TODO: check new password status
+        const auto p = passwordStatus( m_rootPassword, m_rootPasswordSecondary );
+        emit rootPasswordStatusChanged( p.first, p.second );
         emit rootPasswordSecondaryChanged( s );
     }
 }
 
-QString Config::rootPassword() const
+QString
+Config::rootPassword() const
 {
     if ( writeRootPassword() )
     {
         if ( reuseUserPasswordForRoot() )
+        {
             return userPassword();
+        }
         return m_rootPassword;
     }
     return QString();
 }
 
-QString Config::rootPasswordSecondary() const
+QString
+Config::rootPasswordSecondary() const
 {
     if ( writeRootPassword() )
     {
         if ( reuseUserPasswordForRoot() )
+        {
             return userPasswordSecondary();
+        }
         return m_rootPasswordSecondary;
     }
     return QString();
+}
+
+Config::PasswordStatus
+Config::rootPasswordStatus() const
+{
+    if ( writeRootPassword() && !reuseUserPasswordForRoot() )
+    {
+        return passwordStatus( m_rootPassword, m_rootPasswordSecondary );
+    }
+    else
+    {
+        return userPasswordStatus();
+    }
+}
+
+int
+Config::rootPasswordValidity() const
+{
+    auto p = rootPasswordStatus();
+    return p.first;
+}
+
+QString
+Config::rootPasswordMessage() const
+{
+    auto p = rootPasswordStatus();
+    return p.second;
+}
+
+bool
+Config::isReady() const
+{
+    bool readyFullName = !fullName().isEmpty();  // Needs some text
+    bool readyHostname = hostNameStatus().isEmpty();  // .. no warning message
+    bool readyUsername = loginNameStatus().isEmpty();  // .. no warning message
+    bool readyUserPassword = userPasswordValidity() != Config::PasswordValidity::Invalid;
+    bool readyRootPassword = rootPasswordValidity() != Config::PasswordValidity::Invalid;
+    return readyFullName && readyHostname && readyUsername && readyUserPassword && readyRootPassword;
+}
+
+/** @brief Update ready status and emit signal
+ *
+ * This is a "concentrator" private slot for all the status-changed
+ * signals, so that readyChanged() is emitted only when needed.
+ */
+void
+Config::checkReady()
+{
+    bool b = isReady();
+    if ( b != m_isReady )
+    {
+        m_isReady = b;
+        emit readyChanged( b );
+    }
 }
 
 
@@ -578,4 +706,46 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         addPasswordCheck( i.key(), i.value(), m_passwordChecks );
     }
     std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
+
+    checkReady();
+}
+
+void
+Config::finalizeGlobalStorage() const
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    if ( writeRootPassword() )
+    {
+        gs->insert( "reuseRootPassword", reuseUserPasswordForRoot() );
+    }
+    gs->insert( "password", CalamaresUtils::obscure( userPassword() ) );
+}
+
+Calamares::JobList
+Config::createJobs() const
+{
+    Calamares::JobList jobs;
+
+    if ( !isReady() )
+    {
+        return jobs;
+    }
+
+    Calamares::Job* j;
+
+    j = new CreateUserJob(
+        loginName(), fullName().isEmpty() ? loginName() : fullName(), doAutoLogin(), defaultGroups() );
+    jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetPasswordJob( loginName(), userPassword() );
+    jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetPasswordJob( "root", rootPassword() );
+    jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetHostNameJob( hostName(), hostNameActions() );
+    jobs.append( Calamares::job_ptr( j ) );
+
+    return jobs;
 }

@@ -42,42 +42,21 @@ public:
     explicit UsersPage( Config* config, QWidget* parent = nullptr );
     virtual ~UsersPage();
 
-    bool isReady() const;
-
-    void fillGlobalStorage() const;
-
     void onActivate();
 
 protected slots:
     void onFullNameTextEdited( const QString& );
     void reportLoginNameStatus( const QString& );
     void reportHostNameStatus( const QString& );
-    void onPasswordTextChanged( const QString& );
-    void onRootPasswordTextChanged( const QString& );
     void onReuseUserPasswordChanged( const int );
-
-signals:
-    void checkReady( bool );
+    void reportUserPasswordStatus( int, const QString& );
+    void reportRootPasswordStatus( int, const QString& );
 
 private:
-    /** @brief Is the password acceptable?
-     *
-     * Checks the two copies of the password and places error messages in the
-     * given QLabels. Returns true (and clears the error messages) if the
-     * password is acceptable.
-     */
-    bool checkPasswordAcceptance( const QString& pw1, const QString& pw2, QLabel* badge, QLabel* message );
-
     void retranslate();
 
     Ui::Page_UserSetup* ui;
     Config* m_config;
-
-    bool m_readyFullName;
-    bool m_readyUsername;
-    bool m_readyHostname;
-    bool m_readyPassword;
-    bool m_readyRootPassword;
 };
 
 #endif  // USERSPAGE_H
