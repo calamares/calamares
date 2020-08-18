@@ -6,10 +6,11 @@ website will have to do for older versions.
 # 3.2.29 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Asif Mahmud Shimon (new contributor! hi!)
 
 ## Core ##
- - No core changes yet
+ - Edge case in extracting string-lists from YAML, reported and fixed
+   by Asif (#1491).
 
 ## Modules ##
  - No module changes yet
