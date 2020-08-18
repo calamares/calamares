@@ -514,134 +514,134 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
       <translation>Forma</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Vyberte úložné &amp;zariadenie:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="157"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="955"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1069"/>
       <source>Current:</source>
       <translation>Teraz:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
       <source>After:</source>
       <translation>Potom:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="317"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Ručné rozdelenie oddielov&lt;/strong&gt;&lt;br/&gt;Môžete vytvoriť alebo zmeniť veľkosť oddielov podľa seba.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="814"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Opakované použitie oddielu %1 ako domovského pre distribúciu %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Vyberte oddiel na zmenšenie a potom potiahnutím spodného pruhu zmeňte veľkosť&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="971"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="954"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>Oddiel %1 bude zmenšený na %2MiB a nový %3MiB oddiel bude vytvorený pre distribúciu %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
       <source>Boot loader location:</source>
       <translation>Umiestnenie zavádzača:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1060"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Vyberte oddiel, na ktorý sa má inštalovať&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1116"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Oddiel systému EFI sa nedá v tomto počítači nájsť. Prosím, prejdite späť a použite ručné rozdelenie oddielov na inštaláciu distribúcie %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1125"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>Oddie lsystému EFI na %1 bude použitý na spustenie distribúcie %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
       <source>EFI system partition:</source>
       <translation>Oddiel systému EFI:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1251"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Zdá sa, že toto úložné zariadenie neobsahuje operačný systém. Čo by ste chceli urobiť?&lt;br/&gt;Budete môcť skontrolovať a potvrdiť vaše voľby pred uplatnením akejkoľvek zmeny na úložnom zariadení.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1311"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1256"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1294"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Vymazanie disku&lt;/strong&gt;&lt;br/&gt;Týmto sa &lt;font color="red"&gt;odstránia&lt;/font&gt; všetky údaje momentálne sa nachádzajúce na vybranom úložnom zariadení.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1290"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1339"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Inštalácia popri súčasnom systéme&lt;/strong&gt;&lt;br/&gt;Inštalátor zmenší oddiel a uvoľní miesto pre distribúciu %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1316"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1299"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1321"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Nahradenie oddielu&lt;/strong&gt;&lt;br/&gt;Nahradí oddiel distribúciou %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Toto úložné zariadenie obsahuje operačný systém %1. Čo by ste chceli urobiť?&lt;br/&gt;Budete môcť skontrolovať a potvrdiť vaše voľby pred uplatnením akejkoľvek zmeny na úložnom zariadení.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Toto úložné zariadenie už obsahuje operačný systém. Čo by ste chceli urobiť?&lt;br/&gt;Budete môcť skontrolovať a potvrdiť vaše voľby pred uplatnením akejkoľvek zmeny na úložnom zariadení.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Toto úložné zariadenie obsahuje viacero operačných systémov. Čo by ste chceli urobiť?&lt;br/&gt;Budete môcť skontrolovať a potvrdiť vaše voľby pred uplatnením akejkoľvek zmeny na úložnom zariadení.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1505"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1517"/>
       <source>No Swap</source>
       <translation>Bez odkladacieho priestoru</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1510"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1522"/>
       <source>Reuse Swap</source>
       <translation>Znovu použiť odkladací priestor</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1525"/>
       <source>Swap (no Hibernate)</source>
       <translation>Odkladací priestor (bez hibernácie)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1516"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1528"/>
       <source>Swap (with Hibernate)</source>
       <translation>Odkladací priestor (s hibernáciou)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1519"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1531"/>
       <source>Swap to file</source>
       <translation>Odkladací priestor v súbore</translation>
     </message>
@@ -719,17 +719,17 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
       <translation>Nastavenie rozloženia klávesnice na %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="333"/>
+      <location filename="../src/modules/locale/Config.cpp" line="350"/>
       <source>Set timezone to %1/%2.</source>
       <translation>Nastavenie časovej zóny na %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="348"/>
+      <location filename="../src/modules/locale/Config.cpp" line="388"/>
       <source>The system language will be set to %1.</source>
       <translation>Jazyk systému bude nastavený na %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="355"/>
+      <location filename="../src/modules/locale/Config.cpp" line="395"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Miestne nastavenie čísel a dátumov bude nastavené na %1.</translation>
     </message>
@@ -799,42 +799,42 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
       <translation>&lt;h1&gt;Vitajte v inštalátore distribúcie %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="125"/>
+      <location filename="../src/modules/users/Config.cpp" line="141"/>
       <source>Your username is too long.</source>
       <translation>Vaše používateľské meno je príliš dlhé.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="131"/>
+      <location filename="../src/modules/users/Config.cpp" line="147"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>„%1“ nie je možné použiť ako používateľské meno.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="141"/>
+      <location filename="../src/modules/users/Config.cpp" line="154"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Vaše používateľské meno musí začínať malým písmenom alebo podčiarkovníkom.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="145"/>
+      <location filename="../src/modules/users/Config.cpp" line="158"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Sú povolené iba malé písmená, číslice, podtržníky a pomlčky.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="191"/>
+      <location filename="../src/modules/users/Config.cpp" line="204"/>
       <source>Your hostname is too short.</source>
       <translation>Váš názov hostiteľa je príliš krátky.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="195"/>
+      <location filename="../src/modules/users/Config.cpp" line="208"/>
       <source>Your hostname is too long.</source>
       <translation>Váš názov hostiteľa je príliš dlhý.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="201"/>
+      <location filename="../src/modules/users/Config.cpp" line="214"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>„%1“ nie je možné použiť ako názov hostiteľa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="211"/>
+      <location filename="../src/modules/users/Config.cpp" line="220"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Sú povolené iba písmená, číslice, podtržníky a pomlčky.</translation>
     </message>
@@ -1255,7 +1255,8 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
       <translation>Potvrdenie hesla</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="113"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="123"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Prosím, zadajte rovnaké heslo do oboch polí.</translation>
     </message>
@@ -1707,18 +1708,18 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="132"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
       <source>Region:</source>
       <translation>Oblasť:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="133"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
       <source>Zone:</source>
       <translation>Zóna:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="136"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="137"/>
       <source>&amp;Change...</source>
       <translation>Z&amp;meniť...</translation>
     </message>
@@ -1796,7 +1797,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
   <context>
     <name>Map</name>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="239"/>
+      <location filename="../src/modules/localeq/Map.qml" line="252"/>
+      <source>Timezone: %1</source>
+      <translation>Časová zóna: %1</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Map.qml" line="273"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
@@ -1957,247 +1963,247 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
   <context>
     <name>PWQ</name>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="57"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="56"/>
       <source>Password is too short</source>
       <translation>Heslo je príliš krátke</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="73"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="72"/>
       <source>Password is too long</source>
       <translation>Heslo je príliš dlhé</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="149"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="148"/>
       <source>Password is too weak</source>
       <translation>Heslo je príliš slabé</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="157"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="156"/>
       <source>Memory allocation error when setting '%1'</source>
       <translation>Chyba počas vyhradzovania pamäte pri nastavovaní „%1“</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="161"/>
       <source>Memory allocation error</source>
       <translation>Chyba počas vyhradzovania pamäte</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="163"/>
       <source>The password is the same as the old one</source>
       <translation>Heslo je rovnaké ako to staré</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="165"/>
       <source>The password is a palindrome</source>
       <translation>Heslo je palindróm</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="167"/>
       <source>The password differs with case changes only</source>
       <translation>Heslo sa odlišuje iba vo veľkosti písmen</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="169"/>
       <source>The password is too similar to the old one</source>
       <translation>Heslo je príliš podobné ako to staré</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="171"/>
       <source>The password contains the user name in some form</source>
       <translation>Heslo obsahuje v nejakom tvare používateľské meno</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="173"/>
       <source>The password contains words from the real name of the user in some form</source>
       <translation>Heslo obsahuje v nejakom tvare slová zo skutočného mena používateľa</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="177"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
       <source>The password contains forbidden words in some form</source>
       <translation>Heslo obsahuje zakázané slová v určitom tvare</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="181"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
       <source>The password contains less than %1 digits</source>
       <translation>Heslo obsahuje menej ako %1 číslic</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
       <source>The password contains too few digits</source>
       <translation>Heslo tiež obsahuje pár číslic</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
       <source>The password contains less than %1 uppercase letters</source>
       <translation>Heslo obsahuje menej ako %1 veľkých písmen</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
       <source>The password contains too few uppercase letters</source>
       <translation>Heslo obsahuje príliš málo veľkých písmen</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="194"/>
       <source>The password contains less than %1 lowercase letters</source>
       <translation>Heslo obsahuje menej ako %1 malých písmen</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
       <source>The password contains too few lowercase letters</source>
       <translation>Heslo obsahuje príliš málo malých písmen</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
       <source>The password contains less than %1 non-alphanumeric characters</source>
       <translation>Heslo obsahuje menej ako% 1 nealfanumerických znakov</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
       <source>The password contains too few non-alphanumeric characters</source>
       <translation>Heslo obsahuje príliš málo nealfanumerických znakov</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
       <source>The password is shorter than %1 characters</source>
       <translation>Heslo je kratšie ako %1 znakov</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="212"/>
       <source>The password is too short</source>
       <translation>Heslo je príliš krátke</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
       <source>The password is just rotated old one</source>
       <translation>Heslo je iba obrátené staré heslo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains less than %1 character classes</source>
       <translation>Heslo obsahuje menej ako %1 triedy znakov</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
       <source>The password does not contain enough character classes</source>
       <translation>Heslo neobsahuje dostatok tried znakov</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="226"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains more than %1 same characters consecutively</source>
       <translation>Heslo obsahuje viac ako% 1 rovnakých znakov za sebou</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="230"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
       <source>The password contains too many same characters consecutively</source>
       <translation>Heslo obsahuje príliš veľa rovnakých znakov</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="233"/>
       <source>The password contains more than %1 characters of the same class consecutively</source>
       <translation>Heslo obsahuje postupne viac ako% 1 znakov toho istého typu</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="237"/>
       <source>The password contains too many characters of the same class consecutively</source>
       <translation>Heslo obsahuje postupne príliš veľa znakov toho istého typu</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
       <source>The password contains monotonic sequence longer than %1 characters</source>
       <translation>Heslo obsahuje monotónnu sekvenciu dlhšiu ako %1 znakov</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password contains too long of a monotonic character sequence</source>
       <translation>Heslo obsahuje príliš dlhú sekvenciu monotónnych znakov</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="250"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
       <source>No password supplied</source>
       <translation>Nebolo poskytnuté žiadne heslo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>Cannot obtain random numbers from the RNG device</source>
       <translation>Nedajú sa získať náhodné čísla zo zariadenia RNG</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="253"/>
       <source>Password generation failed - required entropy too low for settings</source>
       <translation>Generovanie hesla zlyhalo - potrebná entropia je príliš nízka na nastavenie</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="260"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
       <source>The password fails the dictionary check - %1</source>
       <translation>Heslo zlyhalo pri slovníkovej kontrole - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password fails the dictionary check</source>
       <translation>Heslo zlyhalo pri slovníkovej kontrole</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="266"/>
       <source>Unknown setting - %1</source>
       <translation>Neznáme nastavenie - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="270"/>
       <source>Unknown setting</source>
       <translation>Neznáme nastavenie</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="274"/>
       <source>Bad integer value of setting - %1</source>
       <translation>Nesprávna celočíselná hodnota nastavenia - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
       <source>Bad integer value</source>
       <translation>Nesprávna celočíselná hodnota</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="284"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
       <source>Setting %1 is not of integer type</source>
       <translation>Nastavenie %1 nie je celé číslo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="289"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="288"/>
       <source>Setting is not of integer type</source>
       <translation>Nastavenie nie je celé číslo</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="293"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="292"/>
       <source>Setting %1 is not of string type</source>
       <translation>Nastavenie %1 nie je reťazec</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="297"/>
       <source>Setting is not of string type</source>
       <translation>Nastavenie nie je reťazec</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="299"/>
       <source>Opening the configuration file failed</source>
       <translation>Zlyhalo otváranie konfiguračného súboru</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="302"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
       <source>The configuration file is malformed</source>
       <translation>Konfiguračný súbor je poškodený</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="304"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="303"/>
       <source>Fatal failure</source>
       <translation>Závažné zlyhanie</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
       <source>Unknown error</source>
       <translation>Neznáma chyba</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="377"/>
+      <location filename="../src/modules/users/Config.cpp" line="522"/>
       <source>Password is empty</source>
       <translation>Heslo je prázdne</translation>
     </message>
@@ -2531,67 +2537,67 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="77"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="78"/>
       <source>Gathering system information...</source>
       <translation>Zbierajú sa informácie o počítači...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="133"/>
       <source>Partitions</source>
       <translation>Oddiely</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
       <translation>Inštalácia distribúcie %1 &lt;strong&gt;popri&lt;/strong&gt; inom operačnom systéme.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="176"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
       <translation>&lt;strong&gt;Vymazanie&lt;/strong&gt; disku a inštalácia distribúcie %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="180"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
       <translation>&lt;strong&gt;Nahradenie&lt;/strong&gt; oddielu distribúciou %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="183"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="184"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
       <translation>&lt;strong&gt;Ručné&lt;/strong&gt; rozdelenie oddielov.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Inštalácia distribúcie %1 &lt;strong&gt;popri&lt;/strong&gt; inom operačnom systéme na disku &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
       <translation>&lt;strong&gt;Vymazanie&lt;/strong&gt; disku &lt;strong&gt;%2&lt;/strong&gt; (%3) a inštalácia distribúcie %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="210"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
       <translation>&lt;strong&gt;Nahradenie&lt;/strong&gt; oddielu na disku &lt;strong&gt;%2&lt;/strong&gt; (%3) distribúciou %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="216"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="217"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
       <translation>&lt;strong&gt;Ručné&lt;/strong&gt; rozdelenie oddielov na disku &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="226"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <translation>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="252"/>
       <source>Current:</source>
       <translation>Teraz:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="269"/>
       <source>After:</source>
       <translation>Potom:</translation>
     </message>
@@ -2636,12 +2642,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
       <translation>Spolu so zašifrovaným koreňovým oddielom bol nainštalovaný oddelený zavádzací oddiel, ktorý ale nie je zašifrovaný.&lt;br/&gt;&lt;br/&gt;S týmto typom inštalácie je ohrozená bezpečnosť, pretože dôležité systémové súbory sú uchovávané na nezašifrovanom oddieli.&lt;br/&gt;Ak si to želáte, môžete pokračovať, ale neskôr, počas spúšťania systému sa vykoná odomknutie systému súborov.&lt;br/&gt;Na zašifrovanie zavádzacieho oddielu prejdite späť a vytvorte ju znovu vybraním voľby &lt;strong&gt;Zašifrovať&lt;/strong&gt; v okne vytvárania oddielu.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="723"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="634"/>
       <source>has at least one disk device available.</source>
       <translation>má dostupné aspoň jedno diskové zariadenie.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="724"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="635"/>
       <source>There are no partitions to install on.</source>
       <translation>Neexistujú žiadne oddiely, na ktoré je možné vykonať inštaláciu.</translation>
     </message>
@@ -3442,28 +3448,28 @@ Výstup:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="143"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>Používateľská spätná väzba prostredia KDE</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="155"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Nastavuje sa používateľská spätná väzba prostredia KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="177"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="183"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Chyba pri nastavovaní používateľskej spätnej väzby prostredia KDE.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="178"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Nepodarilo sa správne nastaviť používateľskú spätnú väzbu prostredia KDE. Chyba %1 skriptu.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="184"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Nepodarilo sa správne nastaviť používateľskú spätnú väzbu prostredia KDE. Chyba %1 inštalátora Calamares.</translation>
     </message>
   </context>
   <context>
@@ -3510,7 +3516,7 @@ Výstup:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kliknutím sem neodošlete &lt;span style=" font-weight:600;"&gt;absolútne žiadne informácie&lt;/span&gt; o vašej inštalácii.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
@@ -3549,17 +3555,17 @@ Výstup:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="170"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="174"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Ak bude tento počítač používať viac ako jedna osoba, môžete nastaviť viacero účtov po inštalácii.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="176"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="180"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Ak bude tento počítač používať viac ako jedna osoba, môžete nastaviť viacero účtov po inštalácii.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="255"/>
       <source>Your passwords do not match!</source>
       <translation>Vaše heslá sa nezhodujú!</translation>
     </message>
@@ -3567,7 +3573,7 @@ Výstup:
   <context>
     <name>UsersViewStep</name>
     <message>
-      <location filename="../src/modules/users/UsersViewStep.cpp" line="77"/>
+      <location filename="../src/modules/users/UsersViewStep.cpp" line="58"/>
       <source>Users</source>
       <translation>Používatelia</translation>
     </message>
@@ -3793,13 +3799,15 @@ Výstup:
       <location filename="../src/modules/localeq/i18n.qml" line="55"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Jazyky&lt;/h1&gt; &lt;/br&gt;
+                    Miestne nastavenie systému ovplyvní jazyk a znakovú sadu pre niektoré prvky používateľského rozhrania príkazového riadku. Aktuálne nastavenie je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="115"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Miestne nastavenie&lt;/h1&gt; &lt;/br&gt;
+                    Miestne nastavenie systému ovplyvní formát čísel a dátumov. Aktuálne nastavenie je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="167"/>
@@ -3855,7 +3863,7 @@ Výstup:
   <context>
     <name>localeq</name>
     <message>
-      <location filename="../src/modules/localeq/localeq.qml" line="82"/>
+      <location filename="../src/modules/localeq/localeq.qml" line="90"/>
       <source>Change</source>
       <translation>Zmeniť</translation>
     </message>

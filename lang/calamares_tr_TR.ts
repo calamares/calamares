@@ -510,135 +510,135 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
       <translation>Biçim</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Depolama ay&amp;gıtı seç:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="157"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="955"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1069"/>
       <source>Current:</source>
       <translation>Geçerli:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
       <source>After:</source>
       <translation>Sonra:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="317"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Elle bölümleme&lt;/strong&gt;&lt;br/&gt;Bölümler oluşturabilir ve boyutlandırabilirsiniz.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="814"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>
 %2 ev bölümü olarak %1 yeniden kullanılsın.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Küçültmek için bir bölüm seçip alttaki çubuğu sürükleyerek boyutlandır&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="971"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="954"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1, %2MB'a küçülecek ve %4 için yeni bir %3MB disk bölümü oluşturulacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
       <source>Boot loader location:</source>
       <translation>Önyükleyici konumu:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1060"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Yükleyeceğin disk bölümünü seç&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1116"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Bu sistemde EFI disk bölümü bulunamadı. Lütfen geri dönün ve %1 kurmak için gelişmiş kurulum seçeneğini kullanın.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1125"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1 EFI sistem bölümü %2 başlatmak için kullanılacaktır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
       <source>EFI system partition:</source>
       <translation>EFI sistem bölümü:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1251"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtı üzerinde yüklü herhangi bir işletim sistemi tespit etmedik. Ne yapmak istersiniz?&lt;br/&gt;Yaptığınız değişiklikler disk bölümü üzerine uygulanmadan önce gözden geçirme fırsatınız olacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1311"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1256"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1294"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Diski sil&lt;/strong&gt;&lt;br/&gt;Seçili depolama bölümündeki mevcut veriler şu anda &lt;font color="red"&gt;silinecektir.&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1290"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1339"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Yanına yükleyin&lt;/strong&gt;&lt;br/&gt;Sistem yükleyici disk bölümünü küçülterek %1 için yer açacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1316"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1299"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1321"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Varolan bir disk bölümüne kur&lt;/strong&gt;&lt;br/&gt;Varolan bir disk bölümü üzerine %1 kur.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtı üzerinde %1 vardır. Ne yapmak istersiniz?&lt;br/&gt;Yaptığınız değişiklikler disk bölümü üzerine uygulanmadan önce gözden geçirme fırsatınız olacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtı üzerinde bir işletim sistemi yüklü. Ne yapmak istersiniz? &lt;br/&gt;Yaptığınız değişiklikler disk bölümü üzerine uygulanmadan önce gözden geçirme fırsatınız olacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtı üzerinde birden fazla işletim sistemi var. Ne yapmak istersiniz? &lt;br/&gt;Yaptığınız değişiklikler disk bölümü üzerine uygulanmadan önce gözden geçirme fırsatınız olacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1505"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1517"/>
       <source>No Swap</source>
       <translation>Takas alanı yok</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1510"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1522"/>
       <source>Reuse Swap</source>
       <translation>Yeniden takas alanı</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1525"/>
       <source>Swap (no Hibernate)</source>
       <translation>Takas Alanı (uyku modu yok)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1516"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1528"/>
       <source>Swap (with Hibernate)</source>
       <translation>Takas Alanı (uyku moduyla)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1519"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1531"/>
       <source>Swap to file</source>
       <translation>Takas alanı dosyası</translation>
     </message>
@@ -716,17 +716,17 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
       <translation>Alt klavye türevi olarak %1/%2 seçildi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="333"/>
+      <location filename="../src/modules/locale/Config.cpp" line="350"/>
       <source>Set timezone to %1/%2.</source>
       <translation>%1/%2 Zaman dilimi ayarla.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="348"/>
+      <location filename="../src/modules/locale/Config.cpp" line="388"/>
       <source>The system language will be set to %1.</source>
       <translation>Sistem dili %1 olarak ayarlanacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="355"/>
+      <location filename="../src/modules/locale/Config.cpp" line="395"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Sayılar ve günler için sistem yereli %1 olarak ayarlanacak.</translation>
     </message>
@@ -798,42 +798,42 @@ Kurulum devam edebilir fakat bazı özellikler devre dışı kalabilir.</transla
       <translation>&lt;h1&gt;%1 Sistem Yükleyiciye Hoşgeldiniz&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="125"/>
+      <location filename="../src/modules/users/Config.cpp" line="141"/>
       <source>Your username is too long.</source>
       <translation>Kullanıcı adınız çok uzun.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="131"/>
+      <location filename="../src/modules/users/Config.cpp" line="147"/>
       <source>'%1' is not allowed as username.</source>
       <translation>'%1' kullanıcı adı olarak izin verilmiyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="141"/>
+      <location filename="../src/modules/users/Config.cpp" line="154"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Kullanıcı adınız küçük harf veya alt çizgi ile başlamalıdır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="145"/>
+      <location filename="../src/modules/users/Config.cpp" line="158"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Sadece küçük harflere, sayılara, alt çizgi ve kısa çizgilere izin verilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="191"/>
+      <location filename="../src/modules/users/Config.cpp" line="204"/>
       <source>Your hostname is too short.</source>
       <translation>Makine adınız çok kısa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="195"/>
+      <location filename="../src/modules/users/Config.cpp" line="208"/>
       <source>Your hostname is too long.</source>
       <translation>Makine adınız çok uzun.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="201"/>
+      <location filename="../src/modules/users/Config.cpp" line="214"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>'%1' ana bilgisayar adı olarak kullanılamaz.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="211"/>
+      <location filename="../src/modules/users/Config.cpp" line="220"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Sadece harfler, rakamlar, alt çizgi ve kısa çizgi izin verilir.</translation>
     </message>
@@ -1254,7 +1254,8 @@ Kurulum devam edebilir fakat bazı özellikler devre dışı kalabilir.</transla
       <translation>Parolayı doğrula</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="113"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="123"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Her iki kutuya da aynı parolayı giriniz.</translation>
     </message>
@@ -1707,18 +1708,18 @@ Sistem güç kaynağına bağlı değil.</translation>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="132"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
       <source>Region:</source>
       <translation>Bölge:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="133"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
       <source>Zone:</source>
       <translation>Şehir:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="136"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="137"/>
       <source>&amp;Change...</source>
       <translation>&amp;Değiştir...</translation>
     </message>
@@ -1796,7 +1797,12 @@ Sistem güç kaynağına bağlı değil.</translation>
   <context>
     <name>Map</name>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="239"/>
+      <location filename="../src/modules/localeq/Map.qml" line="252"/>
+      <source>Timezone: %1</source>
+      <translation>Zaman dilimi: %1</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Map.qml" line="273"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
@@ -1959,247 +1965,247 @@ Sistem güç kaynağına bağlı değil.</translation>
   <context>
     <name>PWQ</name>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="57"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="56"/>
       <source>Password is too short</source>
       <translation>Şifre çok kısa</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="73"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="72"/>
       <source>Password is too long</source>
       <translation>Şifre çok uzun</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="149"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="148"/>
       <source>Password is too weak</source>
       <translation>Şifre çok zayıf</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="157"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="156"/>
       <source>Memory allocation error when setting '%1'</source>
       <translation>'%1' ayarlanırken bellek ayırma hatası</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="161"/>
       <source>Memory allocation error</source>
       <translation>Bellek ayırma hatası</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="163"/>
       <source>The password is the same as the old one</source>
       <translation>Şifre eski şifreyle aynı</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="165"/>
       <source>The password is a palindrome</source>
       <translation>Parola eskilerden birinin ters okunuşu olabilir</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="167"/>
       <source>The password differs with case changes only</source>
       <translation>Parola sadece vaka değişiklikleri ile farklılık gösterir</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="169"/>
       <source>The password is too similar to the old one</source>
       <translation>Parola eski parolaya çok benzer</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="171"/>
       <source>The password contains the user name in some form</source>
       <translation>Parola kullanıcı adını bir biçimde içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="173"/>
       <source>The password contains words from the real name of the user in some form</source>
       <translation>Şifre, kullanıcının gerçek adına ait kelimeleri bazı biçimde içerir</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="177"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
       <source>The password contains forbidden words in some form</source>
       <translation>Şifre, bazı biçimde yasak kelimeler içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="181"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
       <source>The password contains less than %1 digits</source>
       <translation>Şifre %1 den az hane içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
       <source>The password contains too few digits</source>
       <translation>Parola çok az basamak içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
       <source>The password contains less than %1 uppercase letters</source>
       <translation>Parola %1 den az büyük harf içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
       <source>The password contains too few uppercase letters</source>
       <translation>Parola çok az harf içermektedir</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="194"/>
       <source>The password contains less than %1 lowercase letters</source>
       <translation>Parola %1 den daha küçük harf içermektedir</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
       <source>The password contains too few lowercase letters</source>
       <translation>Parola çok az küçük harf içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
       <source>The password contains less than %1 non-alphanumeric characters</source>
       <translation>Şifre %1 den az alfasayısal olmayan karakter içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
       <source>The password contains too few non-alphanumeric characters</source>
       <translation>Parola çok az sayıda alfasayısal olmayan karakter içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
       <source>The password is shorter than %1 characters</source>
       <translation>Parola %1 karakterden kısa</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="212"/>
       <source>The password is too short</source>
       <translation>Parola çok kısa</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
       <source>The password is just rotated old one</source>
       <translation>Şifre önceden kullanıldı</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains less than %1 character classes</source>
       <translation>Parola %1 den az karakter sınıfı içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
       <source>The password does not contain enough character classes</source>
       <translation>Parola yeterli sayıda karakter sınıfı içermiyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="226"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains more than %1 same characters consecutively</source>
       <translation>Şifre, %1 den fazla aynı karakteri ardışık olarak içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="230"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
       <source>The password contains too many same characters consecutively</source>
       <translation>Parola ardışık olarak aynı sayıda çok karakter içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="233"/>
       <source>The password contains more than %1 characters of the same class consecutively</source>
       <translation>Parola, aynı sınıftan %1 den fazla karakter ardışık olarak içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="237"/>
       <source>The password contains too many characters of the same class consecutively</source>
       <translation>Parola aynı sınıfta çok fazla karakter içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
       <source>The password contains monotonic sequence longer than %1 characters</source>
       <translation>Şifre, %1 karakterden daha uzun monoton dizilim içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password contains too long of a monotonic character sequence</source>
       <translation>Parola çok uzun monoton karakter dizisi içeriyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="250"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
       <source>No password supplied</source>
       <translation>Parola sağlanmadı</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>Cannot obtain random numbers from the RNG device</source>
       <translation>RNG cihazından rastgele sayılar elde edemiyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="253"/>
       <source>Password generation failed - required entropy too low for settings</source>
       <translation>Şifre üretimi başarısız oldu - ayarlar için entropi çok düşük gerekli</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="260"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
       <source>The password fails the dictionary check - %1</source>
       <translation>Parola, sözlüğü kontrolü başarısız - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password fails the dictionary check</source>
       <translation>Parola, sözlük onayı başarısız</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="266"/>
       <source>Unknown setting - %1</source>
       <translation>Bilinmeyen ayar - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="270"/>
       <source>Unknown setting</source>
       <translation>Bilinmeyen ayar</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="274"/>
       <source>Bad integer value of setting - %1</source>
       <translation>Ayarın bozuk tam sayı değeri - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
       <source>Bad integer value</source>
       <translation>Yanlış tamsayı değeri</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="284"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
       <source>Setting %1 is not of integer type</source>
       <translation>%1 ayarı tamsayı tipinde değil</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="289"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="288"/>
       <source>Setting is not of integer type</source>
       <translation>Ayar tamsayı tipinde değil</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="293"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="292"/>
       <source>Setting %1 is not of string type</source>
       <translation>Ayar %1, dizgi tipi değil</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="297"/>
       <source>Setting is not of string type</source>
       <translation>Ayar, dizgi tipi değil</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="299"/>
       <source>Opening the configuration file failed</source>
       <translation>Yapılandırma dosyasını açma başarısız oldu</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="302"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
       <source>The configuration file is malformed</source>
       <translation>Yapılandırma dosyası hatalı biçimlendirildi</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="304"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="303"/>
       <source>Fatal failure</source>
       <translation>Ölümcül arıza</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
       <source>Unknown error</source>
       <translation>Bilinmeyen hata</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="377"/>
+      <location filename="../src/modules/users/Config.cpp" line="522"/>
       <source>Password is empty</source>
       <translation>Şifre boş</translation>
     </message>
@@ -2533,67 +2539,67 @@ Sistem güç kaynağına bağlı değil.</translation>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="77"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="78"/>
       <source>Gathering system information...</source>
       <translation>Sistem bilgileri toplanıyor...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="133"/>
       <source>Partitions</source>
       <translation>Disk Bölümleme</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
       <translation>Diğer işletim sisteminin &lt;strong&gt;yanına&lt;/strong&gt; %1 yükle.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="176"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
       <translation>Diski &lt;strong&gt;sil&lt;/strong&gt; ve %1 yükle.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="180"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
       <translation>%1 ile disk bölümünün üzerine &lt;strong&gt;yaz&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="183"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="184"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
       <translation>&lt;strong&gt;Manuel&lt;/strong&gt; bölümleme.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) diskindeki diğer işletim sisteminin &lt;strong&gt;yanına&lt;/strong&gt; %1 yükle.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) diski &lt;strong&gt;sil&lt;/strong&gt; ve %1 yükle.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="210"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) disk bölümünün %1 ile &lt;strong&gt;üzerine yaz&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="216"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="217"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt; (%2) disk bölümünü &lt;strong&gt;manuel&lt;/strong&gt; bölümle.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="226"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <translation>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="252"/>
       <source>Current:</source>
       <translation>Geçerli:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="269"/>
       <source>After:</source>
       <translation>Sonra:</translation>
     </message>
@@ -2639,12 +2645,12 @@ Sistem güç kaynağına bağlı değil.</translation>
 Önyükleme bölümünü şifrelemek için geri dönün ve bölüm oluşturma penceresinde &lt;strong&gt;Şifreleme&lt;/strong&gt;seçeneği ile yeniden oluşturun.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="723"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="634"/>
       <source>has at least one disk device available.</source>
       <translation>Mevcut en az bir disk aygıtı var.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="724"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="635"/>
       <source>There are no partitions to install on.</source>
       <translation>Kurulacak disk bölümü yok.</translation>
     </message>
@@ -3554,17 +3560,17 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="170"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="174"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Bu bilgisayarı birden fazla kişi kullanacaksa, kurulumdan sonra birden fazla kullanıcı hesabı oluşturabilirsiniz.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="176"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="180"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Bu bilgisayarı birden fazla kişi kullanacaksa, kurulum bittikten sonra birden fazla kullanıcı hesabı oluşturabilirsiniz.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="255"/>
       <source>Your passwords do not match!</source>
       <translation>Parolanız eşleşmiyor!</translation>
     </message>
@@ -3572,7 +3578,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
   <context>
     <name>UsersViewStep</name>
     <message>
-      <location filename="../src/modules/users/UsersViewStep.cpp" line="77"/>
+      <location filename="../src/modules/users/UsersViewStep.cpp" line="58"/>
       <source>Users</source>
       <translation>Kullanıcı Tercihleri</translation>
     </message>
@@ -3864,7 +3870,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
   <context>
     <name>localeq</name>
     <message>
-      <location filename="../src/modules/localeq/localeq.qml" line="82"/>
+      <location filename="../src/modules/localeq/localeq.qml" line="90"/>
       <source>Change</source>
       <translation>Değiştir</translation>
     </message>

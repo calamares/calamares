@@ -1795,7 +1795,7 @@ The installer will quit and all changes will be lost.</translation>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="252"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished">Timezone: %1</translation>
+      <translation>Timezone: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="273"/>

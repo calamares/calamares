@@ -510,134 +510,134 @@ The installer will quit and all changes will be lost.</source>
       <translation>ഫോം</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>Select storage de&amp;vice:</source>
       <translation>സംഭരണിയ്ക്കുള്ള ഉപകരണം തിരഞ്ഞെടുക്കൂ:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="157"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="955"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1069"/>
       <source>Current:</source>
       <translation>നിലവിലുള്ളത്:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
       <source>After:</source>
       <translation>ശേഷം:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="317"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;സ്വമേധയാ ഉള്ള പാർട്ടീഷനിങ്&lt;/strong&gt;&lt;br/&gt;നിങ്ങൾക്ക് സ്വയം പാർട്ടീഷനുകൾ സൃഷ്ടിക്കാനോ വലുപ്പം മാറ്റാനോ കഴിയും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="814"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>%2 നുള്ള ഹോം പാർട്ടീഷനായി %1 വീണ്ടും ഉപയോഗിക്കൂ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;ചുരുക്കുന്നതിന് ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കുക, എന്നിട്ട് വലുപ്പം മാറ്റാൻ ചുവടെയുള്ള ബാർ വലിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="971"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="954"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 %2MiB ആയി ചുരുങ്ങുകയും %4 ന് ഒരു പുതിയ %3MiB പാർട്ടീഷൻ സൃഷ്ടിക്കുകയും ചെയ്യും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
       <source>Boot loader location:</source>
       <translation>ബൂട്ട് ലോഡറിന്റെ സ്ഥാനം:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1060"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;ഇൻസ്റ്റാൾ ചെയ്യാനായി ഒരു പാർട്ടീഷൻ തിരഞ്ഞെടുക്കുക&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1116"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>ഈ സിസ്റ്റത്തിൽ എവിടെയും ഒരു ഇ.എഫ്.ഐ സിസ്റ്റം പാർട്ടീഷൻ കണ്ടെത്താനായില്ല. %1 സജ്ജീകരിക്കുന്നതിന് ദയവായി തിരികെ പോയി മാനുവൽ പാർട്ടീഷനിംഗ് ഉപയോഗിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1125"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>%1 ലെ ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ %2 ആരംഭിക്കുന്നതിന് ഉപയോഗിക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
       <source>EFI system partition:</source>
       <translation>ഇഎഫ്ഐ സിസ്റ്റം പാർട്ടീഷൻ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1251"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>ഈ ഡറ്റോറേജ്‌ ഉപകരണത്തിൽ ഒരു ഓപ്പറേറ്റിംഗ് സിസ്റ്റം ഉണ്ടെന്ന് തോന്നുന്നില്ല. നിങ്ങൾ എന്താണ് ചെയ്യാൻ ആഗ്രഹിക്കുന്നത്?&lt;br/&gt;സ്റ്റോറേജ് ഉപകരണത്തിൽ എന്തെങ്കിലും മാറ്റം വരുത്തുന്നതിനുമുമ്പ് നിങ്ങൾക്ക് നിങ്ങളുടെ ചോയ്‌സുകൾ അവലോകനം ചെയ്യാനും സ്ഥിരീകരിക്കാനും കഴിയും. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1311"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1256"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1294"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;ഡിസ്ക് മായ്ക്കൂ&lt;/strong&gt;&lt;br/&gt;ഈ പ്രവൃത്തി തെരെഞ്ഞെടുത്ത സ്റ്റോറേജ് ഉപകരണത്തിലെ എല്ലാ ഡാറ്റയും &lt;font color="red"&gt;മായ്‌ച്ച്കളയും&lt;/font&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1290"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1339"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;ഇതിനൊപ്പം ഇൻസ്റ്റാൾ ചെയ്യുക&lt;/strong&gt;&lt;br/&gt;%1 ന് ഇടം നൽകുന്നതിന് ഇൻസ്റ്റാളർ ഒരു പാർട്ടീഷൻ ചുരുക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1316"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1299"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1321"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;ഒരു പാർട്ടീഷൻ പുനഃസ്ഥാപിക്കുക&lt;/strong&gt;&lt;br/&gt;ഒരു പാർട്ടീഷന് %1 ഉപയോഗിച്ച് പുനഃസ്ഥാപിക്കുന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>ഈ സ്റ്റോറേജ് ഉപകരണത്തിൽ %1 ഉണ്ട്.നിങ്ങൾ എന്താണ് ചെയ്യാൻ ആഗ്രഹിക്കുന്നത്?&lt;br/&gt;സ്റ്റോറേജ് ഉപകരണത്തിൽ എന്തെങ്കിലും മാറ്റം വരുത്തുന്നതിനുമുമ്പ് നിങ്ങളുടെ ചോയ്‌സുകൾ അവലോകനം ചെയ്യാനും സ്ഥിരീകരിക്കാനും നിങ്ങൾക്ക് കഴിയും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>ഈ സ്റ്റോറേജ് ഉപകരണത്തിൽ ഇതിനകം ഒരു ഓപ്പറേറ്റിംഗ് സിസ്റ്റം ഉണ്ട്. നിങ്ങൾ എന്താണ് ചെയ്യാൻ ആഗ്രഹിക്കുന്നത്?&lt;br/&gt;സ്റ്റോറേജ് ഉപകരണത്തിൽ എന്തെങ്കിലും മാറ്റം വരുത്തുന്നതിനുമുമ്പ് നിങ്ങൾക്ക് നിങ്ങളുടെ ചോയ്‌സുകൾ അവലോകനം ചെയ്യാനും സ്ഥിരീകരിക്കാനും കഴിയും. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>ഈ സ്റ്റോറേജ് ഉപകരണത്തിൽ ഒന്നിലധികം ഓപ്പറേറ്റിംഗ് സിസ്റ്റങ്ങളുണ്ട്. നിങ്ങൾ എന്താണ് ചെയ്യാൻ ആഗ്രഹിക്കുന്നത്?&lt;br/&gt;സ്റ്റോറേജ് ഉപകരണത്തിൽ എന്തെങ്കിലും മാറ്റം വരുത്തുന്നതിനുമുമ്പ് നിങ്ങൾക്ക് നിങ്ങളുടെ ചോയ്‌സുകൾ അവലോകനം ചെയ്യാനും സ്ഥിരീകരിക്കാനും കഴിയും. </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1505"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1517"/>
       <source>No Swap</source>
       <translation>സ്വാപ്പ് വേണ്ട</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1510"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1522"/>
       <source>Reuse Swap</source>
       <translation>സ്വാപ്പ് വീണ്ടും ഉപയോഗിക്കൂ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1525"/>
       <source>Swap (no Hibernate)</source>
       <translation>സ്വാപ്പ് (ഹൈബർനേഷൻ ഇല്ല)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1516"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1528"/>
       <source>Swap (with Hibernate)</source>
       <translation>സ്വാപ്പ് (ഹൈബർനേഷനോട് കൂടി)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1519"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1531"/>
       <source>Swap to file</source>
       <translation>ഫയലിലേക്ക് സ്വാപ്പ് ചെയ്യുക</translation>
     </message>
@@ -715,17 +715,17 @@ The installer will quit and all changes will be lost.</source>
       <translation>കീബോർഡ് വിന്യാസം %1%2 എന്നതായി ക്രമീകരിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="333"/>
+      <location filename="../src/modules/locale/Config.cpp" line="350"/>
       <source>Set timezone to %1/%2.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="348"/>
+      <location filename="../src/modules/locale/Config.cpp" line="388"/>
       <source>The system language will be set to %1.</source>
       <translation>സിസ്റ്റം ഭാഷ %1 ആയി സജ്ജമാക്കും.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="355"/>
+      <location filename="../src/modules/locale/Config.cpp" line="395"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>സംഖ്യ &amp; തീയതി രീതി %1 ആയി ക്രമീകരിക്കും.</translation>
     </message>
@@ -795,42 +795,42 @@ The installer will quit and all changes will be lost.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="125"/>
+      <location filename="../src/modules/users/Config.cpp" line="141"/>
       <source>Your username is too long.</source>
       <translation>നിങ്ങളുടെ ഉപയോക്തൃനാമം വളരെ വലുതാണ്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="131"/>
+      <location filename="../src/modules/users/Config.cpp" line="147"/>
       <source>'%1' is not allowed as username.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="141"/>
+      <location filename="../src/modules/users/Config.cpp" line="154"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>താങ്കളുടെ ഉപയോക്തൃനാമം ഒരു ചെറിയ അക്ഷരമോ അണ്ടർസ്കോറോ ഉപയോഗിച്ച് വേണം തുടങ്ങാൻ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="145"/>
+      <location filename="../src/modules/users/Config.cpp" line="158"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>ചെറിയ അക്ഷരങ്ങൾ, അക്കങ്ങൾ, അണ്ടർസ്കോർ, ഹൈഫൺ എന്നിവയേ അനുവദിച്ചിട്ടുള്ളൂ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="191"/>
+      <location filename="../src/modules/users/Config.cpp" line="204"/>
       <source>Your hostname is too short.</source>
       <translation> നിങ്ങളുടെ ഹോസ്റ്റ്നാമം വളരെ ചെറുതാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="195"/>
+      <location filename="../src/modules/users/Config.cpp" line="208"/>
       <source>Your hostname is too long.</source>
       <translation>നിങ്ങളുടെ ഹോസ്റ്റ്നാമം ദൈർഘ്യമേറിയതാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="201"/>
+      <location filename="../src/modules/users/Config.cpp" line="214"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="211"/>
+      <location filename="../src/modules/users/Config.cpp" line="220"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>അക്ഷരങ്ങൾ, അക്കങ്ങൾ, അണ്ടർസ്കോർ, ഹൈഫൺ എന്നിവയേ അനുവദിച്ചിട്ടുള്ളൂ.</translation>
     </message>
@@ -1251,7 +1251,8 @@ The installer will quit and all changes will be lost.</source>
       <translation>രഹസ്യവാചകം സ്ഥിരീകരിക്കുക</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="113"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="123"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>രണ്ട് പെട്ടികളിലും ഒരേ രഹസ്യവാചകം നല്‍കുക,</translation>
     </message>
@@ -1703,18 +1704,18 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="132"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
       <source>Region:</source>
       <translation>പ്രദേശം:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="133"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
       <source>Zone:</source>
       <translation>മേഖല:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="136"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="137"/>
       <source>&amp;Change...</source>
       <translation>മാറ്റുക (&amp;C)...</translation>
     </message>
@@ -1792,7 +1793,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>Map</name>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="239"/>
+      <location filename="../src/modules/localeq/Map.qml" line="252"/>
+      <source>Timezone: %1</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Map.qml" line="273"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
@@ -1953,247 +1959,247 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PWQ</name>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="57"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="56"/>
       <source>Password is too short</source>
       <translation>രഹസ്യവാക്ക് വളരെ ചെറുതാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="73"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="72"/>
       <source>Password is too long</source>
       <translation>രഹസ്യവാക്ക് വളരെ വലുതാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="149"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="148"/>
       <source>Password is too weak</source>
       <translation>രഹസ്യവാക്ക് വളരെ ദുർബലമാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="157"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="156"/>
       <source>Memory allocation error when setting '%1'</source>
       <translation>'%1' ക്രമീക്കരിക്കുന്നതിൽ മെമ്മറി പങ്കുവയ്ക്കൽ പിഴവ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="161"/>
       <source>Memory allocation error</source>
       <translation>മെമ്മറി വിന്യസിക്കുന്നതിൽ പിഴവ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="163"/>
       <source>The password is the same as the old one</source>
       <translation>രഹസ്യവാക്ക് പഴയയതുതന്നെ ആണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="165"/>
       <source>The password is a palindrome</source>
       <translation> രഹസ്യവാക്ക് ഒരു അനുലോമവിലോമപദമാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="167"/>
       <source>The password differs with case changes only</source>
       <translation>പാസ്‌വേഡ് അക്ഷരങ്ങളുടെ കേസ് മാറ്റങ്ങളിൽ മാത്രം വ്യത്യാസപ്പെട്ടിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="169"/>
       <source>The password is too similar to the old one</source>
       <translation>രഹസ്യവാക്ക് പഴയതിനോട് വളരെ സമാനമാണ് </translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="171"/>
       <source>The password contains the user name in some form</source>
       <translation>രഹസ്യവാക്ക് ഏതെങ്കിലും രൂപത്തിൽ ഉപയോക്തൃനാമം അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="173"/>
       <source>The password contains words from the real name of the user in some form</source>
       <translation>രഹസ്യവാക്കിൽഏതെങ്കിലും രൂപത്തിൽ ഉപയോക്താവിന്റെ യഥാർത്ഥ പേരിൽ നിന്നുള്ള വാക്കുകൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="177"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
       <source>The password contains forbidden words in some form</source>
       <translation>രഹസ്യവാക്കിൽ ഏതെങ്കിലും രൂപത്തിൽ വിലക്കപ്പെട്ട വാക്കുകൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="181"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
       <source>The password contains less than %1 digits</source>
       <translation>രഹസ്യവാക്ക് %1 അക്കത്തിൽ കുറവാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
       <source>The password contains too few digits</source>
       <translation>രഹസ്യവാക്കിൽ വളരെ കുറച്ച് അക്കങ്ങൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
       <source>The password contains less than %1 uppercase letters</source>
       <translation>രഹസ്യവാക്കിൽ %1 വലിയക്ഷരങ്ങൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
       <source>The password contains too few uppercase letters</source>
       <translation>രഹസ്യവാക്കിൽ വളരെ കുറച്ചു വലിയക്ഷരങ്ങൾ മാത്രമേ അടങ്ങിയിട്ടുള്ളു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="194"/>
       <source>The password contains less than %1 lowercase letters</source>
       <translation>രഹസ്യവാക്കിൽ %1 -ൽ താഴെ ചെറിയ അക്ഷരങ്ങൾ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
       <source>The password contains too few lowercase letters</source>
       <translation>രഹസ്യവാക്കിൽ വളരെ കുറച്ചു ചെറിയക്ഷരങ്ങൾ മാത്രമേ അടങ്ങിയിട്ടുള്ളു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
       <source>The password contains less than %1 non-alphanumeric characters</source>
       <translation>രഹസ്യവാക്കിൽ ആൽഫാന്യൂമെറിക് ഇതര പ്രതീകങ്ങൾ %1 -ൽ കുറവാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
       <source>The password contains too few non-alphanumeric characters</source>
       <translation> രഹസ്യവാക്കിൽ ആൽഫാന്യൂമെറിക് ഇതര പ്രതീകങ്ങൾ വളരെ കുറവാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
       <source>The password is shorter than %1 characters</source>
       <translation>പാസ്‌വേഡ് %1 പ്രതീകങ്ങളേക്കാൾ ചെറുതാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="212"/>
       <source>The password is too short</source>
       <translation>രഹസ്യവാക്ക് വളരെ ചെറുതാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
       <source>The password is just rotated old one</source>
       <translation>രഹസ്യവാക്ക് പഴയതുതന്നെ തിരിച്ചിട്ടതാണ് </translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains less than %1 character classes</source>
       <translation>പാസ്‌വേഡിൽ പ്രതീക ക്ലാസുകൾ %1 ൽ കുറവാണ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
       <source>The password does not contain enough character classes</source>
       <translation>രഹസ്യവാക്കിൽ ആവശ്യത്തിനു അക്ഷരങ്ങൾ ഇല്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="226"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains more than %1 same characters consecutively</source>
       <translation>രഹസ്സ്യവാക്കിൽ അടുത്തടുത്തായി ഒരേ പ്രതീകം %1 കൂടുതൽ തവണ അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="230"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
       <source>The password contains too many same characters consecutively</source>
       <translation>രഹസ്സ്യവാക്കിൽ അടുത്തടുത്തായി ഒരേ പ്രതീകം ഒരുപാട് തവണ അടങ്ങിയിരിക്കുന്നു.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="233"/>
       <source>The password contains more than %1 characters of the same class consecutively</source>
       <translation>രഹസ്യവാക്കിൽ %1 തവണ ഒരേ തരം അക്ഷരം ആവർത്തിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="237"/>
       <source>The password contains too many characters of the same class consecutively</source>
       <translation>രഹസ്യവാക്കിൽ ഒരുപാട് തവണ ഒരേ തരം അക്ഷരം ആവർത്തിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
       <source>The password contains monotonic sequence longer than %1 characters</source>
       <translation>പാസ്‌വേഡിൽ %1 പ്രതീകങ്ങളേക്കാൾ ദൈർഘ്യമുള്ള മോണോടോണിക് ശ്രേണി അടങ്ങിയിരിക്കുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password contains too long of a monotonic character sequence</source>
       <translation>പാസ്‌വേഡിൽ വളരെ ദൈർഘ്യമുള്ള ഒരു മോണോടോണിക് പ്രതീക ശ്രേണിയുണ്ട്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="250"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
       <source>No password supplied</source>
       <translation>രഹസ്യവാക്ക് ഒന്നും നല്‍കിയിട്ടില്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>Cannot obtain random numbers from the RNG device</source>
       <translation>RNG ഉപകരണത്തിൽ നിന്ന് ആകസ്‌മിക സംഖ്യകൾ എടുക്കാൻ പറ്റുന്നില്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="253"/>
       <source>Password generation failed - required entropy too low for settings</source>
       <translation>രഹസ്യവാക്ക് സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു - ആവശ്യത്തിനു entropy ഇല്ല.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="260"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
       <source>The password fails the dictionary check - %1</source>
       <translation>രഹസ്യവാക്ക് നിഘണ്ടു പരിശോധനയിൽ പരാജയപ്പെടുന്നു - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password fails the dictionary check</source>
       <translation>രഹസ്യവാക്ക് നിഘണ്ടു പരിശോധനയിൽ പരാജയപ്പെടുന്നു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="266"/>
       <source>Unknown setting - %1</source>
       <translation>അജ്ഞാതമായ ക്രമീകരണം - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="270"/>
       <source>Unknown setting</source>
       <translation>അപരിചിതമായ സജ്ജീകരണം</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="274"/>
       <source>Bad integer value of setting - %1</source>
       <translation>ക്രമീകരണത്തിന്റെ ശരിയല്ലാത്ത സംഖ്യാമൂല്യം - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
       <source>Bad integer value</source>
       <translation>തെറ്റായ സംഖ്യ</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="284"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
       <source>Setting %1 is not of integer type</source>
       <translation>%1 സജ്ജീകരണം സംഖ്യയല്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="289"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="288"/>
       <source>Setting is not of integer type</source>
       <translation>സജ്ജീകരണം സംഖ്യയല്ല</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="293"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="292"/>
       <source>Setting %1 is not of string type</source>
       <translation>%1 സജ്ജീകരണം ഒരു വാക്കല്ലാ</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="297"/>
       <source>Setting is not of string type</source>
       <translation>സജ്ജീകരണം ഒരു വാക്കല്ലാ</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="299"/>
       <source>Opening the configuration file failed</source>
       <translation>ക്രമീകരണ ഫയൽ തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="302"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
       <source>The configuration file is malformed</source>
       <translation>ക്രമീകരണ ഫയൽ പാഴാണു</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="304"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="303"/>
       <source>Fatal failure</source>
       <translation>അപകടകരമായ പിഴവ്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
       <source>Unknown error</source>
       <translation>അപരിചിതമായ പിശക്</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="377"/>
+      <location filename="../src/modules/users/Config.cpp" line="522"/>
       <source>Password is empty</source>
       <translation>രഹസ്യവാക്ക് ശൂന്യമാണ്</translation>
     </message>
@@ -2527,67 +2533,67 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="77"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="78"/>
       <source>Gathering system information...</source>
       <translation>സിസ്റ്റത്തെക്കുറിച്ചുള്ള വിവരങ്ങൾ ശേഖരിക്കുന്നു...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="133"/>
       <source>Partitions</source>
       <translation>പാർട്ടീഷനുകൾ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
       <translation>മറ്റൊരു ഓപ്പറേറ്റിംഗ് സിസ്റ്റത്തിനൊപ്പം %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="176"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
       <translation>ഡിസ്ക് &lt;strong&gt;മായ്ക്കുക&lt;/strong&gt;എന്നിട്ട് %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="180"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
       <translation>ഒരു പാർട്ടീഷൻ %1 ഉപയോഗിച്ച് &lt;strong&gt;പുനഃസ്ഥാപിക്കുക.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="183"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="184"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
       <translation>&lt;strong&gt;സ്വമേധയാ&lt;/strong&gt; ഉള്ള പാർട്ടീഷനിങ്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>%2 (%3) ഡിസ്കിൽ മറ്റൊരു ഓപ്പറേറ്റിംഗ് സിസ്റ്റത്തിനൊപ്പം %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
       <translation>ഡിസ്ക് &lt;strong&gt;%2&lt;/strong&gt; (%3) &lt;strong&gt;മായ്‌ച്ച് &lt;/strong&gt; %1 ഇൻസ്റ്റാൾ ചെയ്യുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="210"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) ഡിസ്കിലെ ഒരു പാർട്ടീഷൻ %1 ഉപയോഗിച്ച്  &lt;strong&gt;മാറ്റിസ്ഥാപിക്കുക&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="216"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="217"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
       <translation>&lt;strong&gt;%1 &lt;/strong&gt;(%2) ഡിസ്കിലെ &lt;strong&gt;സ്വമേധയാ&lt;/strong&gt; പാർട്ടീഷനിംഗ്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="226"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <translation>ഡിസ്ക് &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="252"/>
       <source>Current:</source>
       <translation>നിലവിലുള്ളത്:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="269"/>
       <source>After:</source>
       <translation>ശേഷം:</translation>
     </message>
@@ -2632,12 +2638,12 @@ The installer will quit and all changes will be lost.</source>
       <translation>എൻക്രിപ്റ്റ് ചെയ്ത ഒരു റൂട്ട് പാർട്ടീഷനോടൊപ്പം ഒരു വേർപെടുത്തിയ ബൂട്ട് പാർട്ടീഷനും ക്രമീകരിക്കപ്പെട്ടിരുന്നു, എന്നാൽ ബൂട്ട് പാർട്ടീഷൻ എൻക്രിപ്റ്റ് ചെയ്യപ്പെട്ടതല്ല.&lt;br/&gt;&lt;br/&gt;ഇത്തരം സജ്ജീകരണത്തിന്റെ സുരക്ഷ ഉത്കണ്ഠാജനകമാണ്, എന്തെന്നാൽ പ്രധാനപ്പെട്ട സിസ്റ്റം ഫയലുകൾ ഒരു എൻക്രിപ്റ്റ് ചെയ്യപ്പെടാത്ത പാർട്ടീഷനിലാണ് സൂക്ഷിച്ചിട്ടുള്ളത്.&lt;br/&gt; താങ്കൾക്ക് വേണമെങ്കിൽ തുടരാം, പക്ഷേ ഫയൽ സിസ്റ്റം തുറക്കൽ സിസ്റ്റം ആരംഭപ്രക്രിയയിൽ വൈകിയേ സംഭവിക്കൂ.&lt;br/&gt;ബൂട്ട് പാർട്ടീഷൻ എൻക്രിപ്റ്റ് ചെയ്യാനായി, തിരിച്ചു പോയി പാർട്ടീഷൻ നിർമ്മാണ ജാലകത്തിൽ &lt;strong&gt;എൻക്രിപ്റ്റ്&lt;/strong&gt; തിരഞ്ഞെടുത്തുകൊണ്ട് അത് വീണ്ടും നിർമ്മിക്കുക.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="723"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="634"/>
       <source>has at least one disk device available.</source>
       <translation>ഒരു ഡിസ്ക് ഡിവൈസെങ്കിലും ലഭ്യമാണ്.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="724"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="635"/>
       <source>There are no partitions to install on.</source>
       <translation type="unfinished"/>
     </message>
@@ -3542,17 +3548,17 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="170"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="174"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;ഒന്നിലധികം ആളുകൾ ഈ കമ്പ്യൂട്ടർ ഉപയോഗിക്കുമെങ്കിൽ, താങ്കൾക്ക് സജ്ജീകരണത്തിന് ശേഷം നിരവധി അക്കൗണ്ടുകൾ സൃഷ്ടിക്കാം.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="176"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="180"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;ഒന്നിലധികം ആളുകൾ ഈ കമ്പ്യൂട്ടർ ഉപയോഗിക്കുമെങ്കിൽ, താങ്കൾക്ക് ഇൻസ്റ്റളേഷന് ശേഷം നിരവധി അക്കൗണ്ടുകൾ സൃഷ്ടിക്കാം.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="255"/>
       <source>Your passwords do not match!</source>
       <translation>നിങ്ങളുടെ പാസ്‌വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല!</translation>
     </message>
@@ -3560,7 +3566,7 @@ Output:
   <context>
     <name>UsersViewStep</name>
     <message>
-      <location filename="../src/modules/users/UsersViewStep.cpp" line="77"/>
+      <location filename="../src/modules/users/UsersViewStep.cpp" line="58"/>
       <source>Users</source>
       <translation>ഉപയോക്താക്കൾ</translation>
     </message>
@@ -3838,7 +3844,7 @@ Output:
   <context>
     <name>localeq</name>
     <message>
-      <location filename="../src/modules/localeq/localeq.qml" line="82"/>
+      <location filename="../src/modules/localeq/localeq.qml" line="90"/>
       <source>Change</source>
       <translation type="unfinished"/>
     </message>

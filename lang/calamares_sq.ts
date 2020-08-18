@@ -510,134 +510,134 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>Formular</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Përzgjidhni &amp;pajisje depozitimi:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="157"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="955"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1069"/>
       <source>Current:</source>
       <translation>E tanishmja:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="158"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
       <source>After:</source>
       <translation>Më Pas:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="317"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Pjesëzim dorazi&lt;/strong&gt;&lt;br/&gt;Pjesët mund t’i krijoni dhe ripërmasoni ju vetë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="831"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="814"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Ripërdore %1 si pjesën shtëpi për %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Përzgjidhni një pjesë që të zvogëlohet, mandej tërhiqni shtyllën e poshtme që ta ripërmasoni&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="971"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="954"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 do të zvogëlohet në %2MiB dhe për %4 do të krijohet një pjesë e re %3MiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
       <source>Boot loader location:</source>
       <translation>Vendndodhje ngarkuesi nisjesh:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1060"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Përzgjidhni një pjesë ku të instalohet&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1116"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Në këtë sistem s’gjendet gjëkundi një pjesë EFI sistemi. Ju lutemi, kthehuni mbrapsht dhe përdorni pjesëtimin dorazi që të rregulloni %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1125"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>Për nisjen e %2 do të përdoret pjesa EFI e sistemit te %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1150"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
       <source>EFI system partition:</source>
       <translation>Pjesë EFI sistemi:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1251"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Kjo pajisje depozitimi përmban %1 në të. Ç’do të donit të bënit?&lt;br/&gt;Do të jeni në gjendje të rishqyrtoni dhe ripohoni zgjedhjet tuaja, para se te pajisja e depozitimit të bëhet çfarëdo ndryshimi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1311"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1360"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1256"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1294"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Fshije diskun&lt;/strong&gt;&lt;br/&gt;Kështu do të &lt;font color=\"red\"&gt;fshihen&lt;/font&gt; krejt të dhënat të pranishme tani në pajisjen e përzgjedhur.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1277"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1330"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1356"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1290"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1339"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Instaloje në krah të tij&lt;/strong&gt;&lt;br/&gt;Instaluesi do të zvogëlojë një pjesë për të bërë vend për %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1281"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1316"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1338"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1364"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1299"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1321"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Zëvendëso një pjesë&lt;/strong&gt;&lt;br/&gt;Zëvendëson një pjesë me %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1301"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Kjo pajisje depozitimi përmban %1 në të. Ç’do të donit të bënit?&lt;br/&gt;Do të jeni në gjendje të rishqyrtoni dhe ripohoni zgjedhjet tuaja, para se te pajisja e depozitimit të bëhet çfarëdo ndryshimi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1325"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Kjo pajisje depozitimi ka tashmë një sistem operativ në të. Ç’do të donit të bënit?&lt;br/&gt;Do të jeni në gjendje të rishqyrtoni dhe ripohoni zgjedhjet tuaja, para se te pajisja e depozitimit të bëhet çfarëdo ndryshimi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Kjo pajisje depozitimi ka disa sisteme operativë në të. Ç’do të donit të bënit?&lt;br/&gt;Do të jeni në gjendje të rishqyrtoni dhe ripohoni zgjedhjet tuaja, para se te pajisja e depozitimit të bëhet çfarëdo ndryshimi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1505"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1517"/>
       <source>No Swap</source>
       <translation>Pa Swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1510"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1522"/>
       <source>Reuse Swap</source>
       <translation>Ripërdor Swap-in</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1525"/>
       <source>Swap (no Hibernate)</source>
       <translation>Swap (pa Hibernate)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1516"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1528"/>
       <source>Swap (with Hibernate)</source>
       <translation>Swap (me Hibernate)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1519"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1531"/>
       <source>Swap to file</source>
       <translation>Swap në kartelë</translation>
     </message>
@@ -715,17 +715,17 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>Si model tastiere do të caktohet %1%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="333"/>
+      <location filename="../src/modules/locale/Config.cpp" line="350"/>
       <source>Set timezone to %1/%2.</source>
       <translation>Si zonë kohore cakto %1/%2</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="348"/>
+      <location filename="../src/modules/locale/Config.cpp" line="388"/>
       <source>The system language will be set to %1.</source>
       <translation>Si gjuhë sistemi do të caktohet %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="355"/>
+      <location filename="../src/modules/locale/Config.cpp" line="395"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Si vendore për numra dhe data do të vihet %1.</translation>
     </message>
@@ -795,42 +795,42 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>&lt;h1&gt;Mirë se vini te instaluesi i %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="125"/>
+      <location filename="../src/modules/users/Config.cpp" line="141"/>
       <source>Your username is too long.</source>
       <translation>Emri juaj i përdoruesit është shumë i gjatë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="131"/>
+      <location filename="../src/modules/users/Config.cpp" line="147"/>
       <source>'%1' is not allowed as username.</source>
       <translation>'%1' s’lejohet si emër përdoruesi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="141"/>
+      <location filename="../src/modules/users/Config.cpp" line="154"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Emri juaj i përdoruesit duhet të fillojë me një shkronjë të vogël ose nënvijë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="145"/>
+      <location filename="../src/modules/users/Config.cpp" line="158"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Lejohen vetëm shkronja të vogla, numra, nënvijë dhe vijë ndarëse.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="191"/>
+      <location filename="../src/modules/users/Config.cpp" line="204"/>
       <source>Your hostname is too short.</source>
       <translation>Strehëemri juaj është shumë i shkurtër.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="195"/>
+      <location filename="../src/modules/users/Config.cpp" line="208"/>
       <source>Your hostname is too long.</source>
       <translation>Strehëemri juaj është shumë i gjatë.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="201"/>
+      <location filename="../src/modules/users/Config.cpp" line="214"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>'%1' s’lejohet si strehëemër.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="211"/>
+      <location filename="../src/modules/users/Config.cpp" line="220"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Lejohen vetëm shkronja, numra, nënvijë dhe vijë ndarëse.</translation>
     </message>
@@ -1251,7 +1251,8 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>Ripohoni frazëkalimin</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="113"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="123"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Ju lutemi, jepni të njëjtin frazëkalim në të dy kutizat.</translation>
     </message>
@@ -1703,18 +1704,18 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="132"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
       <source>Region:</source>
       <translation>Rajon:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="133"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
       <source>Zone:</source>
       <translation>Zonë:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="136"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="137"/>
       <source>&amp;Change...</source>
       <translation>&amp;Ndryshojeni…</translation>
     </message>
@@ -1792,7 +1793,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>Map</name>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="239"/>
+      <location filename="../src/modules/localeq/Map.qml" line="252"/>
+      <source>Timezone: %1</source>
+      <translation>Zonë kohore: %1</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Map.qml" line="273"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
@@ -1953,247 +1959,247 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>PWQ</name>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="57"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="56"/>
       <source>Password is too short</source>
       <translation>Fjalëkalimi është shumë i shkurtër</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="73"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="72"/>
       <source>Password is too long</source>
       <translation>Fjalëkalimi është shumë i gjatë</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="149"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="148"/>
       <source>Password is too weak</source>
       <translation>Fjalëkalimi është shumë i dobët</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="157"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="156"/>
       <source>Memory allocation error when setting '%1'</source>
       <translation>Gabim caktimi kujtese kur rregullohej '%1'</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="161"/>
       <source>Memory allocation error</source>
       <translation>Gabim caktimi kujtese</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="163"/>
       <source>The password is the same as the old one</source>
       <translation>Fjalëkalimi është i njëjtë me të vjetrin</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="165"/>
       <source>The password is a palindrome</source>
       <translation>Fjalëkalimi është një palindromë</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="167"/>
       <source>The password differs with case changes only</source>
       <translation>Fjalëkalimet ndryshojnë vetëm nga shkronja të mëdha apo të vogla</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="169"/>
       <source>The password is too similar to the old one</source>
       <translation>Fjalëkalimi është shumë i ngjashëm me të vjetrin</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="171"/>
       <source>The password contains the user name in some form</source>
       <translation>Fjalëkalimi, në një farë mënyre, përmban emrin e përdoruesit</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="173"/>
       <source>The password contains words from the real name of the user in some form</source>
       <translation>Fjalëkalimi, në një farë mënyre, përmban fjalë nga emri i vërtetë i përdoruesit</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="177"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
       <source>The password contains forbidden words in some form</source>
       <translation>Fjalëkalimi, në një farë mënyre,  përmban fjalë të ndaluara</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="181"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
       <source>The password contains less than %1 digits</source>
       <translation>Fjalëkalimi përmban më pak se %1 shifra</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
       <source>The password contains too few digits</source>
       <translation>Fjalëkalimi përmban shumë pak shifra</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
       <source>The password contains less than %1 uppercase letters</source>
       <translation>Fjalëkalimi përmban më pak se %1 shkronja të mëdha</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
       <source>The password contains too few uppercase letters</source>
       <translation>Fjalëkalimi përmban pak shkronja të mëdha</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="194"/>
       <source>The password contains less than %1 lowercase letters</source>
       <translation>Fjalëkalimi përmban më pak se %1 shkronja të vogla</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
       <source>The password contains too few lowercase letters</source>
       <translation>Fjalëkalimi përmban pak shkronja të vogla</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
       <source>The password contains less than %1 non-alphanumeric characters</source>
       <translation>Fjalëkalimi përmban më pak se %1 shenja jo alfanumerike</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
       <source>The password contains too few non-alphanumeric characters</source>
       <translation>Fjalëkalimi përmban pak shenja jo alfanumerike</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
       <source>The password is shorter than %1 characters</source>
       <translation>Fjalëkalimi është më i shkurtër se %1 shenja</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="212"/>
       <source>The password is too short</source>
       <translation>Fjalëkalimi është shumë i shkurtër</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="215"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
       <source>The password is just rotated old one</source>
       <translation>Fjalëkalimi është i vjetri i ricikluar</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="219"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
       <source>The password contains less than %1 character classes</source>
       <translation>Fjalëkalimi përmban më pak se %1 klasa shenjash</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
       <source>The password does not contain enough character classes</source>
       <translation>Fjalëkalimi nuk përmban klasa të mjaftueshme shenjash</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="226"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
       <source>The password contains more than %1 same characters consecutively</source>
       <translation>Fjalëkalimi përmban më shumë se %1 shenja të njëjta njëra pas tjetrës</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="230"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
       <source>The password contains too many same characters consecutively</source>
       <translation>Fjalëkalimi përmban shumë shenja të njëjta njëra pas tjetrës</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="234"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="233"/>
       <source>The password contains more than %1 characters of the same class consecutively</source>
       <translation>Fjalëkalimi përmban më shumë se %1 shenja të së njëjtës klasë njëra pas tjetrës</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="238"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="237"/>
       <source>The password contains too many characters of the same class consecutively</source>
       <translation>Fjalëkalimi përmban shumë shenja të së njëjtës klasë njëra pas tjetrës</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
       <source>The password contains monotonic sequence longer than %1 characters</source>
       <translation>Fjalëkalimi përmban varg monoton më të gjatë se %1 shenja</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>The password contains too long of a monotonic character sequence</source>
       <translation>Fjalëkalimi përmban varg monoton shumë të gjatë shenjash</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="250"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
       <source>No password supplied</source>
       <translation>S’u dha fjalëkalim</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="252"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
       <source>Cannot obtain random numbers from the RNG device</source>
       <translation>S’merren dot numra të rëndomtë nga pajisja RNG</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="253"/>
       <source>Password generation failed - required entropy too low for settings</source>
       <translation>Prodhimi i fjalëkalimit dështoi - entropi e domosdoshme për rregullimin shumë e ulët</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="260"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
       <source>The password fails the dictionary check - %1</source>
       <translation>Fjalëkalimi s’kaloi dot kontrollin kundrejt fjalorit - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
       <source>The password fails the dictionary check</source>
       <translation>Fjalëkalimi s’kaloi dot kontrollin kundrejt fjalorit</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="266"/>
       <source>Unknown setting - %1</source>
       <translation>Rregullim i panjohur - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="270"/>
       <source>Unknown setting</source>
       <translation>Rregullim i panjohur</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="275"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="274"/>
       <source>Bad integer value of setting - %1</source>
       <translation>Vlerë e plotë e gabuar për rregullimin - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="280"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
       <source>Bad integer value</source>
       <translation>Vlerë e plotë e gabuar</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="284"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
       <source>Setting %1 is not of integer type</source>
       <translation>Rregullimi për %1 s’është numër i plotë</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="289"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="288"/>
       <source>Setting is not of integer type</source>
       <translation>Rregullimi s’është numër i plotë</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="293"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="292"/>
       <source>Setting %1 is not of string type</source>
       <translation>Rregullimi për %1 s’është i llojit varg</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="297"/>
       <source>Setting is not of string type</source>
       <translation>Rregullimi s’është i llojit varg</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="299"/>
       <source>Opening the configuration file failed</source>
       <translation>Dështoi hapja e kartelës së formësimit</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="302"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
       <source>The configuration file is malformed</source>
       <translation>Kartela e formësimit është e keqformuar</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="304"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="303"/>
       <source>Fatal failure</source>
       <translation>Dështim fatal</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="306"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
       <source>Unknown error</source>
       <translation>Gabim i panjohur</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="377"/>
+      <location filename="../src/modules/users/Config.cpp" line="522"/>
       <source>Password is empty</source>
       <translation>Fjalëkalimi është i zbrazët</translation>
     </message>
@@ -2527,67 +2533,67 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="77"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="78"/>
       <source>Gathering system information...</source>
       <translation>Po grumbullohen të dhëna mbi sistemin…</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="133"/>
       <source>Partitions</source>
       <translation>Pjesë</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
       <translation>Instalojeni %1 &lt;strong&gt;në krah&lt;/strong&gt; të një tjetër sistemi operativ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="175"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="176"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
       <translation>&lt;strong&gt;Fshije&lt;/strong&gt; diskun dhe instalo %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="179"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="180"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
       <translation>&lt;strong&gt;Zëvendësojeni&lt;/strong&gt; një pjesë me %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="183"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="184"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
       <translation>Pjesëtim &lt;strong&gt;dorazi&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Instaloje %1 &lt;strong&gt;në krah&lt;/strong&gt; të një tjetri sistemi operativ në diskun &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="203"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
       <translation>&lt;strong&gt;Fshije&lt;/strong&gt; diskun &lt;strong&gt;%2&lt;/strong&gt; (%3) dhe instalo %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="210"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
       <translation>&lt;strong&gt;Zëvendëso&lt;/strong&gt; një pjesë te disku &lt;strong&gt;%2&lt;/strong&gt; (%3) me %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="216"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="217"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
       <translation>Pjesëtim &lt;strong&gt;dorazi&lt;/strong&gt; në diskun &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="226"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <translation>Disku &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="251"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="252"/>
       <source>Current:</source>
       <translation>E tanishmja:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="269"/>
       <source>After:</source>
       <translation>Më Pas:</translation>
     </message>
@@ -2632,12 +2638,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
       <translation>Tok me pjesën e fshehtëzuar &lt;em&gt;root&lt;/em&gt; qe rregulluar edhe një pjesë &lt;em&gt;boot&lt;/em&gt; veçmas, por pjesa &lt;em&gt;boot&lt;/em&gt; s’është e fshehtëzuar.&lt;br/&gt;&lt;br/&gt;Ka preokupime mbi sigurinë e këtij lloj rregullimi, ngaqë kartela të rëndësishme sistemi mbahen në një pjesë të pafshehtëzuar.&lt;br/&gt;Mund të vazhdoni, nëse doni, por shkyçja e sistemit të kartelave do të ndodhë më vonë, gjatë nisjes së sistemit.&lt;br/&gt;Që të fshehtëzoni pjesën &lt;em&gt;boot&lt;/em&gt;, kthehuni mbrapsht dhe rikrijojeni, duke përzgjedhur te skena e krijimit të pjesës &lt;strong&gt;Fshehtëzoje&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="723"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="634"/>
       <source>has at least one disk device available.</source>
       <translation>ka të paktën një pajisje disku për përdorim.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="724"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="635"/>
       <source>There are no partitions to install on.</source>
       <translation>S’ka pjesë ku të instalohet.</translation>
     </message>
@@ -3545,17 +3551,17 @@ Përfundim:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="170"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="174"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Nëse këtë kompjuter do ta përdorë më shumë se një person, mund të krijoni disa llogari, pas rregullimit.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="176"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="180"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Nëse këtë kompjuter do ta përdorë më shumë se një person, mund të krijoni disa llogari, pas instalimit.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="255"/>
       <source>Your passwords do not match!</source>
       <translation>Fjalëkalimet tuaj s’përputhen!</translation>
     </message>
@@ -3563,7 +3569,7 @@ Përfundim:
   <context>
     <name>UsersViewStep</name>
     <message>
-      <location filename="../src/modules/users/UsersViewStep.cpp" line="77"/>
+      <location filename="../src/modules/users/UsersViewStep.cpp" line="58"/>
       <source>Users</source>
       <translation>Përdorues</translation>
     </message>
@@ -3854,7 +3860,7 @@ Përfundim:
   <context>
     <name>localeq</name>
     <message>
-      <location filename="../src/modules/localeq/localeq.qml" line="82"/>
+      <location filename="../src/modules/localeq/localeq.qml" line="90"/>
       <source>Change</source>
       <translation>Ndryshojeni</translation>
     </message>
