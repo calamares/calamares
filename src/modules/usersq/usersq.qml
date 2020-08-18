@@ -75,7 +75,7 @@ Kirigami.ScrollablePage {
                     radius: 2
                     opacity: 0.9
                     //border.color: _userNameField.text === "" ? Kirigami.Theme.backgroundColor : ( config.fullNameReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                    border.color: _userNameField.text === "" ? "#FBFBFB" : ( config.fullNameReady ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
+                    border.color: _userNameField.text === "" ? "#FBFBFB" : ( config.fullNameChanged ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
                 }
             }
         }
@@ -97,14 +97,14 @@ Kirigami.ScrollablePage {
                 width: parent.width
                 placeholderText: qsTr("Login Name")
                 //text: config.userName
-                onTextEdited: config.loginNameChanged(text)
+                onTextEdited: config.loginNameStatusChanged(text)
 
                 background: Rectangle {
 
                     color: "#FBFBFB" // Kirigami.Theme.backgroundColor
                     opacity: 0.9
                     //border.color: _userLoginField.text === "" ? Kirigami.Theme.backgroundColor : ( config.userNameReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                    border.color: _userLoginField.text === "" ? "#FBFBFB" : ( config.userNameReady ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
+                    border.color: _userLoginField.text === "" ? "#FBFBFB" : ( config.loginNameStatusChanged ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
                 }
             }
 
@@ -135,13 +135,13 @@ Kirigami.ScrollablePage {
                 width: parent.width
                 placeholderText: qsTr("Computer Name")
                 text: config.hostName
-                onTextEdited: config.hostNameChanged(text)
+                onTextEdited: config.hostNameStatusChanged(text)
                 background: Rectangle {
 
                     color: "#FBFBFB" // Kirigami.Theme.backgroundColor
                     opacity: 0.9
-                    //border.color: _hostName.text === "" ? Kirigami.Theme.backgroundColor : ( config.hostNameReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                    border.color: _hostName.text === "" ? "#FBFBFB" : ( config.hostNameReady ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
+                    //border.color: _hostName.text === "" ? Kirigami.Theme.backgroundColor : ( config.hostNameStatusChanged ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
+                    border.color: _hostName.text === "" ? "#FBFBFB" : ( config.hostNameStatusChanged ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
                 }
             }
 
@@ -178,14 +178,14 @@ Kirigami.ScrollablePage {
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
                     inputMethodHints: Qt.ImhNoAutoUppercase
-                    onTextChanged: config.userPasswordChanged(text, _verificationPasswordField.text)
+                    onTextChanged: config.userPasswordStatusChanged(text, _verificationPasswordField.text)
 
                     background: Rectangle {
 
                         color: "#FBFBFB" // Kirigami.Theme.backgroundColor
                         opacity: 0.9
                         //border.color: _passwordField.text === "" ? Kirigami.Theme.backgroundColor : ( config.passwordReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                        border.color: _passwordField.text === "" ? "#FBFBFB" : ( config.passwordReady ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
+                        border.color: _passwordField.text === "" ? "#FBFBFB" : ( config.userPasswordStatusChanged ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
                     }
                 }
 
@@ -204,7 +204,7 @@ Kirigami.ScrollablePage {
                         color: "#FBFBFB" //Kirigami.Theme.backgroundColor
                         opacity: 0.9
                         //border.color: _verificationpasswordField.text === "" ? Kirigami.Theme.backgroundColor : ( config.passwordReady ? Kirigami.Theme.backgroundColor : Kirigami.Theme.negativeTextColor)
-                        border.color: _verificationpasswordField.text === "" ? "#FBFBFB" : ( config.passwordReady ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
+                        border.color: _verificationPasswordField.text === "" ? "#FBFBFB" : ( config.userPasswordSecondaryChanged ? "#FBFBFB" : Kirigami.Theme.negativeTextColor)
                     }
                 }
             }
