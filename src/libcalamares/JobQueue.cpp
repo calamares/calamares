@@ -156,6 +156,10 @@ JobQueue* JobQueue::s_instance = nullptr;
 JobQueue*
 JobQueue::instance()
 {
+    if ( !s_instance )
+    {
+        cWarning() << "Getting nullptr JobQueue instance.";
+    }
     return s_instance;
 }
 
