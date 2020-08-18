@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.28.3 (2020-08-17) #
+# 3.2.28.3 (2020-08-18) #
 
 Another hotfix, for more issues reported by Marco Obaid. Users
 were not having a password set (#1489)
