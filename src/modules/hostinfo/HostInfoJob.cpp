@@ -116,12 +116,33 @@ hostCPU_FreeBSD()
 static QString
 hostCPUmatchARM( const QString& s )
 {
-    // Both Rock64 and Raspberry pi mention 0x41
-    if ( s.contains( ": 0x41" ) )
-    {
-        return QStringLiteral( "ARM" );
-    }
-    return QString();
+    /* The "CPU implementer" line is for ARM CPUs in general.
+     *
+     * The specific value given distinguishes *which designer*
+     * (or architecture licensee, who cares) produced the current
+     * silicon. For instance, a list from lscpu-arm.c (Linux kernel)
+     * shows this:
+     *
+static const struct hw_impl hw_implementer[] = {
+    { 0x41, arm_part,     "ARM" },
+    { 0x42, brcm_part,    "Broadcom" },
+    { 0x43, cavium_part,  "Cavium" },
+    { 0x44, dec_part,     "DEC" },
+    { 0x48, hisi_part,    "HiSilicon" },
+    { 0x4e, nvidia_part,  "Nvidia" },
+    { 0x50, apm_part,     "APM" },
+    { 0x51, qcom_part,    "Qualcomm" },
+    { 0x53, samsung_part, "Samsung" },
+    { 0x56, marvell_part, "Marvell" },
+    { 0x66, faraday_part, "Faraday" },
+    { 0x69, intel_part,   "Intel" },
+    { -1,   unknown_part, "unknown" },
+};
+     *
+     * Since the specific implementor isn't interesting, just
+     * map everything to "ARM".
+     */
+    return QStringLiteral( "ARM" );
 }
 
 QString
