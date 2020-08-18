@@ -83,7 +83,11 @@ Config::setUserShell( const QString& shell )
         return;
     }
     // The shell is put into GS because the CreateUser job expects it there
-    Calamares::JobQueue::instance()->globalStorage()->insert( "userShell", shell );
+    auto* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( gs )
+    {
+        gs->insert( "userShell", shell );
+    }
 }
 
 static inline void
