@@ -461,7 +461,7 @@ strings:
 
     QVERIFY( getStringList( m, key ).contains( "aap" ) );
     QVERIFY( getStringList( m, key ).contains( "mies" ) );
-    QVERIFY( getStringList( m, key ).contains( "lam" ) );
+    QVERIFY( !getStringList( m, key ).contains( "lam" ) );
 }
 
 void
@@ -486,7 +486,7 @@ strings: [ aap, noot, mies ]
 
     QVERIFY( getStringList( m, key ).contains( "aap" ) );
     QVERIFY( getStringList( m, key ).contains( "mies" ) );
-    QVERIFY( getStringList( m, key ).contains( "lam" ) );
+    QVERIFY( !getStringList( m, key ).contains( "lam" ) );
 }
 
 QTEST_GUILESS_MAIN( LibCalamaresTests )
