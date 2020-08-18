@@ -54,7 +54,7 @@ static inline void
 labelOk( QLabel* pix, QLabel* label )
 {
     label->clear();
-    pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, label->size() ) );
+    pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::StatusOk, CalamaresUtils::Original, label->size() ) );
 }
 
 /** @brief Sets error or ok on a label depending on @p status and @p value
