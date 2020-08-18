@@ -57,7 +57,7 @@ public:
 
 private:
     UsersPage* m_widget;
-    QList< Calamares::job_ptr > m_jobs;
+    Calamares::JobList m_jobs;
 
     Config* m_config;
 };

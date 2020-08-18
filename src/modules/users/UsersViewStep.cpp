@@ -21,9 +21,6 @@
 #include "UsersViewStep.h"
 
 #include "Config.h"
-#include "CreateUserJob.h"
-#include "SetHostNameJob.h"
-#include "SetPasswordJob.h"
 #include "UsersPage.h"
 
 #include "GlobalStorage.h"
@@ -120,30 +117,7 @@ UsersViewStep::onActivate()
 void
 UsersViewStep::onLeave()
 {
-    m_jobs.clear();
-    if ( !m_widget || !m_config->isReady() )
-    {
-        return;
-    }
-
-    Calamares::Job* j;
-    // TODO: Config object should create jobs, like this one, that depend only on config values
-    j = new CreateUserJob( m_config->loginName(),
-                           m_config->fullName().isEmpty() ? m_config->loginName() : m_config->fullName(),
-                           m_config->doAutoLogin(),
-                           m_config->defaultGroups() );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    j = new SetPasswordJob( m_config->loginName(), m_config->userPassword() );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    j = new SetPasswordJob( "root", m_config->rootPassword() );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    // TODO: Config object should create jobs
-    j = new SetHostNameJob( m_config->hostName(), m_config->hostNameActions() );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
+    m_jobs = m_config->createJobs();
     m_config->finalizeGlobalStorage();
 }
 

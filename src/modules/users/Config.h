@@ -23,6 +23,7 @@
 
 #include "CheckPWQuality.h"
 
+#include "Job.h"
 #include "utils/NamedEnum.h"
 
 #include <QObject>
@@ -124,6 +125,12 @@ public:
      * and copies some things to GS that otherwise would not.
      */
     void finalizeGlobalStorage() const;
+
+    /** @brief Jobs for creating user, setting passwords
+     *
+     * If the Config object isn't ready yet, returns an empty list.
+     */
+    Calamares::JobList createJobs() const;
 
     /** @brief Full path to the user's shell executable
      *

@@ -20,6 +20,10 @@
 
 #include "Config.h"
 
+#include "CreateUserJob.h"
+#include "SetHostNameJob.h"
+#include "SetPasswordJob.h"
+
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
@@ -704,4 +708,32 @@ Config::finalizeGlobalStorage() const
         gs->insert( "reuseRootPassword", reuseUserPasswordForRoot() );
     }
     gs->insert( "password", CalamaresUtils::obscure( userPassword() ) );
+}
+
+Calamares::JobList
+Config::createJobs() const
+{
+    Calamares::JobList jobs;
+
+    if ( !isReady() )
+    {
+        return jobs;
+    }
+
+    Calamares::Job* j;
+
+    j = new CreateUserJob(
+        loginName(), fullName().isEmpty() ? loginName() : fullName(), doAutoLogin(), defaultGroups() );
+    jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetPasswordJob( loginName(), userPassword() );
+    jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetPasswordJob( "root", rootPassword() );
+    jobs.append( Calamares::job_ptr( j ) );
+
+    j = new SetHostNameJob( hostName(), hostNameActions() );
+    jobs.append( Calamares::job_ptr( j ) );
+
+    return jobs;
 }
