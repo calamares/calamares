@@ -19,8 +19,6 @@
  *
  */
 
-#include "Tests.h"
-
 #include "CalamaresUtilsSystem.h"
 #include "Entropy.h"
 #include "Logger.h"
@@ -40,7 +38,39 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-QTEST_GUILESS_MAIN( LibCalamaresTests )
+class LibCalamaresTests : public QObject
+{
+    Q_OBJECT
+public:
+    LibCalamaresTests();
+    ~LibCalamaresTests() override;
+
+private Q_SLOTS:
+    void initTestCase();
+    void testDebugLevels();
+
+    void testLoadSaveYaml();  // Just settings.conf
+    void testLoadSaveYamlExtended();  // Do a find() in the src dir
+
+    void testCommands();
+
+    /** @brief Test that all the UMask objects work correctly. */
+    void testUmask();
+
+    /** @brief Tests the entropy functions. */
+    void testEntropy();
+    void testPrintableEntropy();
+    void testOddSizedPrintable();
+
+    /** @brief Tests the RAII bits. */
+    void testBoolSetter();
+
+    /** @brief Tests the Traits bits. */
+    void testTraits();
+
+private:
+    void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
+};
 
 LibCalamaresTests::LibCalamaresTests() {}
 
@@ -365,3 +395,9 @@ LibCalamaresTests::testTraits()
     QCOMPARE(t.thingify(c1), 2);  // Calls c1::do_the_thing()
     QCOMPARE(t.thingify(c2), -1);
 }
+
+QTEST_GUILESS_MAIN( LibCalamaresTests )
+
+#include "utils/moc-warnings.h"
+
+#include "Tests.moc"
