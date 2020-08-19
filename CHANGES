@@ -11,9 +11,17 @@ This release contains contributions from (alphabetically by first name):
 ## Core ##
  - Edge case in extracting string-lists from YAML, reported and fixed
    by Asif (#1491).
+ - Progress reporting is now more flexible. Modules can have a weight
+   assigned to them in the descriptor; module instances can have a weight
+   assigned which overrides the module descriptor. When jobs are run
+   for a module instance, the jobs report progress pro-rated by the
+   module's weight. Or in other words, it is now possible to tweak
+   the amount of the overall progress bar that different modules fill.
+   The default settings give unpackfs a weight of 12. (#1176)
 
 ## Modules ##
- - No module changes yet
+ - The *users* module did not read the *defaultGroups* correctly.
+   Fixed by the string-lists change mentioned above.
 
 
  # 3.2.28.3 (2020-08-18) #
