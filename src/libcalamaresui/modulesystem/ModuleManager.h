@@ -71,6 +71,16 @@ public:
      */
     ModuleSystem::Descriptor moduleDescriptor( const QString& name );
 
+    /** @brief returns the module descriptor structure for the module @p instance
+     *
+     * Descriptors are for the module, which may have multiple instances;
+     * this is the same as moduleDescriptor( instance.module() ).
+     */
+    ModuleSystem::Descriptor moduleDescriptor( const ModuleSystem::InstanceKey& instanceKey )
+    {
+        return moduleDescriptor( instanceKey.module() );
+    }
+
     /**
      * @brief moduleInstance returns a Module object for a given instance key.
      * @param instanceKey the instance key for a module instance.

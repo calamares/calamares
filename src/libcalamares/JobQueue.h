@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -30,7 +30,6 @@
 
 namespace Calamares
 {
-
 class GlobalStorage;
 class JobThread;
 
@@ -45,8 +44,12 @@ public:
 
     GlobalStorage* globalStorage() const;
 
-    void enqueue( const job_ptr& job );
-    void enqueue( const JobList& jobs );
+    /** @brief Queues up jobs from a single module source
+     *
+     * The total weight of the jobs is spread out to fill the weight
+     * of the module.
+     */
+    void enqueue( int moduleWeight, const JobList& jobs );
     void start();
 
     bool isRunning() const { return !m_finished; }
@@ -63,7 +66,6 @@ signals:
 private:
     static JobQueue* s_instance;
 
-    JobList m_jobs;
     JobThread* m_thread;
     GlobalStorage* m_storage;
     bool m_finished = true;  ///< Initially, not running

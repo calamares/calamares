@@ -100,13 +100,19 @@ public:
 
     /** @brief The job's (relative) weight.
      *
-     * The default implementation returns 1.0, which gives all jobs
+     * The default implementation returns 1, which gives all jobs
      * the same weight, so they advance the overall progress the same
      * amount. This is nonsense, since some jobs take much longer than
      * others; it's up to the individual jobs to say something about
      * how much work is (relatively) done.
+     *
+     * Since jobs are caused by **modules** from the sequence, the
+     * overall weight of the module is taken into account: its weight
+     * is divided among the jobs based on each jobs relative weight.
+     * This can be used in a module that runs a bunch of jobs to indicate
+     * which of the jobs is "heavy" and which is not.
      */
-    virtual qreal getJobWeight() const;
+    virtual int getJobWeight() const;
     /** @brief The human-readable name of this job
      *
      * This should be a very short statement of what the job does.

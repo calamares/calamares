@@ -46,8 +46,18 @@ Module descriptors **must** have the following keys:
 - *interface* (see below for the different interfaces; generally we
   refer to the kinds of modules by their interface)
 
+Module descriptors for C++ modules **may** have the following key:
+- *load* (the name of the shared library to load; if empty, uses a
+  standard library name derived from the module name)
+
 Module descriptors for Python modules **must** have the following key:
 - *script* (the name of the Python script to load, nearly always `main.py`)
+
+Module descriptors for process modules **must** have the following key:
+- *command* (the command to run)
+Module descriptors for process modules **may** have the following keys:
+- *timeout* (how long, in seconds, to wait for the command to run)
+- *chroos* (if true, run the command in the target system rather than the host)
 
 Module descriptors **may** have the following keys:
 - *emergency* (a boolean value, set to true to mark the module
@@ -56,6 +66,8 @@ Module descriptors **may** have the following keys:
   has no configuration file; defaults to false)
 - *requiredModules* (a list of modules which are required for this module
   to operate properly)
+- *weight* (a relative module weight, used to scale progress reporting)
+
 
 ### Required Modules
 

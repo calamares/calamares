@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -101,10 +101,10 @@ Job::Job( QObject* parent )
 Job::~Job() {}
 
 
-qreal
+int
 Job::getJobWeight() const
 {
-    return qreal( 1.0 );
+    return 1;
 }
 
 

@@ -5,3 +5,4 @@ name:       "unpackfs"
 interface:  "python"
 script:     "main.py"
 requiredModules: [ mount ]
+weight:     12

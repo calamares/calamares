@@ -146,10 +146,24 @@ ExecutionViewStep::onActivate()
 {
     m_slideshow->changeSlideShowState( Slideshow::Start );
 
+    const auto instanceDescriptors = Calamares::Settings::instance()->moduleInstances();
+
     JobQueue* queue = JobQueue::instance();
-    for( const auto& instanceKey : m_jobInstanceKeys )
+    for ( const auto& instanceKey : m_jobInstanceKeys )
     {
+        const auto& moduleDescriptor = Calamares::ModuleManager::instance()->moduleDescriptor( instanceKey );
         Calamares::Module* module = Calamares::ModuleManager::instance()->moduleInstance( instanceKey );
+
+        const auto instanceDescriptor
+            = std::find_if( instanceDescriptors.constBegin(),
+                            instanceDescriptors.constEnd(),
+                            [=]( const Calamares::InstanceDescription& d ) { return d.key() == instanceKey; } );
+        int weight = moduleDescriptor.weight();
+        if ( instanceDescriptor != instanceDescriptors.constEnd() && instanceDescriptor->explicitWeight() )
+        {
+            weight = instanceDescriptor->weight();
+        }
+        weight = qBound( 1, weight, 100 );
         if ( module )
         {
             auto jl = module->jobs();
@@ -160,7 +174,7 @@ ExecutionViewStep::onActivate()
                     j->setEmergency( true );
                 }
             }
-            queue->enqueue( jl );
+            queue->enqueue( weight, jl );
         }
     }
 

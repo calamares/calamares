@@ -1,5 +1,5 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+ *
  *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018-2020 Adriaan de Groot <groot@kde.org>
  *
@@ -184,18 +184,11 @@ PythonJob::PythonJob( const ModuleSystem::InstanceKey& instance,
     , m_workingPath( workingPath )
     , m_description()
     , m_configurationMap( moduleConfiguration )
-    , m_weight( ( instance.module() == QStringLiteral( "unpackfs" ) ) ? 12.0 : 1.0 )
 {
 }
 
 
 PythonJob::~PythonJob() {}
-
-qreal
-PythonJob::getJobWeight() const
-{
-    return m_weight;
-}
 
 QString
 PythonJob::prettyName() const

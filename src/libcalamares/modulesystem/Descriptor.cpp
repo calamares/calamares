@@ -87,8 +87,9 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
     d.m_isEmergeny = CalamaresUtils::getBool( moduleDesc, "emergency", false );
     d.m_hasConfig = !CalamaresUtils::getBool( moduleDesc, "noconfig", false );  // Inverted logic during load
     d.m_requiredModules = CalamaresUtils::getStringList( moduleDesc, "requiredModules" );
+    d.m_weight = int( CalamaresUtils::getInteger( moduleDesc, "weight", -1 ) );
 
-    QStringList consumedKeys { "type", "interface", "name", "emergency", "noconfig", "requiredModules" };
+    QStringList consumedKeys { "type", "interface", "name", "emergency", "noconfig", "requiredModules", "weight" };
 
     switch ( d.interface() )
     {
@@ -99,21 +100,35 @@ Descriptor::fromDescriptorData( const QVariantMap& moduleDesc )
     case Interface::Python:
     case Interface::PythonQt:
         d.m_script = CalamaresUtils::getString( moduleDesc, "script" );
+        if ( d.m_script.isEmpty() )
+        {
+            cWarning() << "Module descriptor contains no *script*" << d.name();
+            d.m_isValid = false;
+        }
         consumedKeys << "script";
         break;
     case Interface::Process:
         d.m_script = CalamaresUtils::getString( moduleDesc, "command" );
-        d.m_processTimeout = CalamaresUtils::getInteger( moduleDesc, "timeout", 30 );
+        d.m_processTimeout = int( CalamaresUtils::getInteger( moduleDesc, "timeout", 30 ) );
         d.m_processChroot = CalamaresUtils::getBool( moduleDesc, "chroot", false );
-        consumedKeys << "command"
-                     << "timeout"
-                     << "chroot";
-
         if ( d.m_processTimeout < 0 )
         {
             d.m_processTimeout = 0;
         }
+        if ( d.m_script.isEmpty() )
+        {
+            cWarning() << "Module descriptor contains no *script*" << d.name();
+            d.m_isValid = false;
+        }
+        consumedKeys << "command"
+                     << "timeout"
+                     << "chroot";
         break;
+    }
+
+    if ( !d.m_isValid )
+    {
+        return d;
     }
 
     QStringList superfluousKeys;
