@@ -134,6 +134,7 @@ public:
                     message = result.message();
                     details = result.details();
                 }
+                QThread::msleep( 16 );  // Very brief rest before reporting the job as complete
                 emitProgress( 1.0 );  // 100% for *this job*
             }
             m_jobIndex++;
@@ -158,7 +159,6 @@ public:
         qreal progress = 0.0;
         if ( m_jobIndex < m_runningJobs->count() )
         {
-
             const auto& jobitem = m_runningJobs->at( m_jobIndex );
             progress = ( jobitem.cumulative + jobitem.weight * percentage ) / m_overallQueueWeight;
             message = jobitem.job->prettyStatusMessage();
