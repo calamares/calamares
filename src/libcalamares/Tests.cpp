@@ -20,9 +20,9 @@
  */
 
 #include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "Settings.h"
 #include "modulesystem/InstanceKey.h"
-
 #include "utils/Logger.h"
 
 #include <QObject>
@@ -46,6 +46,8 @@ private Q_SLOTS:
     void testInstanceDescription();
 
     void testSettings();
+
+    void testJobQueue();
 };
 
 void
@@ -341,7 +343,7 @@ TestLibCalamares::testInstanceDescription()
     {
         QVariantMap m;
         m.insert( "module", "welcome" );
-        m.insert( "weight", 1);
+        m.insert( "weight", 1 );
 
         InstanceDescription d = InstanceDescription::fromSettings( m );
         QVERIFY( d.isValid() );
@@ -477,6 +479,163 @@ sequence:
         }
         QCOMPARE( customCount, 2 );
         QCOMPARE( validCount, 4 );  // welcome@hi is listed twice, in *show* and *exec*
+    }
+}
+
+constexpr const std::chrono::milliseconds MAX_TEST_DURATION( 3000 );
+constexpr const int MAX_TEST_SLEEP( 2 );  // seconds, < MAX_TEST_DURATION
+
+Q_STATIC_ASSERT( std::chrono::seconds( MAX_TEST_SLEEP ) < MAX_TEST_DURATION );
+
+class DummyJob : public Calamares::Job
+{
+public:
+    DummyJob( QObject* parent )
+        : Calamares::Job( parent )
+    {
+    }
+    virtual ~DummyJob() override;
+
+    QString prettyName() const override;
+    Calamares::JobResult exec() override;
+};
+
+DummyJob::~DummyJob() {}
+
+QString
+DummyJob::prettyName() const
+{
+    return QString( "DummyJob" );
+}
+
+Calamares::JobResult
+DummyJob::exec()
+{
+    cDebug() << "Starting DummyJob";
+    progress( 0.5 );
+    QThread::sleep( MAX_TEST_SLEEP );
+    cDebug() << ".. continuing DummyJob";
+    progress( 0.75 );
+    return Calamares::JobResult::ok();
+}
+
+
+void
+TestLibCalamares::testJobQueue()
+{
+    // Run an empty queue
+    {
+        Calamares::JobQueue q;
+        QVERIFY( !q.isRunning() );
+
+        QSignalSpy spy_progress( &q, &Calamares::JobQueue::progress );
+        QSignalSpy spy_finished( &q, &Calamares::JobQueue::finished );
+        QSignalSpy spy_failed( &q, &Calamares::JobQueue::failed );
+
+        QEventLoop loop;
+        connect( &q, &Calamares::JobQueue::finished, &loop, &QEventLoop::quit );
+        QTimer::singleShot( MAX_TEST_DURATION, &loop, &QEventLoop::quit );
+        q.start();
+        QVERIFY( q.isRunning() );
+        loop.exec();
+        QVERIFY( !q.isRunning() );
+        QCOMPARE( spy_finished.count(), 1 );
+        QCOMPARE( spy_failed.count(), 0 );
+        QCOMPARE( spy_progress.count(), 1 );  // just one, 100% at queue end
+    }
+
+    // Run a dummy queue
+    {
+        Calamares::JobQueue q;
+        QVERIFY( !q.isRunning() );
+
+        q.enqueue( 8, Calamares::JobList() << Calamares::job_ptr( new DummyJob( this ) ) );
+        QSignalSpy spy_progress( &q, &Calamares::JobQueue::progress );
+        QSignalSpy spy_finished( &q, &Calamares::JobQueue::finished );
+        QSignalSpy spy_failed( &q, &Calamares::JobQueue::failed );
+
+        QEventLoop loop;
+        connect( &q, &Calamares::JobQueue::finished, &loop, &QEventLoop::quit );
+        QTimer::singleShot( MAX_TEST_DURATION, &loop, &QEventLoop::quit );
+        q.start();
+        QVERIFY( q.isRunning() );
+        loop.exec();
+        QVERIFY( !q.isRunning() );
+        QCOMPARE( spy_finished.count(), 1 );
+        QCOMPARE( spy_failed.count(), 0 );
+        // 0% by the queue at job start
+        // 50% by the job itself
+        // 90% by the job itself
+        // 100% by the queue at job end
+        // 100% by the queue at queue end
+        QCOMPARE( spy_progress.count(), 5 );
+    }
+
+    {
+        Calamares::JobQueue q;
+        QVERIFY( !q.isRunning() );
+
+        q.enqueue( 8, Calamares::JobList() << Calamares::job_ptr( new DummyJob( this ) ) );
+        q.enqueue( 12,
+                   Calamares::JobList() << Calamares::job_ptr( new DummyJob( this ) )
+                                        << Calamares::job_ptr( new DummyJob( this ) ) );
+        QSignalSpy spy_progress( &q, &Calamares::JobQueue::progress );
+        QSignalSpy spy_finished( &q, &Calamares::JobQueue::finished );
+        QSignalSpy spy_failed( &q, &Calamares::JobQueue::failed );
+
+        QEventLoop loop;
+        connect( &q, &Calamares::JobQueue::finished, &loop, &QEventLoop::quit );
+        // Run the loop longer because the jobs take longer (there are 3 of them)
+        QTimer::singleShot( 3 * MAX_TEST_DURATION, &loop, &QEventLoop::quit );
+        q.start();
+        QVERIFY( q.isRunning() );
+        loop.exec();
+        QVERIFY( !q.isRunning() );
+        QCOMPARE( spy_finished.count(), 1 );
+        QCOMPARE( spy_failed.count(), 0 );
+        // 0% by the queue at job start
+        // 50% by the job itself
+        // 90% by the job itself
+        // 100% by the queue at job end
+        // 4 more for the next job
+        // 4 more for the next job
+        // 100% by the queue at queue end
+        QCOMPARE( spy_progress.count(), 13 );
+
+        /* Consider how progress will be reported:
+         *
+         * - the first module has weight 8, so the 1 job it has has weight 8
+         * - the second module has weight 12, so each of its two jobs has weight 6
+         *
+         * Total weight of the modules is 20. So the events are
+         *
+         * Job Progress  Overall Weight Consumed  Overall Progress
+         *   1      0            0                       0.00
+         *   1     50            4                       0.20
+         *   1     75            6                       0.30
+         *   1    100            8                       0.40
+         *   2      0            8                       0.40
+         *   2     50           11 (8 + 50% of 6)        0.55
+         *   2     75           12.5                     0.625
+         *   2    100           14                       0.70
+         *   3      0           14                       0.70
+         *   3     50           17                       0.85
+         *   3     75           18.5                     0.925
+         *   3    100           20                       1.00
+         *   -    100           20                       1.00
+         */
+        cDebug() << "Progress signals:";
+        qreal overallProgress = 0.0;
+        for ( const auto& e : spy_progress )
+        {
+            QCOMPARE( e.count(), 2 );
+            const auto v = e.first();
+            QVERIFY( v.canConvert< qreal >() );
+            qreal progress = v.toReal();
+            cDebug() << Logger::SubEntry << progress;
+            QVERIFY( progress >= overallProgress );  // Doesn't go backwards
+            overallProgress = progress;
+        }
     }
 }
 
