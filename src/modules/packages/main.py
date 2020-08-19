@@ -161,101 +161,28 @@ class PackageManager(metaclass=abc.ABCMeta):
             self.run(packagedata["post-script"])
 
 
-class PMPackageKit(PackageManager):
-    backend = "packagekit"
+### PACKAGE MANAGER IMPLEMENTATIONS
+#
+# Keep these alphabetical (presumably both by class name and backend name),
+# even the Dummy implementation.
+#
+
+class PMApk(PackageManager):
+    backend = "apk"
 
     def install(self, pkgs, from_local=False):
         for pkg in pkgs:
-            check_target_env_call(["pkcon", "-py", "install", pkg])
+            check_target_env_call(["apk", "add", pkg])
 
     def remove(self, pkgs):
         for pkg in pkgs:
-            check_target_env_call(["pkcon", "-py", "remove", pkg])
+            check_target_env_call(["apk", "del", pkg])
 
     def update_db(self):
-        check_target_env_call(["pkcon", "refresh"])
+        check_target_env_call(["apk", "update"])
 
     def update_system(self):
-        check_target_env_call(["pkcon", "-py", "update"])
-
-
-class PMZypp(PackageManager):
-    backend = "zypp"
-
-    def install(self, pkgs, from_local=False):
-        check_target_env_call(["zypper", "--non-interactive",
-                               "--quiet-install", "install",
-                               "--auto-agree-with-licenses",
-                               "install"] + pkgs)
-
-    def remove(self, pkgs):
-        check_target_env_call(["zypper", "--non-interactive",
-                               "remove"] + pkgs)
-
-    def update_db(self):
-        check_target_env_call(["zypper", "--non-interactive", "update"])
-
-    def update_system(self):
-        # Doesn't need to update the system explicitly
-        pass
-
-
-class PMYum(PackageManager):
-    backend = "yum"
-
-    def install(self, pkgs, from_local=False):
-        check_target_env_call(["yum", "-y", "install"] + pkgs)
-
-    def remove(self, pkgs):
-        check_target_env_call(["yum", "--disablerepo=*", "-C", "-y",
-                               "remove"] + pkgs)
-
-    def update_db(self):
-        # Doesn't need updates
-        pass
-
-    def update_system(self):
-        check_target_env_call(["yum", "-y", "upgrade"])
-
-
-class PMDnf(PackageManager):
-    backend = "dnf"
-
-    def install(self, pkgs, from_local=False):
-        check_target_env_call(["dnf", "-y", "install"] + pkgs)
-
-    def remove(self, pkgs):
-        # ignore the error code for now because dnf thinks removing a
-        # nonexistent package is an error
-        target_env_call(["dnf", "--disablerepo=*", "-C", "-y",
-                         "remove"] + pkgs)
-
-    def update_db(self):
-        # Doesn't need updates
-        pass
-
-    def update_system(self):
-        check_target_env_call(["dnf", "-y", "upgrade"])
-
-
-class PMUrpmi(PackageManager):
-    backend = "urpmi"
-
-    def install(self, pkgs, from_local=False):
-        check_target_env_call(["urpmi", "--download-all", "--no-suggests",
-                               "--no-verify-rpm", "--fastunsafe",
-                               "--ignoresize", "--nolock",
-                               "--auto"] + pkgs)
-
-    def remove(self, pkgs):
-        check_target_env_call(["urpme", "--auto"] + pkgs)
-
-    def update_db(self):
-        check_target_env_call(["urpmi.update", "-a"])
-
-    def update_system(self):
-        # Doesn't need to update the system explicitly
-        pass
+        check_target_env_call(["apk", "upgrade", "--available"])
 
 
 class PMApt(PackageManager):
@@ -278,20 +205,82 @@ class PMApt(PackageManager):
         pass
 
 
-class PMXbps(PackageManager):
-    backend = "xbps"
+class PMDnf(PackageManager):
+    backend = "dnf"
 
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["xbps-install", "-Sy"] + pkgs)
+        check_target_env_call(["dnf", "-y", "install"] + pkgs)
 
     def remove(self, pkgs):
-        check_target_env_call(["xbps-remove", "-Ry", "--noconfirm"] + pkgs)
+        # ignore the error code for now because dnf thinks removing a
+        # nonexistent package is an error
+        target_env_call(["dnf", "--disablerepo=*", "-C", "-y",
+                         "remove"] + pkgs)
 
     def update_db(self):
-        check_target_env_call(["xbps-install", "-S"])
+        # Doesn't need updates
+        pass
 
     def update_system(self):
-        check_target_env_call(["xbps", "-Suy"])
+        check_target_env_call(["dnf", "-y", "upgrade"])
+
+
+class PMDummy(PackageManager):
+    backend = "dummy"
+
+    def install(self, pkgs, from_local=False):
+        from time import sleep
+        libcalamares.utils.debug("Dummy backend: Installing " + str(pkgs))
+        sleep(3)
+
+    def remove(self, pkgs):
+        from time import sleep
+        libcalamares.utils.debug("Dummy backend: Removing " + str(pkgs))
+        sleep(3)
+
+    def update_db(self):
+        libcalamares.utils.debug("Dummy backend: Updating DB")
+
+    def update_system(self):
+        libcalamares.utils.debug("Dummy backend: Updating System")
+
+    def run(self, script):
+        libcalamares.utils.debug("Dummy backend: Running script '" + str(script) + "'")
+
+
+class PMEntropy(PackageManager):
+    backend = "entropy"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["equo", "i"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["equo", "rm"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["equo", "update"])
+
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
+
+class PMPackageKit(PackageManager):
+    backend = "packagekit"
+
+    def install(self, pkgs, from_local=False):
+        for pkg in pkgs:
+            check_target_env_call(["pkcon", "-py", "install", pkg])
+
+    def remove(self, pkgs):
+        for pkg in pkgs:
+            check_target_env_call(["pkcon", "-py", "remove", pkg])
+
+    def update_db(self):
+        check_target_env_call(["pkcon", "refresh"])
+
+    def update_system(self):
+        check_target_env_call(["pkcon", "-py", "update"])
 
 
 class PMPacman(PackageManager):
@@ -341,6 +330,23 @@ class PMPamac(PackageManager):
         check_target_env_call([self.backend, "upgrade", "--no-confirm"])
 
 
+class PMPisi(PackageManager):
+    backend = "pisi"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["pisi", "install" "-y"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["pisi", "remove", "-y"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["pisi", "update-repo"])
+
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
+
 class PMPortage(PackageManager):
     backend = "portage"
 
@@ -359,79 +365,79 @@ class PMPortage(PackageManager):
         pass
 
 
-class PMEntropy(PackageManager):
-    backend = "entropy"
+class PMUrpmi(PackageManager):
+    backend = "urpmi"
 
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["equo", "i"] + pkgs)
+        check_target_env_call(["urpmi", "--download-all", "--no-suggests",
+                               "--no-verify-rpm", "--fastunsafe",
+                               "--ignoresize", "--nolock",
+                               "--auto"] + pkgs)
 
     def remove(self, pkgs):
-        check_target_env_call(["equo", "rm"] + pkgs)
+        check_target_env_call(["urpme", "--auto"] + pkgs)
 
     def update_db(self):
-        check_target_env_call(["equo", "update"])
+        check_target_env_call(["urpmi.update", "-a"])
 
     def update_system(self):
         # Doesn't need to update the system explicitly
         pass
 
 
-class PMDummy(PackageManager):
-    backend = "dummy"
+class PMXbps(PackageManager):
+    backend = "xbps"
 
     def install(self, pkgs, from_local=False):
-        from time import sleep
-        libcalamares.utils.debug("Dummy backend: Installing " + str(pkgs))
-        sleep(3)
+        check_target_env_call(["xbps-install", "-Sy"] + pkgs)
 
     def remove(self, pkgs):
-        from time import sleep
-        libcalamares.utils.debug("Dummy backend: Removing " + str(pkgs))
-        sleep(3)
+        check_target_env_call(["xbps-remove", "-Ry", "--noconfirm"] + pkgs)
 
     def update_db(self):
-        libcalamares.utils.debug("Dummy backend: Updating DB")
+        check_target_env_call(["xbps-install", "-S"])
 
     def update_system(self):
-        libcalamares.utils.debug("Dummy backend: Updating System")
-
-    def run(self, script):
-        libcalamares.utils.debug("Dummy backend: Running script '" + str(script) + "'")
+        check_target_env_call(["xbps", "-Suy"])
 
 
-class PMPisi(PackageManager):
-    backend = "pisi"
+class PMYum(PackageManager):
+    backend = "yum"
 
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["pisi", "install" "-y"] + pkgs)
+        check_target_env_call(["yum", "-y", "install"] + pkgs)
 
     def remove(self, pkgs):
-        check_target_env_call(["pisi", "remove", "-y"] + pkgs)
+        check_target_env_call(["yum", "--disablerepo=*", "-C", "-y",
+                               "remove"] + pkgs)
 
     def update_db(self):
-        check_target_env_call(["pisi", "update-repo"])
+        # Doesn't need updates
+        pass
+
+    def update_system(self):
+        check_target_env_call(["yum", "-y", "upgrade"])
+
+
+class PMZypp(PackageManager):
+    backend = "zypp"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["zypper", "--non-interactive",
+                               "--quiet-install", "install",
+                               "--auto-agree-with-licenses",
+                               "install"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["zypper", "--non-interactive",
+                               "remove"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["zypper", "--non-interactive", "update"])
 
     def update_system(self):
         # Doesn't need to update the system explicitly
         pass
-
-
-class PMApk(PackageManager):
-    backend = "apk"
-
-    def install(self, pkgs, from_local=False):
-        for pkg in pkgs:
-            check_target_env_call(["apk", "add", pkg])
-
-    def remove(self, pkgs):
-        for pkg in pkgs:
-            check_target_env_call(["apk", "del", pkg])
-
-    def update_db(self):
-        check_target_env_call(["apk", "update"])
-
-    def update_system(self):
-        check_target_env_call(["apk", "upgrade", "--available"])
 
 
 # Collect all the subclasses of PackageManager defined above,
