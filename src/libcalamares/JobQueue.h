@@ -66,7 +66,6 @@ signals:
 private:
     static JobQueue* s_instance;
 
-    JobList m_jobs;
     JobThread* m_thread;
     GlobalStorage* m_storage;
     bool m_finished = true;  ///< Initially, not running
