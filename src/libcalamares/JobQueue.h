@@ -50,20 +50,25 @@ public:
      * of the module.
      */
     void enqueue( int moduleWeight, const JobList& jobs );
+    /** @brief Starts all the jobs that are enqueued.
+     *
+     * After this, isRunning() returns @c true until
+     * finished() is emitted.
+     */
     void start();
 
     bool isRunning() const { return !m_finished; }
 
-public slots:
-    void finish();
-
 signals:
     void queueChanged( const JobList& jobs );
+
     void progress( qreal percent, const QString& prettyName );
     void finished();
     void failed( const QString& message, const QString& details );
 
 private:
+    void finish();
+
     static JobQueue* s_instance;
 
     JobThread* m_thread;
