@@ -242,7 +242,6 @@ JobQueue::enqueue( int moduleWeight, const JobList& jobs )
 {
     Q_ASSERT( !m_thread->isRunning() );
     m_thread->enqueue( moduleWeight, jobs );
-    emit queueChanged( jobs );  // FIXME: bogus
 }
 
 void

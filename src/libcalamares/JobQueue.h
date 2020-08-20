@@ -60,8 +60,6 @@ public:
     bool isRunning() const { return !m_finished; }
 
 signals:
-    void queueChanged( const JobList& jobs );
-
     void progress( qreal percent, const QString& prettyName );
     void finished();
     void failed( const QString& message, const QString& details );
