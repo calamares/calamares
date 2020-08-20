@@ -1,3 +1,13 @@
+/* Sample of QML navigation.
+
+   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+   SPDX-License-Identifier: GPL-3.0-or-later
+
+
+   The navigation panel is generally "horizontal" in layout, with
+   buttons for next and previous; this particular one copies
+   the layout and size of the widgets panel.
+*/
 import io.calamares.ui 1.0
 import io.calamares.core 1.0
 

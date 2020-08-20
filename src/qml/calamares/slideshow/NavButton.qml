@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,14 +28,14 @@ import QtQuick 2.5;
 
 Image {
     id: fade
-    
+
     property bool isForward : true
-    
+
     width: 100
     height: 100
     anchors.verticalCenter: parent.verticalCenter
     opacity: 0.3
-    
+
     OpacityAnimator {
         id: fadeIn
         target: fade
@@ -43,7 +44,7 @@ Image {
         duration: 500
         running: false
     }
-    
+
     OpacityAnimator {
         id: fadeOut
         target: fade
@@ -52,7 +53,7 @@ Image {
         duration: 250
         running: false
     }
-    
+
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
