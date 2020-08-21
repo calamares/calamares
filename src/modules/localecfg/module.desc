@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
 # Enable the configured locales (those set by the user on the
 # user page) in /etc/locale.gen, if they are available in the
 # target system.
