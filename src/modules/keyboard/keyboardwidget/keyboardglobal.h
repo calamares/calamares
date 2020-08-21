@@ -1,7 +1,9 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2007 Free Software Foundation, Inc.
+ *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -24,21 +26,22 @@
 #ifndef KEYBOARDGLOBAL_H
 #define KEYBOARDGLOBAL_H
 
-#include <QString>
-#include <QFile>
-#include <QTextStream>
+#include <QDebug>
 #include <QDir>
-#include <QStringList>
-#include <QList>
+#include <QFile>
 #include <QHash>
+#include <QList>
 #include <QMap>
 #include <QRegExp>
-#include <QDebug>
+#include <QString>
+#include <QStringList>
+#include <QTextStream>
 
 class KeyboardGlobal
 {
 public:
-    struct KeyboardInfo {
+    struct KeyboardInfo
+    {
         QString description;
         QMap< QString, QString > variants;
     };
@@ -50,4 +53,4 @@ public:
     static ModelsMap getKeyboardModels();
 };
 
-#endif // KEYBOARDGLOBAL_H
+#endif  // KEYBOARDGLOBAL_H

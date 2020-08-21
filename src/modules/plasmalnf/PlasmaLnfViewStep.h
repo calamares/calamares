@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,9 +20,9 @@
 #ifndef PLASMALNFVIEWSTEP_H
 #define PLASMALNFVIEWSTEP_H
 
+#include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
-#include "DllMacro.h"
 
 #include <QObject>
 #include <QUrl>
@@ -60,9 +61,9 @@ private:
     PlasmaLnfPage* m_widget;
     QString m_lnfPath;  // Path to the lnf tool
     QString m_themeId;  // Id of selected theme
-    QString m_liveUser; // Name of the live user (for OEM mode)
+    QString m_liveUser;  // Name of the live user (for OEM mode)
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PlasmaLnfViewStepFactory )
 
-#endif // PLASMALNFVIEWSTEP_H
+#endif  // PLASMALNFVIEWSTEP_H

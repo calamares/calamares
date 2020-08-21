@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -51,26 +52,13 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
     /** @brief Is the configuration of this job valid? */
-    bool isValid() const
-    {
-        return ( !m_fsname.isEmpty() || !m_devicename.isEmpty() ) &&
-               m_size.isValid();
-    }
+    bool isValid() const { return ( !m_fsname.isEmpty() || !m_devicename.isEmpty() ) && m_size.isValid(); }
 
-    QString name() const
-    {
-        return m_fsname.isEmpty() ? m_devicename : m_fsname;
-    }
+    QString name() const { return m_fsname.isEmpty() ? m_devicename : m_fsname; }
 
-    PartitionSize size() const
-    {
-        return m_size;
-    }
+    PartitionSize size() const { return m_size; }
 
-    PartitionSize minimumSize() const
-    {
-        return m_atleast;
-    }
+    PartitionSize minimumSize() const { return m_atleast; }
 
 private:
     CalamaresUtils::Partition::KPMManager m_kpmcore;
@@ -80,7 +68,7 @@ private:
     QString m_devicename;
     bool m_required;
 
-    using PartitionMatch = QPair<Device*, Partition*>;
+    using PartitionMatch = QPair< Device*, Partition* >;
     /** @brief Find the configured FS */
     PartitionMatch findPartition();
 
@@ -90,4 +78,4 @@ private:
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ResizeFSJobFactory )
 
-#endif // RESIZEFSJOB_H
+#endif  // RESIZEFSJOB_H

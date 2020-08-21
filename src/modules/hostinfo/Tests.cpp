@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -63,8 +64,8 @@ HostInfoTests::testHostOS()
     // This is a lousy test, too: the implementation reads /proc/cpuinfo
     // and that's the only way we could use, too, to find what the "right"
     // answer is.
-    QStringList x86cpunames{ QStringLiteral( "Intel" ), QStringLiteral( "AMD" ) };
-    QStringList armcpunames{ QStringLiteral( "ARM" ) };
+    QStringList x86cpunames { QStringLiteral( "Intel" ), QStringLiteral( "AMD" ) };
+    QStringList armcpunames { QStringLiteral( "ARM" ) };
     const QString cpu = hostCPU();
     QVERIFY( x86cpunames.contains( cpu ) || armcpunames.contains( cpu ) );
 
@@ -83,7 +84,7 @@ HostInfoTests::testHostOS()
         }
         else
         {
-            QCOMPARE( cpu, QString( "Unknown CPU modalias '%1'" ).arg(cpumodalias) );
+            QCOMPARE( cpu, QString( "Unknown CPU modalias '%1'" ).arg( cpumodalias ) );
         }
     }
 }

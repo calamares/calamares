@@ -1,9 +1,10 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2015, Anke Boersma <demm@kaosx.us>
- *   Copyright 2015, Alexandre Arnt <qtgzmanager@gmail.com>
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2015 Anke Boersma <demm@kaosx.us>
+ *   SPDX-FileCopyrightText: 2015 Alexandre Arnt <qtgzmanager@gmail.com>
+ *   SPDX-FileCopyrightText: 2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by

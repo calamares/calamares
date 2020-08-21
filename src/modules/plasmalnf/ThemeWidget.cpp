@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,9 +21,9 @@
 
 #include "ThemeInfo.h"
 
+#include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
-#include "Branding.h"
 
 #include <QDir>
 #include <QFileInfo>
@@ -38,33 +39,41 @@
  * empty screenshot. Returns blank if the path
  * doesn't exist anywhere in the search paths.
  */
-static QString _munge_imagepath( const QString& path )
+static QString
+_munge_imagepath( const QString& path )
 {
     if ( path.isEmpty() )
+    {
         return ":/view-preview.png";
+    }
 
     if ( path.startsWith( '/' ) )
+    {
         return path;
+    }
 
     if ( QFileInfo::exists( path ) )
+    {
         return path;
+    }
 
     QFileInfo fi( QDir( Calamares::Branding::instance()->componentDirectory() ), path );
     if ( fi.exists() )
+    {
         return fi.absoluteFilePath();
+    }
 
     return QString();
 }
 
-ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
+ThemeWidget::ThemeWidget( const ThemeInfo& info, QWidget* parent )
     : QWidget( parent )
     , m_id( info.id )
     , m_check( new QRadioButton( info.name.isEmpty() ? info.id : info.name, parent ) )
     , m_description( new QLabel( info.description, parent ) )
 {
-    const QSize image_size{
-        qMax(12 * CalamaresUtils::defaultFontHeight(), 120),
-        qMax(8 * CalamaresUtils::defaultFontHeight(), 80) };
+    const QSize image_size { qMax( 12 * CalamaresUtils::defaultFontHeight(), 120 ),
+                             qMax( 8 * CalamaresUtils::defaultFontHeight(), 80 ) };
 
     QHBoxLayout* layout = new QHBoxLayout( this );
     this->setLayout( layout );
@@ -99,7 +108,9 @@ void
 ThemeWidget::clicked( bool checked )
 {
     if ( checked )
+    {
         emit themeSelected( m_id );
+    }
 }
 
 QAbstractButton*
@@ -108,7 +119,8 @@ ThemeWidget::button() const
     return m_check;
 }
 
-void ThemeWidget::updateThemeName(const ThemeInfo& info)
+void
+ThemeWidget::updateThemeName( const ThemeInfo& info )
 {
     m_check->setText( info.name );
     m_description->setText( info.description );

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,7 +25,8 @@
 
 #include <QVariant>
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( InteractiveTerminalViewStepFactory, registerPlugin<InteractiveTerminalViewStep>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( InteractiveTerminalViewStepFactory,
+                                     registerPlugin< InteractiveTerminalViewStep >(); )
 
 InteractiveTerminalViewStep::InteractiveTerminalViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -37,7 +39,9 @@ InteractiveTerminalViewStep::InteractiveTerminalViewStep( QObject* parent )
 InteractiveTerminalViewStep::~InteractiveTerminalViewStep()
 {
     if ( m_widget && m_widget->parent() == nullptr )
+    {
         m_widget->deleteLater();
+    }
 }
 
 
@@ -102,8 +106,8 @@ InteractiveTerminalViewStep::onActivate()
 void
 InteractiveTerminalViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "command" ) &&
-         configurationMap.value( "command").type() == QVariant::String )
+    if ( configurationMap.contains( "command" ) && configurationMap.value( "command" ).type() == QVariant::String )
+    {
         m_widget->setCommand( configurationMap.value( "command" ).toString() );
+    }
 }
-

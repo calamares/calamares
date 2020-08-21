@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -38,4 +39,4 @@ private:
     QLabel* m_bootLabel;
 };
 
-#endif // BOOTINFOWIDGET_H
+#endif  // BOOTINFOWIDGET_H

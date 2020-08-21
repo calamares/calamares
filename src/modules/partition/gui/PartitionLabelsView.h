@@ -1,8 +1,9 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -79,8 +80,7 @@ private:
     void drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent );
     QSize sizeForAllLabels( int maxLineWidth ) const;
     QSize sizeForLabel( const QStringList& text ) const;
-    void drawLabel( QPainter* painter, const QStringList& text, const QColor& color,
-                    const QPoint& pos , bool selected );
+    void drawLabel( QPainter* painter, const QStringList& text, const QColor& color, const QPoint& pos, bool selected );
     QModelIndexList getIndexesToDraw( const QModelIndex& parent ) const;
     QStringList buildTexts( const QModelIndex& index ) const;
 
@@ -91,4 +91,4 @@ private:
     QPersistentModelIndex m_hoveredIndex;
 };
 
-#endif // PARTITIONLABELSVIEW_H
+#endif  // PARTITIONLABELSVIEW_H

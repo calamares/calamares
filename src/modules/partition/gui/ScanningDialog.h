@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -28,19 +29,19 @@ class ScanningDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ScanningDialog( const QString& text,
-                             const QString& windowTitle,
-                             QWidget* parent = nullptr );
+    explicit ScanningDialog( const QString& text, const QString& windowTitle, QWidget* parent = nullptr );
 
-    static void run( const QFuture< void >& future,
-                     const QString& text,
-                     const QString& windowTitle,
-                     const std::function< void() >& callback = []{},
-                     QWidget* parent = nullptr );
+    static void run(
+        const QFuture< void >& future,
+        const QString& text,
+        const QString& windowTitle,
+        const std::function< void() >& callback = [] {},
+        QWidget* parent = nullptr );
 
-    static void run( const QFuture< void >& future,
-                     const std::function< void() >& callback = []{},
-                     QWidget* parent = nullptr );
+    static void run(
+        const QFuture< void >& future,
+        const std::function< void() >& callback = [] {},
+        QWidget* parent = nullptr );
 
 public slots:
     void setVisible( bool visible ) override;
@@ -49,4 +50,4 @@ signals:
     void visibilityChanged();
 };
 
-#endif // SCANNINGDIALOG_H
+#endif  // SCANNINGDIALOG_H

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -130,7 +131,7 @@ MachineIdTests::testJob()
 
     // Prepare part of the target filesystem
     {
-        QVERIFY( system->createTargetDirs("/etc") );
+        QVERIFY( system->createTargetDirs( "/etc" ) );
         auto r = system->createTargetFile( "/etc/machine-id", "Hello" );
         QVERIFY( !r.failed() );
         QVERIFY( r );
@@ -164,7 +165,7 @@ MachineIdTests::testJob()
         QFileInfo fi( "/tmp/var/lib/dbus/machine-id" );
         QVERIFY( fi.exists() );
         QVERIFY( fi.isSymLink() );
-        QCOMPARE( fi.size(), 5);
+        QCOMPARE( fi.size(), 5 );
 #endif
     }
     tempRoot.setAutoRemove( true );  // All tests succeeded

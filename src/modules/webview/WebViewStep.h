@@ -1,8 +1,9 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2015, Rohan Garg <rohan@garg.io>
- *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2015 Rohan Garg <rohan@garg.io>
+ *   SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,12 +22,9 @@
 #ifndef WEBVIEWPLUGIN_H
 #define WEBVIEWPLUGIN_H
 
-#include "WebViewConfig.h"
-
+#include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
-
-#include "DllMacro.h"
 
 #include <QVariantMap>
 
@@ -63,11 +61,11 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    C_QWEBVIEW *m_view;
+    C_QWEBVIEW* m_view;
     QString m_url;
     QString m_prettyName;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WebViewStepFactory )
 
-#endif // WEBVIEWPLUGIN_H
+#endif  // WEBVIEWPLUGIN_H

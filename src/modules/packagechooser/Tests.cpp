@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -77,7 +78,8 @@ PackageChooserTests::testAppData()
     QCOMPARE( p1.description.get(), QStringLiteral( "Calamares is an installer program for Linux distributions." ) );
     // .. but en_GB doesn't have an entry in description, so uses <summary>
     QCOMPARE( p1.description.get( QLocale( "en_GB" ) ), QStringLiteral( "Calamares Linux Installer" ) );
-    QCOMPARE( p1.description.get( QLocale( "nl" ) ), QStringLiteral( "Calamares is een installatieprogramma voor Linux distributies." ) );
+    QCOMPARE( p1.description.get( QLocale( "nl" ) ),
+              QStringLiteral( "Calamares is een installatieprogramma voor Linux distributies." ) );
     QVERIFY( p1.screenshot.isNull() );
 
     m.insert( "id", "calamares" );
@@ -85,7 +87,8 @@ PackageChooserTests::testAppData()
     PackageItem p2 = fromAppData( m );
     QVERIFY( p2.isValid() );
     QCOMPARE( p2.id, QStringLiteral( "calamares" ) );
-    QCOMPARE( p2.description.get( QLocale( "nl" ) ), QStringLiteral( "Calamares is een installatieprogramma voor Linux distributies." ) );
+    QCOMPARE( p2.description.get( QLocale( "nl" ) ),
+              QStringLiteral( "Calamares is een installatieprogramma voor Linux distributies." ) );
     QVERIFY( !p2.screenshot.isNull() );
 #endif
 }

@@ -1,8 +1,9 @@
 /*
- *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
- *   Copyright 2016, Lisa Vitolo <shainer@chakraos.org>
- *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
- *   Copyright 2017-2018, 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2016 Luca Giambonini <almack@chakraos.org>
+ *   SPDX-FileCopyrightText: 2016 Lisa Vitolo <shainer@chakraos.org>
+ *   SPDX-FileCopyrightText: 2017 Kyle Robbertze  <krobbertze@gmail.com>
+ *   SPDX-FileCopyrightText: 2017-2018 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by

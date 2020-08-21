@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,15 +20,15 @@
 
 #include "DeviceInfoWidget.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
-#include "JobQueue.h"
-#include "GlobalStorage.h"
 
 #include <QDir>
-#include <QLabel>
 #include <QHBoxLayout>
+#include <QLabel>
 
 DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     : QWidget( parent )
@@ -39,8 +40,8 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     setLayout( mainLayout );
 
     CalamaresUtils::unmarginLayout( mainLayout );
-    m_ptLabel->setObjectName("deviceInfoLabel");
-    m_ptIcon->setObjectName("deviceInfoIcon");
+    m_ptLabel->setObjectName( "deviceInfoLabel" );
+    m_ptIcon->setObjectName( "deviceInfoIcon" );
     mainLayout->addWidget( m_ptIcon );
     mainLayout->addWidget( m_ptLabel );
 
@@ -49,16 +50,14 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     m_ptIcon->setMargin( 0 );
     m_ptIcon->setFixedSize( iconSize );
     m_ptIcon->setPixmap(
-        CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionTable,
-                                       CalamaresUtils::Original,
-                                       iconSize ) );
+        CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionTable, CalamaresUtils::Original, iconSize ) );
 
     QFontMetrics fm = QFontMetrics( QFont() );
     m_ptLabel->setMinimumWidth( fm.boundingRect( "Amiga" ).width() + CalamaresUtils::defaultFontHeight() / 2 );
     m_ptLabel->setAlignment( Qt::AlignCenter );
 
     QPalette palette;
-    palette.setBrush( QPalette::Foreground, QColor( "#4D4D4D" ) ); //dark grey
+    palette.setBrush( QPalette::Foreground, QColor( "#4D4D4D" ) );  //dark grey
 
     m_ptIcon->setAutoFillBackground( true );
     m_ptLabel->setAutoFillBackground( true );
@@ -107,7 +106,7 @@ DeviceInfoWidget::retranslateUi()
 
     QString toolTipString = tr( "This device has a <strong>%1</strong> partition "
                                 "table." )
-                            .arg( typeString );
+                                .arg( typeString );
 
     switch ( m_tableType )
     {
@@ -149,11 +148,11 @@ DeviceInfoWidget::retranslateUi()
     m_ptLabel->setToolTip( toolTipString );
 
     m_ptIcon->setToolTip( tr( "The type of <strong>partition table</strong> on the "
-                            "selected storage device.<br><br>"
-                            "The only way to change the partition table type is to "
-                            "erase and recreate the partition table from scratch, "
-                            "which destroys all data on the storage device.<br>"
-                            "This installer will keep the current partition table "
-                            "unless you explicitly choose otherwise.<br>"
-                            "If unsure, on modern systems GPT is preferred." ) );
+                              "selected storage device.<br><br>"
+                              "The only way to change the partition table type is to "
+                              "erase and recreate the partition table from scratch, "
+                              "which destroys all data on the storage device.<br>"
+                              "This installer will keep the current partition table "
+                              "unless you explicitly choose otherwise.<br>"
+                              "If unsure, on modern systems GPT is preferred." ) );
 }

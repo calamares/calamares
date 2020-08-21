@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -57,10 +58,7 @@ public:
 
     void init( Device* dev, bool drawNestedPartitions );
 
-    void setSplitPartition( const QString& path,
-                            qint64 minSize,
-                            qint64 maxSize,
-                            qint64 preferredSize );
+    void setSplitPartition( const QString& path, qint64 minSize, qint64 maxSize, qint64 preferredSize );
 
     qint64 splitPartitionSize() const;
     qint64 newPartitionSize() const;
@@ -80,20 +78,15 @@ protected:
 private:
     void setupItems( const QVector< PartitionSplitterItem >& items );
 
-    void drawPartitions( QPainter* painter,
-                         const QRect& rect,
-                         const QVector< PartitionSplitterItem >& itemList );
-    void drawSection( QPainter* painter, const QRect& rect_, int x, int width,
-                      const PartitionSplitterItem& item );
-    void drawResizeHandle( QPainter* painter,
-                           const QRect& rect_,
-                           int x );
+    void drawPartitions( QPainter* painter, const QRect& rect, const QVector< PartitionSplitterItem >& itemList );
+    void drawSection( QPainter* painter, const QRect& rect_, int x, int width, const PartitionSplitterItem& item );
+    void drawResizeHandle( QPainter* painter, const QRect& rect_, int x );
 
     PartitionSplitterItem _findItem( QVector< PartitionSplitterItem >& items,
-                                     std::function< bool ( PartitionSplitterItem& ) > condition ) const;
+                                     std::function< bool( PartitionSplitterItem& ) > condition ) const;
 
     int _eachItem( QVector< PartitionSplitterItem >& items,
-                   std::function< bool ( PartitionSplitterItem& ) > operation ) const;
+                   std::function< bool( PartitionSplitterItem& ) > operation ) const;
 
     QPair< QVector< PartitionSplitterItem >, qreal >
     computeItemsVector( const QVector< PartitionSplitterItem >& originalItems ) const;
@@ -114,4 +107,4 @@ private:
     bool m_drawNestedPartitions;
 };
 
-#endif // PARTITIONSPLITTERWIDGET_H
+#endif  // PARTITIONSPLITTERWIDGET_H

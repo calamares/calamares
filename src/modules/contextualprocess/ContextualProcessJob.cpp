@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017-2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -77,7 +78,7 @@ fetch( QString& value, QStringList& selector, int index, const QVariant& v )
     }
     const QVariantMap map = v.toMap();
     const QString& key = selector.at( index );
-    if ( index == selector.length() - 1)
+    if ( index == selector.length() - 1 )
     {
         value = map.value( key ).toString();
         return map.contains( key );

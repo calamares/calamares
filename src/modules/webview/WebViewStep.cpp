@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2015, Rohan Garg <rohan@garg.io>
- *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2015 Rohan Garg <rohan@garg.io>
+ *   SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,7 +30,7 @@
 #include <QtWebEngine>
 #endif
 
-CALAMARES_PLUGIN_FACTORY_DEFINITION( WebViewStepFactory, registerPlugin<WebViewStep>(); )
+CALAMARES_PLUGIN_FACTORY_DEFINITION( WebViewStepFactory, registerPlugin< WebViewStep >(); )
 
 WebViewStep::WebViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -41,13 +42,9 @@ WebViewStep::WebViewStep( QObject* parent )
     m_view = new C_QWEBVIEW();
 #ifdef WEBVIEW_WITH_WEBKIT
     m_view->settings()->setFontFamily( QWebSettings::StandardFont,
-                                       m_view->settings()->
-                                       fontFamily( QWebSettings::SansSerifFont ) );
-    m_view->setRenderHints( QPainter::Antialiasing |
-                            QPainter::TextAntialiasing |
-                            QPainter::HighQualityAntialiasing |
-                            QPainter::SmoothPixmapTransform |
-                            QPainter::NonCosmeticDefaultPen );
+                                       m_view->settings()->fontFamily( QWebSettings::SansSerifFont ) );
+    m_view->setRenderHints( QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing
+                            | QPainter::SmoothPixmapTransform | QPainter::NonCosmeticDefaultPen );
 #endif
 }
 
@@ -55,7 +52,9 @@ WebViewStep::WebViewStep( QObject* parent )
 WebViewStep::~WebViewStep()
 {
     if ( m_view && m_view->parent() == nullptr )
+    {
         m_view->deleteLater();
+    }
 }
 
 
@@ -100,10 +99,11 @@ WebViewStep::isAtEnd() const
     return true;
 }
 
-void WebViewStep::onActivate()
+void
+WebViewStep::onActivate()
 {
-  m_view->load(QUrl(m_url));
-  m_view->show();
+    m_view->load( QUrl( m_url ) );
+    m_view->show();
 }
 
 QList< Calamares::job_ptr >
@@ -116,11 +116,14 @@ WebViewStep::jobs() const
 void
 WebViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-  if ( configurationMap.contains("url") &&
-       configurationMap.value("url").type() == QVariant::String )
-    m_url = configurationMap.value("url").toString();
+    if ( configurationMap.contains( "url" ) && configurationMap.value( "url" ).type() == QVariant::String )
+    {
+        m_url = configurationMap.value( "url" ).toString();
+    }
 
-  if ( configurationMap.contains("prettyName") &&
-       configurationMap.value("prettyName").type() == QVariant::String )
-    m_prettyName = configurationMap.value("prettyName").toString();
+    if ( configurationMap.contains( "prettyName" )
+         && configurationMap.value( "prettyName" ).type() == QVariant::String )
+    {
+        m_prettyName = configurationMap.value( "prettyName" ).toString();
+    }
 }

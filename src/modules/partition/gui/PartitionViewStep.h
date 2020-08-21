@@ -1,8 +1,9 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -36,7 +37,8 @@ class PartitionCoreModule;
 class QStackedWidget;
 class WaitingWidget;
 
-template<typename T> class QFutureWatcher;
+template < typename T >
+class QFutureWatcher;
 
 /**
  * The starting point of the module. Instantiates PartitionCoreModule,
@@ -83,14 +85,14 @@ private:
     Config* m_config;
 
     PartitionCoreModule* m_core;
-    QStackedWidget*   m_widget;
-    ChoicePage*       m_choicePage;
-    PartitionPage*    m_manualPartitionPage;
+    QStackedWidget* m_widget;
+    ChoicePage* m_choicePage;
+    PartitionPage* m_manualPartitionPage;
 
     WaitingWidget* m_waitingWidget;
-    QFutureWatcher<void>* m_future;
+    QFutureWatcher< void >* m_future;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PartitionViewStepFactory )
 
-#endif // PARTITIONVIEWSTEP_H
+#endif  // PARTITIONVIEWSTEP_H

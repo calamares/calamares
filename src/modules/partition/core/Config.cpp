@@ -125,7 +125,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_swapChoices = getSwapChoices( configurationMap );
 
     bool nameFound = false;  // In the name table (ignored, falls back to first entry in table)
-    m_initialInstallChoice = PartitionActions::Choices::installChoiceNames().find( CalamaresUtils::getString( configurationMap, "initialPartitioningChoice" ), nameFound );
+    m_initialInstallChoice = PartitionActions::Choices::installChoiceNames().find(
+        CalamaresUtils::getString( configurationMap, "initialPartitioningChoice" ), nameFound );
 }
 
 void

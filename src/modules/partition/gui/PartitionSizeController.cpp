@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -36,7 +37,8 @@
 
 PartitionSizeController::PartitionSizeController( QObject* parent )
     : QObject( parent )
-{}
+{
+}
 
 void
 PartitionSizeController::init( Device* device, Partition* partition, const QColor& color )
@@ -58,7 +60,9 @@ PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget, bool f
     Q_ASSERT( m_device );
 
     if ( m_partResizerWidget )
+    {
         disconnect( m_partResizerWidget, nullptr, this, nullptr );
+    }
 
     m_dirty = false;
     m_currentSpinBoxValue = -1;
@@ -108,7 +112,9 @@ void
 PartitionSizeController::setSpinBox( QSpinBox* spinBox )
 {
     if ( m_spinBox )
+    {
         disconnect( m_spinBox, nullptr, this, nullptr );
+    }
     m_spinBox = spinBox;
     m_spinBox->setMaximum( std::numeric_limits< int >::max() );
     connectWidgets();
@@ -118,7 +124,9 @@ void
 PartitionSizeController::connectWidgets()
 {
     if ( !m_spinBox || !m_partResizerWidget )
+    {
         return;
+    }
 
     connect( m_spinBox, SIGNAL( editingFinished() ), SLOT( updatePartResizerWidget() ) );
     connect( m_partResizerWidget, SIGNAL( firstSectorChanged( qint64 ) ), SLOT( updateSpinBox() ) );
@@ -132,9 +140,13 @@ void
 PartitionSizeController::updatePartResizerWidget()
 {
     if ( m_updating )
+    {
         return;
+    }
     if ( m_spinBox->value() == m_currentSpinBoxValue )
+    {
         return;
+    }
 
     m_updating = true;
     qint64 sectorSize = qint64( m_spinBox->value() ) * 1024 * 1024 / m_device->logicalSize();
@@ -148,8 +160,7 @@ PartitionSizeController::updatePartResizerWidget()
 }
 
 void
-PartitionSizeController::doAlignAndUpdatePartResizerWidget( qint64 firstSector,
-                                                            qint64 lastSector )
+PartitionSizeController::doAlignAndUpdatePartResizerWidget( qint64 firstSector, qint64 lastSector )
 {
     if ( lastSector > m_partResizerWidget->maximumLastSector() )
     {
@@ -176,7 +187,9 @@ void
 PartitionSizeController::updateSpinBox()
 {
     if ( m_updating )
+    {
         return;
+    }
     m_updating = true;
     doUpdateSpinBox();
     m_updating = false;
@@ -186,12 +199,16 @@ void
 PartitionSizeController::doUpdateSpinBox()
 {
     if ( !m_spinBox )
+    {
         return;
+    }
     int mbSize = CalamaresUtils::BytesToMiB( m_partition->length() * m_device->logicalSize() );
     m_spinBox->setValue( mbSize );
-    if ( m_currentSpinBoxValue != -1 &&    //if it's not the first time we're setting it
-         m_currentSpinBoxValue != mbSize ) //and the operation changes the SB value
+    if ( m_currentSpinBoxValue != -1 &&  //if it's not the first time we're setting it
+         m_currentSpinBoxValue != mbSize )  //and the operation changes the SB value
+    {
         m_dirty = true;
+    }
     m_currentSpinBoxValue = mbSize;
 }
 

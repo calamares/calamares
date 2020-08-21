@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -78,8 +79,11 @@ InitramfsJob::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else if ( m_kernel == "$uname" )
     {
-        auto r = CalamaresUtils::System::runCommand(
-            CalamaresUtils::System::RunLocation::RunInHost, { "/bin/uname", "-r" }, QString(), QString(), std::chrono::seconds( 3 ) );
+        auto r = CalamaresUtils::System::runCommand( CalamaresUtils::System::RunLocation::RunInHost,
+                                                     { "/bin/uname", "-r" },
+                                                     QString(),
+                                                     QString(),
+                                                     std::chrono::seconds( 3 ) );
         if ( r.getExitCode() == 0 )
         {
             m_kernel = r.getOutput();

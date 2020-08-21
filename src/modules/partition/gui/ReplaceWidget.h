@@ -1,8 +1,9 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,8 +24,8 @@
 
 #include "utils/CalamaresUtilsGui.h"
 
-#include <QWidget>
 #include <QScopedPointer>
+#include <QWidget>
 
 class Ui_ReplaceWidget;
 class QComboBox;
@@ -35,9 +36,7 @@ class ReplaceWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ReplaceWidget( PartitionCoreModule* core,
-                            QComboBox* devicesComboBox,
-                            QWidget* parent = nullptr );
+    explicit ReplaceWidget( PartitionCoreModule* core, QComboBox* devicesComboBox, QWidget* parent = nullptr );
     virtual ~ReplaceWidget();
 
     bool isNextEnabled() const;
@@ -69,4 +68,4 @@ private:
     void onPartitionModelReset();
 };
 
-#endif // REPLACEWIDGET_H
+#endif  // REPLACEWIDGET_H

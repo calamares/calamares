@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Caio Jordão Carvalho <caiojcarvalho@gmail.com>
+ *   SPDX-FileCopyrightText: 2018 Caio Jordão Carvalho <caiojcarvalho@gmail.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,7 +24,8 @@
 
 #include <QDialog>
 
-namespace Ui {
+namespace Ui
+{
 class VolumeGroupBaseDialog;
 }
 
@@ -37,9 +39,7 @@ class VolumeGroupBaseDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit VolumeGroupBaseDialog( QString& vgName,
-                                    QVector< const Partition* > pvList,
-                                    QWidget* parent = nullptr );
+    explicit VolumeGroupBaseDialog( QString& vgName, QVector< const Partition* > pvList, QWidget* parent = nullptr );
     ~VolumeGroupBaseDialog();
 
 protected:
@@ -78,4 +78,4 @@ private:
     qint64 m_usedSizeValue;
 };
 
-#endif // VOLUMEGROUPBASEDIALOG_H
+#endif  // VOLUMEGROUPBASEDIALOG_H

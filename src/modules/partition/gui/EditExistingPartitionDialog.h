@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -41,7 +42,10 @@ class EditExistingPartitionDialog : public QDialog
 {
     Q_OBJECT
 public:
-    EditExistingPartitionDialog( Device* device, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget = nullptr );
+    EditExistingPartitionDialog( Device* device,
+                                 Partition* partition,
+                                 const QStringList& usedMountPoints,
+                                 QWidget* parentWidget = nullptr );
     ~EditExistingPartitionDialog();
 
     void applyChanges( PartitionCoreModule* module );

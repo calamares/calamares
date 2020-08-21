@@ -1,10 +1,11 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2008 2010, Volker Lanz <vl@fidra.de>
+ *   SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Based on the SetPartFlagsJob class from KDE Partition Manager,
- *   Copyright 2008, 2010, Volker Lanz <vl@fidra.de>
+ *   Based on the SetPartFlagsJob class from KDE Partition Manager
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by

@@ -1,7 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Caio Jordão Carvalho <caiojcarvalho@gmail.com>
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Caio Jordão Carvalho <caiojcarvalho@gmail.com>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,7 +30,7 @@
 #include <QListWidgetItem>
 #include <QSpinBox>
 
-ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice *device,
+ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice* device,
                                                   const PartitionVector& availablePVs,
                                                   PartitionVector& selectedPVs,
                                                   QWidget* parent )
@@ -39,12 +40,17 @@ ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice *device,
     setWindowTitle( tr( "Resize Volume Group" ) );
 
     for ( int i = 0; i < pvList()->count(); i++ )
-        pvList()->item(i)->setCheckState( Qt::Checked );
+    {
+        pvList()->item( i )->setCheckState( Qt::Checked );
+    }
 
     for ( const Partition* p : availablePVs )
+    {
         pvList()->addItem( new ListPhysicalVolumeWidgetItem( p, false ) );
+    }
 
-    peSize()->setValue( static_cast<int>( device->peSize() / Capacity::unitFactor(Capacity::Unit::Byte, Capacity::Unit::MiB) ) );
+    peSize()->setValue(
+        static_cast< int >( device->peSize() / Capacity::unitFactor( Capacity::Unit::Byte, Capacity::Unit::MiB ) ) );
 
     vgName()->setEnabled( false );
     peSize()->setEnabled( false );

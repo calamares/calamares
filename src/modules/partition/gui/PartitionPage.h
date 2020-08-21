@@ -1,8 +1,9 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
- *   Copyright 2019, Collabora Ltd
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2018-2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Collabora Ltd
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,9 +22,9 @@
 #ifndef PARTITIONPAGE_H
 #define PARTITIONPAGE_H
 
-#include <QWidget>
-#include <QScopedPointer>
 #include <QMutex>
+#include <QScopedPointer>
+#include <QWidget>
 
 class PartitionCoreModule;
 class Ui_PartitionPage;
@@ -90,8 +91,8 @@ private:
     QStringList getCurrentUsedMountpoints();
 
     QMutex m_revertMutex;
-    int    m_lastSelectedBootLoaderIndex;
-    bool   m_isEfi;
+    int m_lastSelectedBootLoaderIndex;
+    bool m_isEfi;
 };
 
-#endif // PARTITIONPAGE_H
+#endif  // PARTITIONPAGE_H

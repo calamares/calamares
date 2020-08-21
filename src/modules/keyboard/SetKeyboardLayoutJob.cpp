@@ -1,7 +1,10 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
+ *   SPDX-FileCopyrightText: 2011 Lennart Poettering
+ *   SPDX-FileCopyrightText: Kay Sievers
+ *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Kevin Kofler <kevin.kofler@chello.at>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Portions from systemd (localed.c):
  *   Copyright 2011 Lennart Poettering

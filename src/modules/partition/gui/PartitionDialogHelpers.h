@@ -1,8 +1,9 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -54,10 +55,18 @@ void standardMountPoints( QComboBox&, const QString& selected );
  * to blank, to allow easy detection of no-mount-selected.
  */
 QString selectedMountPoint( QComboBox& combo );
-static inline QString selectedMountPoint(QComboBox* combo) { return selectedMountPoint(*combo); }
+static inline QString
+selectedMountPoint( QComboBox* combo )
+{
+    return selectedMountPoint( *combo );
+}
 
 void setSelectedMountPoint( QComboBox& combo, const QString& selected );
-static inline void setSelectedMountPoint(QComboBox* combo, const QString& selected) { setSelectedMountPoint( *combo, selected); }
+static inline void
+setSelectedMountPoint( QComboBox* combo, const QString& selected )
+{
+    setSelectedMountPoint( *combo, selected );
+}
 
 /**
  * Get the flags that have been checked in the list widget.

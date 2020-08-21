@@ -1,7 +1,9 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2007 Free Software Foundation, Inc.
+ *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -43,18 +45,22 @@ static const char XKB_FILE[] = "/usr/share/X11/xkb/rules/base.lst";
  * or hits end-of-file. Returns true if the section is found. The
  * @p name must include the "! " section marker as well.
  */
-static bool findSection( QFile& fh, const char* name )
+static bool
+findSection( QFile& fh, const char* name )
 {
     while ( !fh.atEnd() )
     {
         QByteArray line = fh.readLine();
         if ( line.startsWith( name ) )
+        {
             return true;
+        }
     }
     return false;
 }
 
-static KeyboardGlobal::ModelsMap parseKeyboardModels( const char* filepath )
+static KeyboardGlobal::ModelsMap
+parseKeyboardModels( const char* filepath )
 {
     KeyboardGlobal::ModelsMap models;
 
@@ -75,7 +81,9 @@ static KeyboardGlobal::ModelsMap parseKeyboardModels( const char* filepath )
 
         // check if we start a new section
         if ( line.startsWith( '!' ) )
+        {
             break;
+        }
 
         // here we are in the model section, otherwhise we would continue or break
         QRegExp rx;
@@ -88,7 +96,9 @@ static KeyboardGlobal::ModelsMap parseKeyboardModels( const char* filepath )
             QString model = rx.cap( 1 );
 
             if ( model == "pc105" )
+            {
                 modelDesc += "  -  " + QObject::tr( "Default Keyboard Model" );
+            }
 
             models.insert( modelDesc, model );
         }
@@ -98,7 +108,8 @@ static KeyboardGlobal::ModelsMap parseKeyboardModels( const char* filepath )
 }
 
 
-KeyboardGlobal::LayoutsMap parseKeyboardLayouts( const char* filepath )
+KeyboardGlobal::LayoutsMap
+parseKeyboardLayouts( const char* filepath )
 {
     KeyboardGlobal::LayoutsMap layouts;
 
@@ -120,7 +131,9 @@ KeyboardGlobal::LayoutsMap parseKeyboardLayouts( const char* filepath )
         QByteArray line = fh.readLine();
 
         if ( line.startsWith( '!' ) )
+        {
             break;
+        }
 
         QRegExp rx;
         rx.setPattern( "^\\s+(\\S+)\\s+(\\w.*)\n$" );
@@ -147,7 +160,9 @@ KeyboardGlobal::LayoutsMap parseKeyboardLayouts( const char* filepath )
         QByteArray line = fh.readLine();
 
         if ( line.startsWith( '!' ) )
+        {
             break;
+        }
 
         QRegExp rx;
         rx.setPattern( "^\\s+(\\S+)\\s+(\\S+): (\\w.*)\n$" );
@@ -176,14 +191,15 @@ KeyboardGlobal::LayoutsMap parseKeyboardLayouts( const char* filepath )
 }
 
 
-KeyboardGlobal::LayoutsMap KeyboardGlobal::getKeyboardLayouts()
+KeyboardGlobal::LayoutsMap
+KeyboardGlobal::getKeyboardLayouts()
 {
     return parseKeyboardLayouts( XKB_FILE );
 }
 
 
-KeyboardGlobal::ModelsMap KeyboardGlobal::getKeyboardModels()
+KeyboardGlobal::ModelsMap
+KeyboardGlobal::getKeyboardModels()
 {
     return parseKeyboardModels( XKB_FILE );
 }
-
