@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>
+SPDX-FileCopyrightText: 2015 Teo Mrnjavac &lt;teo@kde.org&gt;
+SPDX-License-Identifier: GPL-3.0-or-later
+ </author>
  <class>Calamares::DebugWindow</class>
  <widget class="QWidget" name="Calamares::DebugWindow">
   <property name="geometry">
@@ -52,7 +56,7 @@
          <item>
           <layout class="QFormLayout" name="formLayout">
            <item row="0" column="0">
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="typeLabel">
              <property name="text">
               <string>Type:</string>
              </property>
@@ -66,7 +70,7 @@
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="interfaceLabel">
              <property name="text">
               <string>Interface:</string>
              </property>
