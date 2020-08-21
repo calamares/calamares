@@ -162,17 +162,8 @@ Manager::hasInternet()
 bool
 Manager::checkHasInternet()
 {
-    bool hasInternet = d->nam()->networkAccessible() == QNetworkAccessManager::Accessible;
-
-    if ( !hasInternet && ( d->nam()->networkAccessible() == QNetworkAccessManager::UnknownAccessibility ) )
-    {
-        hasInternet = synchronousPing( d->m_hasInternetUrl );
-    }
-    if ( hasInternet != d->m_hasInternet )
-    {
-        d->m_hasInternet = hasInternet;
-        emit hasInternetChanged( hasInternet );
-    }
+    d->m_hasInternet = synchronousPing( d->m_hasInternetUrl );
+    emit hasInternetChanged( hasInternet );
     return hasInternet;
 }
 
