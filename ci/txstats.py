@@ -1,5 +1,8 @@
 #! /usr/bin/env python3
 #
+#   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 # Uses the Transifex API to get a list of enabled languages,
 # and outputs CMake settings for inclusion into CMakeLists.txt.
 #

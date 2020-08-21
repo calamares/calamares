@@ -1,5 +1,8 @@
 #! /bin/sh
 #
+#   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 ### USAGE
 #
 # Release script for Calamares

@@ -3,9 +3,9 @@
 ### LICENSE
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
-#   SPDX-License-Identifier: BSD-2-Clause
-#   SPDX-FileCopyrightText: 2017-2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2017-2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
 #
 #   This file is Free Software: you can redistribute it and/or modify
 #   it under the terms of the 2-clause BSD License.

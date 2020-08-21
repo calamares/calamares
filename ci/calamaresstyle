@@ -1,5 +1,9 @@
 #!/bin/sh
 #
+#   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+#   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 # Calls astyle with settings matching Calamares coding style
 # Requires astyle >= 2.04 and clang-format-7 -8 or -9
 #
