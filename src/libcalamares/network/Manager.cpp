@@ -144,7 +144,7 @@ Manager::Manager()
 {
 }
 
-Manager::~Manager() {}
+Manager::~Manager() { }
 
 Manager&
 Manager::instance()
@@ -164,7 +164,7 @@ Manager::checkHasInternet()
 {
     d->m_hasInternet = synchronousPing( d->m_hasInternetUrl );
     emit hasInternetChanged( d->m_hasInternet );
-    return hasInternet;
+    return d->m_hasInternet;
 }
 
 void
