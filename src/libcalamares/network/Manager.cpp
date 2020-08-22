@@ -163,7 +163,7 @@ bool
 Manager::checkHasInternet()
 {
     d->m_hasInternet = synchronousPing( d->m_hasInternetUrl );
-    emit hasInternetChanged( hasInternet );
+    emit hasInternetChanged( d->m_hasInternet );
     return hasInternet;
 }
 
