@@ -3,13 +3,14 @@
 #
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
-#   Copyright 2014, Teo Mrnjavac <teo@kde.org>
-#   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
-#   Copyright 2014, Philip Müller <philm@manjaro.org>
-#   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2019, Kevin Kofler <kevin.kofler@chello.at>
-#   Copyright 2020, Adriaan de Groot <groot@kde.org>
-#   Copyright 2020, Gabriel Craciunescu <crazy@frugalware.org>
+#   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2014 Daniel Hillenbrand <codeworkx@bbqlinux.org>
+#   SPDX-FileCopyrightText: 2014 Philip Müller <philm@manjaro.org>
+#   SPDX-FileCopyrightText: 2017 Alf Gaida <agaida@siduction.org>
+#   SPDX-FileCopyrightText: 2019 Kevin Kofler <kevin.kofler@chello.at>
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2020 Gabriel Craciunescu <crazy@frugalware.org>
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
