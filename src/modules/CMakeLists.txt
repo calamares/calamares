@@ -1,3 +1,9 @@
+# === This file is part of Calamares - <https://github.com/calamares> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+
 # The variable SKIP_MODULES can be set to skip particular modules;
 # individual modules can also decide they must be skipped (e.g. OS-specific
 # modules, or ones with unmet dependencies). Collect the skipped modules

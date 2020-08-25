@@ -1,3 +1,11 @@
+# === This file is part of Calamares - <https://github.com/calamares> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+
+# "calamares_bin" is the main application, not to be confused with
+# the target "calamares" which is the non-GUI library part.
 set( calamaresSources
     main.cpp
     CalamaresApplication.cpp

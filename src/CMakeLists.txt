@@ -1,3 +1,8 @@
+# === This file is part of Calamares - <https://github.com/calamares> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 include( CalamaresAddPlugin )
 include( CalamaresAddModuleSubdirectory )
 include( CalamaresAddLibrary )
@@ -10,7 +15,7 @@ add_subdirectory( libcalamares )
 add_subdirectory( libcalamaresui )
 
 # all things qml
-add_subdirectory( qml )
+add_subdirectory( qml/calamares )
 
 # application
 add_subdirectory( calamares )
