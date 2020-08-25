@@ -1,6 +1,8 @@
 /*
+ *   SPDX-FileCopyrightText: 2012-2014 Alexander Turkin
+ *   SPDX-FileCopyrightText: 2014 William Hallatt
+ *   SPDX-FileCopyrightText: 2015 Jacob Dawid
  *   SPDX-License-Identifier: MIT
- *   License-Filename: LICENSES/MIT-QtWaitingSpinner
  */
 
 /* Original Work Copyright (c) 2012-2014 Alexander Turkin
