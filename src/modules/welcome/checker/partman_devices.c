@@ -19,6 +19,10 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* This is third-party ancient C code. Don't format it. */
+/* *INDENT-OFF* */
+/* clang-format off */
+
 #include "partman_devices.h"
 
 #include <sys/types.h>
