@@ -1,6 +1,11 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ *   Contains strings from libpwquality under the terms of the
+ *   GPL-3.0-or-later (libpwquality is BSD-3-clause or GPL-2.0-or-later,
+ *   so we pick GPL-3.0-or-later).
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
