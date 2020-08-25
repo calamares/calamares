@@ -4,7 +4,7 @@
 *
 * SPDX-FileCopyrightText: 1991-2019 Unicode, Inc.
 * SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
-* SPDX-License-Identifier: CC0
+* SPDX-License-Identifier: CC0-1.0
 *
 * This file is derived from CLDR data from Unicode, Inc. Applicable terms
 * are listed at http://unicode.org/copyright.html , of which the most
