@@ -1,5 +1,9 @@
 # Example Filesystem
 
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+-->
+
 This is a filesystem that will be used as / in an example distro,
 *if* you build the `example-distro` target and use the default
 unpackfs configuration. It should hold files and configuration
