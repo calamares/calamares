@@ -1,4 +1,4 @@
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
 #   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
 #   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>

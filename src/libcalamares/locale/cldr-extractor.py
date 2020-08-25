@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 #
-#  === This file is part of Calamares - <https://github.com/calamares> ===
+#  === This file is part of Calamares - <https://calamares.io> ===
 #
 #   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
@@ -186,7 +186,7 @@ def read_subtags_file():
 
 cpp_header_comment = """/*   GENERATED FILE DO NOT EDIT
 *
-*  === This file is part of Calamares - <https://github.com/calamares> ===
+*  === This file is part of Calamares - <https://calamares.io> ===
 *
 * SPDX-FileCopyrightText: 1991-2019 Unicode, Inc.
 * SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
