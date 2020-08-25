@@ -1,3 +1,10 @@
+#   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+# Note that Calamares itself is GPL-3.0-or-later: the above license
+# applies to **this** CMake file.
+#
 # Config file for the Calamares package
 #
 # The following IMPORTED targets are defined:
