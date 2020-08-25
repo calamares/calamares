@@ -358,7 +358,9 @@ ZonesModel::find( const QString& region, const QString& zone ) const
 }
 
 STATICTEST const TimeZoneData*
-find( double startingDistance, const ZoneVector& zones, const std::function< double( const TimeZoneData* ) >& distanceFunc )
+find( double startingDistance,
+      const ZoneVector& zones,
+      const std::function< double( const TimeZoneData* ) >& distanceFunc )
 {
     double smallestDistance = startingDistance;
     const TimeZoneData* closest = nullptr;
@@ -379,7 +381,8 @@ const TimeZoneData*
 ZonesModel::find( const std::function< double( const TimeZoneData* ) >& distanceFunc ) const
 {
     const auto* officialZone = CalamaresUtils::Locale::find( 1000000.0, m_private->m_zones, distanceFunc );
-    const auto* altZone = CalamaresUtils::Locale::find( distanceFunc( officialZone ), m_private->m_altZones, distanceFunc );
+    const auto* altZone
+        = CalamaresUtils::Locale::find( distanceFunc( officialZone ), m_private->m_altZones, distanceFunc );
 
     // If nothing was closer than the official zone already was, altZone is
     // nullptr; but if there is a spot-patch, then we need to re-find

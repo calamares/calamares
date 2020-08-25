@@ -38,7 +38,7 @@ DLLEXPORT QStringList getStringList( const QVariantMap& map, const QString& key,
 /**
  * Get an integer value from a mapping with a given key; returns @p d if no value.
  */
-DLLEXPORT qint64 getInteger( const QVariantMap& map, const QString& key, qint64 d = 0);
+DLLEXPORT qint64 getInteger( const QVariantMap& map, const QString& key, qint64 d = 0 );
 
 /**
  * Get an unsigned integer value from a mapping with a given key; returns @p d if no value.
@@ -58,7 +58,10 @@ DLLEXPORT double getDouble( const QVariantMap& map, const QString& key, double d
  * Returns @p d if there is no such key or it is not a map-value.
  * (e.g. if @p success is false).
  */
-DLLEXPORT QVariantMap getSubMap( const QVariantMap& map, const QString& key, bool& success, const QVariantMap& d = QVariantMap() );
+DLLEXPORT QVariantMap getSubMap( const QVariantMap& map,
+                                 const QString& key,
+                                 bool& success,
+                                 const QVariantMap& d = QVariantMap() );
 }  // namespace CalamaresUtils
 
 #endif

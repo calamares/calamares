@@ -412,7 +412,8 @@ LibCalamaresTests::testVariantStringListCode()
         m.insert( key, 17 );
         QCOMPARE( getStringList( m, key ), QStringList {} );
         m.insert( key, QString( "more strings" ) );
-        QCOMPARE( getStringList( m, key ), QStringList { "more strings" } );  // A single string **can** be considered a stringlist!
+        QCOMPARE( getStringList( m, key ),
+                  QStringList { "more strings" } );  // A single string **can** be considered a stringlist!
         m.insert( key, QVariant {} );
         QCOMPARE( getStringList( m, key ), QStringList {} );
     }

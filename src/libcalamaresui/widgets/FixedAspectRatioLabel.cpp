@@ -17,7 +17,7 @@ FixedAspectRatioLabel::FixedAspectRatioLabel( QWidget* parent )
 }
 
 
-FixedAspectRatioLabel::~FixedAspectRatioLabel() { }
+FixedAspectRatioLabel::~FixedAspectRatioLabel() {}
 
 
 void

@@ -39,7 +39,7 @@
 WelcomePage::WelcomePage( Config* conf, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::WelcomePage )
-    , m_checkingWidget( new CheckerContainer( *(conf->requirementsModel()), this ) )
+    , m_checkingWidget( new CheckerContainer( *( conf->requirementsModel() ), this ) )
     , m_languages( nullptr )
     , m_conf( conf )
 {

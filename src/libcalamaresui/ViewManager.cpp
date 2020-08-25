@@ -180,7 +180,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox->show();
 
     cDebug() << "Calamares will quit when the dialog closes.";
-    connect( msgBox, &QMessageBox::buttonClicked, [ msgBox ]( QAbstractButton* button ) {
+    connect( msgBox, &QMessageBox::buttonClicked, [msgBox]( QAbstractButton* button ) {
         if ( msgBox->buttonRole( button ) == QMessageBox::ButtonRole::YesRole )
         {
             // TODO: host and port should be configurable

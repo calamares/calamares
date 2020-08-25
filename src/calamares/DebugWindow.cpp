@@ -184,7 +184,8 @@ DebugWindow::DebugWindow()
 #endif
     ] {
                  QString moduleName = m_ui->modulesListView->currentIndex().data().toString();
-                 Module* module = ModuleManager::instance()->moduleInstance( ModuleSystem::InstanceKey::fromString( moduleName ) );
+                 Module* module
+                     = ModuleManager::instance()->moduleInstance( ModuleSystem::InstanceKey::fromString( moduleName ) );
                  if ( module )
                  {
                      m_module = module->configurationMap();

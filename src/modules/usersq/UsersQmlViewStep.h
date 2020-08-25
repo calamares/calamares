@@ -19,8 +19,8 @@
 
 #include <DllMacro.h>
 
-#include <QVariant>
 #include "Config.h"
+#include <QVariant>
 
 class PLUGINDLLEXPORT UsersQmlViewStep : public Calamares::QmlViewStep
 {
@@ -44,13 +44,10 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
-    QObject * getConfig() override
-    {
-        return m_config;
-    }
+    QObject* getConfig() override { return m_config; }
 
 private:
-    Config *m_config;
+    Config* m_config;
     Calamares::JobList m_jobs;
 };
 

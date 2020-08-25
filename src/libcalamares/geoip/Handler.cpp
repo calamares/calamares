@@ -67,7 +67,8 @@ Handler::Handler( const QString& implementation, const QString& url, const QStri
     {
         cWarning() << "GeoIP style *none* does not do anything.";
     }
-    else if ( m_type == Type::Fixed && Calamares::Settings::instance() && !Calamares::Settings::instance()->debugMode() )
+    else if ( m_type == Type::Fixed && Calamares::Settings::instance()
+              && !Calamares::Settings::instance()->debugMode() )
     {
         cWarning() << "GeoIP style *fixed* is not recommended for production.";
     }

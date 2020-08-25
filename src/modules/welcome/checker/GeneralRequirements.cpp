@@ -146,10 +146,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [ req = m_requiredStorageGiB ] {
-                      return tr( "has at least %1 GiB available drive space" ).arg( req );
-                  },
-                  [ req = m_requiredStorageGiB ] {
+                  [req = m_requiredStorageGiB] { return tr( "has at least %1 GiB available drive space" ).arg( req ); },
+                  [req = m_requiredStorageGiB] {
                       return tr( "There is not enough drive space. At least %1 GiB is required." ).arg( req );
                   },
                   enoughStorage,
@@ -159,8 +157,8 @@ GeneralRequirements::checkRequirements()
         {
             checkEntries.append(
                 { entry,
-                  [ req = m_requiredRamGiB ] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
-                  [ req = m_requiredRamGiB ] {
+                  [req = m_requiredRamGiB] { return tr( "has at least %1 GiB working memory" ).arg( req ); },
+                  [req = m_requiredRamGiB] {
                       return tr( "The system does not have enough working memory. At least %1 GiB is required." )
                           .arg( req );
                   },
@@ -349,7 +347,7 @@ GeneralRequirements::checkEnoughRam( qint64 requiredRam )
     // Ignore the guesstimate-factor; we get an under-estimate
     // which is probably the usable RAM for programs.
     quint64 availableRam = CalamaresUtils::System::instance()->getTotalMemoryB().first;
-    return double(availableRam) >= double(requiredRam) * 0.95;  // cast to silence 64-bit-int conversion to double
+    return double( availableRam ) >= double( requiredRam ) * 0.95;  // cast to silence 64-bit-int conversion to double
 }
 
 

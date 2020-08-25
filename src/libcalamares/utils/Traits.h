@@ -49,17 +49,30 @@ namespace CalamaresUtils
  */
 namespace Traits
 {
-template< class > struct sfinae_true : std::true_type{};
-}
-}
+template < class >
+struct sfinae_true : std::true_type
+{
+};
+}  // namespace Traits
+}  // namespace CalamaresUtils
 
-#define DECLARE_HAS_METHOD(m) \
-    namespace CalamaresUtils { namespace Traits { \
-    struct has_ ## m { \
-    template< class T > static auto f(int) -> sfinae_true<decltype(&T:: m)>; \
-    template< class T > static auto f(long) -> std::false_type; \
-    template< class T > using t = decltype( f <T>(0) ); \
-    }; } } \
-    template< class T > using has_ ## m = CalamaresUtils::Traits:: has_ ## m ::t<T>;
+#define DECLARE_HAS_METHOD( m ) \
+    namespace CalamaresUtils \
+    { \
+    namespace Traits \
+    { \
+    struct has_##m \
+    { \
+        template < class T > \
+        static auto f( int ) -> sfinae_true< decltype( &T::m ) >; \
+        template < class T > \
+        static auto f( long ) -> std::false_type; \
+        template < class T > \
+        using t = decltype( f< T >( 0 ) ); \
+    }; \
+    } \
+    } \
+    template < class T > \
+    using has_##m = CalamaresUtils::Traits::has_##m ::t< T >;
 
 #endif

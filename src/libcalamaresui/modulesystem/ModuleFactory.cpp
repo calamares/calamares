@@ -48,7 +48,8 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
 
     std::unique_ptr< Module > m;
 
-    if ( !moduleDescriptor.isValid() ) {
+    if ( !moduleDescriptor.isValid() )
+    {
         cError() << "Bad module descriptor format" << instanceId;
         return nullptr;
     }
@@ -68,7 +69,9 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
         }
         else
         {
-            cError() << "Bad interface" << Calamares::ModuleSystem::interfaceNames().find( moduleDescriptor.interface() ) << "for module type" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() );
+            cError() << "Bad interface"
+                     << Calamares::ModuleSystem::interfaceNames().find( moduleDescriptor.interface() )
+                     << "for module type" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() );
         }
     }
     else if ( moduleDescriptor.type() == Type::Job )
@@ -91,7 +94,9 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
         }
         else
         {
-            cError() << "Bad interface" << Calamares::ModuleSystem::interfaceNames().find( moduleDescriptor.interface() ) << "for module type" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() );
+            cError() << "Bad interface"
+                     << Calamares::ModuleSystem::interfaceNames().find( moduleDescriptor.interface() )
+                     << "for module type" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() );
         }
     }
     else
@@ -101,7 +106,9 @@ moduleFromDescriptor( const Calamares::ModuleSystem::Descriptor& moduleDescripto
 
     if ( !m )
     {
-        cError() << "Bad module type (" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() ) << ") or interface string (" << Calamares::ModuleSystem::interfaceNames().find( moduleDescriptor.interface() ) << ") for module "
+        cError() << "Bad module type (" << Calamares::ModuleSystem::typeNames().find( moduleDescriptor.type() )
+                 << ") or interface string ("
+                 << Calamares::ModuleSystem::interfaceNames().find( moduleDescriptor.interface() ) << ") for module "
                  << instanceId;
         return nullptr;
     }

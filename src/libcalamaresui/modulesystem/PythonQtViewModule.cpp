@@ -179,6 +179,6 @@ PythonQtViewModule::PythonQtViewModule()
 {
 }
 
-PythonQtViewModule::~PythonQtViewModule() { }
+PythonQtViewModule::~PythonQtViewModule() {}
 
 }  // namespace Calamares

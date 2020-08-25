@@ -23,7 +23,7 @@ ImageRegistry::instance()
 }
 
 
-ImageRegistry::ImageRegistry() { }
+ImageRegistry::ImageRegistry() {}
 
 
 QIcon

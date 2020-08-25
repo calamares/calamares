@@ -14,26 +14,29 @@
 
 #include "utils/Yaml.h"
 
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include <iostream>
 
-#include <QFile>
 #include <QByteArray>
+#include <QFile>
 
 using std::cerr;
 
 static const char usage[] = "Usage: test_conf [-v] [-b] <file> ...\n";
 
-int main(int argc, char** argv)
+int
+main( int argc, char** argv )
 {
     bool verbose = false;
     bool bytes = false;
 
     int opt;
-    while ((opt = getopt(argc, argv, "vb")) != -1) {
-        switch (opt) {
+    while ( ( opt = getopt( argc, argv, "vb" ) ) != -1 )
+    {
+        switch ( opt )
+        {
         case 'v':
             verbose = true;
             break;
@@ -52,7 +55,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    const char* filename = argv[optind];
+    const char* filename = argv[ optind ];
     try
     {
         YAML::Node doc;
@@ -60,10 +63,14 @@ int main(int argc, char** argv)
         {
             QFile f( filename );
             if ( f.open( QFile::ReadOnly | QFile::Text ) )
+            {
                 doc = YAML::Load( f.readAll().constData() );
+            }
         }
         else
+        {
             doc = YAML::LoadFile( filename );
+        }
 
         if ( doc.IsNull() )
         {
@@ -86,12 +93,14 @@ int main(int argc, char** argv)
         {
             cerr << "Keys:\n";
             for ( auto i = doc.begin(); i != doc.end(); ++i )
-                cerr << i->first.as<std::string>() << '\n';
+            {
+                cerr << i->first.as< std::string >() << '\n';
+            }
         }
     }
     catch ( YAML::Exception& e )
     {
-        cerr << "WARNING:" << filename  << '\n';
+        cerr << "WARNING:" << filename << '\n';
         cerr << "WARNING: YAML parser error " << e.what() << '\n';
         return 1;
     }

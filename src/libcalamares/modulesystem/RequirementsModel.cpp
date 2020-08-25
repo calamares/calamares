@@ -89,9 +89,8 @@ RequirementsModel::describe() const
     int count = 0;
     for ( const auto& r : m_requirements )
     {
-        cDebug() << Logger::SubEntry << "requirement" << count << r.name
-            << "satisfied?" << r.satisfied
-            << "mandatory?" << r.mandatory;
+        cDebug() << Logger::SubEntry << "requirement" << count << r.name << "satisfied?" << r.satisfied << "mandatory?"
+                 << r.mandatory;
         if ( r.mandatory && !r.satisfied )
         {
             acceptable = false;

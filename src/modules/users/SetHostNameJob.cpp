@@ -16,11 +16,11 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
-#include <QDir>
-#include <QFile>
 #include <QDBusConnection>
 #include <QDBusInterface>
 #include <QDBusReply>
+#include <QDir>
+#include <QFile>
 
 using WriteMode = CalamaresUtils::System::WriteMode;
 

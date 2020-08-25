@@ -8,8 +8,8 @@
 
 #include "utils/Logger.h"
 
-#include <QtTest/QtTest>
 #include <QObject>
+#include <QtTest/QtTest>
 
 class TrackingTests : public QObject
 {
@@ -28,17 +28,17 @@ TrackingTests::TrackingTests()
 {
 }
 
-TrackingTests::~TrackingTests()
-{
-}
+TrackingTests::~TrackingTests() {}
 
-void TrackingTests::initTestCase()
+void
+TrackingTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
     cDebug() << "Tracking test started.";
 }
 
-void TrackingTests::testEmptyConfig()
+void
+TrackingTests::testEmptyConfig()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 

@@ -27,7 +27,7 @@ ClickableLabel::ClickableLabel( const QString& text, QWidget* parent )
 }
 
 
-ClickableLabel::~ClickableLabel() { }
+ClickableLabel::~ClickableLabel() {}
 
 
 void

@@ -53,7 +53,7 @@ BlankViewStep::BlankViewStep( const QString& title,
     m_widget->setLayout( layout );
 }
 
-BlankViewStep::~BlankViewStep() { }
+BlankViewStep::~BlankViewStep() {}
 
 QString
 BlankViewStep::prettyName() const

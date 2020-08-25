@@ -29,9 +29,9 @@ WelcomeQmlViewStep::WelcomeQmlViewStep( QObject* parent )
     , m_requirementsChecker( new GeneralRequirements( this ) )
 {
     connect( Calamares::ModuleManager::instance(),
-            &Calamares::ModuleManager::requirementsComplete,
-            this,
-            &WelcomeQmlViewStep::nextStatusChanged );
+             &Calamares::ModuleManager::requirementsComplete,
+             this,
+             &WelcomeQmlViewStep::nextStatusChanged );
 }
 
 

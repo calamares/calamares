@@ -192,7 +192,7 @@ ExecViewModule::ExecViewModule()
     // We don't have one, so build one -- this gives us "x@x".
     QVariantMap m;
     m.insert( "name", "x" );
-    Calamares::Module::initFrom( Calamares::ModuleSystem::Descriptor::fromDescriptorData(m), "x" );
+    Calamares::Module::initFrom( Calamares::ModuleSystem::Descriptor::fromDescriptorData( m ), "x" );
 }
 
 ExecViewModule::~ExecViewModule() {}
@@ -323,7 +323,8 @@ load_module( const ModuleConfig& moduleConfig )
 
     cDebug() << "Module" << moduleName << "job-configuration:" << configFile;
 
-    Calamares::Module* module = Calamares::moduleFromDescriptor( Calamares::ModuleSystem::Descriptor::fromDescriptorData( descriptor ), name, configFile, moduleDirectory );
+    Calamares::Module* module = Calamares::moduleFromDescriptor(
+        Calamares::ModuleSystem::Descriptor::fromDescriptorData( descriptor ), name, configFile, moduleDirectory );
 
     return module;
 }

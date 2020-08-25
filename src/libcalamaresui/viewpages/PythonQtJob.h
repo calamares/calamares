@@ -35,7 +35,7 @@ class PythonQtJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    virtual ~PythonQtJob() { }
+    virtual ~PythonQtJob() {}
 
     QString prettyName() const override;
     QString prettyDescription() const override;

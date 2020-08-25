@@ -62,7 +62,8 @@ InternalManager::InternalManager()
         else
         {
             auto* backend_p = CoreBackendManager::self()->backend();
-            cDebug() << Logger::SubEntry << "Backend" << Logger::Pointer(backend_p) << backend_p->id() << backend_p->version();
+            cDebug() << Logger::SubEntry << "Backend" << Logger::Pointer( backend_p ) << backend_p->id()
+                     << backend_p->version();
             s_kpm_loaded = true;
         }
     }

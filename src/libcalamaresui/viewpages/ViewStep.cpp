@@ -22,7 +22,7 @@ ViewStep::ViewStep( QObject* parent )
 }
 
 
-ViewStep::~ViewStep() { }
+ViewStep::~ViewStep() {}
 
 
 QString
