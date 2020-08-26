@@ -9,7 +9,6 @@
  */
 
 #include "WebViewStep.h"
-#include "WebViewConfig.h"
 
 #include <QVariant>
 

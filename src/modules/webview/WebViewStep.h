@@ -12,6 +12,8 @@
 #ifndef WEBVIEWPLUGIN_H
 #define WEBVIEWPLUGIN_H
 
+#include "WebViewConfig.h"
+
 #include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
@@ -19,9 +21,16 @@
 #include <QVariantMap>
 
 #ifdef WEBVIEW_WITH_WEBKIT
-#define C_QWEBVIEW QWebView
-#else
-#define C_QWEBVIEW QWebEngineView
+#  define C_QWEBVIEW QWebView
+#endif
+#ifdef WEBVIEW_WITH_WEBENGINE
+#  ifdef C_QWEBVIEW
+#    error Both WEBENGINE and WEBKIT enabled
+#  endif
+#  define C_QWEBVIEW QWebEngineView
+#endif
+#ifndef C_QWEBVIEW
+#  error Neither WEBENGINE nor WEBKIT enabled
 #endif
 
 class C_QWEBVIEW;
