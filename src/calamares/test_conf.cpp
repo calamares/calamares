@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -23,26 +14,29 @@
 
 #include "utils/Yaml.h"
 
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include <iostream>
 
-#include <QFile>
 #include <QByteArray>
+#include <QFile>
 
 using std::cerr;
 
 static const char usage[] = "Usage: test_conf [-v] [-b] <file> ...\n";
 
-int main(int argc, char** argv)
+int
+main( int argc, char** argv )
 {
     bool verbose = false;
     bool bytes = false;
 
     int opt;
-    while ((opt = getopt(argc, argv, "vb")) != -1) {
-        switch (opt) {
+    while ( ( opt = getopt( argc, argv, "vb" ) ) != -1 )
+    {
+        switch ( opt )
+        {
         case 'v':
             verbose = true;
             break;
@@ -61,7 +55,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    const char* filename = argv[optind];
+    const char* filename = argv[ optind ];
     try
     {
         YAML::Node doc;
@@ -69,10 +63,14 @@ int main(int argc, char** argv)
         {
             QFile f( filename );
             if ( f.open( QFile::ReadOnly | QFile::Text ) )
+            {
                 doc = YAML::Load( f.readAll().constData() );
+            }
         }
         else
+        {
             doc = YAML::LoadFile( filename );
+        }
 
         if ( doc.IsNull() )
         {
@@ -95,12 +93,14 @@ int main(int argc, char** argv)
         {
             cerr << "Keys:\n";
             for ( auto i = doc.begin(); i != doc.end(); ++i )
-                cerr << i->first.as<std::string>() << '\n';
+            {
+                cerr << i->first.as< std::string >() << '\n';
+            }
         }
     }
     catch ( YAML::Exception& e )
     {
-        cerr << "WARNING:" << filename  << '\n';
+        cerr << "WARNING:" << filename << '\n';
         cerr << "WARNING: YAML parser error " << e.what() << '\n';
         return 1;
     }

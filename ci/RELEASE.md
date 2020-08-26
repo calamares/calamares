@@ -1,5 +1,10 @@
 # Calamares Release Process
 
+<!-- SPDX-FileCopyrightText: 2015 Teo Mrnjavac <teo@kde.org>
+     SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+     SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 > Calamares releases are now rolling when-they-are-ready releases.
 > Releases are made from *calamares* and tagged there. When, in future,
 > LTS releases resume, these steps may be edited again.

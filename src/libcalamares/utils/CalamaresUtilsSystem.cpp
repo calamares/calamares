@@ -1,21 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2017-2020 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -197,7 +187,8 @@ System::runCommand( System::RunLocation location,
                                        ? ( static_cast< int >( std::chrono::milliseconds( timeoutSec ).count() ) )
                                        : -1 ) )
     {
-        cWarning() << "Process" << args.first() << "timed out after" << timeoutSec.count() << "s. Output so far:\n" << Logger::NoQuote{} << process.readAllStandardOutput();
+        cWarning() << "Process" << args.first() << "timed out after" << timeoutSec.count() << "s. Output so far:\n"
+                   << Logger::NoQuote {} << process.readAllStandardOutput();
         return ProcessResult::Code::TimedOut;
     }
 
@@ -205,7 +196,7 @@ System::runCommand( System::RunLocation location,
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cWarning() << "Process" << args.first() << "crashed. Output so far:\n" << Logger::NoQuote{} << output;
+        cWarning() << "Process" << args.first() << "crashed. Output so far:\n" << Logger::NoQuote {} << output;
         return ProcessResult::Code::Crashed;
     }
 
@@ -214,7 +205,8 @@ System::runCommand( System::RunLocation location,
     bool showDebug = ( !Calamares::Settings::instance() ) || ( Calamares::Settings::instance()->debugMode() );
     if ( ( r != 0 ) || showDebug )
     {
-        cDebug() << Logger::SubEntry << "Target cmd:" << RedactedList( args ) << "output:\n" << Logger::NoQuote{} << output;
+        cDebug() << Logger::SubEntry << "Target cmd:" << RedactedList( args ) << "output:\n"
+                 << Logger::NoQuote {} << output;
     }
     return ProcessResult( r, output );
 }

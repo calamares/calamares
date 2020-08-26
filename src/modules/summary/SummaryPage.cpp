@@ -1,21 +1,12 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
- *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "SummaryPage.h"
@@ -45,21 +36,18 @@ SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
 {
     Q_UNUSED( parent )
 
-    this->setObjectName("summaryStep");
+    this->setObjectName( "summaryStep" );
 
     Q_ASSERT( m_thisViewStep );
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->setContentsMargins( 0, 0, 0, 0 );
 
     QLabel* headerLabel = new QLabel( this );
-    CALAMARES_RETRANSLATE(
-        if ( Calamares::Settings::instance()->isSetupMode() )
-            headerLabel->setText( tr( "This is an overview of what will happen once you start "
-                                      "the setup procedure." ) );
-        else
-            headerLabel->setText( tr( "This is an overview of what will happen once you start "
-                                      "the install procedure." ) );
-    )
+    CALAMARES_RETRANSLATE( if ( Calamares::Settings::instance()->isSetupMode() )
+                               headerLabel->setText( tr( "This is an overview of what will happen once you start "
+                                                         "the setup procedure." ) );
+                           else headerLabel->setText( tr( "This is an overview of what will happen once you start "
+                                                          "the install procedure." ) ); )
     layout->addWidget( headerLabel );
     layout->addWidget( m_scrollArea );
     m_scrollArea->setWidgetResizable( true );
@@ -81,8 +69,7 @@ SummaryPage::onActivate()
     createContentWidget();
 
     bool first = true;
-    const Calamares::ViewStepList steps =
-        stepsForSummary( Calamares::ViewManager::instance()->viewSteps() );
+    const Calamares::ViewStepList steps = stepsForSummary( Calamares::ViewManager::instance()->viewSteps() );
 
     for ( Calamares::ViewStep* step : steps )
     {
@@ -90,12 +77,18 @@ SummaryPage::onActivate()
         QWidget* widget = step->createSummaryWidget();
 
         if ( text.isEmpty() && !widget )
+        {
             continue;
+        }
 
         if ( first )
+        {
             first = false;
+        }
         else
+        {
             m_layout->addSpacing( SECTION_SPACING );
+        }
 
         m_layout->addWidget( createTitleLabel( step->prettyName() ) );
         QHBoxLayout* itemBodyLayout = new QHBoxLayout;
@@ -106,9 +99,13 @@ SummaryPage::onActivate()
         itemBodyLayout->addLayout( itemBodyCoreLayout );
         CalamaresUtils::unmarginLayout( itemBodyLayout );
         if ( !text.isEmpty() )
+        {
             itemBodyCoreLayout->addWidget( createBodyLabel( text ) );
+        }
         if ( widget )
+        {
             itemBodyCoreLayout->addWidget( widget );
+        }
         itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
     }
     m_layout->addStretch();
@@ -147,7 +144,9 @@ SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
         // If we reach the parent step of this page, we're done collecting the list of
         // steps to summarize.
         if ( m_thisViewStep == step )
+        {
             break;
+        }
 
         steps.append( step );
     }

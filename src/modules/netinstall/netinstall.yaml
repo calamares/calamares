@@ -1,5 +1,8 @@
 # Example configuration with groups and packages, taken from Chakra Linux.
 #
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
 # This example is rather limited. See `netinstall.conf` for full documentation
 # on the configuration format. The module configuration file `netinstall.conf`
 # **may** contain the package-list, but that is only useful for static

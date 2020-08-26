@@ -1,5 +1,10 @@
 # Calamares modules
 
+<!-- SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+     SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+     SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 Calamares modules are plugins that provide features like installer pages,
 batch jobs, etc. An installer page (visible to the user) is called a "view",
 while other modules are "jobs".

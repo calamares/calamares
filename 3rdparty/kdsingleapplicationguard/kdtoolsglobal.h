@@ -1,6 +1,6 @@
 /*
+ *   SPDX-FileCopyrightText: 2001-2010 Klaralvdalens Datakonsult AB.
  *   SPDX-License-Identifier: LGPL-2.0-only
- *   License-Filename: LICENSES/LGPLv2-KDAB
  *
  *   The KD Tools Library is Copyright (C) 2001-2010 Klaralvdalens Datakonsult AB.
  */

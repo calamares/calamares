@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 #
-#  === This file is part of Calamares - <https://github.com/calamares> ===
+#  === This file is part of Calamares - <https://calamares.io> ===
 #
 #   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
@@ -44,11 +44,11 @@ def write_set(file, label, set):
 
 cpp_header_comment = """/*   GENERATED FILE DO NOT EDIT
 *
-*  === This file is part of Calamares - <https://github.com/calamares> ===
+*  === This file is part of Calamares - <https://calamares.io> ===
 *
 * SPDX-FileCopyrightText: 2009 Arthur David Olson
 * SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
-* SPDX-License-Identifier: CC0
+* SPDX-License-Identifier: CC0-1.0
 *
 * This file is derived from zone.tab, which has its own copyright statement:
 *

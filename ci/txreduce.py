@@ -1,5 +1,8 @@
 #! /usr/bin/env python3
 #
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 # Reduce a translation file -- generally, a Timezone translation -- by
 # dropping untranslated strings. An untranslated string is one that
 # has an empty translation **and** is marked unfinished.

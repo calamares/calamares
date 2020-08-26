@@ -1,3 +1,10 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+###
+#
 # Locate libpwquality
 #   https://github.com/libpwquality/libpwquality
 #

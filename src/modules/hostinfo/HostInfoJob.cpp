@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "HostInfoJob.h"
@@ -123,7 +114,7 @@ hostCPUmatchARM( const QString& s )
      * silicon. For instance, a list from lscpu-arm.c (Linux kernel)
      * shows this:
      *
-static const struct hw_impl hw_implementer[] = {
+    static const struct hw_impl hw_implementer[] = {
     { 0x41, arm_part,     "ARM" },
     { 0x42, brcm_part,    "Broadcom" },
     { 0x43, cavium_part,  "Cavium" },
@@ -137,7 +128,7 @@ static const struct hw_impl hw_implementer[] = {
     { 0x66, faraday_part, "Faraday" },
     { 0x69, intel_part,   "Intel" },
     { -1,   unknown_part, "unknown" },
-};
+    };
      *
      * Since the specific implementor isn't interesting, just
      * map everything to "ARM".

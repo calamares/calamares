@@ -1,39 +1,30 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
- *   Copyright 2018, Andrius Štikonas <andrius@stikonas.eu>
- *   Copyright 2018, Caio Carvalho <caiojcarvalho@gmail.com>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Andrius Štikonas <andrius@stikonas.eu>
+ *   SPDX-FileCopyrightText: 2018 Caio Carvalho <caiojcarvalho@gmail.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "CreatePartitionDialog.h"
 #include "ui_CreatePartitionDialog.h"
 
 #include "core/ColorUtils.h"
-#include "core/PartitionInfo.h"
-#include "core/PartUtils.h"
 #include "core/KPMHelpers.h"
+#include "core/PartUtils.h"
+#include "core/PartitionInfo.h"
 #include "gui/PartitionDialogHelpers.h"
 #include "gui/PartitionSizeController.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "partition/PartitionQuery.h"
 #include "partition/FileSystem.h"
+#include "partition/PartitionQuery.h"
 #include "utils/Logger.h"
 
 #include <kpmcore/core/device.h>
@@ -53,16 +44,17 @@
 using CalamaresUtils::Partition::untranslatedFS;
 using CalamaresUtils::Partition::userVisibleFS;
 
-static QSet< FileSystem::Type > s_unmountableFS(
-{
-    FileSystem::Unformatted,
-    FileSystem::LinuxSwap,
-    FileSystem::Extended,
-    FileSystem::Unknown,
-    FileSystem::Lvm2_PV
-} );
+static QSet< FileSystem::Type > s_unmountableFS( { FileSystem::Unformatted,
+                                                   FileSystem::LinuxSwap,
+                                                   FileSystem::Extended,
+                                                   FileSystem::Unknown,
+                                                   FileSystem::Lvm2_PV } );
 
-CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* parentPartition, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget )
+CreatePartitionDialog::CreatePartitionDialog( Device* device,
+                                              PartitionNode* parentPartition,
+                                              Partition* partition,
+                                              const QStringList& usedMountPoints,
+                                              QWidget* parentWidget )
     : QDialog( parentWidget )
     , m_ui( new Ui_CreatePartitionDialog )
     , m_partitionSizeController( new PartitionSizeController( this ) )
@@ -74,33 +66,38 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     m_ui->encryptWidget->setText( tr( "En&crypt" ) );
     m_ui->encryptWidget->hide();
 
-    if (m_device->type() != Device::Type::LVM_Device) {
+    if ( m_device->type() != Device::Type::LVM_Device )
+    {
         m_ui->lvNameLabel->hide();
         m_ui->lvNameLineEdit->hide();
     }
-    if (m_device->type() == Device::Type::LVM_Device) {
+    if ( m_device->type() == Device::Type::LVM_Device )
+    {
         /* LVM logical volume name can consist of: letters numbers _ . - +
          * It cannot start with underscore _ and must not be equal to . or .. or any entry in /dev/
          * QLineEdit accepts QValidator::Intermediate, so we just disable . at the beginning */
-        QRegularExpression re(QStringLiteral(R"(^(?!_|\.)[\w\-.+]+)"));
-        QRegularExpressionValidator *validator = new QRegularExpressionValidator(re, this);
-        m_ui->lvNameLineEdit->setValidator(validator);
+        QRegularExpression re( QStringLiteral( R"(^(?!_|\.)[\w\-.+]+)" ) );
+        QRegularExpressionValidator* validator = new QRegularExpressionValidator( re, this );
+        m_ui->lvNameLineEdit->setValidator( validator );
     }
 
-    standardMountPoints( *(m_ui->mountPointComboBox), partition ? PartitionInfo::mountPoint( partition ) : QString() );
+    standardMountPoints( *( m_ui->mountPointComboBox ),
+                         partition ? PartitionInfo::mountPoint( partition ) : QString() );
 
-    if ( device->partitionTable()->type() == PartitionTable::msdos ||
-         device->partitionTable()->type() == PartitionTable::msdos_sectorbased )
+    if ( device->partitionTable()->type() == PartitionTable::msdos
+         || device->partitionTable()->type() == PartitionTable::msdos_sectorbased )
+    {
         initMbrPartitionTypeUi();
+    }
     else
+    {
         initGptPartitionTypeUi();
+    }
 
     // File system; the config value is translated (best-effort) to a type
     FileSystem::Type defaultFSType;
     QString untranslatedFSName = PartUtils::findFS(
-                                         Calamares::JobQueue::instance()->
-                                         globalStorage()->
-                                         value( "defaultFileSystemType" ).toString(), &defaultFSType );
+        Calamares::JobQueue::instance()->globalStorage()->value( "defaultFileSystemType" ).toString(), &defaultFSType );
     if ( defaultFSType == FileSystem::Type::Unknown )
     {
         defaultFSType = FileSystem::Type::Ext4;
@@ -111,12 +108,13 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     QStringList fsNames;
     for ( auto fs : FileSystemFactory::map() )
     {
-        if ( fs->supportCreate() != FileSystem::cmdSupportNone &&
-             fs->type() != FileSystem::Extended )
+        if ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended )
         {
             fsNames << userVisibleFS( fs );  // This is put into the combobox
             if ( fs->type() == defaultFSType )
+            {
                 defaultFsIndex = fsCounter;
+            }
             fsCounter++;
         }
     }
@@ -126,26 +124,30 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     connect( m_ui->fsComboBox, SIGNAL( activated( int ) ), SLOT( updateMountPointUi() ) );
     connect( m_ui->extendedRadioButton, SIGNAL( toggled( bool ) ), SLOT( updateMountPointUi() ) );
 
-    connect( m_ui->mountPointComboBox, &QComboBox::currentTextChanged, this, &CreatePartitionDialog::checkMountPointSelection );
+    connect( m_ui->mountPointComboBox,
+             &QComboBox::currentTextChanged,
+             this,
+             &CreatePartitionDialog::checkMountPointSelection );
 
     // Select a default
     m_ui->fsComboBox->setCurrentIndex( defaultFsIndex );
     updateMountPointUi();
 
-    setFlagList( *(m_ui->m_listFlags), static_cast< PartitionTable::Flags >( ~PartitionTable::Flags::Int(0) ), partition ? PartitionInfo::flags( partition ) : PartitionTable::Flags() );
+    setFlagList( *( m_ui->m_listFlags ),
+                 static_cast< PartitionTable::Flags >( ~PartitionTable::Flags::Int( 0 ) ),
+                 partition ? PartitionInfo::flags( partition ) : PartitionTable::Flags() );
 
     // Checks the initial selection.
     checkMountPointSelection();
 }
 
-CreatePartitionDialog::~CreatePartitionDialog()
-{}
+CreatePartitionDialog::~CreatePartitionDialog() {}
 
 
 PartitionTable::Flags
 CreatePartitionDialog::newFlags() const
 {
-    return flagsFromList( *(m_ui->m_listFlags) );
+    return flagsFromList( *( m_ui->m_listFlags ) );
 }
 
 void
@@ -165,7 +167,9 @@ CreatePartitionDialog::initMbrPartitionTypeUi()
     }
 
     if ( fixedPartitionString.isEmpty() )
+    {
         m_ui->fixedPartitionLabel->hide();
+    }
     else
     {
         m_ui->fixedPartitionLabel->setText( fixedPartitionString );
@@ -188,44 +192,33 @@ CreatePartitionDialog::createPartition()
 {
     if ( m_role.roles() == PartitionRole::None )
     {
-        m_role = PartitionRole(
-                     m_ui->extendedRadioButton->isChecked()
-                     ? PartitionRole::Extended
-                     : PartitionRole::Primary
-                 );
+        m_role = PartitionRole( m_ui->extendedRadioButton->isChecked() ? PartitionRole::Extended
+                                                                       : PartitionRole::Primary );
     }
 
     qint64 first = m_partitionSizeController->firstSector();
     qint64 last = m_partitionSizeController->lastSector();
 
     FileSystem::Type fsType = m_role.has( PartitionRole::Extended )
-                              ? FileSystem::Extended
-                              : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
+        ? FileSystem::Extended
+        : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
 
     Partition* partition = nullptr;
     QString luksPassphrase = m_ui->encryptWidget->passphrase();
-    if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed &&
-         !luksPassphrase.isEmpty() )
+    if ( m_ui->encryptWidget->state() == EncryptWidget::Encryption::Confirmed && !luksPassphrase.isEmpty() )
     {
         partition = KPMHelpers::createNewEncryptedPartition(
-            m_parent,
-            *m_device,
-            m_role,
-            fsType, first, last, luksPassphrase, newFlags()
-        );
+            m_parent, *m_device, m_role, fsType, first, last, luksPassphrase, newFlags() );
     }
     else
     {
-        partition = KPMHelpers::createNewPartition(
-            m_parent,
-            *m_device,
-            m_role,
-            fsType, first, last, newFlags()
-        );
+        partition = KPMHelpers::createNewPartition( m_parent, *m_device, m_role, fsType, first, last, newFlags() );
     }
 
-    if (m_device->type() == Device::Type::LVM_Device) {
-        partition->setPartitionPath(m_device->deviceNode() + QStringLiteral("/") + m_ui->lvNameLineEdit->text().trimmed());
+    if ( m_device->type() == Device::Type::LVM_Device )
+    {
+        partition->setPartitionPath( m_device->deviceNode() + QStringLiteral( "/" )
+                                     + m_ui->lvNameLineEdit->text().trimmed() );
     }
 
     PartitionInfo::setMountPoint( partition, selectedMountPoint( m_ui->mountPointComboBox ) );
@@ -244,9 +237,8 @@ CreatePartitionDialog::updateMountPointUi()
         FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
         enabled = !s_unmountableFS.contains( type );
 
-        if ( FileSystemFactory::map()[FileSystem::Type::Luks]->supportCreate() &&
-             FS::luks::canEncryptType( type ) &&
-             !m_role.has( PartitionRole::Extended ) )
+        if ( FileSystemFactory::map()[ FileSystem::Type::Luks ]->supportCreate() && FS::luks::canEncryptType( type )
+             && !m_role.has( PartitionRole::Extended ) )
         {
             m_ui->encryptWidget->show();
             m_ui->encryptWidget->reset();
@@ -260,7 +252,9 @@ CreatePartitionDialog::updateMountPointUi()
     m_ui->mountPointLabel->setEnabled( enabled );
     m_ui->mountPointComboBox->setEnabled( enabled );
     if ( !enabled )
+    {
         m_ui->mountPointComboBox->setCurrentText( QString() );
+    }
 }
 
 void
@@ -282,8 +276,8 @@ void
 CreatePartitionDialog::initPartResizerWidget( Partition* partition )
 {
     QColor color = CalamaresUtils::Partition::isPartitionFreeSpace( partition )
-                   ? ColorUtils::colorForPartitionInFreeSpace( partition )
-                   : ColorUtils::colorForPartition( partition );
+        ? ColorUtils::colorForPartitionInFreeSpace( partition )
+        : ColorUtils::colorForPartition( partition );
     m_partitionSizeController->init( m_device, partition, color );
     m_partitionSizeController->setPartResizerWidget( m_ui->partResizerWidget );
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );

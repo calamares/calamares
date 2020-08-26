@@ -1,3 +1,8 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 find_package( Qt5 COMPONENTS Core Gui Widgets REQUIRED )
 set( _extra_libraries "" )
 set( _extra_src "" )

@@ -1,29 +1,20 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
- *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "PlasmaLnfPage.h"
 
 #include "ui_page_plasmalnf.h"
 
+#include "Settings.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
-#include "Settings.h"
 
 #include <QAbstractButton>
 
@@ -38,17 +29,18 @@ ThemeInfo::ThemeInfo( const KPluginMetaData& data )
 {
 }
 
-static ThemeInfoList plasma_themes()
+static ThemeInfoList
+plasma_themes()
 {
     ThemeInfoList packages;
 
-    QList<KPluginMetaData> pkgs = KPackage::PackageLoader::self()->listPackages( "Plasma/LookAndFeel" );
+    QList< KPluginMetaData > pkgs = KPackage::PackageLoader::self()->listPackages( "Plasma/LookAndFeel" );
 
     for ( const KPluginMetaData& data : pkgs )
     {
         if ( data.isValid() && !data.isHidden() && !data.name().isEmpty() )
         {
-            packages << ThemeInfo{ data };
+            packages << ThemeInfo { data };
         }
     }
 
@@ -63,25 +55,21 @@ PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
     , m_buttonGroup( nullptr )
 {
     ui->setupUi( this );
-    CALAMARES_RETRANSLATE(
-    {
+    CALAMARES_RETRANSLATE( {
         ui->retranslateUi( this );
         if ( Calamares::Settings::instance()->isSetupMode() )
-            ui->generalExplanation->setText( tr(
-                "Please choose a look-and-feel for the KDE Plasma Desktop. "
-                "You can also skip this step and configure the look-and-feel "
-                "once the system is set up. Clicking on a look-and-feel "
-                "selection will give you a live preview of that look-and-feel.") );
+            ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop. "
+                                                 "You can also skip this step and configure the look-and-feel "
+                                                 "once the system is set up. Clicking on a look-and-feel "
+                                                 "selection will give you a live preview of that look-and-feel." ) );
         else
-            ui->generalExplanation->setText( tr(
-                "Please choose a look-and-feel for the KDE Plasma Desktop. "
-                "You can also skip this step and configure the look-and-feel "
-                "once the system is installed. Clicking on a look-and-feel "
-                "selection will give you a live preview of that look-and-feel.") );
+            ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop. "
+                                                 "You can also skip this step and configure the look-and-feel "
+                                                 "once the system is installed. Clicking on a look-and-feel "
+                                                 "selection will give you a live preview of that look-and-feel." ) );
         updateThemeNames();
         fillUi();
-    }
-    )
+    } )
 }
 
 void
@@ -91,7 +79,7 @@ PlasmaLnfPage::setLnfPath( const QString& path )
 }
 
 void
-PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes, bool showAll )
+PlasmaLnfPage::setEnabledThemes( const ThemeInfoList& themes, bool showAll )
 {
     m_enabledThemes = themes;
 
@@ -100,7 +88,9 @@ PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes, bool showAll )
         auto plasmaThemes = plasma_themes();
         for ( auto& installed_theme : plasmaThemes )
             if ( !m_enabledThemes.findById( installed_theme.id ) )
+            {
                 m_enabledThemes.append( installed_theme );
+            }
     }
 
     updateThemeNames();
@@ -121,10 +111,13 @@ PlasmaLnfPage::setPreselect( const QString& id )
 {
     m_preselect = id;
     if ( !m_enabledThemes.isEmpty() )
+    {
         fillUi();
+    }
 }
 
-void PlasmaLnfPage::updateThemeNames()
+void
+PlasmaLnfPage::updateThemeNames()
 {
     auto plasmaThemes = plasma_themes();
     for ( auto& enabled_theme : m_enabledThemes )
@@ -138,7 +131,8 @@ void PlasmaLnfPage::updateThemeNames()
     }
 }
 
-void PlasmaLnfPage::winnowThemes()
+void
+PlasmaLnfPage::winnowThemes()
 {
     auto plasmaThemes = plasma_themes();
     bool winnowed = true;
@@ -167,7 +161,8 @@ void PlasmaLnfPage::winnowThemes()
     }
 }
 
-void PlasmaLnfPage::fillUi()
+void
+PlasmaLnfPage::fillUi()
 {
     if ( m_enabledThemes.isEmpty() )
     {
@@ -180,7 +175,7 @@ void PlasmaLnfPage::fillUi()
         m_buttonGroup->setExclusive( true );
     }
 
-    int c = 1; // After the general explanation
+    int c = 1;  // After the general explanation
     for ( auto& theme : m_enabledThemes )
     {
         if ( !theme.widget )
@@ -188,7 +183,7 @@ void PlasmaLnfPage::fillUi()
             ThemeWidget* w = new ThemeWidget( theme );
             m_buttonGroup->addButton( w->button() );
             ui->verticalLayout->insertWidget( c, w );
-            connect( w, &ThemeWidget::themeSelected, this, &PlasmaLnfPage::plasmaThemeSelected);
+            connect( w, &ThemeWidget::themeSelected, this, &PlasmaLnfPage::plasmaThemeSelected );
             theme.widget = w;
         }
         else

@@ -1,3 +1,8 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 
 # Requires a sufficiently recent Plasma framework, but also

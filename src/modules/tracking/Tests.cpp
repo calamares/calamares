@@ -1,16 +1,15 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
  */
 
 #include "Config.h"
 
 #include "utils/Logger.h"
 
-#include <QtTest/QtTest>
 #include <QObject>
+#include <QtTest/QtTest>
 
 class TrackingTests : public QObject
 {
@@ -29,17 +28,17 @@ TrackingTests::TrackingTests()
 {
 }
 
-TrackingTests::~TrackingTests()
-{
-}
+TrackingTests::~TrackingTests() {}
 
-void TrackingTests::initTestCase()
+void
+TrackingTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
     cDebug() << "Tracking test started.";
 }
 
-void TrackingTests::testEmptyConfig()
+void
+TrackingTests::testEmptyConfig()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 

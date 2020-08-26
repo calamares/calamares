@@ -1,20 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -59,17 +49,30 @@ namespace CalamaresUtils
  */
 namespace Traits
 {
-template< class > struct sfinae_true : std::true_type{};
-}
-}
+template < class >
+struct sfinae_true : std::true_type
+{
+};
+}  // namespace Traits
+}  // namespace CalamaresUtils
 
-#define DECLARE_HAS_METHOD(m) \
-    namespace CalamaresUtils { namespace Traits { \
-    struct has_ ## m { \
-    template< class T > static auto f(int) -> sfinae_true<decltype(&T:: m)>; \
-    template< class T > static auto f(long) -> std::false_type; \
-    template< class T > using t = decltype( f <T>(0) ); \
-    }; } } \
-    template< class T > using has_ ## m = CalamaresUtils::Traits:: has_ ## m ::t<T>;
+#define DECLARE_HAS_METHOD( m ) \
+    namespace CalamaresUtils \
+    { \
+    namespace Traits \
+    { \
+    struct has_##m \
+    { \
+        template < class T > \
+        static auto f( int ) -> sfinae_true< decltype( &T::m ) >; \
+        template < class T > \
+        static auto f( long ) -> std::false_type; \
+        template < class T > \
+        using t = decltype( f< T >( 0 ) ); \
+    }; \
+    } \
+    } \
+    template < class T > \
+    using has_##m = CalamaresUtils::Traits::has_##m ::t< T >;
 
 #endif

@@ -1,20 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -368,7 +358,9 @@ ZonesModel::find( const QString& region, const QString& zone ) const
 }
 
 STATICTEST const TimeZoneData*
-find( double startingDistance, const ZoneVector& zones, const std::function< double( const TimeZoneData* ) >& distanceFunc )
+find( double startingDistance,
+      const ZoneVector& zones,
+      const std::function< double( const TimeZoneData* ) >& distanceFunc )
 {
     double smallestDistance = startingDistance;
     const TimeZoneData* closest = nullptr;
@@ -389,7 +381,8 @@ const TimeZoneData*
 ZonesModel::find( const std::function< double( const TimeZoneData* ) >& distanceFunc ) const
 {
     const auto* officialZone = CalamaresUtils::Locale::find( 1000000.0, m_private->m_zones, distanceFunc );
-    const auto* altZone = CalamaresUtils::Locale::find( distanceFunc( officialZone ), m_private->m_altZones, distanceFunc );
+    const auto* altZone
+        = CalamaresUtils::Locale::find( distanceFunc( officialZone ), m_private->m_altZones, distanceFunc );
 
     // If nothing was closer than the official zone already was, altZone is
     // nullptr; but if there is a spot-patch, then we need to re-find

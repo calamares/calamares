@@ -2,7 +2,6 @@
 #
 # SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 # SPDX-License-Identifier: BSD-2-Clause
-# License-Filename: LICENSES/BSD2
 #
 usage = """
 Validates a Calamares config file -- YAML syntax -- against a schema.

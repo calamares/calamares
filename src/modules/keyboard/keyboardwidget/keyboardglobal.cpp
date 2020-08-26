@@ -1,7 +1,9 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2007 Free Software Foundation, Inc.
+ *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -9,18 +11,8 @@
  *
  *   Source by Georg Grabler <ggrabler@gmail.com>
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "keyboardglobal.h"
@@ -43,18 +35,22 @@ static const char XKB_FILE[] = "/usr/share/X11/xkb/rules/base.lst";
  * or hits end-of-file. Returns true if the section is found. The
  * @p name must include the "! " section marker as well.
  */
-static bool findSection( QFile& fh, const char* name )
+static bool
+findSection( QFile& fh, const char* name )
 {
     while ( !fh.atEnd() )
     {
         QByteArray line = fh.readLine();
         if ( line.startsWith( name ) )
+        {
             return true;
+        }
     }
     return false;
 }
 
-static KeyboardGlobal::ModelsMap parseKeyboardModels( const char* filepath )
+static KeyboardGlobal::ModelsMap
+parseKeyboardModels( const char* filepath )
 {
     KeyboardGlobal::ModelsMap models;
 
@@ -75,7 +71,9 @@ static KeyboardGlobal::ModelsMap parseKeyboardModels( const char* filepath )
 
         // check if we start a new section
         if ( line.startsWith( '!' ) )
+        {
             break;
+        }
 
         // here we are in the model section, otherwhise we would continue or break
         QRegExp rx;
@@ -88,7 +86,9 @@ static KeyboardGlobal::ModelsMap parseKeyboardModels( const char* filepath )
             QString model = rx.cap( 1 );
 
             if ( model == "pc105" )
+            {
                 modelDesc += "  -  " + QObject::tr( "Default Keyboard Model" );
+            }
 
             models.insert( modelDesc, model );
         }
@@ -98,7 +98,8 @@ static KeyboardGlobal::ModelsMap parseKeyboardModels( const char* filepath )
 }
 
 
-KeyboardGlobal::LayoutsMap parseKeyboardLayouts( const char* filepath )
+KeyboardGlobal::LayoutsMap
+parseKeyboardLayouts( const char* filepath )
 {
     KeyboardGlobal::LayoutsMap layouts;
 
@@ -120,7 +121,9 @@ KeyboardGlobal::LayoutsMap parseKeyboardLayouts( const char* filepath )
         QByteArray line = fh.readLine();
 
         if ( line.startsWith( '!' ) )
+        {
             break;
+        }
 
         QRegExp rx;
         rx.setPattern( "^\\s+(\\S+)\\s+(\\w.*)\n$" );
@@ -147,7 +150,9 @@ KeyboardGlobal::LayoutsMap parseKeyboardLayouts( const char* filepath )
         QByteArray line = fh.readLine();
 
         if ( line.startsWith( '!' ) )
+        {
             break;
+        }
 
         QRegExp rx;
         rx.setPattern( "^\\s+(\\S+)\\s+(\\S+): (\\w.*)\n$" );
@@ -176,14 +181,15 @@ KeyboardGlobal::LayoutsMap parseKeyboardLayouts( const char* filepath )
 }
 
 
-KeyboardGlobal::LayoutsMap KeyboardGlobal::getKeyboardLayouts()
+KeyboardGlobal::LayoutsMap
+KeyboardGlobal::getKeyboardLayouts()
 {
     return parseKeyboardLayouts( XKB_FILE );
 }
 
 
-KeyboardGlobal::ModelsMap KeyboardGlobal::getKeyboardModels()
+KeyboardGlobal::ModelsMap
+KeyboardGlobal::getKeyboardModels()
 {
     return parseKeyboardModels( XKB_FILE );
 }
-

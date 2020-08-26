@@ -1,4 +1,8 @@
-<RCC>
+<!DOCTYPE RCC>
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+     -->
+<RCC version="1.0">
     <qresource prefix="/data">
         <file alias="images/yes.svgz">../../data/images/yes.svgz</file>
         <file alias="images/no.svgz">../../data/images/no.svgz</file>

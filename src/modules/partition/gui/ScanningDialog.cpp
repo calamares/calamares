@@ -1,20 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "ScanningDialog.h"
@@ -22,14 +13,12 @@
 #include "3rdparty/waitingspinnerwidget.h"
 
 #include <QBoxLayout>
-#include <QLabel>
 #include <QFutureWatcher>
+#include <QLabel>
 #include <QtConcurrent/QtConcurrent>
 
 
-ScanningDialog::ScanningDialog( const QString& text,
-                                const QString& windowTitle,
-                                QWidget* parent )
+ScanningDialog::ScanningDialog( const QString& text, const QString& windowTitle, QWidget* parent )
     : QDialog( parent )
 {
     setModal( true );
@@ -42,8 +31,7 @@ ScanningDialog::ScanningDialog( const QString& text,
     dialogLayout->addWidget( spinner );
     spinner->start();
 
-    QLabel* rescanningLabel = new QLabel( text,
-                                          this );
+    QLabel* rescanningLabel = new QLabel( text, this );
     dialogLayout->addWidget( rescanningLabel );
 }
 
@@ -55,16 +43,11 @@ ScanningDialog::run( const QFuture< void >& future,
                      const std::function< void() >& callback,
                      QWidget* parent )
 {
-    ScanningDialog* theDialog =
-            new ScanningDialog( text,
-                                windowTitle,
-                                parent );
+    ScanningDialog* theDialog = new ScanningDialog( text, windowTitle, parent );
     theDialog->show();
 
     QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
-    connect( watcher, &QFutureWatcher< void >::finished,
-             theDialog, [ watcher, theDialog, callback ]
-    {
+    connect( watcher, &QFutureWatcher< void >::finished, theDialog, [watcher, theDialog, callback] {
         watcher->deleteLater();
         theDialog->hide();
         theDialog->deleteLater();
@@ -76,18 +59,13 @@ ScanningDialog::run( const QFuture< void >& future,
 
 
 void
-ScanningDialog::run( const QFuture< void >& future,
-                     const std::function< void() >& callback,
-                     QWidget* parent )
+ScanningDialog::run( const QFuture< void >& future, const std::function< void() >& callback, QWidget* parent )
 {
-    ScanningDialog::run( future,
-                         tr( "Scanning storage devices..." ),
-                         tr( "Partitioning" ),
-                         callback,
-                         parent );
+    ScanningDialog::run( future, tr( "Scanning storage devices..." ), tr( "Partitioning" ), callback, parent );
 }
 
-void ScanningDialog::setVisible(bool visible)
+void
+ScanningDialog::setVisible( bool visible )
 {
     QDialog::setVisible( visible );
     emit visibilityChanged();

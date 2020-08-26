@@ -1,5 +1,8 @@
 #! /bin/sh
 #
+#   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 # Travis CI script for weekly (cron) use:
 #  - use the coverity tool to build and and upload results
 #

@@ -1,4 +1,8 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="en_US">
+<?xml version="1.0" ?>
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+-->
+<!DOCTYPE TS><TS version="2.1" language="en_US">
 <context>
     <name>QObject</name>
     <message>

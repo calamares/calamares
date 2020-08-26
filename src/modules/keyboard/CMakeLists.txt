@@ -1,5 +1,8 @@
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
-
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 calamares_add_plugin( keyboard
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO

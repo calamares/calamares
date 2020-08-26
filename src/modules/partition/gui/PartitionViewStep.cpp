@@ -1,23 +1,14 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018-2019, 2020, Adriaan de Groot <groot@kde.org>
- *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
- *   Copyright 2020, Anke Boersma <demm@kaosx.us
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2017 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018-2019 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019 Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   SPDX-FileCopyrightText: 2020 Anke Boersma <demm@kaosx.us
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "gui/PartitionViewStep.h"
@@ -172,12 +163,10 @@ PartitionViewStep::createSummaryWidget() const
                            .arg( branding->shortVersionedName() );
             break;
         case ChoicePage::InstallChoice::Erase:
-            modeText
-                = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
+            modeText = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
             break;
         case ChoicePage::InstallChoice::Replace:
-            modeText
-                = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
+            modeText = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
             break;
         case ChoicePage::InstallChoice::NoChoice:
         case ChoicePage::InstallChoice::Manual:
@@ -259,7 +248,8 @@ PartitionViewStep::createSummaryWidget() const
         previewLabels->setModel( info.partitionModelAfter );
         preview->setSelectionMode( QAbstractItemView::NoSelection );
         previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
-        previewLabels->setCustomNewRootLabel( Calamares::Branding::instance()->string( Calamares::Branding::BootloaderEntryName ));
+        previewLabels->setCustomNewRootLabel(
+            Calamares::Branding::instance()->string( Calamares::Branding::BootloaderEntryName ) );
         info.partitionModelAfter->setParent( widget );
         field = new QVBoxLayout;
         CalamaresUtils::unmarginLayout( field );
@@ -350,7 +340,7 @@ PartitionViewStep::isNextEnabled() const
 }
 
 void
-PartitionViewStep::nextPossiblyChanged(bool)
+PartitionViewStep::nextPossiblyChanged( bool )
 {
     emit nextStatusChanged( isNextEnabled() );
 }
@@ -378,7 +368,8 @@ PartitionViewStep::isAtEnd() const
 {
     if ( m_widget->currentWidget() == m_choicePage )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Erase || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Replace
+        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Erase
+             || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Replace
              || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
         {
             return true;
@@ -395,7 +386,8 @@ PartitionViewStep::onActivate()
     m_config->updateGlobalStorage();
 
     // if we're coming back to PVS from the next VS
-    if ( m_widget->currentWidget() == m_choicePage && m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
+    if ( m_widget->currentWidget() == m_choicePage
+         && m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
     {
         m_choicePage->applyActionChoice( ChoicePage::InstallChoice::Alongside );
         //        m_choicePage->reset();
@@ -475,17 +467,17 @@ PartitionViewStep::onLeave()
 
             QString message = tr( "Option to use GPT on BIOS" );
             QString description = tr( "A GPT partition table is the best option for all "
-                              "systems. This installer supports such a setup for "
-                              "BIOS systems too."
-                              "<br/><br/>"
-                              "To configure a GPT partition table on BIOS, "
-                              "(if not done so already) go back "
-                              "and set the partition table to GPT, next create a 8 MB "
-                              "unformatted partition with the "
-                              "<strong>bios_grub</strong> flag enabled.<br/><br/>"
-                              "An unformatted 8 MB partition is necessary "
-                              "to start %1 on a BIOS system with GPT." )
-                              .arg( branding->shortProductName() );
+                                      "systems. This installer supports such a setup for "
+                                      "BIOS systems too."
+                                      "<br/><br/>"
+                                      "To configure a GPT partition table on BIOS, "
+                                      "(if not done so already) go back "
+                                      "and set the partition table to GPT, next create a 8 MB "
+                                      "unformatted partition with the "
+                                      "<strong>bios_grub</strong> flag enabled.<br/><br/>"
+                                      "An unformatted 8 MB partition is necessary "
+                                      "to start %1 on a BIOS system with GPT." )
+                                      .arg( branding->shortProductName() );
 
             QMessageBox::information( m_manualPartitionPage, message, description );
         }

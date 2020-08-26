@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
 # Special cases for grubcfg configuration tests:
 # - 2.global specifies /tmp/calamares as the rootMountPath,
 #   so we end up editing files there. Create the directory

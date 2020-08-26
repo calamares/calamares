@@ -1,7 +1,16 @@
 #!/bin/sh
 #
+#   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+#   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 # Calls astyle with settings matching Calamares coding style
-# Requires astyle >= 2.04 and clang-format-7
+# Requires astyle >= 2.04 and clang-format-7 -8 or -9
+#
+# Clang-format-10 is **not** supported, since it changes a default
+# that re-introduces a space into empty function bodies; this
+# can be turned off with a style setting, but that breaks
+# older format versions which don't recognize the setting.
 #
 # You can pass in directory names, in which case the files
 # in that directory (NOT below it) are processed.
@@ -38,8 +47,10 @@ done
 
 style_some()
 {
-	$AS --options=$(dirname $0)/astylerc --quiet "$@"
-	$CF -i -style=file "$@"
+	if test -n "$*" ; then
+		$AS --options=$(dirname $0)/astylerc --quiet "$@"
+		$CF -i -style=file "$@"
+	fi
 }
 
 if test "x$any_dirs" = "xyes" ; then

@@ -1,21 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "ModuleManager.h"
@@ -114,8 +104,9 @@ ModuleManager::doInit()
                     if ( ok && !moduleName.isEmpty() && ( moduleName == currentDir.dirName() )
                          && !m_availableDescriptorsByModuleName.contains( moduleName ) )
                     {
-                        auto descriptor = Calamares::ModuleSystem::Descriptor::fromDescriptorData( moduleDescriptorMap );
-                        descriptor.setDirectory(descriptorFileInfo.absoluteDir().absolutePath() );
+                        auto descriptor
+                            = Calamares::ModuleSystem::Descriptor::fromDescriptorData( moduleDescriptorMap );
+                        descriptor.setDirectory( descriptorFileInfo.absoluteDir().absolutePath() );
                         m_availableDescriptorsByModuleName.insert( moduleName, descriptor );
                     }
                 }
@@ -253,11 +244,8 @@ ModuleManager::loadModules()
             }
             else
             {
-                thisModule
-                    = Calamares::moduleFromDescriptor( descriptor,
-                                                       instanceKey.id(),
-                                                       configFileName,
-                                                       descriptor.directory() );
+                thisModule = Calamares::moduleFromDescriptor(
+                    descriptor, instanceKey.id(), configFileName, descriptor.directory() );
                 if ( !thisModule )
                 {
                     cError() << "Module" << instanceKey.toString() << "cannot be created from descriptor"
@@ -385,8 +373,7 @@ ModuleManager::checkDependencies()
         for ( auto it = m_availableDescriptorsByModuleName.begin(); it != m_availableDescriptorsByModuleName.end();
               ++it )
         {
-            QStringList unmet = missingRequiredModules( it->requiredModules(),
-                                                        m_availableDescriptorsByModuleName );
+            QStringList unmet = missingRequiredModules( it->requiredModules(), m_availableDescriptorsByModuleName );
 
             if ( unmet.count() > 0 )
             {
@@ -413,8 +400,7 @@ ModuleManager::checkModuleDependencies( const Module& m )
     }
 
     bool allRequirementsFound = true;
-    QStringList requiredModules
-        = m_availableDescriptorsByModuleName[ m.name() ].requiredModules();
+    QStringList requiredModules = m_availableDescriptorsByModuleName[ m.name() ].requiredModules();
 
     for ( const QString& required : requiredModules )
     {
