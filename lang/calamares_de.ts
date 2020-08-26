@@ -717,7 +717,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="350"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>Setze Zeitzone auf %1%2.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="388"/>
@@ -802,7 +802,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/users/Config.cpp" line="147"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' ist als Benutzername nicht erlaubt.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="154"/>
@@ -827,7 +827,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
       <location filename="../src/modules/users/Config.cpp" line="214"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' ist als Computername nicht erlaubt.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="220"/>
@@ -2860,7 +2860,8 @@ Ausgabe:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Dieser Computer erfüllt einige empfohlene Bedingungen nicht für die Installation von %1.&lt;br/&gt;
+        Die Installation kann fortgesetzt werden, aber einige Funktionen könnten deaktiviert sein.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -2971,13 +2972,15 @@ Ausgabe:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="47"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Dieser Computer erfüllt die minimalen Bedingungen nicht für die Installation von %1.&lt;br/&gt;
+        Die Installation kan nicht fortgesetzt werden.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="49"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;Dieser Computer erfüllt einige empfohlene Bedingungen nicht für die Installation von %1.&lt;br/&gt;
+        Die Installation kann fortgesetzt werden, aber einige Funktionen könnten deaktiviert sein.&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3443,28 +3446,28 @@ Ausgabe:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="143"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>KDE Benutzer-Feedback</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="155"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>Konfiguriere KDE Benutzer-Feedback.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="177"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="183"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>Fehler bei der Konfiguration des KDE Benutzer-Feedbacks.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="178"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Konnte KDE Benutzer-Feedback nicht korrekt konfigurieren, Skriptfehler %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="184"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>Konnte KDE Benutzer-Feedback nicht korrekt konfigurieren, Calamares-Fehler %1.</translation>
     </message>
   </context>
   <context>
@@ -3511,7 +3514,7 @@ Ausgabe:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Hier klicken, um &lt;span style=" font-weight:600;"&gt;keinerlei Informationen &lt;/span&gt; über Ihre Installation zu senden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
