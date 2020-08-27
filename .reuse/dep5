@@ -83,17 +83,3 @@ Copyright: 2020 Calamares authors and translators
 Files: src/modules/dummypythonqt/lang/*/LC_MESSAGES/dummypythonqt.po
 License: GPL-3.0-or-later
 Copyright: 2020 Calamares authors and translators
-
-### FIXME ISSUES
-#
-# The .mo files are build artifacts
-#
-# FIXME: these shouldn't be in the source repo at all
-#
-Files: lang/python/*/LC_MESSAGES/python.mo
-License: GPL-3.0-or-later
-Copyright: 2020 Calamares authors and translators
-
-Files: src/modules/dummypythonqt/lang/*/LC_MESSAGES/dummypythonqt.mo
-License: GPL-3.0-or-later
-Copyright: 2020 Calamares authors and translators
