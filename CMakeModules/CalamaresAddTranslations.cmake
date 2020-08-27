@@ -12,6 +12,15 @@
 
 include( CMakeParseArguments )
 
+# The Gettext module is still old-fashioned, ALLCAPS variables
+find_package( Gettext )
+set_package_properties( GETTEXT PROPERTIES
+    DESCRIPTION "GNU gettext (translation) tools."
+    URL "https://www.gnu.org/software/gettext/"
+    PURPOSE "Gettext is used in the translation of Python modules."
+    TYPE REQUIRED
+)
+
 # Installs a directory containing language-code-labeled subdirectories with
 # gettext data into the appropriate system directory. Allows renaming the
 # .mo files during install to avoid namespace clashes.
@@ -44,8 +53,13 @@ function( install_calamares_gettext_translations )
     endif()
     string( REGEX REPLACE ".mo$" ".po" TRANSLATION_SOURCE_FILENAME "${TRANSLATION_FILENAME}" )
 
-    message(STATUS "Installing gettext translations for ${TRANSLATION_NAME}")
-    message(STATUS "  Installing ${TRANSLATION_FILENAME} from ${TRANSLATION_SOURCE_DIR}")
+    if ( GETTEXT_FOUND AND GETTEXT_MSGFMT_EXECUTABLE )
+        message( STATUS "Installing gettext translations for ${TRANSLATION_NAME}")
+        message( STATUS "  Installing ${TRANSLATION_FILENAME} from ${TRANSLATION_SOURCE_DIR}")
+    else()
+        message( WARNING "Gettext translations requested for ${TRANSLATION_NAME}, but gettext was not found." )
+        return()
+    endif()
 
     set( TARGET_NAME calamares-gettext-translations-${NAME} )
     if( NOT TARGET "${TARGET_NAME}" )
@@ -62,10 +76,18 @@ function( install_calamares_gettext_translations )
         if( lang STREQUAL "en" )
             message( STATUS "  Skipping ${TRANSLATION_NAME} translations for en_US" )
         else()
+            # We **don't** use the gettext macro's here because the source
+            # structure doesn't match: we are calling this once per language
+            # for all of Calamares's languages, while the gettext module
+            # expects it to be called once, for a given language source-dir.
+            #
+            # Using any of the gettext macros just gets us multiple rules
+            # for python.gmo, and it wants to use msgmerge, besides, which
+            # doesn't fit our Transifex workflow.
             make_directory( ${lang_mo_dir} )
             add_custom_command(
                 OUTPUT ${lang_mo}
-                COMMAND msgfmt
+                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE}
                 ARGS -o ${lang_mo} ${lang_po}
                 MAIN_DEPENDENCY ${lang_po}
                 )
