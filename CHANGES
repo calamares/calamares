@@ -10,13 +10,29 @@ website will have to do for older versions.
 # 3.2.30 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Anke Boersma
+ - Asif Mahmud Shimon
+ - Sai Kamal
+
+This release has two giant source-code changes that have no effect
+on functionality, but do touch each and every source file:
+ - SPDX headers for licensing information, following the standard
+   set by REUSE.software ; all source files and resources have
+   SPDX-License-Identifier information and copyright notices. All
+   of the boilerplate texts have been removed.
+ - Calamares coding style has been mechanically applied to the entire
+   codebase. This was already done to most of it, but there were
+   some hold-outs.
 
 ## Core ##
- - No core changes yet
+ - Network access status is deprecated in Qt 5.15's QNetworkAccessManager,
+   and was not useful already in some previous versions. Replace its
+   use in the Calamares network service by testing-it-ourself directly
+   via a synchronous ping. (Thanks to Asif)
+ - New Telugu translation. (Thanks to Sai)
 
 ## Modules ##
- - No module changes yet
+ - *keyboardq* and *localeq* improvements. (Thanks to Anke)
 
 
 # 3.2.29 (2020-08-20) #
