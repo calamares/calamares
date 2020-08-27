@@ -48,22 +48,6 @@ macro(add_calamares_translations language)
     )
 endmacro()
 
-# Internal macro for Python translations
-#
-# Translations of the Python modules that don't have their own
-# lang/ subdirectories -- these are collected in top-level
-# lang/python/<lang>/LC_MESSAGES/python.mo
-macro(add_calamares_python_translations language)
-    set( CALAMARES_LANGUAGES "" )
-    list( APPEND CALAMARES_LANGUAGES ${ARGV} )
-
-    install_calamares_gettext_translations( python
-        SOURCE_DIR ${CMAKE_SOURCE_DIR}/lang/python
-        FILENAME python.mo
-        RENAME calamares-python.mo
-    )
-endmacro()
-
 # Installs a directory containing language-code-labeled subdirectories with
 # gettext data into the appropriate system directory. Allows renaming the
 # .mo files during install to avoid namespace clashes.
