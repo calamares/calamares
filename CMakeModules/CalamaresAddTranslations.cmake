@@ -12,42 +12,6 @@
 
 include( CMakeParseArguments )
 
-# Internal macro for adding the C++ / Qt translations to the
-# build and install tree. Should be called only once, from
-# src/calamares/CMakeLists.txt.
-macro(add_calamares_translations language)
-    list( APPEND CALAMARES_LANGUAGES ${ARGV} )
-
-    set( calamares_i18n_qrc_content "" )
-
-    # calamares and qt language files
-    foreach( lang ${CALAMARES_LANGUAGES} )
-        foreach( tlsource "calamares_${lang}" "tz_${lang}" )
-            if( EXISTS "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts" )
-                set( calamares_i18n_qrc_content "${calamares_i18n_qrc_content}<file>${tlsource}.qm</file>\n" )
-                list( APPEND TS_FILES "${CMAKE_SOURCE_DIR}/lang/${tlsource}.ts" )
-            endif()
-        endforeach()
-    endforeach()
-
-    set( trans_file calamares_i18n )
-    set( trans_infile ${CMAKE_CURRENT_BINARY_DIR}/${trans_file}.qrc )
-    set( trans_outfile ${CMAKE_CURRENT_BINARY_DIR}/qrc_${trans_file}.cxx )
-
-    configure_file( ${CMAKE_SOURCE_DIR}/lang/calamares_i18n.qrc.in ${trans_infile} @ONLY )
-
-    qt5_add_translation(QM_FILES ${TS_FILES})
-
-    # Run the resource compiler (rcc_options should already be set)
-    add_custom_command(
-        OUTPUT ${trans_outfile}
-        COMMAND "${Qt5Core_RCC_EXECUTABLE}"
-        ARGS ${rcc_options} --format-version 1 -name ${trans_file} -o ${trans_outfile} ${trans_infile}
-        MAIN_DEPENDENCY ${trans_infile}
-        DEPENDS ${QM_FILES}
-    )
-endmacro()
-
 # Installs a directory containing language-code-labeled subdirectories with
 # gettext data into the appropriate system directory. Allows renaming the
 # .mo files during install to avoid namespace clashes.
