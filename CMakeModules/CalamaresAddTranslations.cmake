@@ -57,10 +57,12 @@ function( install_calamares_gettext_translations )
         string( MAKE_C_IDENTIFIER "${TARGET_NAME}-${lang}" TARGET_SUBNAME )
 
         set( lang_po "${TRANSLATION_SOURCE_DIR}/${lang}/LC_MESSAGES/${TRANSLATION_SOURCE_FILENAME}" )
-        set( lang_mo "${CMAKE_BINARY_DIR}/lang/${lang}/LC_MESSAGES/${TRANSLATION_RENAME}" )
+        set( lang_mo_dir "${CMAKE_BINARY_DIR}/lang/${lang}/LC_MESSAGES" )
+        set( lang_mo "${lang_mo_dir}/${TRANSLATION_RENAME}" )
         if( lang STREQUAL "en" )
             message( STATUS "  Skipping ${TRANSLATION_NAME} translations for en_US" )
         else()
+            make_directory( ${lang_mo_dir} )
             add_custom_command(
                 OUTPUT ${lang_mo}
                 COMMAND msgfmt
