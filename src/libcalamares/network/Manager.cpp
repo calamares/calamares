@@ -149,18 +149,23 @@ Manager::hasInternet()
 bool
 Manager::checkHasInternet()
 {
-    bool hasInternet = d->nam()->networkAccessible() == QNetworkAccessManager::Accessible;
 
-    if ( !hasInternet && ( d->nam()->networkAccessible() == QNetworkAccessManager::UnknownAccessibility ) )
+    d->m_hasInternet = synchronousPing( d->m_hasInternetUrl );
+
+// For earlier Qt versions (< 5.15.0), set the accessibility flag to
+// NotAccessible if synchronous ping has failed, so that any module
+// using Qt's networkAccessible method to determine whether or not
+// internet connection is actually avaialable won't get confused over
+// virtualization technologies.
+#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
+    if ( !d->m_hasInternet )
     {
-        hasInternet = synchronousPing( d->m_hasInternetUrl );
+        d->nam()->setNetworkAccessible( QNetworkAccessManager::NotAccessible );
     }
-    if ( hasInternet != d->m_hasInternet )
-    {
-        d->m_hasInternet = hasInternet;
-        emit hasInternetChanged( hasInternet );
-    }
-    return hasInternet;
+#endif
+
+    emit hasInternetChanged( d->m_hasInternet );
+    return d->m_hasInternet;
 }
 
 void
