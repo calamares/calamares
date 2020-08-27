@@ -73,7 +73,6 @@ foreach( _category ${_use_categories} )
     endif()
 endforeach()
 
-include( CalamaresAddTranslations )
 add_calamares_python_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
 
 # TODO:3.3: Use FindPython3

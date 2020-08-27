@@ -37,7 +37,6 @@ include_directories(
 )
 
 # Translations
-include( CalamaresAddTranslations )
 add_calamares_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
 
 add_executable( calamares_bin ${calamaresSources} calamares.qrc ${trans_outfile} )

@@ -3,11 +3,12 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-include( CalamaresAddPlugin )
-include( CalamaresAddModuleSubdirectory )
-include( CalamaresAddLibrary )
 include( CalamaresAddBrandingSubdirectory )
+include( CalamaresAddLibrary )
+include( CalamaresAddModuleSubdirectory )
+include( CalamaresAddPlugin )
 include( CalamaresAddTest )
+include( CalamaresAddTranslations )
 
 # library
 add_subdirectory( libcalamares )
