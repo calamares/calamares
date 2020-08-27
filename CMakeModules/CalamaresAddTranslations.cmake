@@ -78,31 +78,37 @@ function( install_calamares_gettext_translations )
     if( NOT TRANSLATION_RENAME )
         set( TRANSLATION_RENAME "${TRANSLATION_FILENAME}" )
     endif()
+    string( REGEX REPLACE ".mo$" ".po" TRANSLATION_SOURCE_FILENAME "${TRANSLATION_FILENAME}" )
 
     message(STATUS "Installing gettext translations for ${TRANSLATION_NAME}")
     message(STATUS "  Installing ${TRANSLATION_FILENAME} from ${TRANSLATION_SOURCE_DIR}")
 
+    set( TARGET_NAME calamares-gettext-translations-${NAME} )
+    if( NOT TARGET "${TARGET_NAME}" )
+        add_custom_target( "${TARGET_NAME}" ALL )
+    endif()
+
     set( TRANSLATION_NAME "${NAME}" )
-    set( INSTALLED_TRANSLATIONS "" )
     foreach( lang ${CALAMARES_TRANSLATION_LANGUAGES} )  # Global
-        set( lang_mo "${TRANSLATION_SOURCE_DIR}/${lang}/LC_MESSAGES/${TRANSLATION_FILENAME}" )
+        string( MAKE_C_IDENTIFIER "${TARGET_NAME}-${lang}" TARGET_SUBNAME )
+
+        set( lang_po "${TRANSLATION_SOURCE_DIR}/${lang}/LC_MESSAGES/${TRANSLATION_SOURCE_FILENAME}" )
+        set( lang_mo "${CMAKE_BINARY_DIR}/lang/${lang}/LC_MESSAGES/${TRANSLATION_RENAME}" )
         if( lang STREQUAL "en" )
             message( STATUS "  Skipping ${TRANSLATION_NAME} translations for en_US" )
-        else( EXISTS ${lang_mo} )
-            list( APPEND INSTALLED_LANGUAGES "${lang}" )
+        else()
+            add_custom_command(
+                OUTPUT ${lang_mo}
+                COMMAND msgfmt
+                ARGS -o ${lang_mo} ${lang_po}
+                MAIN_DEPENDENCY ${lang_po}
+                )
+            add_custom_target( "${TARGET_SUBNAME}" DEPENDS ${lang_mo} )
+            add_dependencies( "${TARGET_NAME}" "${TARGET_SUBNAME}" )
             install(
                 FILES ${lang_mo}
                 DESTINATION ${CMAKE_INSTALL_LOCALEDIR}/${lang}/LC_MESSAGES/
-                RENAME ${TRANSLATION_RENAME}
             )
-            # TODO: make translations available in build dir too, for
-            #       translation when running calamares -d from builddir.
-            set(_build_lc ${CMAKE_BINARY_DIR}/lang/${lang}/LC_MESSAGES/)
-            file(COPY ${lang_mo} DESTINATION ${_build_lc})
-            if (NOT TRANSLATION_FILENAME STREQUAL TRANSLATION_RENAME)
-                file(RENAME ${_build_lc}${TRANSLATION_FILENAME} ${_build_lc}${TRANSLATION_RENAME})
-            endif()
-
         endif()
     endforeach()
 endfunction()
