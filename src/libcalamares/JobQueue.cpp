@@ -151,6 +151,24 @@ public:
         QMetaObject::invokeMethod( m_queue, "finish", Qt::QueuedConnection );
     }
 
+    /** @brief The names of the queued (not running!) jobs.
+     */
+    QStringList queuedJobs() const
+    {
+        QMutexLocker qlock( &m_enqueMutex );
+        QStringList l;
+        l.reserve( m_queuedJobs->count() );
+        for ( const auto& j : *m_queuedJobs )
+        {
+            l << j.job->prettyName();
+        }
+        return l;
+    }
+
+private:
+    /* This is called **only** from run(), while m_runMutex is
+     * already locked, so we can use the m_runningJobs member safely.
+     */
     void emitProgress( qreal percentage ) const
     {
         percentage = qBound( 0.0, percentage, 1.0 );
@@ -172,10 +190,8 @@ public:
             m_queue, "progress", Qt::QueuedConnection, Q_ARG( qreal, progress ), Q_ARG( QString, message ) );
     }
 
-
-private:
-    QMutex m_runMutex;
-    QMutex m_enqueMutex;
+    mutable QMutex m_runMutex;
+    mutable QMutex m_enqueMutex;
 
     std::unique_ptr< WeightedJobList > m_runningJobs = std::make_unique< WeightedJobList >();
     std::unique_ptr< WeightedJobList > m_queuedJobs = std::make_unique< WeightedJobList >();
@@ -242,6 +258,7 @@ JobQueue::enqueue( int moduleWeight, const JobList& jobs )
 {
     Q_ASSERT( !m_thread->isRunning() );
     m_thread->enqueue( moduleWeight, jobs );
+    emit queueChanged( m_thread->queuedJobs() );
 }
 
 void
@@ -249,6 +266,7 @@ JobQueue::finish()
 {
     m_finished = true;
     emit finished();
+    emit queueChanged( m_thread->queuedJobs() );
 }
 
 GlobalStorage*

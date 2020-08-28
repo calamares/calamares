@@ -82,6 +82,14 @@ signals:
      */
     void failed( const QString& message, const QString& details );
 
+    /** @brief Reports the names of jobs in the queue.
+     *
+     * When jobs are added via enqueue(), or when the queue otherwise
+     * changes, the **names** of the jobs are reported. This is
+     * primarily for debugging purposes.
+     */
+    void queueChanged( const QStringList& jobNames );
+
 private:
     void finish();
 
