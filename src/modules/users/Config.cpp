@@ -30,6 +30,30 @@ static const QRegExp HOSTNAME_RX( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
 static constexpr const int HOSTNAME_MIN_LENGTH = 2;
 static constexpr const int HOSTNAME_MAX_LENGTH = 63;
 
+static void
+updateGSAutoLogin( bool doAutoLogin, const QString& login )
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    if ( doAutoLogin && !login.isEmpty() )
+    {
+        gs->insert( "autologinUser", login );
+    }
+    else
+    {
+        gs->remove( "autologinUser" );
+    }
+
+    if ( login.isEmpty() )
+    {
+        gs->remove( "username" );
+    }
+    else
+    {
+        gs->insert( "username", login );
+    }
+}
+
 const NamedEnumTable< HostNameAction >&
 hostNameActionNames()
 {
@@ -110,15 +134,7 @@ Config::setLoginName( const QString& login )
 {
     if ( login != m_loginName )
     {
-        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-        if ( login.isEmpty() )
-        {
-            gs->remove( "username" );
-        }
-        else
-        {
-            gs->insert( "username", login );
-        }
+        updateGSAutoLogin( doAutoLogin(), login );
 
         m_customLoginName = !login.isEmpty();
         m_loginName = login;
@@ -330,9 +346,9 @@ Config::setFullName( const QString& name )
             QString login = makeLoginNameSuggestion( cleanParts );
             if ( !login.isEmpty() && login != m_loginName )
             {
-                m_loginName = login;
-                emit loginNameChanged( login );
-                emit loginNameStatusChanged( loginNameStatus() );
+                setLoginName( login );
+                // It's **still** not custom, though setLoginName() sets that
+                m_customLoginName = false;
             }
         }
         if ( !m_customHostName )
@@ -340,9 +356,9 @@ Config::setFullName( const QString& name )
             QString hostname = makeHostnameSuggestion( cleanParts );
             if ( !hostname.isEmpty() && hostname != m_hostName )
             {
-                m_hostName = hostname;
-                emit hostNameChanged( hostname );
-                emit hostNameStatusChanged( hostNameStatus() );
+                setHostName( hostname );
+                // Still not custom
+                m_customHostName = false;
             }
         }
     }
@@ -353,15 +369,7 @@ Config::setAutoLogin( bool b )
 {
     if ( b != m_doAutoLogin )
     {
-        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-        if ( b )
-        {
-            gs->insert( "autologinUser", loginName() );
-        }
-        else
-        {
-            gs->remove( "autologinUser" );
-        }
+        updateGSAutoLogin( b, loginName() );
         m_doAutoLogin = b;
         emit autoLoginChanged( b );
     }
@@ -700,14 +708,16 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
     std::sort( m_passwordChecks.begin(), m_passwordChecks.end() );
 
+    updateGSAutoLogin( doAutoLogin(), loginName() );
     checkReady();
 }
 
 void
 Config::finalizeGlobalStorage() const
 {
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    updateGSAutoLogin( doAutoLogin(), loginName() );
 
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( writeRootPassword() )
     {
         gs->insert( "reuseRootPassword", reuseUserPasswordForRoot() );
