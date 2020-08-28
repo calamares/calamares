@@ -84,12 +84,6 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
 {
     ui->setupUi( this );
 
-    ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
-    ui->checkBoxReusePassword->setChecked( m_config->reuseUserPasswordForRoot() );
-
-    ui->checkBoxValidatePassword->setVisible( m_config->permitWeakPasswords() );
-    ui->checkBoxValidatePassword->setChecked( m_config->requireStrongPasswords() );
-
     // Connect signals and slots
     ui->textBoxUserPassword->setText( config->userPassword() );
     connect( ui->textBoxUserPassword, &QLineEdit::textChanged, config, &Config::setUserPassword );
@@ -107,10 +101,6 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::rootPasswordSecondaryChanged, ui->textBoxVerifiedRootPassword, &QLineEdit::setText );
     connect( config, &Config::rootPasswordStatusChanged, this, &UsersPage::reportRootPasswordStatus );
 
-    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
-        m_config->setRequireStrongPasswords( checked != Qt::Unchecked );
-    } );
-
     connect( ui->textBoxFullName, &QLineEdit::textEdited, config, &Config::setFullName );
     connect( config, &Config::fullNameChanged, this, &UsersPage::onFullNameTextEdited );
 
@@ -122,26 +112,29 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
     connect( config, &Config::loginNameStatusChanged, this, &UsersPage::reportLoginNameStatus );
 
+    ui->checkBoxDoAutoLogin->setChecked( m_config->doAutoLogin() );
     connect( ui->checkBoxDoAutoLogin, &QCheckBox::stateChanged, this, [this]( int checked ) {
         m_config->setAutoLogin( checked != Qt::Unchecked );
     } );
     connect( config, &Config::autoLoginChanged, ui->checkBoxDoAutoLogin, &QCheckBox::setChecked );
 
+    ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
+    ui->checkBoxReusePassword->setChecked( m_config->reuseUserPasswordForRoot() );
     if ( m_config->writeRootPassword() )
     {
-        connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
-            m_config->setReuseUserPasswordForRoot( checked != Qt::Unchecked );
-        } );
         connect( config, &Config::reuseUserPasswordForRootChanged, ui->checkBoxReusePassword, &QCheckBox::setChecked );
         connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged, this, &UsersPage::onReuseUserPasswordChanged );
     }
 
+    ui->checkBoxRequireStrongPassword->setVisible( m_config->permitWeakPasswords() );
+    ui->checkBoxRequireStrongPassword->setChecked( m_config->requireStrongPasswords() );
     if ( m_config->permitWeakPasswords() )
     {
-        connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+        connect( ui->checkBoxRequireStrongPassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
             m_config->setRequireStrongPasswords( checked != Qt::Unchecked );
         } );
-        connect( config, &Config::requireStrongPasswordsChanged, ui->checkBoxValidatePassword, &QCheckBox::setChecked );
+        connect(
+            config, &Config::requireStrongPasswordsChanged, ui->checkBoxRequireStrongPassword, &QCheckBox::setChecked );
     }
 
     CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate )
@@ -241,6 +234,8 @@ UsersPage::reportUserPasswordStatus( int validity, const QString& message )
 void
 UsersPage::onReuseUserPasswordChanged( const int checked )
 {
+    // Pass the change on to config
+    m_config->setReuseUserPasswordForRoot( checked != Qt::Unchecked );
     /* When "reuse" is checked, hide the fields for explicitly
      * entering the root password. However, if we're going to
      * disable the root password anyway, hide them all regardless of

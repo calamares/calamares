@@ -35,6 +35,8 @@ on functionality, but do touch each and every source file:
 
 ## Modules ##
  - *keyboardq* and *localeq* improvements. (Thanks to Anke)
+ - *users* module did not set up autologin properly. This is yet another
+   regression left over from 3.2.28. (Reported by Phil and pcrepix, #1498)
 
 
 # 3.2.29 (2020-08-20) #
