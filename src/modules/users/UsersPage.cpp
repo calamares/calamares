@@ -112,6 +112,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
     connect( config, &Config::loginNameStatusChanged, this, &UsersPage::reportLoginNameStatus );
 
+    ui->checkBoxDoAutoLogin->setChecked( m_config->doAutoLogin() );
     connect( ui->checkBoxDoAutoLogin, &QCheckBox::stateChanged, this, [this]( int checked ) {
         m_config->setAutoLogin( checked != Qt::Unchecked );
     } );
