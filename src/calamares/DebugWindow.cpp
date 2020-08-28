@@ -93,14 +93,8 @@ DebugWindow::DebugWindow()
 
     // JobQueue page
     m_ui->jobQueueText->setReadOnly( true );
-    connect( JobQueue::instance(), &JobQueue::queueChanged, this, [this]( const JobList& jobs ) {
-        QStringList text;
-        for ( const auto& job : jobs )
-        {
-            text.append( job->prettyName() );
-        }
-
-        m_ui->jobQueueText->setText( text.join( '\n' ) );
+    connect( JobQueue::instance(), &JobQueue::queueChanged, this, [this]( const QStringList& jobs ) {
+        m_ui->jobQueueText->setText( jobs.join( '\n' ) );
     } );
 
     // Modules page
