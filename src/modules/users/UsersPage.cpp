@@ -87,8 +87,8 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     ui->checkBoxReusePassword->setVisible( m_config->writeRootPassword() );
     ui->checkBoxReusePassword->setChecked( m_config->reuseUserPasswordForRoot() );
 
-    ui->checkBoxValidatePassword->setVisible( m_config->permitWeakPasswords() );
-    ui->checkBoxValidatePassword->setChecked( m_config->requireStrongPasswords() );
+    ui->checkBoxRequireStrongPassword->setVisible( m_config->permitWeakPasswords() );
+    ui->checkBoxRequireStrongPassword->setChecked( m_config->requireStrongPasswords() );
 
     // Connect signals and slots
     ui->textBoxUserPassword->setText( config->userPassword() );
@@ -107,7 +107,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::rootPasswordSecondaryChanged, ui->textBoxVerifiedRootPassword, &QLineEdit::setText );
     connect( config, &Config::rootPasswordStatusChanged, this, &UsersPage::reportRootPasswordStatus );
 
-    connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+    connect( ui->checkBoxRequireStrongPassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
         m_config->setRequireStrongPasswords( checked != Qt::Unchecked );
     } );
 
@@ -138,10 +138,10 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
 
     if ( m_config->permitWeakPasswords() )
     {
-        connect( ui->checkBoxValidatePassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
+        connect( ui->checkBoxRequireStrongPassword, &QCheckBox::stateChanged, this, [this]( int checked ) {
             m_config->setRequireStrongPasswords( checked != Qt::Unchecked );
         } );
-        connect( config, &Config::requireStrongPasswordsChanged, ui->checkBoxValidatePassword, &QCheckBox::setChecked );
+        connect( config, &Config::requireStrongPasswordsChanged, ui->checkBoxRequireStrongPassword, &QCheckBox::setChecked );
     }
 
     CALAMARES_RETRANSLATE_SLOT( &UsersPage::retranslate )

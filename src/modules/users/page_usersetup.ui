@@ -450,7 +450,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </spacer>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBoxValidatePassword">
+    <widget class="QCheckBox" name="checkBoxRequireStrongPassword">
      <property name="toolTip">
       <string>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</string>
      </property>
