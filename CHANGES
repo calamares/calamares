@@ -12,6 +12,7 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
  - Asif Mahmud Shimon
+ - Manzoor Ahmed Munawar
  - Sai Kamal
 
 This release has two giant source-code changes that have no effect
@@ -30,6 +31,7 @@ on functionality, but do touch each and every source file:
    use in the Calamares network service by testing-it-ourself directly
    via a synchronous ping. (Thanks to Asif)
  - New Telugu translation. (Thanks to Sai)
+ - Urdu translation started. (Thanks to Manzoor)
 
 ## Modules ##
  - *keyboardq* and *localeq* improvements. (Thanks to Anke)
