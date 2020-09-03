@@ -10,8 +10,11 @@
 #include "Config.h"
 
 #include "Branding.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "Settings.h"
 #include "geoip/Handler.h"
+#include "locale/Global.h"
 #include "locale/Lookup.h"
 #include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
@@ -186,7 +189,12 @@ Config::setLocaleIndex( int index )
 
     QLocale::setDefault( selectedLocale );
     CalamaresUtils::installTranslator( selectedLocale, Calamares::Branding::instance()->translationsDirectory() );
-
+    if ( Calamares::JobQueue::instance() && Calamares::JobQueue::instance()->globalStorage() )
+    {
+        CalamaresUtils::Locale::insertGS( *Calamares::JobQueue::instance()->globalStorage(),
+                                          QStringLiteral( "LANG" ),
+                                          CalamaresUtils::translatorLocaleName() );
+    }
     emit localeIndexChanged( m_localeIndex );
 }
 
