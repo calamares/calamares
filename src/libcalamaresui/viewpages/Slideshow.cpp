@@ -117,11 +117,8 @@ SlideshowQML::loadQmlV2Complete()
             {
                 // We're alreay visible! Must have been slow QML loading, and we
                 // passed onActivate already. changeSlideShowState() locks
-                // the same mutex: we could set up a workaround to call
-                // changeSlideShowState() later after destruction of l.
-                //
-                l.unlock();
-                changeSlideShowState( Slideshow::Start );
+                // the same mutex: call changeSlideShowState() after l is dead.
+                QTimer::singleShot( 0, this, &SlideshowQML::startSlideShow );
             }
         }
     }
@@ -141,6 +138,13 @@ SlideshowQML::loadQmlV2Complete()
         }
     }
 }
+
+void
+SlideshowQML::startSlideShow()
+{
+    changeSlideShowState( Slideshow::Start );
+}
+
 
 /*
  * Applies V1 and V2 QML activation / deactivation:

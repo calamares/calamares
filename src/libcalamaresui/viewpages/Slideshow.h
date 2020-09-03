@@ -100,6 +100,9 @@ public slots:
     void loadQmlV2Complete();
     void loadQmlV2();  ///< Loads the slideshow QML (from branding) for API version 2
 
+    /// Implementation detail
+    void startSlideShow();
+
 private:
     QQuickWidget* m_qmlShow;
     QQmlComponent* m_qmlComponent;
