@@ -39,6 +39,7 @@ set( libSources
     geoip/Handler.cpp
 
     # Locale-data service
+    locale/Global.cpp
     locale/Label.cpp
     locale/LabelModel.cpp
     locale/Lookup.cpp

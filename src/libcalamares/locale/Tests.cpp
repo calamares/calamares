@@ -8,11 +8,13 @@
  *
  */
 
+#include "locale/Global.h"
 #include "locale/LabelModel.h"
 #include "locale/TimeZone.h"
 #include "locale/TranslatableConfiguration.h"
 
 #include "CalamaresVersion.h"
+#include "GlobalStorage.h"
 #include "utils/Logger.h"
 
 #include <QtTest/QtTest>
@@ -45,6 +47,9 @@ private Q_SLOTS:
     void testLocationLookup_data();
     void testLocationLookup();
     void testLocationLookup2();
+
+    // Global Storage updates
+    void testGSUpdates();
 };
 
 LocaleTests::LocaleTests() {}
@@ -444,6 +449,72 @@ LocaleTests::testLocationLookup2()
     // -2928, that's -29 and 28/60 of a degree, is almost half, but we don't want
     //   to fall foul of variations in double-precision
     QCOMPARE( trunc( altzone->latitude() * 1000.0 ), -29466 );
+}
+
+void
+LocaleTests::testGSUpdates()
+{
+    Calamares::GlobalStorage gs;
+
+    const QString gsKey( "localeConf" );
+
+    QCOMPARE( gs.value( gsKey ), QVariant() );
+
+    // Insert one
+    {
+        CalamaresUtils::Locale::insertGS( gs, "LANG", "en_US" );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 1 );
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "en_US" ) );
+    }
+
+    // Overwrite one
+    {
+        CalamaresUtils::Locale::insertGS( gs, "LANG", "nl_BE" );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 1 );
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "nl_BE" ) );
+    }
+
+    // Insert a second value
+    {
+        CalamaresUtils::Locale::insertGS( gs, "LC_TIME", "UTC" );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 2 );
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "nl_BE" ) );
+        QCOMPARE( map.value( "LC_TIME" ).toString(), QString( "UTC" ) );
+    }
+
+    // Overwrite parts
+    {
+        QMap< QString, QString > kv;
+        kv.insert( "LANG", "en_SU" );
+        kv.insert( "LC_CURRENCY", "rbl" );
+
+        // Overwrite one, add one
+        CalamaresUtils::Locale::insertGS( gs, kv, CalamaresUtils::Locale::InsertMode::Merge );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 3 );
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "en_SU" ) );
+        QCOMPARE( map.value( "LC_TIME" ).toString(), QString( "UTC" ) );  // unchanged
+        QCOMPARE( map.value( "LC_CURRENCY" ).toString(), QString( "rbl" ) );
+    }
+
+    // Overwrite with clear
+    {
+        QMap< QString, QString > kv;
+        kv.insert( "LANG", "en_US" );
+        kv.insert( "LC_CURRENCY", "peso" );
+
+        // Overwrite one, add one
+        CalamaresUtils::Locale::insertGS( gs, kv, CalamaresUtils::Locale::InsertMode::Overwrite );
+        auto map = gs.value( gsKey ).toMap();
+        QCOMPARE( map.count(), 2 );  // the rest were cleared
+        QCOMPARE( map.value( "LANG" ).toString(), QString( "en_US" ) );
+        QVERIFY( !map.contains( "LC_TIME" ) );
+        QCOMPARE( map.value( "LC_TIME" ).toString(), QString() );  // removed
+        QCOMPARE( map.value( "LC_CURRENCY" ).toString(), QString( "peso" ) );
+    }
 }
 
 
