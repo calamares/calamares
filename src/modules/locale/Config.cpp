@@ -14,6 +14,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Settings.h"
+#include "locale/Global.h"
 #include "locale/Label.h"
 #include "modulesystem/ModuleManager.h"
 #include "network/Manager.h"
@@ -167,13 +168,7 @@ updateGSLocation( Calamares::GlobalStorage* gs, const CalamaresUtils::Locale::Ti
 static void
 updateGSLocale( Calamares::GlobalStorage* gs, const LocaleConfiguration& locale )
 {
-    auto map = locale.toMap();
-    QVariantMap vm;
-    for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
-    {
-        vm.insert( it.key(), it.value() );
-    }
-    gs->insert( "localeConf", vm );
+    CalamaresUtils::Locale::insertGS( *gs, locale.toMap(), CalamaresUtils::Locale::InsertMode::Overwrite );
 }
 
 Config::Config( QObject* parent )
