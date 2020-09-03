@@ -77,9 +77,15 @@ signals:
      */
     void queueChanged( const QStringList& jobNames );
 
-private:
+public slots:
+    /** @brief Implementation detail
+     *
+     * This is a private implementation detail for the job thread,
+     * which should not be called by other core.
+     */
     void finish();
 
+private:
     static JobQueue* s_instance;
 
     JobThread* m_thread;

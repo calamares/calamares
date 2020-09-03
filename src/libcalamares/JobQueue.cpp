@@ -135,6 +135,7 @@ public:
         {
             emitProgress( 1.0 );
         }
+        m_runningJobs->clear();
         QMetaObject::invokeMethod( m_queue, "finish", Qt::QueuedConnection );
     }
 
