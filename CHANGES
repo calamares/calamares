@@ -14,6 +14,7 @@ This release contains contributions from (alphabetically by first name):
  - Asif Mahmud Shimon
  - Manzoor Ahmed Munawar
  - Sai Kamal
+ - Victor Ibragimov
 
 This release has two giant source-code changes that have no effect
 on functionality, but do touch each and every source file:
@@ -32,6 +33,7 @@ on functionality, but do touch each and every source file:
    via a synchronous ping. (Thanks to Asif)
  - New Telugu translation. (Thanks to Sai)
  - Urdu translation started. (Thanks to Manzoor)
+ - Timezones translated in Tajik and Russian. (Thanks to Victor)
 
 ## Modules ##
  - *keyboardq* and *localeq* improvements. (Thanks to Anke)

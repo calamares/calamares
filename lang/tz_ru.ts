@@ -3,7 +3,7 @@
      SPDX-License-Identifier: CC0-1.0
 -->
 <!DOCTYPE TS>
-<TS version="2.1" language="tg">
+<TS version="2.1" language="ru">
 <context>
     <name>QObject</name>
     <message>
@@ -28,19 +28,19 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="33"/>
         <source>Arctic</source>
         <comment>tz_regions</comment>
-        <translation>Арктика</translation>
+        <translation>Северный Ледовитый океан</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="34"/>
         <source>Asia</source>
         <comment>tz_regions</comment>
-        <translation>Осиё</translation>
+        <translation>Азия</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="35"/>
         <source>Atlantic</source>
         <comment>tz_regions</comment>
-        <translation>Уқёнуси Атлантикӣ</translation>
+        <translation>Атлантика</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="36"/>
@@ -52,25 +52,25 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="37"/>
         <source>Europe</source>
         <comment>tz_regions</comment>
-        <translation>Аврупо</translation>
+        <translation>Европа</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="38"/>
         <source>Indian</source>
         <comment>tz_regions</comment>
-        <translation>Уқёнуси Ҳинд</translation>
+        <translation>Индийский океан</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="39"/>
         <source>Pacific</source>
         <comment>tz_regions</comment>
-        <translation>Уқёнуси Ором</translation>
+        <translation>Тихоокеанское время</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="50"/>
         <source>Abidjan</source>
         <comment>tz_names</comment>
-        <translation>Абиҷон</translation>
+        <translation>Абиджан</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="51"/>
@@ -88,7 +88,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="53"/>
         <source>Addis Ababa</source>
         <comment>tz_names</comment>
-        <translation>Аддис-Абаба</translation>
+        <translation>Аддис-Абеба</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="54"/>
@@ -106,19 +106,19 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="56"/>
         <source>Algiers</source>
         <comment>tz_names</comment>
-        <translation>Алҷазоир</translation>
+        <translation>Алжир</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="57"/>
         <source>Almaty</source>
         <comment>tz_names</comment>
-        <translation>Алмаато</translation>
+        <translation>Алма-Ата</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="58"/>
         <source>Amman</source>
         <comment>tz_names</comment>
-        <translation>Уммон</translation>
+        <translation>Амман</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="59"/>
@@ -130,13 +130,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="60"/>
         <source>Anadyr</source>
         <comment>tz_names</comment>
-        <translation>Анадир</translation>
+        <translation>Анадырь</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="61"/>
         <source>Anchorage</source>
         <comment>tz_names</comment>
-        <translation>Анкориҷ</translation>
+        <translation>Анкоридж</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="62"/>
@@ -148,7 +148,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="63"/>
         <source>Anguilla</source>
         <comment>tz_names</comment>
-        <translation>Ангвелла</translation>
+        <translation>Ангилья</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="64"/>
@@ -202,49 +202,49 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="72"/>
         <source>Argentina/Cordoba</source>
         <comment>tz_names</comment>
-        <translation>Аргентина/Кордоба</translation>
+        <translation>Аргентина/Кордова</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="73"/>
         <source>Argentina/Jujuy</source>
         <comment>tz_names</comment>
-        <translation>Аргентина/Ҷуҷуй</translation>
+        <translation>Аргентина/Жужуй</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="74"/>
         <source>Argentina/La Rioja</source>
         <comment>tz_names</comment>
-        <translation>Аргентина/Ла Риоха</translation>
+        <translation>Аргентина/Ла-Риоха</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="75"/>
         <source>Argentina/Mendoza</source>
         <comment>tz_names</comment>
-        <translation>Аргентина/Мендоза</translation>
+        <translation>Аргентина/Мендоса</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="76"/>
         <source>Argentina/Rio Gallegos</source>
         <comment>tz_names</comment>
-        <translation>Аргентина/Рио Галегос</translation>
+        <translation>Аргентина/Рио-Гальегос</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="77"/>
         <source>Argentina/Salta</source>
         <comment>tz_names</comment>
-        <translation>Аргентина/Салта</translation>
+        <translation>Аргентина/Сальта</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="78"/>
         <source>Argentina/San Juan</source>
         <comment>tz_names</comment>
-        <translation>Аргентина/Сан Ҷуан</translation>
+        <translation>Аргентина/Сан-Хуан</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="79"/>
         <source>Argentina/San Luis</source>
         <comment>tz_names</comment>
-        <translation>Аргентина/Сан Луис</translation>
+        <translation>Аргентина/Сан-Луис</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="80"/>
@@ -256,7 +256,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="81"/>
         <source>Argentina/Ushuaia</source>
         <comment>tz_names</comment>
-        <translation>Аргентина/Ушуайя</translation>
+        <translation>Аргентина/Ушуая</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="82"/>
@@ -268,7 +268,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="83"/>
         <source>Ashgabat</source>
         <comment>tz_names</comment>
-        <translation>Ашқобод</translation>
+        <translation>Ашхабад</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="84"/>
@@ -280,31 +280,31 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="85"/>
         <source>Astrakhan</source>
         <comment>tz_names</comment>
-        <translation>Астрахан</translation>
+        <translation>Астрахань</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="86"/>
         <source>Asuncion</source>
         <comment>tz_names</comment>
-        <translation>Асунсон</translation>
+        <translation>Асунсьон</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="87"/>
         <source>Athens</source>
         <comment>tz_names</comment>
-        <translation>Афина</translation>
+        <translation>Афины</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="88"/>
         <source>Atikokan</source>
         <comment>tz_names</comment>
-        <translation>Атикокак</translation>
+        <translation>Атикокан</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="89"/>
         <source>Atyrau</source>
         <comment>tz_names</comment>
-        <translation>Атирау</translation>
+        <translation>Атырау</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="90"/>
@@ -316,43 +316,43 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="91"/>
         <source>Azores</source>
         <comment>tz_names</comment>
-        <translation>Азор</translation>
+        <translation>Азорские острова</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="92"/>
         <source>Baghdad</source>
         <comment>tz_names</comment>
-        <translation>Бағдод</translation>
+        <translation>Багдад</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="93"/>
         <source>Bahia</source>
         <comment>tz_names</comment>
-        <translation>Баҳя</translation>
+        <translation>Баия</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="94"/>
         <source>Bahia Banderas</source>
         <comment>tz_names</comment>
-        <translation>Баҳя Бандерас</translation>
+        <translation>Баия-де-Бандерас</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="95"/>
         <source>Bahrain</source>
         <comment>tz_names</comment>
-        <translation>Баҳрайн</translation>
+        <translation>Бахрейн</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="96"/>
         <source>Baku</source>
         <comment>tz_names</comment>
-        <translation>Боку</translation>
+        <translation>Баку</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="97"/>
         <source>Bamako</source>
         <comment>tz_names</comment>
-        <translation>Бомако</translation>
+        <translation>Бамако</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="98"/>
@@ -394,7 +394,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="104"/>
         <source>Belem</source>
         <comment>tz_names</comment>
-        <translation>Белем</translation>
+        <translation>Белен</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="105"/>
@@ -418,7 +418,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="108"/>
         <source>Bermuda</source>
         <comment>tz_names</comment>
-        <translation>Бермуда</translation>
+        <translation>Бермуды</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="109"/>
@@ -442,7 +442,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="112"/>
         <source>Blantyre</source>
         <comment>tz_names</comment>
-        <translation>Блантайр</translation>
+        <translation>Блантир</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="113"/>
@@ -466,7 +466,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="116"/>
         <source>Bougainville</source>
         <comment>tz_names</comment>
-        <translation>Бугенвил</translation>
+        <translation>Бугенвиль</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="117"/>
@@ -478,7 +478,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="118"/>
         <source>Brazzaville</source>
         <comment>tz_names</comment>
-        <translation>Браззавил</translation>
+        <translation>Браззавиль</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="119"/>
@@ -502,7 +502,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="122"/>
         <source>Brussels</source>
         <comment>tz_names</comment>
-        <translation>Брюссел</translation>
+        <translation>Брюссель</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="123"/>
@@ -520,37 +520,37 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="125"/>
         <source>Bujumbura</source>
         <comment>tz_names</comment>
-        <translation>Буҷумбура</translation>
+        <translation>Бужумбура</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="126"/>
         <source>Busingen</source>
         <comment>tz_names</comment>
-        <translation>Бусинген</translation>
+        <translation>Бюзинген</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="127"/>
         <source>Cairo</source>
         <comment>tz_names</comment>
-        <translation>Қоҳира</translation>
+        <translation>Каир</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="128"/>
         <source>Cambridge Bay</source>
         <comment>tz_names</comment>
-        <translation>Кеймбриҷ-Бей</translation>
+        <translation>Кеймбридж-Бей</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="129"/>
         <source>Campo Grande</source>
         <comment>tz_names</comment>
-        <translation>Кампо-Граде</translation>
+        <translation>Кампу-Гранде</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="130"/>
         <source>Canary</source>
         <comment>tz_names</comment>
-        <translation>Канарӣ</translation>
+        <translation>Канары</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="131"/>
@@ -610,7 +610,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="140"/>
         <source>Chatham</source>
         <comment>tz_names</comment>
-        <translation>Чатам</translation>
+        <translation>Чатем</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="141"/>
@@ -622,7 +622,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="142"/>
         <source>Chihuahua</source>
         <comment>tz_names</comment>
-        <translation>Чихуахуа</translation>
+        <translation>Чиуауа</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="143"/>
@@ -646,7 +646,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="146"/>
         <source>Christmas</source>
         <comment>tz_names</comment>
-        <translation>Крисмас</translation>
+        <translation>о. Рождества</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="147"/>
@@ -658,7 +658,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="148"/>
         <source>Cocos</source>
         <comment>tz_names</comment>
-        <translation>Кокос</translation>
+        <translation>Кокосовые острова</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="149"/>
@@ -670,7 +670,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="150"/>
         <source>Comoro</source>
         <comment>tz_names</comment>
-        <translation>Коморо</translation>
+        <translation>Коморские острова</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="151"/>
@@ -712,7 +712,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="157"/>
         <source>Currie</source>
         <comment>tz_names</comment>
-        <translation>Керри</translation>
+        <translation>Курри</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="158"/>
@@ -724,19 +724,19 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="159"/>
         <source>Damascus</source>
         <comment>tz_names</comment>
-        <translation>Димишқ</translation>
+        <translation>Дамаск</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="160"/>
         <source>Danmarkshavn</source>
         <comment>tz_names</comment>
-        <translation>Данмарксҳавн</translation>
+        <translation>Денмаркшавн</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="161"/>
         <source>Dar es Salaam</source>
         <comment>tz_names</comment>
-        <translation>Даруссалам</translation>
+        <translation>Дар-эс-Салам</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="162"/>
@@ -790,7 +790,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="170"/>
         <source>Djibouti</source>
         <comment>tz_names</comment>
-        <translation>Ҷибути</translation>
+        <translation>Джибути</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="171"/>
@@ -802,7 +802,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="172"/>
         <source>Douala</source>
         <comment>tz_names</comment>
-        <translation>Доуала</translation>
+        <translation>Дуала</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="173"/>
@@ -820,7 +820,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="175"/>
         <source>DumontDUrville</source>
         <comment>tz_names</comment>
-        <translation>Дюмон д’Юрвил</translation>
+        <translation>Дюмон д’Юрвиль</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="176"/>
@@ -832,7 +832,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="177"/>
         <source>Easter</source>
         <comment>tz_names</comment>
-        <translation>Писҳо</translation>
+        <translation>Остров Пасхи</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="178"/>
@@ -856,13 +856,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="181"/>
         <source>El Aaiun</source>
         <comment>tz_names</comment>
-        <translation>Эл-Аюн</translation>
+        <translation>Эль-Аюн</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="182"/>
         <source>El Salvador</source>
         <comment>tz_names</comment>
-        <translation>Ал-Салвадор</translation>
+        <translation>Сальвадор</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="183"/>
@@ -892,19 +892,19 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="187"/>
         <source>Faroe</source>
         <comment>tz_names</comment>
-        <translation>Фарер</translation>
+        <translation>Фаэро</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="188"/>
         <source>Fiji</source>
         <comment>tz_names</comment>
-        <translation>Фиҷи</translation>
+        <translation>Фиджи</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="189"/>
         <source>Fort Nelson</source>
         <comment>tz_names</comment>
-        <translation>Форт Нелсон</translation>
+        <translation>Форт Нельсон</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="190"/>
@@ -940,7 +940,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="195"/>
         <source>Gambier</source>
         <comment>tz_names</comment>
-        <translation>Гамбир</translation>
+        <translation>Гамбье</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="196"/>
@@ -958,7 +958,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="198"/>
         <source>Glace Bay</source>
         <comment>tz_names</comment>
-        <translation>Глас Бэй</translation>
+        <translation>Глейс-Бей</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="199"/>
@@ -970,13 +970,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="200"/>
         <source>Goose Bay</source>
         <comment>tz_names</comment>
-        <translation>Гус-Бэй</translation>
+        <translation>Гус-Бей</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="201"/>
         <source>Grand Turk</source>
         <comment>tz_names</comment>
-        <translation>Гранд Турк</translation>
+        <translation>Гранд-Терк</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="202"/>
@@ -1012,7 +1012,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="207"/>
         <source>Guayaquil</source>
         <comment>tz_names</comment>
-        <translation>Гуаякил</translation>
+        <translation>Гуаякиль</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="208"/>
@@ -1048,37 +1048,37 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="213"/>
         <source>Hebron</source>
         <comment>tz_names</comment>
-        <translation>Ҳеврон</translation>
+        <translation>Хеврон</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="214"/>
         <source>Helsinki</source>
         <comment>tz_names</comment>
-        <translation>Ҳелсинки</translation>
+        <translation>Хельсинки</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="215"/>
         <source>Hermosillo</source>
         <comment>tz_names</comment>
-        <translation>Ҳермосилло</translation>
+        <translation>Эрмосильо</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="216"/>
         <source>Ho Chi Minh</source>
         <comment>tz_names</comment>
-        <translation>Ҳошимин</translation>
+        <translation>Хошимин</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="217"/>
         <source>Hobart</source>
         <comment>tz_names</comment>
-        <translation>Ҳобарт</translation>
+        <translation>Хобарт</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="218"/>
         <source>Hong Kong</source>
         <comment>tz_names</comment>
-        <translation>Ҳонгконг</translation>
+        <translation>Гонконг</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="219"/>
@@ -1090,7 +1090,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="220"/>
         <source>Hovd</source>
         <comment>tz_names</comment>
-        <translation>Ҳовд</translation>
+        <translation>Ховд</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="221"/>
@@ -1102,7 +1102,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="222"/>
         <source>Indiana/Knox</source>
         <comment>tz_names</comment>
-        <translation>Индиана/Кнокс</translation>
+        <translation>Индиана/Нокс</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="223"/>
@@ -1114,25 +1114,25 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="224"/>
         <source>Indiana/Petersburg</source>
         <comment>tz_names</comment>
-        <translation>Индиана/Питерсберг</translation>
+        <translation>Индиана/Петербург</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="225"/>
         <source>Indiana/Tell City</source>
         <comment>tz_names</comment>
-        <translation>Индиана/Телл Сити</translation>
+        <translation>Индиана/Телл-Сити</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="226"/>
         <source>Indiana/Vevay</source>
         <comment>tz_names</comment>
-        <translation>Индиана/Вивэй</translation>
+        <translation>Индиана/Вивей</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="227"/>
         <source>Indiana/Vincennes</source>
         <comment>tz_names</comment>
-        <translation>Индиана/Винсенс</translation>
+        <translation>Индиана/Винсеннс</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="228"/>
@@ -1162,7 +1162,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="232"/>
         <source>Isle of Man</source>
         <comment>tz_names</comment>
-        <translation>Ҷазираи Мэн</translation>
+        <translation>о. Мэн</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="233"/>
@@ -1174,31 +1174,31 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="234"/>
         <source>Jakarta</source>
         <comment>tz_names</comment>
-        <translation>Ҷакарта</translation>
+        <translation>Джакарта</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="235"/>
         <source>Jamaica</source>
         <comment>tz_names</comment>
-        <translation>Ҷомайка</translation>
+        <translation>Ямайка</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="236"/>
         <source>Jayapura</source>
         <comment>tz_names</comment>
-        <translation>Ҷайапура</translation>
+        <translation>Джаяпура</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="237"/>
         <source>Jersey</source>
         <comment>tz_names</comment>
-        <translation>Ҷерси</translation>
+        <translation>Джерси</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="238"/>
         <source>Jerusalem</source>
         <comment>tz_names</comment>
-        <translation>Байтулмуқаддас</translation>
+        <translation>Иерусалим</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="239"/>
@@ -1210,19 +1210,19 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="240"/>
         <source>Juba</source>
         <comment>tz_names</comment>
-        <translation>Ҷуба</translation>
+        <translation>Джуба</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="241"/>
         <source>Juneau</source>
         <comment>tz_names</comment>
-        <translation>Ҷуно</translation>
+        <translation>Джуно</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="242"/>
         <source>Kabul</source>
         <comment>tz_names</comment>
-        <translation>Кобул</translation>
+        <translation>Кабул</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="243"/>
@@ -1246,7 +1246,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="246"/>
         <source>Karachi</source>
         <comment>tz_names</comment>
-        <translation>Қарочӣ</translation>
+        <translation>Карачи</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="247"/>
@@ -1258,13 +1258,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="248"/>
         <source>Kentucky/Louisville</source>
         <comment>tz_names</comment>
-        <translation>Кентуки/Луисвилл</translation>
+        <translation>Кентукки/Луисвилль</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="249"/>
         <source>Kentucky/Monticello</source>
         <comment>tz_names</comment>
-        <translation>Кентуки/Монтиселло</translation>
+        <translation>Кентуки/Монтицелло</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="250"/>
@@ -1276,7 +1276,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="251"/>
         <source>Khandyga</source>
         <comment>tz_names</comment>
-        <translation>Хандига</translation>
+        <translation>Хандыга</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="252"/>
@@ -1318,13 +1318,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="258"/>
         <source>Kolkata</source>
         <comment>tz_names</comment>
-        <translation>Калкута</translation>
+        <translation>Колката</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="259"/>
         <source>Kosrae</source>
         <comment>tz_names</comment>
-        <translation>Косра</translation>
+        <translation>Косрае</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="260"/>
@@ -1354,13 +1354,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="264"/>
         <source>Kuwait</source>
         <comment>tz_names</comment>
-        <translation>Қувайт</translation>
+        <translation>Кувейт</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="265"/>
         <source>Kwajalein</source>
         <comment>tz_names</comment>
-        <translation>Кваҷалейн</translation>
+        <translation>Квайалейн</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="266"/>
@@ -1378,7 +1378,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="268"/>
         <source>Libreville</source>
         <comment>tz_names</comment>
-        <translation>Либревил</translation>
+        <translation>Либревиль</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="269"/>
@@ -1390,13 +1390,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="270"/>
         <source>Lindeman</source>
         <comment>tz_names</comment>
-        <translation>Линдерман</translation>
+        <translation>Линдеман</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="271"/>
         <source>Lisbon</source>
         <comment>tz_names</comment>
-        <translation>Лиссабон</translation>
+        <translation>Лисабон</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="272"/>
@@ -1420,7 +1420,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="275"/>
         <source>Longyearbyen</source>
         <comment>tz_names</comment>
-        <translation>Лонгйир</translation>
+        <translation>Лонгйербиен</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="276"/>
@@ -1432,7 +1432,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="277"/>
         <source>Los Angeles</source>
         <comment>tz_names</comment>
-        <translation>Лос-Анҷелес</translation>
+        <translation>Лос-Анджелес</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="278"/>
@@ -1468,7 +1468,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="283"/>
         <source>Macau</source>
         <comment>tz_names</comment>
-        <translation>Макау</translation>
+        <translation>Макао</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="284"/>
@@ -1480,7 +1480,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="285"/>
         <source>Macquarie</source>
         <comment>tz_names</comment>
-        <translation>Макгвайр </translation>
+        <translation>Маккуори</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="286"/>
@@ -1510,7 +1510,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="290"/>
         <source>Majuro</source>
         <comment>tz_names</comment>
-        <translation>Маҷуро</translation>
+        <translation>Маджуро</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="291"/>
@@ -1528,13 +1528,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="293"/>
         <source>Maldives</source>
         <comment>tz_names</comment>
-        <translation>Малдив</translation>
+        <translation>Мальдивы</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="294"/>
         <source>Malta</source>
         <comment>tz_names</comment>
-        <translation>Малта</translation>
+        <translation>Мальта</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="295"/>
@@ -1570,13 +1570,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="300"/>
         <source>Marigot</source>
         <comment>tz_names</comment>
-        <translation>Маригот</translation>
+        <translation>Мариго</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="301"/>
         <source>Marquesas</source>
         <comment>tz_names</comment>
-        <translation>Маркизас</translation>
+        <translation>Маркизские острова</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="302"/>
@@ -1606,7 +1606,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="306"/>
         <source>Mawson</source>
         <comment>tz_names</comment>
-        <translation>Маусон</translation>
+        <translation>Моусон</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="307"/>
@@ -1630,13 +1630,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="310"/>
         <source>McMurdo</source>
         <comment>tz_names</comment>
-        <translation>Мак-Мердо</translation>
+        <translation>Мак-Мёрдо</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="311"/>
         <source>Melbourne</source>
         <comment>tz_names</comment>
-        <translation>Мелбурн</translation>
+        <translation>Мельбурн</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="312"/>
@@ -1726,13 +1726,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="326"/>
         <source>Moscow</source>
         <comment>tz_names</comment>
-        <translation>Москав</translation>
+        <translation>Москва</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="327"/>
         <source>Muscat</source>
         <comment>tz_names</comment>
-        <translation>Масқат</translation>
+        <translation>Маскат</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="328"/>
@@ -1750,19 +1750,19 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="330"/>
         <source>Nauru</source>
         <comment>tz_names</comment>
-        <translation>Новурӯ</translation>
+        <translation>Науру</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="331"/>
         <source>Ndjamena</source>
         <comment>tz_names</comment>
-        <translation>Нҷамена</translation>
+        <translation>Нджамена</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="332"/>
         <source>New York</source>
         <comment>tz_names</comment>
-        <translation>Штати Ню-Йорк</translation>
+        <translation>Нью-Йорк</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="333"/>
@@ -1786,7 +1786,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="336"/>
         <source>Niue</source>
         <comment>tz_names</comment>
-        <translation>Нива</translation>
+        <translation>Ниуэ</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="337"/>
@@ -1804,25 +1804,25 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="339"/>
         <source>Noronha</source>
         <comment>tz_names</comment>
-        <translation>Нороня</translation>
+        <translation>Норонха</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="340"/>
         <source>North Dakota/Beulah</source>
         <comment>tz_names</comment>
-        <translation>Дакотаи Шимолӣ/Бойла</translation>
+        <translation>Северная Дакота/Бьюла</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="341"/>
         <source>North Dakota/Center</source>
         <comment>tz_names</comment>
-        <translation>Дакотаи Шимолӣ/Марказ</translation>
+        <translation>Северная Дакота/Центр</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="342"/>
         <source>North Dakota/New Salem</source>
         <comment>tz_names</comment>
-        <translation>Дакотаи Шимолӣ/Ню Сейлем</translation>
+        <translation>Северная Дакота/Нью-Салем</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="343"/>
@@ -1840,7 +1840,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="345"/>
         <source>Novokuznetsk</source>
         <comment>tz_names</comment>
-        <translation>Новокузнетск</translation>
+        <translation>Новокузнецк</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="346"/>
@@ -1852,7 +1852,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="347"/>
         <source>Ojinaga</source>
         <comment>tz_names</comment>
-        <translation>Оҷинага</translation>
+        <translation>Охинага</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="348"/>
@@ -1864,7 +1864,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="349"/>
         <source>Oral</source>
         <comment>tz_names</comment>
-        <translation>Орал</translation>
+        <translation>Уральск</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="350"/>
@@ -1888,7 +1888,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="353"/>
         <source>Palau</source>
         <comment>tz_names</comment>
-        <translation>Палаув</translation>
+        <translation>Палау</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="354"/>
@@ -1906,7 +1906,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="356"/>
         <source>Pangnirtung</source>
         <comment>tz_names</comment>
-        <translation>Пангниртунг</translation>
+        <translation>Пангниртанг</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="357"/>
@@ -1930,7 +1930,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="360"/>
         <source>Phnom Penh</source>
         <comment>tz_names</comment>
-        <translation>Пномпен</translation>
+        <translation>Пномпень</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="361"/>
@@ -1942,13 +1942,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="362"/>
         <source>Pitcairn</source>
         <comment>tz_names</comment>
-        <translation>Питкоирн</translation>
+        <translation>Питкэрн</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="363"/>
         <source>Podgorica</source>
         <comment>tz_names</comment>
-        <translation>Подгоритса</translation>
+        <translation>Подгорица</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="364"/>
@@ -1984,7 +1984,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="369"/>
         <source>Porto Velho</source>
         <comment>tz_names</comment>
-        <translation>Порту-Велю</translation>
+        <translation>Порту-Велью</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="370"/>
@@ -2008,19 +2008,19 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="373"/>
         <source>Punta Arenas</source>
         <comment>tz_names</comment>
-        <translation>Пунта Аренас</translation>
+        <translation>Пунта-Аренас</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="374"/>
         <source>Pyongyang</source>
         <comment>tz_names</comment>
-        <translation>Пхенян</translation>
+        <translation>Пхеньян</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="375"/>
         <source>Qatar</source>
         <comment>tz_names</comment>
-        <translation>Қатар</translation>
+        <translation>Катар</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="376"/>
@@ -2032,7 +2032,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="377"/>
         <source>Qyzylorda</source>
         <comment>tz_names</comment>
-        <translation>Қизилорда</translation>
+        <translation>Кызылорда</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="378"/>
@@ -2044,7 +2044,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="379"/>
         <source>Rankin Inlet</source>
         <comment>tz_names</comment>
-        <translation>Ранкин-Инлет</translation>
+        <translation>Раротонга</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="380"/>
@@ -2056,13 +2056,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="381"/>
         <source>Recife</source>
         <comment>tz_names</comment>
-        <translation>Ресиф</translation>
+        <translation>Ресифи</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="382"/>
         <source>Regina</source>
         <comment>tz_names</comment>
-        <translation>Регина</translation>
+        <translation>Реджайна</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="383"/>
@@ -2074,13 +2074,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="384"/>
         <source>Reunion</source>
         <comment>tz_names</comment>
-        <translation>Реюнон</translation>
+        <translation>Реюньон</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="385"/>
         <source>Reykjavik</source>
         <comment>tz_names</comment>
-        <translation>Рейкявик</translation>
+        <translation>Рейкьявик</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="386"/>
@@ -2098,7 +2098,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="388"/>
         <source>Riyadh</source>
         <comment>tz_names</comment>
-        <translation>Арриёз</translation>
+        <translation>Эр-Рияд</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="389"/>
@@ -2134,7 +2134,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="394"/>
         <source>Samarkand</source>
         <comment>tz_names</comment>
-        <translation>Самарқанд</translation>
+        <translation>Самарканд</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="395"/>
@@ -2146,13 +2146,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="396"/>
         <source>Santarem</source>
         <comment>tz_names</comment>
-        <translation>Сантарем</translation>
+        <translation>Сантарен</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="397"/>
         <source>Santiago</source>
         <comment>tz_names</comment>
-        <translation>Сантяго</translation>
+        <translation>Сантьяго</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="398"/>
@@ -2188,7 +2188,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="403"/>
         <source>Scoresbysund</source>
         <comment>tz_names</comment>
-        <translation>Скорсбисунд</translation>
+        <translation>Скоресбисунд</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="404"/>
@@ -2206,7 +2206,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="406"/>
         <source>Simferopol</source>
         <comment>tz_names</comment>
-        <translation>Симферопол</translation>
+        <translation>Симферополь</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="407"/>
@@ -2224,7 +2224,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="409"/>
         <source>Skopje</source>
         <comment>tz_names</comment>
-        <translation>Скопе</translation>
+        <translation>Скопье</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="410"/>
@@ -2236,31 +2236,31 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="411"/>
         <source>South Georgia</source>
         <comment>tz_names</comment>
-        <translation>Ҷорҷияи Ҷанубӣ</translation>
+        <translation>Южная Георгия</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="412"/>
         <source>Srednekolymsk</source>
         <comment>tz_names</comment>
-        <translation>Среднеколимск</translation>
+        <translation>Среднеколымск</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="413"/>
         <source>St Barthelemy</source>
         <comment>tz_names</comment>
-        <translation>Сент-Бартелми</translation>
+        <translation>Сен-Бартельми</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="414"/>
         <source>St Helena</source>
         <comment>tz_names</comment>
-        <translation>Сент-Ҳелена</translation>
+        <translation>о. Святой Елены</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="415"/>
         <source>St Johns</source>
         <comment>tz_names</comment>
-        <translation>Сент-Ҷонс</translation>
+        <translation>Сент-Джонс</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="416"/>
@@ -2272,7 +2272,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="417"/>
         <source>St Lucia</source>
         <comment>tz_names</comment>
-        <translation>Сент-Люсиа</translation>
+        <translation>Сент-Люсия</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="418"/>
@@ -2296,13 +2296,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="421"/>
         <source>Stockholm</source>
         <comment>tz_names</comment>
-        <translation>Стокголм</translation>
+        <translation>Стокгольм</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="422"/>
         <source>Swift Current</source>
         <comment>tz_names</comment>
-        <translation>Свифт Каррент</translation>
+        <translation>Свифт-Керрент</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="423"/>
@@ -2314,7 +2314,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="424"/>
         <source>Syowa</source>
         <comment>tz_names</comment>
-        <translation>Сева</translation>
+        <translation>Сёва</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="425"/>
@@ -2344,7 +2344,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="429"/>
         <source>Tashkent</source>
         <comment>tz_names</comment>
-        <translation>Тошкент</translation>
+        <translation>Ташкент</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="430"/>
@@ -2356,13 +2356,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="431"/>
         <source>Tegucigalpa</source>
         <comment>tz_names</comment>
-        <translation>Тегусигалпа</translation>
+        <translation>Тегусигальпа</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="432"/>
         <source>Tehran</source>
         <comment>tz_names</comment>
-        <translation>Теҳрон</translation>
+        <translation>Тегеран</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="433"/>
@@ -2374,7 +2374,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="434"/>
         <source>Thule</source>
         <comment>tz_names</comment>
-        <translation>Фула</translation>
+        <translation>Туле</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="435"/>
@@ -2446,13 +2446,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="446"/>
         <source>Ulaanbaatar</source>
         <comment>tz_names</comment>
-        <translation>Улон-Ботур</translation>
+        <translation>Улан-Батор</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="447"/>
         <source>Ulyanovsk</source>
         <comment>tz_names</comment>
-        <translation>Уляновск</translation>
+        <translation>Ульяновск</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="448"/>
@@ -2464,7 +2464,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="449"/>
         <source>Ust-Nera</source>
         <comment>tz_names</comment>
-        <translation>Уст-Нера</translation>
+        <translation>Усть-Нера</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="450"/>
@@ -2476,7 +2476,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="451"/>
         <source>Vaduz</source>
         <comment>tz_names</comment>
-        <translation>Вадуз</translation>
+        <translation>Вадуц</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="452"/>
@@ -2500,13 +2500,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="455"/>
         <source>Vientiane</source>
         <comment>tz_names</comment>
-        <translation>Вентян</translation>
+        <translation>Вьентьян</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="456"/>
         <source>Vilnius</source>
         <comment>tz_names</comment>
-        <translation>Вилнюс</translation>
+        <translation>Вильнюс</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="457"/>
@@ -2530,7 +2530,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="460"/>
         <source>Wake</source>
         <comment>tz_names</comment>
-        <translation>Вэйк</translation>
+        <translation>Уэйк</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="461"/>
@@ -2608,13 +2608,13 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="473"/>
         <source>Zaporozhye</source>
         <comment>tz_names</comment>
-        <translation>Запорожие</translation>
+        <translation>Запорожье</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="474"/>
         <source>Zurich</source>
         <comment>tz_names</comment>
-        <translation>Тсурих</translation>
+        <translation>Цюрих</translation>
     </message>
 </context>
 </TS>
