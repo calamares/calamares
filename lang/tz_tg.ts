@@ -2344,7 +2344,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="429"/>
         <source>Tashkent</source>
         <comment>tz_names</comment>
-        <translation>Тошкент</translation>
+        <translation>Тошканд</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="430"/>
