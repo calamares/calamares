@@ -6,15 +6,16 @@
 # Translators:
 # Eli Shleifer <eligator@gmail.com>, 2017
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2020
+# Omer I.S., 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-09 20:56+0200\n"
+"POT-Creation-Date: 2020-09-03 21:19+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>, 2020\n"
+"Last-Translator: Omer I.S., 2020\n"
 "Language-Team: Hebrew (https://www.transifex.com/calamares/teams/20061/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,66 +23,66 @@ msgstr ""
 "Language: he\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
-#: src/modules/grubcfg/main.py:37
+#: src/modules/grubcfg/main.py:28
 msgid "Configure GRUB."
 msgstr "הגדרת GRUB."
 
-#: src/modules/mount/main.py:38
+#: src/modules/mount/main.py:29
 msgid "Mounting partitions."
 msgstr "מחיצות מעוגנות."
 
-#: src/modules/mount/main.py:150 src/modules/initcpiocfg/main.py:205
-#: src/modules/initcpiocfg/main.py:209
-#: src/modules/luksopenswaphookcfg/main.py:95
-#: src/modules/luksopenswaphookcfg/main.py:99 src/modules/rawfs/main.py:173
-#: src/modules/initramfscfg/main.py:94 src/modules/initramfscfg/main.py:98
-#: src/modules/openrcdmcryptcfg/main.py:78
-#: src/modules/openrcdmcryptcfg/main.py:82 src/modules/fstab/main.py:332
-#: src/modules/fstab/main.py:338 src/modules/localecfg/main.py:144
-#: src/modules/networkcfg/main.py:48
+#: src/modules/mount/main.py:141 src/modules/initcpiocfg/main.py:196
+#: src/modules/initcpiocfg/main.py:200
+#: src/modules/luksopenswaphookcfg/main.py:86
+#: src/modules/luksopenswaphookcfg/main.py:90 src/modules/rawfs/main.py:164
+#: src/modules/initramfscfg/main.py:85 src/modules/initramfscfg/main.py:89
+#: src/modules/openrcdmcryptcfg/main.py:69
+#: src/modules/openrcdmcryptcfg/main.py:73 src/modules/fstab/main.py:323
+#: src/modules/fstab/main.py:329 src/modules/localecfg/main.py:135
+#: src/modules/networkcfg/main.py:39
 msgid "Configuration Error"
 msgstr "שגיאת הגדרות"
 
-#: src/modules/mount/main.py:151 src/modules/initcpiocfg/main.py:206
-#: src/modules/luksopenswaphookcfg/main.py:96 src/modules/rawfs/main.py:174
-#: src/modules/initramfscfg/main.py:95 src/modules/openrcdmcryptcfg/main.py:79
-#: src/modules/fstab/main.py:333
+#: src/modules/mount/main.py:142 src/modules/initcpiocfg/main.py:197
+#: src/modules/luksopenswaphookcfg/main.py:87 src/modules/rawfs/main.py:165
+#: src/modules/initramfscfg/main.py:86 src/modules/openrcdmcryptcfg/main.py:70
+#: src/modules/fstab/main.py:324
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "לא הוגדרו מחיצות לשימוש של <pre>{!s}</pre>."
 
-#: src/modules/services-systemd/main.py:35
+#: src/modules/services-systemd/main.py:26
 msgid "Configure systemd services"
 msgstr "הגדרת שירותי systemd"
 
-#: src/modules/services-systemd/main.py:68
-#: src/modules/services-openrc/main.py:102
+#: src/modules/services-systemd/main.py:59
+#: src/modules/services-openrc/main.py:93
 msgid "Cannot modify service"
 msgstr "לא ניתן לשנות את השירות"
 
-#: src/modules/services-systemd/main.py:69
+#: src/modules/services-systemd/main.py:60
 msgid ""
 "<code>systemctl {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
 "<code>systemctl {arg!s}</code> הקריאה ב־chroot החזירה את קוד השגיאה {num!s}."
 
-#: src/modules/services-systemd/main.py:72
-#: src/modules/services-systemd/main.py:76
+#: src/modules/services-systemd/main.py:63
+#: src/modules/services-systemd/main.py:67
 msgid "Cannot enable systemd service <code>{name!s}</code>."
 msgstr "לא ניתן להפעיל את השירות הבא של systemd:‏ <code>{name!s}</code>."
 
-#: src/modules/services-systemd/main.py:74
+#: src/modules/services-systemd/main.py:65
 msgid "Cannot enable systemd target <code>{name!s}</code>."
 msgstr "לא ניתן להפעיל את היעד של systemd בשם <code>{name!s}</code>."
 
-#: src/modules/services-systemd/main.py:78
+#: src/modules/services-systemd/main.py:69
 msgid "Cannot disable systemd target <code>{name!s}</code>."
 msgstr "לא ניתן להשבית את היעד של systemd בשם  <code>{name!s}</code>."
 
-#: src/modules/services-systemd/main.py:80
+#: src/modules/services-systemd/main.py:71
 msgid "Cannot mask systemd unit <code>{name!s}</code>."
 msgstr "לא ניתן למסך את היחידה של systemd בשם  <code>{name!s}</code>."
 
-#: src/modules/services-systemd/main.py:82
+#: src/modules/services-systemd/main.py:73
 msgid ""
 "Unknown systemd commands <code>{command!s}</code> and "
 "<code>{suffix!s}</code> for unit {name!s}."
@@ -89,114 +90,114 @@ msgstr ""
 "פקודות לא ידועות של systemd‏ <code>{command!s}</code> "
 "ו־<code>{suffix!s}</code> עבור היחידה {name!s}."
 
-#: src/modules/umount/main.py:40
+#: src/modules/umount/main.py:31
 msgid "Unmount file systems."
 msgstr "ניתוק עיגון מערכות קבצים."
 
-#: src/modules/unpackfs/main.py:44
+#: src/modules/unpackfs/main.py:35
 msgid "Filling up filesystems."
 msgstr "מערכות הקבצים מתמלאות."
 
-#: src/modules/unpackfs/main.py:257
+#: src/modules/unpackfs/main.py:248
 msgid "rsync failed with error code {}."
 msgstr "rsync נכשל עם קוד השגיאה {}."
 
-#: src/modules/unpackfs/main.py:302
+#: src/modules/unpackfs/main.py:293
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "התמונה נפרסת {}/{}, קובץ {}/{}"
+msgstr "קובץ הדמות נפרס {}/{}, קובץ {}/{}"
 
-#: src/modules/unpackfs/main.py:317
+#: src/modules/unpackfs/main.py:308
 msgid "Starting to unpack {}"
 msgstr "הפריסה של {} מתחילה"
 
-#: src/modules/unpackfs/main.py:326 src/modules/unpackfs/main.py:448
+#: src/modules/unpackfs/main.py:317 src/modules/unpackfs/main.py:439
 msgid "Failed to unpack image \"{}\""
-msgstr "פריסת התמונה „{}” נכשלה"
+msgstr "פריסת קובץ הדמות \"{}\" נכשלה"
 
-#: src/modules/unpackfs/main.py:415
+#: src/modules/unpackfs/main.py:406
 msgid "No mount point for root partition"
 msgstr "אין נקודת עגינה למחיצת העל"
 
-#: src/modules/unpackfs/main.py:416
+#: src/modules/unpackfs/main.py:407
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr "ב־globalstorage אין את המפתח „rootMountPoint”, לא תתבצע אף פעולה"
 
-#: src/modules/unpackfs/main.py:421
+#: src/modules/unpackfs/main.py:412
 msgid "Bad mount point for root partition"
 msgstr "נקודת העגינה של מחיצת השורה שגויה"
 
-#: src/modules/unpackfs/main.py:422
+#: src/modules/unpackfs/main.py:413
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
 msgstr "rootMountPoint מוגדרת בתור „{}”, שאינו קיים, לא תתבצע אף פעולה"
 
-#: src/modules/unpackfs/main.py:438 src/modules/unpackfs/main.py:442
-#: src/modules/unpackfs/main.py:462
+#: src/modules/unpackfs/main.py:429 src/modules/unpackfs/main.py:433
+#: src/modules/unpackfs/main.py:453
 msgid "Bad unsquash configuration"
 msgstr "תצורת unsquash שגויה"
 
-#: src/modules/unpackfs/main.py:439
+#: src/modules/unpackfs/main.py:430
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
 msgstr "מערכת הקבצים עבור „{}” ‏({}) אינה נתמכת על ידי הליבה הנוכחית שלך."
 
-#: src/modules/unpackfs/main.py:443
+#: src/modules/unpackfs/main.py:434
 msgid "The source filesystem \"{}\" does not exist"
 msgstr "מערכת הקבצים במקור „{}” אינה קיימת"
 
-#: src/modules/unpackfs/main.py:449
+#: src/modules/unpackfs/main.py:440
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr "איתור unsquashfs לא צלח, נא לוודא שהחבילה squashfs-tools מותקנת"
 
-#: src/modules/unpackfs/main.py:463
+#: src/modules/unpackfs/main.py:454
 msgid "The destination \"{}\" in the target system is not a directory"
 msgstr "היעד „{}” במערכת הקבצים המיועדת אינו תיקייה"
 
-#: src/modules/displaymanager/main.py:523
+#: src/modules/displaymanager/main.py:514
 msgid "Cannot write KDM configuration file"
 msgstr "לא ניתן לכתוב את קובץ התצורה של KDM"
 
-#: src/modules/displaymanager/main.py:524
+#: src/modules/displaymanager/main.py:515
 msgid "KDM config file {!s} does not exist"
 msgstr "קובץ התצורה של KDM ‏{!s} אינו קיים"
 
-#: src/modules/displaymanager/main.py:585
+#: src/modules/displaymanager/main.py:576
 msgid "Cannot write LXDM configuration file"
 msgstr "לא ניתן לכתוב את קובץ התצורה של LXDM"
 
-#: src/modules/displaymanager/main.py:586
+#: src/modules/displaymanager/main.py:577
 msgid "LXDM config file {!s} does not exist"
 msgstr "קובץ התצורה של LXDM ‏{!s} אינו קיים"
 
-#: src/modules/displaymanager/main.py:669
+#: src/modules/displaymanager/main.py:660
 msgid "Cannot write LightDM configuration file"
 msgstr "לא ניתן לכתוב את קובץ התצורה של LightDM"
 
-#: src/modules/displaymanager/main.py:670
+#: src/modules/displaymanager/main.py:661
 msgid "LightDM config file {!s} does not exist"
 msgstr "קובץ התצורה של LightDM ‏{!s} אינו קיים"
 
-#: src/modules/displaymanager/main.py:744
+#: src/modules/displaymanager/main.py:735
 msgid "Cannot configure LightDM"
 msgstr "לא ניתן להגדיר את LightDM"
 
-#: src/modules/displaymanager/main.py:745
+#: src/modules/displaymanager/main.py:736
 msgid "No LightDM greeter installed."
 msgstr "לא מותקן מקבל פנים מסוג LightDM."
 
-#: src/modules/displaymanager/main.py:776
+#: src/modules/displaymanager/main.py:767
 msgid "Cannot write SLIM configuration file"
 msgstr "לא ניתן לכתוב קובץ תצורה של SLIM."
 
-#: src/modules/displaymanager/main.py:777
+#: src/modules/displaymanager/main.py:768
 msgid "SLIM config file {!s} does not exist"
 msgstr "קובץ התצורה {!s} של SLIM אינו קיים"
 
-#: src/modules/displaymanager/main.py:903
+#: src/modules/displaymanager/main.py:894
 msgid "No display managers selected for the displaymanager module."
 msgstr "לא נבחרו מנהלי תצוגה למודול displaymanager."
 
-#: src/modules/displaymanager/main.py:904
+#: src/modules/displaymanager/main.py:895
 msgid ""
 "The displaymanagers list is empty or undefined in bothglobalstorage and "
 "displaymanager.conf."
@@ -204,43 +205,43 @@ msgstr ""
 "הרשימה של מנהלי התצוגה ריקה או שאינה מוגדרת תחת bothglobalstorage "
 "ו־displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:986
+#: src/modules/displaymanager/main.py:977
 msgid "Display manager configuration was incomplete"
 msgstr "תצורת מנהל התצוגה אינה שלמה"
 
-#: src/modules/initcpiocfg/main.py:37
+#: src/modules/initcpiocfg/main.py:28
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpio מותקן."
 
-#: src/modules/initcpiocfg/main.py:210
-#: src/modules/luksopenswaphookcfg/main.py:100
-#: src/modules/initramfscfg/main.py:99 src/modules/openrcdmcryptcfg/main.py:83
-#: src/modules/fstab/main.py:339 src/modules/localecfg/main.py:145
-#: src/modules/networkcfg/main.py:49
+#: src/modules/initcpiocfg/main.py:201
+#: src/modules/luksopenswaphookcfg/main.py:91
+#: src/modules/initramfscfg/main.py:90 src/modules/openrcdmcryptcfg/main.py:74
+#: src/modules/fstab/main.py:330 src/modules/localecfg/main.py:136
+#: src/modules/networkcfg/main.py:40
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
 msgstr "לא סופקה נקודת עגינת שורש לשימוש של <pre>{!s}</pre>."
 
-#: src/modules/luksopenswaphookcfg/main.py:35
+#: src/modules/luksopenswaphookcfg/main.py:26
 msgid "Configuring encrypted swap."
 msgstr "מוגדר שטח החלפה מוצפן."
 
-#: src/modules/rawfs/main.py:35
+#: src/modules/rawfs/main.py:26
 msgid "Installing data."
 msgstr "הנתונים מותקנים."
 
-#: src/modules/services-openrc/main.py:38
+#: src/modules/services-openrc/main.py:29
 msgid "Configure OpenRC services"
 msgstr "הגדרת שירותי OpenRC"
 
-#: src/modules/services-openrc/main.py:66
+#: src/modules/services-openrc/main.py:57
 msgid "Cannot add service {name!s} to run-level {level!s}."
 msgstr "לא ניתן להוסיף את השירות {name!s} לשכבת ההפעלה {level!s}."
 
-#: src/modules/services-openrc/main.py:68
+#: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
 msgstr "לא ניתן להסיר את השירות {name!s} משכבת ההפעלה {level!s}."
 
-#: src/modules/services-openrc/main.py:70
+#: src/modules/services-openrc/main.py:61
 msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
@@ -248,49 +249,49 @@ msgstr ""
 "service-action‏ (פעולת שירות) <code>{arg!s}</code> בלתי ידועה עבור השירות "
 "{name!s} בשכבת ההפעלה {level!s}."
 
-#: src/modules/services-openrc/main.py:103
+#: src/modules/services-openrc/main.py:94
 msgid ""
 "<code>rc-update {arg!s}</code> call in chroot returned error code {num!s}."
 msgstr ""
 "הקריאה <code>rc-update {arg!s}</code> במצב chroot החזירה את קוד השגיאה "
 "{num!s}."
 
-#: src/modules/services-openrc/main.py:110
+#: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
 msgstr "יעד שכבת ההפעלה אינו קיים"
 
-#: src/modules/services-openrc/main.py:111
+#: src/modules/services-openrc/main.py:102
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
 "הנתיב לשכבת ההפעלה {level!s} הוא <code>{path!s}</code> ונתיב זה אינו קיים."
 
-#: src/modules/services-openrc/main.py:119
+#: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
 msgstr "שירות היעד אינו קיים"
 
-#: src/modules/services-openrc/main.py:120
+#: src/modules/services-openrc/main.py:111
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr "הנתיב לשירות {name!s} הוא <code>{path!s}</code>, שאינו קיים."
 
-#: src/modules/plymouthcfg/main.py:36
+#: src/modules/plymouthcfg/main.py:27
 msgid "Configure Plymouth theme"
 msgstr "הגדרת ערכת עיצוב של Plymouth"
 
-#: src/modules/packages/main.py:59 src/modules/packages/main.py:68
-#: src/modules/packages/main.py:78
+#: src/modules/packages/main.py:50 src/modules/packages/main.py:59
+#: src/modules/packages/main.py:69
 msgid "Install packages."
 msgstr "התקנת חבילות."
 
-#: src/modules/packages/main.py:66
+#: src/modules/packages/main.py:57
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "החבילות מעובדות (%(count)d/%(total)d)"
 
-#: src/modules/packages/main.py:71
+#: src/modules/packages/main.py:62
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
@@ -299,7 +300,7 @@ msgstr[1] "מותקנות %(num)d חבילות."
 msgstr[2] "מותקנות %(num)d חבילות."
 msgstr[3] "מותקנות %(num)d חבילות."
 
-#: src/modules/packages/main.py:74
+#: src/modules/packages/main.py:65
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
@@ -308,51 +309,59 @@ msgstr[1] "מתבצעת הסרה של %(num)d חבילות."
 msgstr[2] "מתבצעת הסרה של %(num)d חבילות."
 msgstr[3] "מתבצעת הסרה של %(num)d חבילות."
 
-#: src/modules/bootloader/main.py:51
+#: src/modules/bootloader/main.py:42
 msgid "Install bootloader."
 msgstr "התקנת מנהל אתחול."
 
-#: src/modules/hwclock/main.py:35
+#: src/modules/hwclock/main.py:26
 msgid "Setting hardware clock."
 msgstr "שעון החומרה מוגדר."
 
-#: src/modules/dracut/main.py:36
-msgid "Creating initramfs with dracut."
-msgstr "נוצר initramfs עם dracut."
+#: src/modules/mkinitfs/main.py:27
+msgid "Creating initramfs with mkinitfs."
+msgstr "initramfs נוצר בעזרת mkinitfs."
 
-#: src/modules/dracut/main.py:58
-msgid "Failed to run dracut on the target"
-msgstr "הרצת dracut על היעד נכשלה"
+#: src/modules/mkinitfs/main.py:49
+msgid "Failed to run mkinitfs on the target"
+msgstr "הרצת mkinitfs על היעד נכשלה"
 
-#: src/modules/dracut/main.py:59
+#: src/modules/mkinitfs/main.py:50 src/modules/dracut/main.py:50
 msgid "The exit code was {}"
 msgstr "קוד היציאה היה {}"
 
-#: src/modules/initramfscfg/main.py:41
+#: src/modules/dracut/main.py:27
+msgid "Creating initramfs with dracut."
+msgstr "נוצר initramfs עם dracut."
+
+#: src/modules/dracut/main.py:49
+msgid "Failed to run dracut on the target"
+msgstr "הרצת dracut על היעד נכשלה"
+
+#: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
 msgstr "initramfs מוגדר."
 
-#: src/modules/openrcdmcryptcfg/main.py:34
+#: src/modules/openrcdmcryptcfg/main.py:25
 msgid "Configuring OpenRC dmcrypt service."
 msgstr "שירות dmcrypt ל־OpenRC מוגדר."
 
-#: src/modules/fstab/main.py:38
+#: src/modules/fstab/main.py:29
 msgid "Writing fstab."
 msgstr "fstab נכתב."
 
-#: src/modules/dummypython/main.py:44
+#: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
 msgstr "משימת דמה של Python."
 
-#: src/modules/dummypython/main.py:46 src/modules/dummypython/main.py:102
-#: src/modules/dummypython/main.py:103
+#: src/modules/dummypython/main.py:37 src/modules/dummypython/main.py:93
+#: src/modules/dummypython/main.py:94
 msgid "Dummy python step {}"
 msgstr "צעד דמה של Python {}"
 
-#: src/modules/localecfg/main.py:39
+#: src/modules/localecfg/main.py:30
 msgid "Configuring locales."
 msgstr "השפות מוגדרות."
 
-#: src/modules/networkcfg/main.py:37
+#: src/modules/networkcfg/main.py:28
 msgid "Saving network configuration."
 msgstr "הגדרות הרשת נשמרות."
