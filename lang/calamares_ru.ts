@@ -4,17 +4,17 @@
   <context>
     <name>BootInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
+      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
       <translation>&lt;strong&gt;Среда загрузки&lt;/strong&gt; данной системы.&lt;br&gt;&lt;br&gt;Старые системы x86 поддерживают только &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Современные системы обычно используют &lt;strong&gt;EFI&lt;/strong&gt;, но также могут имитировать BIOS, если среда загрузки запущена в режиме совместимости.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="81"/>
+      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
       <translation>Эта система использует среду загрузки &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Чтобы настроить запуск из под среды EFI, установщик использует приложения загрузки, такое как &lt;strong&gt;GRUB&lt;/strong&gt; или &lt;strong&gt;systemd-boot&lt;/strong&gt; на &lt;strong&gt;системном разделе EFI&lt;/strong&gt;. Процесс автоматизирован, но вы можете использовать ручной режим, где вы сами будете должны выбрать или создать его.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="93"/>
+      <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="83"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
       <translation>Эта система запущена в &lt;strong&gt;BIOS&lt;/strong&gt; среде загрузки.&lt;br&gt;&lt;br&gt; Чтобы настроить запуск из под среды BIOS, установщик должен установить загручик, такой как &lt;strong&gt;GRUB&lt;/strong&gt;, либо в начале раздела, либо в &lt;strong&gt;Master Boot Record&lt;/strong&gt;, находящийся в начале таблицы разделов (по умолчанию). Процесс автоматизирован, но вы можете выбрать ручной режим, где будете должны настроить его сами.</translation>
     </message>
@@ -22,27 +22,27 @@
   <context>
     <name>BootLoaderModel</name>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="68"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
       <source>Master Boot Record of %1</source>
       <translation>Главная загрузочная запись %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="102"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
       <source>Boot Partition</source>
       <translation>Загрузочный раздел</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="109"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
       <source>System Partition</source>
       <translation>Системный раздел</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="139"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="130"/>
       <source>Do not install a boot loader</source>
       <translation>Не устанавливать загрузчик</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="157"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="148"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -50,7 +50,7 @@
   <context>
     <name>Calamares::BlankViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="70"/>
+      <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="61"/>
       <source>Blank Page</source>
       <translation>Пустая страница</translation>
     </message>
@@ -58,58 +58,58 @@
   <context>
     <name>Calamares::DebugWindow</name>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="14"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="18"/>
       <source>Form</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="24"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
       <translation>Глобальное хранилище</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="34"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="38"/>
       <source>JobQueue</source>
       <translation>Очередь заданий</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="44"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="48"/>
       <source>Modules</source>
       <translation>Модули</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="57"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="61"/>
       <source>Type:</source>
       <translation>Тип:</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="64"/>
-      <location filename="../src/calamares/DebugWindow.ui" line="78"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="68"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="82"/>
       <source>none</source>
       <translation>нет</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="71"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="75"/>
       <source>Interface:</source>
       <translation>Интерфейс:</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="93"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="97"/>
       <source>Tools</source>
       <translation>Инструменты</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="106"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="110"/>
       <source>Reload Stylesheet</source>
       <translation>Перезагрузить таблицу стилей</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.ui" line="113"/>
+      <location filename="../src/calamares/DebugWindow.ui" line="117"/>
       <source>Widget Tree</source>
       <translation>Дерево виджетов</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="231"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="217"/>
       <source>Debug information</source>
       <translation>Отладочная информация</translation>
     </message>
@@ -117,12 +117,12 @@
   <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="94"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="85"/>
       <source>Set up</source>
       <translation>Настроить</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="94"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="85"/>
       <source>Install</source>
       <translation>Установить</translation>
     </message>
@@ -130,12 +130,12 @@
   <context>
     <name>Calamares::FailJob</name>
     <message>
-      <location filename="../src/libcalamares/JobExample.cpp" line="42"/>
+      <location filename="../src/libcalamares/JobExample.cpp" line="29"/>
       <source>Job failed (%1)</source>
       <translation>Не удалось выполнить задание (%1)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/JobExample.cpp" line="43"/>
+      <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
       <source>Programmed job failure was explicitly requested.</source>
       <translation>Работа программы была прекращена пользователем.</translation>
     </message>
@@ -143,7 +143,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="118"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="175"/>
       <source>Done</source>
       <translation>Готово</translation>
     </message>
@@ -151,7 +151,7 @@
   <context>
     <name>Calamares::NamedJob</name>
     <message>
-      <location filename="../src/libcalamares/JobExample.cpp" line="30"/>
+      <location filename="../src/libcalamares/JobExample.cpp" line="17"/>
       <source>Example job (%1)</source>
       <translation>Пример задания (%1)</translation>
     </message>
@@ -159,17 +159,17 @@
   <context>
     <name>Calamares::ProcessJob</name>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="56"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
       <source>Run command '%1' in target system.</source>
       <translation>Запустить комманду'%1'в целевой системе.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="56"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="43"/>
       <source> Run command '%1'.</source>
       <translation> Запустить команду '%1'.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/ProcessJob.cpp" line="63"/>
+      <location filename="../src/libcalamares/ProcessJob.cpp" line="50"/>
       <source>Running command %1 %2</source>
       <translation>Выполняется команда %1 %2</translation>
     </message>
@@ -177,32 +177,32 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="213"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="193"/>
       <source>Running %1 operation.</source>
       <translation>Выполняется действие %1.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="242"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="222"/>
       <source>Bad working directory path</source>
       <translation>Неверный путь к рабочему каталогу</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="243"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="223"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>Рабочий каталог %1 для задачи python %2 недоступен для чтения.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="249"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="229"/>
       <source>Bad main script file</source>
       <translation>Ошибочный главный файл сценария</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="230"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>Главный файл сценария %1 для задачи python %2 недоступен для чтения.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="318"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="298"/>
       <source>Boost.Python error in job "%1".</source>
       <translation>Boost.Python ошибка в задаче "%1".</translation>
     </message>
@@ -210,17 +210,17 @@
   <context>
     <name>Calamares::QmlViewStep</name>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="76"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="67"/>
       <source>Loading ...</source>
       <translation>Загрузка...</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="97"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="88"/>
       <source>QML Step &lt;i&gt;%1&lt;/i&gt;.</source>
       <translation>Шаг QML &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="277"/>
+      <location filename="../src/libcalamaresui/viewpages/QmlViewStep.cpp" line="268"/>
       <source>Loading failed.</source>
       <translation>Загрузка не удалась.</translation>
     </message>
@@ -228,12 +228,12 @@
   <context>
     <name>Calamares::RequirementsChecker</name>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="106"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="94"/>
       <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
       <translation>Проверка требований для модуля &lt;i&gt;%1&lt;/i&gt; завершена.</translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="127"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="115"/>
       <source>Waiting for %n module(s).</source>
       <translation>
         <numerusform>Ожидание %n модуля.</numerusform>
@@ -243,7 +243,7 @@
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="128"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="116"/>
       <source>(%n second(s))</source>
       <translation>
         <numerusform>(% секунда)</numerusform>
@@ -253,7 +253,7 @@
       </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="133"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="121"/>
       <source>System-requirements checking is complete.</source>
       <translation>Проверка соответствия системным требованиям завершена.</translation>
     </message>
@@ -261,171 +261,171 @@
   <context>
     <name>Calamares::ViewManager</name>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="150"/>
       <source>Setup Failed</source>
       <translation>Сбой установки</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="150"/>
       <source>Installation Failed</source>
       <translation>Установка завершилась неудачей</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="151"/>
       <source>Would you like to paste the install log to the web?</source>
       <translation>Разместить журнал установки в интернете?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="173"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="164"/>
       <source>Error</source>
       <translation>Ошибка</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="527"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="518"/>
       <source>&amp;Yes</source>
       <translation>&amp;Да</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="181"/>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="528"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="172"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="519"/>
       <source>&amp;No</source>
       <translation>&amp;Нет</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="187"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
       <source>&amp;Close</source>
       <translation>&amp;Закрыть</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="198"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
       <source>Install Log Paste URL</source>
       <translation>Адрес для отправки журнала установки</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="201"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
       <source>The upload was unsuccessful. No web-paste was done.</source>
       <translation>Загрузка не удалась. Веб-вставка не была завершена.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="217"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="208"/>
       <source>Calamares Initialization Failed</source>
       <translation>Ошибка инициализации Calamares</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="209"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <translation>Не удалось установить %1. Calamares не удалось загрузить все сконфигурированные модули. Эта проблема вызвана тем, как ваш дистрибутив использует Calamares.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="215"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <translation>&lt;br/&gt;Не удалось загрузить следующие модули:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
       <source>Continue with setup?</source>
       <translation>Продолжить установку?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="327"/>
       <source>Continue with installation?</source>
       <translation>Продолжить установку?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="338"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="329"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>Программа установки %1 готова внести изменения на Ваш диск, чтобы установить %2.&lt;br/&gt;&lt;strong&gt;Отменить эти изменения будет невозможно.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="341"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <translation>Программа установки %1 готова внести изменения на Ваш диск, чтобы установить %2.&lt;br/&gt;&lt;strong&gt;Отменить эти изменения будет невозможно.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="344"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
       <source>&amp;Set up now</source>
       <translation>&amp;Настроить сейчас</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="344"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
       <source>&amp;Install now</source>
       <translation>Приступить к &amp;установке</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="352"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="343"/>
       <source>Go &amp;back</source>
       <translation>&amp;Назад</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>&amp;Set up</source>
       <translation>&amp;Настроить</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="392"/>
       <source>&amp;Install</source>
       <translation>&amp;Установить</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="394"/>
       <source>Setup is complete. Close the setup program.</source>
       <translation>Установка завершена. Закройте программу установки.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="395"/>
       <source>The installation is complete. Close the installer.</source>
       <translation>Установка завершена. Закройте установщик.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="406"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="397"/>
       <source>Cancel setup without changing the system.</source>
       <translation>Отменить установку без изменения системы.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
       <source>Cancel installation without changing the system.</source>
       <translation>Отменить установку без изменения системы.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="417"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="408"/>
       <source>&amp;Next</source>
       <translation>&amp;Далее</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="422"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="413"/>
       <source>&amp;Back</source>
       <translation>&amp;Назад</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="428"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="419"/>
       <source>&amp;Done</source>
       <translation>&amp;Готово</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="447"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="438"/>
       <source>&amp;Cancel</source>
       <translation>О&amp;тмена</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="520"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="511"/>
       <source>Cancel setup?</source>
       <translation>Отменить установку?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="520"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="511"/>
       <source>Cancel installation?</source>
       <translation>Отменить установку?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="521"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="512"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>Прервать процесс установки?
 Программа установки прекратит работу и все изменения будут потеряны.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="523"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="514"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>Действительно прервать процесс установки? Программа установки сразу прекратит работу, все изменения будут потеряны.</translation>
@@ -434,22 +434,22 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresPython::Helper</name>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="301"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="288"/>
       <source>Unknown exception type</source>
       <translation>Неизвестный тип исключения</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="319"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="306"/>
       <source>unparseable Python error</source>
       <translation>неподдающаяся обработке ошибка Python</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="363"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="350"/>
       <source>unparseable Python traceback</source>
       <translation>неподдающийся обработке traceback Python</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonHelper.cpp" line="370"/>
+      <location filename="../src/libcalamares/PythonHelper.cpp" line="357"/>
       <source>Unfetchable Python error.</source>
       <translation>Неизвестная ошибка Python</translation>
     </message>
@@ -457,7 +457,7 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CalamaresUtils</name>
     <message>
-      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="34"/>
+      <location filename="../src/libcalamaresui/utils/Paste.cpp" line="25"/>
       <source>Install log posted to:
 %1</source>
       <translation>Установочный журнал размещён на:
@@ -467,32 +467,32 @@ n%1</translation>
   <context>
     <name>CalamaresWindow</name>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="110"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="101"/>
       <source>Show debug information</source>
       <translation>Показать отладочную информацию</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="164"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="155"/>
       <source>&amp;Back</source>
       <translation>&amp;Назад</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="176"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="167"/>
       <source>&amp;Next</source>
       <translation>&amp;Далее</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="189"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="180"/>
       <source>&amp;Cancel</source>
       <translation>&amp;Отмена</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="313"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="304"/>
       <source>%1 Setup Program</source>
       <translation>Программа установки %1</translation>
     </message>
     <message>
-      <location filename="../src/calamares/CalamaresWindow.cpp" line="314"/>
+      <location filename="../src/calamares/CalamaresWindow.cpp" line="305"/>
       <source>%1 Installer</source>
       <translation>Программа установки %1</translation>
     </message>
@@ -500,7 +500,7 @@ n%1</translation>
   <context>
     <name>CheckerContainer</name>
     <message>
-      <location filename="../src/modules/welcome/checker/CheckerContainer.cpp" line="46"/>
+      <location filename="../src/modules/welcome/checker/CheckerContainer.cpp" line="37"/>
       <source>Gathering system information...</source>
       <translation>Сбор информации о системе...</translation>
     </message>
@@ -508,35 +508,35 @@ n%1</translation>
   <context>
     <name>ChoicePage</name>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.ui" line="14"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.ui" line="18"/>
       <source>Form</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="130"/>
       <source>Select storage de&amp;vice:</source>
       <translation>Выбрать устройство &amp;хранения:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="131"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="983"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1069"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
       <source>Current:</source>
       <translation>Текущий:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="132"/>
       <source>After:</source>
       <translation>После:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="317"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="305"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Ручная разметка&lt;/strong&gt;&lt;br/&gt;Вы можете самостоятельно создавать разделы или изменять их размеры.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="814"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="806"/>
       <source>Reuse %1 as home partition for %2.</source>
       <translation>Использовать %1 как домашний раздел для %2.</translation>
     </message>
@@ -546,101 +546,101 @@ n%1</translation>
       <translation>&lt;strong&gt;Выберите раздел для уменьшения, затем двигайте ползунок, изменяя размер&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="954"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <translation>%1 будет уменьшен до %2MB и новый раздел %3MB будет создан для %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1012"/>
       <source>Boot loader location:</source>
       <translation>Расположение загрузчика:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1060"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1064"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <translation>&lt;strong&gt;Выберите раздел для установки&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1116"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>Не найдено системного раздела EFI. Пожалуйста, вернитесь назад и выполните ручную разметку %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1125"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1127"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>Системный раздел EFI на %1 будет использован для запуска %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
       <source>EFI system partition:</source>
       <translation>Системный раздел EFI:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1251"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Видимо, на этом устройстве нет операционной системы. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1256"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1294"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1317"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1302"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1349"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Стереть диск&lt;/strong&gt;&lt;br/&gt;Это &lt;font color="red"&gt;удалит&lt;/font&gt; все данные, которые сейчас находятся на выбранном устройстве.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1290"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1313"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1339"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1269"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1298"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1320"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1345"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Установить рядом&lt;/strong&gt;&lt;br/&gt;Программа установки уменьшит раздел, чтобы освободить место для %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1299"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1321"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1307"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1328"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1353"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Заменить раздел&lt;/strong&gt;&lt;br/&gt;Меняет раздел на %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>На этом устройстве есть %1. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1308"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1315"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>На этом устройстве уже есть операционная система. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>На этом устройстве есть несколько операционных систем. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1517"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1532"/>
       <source>No Swap</source>
       <translation>Без раздела подкачки</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1522"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1540"/>
       <source>Reuse Swap</source>
       <translation>Использовать существующий раздел подкачки</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1525"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1543"/>
       <source>Swap (no Hibernate)</source>
       <translation>Swap (без Гибернации)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1528"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1546"/>
       <source>Swap (with Hibernate)</source>
       <translation>Swap (с Гибернацией)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1531"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1549"/>
       <source>Swap to file</source>
       <translation>Файл подкачки</translation>
     </message>
@@ -648,17 +648,17 @@ n%1</translation>
   <context>
     <name>ClearMountsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="51"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="42"/>
       <source>Clear mounts for partitioning operations on %1</source>
       <translation>Освободить точки монтирования для выполнения разметки на %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="58"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="49"/>
       <source>Clearing mounts for partitioning operations on %1.</source>
       <translation>Освобождаются точки монтирования для выполнения разметки на %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="233"/>
+      <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="224"/>
       <source>Cleared all mounts for %1</source>
       <translation>Освобождены все точки монтирования для %1</translation>
     </message>
@@ -666,22 +666,22 @@ n%1</translation>
   <context>
     <name>ClearTempMountsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="41"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="32"/>
       <source>Clear all temporary mounts.</source>
       <translation>Освободить все временные точки монтирования.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="39"/>
       <source>Clearing all temporary mounts.</source>
       <translation>Освобождаются все временные точки монтирования.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="60"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="51"/>
       <source>Cannot get list of temporary mounts.</source>
       <translation>Не удалось получить список временных точек монтирования.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="101"/>
+      <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="92"/>
       <source>Cleared all temporary mounts.</source>
       <translation>Освобождены все временные точки монтирования.</translation>
     </message>
@@ -689,18 +689,18 @@ n%1</translation>
   <context>
     <name>CommandList</name>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="154"/>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="167"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="142"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="155"/>
       <source>Could not run command.</source>
       <translation>Не удалось выполнить команду.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="155"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="143"/>
       <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
       <translation>Команда выполняется в окружении установщика, и ей необходимо знать путь корневого раздела, но rootMountPoint не определено.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="168"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="156"/>
       <source>The command needs to know the user's name, but no username is defined.</source>
       <translation>Команде необходимо знать имя пользователя, но оно не задано.</translation>
     </message>
@@ -708,140 +708,145 @@ n%1</translation>
   <context>
     <name>Config</name>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="349"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="340"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Установить модель клавиатуры на %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="347"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Установить раскладку клавиатуры на %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="350"/>
+      <location filename="../src/modules/locale/Config.cpp" line="334"/>
       <source>Set timezone to %1/%2.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="388"/>
+      <location filename="../src/modules/locale/Config.cpp" line="372"/>
       <source>The system language will be set to %1.</source>
       <translation>Системным языком будет установлен %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="395"/>
+      <location filename="../src/modules/locale/Config.cpp" line="379"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <translation>Региональным форматом чисел и дат будет установлен %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="47"/>
+      <location filename="../src/modules/netinstall/Config.cpp" line="38"/>
       <source>Network Installation. (Disabled: Incorrect configuration)</source>
       <translation>Сетевая установка. (Отключено: неверная конфигурация)</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="49"/>
+      <location filename="../src/modules/netinstall/Config.cpp" line="40"/>
       <source>Network Installation. (Disabled: Received invalid groups data)</source>
       <translation>Установка по сети. (Отключено: получены неверные сведения о группах)</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="51"/>
+      <location filename="../src/modules/netinstall/Config.cpp" line="42"/>
       <source>Network Installation. (Disabled: internal error)</source>
       <translation>Сетевая установка. (Отключено: внутренняя ошибка)</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/Config.cpp" line="53"/>
+      <location filename="../src/modules/netinstall/Config.cpp" line="44"/>
       <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
       <translation>Установка по сети. (Отключено: не удается получить список пакетов, проверьте сетевое подключение)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="56"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="50"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Этот компьютер не соответствует минимальным требованиям для установки %1.&lt;br/&gt;Невозможно продолжить установку. &lt;a href="#details"&gt;Подробнее...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="60"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="54"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Этот компьютер не соответствует минимальным требованиям для установки %1.&lt;br/&gt;Невозможно продолжить установку. &lt;a href="#details"&gt;Подробнее...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="67"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="61"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="71"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="65"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="81"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="75"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Эта программа задаст вам несколько вопросов и поможет установить %2 на ваш компьютер.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="245"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="244"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Добро пожаловать в программу установки Calamares для %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="246"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Добро пожаловать в программу установки %1&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="251"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="250"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Добро пожаловать в программу установки Calamares для %1 .&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/Config.cpp" line="252"/>
+      <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Добро пожаловать в программу установки %1 .&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="141"/>
+      <location filename="../src/modules/users/Config.cpp" line="164"/>
       <source>Your username is too long.</source>
       <translation>Ваше имя пользователя слишком длинное.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="147"/>
+      <location filename="../src/modules/users/Config.cpp" line="170"/>
       <source>'%1' is not allowed as username.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="154"/>
+      <location filename="../src/modules/users/Config.cpp" line="177"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Ваше имя пользователя должно начинаться со строчной буквы или подчеркивания.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="158"/>
+      <location filename="../src/modules/users/Config.cpp" line="181"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Допускаются только строчные буквы, числа, символы подчёркивания и дефисы.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="204"/>
+      <location filename="../src/modules/users/Config.cpp" line="227"/>
       <source>Your hostname is too short.</source>
       <translation>Имя вашего компьютера слишком коротко.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="208"/>
+      <location filename="../src/modules/users/Config.cpp" line="231"/>
       <source>Your hostname is too long.</source>
       <translation>Имя вашего компьютера слишком длинное.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="214"/>
+      <location filename="../src/modules/users/Config.cpp" line="237"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="220"/>
+      <location filename="../src/modules/users/Config.cpp" line="243"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Допускаются только буквы, цифры, символы подчёркивания и дефисы.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/Config.cpp" line="446"/>
+      <source>Your passwords do not match!</source>
+      <translation>Пароли не совпадают!</translation>
     </message>
   </context>
   <context>
     <name>ContextualProcessJob</name>
     <message>
-      <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="128"/>
+      <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="119"/>
       <source>Contextual Processes Job</source>
       <translation>Работа с контекстными процессами</translation>
     </message>
@@ -849,77 +854,77 @@ n%1</translation>
   <context>
     <name>CreatePartitionDialog</name>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="18"/>
       <source>Create a Partition</source>
       <translation>Создать раздел</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="42"/>
       <source>Si&amp;ze:</source>
       <translation>Ра&amp;змер:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="52"/>
       <source> MiB</source>
       <translation> МиБ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="59"/>
       <source>Partition &amp;Type:</source>
       <translation>&amp;Тип раздела:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="67"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
       <source>&amp;Primary</source>
       <translation>&amp;Основной</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="77"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="81"/>
       <source>E&amp;xtended</source>
       <translation>&amp;Расширенный</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="119"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="123"/>
       <source>Fi&amp;le System:</source>
       <translation>&amp;Файловая система:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="155"/>
       <source>LVM LV name</source>
       <translation>Имя LV LVM</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="161"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="165"/>
       <source>&amp;Mount Point:</source>
       <translation>Точка &amp;монтирования</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="192"/>
       <source>Flags:</source>
       <translation>Флаги:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="74"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="66"/>
       <source>En&amp;crypt</source>
       <translation>&amp;Шифровать</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="159"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="161"/>
       <source>Logical</source>
       <translation>Логический</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="164"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="166"/>
       <source>Primary</source>
       <translation>Основной</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="181"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="185"/>
       <source>GPT</source>
       <translation>GPT</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="271"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="265"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <translation>Точка монтирования уже занята. Пожалуйста, выберете другую.</translation>
     </message>
@@ -927,22 +932,22 @@ n%1</translation>
   <context>
     <name>CreatePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="47"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="38"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1.</source>
       <translation>Создать новый раздел %2 MiB на %4 (%3) с файловой системой %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="58"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="49"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Создать новый раздел &lt;strong&gt;%2 MiB&lt;/strong&gt; на &lt;strong&gt;%4&lt;/strong&gt; (%3) с файловой системой &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="70"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="61"/>
       <source>Creating new %1 partition on %2.</source>
       <translation>Создается новый %1 раздел на %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="82"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="73"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <translation>Программа установки не смогла создать раздел на диске '%1'.</translation>
     </message>
@@ -950,27 +955,27 @@ n%1</translation>
   <context>
     <name>CreatePartitionTableDialog</name>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="20"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="24"/>
       <source>Create Partition Table</source>
       <translation>Создать таблицу разделов</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="43"/>
       <source>Creating a new partition table will delete all existing data on the disk.</source>
       <translation>При создании новой таблицы разделов будут удалены все данные на диске.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="69"/>
       <source>What kind of partition table do you want to create?</source>
       <translation>Какой тип таблицы разделов Вы желаете создать?</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="72"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="76"/>
       <source>Master Boot Record (MBR)</source>
       <translation>Главная загрузочная запись (MBR)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="82"/>
+      <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="86"/>
       <source>GUID Partition Table (GPT)</source>
       <translation>Таблица разделов GUID (GPT)</translation>
     </message>
@@ -978,22 +983,22 @@ n%1</translation>
   <context>
     <name>CreatePartitionTableJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="39"/>
       <source>Create new %1 partition table on %2.</source>
       <translation>Создать новую таблицу разделов %1 на %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
       <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Создать новую таблицу разделов &lt;strong&gt;%1&lt;/strong&gt; на &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="57"/>
       <source>Creating new %1 partition table on %2.</source>
       <translation>Создается новая таблица разделов %1 на %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
+      <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="75"/>
       <source>The installer failed to create a partition table on %1.</source>
       <translation>Программа установки не смогла создать таблицу разделов на %1.</translation>
     </message>
@@ -1001,27 +1006,27 @@ n%1</translation>
   <context>
     <name>CreateUserJob</name>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="41"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="40"/>
       <source>Create user %1</source>
       <translation>Создать учетную запись %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="48"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="47"/>
       <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Создать учетную запись &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="55"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="54"/>
       <source>Creating user %1.</source>
       <translation>Создается учетная запись %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="187"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="186"/>
       <source>Cannot create sudoers file for writing.</source>
       <translation>Не удалось записать файл sudoers.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CreateUserJob.cpp" line="182"/>
+      <location filename="../src/modules/users/CreateUserJob.cpp" line="181"/>
       <source>Cannot chmod sudoers file.</source>
       <translation>Не удалось применить chmod к файлу sudoers.</translation>
     </message>
@@ -1029,7 +1034,7 @@ n%1</translation>
   <context>
     <name>CreateVolumeGroupDialog</name>
     <message>
-      <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="37"/>
+      <location filename="../src/modules/partition/gui/CreateVolumeGroupDialog.cpp" line="28"/>
       <source>Create Volume Group</source>
       <translation>Создать группу томов</translation>
     </message>
@@ -1037,22 +1042,22 @@ n%1</translation>
   <context>
     <name>CreateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="37"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="28"/>
       <source>Create new volume group named %1.</source>
       <translation>Создать новую группу томов на диске %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="43"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="34"/>
       <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Создать новую группу томов на диске %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="49"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="40"/>
       <source>Creating new volume group named %1.</source>
       <translation>Создание новой группы томов на диске %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="61"/>
+      <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
       <source>The installer failed to create a volume group named '%1'.</source>
       <translation>Программа установки не смогла создать группу томов на диске '%1'.</translation>
     </message>
@@ -1060,18 +1065,18 @@ n%1</translation>
   <context>
     <name>DeactivateVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="33"/>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="45"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="24"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="36"/>
       <source>Deactivate volume group named %1.</source>
       <translation>Отключить группу томов на диске %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="39"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="30"/>
       <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Отключить группу томов на диске &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="57"/>
+      <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
       <source>The installer failed to deactivate a volume group named %1.</source>
       <translation>Программа установки не смогла деактивировать группу томов на диске %1.</translation>
     </message>
@@ -1079,22 +1084,22 @@ n%1</translation>
   <context>
     <name>DeletePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="40"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="31"/>
       <source>Delete partition %1.</source>
       <translation>Удалить раздел %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="47"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="38"/>
       <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Удалить раздел &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="45"/>
       <source>Deleting partition %1.</source>
       <translation>Удаляется раздел %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="65"/>
+      <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="56"/>
       <source>The installer failed to delete partition %1.</source>
       <translation>Программе установки не удалось удалить раздел %1.</translation>
     </message>
@@ -1102,32 +1107,32 @@ n%1</translation>
   <context>
     <name>DeviceInfoWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="97"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
       <translation>На этом устройстве имеется &lt;strong&gt;%1&lt;/strong&gt; таблица разделов.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="115"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="104"/>
       <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
       <translation>Это &lt;strong&gt;loop&lt;/strong&gt; устройство.&lt;br&gt;&lt;br&gt;Это псевдо-устройство без таблицы разделов позволяет использовать обычный файл как блочное устройство. При таком виде подключения обычно имеется только одна файловая система.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="122"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="111"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
       <translation>Программа установки &lt;strong&gt;не обнаружила таблицы разделов&lt;/strong&gt; на выбранном устройстве хранения.&lt;br&gt;&lt;br&gt;На этом устройстве либо нет таблицы разделов, либо она повреждена, либо неизвестного типа.&lt;br&gt;Эта программа установки может создать для Вас новую таблицу разделов автоматически или через страницу ручной разметки.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="132"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
       <translation>&lt;br&gt;&lt;br&gt;Это рекомендуемый тип таблицы разделов для современных систем, которые используют окружение &lt;strong&gt;EFI&lt;/strong&gt; для загрузки.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="138"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="127"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
       <translation>&lt;br&gt;&lt;br&gt;Этот тип таблицы разделов рекомендуется только для старых систем, запускаемых из среды загрузки &lt;strong&gt;BIOS&lt;/strong&gt;. В большинстве случаев вместо этого лучше использовать GPT.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Внимание:&lt;/strong&gt; MBR стандарт таблицы разделов является устаревшим.&lt;br&gt;Он допускает максимум 4 &lt;em&gt;первичных&lt;/em&gt; раздела, только один из них может быть &lt;em&gt;расширенным&lt;/em&gt; и содержать много &lt;em&gt;логических&lt;/em&gt; под-разделов.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="151"/>
+      <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="140"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
       <translation>Тип &lt;strong&gt;таблицы разделов&lt;/strong&gt; на выбраном устройстве хранения.&lt;br&gt;&lt;br&gt;Смена типа раздела возможна только путем удаления и пересоздания всей таблицы разделов, что уничтожит все данные на устройстве.&lt;br&gt;Этот установщик не затронет текущую таблицу разделов, кроме как вы сами решите иначе.&lt;br&gt;По умолчанию, современные системы используют GPT-разметку.</translation>
     </message>
@@ -1135,13 +1140,13 @@ n%1</translation>
   <context>
     <name>DeviceModel</name>
     <message>
-      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="93"/>
+      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="84"/>
       <source>%1 - %2 (%3)</source>
       <extracomment>device[name] - size[number] (device-node[name])</extracomment>
       <translation>%1 - %2 (%3)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="104"/>
+      <location filename="../src/modules/partition/core/DeviceModel.cpp" line="95"/>
       <source>%1 - (%2)</source>
       <extracomment>device[name] - (device-node[name])</extracomment>
       <translation>%1 - (%2)</translation>
@@ -1150,17 +1155,17 @@ n%1</translation>
   <context>
     <name>DracutLuksCfgJob</name>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="136"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="127"/>
       <source>Write LUKS configuration for Dracut to %1</source>
       <translation>Записать LUKS настройки для Dracut в %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="140"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="131"/>
       <source>Skip writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
       <translation>Пропустить сохранение LUKS настроек для Dracut: "/" раздел не зашифрован</translation>
     </message>
     <message>
-      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="157"/>
+      <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="148"/>
       <source>Failed to open %1</source>
       <translation>Не удалось открыть %1</translation>
     </message>
@@ -1168,7 +1173,7 @@ n%1</translation>
   <context>
     <name>DummyCppJob</name>
     <message>
-      <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
+      <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="37"/>
       <source>Dummy C++ Job</source>
       <translation>Dummy C++ Job</translation>
     </message>
@@ -1176,57 +1181,57 @@ n%1</translation>
   <context>
     <name>EditExistingPartitionDialog</name>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="20"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="24"/>
       <source>Edit Existing Partition</source>
       <translation>Редактировать существующий раздел</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="50"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
       <source>Content:</source>
       <translation>Содержит:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="64"/>
       <source>&amp;Keep</source>
       <translation>О&amp;ставить</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="74"/>
       <source>Format</source>
       <translation>Форматировать</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
       <source>Warning: Formatting the partition will erase all existing data.</source>
       <translation>Внимание: Форматирование раздела уничтожит все данные.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="103"/>
       <source>&amp;Mount Point:</source>
       <translation>Точка &amp;монтирования:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="123"/>
       <source>Si&amp;ze:</source>
       <translation>Ра&amp;змер:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="133"/>
       <source> MiB</source>
       <translation> МиБ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="140"/>
       <source>Fi&amp;le System:</source>
       <translation>&amp;Файловая система:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="149"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="153"/>
       <source>Flags:</source>
       <translation>Флаги: </translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="278"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="272"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <translation>Точка монтирования уже занята. Пожалуйста, выберете другую.</translation>
     </message>
@@ -1234,28 +1239,28 @@ n%1</translation>
   <context>
     <name>EncryptWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="18"/>
       <source>Form</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="36"/>
       <source>En&amp;crypt system</source>
       <translation>Система &amp;шифрования</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="42"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="46"/>
       <source>Passphrase</source>
       <translation>Пароль</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="52"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="56"/>
       <source>Confirm passphrase</source>
       <translation>Подтвердите пароль</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="113"/>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="123"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="104"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="114"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <translation>Пожалуйста, введите один и тот же пароль в оба поля.</translation>
     </message>
@@ -1263,37 +1268,37 @@ n%1</translation>
   <context>
     <name>FillGlobalStorageJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="138"/>
       <source>Set partition information</source>
       <translation>Установить сведения о разделе</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="173"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="164"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
       <translation>Установить %1 на &lt;strong&gt;новый&lt;/strong&gt; системный раздел %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="170"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Настроить &lt;strong&gt;новый&lt;/strong&gt; %2 раздел с точкой монтирования &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="189"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="180"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Установить %2 на %3 системный раздел &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="196"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="187"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Настроить %3 раздел &lt;strong&gt;%1&lt;/strong&gt; с точкой монтирования &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="209"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="200"/>
       <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Установить загрузчик на &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="218"/>
+      <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="209"/>
       <source>Setting up mount points.</source>
       <translation>Настраиваются точки монтирования.</translation>
     </message>
@@ -1301,42 +1306,42 @@ n%1</translation>
   <context>
     <name>FinishedPage</name>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
+      <location filename="../src/modules/finished/FinishedPage.ui" line="18"/>
       <source>Form</source>
       <translation>Геометрия</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
+      <location filename="../src/modules/finished/FinishedPage.ui" line="102"/>
       <source>&amp;Restart now</source>
       <translation>П&amp;ерезагрузить</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="53"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="44"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
       <translation>&lt;h1&gt;Готово.&lt;/h1&gt;&lt;br/&gt;Система %1 установлена на ваш компьютер.&lt;br/&gt;Можете перезагрузить компьютер и начать использовать вашу новую систему.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="57"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="48"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если этот флажок установлен, ваша система будет перезагружена сразу после нажатия кнопки &lt;span style="font-style:italic;"&gt;Готово&lt;/span&gt; или закрытия программы установки.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="63"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
       <translation>&lt;h1&gt;Готово.&lt;/h1&gt;&lt;br/&gt;Система %1 установлена на Ваш компьютер.&lt;br/&gt;Вы можете перезагрузить компьютер и использовать Вашу новую систему или продолжить работу в Live окружении %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="68"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="59"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Если этот флажок установлен, ваша система будет перезагружена сразу после нажатия кнопки &lt;span style=" font-style:italic;"&gt;Готово&lt;/span&gt; или закрытия программы установки.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="125"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="116"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;Сбой установки&lt;/h1&gt;&lt;br/&gt;Система %1 не была установлена на ваш компьютер.&lt;br/&gt;Сообщение об ошибке: %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="131"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="122"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
       <translation>&lt;h1&gt;Сбой установки&lt;/h1&gt;&lt;br/&gt;Не удалось установить %1 на ваш компьютер.&lt;br/&gt;Сообщение об ошибке: %2.</translation>
     </message>
@@ -1344,27 +1349,27 @@ n%1</translation>
   <context>
     <name>FinishedViewStep</name>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="76"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="67"/>
       <source>Finish</source>
       <translation>Завершить</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="134"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="125"/>
       <source>Setup Complete</source>
       <translation>Установка завершена</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="134"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="125"/>
       <source>Installation Complete</source>
       <translation>Установка завершена</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="136"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="127"/>
       <source>The setup of %1 is complete.</source>
       <translation>Установка %1 завершена.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="137"/>
+      <location filename="../src/modules/finished/FinishedViewStep.cpp" line="128"/>
       <source>The installation of %1 is complete.</source>
       <translation>Установка %1 завершена.</translation>
     </message>
@@ -1372,22 +1377,22 @@ n%1</translation>
   <context>
     <name>FormatPartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="45"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="36"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4.</source>
       <translation>Форматировать раздел %1 (файловая система: %2, размер: %3 МиБ) на %4.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="47"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Форматировать раздел &lt;strong&gt;%1&lt;/strong&gt; размером &lt;strong&gt;%3MB&lt;/strong&gt; с файловой системой &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="58"/>
       <source>Formatting partition %1 with file system %2.</source>
       <translation>Форматируется раздел %1 под файловую систему %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="81"/>
+      <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="72"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
       <translation>Программе установки не удалось отформатировать раздел %1 на диске '%2'.</translation>
     </message>
@@ -1395,72 +1400,72 @@ n%1</translation>
   <context>
     <name>GeneralRequirements</name>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="159"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="149"/>
       <source>has at least %1 GiB available drive space</source>
       <translation>доступно как минимум %1 ГБ свободного дискового пространства</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="162"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="151"/>
       <source>There is not enough drive space. At least %1 GiB is required.</source>
       <translation>Недостаточно места на дисках. Необходимо как минимум %1 ГБ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="171"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="160"/>
       <source>has at least %1 GiB working memory</source>
       <translation>доступно как минимум %1 ГБ оперативной памяти</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="173"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="162"/>
       <source>The system does not have enough working memory. At least %1 GiB is required.</source>
       <translation>Недостаточно оперативной памяти. Необходимо как минимум %1 ГБ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="182"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="171"/>
       <source>is plugged in to a power source</source>
       <translation>подключено сетевое питание</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="183"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="172"/>
       <source>The system is not plugged in to a power source.</source>
       <translation>Сетевое питание не подключено.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="190"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="179"/>
       <source>is connected to the Internet</source>
       <translation>присутствует выход в сеть Интернет</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="191"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="180"/>
       <source>The system is not connected to the Internet.</source>
       <translation>Отсутствует выход в Интернет.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="198"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="187"/>
       <source>is running the installer as an administrator (root)</source>
       <translation>запуск установщика с правами администратора (root)</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="201"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="190"/>
       <source>The setup program is not running with administrator rights.</source>
       <translation>Программа установки запущена без прав администратора.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="202"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="191"/>
       <source>The installer is not running with administrator rights.</source>
       <translation>Программа установки не запущена с привилегиями администратора.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="210"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="199"/>
       <source>has a screen large enough to show the whole installer</source>
       <translation>экран достаточно большой, чтобы показать установщик полностью</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="213"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="202"/>
       <source>The screen is too small to display the setup program.</source>
       <translation>Экран слишком маленький, чтобы отобразить программу установки.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="214"/>
+      <location filename="../src/modules/welcome/checker/GeneralRequirements.cpp" line="203"/>
       <source>The screen is too small to display the installer.</source>
       <translation>Экран слишком маленький, чтобы отобразить окно установщика.</translation>
     </message>
@@ -1468,7 +1473,7 @@ n%1</translation>
   <context>
     <name>HostInfoJob</name>
     <message>
-      <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="51"/>
+      <location filename="../src/modules/hostinfo/HostInfoJob.cpp" line="42"/>
       <source>Collecting information about your machine.</source>
       <translation>Сбор информации о вашем компьютере.</translation>
     </message>
@@ -1476,25 +1481,25 @@ n%1</translation>
   <context>
     <name>IDJob</name>
     <message>
-      <location filename="../src/modules/oemid/IDJob.cpp" line="38"/>
-      <location filename="../src/modules/oemid/IDJob.cpp" line="47"/>
+      <location filename="../src/modules/oemid/IDJob.cpp" line="30"/>
+      <location filename="../src/modules/oemid/IDJob.cpp" line="39"/>
+      <location filename="../src/modules/oemid/IDJob.cpp" line="52"/>
       <location filename="../src/modules/oemid/IDJob.cpp" line="59"/>
-      <location filename="../src/modules/oemid/IDJob.cpp" line="67"/>
       <source>OEM Batch Identifier</source>
       <translation>Идентификатор партии OEM</translation>
     </message>
     <message>
-      <location filename="../src/modules/oemid/IDJob.cpp" line="48"/>
+      <location filename="../src/modules/oemid/IDJob.cpp" line="40"/>
       <source>Could not create directories &lt;code&gt;%1&lt;/code&gt;.</source>
       <translation>Не удалось создать директории &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/oemid/IDJob.cpp" line="60"/>
+      <location filename="../src/modules/oemid/IDJob.cpp" line="53"/>
       <source>Could not open file &lt;code&gt;%1&lt;/code&gt;.</source>
       <translation>Не удалось открыть файл &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/oemid/IDJob.cpp" line="68"/>
+      <location filename="../src/modules/oemid/IDJob.cpp" line="60"/>
       <source>Could not write to file &lt;code&gt;%1&lt;/code&gt;.</source>
       <translation>Не удалась запись в файл &lt;code&gt;%1&lt;/code&gt;.</translation>
     </message>
@@ -1502,7 +1507,7 @@ n%1</translation>
   <context>
     <name>InitcpioJob</name>
     <message>
-      <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="40"/>
+      <location filename="../src/modules/initcpio/InitcpioJob.cpp" line="31"/>
       <source>Creating initramfs with mkinitcpio.</source>
       <translation>Создание initramfs при помощи mkinitcpio.</translation>
     </message>
@@ -1510,7 +1515,7 @@ n%1</translation>
   <context>
     <name>InitramfsJob</name>
     <message>
-      <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="37"/>
+      <location filename="../src/modules/initramfs/InitramfsJob.cpp" line="28"/>
       <source>Creating initramfs.</source>
       <translation>Создание initramfs.</translation>
     </message>
@@ -1518,17 +1523,17 @@ n%1</translation>
   <context>
     <name>InteractiveTerminalPage</name>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="53"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="44"/>
       <source>Konsole not installed</source>
       <translation>Программа Konsole не установлена</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="54"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="44"/>
       <source>Please install KDE Konsole and try again!</source>
       <translation>Установите KDE Konsole и попробуйте ещё раз!</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="116"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="102"/>
       <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
       <translation>Выполняется сценарий: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
@@ -1536,7 +1541,7 @@ n%1</translation>
   <context>
     <name>InteractiveTerminalViewStep</name>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="47"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="41"/>
       <source>Script</source>
       <translation>Скрипт</translation>
     </message>
@@ -1544,12 +1549,12 @@ n%1</translation>
   <context>
     <name>KeyboardPage</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="214"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="206"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
       <translation>Установить модель клавиатуры на %1.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="218"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
       <source>Set keyboard layout to %1/%2.</source>
       <translation>Установить раскладку клавиатуры на %1/%2.</translation>
     </message>
@@ -1557,7 +1562,7 @@ n%1</translation>
   <context>
     <name>KeyboardQmlViewStep</name>
     <message>
-      <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="42"/>
+      <location filename="../src/modules/keyboardq/KeyboardQmlViewStep.cpp" line="33"/>
       <source>Keyboard</source>
       <translation>Клавиатура</translation>
     </message>
@@ -1565,7 +1570,7 @@ n%1</translation>
   <context>
     <name>KeyboardViewStep</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="54"/>
+      <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="45"/>
       <source>Keyboard</source>
       <translation>Клавиатура</translation>
     </message>
@@ -1573,22 +1578,22 @@ n%1</translation>
   <context>
     <name>LCLocaleDialog</name>
     <message>
-      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="32"/>
+      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="23"/>
       <source>System locale setting</source>
       <translation>Общие региональные настройки</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="39"/>
+      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="30"/>
       <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Общие региональные настройки влияют на язык и кодировку для отдельных элементов интерфейса командной строки.&lt;br/&gt;Текущий выбор &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="63"/>
+      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
       <source>&amp;Cancel</source>
       <translation>&amp;Отмена</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="64"/>
+      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="55"/>
       <source>&amp;OK</source>
       <translation>&amp;ОК</translation>
     </message>
@@ -1596,42 +1601,42 @@ n%1</translation>
   <context>
     <name>LicensePage</name>
     <message>
-      <location filename="../src/modules/license/LicensePage.ui" line="14"/>
+      <location filename="../src/modules/license/LicensePage.ui" line="18"/>
       <source>Form</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.ui" line="22"/>
+      <location filename="../src/modules/license/LicensePage.ui" line="26"/>
       <source>&lt;h1&gt;License Agreement&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Лицензионное соглашение&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="145"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="136"/>
       <source>I accept the terms and conditions above.</source>
       <translation>Я принимаю приведенные выше условия.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="147"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="138"/>
       <source>Please review the End User License Agreements (EULAs).</source>
       <translation>Пожалуйста, ознакомьтесь с лицензионным соглашением (EULA).</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="152"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="143"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
       <translation>В ходе этой процедуры установки будет установлено проприетарное программное обеспечение, на которое распространяются условия лицензирования.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="155"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="146"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
       <translation>если вы не согласны с условиями, процедура установки не может быть продолжена.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="160"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
       <translation>Эта процедура установки может установить проприетарное программное обеспечение, на которое распространяются условия лицензирования, чтобы предоставить дополнительные функции и улучшить взаимодействие с пользователем.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="165"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
       <translation>Если вы не согласны с условиями, проприетарное программное обеспечение не будет установлено, и вместо него будут использованы альтернативы с открытым исходным кодом.</translation>
     </message>
@@ -1639,7 +1644,7 @@ n%1</translation>
   <context>
     <name>LicenseViewStep</name>
     <message>
-      <location filename="../src/modules/license/LicenseViewStep.cpp" line="52"/>
+      <location filename="../src/modules/license/LicenseViewStep.cpp" line="43"/>
       <source>License</source>
       <translation>Лицензия</translation>
     </message>
@@ -1647,59 +1652,59 @@ n%1</translation>
   <context>
     <name>LicenseWidget</name>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="96"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="87"/>
       <source>URL: %1</source>
       <translation>Адрес: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="117"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="108"/>
       <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
       <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
       <translation>&lt;strong&gt;драйвер %1&lt;/strong&gt;&lt;br/&gt;от %2</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="124"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="115"/>
       <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
       <translation>&lt;strong&gt;видео драйвер %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;от %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="130"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="121"/>
       <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <translation>&lt;strong&gt;плагин браузера %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;от %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="136"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="127"/>
       <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <translation>&lt;strong&gt;кодек %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;от %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="142"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="133"/>
       <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <translation>&lt;strong&gt;пакет %1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;от %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="148"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="139"/>
       <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;от %2&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="171"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="162"/>
       <source>File: %1</source>
       <translation>Файл: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="185"/>
       <source>Hide license text</source>
       <translation>Скрыть текст лицензии</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="194"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="185"/>
       <source>Show the license text</source>
       <translation>Показать текст лицензии</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="198"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="189"/>
       <source>Open license agreement in browser.</source>
       <translation>Открыть лицензионное соглашение в браузере.</translation>
     </message>
@@ -1707,18 +1712,18 @@ n%1</translation>
   <context>
     <name>LocalePage</name>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="134"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="124"/>
       <source>Region:</source>
       <translation>Регион:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="135"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="125"/>
       <source>Zone:</source>
       <translation>Зона:</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="136"/>
-      <location filename="../src/modules/locale/LocalePage.cpp" line="137"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="126"/>
+      <location filename="../src/modules/locale/LocalePage.cpp" line="127"/>
       <source>&amp;Change...</source>
       <translation>И&amp;зменить...</translation>
     </message>
@@ -1726,7 +1731,7 @@ n%1</translation>
   <context>
     <name>LocaleQmlViewStep</name>
     <message>
-      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="41"/>
+      <location filename="../src/modules/localeq/LocaleQmlViewStep.cpp" line="32"/>
       <source>Location</source>
       <translation>Местоположение</translation>
     </message>
@@ -1734,7 +1739,7 @@ n%1</translation>
   <context>
     <name>LocaleViewStep</name>
     <message>
-      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="85"/>
+      <location filename="../src/modules/locale/LocaleViewStep.cpp" line="76"/>
       <source>Location</source>
       <translation>Местоположение</translation>
     </message>
@@ -1742,35 +1747,35 @@ n%1</translation>
   <context>
     <name>LuksBootKeyFileJob</name>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="39"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="28"/>
       <source>Configuring LUKS key file.</source>
       <translation>Конфигурация файла ключа LUKS.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="156"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="164"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="145"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="153"/>
       <source>No partitions are defined.</source>
       <translation>Разделы не были заданы.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="192"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="199"/>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="207"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="181"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="188"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="196"/>
       <source>Encrypted rootfs setup error</source>
       <translation>Ошибка шифрования корневой файловой системы</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="193"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="182"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
       <translation>Корневой раздел %1 это LUKS, но ключ шифрования не был задан.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="200"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="189"/>
       <source>Could not create LUKS key file for root partition %1.</source>
       <translation>Не удалось создать файл ключа LUKS для корневого раздела %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="208"/>
+      <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="197"/>
       <source>Could not configure LUKS key file on partition %1.</source>
       <translation>Не удалось настроить файл ключа LUKS на разделе %1.</translation>
     </message>
@@ -1778,17 +1783,17 @@ n%1</translation>
   <context>
     <name>MachineIdJob</name>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="46"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="37"/>
       <source>Generate machine-id.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="62"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="53"/>
       <source>Configuration Error</source>
       <translation>Ошибка конфигурации</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="63"/>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="54"/>
       <source>No root mount point is set for MachineId.</source>
       <translation type="unfinished"/>
     </message>
@@ -1796,12 +1801,12 @@ n%1</translation>
   <context>
     <name>Map</name>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="252"/>
+      <location filename="../src/modules/localeq/Map.qml" line="243"/>
       <source>Timezone: %1</source>
       <translation>Часовой пояс: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Map.qml" line="273"/>
+      <location filename="../src/modules/localeq/Map.qml" line="264"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
@@ -1811,98 +1816,98 @@ n%1</translation>
   <context>
     <name>NetInstallViewStep</name>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="47"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
       <source>Package selection</source>
       <translation>Выбор пакетов</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="55"/>
       <source>Office software</source>
       <translation>Офисное программное обеспечение</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="56"/>
       <source>Office package</source>
       <translation>Офисный пакет</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="57"/>
       <source>Browser software</source>
       <translation>Браузерное программное обеспечение</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="58"/>
       <source>Browser package</source>
       <translation>Браузерный пакет</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="59"/>
       <source>Web browser</source>
       <translation>Веб-браузер</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="60"/>
       <source>Kernel</source>
       <translation>Ядро</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="61"/>
       <source>Services</source>
       <translation>Сервисы</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="62"/>
       <source>Login</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="63"/>
       <source>Desktop</source>
       <translation>Рабочий стол</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="73"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="64"/>
       <source>Applications</source>
       <translation>Приложения</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="74"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="65"/>
       <source>Communication</source>
       <translation>Общение</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="75"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="66"/>
       <source>Development</source>
       <translation>Разработка</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="76"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="67"/>
       <source>Office</source>
       <translation>Офис</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="77"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="68"/>
       <source>Multimedia</source>
       <translation>Мультимедиа</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="78"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="69"/>
       <source>Internet</source>
       <translation>Интернет</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="79"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="70"/>
       <source>Theming</source>
       <translation>Темы</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="80"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="71"/>
       <source>Gaming</source>
       <translation>Игры</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="81"/>
+      <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="72"/>
       <source>Utilities</source>
       <translation>Утилиты</translation>
     </message>
@@ -1910,7 +1915,7 @@ n%1</translation>
   <context>
     <name>NotesQmlViewStep</name>
     <message>
-      <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="34"/>
+      <location filename="../src/modules/notesqml/NotesQmlViewStep.cpp" line="23"/>
       <source>Notes</source>
       <translation>Заметки</translation>
     </message>
@@ -1918,17 +1923,17 @@ n%1</translation>
   <context>
     <name>OEMPage</name>
     <message>
-      <location filename="../src/modules/oemid/OEMPage.ui" line="28"/>
+      <location filename="../src/modules/oemid/OEMPage.ui" line="32"/>
       <source>Ba&amp;tch:</source>
       <translation>Пар&amp;тия:</translation>
     </message>
     <message>
-      <location filename="../src/modules/oemid/OEMPage.ui" line="38"/>
+      <location filename="../src/modules/oemid/OEMPage.ui" line="42"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a batch-identifier here. This will be stored in the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите идентификатор партии здесь. Это будет сохранено в целевой системе.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/oemid/OEMPage.ui" line="48"/>
+      <location filename="../src/modules/oemid/OEMPage.ui" line="52"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1&gt;OEM Configuration&lt;/h1&gt;&lt;p&gt;Calamares will use OEM settings while configuring the target system.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished"/>
     </message>
@@ -1936,12 +1941,12 @@ n%1</translation>
   <context>
     <name>OEMViewStep</name>
     <message>
-      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="121"/>
+      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="122"/>
       <source>OEM Configuration</source>
       <translation>Конфигурация OEM</translation>
     </message>
     <message>
-      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="126"/>
+      <location filename="../src/modules/oemid/OEMViewStep.cpp" line="128"/>
       <source>Set the OEM Batch Identifier to &lt;code&gt;%1&lt;/code&gt;.</source>
       <translation type="unfinished"/>
     </message>
@@ -1949,260 +1954,277 @@ n%1</translation>
   <context>
     <name>Offline</name>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="62"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="37"/>
+      <source>Select your preferred Region, or use the default one based on your current location.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Offline.qml" line="94"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="169"/>
+      <location filename="../src/modules/localeq/Offline.qml" line="213"/>
       <source>Timezone: %1</source>
       <translation>Часовой пояс: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Offline.qml" line="77"/>
-      <source>To be able to select a timezone, make sure you are connected to the internet. Restart the installer after connecting. You can fine-tune Language and Locale settings below.</source>
-      <translation>Чтобы выбрать часовой пояс, необходимо подключение к интернету. После подключения перезапустите программу установки. Язык и локаль можно выбрать ниже.</translation>
+      <location filename="../src/modules/localeq/Offline.qml" line="111"/>
+      <source>Select your preferred Zone within your Region.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Offline.qml" line="182"/>
+      <source>Zones</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/localeq/Offline.qml" line="229"/>
+      <source>You can fine-tune Language and Locale settings below.</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>PWQ</name>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="56"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="51"/>
       <source>Password is too short</source>
       <translation>Слишком короткий пароль</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="72"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="67"/>
       <source>Password is too long</source>
       <translation>Слишком длинный пароль</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="148"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="143"/>
       <source>Password is too weak</source>
       <translation>Пароль слишком слабый</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="156"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
       <source>Memory allocation error when setting '%1'</source>
       <translation>Ошибка выделения памяти при установке «%1»</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="161"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="156"/>
       <source>Memory allocation error</source>
       <translation>Ошибка выделения памяти</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="163"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
       <source>The password is the same as the old one</source>
       <translation>Пароль такой же, как и старый</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="165"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="160"/>
       <source>The password is a palindrome</source>
       <translation>Пароль является палиндромом</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="167"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
       <source>The password differs with case changes only</source>
       <translation>Пароль отличается только регистром символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="169"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
       <source>The password is too similar to the old one</source>
       <translation>Пароль слишком похож на старый</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="171"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
       <source>The password contains the user name in some form</source>
       <translation>Пароль содержит имя пользователя</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="173"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
       <source>The password contains words from the real name of the user in some form</source>
       <translation>Пароль содержит слова из реального имени пользователя</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="171"/>
       <source>The password contains forbidden words in some form</source>
       <translation>Пароль содержит запрещённые слова</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="175"/>
       <source>The password contains less than %1 digits</source>
       <translation>Пароль содержит менее %1 цифр</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
       <source>The password contains too few digits</source>
       <translation>В пароле слишком мало цифр</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="182"/>
       <source>The password contains less than %1 uppercase letters</source>
       <translation>Пароль содержит менее %1 заглавных букв</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="190"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="185"/>
       <source>The password contains too few uppercase letters</source>
       <translation>В пароле слишком мало заглавных букв</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="194"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="189"/>
       <source>The password contains less than %1 lowercase letters</source>
       <translation>Пароль содержит менее %1 строчных букв</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="197"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
       <source>The password contains too few lowercase letters</source>
       <translation>В пароле слишком мало строчных букв</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
       <source>The password contains less than %1 non-alphanumeric characters</source>
       <translation>Пароль содержит менее %1 не буквенно-цифровых символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
       <source>The password contains too few non-alphanumeric characters</source>
       <translation>В пароле слишком мало не буквенно-цифровых символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="204"/>
       <source>The password is shorter than %1 characters</source>
       <translation>Пароль короче %1 символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="212"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="207"/>
       <source>The password is too short</source>
       <translation>Пароль слишком короткий</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
       <source>The password is just rotated old one</source>
       <translation>Новый пароль — это просто перевёрнутый старый</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
       <source>The password contains less than %1 character classes</source>
       <translation>Пароль содержит менее %1 классов символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="221"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
       <source>The password does not contain enough character classes</source>
       <translation>Пароль содержит недостаточно классов символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
       <source>The password contains more than %1 same characters consecutively</source>
       <translation>Пароль содержит более %1 одинаковых последовательных символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
       <source>The password contains too many same characters consecutively</source>
       <translation>Пароль содержит слишком много одинаковых последовательных символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="233"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
       <source>The password contains more than %1 characters of the same class consecutively</source>
       <translation>Пароль содержит более %1 символов одного и того же класса последовательно</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="237"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains too many characters of the same class consecutively</source>
       <translation>Пароль содержит слишком длинную последовательность символов одного и того же класса</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="242"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="237"/>
       <source>The password contains monotonic sequence longer than %1 characters</source>
       <translation>Пароль содержит монотонную последовательность длиннее %1 символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="241"/>
       <source>The password contains too long of a monotonic character sequence</source>
       <translation>Пароль содержит слишком длинную монотонную последовательность символов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="249"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="244"/>
       <source>No password supplied</source>
       <translation>Не задан пароль</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>Cannot obtain random numbers from the RNG device</source>
       <translation>Не удаётся получить случайные числа с устройства RNG</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="253"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="248"/>
       <source>Password generation failed - required entropy too low for settings</source>
       <translation>Сбой генерации пароля - слишком низкая энтропия для настроек</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
       <source>The password fails the dictionary check - %1</source>
       <translation>Пароль не прошёл проверку на использование словарных слов - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="262"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="257"/>
       <source>The password fails the dictionary check</source>
       <translation>Пароль не прошёл проверку на использование словарных слов</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="266"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
       <source>Unknown setting - %1</source>
       <translation>Неизвестная настройка - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="270"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
       <source>Unknown setting</source>
       <translation>Неизвестная настройка</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="274"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
       <source>Bad integer value of setting - %1</source>
       <translation>Недопустимое целое значение свойства - %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="279"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="274"/>
       <source>Bad integer value</source>
       <translation>Недопустимое целое значение</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="278"/>
       <source>Setting %1 is not of integer type</source>
       <translation>Настройка %1 не является целым числом</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="288"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="283"/>
       <source>Setting is not of integer type</source>
       <translation>Настройка не является целым числом</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="292"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="287"/>
       <source>Setting %1 is not of string type</source>
       <translation>Настройка %1 не является строкой</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="297"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="292"/>
       <source>Setting is not of string type</source>
       <translation>Настройка не является строкой</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="299"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="294"/>
       <source>Opening the configuration file failed</source>
       <translation>Не удалось открыть конфигурационный файл</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="301"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="296"/>
       <source>The configuration file is malformed</source>
       <translation>Ошибка в структуре конфигурационного файла</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="303"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="298"/>
       <source>Fatal failure</source>
       <translation>Фатальный сбой</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/CheckPWQuality.cpp" line="305"/>
+      <location filename="../src/modules/users/CheckPWQuality.cpp" line="300"/>
       <source>Unknown error</source>
       <translation>Неизвестная ошибка</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="522"/>
+      <location filename="../src/modules/users/Config.cpp" line="651"/>
       <source>Password is empty</source>
       <translation>Пустой пароль</translation>
     </message>
@@ -2210,32 +2232,32 @@ n%1</translation>
   <context>
     <name>PackageChooserPage</name>
     <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="20"/>
+      <location filename="../src/modules/packagechooser/page_package.ui" line="24"/>
       <source>Form</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="40"/>
+      <location filename="../src/modules/packagechooser/page_package.ui" line="44"/>
       <source>Product Name</source>
       <translation>Имя продукта</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="53"/>
+      <location filename="../src/modules/packagechooser/page_package.ui" line="57"/>
       <source>TextLabel</source>
       <translation>Текстовая метка</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/page_package.ui" line="69"/>
+      <location filename="../src/modules/packagechooser/page_package.ui" line="73"/>
       <source>Long Product Description</source>
       <translation>Длинное описание продукта</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="34"/>
+      <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="25"/>
       <source>Package Selection</source>
       <translation>Выбор пакета</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="35"/>
+      <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="26"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
       <translation>Пожалуйста, выберите продукт из списка. Выбранный продукт будет установлен.</translation>
     </message>
@@ -2243,7 +2265,7 @@ n%1</translation>
   <context>
     <name>PackageChooserViewStep</name>
     <message>
-      <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="70"/>
+      <location filename="../src/modules/packagechooser/PackageChooserViewStep.cpp" line="61"/>
       <source>Packages</source>
       <translation>Пакеты</translation>
     </message>
@@ -2251,12 +2273,12 @@ n%1</translation>
   <context>
     <name>PackageModel</name>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
       <source>Name</source>
       <translation>Имя</translation>
     </message>
     <message>
-      <location filename="../src/modules/netinstall/PackageModel.cpp" line="176"/>
+      <location filename="../src/modules/netinstall/PackageModel.cpp" line="167"/>
       <source>Description</source>
       <translation>Описание</translation>
     </message>
@@ -2264,17 +2286,17 @@ n%1</translation>
   <context>
     <name>Page_Keyboard</name>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="18"/>
       <source>Form</source>
       <translation>Геометрия</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="74"/>
       <source>Keyboard Model:</source>
       <translation>Тип клавиатуры:</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
+      <location filename="../src/modules/keyboard/KeyboardPage.ui" line="135"/>
       <source>Type here to test your keyboard</source>
       <translation>Эта область - для тестирования клавиатуры</translation>
     </message>
@@ -2282,96 +2304,96 @@ n%1</translation>
   <context>
     <name>Page_UserSetup</name>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="18"/>
       <source>Form</source>
       <translation>Геометрия</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="40"/>
       <source>What is your name?</source>
       <translation>Как Вас зовут?</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="51"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="55"/>
       <source>Your Full Name</source>
       <translation>Ваше полное имя</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="120"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="124"/>
       <source>What name do you want to use to log in?</source>
       <translation>Какое имя Вы хотите использовать для входа?</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="144"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="148"/>
       <source>login</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="219"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="223"/>
       <source>What is the name of this computer?</source>
       <translation>Какое имя у компьютера?</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="243"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="247"/>
       <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Это имя будет использовано, если Вы сделаете этот компьютер видимым в сети.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="246"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="250"/>
       <source>Computer Name</source>
       <translation>Имя компьютера</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="321"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="325"/>
       <source>Choose a password to keep your account safe.</source>
       <translation>Выберите пароль для защиты вашей учетной записи.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
-      <location filename="../src/modules/users/page_usersetup.ui" line="370"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="349"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="374"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Введите одинаковый пароль дважды, это необходимо для исключения ошибок. Хороший пароль состоит из смеси букв, цифр и знаков пунктуации; должен иметь длину от 8 знаков и его стоит периодически изменять.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="351"/>
-      <location filename="../src/modules/users/page_usersetup.ui" line="521"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="355"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="525"/>
       <source>Password</source>
       <translation>Пароль</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="376"/>
-      <location filename="../src/modules/users/page_usersetup.ui" line="546"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="380"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="550"/>
       <source>Repeat Password</source>
       <translation>Повторите пароль</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="455"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
       <translation>Когда этот флажок установлен, выполняется проверка надежности пароля, и вы не сможете использовать слабый пароль.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="454"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="458"/>
       <source>Require strong passwords.</source>
       <translation>Требовать надежный пароль.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="461"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="465"/>
       <source>Log in automatically without asking for the password.</source>
       <translation>Автоматический вход, без запроса пароля.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="468"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="472"/>
       <source>Use the same password for the administrator account.</source>
       <translation>Использовать тот же пароль для аккаунта администратора.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="491"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="495"/>
       <source>Choose a password for the administrator account.</source>
       <translation>Выберите пароль администратора</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/page_usersetup.ui" line="515"/>
-      <location filename="../src/modules/users/page_usersetup.ui" line="540"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="519"/>
+      <location filename="../src/modules/users/page_usersetup.ui" line="544"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Введите пароль дважды, чтобы исключить ошибки ввода.&lt;/small&gt;</translation>
     </message>
@@ -2379,22 +2401,22 @@ n%1</translation>
   <context>
     <name>PartitionLabelsView</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
       <source>Root</source>
       <translation>Root</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
       <source>Home</source>
       <translation>Home</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
       <source>Boot</source>
       <translation>Boot</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>EFI system</source>
       <translation>Система EFI</translation>
     </message>
@@ -2404,17 +2426,17 @@ n%1</translation>
       <translation>Swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="209"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
       <source>New partition for %1</source>
       <translation>Новый раздел для %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="211"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
       <source>New partition</source>
       <translation>Новый раздел</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="230"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="239"/>
       <source>%1  %2</source>
       <extracomment>size[number] filesystem[name]</extracomment>
       <translation>%1  %2</translation>
@@ -2423,34 +2445,34 @@ n%1</translation>
   <context>
     <name>PartitionModel</name>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="168"/>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="208"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="159"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="199"/>
       <source>Free Space</source>
       <translation>Доступное место</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="172"/>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="212"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="163"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="203"/>
       <source>New partition</source>
       <translation>Новый раздел</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="305"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="296"/>
       <source>Name</source>
       <translation>Имя</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="298"/>
       <source>File System</source>
       <translation>Файловая система</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="309"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="300"/>
       <source>Mount Point</source>
       <translation>Точка монтирования</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="311"/>
+      <location filename="../src/modules/partition/core/PartitionModel.cpp" line="302"/>
       <source>Size</source>
       <translation>Размер</translation>
     </message>
@@ -2458,77 +2480,77 @@ n%1</translation>
   <context>
     <name>PartitionPage</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="18"/>
       <source>Form</source>
       <translation>Геометрия</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="26"/>
       <source>Storage de&amp;vice:</source>
       <translation>&amp;Устройство:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="55"/>
       <source>&amp;Revert All Changes</source>
       <translation>&amp;Отменить все изменения</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="87"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="91"/>
       <source>New Partition &amp;Table</source>
       <translation>Новая &amp;таблица разделов</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="111"/>
       <source>Cre&amp;ate</source>
       <translation>&amp;Создать</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="118"/>
       <source>&amp;Edit</source>
       <translation>&amp;Править</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="121"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="125"/>
       <source>&amp;Delete</source>
       <translation>&amp;Удалить</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="136"/>
       <source>New Volume Group</source>
       <translation>Новая группа томов</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="143"/>
       <source>Resize Volume Group</source>
       <translation>Изменить размер группы томов</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="150"/>
       <source>Deactivate Volume Group</source>
       <translation>Отключить группу томов</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="157"/>
       <source>Remove Volume Group</source>
       <translation>Удалить группу томов</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.ui" line="184"/>
       <source>I&amp;nstall boot loader on:</source>
       <translation>Уст&amp;ановить загрузчик в:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="211"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="219"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
       <translation>Вы уверены, что хотите создать новую таблицу разделов на %1?</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="240"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="254"/>
       <source>Can not create new partition</source>
       <translation>Не удалось создать новый раздел</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="241"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="255"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
       <translation>В таблице разделов на %1 уже %2 первичных разделов, больше добавить нельзя. Удалите один из первичных разделов и добавьте расширенный раздел.</translation>
     </message>
@@ -2536,117 +2558,117 @@ n%1</translation>
   <context>
     <name>PartitionViewStep</name>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="78"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="69"/>
       <source>Gathering system information...</source>
       <translation>Сбор информации о системе...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="133"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="124"/>
       <source>Partitions</source>
       <translation>Разделы</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
       <translation>Установить %1 &lt;strong&gt;параллельно&lt;/strong&gt; к другой операционной системе.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="176"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="166"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
       <translation>&lt;strong&gt;Очистить&lt;/strong&gt; диск и установить %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="180"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="169"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
       <translation>&lt;strong&gt;Заменить&lt;/strong&gt; раздел на %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="184"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="173"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
       <translation>&lt;strong&gt;Ручная&lt;/strong&gt; разметка.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="186"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
       <translation>Установить %1 &lt;strong&gt;параллельно&lt;/strong&gt; к другой операционной системе на диске &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="193"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
       <translation>&lt;strong&gt;Очистить&lt;/strong&gt; диск &lt;strong&gt;%2&lt;/strong&gt; (%3) и установить %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="210"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="199"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
       <translation>&lt;strong&gt;Заменить&lt;/strong&gt; раздел на диске &lt;strong&gt;%2&lt;/strong&gt; (%3) на %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="217"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="206"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
       <translation>&lt;strong&gt;Ручная&lt;/strong&gt; разметка диска &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="226"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="215"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <translation>Диск &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="252"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="241"/>
       <source>Current:</source>
       <translation>Текущий:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="269"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="259"/>
       <source>After:</source>
       <translation>После:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="435"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>No EFI system partition configured</source>
       <translation>Нет настроенного системного раздела EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="436"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="428"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Для запуска %1 необходим системный раздел EFI.&lt;br/&gt;&lt;br/&gt;Чтобы его настроить, вернитесь и выберите или создайте раздел FAT32 с установленным флагом &lt;strong&gt;%3&lt;/strong&gt; и точкой монтирования &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Можно продолжить и без настройки системного раздела EFI, но ваша система может не загрузиться.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;%3&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
       <translation>Для запуска %1 необходим системный раздел EFI.&lt;br/&gt;&lt;br/&gt;Был настроен раздел с точкой монтирования &lt;strong&gt;%2&lt;/strong&gt;, но у него отсутствует флаг &lt;strong&gt;%3&lt;/strong&gt;.&lt;br/&gt;Чтобы установить флаг, вернитесь и отредактируйте раздел.&lt;br/&gt;&lt;br/&gt;Можно продолжить и без установки флага, но ваша система может не загрузиться.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>EFI system partition flag not set</source>
       <translation>Не установлен флаг системного раздела EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="476"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Возможность для использования GPT в BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="477"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="469"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>Таблица разделов GPT - наилучший вариант для всех систем. Этот установщик позволяет использовать таблицу разделов GPT для систем с BIOS. &lt;br/&gt; &lt;br/&gt; Чтобы установить таблицу разделов как GPT (если это еще не сделано) вернитесь назад и создайте таблицу разделов GPT, затем создайте 8 МБ Не форматированный раздел с включенным флагом &lt;strong&gt; bios-grub&lt;/strong&gt; &lt;/ strong&gt;. &lt;br/&gt; &lt;br/&gt; Не форматированный раздел в 8 МБ необходим для запуска %1 на системе с BIOS и таблицей разделов GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="505"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
       <source>Boot partition not encrypted</source>
       <translation>Загрузочный раздел не зашифрован</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="506"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="498"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
       <translation>Включено шифрование корневого раздела, но использован отдельный загрузочный раздел без шифрования.&lt;br/&gt;&lt;br/&gt;При такой конфигурации возникают проблемы с безопасностью, потому что важные системные файлы хранятся на разделе без шифрования.&lt;br/&gt;Если хотите, можете продолжить, но файловая система будет разблокирована позднее во время загрузки системы.&lt;br/&gt;Чтобы включить шифрование загрузочного раздела, вернитесь назад и снова создайте его, отметив &lt;strong&gt;Шифровать&lt;/strong&gt; в окне создания раздела.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="634"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="626"/>
       <source>has at least one disk device available.</source>
       <translation>имеет как минимум одно доступное дисковое устройство.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="635"/>
+      <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="627"/>
       <source>There are no partitions to install on.</source>
       <translation>Нет разделов для установки.</translation>
     </message>
@@ -2654,13 +2676,13 @@ n%1</translation>
   <context>
     <name>PlasmaLnfJob</name>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="41"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="30"/>
       <source>Plasma Look-and-Feel Job</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="73"/>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="74"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="62"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="63"/>
       <source>Could not select KDE Plasma Look-and-Feel package</source>
       <translation>Не удалось выбрать пакет внешнего вида для KDE Plasma</translation>
     </message>
@@ -2668,17 +2690,17 @@ n%1</translation>
   <context>
     <name>PlasmaLnfPage</name>
     <message>
-      <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="14"/>
+      <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="18"/>
       <source>Form</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="70"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="61"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>Пожалуйста, выберите внешний вид рабочего стола KDE Plasma. Вы также можете пропустить этот шаг и настроить внешний вид после настройки системы. Нажав на внешний вид, вы получите живой предварительный просмотр этого стиля.</translation>
     </message>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="76"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="66"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
       <translation>Выберите внешний вид окружения KDE Plasma. Вы можете пропустить этот шаг, и настроить его после установки системы. Щелкните на выборе внешнего вида, чтобы увидеть, как он будет выглядеть.</translation>
     </message>
@@ -2686,7 +2708,7 @@ n%1</translation>
   <context>
     <name>PlasmaLnfViewStep</name>
     <message>
-      <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="68"/>
+      <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="61"/>
       <source>Look-and-Feel</source>
       <translation>Внешний вид</translation>
     </message>
@@ -2694,17 +2716,17 @@ n%1</translation>
   <context>
     <name>PreserveFiles</name>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="80"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="79"/>
       <source>Saving files for later ...</source>
       <translation>Сохраняю файлы на потом...</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="119"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="118"/>
       <source>No files configured to save for later.</source>
       <translation>Нет файлов, которые требуется сохранить на потом.</translation>
     </message>
     <message>
-      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="173"/>
+      <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="172"/>
       <source>Not all of the configured files could be preserved.</source>
       <translation>Не все настроенные файлы могут быть сохранены.</translation>
     </message>
@@ -2712,14 +2734,14 @@ n%1</translation>
   <context>
     <name>ProcessResult</name>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="422"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="412"/>
       <source>
 There was no output from the command.</source>
       <translation>
 Вывода из команды не последовало.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="413"/>
       <source>
 Output:
 </source>
@@ -2728,52 +2750,52 @@ Output:
 </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="427"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="417"/>
       <source>External command crashed.</source>
       <translation>Сбой внешней команды.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="428"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
       <translation>Сбой команды &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="433"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
       <source>External command failed to start.</source>
       <translation>Не удалось запустить внешнюю команду.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="424"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
       <translation>Не удалось запустить команду &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="438"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="428"/>
       <source>Internal error when starting command.</source>
       <translation>Внутренняя ошибка при запуске команды.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="439"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
       <source>Bad parameters for process job call.</source>
       <translation>Неверные параметры для вызова процесса.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="443"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="433"/>
       <source>External command failed to finish.</source>
       <translation>Не удалось завершить внешнюю команду.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="444"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
       <translation>Команда &lt;i&gt;%1&lt;/i&gt; не завершилась за %2 с.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="451"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="441"/>
       <source>External command finished with errors.</source>
       <translation>Внешняя команда завершилась с ошибками.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="452"/>
+      <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="442"/>
       <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
       <translation>Команда &lt;i&gt;%1&lt;/i&gt; завершилась с кодом %2.</translation>
     </message>
@@ -2781,76 +2803,76 @@ Output:
   <context>
     <name>QObject</name>
     <message>
-      <location filename="../src/libcalamares/locale/Label.cpp" line="41"/>
+      <location filename="../src/libcalamares/locale/Label.cpp" line="29"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="40"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="28"/>
       <source>unknown</source>
       <translation>неизвестный</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="42"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="30"/>
       <source>extended</source>
       <translation>расширенный</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="44"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="32"/>
       <source>unformatted</source>
       <translation>неформатированный</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="46"/>
+      <location filename="../src/libcalamares/partition/FileSystem.cpp" line="34"/>
       <source>swap</source>
       <translation>swap</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="91"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="90"/>
       <source>Default Keyboard Model</source>
       <translation>Модель клавиатуры по умолчанию</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="133"/>
-      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="168"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="136"/>
+      <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="173"/>
       <source>Default</source>
       <translation>По умолчанию</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="73"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="81"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="85"/>
-      <location filename="../src/modules/machineid/Workers.cpp" line="102"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="64"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="72"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="76"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="93"/>
       <source>File not found</source>
       <translation>Файл не найден</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="74"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="65"/>
       <source>Path &lt;pre&gt;%1&lt;/pre&gt; must be an absolute path.</source>
       <translation>Путь &lt;pre&gt;%1&lt;/pre&gt; должен быть абсолютным путём.</translation>
     </message>
     <message>
-      <location filename="../src/modules/machineid/Workers.cpp" line="103"/>
+      <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>Не удалось создать новый случайный файл &lt;pre&gt;%1&lt;/pre&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="79"/>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="70"/>
       <source>No product</source>
       <translation>Нет продукта</translation>
     </message>
     <message>
-      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="87"/>
+      <location filename="../src/modules/packagechooser/PackageModel.cpp" line="78"/>
       <source>No description provided.</source>
       <translation>Описание не предоставлено.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="47"/>
+      <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="40"/>
       <source>(no mount point)</source>
       <translation>(без точки монтирования)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="51"/>
+      <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="41"/>
       <source>Unpartitioned space or unknown partition table</source>
       <translation>Неразмеченное место или неизвестная таблица разделов</translation>
     </message>
@@ -2858,7 +2880,7 @@ Output:
   <context>
     <name>Recommended</name>
     <message>
-      <location filename="../src/modules/welcomeq/Recommended.qml" line="49"/>
+      <location filename="../src/modules/welcomeq/Recommended.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
       <translation type="unfinished"/>
@@ -2867,7 +2889,7 @@ Output:
   <context>
     <name>RemoveUserJob</name>
     <message>
-      <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="43"/>
+      <location filename="../src/modules/removeuser/RemoveUserJob.cpp" line="34"/>
       <source>Remove live user from target system</source>
       <translation>Удалить live пользователя из целевой системы</translation>
     </message>
@@ -2875,18 +2897,18 @@ Output:
   <context>
     <name>RemoveVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="33"/>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="45"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="24"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="36"/>
       <source>Remove Volume Group named %1.</source>
       <translation>Удалить группу томов на диске %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="39"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="30"/>
       <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Удалить группу томов на диске &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="57"/>
+      <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
       <source>The installer failed to remove a volume group named '%1'.</source>
       <translation>Установщик не смог удалить группу томов на диске '%1'.</translation>
     </message>
@@ -2894,74 +2916,74 @@ Output:
   <context>
     <name>ReplaceWidget</name>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="14"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="18"/>
       <source>Form</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="140"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="123"/>
       <source>Select where to install %1.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
       <translation>Выберите, где установить %1.&lt;br/&gt;&lt;font color="red"&gt;Внимание: &lt;/font&gt;это удалит все файлы на выбранном разделе.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="166"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="145"/>
       <source>The selected item does not appear to be a valid partition.</source>
       <translation>Выбранный элемент, видимо, не является действующим разделом.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="174"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="153"/>
       <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
       <translation>%1 не может быть установлен вне раздела. Пожалуйста выберите существующий раздел.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="184"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="163"/>
       <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
       <translation>%1 не может быть установлен прямо в расширенный раздел. Выберите существующий основной или логический раздел.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="194"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="173"/>
       <source>%1 cannot be installed on this partition.</source>
       <translation>%1 не может быть установлен в этот раздел.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="201"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="179"/>
       <source>Data partition (%1)</source>
       <translation>Раздел данных (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="217"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="199"/>
       <source>Unknown system partition (%1)</source>
       <translation>Неизвестный системный раздел (%1)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="222"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="203"/>
       <source>%1 system partition (%2)</source>
       <translation>%1 системный раздел (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="233"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="214"/>
       <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
       <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Раздел %1 слишком мал для %2. Пожалуйста выберите раздел объемом не менее %3 Гиб.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="256"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="236"/>
       <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Не найден системный раздел EFI. Вернитесь назад и выполните ручную разметку для установки %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="284"/>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="308"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="247"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="263"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="288"/>
       <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color="red"&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
       <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 будет установлен в %2.&lt;br/&gt;&lt;font color="red"&gt;Внимание: &lt;/font&gt;все данные на разделе %2 будут потеряны.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="276"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <translation>Системный раздел EFI на %1 будет использован для запуска %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="292"/>
+      <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="271"/>
       <source>EFI system partition:</source>
       <translation>Системный раздел EFI:</translation>
     </message>
@@ -2969,14 +2991,14 @@ Output:
   <context>
     <name>Requirements</name>
     <message>
-      <location filename="../src/modules/welcomeq/Requirements.qml" line="47"/>
+      <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
       <translation>&lt;p&gt;Компьютер не удовлетворяет минимальным требованиям для установки %1.&lt;br/&gt;
         Невозможно продолжить установку.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/Requirements.qml" line="49"/>
+      <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
       <translation type="unfinished"/>
@@ -2985,68 +3007,68 @@ Output:
   <context>
     <name>ResizeFSJob</name>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="57"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="46"/>
       <source>Resize Filesystem Job</source>
       <translation>Изменить размер файловой системы</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
       <source>Invalid configuration</source>
       <translation>Недействительная конфигурация</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="171"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
       <translation>Задание на изменения размера файловой системы имеет недопустимую конфигурацию и не будет запущено.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="177"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
       <source>KPMCore not Available</source>
       <translation>KPMCore недоступен</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="178"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="176"/>
       <source>Calamares cannot start KPMCore for the file-system resize job.</source>
       <translation>Calamares не может запустить KPMCore для задания изменения размера файловой системы.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="208"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="217"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="234"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="184"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="193"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="204"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="231"/>
       <source>Resize Failed</source>
       <translation>Не удалось изменить размер</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="186"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
       <translation>Файловая система %1 не обнаружена в этой системе, поэтому её размер невозможно изменить.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="188"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="187"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
       <translation>Устройство %1 не обнаружено в этой системе, поэтому его размер невозможно изменить.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="209"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
       <source>The filesystem %1 cannot be resized.</source>
       <translation>Невозможно изменить размер файловой системы %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="197"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="210"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="196"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
       <source>The device %1 cannot be resized.</source>
       <translation>Невозможно изменить размер устройства %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="218"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
       <translation>Необходимо, но не удаётся изменить размер файловой системы %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="219"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="215"/>
       <source>The device %1 must be resized, but cannot</source>
       <translation>Необходимо, но не удаётся изменить размер устройства %1</translation>
     </message>
@@ -3054,22 +3076,22 @@ Output:
   <context>
     <name>ResizePartitionJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="49"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="40"/>
       <source>Resize partition %1.</source>
       <translation>Изменить размер раздела %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="56"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="47"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;.</source>
       <translation>Изменить размер &lt;strong&gt;%2MB&lt;/strong&gt; раздела &lt;strong&gt;%1&lt;/strong&gt; на &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="67"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="58"/>
       <source>Resizing %2MiB partition %1 to %3MiB.</source>
       <translation>Изменение размера раздела %1 с %2MB на %3MB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="86"/>
+      <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="77"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
       <translation>Программе установки не удалось изменить размер раздела %1 на диске '%2'.</translation>
     </message>
@@ -3077,7 +3099,7 @@ Output:
   <context>
     <name>ResizeVolumeGroupDialog</name>
     <message>
-      <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="39"/>
+      <location filename="../src/modules/partition/gui/ResizeVolumeGroupDialog.cpp" line="30"/>
       <source>Resize Volume Group</source>
       <translation>Изменить размер группы томов</translation>
     </message>
@@ -3085,18 +3107,18 @@ Output:
   <context>
     <name>ResizeVolumeGroupJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="36"/>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="54"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="27"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="45"/>
       <source>Resize volume group named %1 from %2 to %3.</source>
       <translation>Изменить размер группы томов под именем %1 с %2 на %3.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="45"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="36"/>
       <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>Изменить размер группы томов под именем &lt;strong&gt;%1&lt;/strong&gt; с &lt;strong&gt;%2&lt;/strong&gt; на &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="69"/>
+      <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="60"/>
       <source>The installer failed to resize a volume group named '%1'.</source>
       <translation>Программе установки не удалось изменить размер группы томов под именем '%1'.</translation>
     </message>
@@ -3104,12 +3126,12 @@ Output:
   <context>
     <name>ResultsListDialog</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="142"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="133"/>
       <source>For best results, please ensure that this computer:</source>
       <translation>Для наилучших результатов, убедитесь, что этот компьютер:</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="143"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="134"/>
       <source>System requirements</source>
       <translation>Системные требования</translation>
     </message>
@@ -3117,27 +3139,27 @@ Output:
   <context>
     <name>ResultsListWidget</name>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="265"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="256"/>
       <source>This computer does not satisfy the minimum requirements for setting up %1.&lt;br/&gt;Setup cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Этот компьютер не соответствует минимальным требованиям для установки %1.&lt;br/&gt;Невозможно продолжить установку. &lt;a href="#details"&gt;Подробнее...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="269"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="260"/>
       <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href="#details"&gt;Details...&lt;/a&gt;</source>
       <translation>Этот компьютер не соответствует минимальным требованиям для установки %1.&lt;br/&gt;Невозможно продолжить установку. &lt;a href="#details"&gt;Подробнее...&lt;/a&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="276"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="267"/>
       <source>This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;Setup can continue, but some features might be disabled.</source>
       <translation>Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="280"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="271"/>
       <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
       <translation>Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="289"/>
+      <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="280"/>
       <source>This program will ask you some questions and set up %2 on your computer.</source>
       <translation>Эта программа задаст вам несколько вопросов и поможет установить %2 на ваш компьютер.</translation>
     </message>
@@ -3145,12 +3167,12 @@ Output:
   <context>
     <name>ScanningDialog</name>
     <message>
-      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
+      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="64"/>
       <source>Scanning storage devices...</source>
       <translation>Сканируются устройства хранения...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="85"/>
+      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="64"/>
       <source>Partitioning</source>
       <translation>Разметка</translation>
     </message>
@@ -3158,29 +3180,29 @@ Output:
   <context>
     <name>SetHostNameJob</name>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
       <source>Set hostname %1</source>
       <translation>Задать имя компьютера в сети %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="53"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
       <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Задать имя компьютера в сети &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
       <source>Setting hostname %1.</source>
       <translation>Задаю имя компьютера в сети для %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="131"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="138"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="122"/>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="129"/>
       <source>Internal Error</source>
       <translation>Внутренняя ошибка</translation>
     </message>
     <message>
+      <location filename="../src/modules/users/SetHostNameJob.cpp" line="137"/>
       <location filename="../src/modules/users/SetHostNameJob.cpp" line="146"/>
-      <location filename="../src/modules/users/SetHostNameJob.cpp" line="155"/>
       <source>Cannot write hostname to target system</source>
       <translation>Не возможно записать имя компьютера в целевую систему</translation>
     </message>
@@ -3188,29 +3210,29 @@ Output:
   <context>
     <name>SetKeyboardLayoutJob</name>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="60"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="53"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
       <translation>Установить модель клавиатуры на %1, раскладку на %2-%3</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="352"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="345"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation>Не удалось записать параметры клавиатуры для виртуальной консоли.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="353"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="346"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="350"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="357"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="364"/>
       <source>Failed to write to %1</source>
       <translation>Не удалось записать на %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="349"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation>Не удалось записать параметры клавиатуры для X11.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="363"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation>Не удалось записать параметры клавиатуры в существующий каталог /etc/default.</translation>
     </message>
@@ -3218,82 +3240,82 @@ Output:
   <context>
     <name>SetPartFlagsJob</name>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="52"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="43"/>
       <source>Set flags on partition %1.</source>
       <translation>Установить флаги на разделе %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="58"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="49"/>
       <source>Set flags on %1MiB %2 partition.</source>
       <translation>Установить флаги %1MiB раздела %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="62"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="53"/>
       <source>Set flags on new partition.</source>
       <translation>Установите флаги на новый раздел.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="74"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Очистить флаги раздела &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Снять флаги %1MiB раздела &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
       <source>Clear flags on new partition.</source>
       <translation>Сбросить флаги нового раздела.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
       <translation>Отметить раздел &lt;strong&gt;%1&lt;/strong&gt; флагом как &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="89"/>
       <source>Flag %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
       <translation>Отметить %1MB раздел &lt;strong&gt;%2&lt;/strong&gt; флагом как &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="96"/>
       <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Отметить новый раздел флагом как &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="108"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Очистка флагов раздела &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="123"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="114"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Снятие флагов %1MiB раздела &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="128"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
       <source>Clearing flags on new partition.</source>
       <translation>Сброс флагов нового раздела.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="124"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Установка флагов &lt;strong&gt;%2&lt;/strong&gt; на раздел &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="142"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="133"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
       <translation>Установка флагов &lt;strong&gt;%3&lt;/strong&gt; %1MiB раздела &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
       <translation>Установка флагов &lt;strong&gt;%1&lt;/strong&gt; нового раздела.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="165"/>
+      <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="156"/>
       <source>The installer failed to set flags on partition %1.</source>
       <translation>Установщик не смог установить флаги на раздел %1.</translation>
     </message>
@@ -3301,42 +3323,42 @@ Output:
   <context>
     <name>SetPasswordJob</name>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="40"/>
       <source>Set password for user %1</source>
       <translation>Задать пароль для пользователя %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="56"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="47"/>
       <source>Setting password for user %1.</source>
       <translation>Устанавливаю пароль для учетной записи %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="81"/>
       <source>Bad destination system path.</source>
       <translation>Неверный путь целевой системы.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="91"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="82"/>
       <source>rootMountPoint is %1</source>
       <translation>Точка монтирования корневого раздела %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
       <source>Cannot disable root account.</source>
       <translation>Невозможно отключить учетную запись root</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
       <source>passwd terminated with error code %1.</source>
       <translation>Команда passwd завершилась с кодом ошибки %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="106"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="97"/>
       <source>Cannot set password for user %1.</source>
       <translation>Не удалось задать пароль для пользователя %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/SetPasswordJob.cpp" line="107"/>
+      <location filename="../src/modules/users/SetPasswordJob.cpp" line="98"/>
       <source>usermod terminated with error code %1.</source>
       <translation>Команда usermod завершилась с кодом ошибки %1.</translation>
     </message>
@@ -3344,37 +3366,37 @@ Output:
   <context>
     <name>SetTimezoneJob</name>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="43"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="34"/>
       <source>Set timezone to %1/%2</source>
       <translation>Установить часовой пояс на %1/%2</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="62"/>
       <source>Cannot access selected timezone path.</source>
       <translation>Нет доступа к указанному часовому поясу.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="63"/>
       <source>Bad path: %1</source>
       <translation>Неправильный путь: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
       <source>Cannot set timezone.</source>
       <translation>Невозможно установить часовой пояс.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
       <source>Link creation failed, target: %1; link name: %2</source>
       <translation>Не удалось создать ссылку, цель: %1; имя ссылки: %2</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="77"/>
       <source>Cannot set timezone,</source>
       <translation>Часовой пояс не установлен,</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="78"/>
       <source>Cannot open /etc/timezone for writing</source>
       <translation>Невозможно открыть /etc/timezone для записи</translation>
     </message>
@@ -3382,7 +3404,7 @@ Output:
   <context>
     <name>ShellProcessJob</name>
     <message>
-      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="46"/>
+      <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="37"/>
       <source>Shell Processes Job</source>
       <translation>Работа с контекстными процессами</translation>
     </message>
@@ -3390,7 +3412,7 @@ Output:
   <context>
     <name>SlideCounter</name>
     <message>
-      <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="36"/>
+      <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="27"/>
       <source>%L1 / %L2</source>
       <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
       <translation type="unfinished"/>
@@ -3399,12 +3421,12 @@ Output:
   <context>
     <name>SummaryPage</name>
     <message>
-      <location filename="../src/modules/summary/SummaryPage.cpp" line="57"/>
+      <location filename="../src/modules/summary/SummaryPage.cpp" line="47"/>
       <source>This is an overview of what will happen once you start the setup procedure.</source>
       <translation>Это обзор изменений, которые будут применены при запуске процедуры установки.</translation>
     </message>
     <message>
-      <location filename="../src/modules/summary/SummaryPage.cpp" line="60"/>
+      <location filename="../src/modules/summary/SummaryPage.cpp" line="49"/>
       <source>This is an overview of what will happen once you start the install procedure.</source>
       <translation>Это обзор изменений, которые будут применены при запуске процедуры установки.</translation>
     </message>
@@ -3412,7 +3434,7 @@ Output:
   <context>
     <name>SummaryViewStep</name>
     <message>
-      <location filename="../src/modules/summary/SummaryViewStep.cpp" line="43"/>
+      <location filename="../src/modules/summary/SummaryViewStep.cpp" line="36"/>
       <source>Summary</source>
       <translation>Итог</translation>
     </message>
@@ -3420,22 +3442,22 @@ Output:
   <context>
     <name>TrackingInstallJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="46"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="37"/>
       <source>Installation feedback</source>
       <translation>Отчёт об установке</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="58"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="43"/>
       <source>Sending installation feedback.</source>
       <translation>Отправка отчёта об установке.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="75"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="60"/>
       <source>Internal error in install-tracking.</source>
       <translation>Внутренняя ошибка в install-tracking.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="76"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="61"/>
       <source>HTTP request timed out.</source>
       <translation>Тайм-аут запроса HTTP.</translation>
     </message>
@@ -3443,28 +3465,28 @@ Output:
   <context>
     <name>TrackingKUserFeedbackJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="143"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="122"/>
       <source>KDE user feedback</source>
       <translation>Отзывы пользователей KDE</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="155"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="128"/>
       <source>Configuring KDE user feedback.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="177"/>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="183"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="150"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="156"/>
       <source>Error in KDE user feedback configuration.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="178"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="151"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="184"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="157"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
       <translation type="unfinished"/>
     </message>
@@ -3472,28 +3494,28 @@ Output:
   <context>
     <name>TrackingMachineUpdateManagerJob</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="86"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="71"/>
       <source>Machine feedback</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="98"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="77"/>
       <source>Configuring machine feedback.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="121"/>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="127"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="100"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="106"/>
       <source>Error in machine feedback configuration.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="122"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="101"/>
       <source>Could not configure machine feedback correctly, script error %1.</source>
       <translation>Не удалось настроить отзывы о компьютере, ошибка сценария %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="128"/>
+      <location filename="../src/modules/tracking/TrackingJobs.cpp" line="107"/>
       <source>Could not configure machine feedback correctly, Calamares error %1.</source>
       <translation>Не удалось настроить отзывы о компьютере, ошибка Calamares %1.</translation>
     </message>
@@ -3501,42 +3523,42 @@ Output:
   <context>
     <name>TrackingPage</name>
     <message>
-      <location filename="../src/modules/tracking/page_trackingstep.ui" line="14"/>
+      <location filename="../src/modules/tracking/page_trackingstep.ui" line="18"/>
       <source>Form</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/page_trackingstep.ui" line="24"/>
+      <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
       <source>Placeholder</source>
       <translation>Заменитель</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
+      <location filename="../src/modules/tracking/page_trackingstep.ui" line="76"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to send &lt;span style=" font-weight:600;"&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/page_trackingstep.ui" line="271"/>
+      <location filename="../src/modules/tracking/page_trackingstep.ui" line="275"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Click here for more information about user feedback&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="placeholder"&gt;&lt;span style=" text-decoration: underline; color:#2980b9;"&gt;Щелкните здесь чтобы узнать больше об отзывах пользователей&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="95"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
+      <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
       <translation type="unfinished"/>
     </message>
@@ -3544,7 +3566,7 @@ Output:
   <context>
     <name>TrackingViewStep</name>
     <message>
-      <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="58"/>
+      <location filename="../src/modules/tracking/TrackingViewStep.cpp" line="49"/>
       <source>Feedback</source>
       <translation>Отзывы</translation>
     </message>
@@ -3552,25 +3574,28 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="174"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="156"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Если этот компьютер будет использоваться несколькими людьми, вы сможете создать учетные записи для них после установки.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="180"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="162"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Если этот компьютер используется несколькими людьми, Вы сможете создать соответствующие учетные записи сразу после установки.&lt;/small&gt;</translation>
     </message>
+  </context>
+  <context>
+    <name>UsersQmlViewStep</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="255"/>
-      <source>Your passwords do not match!</source>
-      <translation>Пароли не совпадают!</translation>
+      <location filename="../src/modules/usersq/UsersQmlViewStep.cpp" line="39"/>
+      <source>Users</source>
+      <translation>Пользователи</translation>
     </message>
   </context>
   <context>
     <name>UsersViewStep</name>
     <message>
-      <location filename="../src/modules/users/UsersViewStep.cpp" line="58"/>
+      <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
       <source>Users</source>
       <translation>Пользователи</translation>
     </message>
@@ -3578,12 +3603,12 @@ Output:
   <context>
     <name>VariantModel</name>
     <message>
-      <location filename="../src/calamares/VariantModel.cpp" line="241"/>
+      <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/calamares/VariantModel.cpp" line="245"/>
+      <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
       <translation>Значение</translation>
     </message>
@@ -3591,52 +3616,52 @@ Output:
   <context>
     <name>VolumeGroupBaseDialog</name>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="18"/>
       <source>Create Volume Group</source>
       <translation>Создать группу томов</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="24"/>
       <source>List of Physical Volumes</source>
       <translation>Список физических томов</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="30"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="34"/>
       <source>Volume Group Name:</source>
       <translation>Имя группы томов:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="43"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="47"/>
       <source>Volume Group Type:</source>
       <translation>Тип группы томов:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="60"/>
       <source>Physical Extent Size:</source>
       <translation>Физический размер:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="70"/>
       <source> MiB</source>
       <translation> МиБ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="82"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="86"/>
       <source>Total Size:</source>
       <translation>Общий объём:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="102"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="106"/>
       <source>Used Size:</source>
       <translation>Использованный объём:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="122"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="126"/>
       <source>Total Sectors:</source>
       <translation>Всего секторов:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
+      <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="146"/>
       <source>Quantity of LVs:</source>
       <translation type="unfinished"/>
     </message>
@@ -3644,98 +3669,98 @@ Output:
   <context>
     <name>WelcomePage</name>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="18"/>
       <source>Form</source>
       <translation>Форма</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="94"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>
       <source>Select application and system language</source>
       <translation>Выберите язык приложения и системы</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="136"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
       <source>&amp;About</source>
       <translation>&amp;О программе</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="146"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="150"/>
       <source>Open donations website</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="149"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="153"/>
       <source>&amp;Donate</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="159"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="163"/>
       <source>Open help and support website</source>
       <translation>Открыть сайт справки и поддержки</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="162"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
       <source>&amp;Support</source>
       <translation>П&amp;оддержка</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="172"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
       <source>Open issues and bug-tracking website</source>
       <translation>Открыть сайт со списком известных проблем и отслеживанием ошибок</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="175"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
       <source>&amp;Known issues</source>
       <translation>&amp;Известные проблемы</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="185"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="189"/>
       <source>Open release notes website</source>
       <translation>Открыть сайт с заметками о выпуске</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.ui" line="188"/>
+      <location filename="../src/modules/welcome/WelcomePage.ui" line="192"/>
       <source>&amp;Release notes</source>
       <translation>&amp;Примечания к выпуску</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="225"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="216"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Добро пожаловать в программу установки Calamares для %1 .&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="226"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="217"/>
       <source>&lt;h1&gt;Welcome to %1 setup.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Добро пожаловать в программу установки %1 .&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="231"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Добро пожаловать в установщик Calamares для %1 .&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="232"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="223"/>
       <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
       <translation>&lt;h1&gt;Добро пожаловать в программу установки %1 .&lt;/h1&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="237"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="228"/>
       <source>%1 support</source>
       <translation>%1 поддержка</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="244"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
       <source>About %1 setup</source>
       <translation>О установке %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="244"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="235"/>
       <source>About %1 installer</source>
       <translation>О программе установки %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="247"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="238"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to &lt;a href="https://calamares.io/team/"&gt;the Calamares team&lt;/a&gt; and the &lt;a href="https://www.transifex.com/calamares/calamares/"&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
       <translation type="unfinished"/>
     </message>
@@ -3743,7 +3768,7 @@ Output:
   <context>
     <name>WelcomeQmlViewStep</name>
     <message>
-      <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="50"/>
+      <location filename="../src/modules/welcomeq/WelcomeQmlViewStep.cpp" line="41"/>
       <source>Welcome</source>
       <translation>Добро пожаловать</translation>
     </message>
@@ -3751,7 +3776,7 @@ Output:
   <context>
     <name>WelcomeViewStep</name>
     <message>
-      <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="57"/>
+      <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
       <source>Welcome</source>
       <translation>Добро пожаловать</translation>
     </message>
@@ -3759,23 +3784,23 @@ Output:
   <context>
     <name>about</name>
     <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="56"/>
+      <location filename="../src/modules/welcomeq/about.qml" line="47"/>
       <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
                         &lt;strong&gt;%2&lt;br/&gt;
                         for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
                         Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
                         Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
-                        Thanks to &lt;a href='https://calamares.io/team/'&gt;the Calamares team&lt;/a&gt; 
-                        and the &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 
+                        Thanks to &lt;a href='https://calamares.io/team/'&gt;the Calamares team&lt;/a&gt;
+                        and the &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares
                         translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
-                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt;
                         development is sponsored by &lt;br/&gt;
-                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/about.qml" line="105"/>
+      <location filename="../src/modules/welcomeq/about.qml" line="96"/>
       <source>Back</source>
       <translation>Назад</translation>
     </message>
@@ -3783,19 +3808,19 @@ Output:
   <context>
     <name>i18n</name>
     <message>
-      <location filename="../src/modules/localeq/i18n.qml" line="55"/>
+      <location filename="../src/modules/localeq/i18n.qml" line="46"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/localeq/i18n.qml" line="115"/>
+      <location filename="../src/modules/localeq/i18n.qml" line="106"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/localeq/i18n.qml" line="167"/>
+      <location filename="../src/modules/localeq/i18n.qml" line="158"/>
       <source>Back</source>
       <translation>Назад</translation>
     </message>
@@ -3803,44 +3828,42 @@ Output:
   <context>
     <name>keyboardq</name>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="20"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="45"/>
       <source>Keyboard Model</source>
       <translation>Модель клавиатуры</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="21"/>
-      <source>Pick your preferred keyboard model or use the default one based on the detected hardware</source>
-      <translation>Выберите предпочитаемую модель клавиатуры или используйте модель по умолчанию на основе обнаруженного оборудования</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="56"/>
-      <source>Refresh</source>
-      <translation>Обновить</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="62"/>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="169"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="377"/>
       <source>Layouts</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="75"/>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="134"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="148"/>
       <source>Keyboard Layout</source>
       <translation>Раскладка клавиатуры</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="113"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
+      <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
       <source>Models</source>
       <translation>Модели</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="121"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="260"/>
       <source>Variants</source>
       <translation>Варианты</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboardq/keyboardq.qml" line="180"/>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
+      <source>Keyboard Variant</source>
+      <translation>Вариант клавиатуры</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
       <source>Test your keyboard</source>
       <translation>Проверьте свою клавиатуру</translation>
     </message>
@@ -3848,15 +3871,15 @@ Output:
   <context>
     <name>localeq</name>
     <message>
-      <location filename="../src/modules/localeq/localeq.qml" line="90"/>
+      <location filename="../src/modules/localeq/localeq.qml" line="81"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>Изменить</translation>
     </message>
   </context>
   <context>
     <name>notesqml</name>
     <message>
-      <location filename="../src/modules/notesqml/notesqml.qml" line="61"/>
+      <location filename="../src/modules/notesqml/notesqml.qml" line="50"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;These are example release notes.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;%1&lt;/h3&gt;
@@ -3866,7 +3889,7 @@ Output:
   <context>
     <name>release_notes</name>
     <message>
-      <location filename="../src/modules/welcomeq/release_notes.qml" line="54"/>
+      <location filename="../src/modules/welcomeq/release_notes.qml" line="45"/>
       <source>&lt;h3&gt;%1&lt;/h3&gt;
             &lt;p&gt;This an example QML file, showing options in RichText with Flickable content.&lt;/p&gt;
 
@@ -3891,41 +3914,155 @@ Output:
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/release_notes.qml" line="85"/>
+      <location filename="../src/modules/welcomeq/release_notes.qml" line="76"/>
       <source>Back</source>
       <translation>Назад</translation>
     </message>
   </context>
   <context>
-    <name>welcomeq</name>
+    <name>usersq</name>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="44"/>
-      <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
-            &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
+      <location filename="../src/modules/usersq/usersq.qml" line="36"/>
+      <source>Pick your user name and credentials to login and perform admin tasks</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="75"/>
+      <location filename="../src/modules/usersq/usersq.qml" line="52"/>
+      <source>What is your name?</source>
+      <translation>Как Вас зовут?</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="59"/>
+      <source>Your Full Name</source>
+      <translation>Ваше полное имя</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="80"/>
+      <source>What name do you want to use to log in?</source>
+      <translation>Какое имя Вы хотите использовать для входа?</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="87"/>
+      <source>Login Name</source>
+      <translation>Имя пользователя</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="103"/>
+      <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="118"/>
+      <source>What is the name of this computer?</source>
+      <translation>Какое имя у компьютера?</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="125"/>
+      <source>Computer Name</source>
+      <translation>Имя компьютера</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="140"/>
+      <source>This name will be used if you make the computer visible to others on a network.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="155"/>
+      <source>Choose a password to keep your account safe.</source>
+      <translation>Выберите пароль для защиты вашей учетной записи.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="166"/>
+      <source>Password</source>
+      <translation>Пароль</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="185"/>
+      <source>Repeat Password</source>
+      <translation>Повторите пароль</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="204"/>
+      <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="216"/>
+      <source>Validate passwords quality</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="226"/>
+      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="234"/>
+      <source>Log in automatically without asking for the password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="243"/>
+      <source>Reuse user password as root password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="253"/>
+      <source>Use the same password for the administrator account.</source>
+      <translation>Использовать тот же пароль для аккаунта администратора.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="268"/>
+      <source>Choose a root password to keep your account safe.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="279"/>
+      <source>Root Password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="298"/>
+      <source>Repeat Root Password</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/usersq/usersq.qml" line="318"/>
+      <source>Enter the same password twice, so that it can be checked for typing errors.</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>welcomeq</name>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="35"/>
+      <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
+            &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
+      <translation>&lt;h3&gt;Добро пожаловать в программу установки %1 &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;
+            &lt;p&gt;Эта программа задаст вам несколько вопросов и поможет установить %1 на ваш компьютер.&lt;/p&gt;</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="66"/>
       <source>About</source>
       <translation>О Программе</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="89"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="80"/>
       <source>Support</source>
       <translation>Поддержка</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="100"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="91"/>
       <source>Known issues</source>
       <translation>Известные проблемы</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="111"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="102"/>
       <source>Release notes</source>
       <translation>Примечания к выпуску</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/welcomeq.qml" line="123"/>
+      <location filename="../src/modules/welcomeq/welcomeq.qml" line="114"/>
       <source>Donate</source>
       <translation type="unfinished"/>
     </message>
