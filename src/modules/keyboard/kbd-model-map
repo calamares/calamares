@@ -12,6 +12,13 @@
 #
 # Updates:
 #  - 2018-09-26 Added "Austrian" keyboard (de at). Issue #1035
+#  - 2020-09-09 Added "Turkish F" keyboard. Issue #1397
+#
+# Note that keyboard variants should be listed from least to most-specific
+# within a layout. Keyboard lookups only consider a subsequent
+# line if it has a strictly better match than previous ones:
+# listing specific variants early can mean a poor match with them
+# is not overridden by a poor match with a later generic variant.
 #
 # Generated from system-config-keyboard's model list
 # consolelayout		xlayout	xmodel		xvariant	xoptions
@@ -19,6 +26,7 @@ sg			ch	pc105		de_nodeadkeys	terminate:ctrl_alt_bksp
 nl			nl	pc105		-		terminate:ctrl_alt_bksp
 mk-utf			mk,us	pc105		-		terminate:ctrl_alt_bksp,grp:shifts_toggle,grp_led:scroll
 trq			tr	pc105		-		terminate:ctrl_alt_bksp
+trf			tr	pc105		f		terminate:ctrl_alt_bksp
 uk			gb	pc105		-		terminate:ctrl_alt_bksp
 is-latin1		is	pc105		-		terminate:ctrl_alt_bksp
 de			de	pc105		-		terminate:ctrl_alt_bksp

@@ -42,6 +42,9 @@ KeyboardLayoutTests::testSimpleLayoutLookup_data()
     QTest::addColumn< QString >( "vconsole" );
 
     QTest::newRow( "us" ) << QString( "us" ) << QString() << QString() << QString( "us" );
+    QTest::newRow( "turkish default" ) << QString( "tr" ) << QString() << QString() << QString( "trq" );
+    QTest::newRow( "turkish alt-q" ) << QString( "tr" ) << QString() << QString( "alt" ) << QString( "trq" );
+    QTest::newRow( "turkish f" ) << QString( "tr" ) << QString() << QString( "f" ) << QString( "trf" );
 }
 
 
