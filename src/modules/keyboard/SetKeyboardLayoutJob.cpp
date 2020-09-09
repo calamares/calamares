@@ -82,13 +82,18 @@ SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) 
 STATICTEST QString
 findLegacyKeymap( const QString& layout, const QString& model, const QString& variant )
 {
-    cDebug() << "Looking for legacy keymap in QRC";
+    cDebug() << "Looking for legacy keymap" << layout << model << variant << "in QRC";
 
     int bestMatching = 0;
     QString name;
 
     QFile file( ":/kbd-model-map" );
-    file.open( QIODevice::ReadOnly | QIODevice::Text );
+    if ( !file.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
+        cDebug() << Logger::SubEntry << "Could not read QRC";
+        return QString();
+    }
+
     QTextStream stream( &file );
     while ( !stream.atEnd() )
     {
