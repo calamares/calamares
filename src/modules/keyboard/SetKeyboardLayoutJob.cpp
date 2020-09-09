@@ -79,16 +79,21 @@ SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) 
 }
 
 
-QString
-SetKeyboardLayoutJob::findLegacyKeymap() const
+STATICTEST QString
+findLegacyKeymap( const QString& layout, const QString& model, const QString& variant )
 {
-    cDebug() << "Looking for legacy keymap in QRC";
+    cDebug() << "Looking for legacy keymap" << layout << model << variant << "in QRC";
 
     int bestMatching = 0;
     QString name;
 
     QFile file( ":/kbd-model-map" );
-    file.open( QIODevice::ReadOnly | QIODevice::Text );
+    if ( !file.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
+        cDebug() << Logger::SubEntry << "Could not read QRC";
+        return QString();
+    }
+
     QTextStream stream( &file );
     while ( !stream.atEnd() )
     {
@@ -109,20 +114,20 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
         // Determine how well matching this entry is
         // We assume here that we have one X11 layout. If the UI changes to
         // allow more than one layout, this should change too.
-        if ( m_layout == mapping[ 1 ] )
+        if ( layout == mapping[ 1 ] )
         // If we got an exact match, this is best
         {
             matching = 10;
         }
         // Look for an entry whose first layout matches ours
-        else if ( mapping[ 1 ].startsWith( m_layout + ',' ) )
+        else if ( mapping[ 1 ].startsWith( layout + ',' ) )
         {
             matching = 5;
         }
 
         if ( matching > 0 )
         {
-            if ( m_model.isEmpty() || m_model == mapping[ 2 ] )
+            if ( model.isEmpty() || model == mapping[ 2 ] )
             {
                 matching++;
             }
@@ -137,7 +142,7 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
                 mappingVariant.remove( 1, 0 );
             }
 
-            if ( m_variant == mappingVariant )
+            if ( variant == mappingVariant )
             {
                 matching++;
             }
@@ -160,6 +165,12 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
     }
 
     return name;
+}
+
+QString
+SetKeyboardLayoutJob::findLegacyKeymap() const
+{
+    return ::findLegacyKeymap( m_layout, m_model, m_variant );
 }
 
 
