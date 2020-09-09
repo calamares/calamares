@@ -27,4 +27,6 @@ calamares_add_test(
     SOURCES
         Tests.cpp
         SetKeyboardLayoutJob.cpp
+    RESOURCES
+        keyboard.qrc
 )
