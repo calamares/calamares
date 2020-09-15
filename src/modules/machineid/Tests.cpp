@@ -235,7 +235,8 @@ MachineIdTests::testJob()
         QVERIFY( r );
         for ( const auto& fileName : j.entropyFileNames() )
         {
-            QVERIFY( QFile::exists( tempRoot.filePath( fileName ) ) );
+            cDebug() << "Verifying existence of" << fileName;
+            QVERIFY( QFile::exists( tempRoot.filePath( fileName.mid( 1 ) ) ) );
         }
     }
 

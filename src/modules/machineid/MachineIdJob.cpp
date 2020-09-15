@@ -77,6 +77,12 @@ MachineIdJob::exec()
     //Create new files
     for ( const auto& entropy_file : m_entropy_files )
     {
+        if ( !CalamaresUtils::System::instance()->createTargetParentDirs( entropy_file ) )
+        {
+            return Calamares::JobResult::error(
+                QObject::tr( "Directory not found" ),
+                QObject::tr( "Could not create new random file <pre>%1</pre>." ).arg( entropy_file ) );
+        }
         auto r = MachineId::createEntropy( m_entropy_copy ? MachineId::EntropyGeneration::CopyFromHost
                                                           : MachineId::EntropyGeneration::New,
                                            root,
