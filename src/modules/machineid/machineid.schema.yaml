@@ -9,7 +9,8 @@ properties:
     systemd: { type: boolean, default: true }
     dbus: { type: boolean, default: true }
     "dbus-symlink": { type: boolean, default: true }
-    entropy: { type: boolean, default: false }
     "entropy-copy": { type: boolean, default: false }
+    "entropy-files": { type: array, items: { type: string } }
     # Deprecated properties
     symlink: { type: boolean, default: true }
+    entropy: { type: boolean, default: false }
