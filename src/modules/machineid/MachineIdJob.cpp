@@ -57,14 +57,13 @@ MachineIdJob::exec()
 
     QString target_systemd_machineid_file = QStringLiteral( "/etc/machine-id" );
     QString target_dbus_machineid_file = QStringLiteral( "/var/lib/dbus/machine-id" );
-    QString target_entropy_file = QStringLiteral( "/var/lib/urandom/random-seed" );
 
     const CalamaresUtils::System* system = CalamaresUtils::System::instance();
 
     // Clear existing files
-    if ( m_entropy )
+    for ( const auto& entropy_file : m_entropy_files )
     {
-        system->removeTargetFile( target_entropy_file );
+        system->removeTargetFile( entropy_file );
     }
     if ( m_dbus )
     {
@@ -76,12 +75,18 @@ MachineIdJob::exec()
     }
 
     //Create new files
-    if ( m_entropy )
+    for ( const auto& entropy_file : m_entropy_files )
     {
+        if ( !CalamaresUtils::System::instance()->createTargetParentDirs( entropy_file ) )
+        {
+            return Calamares::JobResult::error(
+                QObject::tr( "Directory not found" ),
+                QObject::tr( "Could not create new random file <pre>%1</pre>." ).arg( entropy_file ) );
+        }
         auto r = MachineId::createEntropy( m_entropy_copy ? MachineId::EntropyGeneration::CopyFromHost
                                                           : MachineId::EntropyGeneration::New,
                                            root,
-                                           target_entropy_file );
+                                           entropy_file );
         if ( !r )
         {
             return r;
@@ -89,6 +94,10 @@ MachineIdJob::exec()
     }
     if ( m_systemd )
     {
+        if ( !system->createTargetParentDirs( target_systemd_machineid_file ) )
+        {
+            cWarning() << "Could not create systemd data-directory.";
+        }
         auto r = MachineId::createSystemdMachineId( root, target_systemd_machineid_file );
         if ( !r )
         {
@@ -143,8 +152,19 @@ MachineIdJob::setConfigurationMap( const QVariantMap& map )
     // ignore it, though, if dbus is false
     m_dbus_symlink = m_dbus && m_dbus_symlink;
 
-    m_entropy = CalamaresUtils::getBool( map, "entropy", false );
     m_entropy_copy = CalamaresUtils::getBool( map, "entropy-copy", false );
+
+    m_entropy_files = CalamaresUtils::getStringList( map, "entropy-files" );
+    if ( CalamaresUtils::getBool( map, "entropy", false ) )
+    {
+        cWarning() << "MachineId:: configuration setting *entropy* is deprecated, use *entropy-files*.";
+
+        QString target_entropy_file = QStringLiteral( "/var/lib/urandom/random-seed" );
+        if ( !m_entropy_files.contains( target_entropy_file ) )
+        {
+            m_entropy_files.append( target_entropy_file );
+        }
+    }
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( MachineIdJobFactory, registerPlugin< MachineIdJob >(); )

@@ -19,6 +19,11 @@ This release contains contributions from (alphabetically by first name):
  - The *keyboard* module now recognizes Turkish "F" layout and
    will set the vconsole keyboard layout correctly even if xkb
    keymaps are not found.
+ - The *machineid* module, which generates UUIDs for systemd and dbus
+   and can generate entropy files (filled from `/dev/urandom` in the host
+   system) now supports more than one entropy file; generate them as needed
+    (or copy a fixed value to all, depending on *entropy-copy*). Deprecate
+    *entropy* (which generates a specific output file) as too inflexible.
 
 
 # 3.2.30 (2020-09-03) #
