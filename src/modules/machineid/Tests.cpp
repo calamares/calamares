@@ -160,6 +160,7 @@ MachineIdTests::testJob()
     Logger::setupLogLevel( Logger::LOGDEBUG );
 
     QTemporaryDir tempRoot( QDir::tempPath() + QStringLiteral( "/test-job-XXXXXX" ) );
+    // Only clean up if the tests succeed
     tempRoot.setAutoRemove( false );
     cDebug() << "Temporary files as" << QDir::tempPath();
 
@@ -218,6 +219,26 @@ MachineIdTests::testJob()
         QCOMPARE( fi.size(), 5 );
 #endif
     }
+
+    {
+        QString tmp_entropy2( "/pineapple.random" );
+        QString tmp_entropy( "/tmp/entropy" );
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy-files", QStringList { tmp_entropy2, tmp_entropy } );
+        m.insert( "entropy", true );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames().count(), 3 );  // Because of the standard entropy entry
+
+        // Check all three are created
+        auto r = j.exec();
+        QVERIFY( r );
+        for ( const auto& fileName : j.entropyFileNames() )
+        {
+            QVERIFY( QFile::exists( tempRoot.filePath( fileName ) ) );
+        }
+    }
+
     tempRoot.setAutoRemove( true );  // All tests succeeded
 }
 
