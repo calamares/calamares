@@ -31,6 +31,7 @@ public:
 
 private Q_SLOTS:
     void initTestCase();
+    void testConfigEntropyFiles();
 
     void testCopyFile();
 
@@ -44,6 +45,65 @@ MachineIdTests::initTestCase()
 {
     Logger::setupLogLevel( Logger::LOGDEBUG );
 }
+
+void
+MachineIdTests::testConfigEntropyFiles()
+{
+    static QString urandom_entropy( "/var/lib/urandom/random-seed" );
+    // No config at all
+    {
+        QVariantMap m;
+        MachineIdJob j;
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList() );
+    }
+    // No entropy, deprecated setting
+    {
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy", false );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList() );
+    }
+    // Entropy, deprecated setting
+    {
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy", true );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList { urandom_entropy } );
+    }
+    // Duplicate entry, with deprecated setting
+    {
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy", true );
+        m.insert( "entropy-files", QStringList { urandom_entropy } );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList { urandom_entropy } );
+
+        m.clear();
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList() );
+
+        // This would be weird
+        m.insert( "entropy", false );
+        m.insert( "entropy-files", QStringList { urandom_entropy } );
+        j.setConfigurationMap( m );
+        QCOMPARE( j.entropyFileNames(), QStringList { urandom_entropy } );
+    }
+    // No deprecated setting
+    {
+        QString tmp_entropy( "/tmp/entropy" );
+        QVariantMap m;
+        MachineIdJob j;
+        m.insert( "entropy-files", QStringList { urandom_entropy, tmp_entropy } );
+        j.setConfigurationMap( m );
+        QVERIFY( !j.entropyFileNames().isEmpty() );
+        QCOMPARE( j.entropyFileNames(), QStringList() << urandom_entropy << tmp_entropy );
+    }
+}
+
 
 void
 MachineIdTests::testCopyFile()
