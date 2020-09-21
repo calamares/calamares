@@ -99,23 +99,26 @@ private:
 
 //- DeviceInfo ---------------------------------------------
 // Some jobs have an updatePreview some don't
-DECLARE_HAS_METHOD(updatePreview)
+DECLARE_HAS_METHOD( updatePreview )
 
-template< typename Job >
-void updatePreview( Job* job, const std::true_type& )
+template < typename Job >
+void
+updatePreview( Job* job, const std::true_type& )
 {
     job->updatePreview();
 }
 
-template< typename Job >
-void updatePreview( Job* job, const std::false_type& )
+template < typename Job >
+void
+updatePreview( Job* job, const std::false_type& )
 {
 }
 
-template< typename Job >
-void updatePreview( Job* job )
+template < typename Job >
+void
+updatePreview( Job* job )
 {
-    updatePreview(job, has_updatePreview<Job>{});
+    updatePreview( job, has_updatePreview< Job > {} );
 }
 
 /**
@@ -137,8 +140,35 @@ struct PartitionCoreModule::DeviceInfo
 
     const Calamares::JobList& jobs() const { return m_jobs; }
 
-    template< typename Job, typename... Args >
-    Calamares::Job* makeJob(Args... a)
+    /** @brief Take the jobs of the given type that apply to @p partition
+     *
+     * Returns a job pointer to the job that has just been removed.
+     */
+    template < typename Job >
+    Calamares::job_ptr takeJob( Partition* partition )
+    {
+        for ( auto it = m_jobs.begin(); it != m_jobs.end(); )
+        {
+            Job* job = qobject_cast< Job* >( it->data() );
+            if ( job && job->partition() == partition )
+            {
+                Calamares::job_ptr p = *it;
+                it = m_jobs.erase( it );
+                return p;
+            }
+            else
+            {
+                ++it;
+            }
+        }
+
+        return Calamares::job_ptr( nullptr );
+    }
+
+    /** @brief Add a job of given type to the job list
+     */
+    template < typename Job, typename... Args >
+    Calamares::Job* makeJob( Args... a )
     {
         auto* job = new Job( device.get(), a... );
         updatePreview( job );
@@ -456,26 +486,20 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     const Calamares::JobList& jobs = deviceInfo->jobs();
     if ( partition->state() == KPM_PARTITION_STATE( New ) )
     {
-        // First remove matching SetPartFlagsJobs
-        for ( auto it = jobs.begin(); it != jobs.end(); )
+        // Take all the SetPartFlagsJob from the list and delete them
+        do
         {
-            SetPartFlagsJob* job = qobject_cast< SetPartFlagsJob* >( it->data() );
-            if ( job && job->partition() == partition )
+            auto job_ptr = deviceInfo->takeJob< SetPartFlagsJob >( partition );
+            if ( job_ptr.data() )
             {
-                it = jobs.erase( it );
+                continue;
             }
-            else
-            {
-                ++it;
-            }
-        }
+        } while ( false );
+
 
         // Find matching CreatePartitionJob
-        auto it = std::find_if( jobs.begin(), jobs.end(), [partition]( Calamares::job_ptr job ) {
-            CreatePartitionJob* createJob = qobject_cast< CreatePartitionJob* >( job.data() );
-            return createJob && createJob->partition() == partition;
-        } );
-        if ( it == jobs.end() )
+        auto job_ptr = deviceInfo->takeJob< CreatePartitionJob >( partition );
+        if ( !job_ptr.data() )
         {
             cDebug() << "Failed to find a CreatePartitionJob matching the partition to remove";
             return;
@@ -488,7 +512,6 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         }
 
         device->partitionTable()->updateUnallocated( *device );
-        jobs.erase( it );
         // The partition is no longer referenced by either a job or the device
         // partition list, so we have to delete it
         delete partition;
@@ -496,18 +519,14 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     else
     {
         // Remove any PartitionJob on this partition
-        for ( auto it = jobs.begin(); it != jobs.end(); )
+        do
         {
-            PartitionJob* job = qobject_cast< PartitionJob* >( it->data() );
-            if ( job && job->partition() == partition )
+            auto job_ptr = deviceInfo->takeJob< PartitionJob >( partition );
+            if ( job_ptr.data() )
             {
-                it = jobs.erase( it );
+                continue;
             }
-            else
-            {
-                ++it;
-            }
-        }
+        } while ( false );
 
         deviceInfo->makeJob< DeletePartitionJob >( partition );
     }
@@ -599,7 +618,7 @@ PartitionCoreModule::lvmPVs() const
 bool
 PartitionCoreModule::hasVGwithThisName( const QString& name ) const
 {
-    auto condition = [name]( DeviceInfo* d ) {
+    auto condition = [ name ]( DeviceInfo* d ) {
         return dynamic_cast< LvmDevice* >( d->device.data() ) && d->device.data()->name() == name;
     };
 
@@ -609,7 +628,7 @@ PartitionCoreModule::hasVGwithThisName( const QString& name ) const
 bool
 PartitionCoreModule::isInVG( const Partition* partition ) const
 {
-    auto condition = [partition]( DeviceInfo* d ) {
+    auto condition = [ partition ]( DeviceInfo* d ) {
         LvmDevice* vg = dynamic_cast< LvmDevice* >( d->device.data() );
         return vg && vg->physicalVolumes().contains( partition );
     };
@@ -942,9 +961,9 @@ PartitionCoreModule::layoutApply( Device* dev,
     const QString boot = QStringLiteral( "/boot" );
     const QString root = QStringLiteral( "/" );
     const auto is_boot
-        = [&]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == boot || p->mountPoint() == boot; };
+        = [ & ]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == boot || p->mountPoint() == boot; };
     const auto is_root
-        = [&]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == root || p->mountPoint() == root; };
+        = [ & ]( Partition* p ) -> bool { return PartitionInfo::mountPoint( p ) == root || p->mountPoint() == root; };
 
     const bool separate_boot_partition
         = std::find_if( partList.constBegin(), partList.constEnd(), is_boot ) != partList.constEnd();
@@ -1059,7 +1078,7 @@ void
 PartitionCoreModule::asyncRevertDevice( Device* dev, std::function< void() > callback )
 {
     QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
-    connect( watcher, &QFutureWatcher< void >::finished, this, [watcher, callback] {
+    connect( watcher, &QFutureWatcher< void >::finished, this, [ watcher, callback ] {
         callback();
         watcher->deleteLater();
     } );
