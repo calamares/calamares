@@ -1956,7 +1956,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="37"/>
       <source>Select your preferred Region, or use the default one based on your current location.</source>
-      <translation type="unfinished"/>
+      <translation>Минтақаи пазируфтаи худро интихоб намоед ё минтақаи стандартиро дар асоси ҷойгиршавии ҷории худ истифода баред.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="94"/>
@@ -1968,17 +1968,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="111"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>Шаҳри пазируфтаи худро дар ҳудуди минтақаи худ интихоб намоед.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="182"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>Шаҳрҳо</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="229"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>Шумо метавонед танзимоти забон ва маҳаллисозиро дар зер дуруст кунед.</translation>
     </message>
   </context>
   <context>
@@ -3799,7 +3799,17 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        барои %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Ҳуқуқи муаллиф 2014-2017 Тео Марҷавак &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Ҳуқуқи муаллиф 2017-2020 Адриан де Грут &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Ташаккури зиёд ба &lt;a href='https://calamares.io/team/'&gt;дастаи Calamares&lt;/a&gt; 
+                        ва &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;гурӯҳи тарҷумонони Calamares&lt;/a&gt; (тарҷумаи тоҷикӣ аз ҷониби Виктор Ибрагимов &amp;lt;victor.ibragimov@gmail.com&amp;gt;).&lt;br/&gt;&lt;br/&gt;
+                        Барномарезии насбкунандаи &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        аз тарафи &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - 
+                        Liberating Software дастгирӣ карда мешавад.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
@@ -3849,7 +3859,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>Намунаи клавиатураи пазируфтаи худро барои танзими тарҳбандӣ ва варианти он интихоб кунед ё клавиатураи муқаррареро дар асоси сахтафзори муайяншуда истифода баред.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
@@ -3864,7 +3874,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
       <source>Keyboard Variant</source>
-      <translation type="unfinished"/>
+      <translation>Вариантҳои клавиатура</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
@@ -3948,7 +3958,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="36"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>Барои ворид шудан ба низом ва иҷро кардани вазифаҳои маъмурӣ, номи корбар ва маълумоти корбариро муайян кунед.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="52"/>
@@ -3968,12 +3978,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>Номи корбар</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Агар зиёда аз як корбар ин компютерро истифода барад, шумо метавонед баъд аз насбкунӣ якчанд ҳисобро эҷод намоед.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
@@ -3988,7 +3998,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="140"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>Ин ном истифода мешавад, агар шумо компютери худро барои дигарон дар шабака намоён кунед.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
@@ -4008,27 +4018,27 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>Ниҳонвожаи ягонаро ду маротиба ворид намоед, то ки он барои хатоҳои имлоӣ тафтиш карда шавад. Ниҳонвожаи хуб бояд дар омезиш калимаҳо, рақамҳо ва аломатҳои китобатиро дар бар гирад, ақаллан аз ҳашт аломат иборат шавад ва мунтазам иваз карда шавад.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>Санҷиши сифати ниҳонвожаҳо</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
-      <translation type="unfinished"/>
+      <translation>Агар шумо ин имконро интихоб кунед, қувваи ниҳонвожа тафтиш карда мешавад ва шумо ниҳонвожаи заифро истифода карда наметавонед.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Ба таври худкор бе дархости ниҳонвожа ворид карда шавад</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Ниҳонвожаи корбар ҳам барои ниҳонвожаи root истифода карда шавад</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
@@ -4038,22 +4048,22 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="268"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>Барои эмин нигоҳ доштани ҳисоби худ ниҳонвожаи root-ро интихоб намоед.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="279"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Ниҳонвожаи root</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="298"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Ниҳонвожаи root-ро тасдиқ намоед</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>Ниҳонвожаи ягонаро ду маротиба ворид намоед, то ки он барои хатоҳои имлоӣ тафтиш карда шавад.</translation>
     </message>
   </context>
   <context>

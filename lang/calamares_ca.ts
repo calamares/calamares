@@ -2320,7 +2320,7 @@ per desplaçar-s'hi i useu els botons +/- per fer ampliar-lo o reduir-lo, o bé 
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="124"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Quin nom voleu usar per iniciar la sessió d'usuari?</translation>
+      <translation>Quin nom voleu usar per iniciar la sessió?</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="148"/>
@@ -2345,13 +2345,13 @@ per desplaçar-s'hi i useu els botons +/- per fer ampliar-lo o reduir-lo, o bé 
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="325"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation>Trieu una contrasenya per tal de mantenir el compte d'usuari segur.</translation>
+      <translation>Trieu una contrasenya per tal de mantenir el compte segur.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="349"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="374"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Escriviu la mateixa contrasenya dues vegades, de manera que se'n puguin comprovar els errors de mecanografia. Una bona contrasenya contindrà una barreja de lletres, números i signes de puntuació, hauria de tenir un mínim de 8 caràcters i s'hauria de modificar a intervals regulars de temps.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Escriviu la mateixa contrasenya dos cops per poder-ne comprovar els errors de mecanografia. Una bona contrasenya contindrà una barreja de lletres, números i signes de puntuació, hauria de tenir un mínim de 8 caràcters i s'hauria de modificar a intervals regulars.&lt;/small&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="355"/>
@@ -2394,7 +2394,7 @@ per desplaçar-s'hi i useu els botons +/- per fer ampliar-lo o reduir-lo, o bé 
       <location filename="../src/modules/users/page_usersetup.ui" line="519"/>
       <location filename="../src/modules/users/page_usersetup.ui" line="544"/>
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-      <translation>&lt;small&gt;Escriviu la mateixa contrasenya dues vegades, per tal de poder-ne comprovar els errors de mecanografia.&lt;/small&gt;</translation>
+      <translation>&lt;small&gt;Escriviu la mateixa contrasenya dos cops per poder-ne comprovar els errors de mecanografia.&lt;/small&gt;</translation>
     </message>
   </context>
   <context>
@@ -3973,7 +3973,7 @@ La configuració pot continuar, però algunes característiques podrien estar in
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
-      <translation>Quin nom voleu usar per iniciar la sessió d'usuari?</translation>
+      <translation>Quin nom voleu usar per iniciar la sessió?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
@@ -4003,7 +4003,7 @@ La configuració pot continuar, però algunes característiques podrien estar in
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
       <source>Choose a password to keep your account safe.</source>
-      <translation>Trieu una contrasenya per tal de mantenir el compte d'usuari segur.</translation>
+      <translation>Trieu una contrasenya per tal de mantenir el compte segur.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="166"/>
@@ -4018,7 +4018,7 @@ La configuració pot continuar, però algunes característiques podrien estar in
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation>Escriviu la mateixa contrasenya dues vegades, de manera que se'n puguin comprovar els errors de mecanografia. Una bona contrasenya ha de contenir una barreja de lletres, números i signes de puntuació, hauria de tenir un mínim de 8 caràcters i s'hauria de modificar a intervals regulars de temps.</translation>
+      <translation>Escriviu la mateixa contrasenya dos cops per poder-ne comprovar els errors de mecanografia. Una bona contrasenya ha de contenir una barreja de lletres, números i signes de puntuació, hauria de tenir un mínim de 8 caràcters i s'hauria de modificar a intervals regulars.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
@@ -4028,7 +4028,7 @@ La configuració pot continuar, però algunes característiques podrien estar in
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
-      <translation>Quan aquesta casella està marcada, es comprova la fortalesa de la contrasenya i no en podreu fer una de dèbil.</translation>
+      <translation>Quan aquesta casella està marcada, es comprova la fortalesa de la contrasenya i no en podreu usar una de dèbil.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>

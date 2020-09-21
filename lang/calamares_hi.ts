@@ -1977,7 +1977,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="229"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>भाषा व स्थानिकी हेतु निम्नलिखित सेटिंग्स उपयोग करें।</translation>
     </message>
   </context>
   <context>
@@ -3798,7 +3798,18 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        के लिए %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        प्रतिलिप्याधिकार 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        प्रतिलिप्याधिकार 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/team/'&gt;Calamares  टीम&lt;/a&gt; 
+                         व &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 
+                        अनुवादक टीम&lt;/a&gt;को धन्यवाद।&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                         का विकास &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;ब्लू सिस्टम्स&lt;/a&gt; - 
+                        लिब्रेटिंग सॉफ्टवेयर द्वारा प्रायोजित है।</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
@@ -3848,7 +3859,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>इच्छित अभिन्यास व प्रकार हेतु कुंजीपटल मॉडल पर क्लिक चुनें या फिर हार्डवेयर आधारित डिफ़ॉल्ट मॉडल उपयोग करें।</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
@@ -3947,7 +3958,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="36"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>लॉगिन एवं प्रशासक कार्यों हेतु उपयोक्ता नाम इत्यादि चुनें।</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="52"/>
@@ -3972,7 +3983,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>यदि एक से अधिक व्यक्ति इस कंप्यूटर का उपयोग करेंगे, तो आप इंस्टॉल के उपरांत एकाधिक अकाउंट बना सकते हैं।</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
@@ -3987,7 +3998,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="140"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>यदि आपका कंप्यूटर किसी नेटवर्क पर दृश्यमान होता है, तो यह नाम उपयोग किया जाएगा।</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
@@ -4007,27 +4018,27 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>एक ही कूटशब्द दो बार दर्ज़ करें, ताकि उसे टाइप त्रुटि हेतु जाँचा जा सके। एक अच्छे कूटशब्द में अक्षर, अंक व विराम चिन्हों का मेल होता है, उसमें कम-से-कम आठ अक्षर होने चाहिए, और उसे नियमित अंतराल पर बदलते रहना चाहिए।</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>कूटशब्द गुणवत्ता प्रमाणीकरण</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
-      <translation type="unfinished"/>
+      <translation>यह बॉक्स टिक करने के परिणाम स्वरुप कूटशब्द-क्षमता की जाँच होगी व आप कमज़ोर कूटशब्द उपयोग नहीं कर पाएंगे..</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>कूटशब्द बिना पूछे ही स्वतः लॉग इन करें</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>रुट कूटशब्द हेतु भी उपयोक्ता कूटशब्द उपयोग करें</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
@@ -4037,22 +4048,22 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="268"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>अकाउंट सुरक्षा हेतु रुट कूटशब्द चुनें।</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="279"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>रुट कूटशब्द</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="298"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>रुट कूटशब्द पुनः दर्ज करें</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>समान कूटशब्द दो बार दर्ज करें, ताकि टाइपिंग त्रुटि हेतु जाँच की जा सकें।</translation>
     </message>
   </context>
   <context>

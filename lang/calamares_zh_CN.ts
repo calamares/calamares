@@ -716,7 +716,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="334"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>将时区设置为 %1/%2 。</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="372"/>
@@ -778,22 +778,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="244"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;欢迎使用 %1 的 Calamares 安装程序&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;欢迎使用 %1 设置&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="250"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;欢迎使用 %1 的 Calamares 安装程序&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;欢迎使用 %1 安装程序&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="164"/>
@@ -803,7 +803,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="170"/>
       <source>'%1' is not allowed as username.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' 不允许作为用户名。</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="177"/>
@@ -828,7 +828,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="237"/>
       <source>'%1' is not allowed as hostname.</source>
-      <translation type="unfinished"/>
+      <translation>'%1' 不允许作为主机名。</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="243"/>
@@ -1802,14 +1802,16 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="243"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>时区: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Map.qml" line="264"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>请在地图上选择您的首选位置，安装程序可以为您提供可参考的区域
+设置和时区设置。 您可以在下面微调推荐的设置。 拖动以搜索地图，然后
+用 +/- 按钮进行放大/缩小，或使用鼠标滚动进行缩放。</translation>
     </message>
   </context>
   <context>
@@ -1955,29 +1957,29 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="37"/>
       <source>Select your preferred Region, or use the default one based on your current location.</source>
-      <translation type="unfinished"/>
+      <translation>请选择一个地区或者使用基于您当前位置的默认值。</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="94"/>
       <location filename="../src/modules/localeq/Offline.qml" line="169"/>
       <location filename="../src/modules/localeq/Offline.qml" line="213"/>
       <source>Timezone: %1</source>
-      <translation type="unfinished"/>
+      <translation>时区: %1</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="111"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>在您的区域中选择您的首选区域。</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="182"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>区域</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="229"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>您可以在下面微调“语言”和“区域设置”。</translation>
     </message>
   </context>
   <context>
@@ -2882,7 +2884,8 @@ Output:
       <location filename="../src/modules/welcomeq/Recommended.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;此计算机不满足安装 %1 的某些推荐配置。&lt;br/&gt;
+        安装可以继续，但是一些特性可能被禁用。&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -2993,13 +2996,15 @@ Output:
       <location filename="../src/modules/welcomeq/Requirements.qml" line="38"/>
       <source>&lt;p&gt;This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;
         Installation cannot continue.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;此计算机不满足安装 %1 的最低配置。&lt;br/&gt;
+        安装无法继续。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/Requirements.qml" line="40"/>
       <source>&lt;p&gt;This computer does not satisfy some of the recommended requirements for setting up %1.&lt;br/&gt;
         Setup can continue, but some features might be disabled.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;p&gt;此计算机不满足安装 %1 的某些推荐配置。&lt;br/&gt;
+        安装可以继续，但是一些特性可能被禁用。&lt;/p&gt;</translation>
     </message>
   </context>
   <context>
@@ -3467,28 +3472,28 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="122"/>
       <source>KDE user feedback</source>
-      <translation type="unfinished"/>
+      <translation>KDE 用户反馈</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="128"/>
       <source>Configuring KDE user feedback.</source>
-      <translation type="unfinished"/>
+      <translation>配置 KDE 用户反馈。</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="150"/>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="156"/>
       <source>Error in KDE user feedback configuration.</source>
-      <translation type="unfinished"/>
+      <translation>KDE 用户反馈配置中存在错误。</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="151"/>
       <source>Could not configure KDE user feedback correctly, script error %1.</source>
-      <translation type="unfinished"/>
+      <translation>无法正确 KDE 用户反馈，脚本错误代码 %1。</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="157"/>
       <source>Could not configure KDE user feedback correctly, Calamares error %1.</source>
-      <translation type="unfinished"/>
+      <translation>无法正确 KDE 用户反馈，Calamares 错误代码 %1。</translation>
     </message>
   </context>
   <context>
@@ -3550,17 +3555,17 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation type="unfinished"/>
+      <translation>选中此项时，安装器将发送关于安装过程和硬件的信息。该信息仅会在安装结束后发送&lt;b&gt;一次&lt;/b&gt; 。</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="94"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>通过选择此选项，您将定期将有关您 &lt;b&gt;计算机&lt;/b&gt;的安装，硬件和应用程序的信息发送到 %1。</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="98"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation type="unfinished"/>
+      <translation>通过选择此选项，您将定期将有关&lt;b&gt;用户&lt;/b&gt; 安装，硬件，应用程序和应用程序使用方式的信息发送到 %1。</translation>
     </message>
   </context>
   <context>
@@ -3797,7 +3802,18 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Copyright 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        致谢 &lt;a href='https://calamares.io/team/'&gt; Calamares 开发团队&lt;/a&gt; 
+                        和&lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares 
+                        翻译团队&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; 
+                        开发赞助来自&lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
+                        Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
@@ -3811,13 +3827,15 @@ Output:
       <location filename="../src/modules/localeq/i18n.qml" line="46"/>
       <source>&lt;h1&gt;Languages&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the language and character set for some command line user interface elements. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;语言&lt;/h1&gt; &lt;/br&gt;
+                   系统语言区域设置会影响部份命令行用户界面的语言及字符集。 当前设置是 &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="106"/>
       <source>&lt;h1&gt;Locales&lt;/h1&gt; &lt;/br&gt;
                     The system locale setting affects the numbers and dates format. The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;区域&lt;/h1&gt; &lt;/br&gt;
+                    系统区域设置会影响数字和日期格式。 当前设置是 &lt;strong&gt;%1&lt;/strong&gt;。</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/i18n.qml" line="158"/>
@@ -3845,7 +3863,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>单击您的首选键盘型号以选择布局和变体，或根据检测到的硬件使用默认键盘。</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
@@ -3860,7 +3878,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
       <source>Keyboard Variant</source>
-      <translation type="unfinished"/>
+      <translation>键盘变体</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
@@ -3873,7 +3891,7 @@ Output:
     <message>
       <location filename="../src/modules/localeq/localeq.qml" line="81"/>
       <source>Change</source>
-      <translation type="unfinished"/>
+      <translation>更改</translation>
     </message>
   </context>
   <context>
@@ -3945,7 +3963,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="36"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>选择您的用户名和凭据登录并执行管理任务</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="52"/>
@@ -3965,12 +3983,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>登录名</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>如果有多人要使用此计算机，您可以在安装后创建多个账户。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
@@ -3985,7 +4003,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="140"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>将计算机设置为对其他网络上计算机可见时将使用此名称。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
@@ -4005,27 +4023,27 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>输入相同密码两次，以检查输入错误。好的密码包含字母，数字，标点的组合，应当至少为 8 个字符长，并且应按一定周期更换。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>验证密码质量</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
-      <translation type="unfinished"/>
+      <translation>若选中此项，密码强度检测会开启，你将不被允许使用弱密码..</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>不询问密码自动登录</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>重用用户密码作为 root 密码</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
@@ -4035,22 +4053,22 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="268"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>选择一个 root 密码来保证您的账户安全。</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="279"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Root 密码</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="298"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>重复 Root 密码</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>输入相同密码两次，以检查输入错误。</translation>
     </message>
   </context>
   <context>
