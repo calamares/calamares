@@ -1,3 +1,14 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2014 Kevin Kofler <kevin.kofler@chello.at>
+#   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+###
+#
+# Defines a handful of strings that, with normal xterm handling,
+# will change colors in the output, so it's nicer to read.
 if(NOT WIN32)
   set(_use_color ON)
   if("0" STREQUAL "$ENV{CLICOLOR}")

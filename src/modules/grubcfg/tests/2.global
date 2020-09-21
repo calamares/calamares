@@ -1,8 +1,10 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
 ---
 bogus: true
 firmwareType: bios
 bootLoader: grub
-rootMountPoint: /tmp/calamares
+rootMountPoint: /tmp/calamares/grubcfg-test-2
 
 branding:
   bootloaderEntryName: generic

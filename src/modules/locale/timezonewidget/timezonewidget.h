@@ -1,24 +1,16 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2007 Free Software Foundation, Inc.
+ *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
  *   Copyright (C) 2007 Free Software Foundation, Inc.
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef TIMEZONEWIDGET_H
@@ -51,28 +43,28 @@ class TimeZoneWidget : public QWidget
 {
     Q_OBJECT
 public:
-    using TZZone = CalamaresUtils::Locale::TZZone;
+    using TimeZoneData = CalamaresUtils::Locale::TimeZoneData;
 
-    explicit TimeZoneWidget( const CalamaresUtils::Locale::CStringPairList& zones, QWidget* parent = nullptr );
+    explicit TimeZoneWidget( const CalamaresUtils::Locale::ZonesModel* zones, QWidget* parent = nullptr );
 
 public Q_SLOTS:
     /** @brief Sets a location by pointer
      *
      * Pointer should be within the same model as the widget uses.
      */
-    void setCurrentLocation( const TZZone* location );
+    void setCurrentLocation( const TimeZoneData* location );
 
 signals:
     /** @brief The location has changed by mouse click */
-    void locationChanged( const TZZone* location );
+    void locationChanged( const TimeZoneData* location );
 
 private:
     QFont font;
     QImage background, pin, currentZoneImage;
     TimeZoneImageList timeZoneImages;
 
-    const CalamaresUtils::Locale::CStringPairList& m_zonesData;
-    const TZZone* m_currentLocation = nullptr;  // Not owned by me
+    const CalamaresUtils::Locale::ZonesModel* m_zonesData;
+    const TimeZoneData* m_currentLocation = nullptr;  // Not owned by me
 
     void paintEvent( QPaintEvent* event );
     void mousePressEvent( QMouseEvent* event );

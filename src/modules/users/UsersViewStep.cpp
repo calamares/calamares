@@ -1,29 +1,17 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
- *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017-2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Gabriel Craciunescu <crazy@frugalware.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "UsersViewStep.h"
 
 #include "Config.h"
-#include "CreateUserJob.h"
-#include "SetHostNameJob.h"
-#include "SetPasswordJob.h"
 #include "UsersPage.h"
 
 #include "GlobalStorage.h"
@@ -34,31 +22,14 @@
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin< UsersViewStep >(); )
 
-static const NamedEnumTable< SetHostNameJob::Action >&
-hostnameActions()
-{
-    using Action = SetHostNameJob::Action;
-
-    // *INDENT-OFF*
-    // clang-format off
-    static const NamedEnumTable< Action > names {
-        { QStringLiteral( "none" ), Action::None },
-        { QStringLiteral( "etcfile" ), Action::EtcHostname },
-        { QStringLiteral( "hostnamed" ), Action::SystemdHostname }
-    };
-    // clang-format on
-    // *INDENT-ON*
-
-    return names;
-}
-
 UsersViewStep::UsersViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( nullptr )
-    , m_actions( SetHostNameJob::Action::None )
     , m_config( new Config( this ) )
 {
-    emit nextStatusChanged( true );
+    connect( m_config, &Config::readyChanged, this, &UsersViewStep::nextStatusChanged );
+
+    emit nextStatusChanged( m_config->isReady() );
 }
 
 
@@ -84,7 +55,6 @@ UsersViewStep::widget()
     if ( !m_widget )
     {
         m_widget = new UsersPage( m_config );
-        connect( m_widget, &UsersPage::checkReady, this, &UsersViewStep::nextStatusChanged );
     }
     return m_widget;
 }
@@ -93,7 +63,7 @@ UsersViewStep::widget()
 bool
 UsersViewStep::isNextEnabled() const
 {
-    return m_widget ? m_widget->isReady() : true;
+    return m_config->isReady();
 }
 
 
@@ -138,72 +108,13 @@ UsersViewStep::onActivate()
 void
 UsersViewStep::onLeave()
 {
-    m_jobs.clear();
-    if ( !m_widget || !m_widget->isReady() )
-    {
-        return;
-    }
-
-    Calamares::Job* j;
-    // TODO: Config object should create jobs, like this one, that depend only on config values
-    j = new CreateUserJob( m_config->loginName(),
-                           m_config->fullName().isEmpty() ? m_config->loginName() : m_config->fullName(),
-                           m_config->doAutoLogin(),
-                           m_config->defaultGroups() );
-
-    auto userPW = m_widget->getUserPassword();
-    j = new SetPasswordJob( userPW.first, userPW.second );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    j = new SetPasswordJob( "root", m_widget->getRootPassword() );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    j = new SetHostNameJob( m_config->hostName(), m_actions );
-    m_jobs.append( Calamares::job_ptr( j ) );
-
-    m_widget->fillGlobalStorage();
+    m_jobs = m_config->createJobs();
+    m_config->finalizeGlobalStorage();
 }
 
 
 void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    // Create the widget, after all .. as long as writing configuration to the UI is needed
-    (void)this->widget();
-    using CalamaresUtils::getBool;
-
-    m_widget->setReusePasswordDefault( getBool( configurationMap, "doReusePassword", false ) );
-
-    if ( configurationMap.contains( "passwordRequirements" )
-         && configurationMap.value( "passwordRequirements" ).type() == QVariant::Map )
-    {
-        auto pr_checks( configurationMap.value( "passwordRequirements" ).toMap() );
-
-        for ( decltype( pr_checks )::const_iterator i = pr_checks.constBegin(); i != pr_checks.constEnd(); ++i )
-        {
-            m_widget->addPasswordCheck( i.key(), i.value() );
-        }
-    }
-
-    m_widget->setPasswordCheckboxVisible( getBool( configurationMap, "allowWeakPasswords", false ) );
-    m_widget->setValidatePasswordDefault( !getBool( configurationMap, "allowWeakPasswordsDefault", false ) );
-
-    using Action = SetHostNameJob::Action;
-
-    QString hostnameActionString = CalamaresUtils::getString( configurationMap, "setHostname" );
-    if ( hostnameActionString.isEmpty() )
-    {
-        hostnameActionString = QStringLiteral( "EtcFile" );
-    }
-    bool ok = false;
-    auto hostnameAction = hostnameActions().find( hostnameActionString, ok );
-    if ( !ok )
-    {
-        hostnameAction = Action::EtcHostname;
-    }
-
-    Action hostsfileAction = getBool( configurationMap, "writeHostsFile", true ) ? Action::WriteEtcHosts : Action::None;
-    m_actions = hostsfileAction | hostnameAction;
-
     m_config->setConfigurationMap( configurationMap );
 }

@@ -1,3 +1,9 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+
 # When debugging the partitioning widget, or experimenting, you may
 # want to allow unsafe partitioning choices (e.g. doing things to the
 # current disk). Set DEBUG_PARTITION_UNSAFE to allow that (it turns off

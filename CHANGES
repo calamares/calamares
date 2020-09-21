@@ -1,9 +1,115 @@
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+-->
+
 This is the changelog for Calamares. For each release, the major changes and
 contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.28 (unreleased) #
+# 3.2.31 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - No external contributors yet
+
+## Core ##
+ - No core changes yet
+
+## Modules ##
+ - The *keyboard* module now recognizes Turkish "F" layout and
+   will set the vconsole keyboard layout correctly even if xkb
+   keymaps are not found.
+ - The *machineid* module, which generates UUIDs for systemd and dbus
+   and can generate entropy files (filled from `/dev/urandom` in the host
+   system) now supports more than one entropy file; generate them as needed
+    (or copy a fixed value to all, depending on *entropy-copy*). Deprecate
+    *entropy* (which generates a specific output file) as too inflexible.
+
+
+# 3.2.30 (2020-09-03) #
+
+This release contains contributions from (alphabetically by first name):
+ - Anke Boersma
+ - Asif Mahmud Shimon
+ - Manzoor Ahmed Munawar
+ - Sai Kamal
+ - Victor Ibragimov
+
+This release has two giant source-code changes that have no effect
+on functionality, but do touch each and every source file:
+ - SPDX headers for licensing information, following the standard
+   set by REUSE.software ; all source files and resources have
+   SPDX-License-Identifier information and copyright notices. All
+   of the boilerplate texts have been removed.
+ - Calamares coding style has been mechanically applied to the entire
+   codebase. This was already done to most of it, but there were
+   some hold-outs.
+
+## Core ##
+ - Network access status is deprecated in Qt 5.15's QNetworkAccessManager,
+   and was not useful already in some previous versions. Replace its
+   use in the Calamares network service by testing-it-ourself directly
+   via a synchronous ping. (Thanks to Asif)
+ - New Telugu translation. (Thanks to Sai)
+ - Urdu translation started. (Thanks to Manzoor)
+ - Timezones translated in Tajik and Russian. (Thanks to Victor)
+
+## Modules ##
+ - *keyboardq* and *localeq* improvements. (Thanks to Anke)
+ - *users* module did not set up autologin properly. This is yet another
+   regression left over from 3.2.28. (Reported by Phil and pcrepix, #1498)
+ - *welcome* module now sets the *LANG* key in the locale configuration
+   (which is shared with the *locale* module and consumed by the
+   *localecfg* module). This makes it feasible to drop the *locale*
+   module and still set the installed system's language to the language
+   selected in Calamares. (Reported by FerenOS)
+
+
+# 3.2.29 (2020-08-20) #
+
+This release contains contributions from (alphabetically by first name):
+ - Asif Mahmud Shimon (new contributor! hi!)
+
+## Core ##
+ - Edge case in extracting string-lists from YAML, reported and fixed
+   by Asif (#1491).
+ - Progress reporting is now more flexible. Modules can have a weight
+   assigned to them in the descriptor; module instances can have a weight
+   assigned which overrides the module descriptor. When jobs are run
+   for a module instance, the jobs report progress pro-rated by the
+   module's weight. Or in other words, it is now possible to tweak
+   the amount of the overall progress bar that different modules fill.
+   The default settings give unpackfs a weight of 12. (#1176)
+
+## Modules ##
+ - The *users* module did not read the *defaultGroups* correctly.
+   Fixed by the string-lists change mentioned above.
+
+
+ # 3.2.28.3 (2020-08-18) #
+
+Another hotfix, for more issues reported by Marco Obaid. Users
+were not having a password set (#1489)
+
+
+# 3.2.28.2 (2020-08-12) #
+
+A second hotfix, for autologin support -- the autologin group was not
+created in the target system before assigning the user to it. Reported
+by Marco Obaid.
+
+
+# 3.2.28.1 (2020-08-10) #
+
+This is a hotfix release for #1482 and #1483, where no user was
+created during installation and a chmod was failing (resulting in
+a failed installation). Reported by Jonathan Riddell.
+
+With incidental improvements in SPDX tagging (code licensing)
+and some new icon options for the welcomeq and localeq modules.
+
+
+# 3.2.28 (2020-08-09) #
 
 This release contains contributions from (alphabetically by first name):
  - Anke Boersma
@@ -14,9 +120,11 @@ This release contains contributions from (alphabetically by first name):
  - A new object *Network* is available to QML modules in `io.calamares.core`.
    It exposes network status through the *hasInternet* property.
  - Welcome to Tajik translations. The Tajik language has quickly reached
-   100% completion.
+   100% completion. Thanks Victor!
  - Welcome to [Interlingue](https://en.wikipedia.org/wiki/Interlingue).
-   The translation is at an early stage.
+   The translation is at an early stage. Qt does not support language
+   code *ie* though, so it may take some time to be integrated (much
+   like Esperanto wasn't supported until Qt 5.12).
 
 ## Modules ##
  - The *locale* module has been completely redone on the inside.
@@ -31,9 +139,15 @@ This release contains contributions from (alphabetically by first name):
    timezone setting -- this can be useful to avoid both hard-coding an
    initial zone and doing extra GeoIP lookups, in the case where the
    live system already does so. #1391
+ - The *locale* and *localeq* modules have additional machinery for
+   timezone lookups; please report cases where clicking on the map
+   returns an obviously bogus timezone (up until this release, for
+   instance, Cape Town).
  - The *users* module no longer accepts `root` as a username. #1462
  - The *keyboardq* module is now more inline with the look of the rest
    of the Calamares modules, use of a background image is removed.
+ - The *grubcfg* module now understands `/etc/default/grub.d`. #1457
+
 
 # 3.2.27 (2020-07-11) #
 

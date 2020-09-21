@@ -1,3 +1,7 @@
+<!-- SPDX-FileCopyrightText: no
+     SPDX-License-Identifier: CC0-1.0
+-->
+
 ### Calamares: Distribution-Independent Installer Framework
 ---------
 

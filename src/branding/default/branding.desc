@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
 # Product branding information. This influences some global
 # user-visible aspects of Calamares, such as the product
 # name, window behavior, and the slideshow during installation.

@@ -1,8 +1,12 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
 ---
 $schema: https://json-schema.org/schema#
 $id: https://calamares.io/schemas/finished
-additionalProperties: keyboard
+additionalProperties: false
 type: object
 properties:
-    xOrgConfFileName: { type: string, required: true }
-    convertedKeymapPath: { type: string, required: true }
+    xOrgConfFileName: { type: string }
+    convertedKeymapPath: { type: string }
+    writeEtcDefaultKeyboard: { type: boolean, default: true }
+required: [ xOrgConfFileName, convertedKeymapPath ]

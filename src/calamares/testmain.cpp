@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 /*
@@ -184,13 +175,13 @@ public:
 
     void loadSelf() override;
 
-    virtual Type type() const override;
-    virtual Interface interface() const override;
+    virtual Calamares::ModuleSystem::Type type() const override;
+    virtual Calamares::ModuleSystem::Interface interface() const override;
 
     virtual Calamares::JobList jobs() const override;
 
 protected:
-    void initFrom( const QVariantMap& ) override;
+    void initFrom( const Calamares::ModuleSystem::Descriptor& ) override;
 };
 
 ExecViewModule::ExecViewModule()
@@ -201,13 +192,13 @@ ExecViewModule::ExecViewModule()
     // We don't have one, so build one -- this gives us "x@x".
     QVariantMap m;
     m.insert( "name", "x" );
-    Calamares::Module::initFrom( m, "x" );
+    Calamares::Module::initFrom( Calamares::ModuleSystem::Descriptor::fromDescriptorData( m ), "x" );
 }
 
 ExecViewModule::~ExecViewModule() {}
 
 void
-ExecViewModule::initFrom( const QVariantMap& )
+ExecViewModule::initFrom( const Calamares::ModuleSystem::Descriptor& )
 {
 }
 
@@ -217,7 +208,7 @@ ExecViewModule::loadSelf()
     auto* viewStep = new Calamares::ExecutionViewStep();
     viewStep->setModuleInstanceKey( instanceKey() );
     viewStep->setConfigurationMap( m_configurationMap );
-    viewStep->appendJobModuleInstanceKey( instanceKey().toString() );
+    viewStep->appendJobModuleInstanceKey( instanceKey() );
     Calamares::ViewManager::instance()->addViewStep( viewStep );
     m_loaded = true;
 }
@@ -332,7 +323,8 @@ load_module( const ModuleConfig& moduleConfig )
 
     cDebug() << "Module" << moduleName << "job-configuration:" << configFile;
 
-    Calamares::Module* module = Calamares::moduleFromDescriptor( descriptor, name, configFile, moduleDirectory );
+    Calamares::Module* module = Calamares::moduleFromDescriptor(
+        Calamares::ModuleSystem::Descriptor::fromDescriptorData( descriptor ), name, configFile, moduleDirectory );
 
     return module;
 }

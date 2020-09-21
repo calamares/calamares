@@ -1,19 +1,22 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2016 The Qt Company Ltd.
+ *   SPDX-License-Identifier: LGPL-2.1-only
+ *
+ *   2017, Adriaan de Groot <groot@kde.org>
  *     - added looping, keys-instead-of-shortcut
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   2018, Adriaan de Groot <groot@kde.org>
  *     - make looping a property, drop the 'c' fade-key
  *     - drop navigation through entering a slide number
  *       (this and the 'c' key make sense in a *presentation*
  *       slideshow, not in a passive slideshow like Calamares)
  *     - remove quit key
- *   Copyright 2019, Adriaan de Groot <groot@kde.org>
+ *   2019, Adriaan de Groot <groot@kde.org>
  *     - Support "V2" loading
  *     - Disable shortcuts until the content is visible in Calamares
- *
- *   SPDX-License-Identifier: LGPL-2.1-only
- *   License-Filename: LICENSES/LGPLv2.1-Presentation
+ *   2020, Adriaan de Groot <groot@kde.org>
+ *     - Updated to SPDX headers
  */
 
 /****************************************************************************
@@ -87,7 +90,7 @@ Item {
     // It is used in this example also to keep the keyboard shortcuts
     // enabled only while the slideshow is active.
     property bool activatedInCalamares: false
-    
+
     // Private API
     property int _lastShownSlide: 0
 

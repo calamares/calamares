@@ -1,19 +1,27 @@
+# SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
 ---
 $schema: https://json-schema.org/schema#
 $id: https://calamares.io/schemas/fstab
 additionalProperties: false
 type: object
 properties:
-    "mountOptions":
-        type: map
-        mapping:
-            "default": { type: string, required: true }
-            "btrfs": { type: string, required: true }
-    "ssdExtraMountOptions":
-        type: map
-        mapping:
-            "ext4": { type: string, required: true }
-            "jfs": { type: string, required: true }
-            "xfs": { type: string, required: true }
-            "swap": { type: string, required: true }
-            "btrfs": { type: string, required: true }
+    mountOptions:
+        type: object
+        additionalProperties: true  # we don't know which FS exist
+        properties:
+            default: { type: string }
+            btrfs: { type: string }
+        required: [ default ]
+    ssdExtraMountOptions:
+        type: object
+        additionalProperties: true  # we don't know which FS exist
+        properties:
+            ext4: { type: string }
+            jfs: { type: string }
+            xfs: { type: string }
+            swap: { type: string }
+            btrfs: { type: string }
+    efiMountOptions: { type: string }
+    crypttabOptions: { type: string }
+required: [ mountOptions ]

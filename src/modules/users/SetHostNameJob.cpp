@@ -1,21 +1,12 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Rohan Garg <rohan@kde.org>
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, 2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Rohan Garg <rohan@kde.org>
+ *   SPDX-FileCopyrightText: 2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "SetHostNameJob.h"
@@ -25,15 +16,15 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
+#include <QDBusConnection>
+#include <QDBusInterface>
+#include <QDBusReply>
 #include <QDir>
 #include <QFile>
-#include <QtDBus/QDBusConnection>
-#include <QtDBus/QDBusInterface>
-#include <QtDBus/QDBusReply>
 
 using WriteMode = CalamaresUtils::System::WriteMode;
 
-SetHostNameJob::SetHostNameJob( const QString& hostname, Actions a )
+SetHostNameJob::SetHostNameJob( const QString& hostname, HostNameActions a )
     : Calamares::Job()
     , m_hostname( hostname )
     , m_actions( a )
@@ -138,7 +129,7 @@ SetHostNameJob::exec()
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
-    if ( m_actions & Action::EtcHostname )
+    if ( m_actions & HostNameAction::EtcHostname )
     {
         if ( !setFileHostname( m_hostname ) )
         {
@@ -147,7 +138,7 @@ SetHostNameJob::exec()
         }
     }
 
-    if ( m_actions & Action::WriteEtcHosts )
+    if ( m_actions & HostNameAction::WriteEtcHosts )
     {
         if ( !writeFileEtcHosts( m_hostname ) )
         {
@@ -156,7 +147,7 @@ SetHostNameJob::exec()
         }
     }
 
-    if ( m_actions & Action::SystemdHostname )
+    if ( m_actions & HostNameAction::SystemdHostname )
     {
         // Does its own logging
         setSystemdHostname( m_hostname );

@@ -1,5 +1,11 @@
 # Architecture
 
+<!-- SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+     SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
+     SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+     SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 ## Overview
 
 The heart of the module is the PartitionCoreModule class. It holds Qt models for

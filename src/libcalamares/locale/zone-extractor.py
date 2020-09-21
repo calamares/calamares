@@ -1,44 +1,9 @@
 #! /usr/bin/env python3
 #
-#  === This file is part of Calamares - <https://github.com/calamares> ===
-# 
+#  === This file is part of Calamares - <https://calamares.io> ===
+#
 #   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
-#
 #   SPDX-License-Identifier: BSD-2-Clause
-#   License-Filename: LICENSES/BSD2
-#
-#
-# Python3 script to scrape some data out of zoneinfo/zone.tab.
-#
-### BEGIN LICENSES
-#
-# Copyright 2019 Adriaan de Groot <groot@kde.org>
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-#
-#   1. Redistributions of source code must retain the above copyright
-#      notice, this list of conditions and the following disclaimer.
-#   2. Redistributions in binary form must reproduce the above copyright
-#      notice, this list of conditions and the following disclaimer in the
-#      documentation and/or other materials provided with the distribution.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
-#
-### END LICENSES
- 
-### BEGIN USAGE
 #
 """
 Python3 script to scrape some data out of zoneinfo/zone.tab.
@@ -56,15 +21,15 @@ def scrape_file(file, regionset, zoneset):
         parts = line.split("\t")
         if len(parts) < 3:
             continue
-        
+
         zoneid = parts[2]
         if not "/" in zoneid:
             continue
-        
+
         region, zone = zoneid.split("/", 1)
-        
+
         zone = zone.strip().replace("_", " ")
-        
+
         regionset.add(region)
         assert(zone not in zoneset)
         zoneset.add(zone)
@@ -76,10 +41,14 @@ def write_set(file, label, set):
     for x in sorted(set):
         file.write("""\t\tQObject::tr("{!s}", "{!s}"),\n""".format(x, label))
     file.write("\t\tQString()\n\t};\n}\n\n")
-    
+
 cpp_header_comment = """/*   GENERATED FILE DO NOT EDIT
 *
-*  === This file is part of Calamares - <https://github.com/calamares> ===
+*  === This file is part of Calamares - <https://calamares.io> ===
+*
+* SPDX-FileCopyrightText: 2009 Arthur David Olson
+* SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
+* SPDX-License-Identifier: CC0-1.0
 *
 * This file is derived from zone.tab, which has its own copyright statement:
 *
@@ -111,4 +80,4 @@ if __name__ == "__main__":
         f.write(cpp_header_comment)
         write_set(f, "tz_regions", regions)
         write_set(f, "tz_names", zones)
-        
+

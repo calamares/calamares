@@ -1,28 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Copyright 2014-2018, Philip Müller <philm@manjaro.org>
-#   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
-#   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
-#   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2017, Bernhard Landauer <oberon@manjaro.org>
-#   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
-#   Copyright 2019, Dominic Hayes <ferenosdev@outlook.com>
+#   SPDX-FileCopyrightText: 2014-2018 Philip Müller <philm@manjaro.org>
+#   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2014 Kevin Kofler <kevin.kofler@chello.at>
+#   SPDX-FileCopyrightText: 2017 Alf Gaida <agaida@siduction.org>
+#   SPDX-FileCopyrightText: 2017 Bernhard Landauer <oberon@manjaro.org>
+#   SPDX-FileCopyrightText: 2017 2019, Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2019 Dominic Hayes <ferenosdev@outlook.com>
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#   Calamares is Free Software: see the License-Identifier above.
 #
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import abc
 import os

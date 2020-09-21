@@ -1,26 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
-#   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
-#   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2017, 2019, Adriaan de Groot <groot@kde.org>
-#   Copyright 2017-2018, Gabriel Craciunescu <crazy@frugalware.org>
+#   SPDX-FileCopyrightText: 2014-2015 Philip Müller <philm@manjaro.org>
+#   SPDX-FileCopyrightText: 2015-2017 Teo Mrnjavac <teo@kde.org>
+#   SPDX-FileCopyrightText: 2017 Alf Gaida <agaida@siduction.org>
+#   SPDX-FileCopyrightText: 2017 2019, Adriaan de Groot <groot@kde.org>
+#   SPDX-FileCopyrightText: 2017-2018 Gabriel Craciunescu <crazy@frugalware.org>
+#   SPDX-License-Identifier: GPL-3.0-or-later
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#   Calamares is Free Software: see the License-Identifier above.
 #
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
 import os
@@ -35,6 +26,33 @@ _ = gettext.translation("calamares-python",
 
 def pretty_name():
     return _("Configure GRUB.")
+
+
+def get_grub_config_path(root_mount_point):
+    """
+    Figures out where to put the grub config files. Returns
+    a the full path of a file inside that
+    directory, as "the config file".
+
+    Returns a path into @p root_mount_point.
+    """
+    default_dir = os.path.join(root_mount_point, "etc/default")
+    default_config_file = "grub"
+
+    if "prefer_grub_d" in libcalamares.job.configuration and libcalamares.job.configuration["prefer_grub_d"]:
+        possible_dir = os.path.join(root_mount_point, "etc/default/grub.d")
+        if os.path.exists(possible_dir) and os.path.isdir(possible_dir):
+            default_dir = possible_dir
+            default_config_file = "00calamares"
+
+    if not os.path.exists(default_dir):
+        try:
+            os.mkdir(default_dir)
+        except:
+            libcalamares.utils.debug("Failed to create '%r'" % default_dir)
+            raise
+
+    return os.path.join(default_dir, default_config_file)
 
 
 def modify_grub_default(partitions, root_mount_point, distributor):
@@ -54,8 +72,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         is always updated to set this value.
     :return:
     """
-    default_dir = os.path.join(root_mount_point, "etc/default")
-    default_grub = os.path.join(default_dir, "grub")
+    default_grub = get_grub_config_path(root_mount_point)
     distributor_replace = distributor.replace("'", "'\\''")
     dracut_bin = libcalamares.utils.target_env_call(
         ["sh", "-c", "which dracut"]
@@ -141,9 +158,6 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             swap_outer_mappername))
 
     distributor_line = "GRUB_DISTRIBUTOR='{!s}'".format(distributor_replace)
-
-    if not os.path.exists(default_dir):
-        os.mkdir(default_dir)
 
     have_kernel_cmd = False
     have_distributor_line = False

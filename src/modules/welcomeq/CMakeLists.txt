@@ -1,3 +1,9 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+
 # This is a re-write of the welcome module using QML view steps
 # instead of widgets.
 

@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef PLASMALNF_THEMEINFO_H
@@ -42,7 +33,8 @@ struct ThemeInfo
 
     ThemeInfo()
         : widget( nullptr )
-    {}
+    {
+    }
 
     explicit ThemeInfo( const QString& _id )
         : id( _id )
@@ -54,13 +46,14 @@ struct ThemeInfo
         : id( _id )
         , imagePath( image )
         , widget( nullptr )
-    {}
+    {
+    }
 
     // Defined in PlasmaLnfPage.cpp
     explicit ThemeInfo( const KPluginMetaData& );
 
     bool isValid() const { return !id.isEmpty(); }
-} ;
+};
 
 class ThemeInfoList : public QList< ThemeInfo >
 {
@@ -71,7 +64,9 @@ public:
         for ( ThemeInfo& i : *this )
         {
             if ( i.id == id )
+            {
                 return &i;
+            }
         }
         return nullptr;
     }
@@ -82,16 +77,15 @@ public:
         for ( const ThemeInfo& i : *this )
         {
             if ( i.id == id )
+            {
                 return &i;
+            }
         }
         return nullptr;
     }
 
     /** @brief Checks if a given @p id is in the list of themes. */
-    bool contains( const QString& id ) const
-    {
-        return findById( id ) != nullptr;
-    }
-} ;
+    bool contains( const QString& id ) const { return findById( id ) != nullptr; }
+};
 
 #endif

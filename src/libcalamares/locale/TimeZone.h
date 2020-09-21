@@ -1,206 +1,234 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
  *
  */
 
+/** @file Timezone data and models to go with it
+ *
+ * The TimeZoneData class holds information from zone.tab, about
+ * TZ names and locations (latitude and longitude) for geographic
+ * lookups.
+ *
+ * The RegionModel lists the regions of the world (about 12) and
+ * ZonesModel lists all the timezones; the RegionalZonesModel provides
+ * a way to restrict the view of timezones to those of a specific region.
+ *
+ */
 #ifndef LOCALE_TIMEZONE_H
 #define LOCALE_TIMEZONE_H
 
 #include "DllMacro.h"
 
-#include "utils/Logger.h"
+#include "locale/TranslatableString.h"
 
 #include <QAbstractListModel>
 #include <QObject>
-#include <QString>
-
-#include <memory>
+#include <QSortFilterProxyModel>
+#include <QVariant>
 
 namespace CalamaresUtils
 {
 namespace Locale
 {
+class Private;
+class RegionalZonesModel;
+class ZonesModel;
 
-/** @brief A pair of strings, one human-readable, one a key
- *
- * Given an identifier-like string (e.g. "New_York"), makes
- * a human-readable version of that and keeps a copy of the
- * identifier itself.
- *
- * This explicitly uses const char* instead of just being
- * QPair<QString, QString> because there is API that needs
- * C-style strings.
- */
-class CStringPair : public QObject
+class TimeZoneData : public QObject, TranslatableString
 {
+    friend class RegionalZonesModel;
+    friend class ZonesModel;
+
     Q_OBJECT
+
+    Q_PROPERTY( QString region READ region CONSTANT )
+    Q_PROPERTY( QString zone READ zone CONSTANT )
+    Q_PROPERTY( QString name READ tr CONSTANT )
+    Q_PROPERTY( QString countryCode READ country CONSTANT )
+
 public:
-    /// @brief An empty pair
-    CStringPair() {}
-    /// @brief Given an identifier, create the pair
-    explicit CStringPair( const char* s1 );
-    CStringPair( CStringPair&& t );
-    CStringPair( const CStringPair& );
-    virtual ~CStringPair();
+    TimeZoneData( const QString& region,
+                  const QString& zone,
+                  const QString& country,
+                  double latitude,
+                  double longitude );
+    TimeZoneData( const TimeZoneData& ) = delete;
+    TimeZoneData( TimeZoneData&& ) = delete;
 
-    /// @brief Give the localized human-readable form
-    virtual QString tr() const = 0;
-    QString key() const { return m_key; }
-
-    bool operator<( const CStringPair& other ) const { return m_key < other.m_key; }
-
-protected:
-    char* m_human = nullptr;
-    QString m_key;
-};
-
-class CStringPairList : public QList< CStringPair* >
-{
-public:
-    template < typename T >
-    T* find( const QString& key ) const
-    {
-        for ( auto* p : *this )
-        {
-            if ( p->key() == key )
-            {
-                return dynamic_cast< T* >( p );
-            }
-        }
-        return nullptr;
-    }
-};
-
-/** @brief Timezone regions (e.g. "America")
- *
- * A region has a key and a human-readable name, but also
- * a collection of associated timezone zones (TZZone, below).
- * This class is not usually constructed, but uses fromFile()
- * to load a complete tree structure of timezones.
- */
-class TZRegion : public CStringPair
-{
-    Q_OBJECT
-public:
-    using CStringPair::CStringPair;
-    virtual ~TZRegion() override;
-    TZRegion( const TZRegion& ) = delete;
     QString tr() const override;
-
-    QString region() const { return key(); }
-
-    /** @brief Create list from a zone.tab-like file
-     *
-     * Returns a list of all the regions; each region has a list
-     * of zones within that region. Dyamically, the items in the
-     * returned list are TZRegions; their zones dynamically are
-     * TZZones even though all those lists have type CStringPairList.
-     *
-     * The list owns the regions, and the regions own their own list of zones.
-     * When getting rid of the list, remember to qDeleteAll() on it.
-     */
-    static CStringPairList fromFile( const char* fileName );
-    /// @brief Calls fromFile with the standard zone.tab name
-    static const CStringPairList& fromZoneTab();
-
-    const CStringPairList& zones() const { return m_zones; }
-
-private:
-    CStringPairList m_zones;
-};
-
-/** @brief Specific timezone zones (e.g. "New_York", "New York")
- *
- * A timezone zone lives in a region, and has some associated
- * data like the country (used to map likely languages) and latitude
- * and longitude information.
- */
-class TZZone : public CStringPair
-{
-    Q_OBJECT
-public:
-    using CStringPair::CStringPair;
-    QString tr() const override;
-
-    TZZone( const QString& region, const char* zoneName, const QString& country, QString position );
 
     QString region() const { return m_region; }
     QString zone() const { return key(); }
+
     QString country() const { return m_country; }
     double latitude() const { return m_latitude; }
     double longitude() const { return m_longitude; }
 
-protected:
+private:
     QString m_region;
     QString m_country;
-    double m_latitude = 0.0, m_longitude = 0.0;
+    double m_latitude;
+    double m_longitude;
 };
 
-class CStringListModel : public QAbstractListModel
+
+/** @brief The list of timezone regions
+ *
+ * The regions are a short list of global areas (Africa, America, India ..)
+ * which contain zones.
+ */
+class DLLEXPORT RegionsModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY( int currentIndex READ currentIndex WRITE setCurrentIndex NOTIFY currentIndexChanged )
 
 public:
-    /// @brief Create empty model
-    CStringListModel() {}
-    /// @brief Create model from list (non-owning)
-    CStringListModel( CStringPairList );
+    enum Roles
+    {
+        NameRole = Qt::DisplayRole,
+        KeyRole = Qt::UserRole  // So that currentData() will get the key
+    };
+
+    RegionsModel( QObject* parent = nullptr );
+    virtual ~RegionsModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
-
     QVariant data( const QModelIndex& index, int role ) const override;
 
-    const CStringPair* item( int index ) const;
     QHash< int, QByteArray > roleNames() const override;
 
-    void setCurrentIndex( int index );
-    int currentIndex() const;
-
-    void setList( CStringPairList );
-
-    inline int indexOf( const QString& key )
-    {
-        const auto it = std::find_if(
-            m_list.constBegin(), m_list.constEnd(), [&]( const CalamaresUtils::Locale::CStringPair* item ) -> bool {
-                return item->key() == key;
-            } );
-
-        if ( it != m_list.constEnd() )
-        {
-            // distance() is usually a long long
-            return int( std::distance( m_list.constBegin(), it ) );
-        }
-        else
-        {
-            return -1;
-        }
-    }
-
+public Q_SLOTS:
+    /** @brief Provides a human-readable version of the region
+     *
+     * Returns @p region unchanged if there is no such region
+     * or no translation for the region's name.
+     */
+    QString tr( const QString& region ) const;
 
 private:
-    CStringPairList m_list;
-    int m_currentIndex = -1;
+    Private* m_private;
+};
+
+class DLLEXPORT ZonesModel : public QAbstractListModel
+{
+    Q_OBJECT
+
+public:
+    enum Roles
+    {
+        NameRole = Qt::DisplayRole,
+        KeyRole = Qt::UserRole,  // So that currentData() will get the key
+        RegionRole = Qt::UserRole + 1
+    };
+
+    ZonesModel( QObject* parent = nullptr );
+    virtual ~ZonesModel() override;
+
+    int rowCount( const QModelIndex& parent ) const override;
+    QVariant data( const QModelIndex& index, int role ) const override;
+
+    QHash< int, QByteArray > roleNames() const override;
+
+    /** @brief Iterator for the underlying list of zones
+     *
+     * Iterates over all the zones in the model. Operator * may return
+     * a @c nullptr when the iterator is not valid. Typical usage:
+     *
+     * ```
+     * for( auto it = model.begin(); it; ++it )
+     * {
+     *     const auto* zonedata = *it;
+     *     ...
+     * }
+     */
+    class Iterator
+    {
+        friend class ZonesModel;
+        Iterator( const Private* m )
+            : m_index( 0 )
+            , m_p( m )
+        {
+        }
+
+    public:
+        operator bool() const;
+        void operator++() { ++m_index; }
+        const TimeZoneData* operator*() const;
+        int index() const { return m_index; }
+
+    private:
+        int m_index;
+        const Private* m_p;
+    };
+
+    Iterator begin() const { return Iterator( m_private ); }
+
+    /** @brief Look up TZ data based on an arbitrary distance function
+     *
+     * This is a generic method that can define distance in whatever
+     * coordinate system is wanted; returns the zone with the smallest
+     * distance. The @p distanceFunc must return "the distance" for
+     * each zone. It would be polite to return something non-negative.
+     *
+     * Note: not a slot, because the parameter isn't moc-able.
+     */
+    const TimeZoneData* find( const std::function< double( const TimeZoneData* ) >& distanceFunc ) const;
+
+public Q_SLOTS:
+    /** @brief Look up TZ data based on its name.
+     *
+     * Returns @c nullptr if not found.
+     */
+    const TimeZoneData* find( const QString& region, const QString& zone ) const;
+
+    /** @brief Look up TZ data based on the location.
+     *
+     * Returns the nearest zone to the given lat and lon. This is a
+     * convenience function for calling find(), below, with a standard
+     * distance function based on the distance between the given
+     * location (lat and lon) and each zone's given location.
+     */
+    const TimeZoneData* find( double latitude, double longitude ) const;
+
+    /** @brief Look up TZ data based on the location.
+     *
+     * Returns the nearest zone, or New York. This is non-const for QML
+     * purposes, but the object should be considered const anyway.
+     */
+    QObject* lookup( double latitude, double longitude ) const;
+
+private:
+    Private* m_private;
+};
+
+class DLLEXPORT RegionalZonesModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+    Q_PROPERTY( QString region READ region WRITE setRegion NOTIFY regionChanged )
+
+public:
+    RegionalZonesModel( ZonesModel* source, QObject* parent = nullptr );
+    ~RegionalZonesModel() override;
+
+    bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
+
+    QString region() const { return m_region; }
+
+public Q_SLOTS:
+    void setRegion( const QString& r );
 
 signals:
-    void currentIndexChanged();
+    void regionChanged( const QString& );
+
+private:
+    Private* m_private;
+    QString m_region;
 };
+
 
 }  // namespace Locale
 }  // namespace CalamaresUtils

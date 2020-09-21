@@ -1,20 +1,11 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "ModuleManager.h"
@@ -113,9 +104,10 @@ ModuleManager::doInit()
                     if ( ok && !moduleName.isEmpty() && ( moduleName == currentDir.dirName() )
                          && !m_availableDescriptorsByModuleName.contains( moduleName ) )
                     {
-                        m_availableDescriptorsByModuleName.insert( moduleName, moduleDescriptorMap );
-                        m_moduleDirectoriesByModuleName.insert( moduleName,
-                                                                descriptorFileInfo.absoluteDir().absolutePath() );
+                        auto descriptor
+                            = Calamares::ModuleSystem::Descriptor::fromDescriptorData( moduleDescriptorMap );
+                        descriptor.setDirectory( descriptorFileInfo.absoluteDir().absolutePath() );
+                        m_availableDescriptorsByModuleName.insert( moduleName, descriptor );
                     }
                 }
                 else
@@ -131,8 +123,7 @@ ModuleManager::doInit()
     }
     // At this point m_availableDescriptorsByModuleName is filled with
     // the modules that were found in the search paths.
-    cDebug() << "Found" << m_availableDescriptorsByModuleName.count() << "modules"
-             << m_moduleDirectoriesByModuleName.count() << "names";
+    cDebug() << "Found" << m_availableDescriptorsByModuleName.count() << "modules";
     emit initDone();
 }
 
@@ -151,66 +142,43 @@ ModuleManager::moduleDescriptor( const QString& name )
 }
 
 Module*
-ModuleManager::moduleInstance( const QString& instanceKey )
+ModuleManager::moduleInstance( const ModuleSystem::InstanceKey& instanceKey )
 {
-    return m_loadedModulesByInstanceKey.value( ModuleSystem::InstanceKey::fromString( instanceKey ) );
+    return m_loadedModulesByInstanceKey.value( instanceKey );
 }
 
 
-/**
- * @brief Search a list of instance descriptions for one matching @p module and @p id
- *
- * @return -1 on failure, otherwise index of the instance that matches.
- */
-static int
-findCustomInstance( const Settings::InstanceDescriptionList& customInstances, const ModuleSystem::InstanceKey& m )
-{
-    for ( int i = 0; i < customInstances.count(); ++i )
-    {
-        const auto& thisInstance = customInstances[ i ];
-        if ( thisInstance.module == m.module() && thisInstance.id == m.id() )
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
-/** @brief Returns the config file name for the fiven @p instanceKey
+/** @brief Returns the config file name for the given @p instanceKey
  *
  * Custom instances have custom config files, non-custom ones
  * have a <modulename>.conf file. Returns an empty QString on
  * errors.
  */
 static QString
-getConfigFileName( const Settings::InstanceDescriptionList& customInstances,
+getConfigFileName( const Settings::InstanceDescriptionList& descriptorList,
                    const ModuleSystem::InstanceKey& instanceKey,
-                   const ModuleSystem::Descriptor& descriptor )
+                   const ModuleSystem::Descriptor& thisModule )
 {
-    if ( instanceKey.isCustom() )
+    if ( !thisModule.hasConfig() )
     {
-        int found = findCustomInstance( customInstances, instanceKey );
-
-        if ( found < 0 )
-        {
-            // This should already have been checked and failed the module already
-            return QString();
-        }
-
-        return customInstances[ found ].config;
+        // Explicitly set to no-configuration. This doesn't apply
+        // to custom instances (above) since the only reason to
+        // **have** a custom instance is to specify a different
+        // config file for more than one module.
+        return QString();
     }
-    else
+
+    for ( const auto& descriptor : descriptorList )
     {
-        if ( descriptor.value( "noconfig", false ).toBool() )
+        if ( descriptor.key() == instanceKey )
         {
-            // Explicitly set to no-configuration. This doesn't apply
-            // to custom instances (above) since the only reason to
-            // **have** a custom instance is to specify a different
-            // config file for more than one module.
-            return QString();
+            return descriptor.configFileName();
         }
-        return QString( "%1.conf" ).arg( instanceKey.module() );
     }
+
+
+    // This should already have been checked and failed the module already
+    return QString();
 }
 
 void
@@ -220,7 +188,7 @@ ModuleManager::loadModules()
     {
         cWarning() << "Some installed modules have unmet dependencies.";
     }
-    Settings::InstanceDescriptionList customInstances = Settings::instance()->customModuleInstances();
+    Settings::InstanceDescriptionList customInstances = Settings::instance()->moduleInstances();
 
     QStringList failedModules;
     const auto modulesSequence = Settings::instance()->modulesSequence();
@@ -228,29 +196,18 @@ ModuleManager::loadModules()
     {
         ModuleSystem::Action currentAction = modulePhase.first;
 
-        foreach ( const QString& moduleEntry, modulePhase.second )
+        for ( const auto& instanceKey : modulePhase.second )
         {
-            auto instanceKey = ModuleSystem::InstanceKey::fromString( moduleEntry );
             if ( !instanceKey.isValid() )
             {
-                cError() << "Wrong module entry format for module" << moduleEntry;
-                failedModules.append( moduleEntry );
+                cError() << "Wrong module entry format for module" << instanceKey;
+                failedModules.append( instanceKey.toString() );
                 continue;
-            }
-            if ( instanceKey.isCustom() )
-            {
-                int found = findCustomInstance( customInstances, instanceKey );
-                if ( found < 0 )
-                {
-                    cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
-                    failedModules.append( moduleEntry );
-                    continue;
-                }
             }
 
             ModuleSystem::Descriptor descriptor
                 = m_availableDescriptorsByModuleName.value( instanceKey.module(), ModuleSystem::Descriptor() );
-            if ( descriptor.isEmpty() )
+            if ( !descriptor.isValid() )
             {
                 cError() << "Module" << instanceKey.toString() << "not found in module search paths."
                          << Logger::DebugList( m_paths );
@@ -287,11 +244,8 @@ ModuleManager::loadModules()
             }
             else
             {
-                thisModule
-                    = Calamares::moduleFromDescriptor( descriptor,
-                                                       instanceKey.id(),
-                                                       configFileName,
-                                                       m_moduleDirectoriesByModuleName.value( instanceKey.module() ) );
+                thisModule = Calamares::moduleFromDescriptor(
+                    descriptor, instanceKey.id(), configFileName, descriptor.directory() );
                 if ( !thisModule )
                 {
                     cError() << "Module" << instanceKey.toString() << "cannot be created from descriptor"
@@ -320,7 +274,7 @@ ModuleManager::loadModules()
                     ViewManager::instance()->addViewStep( evs );
                 }
 
-                evs->appendJobModuleInstanceKey( instanceKey.toString() );
+                evs->appendJobModuleInstanceKey( instanceKey );
             }
         }
     }
@@ -336,7 +290,7 @@ ModuleManager::loadModules()
 }
 
 bool
-ModuleManager::addModule( Module *module )
+ModuleManager::addModule( Module* module )
 {
     if ( !module )
     {
@@ -344,7 +298,7 @@ ModuleManager::addModule( Module *module )
     }
     if ( !module->instanceKey().isValid() )
     {
-        cWarning() << "Module" << module->location() << Logger::Pointer(module) << "has invalid instance key.";
+        cWarning() << "Module" << module->location() << Logger::Pointer( module ) << "has invalid instance key.";
         return false;
     }
     if ( !checkModuleDependencies( *module ) )
@@ -383,13 +337,15 @@ ModuleManager::checkRequirements()
 
     RequirementsChecker* rq = new RequirementsChecker( modules, m_requirementsModel, this );
     connect( rq, &RequirementsChecker::done, rq, &RequirementsChecker::deleteLater );
-    connect( rq, &RequirementsChecker::done, this, [=](){ this->requirementsComplete( m_requirementsModel->satisfiedMandatory() ); } );
+    connect( rq, &RequirementsChecker::done, this, [=]() {
+        this->requirementsComplete( m_requirementsModel->satisfiedMandatory() );
+    } );
 
     QTimer::singleShot( 0, rq, &RequirementsChecker::run );
 }
 
 static QStringList
-missingRequiredModules( const QStringList& required, const QMap< QString, QVariantMap >& available )
+missingRequiredModules( const QStringList& required, const QMap< QString, ModuleSystem::Descriptor >& available )
 {
     QStringList l;
     for ( const QString& depName : required )
@@ -417,12 +373,11 @@ ModuleManager::checkDependencies()
         for ( auto it = m_availableDescriptorsByModuleName.begin(); it != m_availableDescriptorsByModuleName.end();
               ++it )
         {
-            QStringList unmet = missingRequiredModules( it->value( "requiredModules" ).toStringList(),
-                                                        m_availableDescriptorsByModuleName );
+            QStringList unmet = missingRequiredModules( it->requiredModules(), m_availableDescriptorsByModuleName );
 
             if ( unmet.count() > 0 )
             {
-                QString moduleName = it->value( "name" ).toString();
+                QString moduleName = it->name();
                 somethingWasRemovedBecauseOfUnmetDependencies = true;
                 m_availableDescriptorsByModuleName.erase( it );
                 numberRemoved++;
@@ -445,8 +400,7 @@ ModuleManager::checkModuleDependencies( const Module& m )
     }
 
     bool allRequirementsFound = true;
-    QStringList requiredModules
-        = m_availableDescriptorsByModuleName[ m.name() ].value( "requiredModules" ).toStringList();
+    QStringList requiredModules = m_availableDescriptorsByModuleName[ m.name() ].requiredModules();
 
     for ( const QString& required : requiredModules )
     {

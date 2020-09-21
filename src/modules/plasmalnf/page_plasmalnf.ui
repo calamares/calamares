@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>
+SPDX-FileCopyrightText: 2017 Adriaan de Groot &lt;groot@kde.org&gt;
+SPDX-License-Identifier: GPL-3.0-or-later
+ </author>
  <class>PlasmaLnfPage</class>
  <widget class="QWidget" name="PlasmaLnfPage">
   <property name="geometry">

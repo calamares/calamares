@@ -1,21 +1,12 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2014 Aurélien Gâteau <agateau@kde.org>
+ *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef PARTITIONLABELSVIEW_H
@@ -79,8 +70,7 @@ private:
     void drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent );
     QSize sizeForAllLabels( int maxLineWidth ) const;
     QSize sizeForLabel( const QStringList& text ) const;
-    void drawLabel( QPainter* painter, const QStringList& text, const QColor& color,
-                    const QPoint& pos , bool selected );
+    void drawLabel( QPainter* painter, const QStringList& text, const QColor& color, const QPoint& pos, bool selected );
     QModelIndexList getIndexesToDraw( const QModelIndex& parent ) const;
     QStringList buildTexts( const QModelIndex& index ) const;
 
@@ -91,4 +81,4 @@ private:
     QPersistentModelIndex m_hoveredIndex;
 };
 
-#endif // PARTITIONLABELSVIEW_H
+#endif  // PARTITIONLABELSVIEW_H

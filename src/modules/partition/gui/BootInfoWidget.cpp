@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2015-2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 
@@ -24,16 +15,16 @@
 #include "utils/Retranslator.h"
 
 #include <QDir>
-#include <QLabel>
 #include <QHBoxLayout>
+#include <QLabel>
 
 BootInfoWidget::BootInfoWidget( QWidget* parent )
     : QWidget( parent )
     , m_bootIcon( new QLabel )
     , m_bootLabel( new QLabel )
 {
-    m_bootIcon->setObjectName("bootInfoIcon");
-    m_bootLabel->setObjectName("bootInfoLabel");
+    m_bootIcon->setObjectName( "bootInfoIcon" );
+    m_bootLabel->setObjectName( "bootInfoLabel" );
     QHBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
 
@@ -46,16 +37,15 @@ BootInfoWidget::BootInfoWidget( QWidget* parent )
 
     m_bootIcon->setMargin( 0 );
     m_bootIcon->setFixedSize( iconSize );
-    m_bootIcon->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::BootEnvironment,
-                                                          CalamaresUtils::Original,
-                                                          iconSize ) );
-    
+    m_bootIcon->setPixmap(
+        CalamaresUtils::defaultPixmap( CalamaresUtils::BootEnvironment, CalamaresUtils::Original, iconSize ) );
+
     QFontMetrics fm = QFontMetrics( QFont() );
     m_bootLabel->setMinimumWidth( fm.boundingRect( "BIOS" ).width() + CalamaresUtils::defaultFontHeight() / 2 );
     m_bootLabel->setAlignment( Qt::AlignCenter );
 
     QPalette palette;
-    palette.setBrush( QPalette::Foreground, QColor( "#4D4D4D" ) ); //dark grey
+    palette.setBrush( QPalette::Foreground, QColor( "#4D4D4D" ) );  //dark grey
 
     m_bootIcon->setAutoFillBackground( true );
     m_bootLabel->setAutoFillBackground( true );
@@ -100,7 +90,6 @@ BootInfoWidget::retranslateUi()
                           "This is automatic, unless "
                           "you choose manual partitioning, in which case you must "
                           "set it up on your own." );
-
     }
     m_bootLabel->setToolTip( bootToolTip );
 }

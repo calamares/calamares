@@ -1,22 +1,9 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2019 Adriaan de Groot <groot@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
  *
  */
 
@@ -162,18 +149,23 @@ Manager::hasInternet()
 bool
 Manager::checkHasInternet()
 {
-    bool hasInternet = d->nam()->networkAccessible() == QNetworkAccessManager::Accessible;
 
-    if ( !hasInternet && ( d->nam()->networkAccessible() == QNetworkAccessManager::UnknownAccessibility ) )
+    d->m_hasInternet = synchronousPing( d->m_hasInternetUrl );
+
+// For earlier Qt versions (< 5.15.0), set the accessibility flag to
+// NotAccessible if synchronous ping has failed, so that any module
+// using Qt's networkAccessible method to determine whether or not
+// internet connection is actually avaialable won't get confused over
+// virtualization technologies.
+#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
+    if ( !d->m_hasInternet )
     {
-        hasInternet = synchronousPing( d->m_hasInternetUrl );
+        d->nam()->setNetworkAccessible( QNetworkAccessManager::NotAccessible );
     }
-    if ( hasInternet != d->m_hasInternet )
-    {
-        d->m_hasInternet = hasInternet;
-        emit hasInternetChanged( hasInternet );
-    }
-    return hasInternet;
+#endif
+
+    emit hasInternetChanged( d->m_hasInternet );
+    return d->m_hasInternet;
 }
 
 void

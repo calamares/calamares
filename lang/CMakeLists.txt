@@ -1,25 +1,20 @@
-# === This file is part of Calamares - <https://github.com/calamares> ===
+# === This file is part of Calamares - <https://calamares.io> ===
 #
-#   Calamares is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
-#
-#   Calamares is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
-#
-#   SPDX-License-Identifier: GPL-3.0-or-later
-#   License-Filename: LICENSE
+#   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
 #
 ###
+
+include( CalamaresAddTranslations )
 
 find_package(Qt5 COMPONENTS Xml)
 if( Qt5Xml_FOUND )
     add_executable(txload txload.cpp)
     target_link_libraries(txload Qt5::Xml)
 endif()
+
+install_calamares_gettext_translations( python
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/lang/python
+    FILENAME python.mo
+    RENAME calamares-python.mo
+)

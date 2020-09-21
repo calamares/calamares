@@ -1,0 +1,85 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Calamares
+Source: https://github.com/calamares/calamares.git
+
+### ACTUAL LICENSES
+#
+# Images in the locale module are a bit unclear; they were added
+# by Teo in 2014 but I suspect they came from somewhere else.
+#
+Files: src/modules/locale/images/timezone*.png
+License: GPL-3.0-or-later
+Copyright: 2014 Teo Mrnjavac <teo@kde.org>
+
+Files: man/calamares.8
+License: GPL-3.0-or-later
+Copyright: 2017 Jonathan Carter <jcarter@linux.com>
+
+### BUILD ARTIFACTS / NOT SOURCE
+#
+# QRC Files are basically build artifacts
+#
+FILES: src/modules/*/*.qrc
+License: CC0-1.0
+Copyright: no
+
+# GitHub issue templates are not part of the source
+#
+Files: .github/ISSUE_TEMPLATE/*
+License: CC0-1.0
+Copyright: no
+
+# Packaging information
+#
+Files: data/FreeBSD/distinfo data/FreeBSD/pkg-descr data/FreeBSD/pkg-plist
+License: CC0-1.0
+Copyright: no
+
+# Example data for timezones, which is copied out of zoneinfo,
+# which has this notice:
+#
+# This file is in the public domain, so clarified as of
+# 2009-05-17 by Arthur David Olson.
+#
+Files: data/example-root/usr/share/zoneinfo/Zulu data/example-root/usr/share/zoneinfo/UTC data/example-root/usr/share/zoneinfo/America/New_York
+License: CC0-1.0
+Copyright: no
+
+### TRANSLATIONS
+#
+# .desktop files and template change only with translation
+#
+FILES: calamares.desktop*
+License: CC0-1.0
+Copyright: no
+
+# Transifex translations derive from the source, and have no
+# embedded copyright information.
+#
+Files: lang/*.ts
+License: GPL-3.0-or-later
+Copyright: 2020 Calamares authors and translators
+
+# Translations of branding slideshow are the same
+Files: src/branding/default/lang/*.ts
+License: GPL-3.0-or-later
+Copyright: 2020 Calamares authors and translators
+
+# Python translation files have some copyright information, but
+# it's generally very sketchy.
+#
+Files: lang/python.pot
+License: GPL-3.0-or-later
+Copyright: 2020 Calamares authors and translators
+
+Files: lang/python/*/LC_MESSAGES/python.po
+License: GPL-3.0-or-later
+Copyright: 2020 Calamares authors and translators
+
+Files: src/modules/dummypythonqt/lang/dummypythonqt.pot
+License: GPL-3.0-or-later
+Copyright: 2020 Calamares authors and translators
+
+Files: src/modules/dummypythonqt/lang/*/LC_MESSAGES/dummypythonqt.po
+License: GPL-3.0-or-later
+Copyright: 2020 Calamares authors and translators

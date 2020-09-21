@@ -1,7 +1,18 @@
-file( GLOB SUBDIRECTORIES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*" )
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+
+# Install "slideshows" and other QML-sources for Calamares.
+#
+# In practice, in the central source repositoy, this means
+# just-install-the-slideshow-example. For alternative slideshows,
+# see the approach in the calamares-extensions repository.
 
 # Iterate over all the subdirectories which have a qmldir file, copy them over to the build dir,
 # and install them into share/calamares/qml/calamares
+file( GLOB SUBDIRECTORIES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*" )
 foreach( SUBDIRECTORY ${SUBDIRECTORIES} )
     if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}"
         AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/qmldir" )

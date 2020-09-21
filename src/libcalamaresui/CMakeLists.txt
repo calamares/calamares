@@ -1,3 +1,9 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+
 # libcalamaresui is the GUI part of Calamares, which includes handling
 # view modules, view steps, widgets, and branding.
 

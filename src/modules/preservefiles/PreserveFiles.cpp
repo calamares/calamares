@@ -1,8 +1,7 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *  SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *  SPDX-License-Identifier: GPL-3.0-or-later
- *  License-Filename: LICENSE
  *
  */
 
@@ -138,7 +137,7 @@ PreserveFiles::exec()
         }
         if ( it.type == ItemType::Config )
         {
-            if ( Calamares::JobQueue::instance()->globalStorage()->save( dest ) )
+            if ( Calamares::JobQueue::instance()->globalStorage()->saveJson( dest ) )
             {
                 cWarning() << "Could not write config for" << dest;
             }
@@ -203,7 +202,8 @@ PreserveFiles::setConfigurationMap( const QVariantMap& configurationMap )
         {
             QString filename = li.toString();
             if ( !filename.isEmpty() )
-                m_items.append( Item { filename, filename, CalamaresUtils::Permissions( defaultPermissions ), ItemType::Path } );
+                m_items.append(
+                    Item { filename, filename, CalamaresUtils::Permissions( defaultPermissions ), ItemType::Path } );
             else
             {
                 cDebug() << "Empty filename for preservefiles, item" << c;

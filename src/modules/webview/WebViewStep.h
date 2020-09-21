@@ -1,21 +1,12 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2015, Rohan Garg <rohan@garg.io>
- *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2015 Rohan Garg <rohan@garg.io>
+ *   SPDX-FileCopyrightText: 2016 Teo Mrnjavac <teo@kde.org>
+ *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef WEBVIEWPLUGIN_H
@@ -23,17 +14,23 @@
 
 #include "WebViewConfig.h"
 
+#include "DllMacro.h"
 #include "utils/PluginFactory.h"
 #include "viewpages/ViewStep.h"
-
-#include "DllMacro.h"
 
 #include <QVariantMap>
 
 #ifdef WEBVIEW_WITH_WEBKIT
-#define C_QWEBVIEW QWebView
-#else
-#define C_QWEBVIEW QWebEngineView
+#  define C_QWEBVIEW QWebView
+#endif
+#ifdef WEBVIEW_WITH_WEBENGINE
+#  ifdef C_QWEBVIEW
+#    error Both WEBENGINE and WEBKIT enabled
+#  endif
+#  define C_QWEBVIEW QWebEngineView
+#endif
+#ifndef C_QWEBVIEW
+#  error Neither WEBENGINE nor WEBKIT enabled
 #endif
 
 class C_QWEBVIEW;
@@ -63,11 +60,11 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    C_QWEBVIEW *m_view;
+    C_QWEBVIEW* m_view;
     QString m_url;
     QString m_prettyName;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( WebViewStepFactory )
 
-#endif // WEBVIEWPLUGIN_H
+#endif  // WEBVIEWPLUGIN_H

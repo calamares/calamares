@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>
+SPDX-FileCopyrightText: 2016 Teo Mrnjavac &lt;teo@kde.org&gt;
+SPDX-License-Identifier: GPL-3.0-or-later
+ </author>
  <class>EncryptWidget</class>
  <widget class="QWidget" name="EncryptWidget">
   <property name="geometry">

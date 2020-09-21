@@ -1,19 +1,10 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2018, Caio Jordão Carvalho <caiojcarvalho@gmail.com>
+ *   SPDX-FileCopyrightText: 2018 Caio Jordão Carvalho <caiojcarvalho@gmail.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "VolumeGroupBaseDialog.h"
@@ -30,46 +21,42 @@
 #include <QPushButton>
 #include <QSpinBox>
 
-VolumeGroupBaseDialog::VolumeGroupBaseDialog( QString& vgName,
-                                              QVector< const Partition* > pvList,
-                                              QWidget *parent )
-    : QDialog(parent)
-    , ui(new Ui::VolumeGroupBaseDialog)
-    , m_vgNameValue(vgName)
-    , m_totalSizeValue(0)
-    , m_usedSizeValue(0)
+VolumeGroupBaseDialog::VolumeGroupBaseDialog( QString& vgName, QVector< const Partition* > pvList, QWidget* parent )
+    : QDialog( parent )
+    , ui( new Ui::VolumeGroupBaseDialog )
+    , m_vgNameValue( vgName )
+    , m_totalSizeValue( 0 )
+    , m_usedSizeValue( 0 )
 {
-    ui->setupUi(this);
+    ui->setupUi( this );
 
     for ( const Partition* p : pvList )
+    {
         ui->pvList->addItem( new ListPhysicalVolumeWidgetItem( p, false ) );
+    }
 
-    ui->vgType->addItems( QStringList() << "LVM" << "RAID" );
-    ui->vgType->setCurrentIndex(0);
+    ui->vgType->addItems( QStringList() << "LVM"
+                                        << "RAID" );
+    ui->vgType->setCurrentIndex( 0 );
 
-    QRegularExpression re(R"(^(?!_|\.)[\w\-.+]+)");
+    QRegularExpression re( R"(^(?!_|\.)[\w\-.+]+)" );
     ui->vgName->setValidator( new QRegularExpressionValidator( re, this ) );
     ui->vgName->setText( m_vgNameValue );
 
     updateOkButton();
     updateTotalSize();
 
-    connect( ui->pvList, &QListWidget::itemChanged, this,
-             [&](QListWidgetItem*) {
-                updateTotalSize();
-                updateOkButton();
-            } );
+    connect( ui->pvList, &QListWidget::itemChanged, this, [&]( QListWidgetItem* ) {
+        updateTotalSize();
+        updateOkButton();
+    } );
 
-    connect( ui->peSize, qOverload<int>(&QSpinBox::valueChanged), this,
-             [&](int) {
-                updateTotalSectors();
-                updateOkButton();
-            });
+    connect( ui->peSize, qOverload< int >( &QSpinBox::valueChanged ), this, [&]( int ) {
+        updateTotalSectors();
+        updateOkButton();
+    } );
 
-    connect( ui->vgName, &QLineEdit::textChanged, this,
-             [&](const QString&) {
-                updateOkButton();
-            });
+    connect( ui->vgName, &QLineEdit::textChanged, this, [&]( const QString& ) { updateOkButton(); } );
 }
 
 VolumeGroupBaseDialog::~VolumeGroupBaseDialog()
@@ -82,11 +69,14 @@ VolumeGroupBaseDialog::checkedItems() const
 {
     QVector< const Partition* > items;
 
-    for ( int i = 0; i < ui->pvList->count(); i++) {
-        ListPhysicalVolumeWidgetItem* item = dynamic_cast< ListPhysicalVolumeWidgetItem* >( ui->pvList->item(i) );
+    for ( int i = 0; i < ui->pvList->count(); i++ )
+    {
+        ListPhysicalVolumeWidgetItem* item = dynamic_cast< ListPhysicalVolumeWidgetItem* >( ui->pvList->item( i ) );
 
         if ( item && item->checkState() == Qt::Checked )
+        {
             items << item->partition();
+        }
     }
 
     return items;
@@ -101,10 +91,8 @@ VolumeGroupBaseDialog::isSizeValid() const
 void
 VolumeGroupBaseDialog::updateOkButton()
 {
-    okButton()->setEnabled(isSizeValid() &&
-                         !checkedItems().empty() &&
-                         !ui->vgName->text().isEmpty() &&
-                         ui->peSize->value() > 0);
+    okButton()->setEnabled( isSizeValid() && !checkedItems().empty() && !ui->vgName->text().isEmpty()
+                            && ui->peSize->value() > 0 );
 }
 
 void
@@ -112,7 +100,7 @@ VolumeGroupBaseDialog::setUsedSizeValue( qint64 usedSize )
 {
     m_usedSizeValue = usedSize;
 
-    ui->usedSize->setText( Capacity::formatByteSize(m_usedSizeValue) );
+    ui->usedSize->setText( Capacity::formatByteSize( m_usedSizeValue ) );
 }
 
 void
@@ -126,10 +114,14 @@ VolumeGroupBaseDialog::updateTotalSize()
 {
     m_totalSizeValue = 0;
 
-    for ( const Partition *p : checkedItems())
-        m_totalSizeValue += p->capacity() - p->capacity() % (ui->peSize->value() * Capacity::unitFactor(Capacity::Unit::Byte, Capacity::Unit::MiB));
+    for ( const Partition* p : checkedItems() )
+    {
+        m_totalSizeValue += p->capacity()
+            - p->capacity()
+                % ( ui->peSize->value() * Capacity::unitFactor( Capacity::Unit::Byte, Capacity::Unit::MiB ) );
+    }
 
-    ui->totalSize->setText(Capacity::formatByteSize(m_totalSizeValue));
+    ui->totalSize->setText( Capacity::formatByteSize( m_totalSizeValue ) );
 
     updateTotalSectors();
 }
@@ -139,10 +131,12 @@ VolumeGroupBaseDialog::updateTotalSectors()
 {
     qint64 totalSectors = 0;
 
-    qint64 extentSize = ui->peSize->value() * Capacity::unitFactor(Capacity::Unit::Byte, Capacity::Unit::MiB);
+    qint64 extentSize = ui->peSize->value() * Capacity::unitFactor( Capacity::Unit::Byte, Capacity::Unit::MiB );
 
     if ( extentSize > 0 )
+    {
         totalSectors = m_totalSizeValue / extentSize;
+    }
 
     ui->totalSectors->setText( QString::number( totalSectors ) );
 }

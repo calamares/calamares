@@ -1,27 +1,13 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
- *
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
+ *
  *
  */
-
-#include "Tests.h"
 
 #include "CalamaresUtilsSystem.h"
 #include "Entropy.h"
@@ -29,6 +15,7 @@
 #include "RAII.h"
 #include "Traits.h"
 #include "UMask.h"
+#include "Variant.h"
 #include "Yaml.h"
 
 #include "GlobalStorage.h"
@@ -42,7 +29,44 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-QTEST_GUILESS_MAIN( LibCalamaresTests )
+class LibCalamaresTests : public QObject
+{
+    Q_OBJECT
+public:
+    LibCalamaresTests();
+    ~LibCalamaresTests() override;
+
+private Q_SLOTS:
+    void initTestCase();
+    void testDebugLevels();
+
+    void testLoadSaveYaml();  // Just settings.conf
+    void testLoadSaveYamlExtended();  // Do a find() in the src dir
+
+    void testCommands();
+
+    /** @brief Test that all the UMask objects work correctly. */
+    void testUmask();
+
+    /** @brief Tests the entropy functions. */
+    void testEntropy();
+    void testPrintableEntropy();
+    void testOddSizedPrintable();
+
+    /** @brief Tests the RAII bits. */
+    void testBoolSetter();
+
+    /** @brief Tests the Traits bits. */
+    void testTraits();
+
+    void testVariantStringListCode();
+    void testVariantStringListYAMLDashed();
+    void testVariantStringListYAMLBracketed();
+
+
+private:
+    void recursiveCompareMap( const QVariantMap& a, const QVariantMap& b, int depth );
+};
 
 LibCalamaresTests::LibCalamaresTests() {}
 
@@ -148,6 +172,7 @@ LibCalamaresTests::recursiveCompareMap( const QVariantMap& a, const QVariantMap&
 void
 LibCalamaresTests::testLoadSaveYamlExtended()
 {
+    Logger::setupLogLevel( Logger::LOGDEBUG );
     bool loaded_ok;
     for ( const auto& confname : findConf( QDir( "../src" ) ) )
     {
@@ -322,47 +347,141 @@ LibCalamaresTests::testBoolSetter()
  * which should call do_the_thing() of its argument if it exists.
  */
 
-struct c1 { int do_the_thing() { return 2; } };
-struct c2 { };
+struct c1
+{
+    int do_the_thing() { return 2; }
+};
+struct c2
+{
+};
 
-DECLARE_HAS_METHOD(do_the_thing)
+DECLARE_HAS_METHOD( do_the_thing )
 
 struct Thinginator
 {
 public:
     /// When class T has function do_the_thing()
-    template< class T > int thingify( T& t, const std::true_type& )
+    template < class T >
+    int thingify( T& t, const std::true_type& )
     {
         return t.do_the_thing();
     }
 
-    template< class T > int thingify( T&, const std::false_type& )
+    template < class T >
+    int thingify( T&, const std::false_type& )
     {
         return -1;
     }
 
-    template< class T > int thingify( T& t )
+    template < class T >
+    int thingify( T& t )
     {
-        return thingify(t, has_do_the_thing<T>{});
+        return thingify( t, has_do_the_thing< T > {} );
     }
-} ;
+};
 
 
 void
 LibCalamaresTests::testTraits()
 {
-    has_do_the_thing<c1> x{};
-    has_do_the_thing<c2> y{};
+    has_do_the_thing< c1 > x {};
+    has_do_the_thing< c2 > y {};
 
-    QVERIFY(x);
-    QVERIFY(!y);
+    QVERIFY( x );
+    QVERIFY( !y );
 
-    c1 c1{};
-    c2 c2{};
+    c1 c1 {};
+    c2 c2 {};
 
-    QCOMPARE(c1.do_the_thing(), 2);
+    QCOMPARE( c1.do_the_thing(), 2 );
 
     Thinginator t;
-    QCOMPARE(t.thingify(c1), 2);  // Calls c1::do_the_thing()
-    QCOMPARE(t.thingify(c2), -1);
+    QCOMPARE( t.thingify( c1 ), 2 );  // Calls c1::do_the_thing()
+    QCOMPARE( t.thingify( c2 ), -1 );
 }
+
+void
+LibCalamaresTests::testVariantStringListCode()
+{
+    using namespace CalamaresUtils;
+    const QString key( "strings" );
+    {
+        // Things that are not stringlists
+        QVariantMap m;
+        QCOMPARE( getStringList( m, key ), QStringList {} );
+        m.insert( key, 17 );
+        QCOMPARE( getStringList( m, key ), QStringList {} );
+        m.insert( key, QString( "more strings" ) );
+        QCOMPARE( getStringList( m, key ),
+                  QStringList { "more strings" } );  // A single string **can** be considered a stringlist!
+        m.insert( key, QVariant {} );
+        QCOMPARE( getStringList( m, key ), QStringList {} );
+    }
+
+    {
+        // Things that are stringlists
+        QVariantMap m;
+        m.insert( key, QStringList { "aap", "noot" } );
+        QVERIFY( getStringList( m, key ).contains( "aap" ) );
+        QVERIFY( !getStringList( m, key ).contains( "mies" ) );
+    }
+}
+
+void
+LibCalamaresTests::testVariantStringListYAMLDashed()
+{
+    using namespace CalamaresUtils;
+    const QString key( "strings" );
+
+    // Looks like a stringlist to me
+    QTemporaryFile f;
+    QVERIFY( f.open() );
+    f.write( R"(---
+strings:
+    - aap
+    - noot
+    - mies
+)" );
+    f.close();
+    bool ok = false;
+    QVariantMap m = loadYaml( f.fileName(), &ok );
+
+    QVERIFY( ok );
+    QCOMPARE( m.count(), 1 );
+    QVERIFY( m.contains( key ) );
+
+    QVERIFY( getStringList( m, key ).contains( "aap" ) );
+    QVERIFY( getStringList( m, key ).contains( "mies" ) );
+    QVERIFY( !getStringList( m, key ).contains( "lam" ) );
+}
+
+void
+LibCalamaresTests::testVariantStringListYAMLBracketed()
+{
+    using namespace CalamaresUtils;
+    const QString key( "strings" );
+
+    // Looks like a stringlist to me
+    QTemporaryFile f;
+    QVERIFY( f.open() );
+    f.write( R"(---
+strings: [ aap, noot, mies ]
+)" );
+    f.close();
+    bool ok = false;
+    QVariantMap m = loadYaml( f.fileName(), &ok );
+
+    QVERIFY( ok );
+    QCOMPARE( m.count(), 1 );
+    QVERIFY( m.contains( key ) );
+
+    QVERIFY( getStringList( m, key ).contains( "aap" ) );
+    QVERIFY( getStringList( m, key ).contains( "mies" ) );
+    QVERIFY( !getStringList( m, key ).contains( "lam" ) );
+}
+
+QTEST_GUILESS_MAIN( LibCalamaresTests )
+
+#include "utils/moc-warnings.h"
+
+#include "Tests.moc"

@@ -1,26 +1,20 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   Copyright 2019-2020, Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019-2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
  *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
+ *   Calamares is Free Software: see the License-Identifier above.
  *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "Config.h"
 
 #include "Branding.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "Settings.h"
 #include "geoip/Handler.h"
+#include "locale/Global.h"
 #include "locale/Lookup.h"
 #include "modulesystem/ModuleManager.h"
 #include "utils/Logger.h"
@@ -195,7 +189,12 @@ Config::setLocaleIndex( int index )
 
     QLocale::setDefault( selectedLocale );
     CalamaresUtils::installTranslator( selectedLocale, Calamares::Branding::instance()->translationsDirectory() );
-
+    if ( Calamares::JobQueue::instance() && Calamares::JobQueue::instance()->globalStorage() )
+    {
+        CalamaresUtils::Locale::insertGS( *Calamares::JobQueue::instance()->globalStorage(),
+                                          QStringLiteral( "LANG" ),
+                                          CalamaresUtils::translatorLocaleName() );
+    }
     emit localeIndexChanged( m_localeIndex );
 }
 

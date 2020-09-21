@@ -1,5 +1,8 @@
 #! /bin/sh
 #
+#   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
 # Travis build driver script:
 #  - the regular CI runs, triggered by commits,  run a script that builds
 #    and installs calamares, and then runs the tests.

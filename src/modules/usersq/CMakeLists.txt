@@ -1,0 +1,50 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+if( NOT WITH_QML )
+    calamares_skip_module( "usersq (QML is not supported in this build)" )
+    return()
+endif()
+
+find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core DBus Network )
+find_package( Crypt REQUIRED )
+
+# Add optional libraries here
+set( USER_EXTRA_LIB )
+set( _users ${CMAKE_CURRENT_SOURCE_DIR}/../users )
+
+include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui ${CMAKE_CURRENT_SOURCE_DIR}/../../libcalamares ${_users} )
+
+find_package( LibPWQuality )
+set_package_properties(
+    LibPWQuality PROPERTIES
+    PURPOSE "Extra checks of password quality"
+)
+
+if( LibPWQuality_FOUND )
+    list( APPEND USER_EXTRA_LIB ${LibPWQuality_LIBRARIES} )
+    include_directories( ${LibPWQuality_INCLUDE_DIRS} )
+    add_definitions( -DCHECK_PWQUALITY -DHAVE_LIBPWQUALITY )
+endif()
+
+calamares_add_plugin( usersq
+    TYPE viewmodule
+    EXPORT_MACRO PLUGINDLLEXPORT_PRO
+    SOURCES
+		${_users}/Config.cpp
+		${_users}/CreateUserJob.cpp
+        ${_users}/SetPasswordJob.cpp
+        UsersQmlViewStep.cpp
+        ${_users}/SetHostNameJob.cpp
+        ${_users}/CheckPWQuality.cpp
+    RESOURCES
+        usersq.qrc
+    LINK_PRIVATE_LIBRARIES
+        calamaresui
+        ${CRYPT_LIBRARIES}
+        ${USER_EXTRA_LIB}
+        Qt5::DBus
+    SHARED_LIB
+)

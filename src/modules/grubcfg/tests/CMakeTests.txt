@@ -1,12 +1,19 @@
+# SPDX-FileCopyrightText: no
+# SPDX-License-Identifier: CC0-1.0
+#
 # Special cases for grubcfg configuration tests:
 # - 2.global specifies /tmp/calamares as the rootMountPath,
 #   so we end up editing files there. Create the directory
 #   beforehand, so the test doesn't blow up.
-set(_grub_root /tmp/calamares/etc/default)
-set(_grub_file ${_grub_root}/bogus)
 
 add_test(
     NAME make-grubcfg-dirs
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${_grub_root}
+    COMMAND ${CMAKE_COMMAND} -E make_directory
+        /tmp/calamares/grubcfg-test-2/etc/default
+        /tmp/calamares/grubcfg-test-3/etc/default
+        /tmp/calamares/grubcfg-test-4/etc/default/grub.d
     )
 set_tests_properties(load-grubcfg-2 PROPERTIES DEPENDS make-grubcfg-dirs)
+set_tests_properties(load-grubcfg-3 PROPERTIES DEPENDS make-grubcfg-dirs)
+set_tests_properties(load-grubcfg-4 PROPERTIES DEPENDS make-grubcfg-dirs)
+

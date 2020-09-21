@@ -1,9 +1,8 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2014-2016 Teo Mrnjavac <teo@kde.org>
  *   SPDX-FileCopyrightText: 2018 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
  */
 
 #include "CreateUserJob.h"
@@ -177,7 +176,7 @@ CreateUserJob::exec()
 
         if ( fileResult )
         {
-            if ( CalamaresUtils::Permissions::apply( fileResult.path(), 0440 ) )
+            if ( !CalamaresUtils::Permissions::apply( fileResult.path(), 0440 ) )
             {
                 return Calamares::JobResult::error( tr( "Cannot chmod sudoers file." ) );
             }
@@ -196,7 +195,7 @@ CreateUserJob::exec()
     {
         groupsForThisUser << gs->value( "autologinGroup" ).toString();
     }
-    ensureGroupsExistInTarget( m_defaultGroups, availableGroups );
+    ensureGroupsExistInTarget( groupsForThisUser, availableGroups );
 
     // If we're looking to reuse the contents of an existing /home.
     // This GS setting comes from the **partitioning** module.

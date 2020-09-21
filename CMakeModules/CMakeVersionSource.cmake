@@ -1,3 +1,10 @@
+# === This file is part of Calamares - <https://calamares.io> ===
+#
+#   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
+#   SPDX-License-Identifier: BSD-2-Clause
+#
+###
+#
 # Try to identify the current development source version.
 set(CMAKE_VERSION_SOURCE "")
 if(EXISTS ${CMAKE_SOURCE_DIR}/.git/HEAD)

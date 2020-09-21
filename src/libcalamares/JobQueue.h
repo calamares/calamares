@@ -1,22 +1,9 @@
-/* === This file is part of Calamares - <https://github.com/calamares> ===
- * 
+/* === This file is part of Calamares - <https://calamares.io> ===
+ *
  *   SPDX-FileCopyrightText: 2014-2015 Teo Mrnjavac <teo@kde.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
- *
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
+ *
+ *   Calamares is Free Software: see the License-Identifier above.
  *
  */
 
@@ -30,7 +17,6 @@
 
 namespace Calamares
 {
-
 class GlobalStorage;
 class JobThread;
 
@@ -45,25 +31,63 @@ public:
 
     GlobalStorage* globalStorage() const;
 
-    void enqueue( const job_ptr& job );
-    void enqueue( const JobList& jobs );
+    /** @brief Queues up jobs from a single module source
+     *
+     * The total weight of the jobs is spread out to fill the weight
+     * of the module.
+     */
+    void enqueue( int moduleWeight, const JobList& jobs );
+    /** @brief Starts all the jobs that are enqueued.
+     *
+     * After this, isRunning() returns @c true until
+     * finished() is emitted.
+     */
     void start();
 
     bool isRunning() const { return !m_finished; }
 
-public slots:
-    void finish();
-
 signals:
-    void queueChanged( const JobList& jobs );
+    /** @brief Report progress of the whole queue, with a status message
+     *
+     * The @p percent is a value between 0.0 and 1.0 (100%) of the
+     * overall queue progress (not of the current job), while
+     * @p prettyName is the status message from the job -- often
+     * just the name of the job, but some jobs include more information.
+     */
     void progress( qreal percent, const QString& prettyName );
+    /** @brief Indicate that the queue is empty, after calling start()
+     *
+     * Emitted when the queue empties. The queue may also emit
+     * failed(), if something went wrong, but finished() is always
+     * the last one.
+     */
     void finished();
+    /** @brief A job in the queue failed.
+     *
+     * Contains the (already-translated) text from the job describing
+     * the failure.
+     */
     void failed( const QString& message, const QString& details );
+
+    /** @brief Reports the names of jobs in the queue.
+     *
+     * When jobs are added via enqueue(), or when the queue otherwise
+     * changes, the **names** of the jobs are reported. This is
+     * primarily for debugging purposes.
+     */
+    void queueChanged( const QStringList& jobNames );
+
+public slots:
+    /** @brief Implementation detail
+     *
+     * This is a private implementation detail for the job thread,
+     * which should not be called by other core.
+     */
+    void finish();
 
 private:
     static JobQueue* s_instance;
 
-    JobList m_jobs;
     JobThread* m_thread;
     GlobalStorage* m_storage;
     bool m_finished = true;  ///< Initially, not running
