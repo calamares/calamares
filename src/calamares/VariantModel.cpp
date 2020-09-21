@@ -229,11 +229,11 @@ VariantModel::headerData( int section, Qt::Orientation orientation, int role ) c
     {
         if ( section == 0 )
         {
-            return tr( "Key" );
+            return tr( "Key", "Column header for key/value" );
         }
         else if ( section == 1 )
         {
-            return tr( "Value" );
+            return tr( "Value", "Column header for key/value" );
         }
         else
         {
