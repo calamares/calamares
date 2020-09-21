@@ -13,7 +13,7 @@
 #include <kpmcore/ops/removevolumegroupoperation.h>
 #include <kpmcore/util/report.h>
 
-RemoveVolumeGroupJob::RemoveVolumeGroupJob( LvmDevice* device )
+RemoveVolumeGroupJob::RemoveVolumeGroupJob( Device*, LvmDevice* device )
     : m_device( device )
 {
 }

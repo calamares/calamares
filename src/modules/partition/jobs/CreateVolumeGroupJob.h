@@ -15,13 +15,14 @@
 
 #include <QVector>
 
+class Device;
 class Partition;
 
 class CreateVolumeGroupJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    CreateVolumeGroupJob( QString& vgName, QVector< const Partition* > pvList, const qint32 peSize );
+    CreateVolumeGroupJob( Device*, QString& vgName, QVector< const Partition* > pvList, const qint32 peSize );
 
     QString prettyName() const override;
     QString prettyDescription() const override;

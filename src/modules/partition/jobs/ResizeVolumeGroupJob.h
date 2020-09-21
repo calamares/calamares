@@ -15,6 +15,7 @@
 
 #include <QVector>
 
+class Device;
 class LvmDevice;
 class Partition;
 
@@ -22,7 +23,7 @@ class ResizeVolumeGroupJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    ResizeVolumeGroupJob( LvmDevice* device, QVector< const Partition* >& partitionList );
+    ResizeVolumeGroupJob( Device*, LvmDevice* device, QVector< const Partition* >& partitionList );
 
     QString prettyName() const override;
     QString prettyDescription() const override;

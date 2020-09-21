@@ -13,13 +13,14 @@
 #include "Job.h"
 #include "partition/KPMManager.h"
 
+class Device;
 class LvmDevice;
 
 class RemoveVolumeGroupJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    RemoveVolumeGroupJob( LvmDevice* device );
+    RemoveVolumeGroupJob( Device*, LvmDevice* device );
 
     QString prettyName() const override;
     QString prettyDescription() const override;
