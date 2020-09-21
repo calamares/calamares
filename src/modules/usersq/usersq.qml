@@ -223,7 +223,7 @@ Kirigami.ScrollablePage {
             visible: config.allowWeakPasswords
             //visible: false
             width: parent.width
-            text: qsTr("When this box is checked, password-strength checking is done and you will not be able to use a weak password..")
+            text: qsTr("When this box is checked, password-strength checking is done and you will not be able to use a weak password.")
             font.weight: Font.Thin
             font.pointSize: 8
             color: "#6D6D6D"
