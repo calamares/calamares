@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Choiril Abdul, 2018
-# Harry Suryapambagya <harsxv@gmail.com>, 2018
+# harsxv <harsxv@gmail.com>, 2018
 # Wantoyèk <wantoyek@gmail.com>, 2018
 # 
 #, fuzzy
