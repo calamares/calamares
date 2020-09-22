@@ -24,7 +24,7 @@ class TestLibCalamares : public QObject
     Q_OBJECT
 public:
     TestLibCalamares() {}
-    virtual ~TestLibCalamares() {}
+    ~TestLibCalamares() override {}
 
 private Q_SLOTS:
     void testGSModify();
