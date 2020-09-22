@@ -85,7 +85,7 @@ private slots:
     void rotate();
 
 protected:
-    void paintEvent(QPaintEvent *paintEvent);
+    void paintEvent(QPaintEvent *paintEvent) override;
 
 private:
     static int lineCountDistanceFromPrimary(int current, int primary,
