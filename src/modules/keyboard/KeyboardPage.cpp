@@ -77,7 +77,7 @@ KeyboardPage::KeyboardPage( QWidget* parent )
         ui->buttonRestore, &QPushButton::clicked, [this] { ui->comboBoxModel->setCurrentIndex( m_defaultIndex ); } );
 
     connect( ui->comboBoxModel,
-             static_cast< void ( QComboBox::* )( const QString& ) >( &QComboBox::currentIndexChanged ),
+             &QComboBox::currentTextChanged,
              [this]( const QString& text ) {
                  QString model = m_models.value( text, "pc105" );
 
