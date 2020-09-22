@@ -24,15 +24,13 @@ public:
     QIcon icon( const QString& image, CalamaresUtils::ImageMode mode = CalamaresUtils::Original );
     QPixmap pixmap( const QString& image,
                     const QSize& size,
-                    CalamaresUtils::ImageMode mode = CalamaresUtils::Original,
-                    qreal opacity = 1.0 );
+                    CalamaresUtils::ImageMode mode = CalamaresUtils::Original );
 
 private:
-    qint64 cacheKey( const QSize& size, qreal opacity );
+    qint64 cacheKey( const QSize& size );
     void putInCache( const QString& image,
                      const QSize& size,
                      CalamaresUtils::ImageMode mode,
-                     qreal opacity,
                      const QPixmap& pixmap );
 };
 
