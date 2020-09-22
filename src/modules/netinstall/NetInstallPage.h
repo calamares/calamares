@@ -35,7 +35,7 @@ class NetInstallPage : public QWidget
     Q_OBJECT
 public:
     NetInstallPage( Config* config, QWidget* parent = nullptr );
-    virtual ~NetInstallPage();
+    ~NetInstallPage() override;
 
     /** @brief Sets the page title
      *

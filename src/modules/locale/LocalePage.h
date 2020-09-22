@@ -32,7 +32,7 @@ class LocalePage : public QWidget
     Q_OBJECT
 public:
     explicit LocalePage( class Config* config, QWidget* parent = nullptr );
-    virtual ~LocalePage();
+    ~LocalePage() override;
 
     void onActivate();
 

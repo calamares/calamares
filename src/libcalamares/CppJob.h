@@ -28,7 +28,7 @@ class DLLEXPORT CppJob : public Job
     Q_OBJECT
 public:
     explicit CppJob( QObject* parent = nullptr );
-    virtual ~CppJob();
+    ~CppJob() override;
 
     void setModuleInstanceKey( const Calamares::ModuleSystem::InstanceKey& instanceKey );
     Calamares::ModuleSystem::InstanceKey moduleInstanceKey() const { return m_instanceKey; }

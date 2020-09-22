@@ -87,7 +87,7 @@ public:
      * or UB happens.
      */
     ResultsListDialog( const Calamares::RequirementsModel& model, QWidget* parent );
-    virtual ~ResultsListDialog();
+    ~ResultsListDialog() override;
 
 private:
     QLabel* m_title;

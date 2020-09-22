@@ -53,7 +53,7 @@ public:
     {
     }
 
-    virtual ~JobThread() override;
+    ~JobThread() override;
 
     void finalize()
     {

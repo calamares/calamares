@@ -126,7 +126,7 @@ public:
      * @param parent the QObject parent.
      */
     explicit System( bool doChroot, QObject* parent = nullptr );
-    virtual ~System();
+    virtual ~System() override;
 
     static System* instance();
 

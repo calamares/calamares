@@ -52,7 +52,7 @@ class Config : public QObject
 
 public:
     Config( QObject* parent = nullptr );
-    ~Config();
+    ~Config() override;
 
     void setConfigurationMap( const QVariantMap& );
     void finalizeGlobalStorage() const;

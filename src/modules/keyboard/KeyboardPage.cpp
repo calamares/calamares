@@ -35,7 +35,7 @@ class LayoutItem : public QListWidgetItem
 public:
     QString data;
 
-    virtual ~LayoutItem();
+    ~LayoutItem() override;
 };
 
 LayoutItem::~LayoutItem() {}

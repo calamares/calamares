@@ -38,7 +38,7 @@ class UIDLLEXPORT PrettyRadioButton : public QWidget
     Q_OBJECT
 public:
     explicit PrettyRadioButton( QWidget* parent = nullptr );
-    virtual ~PrettyRadioButton() {}
+    ~PrettyRadioButton() override {}
 
     /// @brief Passes @p text on to the ClickableLabel
     void setText( const QString& text );

@@ -28,7 +28,7 @@ class Config : public QObject
 
 public:
     Config( QObject* parent = nullptr );
-    virtual ~Config();
+    ~Config() override;
 
     enum class Status
     {

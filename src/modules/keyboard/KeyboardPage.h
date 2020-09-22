@@ -34,7 +34,7 @@ class KeyboardPage : public QWidget
     Q_OBJECT
 public:
     explicit KeyboardPage( QWidget* parent = nullptr );
-    virtual ~KeyboardPage();
+    ~KeyboardPage() override;
 
     void init();
 

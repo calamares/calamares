@@ -52,7 +52,7 @@ public:
         : QObject( parent )
     {
     }
-    virtual ~Slideshow();
+    ~Slideshow() override;
 
     /// @brief Is the slideshow being shown **right now**?
     bool isActive() const { return m_state == Start; }
