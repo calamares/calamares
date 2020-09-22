@@ -124,7 +124,7 @@ ModuleManager::doInit()
     // At this point m_availableDescriptorsByModuleName is filled with
     // the modules that were found in the search paths.
     cDebug() << "Found" << m_availableDescriptorsByModuleName.count() << "modules";
-    emit initDone();
+    QTimer::singleShot( 10, this, &ModuleManager::initDone );
 }
 
 
