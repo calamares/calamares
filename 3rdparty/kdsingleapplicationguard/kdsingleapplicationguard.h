@@ -41,7 +41,7 @@ public:
     explicit KDSingleApplicationGuard( Policy policy, QObject * parent=nullptr );
     explicit KDSingleApplicationGuard( const QStringList & arguments, QObject * parent=nullptr );
     explicit KDSingleApplicationGuard( const QStringList & arguments, Policy policy, QObject * parent=nullptr );
-    ~KDSingleApplicationGuard();
+    ~KDSingleApplicationGuard() override;
 
     bool isOperational() const;
 
@@ -70,7 +70,7 @@ public Q_SLOTS:
     void killOtherInstances();
 
 protected:
-    /*! \reimp */ bool event( QEvent * event );
+    /*! \reimp */ bool event( QEvent * event ) override;
 
 private:
 #ifndef Q_WS_WIN
