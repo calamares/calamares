@@ -27,7 +27,7 @@ class MachineIdTests : public QObject
     Q_OBJECT
 public:
     MachineIdTests() {}
-    virtual ~MachineIdTests() {}
+    ~MachineIdTests() override {}
 
 private Q_SLOTS:
     void initTestCase();
