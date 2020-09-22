@@ -22,7 +22,7 @@ class ProgressTreeView : public QListView
     Q_OBJECT
 public:
     explicit ProgressTreeView( QWidget* parent = nullptr );
-    virtual ~ProgressTreeView() override;
+    ~ProgressTreeView() override;
 
     /**
      * @brief setModel assigns a model to this view.

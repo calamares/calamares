@@ -23,7 +23,7 @@ class PLUGINDLLEXPORT InitcpioJob : public Calamares::CppJob
 
 public:
     explicit InitcpioJob( QObject* parent = nullptr );
-    virtual ~InitcpioJob() override;
+    ~InitcpioJob() override;
 
     QString prettyName() const override;
 

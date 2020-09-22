@@ -27,7 +27,7 @@ class PLUGINDLLEXPORT ShellProcessJob : public Calamares::CppJob
 
 public:
     explicit ShellProcessJob( QObject* parent = nullptr );
-    virtual ~ShellProcessJob() override;
+    ~ShellProcessJob() override;
 
     QString prettyName() const override;
 

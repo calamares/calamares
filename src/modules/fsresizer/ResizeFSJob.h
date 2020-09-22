@@ -33,7 +33,7 @@ class PLUGINDLLEXPORT ResizeFSJob : public Calamares::CppJob
 
 public:
     explicit ResizeFSJob( QObject* parent = nullptr );
-    virtual ~ResizeFSJob() override;
+    ~ResizeFSJob() override;
 
     QString prettyName() const override;
 

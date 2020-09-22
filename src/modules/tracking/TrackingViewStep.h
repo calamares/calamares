@@ -29,7 +29,7 @@ class PLUGINDLLEXPORT TrackingViewStep : public Calamares::ViewStep
 
 public:
     explicit TrackingViewStep( QObject* parent = nullptr );
-    virtual ~TrackingViewStep() override;
+    ~TrackingViewStep() override;
 
     QString prettyName() const override;
 

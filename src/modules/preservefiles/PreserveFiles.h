@@ -41,7 +41,7 @@ class PLUGINDLLEXPORT PreserveFiles : public Calamares::CppJob
 
 public:
     explicit PreserveFiles( QObject* parent = nullptr );
-    virtual ~PreserveFiles() override;
+    ~PreserveFiles() override;
 
     QString prettyName() const override;
 

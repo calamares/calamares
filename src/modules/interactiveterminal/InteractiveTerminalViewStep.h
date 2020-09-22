@@ -26,7 +26,7 @@ class PLUGINDLLEXPORT InteractiveTerminalViewStep : public Calamares::ViewStep
 
 public:
     explicit InteractiveTerminalViewStep( QObject* parent = nullptr );
-    virtual ~InteractiveTerminalViewStep() override;
+    ~InteractiveTerminalViewStep() override;
 
     QString prettyName() const override;
 

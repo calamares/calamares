@@ -29,7 +29,7 @@ public:
                             const QString& description,
                             const QString& details = QString(),
                             QObject* parent = nullptr );
-    virtual ~BlankViewStep() override;
+    ~BlankViewStep() override;
 
     QString prettyName() const override;
 

@@ -37,7 +37,7 @@ class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
 
 public:
     explicit WelcomeViewStep( QObject* parent = nullptr );
-    virtual ~WelcomeViewStep() override;
+    ~WelcomeViewStep() override;
 
     QString prettyName() const override;
 

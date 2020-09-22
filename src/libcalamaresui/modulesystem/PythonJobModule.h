@@ -30,7 +30,7 @@ protected:
 
 private:
     explicit PythonJobModule();
-    virtual ~PythonJobModule() override;
+    ~PythonJobModule() override;
 
     QString m_scriptFileName;
     QString m_workingPath;

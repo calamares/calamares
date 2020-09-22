@@ -24,7 +24,7 @@ class LicenseWidget : public QWidget
 {
 public:
     LicenseWidget( LicenseEntry e, QWidget* parent = nullptr );
-    virtual ~LicenseWidget() override;
+    ~LicenseWidget() override;
 
     void retranslateUi();
 

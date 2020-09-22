@@ -88,7 +88,7 @@ class PackageListModel : public QAbstractListModel
 public:
     PackageListModel( PackageList&& items, QObject* parent );
     PackageListModel( QObject* parent );
-    virtual ~PackageListModel() override;
+    ~PackageListModel() override;
 
     /** @brief Add a package @p to the model
      *

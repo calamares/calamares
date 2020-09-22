@@ -25,7 +25,7 @@ class PLUGINDLLEXPORT OEMViewStep : public Calamares::ViewStep
 
 public:
     explicit OEMViewStep( QObject* parent = nullptr );
-    virtual ~OEMViewStep() override;
+    ~OEMViewStep() override;
 
     QString prettyName() const override;
     QString prettyStatus() const override;

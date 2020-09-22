@@ -41,7 +41,7 @@ class UIDLLEXPORT ViewStep : public QObject
     Q_OBJECT
 public:
     explicit ViewStep( QObject* parent = nullptr );
-    virtual ~ViewStep() override;
+    ~ViewStep() override;
 
     /** @brief Human-readable name of the step
      *

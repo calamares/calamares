@@ -25,7 +25,7 @@ class PLUGINDLLEXPORT LuksBootKeyFileJob : public Calamares::CppJob
     Q_OBJECT
 public:
     explicit LuksBootKeyFileJob( QObject* parent = nullptr );
-    virtual ~LuksBootKeyFileJob() override;
+    ~LuksBootKeyFileJob() override;
 
     QString prettyName() const override;
 

@@ -25,7 +25,7 @@ class PLUGINDLLEXPORT KeyboardViewStep : public Calamares::ViewStep
 
 public:
     explicit KeyboardViewStep( QObject* parent = nullptr );
-    virtual ~KeyboardViewStep() override;
+    ~KeyboardViewStep() override;
 
     QString prettyName() const override;
     QString prettyStatus() const override;

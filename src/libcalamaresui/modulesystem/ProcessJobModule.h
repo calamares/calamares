@@ -33,7 +33,7 @@ protected:
 
 private:
     explicit ProcessJobModule();
-    virtual ~ProcessJobModule() override;
+    ~ProcessJobModule() override;
 
     QString m_command;
     QString m_workingPath;

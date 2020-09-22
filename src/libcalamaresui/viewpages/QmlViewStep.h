@@ -50,7 +50,7 @@ public:
      * @see Qml.h for available Calamares internals.
      */
     QmlViewStep( QObject* parent = nullptr );
-    virtual ~QmlViewStep() override;
+    ~QmlViewStep() override;
 
     virtual QString prettyName() const override;
 

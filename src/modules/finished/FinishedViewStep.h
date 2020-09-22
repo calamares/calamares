@@ -36,7 +36,7 @@ public:
     static QString modeName( RestartMode m );
 
     explicit FinishedViewStep( QObject* parent = nullptr );
-    virtual ~FinishedViewStep() override;
+    ~FinishedViewStep() override;
 
     QString prettyName() const override;
 

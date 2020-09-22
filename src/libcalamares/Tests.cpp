@@ -484,7 +484,7 @@ public:
         : Calamares::Job( parent )
     {
     }
-    virtual ~DummyJob() override;
+    ~DummyJob() override;
 
     QString prettyName() const override;
     Calamares::JobResult exec() override;
