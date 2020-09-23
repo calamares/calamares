@@ -270,7 +270,12 @@ ChoicePage::setupChoices()
 
     m_itemsLayout->addStretch();
 
-    connect( m_grp, QOverload< int, bool >::of( &QButtonGroup::buttonToggled ), this, [this]( int id, bool checked ) {
+#if ( QT_VERSION < QT_VERSION_CHECK( 5, 15, 0 ) )
+    auto buttonSignal = QOverload< int, bool >::of( &QButtonGroup::buttonToggled );
+#else
+    auto buttonSignal = &QButtonGroup::idToggled;
+#endif
+    connect( m_grp, buttonSignal, this, [this]( int id, bool checked ) {
         if ( checked )  // An action was picked.
         {
             m_choice = static_cast< InstallChoice >( id );
