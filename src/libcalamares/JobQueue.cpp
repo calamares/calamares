@@ -67,6 +67,13 @@ public:
         {
             m_overallQueueWeight = 1.0;
         }
+
+        cDebug() << "There are" << m_runningJobs->count() << "jobs, total weight" << m_overallQueueWeight;
+        int c = 1;
+        for( const auto& j : *m_runningJobs )
+        {
+            cDebug() << Logger::SubEntry << "Job" << c << j.job->prettyName() << "wt" << j.weight << " c.wt" << j.cumulative;
+        }
     }
 
     void enqueue( int moduleWeight, const JobList& jobs )
