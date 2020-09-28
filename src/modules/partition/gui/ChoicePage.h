@@ -114,6 +114,7 @@ private:
     bool calculateNextEnabled() const;
     void updateNextEnabled();
     void setupChoices();
+    void checkInstallChoiceRadioButton( ChoicePage::InstallChoice choice );  ///< Sets the chosen button to "on"
     QComboBox* createBootloaderComboBox( QWidget* parentButton );
     Device* selectedDevice();
 
@@ -161,7 +162,8 @@ private:
     QPointer< QLabel > m_efiLabel;
     QPointer< QComboBox > m_efiComboBox;
 
-    int m_lastSelectedDeviceIndex;
+    int m_lastSelectedDeviceIndex = -1;
+    int m_lastSelectedActionIndex = -1;
 
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
