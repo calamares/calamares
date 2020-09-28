@@ -104,7 +104,7 @@ public:
     using PasswordStatus = QPair< PasswordValidity, QString >;
 
     Config( QObject* parent = nullptr );
-    ~Config();
+    ~Config() override;
 
     void setConfigurationMap( const QVariantMap& );
 

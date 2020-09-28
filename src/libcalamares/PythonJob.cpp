@@ -160,8 +160,7 @@ struct PythonJob::Private
     bp::object m_prettyStatusMessage;
 };
 
-PythonJob::PythonJob( const ModuleSystem::InstanceKey& instance,
-                      const QString& scriptFile,
+PythonJob::PythonJob( const QString& scriptFile,
                       const QString& workingPath,
                       const QVariantMap& moduleConfiguration,
                       QObject* parent )

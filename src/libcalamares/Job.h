@@ -86,7 +86,7 @@ class DLLEXPORT Job : public QObject
     Q_OBJECT
 public:
     explicit Job( QObject* parent = nullptr );
-    virtual ~Job();
+    ~Job() override;
 
     /** @brief The job's (relative) weight.
      *

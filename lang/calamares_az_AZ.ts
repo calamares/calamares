@@ -6,7 +6,7 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
       <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-      <translation>Bu sistemin &lt;strong&gt;açılış mühiti&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Köhnə x86 sistemlər yalnız &lt;strong&gt;BIOS&lt;/strong&gt; dəstəkləyir.&lt;br&gt;Müasir sistemlər isə adətən &lt;strong&gt;EFI&lt;/strong&gt; istifadə edir, lakin açılış mühiti əgər uyğun rejimdə başladılmışsa, həmçinin BİOS istiafadə edə bilər.</translation>
+      <translation>Sistemin &lt;strong&gt;açılış mühiti&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Köhnə x86 sistemlər yalnız &lt;strong&gt;BIOS&lt;/strong&gt; dəstəkləyir.&lt;br&gt;Müasir sistemlər isə adətən &lt;strong&gt;EFI&lt;/strong&gt; istifadə edir, lakin açılış mühiti əgər uyğun rejimdə başladılmışsa, həmçinin BİOS istiafadə edə bilər.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="71"/>
@@ -65,12 +65,12 @@
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="28"/>
       <source>GlobalStorage</source>
-      <translation>Ümumi yaddaş</translation>
+      <translation>ÜmumiYaddaş</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="38"/>
       <source>JobQueue</source>
-      <translation>Tapşırıq sırası</translation>
+      <translation>TapşırıqSırası</translation>
     </message>
     <message>
       <location filename="../src/calamares/DebugWindow.ui" line="48"/>
@@ -1955,7 +1955,7 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="37"/>
       <source>Select your preferred Region, or use the default one based on your current location.</source>
-      <translation type="unfinished"/>
+      <translation>Üstünlük verdiyiniz bölgəni və ya cari mövqeyinizə əsaslanan standart bir bölgəni seçin.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="94"/>
@@ -1967,17 +1967,17 @@ Bu proqramdan çıxılacaq və bütün dəyişikliklər itiriləcəkdir.</transl
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="111"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>Bölgənizlə birlikdə üstünlük verdiyiniz zonanı seçin.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="182"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>Zonalar</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="229"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>Dil və Yer ayarlarını aşağıda dəqiq tənzimləyə bilərsiniz.</translation>
     </message>
   </context>
   <context>
@@ -3799,7 +3799,16 @@ Output:
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                      &lt;strong&gt;%2&lt;br/&gt;
+                      %3 üçün&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                      Müəliff hüquqları 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;
+                      Müəliff hüquqları 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;8&lt;br/&gt;
+                      &lt;a href='https://calamares.io/team/'&gt;Calamares komandasına&lt;/a&gt; və
+                      &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares tərcümə komandasına&lt;/a&gt; təşəkkürlər.&lt;br/&gt;&lt;br/&gt;
+                      &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt; tərtibatı &lt;br/&gt;
+                      &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; - Liberating Software
+                      tərəfindən dəstəklənir.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
@@ -3849,7 +3858,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>Yazı dili və variantını seçmək üçün üstünlük verdiyiniz klaviatura modelini seçin və ya avadanlıq tərəfindən aşkar edilən klaviaturaya əsaslanan standart birini seçin.</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
@@ -3864,7 +3873,7 @@ Output:
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
       <source>Keyboard Variant</source>
-      <translation type="unfinished"/>
+      <translation>Klaviatura variantı</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
@@ -3948,7 +3957,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="36"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>İnzibatçı tapşırıqlarını yerinə yetirmək və sistemə giriş üçün istifadəçi adını və istifadəçi hesabı məlumatlarını daxil edin</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="52"/>
@@ -3968,12 +3977,12 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>Giriş Adı</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Əgər bu komputeri bir neçə şəxs istifadə ediləcəksə o zaman quraşdırmadan sonra birdən çox hesab yarada bilərsiniz.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
@@ -3988,7 +3997,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="140"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>Əgər gizlədilməzsə komputer şəbəkədə bu adla görünəcək.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
@@ -4008,27 +4017,27 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>Düzgün yazılmasını yoxlamaq üçün eyni şifrəni iki dəfə daxil edin. Güclü şifrə üçün rəqəm, hərf və durğu işarələrinin qarışıöğından istifadə edin. Şifrə ən azı səkkiz simvoldan uzun olmalı və müntəzəm olaraq dəyişdirilməlidir.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>Şifrənin keyfiyyətini yoxlamaq</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
-      <translation type="unfinished"/>
+      <translation>Bu xana işarələnərsə şifrələrin etibatlılıq səviyyəsi yoxlanılacaq və siz zəif şifrədən istifadə edə bilməyəcəksiniz..</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Şifrə soruşmadan sistemə daxil olmaq</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>İstifadəçi şifrəsini kök şifrəsi kimi istifadə etmək</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
@@ -4038,22 +4047,22 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="268"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>Hesabınızı qorumaq üçün kök şifrəsini seçin.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="279"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Kök Şifrəsi</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="298"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Kök Şifrəsini təkrar yazın</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>Düzgün yazılmasını yoxlamaq üçün eyni şifrəni iki dəfə daxil edin.</translation>
     </message>
   </context>
   <context>

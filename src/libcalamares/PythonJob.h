@@ -31,12 +31,11 @@ class PythonJob : public Job
 {
     Q_OBJECT
 public:
-    explicit PythonJob( const ModuleSystem::InstanceKey& instance,
-                        const QString& scriptFile,
+    explicit PythonJob( const QString& scriptFile,
                         const QString& workingPath,
                         const QVariantMap& moduleConfiguration = QVariantMap(),
                         QObject* parent = nullptr );
-    virtual ~PythonJob() override;
+    ~PythonJob() override;
 
     QString prettyName() const override;
     QString prettyStatusMessage() const override;

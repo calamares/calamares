@@ -26,7 +26,7 @@ class PLUGINDLLEXPORT ContextualProcessJob : public Calamares::CppJob
 
 public:
     explicit ContextualProcessJob( QObject* parent = nullptr );
-    virtual ~ContextualProcessJob() override;
+    ~ContextualProcessJob() override;
 
     QString prettyName() const override;
 

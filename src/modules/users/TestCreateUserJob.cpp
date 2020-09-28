@@ -22,7 +22,7 @@ class CreateUserTests : public QObject
     Q_OBJECT
 public:
     CreateUserTests();
-    virtual ~CreateUserTests() {}
+    ~CreateUserTests() override {}
 
 private Q_SLOTS:
     void initTestCase();

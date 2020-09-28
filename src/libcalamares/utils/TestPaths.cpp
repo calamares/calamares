@@ -26,7 +26,7 @@ class TestPaths : public QObject
     Q_OBJECT
 public:
     TestPaths() {}
-    virtual ~TestPaths() {}
+    ~TestPaths() override {}
 
 private Q_SLOTS:
     void initTestCase();

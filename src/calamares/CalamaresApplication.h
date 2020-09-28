@@ -30,7 +30,7 @@ class CalamaresApplication : public QApplication
     Q_OBJECT
 public:
     CalamaresApplication( int& argc, char* argv[] );
-    virtual ~CalamaresApplication();
+    ~CalamaresApplication() override;
 
     /**
      * @brief init handles the first part of Calamares application startup.

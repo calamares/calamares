@@ -29,7 +29,7 @@ class PLUGINDLLEXPORT MachineIdJob : public Calamares::CppJob
 
 public:
     explicit MachineIdJob( QObject* parent = nullptr );
-    virtual ~MachineIdJob() override;
+    ~MachineIdJob() override;
 
     QString prettyName() const override;
 

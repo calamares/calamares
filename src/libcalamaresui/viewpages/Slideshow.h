@@ -52,7 +52,7 @@ public:
         : QObject( parent )
     {
     }
-    virtual ~Slideshow();
+    ~Slideshow() override;
 
     /// @brief Is the slideshow being shown **right now**?
     bool isActive() const { return m_state == Start; }
@@ -91,7 +91,7 @@ class SlideshowQML : public Slideshow
     Q_OBJECT
 public:
     SlideshowQML( QWidget* parent );
-    virtual ~SlideshowQML() override;
+    ~SlideshowQML() override;
 
     QWidget* widget() override;
     void changeSlideShowState( Action a ) override;
@@ -123,7 +123,7 @@ class SlideshowPictures : public Slideshow
     Q_OBJECT
 public:
     SlideshowPictures( QWidget* parent );
-    virtual ~SlideshowPictures() override;
+    ~SlideshowPictures() override;
 
     QWidget* widget() override;
     virtual void changeSlideShowState( Action a ) override;

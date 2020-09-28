@@ -25,7 +25,7 @@ class DLLEXPORT JobQueue : public QObject
     Q_OBJECT
 public:
     explicit JobQueue( QObject* parent = nullptr );
-    virtual ~JobQueue();
+    ~JobQueue() override;
 
     static JobQueue* instance();
 

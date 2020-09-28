@@ -48,7 +48,7 @@ public:
     static Helper* instance();
 
 private:
-    virtual ~Helper();
+    ~Helper() override;
     explicit Helper();
 
     boost::python::object m_mainModule;

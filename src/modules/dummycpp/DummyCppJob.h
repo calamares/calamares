@@ -26,7 +26,7 @@ class PLUGINDLLEXPORT DummyCppJob : public Calamares::CppJob
 
 public:
     explicit DummyCppJob( QObject* parent = nullptr );
-    virtual ~DummyCppJob() override;
+    ~DummyCppJob() override;
 
     QString prettyName() const override;
 

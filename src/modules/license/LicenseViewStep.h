@@ -27,7 +27,7 @@ class PLUGINDLLEXPORT LicenseViewStep : public Calamares::ViewStep
 
 public:
     explicit LicenseViewStep( QObject* parent = nullptr );
-    virtual ~LicenseViewStep() override;
+    ~LicenseViewStep() override;
 
     QString prettyName() const override;
 

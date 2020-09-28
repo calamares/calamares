@@ -20,7 +20,7 @@ class ModuleSystemTests : public QObject
     Q_OBJECT
 public:
     ModuleSystemTests() {}
-    virtual ~ModuleSystemTests() {}
+    ~ModuleSystemTests() override {}
 
 private Q_SLOTS:
     void initTestCase();

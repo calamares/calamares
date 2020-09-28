@@ -99,7 +99,7 @@ public:
      * to keep the reference.
      */
     static Manager& instance();
-    virtual ~Manager();
+    ~Manager() override;
 
     /** @brief Checks if the given @p url returns data.
      *

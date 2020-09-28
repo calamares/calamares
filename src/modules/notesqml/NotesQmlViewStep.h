@@ -22,7 +22,7 @@ class PLUGINDLLEXPORT NotesQmlViewStep : public Calamares::QmlViewStep
 
 public:
     NotesQmlViewStep( QObject* parent = nullptr );
-    virtual ~NotesQmlViewStep() override;
+    ~NotesQmlViewStep() override;
 
     QString prettyName() const override;
 

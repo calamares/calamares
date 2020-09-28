@@ -36,7 +36,7 @@ public:
     };
 
     LabelModel( const QStringList& locales, QObject* parent = nullptr );
-    virtual ~LabelModel() override;
+    ~LabelModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
 

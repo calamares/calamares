@@ -40,7 +40,7 @@ class PLUGINDLLEXPORT PartitionViewStep : public Calamares::ViewStep
 
 public:
     explicit PartitionViewStep( QObject* parent = nullptr );
-    virtual ~PartitionViewStep() override;
+    ~PartitionViewStep() override;
 
     QString prettyName() const override;
     QWidget* createSummaryWidget() const override;

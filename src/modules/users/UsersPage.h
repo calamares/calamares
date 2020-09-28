@@ -32,7 +32,7 @@ class UsersPage : public QWidget
     Q_OBJECT
 public:
     explicit UsersPage( Config* config, QWidget* parent = nullptr );
-    virtual ~UsersPage();
+    ~UsersPage() override;
 
     void onActivate();
 

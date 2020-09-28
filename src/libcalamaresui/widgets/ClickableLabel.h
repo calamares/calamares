@@ -32,7 +32,7 @@ class UIDLLEXPORT ClickableLabel : public QLabel
 public:
     explicit ClickableLabel( QWidget* parent = nullptr );
     explicit ClickableLabel( const QString& text, QWidget* parent = nullptr );
-    virtual ~ClickableLabel() override;
+    ~ClickableLabel() override;
 
 signals:
     void clicked();

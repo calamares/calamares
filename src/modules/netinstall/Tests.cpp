@@ -21,7 +21,7 @@ class ItemTests : public QObject
     Q_OBJECT
 public:
     ItemTests();
-    virtual ~ItemTests() {}
+    ~ItemTests() override {}
 
 private:
     void checkAllSelected( PackageTreeItem* p );

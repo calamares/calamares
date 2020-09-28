@@ -32,7 +32,7 @@ class CheckerContainer : public QWidget
     Q_OBJECT
 public:
     explicit CheckerContainer( const Calamares::RequirementsModel& model, QWidget* parent = nullptr );
-    virtual ~CheckerContainer();
+    ~CheckerContainer() override;
 
     bool verdict() const;
 

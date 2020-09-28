@@ -22,7 +22,7 @@ class HostInfoTests : public QObject
     Q_OBJECT
 public:
     HostInfoTests() {}
-    virtual ~HostInfoTests() {}
+    ~HostInfoTests() override {}
 
 private Q_SLOTS:
     void initTestCase();

@@ -24,7 +24,7 @@ class TestLibCalamares : public QObject
     Q_OBJECT
 public:
     TestLibCalamares() {}
-    virtual ~TestLibCalamares() {}
+    ~TestLibCalamares() override {}
 
 private Q_SLOTS:
     void testGSModify();
@@ -484,7 +484,7 @@ public:
         : Calamares::Job( parent )
     {
     }
-    virtual ~DummyJob() override;
+    ~DummyJob() override;
 
     QString prettyName() const override;
     Calamares::JobResult exec() override;

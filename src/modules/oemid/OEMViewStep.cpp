@@ -32,7 +32,7 @@ public:
         CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); )
     }
 
-    virtual ~OEMPage() override;
+    ~OEMPage() override;
 
     Ui_OEMPage* m_ui;
 };

@@ -26,7 +26,7 @@ class PLUGINDLLEXPORT DracutLuksCfgJob : public Calamares::CppJob
 
 public:
     explicit DracutLuksCfgJob( QObject* parent = nullptr );
-    virtual ~DracutLuksCfgJob() override;
+    ~DracutLuksCfgJob() override;
 
     QString prettyName() const override;
 

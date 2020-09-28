@@ -26,7 +26,7 @@ class PLUGINDLLEXPORT PlasmaLnfViewStep : public Calamares::ViewStep
 
 public:
     explicit PlasmaLnfViewStep( QObject* parent = nullptr );
-    virtual ~PlasmaLnfViewStep() override;
+    ~PlasmaLnfViewStep() override;
 
     QString prettyName() const override;
 

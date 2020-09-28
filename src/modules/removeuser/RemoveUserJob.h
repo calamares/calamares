@@ -23,7 +23,7 @@ class PLUGINDLLEXPORT RemoveUserJob : public Calamares::CppJob
 
 public:
     explicit RemoveUserJob( QObject* parent = nullptr );
-    virtual ~RemoveUserJob() override;
+    ~RemoveUserJob() override;
 
     QString prettyName() const override;
 

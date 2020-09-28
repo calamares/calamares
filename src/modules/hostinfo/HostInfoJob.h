@@ -43,7 +43,7 @@ class PLUGINDLLEXPORT HostInfoJob : public Calamares::CppJob
 
 public:
     explicit HostInfoJob( QObject* parent = nullptr );
-    virtual ~HostInfoJob() override;
+    ~HostInfoJob() override;
 
     QString prettyName() const override;
 

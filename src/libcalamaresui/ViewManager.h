@@ -212,7 +212,7 @@ signals:
 
 private:
     explicit ViewManager( QObject* parent = nullptr );
-    virtual ~ViewManager() override;
+    ~ViewManager() override;
 
     void insertViewStep( int before, ViewStep* step );
     void updateButtonLabels();

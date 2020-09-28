@@ -94,7 +94,7 @@ public:
     };
 
     RegionsModel( QObject* parent = nullptr );
-    virtual ~RegionsModel() override;
+    ~RegionsModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;
@@ -126,7 +126,7 @@ public:
     };
 
     ZonesModel( QObject* parent = nullptr );
-    virtual ~ZonesModel() override;
+    ~ZonesModel() override;
 
     int rowCount( const QModelIndex& parent ) const override;
     QVariant data( const QModelIndex& index, int role ) const override;

@@ -34,7 +34,7 @@ protected:
 
 private:
     explicit CppJobModule();
-    virtual ~CppJobModule() override;
+    ~CppJobModule() override;
 
     QPluginLoader* m_loader;
     job_ptr m_job;

@@ -722,12 +722,12 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="372"/>
       <source>The system language will be set to %1.</source>
-      <translation>Systemsproget vil blive sat til %1.</translation>
+      <translation>Systemets sprog indstilles til %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="379"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation>Lokalitet for tal og datoer vil blive sat til %1.</translation>
+      <translation>Lokalitet for tal og datoer indstilles til %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="38"/>
@@ -1548,12 +1548,12 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="206"/>
       <source>Set keyboard model to %1.&lt;br/&gt;</source>
-      <translation>Sæt tastaturmodel til %1.&lt;br/&gt;</translation>
+      <translation>Indstil tastaturmodel til %1.&lt;br/&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
       <source>Set keyboard layout to %1/%2.</source>
-      <translation>Sæt tastaturlayout til %1/%2.</translation>
+      <translation>Indstil tastaturlayout til %1/%2.</translation>
     </message>
   </context>
   <context>
@@ -1711,7 +1711,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="124"/>
       <source>Region:</source>
-      <translation>Region:</translation>
+      <translation>Område:</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/LocalePage.cpp" line="125"/>
@@ -1955,7 +1955,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="37"/>
       <source>Select your preferred Region, or use the default one based on your current location.</source>
-      <translation type="unfinished"/>
+      <translation>Vælg dit foretrukne område eller bruge den som er standard for din nuværende placering.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="94"/>
@@ -1967,17 +1967,17 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="111"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>Vælg din foretrukne zone i dit område.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="182"/>
       <source>Zones</source>
-      <translation type="unfinished"/>
+      <translation>Zoner</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="229"/>
       <source>You can fine-tune Language and Locale settings below.</source>
-      <translation type="unfinished"/>
+      <translation>Du kan finjustere sprog- og lokalitetsindstillinger nedenfor.</translation>
     </message>
   </context>
   <context>
@@ -3215,7 +3215,7 @@ setting
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="53"/>
       <source>Set keyboard model to %1, layout to %2-%3</source>
-      <translation>Sæt tastaturmodel til %1, layout til %2-%3</translation>
+      <translation>Indstil tastaturmodel til %1, layout til %2-%3</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="345"/>
@@ -3371,7 +3371,7 @@ setting
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="34"/>
       <source>Set timezone to %1/%2</source>
-      <translation>Sæt tidszone til %1/%2</translation>
+      <translation>Indstil tidszone til %1/%2</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="62"/>
@@ -3680,7 +3680,7 @@ setting
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>
       <source>Select application and system language</source>
-      <translation>Vælg program- og systemsprog</translation>
+      <translation>Vælg sprog for programmet og systemet</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3800,7 +3800,17 @@ setting
                         development is sponsored by &lt;br/&gt;
                         &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
                         Liberating Software.</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;
+                        &lt;strong&gt;%2&lt;br/&gt;
+                        for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;
+                        Ophavsret 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;
+                        Ophavsret 2017-2020 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;
+                        Tak til &lt;a href='https://calamares.io/team/'&gt;Calamares-teamet&lt;/a&gt;
+                        og &lt;a href='https://www.transifex.com/calamares/calamares/'&gt;Calamares-oversætterteamet&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;
+                        Udviklingen af &lt;a href='https://calamares.io/'&gt;Calamares&lt;/a&gt;
+                        er sponsoreret af &lt;br/&gt;
+                        &lt;a href='http://www.blue-systems.com/'&gt;Blue Systems&lt;/a&gt; -
+                        Liberating Software.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/about.qml" line="96"/>
@@ -3850,7 +3860,7 @@ setting
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="60"/>
       <source>Click your preferred keyboard model to select layout and variant, or use the default one based on the detected hardware.</source>
-      <translation type="unfinished"/>
+      <translation>Klik på din foretrukne tastaturmodel for at vælge layout og variant, eller brug den som er standard i det registrerede hardware</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="253"/>
@@ -3865,7 +3875,7 @@ setting
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="276"/>
       <source>Keyboard Variant</source>
-      <translation type="unfinished"/>
+      <translation>Tastaturvariant</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="386"/>
@@ -3949,7 +3959,7 @@ setting
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="36"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation type="unfinished"/>
+      <translation>Vælg dit brugernavn og loginoplysninger som bruges til at logge ind med og udføre administrative opgaver.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="52"/>
@@ -3969,12 +3979,12 @@ setting
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
       <source>Login Name</source>
-      <translation type="unfinished"/>
+      <translation>Loginnavn</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="103"/>
       <source>If more than one person will use this computer, you can create multiple accounts after installation.</source>
-      <translation type="unfinished"/>
+      <translation>Hvis mere end én person bruger computeren, kan du oprette flere konti efter installationen.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="118"/>
@@ -3989,7 +3999,7 @@ setting
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="140"/>
       <source>This name will be used if you make the computer visible to others on a network.</source>
-      <translation type="unfinished"/>
+      <translation>Navnet bruges, hvis du gør computeren synlig for andre på et netværk.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="155"/>
@@ -4009,27 +4019,27 @@ setting
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>Skriv den samme adgangskode to gange, så det kan blive tjekket for skrivefejl. En god adgangskode indeholder en blanding af bogstaver, tal og specialtegn, og bør være mindst 8 tegn langt og bør skiftes jævnligt.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
       <source>Validate passwords quality</source>
-      <translation type="unfinished"/>
+      <translation>Validér kvaliteten af adgangskoderne</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
-      <translation type="unfinished"/>
+      <translation>Når boksen er tilvalgt, så foretages der tjek af adgangskodens styrke og du vil ikke være i stand til at bruge en svag adgangskode..</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>
       <source>Log in automatically without asking for the password</source>
-      <translation type="unfinished"/>
+      <translation>Log ind automatisk uden at spørge efter adgangskoden</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="243"/>
       <source>Reuse user password as root password</source>
-      <translation type="unfinished"/>
+      <translation>Genbrug brugeradgangskode som root-adgangskode</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="253"/>
@@ -4039,22 +4049,22 @@ setting
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="268"/>
       <source>Choose a root password to keep your account safe.</source>
-      <translation type="unfinished"/>
+      <translation>Vælg en root-adgangskode til at holde din konto sikker</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="279"/>
       <source>Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Root-adgangskode</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="298"/>
       <source>Repeat Root Password</source>
-      <translation type="unfinished"/>
+      <translation>Gentag root-adgangskode</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="318"/>
       <source>Enter the same password twice, so that it can be checked for typing errors.</source>
-      <translation type="unfinished"/>
+      <translation>Skriv den samme adgangskode to gange, så det kan blive tjekket for skrivefejl.</translation>
     </message>
   </context>
   <context>

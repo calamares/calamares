@@ -37,7 +37,7 @@ protected:
 
 private:
     explicit ViewModule();
-    virtual ~ViewModule() override;
+    ~ViewModule() override;
 
     QPluginLoader* m_loader;
     ViewStep* m_viewStep = nullptr;

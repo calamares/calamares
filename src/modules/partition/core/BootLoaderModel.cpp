@@ -40,7 +40,6 @@ BootLoaderModel::~BootLoaderModel() {}
 void
 BootLoaderModel::init( const QList< Device* >& devices )
 {
-    cDebug() << "BLM::init with" << devices.count() << "devices" << rowCount() << "rows";
     beginResetModel();
     blockSignals( true );
 
@@ -64,7 +63,6 @@ BootLoaderModel::createMbrItems()
 void
 BootLoaderModel::update()
 {
-    cDebug() << "BLM::update holds" << m_devices.count() << "devices" << rowCount() << "rows";
     beginResetModel();
     blockSignals( true );
     updateInternal();

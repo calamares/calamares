@@ -18,7 +18,7 @@ class KeyboardLayoutTests : public QObject
     Q_OBJECT
 public:
     KeyboardLayoutTests() {}
-    virtual ~KeyboardLayoutTests() {}
+    ~KeyboardLayoutTests() override {}
 
 private Q_SLOTS:
     void initTestCase();

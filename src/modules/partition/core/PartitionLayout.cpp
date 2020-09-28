@@ -164,22 +164,36 @@ PartitionLayout::execute( Device* dev,
                           const PartitionRole& role )
 {
     QList< Partition* > partList;
+    // Map each partition entry to its requested size (0 when calculated later)
+    QMap< const PartitionLayout::PartitionEntry *, qint64 > partSizeMap;
     qint64 minSize, maxSize, end;
     qint64 totalSize = lastSector - firstSector + 1;
     qint64 availableSize = totalSize;
 
-    // TODO: Refine partition sizes to make sure there is room for every partition
-    // Use a default (200-500M ?) minimum size for partition without minSize
-
-    foreach ( const PartitionLayout::PartitionEntry& part, m_partLayout )
+    // Let's check if we have enough space for each partSize
+    for( const PartitionLayout::PartitionEntry& part : m_partLayout )
     {
-        Partition* currentPartition = nullptr;
-
         qint64 size = -1;
         // Calculate partition size
+
         if ( part.partSize.isValid() )
         {
-            size = part.partSize.toSectors( totalSize, dev->logicalSize() );
+            // We need to ignore the percent-defined
+            if ( part.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent)
+            {
+                size = part.partSize.toSectors( totalSize, dev->logicalSize() );
+            }
+            else
+            {
+                if ( part.partMinSize.isValid() )
+                {
+                    size = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
+                }
+                else
+                {
+                    size = 0;
+                }
+            }
         }
         else
         {
@@ -187,37 +201,81 @@ PartitionLayout::execute( Device* dev,
             continue;
         }
 
-        if ( part.partMinSize.isValid() )
-        {
-            minSize = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
-        }
-        else
-        {
-            minSize = 0;
-        }
+        partSizeMap.insert (&part, size);
+        availableSize -= size;
+    }
 
-        if ( part.partMaxSize.isValid() )
+    // Use partMinSize and see if we can do better afterward.
+    if (availableSize < 0)
+    {
+        availableSize = totalSize;
+        for( const PartitionLayout::PartitionEntry& part : m_partLayout )
         {
-            maxSize = part.partMaxSize.toSectors( totalSize, dev->logicalSize() );
-        }
-        else
-        {
-            maxSize = availableSize;
-        }
+            qint64 size;
 
-        // Make sure we never go under minSize once converted to sectors
-        if ( maxSize < minSize )
-        {
-            cWarning() << "Partition" << part.partMountPoint << "max size (" << maxSize << "sectors) is < min size ("
-                       << minSize << "sectors), using min size";
-            maxSize = minSize;
+            if ( part.partMinSize.isValid() )
+            {
+                size = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
+            }
+            else if ( part.partSize.isValid() )
+            {
+                if ( part.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent)
+                {
+                    size = part.partSize.toSectors( totalSize, dev->logicalSize() );
+                }
+                else
+                {
+                    size = 0;
+                }
+            }
+            else
+            {
+                size = 0;
+            }
+
+            partSizeMap.insert (&part, size);
+            availableSize -= size;
         }
+    }
+
+    // Assign size for percentage-defined partitions
+    for( const PartitionLayout::PartitionEntry& part : m_partLayout )
+    {
+        if ( part.partSize.unit() == CalamaresUtils::Partition::SizeUnit::Percent)
+        {
+            qint64 size = partSizeMap.value (&part);
+            size = part.partSize.toSectors( availableSize + size, dev->logicalSize() );
+            partSizeMap.insert (&part, size);
+            if ( part.partMinSize.isValid() )
+            {
+                qint64 minSize = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
+                if (minSize > size)
+                {
+                    size = minSize;
+                }
+            }
+            if ( part.partMaxSize.isValid() )
+            {
+                qint64 maxSize = part.partMaxSize.toSectors( totalSize, dev->logicalSize() );
+                if (maxSize < size)
+                {
+                    size = maxSize;
+                }
+            }
+        }
+    }
+
+    availableSize = totalSize;
+
+    // TODO: Refine partition sizes to make sure there is room for every partition
+    // Use a default (200-500M ?) minimum size for partition without minSize
+
+    for( const PartitionLayout::PartitionEntry& part : m_partLayout )
+    {
+        qint64 size = partSizeMap.value (&part);
+        Partition* currentPartition = nullptr;
 
         // Adjust partition size based on user-defined boundaries and available space
-        if ( size < minSize )
-        {
-            size = minSize;
-        }
         if ( size > maxSize )
         {
             size = maxSize;

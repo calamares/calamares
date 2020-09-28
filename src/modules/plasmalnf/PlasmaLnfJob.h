@@ -21,7 +21,7 @@ class PlasmaLnfJob : public Calamares::Job
 
 public:
     explicit PlasmaLnfJob( const QString& lnfPath, const QString& id );
-    virtual ~PlasmaLnfJob() override;
+    ~PlasmaLnfJob() override;
 
     QString prettyName() const override;
     QString prettyStatusMessage() const override;

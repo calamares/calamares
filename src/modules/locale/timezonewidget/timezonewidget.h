@@ -66,8 +66,8 @@ private:
     const CalamaresUtils::Locale::ZonesModel* m_zonesData;
     const TimeZoneData* m_currentLocation = nullptr;  // Not owned by me
 
-    void paintEvent( QPaintEvent* event );
-    void mousePressEvent( QMouseEvent* event );
+    void paintEvent( QPaintEvent* event ) override;
+    void mousePressEvent( QMouseEvent* event ) override;
 };
 
 #endif  // TIMEZONEWIDGET_H

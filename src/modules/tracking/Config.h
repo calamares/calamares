@@ -36,7 +36,7 @@ class TrackingStyleConfig : public QObject
 
 public:
     TrackingStyleConfig( QObject* parent );
-    virtual ~TrackingStyleConfig();
+    ~TrackingStyleConfig() override;
 
     void setConfigurationMap( const QVariantMap& );
 

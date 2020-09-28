@@ -34,18 +34,16 @@ ImageRegistry::icon( const QString& image, CalamaresUtils::ImageMode mode )
 
 
 qint64
-ImageRegistry::cacheKey( const QSize& size, qreal opacity, QColor tint )
+ImageRegistry::cacheKey( const QSize& size )
 {
-    return size.width() * 100 + size.height() * 10 + static_cast< qint64 >( opacity * 100.0 ) + tint.value();
+    return size.width() * 100 + size.height() * 10;
 }
 
 
 QPixmap
 ImageRegistry::pixmap( const QString& image,
                        const QSize& size,
-                       CalamaresUtils::ImageMode mode,
-                       qreal opacity,
-                       QColor tint )
+                       CalamaresUtils::ImageMode mode )
 {
     Q_ASSERT( !( size.width() < 0 || size.height() < 0 ) );
     if ( size.width() < 0 || size.height() < 0 )
@@ -64,7 +62,7 @@ ImageRegistry::pixmap( const QString& image,
         {
             subsubcache = subcache.value( mode );
 
-            const qint64 ck = cacheKey( size, opacity, tint );
+            const qint64 ck = cacheKey( size );
             if ( subsubcache.contains( ck ) )
             {
                 return subsubcache.value( ck );
@@ -81,22 +79,8 @@ ImageRegistry::pixmap( const QString& image,
         p.fill( Qt::transparent );
 
         QPainter pixPainter( &p );
-        pixPainter.setOpacity( opacity );
         svgRenderer.render( &pixPainter );
         pixPainter.end();
-
-        if ( tint.alpha() > 0 )
-        {
-            QImage resultImage( p.size(), QImage::Format_ARGB32_Premultiplied );
-            QPainter painter( &resultImage );
-            painter.drawPixmap( 0, 0, p );
-            painter.setCompositionMode( QPainter::CompositionMode_Screen );
-            painter.fillRect( resultImage.rect(), tint );
-            painter.end();
-
-            resultImage.setAlphaChannel( p.toImage().alphaChannel() );
-            p = QPixmap::fromImage( resultImage );
-        }
 
         pixmap = p;
     }
@@ -128,7 +112,7 @@ ImageRegistry::pixmap( const QString& image,
             }
         }
 
-        putInCache( image, size, mode, opacity, pixmap, tint );
+        putInCache( image, size, mode, pixmap );
     }
 
     return pixmap;
@@ -139,9 +123,7 @@ void
 ImageRegistry::putInCache( const QString& image,
                            const QSize& size,
                            CalamaresUtils::ImageMode mode,
-                           qreal opacity,
-                           const QPixmap& pixmap,
-                           QColor tint )
+                           const QPixmap& pixmap )
 {
     QHash< qint64, QPixmap > subsubcache;
     QHash< int, QHash< qint64, QPixmap > > subcache;
@@ -155,7 +137,7 @@ ImageRegistry::putInCache( const QString& image,
         }
     }
 
-    subsubcache.insert( cacheKey( size, opacity, tint ), pixmap );
+    subsubcache.insert( cacheKey( size ), pixmap );
     subcache.insert( mode, subsubcache );
     s_cache.insert( image, subcache );
 }

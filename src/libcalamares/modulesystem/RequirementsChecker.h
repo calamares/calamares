@@ -34,7 +34,7 @@ class RequirementsChecker : public QObject
 
 public:
     RequirementsChecker( QVector< Module* > modules, RequirementsModel* model, QObject* parent = nullptr );
-    virtual ~RequirementsChecker() override;
+    ~RequirementsChecker() override;
 
 public Q_SLOTS:
     /// @brief Start checking all the requirements

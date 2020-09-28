@@ -29,7 +29,7 @@ class PLUGINDLLEXPORT PackageChooserViewStep : public Calamares::ViewStep
 
 public:
     explicit PackageChooserViewStep( QObject* parent = nullptr );
-    virtual ~PackageChooserViewStep() override;
+    ~PackageChooserViewStep() override;
 
     QString prettyName() const override;
 

@@ -27,7 +27,7 @@ public:
                          bool runInChroot = false,
                          std::chrono::seconds secondsTimeout = std::chrono::seconds( 30 ),
                          QObject* parent = nullptr );
-    virtual ~ProcessJob() override;
+    ~ProcessJob() override;
 
     QString prettyName() const override;
     QString prettyStatusMessage() const override;

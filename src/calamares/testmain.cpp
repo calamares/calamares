@@ -140,7 +140,7 @@ public:
         , m_delay( t )
     {
     }
-    virtual ~ExecViewJob() override;
+    ~ExecViewJob() override;
 
     QString prettyName() const override { return m_name; }
 
