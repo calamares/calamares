@@ -523,11 +523,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Copy the efiSystemPartition setting to the global storage. It is needed not only in
     // the EraseDiskPage, but also in the bootloader configuration modules (grub, bootloader).
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QString efiSP = CalamaresUtils::getString( configurationMap, "efiSystemPartition" );
-    if ( efiSP.isEmpty() )
-    {
-        efiSP = QStringLiteral( "/boot/efi" );
-    }
+    QString efiSP = CalamaresUtils::getString( configurationMap, "efiSystemPartition", QStringLiteral( "/boot/efi" ) );
     gs->insert( "efiSystemPartition", efiSP );
 
     // Set up firmwareType global storage entry. This is used, e.g. by the bootloader module.
