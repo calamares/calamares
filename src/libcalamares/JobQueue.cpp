@@ -69,10 +69,12 @@ public:
         }
 
         cDebug() << "There are" << m_runningJobs->count() << "jobs, total weight" << m_overallQueueWeight;
-        int c = 1;
-        for( const auto& j : *m_runningJobs )
+        int c = 0;
+        for ( const auto& j : *m_runningJobs )
         {
-            cDebug() << Logger::SubEntry << "Job" << c << j.job->prettyName() << "wt" << j.weight << " c.wt" << j.cumulative;
+            cDebug() << Logger::SubEntry << "Job" << ( c + 1 ) << j.job->prettyName() << "+wt" << j.weight << "tot.wt"
+                     << ( j.cumulative + j.weight );
+            c++;
         }
     }
 
@@ -116,9 +118,9 @@ public:
             }
             else
             {
-                emitProgress( 0.0 );  // 0% for *this job*
                 cDebug() << "Starting" << ( failureEncountered ? "EMERGENCY JOB" : "job" ) << jobitem.job->prettyName()
                          << '(' << ( m_jobIndex + 1 ) << '/' << m_runningJobs->count() << ')';
+                emitProgress( 0.0 );  // 0% for *this job*
                 connect( jobitem.job.data(), &Job::progress, this, &JobThread::emitProgress );
                 auto result = jobitem.job->exec();
                 if ( !failureEncountered && !result )
@@ -173,8 +175,14 @@ private:
         if ( m_jobIndex < m_runningJobs->count() )
         {
             const auto& jobitem = m_runningJobs->at( m_jobIndex );
+            cDebug() << "Job" << ( m_jobIndex + 1 ) << jobitem.job->prettyName() << "+wt" << jobitem.weight << "start.wt"
+                     << jobitem.cumulative;
             progress = ( jobitem.cumulative + jobitem.weight * percentage ) / m_overallQueueWeight;
             message = jobitem.job->prettyStatusMessage();
+            cDebug() << Logger::SubEntry << ( double( int( percentage * 1000 ) ) / 10.0 ) << "% +wt"
+                     << ( jobitem.weight * percentage ) << " completed.wt"
+                     << ( jobitem.cumulative + jobitem.weight * percentage ) << "tot %"
+                     << ( double( int( progress * 1000 ) ) / 10.0 );
         }
         else
         {
