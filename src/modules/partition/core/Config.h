@@ -28,14 +28,20 @@ public:
 
     PartitionActions::Choices::SwapChoiceSet swapChoices() const { return m_swapChoices; }
 
-    /**
-     * @brief What kind of installation (partitioning) is requested **initially**?
+    /** @brief What kind of installation (partitioning) is requested **initially**?
      *
-     * @return the partitioning choice (may by @c NoChoice)
+     * @return the partitioning choice (may be @c NoChoice)
      */
     PartitionActions::Choices::InstallChoice initialInstallChoice() const { return m_initialInstallChoice; }
 
+    /** @brief What kind of swap selection is requested **initially**?
+     *
+     * @return The swap choice (may be @c NoSwap )
+     */
+    PartitionActions::Choices::SwapChoice initialSwapChoice() const { return m_initialSwapChoice; }
+
 private:
+    PartitionActions::Choices::SwapChoice m_initialSwapChoice;
     PartitionActions::Choices::SwapChoiceSet m_swapChoices;
     PartitionActions::Choices::InstallChoice m_initialInstallChoice = PartitionActions::Choices::NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module

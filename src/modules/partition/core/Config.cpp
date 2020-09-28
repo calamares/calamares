@@ -116,6 +116,13 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     bool nameFound = false;  // In the name table (ignored, falls back to first entry in table)
     m_initialInstallChoice = PartitionActions::Choices::installChoiceNames().find(
         CalamaresUtils::getString( configurationMap, "initialPartitioningChoice" ), nameFound );
+    m_initialSwapChoice = PartitionActions::Choices::swapChoiceNames().find(
+        CalamaresUtils::getString( configurationMap, "initialSwapChoice" ), nameFound );
+    if ( !m_swapChoices.contains( m_initialSwapChoice ) )
+    {
+        cWarning() << "Configuration for *initialSwapChoice* is not one of the *userSwapChoices*";
+        m_initialSwapChoice = PartitionActions::Choices::pickOne( m_swapChoices );
+    }
 }
 
 void

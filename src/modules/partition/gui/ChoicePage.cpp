@@ -86,7 +86,7 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
     , m_availableSwapChoices( config->swapChoices() )
-    , m_eraseSwapChoice( PartitionActions::Choices::pickOne( m_availableSwapChoices ) )
+    , m_eraseSwapChoice( config->initialSwapChoice() )
     , m_allowManualPartitioning( true )
 {
     setupUi( this );
