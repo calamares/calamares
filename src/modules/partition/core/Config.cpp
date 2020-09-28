@@ -100,7 +100,6 @@ getSwapChoices( const QVariantMap& configurationMap )
         choices.remove( x ); \
     }
 
-    COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::SwapFile )
     COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::ReuseSwap )
 #undef COMPLAIN_UNSUPPORTED
 
