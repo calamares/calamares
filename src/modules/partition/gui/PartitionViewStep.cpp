@@ -597,7 +597,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "partitionLayout" ) )
     {
-        m_core->initLayout( configurationMap.values( "partitionLayout" ).at( 0 ).toList() );
+        m_core->initLayout( configurationMap.value( "partitionLayout" ).toList() );
     }
     else
     {
