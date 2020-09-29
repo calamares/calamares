@@ -71,7 +71,6 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     , m_config( config )
     , m_nextEnabled( false )
     , m_core( nullptr )
-    , m_choice( InstallChoice::NoChoice )
     , m_isEfi( false )
     , m_grp( nullptr )
     , m_alongsideButton( nullptr )
@@ -277,7 +276,7 @@ ChoicePage::setupChoices()
     connect( m_grp, buttonSignal, this, [ this ]( int id, bool checked ) {
         if ( checked )  // An action was picked.
         {
-            m_choice = static_cast< InstallChoice >( id );
+            m_config->setInstallChoice( id );
             updateNextEnabled();
 
             emit actionChosen();
@@ -287,7 +286,7 @@ ChoicePage::setupChoices()
             if ( m_grp->checkedButton() == nullptr )  // If no other action is chosen, we must
             {
                 // set m_choice to NoChoice and reset previews.
-                m_choice = InstallChoice::NoChoice;
+                m_config->setInstallChoice( InstallChoice::NoChoice );
                 updateNextEnabled();
 
                 emit actionChosen();
@@ -344,7 +343,7 @@ ChoicePage::checkInstallChoiceRadioButton( InstallChoice c )
     QSignalBlocker b( m_grp );
     m_grp->setExclusive( false );
     // If c == InstallChoice::NoChoice none will match and all are deselected
-    m_eraseButton->setChecked( InstallChoice::Erase == c);
+    m_eraseButton->setChecked( InstallChoice::Erase == c );
     m_replaceButton->setChecked( InstallChoice::Replace == c );
     m_alongsideButton->setChecked( InstallChoice::Alongside == c );
     m_somethingElseButton->setChecked( InstallChoice::Manual == c );
@@ -409,8 +408,8 @@ ChoicePage::continueApplyDeviceChoice()
     {
         m_lastSelectedDeviceIndex = m_drivesCombo->currentIndex();
         m_lastSelectedActionIndex = -1;
-        m_choice = m_config->initialInstallChoice();
-        checkInstallChoiceRadioButton( m_choice );
+        m_config->setInstallChoice( m_config->initialInstallChoice() );
+        checkInstallChoiceRadioButton( m_config->installChoice() );
     }
 
     emit actionChosen();
@@ -424,7 +423,7 @@ ChoicePage::onActionChanged()
     Device* currd = selectedDevice();
     if ( currd )
     {
-        applyActionChoice( currentChoice() );
+        applyActionChoice( m_config->installChoice() );
     }
 }
 
@@ -512,7 +511,7 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
                 [ this ] {
                     // We need to reupdate after reverting because the splitter widget is
                     // not a true view.
-                    updateActionChoicePreview( currentChoice() );
+                    updateActionChoicePreview( m_config->installChoice() );
                     updateNextEnabled();
                 },
                 this );
@@ -585,14 +584,14 @@ void
 ChoicePage::onEncryptWidgetStateChanged()
 {
     EncryptWidget::Encryption state = m_encryptWidget->state();
-    if ( m_choice == InstallChoice::Erase )
+    if ( m_config->installChoice() == InstallChoice::Erase )
     {
         if ( state == EncryptWidget::Encryption::Confirmed || state == EncryptWidget::Encryption::Disabled )
         {
-            applyActionChoice( m_choice );
+            applyActionChoice( m_config->installChoice() );
         }
     }
-    else if ( m_choice == InstallChoice::Replace )
+    else if ( m_config->installChoice() == InstallChoice::Replace )
     {
         if ( m_beforePartitionBarsView && m_beforePartitionBarsView->selectionModel()->currentIndex().isValid()
              && ( state == EncryptWidget::Encryption::Confirmed || state == EncryptWidget::Encryption::Disabled ) )
@@ -607,7 +606,7 @@ ChoicePage::onEncryptWidgetStateChanged()
 void
 ChoicePage::onHomeCheckBoxStateChanged()
 {
-    if ( currentChoice() == InstallChoice::Replace
+    if ( m_config->installChoice() == InstallChoice::Replace
          && m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() )
     {
         doReplaceSelectedPartition( m_beforePartitionBarsView->selectionModel()->currentIndex() );
@@ -618,12 +617,14 @@ ChoicePage::onHomeCheckBoxStateChanged()
 void
 ChoicePage::onLeave()
 {
-    if ( m_choice == InstallChoice::Alongside )
+    if ( m_config->installChoice() == InstallChoice::Alongside )
     {
         doAlongsideApply();
     }
 
-    if ( m_isEfi && ( m_choice == InstallChoice::Alongside || m_choice == InstallChoice::Replace ) )
+    if ( m_isEfi
+         && ( m_config->installChoice() == InstallChoice::Alongside
+              || m_config->installChoice() == InstallChoice::Replace ) )
     {
         QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
         if ( efiSystemPartitions.count() == 1 )
@@ -899,7 +900,7 @@ ChoicePage::updateDeviceStatePreview()
         sm->deleteLater();
     }
 
-    switch ( m_choice )
+    switch ( m_config->installChoice() )
     {
     case InstallChoice::Replace:
     case InstallChoice::Alongside:
@@ -1073,7 +1074,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
         m_previewAfterFrame->show();
         m_previewAfterLabel->show();
 
-        if ( m_choice == InstallChoice::Erase )
+        if ( m_config->installChoice() == InstallChoice::Erase )
         {
             m_selectLabel->hide();
         }
@@ -1102,7 +1103,9 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
         break;
     }
 
-    if ( m_isEfi && ( m_choice == InstallChoice::Alongside || m_choice == InstallChoice::Replace ) )
+    if ( m_isEfi
+         && ( m_config->installChoice() == InstallChoice::Alongside
+              || m_config->installChoice() == InstallChoice::Replace ) )
     {
         QHBoxLayout* efiLayout = new QHBoxLayout;
         layout->addLayout( efiLayout );
@@ -1117,7 +1120,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
 
     // Also handle selection behavior on beforeFrame.
     QAbstractItemView::SelectionMode previewSelectionMode;
-    switch ( m_choice )
+    switch ( m_config->installChoice() )
     {
     case InstallChoice::Replace:
     case InstallChoice::Alongside:
@@ -1457,19 +1460,13 @@ ChoicePage::isNextEnabled() const
 }
 
 
-ChoicePage::InstallChoice
-ChoicePage::currentChoice() const
-{
-    return m_choice;
-}
-
 bool
 ChoicePage::calculateNextEnabled() const
 {
     bool enabled = false;
     auto sm_p = m_beforePartitionBarsView ? m_beforePartitionBarsView->selectionModel() : nullptr;
 
-    switch ( m_choice )
+    switch ( m_config->installChoice() )
     {
     case InstallChoice::NoChoice:
         cDebug() << "No partitioning choice";
@@ -1495,7 +1492,9 @@ ChoicePage::calculateNextEnabled() const
     }
 
 
-    if ( m_isEfi && ( m_choice == InstallChoice::Alongside || m_choice == InstallChoice::Replace ) )
+    if ( m_isEfi
+         && ( m_config->installChoice() == InstallChoice::Alongside
+              || m_config->installChoice() == InstallChoice::Replace ) )
     {
         if ( m_core->efiSystemPartitions().count() == 0 )
         {
@@ -1504,7 +1503,7 @@ ChoicePage::calculateNextEnabled() const
         }
     }
 
-    if ( m_choice != InstallChoice::Manual && m_encryptWidget->isVisible() )
+    if ( m_config->installChoice() != InstallChoice::Manual && m_encryptWidget->isVisible() )
     {
         switch ( m_encryptWidget->state() )
         {

@@ -73,13 +73,6 @@ public:
     bool isNextEnabled() const;
 
     /**
-     * @brief currentChoice returns the enum Choice value corresponding to the
-     * currently selected partitioning mode (with a PrettyRadioButton).
-     * @return the enum Choice value.
-     */
-    InstallChoice currentChoice() const;
-
-    /**
      * @brief onLeave runs when control passes from this page to another one.
      */
     void onLeave();
@@ -138,8 +131,6 @@ private:
     PartitionCoreModule* m_core;
 
     QMutex m_previewsMutex;
-
-    InstallChoice m_choice;
 
     bool m_isEfi;
     QComboBox* m_drivesCombo;

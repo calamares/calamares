@@ -140,7 +140,7 @@ PartitionViewStep::createSummaryWidget() const
     widget->setLayout( mainLayout );
     mainLayout->setMargin( 0 );
 
-    ChoicePage::InstallChoice choice = m_choicePage->currentChoice();
+    ChoicePage::InstallChoice choice = m_config->installChoice();
 
     QFormLayout* formLayout = new QFormLayout( widget );
     const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;
@@ -286,7 +286,7 @@ PartitionViewStep::next()
 {
     if ( m_choicePage == m_widget->currentWidget() )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Manual )
+        if ( m_config->installChoice() == ChoicePage::InstallChoice::Manual )
         {
             if ( !m_manualPartitionPage )
             {
@@ -301,7 +301,7 @@ PartitionViewStep::next()
                 m_manualPartitionPage->onRevertClicked();
             }
         }
-        cDebug() << "Choice applied: " << m_choicePage->currentChoice();
+        cDebug() << "Choice applied: " << m_config->installChoice();
     }
 }
 
@@ -368,9 +368,9 @@ PartitionViewStep::isAtEnd() const
 {
     if ( m_widget->currentWidget() == m_choicePage )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Erase
-             || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Replace
-             || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
+        auto choice = m_config->installChoice();
+        if ( ChoicePage::InstallChoice::Erase == choice || ChoicePage::InstallChoice::Replace == choice
+             || ChoicePage::InstallChoice::Alongside == choice )
         {
             return true;
         }
@@ -387,7 +387,7 @@ PartitionViewStep::onActivate()
 
     // if we're coming back to PVS from the next VS
     if ( m_widget->currentWidget() == m_choicePage
-         && m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
+         && m_config->installChoice() == ChoicePage::InstallChoice::Alongside )
     {
         m_choicePage->applyActionChoice( ChoicePage::InstallChoice::Alongside );
         //        m_choicePage->reset();
@@ -582,7 +582,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // because it could take a while. Then when it's done, we can set up the widgets
     // and remove the spinner.
     m_future = new QFutureWatcher< void >();
-    connect( m_future, &QFutureWatcher< void >::finished, this, [this] {
+    connect( m_future, &QFutureWatcher< void >::finished, this, [ this ] {
         continueLoading();
         this->m_future->deleteLater();
         this->m_future = nullptr;

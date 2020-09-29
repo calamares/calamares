@@ -107,6 +107,29 @@ getSwapChoices( const QVariantMap& configurationMap )
 }
 
 void
+Config::setInstallChoice( int c )
+{
+    if ( ( c < PartitionActions::Choices::InstallChoice::NoChoice )
+         || ( c > PartitionActions::Choices::InstallChoice::Manual ) )
+    {
+        cWarning() << "Invalid install choice (int)" << c;
+        c = PartitionActions::Choices::InstallChoice::NoChoice;
+    }
+    setInstallChoice( static_cast< PartitionActions::Choices::InstallChoice >( c ) );
+}
+
+void
+Config::setInstallChoice( PartitionActions::Choices::InstallChoice c )
+{
+    if ( c != m_installChoice )
+    {
+        m_installChoice = c;
+        emit installChoiceChanged( c );
+    }
+}
+
+
+void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
     // Settings that overlap with the Welcome module
@@ -116,6 +139,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     bool nameFound = false;  // In the name table (ignored, falls back to first entry in table)
     m_initialInstallChoice = PartitionActions::Choices::installChoiceNames().find(
         CalamaresUtils::getString( configurationMap, "initialPartitioningChoice" ), nameFound );
+    setInstallChoice( m_initialInstallChoice );
+
     m_initialSwapChoice = PartitionActions::Choices::swapChoiceNames().find(
         CalamaresUtils::getString( configurationMap, "initialSwapChoice" ), nameFound );
     if ( !m_swapChoices.contains( m_initialSwapChoice ) )
