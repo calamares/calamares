@@ -342,31 +342,12 @@ void
 ChoicePage::checkInstallChoiceRadioButton( InstallChoice c )
 {
     QSignalBlocker b( m_grp );
-    PrettyRadioButton* button = nullptr;
-    switch ( c )
-    {
-    case InstallChoice::Alongside:
-        button = m_alongsideButton;
-        break;
-    case InstallChoice::Replace:
-        button = m_replaceButton;
-        break;
-    case InstallChoice::Erase:
-        button = m_eraseButton;
-        break;
-    case InstallChoice::Manual:
-        button = m_somethingElseButton;
-        break;
-    case InstallChoice::NoChoice:
-        // Nothing
-        ;
-    }
-
     m_grp->setExclusive( false );
-    m_eraseButton->setChecked( button == m_eraseButton );
-    m_replaceButton->setChecked( button == m_replaceButton );
-    m_alongsideButton->setChecked( button == m_alongsideButton );
-    m_somethingElseButton->setChecked( button == m_somethingElseButton );
+    // If c == InstallChoice::NoChoice none will match and all are deselected
+    m_eraseButton->setChecked( InstallChoice::Erase == c);
+    m_replaceButton->setChecked( InstallChoice::Replace == c );
+    m_alongsideButton->setChecked( InstallChoice::Alongside == c );
+    m_somethingElseButton->setChecked( InstallChoice::Manual == c );
     m_grp->setExclusive( true );
 }
 
