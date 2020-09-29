@@ -2608,7 +2608,7 @@
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="473"/>
         <source>Zaporozhye</source>
         <comment>tz_names</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zaporizhia</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="474"/>
