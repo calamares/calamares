@@ -54,7 +54,7 @@ PartitionBarsView::PartitionBarsView( QWidget* parent )
     setSelectionMode( QAbstractItemView::SingleSelection );
 
     // Debug
-    connect( this, &PartitionBarsView::clicked, this, [=]( const QModelIndex& index ) {
+    connect( this, &PartitionBarsView::clicked, this, [ = ]( const QModelIndex& index ) {
         cDebug() << "Clicked row" << index.row();
     } );
     setMouseTracking( true );
@@ -399,7 +399,7 @@ void
 PartitionBarsView::setSelectionModel( QItemSelectionModel* selectionModel )
 {
     QAbstractItemView::setSelectionModel( selectionModel );
-    connect( selectionModel, &QItemSelectionModel::selectionChanged, this, [=] { viewport()->repaint(); } );
+    connect( selectionModel, &QItemSelectionModel::selectionChanged, this, [ = ] { viewport()->repaint(); } );
 }
 
 

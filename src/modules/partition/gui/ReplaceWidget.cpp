@@ -46,7 +46,7 @@ ReplaceWidget::ReplaceWidget( PartitionCoreModule* core, QComboBox* devicesCombo
     m_ui->bootStatusLabel->clear();
 
     updateFromCurrentDevice( devicesComboBox );
-    connect( devicesComboBox, &QComboBox::currentTextChanged, this, [=]( const QString& /* text */ ) {
+    connect( devicesComboBox, &QComboBox::currentTextChanged, this, [ = ]( const QString& /* text */ ) {
         updateFromCurrentDevice( devicesComboBox );
     } );
 

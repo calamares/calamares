@@ -159,7 +159,7 @@ PartitionSplitterWidget::setSplitPartition( const QString& path, qint64 minSize,
         m_itemToResizePath.clear();
     }
 
-    PartitionSplitterItem itemToResize = _findItem( m_items, [path]( PartitionSplitterItem& item ) -> bool {
+    PartitionSplitterItem itemToResize = _findItem( m_items, [ path ]( PartitionSplitterItem& item ) -> bool {
         if ( path == item.itemPath )
         {
             item.status = PartitionSplitterItem::Resizing;
@@ -184,7 +184,7 @@ PartitionSplitterWidget::setSplitPartition( const QString& path, qint64 minSize,
 
     qint64 newSize = m_itemToResize.size - preferredSize;
     m_itemToResize.size = preferredSize;
-    int opCount = _eachItem( m_items, [preferredSize]( PartitionSplitterItem& item ) -> bool {
+    int opCount = _eachItem( m_items, [ preferredSize ]( PartitionSplitterItem& item ) -> bool {
         if ( item.status == PartitionSplitterItem::Resizing )
         {
             item.size = preferredSize;
@@ -358,7 +358,7 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
 
         m_itemToResize.size = qRound64( span * percent );
         m_itemToResizeNext.size -= m_itemToResize.size - oldsize;
-        _eachItem( m_items, [this]( PartitionSplitterItem& item ) -> bool {
+        _eachItem( m_items, [ this ]( PartitionSplitterItem& item ) -> bool {
             if ( item.status == PartitionSplitterItem::Resizing )
             {
                 item.size = m_itemToResize.size;
