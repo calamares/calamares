@@ -31,8 +31,39 @@ Config::installChoiceNames()
     return names;
 }
 
+const NamedEnumTable< Config::SwapChoice >&
+Config::swapChoiceNames()
+{
+    static const NamedEnumTable< SwapChoice > names { { QStringLiteral( "none" ), SwapChoice::NoSwap },
+                                                      { QStringLiteral( "small" ), SwapChoice::SmallSwap },
+                                                      { QStringLiteral( "suspend" ), SwapChoice::FullSwap },
+                                                      { QStringLiteral( "reuse" ), SwapChoice::ReuseSwap },
+                                                      { QStringLiteral( "file" ), SwapChoice::SwapFile } };
 
-static PartitionActions::Choices::SwapChoiceSet
+    return names;
+}
+
+Config::SwapChoice
+pickOne( const Config::SwapChoiceSet& s )
+{
+    if ( s.count() == 0 )
+    {
+        return Config::SwapChoice::NoSwap;
+    }
+    if ( s.count() == 1 )
+    {
+        return *( s.begin() );
+    }
+    if ( s.contains( Config::SwapChoice::NoSwap ) )
+    {
+        return Config::SwapChoice::NoSwap;
+    }
+    // Here, count > 1 but NoSwap is not a member.
+    return *( s.begin() );
+}
+
+
+static Config::SwapChoiceSet
 getSwapChoices( const QVariantMap& configurationMap )
 {
     // SWAP SETTINGS
@@ -57,7 +88,7 @@ getSwapChoices( const QVariantMap& configurationMap )
     }
     bool neverCreateSwap = CalamaresUtils::getBool( configurationMap, "neverCreateSwap", false );
 
-    PartitionActions::Choices::SwapChoiceSet choices;  // Available swap choices
+    Config::SwapChoiceSet choices;  // Available swap choices
     if ( configurationMap.contains( "userSwapChoices" ) )
     {
         // We've already warned about overlapping settings with the
@@ -67,7 +98,7 @@ getSwapChoices( const QVariantMap& configurationMap )
         for ( const auto& item : l )
         {
             bool ok = false;
-            auto v = PartitionActions::Choices::swapChoiceNames().find( item, ok );
+            auto v = Config::swapChoiceNames().find( item, ok );
             if ( ok )
             {
                 choices.insert( v );
@@ -77,28 +108,28 @@ getSwapChoices( const QVariantMap& configurationMap )
         if ( choices.isEmpty() )
         {
             cWarning() << "Partition-module configuration for *userSwapChoices* is empty:" << l;
-            choices.insert( PartitionActions::Choices::SwapChoice::FullSwap );
+            choices.insert( Config::SwapChoice::FullSwap );
         }
 
         // suspend if it's one of the possible choices; suppress swap only if it's
         // the **only** choice available.
-        ensureSuspendToDisk = choices.contains( PartitionActions::Choices::SwapChoice::FullSwap );
-        neverCreateSwap = ( choices.count() == 1 ) && choices.contains( PartitionActions::Choices::SwapChoice::NoSwap );
+        ensureSuspendToDisk = choices.contains( Config::SwapChoice::FullSwap );
+        neverCreateSwap = ( choices.count() == 1 ) && choices.contains( Config::SwapChoice::NoSwap );
     }
     else
     {
         // Convert the legacy settings into a single setting for now.
         if ( neverCreateSwap )
         {
-            choices.insert( PartitionActions::Choices::SwapChoice::NoSwap );
+            choices.insert( Config::SwapChoice::NoSwap );
         }
         else if ( ensureSuspendToDisk )
         {
-            choices.insert( PartitionActions::Choices::SwapChoice::FullSwap );
+            choices.insert( Config::SwapChoice::FullSwap );
         }
         else
         {
-            choices.insert( PartitionActions::Choices::SwapChoice::SmallSwap );
+            choices.insert( Config::SwapChoice::SmallSwap );
         }
     }
 
@@ -109,11 +140,11 @@ getSwapChoices( const QVariantMap& configurationMap )
     if ( choices.contains( x ) ) \
     { \
         bool bogus = false; \
-        cWarning() << unsupportedSetting << PartitionActions::Choices::swapChoiceNames().find( x, bogus ); \
+        cWarning() << unsupportedSetting << Config::swapChoiceNames().find( x, bogus ); \
         choices.remove( x ); \
     }
 
-    COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::ReuseSwap )
+    COMPLAIN_UNSUPPORTED( Config::SwapChoice::ReuseSwap )
 #undef COMPLAIN_UNSUPPORTED
 
     return choices;
@@ -149,16 +180,16 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_swapChoices = getSwapChoices( configurationMap );
 
     bool nameFound = false;  // In the name table (ignored, falls back to first entry in table)
-    m_initialInstallChoice = Config::installChoiceNames().find(
+    m_initialInstallChoice = installChoiceNames().find(
         CalamaresUtils::getString( configurationMap, "initialPartitioningChoice" ), nameFound );
     setInstallChoice( m_initialInstallChoice );
 
-    m_initialSwapChoice = PartitionActions::Choices::swapChoiceNames().find(
-        CalamaresUtils::getString( configurationMap, "initialSwapChoice" ), nameFound );
+    m_initialSwapChoice
+        = swapChoiceNames().find( CalamaresUtils::getString( configurationMap, "initialSwapChoice" ), nameFound );
     if ( !m_swapChoices.contains( m_initialSwapChoice ) )
     {
         cWarning() << "Configuration for *initialSwapChoice* is not one of the *userSwapChoices*";
-        m_initialSwapChoice = PartitionActions::Choices::pickOne( m_swapChoices );
+        m_initialSwapChoice = pickOne( m_swapChoices );
     }
 }
 

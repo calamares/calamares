@@ -10,7 +10,7 @@
 #ifndef PARTITION_CONFIG_H
 #define PARTITION_CONFIG_H
 
-#include "core/PartitionActions.h"
+#include "utils/NamedEnum.h"
 
 #include <QObject>
 #include <QSet>
@@ -40,10 +40,23 @@ public:
     Q_ENUM( InstallChoice )
     static const NamedEnumTable< InstallChoice >& installChoiceNames();
 
+    /** @brief Choice of swap (size and type) */
+    enum SwapChoice
+    {
+        NoSwap,  // don't create any swap, don't use any
+        ReuseSwap,  // don't create, but do use existing
+        SmallSwap,  // up to 8GiB of swap
+        FullSwap,  // ensureSuspendToDisk -- at least RAM size
+        SwapFile  // use a file (if supported)
+    };
+    Q_ENUM( SwapChoice )
+    static const NamedEnumTable< SwapChoice >& swapChoiceNames();
+    using SwapChoiceSet = QSet< SwapChoice >;
+
     void setConfigurationMap( const QVariantMap& );
     void updateGlobalStorage() const;
 
-    PartitionActions::Choices::SwapChoiceSet swapChoices() const { return m_swapChoices; }
+    SwapChoiceSet swapChoices() const { return m_swapChoices; }
 
     /** @brief What kind of installation (partitioning) is requested **initially**?
      *
@@ -65,7 +78,7 @@ public:
      *
      * @return The swap choice (may be @c NoSwap )
      */
-    PartitionActions::Choices::SwapChoice initialSwapChoice() const { return m_initialSwapChoice; }
+    SwapChoice initialSwapChoice() const { return m_initialSwapChoice; }
 
 public Q_SLOTS:
     void setInstallChoice( int );
@@ -75,12 +88,20 @@ Q_SIGNALS:
     void installChoiceChanged( InstallChoice );
 
 private:
-    PartitionActions::Choices::SwapChoice m_initialSwapChoice;
-    PartitionActions::Choices::SwapChoiceSet m_swapChoices;
+    SwapChoice m_initialSwapChoice;
+    SwapChoiceSet m_swapChoices;
     InstallChoice m_initialInstallChoice = NoChoice;
     InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
 };
+
+/** @brief Given a set of swap choices, return a sensible value from it.
+ *
+ * "Sensible" here means: if there is one value, use it; otherwise, use
+ * NoSwap if there are no choices, or if NoSwap is one of the choices, in the set.
+ * If that's not possible, any value from the set.
+ */
+Config::SwapChoice pickOne( const Config::SwapChoiceSet& s );
 
 
 #endif

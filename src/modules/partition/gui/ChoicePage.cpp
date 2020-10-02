@@ -60,7 +60,7 @@ using CalamaresUtils::Partition::findPartitionByPath;
 using CalamaresUtils::Partition::isPartitionFreeSpace;
 using CalamaresUtils::Partition::PartitionIterator;
 using InstallChoice = Config::InstallChoice;
-using PartitionActions::Choices::SwapChoice;
+using SwapChoice = Config::SwapChoice;
 
 /**
  * @brief ChoicePage::ChoicePage is the default constructor. Called on startup as part of
@@ -433,8 +433,7 @@ ChoicePage::onEraseSwapChoiceChanged()
 {
     if ( m_eraseSwapChoiceComboBox )
     {
-        m_eraseSwapChoice
-            = static_cast< PartitionActions::Choices::SwapChoice >( m_eraseSwapChoiceComboBox->currentData().toInt() );
+        m_eraseSwapChoice = static_cast< Config::SwapChoice >( m_eraseSwapChoiceComboBox->currentData().toInt() );
         onActionChanged();
     }
 }

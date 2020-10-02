@@ -17,7 +17,6 @@
 
 #include "core/Config.h"
 #include "core/OsproberEntry.h"
-// #include "core/PartitionActions.h"
 
 #include <QMutex>
 #include <QPointer>
@@ -43,7 +42,7 @@ class PartitionCoreModule;
 
 class Device;
 
-using SwapChoiceSet = QSet< PartitionActions::Choices::SwapChoice >;
+using SwapChoiceSet = Config::SwapChoiceSet;
 
 /**
  * @brief The ChoicePage class is the first page of the partitioning interface.
@@ -158,7 +157,7 @@ private:
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
     SwapChoiceSet m_availableSwapChoices;  // What is available
-    PartitionActions::Choices::SwapChoice m_eraseSwapChoice;  // what is selected
+    Config::SwapChoice m_eraseSwapChoice;  // what is selected
 
     bool m_allowManualPartitioning;
 
