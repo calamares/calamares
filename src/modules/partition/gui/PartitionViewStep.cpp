@@ -549,8 +549,6 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                 CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
     gs->insert( "enableLuksAutomatedPartitioning",
                 CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
-    gs->insert( "allowManualPartitioning",
-                CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
 
     // The defaultFileSystemType setting needs a bit more processing,
     // as we want to cover various cases (such as different cases)

@@ -159,8 +159,6 @@ private:
     SwapChoiceSet m_availableSwapChoices;  // What is available
     Config::SwapChoice m_eraseSwapChoice;  // what is selected
 
-    bool m_allowManualPartitioning;
-
     QMutex m_coreMutex;
 };
 

@@ -86,7 +86,6 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     , m_enableEncryptionWidget( true )
     , m_availableSwapChoices( config->swapChoices() )
     , m_eraseSwapChoice( config->initialSwapChoice() )
-    , m_allowManualPartitioning( true )
 {
     setupUi( this );
 
@@ -94,7 +93,6 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
 
     m_defaultFsType = gs->value( "defaultFileSystemType" ).toString();
     m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
-    m_allowManualPartitioning = gs->value( "allowManualPartitioning" ).toBool();
 
     if ( FileSystem::typeForName( m_defaultFsType ) == FileSystem::Unknown )
     {
@@ -1241,7 +1239,7 @@ ChoicePage::setupActions()
         m_deviceInfoWidget->setPartitionTableType( PartitionTable::unknownTableType );
     }
 
-    if ( m_allowManualPartitioning )
+    if ( m_config->allowManualPartitioning() )
     {
         m_somethingElseButton->show();
     }

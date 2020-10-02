@@ -192,6 +192,14 @@ Config::setSwapChoice( Config::SwapChoice c )
     }
 }
 
+bool
+Config::allowManualPartitioning() const
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    return gs->value( "allowManualPartitioning" ).toBool();
+}
+
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -212,6 +220,10 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         m_initialSwapChoice = pickOne( m_swapChoices );
     }
     setSwapChoice( m_initialSwapChoice );
+
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    gs->insert( "allowManualPartitioning",
+                CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
 }
 
 void

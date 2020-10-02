@@ -24,6 +24,8 @@ class Config : public QObject
     ///@brief The swap choice (None, Small, Hibernate, ...) which only makes sense when Erase is chosen
     Q_PROPERTY( SwapChoice swapChoice READ swapChoice WRITE setSwapChoice NOTIFY swapChoiceChanged )
 
+    Q_PROPERTY( bool allowManualPartitioning READ allowManualPartitioning CONSTANT FINAL )
+
 public:
     Config( QObject* parent );
     virtual ~Config() = default;
@@ -85,6 +87,9 @@ public:
      * @return The swap choice (may be @c NoSwap).
      */
     SwapChoice swapChoice() const { return m_swapChoice; }
+
+    ///@brief Is manual partitioning allowed (not explicitly disnabled in the config file)?
+    bool allowManualPartitioning() const;
 
 public Q_SLOTS:
     void setInstallChoice( int );  ///< Translates a button ID or so to InstallChoice
