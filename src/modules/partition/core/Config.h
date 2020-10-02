@@ -18,12 +18,11 @@
 class Config : public QObject
 {
     Q_OBJECT
-    /** @brief The installation choice (Erase, Alongside, ...)
-     *
-     * This is an int because exposing the enum values is slightly complicated
-     * by the source layout.
-     */
+    ///@brief The installation choice (Erase, Alongside, ...)
     Q_PROPERTY( InstallChoice installChoice READ installChoice WRITE setInstallChoice NOTIFY installChoiceChanged )
+
+    ///@brief The swap choice (None, Small, Hibernate, ...) which only makes sense when Erase is chosen
+    Q_PROPERTY( SwapChoice swapChoice READ swapChoice WRITE setSwapChoice NOTIFY swapChoiceChanged )
 
 public:
     Config( QObject* parent );
@@ -73,23 +72,34 @@ public:
      */
     InstallChoice installChoice() const { return m_installChoice; }
 
-
     /** @brief What kind of swap selection is requested **initially**?
      *
      * @return The swap choice (may be @c NoSwap )
      */
     SwapChoice initialSwapChoice() const { return m_initialSwapChoice; }
 
+    /** @brief What kind of swap selection is requested **now**?
+     *
+     * A choice of swap only makes sense when install choice Erase is made.
+     *
+     * @return The swap choice (may be @c NoSwap).
+     */
+    SwapChoice swapChoice() const { return m_swapChoice; }
+
 public Q_SLOTS:
-    void setInstallChoice( int );
+    void setInstallChoice( int );  ///< Translates a button ID or so to InstallChoice
     void setInstallChoice( InstallChoice );
+    void setSwapChoice( int );  ///< Translates a button ID or so to SwapChoice
+    void setSwapChoice( SwapChoice );
 
 Q_SIGNALS:
     void installChoiceChanged( InstallChoice );
+    void swapChoiceChanged( SwapChoice );
 
 private:
-    SwapChoice m_initialSwapChoice;
     SwapChoiceSet m_swapChoices;
+    SwapChoice m_initialSwapChoice = NoSwap;
+    SwapChoice m_swapChoice = NoSwap;
     InstallChoice m_initialInstallChoice = NoChoice;
     InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module

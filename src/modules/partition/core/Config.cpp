@@ -171,6 +171,26 @@ Config::setInstallChoice( InstallChoice c )
     }
 }
 
+void
+Config::setSwapChoice( int c )
+{
+    if ( ( c < SwapChoice::NoSwap ) || ( c > SwapChoice::SwapFile ) )
+    {
+        cWarning() << "Instalid swap choice (int)" << c;
+        c = SwapChoice::NoSwap;
+    }
+    setSwapChoice( static_cast< SwapChoice >( c ) );
+}
+
+void
+Config::setSwapChoice( Config::SwapChoice c )
+{
+    if ( c != m_swapChoice )
+    {
+        m_swapChoice = c;
+        emit swapChoiceChanged( c );
+    }
+}
 
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
@@ -191,6 +211,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         cWarning() << "Configuration for *initialSwapChoice* is not one of the *userSwapChoices*";
         m_initialSwapChoice = pickOne( m_swapChoices );
     }
+    setSwapChoice( m_initialSwapChoice );
 }
 
 void
