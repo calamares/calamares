@@ -59,6 +59,7 @@ using Calamares::PrettyRadioButton;
 using CalamaresUtils::Partition::findPartitionByPath;
 using CalamaresUtils::Partition::isPartitionFreeSpace;
 using CalamaresUtils::Partition::PartitionIterator;
+using InstallChoice = Config::InstallChoice;
 using PartitionActions::Choices::SwapChoice;
 
 /**
@@ -439,10 +440,10 @@ ChoicePage::onEraseSwapChoiceChanged()
 }
 
 void
-ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
+ChoicePage::applyActionChoice( InstallChoice choice )
 {
     cDebug() << "Prev" << m_lastSelectedActionIndex << "InstallChoice" << choice
-             << PartitionActions::Choices::installChoiceNames().find( choice );
+             << Config::installChoiceNames().find( choice );
     m_beforePartitionBarsView->selectionModel()->disconnect( SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ) );
     m_beforePartitionBarsView->selectionModel()->clearSelection();
     m_beforePartitionBarsView->selectionModel()->clearCurrentIndex();
@@ -925,7 +926,7 @@ ChoicePage::updateDeviceStatePreview()
  * @param choice the chosen partitioning action.
  */
 void
-ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
+ChoicePage::updateActionChoicePreview( InstallChoice choice )
 {
     Device* currentDevice = selectedDevice();
     Q_ASSERT( currentDevice );

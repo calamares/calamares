@@ -561,7 +561,7 @@ PartitionCoreModule::setPartitionFlags( Device* device, Partition* partition, Pa
 }
 
 Calamares::JobList
-PartitionCoreModule::jobs() const
+PartitionCoreModule::jobs( const Config* config ) const
 {
     Calamares::JobList lst;
     QList< Device* > devices;
@@ -592,7 +592,7 @@ PartitionCoreModule::jobs() const
         lst << info->jobs();
         devices << info->device.data();
     }
-    lst << Calamares::job_ptr( new FillGlobalStorageJob( devices, m_bootLoaderInstallPath ) );
+    lst << Calamares::job_ptr( new FillGlobalStorageJob( config, devices, m_bootLoaderInstallPath ) );
 
     return lst;
 }

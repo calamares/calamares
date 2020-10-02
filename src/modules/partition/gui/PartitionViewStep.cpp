@@ -140,7 +140,7 @@ PartitionViewStep::createSummaryWidget() const
     widget->setLayout( mainLayout );
     mainLayout->setMargin( 0 );
 
-    ChoicePage::InstallChoice choice = m_config->installChoice();
+    Config::InstallChoice choice = m_config->installChoice();
 
     QFormLayout* formLayout = new QFormLayout( widget );
     const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;
@@ -158,18 +158,18 @@ PartitionViewStep::createSummaryWidget() const
         QString modeText;
         switch ( choice )
         {
-        case ChoicePage::InstallChoice::Alongside:
+        case Config::InstallChoice::Alongside:
             modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
                            .arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::InstallChoice::Erase:
+        case Config::InstallChoice::Erase:
             modeText = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::InstallChoice::Replace:
+        case Config::InstallChoice::Replace:
             modeText = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::InstallChoice::NoChoice:
-        case ChoicePage::InstallChoice::Manual:
+        case Config::InstallChoice::NoChoice:
+        case Config::InstallChoice::Manual:
             modeText = tr( "<strong>Manual</strong> partitioning." );
         }
         modeLabel->setText( modeText );
@@ -182,27 +182,27 @@ PartitionViewStep::createSummaryWidget() const
             QString modeText;
             switch ( choice )
             {
-            case ChoicePage::InstallChoice::Alongside:
+            case Config::InstallChoice::Alongside:
                 modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk "
                                "<strong>%2</strong> (%3)." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::InstallChoice::Erase:
+            case Config::InstallChoice::Erase:
                 modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::InstallChoice::Replace:
+            case Config::InstallChoice::Replace:
                 modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::InstallChoice::NoChoice:
-            case ChoicePage::InstallChoice::Manual:
+            case Config::InstallChoice::NoChoice:
+            case Config::InstallChoice::Manual:
                 modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
@@ -286,7 +286,7 @@ PartitionViewStep::next()
 {
     if ( m_choicePage == m_widget->currentWidget() )
     {
-        if ( m_config->installChoice() == ChoicePage::InstallChoice::Manual )
+        if ( m_config->installChoice() == Config::InstallChoice::Manual )
         {
             if ( !m_manualPartitionPage )
             {
@@ -369,8 +369,8 @@ PartitionViewStep::isAtEnd() const
     if ( m_widget->currentWidget() == m_choicePage )
     {
         auto choice = m_config->installChoice();
-        if ( ChoicePage::InstallChoice::Erase == choice || ChoicePage::InstallChoice::Replace == choice
-             || ChoicePage::InstallChoice::Alongside == choice )
+        if ( Config::InstallChoice::Erase == choice || Config::InstallChoice::Replace == choice
+             || Config::InstallChoice::Alongside == choice )
         {
             return true;
         }
@@ -386,10 +386,9 @@ PartitionViewStep::onActivate()
     m_config->updateGlobalStorage();
 
     // if we're coming back to PVS from the next VS
-    if ( m_widget->currentWidget() == m_choicePage
-         && m_config->installChoice() == ChoicePage::InstallChoice::Alongside )
+    if ( m_widget->currentWidget() == m_choicePage && m_config->installChoice() == Config::InstallChoice::Alongside )
     {
-        m_choicePage->applyActionChoice( ChoicePage::InstallChoice::Alongside );
+        m_choicePage->applyActionChoice( Config::InstallChoice::Alongside );
         //        m_choicePage->reset();
         //FIXME: ReplaceWidget should be reset maybe?
     }
@@ -605,7 +604,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 Calamares::JobList
 PartitionViewStep::jobs() const
 {
-    return m_core->jobs();
+    return m_core->jobs( m_config );
 }
 
 Calamares::RequirementsList

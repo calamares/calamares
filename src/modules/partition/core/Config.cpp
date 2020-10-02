@@ -19,6 +19,19 @@ Config::Config( QObject* parent )
 {
 }
 
+const NamedEnumTable< Config::InstallChoice >&
+Config::installChoiceNames()
+{
+    static const NamedEnumTable< InstallChoice > names { { QStringLiteral( "none" ), InstallChoice::NoChoice },
+                                                         { QStringLiteral( "nochoice" ), InstallChoice::NoChoice },
+                                                         { QStringLiteral( "alongside" ), InstallChoice::Alongside },
+                                                         { QStringLiteral( "erase" ), InstallChoice::Erase },
+                                                         { QStringLiteral( "replace" ), InstallChoice::Replace },
+                                                         { QStringLiteral( "manual" ), InstallChoice::Manual } };
+    return names;
+}
+
+
 static PartitionActions::Choices::SwapChoiceSet
 getSwapChoices( const QVariantMap& configurationMap )
 {
@@ -109,17 +122,16 @@ getSwapChoices( const QVariantMap& configurationMap )
 void
 Config::setInstallChoice( int c )
 {
-    if ( ( c < PartitionActions::Choices::InstallChoice::NoChoice )
-         || ( c > PartitionActions::Choices::InstallChoice::Manual ) )
+    if ( ( c < InstallChoice::NoChoice ) || ( c > InstallChoice::Manual ) )
     {
         cWarning() << "Invalid install choice (int)" << c;
-        c = PartitionActions::Choices::InstallChoice::NoChoice;
+        c = InstallChoice::NoChoice;
     }
-    setInstallChoice( static_cast< PartitionActions::Choices::InstallChoice >( c ) );
+    setInstallChoice( static_cast< InstallChoice >( c ) );
 }
 
 void
-Config::setInstallChoice( PartitionActions::Choices::InstallChoice c )
+Config::setInstallChoice( InstallChoice c )
 {
     if ( c != m_installChoice )
     {
@@ -137,7 +149,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_swapChoices = getSwapChoices( configurationMap );
 
     bool nameFound = false;  // In the name table (ignored, falls back to first entry in table)
-    m_initialInstallChoice = PartitionActions::Choices::installChoiceNames().find(
+    m_initialInstallChoice = Config::installChoiceNames().find(
         CalamaresUtils::getString( configurationMap, "initialPartitioningChoice" ), nameFound );
     setInstallChoice( m_initialInstallChoice );
 

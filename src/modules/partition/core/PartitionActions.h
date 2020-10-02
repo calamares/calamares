@@ -47,16 +47,6 @@ const NamedEnumTable< SwapChoice >& swapChoiceNames();
  */
 SwapChoice pickOne( const SwapChoiceSet& s );
 
-enum InstallChoice
-{
-    NoChoice,
-    Alongside,
-    Erase,
-    Replace,
-    Manual
-};
-const NamedEnumTable< InstallChoice >& installChoiceNames();
-
 struct ReplacePartitionOptions
 {
     QString defaultFsType;  // e.g. "ext4" or "btrfs"

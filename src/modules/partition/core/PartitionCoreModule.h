@@ -32,6 +32,7 @@
 #include <functional>
 
 class BootLoaderModel;
+class Config;
 class CreatePartitionJob;
 class Device;
 class DeviceModel;
@@ -171,7 +172,7 @@ public:
      * requested by the user.
      * @return a list of jobs.
      */
-    Calamares::JobList jobs() const;
+    Calamares::JobList jobs( const Config* ) const;
 
     bool hasRootMountPoint() const;
 

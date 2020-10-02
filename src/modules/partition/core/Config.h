@@ -18,17 +18,27 @@
 class Config : public QObject
 {
     Q_OBJECT
-
-public:
-    Config( QObject* parent );
-    virtual ~Config() = default;
-
     /** @brief The installation choice (Erase, Alongside, ...)
      *
      * This is an int because exposing the enum values is slightly complicated
      * by the source layout.
      */
-    Q_PROPERTY( int installChoice READ installChoice WRITE setInstallChoice NOTIFY installChoiceChanged )
+    Q_PROPERTY( InstallChoice installChoice READ installChoice WRITE setInstallChoice NOTIFY installChoiceChanged )
+
+public:
+    Config( QObject* parent );
+    virtual ~Config() = default;
+
+    enum InstallChoice
+    {
+        NoChoice,
+        Alongside,
+        Erase,
+        Replace,
+        Manual
+    };
+    Q_ENUM( InstallChoice )
+    static const NamedEnumTable< InstallChoice >& installChoiceNames();
 
     void setConfigurationMap( const QVariantMap& );
     void updateGlobalStorage() const;
@@ -39,7 +49,7 @@ public:
      *
      * @return the partitioning choice (may be @c NoChoice)
      */
-    PartitionActions::Choices::InstallChoice initialInstallChoice() const { return m_initialInstallChoice; }
+    InstallChoice initialInstallChoice() const { return m_initialInstallChoice; }
 
     /** @brief What kind of installation (partition) is requested **now**?
      *
@@ -48,7 +58,7 @@ public:
      *
      * @return the partitioning choice (may be @c NoChoice)
      */
-    PartitionActions::Choices::InstallChoice installChoice() const { return m_installChoice; }
+    InstallChoice installChoice() const { return m_installChoice; }
 
 
     /** @brief What kind of swap selection is requested **initially**?
@@ -59,16 +69,16 @@ public:
 
 public Q_SLOTS:
     void setInstallChoice( int );
-    void setInstallChoice( PartitionActions::Choices::InstallChoice );
+    void setInstallChoice( InstallChoice );
 
 Q_SIGNALS:
-    void installChoiceChanged( PartitionActions::Choices::InstallChoice );
+    void installChoiceChanged( InstallChoice );
 
 private:
     PartitionActions::Choices::SwapChoice m_initialSwapChoice;
     PartitionActions::Choices::SwapChoiceSet m_swapChoices;
-    PartitionActions::Choices::InstallChoice m_initialInstallChoice = PartitionActions::Choices::NoChoice;
-    PartitionActions::Choices::InstallChoice m_installChoice = PartitionActions::Choices::NoChoice;
+    InstallChoice m_initialInstallChoice = NoChoice;
+    InstallChoice m_installChoice = NoChoice;
     qreal m_requiredStorageGiB = 0.0;  // May duplicate setting in the welcome module
 };
 

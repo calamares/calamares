@@ -15,8 +15,9 @@
 #include "ui_ChoicePage.h"
 
 
+#include "core/Config.h"
 #include "core/OsproberEntry.h"
-#include "core/PartitionActions.h"
+// #include "core/PartitionActions.h"
 
 #include <QMutex>
 #include <QPointer>
@@ -53,8 +54,6 @@ class ChoicePage : public QWidget, private Ui::ChoicePage
 {
     Q_OBJECT
 public:
-    using InstallChoice = PartitionActions::Choices::InstallChoice;
-
     explicit ChoicePage( Config* config, QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
@@ -81,7 +80,7 @@ public:
      * @brief applyActionChoice reacts to a choice of partitioning mode.
      * @param choice the partitioning action choice.
      */
-    void applyActionChoice( ChoicePage::InstallChoice choice );
+    void applyActionChoice( Config::InstallChoice choice );
 
     int lastSelectedDeviceIndex();
     void setLastSelectedDeviceIndex( int index );
@@ -107,7 +106,7 @@ private:
     bool calculateNextEnabled() const;
     void updateNextEnabled();
     void setupChoices();
-    void checkInstallChoiceRadioButton( ChoicePage::InstallChoice choice );  ///< Sets the chosen button to "on"
+    void checkInstallChoiceRadioButton( Config::InstallChoice choice );  ///< Sets the chosen button to "on"
     QComboBox* createBootloaderComboBox( QWidget* parentButton );
     Device* selectedDevice();
 
@@ -117,7 +116,7 @@ private:
     void continueApplyDeviceChoice();  // .. called after scan
 
     void updateDeviceStatePreview();
-    void updateActionChoicePreview( ChoicePage::InstallChoice choice );
+    void updateActionChoicePreview( Config::InstallChoice choice );
     void setupActions();
     OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;
     void doAlongsideApply();

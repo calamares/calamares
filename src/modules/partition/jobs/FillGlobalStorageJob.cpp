@@ -126,7 +126,7 @@ mapForPartition( Partition* partition, const QString& uuid )
     return map;
 }
 
-FillGlobalStorageJob::FillGlobalStorageJob( QList< Device* > devices, const QString& bootLoaderPath )
+FillGlobalStorageJob::FillGlobalStorageJob( const Config*, QList< Device* > devices, const QString& bootLoaderPath )
     : m_devices( devices )
     , m_bootLoaderPath( bootLoaderPath )
 {

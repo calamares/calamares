@@ -279,19 +279,6 @@ pickOne( const SwapChoiceSet& s )
     return *( s.begin() );
 }
 
-const NamedEnumTable< InstallChoice >&
-installChoiceNames()
-{
-    static const NamedEnumTable< InstallChoice > names { { QStringLiteral( "none" ), InstallChoice::NoChoice },
-                                                         { QStringLiteral( "nochoice" ), InstallChoice::NoChoice },
-                                                         { QStringLiteral( "alongside" ), InstallChoice::Alongside },
-                                                         { QStringLiteral( "erase" ), InstallChoice::Erase },
-                                                         { QStringLiteral( "replace" ), InstallChoice::Replace },
-                                                         { QStringLiteral( "manual" ), InstallChoice::Manual } };
-    return names;
-}
-
-
 }  // namespace Choices
 
 }  // namespace PartitionActions
