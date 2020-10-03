@@ -22,7 +22,7 @@ namespace Calamares
 
 /** @brief Storage for data that passes between Calamares modules.
  *
- * The Global Storage is global to the Calamars JobQueue and
+ * The Global Storage is global to the Calamares JobQueue and
  * everything that depends on that: all of its modules use the
  * same instance of the JobQueue, and so of the Global Storage.
  *
