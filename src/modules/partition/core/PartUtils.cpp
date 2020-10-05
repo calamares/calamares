@@ -11,8 +11,6 @@
 
 #include "PartUtils.h"
 
-#include "PartitionCoreModule.h"
-
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
@@ -198,13 +196,12 @@ canBeResized( Partition* candidate )
 
 
 bool
-canBeResized( PartitionCoreModule* core, const QString& partitionPath )
+canBeResized( DeviceModel* dm, const QString& partitionPath )
 {
     cDebug() << "Checking if" << partitionPath << "can be resized.";
     QString partitionWithOs = partitionPath;
     if ( partitionWithOs.startsWith( "/dev/" ) )
     {
-        DeviceModel* dm = core->deviceModel();
         for ( int i = 0; i < dm->rowCount(); ++i )
         {
             Device* dev = dm->deviceForIndex( dm->index( i ) );
@@ -358,7 +355,7 @@ findPartitionPathForMountPoint( const FstabEntryList& fstab, const QString& moun
 
 
 OsproberEntryList
-runOsprober( PartitionCoreModule* core )
+runOsprober( DeviceModel* dm )
 {
     QString osproberOutput;
     QProcess osprober;
@@ -406,7 +403,7 @@ runOsprober( PartitionCoreModule* core )
             QString homePath = findPartitionPathForMountPoint( fstabEntries, "/home" );
 
             osproberEntries.append(
-                { prettyName, path, QString(), canBeResized( core, path ), lineColumns, fstabEntries, homePath } );
+                { prettyName, path, QString(), canBeResized( dm, path ), lineColumns, fstabEntries, homePath } );
             osproberCleanLines.append( line );
         }
     }
