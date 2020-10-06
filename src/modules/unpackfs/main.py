@@ -49,7 +49,7 @@ class UnpackEntry:
     :param destination:
     """
     __slots__ = ('source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile',
-                 'mountPoint', 'weight', 'accumulated_weight')
+                 'mountPoint', 'weight')
 
     def __init__(self, source, sourcefs, destination):
         """
@@ -72,7 +72,6 @@ class UnpackEntry:
         self.total = 0
         self.mountPoint = None
         self.weight = 1
-        self.accumulated_weight = 0  # That's weight **before** this entry
 
     def is_file(self):
         return self.sourcefs == "file"
@@ -193,11 +192,12 @@ def file_copy(source, entry, progress_cb):
         stdout=subprocess.PIPE, close_fds=ON_POSIX
         )
     # last_num_files_copied trails num_files_copied, and whenever at least 100 more
-    # files have been copied, progress is reported and last_num_files_copied is updated.
+    # files (file_count_chunk) have been copied, progress is reported and
+    # last_num_files_copied is updated. Pick a chunk size that isn't "tidy"
+    # so that all the digits of the progress-reported number change.
+    #
     last_num_files_copied = 0
-    file_count_chunk = entry.total / 100
-    if file_count_chunk < 100:
-        file_count_chunk = 100
+    file_count_chunk = 107
 
     for line in iter(process.stdout.readline, b''):
         # rsync outputs progress in parentheses. Each line will have an
@@ -262,7 +262,7 @@ class UnpackOperation:
     def __init__(self, entries):
         self.entries = entries
         self.entry_for_source = dict((x.source, x) for x in self.entries)
-        self.total_weight = entries[-1].accumulated_weight + entries[-1].weight
+        self.total_weight = sum([e.weight for e in entries])
 
     def report_progress(self):
         """
@@ -285,7 +285,7 @@ class UnpackOperation:
                 # There is at most *one* entry in-progress
                 current_total = entry.total
                 current_done = entry.copied
-                complete_weight += ( 1.0 * current_done ) / current_total
+                complete_weight += entry.weight * ( 1.0 * current_done ) / current_total
                 break
 
         if current_total > 0:
@@ -482,14 +482,8 @@ def run():
         if entry.get("excludeFile", None):
             unpack[-1].excludeFile = entry["excludeFile"]
         unpack[-1].weight = extract_weight(entry)
-        unpack[-1].accumulated_weight = sum([e.weight for e in unpack[:-1]])
 
         is_first = False
-
-    # Show the entry, weight and accumulated_weight before each entry,
-    # to allow tweaking the weights.
-    for e in unpack:
-        utils.debug(".. {!s} w={!s} aw={!s}".format(e.source, e.weight, e.accumulated_weight))
 
     repair_root_permissions(root_mount_point)
     try:
