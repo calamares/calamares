@@ -44,7 +44,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
     if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
         list( APPEND _partition_defs WITH_KPMCORE331API) # kpmcore > 3.3.0 with deprecations
     endif()
-    if ( KPMcore_VERSION VERSION_GREATER "3.90")
+    if ( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0")
         list( APPEND _partition_defs WITH_KPMCORE4API) # kpmcore 4 with new API
     endif()
     if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.2" )
