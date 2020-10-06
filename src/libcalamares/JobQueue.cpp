@@ -175,14 +175,8 @@ private:
         if ( m_jobIndex < m_runningJobs->count() )
         {
             const auto& jobitem = m_runningJobs->at( m_jobIndex );
-            cDebug() << "Job" << ( m_jobIndex + 1 ) << jobitem.job->prettyName() << "+wt" << jobitem.weight << "start.wt"
-                     << jobitem.cumulative;
             progress = ( jobitem.cumulative + jobitem.weight * percentage ) / m_overallQueueWeight;
             message = jobitem.job->prettyStatusMessage();
-            cDebug() << Logger::SubEntry << ( double( int( percentage * 1000 ) ) / 10.0 ) << "% +wt"
-                     << ( jobitem.weight * percentage ) << " completed.wt"
-                     << ( jobitem.cumulative + jobitem.weight * percentage ) << "tot %"
-                     << ( double( int( progress * 1000 ) ) / 10.0 );
         }
         else
         {
