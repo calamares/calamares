@@ -257,7 +257,7 @@ class FstabGenerator(object):
 
         if mount_point == "/":
             check = 1
-        elif mount_point:
+        elif mount_point and mount_point != "swap":
             check = 2
         else:
             check = 0
@@ -270,8 +270,10 @@ class FstabGenerator(object):
 
         if has_luks:
             device = "/dev/mapper/" + partition["luksMapperName"]
-        else:
+        elif partition["uuid"] is not None:
             device = "UUID=" + partition["uuid"]
+        else:
+            device = partition["device"]
 
         return dict(device=device,
                     mount_point=mount_point,
@@ -307,6 +309,29 @@ class FstabGenerator(object):
                                       self.mount_options["default"])
 
 
+def create_swapfile(root_mount_point, root_btrfs):
+    """
+    Creates /swapfile in @p root_mount_point ; if the root filesystem
+    is on btrfs, then handle some btrfs specific features as well,
+    as documented in
+        https://wiki.archlinux.org/index.php/Swap#Swap_file
+    """
+    swapfile_path = os.path.join(root_mount_point, "swapfile")
+    with open(swapfile_path, "wb") as f:
+        pass
+    if root_btrfs:
+        o = subprocess.check_output(["chattr", "+C", swapfile_path])
+        libcalamares.utils.debug("swapfile attributes: {!s}".format(o))
+        o = subprocess.check_output(["btrfs", "property", "set", swapfile_path, "compression", "none"])
+        libcalamares.utils.debug("swapfile compression: {!s}".format(o))
+    # Create the swapfile; swapfiles are small-ish
+    o = subprocess.check_output(["dd", "if=/dev/zero", "of=" + swapfile_path, "bs=1M", "count=512", "conv=notrunc"])
+    libcalamares.utils.debug("swapfile dd: {!s}".format(o))
+    os.chmod(swapfile_path, 0o600)
+    o = subprocess.check_output(["mkswap", swapfile_path])
+    libcalamares.utils.debug("swapfile mkswap: {!s}".format(o))
+
+
 def run():
     """ Configures fstab.
 
@@ -330,6 +355,17 @@ def run():
                 _("No root mount point is given for <pre>{!s}</pre> to use.")
                 .format("fstab"))
 
+    # This follows the GS settings from the partition module's Config object
+    swap_choice = global_storage.value( "partitionChoices" )
+    if swap_choice:
+        swap_choice = swap_choice.get( "swap", None )
+        if swap_choice and swap_choice == "file":
+            # There's no formatted partition for it, so we'll sneak in an entry
+            partitions.append( dict(fs="swap", mountPoint=None, claimed=True, device="/swapfile", uuid=None) )
+        else:
+            swap_choice = None
+
+    libcalamares.job.setprogress(0.1)
     mount_options = conf["mountOptions"]
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
     crypttab_options = conf.get("crypttabOptions", "luks")
@@ -339,4 +375,14 @@ def run():
                                ssd_extra_mount_options,
                                crypttab_options)
 
-    return generator.run()
+    if swap_choice is not None:
+        libcalamares.job.setprogress(0.2)
+        root_partitions = [ p["fs"].lower() for p in partitions if p["mountPoint"] == "/" ]
+        root_btrfs = (root_partitions[0] == "btrfs") if root_partitions else False
+        create_swapfile(root_mount_point, root_btrfs)
+
+    try:
+        libcalamares.job.setprogress(0.5)
+        return generator.run()
+    finally:
+        libcalamares.job.setprogress(1.0)
