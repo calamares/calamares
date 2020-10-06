@@ -59,3 +59,5 @@ Regular Calamares development chit-chat happens on old-school IRC
 in Europe, but feel free to idle.
 
 [![Visit our IRC channel](https://kiwiirc.com/buttons/webchat.freenode.net/calamares.png)](https://webchat.freenode.net/?channel=#calamares?nick=guest|)
+
+## HAPPY LEARNING ##
