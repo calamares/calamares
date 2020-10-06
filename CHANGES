@@ -17,6 +17,7 @@ This release contains contributions from (alphabetically by first name):
  - At the start of the *exec* phase, an overview is given of the
    various job weights, which allows you to tweak the overall
    progress reporting during the installation.
+ - Problems with running Calamares on a 1-core single CPU have been resolved.
 
 ## Modules ##
  - The *keyboard* module now recognizes Turkish "F" layout and
