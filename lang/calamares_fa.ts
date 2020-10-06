@@ -22,27 +22,27 @@
   <context>
     <name>BootLoaderModel</name>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="58"/>
       <source>Master Boot Record of %1</source>
       <translation>رکورد راه اندازی اصلی %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="91"/>
       <source>Boot Partition</source>
       <translation>افراز راه‌اندازی</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="98"/>
       <source>System Partition</source>
       <translation>افراز سامانه‌ای</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="130"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="128"/>
       <source>Do not install a boot loader</source>
       <translation>نصب نکردن یک بارکنندهٔ راه‌اندازی</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="148"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="146"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -230,7 +230,7 @@
     <message>
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="94"/>
       <source>Requirements checking for module &lt;i&gt;%1&lt;/i&gt; is complete.</source>
-      <translation type="unfinished"/>
+      <translation>بررسی الزامات برای ماژول٪ 1 کامل شد.</translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="115"/>
@@ -530,7 +530,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="305"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation type="unfinished"/>
+      <translation>شما می توانید پارتیشن بندی دستی ایجاد یا تغییر اندازه دهید .</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="806"/>
@@ -604,17 +604,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>این دستگاه ذخیره سازی٪ 1 روی خود دارد. دوست دارید چه کاری انجام دهید؟ قبل از اینکه تغییری در دستگاه ذخیره ایجاد شود ، می توانید انتخاب های خود را بررسی و تأیید کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1315"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>این دستگاه ذخیره سازی از قبل یک سیستم عامل روی خود دارد. دوست دارید چه کاری انجام دهید؟ قبل از اینکه تغییری در دستگاه ذخیره ایجاد شود ، می توانید انتخاب های خود را بررسی و تأیید کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1340"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation type="unfinished"/>
+      <translation>این دستگاه ذخیره سازی دارای چندین سیستم عامل است. دوست دارید چه کاری انجام دهید؟ قبل از اینکه تغییری در دستگاه ذخیره ایجاد شود ، می توانید انتخاب های خود را بررسی و تأیید کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1532"/>
@@ -717,7 +717,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="334"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>منطقه زمانی را تنظیم کنید 1%</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="372"/>
@@ -727,7 +727,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="379"/>
       <source>The numbers and dates locale will be set to %1.</source>
-      <translation type="unfinished"/>
+      <translation>محلی و اعداد و تاریخ ها روی٪ 1 تنظیم می شوند.</translation>
     </message>
     <message>
       <location filename="../src/modules/netinstall/Config.cpp" line="38"/>
@@ -777,22 +777,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="244"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>به برنامه راه اندازی Calamares خوش آمدید برای 1٪</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;به برپاسازی %1 خوش آمدید.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="250"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;به نصب‌کنندهٔ کالامارس برای %1 خوش آمدید.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;به نصب‌کنندهٔ %1 خوش آمدید.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="164"/>
@@ -807,12 +807,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="177"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
-      <translation type="unfinished"/>
+      <translation>نام کاربری شما باید با یک حرف کوچک یا خط زیر شروع شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="181"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>فقط حروف کوچک ، اعداد ، زیر خط و خط خط مجاز است.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="227"/>
@@ -832,7 +832,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="243"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
-      <translation type="unfinished"/>
+      <translation>فقط حروف ، اعداد ، زیر خط و خط خط مجاز است.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="446"/>
@@ -1111,27 +1111,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="104"/>
       <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-      <translation type="unfinished"/>
+      <translation>این یک دستگاه حلقه ای است. این یک دستگاه شبه بدون جدول پارتیشن است که یک فایل را به عنوان یک دستگاه بلوک قابل دسترسی می کند. این نوع تنظیمات معمولاً فقط شامل یک سیستم فایل منفرد است.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="111"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation type="unfinished"/>
+      <translation>این نصب کننده نمی تواند یک جدول پارتیشن را در دستگاه ذخیره سازی انتخاب شده تشخیص دهد. دستگاه یا جدول پارتیشن بندی ندارد ، یا جدول پارتیشن خراب است یا از نوع ناشناخته ای است. این نصب کننده می تواند یک جدول پارتیشن جدید برای شما ایجاد کند ، یا به صورت خودکار یا از طریق صفحه پارتیشن بندی دستی.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-      <translation type="unfinished"/>
+      <translation>این نوع جدول پارتیشن بندی توصیه شده برای سیستم های مدرن است که از محیط راه اندازی EFI شروع می شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="127"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation type="unfinished"/>
+      <translation>این نوع جدول پارتیشن بندی فقط در سیستم های قدیمی که از محیط راه اندازی BIOS شروع می شوند توصیه می شود. GPT در بیشتر موارد دیگر توصیه می شود. هشدار: جدول پارتیشن MBR یک استاندارد منسوخ شده دوره MS-DOS است. فقط 4 پارتیشن اصلی ممکن است ایجاد شود و از این 4 پارتیشن می تواند یک پارتیشن توسعه یافته باشد ، که ممکن است به نوبه خود شامل بسیاری از موارد منطقی باشد پارتیشن بندی</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="140"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation type="unfinished"/>
+      <translation>نوع جدول پارتیشن در دستگاه ذخیره سازی انتخاب شده. تنها راه برای تغییر نوع جدول پارتیشن پاک کردن و ایجاد مجدد جدول پارتیشن از ابتدا است ، که تمام داده های دستگاه ذخیره سازی را از بین می برد. این نصب کننده جدول پارتیشن فعلی را حفظ می کند مگر اینکه شما به صراحت غیر از این را انتخاب کنید. اگر مطمئن نیستید ، در سیستم های مدرن GPT ترجیح داده می شود.</translation>
     </message>
   </context>
   <context>
@@ -1315,12 +1315,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="44"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been set up on your computer.&lt;br/&gt;You may now start using your new system.</source>
-      <translation type="unfinished"/>
+      <translation>تمام شد.٪ 1 در رایانه شما تنظیم شده است. اکنون می توانید از سیستم جدید خود استفاده کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="48"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>هنگامی که این کادر علامت گذاری شد ، هنگامی که بر روی انجام شده کلیک کنید یا برنامه نصب را ببندید ، سیستم شما بلافاصله راه اندازی می شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="54"/>
@@ -1330,7 +1330,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="59"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished"/>
+      <translation>هنگامی که این کادر علامت گذاری شد ، هنگامی که بر روی انجام شده کلیک کنید یا نصب را ببندید ، سیستم شما بلافاصله راه اندازی می شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/finished/FinishedPage.cpp" line="116"/>
@@ -1620,22 +1620,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="143"/>
       <source>This setup procedure will install proprietary software that is subject to licensing terms.</source>
-      <translation type="unfinished"/>
+      <translation>با این روش نصب ، نرم افزار اختصاصی نصب می شود که مشروط به شرایط مجوز است.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="146"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
-      <translation type="unfinished"/>
+      <translation>اگر با شرایط موافق نباشید ، روش تنظیم ادامه نمی یابد.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="151"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-      <translation type="unfinished"/>
+      <translation>این روش راه اندازی می تواند نرم افزار اختصاصی را که مشمول شرایط صدور مجوز است نصب کند تا ویژگی های اضافی را فراهم کند و تجربه کاربر را افزایش دهد.</translation>
     </message>
     <message>
       <location filename="../src/modules/license/LicensePage.cpp" line="156"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-      <translation type="unfinished"/>
+      <translation>اگر با این شرایط موافق نباشید ، نرم افزار اختصاصی نصب نمی شود و به جای آن از گزینه های منبع باز استفاده می شود.</translation>
     </message>
   </context>
   <context>
@@ -1792,7 +1792,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/machineid/MachineIdJob.cpp" line="54"/>
       <source>No root mount point is set for MachineId.</source>
-      <translation type="unfinished"/>
+      <translation>هیچ نقطه نصب ریشه ای برای MachineId تنظیم نشده است.</translation>
     </message>
   </context>
   <context>
@@ -1807,7 +1807,7 @@ The installer will quit and all changes will be lost.</source>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
-      <translation type="unfinished"/>
+      <translation>لطفاً مکان مورد نظر خود را بر روی نقشه انتخاب کنید تا نصب کننده بتواند تنظیمات منطقه و منطقه را برای شما پیشنهاد دهد. می توانید تنظیمات پیشنهادی را در زیر دقیق کنید. با کشیدن برای حرکت و استفاده از دکمه های +/- برای بزرگنمایی یا کوچک کردن نقشه یا استفاده از پیمایش ماوس برای بزرگنمایی ، نقشه را جستجو کنید.</translation>
     </message>
   </context>
   <context>
@@ -1953,7 +1953,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="37"/>
       <source>Select your preferred Region, or use the default one based on your current location.</source>
-      <translation type="unfinished"/>
+      <translation>منطقه مورد نظر خود را انتخاب کنید یا از منطقه پیش فرض بر اساس مکان فعلی خود استفاده کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="94"/>
@@ -1965,7 +1965,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="111"/>
       <source>Select your preferred Zone within your Region.</source>
-      <translation type="unfinished"/>
+      <translation>منطقه مورد نظر خود را در منطقه خود انتخاب کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="182"/>
@@ -2058,7 +2058,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="185"/>
       <source>The password contains too few uppercase letters</source>
-      <translation type="unfinished"/>
+      <translation>رمز عبور حاوی حروف بزرگ بسیار کمی است</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="189"/>
@@ -2068,7 +2068,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
       <source>The password contains too few lowercase letters</source>
-      <translation type="unfinished"/>
+      <translation>گذرواژه حاوی حروف کوچک بسیار کمی است</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
@@ -2078,7 +2078,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
       <source>The password contains too few non-alphanumeric characters</source>
-      <translation type="unfinished"/>
+      <translation>گذرواژه حاوی بیش از حد نویسه غیر الفبا است</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="204"/>
@@ -2103,7 +2103,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
       <source>The password does not contain enough character classes</source>
-      <translation type="unfinished"/>
+      <translation>کلمه عبور شامل شکل های کافی نیست.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
@@ -2113,7 +2113,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
       <source>The password contains too many same characters consecutively</source>
-      <translation type="unfinished"/>
+      <translation>گذرواژه حاوی بیش از حد نویسه های پی در پی است</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="228"/>
@@ -2123,7 +2123,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="232"/>
       <source>The password contains too many characters of the same class consecutively</source>
-      <translation type="unfinished"/>
+      <translation>رمز ورود به صورت پی در پی حاوی نویسه های زیادی از همان کلاس است</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="237"/>
@@ -2133,7 +2133,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="241"/>
       <source>The password contains too long of a monotonic character sequence</source>
-      <translation type="unfinished"/>
+      <translation>رمز عبور حاوی یک توالی کاراکتر یکنواخت بیش از حد طولانی است</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="244"/>
@@ -2143,12 +2143,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="246"/>
       <source>Cannot obtain random numbers from the RNG device</source>
-      <translation type="unfinished"/>
+      <translation>نمی توان اعداد تصادفی را از دستگاه RNG بدست آورد</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="248"/>
       <source>Password generation failed - required entropy too low for settings</source>
-      <translation type="unfinished"/>
+      <translation>تولید رمز عبور ناموفق بود - برای تنظیمات آنتروپی مورد نیاز بسیار کم است</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="254"/>
@@ -2158,7 +2158,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="257"/>
       <source>The password fails the dictionary check</source>
-      <translation type="unfinished"/>
+      <translation>رمز عبور در بررسی فرهنگ لغت ناموفق است</translation>
     </message>
     <message>
       <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
@@ -2256,7 +2256,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="26"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation type="unfinished"/>
+      <translation>لطفاً محصولی را از لیست انتخاب کنید. محصول انتخاب شده نصب خواهد شد.</translation>
     </message>
   </context>
   <context>
@@ -2366,7 +2366,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="455"/>
       <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
-      <translation type="unfinished"/>
+      <translation>وقتی این کادر علامت گذاری شد ، بررسی قدرت رمز عبور انجام می شود و دیگر نمی توانید از رمز عبور ضعیف استفاده کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/page_usersetup.ui" line="458"/>
@@ -2549,7 +2549,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="255"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-      <translation type="unfinished"/>
+      <translation>جدول پارتیشن در٪ 1 از قبل دارای٪ 2 پارتیشن اصلی است و دیگر نمی توان آن را اضافه کرد. لطفاً یک پارتیشن اصلی را حذف کنید و به جای آن یک پارتیشن توسعه یافته اضافه کنید.</translation>
     </message>
   </context>
   <context>
@@ -2622,12 +2622,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="427"/>
       <source>No EFI system partition configured</source>
-      <translation type="unfinished"/>
+      <translation>هیچ پارتیشن سیستم EFI پیکربندی نشده است</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="428"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;%3&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation type="unfinished"/>
+      <translation>برای راه اندازی پارتیشن سیستم EFI لازم است. برای پیکربندی یک پارتیشن سیستم EFI ، به عقب برگردید و یک سیستم فایل FAT32 را با پرچم٪ 3 فعال کنید و نقطه نصب را نصب کنید. 2. بدون تنظیم پارتیشن سیستم EFI می توانید ادامه دهید اما ممکن است سیستم شما از کار بیفتد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="442"/>
@@ -2637,17 +2637,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="441"/>
       <source>EFI system partition flag not set</source>
-      <translation type="unfinished"/>
+      <translation>پرچم پارتیشن سیستم EFI تنظیم نشده است</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="468"/>
       <source>Option to use GPT on BIOS</source>
-      <translation type="unfinished"/>
+      <translation>گزینه ای برای استفاده از GPT در BIOS</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="469"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;bios_grub&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation type="unfinished"/>
+      <translation>جدول پارتیشن GPT بهترین گزینه برای همه سیستم ها است. این نصب از چنین تنظیماتی برای سیستم های BIOS نیز پشتیبانی می کند. برای پیکربندی جدول پارتیشن GPT در BIOS ، (اگر قبلاً این کار انجام نشده است) برگردید و جدول پارتیشن را روی GPT تنظیم کنید ، سپس یک پارتیشن 8 مگابایتی بدون فرمت با پرچم bios_grub ایجاد کنید. برای راه اندازی٪ 1 سیستم BIOS با GPT ، یک پارتیشن 8 مگابایتی بدون قالب لازم است.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="497"/>
@@ -2657,12 +2657,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="498"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-      <translation type="unfinished"/>
+      <translation>یک پارتیشن بوت جداگانه همراه با یک پارتیشن ریشه ای رمزگذاری شده راه اندازی شده است ، اما پارتیشن بوت رمزگذاری نشده است. با این نوع تنظیمات مشکلات امنیتی وجود دارد ، زیرا پرونده های مهم سیستم در یک پارتیشن رمزگذاری نشده نگهداری می شوند. در صورت تمایل می توانید ادامه دهید ، اما باز کردن قفل سیستم فایل بعداً در هنگام راه اندازی سیستم اتفاق می افتد. برای رمزگذاری پارتیشن بوت ، به عقب برگردید و آن را دوباره ایجاد کنید ، رمزگذاری را در پنجره ایجاد پارتیشن انتخاب کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="626"/>
       <source>has at least one disk device available.</source>
-      <translation type="unfinished"/>
+      <translation>حداقل یک دستگاه دیسک در دسترس دارد.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="627"/>
@@ -2675,13 +2675,13 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="30"/>
       <source>Plasma Look-and-Feel Job</source>
-      <translation type="unfinished"/>
+      <translation>شغل ظاهری و احساس پلاسما</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="62"/>
       <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="63"/>
       <source>Could not select KDE Plasma Look-and-Feel package</source>
-      <translation type="unfinished"/>
+      <translation>بسته KDE Plasma Look-and-Feel قابل انتخاب نیست </translation>
     </message>
   </context>
   <context>
@@ -2694,12 +2694,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="61"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation type="unfinished"/>
+      <translation>لطفاً برای KDE Plasma Desktop ظاهر و احساسی را انتخاب کنید. همچنین می توانید پس از نصب سیستم ، از این مرحله صرف نظر کرده و شکل ظاهری را پیکربندی کنید. با کلیک بر روی انتخاب ظاهر و احساس ، پیش نمایش زنده ای از آن احساس و احساس به شما ارائه می شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="66"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation type="unfinished"/>
+      <translation>لطفاً برای KDE Plasma Desktop ظاهر و احساسی را انتخاب کنید. همچنین می توانید پس از نصب سیستم ، از این مرحله صرف نظر کرده و شکل ظاهری را پیکربندی کنید. با کلیک بر روی انتخاب ظاهر و احساس ، پیش نمایش زنده ای از آن احساس و احساس به شما ارائه می شود.</translation>
     </message>
   </context>
   <context>
@@ -2720,12 +2720,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="118"/>
       <source>No files configured to save for later.</source>
-      <translation type="unfinished"/>
+      <translation>هیچ پرونده ای پیکربندی نشده است تا بعداً ذخیره شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="172"/>
       <source>Not all of the configured files could be preserved.</source>
-      <translation type="unfinished"/>
+      <translation>همه پرونده های پیکربندی شده قابل حفظ نیستند.</translation>
     </message>
   </context>
   <context>
@@ -2734,7 +2734,7 @@ The installer will quit and all changes will be lost.</source>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="412"/>
       <source>
 There was no output from the command.</source>
-      <translation type="unfinished"/>
+      <translation>output هیچ خروجی از دستور نبود.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="413"/>
@@ -2746,7 +2746,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="417"/>
       <source>External command crashed.</source>
-      <translation type="unfinished"/>
+      <translation>فرمان خارجی خراب شد.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="418"/>
@@ -2756,7 +2756,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="423"/>
       <source>External command failed to start.</source>
-      <translation type="unfinished"/>
+      <translation>دستور خارجی شروع نشد.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="424"/>
@@ -2766,17 +2766,17 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="428"/>
       <source>Internal error when starting command.</source>
-      <translation type="unfinished"/>
+      <translation>خطای داخلی هنگام شروع دستور.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="429"/>
       <source>Bad parameters for process job call.</source>
-      <translation type="unfinished"/>
+      <translation>پارامترهای نامناسب برای صدا زدن کار پردازش شده است</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="433"/>
       <source>External command failed to finish.</source>
-      <translation type="unfinished"/>
+      <translation>فرمان خارجی به پایان نرسید.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="434"/>
@@ -2786,7 +2786,7 @@ Output:
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="441"/>
       <source>External command finished with errors.</source>
-      <translation type="unfinished"/>
+      <translation>دستور خارجی با خطا به پایان رسید.</translation>
     </message>
     <message>
       <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="442"/>
@@ -2846,6 +2846,12 @@ Output:
       <translation type="unfinished"/>
     </message>
     <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
+      <source>Directory not found</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation type="unfinished"/>
@@ -3012,12 +3018,12 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>The file-system resize job has an invalid configuration and will not run.</source>
-      <translation type="unfinished"/>
+      <translation>کار تغییر اندازه سیستم فایل دارای پیکربندی نامعتبری است و اجرا نمی شود.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="175"/>
       <source>KPMCore not Available</source>
-      <translation type="unfinished"/>
+      <translation>KPMCore موجود نیست</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="176"/>
@@ -3058,7 +3064,7 @@ Output:
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
       <source>The filesystem %1 must be resized, but cannot.</source>
-      <translation type="unfinished"/>
+      <translation>سیستم فایل٪ 1 باید تغییر اندازه دهد ، اما نمی تواند.</translation>
     </message>
     <message>
       <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="215"/>
@@ -3121,7 +3127,7 @@ Output:
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="133"/>
       <source>For best results, please ensure that this computer:</source>
-      <translation type="unfinished"/>
+      <translation>برای بهترین نتیجه ، لطفا اطمینان حاصل کنید که این کامپیوتر:</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/checker/ResultsListWidget.cpp" line="134"/>
@@ -3208,24 +3214,24 @@ Output:
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="345"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="346"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="350"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="357"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="361"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write to %1</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="349"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="360"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation type="unfinished"/>
     </message>
@@ -3260,7 +3266,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
       <source>Clear flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>پاک کردن پرچم در افراز جدید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
@@ -3290,7 +3296,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
       <source>Clearing flags on new partition.</source>
-      <translation type="unfinished"/>
+      <translation>پاک کردن پرچم ها در افراز جدید.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="124"/>
@@ -3338,7 +3344,7 @@ Output:
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
       <source>Cannot disable root account.</source>
-      <translation type="unfinished"/>
+      <translation>حساب ریشه را نمیتوان غیرفعال کرد.</translation>
     </message>
     <message>
       <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
@@ -3437,12 +3443,12 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="37"/>
       <source>Installation feedback</source>
-      <translation type="unfinished"/>
+      <translation>بازخورد نصب</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="43"/>
       <source>Sending installation feedback.</source>
-      <translation type="unfinished"/>
+      <translation>ارسال بازخورد نصب </translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="60"/>
@@ -3452,7 +3458,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingJobs.cpp" line="61"/>
       <source>HTTP request timed out.</source>
-      <translation type="unfinished"/>
+      <translation>زمان درخواست HTTP به پایان رسید.</translation>
     </message>
   </context>
   <context>
@@ -3523,7 +3529,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="28"/>
       <source>Placeholder</source>
-      <translation type="unfinished"/>
+      <translation>محل نگهدارنده</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/page_trackingstep.ui" line="76"/>
@@ -3538,7 +3544,7 @@ Output:
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="86"/>
       <source>Tracking helps %1 to see how often it is installed, what hardware it is installed on and which applications are used. To see what will be sent, please click the help icon next to each area.</source>
-      <translation type="unfinished"/>
+      <translation>ردیابی به٪ 1 کمک می کند تا بفهمد هر چند وقت یک بار نصب می شود ، روی چه سخت افزاری نصب شده و از کدام برنامه ها استفاده می شود. برای دیدن موارد ارسالی ، لطفاً روی نماد راهنما در کنار هر منطقه کلیک کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="91"/>
@@ -3598,11 +3604,13 @@ Output:
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
+      <comment>Column header for key/value</comment>
       <translation>کلید</translation>
     </message>
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
+      <comment>Column header for key/value</comment>
       <translation>مقدار</translation>
     </message>
   </context>
@@ -3631,7 +3639,7 @@ Output:
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="60"/>
       <source>Physical Extent Size:</source>
-      <translation type="unfinished"/>
+      <translation>اندازه فیزیکی:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="70"/>
@@ -3670,7 +3678,7 @@ Output:
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>
       <source>Select application and system language</source>
-      <translation type="unfinished"/>
+      <translation>برنامه و زبان سیستم را انتخاب کنید</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -3903,7 +3911,8 @@ Output:
             &lt;/ul&gt;
 
             &lt;p&gt;The vertical scrollbar is adjustable, current width set to 10.&lt;/p&gt;</source>
-      <translation type="unfinished"/>
+      <translation>٪ 1 
+این یک نمونه پرونده QML است که گزینه هایی را در RichText با محتوای قابل تکان دادن نشان می دهد. QML با RichText می تواند از برچسب های HTML استفاده کند ، محتوای قابل تکان خوردن برای صفحه های لمسی مفید است. این متن پررنگ است این متن مورب است این متن زیرخط دار است این متن در تراز وسط قرار خواهد گرفت. این مثال از کد نمونه است: ls -l / home لیست ها: سیستم های CPU اینتل سیستم های CPU AMD نوار پیمایش عمودی قابل تنظیم است ، عرض فعلی روی 10 تنظیم شده است.</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="76"/>
@@ -3976,7 +3985,7 @@ Output:
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="204"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation type="unfinished"/>
+      <translation>رمز ورود یکسان را دو بار وارد کنید ، تا بتوان آن را از نظر اشتباه تایپ بررسی کرد. یک رمز ورود خوب شامل ترکیبی از حروف ، اعداد و علائم نگارشی است ، باید حداقل هشت حرف داشته باشد و باید در فواصل منظم تغییر یابد.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="216"/>
@@ -3985,8 +3994,8 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
-      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
-      <translation type="unfinished"/>
+      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
+      <translation>وقتی این کادر علامت گذاری شد ، بررسی قدرت رمز عبور انجام می شود و دیگر نمی توانید از رمز عبور ضعیف استفاده کنید.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>

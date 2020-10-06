@@ -22,27 +22,27 @@
   <context>
     <name>BootLoaderModel</name>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="58"/>
       <source>Master Boot Record of %1</source>
       <translation>Registre d'inici mestre (MBR) de %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="91"/>
       <source>Boot Partition</source>
       <translation>Partició d'arrencada</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="98"/>
       <source>System Partition</source>
       <translation>Partició del sistema</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="130"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="128"/>
       <source>Do not install a boot loader</source>
       <translation>No instal·lis cap gestor d'arrencada</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="148"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="146"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -2851,6 +2851,12 @@ Sortida:
       <translation>El camí &lt;pre&gt;%1&lt;/pre&gt; ha de ser un camí absolut.</translation>
     </message>
     <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
+      <source>Directory not found</source>
+      <translation>No s'ha trobat el directori.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>No s'ha pogut crear el fitxer aleatori nou &lt;pre&gt;%1&lt;/pre&gt;.</translation>
@@ -3216,24 +3222,24 @@ La configuració pot continuar, però algunes característiques podrien estar in
       <translation>Canvia el model de teclat a %1, la disposició de teclat a %2-%3</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="345"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation>No s'ha pogut escriure la configuració del teclat per a la consola virtual.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="346"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="350"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="357"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="361"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write to %1</source>
       <translation>No s'ha pogut escriure a %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="349"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="360"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation>No s'ha pogut escriure la configuració del teclat per X11.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation>Ha fallat escriure la configuració del teclat al directori existent /etc/default.</translation>
     </message>
@@ -3606,11 +3612,13 @@ La configuració pot continuar, però algunes característiques podrien estar in
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
+      <comment>Column header for key/value</comment>
       <translation>Clau</translation>
     </message>
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
+      <comment>Column header for key/value</comment>
       <translation>Valor</translation>
     </message>
   </context>
@@ -4027,8 +4035,8 @@ La configuració pot continuar, però algunes característiques podrien estar in
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
-      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
-      <translation>Quan aquesta casella està marcada, es comprova la fortalesa de la contrasenya i no en podreu usar una de dèbil.</translation>
+      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
+      <translation>Quan aquesta casella està marcada, es comprova la fortalesa de la contrasenya i no en podreu fer una de dèbil.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>

@@ -67,6 +67,15 @@ public:
         {
             m_overallQueueWeight = 1.0;
         }
+
+        cDebug() << "There are" << m_runningJobs->count() << "jobs, total weight" << m_overallQueueWeight;
+        int c = 0;
+        for ( const auto& j : *m_runningJobs )
+        {
+            cDebug() << Logger::SubEntry << "Job" << ( c + 1 ) << j.job->prettyName() << "+wt" << j.weight << "tot.wt"
+                     << ( j.cumulative + j.weight );
+            c++;
+        }
     }
 
     void enqueue( int moduleWeight, const JobList& jobs )
@@ -109,9 +118,9 @@ public:
             }
             else
             {
-                emitProgress( 0.0 );  // 0% for *this job*
                 cDebug() << "Starting" << ( failureEncountered ? "EMERGENCY JOB" : "job" ) << jobitem.job->prettyName()
                          << '(' << ( m_jobIndex + 1 ) << '/' << m_runningJobs->count() << ')';
+                emitProgress( 0.0 );  // 0% for *this job*
                 connect( jobitem.job.data(), &Job::progress, this, &JobThread::emitProgress );
                 auto result = jobitem.job->exec();
                 if ( !failureEncountered && !result )

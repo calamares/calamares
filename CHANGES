@@ -22,8 +22,16 @@ This release contains contributions from (alphabetically by first name):
  - The *machineid* module, which generates UUIDs for systemd and dbus
    and can generate entropy files (filled from `/dev/urandom` in the host
    system) now supports more than one entropy file; generate them as needed
-    (or copy a fixed value to all, depending on *entropy-copy*). Deprecate
-    *entropy* (which generates a specific output file) as too inflexible.
+   (or copy a fixed value to all, depending on *entropy-copy*). Deprecate
+   *entropy* (which generates a specific output file) as too inflexible.
+ - Progress reporting from the *unpackfs* module has been revamped:
+   it reports more often now, so that it is more obvious that files
+   are being transferred even when the percentage progress does not
+   change.
+ - The *unpackfs* module now supports a *weight* setting for each
+   of the unpack entries. For a single entry this does not matter,
+   but if there are multiple entries it allows tweaking the relative
+   progress between each entry.
 
 
 # 3.2.30 (2020-09-03) #

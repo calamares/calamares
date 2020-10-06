@@ -22,27 +22,27 @@
   <context>
     <name>BootLoaderModel</name>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="58"/>
       <source>Master Boot Record of %1</source>
       <translation>Master Boot Record de %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="91"/>
       <source>Boot Partition</source>
       <translation>Partição de arranque</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="98"/>
       <source>System Partition</source>
       <translation>Partição do Sistema</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="130"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="128"/>
       <source>Do not install a boot loader</source>
       <translation>Não instalar um carregador de arranque</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="148"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="146"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -717,7 +717,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="334"/>
       <source>Set timezone to %1/%2.</source>
-      <translation type="unfinished"/>
+      <translation>Definir fuso horário para %1/%2.</translation>
     </message>
     <message>
       <location filename="../src/modules/locale/Config.cpp" line="372"/>
@@ -777,22 +777,22 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="244"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bem-vindo ao programa de configuração do Calamares para %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="245"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bem-vindo à configuração de %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="250"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bem-vindo ao instalador do Calamares para %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="251"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation type="unfinished"/>
+      <translation>&lt;h1&gt;Bem-vindo ao instalador do %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/users/Config.cpp" line="164"/>
@@ -2849,6 +2849,12 @@ Saída de Dados:
       <translation type="unfinished"/>
     </message>
     <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
+      <source>Directory not found</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation type="unfinished"/>
@@ -3211,24 +3217,24 @@ Saída de Dados:
       <translation>Definir modelo do teclado para %1, disposição para %2-%3</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="345"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation>Falha ao escrever configuração do teclado para a consola virtual.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="346"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="350"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="357"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="361"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write to %1</source>
       <translation>Falha ao escrever para %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="349"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="360"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation>Falha ao escrever configuração do teclado para X11.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation>Falha ao escrever a configuração do teclado para a diretoria /etc/default existente.</translation>
     </message>
@@ -3601,11 +3607,13 @@ Saída de Dados:
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
+      <comment>Column header for key/value</comment>
       <translation>Chave</translation>
     </message>
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
+      <comment>Column header for key/value</comment>
       <translation>Valor</translation>
     </message>
   </context>
@@ -3988,7 +3996,7 @@ Saída de Dados:
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
-      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
+      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
       <translation type="unfinished"/>
     </message>
     <message>
