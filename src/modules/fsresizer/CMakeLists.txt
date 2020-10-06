@@ -3,23 +3,14 @@
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
-find_package( KPMcore 3.3 )
 find_package( KF5Config CONFIG )
 find_package( KF5I18n CONFIG )
 find_package( KF5WidgetsAddons CONFIG )
 
-set( _partition_defs "" )
+include( KPMcoreHelper )
 
 if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND )
     include_directories( ${KPMCORE_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/src/modules/partition )
-
-    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.2" )
-        list( APPEND _partition_defs WITH_KPMCORE42API WITH_KPMCORE4API ) # kpmcore 4.2 with new API
-    elseif( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0" )
-        list( APPEND _partition_defs WITH_KPMCORE4API ) # kpmcore 4 with new API
-    elseif( KPMcore_VERSION VERSION_GREATER "3.3.70" )
-        message( FATAL_ERROR "KPMCore beta versions ${KPMcore_VERSION} are not supported" )
-    endif()
 
     # The PartitionIterator is a small class, and it's easiest -- but also a
     # gross hack -- to just compile it again from the partition module tree.
@@ -31,7 +22,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
         LINK_PRIVATE_LIBRARIES
             kpmcore
             calamares
-        COMPILE_DEFINITIONS ${_partition_defs}
+        COMPILE_DEFINITIONS ${KPMcore_API_DEFINITIONS}
         SHARED_LIB
     )
 
@@ -42,7 +33,7 @@ if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND
         LIBRARIES
             calamares_job_fsresizer  # From above
             yamlcpp
-        DEFINITIONS ${_partition_defs}
+        DEFINITIONS ${KPMcore_API_DEFINITIONS}
     )
 else()
     if ( NOT KPMcore_FOUND )

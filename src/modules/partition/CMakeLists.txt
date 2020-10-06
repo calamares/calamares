@@ -31,26 +31,14 @@ endif()
 
 find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 
-find_package( KPMcore 3.3 )
-set_package_properties(
-    KPMcore PROPERTIES
-    PURPOSE "For partition module"
-)
+include( KPMcoreHelper )
+
 find_package( KF5Config CONFIG )
 find_package( KF5I18n CONFIG )
 find_package( KF5WidgetsAddons CONFIG )
 
 if ( KPMcore_FOUND AND Qt5DBus_FOUND AND KF5CoreAddons_FOUND AND KF5Config_FOUND )
-    if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
-        list( APPEND _partition_defs WITH_KPMCORE331API) # kpmcore > 3.3.0 with deprecations
-    endif()
-    if ( KPMcore_VERSION VERSION_GREATER_EQUAL "4.0")
-        list( APPEND _partition_defs WITH_KPMCORE4API) # kpmcore 4 with new API
-    endif()
-    if( KPMcore_VERSION VERSION_GREATER_EQUAL "4.2" )
-        list( APPEND _partition_defs WITH_KPMCORE42API) # kpmcore 4.2 with new API
-    endif()
-
+    list( APPEND _partition_defs ${KPMcore_API_DEFINITIONS} )
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
