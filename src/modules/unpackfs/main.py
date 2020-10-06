@@ -486,6 +486,11 @@ def run():
 
         is_first = False
 
+    # Show the entry, weight and accumulated_weight before each entry,
+    # to allow tweaking the weights.
+    for e in unpack:
+        utils.debug(".. {!s} w={!s} aw={!s}".format(e.source, e.weight, e.accumulated_weight))
+
     repair_root_permissions(root_mount_point)
     try:
         unpackop = UnpackOperation(unpack)
