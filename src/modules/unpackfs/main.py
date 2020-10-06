@@ -48,8 +48,8 @@ class UnpackEntry:
     :param sourcefs:
     :param destination:
     """
-    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile',
-                 'mountPoint']
+    __slots__ = ('source', 'sourcefs', 'destination', 'copied', 'total', 'exclude', 'excludeFile',
+                 'mountPoint', 'weight', 'accumulated_weight')
 
     def __init__(self, source, sourcefs, destination):
         """
@@ -71,6 +71,8 @@ class UnpackEntry:
         self.copied = 0
         self.total = 0
         self.mountPoint = None
+        self.weight = 1
+        self.accumulated_weight = 0  # That's weight **before** this entry
 
     def is_file(self):
         return self.sourcefs == "file"
@@ -395,6 +397,24 @@ def repair_root_permissions(root_mount_point):
             # But ignore it
 
 
+def extract_weight(entry):
+    """
+    Given @p entry, a dict representing a single entry in
+    the *unpack* list, returns its weight (1, or whatever is
+    set if it is sensible).
+    """
+    w =  entry.get("weight", None)
+    if w:
+        try:
+            wi = int(w)
+            return wi if wi > 0 else 1
+        except ValueError:
+            utils.warning("*weight* setting {!r} is not valid.".format(w))
+        except TypeError:
+            utils.warning("*weight* setting {!r} must be number.".format(w))
+    return 1
+
+
 def run():
     """
     Unsquash filesystem.
@@ -461,6 +481,8 @@ def run():
             unpack[-1].exclude = entry["exclude"]
         if entry.get("excludeFile", None):
             unpack[-1].excludeFile = entry["excludeFile"]
+        unpack[-1].weight = extract_weight(entry)
+        unpack[-1].accumulated_weight = sum([e.weight for e in unpack[:-1]])
 
         is_first = False
 
