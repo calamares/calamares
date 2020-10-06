@@ -120,7 +120,9 @@ if ( KPMcore_FOUND )
     find_package( Qt5 REQUIRED DBus )  # Needed for KPMCore
     find_package( KF5 REQUIRED I18n WidgetsAddons )  # Needed for KPMCore
 
-    add_definitions( ${KPMcore_API_DEFINITIONS} )
+    foreach ( d ${KPMcore_API_DEFINITIONS} )
+        add_definitions( -D${d} )
+    endforeach()
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     list( APPEND libSources
         partition/FileSystem.cpp
