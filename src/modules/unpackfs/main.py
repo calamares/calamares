@@ -262,6 +262,7 @@ class UnpackOperation:
     def __init__(self, entries):
         self.entries = entries
         self.entry_for_source = dict((x.source, x) for x in self.entries)
+        self.total_weight = entries[-1].accumulated_weight + entries[-1].weight
 
     def report_progress(self):
         """
@@ -269,30 +270,29 @@ class UnpackOperation:
         """
         progress = float(0)
 
-        done = 0  # Done and total apply to the entry now-unpacking
-        total = 0
-        complete = 0  # This many are already finished
+        current_total = 0
+        current_done = 0  # Files count in the current entry
+        complete_count = 0
+        complete_weight = 0  # This much weight already finished
         for entry in self.entries:
             if entry.total == 0:
                 # Total 0 hasn't counted yet
                 continue
             if entry.total == entry.copied:
-                complete += 1
+                complete_weight += entry.weight
+                complete_count += 1
             else:
                 # There is at most *one* entry in-progress
-                total = entry.total
-                done = entry.copied
+                current_total = entry.total
+                current_done = entry.copied
+                complete_weight += ( 1.0 * current_done ) / current_total
                 break
 
-        if total > 0:
-            # Pretend that each entry represents an equal amount of work;
-            # the complete ones count as 100% of their own fraction
-            # (and have *not* been counted in total or done), while
-            # total/done represents the fraction of the current fraction.
-            progress = ( ( 1.0 * complete ) / len(self.entries) ) + ( ( 1.0 / len(self.entries) ) * ( 1.0 * done / total ) )
+        if current_total > 0:
+            progress = ( 1.0 * complete_weight ) / self.total_weight
 
         global status
-        status = _("Unpacking image {}/{}, file {}/{}").format((complete+1),len(self.entries),done, total)
+        status = _("Unpacking image {}/{}, file {}/{}").format((complete_count+1), len(self.entries), current_done, current_total)
         job.setprogress(progress)
 
     def run(self):
