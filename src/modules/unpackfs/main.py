@@ -163,6 +163,8 @@ def file_copy(source, entry, progress_cb):
     :param progress_cb: A callback function for progress reporting.
         Takes a number and a total-number.
     """
+    import time
+
     dest = entry.destination
 
     # Environment used for executing rsync properly
@@ -191,12 +193,13 @@ def file_copy(source, entry, progress_cb):
         args, env=at_env,
         stdout=subprocess.PIPE, close_fds=ON_POSIX
         )
-    # last_num_files_copied trails num_files_copied, and whenever at least 100 more
+    # last_num_files_copied trails num_files_copied, and whenever at least 107 more
     # files (file_count_chunk) have been copied, progress is reported and
-    # last_num_files_copied is updated. Pick a chunk size that isn't "tidy"
+    # last_num_files_copied is updated. The chunk size isn't "tidy"
     # so that all the digits of the progress-reported number change.
     #
     last_num_files_copied = 0
+    last_timestamp_reported = time.time()
     file_count_chunk = 107
 
     for line in iter(process.stdout.readline, b''):
@@ -222,9 +225,10 @@ def file_copy(source, entry, progress_cb):
             # adjusting the offset so that progressbar can be continuesly drawn
             num_files_copied = num_files_total_local - num_files_remaining
 
-            # Update about once every 1% of this entry
-            if num_files_copied - last_num_files_copied >= file_count_chunk:
+            now = time.time()
+            if (num_files_copied - last_num_files_copied >= file_count_chunk) or (now - last_timestamp_reported > 0.5):
                 last_num_files_copied = num_files_copied
+                last_timestamp_reported = now
                 progress_cb(num_files_copied, num_files_total_local)
 
     process.wait()
