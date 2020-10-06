@@ -22,27 +22,27 @@
   <context>
     <name>BootLoaderModel</name>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="58"/>
       <source>Master Boot Record of %1</source>
       <translation>%1의 마스터 부트 레코드</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="91"/>
       <source>Boot Partition</source>
       <translation>부트 파티션</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="98"/>
       <source>System Partition</source>
       <translation>시스템 파티션</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="130"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="128"/>
       <source>Do not install a boot loader</source>
       <translation>부트로더를 설치하지 않습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="148"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="146"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -2847,6 +2847,12 @@ Output:
       <translation>&lt;pre&gt;%1&lt;/pre&gt; 경로는 절대 경로여야 합니다.</translation>
     </message>
     <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
+      <source>Directory not found</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>새 임의 파일 &lt;pre&gt;%1&lt;/pre&gt;을(를) 만들 수 없습니다.</translation>
@@ -3209,24 +3215,24 @@ Output:
       <translation>키보드 모델을 %1로 설정하고, 레이아웃을 %2-%3으로 설정합니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="345"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation>가상 콘솔을 위한 키보드 설정을 저장할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="346"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="350"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="357"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="361"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write to %1</source>
       <translation>%1에 쓰기를 실패했습니다</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="349"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="360"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation>X11에 대한 키보드 설정을 저장하지 못했습니다.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation>/etc/default 디렉터리에 키보드 설정을 저장하지 못했습니다.</translation>
     </message>
@@ -3599,11 +3605,13 @@ Output:
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
+      <comment>Column header for key/value</comment>
       <translation>키</translation>
     </message>
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
+      <comment>Column header for key/value</comment>
       <translation>값</translation>
     </message>
   </context>
@@ -3987,8 +3995,8 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
-      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
-      <translation type="unfinished"/>
+      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
+      <translation>이 확인란을 선택하면 비밀번호 강도 검사가 수행되며 불충분한 비밀번호를 사용할 수 없습니다.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="234"/>

@@ -22,27 +22,27 @@
   <context>
     <name>BootLoaderModel</name>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="58"/>
       <source>Master Boot Record of %1</source>
       <translation>Головний Завантажувальний Запис (Master Boot Record) %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="91"/>
       <source>Boot Partition</source>
       <translation>Завантажувальний розділ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="98"/>
       <source>System Partition</source>
       <translation>Системний розділ</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="130"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="128"/>
       <source>Do not install a boot loader</source>
       <translation>Не встановлювати завантажувач</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="148"/>
+      <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="146"/>
       <source>%1 (%2)</source>
       <translation>%1 (%2)</translation>
     </message>
@@ -2856,6 +2856,12 @@ Output:
       <translation>Шлях &lt;pre&gt;%1&lt;/pre&gt; має бути абсолютним.</translation>
     </message>
     <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="83"/>
+      <source>Directory not found</source>
+      <translation>Каталог не знайдено</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/machineid/MachineIdJob.cpp" line="84"/>
       <location filename="../src/modules/machineid/Workers.cpp" line="94"/>
       <source>Could not create new random file &lt;pre&gt;%1&lt;/pre&gt;.</source>
       <translation>Не вдалося створити випадковий файл &lt;pre&gt;%1&lt;/pre&gt;.</translation>
@@ -3221,24 +3227,24 @@ Output:
       <translation>Встановити модель клавіатури %1, розкладку %2-%3</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="345"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <translation>Не вдалося записати налаштування клавіатури для віртуальної консолі.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="346"/>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="350"/>
       <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="357"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="361"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
       <source>Failed to write to %1</source>
       <translation>Невдача під час запису до %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="349"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="360"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <translation>Невдача під час запису конфігурації клавіатури для X11.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="356"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="367"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <translation>Не вдалося записати налаштування клавіатури до наявного каталогу /etc/default.</translation>
     </message>
@@ -3611,11 +3617,13 @@ Output:
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="232"/>
       <source>Key</source>
+      <comment>Column header for key/value</comment>
       <translation>Ключ</translation>
     </message>
     <message>
       <location filename="../src/calamares/VariantModel.cpp" line="236"/>
       <source>Value</source>
+      <comment>Column header for key/value</comment>
       <translation>Значення</translation>
     </message>
   </context>
@@ -4031,7 +4039,7 @@ Output:
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="226"/>
-      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password..</source>
+      <source>When this box is checked, password-strength checking is done and you will not be able to use a weak password.</source>
       <translation>Якщо позначено цей пункт, буде виконано перевірку складності пароля. Ви не зможете скористатися надто простим паролем.</translation>
     </message>
     <message>
