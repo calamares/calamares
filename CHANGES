@@ -11,9 +11,12 @@ website will have to do for older versions.
 
 This release contains contributions from (alphabetically by first name):
  - Corentin Noël
+ - kadler15 (new contributor! hi!)
 
 ## Core ##
- - No core changes yet
+ - At the start of the *exec* phase, an overview is given of the
+   various job weights, which allows you to tweak the overall
+   progress reporting during the installation.
 
 ## Modules ##
  - The *keyboard* module now recognizes Turkish "F" layout and
@@ -28,6 +31,10 @@ This release contains contributions from (alphabetically by first name):
    **not** create a swap partition, but write a `/swapfile` in the root
    directory, 512MiB large, and set that as swap. There is as yet no
    "smarts" about the size of the swap file.
+ - Multiple problems in the *partition* module around partition
+   sizing have been resolved by Corentin Noël.
+ - The *preservefiles* module documentation did not match the functionality,
+   and when used, didn't work right. #1521 (thanks kadler15)
  - Progress reporting from the *unpackfs* module has been revamped:
    it reports more often now, so that it is more obvious that files
    are being transferred even when the percentage progress does not
