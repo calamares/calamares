@@ -40,3 +40,21 @@ calamares_add_test(
     DEFINITIONS ${_partition_defs}
 )
 
+
+calamares_add_test(
+    createlayoutstests
+    SOURCES
+        ${PartitionModule_SOURCE_DIR}/core/KPMHelpers.cpp
+        ${PartitionModule_SOURCE_DIR}/core/PartitionInfo.cpp
+        ${PartitionModule_SOURCE_DIR}/core/PartitionLayout.cpp
+        ${PartitionModule_SOURCE_DIR}/core/PartUtils.cpp
+        ${PartitionModule_SOURCE_DIR}/core/DeviceModel.cpp
+        CreateLayoutsTests.cpp
+    LIBRARIES
+        kpmcore
+        calamares
+        calamaresui
+        Qt5::Gui
+    DEFINITIONS ${_partition_defs}
+)
+
