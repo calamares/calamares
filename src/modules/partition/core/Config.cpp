@@ -151,6 +151,19 @@ getSwapChoices( const QVariantMap& configurationMap )
 }
 
 void
+updateGlobalStorage( Config::InstallChoice installChoice, Config::SwapChoice swapChoice )
+{
+    auto* gs = Calamares::JobQueue::instance() ? Calamares::JobQueue::instance()->globalStorage() : nullptr;
+    if ( gs )
+    {
+        QVariantMap m;
+        m.insert( "install", Config::installChoiceNames().find( installChoice ) );
+        m.insert( "swap", Config::swapChoiceNames().find( swapChoice ) );
+        gs->insert( "partitionChoices", m );
+    }
+}
+
+void
 Config::setInstallChoice( int c )
 {
     if ( ( c < InstallChoice::NoChoice ) || ( c > InstallChoice::Manual ) )
@@ -168,6 +181,7 @@ Config::setInstallChoice( InstallChoice c )
     {
         m_installChoice = c;
         emit installChoiceChanged( c );
+        ::updateGlobalStorage( c, m_swapChoice );
     }
 }
 
@@ -189,6 +203,7 @@ Config::setSwapChoice( Config::SwapChoice c )
     {
         m_swapChoice = c;
         emit swapChoiceChanged( c );
+        ::updateGlobalStorage( m_installChoice, c );
     }
 }
 
