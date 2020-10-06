@@ -15,7 +15,10 @@
 #include <kpmcore/ops/createvolumegroupoperation.h>
 #include <kpmcore/util/report.h>
 
-CreateVolumeGroupJob::CreateVolumeGroupJob( QString& vgName, QVector< const Partition* > pvList, const qint32 peSize )
+CreateVolumeGroupJob::CreateVolumeGroupJob( Device*,
+                                            QString& vgName,
+                                            QVector< const Partition* > pvList,
+                                            const qint32 peSize )
     : m_vgName( vgName )
     , m_pvList( pvList )
     , m_peSize( peSize )

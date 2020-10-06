@@ -35,9 +35,9 @@ using CalamaresUtils::operator""_GiB;
 using CalamaresUtils::operator""_MiB;
 
 qint64
-swapSuggestion( const qint64 availableSpaceB, Choices::SwapChoice swap )
+swapSuggestion( const qint64 availableSpaceB, Config::SwapChoice swap )
 {
-    if ( ( swap != Choices::SmallSwap ) && ( swap != Choices::FullSwap ) )
+    if ( ( swap != Config::SwapChoice::SmallSwap ) && ( swap != Config::SwapChoice::FullSwap ) )
     {
         return 0;
     }
@@ -48,7 +48,7 @@ swapSuggestion( const qint64 availableSpaceB, Choices::SwapChoice swap )
     qint64 availableRamB = memory.first;
     qreal overestimationFactor = memory.second;
 
-    bool ensureSuspendToDisk = swap == Choices::FullSwap;
+    bool ensureSuspendToDisk = swap == Config::SwapChoice::FullSwap;
 
     // Ramp up quickly to 8GiB, then follow memory size
     if ( availableRamB <= 4_GiB )
@@ -149,7 +149,8 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         core->createPartitionTable( dev, PartitionTable::msdos );
     }
 
-    const bool mayCreateSwap = ( o.swap == Choices::SmallSwap ) || ( o.swap == Choices::FullSwap );
+    const bool mayCreateSwap
+        = ( o.swap == Config::SwapChoice::SmallSwap ) || ( o.swap == Config::SwapChoice::FullSwap );
     bool shouldCreateSwap = false;
     qint64 suggestedSwapSizeB = 0;
 
@@ -245,53 +246,5 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
 
     core->dumpQueue();
 }
-
-namespace Choices
-{
-const NamedEnumTable< SwapChoice >&
-swapChoiceNames()
-{
-    static const NamedEnumTable< SwapChoice > names { { QStringLiteral( "none" ), SwapChoice::NoSwap },
-                                                      { QStringLiteral( "small" ), SwapChoice::SmallSwap },
-                                                      { QStringLiteral( "suspend" ), SwapChoice::FullSwap },
-                                                      { QStringLiteral( "reuse" ), SwapChoice::ReuseSwap },
-                                                      { QStringLiteral( "file" ), SwapChoice::SwapFile } };
-
-    return names;
-}
-
-SwapChoice
-pickOne( const SwapChoiceSet& s )
-{
-    if ( s.count() == 0 )
-    {
-        return SwapChoice::NoSwap;
-    }
-    if ( s.count() == 1 )
-    {
-        return *( s.begin() );
-    }
-    if ( s.contains( SwapChoice::NoSwap ) )
-    {
-        return SwapChoice::NoSwap;
-    }
-    // Here, count > 1 but NoSwap is not a member.
-    return *( s.begin() );
-}
-
-const NamedEnumTable< InstallChoice >&
-installChoiceNames()
-{
-    static const NamedEnumTable< InstallChoice > names { { QStringLiteral( "none" ), InstallChoice::NoChoice },
-                                                         { QStringLiteral( "nochoice" ), InstallChoice::NoChoice },
-                                                         { QStringLiteral( "alongside" ), InstallChoice::Alongside },
-                                                         { QStringLiteral( "erase" ), InstallChoice::Erase },
-                                                         { QStringLiteral( "replace" ), InstallChoice::Replace },
-                                                         { QStringLiteral( "manual" ), InstallChoice::Manual } };
-    return names;
-}
-
-
-}  // namespace Choices
 
 }  // namespace PartitionActions

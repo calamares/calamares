@@ -50,6 +50,7 @@ CMakeLists.txt.user
 
 # Backup files
 *~
+*.bak
 
 # Kate
 *.kate-swp

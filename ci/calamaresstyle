@@ -35,7 +35,13 @@ test -n "$CF" || { echo "! No clang-format ($CF_VERSIONS) found in PATH"; exit 1
 test -x "$AS" || { echo "! $AS is not executable."; exit 1 ; }
 test -x "$CF" || { echo "! $CF is not executable."; exit 1 ; }
 
-expr `"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1` '<' 10 > /dev/null ||  { echo "! $CF is version 10 or later, needs different .clang-format" ; exit 1 ; }
+unmangle_clang_format=""
+if expr `"$CF" --version | tr -dc '[^.0-9]' | cut  -d . -f 1` '<' 10 > /dev/null ; then
+	:
+else
+	unmangle_clang_format=$( dirname $0 )/../.clang-format
+	echo "SpaceInEmptyBlock: false" >> "$unmangle_clang_format"
+fi
 
 set -e
 
@@ -64,4 +70,8 @@ if test "x$any_dirs" = "xyes" ; then
 	done
 else
 	style_some "$@"
+fi
+
+if test -n "$unmangle_clang_format" ; then
+	sed -i.bak '/^SpaceInEmptyBlock/d' "$unmangle_clang_format"
 fi

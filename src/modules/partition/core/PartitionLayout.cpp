@@ -165,12 +165,12 @@ PartitionLayout::execute( Device* dev,
 {
     QList< Partition* > partList;
     // Map each partition entry to its requested size (0 when calculated later)
-    QMap< const PartitionLayout::PartitionEntry *, qint64 > partSizeMap;
+    QMap< const PartitionLayout::PartitionEntry*, qint64 > partSizeMap;
     qint64 totalSize = lastSector - firstSector + 1;
     qint64 availableSize = totalSize;
 
     // Let's check if we have enough space for each partSize
-    for( const auto& part : qAsConst(m_partLayout) )
+    for ( const auto& part : qAsConst( m_partLayout ) )
     {
         qint64 size;
         // Calculate partition size
@@ -178,7 +178,7 @@ PartitionLayout::execute( Device* dev,
         if ( part.partSize.isValid() )
         {
             // We need to ignore the percent-defined
-            if ( part.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent)
+            if ( part.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent )
             {
                 size = part.partSize.toSectors( totalSize, dev->logicalSize() );
             }
@@ -200,15 +200,15 @@ PartitionLayout::execute( Device* dev,
             continue;
         }
 
-        partSizeMap.insert(&part, size);
+        partSizeMap.insert( &part, size );
         availableSize -= size;
     }
 
     // Use partMinSize and see if we can do better afterward.
-    if (availableSize < 0)
+    if ( availableSize < 0 )
     {
         availableSize = totalSize;
-        for( const auto& part : qAsConst(m_partLayout) )
+        for ( const auto& part : qAsConst( m_partLayout ) )
         {
             qint64 size;
 
@@ -218,7 +218,7 @@ PartitionLayout::execute( Device* dev,
             }
             else if ( part.partSize.isValid() )
             {
-                if ( part.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent)
+                if ( part.partSize.unit() != CalamaresUtils::Partition::SizeUnit::Percent )
                 {
                     size = part.partSize.toSectors( totalSize, dev->logicalSize() );
                 }
@@ -232,22 +232,22 @@ PartitionLayout::execute( Device* dev,
                 size = 0;
             }
 
-            partSizeMap.insert(&part, size);
+            partSizeMap.insert( &part, size );
             availableSize -= size;
         }
     }
 
     // Assign size for percentage-defined partitions
-    for( const auto& part : qAsConst(m_partLayout) )
+    for ( const auto& part : qAsConst( m_partLayout ) )
     {
-        if ( part.partSize.unit() == CalamaresUtils::Partition::SizeUnit::Percent)
+        if ( part.partSize.unit() == CalamaresUtils::Partition::SizeUnit::Percent )
         {
-            qint64 size = partSizeMap.value(&part);
+            qint64 size = partSizeMap.value( &part );
             size = part.partSize.toSectors( availableSize + size, dev->logicalSize() );
             if ( part.partMinSize.isValid() )
             {
                 qint64 minSize = part.partMinSize.toSectors( totalSize, dev->logicalSize() );
-                if (minSize > size)
+                if ( minSize > size )
                 {
                     size = minSize;
                 }
@@ -255,13 +255,13 @@ PartitionLayout::execute( Device* dev,
             if ( part.partMaxSize.isValid() )
             {
                 qint64 maxSize = part.partMaxSize.toSectors( totalSize, dev->logicalSize() );
-                if (maxSize < size)
+                if ( maxSize < size )
                 {
                     size = maxSize;
                 }
             }
 
-            partSizeMap.insert(&part, size);
+            partSizeMap.insert( &part, size );
         }
     }
 
@@ -270,12 +270,12 @@ PartitionLayout::execute( Device* dev,
     // TODO: Refine partition sizes to make sure there is room for every partition
     // Use a default (200-500M ?) minimum size for partition without minSize
 
-    for( const auto& part : qAsConst(m_partLayout) )
+    for ( const auto& part : qAsConst( m_partLayout ) )
     {
         qint64 size, end;
         Partition* currentPartition = nullptr;
 
-        size = partSizeMap.value(&part);
+        size = partSizeMap.value( &part );
 
         // Adjust partition size based on available space
         if ( size > availableSize )
@@ -283,7 +283,7 @@ PartitionLayout::execute( Device* dev,
             size = availableSize;
         }
 
-        end = firstSector + std::max(size - 1, Q_INT64_C(0));
+        end = firstSector + std::max( size - 1, Q_INT64_C( 0 ) );
 
         if ( luksPassphrase.isEmpty() )
         {

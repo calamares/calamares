@@ -15,8 +15,8 @@
 #include "ui_ChoicePage.h"
 
 
+#include "core/Config.h"
 #include "core/OsproberEntry.h"
-#include "core/PartitionActions.h"
 
 #include <QMutex>
 #include <QPointer>
@@ -42,7 +42,7 @@ class PartitionCoreModule;
 
 class Device;
 
-using SwapChoiceSet = QSet< PartitionActions::Choices::SwapChoice >;
+using SwapChoiceSet = Config::SwapChoiceSet;
 
 /**
  * @brief The ChoicePage class is the first page of the partitioning interface.
@@ -53,8 +53,6 @@ class ChoicePage : public QWidget, private Ui::ChoicePage
 {
     Q_OBJECT
 public:
-    using InstallChoice = PartitionActions::Choices::InstallChoice;
-
     explicit ChoicePage( Config* config, QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
@@ -73,13 +71,6 @@ public:
     bool isNextEnabled() const;
 
     /**
-     * @brief currentChoice returns the enum Choice value corresponding to the
-     * currently selected partitioning mode (with a PrettyRadioButton).
-     * @return the enum Choice value.
-     */
-    InstallChoice currentChoice() const;
-
-    /**
      * @brief onLeave runs when control passes from this page to another one.
      */
     void onLeave();
@@ -88,7 +79,7 @@ public:
      * @brief applyActionChoice reacts to a choice of partitioning mode.
      * @param choice the partitioning action choice.
      */
-    void applyActionChoice( ChoicePage::InstallChoice choice );
+    void applyActionChoice( Config::InstallChoice choice );
 
     int lastSelectedDeviceIndex();
     void setLastSelectedDeviceIndex( int index );
@@ -114,6 +105,7 @@ private:
     bool calculateNextEnabled() const;
     void updateNextEnabled();
     void setupChoices();
+    void checkInstallChoiceRadioButton( Config::InstallChoice choice );  ///< Sets the chosen button to "on"
     QComboBox* createBootloaderComboBox( QWidget* parentButton );
     Device* selectedDevice();
 
@@ -123,7 +115,7 @@ private:
     void continueApplyDeviceChoice();  // .. called after scan
 
     void updateDeviceStatePreview();
-    void updateActionChoicePreview( ChoicePage::InstallChoice choice );
+    void updateActionChoicePreview( Config::InstallChoice choice );
     void setupActions();
     OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;
     void doAlongsideApply();
@@ -137,8 +129,6 @@ private:
     PartitionCoreModule* m_core;
 
     QMutex m_previewsMutex;
-
-    InstallChoice m_choice;
 
     bool m_isEfi;
     QComboBox* m_drivesCombo;
@@ -161,14 +151,11 @@ private:
     QPointer< QLabel > m_efiLabel;
     QPointer< QComboBox > m_efiComboBox;
 
-    int m_lastSelectedDeviceIndex;
+    int m_lastSelectedDeviceIndex = -1;
+    int m_lastSelectedActionIndex = -1;
 
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
-    SwapChoiceSet m_availableSwapChoices;  // What is available
-    PartitionActions::Choices::SwapChoice m_eraseSwapChoice;  // what is selected
-
-    bool m_allowManualPartitioning;
 
     QMutex m_coreMutex;
 };

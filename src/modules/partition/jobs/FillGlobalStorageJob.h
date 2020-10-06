@@ -16,6 +16,7 @@
 #include <QList>
 #include <QVariantList>
 
+class Config;
 class Device;
 class Partition;
 
@@ -30,7 +31,8 @@ class FillGlobalStorageJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    FillGlobalStorageJob( QList< Device* > devices, const QString& bootLoaderPath );
+    FillGlobalStorageJob( const Config* config, QList< Device* > devices, const QString& bootLoaderPath );
+
     QString prettyName() const override;
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;

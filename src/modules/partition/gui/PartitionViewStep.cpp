@@ -140,7 +140,7 @@ PartitionViewStep::createSummaryWidget() const
     widget->setLayout( mainLayout );
     mainLayout->setMargin( 0 );
 
-    ChoicePage::InstallChoice choice = m_choicePage->currentChoice();
+    Config::InstallChoice choice = m_config->installChoice();
 
     QFormLayout* formLayout = new QFormLayout( widget );
     const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;
@@ -158,18 +158,18 @@ PartitionViewStep::createSummaryWidget() const
         QString modeText;
         switch ( choice )
         {
-        case ChoicePage::InstallChoice::Alongside:
+        case Config::InstallChoice::Alongside:
             modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
                            .arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::InstallChoice::Erase:
+        case Config::InstallChoice::Erase:
             modeText = tr( "<strong>Erase</strong> disk and install %1." ).arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::InstallChoice::Replace:
+        case Config::InstallChoice::Replace:
             modeText = tr( "<strong>Replace</strong> a partition with %1." ).arg( branding->shortVersionedName() );
             break;
-        case ChoicePage::InstallChoice::NoChoice:
-        case ChoicePage::InstallChoice::Manual:
+        case Config::InstallChoice::NoChoice:
+        case Config::InstallChoice::Manual:
             modeText = tr( "<strong>Manual</strong> partitioning." );
         }
         modeLabel->setText( modeText );
@@ -182,27 +182,27 @@ PartitionViewStep::createSummaryWidget() const
             QString modeText;
             switch ( choice )
             {
-            case ChoicePage::InstallChoice::Alongside:
+            case Config::InstallChoice::Alongside:
                 modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk "
                                "<strong>%2</strong> (%3)." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::InstallChoice::Erase:
+            case Config::InstallChoice::Erase:
                 modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::InstallChoice::Replace:
+            case Config::InstallChoice::Replace:
                 modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
                                .arg( branding->shortVersionedName() )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
                 break;
-            case ChoicePage::InstallChoice::NoChoice:
-            case ChoicePage::InstallChoice::Manual:
+            case Config::InstallChoice::NoChoice:
+            case Config::InstallChoice::Manual:
                 modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
                                .arg( info.deviceNode )
                                .arg( info.deviceName );
@@ -286,7 +286,7 @@ PartitionViewStep::next()
 {
     if ( m_choicePage == m_widget->currentWidget() )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Manual )
+        if ( m_config->installChoice() == Config::InstallChoice::Manual )
         {
             if ( !m_manualPartitionPage )
             {
@@ -301,7 +301,7 @@ PartitionViewStep::next()
                 m_manualPartitionPage->onRevertClicked();
             }
         }
-        cDebug() << "Choice applied: " << m_choicePage->currentChoice();
+        cDebug() << "Choice applied: " << m_config->installChoice();
     }
 }
 
@@ -368,9 +368,9 @@ PartitionViewStep::isAtEnd() const
 {
     if ( m_widget->currentWidget() == m_choicePage )
     {
-        if ( m_choicePage->currentChoice() == ChoicePage::InstallChoice::Erase
-             || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Replace
-             || m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
+        auto choice = m_config->installChoice();
+        if ( Config::InstallChoice::Erase == choice || Config::InstallChoice::Replace == choice
+             || Config::InstallChoice::Alongside == choice )
         {
             return true;
         }
@@ -386,10 +386,9 @@ PartitionViewStep::onActivate()
     m_config->updateGlobalStorage();
 
     // if we're coming back to PVS from the next VS
-    if ( m_widget->currentWidget() == m_choicePage
-         && m_choicePage->currentChoice() == ChoicePage::InstallChoice::Alongside )
+    if ( m_widget->currentWidget() == m_choicePage && m_config->installChoice() == Config::InstallChoice::Alongside )
     {
-        m_choicePage->applyActionChoice( ChoicePage::InstallChoice::Alongside );
+        m_choicePage->applyActionChoice( Config::InstallChoice::Alongside );
         //        m_choicePage->reset();
         //FIXME: ReplaceWidget should be reset maybe?
     }
@@ -523,11 +522,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Copy the efiSystemPartition setting to the global storage. It is needed not only in
     // the EraseDiskPage, but also in the bootloader configuration modules (grub, bootloader).
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QString efiSP = CalamaresUtils::getString( configurationMap, "efiSystemPartition" );
-    if ( efiSP.isEmpty() )
-    {
-        efiSP = QStringLiteral( "/boot/efi" );
-    }
+    QString efiSP = CalamaresUtils::getString( configurationMap, "efiSystemPartition", QStringLiteral( "/boot/efi" ) );
     gs->insert( "efiSystemPartition", efiSP );
 
     // Set up firmwareType global storage entry. This is used, e.g. by the bootloader module.
@@ -554,8 +549,6 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                 CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
     gs->insert( "enableLuksAutomatedPartitioning",
                 CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
-    gs->insert( "allowManualPartitioning",
-                CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
 
     // The defaultFileSystemType setting needs a bit more processing,
     // as we want to cover various cases (such as different cases)
@@ -586,7 +579,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // because it could take a while. Then when it's done, we can set up the widgets
     // and remove the spinner.
     m_future = new QFutureWatcher< void >();
-    connect( m_future, &QFutureWatcher< void >::finished, this, [this] {
+    connect( m_future, &QFutureWatcher< void >::finished, this, [ this ] {
         continueLoading();
         this->m_future->deleteLater();
         this->m_future = nullptr;
@@ -597,7 +590,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "partitionLayout" ) )
     {
-        m_core->initLayout( configurationMap.values( "partitionLayout" ).at( 0 ).toList() );
+        m_core->initLayout( configurationMap.value( "partitionLayout" ).toList() );
     }
     else
     {
@@ -609,7 +602,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 Calamares::JobList
 PartitionViewStep::jobs() const
 {
-    return m_core->jobs();
+    return m_core->jobs( m_config );
 }
 
 Calamares::RequirementsList

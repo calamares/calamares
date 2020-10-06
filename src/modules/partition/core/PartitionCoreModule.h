@@ -15,6 +15,7 @@
 #include "core/KPMHelpers.h"
 #include "core/PartitionLayout.h"
 #include "core/PartitionModel.h"
+#include "jobs/PartitionJob.h"
 
 #include "Job.h"
 #include "partition/KPMManager.h"
@@ -31,6 +32,7 @@
 #include <functional>
 
 class BootLoaderModel;
+class Config;
 class CreatePartitionJob;
 class Device;
 class DeviceModel;
@@ -170,7 +172,7 @@ public:
      * requested by the user.
      * @return a list of jobs.
      */
-    Calamares::JobList jobs() const;
+    Calamares::JobList jobs( const Config* ) const;
 
     bool hasRootMountPoint() const;
 
@@ -232,28 +234,19 @@ Q_SIGNALS:
     void deviceReverted( Device* device );
 
 private:
-    CalamaresUtils::Partition::KPMManager m_kpmcore;
-
+    struct DeviceInfo;
     void refreshAfterModelChange();
 
-    /**
-     * Owns the Device, PartitionModel and the jobs
-     */
-    struct DeviceInfo
-    {
-        DeviceInfo( Device* );
-        ~DeviceInfo();
-        QScopedPointer< Device > device;
-        QScopedPointer< PartitionModel > partitionModel;
-        const QScopedPointer< Device > immutableDevice;
-        Calamares::JobList jobs;
+    void doInit();
+    void updateHasRootMountPoint();
+    void updateIsDirty();
+    void scanForEfiSystemPartitions();
+    void scanForLVMPVs();
 
-        // To check if LVM VGs are deactivated
-        bool isAvailable;
+    DeviceInfo* infoForDevice( const Device* ) const;
 
-        void forgetChanges();
-        bool isDirty() const;
-    };
+    CalamaresUtils::Partition::KPMManager m_kpmcore;
+
     QList< DeviceInfo* > m_deviceInfos;
     QList< Partition* > m_efiSystemPartitions;
     QVector< const Partition* > m_lvmPVs;
@@ -264,14 +257,6 @@ private:
     bool m_isDirty = false;
     QString m_bootLoaderInstallPath;
     PartitionLayout* m_partLayout;
-
-    void doInit();
-    void updateHasRootMountPoint();
-    void updateIsDirty();
-    void scanForEfiSystemPartitions();
-    void scanForLVMPVs();
-
-    DeviceInfo* infoForDevice( const Device* ) const;
 
     OsproberEntryList m_osproberLines;
 

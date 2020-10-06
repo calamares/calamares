@@ -24,6 +24,10 @@ This release contains contributions from (alphabetically by first name):
    system) now supports more than one entropy file; generate them as needed
    (or copy a fixed value to all, depending on *entropy-copy*). Deprecate
    *entropy* (which generates a specific output file) as too inflexible.
+ - In the *partition* module, swap can now be chosen as *file*, which is
+   **not** create a swap partition, but write a `/swapfile` in the root
+   directory, 512MiB large, and set that as swap. There is as yet no
+   "smarts" about the size of the swap file.
  - Progress reporting from the *unpackfs* module has been revamped:
    it reports more often now, so that it is more obvious that files
    are being transferred even when the percentage progress does not
