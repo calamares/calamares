@@ -57,8 +57,6 @@ public:
     void setConfigurationMap( const QVariantMap& );
     void updateGlobalStorage() const;
 
-    SwapChoiceSet swapChoices() const { return m_swapChoices; }
-
     /** @brief What kind of installation (partitioning) is requested **initially**?
      *
      * @return the partitioning choice (may be @c NoChoice)
@@ -73,6 +71,14 @@ public:
      * @return the partitioning choice (may be @c NoChoice)
      */
     InstallChoice installChoice() const { return m_installChoice; }
+
+    /** @brief The set of swap choices enabled for this install
+     *
+     * Not all swap choices are supported by each distro, so they
+     * can choose to enable or disable them. This method
+     * returns a set (hopefully non-empty) of configured swap choices.
+     */
+    SwapChoiceSet swapChoices() const { return m_swapChoices; }
 
     /** @brief What kind of swap selection is requested **initially**?
      *

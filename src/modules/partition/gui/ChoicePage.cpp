@@ -84,8 +84,6 @@ ChoicePage::ChoicePage( Config* config, QWidget* parent )
     , m_beforePartitionLabelsView( nullptr )
     , m_bootloaderComboBox( nullptr )
     , m_enableEncryptionWidget( true )
-    , m_availableSwapChoices( config->swapChoices() )
-    , m_eraseSwapChoice( config->initialSwapChoice() )
 {
     setupUi( this );
 
@@ -247,10 +245,9 @@ ChoicePage::setupChoices()
     m_replaceButton->addToGroup( m_grp, InstallChoice::Replace );
 
     // Fill up swap options
-    // .. TODO: only if enabled in the config
-    if ( m_availableSwapChoices.count() > 1 )
+    if ( m_config->swapChoices().count() > 1 )
     {
-        m_eraseSwapChoiceComboBox = createCombo( m_availableSwapChoices, m_eraseSwapChoice );
+        m_eraseSwapChoiceComboBox = createCombo( m_config->swapChoices(), m_config->swapChoice() );
         m_eraseButton->addOptionsComboBox( m_eraseSwapChoiceComboBox );
     }
 
@@ -431,7 +428,7 @@ ChoicePage::onEraseSwapChoiceChanged()
 {
     if ( m_eraseSwapChoiceComboBox )
     {
-        m_eraseSwapChoice = static_cast< Config::SwapChoice >( m_eraseSwapChoiceComboBox->currentData().toInt() );
+        m_config->setSwapChoice( m_eraseSwapChoiceComboBox->currentData().toInt() );
         onActionChanged();
     }
 }
@@ -456,7 +453,7 @@ ChoicePage::applyActionChoice( InstallChoice choice )
                                                                   gs->value( "efiSystemPartition" ).toString(),
                                                                   CalamaresUtils::GiBtoBytes(
                                                                       gs->value( "requiredStorageGiB" ).toDouble() ),
-                                                                  m_eraseSwapChoice };
+                                                                  m_config->swapChoice() };
 
         if ( m_core->isDirty() )
         {

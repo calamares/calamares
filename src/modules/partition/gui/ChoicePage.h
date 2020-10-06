@@ -156,8 +156,6 @@ private:
 
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
-    SwapChoiceSet m_availableSwapChoices;  // What is available
-    Config::SwapChoice m_eraseSwapChoice;  // what is selected
 
     QMutex m_coreMutex;
 };
