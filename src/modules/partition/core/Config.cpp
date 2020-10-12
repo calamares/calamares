@@ -239,6 +239,20 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     gs->insert( "allowManualPartitioning",
                 CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
+
+    if ( configurationMap.contains( "requiredPartitionTableType" ) &&
+        configurationMap.value( "requiredPartitionTableType" ).type() == QVariant::List )
+    {
+        m_requiredPartitionTableType.clear();
+        m_requiredPartitionTableType.append( configurationMap.value( "requiredPartitionTableType" ).toStringList() );
+    }
+    else if ( configurationMap.contains( "requiredPartitionTableType" ) &&
+        configurationMap.value( "requiredPartitionTableType" ).type() == QVariant::String )
+    {
+        m_requiredPartitionTableType.clear();
+        m_requiredPartitionTableType.append( configurationMap.value( "requiredPartitionTableType" ).toString() );
+    }
+    gs->insert( "requiredPartitionTableType", m_requiredPartitionTableType);
 }
 
 void

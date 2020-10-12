@@ -85,7 +85,8 @@ ReplaceWidget::applyChanges()
             Device* dev = model->device();
 
             PartitionActions::doReplacePartition(
-                m_core, dev, partition, { gs->value( "defaultFileSystemType" ).toString(), QString() } );
+                m_core, dev, partition, { gs->value( "defaultPartitionTableType" ).toString(),
+                    gs->value( "defaultFileSystemType" ).toString(), QString() } );
 
             if ( m_isEfi )
             {
