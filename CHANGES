@@ -10,13 +10,16 @@ website will have to do for older versions.
 # 3.2.32 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
- - No external contributors yet
+ - Gaël PORTAY
 
 ## Core ##
  - No core changes yet
 
 ## Modules ##
- - No module changes yet
+ - The *partition* module can now be constrained to work only with
+   a particular kind of partition table. (thanks Gaël)
+ - The *partition* module is a little more resilient to variations
+   in btrfs notation from os-prober.
 
 
  # 3.2.31 (2020-10-06) #
