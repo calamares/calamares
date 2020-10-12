@@ -76,14 +76,12 @@ KeyboardPage::KeyboardPage( QWidget* parent )
     connect(
         ui->buttonRestore, &QPushButton::clicked, [this] { ui->comboBoxModel->setCurrentIndex( m_defaultIndex ); } );
 
-    connect( ui->comboBoxModel,
-             &QComboBox::currentTextChanged,
-             [this]( const QString& text ) {
-                 QString model = m_models.value( text, "pc105" );
+    connect( ui->comboBoxModel, &QComboBox::currentTextChanged, [this]( const QString& text ) {
+        QString model = m_models.value( text, "pc105" );
 
-                 // Set Xorg keyboard model
-                 QProcess::execute( "setxkbmap", QStringList { "-model", model } );
-             } );
+        // Set Xorg keyboard model
+        QProcess::execute( "setxkbmap", QStringList { "-model", model } );
+    } );
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }

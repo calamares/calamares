@@ -29,12 +29,12 @@ namespace Choices
 {
 struct ReplacePartitionOptions
 {
-    QString defaultPartitionTableType; // e.g. "gpt" or "msdos"
+    QString defaultPartitionTableType;  // e.g. "gpt" or "msdos"
     QString defaultFsType;  // e.g. "ext4" or "btrfs"
     QString luksPassphrase;  // optional
 
     ReplacePartitionOptions( const QString& pt, const QString& fs, const QString& luks )
-        : defaultPartitionTableType ( pt )
+        : defaultPartitionTableType( pt )
         , defaultFsType( fs )
         , luksPassphrase( luks )
     {

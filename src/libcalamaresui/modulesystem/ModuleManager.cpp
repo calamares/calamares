@@ -281,9 +281,7 @@ ModuleManager::loadModules()
     if ( !failedModules.isEmpty() )
     {
         ViewManager::instance()->onInitFailed( failedModules );
-        QTimer::singleShot( 10, [=]() {
-            emit modulesFailed( failedModules );
-        } );
+        QTimer::singleShot( 10, [=]() { emit modulesFailed( failedModules ); } );
     }
     else
     {

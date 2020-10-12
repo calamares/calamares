@@ -520,7 +520,7 @@ void
 PartitionLabelsView::setSelectionModel( QItemSelectionModel* selectionModel )
 {
     QAbstractItemView::setSelectionModel( selectionModel );
-    connect( selectionModel, &QItemSelectionModel::selectionChanged, this, [ = ] { viewport()->repaint(); } );
+    connect( selectionModel, &QItemSelectionModel::selectionChanged, this, [=] { viewport()->repaint(); } );
 }
 
 

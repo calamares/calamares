@@ -22,16 +22,12 @@ public:
     explicit ImageRegistry();
 
     QIcon icon( const QString& image, CalamaresUtils::ImageMode mode = CalamaresUtils::Original );
-    QPixmap pixmap( const QString& image,
-                    const QSize& size,
-                    CalamaresUtils::ImageMode mode = CalamaresUtils::Original );
+    QPixmap
+    pixmap( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode = CalamaresUtils::Original );
 
 private:
     qint64 cacheKey( const QSize& size );
-    void putInCache( const QString& image,
-                     const QSize& size,
-                     CalamaresUtils::ImageMode mode,
-                     const QPixmap& pixmap );
+    void putInCache( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode, const QPixmap& pixmap );
 };
 
 #endif  // IMAGE_REGISTRY_H

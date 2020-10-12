@@ -46,7 +46,7 @@ ReplaceWidget::ReplaceWidget( PartitionCoreModule* core, QComboBox* devicesCombo
     m_ui->bootStatusLabel->clear();
 
     updateFromCurrentDevice( devicesComboBox );
-    connect( devicesComboBox, &QComboBox::currentTextChanged, this, [ = ]( const QString& /* text */ ) {
+    connect( devicesComboBox, &QComboBox::currentTextChanged, this, [=]( const QString& /* text */ ) {
         updateFromCurrentDevice( devicesComboBox );
     } );
 
@@ -84,9 +84,12 @@ ReplaceWidget::applyChanges()
         {
             Device* dev = model->device();
 
-            PartitionActions::doReplacePartition(
-                m_core, dev, partition, { gs->value( "defaultPartitionTableType" ).toString(),
-                    gs->value( "defaultFileSystemType" ).toString(), QString() } );
+            PartitionActions::doReplacePartition( m_core,
+                                                  dev,
+                                                  partition,
+                                                  { gs->value( "defaultPartitionTableType" ).toString(),
+                                                    gs->value( "defaultFileSystemType" ).toString(),
+                                                    QString() } );
 
             if ( m_isEfi )
             {

@@ -64,7 +64,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
 
     replacePartResizerWidget();
 
-    connect( m_ui->formatRadioButton, &QAbstractButton::toggled, [ this ]( bool doFormat ) {
+    connect( m_ui->formatRadioButton, &QAbstractButton::toggled, [this]( bool doFormat ) {
         replacePartResizerWidget();
 
         m_ui->fileSystemLabel->setEnabled( doFormat );
@@ -79,7 +79,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
     } );
 
     connect(
-        m_ui->fileSystemComboBox, &QComboBox::currentTextChanged, [ this ]( QString ) { updateMountPointPicker(); } );
+        m_ui->fileSystemComboBox, &QComboBox::currentTextChanged, [this]( QString ) { updateMountPointPicker(); } );
 
     // File system
     QStringList fsNames;

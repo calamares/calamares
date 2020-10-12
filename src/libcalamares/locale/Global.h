@@ -57,15 +57,13 @@ enum class InsertMode
  * in *localeConf*, e.g. "LANG" or "LC_TIME". No effort is made to
  * enforce this.
  */
-DLLEXPORT void
-insertGS( Calamares::GlobalStorage& gs, const QVariantMap& values, InsertMode mode = InsertMode::Merge );
+DLLEXPORT void insertGS( Calamares::GlobalStorage& gs, const QVariantMap& values, InsertMode mode = InsertMode::Merge );
 /** @brief Insert the given @p values into the *localeConf* map in @p gs
  *
  * Alternate way of providing the keys and values.
  */
-DLLEXPORT void insertGS( Calamares::GlobalStorage& gs,
-                         const QMap< QString, QString >& values,
-                         InsertMode mode = InsertMode::Merge );
+DLLEXPORT void
+insertGS( Calamares::GlobalStorage& gs, const QMap< QString, QString >& values, InsertMode mode = InsertMode::Merge );
 /** @brief Write a single @p key and @p value to the *localeConf* map
  */
 DLLEXPORT void insertGS( Calamares::GlobalStorage& gs, const QString& key, const QString& value );

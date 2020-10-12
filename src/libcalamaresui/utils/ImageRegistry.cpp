@@ -41,9 +41,7 @@ ImageRegistry::cacheKey( const QSize& size )
 
 
 QPixmap
-ImageRegistry::pixmap( const QString& image,
-                       const QSize& size,
-                       CalamaresUtils::ImageMode mode )
+ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode )
 {
     Q_ASSERT( !( size.width() < 0 || size.height() < 0 ) );
     if ( size.width() < 0 || size.height() < 0 )
