@@ -13,6 +13,7 @@
 #include "CppJob.h"
 #include "DllMacro.h"
 
+#include "locale/TranslatableConfiguration.h"
 #include "utils/CommandList.h"
 #include "utils/PluginFactory.h"
 
@@ -37,6 +38,7 @@ public:
 
 private:
     std::unique_ptr< CalamaresUtils::CommandList > m_commands;
+    std::unique_ptr< CalamaresUtils::Locale::TranslatedString > m_name;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ShellProcessJobFactory )

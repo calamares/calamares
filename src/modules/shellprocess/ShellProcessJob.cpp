@@ -34,6 +34,10 @@ ShellProcessJob::~ShellProcessJob() {}
 QString
 ShellProcessJob::prettyName() const
 {
+    if ( m_name )
+    {
+        return m_name->get();
+    }
     return tr( "Shell Processes Job" );
 }
 
@@ -74,6 +78,16 @@ ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
     else
     {
         cWarning() << "No script given for ShellProcessJob" << moduleInstanceKey();
+    }
+
+    bool labels_ok = false;
+    auto labels = CalamaresUtils::getSubMap( configurationMap, "i18n", labels_ok );
+    if ( labels_ok )
+    {
+        if ( labels.contains( "name" ) )
+        {
+            m_name = std::make_unique< CalamaresUtils::Locale::TranslatedString >( labels, "name" );
+        }
     }
 }
 
