@@ -24,10 +24,21 @@
 #include <QTimer>
 
 /* Returns stringlist with suitable setxkbmap command-line arguments
+ * to set the given @p model.
+ */
+static inline QStringList
+xkbmap_model_args( const QString& model )
+{
+    QStringList r { "-model", model };
+    return r;
+}
+
+
+/* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p layout and @p variant.
  */
 static inline QStringList
-xkbmap_args( const QString& layout, const QString& variant )
+xkbmap_layout_args( const QString& layout, const QString& variant )
 {
     QStringList r { "-layout", layout };
     if ( !variant.isEmpty() )
@@ -49,7 +60,7 @@ Config::Config( QObject* parent )
     connect( m_keyboardModelsModel, &KeyboardModelsModel::currentIndexChanged, [&]( int index ) {
         m_selectedModel = m_keyboardModelsModel->item( index ).value( "key", "pc105" );
         //                      Set Xorg keyboard model
-        QProcess::execute( "setxkbmap", QStringList { "-model", m_selectedModel } );
+        QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
         emit prettyStatusChanged();
     } );
 
@@ -70,7 +81,7 @@ Config::Config( QObject* parent )
         }
 
         connect( &m_setxkbmapTimer, &QTimer::timeout, this, [=] {
-            QProcess::execute( "setxkbmap", xkbmap_args( m_selectedLayout, m_selectedVariant ) );
+            QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
             cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
             m_setxkbmapTimer.disconnect( this );
         } );
